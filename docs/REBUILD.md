@@ -12,6 +12,19 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
   - Under every headline, the typed line and the sub make it literal what Obsession does, and why only Obsession: declared AI agents with their own identity, inboxes, phone numbers and browsers that do business with other companies (sign up, shop, ask, chase, check), continuously, at every company on your list, every step signed. Specific, novel, differentiated. No "Early access" pill.
 - **Calls to action:** Home "Join the waitlist" (plus the free mystery shop as the second path). Agencies and Marketing: waitlist, plus "mystery-shop a store free" (your own store, or a client's with their OK). Founders "Get early access". Sales "Get early access for my team". Developers "Get API access". Template pages: the free mystery shop on the Mystery shopper page, the waitlist (with the template preset as interest) elsewhere. Sample output: "Get one for your store".
 
+## 1b. From the 2 Oct call with James (`Calls/Obsession Call with James - 2 Oct 2026 (Homepage review).md`)
+
+- **Prospect intelligence**, not prospect research: agents become the prospect's customer and see what they actually do. It is not contact finding. Template slug `prospect-intelligence`; `/recipes/prospect-research` redirects there.
+- **How it works is 1 flow in 4 steps**, shown with motion: (1) pick a template, type a task, or build your own; (2) add the companies: paste a list, upload a CSV, connect Clay, or the API; (3) declared agents run it, each with its own ID, inbox, number and browser; (4) you get back what they did, with signed proof and your next move. A template comes with all its infrastructure set up; a typed task has the system set it up for you.
+- **Kept from James's Home**, restyled and brought to life: the 4 jobs (your competitors' playbook, where prospects lose money, where your own journeys break, anything else you can describe); template cards that open their own pages; the template page's infrastructure spinning up; the output viewer (PDF, email, Slack, sheet, expandable on click); the developer code section; the closing questions.
+- **The comparison is ours:** today vs with Obsession.
+- **Mystery shopper shows its range:** B2B SaaS trials and demos, B2C stores and bookings, any business, not only basket abandonment.
+- **James's Mystery shopper and Competitor tracking pages are the strongest copy** (written from buyers' own terms): keep their core. Rewrite the other template pages.
+- **"Join the waitlist" leads.** "Try your first shop free" lives with the sample report.
+- **Every page reads as 1 narrative**: each section hands off to the next, the body copy builds, and every illustration is placed where it proves the sentence beside it.
+
+**Home, in order:** hero (the category headline, a literal sub, typed tasks, the waitlist, the console of what Obsession can do) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > templates > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
+
 ## 2. The story every page tells
 
 1 arc, easy to follow, never told as a story. In this order (a page may skip a beat, never reorder):
@@ -66,7 +79,7 @@ App screens only (`components/AppScreen`, the screens in `src/screens`, built to
 | Founders | `leads`, `switch`, `invoices`, `suppliers`, `ship`, `qa`, `listings`, `rivals` |
 | Sales | `brief`, `acctwatch`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |
 | Marketing | `inbox`, `ads`, `prices`, `campaign` (new), plus `listings` and `inbound` as they apply to marketing |
-| Templates | each template's own screen: competitor `rivals`, prospect `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings` |
+| Templates | each template's own screen: competitor `rivals`, prospect intelligence `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings` |
 | Developers | `dev`, `compose` |
 | Sample output | the real report captures (`public/report`) |
 
