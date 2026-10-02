@@ -209,3 +209,56 @@ export type AgentsPage = {
 }
 export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }
 export type Llms = { summary: string; intro: string }
+
+/* ---- Use case studies (/use-cases/SLUG, content/usecases): James's worked examples, 1 job from start to finish for
+   1 kind of customer, with invented names and numbers. Appended 2 Oct; nothing above changes.
+   The story, in order: hero > how (his set up and run phases) > problem (the gap) > split (who does what) > outputs
+   (what the reader does with it) > recipe > proof (his last phase: what lands, on its screen) > questions > final.
+   Every name and figure is an example; `hero.example.note` and `fine` say so on the page. ---- */
+
+/* 1 of James's numbered steps. `example` is what the customer in the example chose or got. */
+export type StudyStep = { title: string; line: string; example?: string }
+/* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
+export type StudyNode = { label: string; title: string; items: string[]; foot: string }
+export type StudyLink = { label: string; title: string; line: string; cta: Cta }
+
+export type UseCaseStudy = {
+  meta: Meta
+  hero: {
+    pill?: string
+    headline: string
+    typed?: string[]
+    sub: string
+    /* Who the example is about, as chips, and the line that says it is made up. */
+    example: { chips: string[]; note: string }
+    flow?: StudyNode[]
+    capture: Capture
+  }
+  /* His phases in order. A phase plays its screen beside its numbered steps; a phase without a screen shows its chips. */
+  how: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
+  /* `answer` is the 1 line that turns the problem into what Obsession hands back. */
+  problem: { heading: string; sub?: string; items: { title: string; line: string }[]; answer?: string }
+  /* How it fits the reader's own tools: in and out of the place they already work. */
+  fit?: { heading: string; line: string; items: { title: string; line: string }[] }
+  /* What the reader keeps, and what Obsession runs. */
+  split?: { yours: { label: string; heading: string; items: string[] }; ours: { label: string; heading: string; items: string[] } }
+  outputs?: { heading: string; sub?: string; groups: { label?: string; line?: string; items: { label?: string; title: string; line: string; example: string }[] }[] }
+  /* What lands, on its screen. `opener` is the first email the reader writes from it, with their own mockup. */
+  proof: {
+    heading: string
+    line: string
+    screen: ScreenName
+    steps?: StudyStep[]
+    opener?: {
+      heading: string
+      line: string
+      mail: { from: string; to: string; subject: string; body: string[]; attachments: string[]; note: string }
+      mockup: { label: string; sender: string; channel: string; messages: { day: string; text: string }[] }
+    }
+  }
+  /* The recipe it runs and the 1 real run. */
+  more: { recipe: StudyLink; sample: StudyLink }
+  fine: string
+  faq: Faq
+  final: Final
+}

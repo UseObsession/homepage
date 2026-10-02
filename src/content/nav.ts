@@ -2,6 +2,7 @@
 import { recipes } from './registry'
 import { agentsPage } from './site'
 import type { Cta, RecipeGroup, RecipeId } from './types'
+import { useCasePages } from './useCases'
 
 export type NavPage = { label: string; to: string; line?: string }
 export type NavRecipe = { id: RecipeId; label: string; to: string }
@@ -35,6 +36,11 @@ export const nav = {
     all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
     /* The desktop menu lays the 5 jobs out in 3 columns, in reading order: 4, 5 and 6 recipes. */
     columns: [['Win customers', 'Keep customers'], ['Watch rivals'], ['Check your own journeys', 'Get paid and save']] satisfies RecipeGroup[][],
+  },
+  /* The worked examples (content/useCases). Their links are sent to prospects, so they always stay reachable. */
+  useCases: {
+    label: 'Use cases',
+    items: useCasePages.map(({ label, path, line }) => ({ label, to: path, line })) satisfies NavPage[],
   },
   links: [
     { label: 'Developers', to: '/developers' },
