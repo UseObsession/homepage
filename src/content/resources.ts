@@ -129,6 +129,7 @@ export const blogUi = {
   rss: 'RSS feed',
   featured: 'Latest',
   posts: (n: number) => (n === 1 ? '1 post' : `${n} posts`),
+  more: 'More posts',
   feedTitle: 'The Obsession blog',
 }
 

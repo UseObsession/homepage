@@ -11,21 +11,21 @@ import { blogPage as page, blogUi, formatDate, resourcesPage } from '../content/
 import './Blog.css'
 
 /* /blog: the newest post, featured (its hub, title, dek, both founders, and its hero screen if it has one), then every
-   post under its hub, newest first, as the site's link rows; then the waitlist (#join). With no posts yet, the page
+   post under its hub, newest first, as the site's link rows (1 list until a hub holds 2 posts); then the waitlist (#join). With no posts yet, the page
    points at the work itself: the use cases and the 1 real run. The feed is at /blog/rss.xml. */
 export function Blog() {
   const [featured] = posts
   const hubs = [...new Set(posts.map((p) => p.category))]
-  const groups: LinkGroupRows[] = featured
-    ? hubs.map((c) => ({
-        id: categoryId(c),
-        name: c,
-        line: blogUi.posts(posts.filter((p) => p.category === c).length),
-        rows: posts
-          .filter((p) => p.category === c)
-          .map((p) => ({ label: p.title, to: `/blog/${p.slug}`, line: p.dek, foot: `${formatDate(p.published)} · ${blogUi.read(p.readingMinutes)}` })),
-      }))
-    : [
+  /* A hub earns its own group once it holds 2 posts; until then the rest sit in 1 list, each row naming its hub. */
+  const grouped = hubs.some((c) => posts.filter((p) => p.category === c).length > 1)
+  const row = (p: (typeof posts)[number], hub: boolean) => ({
+    label: p.title,
+    to: `/blog/${p.slug}`,
+    line: p.dek,
+    foot: `${hub ? p.category + ' · ' : ''}${formatDate(p.published)} · ${blogUi.read(p.readingMinutes)}`,
+  })
+  const groups: LinkGroupRows[] = !featured
+    ? [
         {
           id: 'start',
           name: page.empty.heading,
@@ -36,6 +36,14 @@ export function Blog() {
           ],
         },
       ]
+    : grouped
+      ? hubs.map((c) => ({
+          id: categoryId(c),
+          name: c,
+          line: blogUi.posts(posts.filter((p) => p.category === c).length),
+          rows: posts.filter((p) => p.category === c).map((p) => row(p, false)),
+        }))
+      : [{ id: 'posts', name: blogUi.more, rows: posts.slice(1).map((p) => row(p, true)) }]
 
   return (
     <>
@@ -78,7 +86,7 @@ export function Blog() {
         </section>
       )}
 
-      <LinkGroups groups={groups} single={!featured} className="s-lg--then-final" />
+      <LinkGroups groups={groups} single={!featured || !grouped} className="s-lg--then-final" />
       <FinalCta final={page.final} id="join" />
     </>
   )
