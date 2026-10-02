@@ -1,126 +1,35 @@
-import { Link } from 'react-router-dom'
-import { Faq, FinalCta, Rules, SampleTeaser, SectionHead, RecipeGrid, UseCases, Watched, type UseCase } from '../components/Blocks'
-import type { FormatId } from '../components/OutputFormats'
-import type { QA } from '../content/shared'
-import { Reveal } from '../components/Reveal'
-import { RunWindow } from '../components/RunWindow'
-import { CaptureForm } from '../components/CaptureForm'
-import { captureFor } from '../content/capture'
-import { WaysPicker } from '../components/WaysPicker'
-import type { RoleId } from '../content/roles'
-import type { Run } from '../content/runs'
-import type { RecipeId } from '../content/recipes'
+import { FinalCta } from '../components/sections/FinalCta'
+import { Faq } from '../components/sections/Faq'
+import { Gap } from '../components/sections/Gap'
+import { Hero } from '../components/sections/Hero'
+import { How } from '../components/sections/How'
+import { Kinds } from '../components/sections/Kinds'
+import { Outcomes } from '../components/sections/Outcomes'
+import { Proof } from '../components/sections/Proof'
+import { RecipeGrid } from '../components/sections/RecipeGrid'
+import { UseCases } from '../components/sections/UseCases'
+import type { Workspace } from '../components/AppScreen'
+import type { Page } from '../content/types'
+import './StoryPage.css'
 
-export type Audience = {
-  role: RoleId
-  source: string
-  docTitle: string
-  kicker: string
-  title: string
-  lede: string
-  watched: string[]
-  runs: Run[]
-  stats?: { value: string; label: string; to?: string }[]
-  outputStart?: FormatId
-  statsNote?: string
-  usesTitle: string
-  uses: UseCase[]
-  waysTitle: string
-  waysLede: string
-  recipes: RecipeId[]
-  faq: QA[]
-  finalTitle: string
-  finalLine: string
-}
-
-/* Agencies, sales and marketing share one layout. Only the words and examples change. */
-export function AudiencePage({ a }: { a: Audience }) {
-
+/* Agencies, Founders, Sales and Marketing: 1 layout, only the words and the screens change (content/pages/NAME.ts).
+   The story of docs/REBUILD.md 2, in order, each beat skipped when the page has no words for it:
+   hero > how it works > the gap > use cases > outcomes > every kind of reader > recipes > proof > questions > the
+   final call to action (#join, where the nav's call to action and the hero's second path land).
+   `workspace` names whose workspace the app screens show: 'agency' on Agencies, 'company' everywhere else. */
+export function AudiencePage({ page, workspace }: { page: Page; workspace: Workspace }) {
   return (
     <>
-      <section className="hero">
-        <div className="wrap">
-          <div className="hero-in">
-            <span className="hero-pill">{a.kicker}</span>
-            <h1 className="h1">{a.title}</h1>
-            <p className="lede">{a.lede}</p>
-            <div className="hero-form">
-              <CaptureForm capture={captureFor(`/${a.source}`, `${a.source}-hero`)} />
-              <Watched items={a.watched} />
-            </div>
-          </div>
-          {a.stats && (
-            <div className="hero-stats">
-              <ul>
-                {a.stats.map((st) => (
-                  <li key={st.value}>
-                    {st.to ? (
-                      <Link to={st.to}>
-                        <b>{st.value}</b>
-                        <span>{st.label}</span>
-                      </Link>
-                    ) : (
-                      <>
-                        <b>{st.value}</b>
-                        <span>{st.label}</span>
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              {a.statsNote && <p className="faint">{a.statsNote}</p>}
-            </div>
-          )}
-          <div className="hero-stage">
-            <RunWindow runs={a.runs} headings={['What Obsession can do', 'What you can build with Obsession']} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap">
-          <SectionHead kicker="What it’s for" title={a.usesTitle} />
-          <UseCases items={a.uses} />
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap">
-          <SectionHead kicker="How you run it" title={a.waysTitle} lede={a.waysLede} />
-          <Reveal>
-            <WaysPicker fixedRole={a.role} />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section sunken">
-        <div className="wrap">
-          <SampleTeaser start={a.outputStart} />
-        </div>
-      </section>
-
-      <section className="section" id="recipes">
-        <div className="wrap">
-          <SectionHead kicker="Recipes" title="Start from one of these. Change anything." />
-          <RecipeGrid ids={a.recipes} />
-        </div>
-      </section>
-
-      <section className="section sunken">
-        <div className="wrap">
-          <SectionHead kicker="Rules every run follows" title="Built to behave." />
-          <Rules />
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap wrap-sm">
-          <SectionHead kicker="Questions" title="What people ask first" />
-          <Faq items={a.faq} />
-        </div>
-      </section>
-
-      <FinalCta title={a.finalTitle} line={a.finalLine} source={`${a.source}-final`} />
+      <Hero hero={page.hero} workspace={workspace} />
+      <How how={page.how} workspace={workspace} id="how" />
+      <Gap gap={page.gap} id="gap" />
+      <UseCases uses={page.uses} workspace={workspace} id="uses" />
+      {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}
+      {page.kinds && <Kinds kinds={page.kinds} id="kinds" />}
+      {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}
+      {page.proof && <Proof proof={page.proof} id="proof" />}
+      <Faq faq={page.faq} id="questions" />
+      <FinalCta final={page.final} id="join" />
     </>
   )
 }

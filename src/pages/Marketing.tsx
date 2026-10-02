@@ -1,7 +1,7 @@
-import { marketing } from '../content/audiences'
+import { pages } from '../content/registry'
 import { AudiencePage } from './AudiencePage'
 
-/* /marketing. James's audience layout until the Pages phase rebuilds it from content/pages/marketing.ts. */
+/* /marketing: the shared audience story (AudiencePage) with content/pages/marketing.ts, in the reader's own company. */
 export function Marketing() {
-  return <AudiencePage key="marketing" a={marketing} />
+  return <AudiencePage key="marketing" page={pages.marketing} workspace="company" />
 }

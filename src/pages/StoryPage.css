@@ -1,0 +1,4 @@
+/* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers): how their beats meet.
+   The hero ends on its console with 1 section space under it (Hero.css), so the first beat after it starts at once:
+   the same 1 section space sits between every 2 beats, from the console to the final call to action. */
+.s-hero + .s-section { padding-top: 0; }

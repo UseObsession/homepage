@@ -84,11 +84,9 @@ export const nav = {
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
-/* Each page's call to action in the nav (docs/REBUILD.md, "Calls to action"). Each goes to the page's own form. */
+/* Each page's call to action in the nav (docs/REBUILD.md, "Calls to action"). Each goes to the page's own form.
+   Home, the audience pages and Developers take theirs from their own hero capture (App.tsx), so only the others are here. */
 export const pageCtas: Record<string, Cta> = {
-  '/founders': { label: 'Get early access', to: '#join' },
-  '/sales': { label: 'Get early access for my team', to: '#join' },
-  '/developers': { label: 'Get API access', to: '#join' },
   '/recipes/mystery-shopper': { label: 'Get my free report', to: '#join' },
   /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
   '/sample-output': { label: 'Get one for your store', to: '#get-one' },
