@@ -7,5 +7,6 @@
 /sample-report                /sample-output                  301
 /sample-report/               /sample-output                  301
 /templates                    /recipes                        301
+/templates/                   /recipes                        301
 /templates/prospect-research  /recipes/prospect-intelligence  301
 /templates/*                  /recipes/:splat                 301
