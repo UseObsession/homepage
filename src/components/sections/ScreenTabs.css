@@ -10,6 +10,10 @@
   min-width: 0;
 }
 
+/* The tab rail is never wider than the screen under it: 6 tabs at Console's 184px each would overhang the stage, so
+   here they share its width (each keeps its whole name, and the rail scrolls only if they cannot). */
+.s-shots > .s-console-tabs { max-width: min(100%, calc(var(--ob-container-md) + 2 * var(--ob-space-24))); }
+
 /* The autoplay bar in the chosen tab: a 2px line along the pill's foot, in the tab's own ink, filling over the tab's
    stay. It shows the tabs move on by themselves, and how soon. */
 .s-shots-bar {

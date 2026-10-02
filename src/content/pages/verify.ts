@@ -15,7 +15,7 @@ import type { Page } from '../types'
    18 of 20 checks passed), callcheck (£0 said, £50 on the price list, 1 min 12 s on hold), outcheck (3 of 40 messages
    flagged), vendorcheck (17 and 12 of 20) and drift (37, then 28 of 40 after the 23:20 update).
    Screens, each once, all 8 of the AI agent checks' own: How (disclosure: 1 agent on every channel; salescheck: checks
-   written from your prices and the rules; callcheck: a declared test caller using it; resolution: the verdict and the
+   written from your prices and the rules; callcheck: a declared test customer using it; resolution: the verdict and the
    signed record); use cases (botcheck, outcheck, vendorcheck, drift). The voice receptionist has its console run and
    How's 3rd step rather than a use case tab, so no screen shows twice and no other recipe's screen stands in. The
    proof shows the real report.
@@ -43,7 +43,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Declared test customers with their own inbox, phone number, account and card call, chat, email and shop your AI agents the way your customers do, every day. You see each wrong answer, missed handoff and broken promise, with the proof.',
+    sub: 'Declared test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and sales agent the way your customers do, every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -52,7 +52,7 @@ export const page: Page = {
       orWaitlist: true,
     },
     proof: [
-      { value: 'Every channel', label: 'chat, phone, email, text, portal and checkout' },
+      { value: 'Every channel', label: 'chat, phone, email, text and checkout' },
       { value: 'Every day', label: 'and again after every update' },
       { value: 'Every step signed', label: 'for legal, your vendor or your insurer' },
     ],
@@ -83,28 +83,28 @@ export const page: Page = {
         recipe: 'voice-agent',
         task: 'Every morning, call our AI receptionist as 3 new patients. Book a slot, ask a price and a person, and check every answer against our price list.',
         targets: 'Your AI receptionist, on your own number',
-        journey: ['Say it’s an AI test caller', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Wait for the text'],
+        journey: ['Say it’s an AI test customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against your price list'],
         schedule: 'Daily at 08:00',
         report: 'A report by 09:00, with every recording',
         kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Your calendar, connected by you'],
         events: [
-          { time: 'Mon 08:00', text: '3 test callers ring as new patients. Each says it’s an AI test caller, there with your OK.' },
+          { time: 'Mon 08:00', text: '3 test customers ring as new patients, with your OK. Each says it’s an AI test customer and that the call is recorded.' },
           { time: 'Mon 08:00', text: 'Call 2: the receptionist says it’s AI in its first 2 seconds, and books Tuesday at 10:20.' },
-          { time: 'Mon 08:01', text: 'Asks about an Invisalign consult. “The consult is free.” Your price list says £50.' },
+          { time: 'Mon 08:01', text: 'Asks about an aligner consult. “The consult is free.” Your price list says £50.' },
           { time: 'Mon 08:01', text: 'Asks for a person. A person answers after 1 minute 12 seconds on hold.' },
-          { time: 'Mon 08:06', text: 'Every booking is in your calendar and every text arrived. Each slot cancelled.' },
+          { time: 'Mon 08:03', text: 'Calls 1 and 3 pass every check, so 11 of 12 checks pass. Each test slot is cancelled.' },
         ],
-        finding: 'Your receptionist tells new patients the Invisalign consult is free. Your price list says £50.',
+        finding: 'Your receptionist tells new patients the aligner consult is free. Your price list says £50.',
         fix: 'The price answer drafted for your receptionist’s settings. Live after your OK.',
-        ledger: 'Example run. 3 calls, recorded with consent, every answer signed and dated.',
+        ledger: 'Example run. 3 calls, 11 of 12 checks passed, every call recorded, signed and dated.',
       },
       {
         tab: 'AI SDR',
         recipe: 'outbound-agent',
         task: 'Add 2 test prospects to our AI SDR’s lists. Read every email, text and call it sends them, and check each one against our rules.',
         targets: 'Your AI SDR: email, text and calls',
-        journey: ['Join its lists, with your OK', 'Read every message', 'Reply no, then STOP', 'Check against your rules'],
-        schedule: 'Every message, continuously',
+        journey: ['Join its lists, with your OK', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
+        schedule: 'Every message, as it lands',
         report: 'A Slack flag, and a weekly signed record',
         kit: ['2 test prospects, declared as AI', '2 inboxes', '2 phone numbers', 'Only receives, never calls out'],
         events: [
@@ -116,7 +116,7 @@ export const page: Page = {
         ],
         finding: '3 of 40 messages broke your rules: a discount over its limit, a text at 03:12 and a customer you don’t have.',
         fix: 'Your AI SDR paused by your rule, and 3 rule changes drafted for its settings. Live after your OK.',
-        ledger: 'Example run. 40 messages read, every one signed and dated.',
+        ledger: 'Example run. 40 messages read, 37 passed, each signed and dated.',
       },
       {
         tab: 'Before you sign',
@@ -124,7 +124,7 @@ export const page: Page = {
         task: 'With both vendors’ OK, run our 20 hardest tickets on each shortlisted vendor’s agent, set up on our policies, and compare them side by side.',
         targets: 'Vendor B and Vendor C, with their OK',
         journey: ['Set up the same 20 cases', 'Ask as declared test customers', 'Time every handoff', 'Score against your policy'],
-        schedule: '2 weeks, then monthly once you go live',
+        schedule: '2 weeks before you sign, then monthly',
         report: 'A signed report for procurement',
         kit: ['Agent ID, declared as AI', 'An inbox and number per vendor', 'Your 20 real cases', 'Tagged as tests on both'],
         events: [
@@ -134,7 +134,7 @@ export const page: Page = {
           { time: '29 Sep', text: 'A refund on day 35, an address change, an expired code: every case run on both.' },
           { time: '3 Oct', text: 'Vendor B passes 17 of 20 cases. Vendor C passes 12.' },
         ],
-        finding: 'Vendor B passed 17 of 20 cases and Vendor C 12. Vendor C never reached a person.',
+        finding: 'Vendor B passed 17 of 20 cases and Vendor C 12. Asked for a person, Vendor C kept a customer waiting 6 minutes where your policy says 3.',
         fix: 'A side by side report for procurement, every case signed. The choice stays yours.',
         ledger: 'Example run. 40 runs over 2 weeks, every answer signed and dated.',
       },
@@ -163,7 +163,7 @@ export const page: Page = {
 
   how: {
     heading: 'Point it at your AI agent. Test customers bring back the proof.',
-    sub: 'Nobody writes a task or picks a journey. You give it your agent and your policies, and approve the checks it writes.',
+    sub: 'You give it your agent and your policies. Obsession writes the checks, and nothing runs until you approve them.',
     steps: [
       {
         title: 'Point it at your AI agent',
@@ -202,7 +202,7 @@ export const page: Page = {
   },
 
   uses: {
-    heading: 'Find the wrong answer before your first customer of the day hears it.',
+    heading: 'Find the wrong answer before a customer hears it.',
     items: [
       {
         tab: 'Support bot',
@@ -217,7 +217,7 @@ export const page: Page = {
         tab: 'AI SDR',
         moment: 'Monday, as the week’s sequences go out.',
         outcome: 'Every claim, discount and send time your AI SDR uses, checked against your rules.',
-        line: 'Test prospects on its lists, added with your OK, read every email, text and call, reply no and time how fast it stops.',
+        line: 'Test prospects on its lists, added with your OK, read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
         whyOnly: 'Real inboxes and numbers on the receiving end, so you see each message as a prospect does.',
         recipe: 'outbound-agent',
         screen: 'outcheck',
@@ -246,7 +246,7 @@ export const page: Page = {
   outcomes: {
     heading: 'Know the morning it breaks, not 11 days later.',
     items: [
-      { value: 'Up to 10 days', label: 'sooner: a daily check finds in 1 day what 1 team took 11 days to notice' },
+      { value: 'Up to 10 days', label: 'sooner: a daily check catches a broken answer within 1 day, where 1 team took 11 days to notice' },
       { value: 'Up to $22,572', label: 'a year of billed resolutions to challenge: 10,000 a month at $0.99, with 19 in 100 not real' },
       { value: 'Up to 780 hours', label: 'back a year: 15 hours a week of reading transcripts, turned into a list of what failed' },
     ],
@@ -263,7 +263,7 @@ export const page: Page = {
       },
       {
         name: 'Voice receptionists and call agents',
-        line: 'Test callers with different voices book, ask a price and ask for a person, every day.',
+        line: 'Test customers with different voices book, ask a price and ask for a person, every day.',
         recipes: ['voice-agent', 'disclosure', 'drift'],
       },
       {
@@ -289,7 +289,7 @@ export const page: Page = {
       {
         name: 'Agents you’re about to buy',
         line: 'Your real cases on each shortlisted vendor’s agent, with their OK, before you sign.',
-        recipes: ['vendor-agent', 'resolution'],
+        recipes: ['vendor-agent', 'drift'],
       },
     ],
   },
@@ -300,8 +300,8 @@ export const page: Page = {
   },
 
   proof: {
-    heading: 'The same test customers already caught a store going silent.',
-    line: 'In September, 4 test customers shopped a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent gets the same customers and the same proof.',
+    heading: 'Our test customers already caught a store that never followed up.',
+    line: 'In September, 4 test customers shopped a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: test customers ask, then watch for what comes next.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
 
@@ -322,7 +322,7 @@ export const page: Page = {
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Only on numbers you own or authorise. Each test caller says at the start that it’s AI and that the call is recorded, and no recording is ever used for training.',
+        a: 'Yes. Test customers call only numbers you own or authorise, and each says at the start that it’s AI and that the call is recorded. No recording is ever used for training.',
       },
       {
         q: 'Can we check a vendor’s agent before we sign?',
@@ -330,7 +330,7 @@ export const page: Page = {
       },
       {
         q: 'Can you check a rival’s bot?',
-        a: 'Only what any customer can do in public, and we never score, rank or publish anyone’s agent.',
+        a: 'Not as a check. A check runs only with the owner’s written OK. Competitor tracking asks a rival’s bot only what any customer can ask in public, and we never score, rank or publish anyone’s agent.',
       },
       {
         q: 'Does it pay or place orders?',

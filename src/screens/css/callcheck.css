@@ -2,7 +2,7 @@
    Daily at 08:00, 3 declared AI test customers call the client's AI receptionist as new patients, with the
    practice's written OK. Top: the 3 calls side by side on 1 clock (140 s across 328px, 2.343px a second; the wave column
    starts 144px into the card). Below: call 2 as evidence, each line timed, each check naming its rule, the record signed.
-   The 1 thing: the Invisalign consult quoted at £0 when the price list says £50.
+   The 1 thing: the aligner consult quoted at £0 when the price list says £50.
    Story (5.6 s): the calls start; 1 playhead sweeps the 3 waveforms (a clock, so linear, 00:00 to 02:16 in 4.4 s); call 2's
    transcript lands line by line as the playhead passes; the price check works, then fails (needs you, Needs you 2 to 3);
    call 2 holds for a person, calls 3 and 1 land, the person answers, call 2 ends needing you; the toast.
@@ -88,7 +88,7 @@
 .ilwrap .app-callcheck .cc-sg svg{width:12px;height:12px}
 .app-callcheck .cc-sg i{font:400 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3)}
 
-.app-callcheck .cc-r{position:relative;display:grid;grid-template-columns:264px minmax(0,1fr);align-items:center;height:34px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-callcheck .cc-r{position:relative;display:grid;grid-template-columns:292px minmax(0,1fr);align-items:center;height:34px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
 .app-callcheck .cc-r5{box-shadow:none}
 .app-callcheck .cc-tx,.app-callcheck .cc-ck{display:grid;gap:5px;min-width:0}
 .app-callcheck .cc-sp{display:flex;align-items:center;gap:8px;font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}

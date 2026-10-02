@@ -51,8 +51,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that ask your support bot what your customers ask, every day.',
-    sub: 'Declared test customers ask on chat, email and your portal in the same minute, and check each answer against your policy page. You see the wrong answer, the slow handoff and the email that never came, with the proof.',
+    headline: 'AI agents that ask your support bot what customers ask.',
+    sub: 'Every morning, declared test customers ask on chat, email and your portal in the same minute, and check each answer against your policy page. You see the wrong answer, the slow handoff and the email that never came, with the proof.',
     screen: 'botcheck',
     capture: {
       kind: 'verify',

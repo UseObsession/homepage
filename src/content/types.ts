@@ -38,6 +38,9 @@ export type Capture = {
   source: string
   button: string
   placeholder?: string
+  /* `mystery` and `verify` only: the first field's name for screen readers, when the placeholder asks for something
+     other than the shared label does (the AI SDR check asks for the company's website, not a chat page). */
+  label?: string
   micro?: string
   /* After a sign up: 1 tap tells us what to set up first. */
   roles?: { question: string; options: string[] }

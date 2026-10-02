@@ -109,7 +109,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
 
     if (mystery) {
       if (!store.trim()) {
-        if (!capture.orWaitlist) return flag('store', verify ? copy.errors.agentEmpty : copy.errors.storeEmpty)
+        if (!capture.orWaitlist)
+          return flag('store', capture.label ? `Enter ${capture.label[0].toLowerCase()}${capture.label.slice(1)}.` : verify ? copy.errors.agentEmpty : copy.errors.storeEmpty)
       } else if (!(verify ? isAgent(store) : isAddress(store))) return flag('store', verify ? copy.errors.agentBad : copy.errors.storeBad)
       if (step === 'start' && !email.trim()) {
         moved.current = true
@@ -254,7 +255,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
         <div className="ob-pill-field">
           {mystery ? (
             <label className="ob-pill-entry" htmlFor={id.store}>
-              <span className="ob-sr">{first.label}</span>
+              <span className="ob-sr">{capture.label ?? first.label}</span>
               {!verify && bareAddress(storePlaceholder) && (
                 <span className="ob-pill-affix" aria-hidden="true">
                   {copy.store.prefix}
