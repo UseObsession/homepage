@@ -21,7 +21,7 @@ import './RecipePage.css'
    plays. Sections never fade in. */
 
 /* A numeral never ends a line apart from its word ("48 hours", "4 test customers"). */
-const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
+const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
 /* Each audience's own page, named as the nav names it. */
 const AUDIENCE: Record<AudienceId | 'developers', { label: string; to: string }> = Object.fromEntries(

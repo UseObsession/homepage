@@ -19,7 +19,7 @@ import './SampleOutput.css'
 const r = sample.report
 
 /* A numeral never ends a line apart from its word ("48 hours", "4 test customers"). */
-const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
+const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
 /* Each verdict's ring: Delivered landed; Silent needs you (the gap); the rest wait. */
 const MARK: Record<SampleVerdict, Status> = { Delivered: 'landed', Silent: 'needs-you', 'No verdict': 'waiting', 'Couldn’t test': 'waiting' }

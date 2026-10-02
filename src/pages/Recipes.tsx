@@ -14,7 +14,7 @@ import './Recipes.css'
    call. Nothing moves but the hero's load sequence and the rows' hover. */
 
 /* A numeral never ends a line apart from its word. */
-const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
+const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
 const slug = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
 
