@@ -1,0 +1,304 @@
+/* Time strip */
+.tstrip-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.tstrip {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(130px, 1fr);
+  gap: 10px;
+  padding: 26px 22px 22px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line) inset;
+  overflow-x: auto;
+}
+
+.tstrip::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 33px;
+  height: 1.5px;
+  background: var(--line-strong);
+}
+
+.tstrip li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding-top: 22px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+}
+
+.reveal.in .tstrip li {
+  opacity: 1;
+  transform: none;
+}
+
+.tstrip-dot {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  background: var(--bg);
+  box-shadow: 0 0 0 1.5px var(--text-2) inset;
+}
+
+.tstrip-ok .tstrip-dot {
+  background: var(--success);
+  box-shadow: none;
+}
+
+.tstrip-warn .tstrip-dot {
+  background: var(--warning);
+  box-shadow: none;
+}
+
+.tstrip-bad .tstrip-dot {
+  background: var(--bg);
+  box-shadow: 0 0 0 1.5px var(--danger) inset;
+}
+
+.tstrip time {
+  font: 500 13px/1.2 var(--font-mono);
+  color: var(--text-3);
+}
+
+.tstrip span:last-child {
+  font-size: 14.5px;
+  line-height: 1.35;
+}
+
+.tstrip-bad span:last-child {
+  color: var(--danger);
+}
+
+.tstrip-cap {
+  font-size: 13px;
+}
+
+/* Timing */
+.timing {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.timing li {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--text);
+}
+
+.timing b {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -.03em;
+}
+
+.timing .muted {
+  font-size: 15px;
+}
+
+/* Ladder */
+.ladder {
+  display: grid;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.ladder-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) minmax(0, 1.4fr);
+  gap: 20px;
+  padding: 18px 22px;
+  border-top: 1px solid var(--line-subtle);
+  background: var(--surface);
+  font-size: 15px;
+}
+
+.ladder-head {
+  border-top: 0;
+  background: var(--bg-sunken);
+  font: 500 11.5px/1.2 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.ladder-level {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.ladder-level i {
+  order: 2;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--text);
+}
+
+/* Compare */
+.cmp-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.cmp-scroll {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.cmp {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 15px;
+  background: var(--surface);
+}
+
+.cmp th,
+.cmp td {
+  padding: 14px 20px;
+  text-align: left;
+  border-top: 1px solid var(--line-subtle);
+}
+
+.cmp thead th {
+  border-top: 0;
+  background: var(--bg-sunken);
+  font: 500 12px/1.2 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.cmp tbody th {
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.cmp td.is-bad {
+  color: var(--danger);
+}
+
+/* Proof */
+.proof {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.proof-verdicts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-verdicts li {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+
+.proof-verdicts .muted {
+  font-size: 15px;
+}
+
+.proof-rule {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.proof-rule ol {
+  display: grid;
+  gap: 10px;
+  counter-reset: rule;
+}
+
+.proof-rule li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  counter-increment: rule;
+}
+
+.proof-rule li::before {
+  content: counter(rule);
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font: 500 12px/1 var(--font-mono);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.proof-rule .faint {
+  font-size: 13.5px;
+}
+
+/* Report preview */
+.tp-report {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+
+.tp-report img {
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / .12), 0 40px 80px -30px rgb(0 0 0 / .7);
+  transform: rotate(-1.5deg);
+}
+
+@media (max-width: 900px) {
+  .timing {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .proof,
+  .tp-report {
+    grid-template-columns: 1fr;
+  }
+
+  .ladder-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .ladder-head {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .timing,
+  .proof-verdicts {
+    grid-template-columns: 1fr;
+  }
+}

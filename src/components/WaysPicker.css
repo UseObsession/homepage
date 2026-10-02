@@ -1,0 +1,361 @@
+.ways {
+  display: grid;
+  gap: 20px;
+}
+
+.ways-roles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.ways-roles-k {
+  font: 500 13px/1 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.ways-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ways-chips button {
+  height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgb(var(--tint) / .04);
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.ways-chips button:hover {
+  color: var(--text);
+}
+
+.ways-chips button:active {
+  transform: scale(.97);
+}
+
+.ways-chips button[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: none;
+}
+
+.ways-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.ways-list {
+  display: grid;
+  gap: 10px;
+}
+
+.way {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 20px 22px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line) inset;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), opacity 400ms var(--ease), transform 400ms var(--ease), background var(--dur) var(--ease);
+}
+
+.way:hover {
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+}
+
+.way.is-active {
+  background: var(--surface-raised);
+  box-shadow: 0 0 0 1.5px var(--text) inset;
+}
+
+.way.is-off {
+  opacity: .32;
+  cursor: default;
+  transform: scale(.985);
+}
+
+.way.is-off:hover {
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+
+.way-who {
+  font: 500 12px/1.2 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.way-name {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+.way-line {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.ways-note {
+  padding: 4px 6px 0;
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.ways-stage {
+  min-height: 420px;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgb(var(--tint) / .045), rgb(var(--tint) / .01) 38%), var(--surface);
+  box-shadow: 0 0 0 1px var(--line) inset, var(--shadow-window);
+  animation: stage-in 500ms var(--ease) both;
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.stage-k {
+  font: 500 11.5px/1.2 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.stage-tpl {
+  display: grid;
+  gap: 14px;
+}
+
+.stage-tpl > ul {
+  display: grid;
+  gap: 8px;
+}
+
+.stage-tpl > ul > li {
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px var(--line) inset;
+  transition: background var(--dur) var(--ease);
+}
+
+.stage-tpl > ul > li.is-open {
+  background: rgb(var(--tint) / .035);
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+}
+
+.stage-tpl button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tpl-name {
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.tpl-more {
+  display: none;
+  gap: 12px;
+  padding: 0 16px 16px;
+  font-size: 14.5px;
+}
+
+li.is-open .tpl-more {
+  display: grid;
+  animation: stage-in 400ms var(--ease) both;
+}
+
+.tpl-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  counter-reset: step;
+}
+
+.tpl-steps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: rgb(var(--tint) / .06);
+  font-size: 13px;
+  counter-increment: step;
+}
+
+.tpl-steps li::before {
+  content: counter(step);
+  font: 500 11px/1 var(--font-mono);
+  color: var(--text-3);
+}
+
+.tpl-gets {
+  display: grid;
+  gap: 4px;
+}
+
+.stage-task {
+  display: grid;
+  gap: 18px;
+}
+
+.task-box {
+  display: flex;
+  gap: 12px;
+  min-height: 96px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg-sunken);
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.task-prompt {
+  font-family: var(--font-mono);
+  color: var(--text-3);
+}
+
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--text);
+  animation: blink 1s steps(1) infinite;
+}
+
+.task-plan {
+  display: grid;
+  gap: 12px;
+}
+
+.task-plan dl {
+  display: grid;
+  gap: 2px;
+}
+
+.task-plan dl > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-subtle);
+  font-size: 15px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 450ms var(--ease), transform 450ms var(--ease);
+}
+
+.task-plan.in dl > div {
+  opacity: 1;
+  transform: none;
+}
+
+.task-plan dt {
+  color: var(--text-3);
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity 400ms var(--ease) 500ms;
+}
+
+.task-plan.in .task-actions {
+  opacity: 1;
+}
+
+.btn-2.sm {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.stage-api {
+  display: grid;
+  gap: 12px;
+}
+
+.stage-foot {
+  font: 400 12px/1.4 var(--font-mono);
+  color: var(--text-3);
+}
+
+@media (max-width: 860px) {
+  .ways-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ways-list {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+
+  .way {
+    padding: 14px;
+  }
+
+  .way-line {
+    display: none;
+  }
+
+  .way-name {
+    font-size: 16px;
+  }
+
+  .ways-note {
+    grid-column: 1 / -1;
+  }
+
+  .ways-stage {
+    min-height: 0;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .way-who {
+    display: none;
+  }
+
+  .task-plan dl > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
