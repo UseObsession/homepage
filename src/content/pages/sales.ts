@@ -1,9 +1,10 @@
+import { consoleHeading } from '../console'
 import type { Capture, Page } from '../types'
 
 /* Sales (/sales): sales and customer success teams of any kind, SaaS first. Win and renew.
    The story: what Obsession is for a sales team > how it works > the gap (most tools read what a company publishes;
    agents go through it as a customer) > use cases (brief, account watch, business case, pilot, win back, battlecards,
-   speed to lead on your own funnel, vendor forms) > outcomes (up to ceilings with the model in the line; deliverables
+   lead leaks on your own funnel, the supplier portal) > outcomes (up to ceilings with the model in the line; deliverables
    flat) > every kind of team > recipes > proof (the real September store check, as it happened) > questions (red
    lines) > early access.
    Base: _research/site_sales.json (approved), James's sales lines ("Pick an account. See what it does.").
@@ -33,18 +34,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'For sales and customer success',
+    pill: 'Early access',
     headline: 'AI agents that help your team win and renew accounts.',
-    typed: [
-      'Brief me before Friday’s call',
-      'Flag any renewal at risk',
-      'Tell me which accounts are ready to grow',
-      'Prove our pilot to their CFO by day 30',
-      'Build a renewal case their CFO can check',
-      'Run our 3 rivals’ trials for a battlecard',
-      'Tell me when a lost account’s new setup breaks',
-      'Get us set up in their supplier portal',
-    ],
     sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up and ask the chat bot at every account and rival on your list, continuously. You get signed proof and your next move before every call, pilot and renewal.',
     capture: {
       kind: 'waitlist',
@@ -60,7 +51,7 @@ export const page: Page = {
       { value: '7 days', label: 'as their customer before a first call' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Account brief',
@@ -83,6 +74,26 @@ export const page: Page = {
         ledger: '7 days, every email, page and answer dated and signed.',
       },
       {
+        tab: 'Inbound quotes',
+        recipe: 'quotes',
+        task: 'Answer every inbound price request, from a buyer or their procurement agent, from our price book in minutes. Book a rep for big deals.',
+        targets: 'Your form, inbox, sales line and buyers’ AI agents',
+        journey: ['Say it’s your AI agent', 'Quote from the price book', 'Counter above your floor', 'Book the right rep'],
+        schedule: 'Every request, as it lands',
+        report: 'Every quote in your CRM, Slack for big deals',
+        kit: ['Agent ID, names your company', 'Own inbox and number', 'Price book and floors', 'Your CRM and calendars'],
+        events: [
+          { time: 'Tue 18:40', text: 'A procurement agent asks for 120 seats, single sign on and a 2 year price.' },
+          { time: 'Tue 18:43', text: 'It confirms who the agent acts for, then quotes 10% off for 2 years.' },
+          { time: 'Tue 19:05', text: 'A form asks for 8 seats. Quoted in 3 minutes, at list price.' },
+          { time: 'Wed 08:30', text: 'Asked for 20%. Held at 10%, and 12% offered only for 3 years, as your price book allows.' },
+          { time: 'Wed 09:15', text: 'Over your $50,000 line, so a call with the right rep is booked for Friday.' },
+        ],
+        finding: '2 requests quoted in under 5 minutes, after hours. The big one held above your floor.',
+        fix: 'Their security questions sent to your team, with replies drafted from your approved answers.',
+        ledger: 'Every quote and counter dated, signed and in your CRM.',
+      },
+      {
         tab: 'Account watch',
         recipe: 'account-watch',
         task: 'Every morning, check our 40 renewals: the usage, tickets and calls we connect, their news and hiring, and what their customers get. Flag churn or upsell.',
@@ -103,24 +114,24 @@ export const page: Page = {
         ledger: 'Every reason linked to its source, dated and signed.',
       },
       {
-        tab: 'Business case',
-        recipe: 'business-case',
-        task: 'From pilot to renewal, keep Account 14’s case current from usage, tickets and the pilot runs. Use their own costs.',
-        targets: '1 renewal, from your CRM',
-        journey: ['Read usage and tickets', 'Pull the pilot runs', 'Use their own costs', 'Link every number'],
-        schedule: 'Weekly, pilot to renewal',
-        report: 'A page their finance team can open',
-        kit: ['Agent ID', 'Tools you connect', 'Pilot records', 'Signed record'],
+        tab: 'Renewal negotiation',
+        recipe: 'renewal',
+        task: 'Account 31 renews on 1 Dec. Answer every round from their procurement agent the same day, with real usage, inside our limits, through to signature and payment.',
+        targets: 'Account 31, $48,000 a year',
+        journey: ['Answer each round the same day', 'Show their real usage', 'Offer only inside your limits', 'Signature, PO and payment'],
+        schedule: 'From 120 days out until paid',
+        report: 'Each round in your CRM, Slack when it’s agreed',
+        kit: ['Agent ID, names your company', 'Usage, connected by you', 'Your discount limits', 'Signing and billing tools'],
         events: [
-          { time: 'Pilot, day 0', text: 'With their OK, 20 questions asked. First reply: 26 hours.' },
-          { time: 'Pilot, day 28', text: 'Same agents, same 20 questions. First reply: 2 minutes.' },
-          { time: 'Every Monday', text: 'Usage, with consent: 212 of 250 seats active.' },
-          { time: '60 days out', text: 'From your call notes: their CFO asks for 20% off. Their own cost: $6 a reply.' },
-          { time: '60 days out, 10:00', text: 'Case ready: 18,400 replies this year, each number linked to its source.' },
+          { time: '88 days out', text: 'Their procurement agent, declared as AI, asks for 22% off.' },
+          { time: '88 days out', text: 'Same day: their usage, checked by your team, and 6% for 2 years, inside your limits.' },
+          { time: '80 days out', text: 'It says usage fell. The record shows a 14% rise, sent with the proof.' },
+          { time: '61 days out', text: 'Agreed. Your account manager signs, and the agent chases their signer.' },
+          { time: '2 days out', text: 'PO in, invoice accepted in their portal, paid.' },
         ],
-        finding: 'First reply: 26 hours to 2 minutes. Up to $110,400 a year saved: 18,400 replies at their $6 each, on a $48,000 fee.',
-        fix: 'Renewal case drafted at full price, every number linked. Sent to their CFO after your OK.',
-        ledger: 'Pilot answers kept raw. Every number dated and signed.',
+        finding: 'Asked for 22% off, renewed at 6% for 2 years: $7,680 a year kept on $48,000.',
+        fix: 'Anything outside your limits comes to you. Next year’s renewal starts 120 days out.',
+        ledger: 'Every round, usage file and signature dated and signed.',
       },
       {
         tab: 'Battlecard',
@@ -143,24 +154,24 @@ export const page: Page = {
         ledger: 'Every email and step dated and signed. No replies sent.',
       },
       {
-        tab: 'Vendor forms',
-        recipe: 'task',
+        tab: 'Supplier portal',
+        recipe: 'get-paid',
         task: 'Get us set up in the buyer’s supplier portal from our company pack. Chase daily until our first invoice is paid.',
         targets: '1 buyer portal, by their invite',
-        journey: ['Register from the invite', 'File every form', 'Bank details: your OK', 'Chase until paid'],
+        journey: ['Register from the invite', 'File every form', 'Bank details: finance only', 'Chase until paid'],
         schedule: 'Daily at 08:00 until paid',
         report: 'Slack note and a dated log',
         kit: ['Agent ID', 'Supplier inbox', 'Company pack', 'Daily 08:00 check'],
         events: [
           { time: 'Day 1, 10:14', text: 'Registered from the invite as your AI agent. 5 of 6 forms filed.' },
-          { time: 'Day 1, 10:31', text: 'Flag: the form asks for $5m insurance. Your pack shows $2m.' },
-          { time: 'Day 6, 08:00', text: 'New certificate filed. Approved. Bank details sent after finance’s OK.' },
+          { time: 'Day 1, 10:31', text: 'Flag: the form asks for $5m insurance. Your pack shows $2m. Email to your broker drafted, sent after your OK.' },
+          { time: 'Day 6, 08:00', text: 'New certificate filed. Approved. Your finance team adds the bank details.' },
           { time: 'Day 38, 08:00', text: 'Invoice 8 days late. Polite chase to their accounts team, as you approved.' },
           { time: 'Day 40, 08:00', text: 'Paid. Log closed.' },
         ],
         finding: 'The $5m insurance rule was the only block. Approved on day 6, paid on day 40.',
-        fix: 'Email to your broker for a $5m certificate, drafted. Sent after your OK.',
-        ledger: 'Every form and chase signed. The bank step approved by finance.',
+        fix: 'Next year’s PO lined up before the renewal invoice, so year 2 isn’t late either.',
+        ledger: 'Every form and chase signed. Bank details entered by your finance team.',
       },
     ],
   },
@@ -266,7 +277,7 @@ export const page: Page = {
         screen: 'battlecard',
       },
       {
-        tab: 'Speed to lead',
+        tab: 'Lead leaks',
         moment: 'Thursday 09:00. Inbound is up, meetings booked are not.',
         outcome: 'Find where your form, chat and phone drop leads.',
         line: 'Every day, a labelled test lead uses your own form, chat and phone, times each reply and checks who got it.',
@@ -275,12 +286,12 @@ export const page: Page = {
         screen: 'inbound',
       },
       {
-        tab: 'Vendor forms',
+        tab: 'Supplier portal',
         moment: 'Friday 17:00. Contract signed. Then come the vendor forms.',
         outcome: 'Forms filed on day 1, chased until you’re paid.',
-        line: 'A declared agent fills every vendor form, portal and security questionnaire from your pack, then chases politely until you’re paid.',
-        whyOnly: 'Its own supplier inbox, checked every morning. Bank details and signatures wait for your OK.',
-        recipe: 'task',
+        line: 'The day the contract is signed, a declared agent registers you in their supplier portal, files every form and security questionnaire from your pack, then chases the PO and the invoice until you’re paid.',
+        whyOnly: 'Its own supplier inbox, checked every morning. Anything to sign waits for you, and your finance team enters bank details.',
+        recipe: 'get-paid',
         screen: 'vendor',
       },
     ],
@@ -351,21 +362,21 @@ export const page: Page = {
 
   recipes: {
     heading: 'From the first call to the renewal, a recipe is ready to run.',
-    ids: ['prospect', 'account-watch', 'business-case', 'mystery', 'email-sms', 'trial', 'competitor', 'speed'],
+    ids: ['prospect', 'quotes', 'account-watch', 'business-case', 'renewal', 'mystery', 'email-sms', 'trial', 'competitor', 'speed', 'get-paid'],
   },
 
   proof: {
-    heading: '2 shoppers left full baskets on a real store. Neither got a reminder in 48 hours.',
-    line: 'September 2026, a skincare store, 4 test customers: a £40 gift set left at 02:57 and a £21 deodorant at 03:11, each logged with its time and screenshots. Your briefs, cases and battlecards come back the same way.',
+    heading: '1 shopper left a basket and 1 stopped at checkout on a real store. Neither got a reminder in 48 hours.',
+    line: 'September 2026, a skincare store, 4 test customers: a £40 gift set left in the basket at 02:57 and £21 of deodorant left at checkout at 03:11, each logged with its time and screenshots. Your briefs, cases and battlecards come back the same way.',
     cta: { label: 'See the real report', to: '/sample-output' },
   },
 
   faq: {
-    heading: 'Every agent says it’s AI. Every note waits for your OK.',
+    heading: 'Every agent says it’s AI. Every offer stays inside the limits you set.',
     items: [
       {
         q: 'Will our accounts know it’s an AI agent?',
-        a: 'Yes. Every agent says it’s an AI agent and never pretends to be a person. On journeys an account has agreed to, it says it works for you. Everywhere else, it links to useobsession.com/agents and keeps your name out.',
+        a: 'Yes. Every agent says it’s an AI agent and never pretends to be a person. When it deals with an account for you, on a quote, a renewal or an invoice, or on a journey the account has agreed to, it says it works for you. Everywhere else, it links to useobsession.com/agents and keeps your name out.',
       },
       {
         q: 'Does it contact anyone at a prospect or rival?',
@@ -385,7 +396,7 @@ export const page: Page = {
       },
       {
         q: 'Will it message a buyer without our OK?',
-        a: 'No. Notes, cases and offers wait for your OK, and so do bank details and signatures. On anyone else’s store, every checkout stops before payment.',
+        a: 'Only inside rules you approve once: quotes from your price book and counters inside your limits. Anything outside them, any change to terms and every signature wait for you, and your finance team enters bank details. On anyone else’s store, every checkout stops before payment.',
       },
       {
         q: 'How many accounts can it cover?',

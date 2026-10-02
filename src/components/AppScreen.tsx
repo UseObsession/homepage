@@ -32,8 +32,9 @@ type Props = {
   className?: string
   /* Whose workspace the screen shows (components/workspace.ts). */
   workspace?: Workspace
-  /* The quiet tag under the screen. Every screen shows example data, so it reads "Example" (matching the console's
-     "Example runs"); only the real September report captures on /sample-output pass note="". */
+  /* The quiet tag under the screen. Every screen shows example data, so it reads "Example" (matching the hero
+     console's Example tag); only the real September report captures on /sample-output pass note="", and Home's hero
+     screens, which carry the tag in their own line (ScreenTabs). */
   note?: string
 }
 

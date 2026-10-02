@@ -1,8 +1,9 @@
-import { memo, useCallback, useEffect, useId, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type FocusEvent, type KeyboardEvent, type PointerEvent } from 'react'
+import { memo, useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent, type PointerEvent } from 'react'
 import { recipeGroups } from '../../content/nav'
+import { RM, useReducedMotion, useTabRail } from '../../hooks/useConsole'
 import type { Demo } from '../../content/types'
 import { StatusMark, type Status } from '../Logo'
-import { TypedText } from './TypedLine'
+import { TypedText } from './Typed'
 import './Console.css'
 
 /* The hero console (docs/REBUILD.md 1c, 2 and 5): what Obsession can do, as example runs in 1 product window.
@@ -47,19 +48,6 @@ const WAIT = { start: 360, kit: 220, firstEvent: 640, event: 1000, finding: 900,
 const FRESH_MS = 450
 const DWELL_FALLBACK = 7000
 
-const RM = '(prefers-reduced-motion: reduce)'
-const subscribeRm = (cb: () => void) => {
-  const m = matchMedia(RM)
-  m.addEventListener('change', cb)
-  return () => m.removeEventListener('change', cb)
-}
-/* False on the server and while hydrating (the prerendered run is finished either way), then the reader's setting. */
-const useReducedMotion = () =>
-  useSyncExternalStore(
-    subscribeRm,
-    () => matchMedia(RM).matches,
-    () => false,
-  )
 
 /* The agent's typing rhythm, at the quick end of motion.css's 20 to 42ms a key: a whole task types in about 3 seconds.
    A little longer after a space or a comma. */
@@ -253,13 +241,25 @@ const Panel = memo(function Panel({
 })
 
 /* `tag` replaces the bar's "Example" (the 1 real run says so). 1 demo is single-run mode (a recipe page): no tab row,
-   the label names the run, and it plays when the reader reaches it, then rests; Play runs it again. */
-export function Console({ label, demos, workspace = 'agency', tag = UI.example }: { label: string; demos: Demo[]; workspace?: Workspace; tag?: string }) {
+   the label names the run, and it plays when the reader reaches it, then rests; Play runs it again.
+   In the hero, the typed heading over the console names it (`labelledBy`, its id) in place of the label. */
+export function Console({
+  label,
+  labelledBy,
+  demos,
+  workspace = 'agency',
+  tag = UI.example,
+}: {
+  label?: string
+  labelledBy?: string
+  demos: Demo[]
+  workspace?: Workspace
+  tag?: string
+}) {
   const single = demos.length === 1
   const uid = useId()
   const rootRef = useRef<HTMLDivElement>(null)
   const winRef = useRef<HTMLDivElement>(null)
-  const railRef = useRef<HTMLDivElement>(null)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const allBeats = useMemo(() => demos.map(beatsOf), [demos])
   /* Every run's finished state: the panels that aren't showing, and the prerendered HTML. */
@@ -278,7 +278,7 @@ export function Console({ label, demos, workspace = 'agency', tag = UI.example }
   const [away, setAway] = useState(false)
   const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
-  const [edges, setEdges] = useState({ scroll: false, start: true, end: true })
+  const { railRef, railClass } = useTabRail(active)
 
   /* Reduced motion: every run shows finished, and nothing advances by itself. */
   const reduced = useReducedMotion()
@@ -380,37 +380,6 @@ export function Console({ label, demos, workspace = 'agency', tag = UI.example }
     tabRefs.current[i]?.focus()
   }
 
-  /* The rail scrolls sideways when the tabs outgrow it (phones): the chosen tab stays in view, and the edge with more
-     to see fades (navigation.css .is-scrollable). Scrolled by hand along the rail only, never the page. */
-  useEffect(() => {
-    const rail = railRef.current
-    if (!rail) return
-    const measure = () => {
-      const scroll = rail.scrollWidth > rail.clientWidth + 1
-      setEdges({ scroll, start: rail.scrollLeft <= 1, end: rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 1 })
-    }
-    measure()
-    rail.addEventListener('scroll', measure, { passive: true })
-    const ro = new ResizeObserver(measure)
-    ro.observe(rail)
-    return () => {
-      rail.removeEventListener('scroll', measure)
-      ro.disconnect()
-    }
-  }, [])
-
-  useEffect(() => {
-    const rail = railRef.current
-    const tab = tabRefs.current[active]
-    if (!rail || !tab || rail.scrollWidth <= rail.clientWidth + 1) return
-    const pad = 24
-    const left = tab.offsetLeft - pad
-    const right = tab.offsetLeft + tab.offsetWidth + pad
-    const behavior = matchMedia(RM).matches ? 'auto' : 'smooth'
-    if (left < rail.scrollLeft) rail.scrollTo({ left, behavior })
-    else if (right > rail.scrollLeft + rail.clientWidth) rail.scrollTo({ left: right - rail.clientWidth, behavior })
-  }, [active])
-
   const onPointerEnter = (e: PointerEvent) => e.pointerType === 'mouse' && setHovered(true)
   const onPointerLeave = () => setHovered(false)
   /* Keyboard focus on a tab or a run holds the tabs; a click, or focus on the pause button, does not. */
@@ -432,8 +401,8 @@ export function Console({ label, demos, workspace = 'agency', tag = UI.example }
         : { mark: 'working', word: UI.status.working, detail: UI.steps(view.events, d.events.length) }
 
   const name = d.recipe === 'task' ? UI.ownTask : (RECIPES[d.recipe] ?? d.tab)
-  const railClass =
-    'ob-ptabs s-console-tabs' + (edges.scroll ? ' is-scrollable' : '') + (edges.start ? ' is-scroll-start' : '') + (edges.end ? ' is-scroll-end' : '')
+  /* What names the tabs (or the single run): the hero's typed heading, or the console's own label. */
+  const named = labelledBy ?? (single ? `${uid}-tab-0` : `${uid}-label`)
 
   return (
     <div
@@ -445,11 +414,13 @@ export function Console({ label, demos, workspace = 'agency', tag = UI.example }
       onFocus={onFocus}
       onBlur={onBlur}
     >
-      <p className="s-console-label" id={single ? `${uid}-tab-0` : `${uid}-label`}>
-        {label}
-      </p>
+      {!labelledBy && (
+        <p className="s-console-label" id={named}>
+          {label}
+        </p>
+      )}
       {!single && (
-        <div className={railClass} role="tablist" aria-labelledby={`${uid}-label`} ref={railRef} onKeyDown={onKey}>
+        <div className={railClass} role="tablist" aria-labelledby={named} ref={railRef} onKeyDown={onKey}>
           {demos.map((demo, i) => (
             <button
               key={i}
@@ -519,7 +490,7 @@ export function Console({ label, demos, workspace = 'agency', tag = UI.example }
               view={i === active ? view : restViews[i]}
               live={i === active && live}
               id={`${uid}-panel-${i}`}
-              tabId={`${uid}-tab-${i}`}
+              tabId={single ? named : `${uid}-tab-${i}`}
               active={i === active}
               single={single}
             />

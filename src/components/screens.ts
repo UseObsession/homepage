@@ -7,6 +7,12 @@
 const HTML = import.meta.glob<string>('../screens/html/*.html', { query: '?raw', import: 'default' })
 const CSS = import.meta.glob('../screens/css/*.css')
 
+/* Whether a screen exists at all. The file list is known at build time on both sides, so the server and the browser
+   agree, and a tab whose screen has not landed yet is left out the same way in both (Hero's screen tabs). */
+export function hasScreen(name: string): boolean {
+  return `../screens/html/${name}.html` in HTML
+}
+
 /* A screen's HTML while rendering: only the server has it. In the browser the prerendered HTML is already in place. */
 export function screenHtmlNow(name: string): string | undefined {
   void name

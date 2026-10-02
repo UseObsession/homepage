@@ -46,11 +46,11 @@ export const recipesPage: RecipesIndexPage = {
   groups: [
     {
       group: 'Win customers',
-      line: 'Prove the gap at every prospect before you pitch, and keep every listing and AI answer about you right.',
+      line: 'Prove the gap before you pitch, quote every buyer in minutes, correct what AI says about you, and move a new client’s accounts into their name.',
     },
     {
       group: 'Keep customers',
-      line: 'See churn and upsell coming in every account, and prove your value before each renewal.',
+      line: 'See churn and upsell coming, answer every renewal discount request with real usage, and offer a pause next to every cancel.',
     },
     {
       group: 'Watch rivals',
@@ -58,11 +58,11 @@ export const recipesPage: RecipesIndexPage = {
     },
     {
       group: 'Check your own journeys',
-      line: 'Go through your own business, or a client’s with their OK, as a customer would, and catch every break first.',
+      line: 'Go through your own business, or a client’s with their OK, as a customer or a buyer’s AI agent would, and catch every break first.',
     },
     {
       group: 'Get paid and save',
-      line: 'Chase every overdue invoice, and answer every supplier price rise with quotes in writing.',
+      line: 'Get paid from the day a customer signs, answer supplier price rises with quotes, and hold every software bill at the price you agreed.',
     },
   ],
 
@@ -99,6 +99,10 @@ export const recipesPage: RecipesIndexPage = {
       {
         q: 'What do the agents do at a rival or a prospect?',
         a: 'Only what any customer can: sign up, join the emails and texts, read public pages and the ads they run in public, ask the site’s chat bot, and start trials that need no card. They say they’re AI agents, link to useobsession.com/agents, never name you and never reply. If a person picks up the chat, or a rep writes or calls, the step ends.',
+      },
+      {
+        q: 'Can an agent spend money?',
+        a: 'Only on a card capped at a budget you set, for a job you approved: a test order on your own store that it refunds, a transfer fee, or a software bill at the price you agreed. Above the cap it stops and asks you. It never signs or accepts terms without your OK.',
       },
     ],
   },
@@ -254,7 +258,7 @@ export const agentsPage: AgentsPage = {
     description:
       'An Obsession agent is a declared AI agent with its own inbox, number and browser. What it does at your company, what it never does, and how to opt out.',
     answer:
-      'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. When it keeps that customer private, it uses only the paths any customer can. It never pretends to be a person or pays on your store, and any company can write to hello@useobsession.com with a question or to keep agents off its site.',
+      'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. When it keeps that customer private, it uses only the paths any customer can. It never pretends to be a person or pays on your store without your OK, and any company can write to hello@useobsession.com with a question or to keep agents off its site.',
     ogImage: '/og/agents.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -280,7 +284,7 @@ export const agentsPage: AgentsPage = {
       heading: 'It never pretends to be a person.',
       lines: [
         'Every agent says it’s an AI agent. It never uses a fake name or a fake identity.',
-        'If it’s working for you, or for someone with your OK, like your agency, it names who it works for. So does an agent asking you for a quote or following up an invoice.',
+        'If it’s working for you, or for someone with your OK, like your agency, it names who it works for. So does an agent that asks you for a quote, answers your request for one, negotiates a renewal, asks for a client’s accounts back or follows up an invoice.',
         'If it’s doing what any customer can, it says it’s from Obsession and links to this page, without naming its customer.',
       ],
     },
@@ -298,7 +302,7 @@ export const agentsPage: AgentsPage = {
     },
     {
       id: 'never',
-      heading: 'It never pays on your store, and never poses as a buyer.',
+      heading: 'It never pays on your store without your OK, and never poses as a buyer.',
       lines: [
         'No agent sends cold emails, or goes behind a login it wasn’t given, past a CAPTCHA or past a block.',
         'When it keeps its customer private, it also never:',
@@ -375,9 +379,9 @@ export const llms: Llms = {
     'Obsession’s agents sign up, shop, ask the site’s chat bot, chase, check and wait at every company on your list, continuously, and every step they take is signed.',
     'You get the proof and your next move by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
     'There are 3 ways in: pick a recipe, which comes with everything it needs already set up; type a task in plain words, and the system sets it up for you; or build your own on the API.',
-    'Recipes cover winning customers (prospect intelligence, listings and AI answers), keeping customers (account watch, business case), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, speed to lead, website audit, delivery monitoring), and getting paid and saving (get paid, supplier quotes).',
+    'Recipes cover winning customers (prospect intelligence, listings and AI answers, inbound quotes, account handover), keeping customers (account watch, business case, renewal negotiation, cancellation saves), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, lead leaks, website audit, delivery monitoring, AI checkout test), and getting paid and saving (get paid, supplier quotes, software renewals).',
     'Most tools read what a company publishes. Obsession goes through it as a customer.',
-    'Every agent says it’s an AI agent and never pretends to be a person. At rivals and prospects it uses only the paths any customer can (sign ups, newsletters, texts, public pages, the ads they run in public, the site’s chat bot and trials that need no card), never contacts staff or replies, closes a trial the moment a rep writes or calls, never names its customer and links to useobsession.com/agents. A company’s own journeys, or a client’s or account’s, run only with the owner’s OK, and on anyone else’s store every checkout stops before payment.',
-    'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours, and the 2 shoppers who left full baskets got no reminder. A store owner, or an agency with a client’s OK, can get a first mystery shop free.',
+    'Every agent says it’s an AI agent and never pretends to be a person. At rivals and prospects it uses only the paths any customer can (sign ups, newsletters, texts, public pages, the ads they run in public, the site’s chat bot and trials that need no card), never contacts staff or replies, closes a trial the moment a rep writes or calls, never names its customer and links to useobsession.com/agents. A company’s own journeys, or a client’s or account’s, run only with the owner’s OK, and on anyone else’s store every checkout stops before payment. It spends only on a card capped at a budget the customer sets, and never signs or accepts terms without the customer’s OK.',
+    'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours; 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency with a client’s OK, can get a first mystery shop free.',
   ].join(' '),
 }

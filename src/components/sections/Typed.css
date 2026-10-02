@@ -1,0 +1,13 @@
+/* Typed text (components/sections/Typed): the part not typed yet is laid out but unseen, and the design system's caret
+   (tokens.css .ob-caret, the brand square) takes no width and is glued to the letters beside it, so a line keeps its
+   final layout as it types. */
+.s-typed-off { color: transparent; }
+.s-typed-glue { white-space: nowrap; }
+.s-typed-caret.ob-caret { margin-right: -.83em; vertical-align: baseline; }
+
+/* The typed heading (TypedHeading): every phrase in 1 cell, unseen, under the 1 that types. */
+.s-typed-h { display: grid; }
+.s-typed-h > * { grid-area: 1 / 1; }
+.s-typed-size { visibility: hidden; }
+.s-typed-line { align-self: end; transition: opacity var(--ob-dur-base) var(--ob-ease-out); }
+.s-typed-line.is-swap { opacity: 0; transition: opacity var(--ob-dur-fast) var(--ob-ease-in); }

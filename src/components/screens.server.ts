@@ -4,6 +4,10 @@
 
 const HTML = import.meta.glob<string>('../screens/html/*.html', { query: '?raw', import: 'default', eager: true })
 
+export function hasScreen(name: string): boolean {
+  return `../screens/html/${name}.html` in HTML
+}
+
 export function screenHtmlNow(name: string): string | undefined {
   return HTML[`../screens/html/${name}.html`]
 }

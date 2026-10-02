@@ -1,3 +1,4 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Founders (/founders). Founders of any kind, technical or not, SaaS weighted.
@@ -5,7 +6,7 @@ import type { Page } from '../types'
    use cases (lead generation first, then QA after every release, then rivals, being found, getting paid, costs) >
    outcomes > every kind of business > recipes > the real September store check > questions > "Get early access".
    Every console run is an example and says so in its ledger line. The only real run is the September store check
-   (proof and the third hero fact): 4 test customers, 48 hours watched, 2 full baskets, 0 reminders.
+   (proof and the third hero fact): 4 test customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders.
    Each use case line matches what its screen shows (leads, switch, ship, qa, rivals, listings, invoices, suppliers). */
 
 export const page: Page = {
@@ -24,17 +25,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'For founders',
+    pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    typed: [
-      'Find which of our 50 prospects go quiet after sign up',
-      'Test our sign up after every release',
-      'Live our first 14 days as a new customer',
-      'Tell me the day a rival changes its prices',
-      'Chase our 11 overdue invoices until they’re paid',
-      'Get 3 quotes before we accept the 18% rise',
-      'Correct what AI assistants say about us',
-    ],
     sub: 'Declared AI agents with their own inbox, phone number and browser sign up at every prospect to find the gap you fix, and test every release as a new customer, continuously. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
@@ -54,7 +46,7 @@ export const page: Page = {
       { value: 'Every step', label: 'signed, so anyone can check it' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Find customers',
@@ -75,6 +67,26 @@ export const page: Page = {
         finding: '4 of 12 sent nothing between the welcome email and the end of the trial.',
         fix: '4 gaps with signed proof go to Clay after your OK. You write and send each opener.',
         ledger: 'Example run. Every email signed, so each company can check its own proof.',
+      },
+      {
+        tab: 'Inbound quotes',
+        recipe: 'quotes',
+        task: 'Answer every request for a price, from a person or a buyer’s AI agent, from our price book in minutes. Follow up until it’s a yes or a no.',
+        targets: 'Your form, inbox, line and buyers’ AI agents',
+        journey: ['Say it’s your AI agent', 'Quote from your price book', 'Stay inside your limits', 'Follow up until yes or no'],
+        schedule: 'Every request, day and night',
+        report: 'Every quote in your CRM, Slack on a yes',
+        kit: ['Agent ID, names your company', 'Own inbox and number', 'Your price book and limits', 'Your CRM and calendar'],
+        events: [
+          { time: 'Sun 03:12', text: 'A buyer’s AI agent asks for 40 seats on 2 years, and says who it acts for.' },
+          { time: 'Sun 03:14', text: 'Quote sent from your price book: 12% off for 2 years, as your rule allows.' },
+          { time: 'Sun 03:20', text: 'It asks for 18%. Held at 12%, with quarterly billing offered instead.' },
+          { time: 'Mon 09:02', text: 'The buyer books a call with you for Thursday.' },
+          { time: 'Tue 11:40', text: 'They ask for a custom term. It’s outside your price book, so it comes to you.' },
+        ],
+        finding: 'Quoted 2 minutes after a Sunday 03:12 request, held at 12%, and a call booked.',
+        fix: 'A reply on the custom term, drafted for your OK.',
+        ledger: 'Example run. Every quote, counter and reply signed, and in your CRM.',
       },
       {
         tab: 'Test releases',
@@ -137,24 +149,24 @@ export const page: Page = {
         ledger: 'Example run. Every quote, reply and chase dated and signed.',
       },
       {
-        tab: 'Type any task',
-        recipe: 'task',
-        task: 'Cancel the 6 software plans we stopped using. Chase each vendor until it’s confirmed in writing.',
-        targets: '6 plans, from your list',
-        journey: ['Sign in with the logins you give', 'Cancel in settings', 'Ask support if it’s blocked', 'Chase until it’s in writing'],
-        schedule: 'Daily, until all 6 confirm',
-        report: 'A sheet with every confirmation',
-        kit: ['Agent ID, names your company', 'Billing inbox', 'Logins you give it', 'Browser'],
+        tab: 'Software renewals',
+        recipe: 'spend',
+        task: 'Put each software vendor on its own card, capped at the agreed price. Hold any charge above it, negotiate, and check the next invoice.',
+        targets: '14 software vendors, from your books',
+        journey: ['1 capped card per vendor', 'Hold any charge over the cap', 'Negotiate with your real usage', 'Check the next invoice'],
+        schedule: 'Every charge, and 90 days before each renewal',
+        report: 'A Slack note per renewal, a monthly savings sheet',
+        kit: ['Agent ID, names your company', '14 capped cards', 'Seat usage, connected by you', 'Billing inbox'],
         events: [
-          { time: 'Day 1, 09:00', text: 'Plan approved by you. 6 plans listed: $1,140 a month between them.' },
-          { time: 'Day 1, 09:20', text: '4 cancelled in account settings. Confirmations saved.' },
-          { time: 'Day 1, 09:31', text: '2 need a support request. Sent by your declared AI agent.' },
-          { time: 'Day 4', text: 'Vendor 5 offers 3 months free to stay. Declined, as you asked.' },
-          { time: 'Day 9', text: 'Vendor 6 confirms in writing after 3 chases. All 6 done.' },
+          { time: 'Day 1', text: 'Your caps approved. 14 vendors moved to their own cards, each capped at the agreed price.' },
+          { time: 'Day 12, 06:00', text: 'The design tool charges $1,840 a month against a $1,200 cap. Held, not paid.' },
+          { time: 'Day 12, 09:10', text: 'The contract allows no rise until March. The vendor is told, contract attached.' },
+          { time: 'Day 15', text: 'After 2 chases: $1,200 to March, then $1,260. You accept, and the cap moves.' },
+          { time: 'Day 42', text: 'Next invoice checked: $1,200, as agreed until March.' },
         ],
-        finding: '$1,140 a month cancelled. All 6 vendors confirmed in writing by day 9.',
-        fix: 'Your next statement, from the bank feed you connect, checked for any charge from the 6.',
-        ledger: 'Example run. Every cancellation, chase and reply dated and signed.',
+        finding: 'A $1,840 charge held at the cap and settled at $1,260: $6,960 a year kept.',
+        fix: '9 unused seats and 2 unused tools: cancellations drafted for your OK.',
+        ledger: 'Example run. Every held charge, reply and invoice signed.',
       },
     ],
   },
@@ -269,8 +281,8 @@ export const page: Page = {
         tab: 'Be found',
         moment: 'Tuesday 11:00. A buyer quotes your old hours, straight from an AI answer.',
         outcome: 'Every listing and AI answer about you, kept right.',
-        line: 'Every Monday, agents check your listings and ask 4 AI assistants what buyers ask, then chase every wrong fact back to its source.',
-        whyOnly: 'Asked from clean accounts, not yours, and every fix chased until it’s live.',
+        line: 'Every Monday, agents check your listings and ask 4 AI assistants what buyers ask, then get every wrong fact corrected where it comes from.',
+        whyOnly: 'Asked the official way from a clean history, not your accounts, and every fact checked until the answer changes.',
         recipe: 'listings',
         screen: 'listings',
       },
@@ -363,12 +375,12 @@ export const page: Page = {
   },
 
   recipes: {
-    heading: 'Prospects, releases, rivals, listings, invoices and quotes each have a recipe ready to run.',
-    ids: ['prospect', 'audit', 'delivery', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'mystery'],
+    heading: 'Prospects, quotes, releases, rivals, listings, invoices and software bills each have a recipe ready to run.',
+    ids: ['prospect', 'quotes', 'audit', 'delivery', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'spend', 'mystery'],
   },
 
   proof: {
-    heading: 'On a real store, 2 shoppers left full baskets and heard nothing for 48 hours.',
+    heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither heard a thing in 48 hours.',
     line: 'September, a skincare store, 4 test customers: a £40 gift set left in the basket at 02:57, £21 of deodorant left at checkout at 03:11. Your sign up gets the same check after every release.',
     cta: { label: 'Read the report', to: '/sample-output' },
   },
@@ -403,6 +415,10 @@ export const page: Page = {
       {
         q: 'Do I need to write code?',
         a: 'No. Pick a recipe or type the task in plain words. The API is there if you’d rather build your own.',
+      },
+      {
+        q: 'Can agents spend our money?',
+        a: 'Only on a card capped at a budget you set, for a job you approved, like a software bill at the price you agreed or a test order on your own store that it refunds. Above the cap it stops and asks you, and it never signs anything for you.',
       },
       {
         q: 'How do I start?',

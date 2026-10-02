@@ -4,11 +4,16 @@
 
 /recipes/prospect-research    /recipes/prospect-intelligence  301
 /recipes/prospect-research/   /recipes/prospect-intelligence  301
+/recipes/speed-to-lead        /recipes/lead-leaks             301
+/recipes/speed-to-lead/       /recipes/lead-leaks             301
 /sample-report                /sample-output                  301
 /sample-report/               /sample-output                  301
 /templates                    /recipes                        301
 /templates/                   /recipes                        301
 /templates/prospect-research  /recipes/prospect-intelligence  301
+/templates/prospect-research/ /recipes/prospect-intelligence  301
+/templates/speed-to-lead      /recipes/lead-leaks             301
+/templates/speed-to-lead/     /recipes/lead-leaks             301
 /templates/*                  /recipes/:splat                 301
 
 # The old site's indexed addresses ended in a slash: sent for good to the canonical address without it.

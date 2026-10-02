@@ -1,10 +1,11 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Agencies (/agencies), the main ICP. The story: what Obsession is for an agency > how it works > the gap (the
    agency's problem: unpaid pitch work, proving value, rivals selling AI) > use cases (win, deliver, keep, sell,
    mystery shop) > outcomes (up to ceilings, each with its model in the line) > every kind of agency > recipes >
    proof (the real September store check) > questions (red lines) > the free report.
-   Hero demos are examples (consoleLabel and every ledger say so). The one real run appears only in the third proof
+   Hero demos are examples (the console’s Example tag and every ledger say so). The one real run appears only in the third proof
    fact and the proof beat, stated as it happened. Demo clients avoid "skincare" so no example reads as the real run.
    Screens: How uses the flow screens (agencytask, templates, kit, run); each use case has its own (pack, board,
    approve, report, shop). */
@@ -25,16 +26,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Your first store mystery shop is free',
+    pill: 'Early access',
     headline: 'AI agents that help your agency win and keep clients.',
-    typed: [
-      'Join this prospect’s emails and texts before Thursday',
-      'Shop our client’s store as 4 customers, with their OK',
-      'Check every client’s live ads each morning',
-      'Log every offer our client’s 3 rivals send',
-      'Test every code in each client’s Black Friday send, with their OK',
-      'Send each client this month’s signed record',
-    ],
     sub: 'Declared AI agents with their own inboxes, phone numbers and browsers sign up at every prospect and rival, and go through every client’s store, trial or booking with their OK, continuously. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
@@ -54,7 +47,7 @@ export const page: Page = {
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
       { value: 'Every step signed', label: 'so clients can check the work' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Before a pitch',
@@ -77,6 +70,26 @@ export const page: Page = {
         ledger: 'Example run. Every step signed and dated, in 1 link to share before Thursday.',
       },
       {
+        tab: 'Account handover',
+        recipe: 'handover',
+        task: 'We signed a new client. Move their ads, analytics, social, domain and search accounts from the old agency into the client’s name.',
+        targets: '1 new client, 12 accounts',
+        journey: ['Confirm the client’s written OK', 'Ask the old agency in writing', 'Start every ownership route', 'Chase until each one moves'],
+        schedule: 'Daily from day 1 until done',
+        report: 'A daily Slack note, then a signed handover record',
+        kit: ['Agent ID, names the client', 'Own inbox and phone line', 'Domain access, from the client', 'A card capped at each fee'],
+        events: [
+          { time: 'Day 1, 10:00', text: 'The client’s written OK on file. 9 of 12 accounts sit with the old agency.' },
+          { time: 'Day 1, 10:20', text: '1 written request to the old agency, the client in copy. Every route started.' },
+          { time: 'Day 2, 15:30', text: 'Ad account released after 1 call to the old agency’s office line.' },
+          { time: 'Day 4, 09:00', text: 'Domain moved. The $12 fee paid on a card capped at $12.' },
+          { time: 'Day 5, 16:00', text: 'The social platform needs the owner, so the client submits the agent’s pack.' },
+        ],
+        finding: '11 of 12 accounts in the client’s name by day 5. Social waits on the platform.',
+        fix: 'Your agency added with only the access it needs. Old users removed after the client’s OK.',
+        ledger: 'Example run. Every request, reply and transfer signed, for the client to keep.',
+      },
+      {
         tab: 'Every client',
         recipe: 'delivery',
         task: 'With each client’s OK, test every link and code in this weekend’s emails and texts, every hour.',
@@ -95,6 +108,26 @@ export const page: Page = {
         finding: 'The Cyber Monday code died at 19:00, 5 hours before the midnight every text promised.',
         fix: 'Code end moved to 23:59 in the store the client connected, after your OK.',
         ledger: 'Example run. Approved at 19:09, checked again at 19:12, and signed.',
+      },
+      {
+        tab: 'AI checkouts',
+        recipe: 'checkout',
+        task: 'Each month, with each client’s written OK, place a real order through every AI checkout on their store, refund it, and draft a fix for any that breaks.',
+        targets: '8 client stores, with written OK',
+        journey: ['Find every AI checkout', 'Buy on a card capped to the order', 'Check the order, then refund it', 'Draft the fix for each break'],
+        schedule: 'Monthly, and after every checkout change',
+        report: 'A signed report per client',
+        kit: ['Agent ID, declared as AI', 'A single use card per order', 'Each store, connected by the client', 'A budget each client sets'],
+        events: [
+          { time: '1st, 09:00', text: '34 AI checkouts found on 8 client stores. 3 stores aren’t on every AI channel.' },
+          { time: '1st, 09:20', text: 'Clients confirm the totals. Each order is noted as an AI test.' },
+          { time: '1st, 09:31', text: 'Homeware store: no AI shopper can pick a size, so the basket empties. Stopped there.' },
+          { time: '1st, 11:00', text: '33 orders placed, checked and refunded the normal way, each refund confirmed.' },
+          { time: '3rd, 10:00', text: 'Fix approved by the client. Bought again: it goes through, then it’s refunded.' },
+        ],
+        finding: '1 checkout in 34 broke: on the homeware store, no AI shopper could pick a size.',
+        fix: 'The fix proven with a new order. Sign ups for the missing AI channels wait for each client’s OK.',
+        ledger: 'Example run. Every order, refund and fix signed, in 1 report per client.',
       },
       {
         tab: 'Every lead',
@@ -238,7 +271,7 @@ export const page: Page = {
       },
       {
         name: 'SEO and AI search',
-        line: 'AI assistants asked who they recommend each week, and every client’s forms and booking links tested with their OK.',
+        line: 'Wrong facts in each client’s AI answers corrected at the source, and every form and booking link tested, with their OK.',
         recipes: ['listings', 'audit', 'prospect'],
       },
       {
@@ -283,7 +316,7 @@ export const page: Page = {
       },
       {
         name: 'PR and comms',
-        line: 'AI assistants asked about each client every week, with every wrong fact and its source logged.',
+        line: 'AI assistants asked about each client every week, and every wrong fact corrected at its source with the client’s OK.',
         recipes: ['listings', 'competitor'],
       },
       {
@@ -301,11 +334,11 @@ export const page: Page = {
 
   recipes: {
     heading: 'Each recipe does the work of a whole tool, for every client.',
-    ids: ['mystery', 'prospect', 'competitor', 'email-sms', 'ads', 'prices', 'audit', 'delivery', 'listings', 'speed'],
+    ids: ['mystery', 'prospect', 'handover', 'checkout', 'competitor', 'email-sms', 'ads', 'prices', 'audit', 'delivery', 'listings', 'speed'],
   },
 
   proof: {
-    heading: '2 shoppers left full baskets. 0 reminders reached them in 48 hours.',
+    heading: '1 shopper left a basket, 1 stopped at checkout. 0 reminders reached them in 48 hours.',
     line: 'A real September check of a skincare store, name hidden: 4 test customers, every inbox watched for 48 hours, and a follow up drafted for each gap.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
@@ -335,7 +368,7 @@ export const page: Page = {
       },
       {
         q: 'What do the agents never do?',
-        a: 'Pretend to be a person, use a fake identity or send cold spam. Message staff at a prospect or rival, start a rival’s trial that needs a card, reply inside a trial, or stay in one once a rep writes or calls. Pay on anyone else’s store, or go behind a login they weren’t given. At rivals and prospects they say they’re AI agents and link to useobsession.com/agents, without naming your client.',
+        a: 'Pretend to be a person, use a fake identity or send cold spam. Message staff at a prospect or rival, start a rival’s trial that needs a card, reply inside a trial, or stay in one once a rep writes or calls. Pay on anyone else’s store, spend past the budget you set, sign anything for you, or go behind a login they weren’t given. At rivals and prospects they say they’re AI agents and link to useobsession.com/agents, without naming your client.',
       },
       {
         q: 'What’s in the free report?',

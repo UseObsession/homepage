@@ -11,7 +11,8 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - **Headlines:**
   - Home: **"The intelligence infrastructure for commercial teams"**.
   - Every other page: an "AI agents that ..." headline. Agencies "AI agents that help your agency win and keep clients.", Founders "AI agents that help your business win and keep customers.", Sales "AI agents that help your team win and renew accounts.", Marketing in the same pattern.
-  - Under every headline, the typed line and the sub make it literal what Obsession does, and why only Obsession: declared AI agents with their own identity, inboxes, phone numbers and browsers that do business with other companies (sign up, shop, ask, chase, check), continuously, at every company on your list, every step signed. Specific, novel, differentiated. No "Early access" pill.
+  - Under every headline, the sub makes it literal what Obsession does, and why only Obsession: declared AI agents with their own identity, inboxes, phone numbers, cards and browsers that work with other companies for you (research prospects as their customer, test any journey, track rivals, answer and chase, buy and negotiate within the customer's limits, check the AI agents they run), continuously, at every company on your list, every step signed. Specific, novel, differentiated.
+  - **The pill reads "Early access" on every page** (Seun, 3 Oct, reversing the earlier "no Early access pill" rule for the hero only).
 - **Calls to action:** Home "Join the waitlist" (plus the free mystery shop as the second path). Agencies and Marketing: waitlist, plus "mystery-shop a store free" (your own store, or a client's with their OK). Founders "Get early access". Sales "Get early access for my team". Developers "Get API access". Recipe pages: the free mystery shop on the Mystery shopper page, the waitlist (with the recipe preset as interest) elsewhere. Sample output: "Get one for your store".
 
 ## 1b. From the 2 Oct call with James (`Calls/Obsession Call with James - 2 Oct 2026 (Homepage review).md`)
@@ -25,11 +26,17 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - **"Join the waitlist" leads.** "Try your first shop free" lives with the sample report.
 - **Every page reads as 1 narrative**: each section hands off to the next, the body copy builds, and every illustration is placed where it proves the sentence beside it.
 
-**Home, in order:** hero (the category headline, a literal sub, typed tasks, the waitlist, the console of what Obsession can do) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > recipes > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
+**Home, in order:** hero (the "Early access" pill, the category headline, a literal sub, the waitlist, the proof facts, then the console: the typed heading over category tabs, each a full app screen) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > recipes > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
 
 ## 1c. The hero (the same on every page)
 
-**Centred**, one column, spread across the page width: never a narrow block, never a left/right split. Top to bottom: the pill (if any), the headline (display type, wide measure so it sits on 1 or 2 balanced lines, `text-wrap: balance`, widening equally to both sides), the typed task line, the sub (centred, about 60 characters wide), the capture form (centred, about 560px), the micro line, the 3 proof facts in a centred row, then the console full width below. Identical structure, spacing and type on Home, Agencies, Founders, Sales, Marketing and Developers; only the words and the console's runs change. Check the centre line at 1000, 1280, 1440 and 1920 wide: every element shares 1 vertical axis.
+**Centred**, one column, spread across the page width: never a narrow block, never a left/right split. Top to bottom: the pill ("Early access"), the headline (display type, wide measure so it sits on 1 or 2 balanced lines, `text-wrap: balance`, widening equally to both sides), the sub (centred, about 64 characters wide), the capture form (centred, about 560px), the micro line, the 3 proof facts in a centred row, then the console full width below under its typed heading. Identical structure, spacing and type on Home, Agencies, Founders, Sales, Marketing and Developers; only the words and the console change. Check the centre line at 1000, 1280, 1440, 1920 and 390 wide: every element shares 1 vertical axis.
+
+**The console (Seun, 3 Oct):**
+- No typed task line under the headline any more.
+- Above the console's tabs, James's typed heading (`components/sections/Typed.tsx` TypedHeading, words in `content/console.ts`) types "What Obsession can do", holds, erases, then types "What you can build with Obsession" and rests there. Type scale h3, the design system's caret, 1 pass, waits off screen, still (on the first phrase) with reduced motion. It replaces the "Example runs" label.
+- **Home:** category tabs (`hero.screens`, `components/sections/ScreenTabs.tsx`), each a full app screen that plays its story when its tab is chosen, with the Example tag, 1 line and the recipe under it: Prospect intelligence (`pack`), Mystery shopper (`shop`), Competitor tracking (`rivals`), Lead leaks (`inbound`), AI checkout test (`checkout`; its tab shows once the screen lands in `src/screens/html`), with room for a 6th (the AI agent checks). The tabs advance by themselves, calmly and once, each staying for its screen's story plus time to read it (the design system's autoplay bar fills in the chosen tab); hover, keyboard focus or off screen hold them; a click, a key or the pause button stops them for good.
+- **Every other page:** its example runs (`hero.demos`, `components/sections/Console.tsx`) under the same typed heading.
 
 ## 1d. James's trust sections, made ours (Seun, 3 Oct)
 
@@ -41,7 +48,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 1 arc, easy to follow, never told as a story. In this order (a page may skip a beat, never reorder):
 
-1. **Hero:** what Obsession is, for this reader. Headline, typed tasks, 1-line sub, the capture, 3 proof facts, the console (a live run).
+1. **Hero:** what Obsession is, for this reader. The "Early access" pill, headline, sub, the capture, 3 proof facts, the console under its typed heading (Home: category screens; elsewhere: live runs).
 2. **How it works:** pick a recipe, type a task, or build your own; agents get their own ID, inbox, number and browser; you get signed proof and your next move.
 3. **The gap:** why it matters to them. Today vs with Obsession, in their words.
 4. **Use cases:** tabs, each with its own app screen: the moment in their week, the outcome, what the agents do, why only agents can.
@@ -58,7 +65,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - Headings make a claim; they never name their section, label the reasoning, or tease a payoff with a question. Run `node ~/.claude/skills/no-meta-callouts/scan.mjs` on the words a reader sees.
 - Numerals, British spelling, contractions, no em or en dashes, no hyphenated compounds where a plain word works.
 - "Continuously", never "for weeks". Never cap scale ("every company on your list", never "up to 50 companies"); example numbers inside demos are fine.
-- No internal decisions on the page: no recipe counts, "soon", "join order", "Early access" pills, what is not built yet.
+- No internal decisions on the page: no recipe counts, "soon", "join order", what is not built yet. The 1 exception is the hero pill "Early access" (Seun's call, 3 Oct).
 - No Obsession prices, no guarantees, no money promises, no sources or citations on the page, no real company names (use categories, Rival A/B/C, invented names checked to be unused).
 - Every example that is not from a real run is clearly an example in context; the real September store check is the one real run.
 - **Red lines** (on every page and in every screen): agents are declared and say who they work for; a client's or account's systems and journeys only with the owner's OK; prospects and rivals only through public self-serve paths (trial and newsletter sign-ups allowed: declared as AI, never reply, close if a rep writes); never fake buyers, never contact staff as a fake buyer ("ask the bot, never staff"); inside data only through tools the customer connects, with consent; stop before payment; no cold spam; no fake identities.
@@ -82,10 +89,10 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 Every motion has 1 job (feedback, orientation, continuity or status). Anything without a job stays still.
 
-- **Page load:** 1 hero sequence (pill, headline, typed line, sub, form, console) with the design system's hero stagger. Nothing else animates on load.
+- **Page load:** 1 hero sequence (pill, headline, sub, form, proof facts, console) with the design system's hero stagger; the console's heading types once the console is in. Nothing else animates on load.
 - **Sections do not fade in.** Motion lives in the product: screens play their story when they come into view (and replay on click), the console runs, tabs move their indicator, numbers tween once, the mark shows status.
 - Durations and curves from the design system (`--ob-dur-*`, `--ob-ease-out` to enter, `--ob-ease-in` to leave, `--ob-snap` only for the ring's square and ticks). Animate opacity, transform, colour and shadow only. Never `transition: all`.
-- Reduced motion: every screen shows its finished scene, the typed line shows its first task, nothing moves except focus.
+- Reduced motion: every screen shows its finished scene, the typed heading shows its first phrase, nothing advances by itself, nothing moves except focus.
 
 ## 6. Illustrations
 
@@ -93,7 +100,7 @@ App screens only (`components/AppScreen`, the screens in `src/screens`, built to
 
 | Page | Screens |
 |---|---|
-| Home | how it works: `templates`, `kit`, `run`; the reader picker: `board` (agencies), `leads` (founders), `brief` (sales), `inbox` (marketing), `dev` (developers); type a task: `compose` |
+| Home | the hero tabs: `pack`, `shop`, `rivals`, `inbound`, `checkout`; how it works: `templates`, `kit`, `run`; the reader picker: `board` (agencies), `leads` (founders), `brief` (sales), `inbox` (marketing), `dev` (developers); type a task: `compose` |
 | Agencies | `pack`, `board`, `approve`, `report` (+ `shop` for the free mystery shop) |
 | Founders | `leads`, `switch`, `invoices`, `suppliers`, `ship`, `qa`, `listings`, `rivals` |
 | Sales | `brief`, `acctwatch`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |

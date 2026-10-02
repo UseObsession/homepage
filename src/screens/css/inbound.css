@@ -1,4 +1,4 @@
-/* app-inbound: Inbound, for sales (Speed to lead). Your own funnel, tested with your OK by a labelled test lead
+/* app-inbound: Inbound, for sales (Lead leaks). Your own funnel, tested with your OK by a labelled test lead
    at 09:00, 13:00 and 17:00 every day: the demo form, the site chat and the sales line.
    The hero is one chart: 3 lanes on a shared time scale (log-like: 0, 1 m, 5 min, 1 h, 4 h) crossed by the
    dashed 5 minute target line. Within target is quiet, past the line is solid. Each lane ends in a large readout
