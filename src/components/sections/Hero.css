@@ -146,6 +146,41 @@
   text-wrap: balance;
 }
 
+/* ---- Reader colour (styles/accents.css; _research/colour/COLOUR.md P2 and P3). The hue marks the reader, never a word,
+   the ring or the console: only the typed heading's caret (the brand square) and, on a reader's own page, 1 glow. ---- */
+
+/* Home: the caret takes the hue of the reader on each phrase (Typed.tsx sets data-reader on the line, and changes it
+   only while the line is faded out between phrases). */
+.s-hero-console-h .s-typed-line[data-reader] .s-typed-caret { color: var(--s-accent); }
+
+/* A reader's own page: 1 soft glow of the reader's hue behind the pill and the headline, the hero's 1 glow. The ellipse
+   fades to nothing at the hero's top edge, so there is no seam under the sticky nav, and before the form and the
+   console. The pill's ring stays --ob-text: the glow lights the words, never the mark. */
+.s-hero[data-reader] {
+  position: relative;
+  isolation: isolate;
+}
+.s-hero[data-reader]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(100%, var(--ob-container, 1160px));
+  height: 480px;
+  translate: -50% 0;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+.s-hero[data-reader] .s-hero-console-h .s-typed-caret { color: var(--s-accent); }
+@media (forced-colors: active) {
+  .s-hero[data-reader]::before { display: none; }
+}
+
 /* Phones and narrow tablets: the facts stack, each still centred, with a short rule between them. */
 @media (max-width: 759.98px) {
   .s-hero { padding-top: var(--ob-space-48); }

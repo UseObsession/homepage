@@ -11,6 +11,14 @@
   --ease: var(--ob-ease); --snap: var(--ob-snap);
 }
 
+/* App screens stay monochrome: status lives there, never a reader's hue (COLOUR.md, Never 3). Some screens draw their
+   edge bar in var(--s-accent, var(--fg)); the reader aliases are cut off at the screen, so they fall back to --fg even
+   on a reader's own page, inside the Home band or under a reader's hero. */
+.ilwrap, .appx-il {
+  --s-accent: initial;
+  --s-accent-glow: initial;
+}
+
 /* The frame a screen sits in. */
 .ilwrap {
   border-radius: var(--ob-radius-lg, 22px);

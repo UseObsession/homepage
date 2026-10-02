@@ -12,6 +12,8 @@ export type RecipeId =
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
   | 'checkout' | 'quotes' | 'renewal' | 'saves' | 'handover' | 'spend'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
+/* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
+export type ReaderId = AudienceId | 'developers'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
 
 /* SEO and answer engines: 1 unique title (55 to 60 characters) and description (140 to 155) per page. `answer` is
@@ -65,7 +67,9 @@ export type HeroScreen = { tab: string; screen: ScreenName; recipe: RecipeId; li
 
 /* The hero (docs/REBUILD.md 1c). `consoleHeading` is the typed heading over the console: it types the first line,
    holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
-   screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
+   screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers).
+   `consoleReaders` (Home only) is the reader whose hue the heading's caret takes on each phrase, the same length and
+   order as `consoleHeading`: the hue changes only while the line is faded out between phrases. */
 export type Hero = {
   pill: string
   headline: string
@@ -74,6 +78,7 @@ export type Hero = {
   secondary?: Cta
   proof: { value: string; label: string }[]
   consoleHeading: string[]
+  consoleReaders?: ReaderId[]
   screens?: HeroScreen[]
   demos?: Demo[]
 }

@@ -1,0 +1,139 @@
+/* =============================================================================================
+   READER ACCENTS (site layer, --s-accent-*). Spec: _research/colour/COLOUR.md, 3 Oct 2026.
+
+   Colour marks the reader. 1 hue per reader, taken from the arc of the OKLCH wheel that status leaves
+   free (h210 to h336, opposite the warm inks at h92), so no hue can pass for danger (h26 to 30),
+   warning (h65 to 80) or success (h150). James's map, carried onto the design system's lightness:
+   his marketing lavender and builder blue are kept; his agency orange and sales green collided with
+   warning and success, so they move to the nearest free hues (orchid and tide). Founders is new.
+
+     Agencies    Orchid  h336      Founders  Indigo  h274      Sales  Tide  h210
+     Marketing   Violet  h306      Developers Cobalt h242
+
+   Each reader has 2 colours:
+   - the MARK (square, caret, arrow, tab bar; never text). On ink it sits at the lightness of
+     --ob-text-2 (OKLCH L .78), on paper at the lightness of --ob-text-3 (L .50), so it never
+     out-shouts the type. Same hue in both themes.
+   - the GLOW source, never drawn solid: always color-mix(in srgb, glow N%, transparent) inside a
+     radial gradient. Deep on ink (L .38), pale on paper (L .86), so a glow adds colour without
+     pulling any ink under its floor. N is one of the 3 alphas below, never more.
+
+   Components read only the 2 aliases, --s-accent and --s-accent-glow, set by data-reader.
+   Tokens only: no placements are applied in this file.
+
+   Selector lists mirror tokens.css, so the reader set flips with every theme scope the --ob- set
+   flips with (including the OS light preference with no attribute, and hybrid objects).
+   For the design system: absorb as --ob-reader-* through source/gen_tokens.py (see COLOUR.md).
+   ============================================================================================= */
+
+/* DARK: the primary theme. */
+:root,
+.ob-theme-dark,
+[data-theme="dark"],
+:is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
+  --s-accent-agencies:        #E899D5;   /* oklch(.78 .121 336)   9.49:1 on --ob-bg, 8.42:1 on --ob-surface-raised */
+  --s-accent-founders:        #A1B2FF;   /* oklch(.78 .112 274)   9.85 / 8.74  (gamut-capped) */
+  --s-accent-sales:           #3ECCE2;   /* oklch(.78 .120 210)  10.44 / 9.26 */
+  --s-accent-marketing:       #CAA3F4;   /* oklch(.78 .120 306)   9.59 / 8.51 */
+  --s-accent-developers:      #6CC0FD;   /* oklch(.78 .120 242)  10.11 / 8.97 */
+
+  --s-accent-agencies-glow:   #622A56;   /* oklch(.38 .101 336) */
+  --s-accent-founders-glow:   #333C77;   /* oklch(.38 .100 274) */
+  --s-accent-sales-glow:      #014B56;   /* oklch(.38 .065 212)  gamut-capped: a little quieter */
+  --s-accent-marketing-glow:  #50326C;   /* oklch(.38 .100 306) */
+  --s-accent-developers-glow: #00476E;   /* oklch(.38 .090 242)  gamut-capped */
+
+  /* Glow alphas, at the gradient's peak. Use these, never more. The solved max is where the first ink or control
+     edge on the glow would drop to its floor plus .05 (audit: _research/colour/COLOUR.md). */
+  --s-accent-glow-rest:  40%;   /* band panel at rest                          (solved max 54%)   */
+  --s-accent-glow-hover: 56%;   /* band panel on hover, focus and press        (solved max 69.5%) */
+  --s-accent-glow-hero:  36%;   /* the reader page's hero                      (solved max 39.5%) */
+}
+
+/* LIGHT: the warm paper. Hybrid pages are paper too; their .ob-object keeps the dark set above. */
+.ob-theme-light,
+[data-theme="light"],
+.ob-theme-hybrid,
+[data-theme="hybrid"] {
+  --s-accent-agencies:        #914080;   /* oklch(.50 .136 336)  5.87:1 on --ob-bg, 6.25:1 on --ob-surface */
+  --s-accent-founders:        #4D5AAF;   /* oklch(.50 .135 274)  5.62 / 5.98 */
+  --s-accent-sales:           #02707E;   /* oklch(.50 .086 210)  5.27 / 5.61  (gamut-capped) */
+  --s-accent-marketing:       #774B9F;   /* oklch(.50 .135 306)  5.80 / 6.17 */
+  --s-accent-developers:      #0169A0;   /* oklch(.50 .118 242)  5.41 / 5.75  (gamut-capped) */
+
+  --s-accent-agencies-glow:   #F3BEE5;   /* oklch(.86 .079 336) */
+  --s-accent-founders-glow:   #C3CFFF;   /* oklch(.86 .068 274)  gamut-capped */
+  --s-accent-sales-glow:      #91E0EE;   /* oklch(.86 .080 210) */
+  --s-accent-marketing-glow:  #DEC4FB;   /* oklch(.86 .080 306) */
+  --s-accent-developers-glow: #A5D8FF;   /* oklch(.86 .076 242)  gamut-capped */
+
+  --s-accent-glow-rest:  36%;   /* solved max 54.5% */
+  --s-accent-glow-hover: 52%;   /* solved max 80%   */
+  --s-accent-glow-hero:  30%;   /* solved max 33%   */
+}
+
+/* No attribute and a light OS: follow tokens.css, which flips the --ob- set here too. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"], .ob-theme-dark) {
+    --s-accent-agencies:        #914080;
+    --s-accent-founders:        #4D5AAF;
+    --s-accent-sales:           #02707E;
+    --s-accent-marketing:       #774B9F;
+    --s-accent-developers:      #0169A0;
+    --s-accent-agencies-glow:   #F3BEE5;
+    --s-accent-founders-glow:   #C3CFFF;
+    --s-accent-sales-glow:      #91E0EE;
+    --s-accent-marketing-glow:  #DEC4FB;
+    --s-accent-developers-glow: #A5D8FF;
+    --s-accent-glow-rest:  36%;
+    --s-accent-glow-hover: 52%;
+    --s-accent-glow-hero:  30%;
+  }
+}
+
+/* More contrast on request: the glows go, the marks stay (they already clear 5:1 on paper and 8:1 on
+   ink). Listed with every theme selector, and after them, so it wins in each scope. */
+@media (prefers-contrast: more) {
+  :root,
+  :root:not([data-theme="dark"], .ob-theme-dark),
+  .ob-theme-dark,
+  [data-theme="dark"],
+  .ob-theme-light,
+  [data-theme="light"],
+  .ob-theme-hybrid,
+  [data-theme="hybrid"],
+  :is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
+    --s-accent-glow-rest:  0%;
+    --s-accent-glow-hover: 0%;
+    --s-accent-glow-hero:  0%;
+  }
+}
+
+/* The aliases. Set data-reader on the element that draws the colour (a band panel, a hero, a tab
+   row). A theme scope nested inside it re-reads the alias, so a paper section under a reader still
+   gets the paper values. */
+[data-reader="agencies"],
+[data-reader="agencies"] :is(.ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) {
+  --s-accent:      var(--s-accent-agencies);
+  --s-accent-glow: var(--s-accent-agencies-glow);
+}
+[data-reader="founders"],
+[data-reader="founders"] :is(.ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) {
+  --s-accent:      var(--s-accent-founders);
+  --s-accent-glow: var(--s-accent-founders-glow);
+}
+[data-reader="sales"],
+[data-reader="sales"] :is(.ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) {
+  --s-accent:      var(--s-accent-sales);
+  --s-accent-glow: var(--s-accent-sales-glow);
+}
+[data-reader="marketing"],
+[data-reader="marketing"] :is(.ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) {
+  --s-accent:      var(--s-accent-marketing);
+  --s-accent-glow: var(--s-accent-marketing-glow);
+}
+[data-reader="developers"],
+[data-reader="developers"] :is(.ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) {
+  --s-accent:      var(--s-accent-developers);
+  --s-accent-glow: var(--s-accent-developers-glow);
+}

@@ -14,6 +14,16 @@
   margin-inline: calc(var(--ob-control-pad-sm) * -1);
   box-shadow: none;
 }
+/* On a reader's own page, the bar under the chosen tab takes the page's hue (styles/accents.css; COLOUR.md P4): the
+   sliding indicator, and the bar the chosen tab draws itself before the script runs. Forced colours keep the system's
+   CanvasText bar (navigation.css). */
+.s-uses[data-reader] .ob-utabs__indicator,
+.s-uses[data-reader] .ob-utab:is([aria-selected="true"], .is-selected)::after { background-color: var(--s-accent, var(--ob-text)); }
+@media (forced-colors: active) {
+  .s-uses[data-reader] .ob-utabs__indicator,
+  .s-uses[data-reader] .ob-utab:is([aria-selected="true"], .is-selected)::after { background-color: CanvasText; }
+}
+
 @media (max-width: 860px) {
   .s-rail { margin-inline: calc(var(--s-gutter) * -1); }
   .s-rail__list.ob-utabs {
