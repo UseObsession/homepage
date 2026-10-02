@@ -16,12 +16,26 @@ function subscribe(onChange: () => void) {
 const read = (): Theme => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
 const server = (): Theme => 'dark'
 
+/* The design system's theme switch (motion.css, "Theme switch"): every surface changes together and, where the browser
+   can, the page crossfades in 240ms. With reduced motion it just switches. */
 function setTheme(next: Theme) {
-  document.documentElement.dataset.theme = next
+  const root = document.documentElement
+  const apply = () => {
+    root.dataset.theme = next
+  }
   try {
     localStorage.setItem('obs-theme', next)
   } catch {
     /* private mode: the choice lasts for this page only */
+  }
+  root.classList.add('ob-anim-theme')
+  const done = () => root.classList.remove('ob-anim-theme')
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (!still && typeof document.startViewTransition === 'function') {
+    document.startViewTransition(apply).finished.finally(done)
+  } else {
+    apply()
+    requestAnimationFrame(() => requestAnimationFrame(done))
   }
 }
 

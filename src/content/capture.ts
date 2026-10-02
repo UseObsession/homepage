@@ -18,6 +18,7 @@ export const capture = {
     storeEmpty: 'Enter your store’s web address.',
     storeBad: 'That doesn’t look like a web address. Check for a typo.',
     server: 'That didn’t go through. Try again in a moment.',
+    limited: 'Too many tries from this email. Try again in an hour.',
   },
   sending: 'Sending',
   privacy: {
@@ -38,7 +39,7 @@ export const capture = {
   roles: {
     question: 'What do you do?',
     options: ['Agency', 'Founder', 'Sales or CS', 'Marketing', 'Developer', 'Other'],
-    thanks: 'Thanks. That helps us set up your first run.',
+    thanks: 'Thanks. It’s saved with your sign up.',
     failed: 'That didn’t save. Tap it again.',
   },
   /* Shown only when VITE_WAITLIST_URL is unset (local builds): nothing leaves the browser. */

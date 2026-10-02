@@ -17,9 +17,10 @@ export const footer = {
   ] satisfies { label: string; links: NavPage[] }[],
   recipes: nav.recipes.label,
   /* The red lines, said once and calmly. */
-  rule: 'Every Obsession agent says it’s AI. At prospects and rivals it sticks to public sign-ups, pages and chat bots, never contacts staff, and stops before payment.',
+  rule: 'Every Obsession agent says it’s AI. At prospects and rivals it only uses public sign ups, pages and chat bots, never staff, and stops before payment.',
   agents: { label: 'Saw an Obsession agent?', to: '/agents' } satisfies NavPage,
   privacy: { label: 'Privacy', to: '/privacy' } satisfies NavPage,
   copyright: '© 2026 Obsession',
   label: 'Footer',
+  home: nav.home,
 }

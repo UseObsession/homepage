@@ -10,24 +10,37 @@ import './CaptureForm.css'
    .ob-confirm. kind "waitlist" asks for an email; kind "mystery" asks for the store first, then opens the email under it.
    - Before the script loads it is a real form: method="post" to the waitlist script, which takes form posts too, with
      the browser's own checks. Once hydrated it checks the fields itself and sends JSON, without leaving the page.
-   - Errors show 3 ways: the message under the pill, the danger edge, and aria-invalid with aria-describedby.
-   - Sending and success are announced; a second submit while sending does nothing.
+   - Errors show 3 ways: the message under the pill, the danger edge, and aria-invalid with aria-describedby. Typing
+     in the field clears its error.
+   - Sending and success are announced through 1 live region that stays mounted; a second submit while sending does
+     nothing.
    - After a sign up, 1 tap answers the roles question. It is saved with the sign up: a 2nd post with the same email
-     and source, which the script folds into the same row. */
+     and source, which the script folds into the same row. Arrowing through the chips sends only the last one.
+   - Under every form, 1 privacy line links /privacy. When the page's own micro line already says what we keep, the
+     privacy line is just the link, so the promise is never said twice. */
 
 type Step = 'start' | 'email' | 'done'
+type Field = 'store' | 'email'
+type Problem = { field: Field | 'form'; text: string } | null
+type Saving = 'idle' | 'saving' | 'saved' | 'failed'
 
 /* False on the server and while hydrating, true once the page's script runs: the form checks its own fields from then on. */
 const never = () => () => {}
 const useHydrated = () => useSyncExternalStore(never, () => true, () => false)
-type Problem = { field: 'store' | 'email' | 'form'; text: string } | null
-type Saving = 'idle' | 'saving' | 'saved' | 'failed'
+
+/* A micro line that mentions the email already says what we keep. */
+const saysWhatWeKeep = (micro?: string) => !!micro && /\bemail\b/i.test(micro)
+/* "https://" sits before the field only when the placeholder is a bare address ("your-store.example"), not a sentence. */
+const bareAddress = (placeholder: string) => !/\s/.test(placeholder)
+
+const ROLE_SETTLE_MS = 600
 
 export function CaptureForm({ capture, className = '' }: { capture: Capture; className?: string }) {
   const uid = useId()
   const { pathname } = useLocation()
   const mystery = capture.kind === 'mystery'
   const roles = capture.roles ?? copy.roles
+  const storePlaceholder = capture.placeholder ?? copy.store.placeholder
 
   const hydrated = useHydrated()
   const [step, setStep] = useState<Step>('start')
@@ -46,6 +59,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const emailRef = useRef<HTMLInputElement>(null)
   const titleRef = useRef<HTMLParagraphElement>(null)
   const moved = useRef(false)
+  const roleTimer = useRef<number | undefined>(undefined)
 
   /* Focus follows the step the reader just took: into the email once it opens, onto the thank-you once it lands. */
   useEffect(() => {
@@ -54,6 +68,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     if (step === 'done') titleRef.current?.focus()
   }, [step])
 
+  useEffect(() => () => window.clearTimeout(roleTimer.current), [])
+
   const id = {
     store: `${uid}-store`,
     email: `${uid}-email`,
@@ -61,12 +77,18 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     error: `${uid}-error`,
     fail: `${uid}-fail`,
     q: `${uid}-q`,
+    thanks: `${uid}-thanks`,
   }
 
-  function flag(field: 'store' | 'email', text: string) {
+  function flag(field: Field, text: string) {
     setProblem({ field, text })
     setLive(text)
     ;(field === 'store' ? storeRef : emailRef).current?.focus()
+  }
+
+  function edit(field: Field, value: string) {
+    ;(field === 'store' ? setStore : setEmail)(value)
+    if (problem && (problem.field === field || problem.field === 'form')) setProblem(null)
   }
 
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -103,8 +125,9 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
 
     if (!res.ok) {
       if (res.error === 'bad_email') return flag('email', copy.errors.emailBad)
-      setProblem({ field: 'form', text: copy.errors.server })
-      setLive(copy.errors.server)
+      const text = res.error === 'rate_limited' ? copy.errors.limited : copy.errors.server
+      setProblem({ field: 'form', text })
+      setLive(text)
       return
     }
     setPreview(res.preview)
@@ -113,18 +136,35 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     setStep('done')
   }
 
-  async function pick(value: string) {
+  /* The answer is saved once the reader settles on it, so arrowing through the chips sends 1 post, not 6. */
+  function pick(value: string) {
     setRole(value)
     setSaving('saving')
-    const res = await submitSignup({ email, role: value, store: mystery ? store : undefined, interest: capture.interest, source: capture.source, page: pathname })
-    setSaving(res.ok ? 'saved' : 'failed')
+    window.clearTimeout(roleTimer.current)
+    roleTimer.current = window.setTimeout(async () => {
+      const res = await submitSignup({
+        email,
+        role: value,
+        store: mystery ? store : undefined,
+        interest: capture.interest,
+        source: capture.source,
+        page: pathname,
+      })
+      setSaving(res.ok ? 'saved' : 'failed')
+      /* A chip that is still checked can't be picked again, so a failed save lets go of it. */
+      if (!res.ok) setRole('')
+    }, ROLE_SETTLE_MS)
   }
 
-  const errorOn = (field: 'store' | 'email') => problem?.field === field
-  const describe = (field: 'store' | 'email') => [errorOn(field) ? id.error : '', capture.micro ? id.help : ''].filter(Boolean).join(' ') || undefined
+  const errorOn = (field: Field) => problem?.field === field
+  const describe = (field: Field) =>
+    [errorOn(field) ? id.error : '', capture.micro ? id.help : ''].filter(Boolean).join(' ') || undefined
+
+  const privacyText = saysWhatWeKeep(capture.micro) ? '' : mystery ? copy.privacy.mystery : copy.privacy.waitlist
   const privacy = (
     <p className="s-capture__privacy">
-      {mystery ? copy.privacy.mystery : copy.privacy.waitlist} <Link to={copy.privacy.to}>{copy.privacy.link}</Link>
+      {privacyText && <>{privacyText} </>}
+      <Link to={copy.privacy.to}>{copy.privacy.link}</Link>
     </p>
   )
   const status = (
@@ -135,7 +175,18 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
 
   if (step === 'done') {
     const done = mystery ? copy.done.mystery : copy.done.waitlist
-    const fill = (t: string) => t.replace('{store}', hostOf(store)).replace('{email}', email.trim())
+    /* The store and the email are set as values that never break at a hyphen ("your-" / "store.example"). */
+    const values: Record<string, string> = { '{store}': hostOf(store), '{email}': email.trim() }
+    const fill = (t: string) =>
+      t.split(/(\{store\}|\{email\})/).map((part, i) =>
+        values[part] ? (
+          <span className="s-capture__value" key={i}>
+            {values[part]}
+          </span>
+        ) : (
+          part
+        ),
+      )
     return (
       <div className={`s-capture s-capture--done ${className}`}>
         <div className="ob-confirm ob-anim-rise is-slow">
@@ -146,25 +197,18 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
             <span>{fill(done.title)}</span>
           </p>
           <p className="ob-confirm-line">{fill(done.line)}</p>
-          <fieldset className="ob-chips s-capture__roles" aria-describedby={`${id.q}-thanks`}>
+          <fieldset className="ob-chips s-capture__roles" aria-describedby={id.thanks}>
             <legend className="s-capture__q" id={id.q}>
               {roles.question}
             </legend>
             {roles.options.map((o) => (
               <label className="ob-chip" key={o}>
-                <input
-                  className="ob-chip-input"
-                  type="radio"
-                  name={`${uid}-role`}
-                  value={o}
-                  checked={role === o}
-                  onChange={() => pick(o)}
-                />
+                <input className="ob-chip-input" type="radio" name={`${uid}-role`} value={o} checked={role === o} onChange={() => pick(o)} />
                 <span className="ob-chip-label">{o}</span>
               </label>
             ))}
           </fieldset>
-          <p className="ob-confirm-thanks" id={`${id.q}-thanks`} role="status">
+          <p className="ob-confirm-thanks" id={id.thanks} role="status">
             {saving === 'saved' ? copy.roles.thanks : saving === 'failed' ? copy.roles.failed : ''}
           </p>
           {preview && <p className="s-capture__preview">{copy.preview}</p>}
@@ -191,9 +235,11 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
           {mystery ? (
             <label className="ob-pill-entry" htmlFor={id.store}>
               <span className="ob-sr">{copy.store.label}</span>
-              <span className="ob-pill-affix" aria-hidden="true">
-                {copy.store.prefix}
-              </span>
+              {bareAddress(storePlaceholder) && (
+                <span className="ob-pill-affix" aria-hidden="true">
+                  {copy.store.prefix}
+                </span>
+              )}
               <input
                 ref={storeRef}
                 className="ob-pill-input"
@@ -206,9 +252,9 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 spellCheck={false}
                 required
                 pattern={ADDRESS_PATTERN}
-                placeholder={capture.placeholder ?? copy.store.placeholder}
+                placeholder={storePlaceholder}
                 value={store}
-                onChange={(e) => setStore(e.target.value)}
+                onChange={(e) => edit('store', e.target.value)}
                 aria-invalid={errorOn('store') || undefined}
                 aria-describedby={describe('store')}
               />
@@ -229,19 +275,12 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 required
                 placeholder={capture.placeholder ?? copy.email.placeholder}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => edit('email', e.target.value)}
                 aria-invalid={errorOn('email') || undefined}
                 aria-describedby={describe('email')}
               />
             </label>
           )}
-
-          <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
-            <span className="ob-btn-busy" aria-hidden="true">
-              <StatusMark state="working" size={18} />
-            </span>
-            <span className="ob-btn-label">{capture.button}</span>
-          </button>
 
           {mystery && (
             <div className={`ob-pill-more ob-anim-expand s-capture__more${open ? ' is-open' : ''}`}>
@@ -264,7 +303,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                       required
                       placeholder={copy.email.placeholder}
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => edit('email', e.target.value)}
                       aria-invalid={errorOn('email') || undefined}
                       aria-describedby={describe('email')}
                     />
@@ -273,6 +312,13 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
               </div>
             </div>
           )}
+
+          <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
+            <span className="ob-btn-busy" aria-hidden="true">
+              <StatusMark state="working" size={18} />
+            </span>
+            <span className="ob-btn-label">{capture.button}</span>
+          </button>
         </div>
 
         <div className="ob-pill-foot">

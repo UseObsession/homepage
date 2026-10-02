@@ -89,7 +89,12 @@ textarea {
   background: var(--bg-sunken);
 }
 
-/* A quiet label in sentence case. No caps, no mono: the sections being rebuilt drop these altogether. */
+/* A quiet label in sentence case, no caps, no mono, for the labels inside cards ("Spins up", "You get").
+   A label above a section heading only names the section (docs/REBUILD.md, Copy), so it no longer shows. */
+.head > .kicker {
+  display: none;
+}
+
 .kicker {
   display: inline-flex;
   align-items: center;

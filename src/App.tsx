@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { BrowserRouter, Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { BrowserRouter, Link, Navigate, Outlet, Route, Routes, useLocation, useNavigationType } from 'react-router-dom'
 import { CaptureForm } from './components/CaptureForm'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
@@ -14,20 +14,33 @@ import { SampleOutput } from './pages/SampleOutput'
 import { RecipePage } from './pages/RecipePage'
 import { Recipes } from './pages/Recipes'
 
+const idOf = (hash: string) => {
+  try {
+    return decodeURIComponent(hash.slice(1))
+  } catch {
+    return hash.slice(1)
+  }
+}
+
+/* After a link to another page: the top of that page (or its #anchor), with focus on the page itself so a screen reader
+   starts reading there. On the first load and on Back or Forward the browser keeps its own scroll position. */
 function ScrollManager() {
   const { pathname, hash } = useLocation()
+  const how = useNavigationType()
+  const first = useRef(true)
 
   useEffect(() => {
     document.title = metaFor(pathname).title
-    if (hash) {
-      const el = document.getElementById(hash.slice(1))
-      if (el) {
-        el.scrollIntoView()
-        return
-      }
+    if (first.current) {
+      first.current = false
+      return
     }
-    window.scrollTo(0, 0)
-  }, [pathname, hash])
+    if (how === 'POP') return
+    const target = hash ? document.getElementById(idOf(hash)) : null
+    if (target) target.scrollIntoView()
+    else window.scrollTo(0, 0)
+    if (!hash) document.getElementById('main')?.focus({ preventScroll: true })
+  }, [pathname, hash, how])
 
   return null
 }
@@ -37,7 +50,7 @@ function Layout() {
   return (
     <>
       <ScrollManager />
-      <a className="s-skip" href="#main">
+      <a className="ob-skip s-skip" href="#main">
         {nav.skip}
       </a>
       <Nav cta={ctaFor(pathname)} />

@@ -4,6 +4,7 @@
    Without VITE_WAITLIST_URL (local builds) nothing is sent: it waits a moment and reports success, marked preview. */
 
 export const WAITLIST_URL = (import.meta.env.VITE_WAITLIST_URL as string | undefined) || undefined
+const TIMEOUT_MS = 15000
 
 export type Signup = {
   email: string
@@ -30,11 +31,15 @@ export async function submitSignup(signup: Signup): Promise<SignupResult> {
     return { ok: true, preview: true }
   }
 
+  /* The script can take a few seconds to wake; past TIMEOUT_MS the reader gets the retry message instead of a spinner. */
+  const stop = new AbortController()
+  const timer = setTimeout(() => stop.abort(), TIMEOUT_MS)
   try {
     const res = await fetch(WAITLIST_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(body),
+      signal: stop.signal,
     })
     const data = (await res.json()) as { ok?: boolean; error?: string }
     if (res.ok && data.ok) return { ok: true, preview: false }
@@ -42,6 +47,8 @@ export async function submitSignup(signup: Signup): Promise<SignupResult> {
     return { ok: false, error: 'failed' }
   } catch {
     return { ok: false, error: 'failed' }
+  } finally {
+    clearTimeout(timer)
   }
 }
 

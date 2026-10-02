@@ -1,4 +1,14 @@
-import { useEffect, useId, useRef, useState, useSyncExternalStore, type FocusEvent, type KeyboardEvent, type ReactNode } from 'react'
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type FocusEvent,
+  type KeyboardEvent,
+  type MouseEvent,
+  type ReactNode,
+} from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { nav, recipeGroups } from '../content/nav'
 import type { Cta } from '../content/types'
@@ -48,12 +58,23 @@ function links(el: HTMLElement | null) {
   return el ? Array.from(el.querySelectorAll<HTMLElement>('a[href]')) : []
 }
 
-/* Everything in the nav that can take focus and is on screen, in order. */
+/* Everything in the nav that can take focus and is on screen, in order. The bar's call to action is only hidden
+   (visibility) while the sheet is open, so visibility counts too. */
+function shown(n: HTMLElement) {
+  if (typeof n.checkVisibility === 'function') return n.checkVisibility({ visibilityProperty: true })
+  return n.getClientRects().length > 0 && getComputedStyle(n).visibility !== 'hidden'
+}
 function focusables(el: HTMLElement | null) {
   if (!el) return []
   return Array.from(el.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(
-    (n) => n.getClientRects().length > 0 && !n.closest('[hidden], .ob-anim-expand:not(.is-open)'),
+    (n) => shown(n) && !n.closest('[hidden], .ob-anim-expand:not(.is-open)'),
   )
+}
+
+/* The page's form for an in-page call to action: its own anchor, else the page's #join, else its first form. */
+function formFor(hash: string) {
+  const id = hash.slice(1)
+  return (id && document.getElementById(id)) || document.getElementById('join') || document.querySelector<HTMLElement>('.s-capture')
 }
 
 function Chevron() {
@@ -72,7 +93,8 @@ function Arrow() {
   )
 }
 
-/* A call to action is an in-page anchor (#join) or a route. */
+/* A call to action is an in-page anchor (#join) or a route. An anchor the page doesn't have falls back to the page's
+   form, so the button always lands somewhere. From the keyboard it also puts focus in the form's first field. */
 function CtaLink({ cta, className, onClick, children }: { cta: Cta; className: string; onClick?: () => void; children?: ReactNode }) {
   const inner = children ?? <span className="ob-btn-label">{cta.label}</span>
   if (cta.to.startsWith('/'))
@@ -81,8 +103,24 @@ function CtaLink({ cta, className, onClick, children }: { cta: Cta; className: s
         {inner}
       </Link>
     )
+
+  function go(e: MouseEvent<HTMLAnchorElement>) {
+    onClick?.()
+    const target = formFor(cta.to)
+    if (!target) return
+    if (target.id !== cta.to.slice(1)) {
+      e.preventDefault()
+      target.scrollIntoView({ block: 'start' })
+    }
+    if (e.detail !== 0) return
+    /* Wait for the sheet to close and the page to leave inert before moving focus. */
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => target.querySelector<HTMLElement>('input:not([type="hidden"]):not([tabindex="-1"])')?.focus({ preventScroll: true })),
+    )
+  }
+
   return (
-    <a className={className} href={cta.to} onClick={onClick}>
+    <a className={className} href={cta.to} onClick={go}>
       {inner}
     </a>
   )
@@ -99,6 +137,13 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
 
   /* What is open belongs to the page it was opened on, so a new page (or a jump to #join) closes everything. */
   const here = pathname + hash
+  /* The prerendered pages can be served with a trailing slash (/agencies/). */
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+
+  /* How much room the call to action needs (Nav.css): a longer label hides sooner on phones, and the longest ones take
+     the compact bar up to 920px. */
+  const ctaSize = cta.label.length > 22 ? 'l' : cta.label.length > 17 ? 'm' : ''
+  const compactBelow = ctaSize === 'l' ? 920 : 860
   const [menuAt, setMenuAt] = useState<{ id: MenuId; at: string } | null>(null)
   const [sheetAt, setSheetAt] = useState<string | null>(null)
   const menu = menuAt && menuAt.at === here ? menuAt.id : null
@@ -169,7 +214,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
       }
     }
     /* The sheet belongs to the phone layout: widening past it closes the sheet. */
-    const wide = window.matchMedia('(min-width: 860px)')
+    const wide = window.matchMedia(`(min-width: ${compactBelow}px)`)
     const onWide = () => wide.matches && setSheetAt(null)
     document.addEventListener('keydown', onKey)
     wide.addEventListener('change', onWide)
@@ -180,7 +225,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
       document.removeEventListener('keydown', onKey)
       wide.removeEventListener('change', onWide)
     }
-  }, [sheet])
+  }, [sheet, compactBelow])
 
   function toggle(id: MenuId) {
     focus.current = null
@@ -265,22 +310,20 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
     </button>
   )
 
-  const longCta = cta.label.length > 18
-
   return (
     <nav
       ref={navRef}
-      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${longCta ? ' s-nav--long-cta' : ''}`}
+      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${ctaSize ? ` s-nav--cta-${ctaSize}` : ''}`}
       aria-label={nav.label}
     >
       <div className="ob-nav__in s-nav__in">
-        <Link className="ob-nav__brand s-nav__brand" to="/" aria-label={nav.home} onClick={close}>
+        <Link className="ob-nav__brand ob-brand-link s-nav__brand" to="/" aria-label={nav.home} onClick={close}>
           <Lockup height={20} />
         </Link>
 
         <ul className="ob-nav__links s-nav__links">
           <li className="s-nav__item" onBlur={onItemBlur}>
-            {trigger('solutions', nav.solutions.label, solutionPaths.has(pathname))}
+            {trigger('solutions', nav.solutions.label, solutionPaths.has(path))}
             <div
               ref={(el) => {
                 panels.current.solutions = el
@@ -304,7 +347,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
           </li>
 
           <li className="s-nav__item" onBlur={onItemBlur}>
-            {trigger('recipes', nav.recipes.label, pathname === '/recipes' || pathname.startsWith('/recipes/'))}
+            {trigger('recipes', nav.recipes.label, path === '/recipes' || path.startsWith('/recipes/'))}
             <div
               ref={(el) => {
                 panels.current.recipes = el

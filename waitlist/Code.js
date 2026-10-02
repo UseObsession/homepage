@@ -33,12 +33,13 @@ const FOLLOW_UP_MS = 10 * 60 * 1000
 const RATE_LIMIT = 8
 const RATE_WINDOW_S = 60 * 60
 
+// oxlint-disable-next-line no-unused-vars -- Apps Script calls doPost, doGet and authorize by name.
 function doPost(e) {
   const form = isFormPost(e)
   let data
   try {
     data = form ? e.parameter || {} : JSON.parse((e && e.postData && e.postData.contents) || '{}')
-  } catch (err) {
+  } catch {
     return reply(form, { ok: false, error: 'bad_json' }, {})
   }
 
@@ -77,6 +78,7 @@ function doPost(e) {
 }
 
 /* Run this once from the editor. It asks for every permission the script uses and creates the sheet. */
+// oxlint-disable-next-line no-unused-vars
 function authorize() {
   console.log('Email quota left today: ' + MailApp.getRemainingDailyQuota())
   console.log('Alerts go to: ' + recipients().join(', '))
@@ -84,6 +86,7 @@ function authorize() {
 }
 
 /* Opening the web app link once, signed in as the owner, authorises the script and creates the sheet. */
+// oxlint-disable-next-line no-unused-vars
 function doGet() {
   withLock(() => signUps(book_()))
   return json({ ok: true, service: 'obsession-waitlist' })
@@ -188,7 +191,7 @@ function limited(email) {
   let seen = null
   try {
     seen = JSON.parse(cache.get(key) || 'null')
-  } catch (err) {
+  } catch {
     seen = null
   }
   if (!seen || now - seen.t > RATE_WINDOW_S * 1000) seen = { n: 0, t: now }

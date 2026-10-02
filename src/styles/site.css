@@ -35,26 +35,9 @@
 .s-head > p { max-width: 52ch; color: var(--ob-text-2); }
 .s-head--wide { max-width: 44ch; }
 
-/* Keyboard users can skip the navigation: the first stop on every page, shown only while it has focus. */
-.s-skip {
-  position: fixed;
-  top: calc(env(safe-area-inset-top, 0px) + var(--ob-space-8, 8px));
-  left: var(--s-gutter);
-  z-index: calc(var(--ob-z-nav, 50) + 1);
-  display: inline-flex;
-  align-items: center;
-  height: var(--ob-control-md, 40px);
-  padding: 0 var(--ob-control-pad-md, 16px);
-  border-radius: var(--ob-radius-pill, 999px);
-  background: var(--ob-solid);
-  color: var(--ob-text-inverse);
-  font: var(--ob-type-label);
-  letter-spacing: var(--ob-type-label-tracking);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.s-skip:not(:focus) { width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
-.s-skip:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+/* Keyboard users can skip the navigation: navigation.css .ob-skip, the first stop on every page, shown only while it
+   has focus. The site lines it up with the page gutter instead of the system's 8px. */
+.s-skip.ob-skip { left: var(--s-gutter); }
 /* The skip link's target takes focus without drawing a ring around the whole page. */
 #main:focus { outline: none; }
 

@@ -13,17 +13,9 @@
   padding-inline: var(--s-gutter, clamp(16px, 4vw, 32px));
 }
 
-.s-nav__brand {
-  display: inline-flex;
-  align-items: center;
-  height: var(--ob-target-touch);
-  border-radius: var(--ob-radius-xs);
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: scale var(--ob-dur-fast) var(--ob-ease-out);
-}
+/* The lockup is brand.css .ob-brand-link (44px tall, its focus ring 6px clear of the logo); it presses to .98. */
+.s-nav__brand { transition: scale var(--ob-dur-fast) var(--ob-ease-out); }
 .s-nav__brand:active { scale: var(--ob-press-scale); }
-.s-nav__brand:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 
 .s-nav__item { position: relative; display: flex; }
 
@@ -41,15 +33,28 @@
 .s-nav__trigger:is(:hover, [aria-expanded="true"]) .s-nav__chev { color: currentColor; }
 
 /* Wide bar: the theme switch leaves under 1080px (it stays in the footer). Compact bar: the call to action leaves
-   when it no longer fits beside the 20px lockup and the menu button; it stays in the sheet. */
+   when it no longer fits beside the 20px lockup (158px), the menu button (44px) and 8px of air; it stays in the sheet.
+   Measured labels: up to 17 letters ("Join the waitlist") 137px; 18 to 22 ("Get my free report", "Get one for your
+   store") up to 175px; longer ("Get early access for my team") 224px. */
 @container ob-nav (max-width: 1079.98px) {
   .ob-nav__end > .s-nav__theme { display: none; }
 }
-@container ob-nav (max-width: 419.98px) {
+@container ob-nav (max-width: 399.98px) {
   .ob-nav__end > .ob-nav__cta { display: none; }
 }
-@container ob-nav (max-width: 579.98px) {
-  .s-nav--long-cta .ob-nav__end > .ob-nav__cta { display: none; }
+@container ob-nav (max-width: 439.98px) {
+  .s-nav--cta-m .ob-nav__end > .ob-nav__cta { display: none; }
+}
+@container ob-nav (max-width: 489.98px) {
+  .s-nav--cta-l .ob-nav__end > .ob-nav__cta { display: none; }
+}
+/* The 3-column bar holds the lockup, 418px of links and the call to action on equal sides. A long call to action needs
+   920px for that, so its bar goes compact below 920px instead of 860px (the menu button and the sheet take over). */
+@container ob-nav (max-width: 919.98px) {
+  .s-nav--cta-l .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
+  .s-nav--cta-l .ob-nav__links { display: none; }
+  .s-nav--cta-l .ob-nav__end { gap: var(--ob-space-8); }
+  .s-nav--cta-l .ob-nav__end > .ob-nav__menu { display: inline-flex; }
 }
 
 
@@ -66,7 +71,7 @@
   transform: translateX(-50%);
 }
 .s-menu[hidden] { display: none; }
-.s-menu--solutions { width: 344px; }
+.s-menu--solutions { width: 360px; }
 .s-menu--recipes { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
 
 .s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
@@ -123,9 +128,14 @@
   .s-mnav.ob-anim-sheet.is-leaving { animation: ob-sheet-out var(--ob-dur-moderate) var(--ob-ease-in) forwards; }
 }
 @container ob-nav (min-width: 860px) {
+  .s-nav:not(.s-nav--cta-l) .s-mnav { display: none; }
+}
+@container ob-nav (min-width: 920px) {
   .s-mnav { display: none; }
 }
 .s-mnav { gap: var(--ob-space-16); }
+/* The theme row's label starts where the rows' labels do. */
+.s-mnav .ob-mnav__row { padding-inline-start: var(--ob-control-pad-sm); }
 
 .s-mnav__toggle {
   justify-content: space-between;

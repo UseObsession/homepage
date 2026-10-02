@@ -1,18 +1,23 @@
 /* The capture form (components/CaptureForm), on forms.css .ob-pill-form, .ob-field, .ob-chips and .ob-confirm.
    These rules add only what the site needs on top: the privacy line, the hidden bot field, the mystery shop's
-   email row (open without script), the roles question in sentence case, and the order of the pill on phones. */
+   email row (open without script, opened by the script after the store), and the roles question in sentence case. */
 
 .s-capture {
-  --s-capture-indent: calc(var(--ob-pill-pad, 4px) + var(--ob-border-hair) + var(--ob-pill-input-pad, 16px));
+  /* The pill's typed text starts here: padding, edge, then the input's own padding (forms.css). */
+  --s-capture-indent: calc(var(--ob-pill-pad) + var(--ob-border-hair) + var(--ob-pill-input-pad));
   display: grid;
-  gap: var(--ob-space-4);
+  gap: var(--ob-space-8);
   width: 100%;
   max-width: var(--ob-container-xs);
   text-align: start;
 }
 
-/* The field is never shorter than its 48px control, on any screen (the pill wraps; it never stacks in a column). */
+/* The field is never shorter than its 48px control, on any screen: the pill wraps its action under the field below
+   420px of its own width (forms.css); it never squeezes the field. */
 .s-capture .ob-pill-input { min-height: var(--ob-control-lg); }
+/* The message slot under the pill takes room only while it has something to say (the page's micro line or an error),
+   so the privacy line sits close under the pill and only moves for an error the reader just caused. */
+.s-capture .ob-pill-foot:not(:has(> :not([hidden]):not(:empty))) { display: none; }
 
 /* What we keep and why, under every form. */
 .s-capture__privacy {
@@ -21,7 +26,6 @@
   color: var(--ob-text-3);
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
-  text-wrap: pretty;
 }
 .s-capture__privacy a {
   border-radius: var(--ob-radius-glyph);
@@ -31,11 +35,17 @@
   text-decoration-color: var(--ob-link-underline);
   text-underline-offset: 3px;
   white-space: nowrap;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .s-capture__privacy a:hover { color: var(--ob-text); text-decoration-color: currentColor; }
 }
 .s-capture__privacy a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+/* On touch the link grows a 44px tall hit area without moving the line. */
+@media (pointer: coarse) {
+  .s-capture__privacy a { position: relative; }
+  .s-capture__privacy a::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) calc(var(--ob-space-8) * -1); }
+}
 
 /* The bot field: out of sight and out of the tab order. */
 .s-capture__trap {
@@ -46,26 +56,28 @@
   overflow: hidden;
 }
 
-/* The mystery shop's email row. Without script it is open, so the plain form post carries both fields. */
+/* The mystery shop's email row sits inside the pill, before the action, so the screen, the Tab order and the reading
+   order run store, email, send (forms.css). With script it waits until the store is in, then opens 0fr to 1fr.
+   Without script it is open from the start, so the plain form post carries both fields. */
+:root.js .s-capture__more:not(.is-open) { display: none; }
 :root:not(.js) .s-capture__more { grid-template-rows: 1fr; visibility: visible; }
 :root:not(.js) .s-capture__more > * { opacity: 1; }
-/* Collapsed, the row takes no room: cancel the pill's row gap so the padding stays even. */
-.s-capture__more:not(.is-open) { margin-top: calc(var(--ob-space-4) * -1); }
-:root:not(.js) .s-capture__more { margin-top: 0; }
-.s-capture__more .ob-pill-more-in { padding: var(--ob-space-8) var(--ob-space-8) var(--ob-space-8) var(--ob-space-12); }
+@media (prefers-reduced-motion: no-preference) {
+  .s-capture__more.is-open { animation: s-capture-rows var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
+  .s-capture__more.is-open > * { animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-expand-delay, 80ms) backwards; }
+}
+@keyframes s-capture-rows { from { grid-template-rows: 0fr; } }
+.s-capture__more .ob-pill-more-in { padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-4); }
 .s-capture__more .ob-label { color: var(--ob-text-2); }
-
-/* On a narrow pill the action drops under the field (forms.css). With the mystery shop's email open, it goes last,
-   under the email, so the reader never reaches back up for it. */
 @container ob-pill (max-width: 420px) {
-  .s-capture__more { order: 1; }
-  .s-capture .ob-pill-action { order: 2; }
-  .s-capture__more .ob-pill-more-in { padding: var(--ob-space-4) 0 var(--ob-space-4); }
+  .s-capture__more .ob-pill-more-in { padding-inline: var(--ob-space-4); }
 }
 
 /* The ring in the busy button and the mark in the thank-you take the label's ink. */
 .s-capture .ob-btn-busy .s-status { color: currentColor; }
 .s-capture__mark { display: inline-grid; place-items: center; flex: none; }
+/* A store or an email moves to the next line whole; only one longer than the line itself breaks. */
+.s-capture__value { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
 
 /* Thank-you: the roles question reads as a sentence, not a caps label. */
 .s-capture .s-capture__roles { margin-top: var(--ob-space-8); }
@@ -85,4 +97,5 @@
   letter-spacing: var(--ob-type-mono-sm-tracking);
 }
 .s-capture--done { gap: var(--ob-space-8); }
+/* Under the thank-you card the privacy line lines up with the card's text. */
 .s-capture--done .s-capture__privacy { padding-inline-start: var(--ob-space-24); }
