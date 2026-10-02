@@ -5,7 +5,7 @@ import type { Capture, Recipe } from '../types'
    allow; 03:20 it asks for 18%, held at 12% with quarterly billing offered; Mon 09:02 a call booked with the rep;
    answered in 2 minutes).
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 2 (research name retired; the plain name is Seun's, 3 Oct).
-   Lead leaks tests your channels and finds where leads drop; Inbound quotes is the answer to every real request.
+   Lead leaks tests your channels and finds where leads leak; Inbound quotes is the answer to every real request.
    Red lines held: it answers only people and agents who got in touch, existing customers and tenders the reader was
    invited to, never cold outreach; it says it's an AI agent for the reader's company in the first line of every new
    conversation and asks a buyer's agent whom it acts for; it quotes only from the price book and approved answers (no
@@ -16,7 +16,7 @@ import type { Capture, Recipe } from '../types'
    asked. No real company names: the buyer is a logistics firm and a clinic owner.
    Up-to-50 rule: the 1 modelled figure (up to 3.1 times as many requests answered) carries its model in the same line:
    when 6,346 real demo and contact forms were filled in, 68 in 100 got no reply; answering all 100 is 100 / 32 = 3.1.
-   The run is an example and says so: 40 seats at $30 a month is $14,400 a year at list, $12,672 at 12% off, over the
+   The run is an example and says so: 40 seats at $30 a seat a month is $14,400 a year at list, $12,672 at 12% off, over the
    $10,000 line where a rep is booked. */
 
 const roles: Capture['roles'] = {
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that quote every buyer in minutes, from your price book.',
-    sub: 'A declared AI agent answers every request, by email, phone or form, or from a buyer’s own AI agent, with the right price. It follows up until it’s a yes or a no, and anything outside your price book waits for you.',
+    sub: 'A declared AI agent answers every price request, from a person or their AI agent, by email, phone or form. It follows up until it’s a yes or a no, and anything outside your price book waits for you.',
     screen: 'quotes',
     capture: {
       kind: 'waitlist',
@@ -75,7 +75,7 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: a weekend of price requests',
     recipe: 'quotes',
-    task: 'Answer every price request on our form, inbox, phone and agent front door with a quote from our price book. Hold the floor, follow up until it’s a yes or a no, and book a rep over $10,000.',
+    task: 'Answer every price request on our form, inbox, phone and front door for buyers’ agents with a quote from our price book. Hold the floor, follow up until it’s a yes or a no, and book a rep over $10,000.',
     targets: 'Your demo form, sales inbox, sales line and front door for buyers’ agents',
     journey: ['Say it’s an AI agent for you', 'Quote from your price book', 'Counter inside your floor', 'Follow up to a yes or a no'],
     schedule: 'Every request, day and night',
@@ -83,8 +83,8 @@ export const recipe: Recipe = {
     kit: ['Agent ID, names your company', 'Own inbox and phone number', 'Your price book and floors', 'Your CRM, connected by you'],
     events: [
       { time: 'Sat 03:12', text: 'A procurement agent for a logistics firm, with a signed ID, asks for 40 seats and a 2 year price.' },
-      { time: 'Sat 03:14', text: 'Quote sent: 40 seats at $30 a month, 12% off for 2 years, as your rules allow.' },
-      { time: 'Sat 03:20', text: 'It asks for 18%. Held at 12%, with quarterly billing offered instead.' },
+      { time: 'Sat 03:14', text: 'Quote sent: 40 seats at $30 a seat a month, 12% off for 2 years, as your rules allow.' },
+      { time: 'Sat 03:20', text: 'The buyer’s agent asks for 18%. Held at 12%, with quarterly billing offered instead, also in your rules.' },
       { time: 'Sat 10:05', text: 'A clinic owner asks for a price for 5 seats on your demo form. Quoted in 3 minutes.' },
       { time: 'Mon 09:02', text: 'The logistics firm takes 12%. A 20 minute call booked with your rep for Thursday.' },
     ],
@@ -104,11 +104,11 @@ export const recipe: Recipe = {
     },
     {
       title: 'A correct quote in minutes',
-      line: 'From your price book only, valid for 14 days and binding only when both sides sign. A poor fit gets 2 honest lines, not silence.',
+      line: 'From your price book only, valid for 14 days and binding only when both sides sign. A poor fit gets a straight answer, not silence.',
     },
     {
       title: 'It follows up to a yes or a no',
-      line: 'It answers every counter the same day, inside your floor, follows up on days 2, 5 and 10, and books your rep when a deal is big enough.',
+      line: 'It answers every counter the same day, inside your floor, follows up on days 2, 5 and 10, stops on a no, and books your rep when a deal is big enough.',
     },
   ],
 
@@ -121,7 +121,7 @@ export const recipe: Recipe = {
           title: 'Email and phone',
           line: 'Its own sales inbox and number. On a call it says it’s AI and that the call is recorded, and it calls back only on a number the buyer gave for that.',
         },
-        { title: 'Buyers’ AI agents', line: 'A signed front door that shows your list prices to buying agents, and asks each one whom it acts for.' },
+        { title: 'Buyers’ AI agents', line: 'A front door that shows buying agents your list prices and asks each one whom it acts for.' },
         { title: 'Your customers', line: 'Requests for more seats or another product, quoted on their current terms.' },
       ],
     },
@@ -154,7 +154,7 @@ export const recipe: Recipe = {
     items: [
       { format: 'The quote', line: 'An email the buyer can read and a version their AI agent can read, valid for 14 days.' },
       { format: 'The thread', line: 'Every counter and reply with its time, from the first request to the yes or the no.' },
-      { format: 'Booked calls', line: 'A 20 minute call with the right rep once a deal passes your line, confirmed the day before.' },
+      { format: 'Booked calls', line: 'A 20 minute call with the right rep once a deal passes the size you set, confirmed the day before.' },
       { format: 'Your CRM', line: 'Every quote version, counter and outcome on the deal.' },
       { format: 'A daily note', line: 'Requests in, quotes sent, time to quote, deals won and lost, by email or Slack.' },
       { format: 'What needs you', line: 'Anything below your floor or outside your price book, with a reply drafted.' },
@@ -186,7 +186,7 @@ export const recipe: Recipe = {
     rows: [
       { label: 'Requests answered', values: ['32 in 100', 'All 100'] },
       { label: 'Time to a price', values: ['Days, after a call', 'Minutes, day or night'] },
-      { label: 'A buyer’s AI agent', values: ['No one to ask', 'A signed front door with your list prices'] },
+      { label: 'A buyer’s AI agent', values: ['No one to ask', 'A front door with your list prices'] },
       { label: 'A counter at 03:20', values: ['Waits for Monday', 'Answered inside your floor'] },
       { label: 'Follow ups', values: ['Until someone forgets', 'Days 2, 5 and 10, until a yes or a no'] },
       { label: 'The record', values: ['Scattered threads', 'Every quote signed, in your CRM'] },
@@ -197,7 +197,7 @@ export const recipe: Recipe = {
     heading: 'It says it’s AI, quotes only what you’ve approved, and never signs.',
     items: [
       {
-        q: 'Does it pretend to be us?',
+        q: 'Does it pretend to be a person?',
         a: 'No. Its first line says it’s an AI agent for your company, in every new conversation, by email, phone or form.',
       },
       {
@@ -214,11 +214,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s a buyer’s AI agent?',
-        a: 'More buyers now send AI agents to ask for prices and negotiate. Inbound quotes gives them a signed front door with your list prices, asks whom each one acts for, and answers in minutes.',
+        a: 'More buyers now send AI agents to ask for prices and negotiate. Inbound quotes gives them a front door with your list prices, asks whom each one acts for, and answers in minutes.',
       },
       {
-        q: 'Why does speed matter so much?',
-        a: 'Buyers often go with the first good answer, and their AI agents more so: in simulated markets, answering first counted 10 to 30 times more than answering best.',
+        q: 'Why does answering first matter?',
+        a: 'AI agents that buy lean hard towards the first offer they get: in simulated markets, answering first was worth 10 to 30 times more than answering best.',
       },
       {
         q: 'What’s it worth?',
@@ -234,7 +234,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is it different from Lead leaks?',
-        a: 'Lead leaks tests your form, chat and phone to find where leads drop. Inbound quotes answers every real request with a correct price in minutes, then follows up to a yes or a no.',
+        a: 'Lead leaks tests your form, chat and phone to find where leads leak. Inbound quotes answers every real request with a correct price in minutes, then follows up to a yes or a no.',
       },
     ],
   },

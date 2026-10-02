@@ -4,7 +4,7 @@ import type { Capture, Recipe } from '../types'
    works shows its signed receipt, "$48.20 on card ending 4417, refunded"; 1 path fails: the basket empties after add
    and sizes are hidden from agents; 1 button, Approve fix).
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 1 (research name retired; the plain name is Seun's, 3 Oct).
-   It upgrades Mystery shopper from watching to buying: it pays, refunds and fixes.
+   It upgrades Mystery shopper from watching to buying: it pays, refunds and drafts the fix (live after the reader's OK).
    Red lines held: only the reader's own store, or a client's with the owner's written OK, never a competitor's; the agent
    is declared in the order note and every message; each order on its own card, locked to the store and capped to that
    order, inside a monthly budget the reader sets, and any total above the cap stops it before payment; the reader
@@ -14,8 +14,9 @@ import type { Capture, Recipe } from '../types'
    payment provider bars real test payments, its test mode or a genuine purchase kept or returned; every fix and every
    AI channel application (and its terms) only after the reader's OK. No platform or company names: categories only.
    Up-to-50 rule: the 1 modelled figure (up to 40 more of every 100 AI shoppers reach checkout) carries its model in
-   the same line: in live tests 45 in 100 reached checkout, and 40 of the 55 that didn't were stopped by the store
-   (24 of 33). The run is an example and says so. */
+   the same line, unattributed (Obsession's only real run is the September store check): when AI agents tried to buy
+   from real stores, 45 in 100 reached the basket or checkout (27 of 60), and 40 of the 55 that didn't were stopped by
+   the store (24 of 33), so the ceiling goes from 45 to 85. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'Whose store should we test first?',
@@ -33,7 +34,7 @@ export const recipe: Recipe = {
   gets: 'A real order through every AI checkout, refunded, and the fix for any that breaks.',
   kit: [
     'A declared AI agent that names your store',
-    'A card for each order, capped to its total',
+    'A capped card per order, locked to your store',
     'Every AI checkout into your store, mapped',
     'Your store and orders, connected by you',
     'A refund for every test order',
@@ -46,7 +47,7 @@ export const recipe: Recipe = {
     description:
       'Each month a declared AI agent buys from your store through every AI checkout on a capped card, refunds the order and drafts the fix for any that breaks.',
     answer:
-      'AI checkout test is an Obsession recipe. Each month a declared AI agent places a real order through every AI shopping checkout into your own store, or a client’s with their written OK, on a card capped to that order. It checks the order, refunds it through your normal process and drafts the fix for every path that breaks.',
+      'AI checkout test is an Obsession recipe. Each month a declared AI agent places a real order through each AI shopping checkout into your own store, or a client’s with their written OK, on a card capped to that order. It checks the order, refunds it through your normal process and drafts the fix for every path that breaks.',
     ogImage: '/og/ai-checkout-test.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -57,7 +58,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that make sure AI shoppers can buy from your store.',
-    sub: 'Each month a declared AI agent buys from your store through every AI checkout, on a card capped to that order. It refunds the order and drafts the fix for any path that breaks.',
+    sub: 'Every month a declared AI agent places a real order through each AI checkout into your store, on a card capped to that order. It refunds every one and drafts the fix for any path that breaks.',
     screen: 'checkout',
     capture: {
       kind: 'waitlist',
@@ -73,7 +74,7 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: your store, monthly',
     recipe: 'checkout',
-    task: 'Each month, buy 1 real order through every AI checkout into our store, on a card capped to that order. Check it, refund it, and draft the fix for any path that breaks.',
+    task: 'Every month, place a real order through each AI checkout into our store, each on its own capped card. Check them, refund them, and draft the fix for any path that breaks.',
     targets: 'your-store.example, your own running shoe store',
     journey: ['Map every AI checkout', 'Buy on a capped card', 'Check it, then refund it', 'Draft the fix for each break'],
     schedule: 'Monthly, and after every checkout change',
@@ -81,24 +82,24 @@ export const recipe: Recipe = {
     kit: ['Agent ID, names your store', 'A capped card per order', 'Your store, connected by you', 'Checkout routes for agents'],
     events: [
       { time: 'Mon 09:00', text: '6 ways an AI shopper can buy from you, mapped. You’re not listed on 2 AI shopping channels.' },
-      { time: 'Mon 09:20', text: 'You confirm the $48.20 total. Paid on a card locked to your store and capped at $48.20.' },
+      { time: 'Mon 09:20', text: 'You confirm the $48.20 total on each path. Each order is paid on its own card, locked to your store and capped at $48.20.' },
       { time: 'Mon 09:45', text: '5 of 6 paths take a paid order, each with the right price, size, delivery and tax.' },
-      { time: 'Mon 10:10', text: 'AI assistant hand off: the basket empties after add, and sizes are hidden from agents. It stops and logs why.' },
+      { time: 'Mon 10:10', text: 'The link from an AI assistant fails: the basket empties after add, and sizes are hidden from agents. It stops and logs why.' },
       { time: 'Mon 14:00', text: '5 orders refunded through your normal process. Every refund back on its card.' },
     ],
     finding: '1 of 6 AI checkouts fails: the basket empties after add, and sizes are hidden from agents.',
-    fix: 'Sizes added to your product feed and a theme fix drafted. Live after your OK, then it buys again.',
+    fix: 'A feed change that shows every size, and a theme fix, drafted. Live after your OK, then it buys again.',
     ledger: 'Example run. 5 orders placed and refunded, 1 blocked, every receipt signed.',
   },
 
   steps: [
     {
       title: 'Map every way an AI can buy from you',
-      line: 'The checkouts built for AI agents, AI assistants’ shopping, your product feeds and your normal checkout. It flags the AI shopping channels you’re not on.',
+      line: 'Checkouts built for AI agents, links from AI assistants, your product feeds and your normal checkout. It flags the AI shopping channels you’re not on.',
     },
     {
       title: 'Buy for real, on a capped card',
-      line: 'A declared AI agent orders through each path, on a card locked to your store and capped to that order. You confirm each total first.',
+      line: 'A declared AI agent orders through every path, inside a monthly budget you set. Each order gets its own card, locked to your store and capped to its total, and you confirm the total first.',
     },
     {
       title: 'Check the order, then refund it',
@@ -115,7 +116,7 @@ export const recipe: Recipe = {
       group: 'Every way an AI can buy',
       items: [
         { title: 'Checkouts built for agents', line: 'Your store’s own checkout for AI agents, and the shared routes AI assistants buy through.' },
-        { title: 'AI assistants', line: 'The hand off from an AI assistant’s product card to your checkout.' },
+        { title: 'AI assistants', line: 'The link from an AI assistant’s product card into your checkout.' },
         { title: 'Product feeds', line: 'Whether every size, colour, price and stock level an AI reads matches your store.' },
         { title: 'Your normal checkout', line: 'The same order through your web checkout, as a declared agent.' },
       ],
@@ -139,7 +140,7 @@ export const recipe: Recipe = {
           title: 'At a block',
           line: 'A bot rule, a forced login, an empty basket or a hidden size. It stops, logs where and why, and drafts the fix. It never solves a CAPTCHA.',
         },
-        { title: 'Above the cap', line: 'A total over the cap you set stops it before it pays.' },
+        { title: 'Above the cap', line: 'A total over its card’s cap, or over your monthly budget, stops it before it pays.' },
         {
           title: 'AI apps that bar agents',
           line: 'Where an app’s terms don’t allow agents, a person on your team runs that step. The agent sets it up and records it.',
@@ -160,7 +161,7 @@ export const recipe: Recipe = {
       },
       {
         format: 'Missing channels',
-        line: 'Applications to the AI shopping channels you’re not on, sent after your OK and chased until you’re in.',
+        line: 'Applications to the AI shopping channels you’re not on, sent with their terms for your OK and chased every week until they answer.',
       },
       { format: 'What changed', line: 'After every theme, app or checkout change, the paths that broke or recovered.' },
       { format: 'A report to share', line: 'A page and a PDF for your team or your client, or an email, Slack, a sheet or a webhook.' },
@@ -171,7 +172,7 @@ export const recipe: Recipe = {
     { k: 'Store', v: 'Yours, or a client’s with their written OK' },
     { k: 'Products', v: 'The products and sizes you pick to test' },
     { k: 'Budget', v: 'A monthly cap you set, and each card capped to its order' },
-    { k: 'Paths', v: 'Every AI checkout, every product feed hand off and your normal checkout' },
+    { k: 'Paths', v: 'Every AI checkout, every link from an AI assistant and your normal checkout' },
     { k: 'Your OK', v: 'The total at each confirm step, every fix, every channel application and its terms' },
     { k: 'Refunds', v: 'Through your normal process, kept out of your ads, reviews and email lists' },
     { k: 'How often', v: 'Monthly, and after every theme, app or checkout change' },
@@ -186,13 +187,13 @@ export const recipe: Recipe = {
     { audience: 'marketing', line: 'Join the AI shopping channels you’re missing, and know every one ends at a working checkout.' },
     {
       audience: 'developers',
-      line: 'For software: whether an AI agent can sign up, get an API key and upgrade, run from your code after every release.',
+      line: 'For software: run it from your code after every release, and know an AI agent can still sign up, get an API key and upgrade.',
     },
   ],
 
   table: {
     heading: 'Most AI shoppers that fail are stopped by the store, not the AI.',
-    line: 'Up to 40 more of every 100 AI shoppers reach your basket or checkout once these are fixed: in live tests 45 in 100 got there, and 40 of the 55 that didn’t were stopped by the store.',
+    line: 'Up to 40 more of every 100 AI shoppers reach your basket or checkout once these blocks are fixed: when AI agents tried to buy from real stores, 45 in 100 got there, and 40 of the 55 that didn’t were stopped by the store itself.',
     cols: ['What the AI hits', 'The fix it drafts'],
     rows: [
       { label: 'Bot rule', values: ['Every agent turned away at checkout', 'Let declared, signed agents through, with bot protection still on'] },
@@ -213,7 +214,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can it test a competitor’s checkout?',
-        a: 'No. Only your own store, or a client’s with their written OK. Never a rival’s.',
+        a: 'No. Only your own store, or a client’s with their written OK.',
       },
       {
         q: 'Does it pretend to be a person?',
@@ -221,7 +222,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Who pays for the test orders?',
-        a: 'You set a monthly budget. Each card is locked to your store and capped to its order, and every order is refunded through your normal process. Your payment provider may keep a small fee.',
+        a: 'You do, inside a monthly budget you set. Each order is on its own card, locked to your store and capped to its total, and refunded through your normal process. Your payment provider may keep a small fee.',
       },
       {
         q: 'Will test orders skew our numbers?',
@@ -237,11 +238,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 40 more of every 100 AI shoppers reaching your basket or checkout: in live tests 45 in 100 got there, and 40 of the 55 that didn’t were stopped by the store, not the AI. Those are the blocks it finds and fixes.',
+        a: 'Up to 40 more of every 100 AI shoppers reaching your basket or checkout: when AI agents tried to buy from real stores, 45 in 100 got there, and 40 of the 55 that didn’t were stopped by the store, not the AI. Those are the blocks it finds, with the fix drafted for each.',
       },
       {
         q: 'How is it different from Mystery shopper?',
-        a: 'Mystery shopper goes through your store as a customer does and watches what follows. AI checkout test buys through the checkouts AI agents use, pays, refunds and fixes what breaks.',
+        a: 'Mystery shopper goes through your store as a customer does and watches what follows. AI checkout test places real orders through the checkouts AI agents use, refunds them and drafts the fix for any that breaks.',
       },
       {
         q: 'Does it work for software?',
