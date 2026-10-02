@@ -22,6 +22,8 @@ export function Footer() {
             <Link to="/#how">How it works</Link>
             <Link to="/recipes">All recipes</Link>
             <Link to="/sample-output">Sample output</Link>
+            <Link to="/use-cases/prospect-intelligence-with-clay">Prospect intelligence with Clay</Link>
+            <Link to="/use-cases/member-prices-for-price-intelligence">Member prices for price intelligence</Link>
           </div>
           <div>
             <p className="kicker">Recipes</p>

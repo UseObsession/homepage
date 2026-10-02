@@ -225,14 +225,15 @@ export function Faq({ items }: { items: QA[] }) {
   )
 }
 
-export function FinalCta({ title, line, source }: { title: string; line: string; source: string }) {
+/* withCompany asks for the company to watch before the email. Worked examples ask for the email only. */
+export function FinalCta({ title, line, source, withCompany = true }: { title: string; line: string; source: string; withCompany?: boolean }) {
   return (
     <section className="section final" id="join">
       <div className="wrap">
         <Reveal className="final-in">
           <h2 className="h1 final-h">{title}</h2>
           <p className="lede">{line}</p>
-          <WaitlistForm source={source} withCompany />
+          <WaitlistForm source={source} withCompany={withCompany} />
         </Reveal>
       </div>
     </section>

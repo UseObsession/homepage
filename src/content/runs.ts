@@ -73,14 +73,14 @@ export const prospectRun: Run = {
   tab: 'Prospect research',
   recipe: 'Prospect research',
   target: '300 brands, from a Clay table',
-  cadence: '14 days, then weekly',
+  cadence: '48 hours, then weekly',
   label: 'Example',
   events: [
     { time: 'Day 0, 09:00', text: '300 shoppers sign up, opt in to texts and ask a support question', tag: 'Started', tone: 'idle' },
+    { time: 'Day 0, 09:05', text: 'Control texts confirm every number works', tag: 'Checked', tone: 'idle' },
     { time: 'Day 0, 10:00', text: '271 welcome emails arrive within the hour', tag: 'Arrived', tone: 'ok' },
-    { time: 'Day 1, 12:00', text: '188 support replies so far', tag: 'Replied', tone: 'ok' },
-    { time: 'Day 7, 09:00', text: 'Control texts confirm every number still works', tag: 'Checked', tone: 'idle' },
-    { time: 'Day 14, 09:00', text: '54 of 142 brands took an SMS opt in and never sent a text', tag: 'Gap', tone: 'bad' },
+    { time: 'Day 1, 09:00', text: 'No text after 24 hours at 61 brands, so a second run starts from a fresh number', tag: 'Rechecking', tone: 'warn' },
+    { time: 'Day 2, 09:00', text: '54 of 142 brands took an SMS opt in and never sent a text', tag: 'Gap', tone: 'bad' },
   ],
   summary: '54 gaps confirmed by a second run, written back to Clay as new columns.',
 }

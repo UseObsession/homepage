@@ -1,0 +1,547 @@
+/* Use case: member prices for price intelligence. The shared window and widget styles are in components/UseCase.css. */
+.pr-h1 {
+  max-width: 16ch;
+}
+
+/* Hero: the sources a firm collects today, plus the new one */
+.pr-sources li .tag {
+  font-size: 10.5px;
+}
+
+.uc-node .pr-sources li.new {
+  background: color-mix(in srgb, var(--uc-new) 14%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--uc-new) 45%, transparent) inset;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.pr-sources li.new .tag {
+  background: var(--uc-new);
+  color: var(--bg);
+}
+
+/* Behind the sign up */
+.pr-gaps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pr-gaps li {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 22px;
+}
+
+.pr-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.pr-split > div {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+
+.pr-split > .ours {
+  background: color-mix(in srgb, var(--uc-new) 7%, var(--surface));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--uc-new) 40%, transparent) inset;
+}
+
+.pr-split ul {
+  display: grid;
+  gap: 10px;
+}
+
+.pr-split li {
+  padding-left: 16px;
+  border-left: 2px solid var(--line-strong);
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.pr-split .ours li {
+  border-left-color: var(--uc-new);
+}
+
+/* 1: retailers and basket */
+.pr-chips,
+.pr-cities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pr-chips span,
+.pr-cities span {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sunken);
+  box-shadow: 0 0 0 1px var(--line) inset;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pr-chips .more {
+  font-weight: 400;
+  color: var(--text-3);
+  background: transparent;
+  box-shadow: 0 0 0 1px var(--line) inset;
+  outline: 1px dashed var(--line-strong);
+  outline-offset: -1px;
+}
+
+/* 3: delivery */
+.pr-fields dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.uc-sum.pr-fields div {
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: baseline;
+}
+
+/* 4: the retailer's own page keeps its colours in both themes, like a screenshot would */
+.pr-shop {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding-bottom: 16px;
+  background: #fbfaf6;
+  color: #1d2a22;
+}
+
+.pr-shop-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #1f6b45;
+  color: #fff;
+  font-size: 11.5px;
+}
+
+.pr-shop-bar b {
+  margin-right: auto;
+  font-size: 14px;
+  letter-spacing: -.02em;
+}
+
+.pr-shop-bar span {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / .16);
+}
+
+.pr-shop-bar .pr-socio {
+  background: #f4d35e;
+  color: #1d2a22;
+  font-weight: 600;
+}
+
+.pr-item {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding-inline: 14px;
+}
+
+.pr-pack {
+  display: grid;
+  place-items: center;
+  height: 110px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #6b3f26, #3b2216);
+  box-shadow: 0 10px 20px -12px rgb(0 0 0 / .6);
+}
+
+.pr-pack span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e9d8b4;
+  color: #3b2216;
+  font-weight: 700;
+}
+
+.pr-item-text {
+  display: grid;
+  justify-items: start;
+  gap: 5px;
+  font-size: 12.5px;
+}
+
+.pr-item-text > b {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.pr-item-text s {
+  color: #7a837d;
+}
+
+.pr-member {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #e5f2ea;
+  color: #1f6b45;
+}
+
+.pr-member b {
+  font-size: 15px;
+}
+
+.pr-item-text em {
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f4d35e;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* 5: readings */
+.pr-gap {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--uc-new);
+}
+
+/* 6: after sign up */
+.pr-inbox {
+  display: grid;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+
+.pr-inbox li {
+  display: grid;
+  grid-template-columns: 96px 56px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--line-subtle);
+  font-size: 13px;
+}
+
+.pr-inbox li:first-child {
+  border-top: 0;
+}
+
+.pr-inbox li.yours {
+  background: color-mix(in srgb, var(--warning) 8%, transparent);
+  box-shadow: 2px 0 0 var(--warning) inset;
+}
+
+.pr-inbox time {
+  font: 400 11.5px/1.7 var(--font-mono);
+  color: var(--text-3);
+}
+
+.pr-inbox .tag {
+  justify-self: start;
+}
+
+.pr-inbox div {
+  display: grid;
+  gap: 2px;
+}
+
+.pr-inbox q {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.pr-inbox small {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* 7: identity card */
+.pr-card {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.pr-card .uc-idrows div {
+  grid-template-columns: 76px minmax(0, 1fr);
+}
+
+/* The message keeps the phone's own colours in both themes */
+.pr-sms {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-radius: 18px;
+  background: #f2f2f5;
+  color: #1b1b1a;
+  box-shadow: 0 0 0 6px #0b0b0a, 0 0 0 7px var(--line-strong);
+  overflow: hidden;
+}
+
+.pr-sms-head {
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid #e3e3e8;
+  background: #fafafa;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pr-sms-head small {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: #8a8a93;
+}
+
+.pr-bubble {
+  max-width: 86%;
+  margin-inline: 10px;
+  padding: 8px 11px;
+  border-radius: 16px;
+  background: #e5e5ea;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* 8: promo calendar */
+.pr-cal-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+
+.pr-cal {
+  display: grid;
+  min-width: 560px;
+}
+
+.pr-weeks,
+.pr-lane {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+}
+
+.pr-weeks {
+  grid-template-columns: 118px repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line-subtle);
+  background: rgb(var(--tint) / .03);
+}
+
+.pr-weeks span {
+  padding: 8px 10px;
+  font: 500 10.5px/1.2 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.pr-weeks span + span {
+  border-left: 1px solid var(--line-subtle);
+}
+
+.pr-lane + .pr-lane {
+  border-top: 1px solid var(--line-subtle);
+}
+
+.pr-lane.fresh {
+  background: color-mix(in srgb, var(--uc-new) 7%, transparent);
+}
+
+.pr-lane-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.pr-lane-name .tag {
+  height: 18px;
+  padding: 0 6px;
+  font-size: 10px;
+  font-style: normal;
+  background: var(--uc-new);
+  color: var(--bg);
+}
+
+.pr-track {
+  position: relative;
+  height: 44px;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), var(--line-subtle) calc(25% - 1px) 25%);
+}
+
+.pr-bar {
+  position: absolute;
+  top: 10px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: rgb(var(--tint) / .1);
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+  font-size: 11.5px;
+  line-height: 24px;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left;
+}
+
+.pr-lane.fresh .pr-bar {
+  background: color-mix(in srgb, var(--uc-new) 22%, transparent);
+  box-shadow: 0 0 0 1px var(--uc-new) inset;
+  color: var(--text);
+}
+
+.pr-bar.hot {
+  font-weight: 500;
+}
+
+.pr-dot {
+  position: absolute;
+  top: 17px;
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: var(--line-ui);
+}
+
+.pr-lane.fresh .pr-dot {
+  background: var(--uc-new);
+}
+
+.pr-dot span {
+  position: absolute;
+  top: -3px;
+  left: 15px;
+  font-size: 11px;
+  font-style: normal;
+  line-height: 16px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.uc-play.is-in .pr-bar {
+  animation: pr-grow 800ms var(--ease) backwards;
+  animation-delay: calc(var(--i) * 140ms + 300ms);
+}
+
+.uc-play.is-in .pr-dot {
+  animation: pr-pop 400ms var(--ease) backwards;
+  animation-delay: calc(var(--i) * 140ms + 500ms);
+}
+
+.pr-insight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--warning-bg);
+  font-size: 13.5px;
+}
+
+.pr-insight p {
+  flex: 1 1 260px;
+}
+
+.uc-play.is-in .pr-insight {
+  animation: uc-in 500ms var(--ease) 1.6s backwards;
+}
+
+@keyframes pr-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pr-pop {
+  from {
+    transform: scale(0);
+  }
+}
+
+/* What you can sell */
+.pr-sell {
+  display: grid;
+  gap: clamp(28px, 4vw, 44px);
+}
+
+.pr-sell-group {
+  display: grid;
+  gap: 14px;
+}
+
+.pr-sell-group .kicker span {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-sans);
+}
+
+.pr-sell-group ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 1000px) {
+  .pr-gaps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .pr-split,
+  .pr-sell-group ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .pr-gaps,
+  .pr-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pr-card .pr-sms {
+    max-width: 240px;
+  }
+
+  .uc-sum.pr-fields div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pr-inbox li {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .pr-inbox li > div {
+    grid-column: 1 / -1;
+  }
+}
