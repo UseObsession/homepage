@@ -31,9 +31,11 @@ const LANDS: Status[] = ['landed', 'landed', 'needs-you']
 
 type Phase = 'static' | 'idle' | 'typing' | 'done'
 
-function readMs(name: string, fallback: number) {
-  const v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name))
-  return Number.isFinite(v) ? v : fallback
+/* A time token in ms. The build minifies times ("7000ms" ships as "7s"), so read the unit. */
+function tokenMs(name: string, fallback: number) {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  const m = raw.match(/^(-?\d*\.?\d+)(ms|s)$/)
+  return m ? parseFloat(m[1]) * (m[2] === 's' ? 1000 : 1) : fallback
 }
 
 /* Text that types itself once. The full text holds the space from the first frame, so nothing below it moves. */
@@ -47,8 +49,8 @@ function Typed({ text, phase, onDone, caret = false }: { text: string; phase: Ph
 
   useEffect(() => {
     if (phase !== 'typing') return
-    const min = readMs('--ob-type-step-min', 20)
-    const max = readMs('--ob-type-step-max', 42)
+    const min = tokenMs('--ob-type-step-min', 20)
+    const max = tokenMs('--ob-type-step-max', 42)
     let i = 0
     let t = 0
     const step = () => {

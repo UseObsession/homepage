@@ -57,9 +57,11 @@ const format = (f: Figure, n: number) =>
     useGrouping: f.grouped,
   }).format(n)
 
-function tweenMs() {
-  const v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ob-number-tween'))
-  return Number.isFinite(v) ? v : 400
+/* A time token in ms. The build minifies times ("7000ms" ships as "7s"), so read the unit. */
+function tokenMs(name: string, fallback: number) {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  const m = raw.match(/^(-?\d*\.?\d+)(ms|s)$/)
+  return m ? parseFloat(m[1]) * (m[2] === 's' ? 1000 : 1) : fallback
 }
 
 function Value({ value, armed, run }: { value: string; armed: boolean; run: boolean }) {
@@ -72,7 +74,7 @@ function Value({ value, armed, run }: { value: string; armed: boolean; run: bool
 
   useEffect(() => {
     if (!moves || !run) return
-    const ms = tweenMs()
+    const ms = tokenMs('--ob-number-tween', 400)
     let raf = 0
     const t0 = performance.now()
     const step = (t: number) => {

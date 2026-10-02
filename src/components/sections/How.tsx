@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, useSyncExternalStore, type AnimationEvent, type FocusEvent, type KeyboardEvent } from 'react'
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type FocusEvent, type KeyboardEvent } from 'react'
 import type { How as HowContent } from '../../content/types'
 import { AppScreen, type Workspace } from '../AppScreen'
 import './How.css'
@@ -8,6 +8,7 @@ import './How.css'
      the active step's screen and plays its story. Like the system's auto-advancing tabs (navigation.css .ob-utabs--auto):
      each step fills its progress line over --ob-autoplay-dwell, 1 pass, then it rests on the last step. Hover, focus on
      a step, scrolling away or a hidden tab holds it; picking a step or Pause stops it, and the toggle then reads Play.
+     1 clock drives both: the step's timer keeps what is left of the dwell while held, and the line pauses with it.
      Reduced motion never starts it. Arrows, Home and End move between steps.
    - Narrower: the steps stack, each with its own screen under it, every line and chip showing.
    Both layouts are in the markup and CSS shows 1, so the layout never waits for script. */
@@ -29,6 +30,13 @@ type Props = {
 }
 
 const STEP_KEYS: Record<string, number> = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }
+
+/* A time token in ms. The build minifies times ("7000ms" ships as "7s"), so read the unit. */
+function tokenMs(name: string, fallback: number) {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  const m = raw.match(/^(-?\d*\.?\d+)(ms|s)$/)
+  return m ? parseFloat(m[1]) * (m[2] === 's' ? 1000 : 1) : fallback
+}
 
 export function How({ how, workspace = 'agency', id }: Props) {
   const uid = useId()
@@ -78,11 +86,24 @@ export function How({ how, workspace = 'agency', id }: Props) {
     if (i !== active) open(i)
   }
 
-  const advance = (e: AnimationEvent<HTMLElement>) => {
-    if (e.animationName !== 's-how-fill') return
-    if (active < last) open(active + 1)
-    else setAuto(false)
-  }
+  /* The dwell clock for the open step. It counts only while the line runs, so a hold keeps what is left. */
+  const clock = useRef({ key: '', left: 0 })
+  useEffect(() => {
+    if (!running || held) return
+    const key = `${active}-${cycle}`
+    if (clock.current.key !== key) clock.current = { key, left: tokenMs('--ob-autoplay-dwell', 7000) }
+    const from = performance.now()
+    let fired = false
+    const t = window.setTimeout(() => {
+      fired = true
+      if (active < last) open(active + 1)
+      else setAuto(false)
+    }, clock.current.left)
+    return () => {
+      window.clearTimeout(t)
+      if (!fired) clock.current.left = Math.max(0, clock.current.left - (performance.now() - from))
+    }
+  }, [running, held, active, cycle, last])
 
   const toggle = () => {
     if (auto) {
@@ -164,7 +185,6 @@ export function How({ how, workspace = 'agency', id }: Props) {
                         <i
                           key={`${active}-${cycle}`}
                           className={'s-how-fill' + (running ? ' is-running' : '') + (running && held ? ' is-held' : '')}
-                          onAnimationEnd={advance}
                         />
                       )}
                     </span>
