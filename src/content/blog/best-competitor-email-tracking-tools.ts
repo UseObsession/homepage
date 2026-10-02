@@ -3,17 +3,22 @@ import type { BlogPost } from './types'
 /* Post 5 (docs/SEARCH.md section 5). A review: every vendor fact read on the vendor's own pages on 3 Oct 2026, prices
    as listed that day, nothing tested hands on (the method section says so). Obsession appears in the disclosure, the
    grid and its own entry only, judged on the same questions with its limits stated. Groups by how a tool collects
-   messages, alphabetical inside each. Left out until verified on their own sites: Competitors App, CompetitorTrack,
-   Hoppy Copy, Reyo. The r/ProductMarketing quote in the brief was dropped: Reddit blocked every fetch, so it could
-   not be re-checked at its URL. Re-check every vendor fact within 7 days of publishing. */
+   messages, alphabetical inside each. Recart, CompetitorTrack and Newsletrix added after review, each read on its own
+   pages on 3 Oct 2026. Left out until verified on their own sites: Competitors App, Hoppy Copy, Reyo. The
+   r/ProductMarketing quote in the brief was dropped: Reddit blocked every fetch, so it could not be re-checked at its
+   URL. The FCC paragraph rests on the Ecommerce Innovation Alliance's 1 Oct account of the adopted order; swap in the
+   FCC's own text once it is released. The September store check sentence is cut until Seun confirms the store
+   owner's OK (docs/SEARCH.md). Open for Seun and James: hands on tests of the 6 free tiers before 2 Nov, and whether
+   Obsession's entry notes that some rival trials bar competitive use. Re-check every vendor fact within 7 days of
+   publishing. */
 
 export const post: BlogPost = {
   slug: 'best-competitor-email-tracking-tools',
   title: 'The best competitor email and SMS tracking tools in 2026',
-  dek: '10 tools and the free method, sorted by where each one gets a rival’s messages and graded on what it can actually see. Every price checked on the vendor’s own site on 3 October 2026.',
+  dek: '13 tools and the free method, sorted by where each one gets a rival’s messages and graded on what it can actually see. Every price checked on the vendor’s own site on 3 October 2026.',
   metaTitle: 'Best competitor email and SMS tracking tools in 2026',
   description:
-    'Competitor email tracking tools compared on what each can see: campaigns, flows, texts, trials and STOP. 10 tools and the free method, prices checked.',
+    'Competitor email tracking tools compared on what each can see: campaigns, flows, texts, trials and STOP. 13 tools and the free method, prices checked.',
   answer:
     'Competitor email and SMS tracking tools collect rivals’ messages in 3 ways: vendor archives, consumer panels and subscriber inboxes you control. Archives and panels show campaigns and common flows across thousands of brands; to see one specific journey, such as a B2B trial’s onboarding or what happens after you text STOP, you need a subscriber that lives it.',
   primaryKeyword: 'competitor email tracking',
@@ -31,7 +36,7 @@ export const post: BlogPost = {
   category: 'Competitor intelligence',
   published: '2026-10-03',
   updated: '2026-10-03',
-  readingMinutes: 13,
+  readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
     { name: 'James Akinniranye', role: 'Cofounder' },
@@ -56,7 +61,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Archives.** The vendor subscribes to thousands of brands and you search what arrives. Quick, cheap per brand and good for history. You see what the vendor’s addresses were sent, for the brands the vendor chose.',
+        '**Archives.** The vendor subscribes to thousands of brands and you search what arrives. Quick, cheap per brand and good for history. You see what the vendor’s addresses were sent, for the brands it covers; some add one on request.',
         '**Consumer panels.** Real people opt in to share their inbox or phone, and the vendor reads the commercial messages. You see what actual customers get, buyers and lapsed customers included. You can’t steer which journeys the panel takes.',
         '**Subscriber inboxes you control.** You, or a tool working for you, sign up with an address and number that belong to you. You choose the brand, the moment and the journey, and you know to the minute when it started. You get nothing from before the sign up.',
       ],
@@ -87,14 +92,17 @@ export const post: BlogPost = {
       caption: 'What each tool can see, from its own pages, checked 3 October 2026',
       cols: ['Tool', 'Where messages come from', 'Welcome and cart flows', 'SMS', 'A journey you pick (trial, STOP)', 'Price'],
       rows: [
-        ['BadRep', 'Its own classified catalogue, 1,500+ brands', 'Welcome, cart and after purchase, by brand', 'Not listed', 'No', '$19 a month; browse free'],
+        ['BadRep', 'Not disclosed; a classified catalogue of 1,500+ brands', 'Welcome, cart and after purchase, by brand', 'Not listed', 'No', '$19 a month launch price; browse free'],
         ['Milled', 'A searchable archive of brand newsletters', 'Not listed', 'Not listed', 'No', 'Free to search; Pro price not shown'],
-        ['Panoramata', 'Not disclosed; 20,000+ brands', 'Listed', 'Listed', 'No; adds brands on request', '$99, $179 or $399 a month'],
+        ['Panoramata', 'Not disclosed; 20,000+ brands, by its pricing page', 'Welcome, cart, checkout, browse and after purchase', 'Listed', 'No; adds a missing brand or flow on request', '$99, $179 or $399 a month'],
+        ['Recart Campaign Library', 'Not disclosed; 10,000+ online stores', 'Not listed', 'Yes, 100,000+ campaigns', 'No', 'Free'],
         ['Validity Engage and MailCharts', '1.2M+ campaigns; MailCharts signs up and triggers journeys', 'Ecommerce journeys', 'SMS examples', 'No', 'Through sales'],
         ['Axess Intelligence', 'Panel apps on opted in consumers’ phones', 'Onboarding, retention, win back', 'Yes, plus push and in app', 'No', 'Through a demo'],
         ['Bird Competitive Tracker', 'A permissioned panel and persona addresses (2020)', 'Welcome, cart recovery, reengagement', 'Not listed', 'No', 'Not published'],
         ['Competitor Inbox', 'A tracking address per rival that you sign up with', 'Sequences you trigger', 'Not listed', 'Email journeys you start', '$15 to $249 a month'],
+        ['CompetitorTrack', 'A tracking address per rival that you sign up with', 'Sequences you trigger', 'Not listed', 'Email journeys you start', 'First competitor free; then $10 a competitor a month'],
         ['Do it yourself', 'Your own inboxes and phone number', 'What you trigger', 'Yes', 'Yes, by hand', 'Free, plus your time'],
+        ['Newsletrix', 'A forwarding address you sign up with', 'Not listed', 'Not listed', 'Email journeys you start', 'Free plan; then $9 to $69 a month'],
         ['Obsession (ours)', 'A declared AI agent per rival, with its own inbox and number', 'Welcome; never a rival’s basket', 'Yes, STOP included', 'Yes: trials that need no card, STOP', 'Not public; waitlist'],
         ['Owletter', 'Captures what the websites you name send', 'Not listed', 'Not listed', 'No', '$29, $49 or $99 a month'],
         ['SendView', 'Tracking addresses, several per brand if you want', 'Cart flow, on an address you trigger it with', 'Not listed', 'Email journeys you start', '$69, $99 or $169 a month'],
@@ -103,7 +111,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A DTC lifecycle team after ideas and benchmarks:** an archive. BadRep if your category is in its catalogue and the budget is small; Panoramata if you want ads and texts in the same feed.',
+        '**A DTC lifecycle team after ideas and benchmarks:** an archive. BadRep if your category is in its catalogue and the budget is small; Panoramata if you want ads and texts in the same feed; Recart’s free library if texts are all you need.',
         '**A retention agency reporting to several clients:** an archive for breadth, plus a tracking inbox on each client’s 3 closest rivals, so the monthly report shows dated sequences, not just screenshots.',
         '**A large B2C brand that needs to know how rivals treat VIPs and lapsed customers:** a panel, the only kind of tool here that reads real customers’ inboxes.',
         '**A B2B product marketer:** a subscriber you control. A rival’s trial emails only arrive for someone who starts the trial.',
@@ -118,7 +126,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'badrep', text: 'BadRep' },
     {
       kind: 'p',
-      text: 'BadRep is a classified catalogue: [1,500+ brands and 30,700+ emails](https://badrep.email/), each tagged on 20+ dimensions such as hook, offer and ESP, with the raw HTML kept. Pick a brand and a type to get its welcome, cart or after purchase emails in date order. It’s $19 a month, and the vault is free to browse. Its own guide says the catalogue [leans towards wellness, edtech, fintech and habit change brands](https://badrep.email/guides/competitor-email-intelligence).',
+      text: 'BadRep is a classified catalogue: [1,500+ brands and 30,700+ emails](https://badrep.email/), each tagged on 20+ dimensions such as hook, offer and ESP, with the raw HTML kept. Pick a brand and a type to get its welcome, cart or after purchase emails in date order. It’s $19 a month at a launch price, and the vault is free to browse. Its own guide says the catalogue [leans towards wellness, edtech, fintech and habit change brands](https://badrep.email/guides/competitor-email-intelligence).',
     },
     {
       kind: 'p',
@@ -132,11 +140,16 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'panoramata', text: 'Panoramata' },
     {
       kind: 'p',
-      text: 'Panoramata puts emails and ads in one place, and lists SMS, flows and landing pages among what it monitors. [Plans](https://www.panoramata.co/pricing) are $99 a month for 20 competitors and 6 months of history, $179 for unlimited access with library searches of texts and flows, and $399 for teams covering 10+ markets, which adds detection of CRM segments and A/B tests. It covers 20,000+ brands, adds a rival on request, and doesn’t say how it collects messages.',
+      text: 'Panoramata puts emails and ads in one place, and lists SMS, flows and landing pages among what it monitors. [Plans](https://www.panoramata.co/pricing) are $99 a month for 20 competitors and 6 months of history, $179 for unlimited access with library searches of texts and flows, and $399 for teams covering 10+ markets, which adds detection of CRM segments and A/B tests. Its pricing page puts coverage at 20,000+ brands. It adds a missing rival on request, and its [help pages](https://www.panoramata.co/help-faq/flows-access-collect) say it adds a missing flow on request too. It doesn’t say how it collects messages.',
     },
     {
       kind: 'p',
       text: '**Suits** an agency or multichannel team that wants emails, texts and ads in 1 feed. **Falls short** when you need to know exactly what triggered a message.',
+    },
+    { kind: 'h3', id: 'recart', text: 'Recart Campaign Library' },
+    {
+      kind: 'p',
+      text: '[Recart’s Campaign Library](https://recart.com/campaign-library) is a free archive of texts: 100,000+ SMS campaigns from 10,000+ online stores, 12 months of history, searchable by brand, industry or keyword, with each brand’s send frequency and timing. Recart sells SMS marketing, and the page doesn’t say how the texts are collected. **Suits** anyone checking what a consumer brand texted this year, at no cost. **Falls short** on email, on any brand outside its list, and on flows: it lists campaigns.',
     },
     { kind: 'h3', id: 'validity-engage', text: 'Validity Engage and MailCharts' },
     {
@@ -168,15 +181,25 @@ export const post: BlogPost = {
       text: 'Bird says its tracker follows [millions of domains across 250,000 brands](https://bird.com/en-us/products/email/competitive-tracker), including rivals’ welcome series, cart recovery and reengagement, plus their inbox placement. The [latest public account of its data we found](https://bird.com/en-us/blog/sparkposts-data-sources-explained), a 2020 SparkPost post on Bird’s blog, names a permissioned panel of people who share their commercial email and a persona network that subscribes with a fresh address for every list. No price is published. **Suits** a high volume sender who cares about rivals’ inbox placement as much as their content. **Falls short** on texts and on journeys you choose.',
     },
 
-    { kind: 'h2', id: 'tracking-inboxes', text: 'Which tools give you a tracking inbox of your own?' },
+    { kind: 'h2', id: 'tracking-inboxes', text: 'Which tools give each rival its own tracking address?' },
     {
       kind: 'p',
-      text: 'These hand you an address per rival. You sign up with it, so you control the moment and the path, and every message lands in a dashboard built for comparison, not your own inbox.',
+      text: 'These give each rival its own address and collect what arrives in a dashboard built for comparison, not your own inbox. With most, you sign up with the address yourself, so you control the moment and the path. Owletter says it captures what each website you name sends.',
     },
     { kind: 'h3', id: 'competitor-inbox', text: 'Competitor Inbox' },
     {
       kind: 'p',
       text: '[Competitor Inbox](https://competitorinbox.com/) gives each rival a unique tracking address and analyses what arrives: send patterns, subject lines, ESP switches, and each sender’s SPF, DKIM and DMARC. [Plans](https://competitorinbox.com/pricing) run from $15 a month for 1 competitor to $249 for 25. Email only.',
+    },
+    { kind: 'h3', id: 'competitortrack', text: 'CompetitorTrack' },
+    {
+      kind: 'p',
+      text: '[CompetitorTrack](https://competitortrack.io/) gives each rival a tracking address you subscribe with, and keeps website, social and review changes beside the emails. [The first competitor is free](https://competitortrack.io/pricing), with a live 7 day window of history; after that it’s $10 a competitor a month with the full archive. Email only.',
+    },
+    { kind: 'h3', id: 'newsletrix', text: 'Newsletrix' },
+    {
+      kind: 'p',
+      text: '[Newsletrix](https://newsletrix.com/) is built for newsletters: you subscribe with a forwarding address and it analyses subject lines, calls to action and send times. [It’s free](https://newsletrix.com/pricing) for 1 tracking address and 2 analyses a week, then $9, $29 or $69 a month, priced by analyses rather than by competitor. Email only.',
     },
     { kind: 'h3', id: 'owletter', text: 'Owletter' },
     {
@@ -190,7 +213,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**These suit** a team that knows its rivals and wants clean, timed sequences. **They fall short** on texts, on anything from before you signed up, and on everything outside the inbox, such as a trial’s in app prompts.',
+      text: '**These suit** a team that knows its rivals and wants clean, timed sequences. **They fall short** on texts, on everything outside the inbox such as a trial’s in app prompts, and on history: the record starts when the address signs up, unless the vendor already holds that brand. Competitor Inbox says it keeps a growing archive you can search by date.',
     },
 
     { kind: 'h2', id: 'what-they-miss', text: 'What do archives and panels miss?' },
@@ -221,7 +244,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Once a quarter is a long gap when the trial is where a rival tests its offer. For SaaS rivals, the only full view is a subscriber you control, on trials that need no card.',
+      text: 'Once a quarter is a long gap when the trial is where a rival tests its offer. For a software rival, the full view takes a subscriber you control who starts the trial. Read the trial’s terms first: a common clause in software contracts, [Salesforce’s among them](https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/Salesforce_MSA.pdf), bars access “for any other benchmarking or competitive purposes”.',
     },
     {
       kind: 'p',
@@ -229,7 +252,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It’s worth testing now. On 30 September 2026 the FCC [voted 3 to 0](https://bankingjournal.aba.com/2026/09/fcc-votes-to-revise-revoke-all-rule-and-provided-number-condition/) to rewrite its opt out rules for calls and texts. A STOP reply to a marketing text still revokes consent for all of that sender’s future marketing texts, and senders may make a standard reply word their only opt out route if they disclose it clearly ([Troutman Pepper Locke](https://www.troutman.com/insights/fcc-revises-tcpa-revocation-of-consent-rules-that-were-set-to-go-into-effect-in-january/)). The new rules start [30 days after Federal Register publication](https://www.ecomm-alliance.org/blog/update-fcc-adopts-exclusive-opt-out-rule/). For email, US senders must honour an unsubscribe [within 10 business days](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business).',
+      text: 'It’s worth testing now. On 30 September 2026 the FCC [voted 3 to 0](https://bankingjournal.aba.com/2026/09/fcc-votes-to-revise-revoke-all-rule-and-provided-number-condition/) to rewrite its opt out rules for calls and texts. Under the order as adopted, a STOP reply to a marketing text still ends all of that sender’s marketing texts, and a sender may make a standard reply word its only opt out route if it says so clearly in the text ([Ecommerce Innovation Alliance](https://www.ecomm-alliance.org/blog/update-fcc-adopts-exclusive-opt-out-rule/)). The rules start 30 days after Federal Register publication, and on 1 October the FCC had yet to publish the final text. For email, US senders must honour an unsubscribe [within 10 business days](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business).',
     },
     {
       kind: 'stat',
@@ -240,13 +263,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In 2023, Experian [agreed to pay $650,000](https://ftc.gov/news-events/news/press-releases/2023/08/ftc-charges-experian-spamming-consumers-who-signed-company-accounts-marketing-emails-they-couldnt) over marketing emails to account holders that had no way to opt out. Start with your own list: text STOP to your own programme, unsubscribe from your own emails, and log what arrives over the next 10 business days. An archive or a panel can’t run that test for you.',
+      text: 'In 2023, Experian [agreed to pay $650,000](https://ftc.gov/news-events/news/press-releases/2023/08/ftc-charges-experian-spamming-consumers-who-signed-company-accounts-marketing-emails-they-couldnt) over marketing emails to account holders that had no way to opt out. In September 2026, Palm Beach Tan was settling a class action for $2.5m over texts sent after people replied STOP ([Troutman Amin](https://www.jdsupra.com/legalnews/what-is-a-stop-request-palm-beach-tan-3267070/)). Start with your own list: text STOP to your own programme, unsubscribe from your own emails, and log what arrives over the next 10 business days. An archive or a panel can’t run that test for you.',
     },
 
     { kind: 'h2', id: 'free', text: 'Can you track competitor emails for free?' },
     {
       kind: 'p',
-      text: 'Yes, if you’ll trade time for money. Milled is free to search and BadRep’s vault is free to browse. For timed sequences and texts you need a subscriber of your own. The usual advice is a burner Gmail and an abandoned cart ([Retainful’s 2026 guide](https://www.retainful.com/blog/checking-competitors-campaigns) is typical). A tracker that holds up for 3 rivals looks more like this:',
+      text: 'Yes, for a few rivals, if you’ll trade time for money. Milled is free to search, BadRep’s vault is free to browse and Recart’s library of texts is free to search. CompetitorTrack tracks 1 competitor free, Newsletrix gives you 1 tracking address free, and Panoramata’s free sign up gives limited access. For timed sequences and texts across more rivals, you need a subscriber of your own. The usual advice is a burner Gmail and an abandoned cart ([Retainful’s 2026 guide](https://www.retainful.com/blog/checking-competitors-campaigns) is typical). A tracker that holds up for 3 rivals looks more like this:',
     },
     {
       kind: 'list',
@@ -266,17 +289,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**After 30 days, a good log shows** each rival’s welcome series in hours from sign up, every offer next to the promise that earned the sign up, and a line per rival on what changed. **The usual mistakes:** 1 inbox for every brand, no sign up time, a personal Gmail whose tabs swallow half the messages, and nobody opting out at the end.',
+      text: '**After 30 days, a good log shows** each rival’s welcome series in hours from sign up, every offer next to the promise that earned the sign up, and a line per rival on what changed. **The usual mistakes:** 1 inbox for every brand, no sign up time, a personal Gmail that files rivals’ messages under Promotions or spam, and nobody opting out at the end.',
     },
     {
       kind: 'p',
-      text: 'The cost is attention. Someone has to log every message for every rival, every day, and it’s the first job to slip when the team gets busy. That’s the honest case for paying for any tool in this review.',
+      text: 'The cost is attention. Someone has to log every message for every rival, every day, and it’s the first job to slip when the team gets busy. That’s the case for paying for any tool in this review.',
     },
 
     { kind: 'h2', id: 'obsession', text: 'Obsession lives the journey you choose, as a declared subscriber' },
     {
       kind: 'p',
-      text: 'Obsession is ours. It’s a subscriber you control, run by a declared AI agent: 1 per rival, each with its own inbox, phone number and browser, joining through the public sign up any customer uses. It says it’s an AI agent, links to [a page explaining Obsession](/agents), never names you and never replies. You pick the journeys: the welcome series, the text club, a B2B trial that needs no card, and at the end STOP, the only text it ever sends. Every message is kept as it arrived, dated and signed.',
+      text: 'Obsession is ours. It’s a subscriber you control, run by a declared AI agent: 1 per rival, each with its own inbox, phone number and browser, joining through the public sign up any customer uses. It says it’s an AI agent, links to [a page explaining Obsession](/agents) and never names you. It never answers a message; the only text it sends is STOP, when the watch ends. You pick the journeys: the welcome series, the text club and a B2B trial that needs no card. Every message is kept as it arrived, dated and signed.',
     },
     {
       kind: 'screen',
@@ -286,7 +309,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In a rival’s trial it signs in like a new user, logs every email, prompt and offer by trial day, and closes the trial the moment a rep writes or calls ([trial teardown](/recipes/trial-teardown)). The 1 real run we’ve published, a September 2026 store check on our [sample output](/sample-output) page, found 2 of 4 test journeys got no message in the 48 hours watched: the kind of silence an archive can’t hold.',
+      text: 'It starts a rival’s trial as any new user would, logs every email, prompt and offer by trial day, and closes the trial the moment a rep writes or calls ([trial teardown](/recipes/trial-teardown)).',
     },
     {
       kind: 'screen',
@@ -316,10 +339,10 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We left out tools we couldn’t verify on their own sites in time: Competitors App, CompetitorTrack, Hoppy Copy and Reyo. If you run any tool here and something is wrong or out of date, write to [hello@useobsession.com](mailto:hello@useobsession.com). We’ll correct it within 5 working days and note the change by the date at the top. We check every entry again each quarter.',
+      text: 'We left out tools we couldn’t verify on their own sites in time: Competitors App, Hoppy Copy and Reyo. If you run any tool here and something is wrong or out of date, write to [hello@useobsession.com](mailto:hello@useobsession.com). We’ll correct it within 5 working days and note the change by the date at the top. We check every entry again each quarter.',
     },
 
-    { kind: 'h2', id: 'faq', text: 'Joining a rival’s list is routine; its cart flows and texts take the right tool' },
+    { kind: 'h2', id: 'faq', text: 'Joining a rival’s list is generally lawful; seeing its flows and texts takes the right tool' },
     {
       kind: 'faq',
       items: [
@@ -333,7 +356,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do I track competitor texts?',
-          a: 'Opt in to each rival’s text club with a number you control and log every message, or use a tool that lists SMS: Panoramata, Axess or MailCharts. Follow each short link and log the offer on the page it opens.',
+          a: 'Opt in to each rival’s text club with a number you control and log every message, or use a tool that lists SMS: Panoramata, Axess or MailCharts, or Recart’s free library of texts. Follow each short link and log the offer on the page it opens.',
         },
         {
           q: 'What’s the difference between campaign and flow tracking?',
@@ -341,7 +364,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there a MailCharts alternative with a public price?',
-          a: 'MailCharts belongs to Validity, alongside Litmus and Engage, and its old pricing link ends at a Litmus sales form. Archives with prices on their own sites include BadRep and Panoramata; tracking inbox tools with listed prices include Competitor Inbox, Owletter and SendView. The grid above has each price as of 3 October 2026.',
+          a: 'MailCharts belongs to Validity, alongside Litmus and Engage, and its old pricing link ends at a Litmus sales form. Archives with prices on their own sites include BadRep and Panoramata, and Recart’s library of texts is free. Tracking inbox tools with listed prices include CompetitorTrack, Competitor Inbox, Newsletrix, Owletter and SendView. The grid above has each price as of 3 October 2026.',
+        },
+        {
+          q: 'Is there a cheaper alternative to Panoramata?',
+          a: 'For email alone, BadRep is an archive at $19 a month, and CompetitorTrack (first competitor free, then $10 each a month), Competitor Inbox (from $15 a month) and Owletter (from $29 a month) are tracking inboxes. For texts, Recart’s campaign library is free to search. None of them lists rivals’ ads beside the emails, which is Panoramata’s draw. The grid above has each price as of 3 October 2026.',
         },
       ],
     },
@@ -353,6 +380,8 @@ export const post: BlogPost = {
     { title: 'Competitor email intelligence: the 2026 guide', publisher: 'BadRep', url: 'https://badrep.email/guides/competitor-email-intelligence', date: '2026-08-04' },
     { title: 'Milled: a search engine for email newsletters', publisher: 'Milled', url: 'https://milled.com/', date: 'checked 2026-10-03' },
     { title: 'Panoramata pricing', publisher: 'Panoramata', url: 'https://www.panoramata.co/pricing', date: 'checked 2026-10-03' },
+    { title: 'What are flows? How do I access them? What flows do you collect?', publisher: 'Panoramata', url: 'https://www.panoramata.co/help-faq/flows-access-collect', date: '2026-08-15' },
+    { title: 'Campaign Library: what are the top DTC brands texting?', publisher: 'Recart', url: 'https://recart.com/campaign-library', date: 'checked 2026-10-03' },
     { title: 'Validity acquires MailCharts to power ecommerce marketing campaigns', publisher: 'Validity (PRWeb)', url: 'https://www.prweb.com/releases/Validity_Acquires_MailCharts_to_Power_Ecommerce_Marketing_Campaigns/prweb18604538.htm', date: '2022-04-07' },
     { title: 'Validity acquires Litmus', publisher: 'Litmus (PR Newswire)', url: 'https://www.prnewswire.com/news-releases/validity-acquires-litmus-advances-leadership-as-best-in-class-global-provider-of-marketing-success-and-customer-data-intelligence-solutions-302426098.html', date: '2025-04-10' },
     { title: 'Validity announces Engage, the next-generation AI email platform', publisher: 'Validity (PR Newswire)', url: 'https://www.prnewswire.com/news-releases/validity-announces-engage-the-next-generation-ai-email-platform-to-help-marketers-execute-with-confidence-302685294.html', date: '2026-02-11' },
@@ -362,16 +391,22 @@ export const post: BlogPost = {
     { title: 'Axess Intelligence home and pricing', publisher: 'Axess Intelligence', url: 'https://www.axessintelligence.com/', date: 'checked 2026-10-03' },
     { title: 'Competitive email tracker and benchmarking', publisher: 'Bird', url: 'https://bird.com/en-us/products/email/competitive-tracker', date: 'checked 2026-10-03' },
     { title: 'SparkPost’s data sources explained', publisher: 'Bird', url: 'https://bird.com/en-us/blog/sparkposts-data-sources-explained', date: '2020-02-12' },
+    { title: 'Competitor Inbox: monitor competitor email campaigns', publisher: 'Competitor Inbox', url: 'https://competitorinbox.com/', date: 'checked 2026-10-03' },
     { title: 'Competitor Inbox pricing', publisher: 'Competitor Inbox', url: 'https://competitorinbox.com/pricing', date: 'checked 2026-10-03' },
+    { title: 'Pricing plans', publisher: 'CompetitorTrack', url: 'https://competitortrack.io/pricing', date: 'checked 2026-10-03' },
+    { title: 'Pricing', publisher: 'Newsletrix', url: 'https://newsletrix.com/pricing', date: 'checked 2026-10-03' },
+    { title: 'Monitoring your competitors’ email marketing newsletters', publisher: 'Owletter', url: 'https://www.owletter.com/', date: 'checked 2026-10-03' },
     { title: 'Owletter pricing', publisher: 'Owletter', url: 'https://www.owletter.com/pricing', date: 'checked 2026-10-03' },
     { title: 'Competitor email monitoring and tracking for marketers', publisher: 'SendView', url: 'https://sendview.io/', date: 'checked 2026-10-03' },
     { title: 'Competitor free trial and onboarding change monitoring', publisher: 'PageCrawl', url: 'https://pagecrawl.io/blog/competitor-free-trial-onboarding-change-monitoring', date: '2026-09-26' },
+    { title: 'Main Services Agreement', publisher: 'Salesforce', url: 'https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/Salesforce_MSA.pdf', date: '2023-10-16' },
     { title: 'Analyzing welcome emails from Total Retail’s Top 100 Omnichannel Retailers', publisher: 'Cordial', url: 'https://cordial.com/resources/analyzing-the-welcome-emails-of-total-retails-top-100-omnichannel-retailers/', date: '2018' },
     { title: 'FCC votes to revise ‘revoke all’ rule and ‘provided number’ condition', publisher: 'ABA Banking Journal', url: 'https://bankingjournal.aba.com/2026/09/fcc-votes-to-revise-revoke-all-rule-and-provided-number-condition/', date: '2026-09-30' },
     { title: 'FCC revises TCPA revocation of consent rules that were set to go into effect in January', publisher: 'Troutman Pepper Locke', url: 'https://www.troutman.com/insights/fcc-revises-tcpa-revocation-of-consent-rules-that-were-set-to-go-into-effect-in-january/', date: '2026-09-17' },
     { title: 'Update: FCC adopts exclusive opt-out rule', publisher: 'Ecommerce Innovation Alliance', url: 'https://www.ecomm-alliance.org/blog/update-fcc-adopts-exclusive-opt-out-rule/', date: '2026-10-01' },
     { title: 'CAN-SPAM Act: a compliance guide for business', publisher: 'Federal Trade Commission', url: 'https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business', date: 'checked 2026-10-03' },
     { title: 'FTC charges Experian with spamming consumers who signed up for company accounts', publisher: 'Federal Trade Commission', url: 'https://ftc.gov/news-events/news/press-releases/2023/08/ftc-charges-experian-spamming-consumers-who-signed-company-accounts-marketing-emails-they-couldnt', date: '2023-08-14' },
+    { title: 'What is a STOP request? Palm Beach Tan to pay $2.5MM to settle TCPA suit for text messages sent after stop requests', publisher: 'Troutman Amin (JD Supra)', url: 'https://www.jdsupra.com/legalnews/what-is-a-stop-request-palm-beach-tan-3267070/', date: '2026-09-24' },
     { title: 'FTC penalizes cloud-based physical security company for data security and CAN-SPAM violations', publisher: 'WilmerHale', url: 'https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20240930-ftc-penalizes-cloudbased-physical-security-company-for-data-security-and-canspam-violations', date: '2024-09-30' },
     { title: 'How to check competitors’ email marketing and ad campaigns in 2026', publisher: 'Retainful', url: 'https://www.retainful.com/blog/checking-competitors-campaigns', date: '2026-02-02' },
   ],
