@@ -31,10 +31,14 @@ export function WaitlistForm({ source, withCompany = false, button = 'Join the w
     setError('')
 
     if (step === 'company') {
-      if (!DOMAIN.test(company.trim())) {
+      /* Left blank, the store step is skipped and the email joins the waitlist with no store (an agency with no
+         store client yet). Anything typed must still be a web address. */
+      const co = company.trim()
+      if (co && !DOMAIN.test(co)) {
         setError('Enter a web address, like rivalbrand.com')
         return
       }
+      setCompany(co)
       setStep('email')
       return
     }
@@ -118,7 +122,7 @@ export function WaitlistForm({ source, withCompany = false, button = 'Join the w
           {step === 'company' ? 'Watch this company' : button}
         </button>
       </div>
-      {step === 'email' && withCompany && (
+      {step === 'email' && withCompany && company && (
         <p className="wl-note">Where should we send what we find about {company.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}?</p>
       )}
       <input

@@ -91,7 +91,7 @@ App screens only (`components/AppScreen`, the screens in `src/screens`, built to
 | Sales | `brief`, `acctwatch`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |
 | Marketing | `inbox`, `ads`, `prices`, `campaign` (new), plus `listings` and `inbound` as they apply to marketing |
 | Recipes | each recipe's own screen: competitor `rivals`, prospect intelligence `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings` |
-| Developers | `dev`, `compose` |
+| Developers | how it works: `compose`, `templates`, `kit`, `qa`; the code: `dev`; use cases: `ship`, `leads`, `rivals`, `shop`, `inbound`, `suppliers` |
 | Sample output | the real report captures (`public/report`) |
 
 New screens to build: `shop` (the mystery shopper run on a store: basket, inboxes watched 48 hours, stop before payment, the report), `inbox` (a rival's emails and texts on 1 timeline), `ads` (a rival's ads, landing pages and offers), `prices` (prices and promos across rivals), `campaign` (your own launch emails, texts and links checked as a customer).

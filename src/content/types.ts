@@ -70,6 +70,8 @@ export type Hero = {
    questions (trust and red lines) > final call to action. A page may skip a beat, never reorder it. */
 export type How = { heading: string; sub?: string; steps: { title: string; line: string; screen: ScreenName; chips?: string[] }[] }
 export type Gap = { heading: string; sub?: string; rows: { today: string; obsession: string }[] }
+/* Every use case screen shows example data: the Uses render puts a quiet "Example" tag on each screen, matching the
+   console's "Example runs". No copy field needed. */
 export type UseCase = { tab: string; moment: string; outcome: string; line: string; whyOnly: string; recipe: RecipeId | 'task'; screen: ScreenName }
 export type Uses = { heading: string; items: UseCase[] }
 export type Outcomes = { heading: string; sub?: string; items: { value: string; label: string; note?: string }[] }
@@ -130,3 +132,78 @@ export type Recipe = {
   faq: Faq
   final: Final
 }
+
+/* ---- Site pages: Sample output and the output viewer (content/sample.ts); Recipes index, Privacy, Agents, 404 and
+   llms.txt (content/site.ts). Appended 2 Oct; nothing above changes. ---- */
+
+/* A verdict on 1 journey, as the report states it. Only 'Silent' is a gap; colour is never the status. */
+export type SampleVerdict = 'Delivered' | 'Silent' | 'No verdict' | 'Couldn’t test'
+
+/* The output viewer: the 1 real run shown in every format it can arrive in. Each format carries the data its mock
+   renders, so Home (and any page) can reuse it and open on its own format. */
+export type ViewerFormatId = 'pdf' | 'email' | 'slack' | 'clay' | 'webhook' | 'workflow'
+export type ViewerImage = { src: string; alt: string; width: number; height: number }
+export type ViewerView =
+  | { kind: 'pdf'; to: string; pages: ViewerImage[] }
+  | { kind: 'email'; from: string; to: string; subject: string; tag: string; timeline: { time: string; text: string }[]; button: string }
+  | { kind: 'slack'; channel: string; app: string; time: string; title: string; line: string; buttons: string[] }
+  /* `added` names the columns Obsession adds to the reader's own table; rows marked `example` are illustrative. */
+  | { kind: 'clay'; cols: string[]; added: string[]; rows: { cells: string[]; gap: boolean; example: boolean }[]; note: string }
+  | { kind: 'webhook'; request: string; body: string }
+  | { kind: 'workflow'; steps: { k: string; v: string; branch?: boolean; custom?: boolean }[]; note: string }
+export type ViewerFormat = { id: ViewerFormatId; label: string; line: string; view: ViewerView }
+
+export type SampleJourney = { n: number; name: string; verdict: SampleVerdict; line: string }
+export type SampleGap = {
+  n: number
+  journey: string
+  heading: string
+  finding: string
+  consent: string
+  nothing: { heading: string; line: string }
+  why: string
+  basket: { label: string; item: string; price: string; note: string }
+  /* The follow up drafted from the evidence, never sent. `text` is the email in words, under the image. */
+  draft: { show: string; hide: string; band: string; subject: string; image: ViewerImage; text: string; note: string }
+}
+export type SamplePage = {
+  meta: Meta
+  /* `cta.to` points at the final capture's anchor (#get-one). */
+  hero: { pill: string; headline: string; sub: string; figures: { value: string; label: string }[]; cta: Cta }
+  formats: { heading: string; line: string; start: ViewerFormatId }
+  report: {
+    heading: string
+    line: string
+    journeys: SampleJourney[]
+    shot: ViewerImage & { caption: string }
+    setup: { heading: string; tag: string; rows: { k: string; v: string; mono?: boolean }[] }
+    observation: { heading: string; tag: string; rows: { k: string; v: string }[]; line: string }
+  }
+  gaps: SampleGap[]
+  faq: Faq
+  final: Final
+}
+
+/* /recipes: the groups render the recipes whose `group` matches, in the order given. */
+export type RecipesIndexPage = {
+  meta: Meta
+  hero: { headline: string; sub: string }
+  groups: { group: RecipeGroup; line: string }[]
+  hub: { heading: string; line: string; inputs: string[]; outputs: string[] }
+  faq: Faq
+  final: Final
+}
+
+/* A plain page of short sections (privacy, agents): a claim heading, a few lines, an optional list. */
+export type NoticeSection = { id: string; heading: string; lines: string[]; list?: string[] }
+export type PrivacyPage = { meta: Meta; headline: string; sub: string; updated: string; sections: NoticeSection[] }
+export type AgentsPage = {
+  meta: Meta
+  pill: string
+  headline: string
+  sub: string
+  sections: NoticeSection[]
+  contact: { heading: string; line: string; email: string; cta: Cta; secondary: Cta }
+}
+export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }
+export type Llms = { summary: string; intro: string }

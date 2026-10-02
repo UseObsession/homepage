@@ -92,22 +92,24 @@
 .app-pack .pk-s1 .a3{left:17px;top:29px;width:5px;height:5px;border-radius:1px;background:#BDB8AE}
 .app-pack .pk-s1 .l3{left:25px;top:30.5px;width:15px;height:2px;background:#C4BFB5}
 
+/* 2: the texts opt in, filled and sent; the finding beside it says nothing followed */
 .app-pack .pk-s2::before{background:#6B4630}
 .app-pack .pk-s2 .lb{left:6px;top:11px;width:16px;height:2px;background:#B3AEA4}
-.app-pack .pk-s2 .in{left:6px;top:15px;width:30px;height:8px;border-radius:2px;background:#FFFFFF;box-shadow:0 0 0 1px #D2604A}
+.app-pack .pk-s2 .in{left:6px;top:15px;width:30px;height:8px;border-radius:2px;background:#FFFFFF;box-shadow:0 0 0 1px #CFCAC1}
 .app-pack .pk-s2 .cd{left:9px;top:18px;width:15px;height:2px;background:#77726A}
 .app-pack .pk-s2 .bt{left:39px;top:15px;width:13px;height:8px;border-radius:2px;background:#2B2A27}
-.app-pack .pk-s2 .er{left:6px;top:26px;width:24px;height:2px;background:#D2604A}
+.app-pack .pk-s2 .er{left:6px;top:26px;width:24px;height:2px;background:#C4BFB5}
 .app-pack .pk-s2 .tl{left:6px;top:31px;width:46px;height:1px;border-radius:0;background:#D3CFC7}
 
+/* 3: the site's chat: the agent's question to the bot, the bot's non answer, then a person picks it up and the step ends */
 .app-pack .pk-s3::before{background:#6B4630}
-.app-pack .pk-s3 .p1{left:6px;top:11px;width:9px;height:9px;border-radius:2px;background:#C7A385}
-.app-pack .pk-s3 .n1{left:18px;top:12px;width:17px;height:2px;background:#77726A}
-.app-pack .pk-s3 .q1{left:18px;top:16.5px;width:9px;height:2px;background:#BDB8AE}
-.app-pack .pk-s3 .p2{left:6px;top:23px;width:9px;height:9px;border-radius:2px;background:#9C7458}
-.app-pack .pk-s3 .n2{left:18px;top:24px;width:14px;height:2px;background:#77726A}
-.app-pack .pk-s3 .q2{left:18px;top:28.5px;width:8px;height:2px;background:#BDB8AE}
-.app-pack .pk-s3 .bt{left:39px;top:24px;width:13px;height:8px;border-radius:2px;background:#2B2A27}
+.app-pack .pk-s3 .p1{left:30px;top:10px;width:22px;height:6px;border-radius:3px;background:#2B2A27}
+.app-pack .pk-s3 .n1{left:6px;top:18.5px;width:26px;height:6px;border-radius:3px;background:#E3DFD7}
+.app-pack .pk-s3 .q1{left:9px;top:20.5px;width:15px;height:2px;background:#9E998F}
+.app-pack .pk-s3 .p2{left:6px;top:27.5px;width:5px;height:5px;border-radius:50%;background:#9C7458}
+.app-pack .pk-s3 .n2{left:13px;top:27px;width:20px;height:6px;border-radius:3px;background:#E3DFD7}
+.app-pack .pk-s3 .q2{left:16px;top:29px;width:11px;height:2px;background:#9E998F}
+.app-pack .pk-s3 .bt{left:39px;top:29px;width:13px;height:1px;border-radius:0;background:#BDB8AE}
 
 /* the foot: the red line on the left, level with the toast on the right (app-board's pattern) */
 .app-pack .pk-note{position:absolute;left:18px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}

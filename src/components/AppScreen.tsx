@@ -20,16 +20,31 @@ function replay(el: Element | null) {
   el.classList.add('play')
 }
 
+/* Whose workspace a screen shows. The shared How screens (templates, kit, run) are drawn for an agency: "Your agency",
+   a Clients list, your-agency.example links. 'company' shows the same screen as the reader's own company. Founders,
+   Sales, Marketing and Developers pass 'company' on their How steps; Home and Agencies keep the default. */
+export type Workspace = 'agency' | 'company'
+
+function forWorkspace(html: string, workspace: Workspace) {
+  if (workspace === 'agency') return html
+  return html.replaceAll('Your agency', 'Your company').replaceAll('Clients', 'Lists').replaceAll('your-agency.example', 'your-company.example')
+}
+
 type Props = {
   name: ScreenName
   /* Change it to play the story again, e.g. when the tab that holds the screen is selected. */
   playKey?: string | number
   className?: string
+  workspace?: Workspace
+  /* The quiet tag under the screen. Every screen shows example data, so it reads "Example" (matching the console's
+     "Example runs"); only the real September report captures on /sample-output pass note="". */
+  note?: string
 }
 
-export function AppScreen({ name, playKey, className }: Props) {
+export function AppScreen({ name, playKey, className, workspace = 'agency', note = 'Example' }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const html = HTML[`../screens/html/${name}.html`]
+  const raw = HTML[`../screens/html/${name}.html`]
+  const html = raw && forWorkspace(raw, workspace)
 
   /* The story plays once, when the screen first comes into view. */
   useEffect(() => {
@@ -54,11 +69,14 @@ export function AppScreen({ name, playKey, className }: Props) {
 
   if (!html) return null
   return (
-    <div
-      ref={ref}
-      className={'ilwrap' + (className ? ' ' + className : '')}
-      onClick={() => replay(ref.current?.querySelector('.il') ?? null)}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <>
+      <div
+        ref={ref}
+        className={'ilwrap' + (className ? ' ' + className : '')}
+        onClick={() => replay(ref.current?.querySelector('.il') ?? null)}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      {note && <p className="s-screen-note">{note}</p>}
+    </>
   )
 }

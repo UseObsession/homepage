@@ -56,3 +56,6 @@
 .s-mark { display: inline-block; flex: none; }
 .s-status { display: inline-grid; place-items: center; flex: none; color: currentColor; }
 .s-status svg { display: block; }
+
+/* The quiet "Example" tag under every app screen (components/AppScreen): sentence case, the caption type, never a badge. */
+.s-screen-note { margin: var(--ob-space-8, 8px) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; }

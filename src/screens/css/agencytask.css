@@ -1,0 +1,33 @@
+/* app-agencytask: Missions / New mission for an agency (How it works step 1 on /agencies). The markup is app-compose's,
+   with its classes, so app-compose.css draws it; this file only adds what the agency's longer words need.
+   Every rule carries .app-agencytask beside .app-compose, so it wins over compose whatever order the sheets load in.
+   Typed line: 45 and 42 characters (compose: 38 and 35). Option chips 104 wide from x 166 (compose: 92), and AM
+   picks the first option of each question (All 15, PDF per client), so the pointer clicks x 218, not compose's middle
+   chip. Both lines finish typing before the enter key at 2.12s, as in compose. Step names up to 25 characters, so their column is 170 wide (compose: 150). */
+
+.app-compose.app-agencytask .cp-l.l1{max-width:45ch}
+.app-compose.app-agencytask .cp-l.l2{max-width:42ch}
+.app-compose.app-agencytask .cp-q{grid-template-columns:14px 112px repeat(3,104px)}
+.app-compose.app-agencytask .cp-steps li{grid-template-columns:14px 170px minmax(0,1fr) 76px}
+
+@keyframes agt-type1{from{max-width:0}to{max-width:45ch}}
+@keyframes agt-type2{from{max-width:0}to{max-width:42ch}}
+/* compose's pointer path, with both question clicks on the first chip (x 218) */
+@keyframes agt-ptr{
+  0%{opacity:0;transform:translate(500px,324px)}
+  6%{opacity:1}
+  14.9%{transform:translate(215px,136.5px) scale(1)}
+  16.2%{transform:translate(215px,136.5px) scale(.88)}
+  17.6%,22%{transform:translate(215px,136.5px) scale(1)}
+  29.7%{transform:translate(215px,166.5px) scale(1)}
+  31.1%{transform:translate(215px,166.5px) scale(.88)}
+  32.4%{transform:translate(215px,166.5px) scale(1)}
+  43.2%,59.5%{transform:translate(492px,170px) scale(1)}
+  77%{transform:translate(481px,382.5px) scale(1)}
+  78.4%{transform:translate(481px,382.5px) scale(.88)}
+  79.7%,85%{opacity:1;transform:translate(481px,382.5px) scale(1)}
+  100%{opacity:0;transform:translate(500px,400px)}}
+
+.appx-il.play.app-compose.app-agencytask .cp-l.l1{animation:agt-type1 .92s steps(45,end) .4s both,cp-caret .96s linear .4s both}
+.appx-il.play.app-compose.app-agencytask .cp-l.l2{animation:agt-type2 .74s steps(42,end) 1.36s both,cp-caret .78s linear 1.34s both}
+.appx-il.play.app-compose.app-agencytask .cp-ptr{animation:agt-ptr 3.7s var(--ease) 2.6s both}
