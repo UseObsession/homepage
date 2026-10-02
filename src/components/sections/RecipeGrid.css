@@ -1,0 +1,105 @@
+/* Recipes (components/sections/RecipeGrid): the 5 jobs, each on its own hairline, its name on the left and its
+   recipes as quiet link rows on the right. No boxes: a row shows it's a link with its arrow and a hover layer. */
+
+.s-recipes__jobs {
+  display: grid;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+
+.s-recipes__job {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--ob-space-16) var(--ob-space-32);
+  padding-block: var(--ob-space-32);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+
+.s-recipes__job-head {
+  display: grid;
+  gap: var(--ob-space-8);
+  align-content: start;
+  /* The job's name sits on the same line as the first recipe's name. */
+  padding-top: var(--ob-space-12);
+}
+.s-recipes__job-name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-recipes__job-line {
+  margin: 0;
+  max-width: 36ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* The rows bleed 16px past the column, so their words line up with the job's name while the hover layer has room. */
+.s-recipes__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin: 0 calc(var(--ob-space-16) * -1);
+  padding: 0;
+  list-style: none;
+}
+.s-recipes__list > li { display: grid; }
+
+.s-recipes__item {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-4);
+  padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-recipes__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  font: var(--ob-type-body);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -0.01em;
+}
+.s-recipes__arrow {
+  flex: none;
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-recipes__line {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .s-recipes__item:hover { background-color: var(--ob-state-hover); }
+  .s-recipes__item:hover .s-recipes__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+}
+.s-recipes__item:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.s-recipes__item:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+
+/* Narrower screens: the recipes take 1 column; then the job's name moves above its rows. */
+@media (max-width: 1080px) {
+  .s-recipes__list { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 860px) {
+  .s-recipes__job { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); padding-block: var(--ob-space-24); }
+  .s-recipes__job-head { padding-top: 0; }
+}
+
+.s-recipes .s-head { max-width: none; }
+.s-recipes .s-head > h2 { max-width: var(--ob-measure-heading); }

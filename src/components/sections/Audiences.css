@@ -1,0 +1,54 @@
+/* Who it's for (components/sections/Audiences). The tab row is UseCases.css .s-rail; the panel is the reader's line
+   as a claim, the way to their page, and the screen that shows it. */
+
+.s-aud__panels {
+  display: grid;
+  margin-top: var(--ob-space-40);
+}
+.s-aud__panel {
+  grid-area: 1 / 1;
+  /* A shorter panel keeps its words and screen together; the spare room falls below. */
+  align-content: start;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--ob-space-56);
+  align-items: center;
+  min-width: 0;
+}
+/* The readers not chosen keep their room but are hidden from sight, the keyboard and screen readers. */
+.s-aud__panel[hidden] { display: grid; visibility: hidden; }
+.s-aud__panel[hidden] .appx-il,
+.s-aud__panel[hidden] .appx-il * { animation: none !important; }
+
+.s-aud__copy {
+  display: grid;
+  justify-items: start;
+  gap: var(--ob-space-32);
+  min-width: 0;
+}
+.s-aud__line {
+  margin: 0;
+  max-width: 18ch;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-aud__to:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+
+.s-aud__screen { min-width: 0; }
+.s-aud__screen .ilwrap { cursor: pointer; }
+
+@media (max-width: 1080px) {
+  .s-aud__panel { gap: var(--ob-space-40); }
+}
+@media (max-width: 860px) {
+  .s-aud__panels { margin-top: var(--ob-space-32); }
+  .s-aud__panel { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); align-items: start; }
+  .s-aud__copy { gap: var(--ob-space-24); }
+}
+
+.s-aud .s-head { max-width: none; }
+.s-aud .s-head > h2 { max-width: var(--ob-measure-heading); }

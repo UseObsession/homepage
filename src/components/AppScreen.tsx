@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
-import '../screens/kit.css'
-import '../screens/base.css'
 
 /* Every app screen: one 720 x 450 window of the Obsession product, drawn in HTML and CSS (src/screens, synced from
    the workspace by scripts/sync-assets.mjs). Its rest state is the finished scene; adding .play runs its story. */
 const HTML = import.meta.glob('../screens/html/*.html', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
+/* Vite hoists eager globs above the file's own imports, so the shared kit and base load through a glob too, first:
+   each screen's rules then come after them and win ties, as the screens are written to. */
+import.meta.glob('../screens/kit.css', { eager: true })
+import.meta.glob('../screens/base.css', { eager: true })
 import.meta.glob('../screens/css/*.css', { eager: true })
 
 export type ScreenName = string

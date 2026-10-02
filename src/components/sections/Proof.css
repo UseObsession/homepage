@@ -1,0 +1,54 @@
+/* Proof (components/sections/Proof): the claim beside the top of the real report. The report sits in a tray like the
+   app screens' frame and runs out of its bottom edge, so it reads as the first page of a longer document. */
+
+.s-proof__in {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--ob-space-64);
+  align-items: center;
+}
+
+.s-proof__copy {
+  display: grid;
+  justify-items: start;
+  min-width: 0;
+}
+.s-proof__h { margin: 0; max-width: var(--ob-measure-heading); }
+.s-proof__line {
+  margin: var(--ob-space-20) 0 0;
+  max-width: 46ch;
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-proof__cta { margin-top: var(--ob-space-32); }
+@media (hover: hover) and (pointer: fine) {
+  .s-proof__cta:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+
+.s-proof__doc { margin: 0; min-width: 0; }
+.s-proof__tray {
+  aspect-ratio: 5 / 4;
+  padding: var(--ob-space-40) var(--ob-space-40) 0;
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight);
+}
+.s-proof__page {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--ob-radius-xs) var(--ob-radius-xs) 0 0;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-shadow-2);
+}
+
+@media (max-width: 1080px) {
+  .s-proof__in { gap: var(--ob-space-40); }
+  .s-proof__tray { padding: var(--ob-space-32) var(--ob-space-32) 0; }
+}
+@media (max-width: 860px) {
+  .s-proof__in { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-40); }
+  .s-proof__tray { padding: var(--ob-space-24) var(--ob-space-24) 0; aspect-ratio: 4 / 3; }
+}
