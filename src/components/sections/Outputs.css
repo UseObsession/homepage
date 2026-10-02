@@ -1,0 +1,483 @@
+/* The output viewer section: the claim, 1 line and the call to action, then the pill tabs over 1 calm stage.
+   The stage is a sunken well; each format sits on it as a product object (.ob-object), so hybrid pages keep it black.
+   Colour, type, space, radius, elevation and timing are design system tokens; only the stage and mock sizes are the
+   section's own. Motion: the system's rise when a tab is picked (not on load), the PDF pages'
+   spread (transform only), the tab's own colour change. Reduced motion: the spread is instant. */
+
+/* ---- The viewer ---------------------------------------------------------------------------------------------------- */
+.s-ov {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-16);
+  min-width: 0;
+}
+.s-ov__tabs { justify-self: start; }
+
+.s-ov__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-16);
+  min-width: 0;
+  border-radius: var(--ob-radius-xl);
+}
+.s-ov__panel[hidden] { display: none; }
+.s-ov__panel:focus-visible { outline-offset: var(--ob-space-4); }
+
+.s-ov__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 560px;
+  padding: var(--ob-space-40);
+  overflow: hidden;
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.s-ov__stage--pdf { padding: var(--ob-space-32); }
+.s-ov__mock {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+@media (max-width: 859px) {
+  .s-ov__stage { height: 520px; padding: var(--ob-space-24); }
+}
+@media (max-width: 519px) {
+  .s-ov__stage { height: 488px; padding: var(--ob-space-16); }
+  .s-ov__stage--pdf { padding: var(--ob-space-16); }
+}
+
+.s-ov__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ob-space-8) var(--ob-space-24);
+  padding-inline: var(--ob-space-4);
+}
+.s-ov__line {
+  max-width: var(--ob-measure);
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-ov__more { flex: none; }
+
+/* The footnote under a table or a flow, inside the stage. */
+.s-ov-note {
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  text-align: center;
+  text-wrap: balance;
+}
+.s-ov-mono { font-family: var(--ob-font-mono); font-size: var(--ob-type-mono-sm-size); font-weight: var(--ob-weight-regular); }
+
+/* A product object inside the stage: the object material with the quieter lift, so no halo shows on the well. */
+.s-ov-card {
+  min-width: 0;
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  text-align: left;
+}
+.s-ov-card.ob-object { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2); }
+
+/* A drawn button inside a drawn email or message: it shows, it does not act. */
+.s-ov-fauxbtn {
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-16);
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  cursor: default;
+}
+.s-ov-fauxbtn--quiet {
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-xs);
+  background: transparent;
+  color: var(--ob-text);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+}
+
+/* ---- PDF: 2 real pages, stacked; a click spreads them side by side (on a phone, brings page 2 forward) ------------ */
+.s-ov-pdf {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  container-type: size;
+}
+.s-ov-page {
+  /* The same size stacked and spread: as large as 2 pages side by side allow. */
+  --s-page-w: min(calc((100cqw - var(--ob-space-24)) / 2), calc(100cqh * 992 / 1404));
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--s-page-w);
+  height: auto;
+  border-radius: var(--ob-radius-glyph);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-shadow-2);
+  transition:
+    translate var(--ob-dur-slow) var(--ob-ease-out),
+    rotate var(--ob-dur-slow) var(--ob-ease-out),
+    scale var(--ob-dur-slow) var(--ob-ease-out);
+  pointer-events: none;
+  user-select: none;
+}
+.s-ov-page--front { z-index: 2; translate: calc(-50% - 20px) calc(-50% + 6px); rotate: -2deg; scale: .9; }
+.s-ov-page--back { z-index: 1; translate: calc(-50% + 28px) calc(-50% - 6px); rotate: 3deg; scale: .86; }
+@media (hover: hover) and (pointer: fine) {
+  .s-ov-pdf:not(.is-spread):hover .s-ov-page--front { rotate: -3deg; }
+  .s-ov-pdf:not(.is-spread):hover .s-ov-page--back { translate: calc(-50% + 40px) calc(-50% - 10px); rotate: 5deg; }
+}
+.s-ov-pdf.is-spread .s-ov-page--front { translate: calc(-100% - var(--ob-space-12)) -50%; rotate: 0deg; scale: 1; }
+.s-ov-pdf.is-spread .s-ov-page--back { translate: var(--ob-space-12) -50%; rotate: 0deg; scale: 1; }
+/* A narrow stage has no room for 2 readable pages side by side, so the stack stays large and a click brings page 2
+   to the front instead (and page 1 back on the next). */
+@container (max-width: 560px) {
+  .s-ov-pdf .s-ov-page--front { scale: 1.5; translate: calc(-50% - 16px) calc(-50% + 6px); }
+  .s-ov-pdf .s-ov-page--back { scale: 1.42; translate: calc(-50% + 20px) calc(-50% - 6px); }
+  .s-ov-pdf.is-spread .s-ov-page--front { z-index: 1; scale: 1.42; translate: calc(-50% + 20px) calc(-50% - 6px); rotate: 3deg; }
+  .s-ov-pdf.is-spread .s-ov-page--back { z-index: 2; scale: 1.5; translate: calc(-50% - 16px) calc(-50% + 6px); rotate: -2deg; }
+}
+.s-ov-pdf__toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-md);
+  background: transparent;
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+}
+.s-ov-pdf__toggle[aria-pressed="true"] { cursor: zoom-out; }
+.s-ov-pdf__toggle:focus-visible { outline-offset: var(--ob-focus-offset-inset); }
+@media (prefers-reduced-motion: reduce) {
+  .s-ov-page { transition: none; }
+}
+
+/* ---- Email ---------------------------------------------------------------------------------------------------------- */
+.s-ov-email { width: min(100%, 520px); }
+.s-ov-email__meta {
+  display: grid;
+  gap: var(--ob-space-4);
+  margin: 0;
+  padding: var(--ob-space-16) var(--ob-space-24);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+}
+.s-ov-email__meta > div { display: grid; grid-template-columns: var(--ob-space-40) minmax(0, 1fr); gap: var(--ob-space-12); }
+.s-ov-email__meta dt { color: var(--ob-text-3); }
+.s-ov-email__meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; color: var(--ob-text-2); }
+.s-ov-email__body {
+  display: grid;
+  justify-items: start;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-24);
+}
+.s-ov-email__subject {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  text-wrap: balance;
+}
+.s-ov-email__timeline {
+  display: grid;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-ov-email__timeline li {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+}
+.s-ov-email__timeline time {
+  padding-top: var(--ob-space-2);
+  font: var(--ob-type-mono-sm);
+  font-weight: var(--ob-weight-regular);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+.s-ov-email__body > .s-ov-fauxbtn { margin-top: var(--ob-space-4); }
+@media (max-width: 519px) {
+  .s-ov-email__meta { padding: var(--ob-space-12) var(--ob-space-16); }
+  .s-ov-email__body { padding: var(--ob-space-16); gap: var(--ob-space-12); }
+  .s-ov-email__timeline li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+
+/* The verdict: the ring mark plus its word (navigation.css .ob-status), never a colour. */
+.s-ov-status { margin: 0; }
+.s-ov-status .s-status,
+.s-ov-slack__title .s-status { color: var(--ob-text); }
+
+/* ---- Slack ---------------------------------------------------------------------------------------------------------- */
+.s-ov-slack {
+  display: grid;
+  gap: var(--ob-space-16);
+  width: min(100%, 520px);
+  padding: var(--ob-space-16) var(--ob-space-24) var(--ob-space-24);
+}
+.s-ov-slack__channel {
+  margin: 0;
+  padding-bottom: var(--ob-space-12);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+.s-ov-slack__msg {
+  display: grid;
+  grid-template-columns: var(--ob-space-40) minmax(0, 1fr);
+  gap: var(--ob-space-12);
+}
+.s-ov-slack__avatar {
+  display: grid;
+  place-items: center;
+  width: var(--ob-space-40);
+  height: var(--ob-space-40);
+  border-radius: var(--ob-radius-sm);
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+}
+.s-ov-slack__avatar svg { display: block; }
+.s-ov-slack__content { display: grid; justify-items: start; gap: var(--ob-space-8); min-width: 0; }
+.s-ov-slack__name {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-small);
+}
+.s-ov-slack__name b { font-weight: var(--ob-weight-semibold); }
+.s-ov-slack__name time { font: var(--ob-type-mono-sm); font-weight: var(--ob-weight-regular); color: var(--ob-text-3); }
+.s-ov-slack__attach {
+  display: grid;
+  gap: var(--ob-space-4);
+  padding: var(--ob-space-4) 0 var(--ob-space-4) var(--ob-space-16);
+  box-shadow: var(--ob-border-focus) 0 0 var(--ob-line-ui) inset;
+}
+.s-ov-slack__title {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-semibold);
+}
+.s-ov-slack__title > [aria-hidden] { flex: none; padding-top: var(--ob-space-4); }
+.s-ov-slack__line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.s-ov-slack__btns { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin-top: var(--ob-space-4); }
+@media (max-width: 519px) {
+  .s-ov-slack { padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-16); }
+  .s-ov-slack__msg { grid-template-columns: var(--ob-space-32) minmax(0, 1fr); }
+  .s-ov-slack__avatar { width: var(--ob-space-32); height: var(--ob-space-32); border-radius: var(--ob-radius-xs); }
+}
+
+/* ---- Sheet or Clay: the columns Obsession adds sit on a tinted band beside the reader's own --------------------- */
+.s-ov-clay {
+  display: grid;
+  gap: var(--ob-space-16);
+  width: min(100%, 640px);
+}
+.s-ov-clay__card { overflow: hidden; }
+.s-ov-clay__table {
+  width: 100%;
+  border-collapse: collapse;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+}
+.s-ov-clay__table :is(th, td) {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.s-ov-clay__table tbody tr:last-child :is(th, td) { border-bottom: 0; }
+.s-ov-clay__table thead th {
+  font: var(--ob-type-caption);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text-3);
+  background: var(--ob-fill-subtle);
+  border-bottom-color: var(--ob-line);
+}
+.s-ov-clay__table thead th.is-added { color: var(--ob-text); }
+.s-ov-clay__table .is-added { background: var(--ob-fill); }
+.s-ov-clay__table :not(.is-added) + .is-added { box-shadow: var(--ob-border-hair) 0 0 var(--ob-line) inset; }
+.s-ov-clay__table tbody th { font-weight: var(--ob-weight-regular); color: var(--ob-text); }
+.s-ov-clay__table td { color: var(--ob-text); }
+.s-ov-clay__table tr.is-gap td:nth-child(2) { font-weight: var(--ob-weight-medium); }
+.s-ov-clay__table td.is-quiet { color: var(--ob-text-3); }
+.s-ov-clay__table td.is-link {
+  color: var(--ob-text-2);
+  text-decoration: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-underline-offset: var(--ob-space-4);
+  text-decoration-color: var(--ob-link-underline);
+}
+@media (max-width: 519px) {
+  .s-ov-clay__table { font-size: var(--ob-type-caption-size); }
+  .s-ov-clay__table :is(th, td) { padding: var(--ob-space-8); white-space: normal; }
+  .s-ov-clay__table :is(thead th, .s-ov-mono) { white-space: nowrap; }
+  .s-ov-clay__table :is(th, td):first-child { padding-left: var(--ob-space-12); }
+  .s-ov-clay__table :is(th, td):last-child { padding-right: var(--ob-space-12); }
+}
+
+/* ---- Webhook: the request line, then the JSON in the quiet code colours (DevSection.css) ------------------------ */
+.s-ov-hook { width: min(100%, 640px); overflow: hidden; }
+.s-ov-hook__req {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  margin: 0;
+  padding: var(--ob-space-12) var(--ob-space-20);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-mono-sm);
+  font-weight: var(--ob-weight-regular);
+}
+.s-ov-hook__method {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-xs);
+  padding: 0 var(--ob-space-8);
+  border-radius: var(--ob-radius-xs);
+  background: var(--ob-fill);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  color: var(--ob-text);
+  font-weight: var(--ob-weight-medium);
+}
+.s-ov-hook__url { min-width: 0; color: var(--ob-text-2); overflow-wrap: anywhere; }
+.s-ov-hook__body {
+  margin: 0;
+  padding: var(--ob-space-20);
+  font: var(--ob-type-code);
+  font-size: var(--ob-type-mono-sm-size);
+  letter-spacing: var(--ob-type-code-tracking);
+  color: var(--ob-text);
+}
+@media (max-width: 519px) {
+  .s-ov-hook__req { padding: var(--ob-space-12) var(--ob-space-16); }
+  .s-ov-hook__body { padding: var(--ob-space-16); }
+}
+
+/* ---- Workflow: a small tree. Wide: centred, the branch fans out sideways. Narrow: a rail down the left ------------ */
+.s-ov-flow {
+  --s-link: var(--ob-space-24);
+  container-type: inline-size;
+  display: grid;
+  gap: var(--ob-space-24);
+  width: min(100%, 680px);
+}
+.s-ov-flow ol,
+.s-ov-flow ul { margin: 0; padding: 0; list-style: none; }
+.s-ov-flow__chain { display: grid; justify-items: center; gap: var(--s-link); }
+.s-ov-flow__chain > li { position: relative; display: grid; justify-items: center; width: 100%; }
+.s-ov-flow__chain > li + li::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--s-link) * -1);
+  left: 50%;
+  width: var(--ob-border-hair);
+  height: var(--s-link);
+  background: var(--ob-line-strong);
+}
+.s-ov-node {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-2);
+  width: min(100%, 280px);
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+  text-align: left;
+}
+.s-ov-node.is-custom {
+  background: transparent;
+  box-shadow: none;
+  outline: var(--ob-border-hair) dashed var(--ob-line-ui);
+  outline-offset: calc(var(--ob-border-hair) * -1);
+}
+.s-ov-node__k { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.s-ov-node__v { font: var(--ob-type-small); font-weight: var(--ob-weight-medium); color: var(--ob-text); text-wrap: pretty; }
+
+.s-ov-flow__branch {
+  display: grid;
+  grid-template-columns: repeat(var(--s-branches, 3), minmax(0, 1fr));
+  gap: var(--ob-space-16);
+  width: 100%;
+}
+.s-ov-flow__branch > li { position: relative; display: grid; justify-items: center; padding-top: var(--s-link); }
+.s-ov-flow__branch > li .s-ov-node { width: 100%; height: 100%; }
+/* Each branch drops from a shared bar. */
+.s-ov-flow__branch > li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--ob-border-hair);
+  height: var(--s-link);
+  background: var(--ob-line-strong);
+}
+.s-ov-flow__branch > li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(var(--ob-space-8) * -1);
+  right: calc(var(--ob-space-8) * -1);
+  height: var(--ob-border-hair);
+  background: var(--ob-line-strong);
+}
+.s-ov-flow__branch > li:first-child::after { left: 50%; }
+.s-ov-flow__branch > li:last-child::after { right: 50%; }
+/* The step into the branch meets the bar, so the chain's own link stops there. */
+.s-ov-flow__chain > li:has(> .s-ov-flow__branch)::before { height: var(--s-link); }
+
+@container (max-width: 559px) {
+  .s-ov-flow__chain { justify-items: stretch; gap: var(--ob-space-16); --s-link: var(--ob-space-16); }
+  .s-ov-flow__chain > li { justify-items: stretch; }
+  .s-ov-flow__chain > li + li::before { left: var(--ob-space-24); }
+  .s-ov-node { width: 100%; }
+  .s-ov-flow .s-ov-flow__branch {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ob-space-8);
+    padding-left: var(--ob-space-48);
+  }
+  .s-ov-flow__branch > li { padding-top: 0; }
+  /* The rail runs from the step above to the middle of the last branch; a tick reaches each one. */
+  .s-ov-flow__branch > li::before {
+    top: 0;
+    bottom: calc(var(--ob-space-8) * -1);
+    left: calc(var(--ob-space-24) * -1);
+    height: auto;
+  }
+  .s-ov-flow__branch > li:last-child::before { bottom: 50%; }
+  .s-ov-flow__branch > li::after,
+  .s-ov-flow__branch > li:first-child::after,
+  .s-ov-flow__branch > li:last-child::after {
+    top: 50%;
+    left: calc(var(--ob-space-24) * -1);
+    right: auto;
+    width: var(--ob-space-24);
+  }
+}
