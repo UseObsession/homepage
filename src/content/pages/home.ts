@@ -269,42 +269,46 @@ export const page: Page = {
     ],
   },
 
+  /* The reader picker. Each line is 70 characters at most, so all 5 sit on 3 lines in the band. The picks differ on
+     every panel: recipes whose own page names that reader in its audiences (content/recipes/*.ts), echoing the line,
+     and for developers the ways in from code. For the narrative edit: this heading and How's after it both put
+     "Agents" up front. */
   audiences: {
     heading: 'Agents do the legwork behind every pitch, launch, release and renewal.',
     items: [
       {
         audience: 'agencies',
         name: 'Agencies',
-        line: 'Check every client, prove every pitch, and sell it as a research service under your name.',
-        ways: ['Recipes', 'Type a task'],
+        line: 'Check every client and prove every pitch, sold as your own research.',
+        picks: ['Mystery shopper', 'Competitor tracking'],
         to: '/agencies',
       },
       {
         audience: 'founders',
         name: 'Founders',
-        line: 'Leads with a proven gap, and a fresh test customer after every release.',
-        ways: ['Recipes', 'Type a task'],
+        line: 'Leads with a proven gap, and a test customer after every release.',
+        picks: ['Prospect intelligence', 'Website audit'],
         to: '/founders',
       },
       {
         audience: 'sales',
         name: 'Sales',
         line: 'See what each account’s customers get, before every call and renewal.',
-        ways: ['Recipes', 'Type a task'],
+        picks: ['Account watch', 'Trial teardown'],
         to: '/sales',
       },
       {
         audience: 'marketing',
         name: 'Marketing',
-        line: 'See every rival offer the day it lands, and check your own launches as a new customer.',
-        ways: ['Recipes', 'Type a task'],
+        line: 'See every rival offer the day it lands, and check your own launches.',
+        picks: ['Email and SMS tracking', 'Delivery monitoring'],
         to: '/marketing',
       },
       {
         audience: 'developers',
         name: 'Developers',
         line: 'The same agents, inboxes, numbers and browsers, from your own code.',
-        ways: ['API', 'Recipes', 'Type a task'],
+        picks: ['API and webhooks', 'Release tests in CI'],
         to: '/developers',
       },
     ],
