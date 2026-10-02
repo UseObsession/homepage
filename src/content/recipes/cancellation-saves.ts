@@ -6,12 +6,12 @@ import type { Capture, Recipe } from '../types'
    same channel; a note set for 1 Dec, before the pause ends; every step signed).
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 4 (research name retired; the plain name is Cancellation saves).
    Red lines held: declared as the brand's AI, and calls say they're recorded; it never obstructs or delays a cancel:
-   the 1 offer always sits next to "cancel now", on the phone it first says the caller can say "cancel" at any time,
+   the 1 offer always sits next to "Cancel now", on the phone it first says the caller can say "cancel" at any time,
    "cancel, no offers" cancels at once, and a cancel is done in the channel it was asked (click to cancel rules); the
    subscriber is checked the way they signed up, never stricter, and never on an assistant's word alone; 1 offer per
    subscriber from a menu and a discount budget the brand sets in advance; anything off the menu goes to a person;
    billing only through the tool the brand connects; no pressure or false urgency; no more personal data than a cancel
-   needs. Up-to-50 rule: the 1 modelled figure (up to 28% of cancel requests kept: 38% would rather pause, 3 in 4 who
+   needs. Up-to-50 rule: the 1 modelled figure (up to 28% of subscribers who ask to cancel stay: 38% would rather pause, 3 in 4 who
    pause come back, 0.38 × 0.75) carries its sum in the same line. No sources or real names on the page. The run is an
    example and says so. */
 
@@ -27,8 +27,8 @@ export const recipe: Recipe = {
   slug: 'cancellation-saves',
   name: 'Cancellation saves',
   group: 'Keep customers',
-  line: 'Answers every cancel request at once, with 1 pause or offer next to cancel now, and does what the subscriber picks.',
-  gets: 'Every cancel request answered at once, the subscribers who’d rather pause kept, and every cancel done the same minute.',
+  line: 'Answers every cancel request at once, with 1 pause or offer next to “Cancel now”, and does what the subscriber picks.',
+  gets: 'Every cancel request answered at once: those who’d rather pause stay, and everyone else is cancelled the same minute.',
   kit: [
     'An agent ID, declared as AI',
     'Its own inbox, number and chat',
@@ -42,9 +42,9 @@ export const recipe: Recipe = {
     path: '/recipes/cancellation-saves',
     title: 'Cancellation saves: keep subscribers who’d pause · Obsession',
     description:
-      'When a subscriber or their AI assistant asks to cancel, a declared AI agent offers 1 pause you approved next to cancel now and does what they pick at once.',
+      'When a subscriber or their AI assistant asks to cancel, your declared AI agent offers 1 pause you approved next to “Cancel now”, then does what they pick.',
     answer:
-      'Cancellation saves is an Obsession recipe. When a subscriber, or their AI assistant, asks to cancel by email, chat or phone, a declared AI agent puts 1 pause or offer you approved next to “cancel now”, and does what they pick at once. Cancelling stays as easy as staying.',
+      'Cancellation saves is an Obsession recipe. When a subscriber, or their AI assistant, asks to cancel by email, chat or phone, a declared AI agent puts 1 pause or offer you approved next to “Cancel now”, and does what they pick at once. Cancelling stays as easy as staying.',
     ogImage: '/og/cancellation-saves.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -55,7 +55,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Keep the subscribers who’d rather pause than cancel.',
-    sub: 'When a subscriber, or their AI assistant, asks to cancel, a declared AI agent offers 1 pause or offer you approved, right next to cancel now. It does what they pick at once. Cancelling stays as easy as staying.',
+    sub: 'When a subscriber, or their AI assistant, asks to cancel, your declared AI agent puts 1 pause or offer you approved right next to “Cancel now”, and does what they pick at once. Cancelling stays as easy as staying.',
     screen: 'saves',
     capture: {
       kind: 'waitlist',
@@ -71,19 +71,19 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: a meal kit subscription',
     recipe: 'saves',
-    task: 'Answer every cancel request for our meal kit plan. Offer a 2 month pause next to cancel now, do what they pick at once, and write before a pause ends.',
+    task: 'Answer every cancel request for our meal kit plan. Offer a 2 month pause next to “Cancel now”, do what they pick at once, and write before a pause ends.',
     targets: 'A meal kit subscription, every channel',
-    journey: ['Check it’s the subscriber', 'Cancel now and 1 pause, side by side', 'Do what they pick at once', 'Write before the pause ends'],
+    journey: ['Check it’s the subscriber', '“Cancel now” and 1 pause, side by side', 'Do what they pick at once', 'Write before the pause ends'],
     schedule: 'Every request, the minute it arrives',
     report: 'A weekly note: cancels, pauses and who came back',
     kit: ['Agent ID, declared as AI', 'Inbox, number and chat', 'Cancel channel for AI assistants', 'Billing, connected by you'],
     events: [
       { time: 'Tue 14:02', text: 'An AI assistant, acting for Jane D., asks to cancel her meal kit plan.' },
-      { time: 'Tue 14:02', text: 'The agent says it’s the brand’s AI and sends a code to Jane’s own phone. Checked in 40 s.' },
-      { time: 'Tue 14:03', text: 'Its reply, side by side: Cancel now, or Pause for 2 months.' },
+      { time: 'Tue 14:02', text: 'The agent says it’s your brand’s AI and sends a code to Jane’s own phone. Confirmed in 40 seconds.' },
+      { time: 'Tue 14:03', text: 'Its reply, side by side: “Cancel now” or “Pause for 2 months”.' },
       { time: 'Tue 14:05', text: 'Jane picks the pause. Billing paused, and confirmed in the same channel.' },
-      { time: 'Tue 16:40', text: 'A subscriber on the phone says “cancel”. Cancelled on the call, confirmed by text.' },
-      { time: '1 Dec, 10:00', text: 'A note to Jane before the pause ends: the restart date, with cancel 1 tap away.' },
+      { time: 'Tue 16:40', text: 'A caller hears they can say “cancel” at any time, and says it. Cancelled and confirmed on the same call.' },
+      { time: '1 Dec, 10:00', text: 'A note to Jane before the pause ends: the restart date, with cancelling 1 tap away.' },
     ],
     finding: 'This week: 212 cancel requests, 41 of them from AI assistants. 52 chose the pause. 160 cancelled, each done the same minute.',
     fix: 'A smaller box drafted as next month’s offer, to try in place of the pause. It goes live only after your OK.',
@@ -97,15 +97,15 @@ export const recipe: Recipe = {
     },
     {
       title: 'It answers every cancel request',
-      line: 'By email, chat, phone or a channel built for AI assistants. It says it’s your brand’s AI, and checks it’s really the subscriber, the way they signed up.',
+      line: 'By email, chat, phone or a channel built for AI assistants. It says it’s your brand’s AI, and checks it’s really the subscriber, never harder than signing up.',
     },
     {
-      title: 'Cancel now sits next to the offer',
-      line: 'Every time, in the same reply. On the phone it first says they can cancel at any time by saying “cancel”. “Cancel, no offers” cancels.',
+      title: '“Cancel now” sits next to the offer',
+      line: 'Every time, in the same reply. On the phone it first says they can cancel at any time by saying “cancel”. Say “cancel, no offers” and it cancels at once.',
     },
     {
       title: 'It does what they pick at once',
-      line: 'A cancel is done in billing the same minute and confirmed the way it was asked. A pause gets a note before it ends.',
+      line: 'A cancel is done in billing the same minute, in the channel it was asked, and confirmed there. A pause gets a note before it ends.',
     },
   ],
 
@@ -115,7 +115,7 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Who’s asking',
-          line: 'A subscriber or their AI assistant. The assistant is asked whom it acts for, and the subscriber confirms with a code to their own phone or email, never stricter than sign up.',
+          line: 'A subscriber or their AI assistant. The assistant is asked whom it acts for, and the subscriber confirms with a code to their own phone or email, never harder than signing up.',
         },
         { title: 'Every channel', line: 'Email, chat, phone and the channel for AI assistants, linked from your cancel page and help centre.' },
         {
@@ -127,7 +127,7 @@ export const recipe: Recipe = {
     {
       group: 'Cancelling stays easy',
       items: [
-        { title: 'Cancel now, every time', line: 'The offer only ever shows next to cancel now, never in place of it.' },
+        { title: '“Cancel now”, every time', line: 'The offer only ever shows next to “Cancel now”, never in place of it.' },
         { title: 'Said first on the phone', line: 'Callers hear they can cancel at any time by saying “cancel”, before any offer.' },
         { title: 'Done where it was asked', line: 'Asked by email, cancelled by email. Asked on a call, cancelled on the call.' },
         { title: 'Nothing extra', line: 'No pressure, no countdowns, and no personal data beyond what a cancel needs.' },
@@ -137,7 +137,7 @@ export const recipe: Recipe = {
       group: 'After the choice',
       items: [
         { title: 'Billing', line: 'The cancel, pause or smaller plan applied through the billing tool you connect, the same minute.' },
-        { title: 'Before a pause ends', line: 'A note with the date it restarts, and cancel 1 tap away.' },
+        { title: 'Before a pause ends', line: 'A note with the date it restarts, and cancelling 1 tap away.' },
         { title: 'What came back', line: 'Which paused subscribers restarted, and which offers kept them.' },
       ],
     },
@@ -159,22 +159,22 @@ export const recipe: Recipe = {
     { k: 'Channels', v: 'Email, chat, phone and a channel for AI assistants' },
     { k: 'The offer', v: '1 per subscriber, from your menu: a pause, a smaller plan or a discount' },
     { k: 'Discount budget', v: 'A cap you set, which the agent can’t raise' },
-    { k: 'Check', v: 'A code to the subscriber’s own phone or email, never stricter than sign up' },
+    { k: 'Check', v: 'A code to the subscriber’s own phone or email, never harder than signing up' },
     { k: 'Needs a person', v: 'Refunds beyond your policy, price matches, anything not on the menu' },
     { k: 'Billing', v: 'Your billing tool, connected by you' },
   ],
 
   forWho: [
     { audience: 'marketing', line: 'Retention teams keep the subscribers who’d rather pause, without making anyone fight to leave.' },
-    { audience: 'founders', line: 'Every cancel answered at once, on every channel, with the save you chose next to it.' },
+    { audience: 'founders', line: 'Every cancel request answered at once, on every channel, with your pause or offer next to “Cancel now”.' },
     { audience: 'agencies', line: 'Run the cancel desk for each subscription client, with their OK and their offers.' },
     { audience: 'developers', line: 'Give AI assistants a proper way to cancel or change a plan, through the API.' },
   ],
 
   table: {
-    heading: 'Cancel now is never more than 1 step away.',
-    line: 'Example settings. The offer always sits next to cancel now, and “cancel, no offers” always cancels.',
-    cols: ['What they hear first', 'Cancel now', 'The offer'],
+    heading: '“Cancel now” sits beside every offer, on every channel.',
+    line: 'Example offer: a 2 month pause. It always sits next to “Cancel now”, and “cancel, no offers” always cancels.',
+    cols: ['What they’re told first', 'Cancel now', 'The offer'],
     rows: [
       { label: 'AI assistant', values: ['It’s your brand’s AI, and it asks whom the assistant acts for', 'In the same reply', '1 pause, side by side'] },
       { label: 'Phone', values: ['It’s AI, the call is recorded, and they can say “cancel” at any time', 'Done on the call', '1 pause, after that'] },
@@ -188,7 +188,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Does it make cancelling harder?',
-        a: 'No. Cancel now sits next to every offer, “cancel, no offers” cancels at once, and every cancel is done the same minute, in the channel it was asked.',
+        a: 'No. “Cancel now” sits next to every offer, “cancel, no offers” cancels at once, and every cancel is done the same minute, in the channel it was asked.',
       },
       {
         q: 'What if an AI assistant asks to cancel?',
@@ -200,11 +200,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 28% of cancel requests kept: 38% of subscribers would rather pause than cancel, and 3 in 4 who pause come back (0.38 × 0.75).',
+        a: 'Up to 28% of subscribers who ask to cancel stay: 38% would rather pause than cancel, and 3 in 4 who pause come back (0.38 × 0.75).',
       },
       {
         q: 'Does it follow click to cancel rules?',
-        a: 'It’s built to them. Every offer sits beside cancel now, callers first hear they can say “cancel” at any time, and a cancel is done in the channel it was asked.',
+        a: 'It’s built to them. Every offer sits beside “Cancel now”, callers first hear they can say “cancel” at any time, and a cancel is done in the channel it was asked.',
       },
       {
         q: 'What about a refund or a price match?',
