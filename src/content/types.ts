@@ -2,11 +2,15 @@
    Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/html/NAME.html (see components/AppScreen). */
 
 export type ScreenName = string
-/* Recipe slugs (/recipes/SLUG): competitor-tracking, prospect-intelligence, mystery-shopper, speed-to-lead, price-watch, ad-tracking, trial-teardown,
-   email-sms-tracking, website-audit, delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers. */
+/* Recipe slugs (/recipes/SLUG): competitor-tracking, prospect-intelligence, mystery-shopper, lead-leaks (id 'speed'; was
+   speed-to-lead, which redirects), price-watch, ad-tracking, trial-teardown, email-sms-tracking, website-audit,
+   delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
+   ('checkout'), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
+   account-handover ('handover'), software-renewals ('spend'). */
 export type RecipeId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
+  | 'checkout' | 'quotes' | 'renewal' | 'saves' | 'handover' | 'spend'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
 
