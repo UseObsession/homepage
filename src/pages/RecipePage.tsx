@@ -1,12 +1,13 @@
 import { useId, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { AppScreen, type Workspace } from '../components/AppScreen'
+import { AppScreen } from '../components/AppScreen'
 import { CaptureForm } from '../components/CaptureForm'
 import { Mark } from '../components/Logo'
 import { Console } from '../components/sections/Console'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { RecipeKit } from '../components/sections/RecipeKit'
+import { drawnFor, type Workspace } from '../components/workspace'
 import { nav } from '../content/nav'
 import { isRealRun, recipePage as ui } from '../content/recipe-page'
 import type { AudienceId, Recipe } from '../content/types'
@@ -28,10 +29,9 @@ const AUDIENCE: Record<AudienceId | 'developers', { label: string; to: string }>
   [...nav.solutions.items, ...nav.links].map((p) => [p.to.slice(1), { label: p.label, to: p.to }]),
 ) as Record<AudienceId | 'developers', { label: string; to: string }>
 
-/* Whose workspace the screen and the console show: the one the recipe's screen is drawn for (src/screens), so the
-   hero screen and the console's crumb name the same workspace. */
-const SCREENS = import.meta.glob('../screens/html/*.html', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
-const workspaceOf = (r: Recipe): Workspace => (SCREENS[`../screens/html/${r.hero.screen}.html`]?.includes('Your agency') ? 'agency' : 'company')
+/* Whose workspace the screen and the console show: the one the recipe's screen is drawn for (components/workspace.ts),
+   so the hero screen and the console's crumb name the same workspace. */
+const workspaceOf = (r: Recipe): Workspace => drawnFor(r.hero.screen)
 
 function Arrow({ className = 'ob-btn-glyph ob-btn-arrow' }: { className?: string }) {
   return (

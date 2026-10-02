@@ -3,15 +3,12 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 /* Adds the "in" state once an element scrolls into view. Used for reveal on scroll and to start animations. */
 export function useInView<T extends Element>(threshold = 0.2) {
   const ref = useRef<T>(null)
-  const [inView, setInView] = useState(false)
+  /* Without an observer (very old browsers) the element counts as seen from the start. */
+  const [inView, setInView] = useState(() => typeof window !== 'undefined' && !('IntersectionObserver' in window))
 
   useEffect(() => {
     const el = ref.current
     if (!el || inView) return
-    if (!('IntersectionObserver' in window)) {
-      setInView(true)
-      return
-    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

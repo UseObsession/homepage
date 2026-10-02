@@ -67,5 +67,9 @@
 .s-status { display: inline-grid; place-items: center; flex: none; color: currentColor; }
 .s-status svg { display: block; }
 
+/* An app screen reached client side holds its window's room (720 x 450) while its HTML and CSS arrive, so nothing
+   below it moves when it lands (components/AppScreen). */
+.ilwrap:empty { aspect-ratio: 16 / 10; }
+
 /* The quiet "Example" tag under every app screen (components/AppScreen): sentence case, the caption type, never a badge. */
 .s-screen-note { margin: var(--ob-space-8, 8px) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; }

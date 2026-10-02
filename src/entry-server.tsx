@@ -18,3 +18,4 @@ export function render(url: string) {
 export { absolute, entries, entryFor, notFound, SITE } from './content/meta'
 export { jsonLd, jsonLdScript } from './lib/jsonld'
 export { CONTROLLER, llms } from './content/site'
+export { AGENCY_SCREENS } from './components/workspace'

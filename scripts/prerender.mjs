@@ -23,6 +23,7 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { build } from 'vite'
+import { purgeCss } from './purge-css.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const server = join(root, 'dist-server')
@@ -31,16 +32,32 @@ const LAB = process.env.VITE_LAB === '1'
 const dist = [join(root, 'dist', 'client'), join(root, 'dist')].find((d) => existsSync(join(d, 'index.html')))
 if (!dist) throw new Error('No built index.html in dist/ or dist/client/. Run vite build first.')
 
+/* The server build renders every app screen into the page: components/screens.ts (the browser's, which fetches a screen
+   only on a client side move) is swapped for screens.server.ts, which has every screen at hand. */
 await build({
   configFile: false,
   root,
   logLevel: 'warn',
   plugins: [react()],
+  resolve: { alias: [{ find: /^\.\/screens$/, replacement: join(root, 'src/components/screens.server.ts') }] },
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER } = await import(pathToFileURL(join(server, 'entry-server.js')).href)
+const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS } = await import(pathToFileURL(join(server, 'entry-server.js')).href)
 const template = await readFile(join(dist, 'index.html'), 'utf8')
+
+/* Each app screen's own CSS, built as its own file (vite.config.ts: build.manifest). A page links the CSS of the screens
+   it shows (AppScreen's data-screen) right after the site's stylesheet, so they apply before the first paint and win
+   over the screens' shared base. The manifest itself is not part of the site, so it goes once read. */
+const manifestFile = join(dist, '.vite', 'manifest.json')
+const manifest = existsSync(manifestFile) ? JSON.parse(await readFile(manifestFile, 'utf8')) : {}
+const screenCss = new Map(
+  Object.entries(manifest)
+    .map(([src, m]) => [src.match(/^src\/screens\/css\/([\w-]+)\.css$/)?.[1], m.file])
+    .filter(([name, file]) => name && file),
+)
+await rm(join(dist, '.vite'), { recursive: true, force: true })
+const stylesheet = /<link rel="stylesheet"[^>]*href="\/assets\/index-[^"]+\.css"[^>]*>/
 if (!template.includes('<div id="root"></div>')) throw new Error('dist/index.html is already prerendered. Run vite build first.')
 
 const problems = []
@@ -94,6 +111,9 @@ function page(e, rendered, opts) {
      the head, beside the font's, not inside the root React hydrates. */
   const hints = rendered.match(/^(?:<link rel="preload"[^>]*\/>)+/)?.[0] ?? ''
   const appHtml = rendered.slice(hints.length)
+  const screens = [...new Set([...appHtml.matchAll(/\sdata-screen="([\w-]+)"/g)].map((m) => m[1]))]
+  for (const s of screens) if (!screenCss.has(s) && existsSync(join(root, `src/screens/css/${s}.css`))) fail(`${e.meta.path}: no built CSS for the ${s} screen.`)
+  const screenLinks = screens.filter((s) => screenCss.has(s)).map((s) => `<link rel="stylesheet" crossorigin href="/${screenCss.get(s)}">`)
   const preloads = [
     ...[mainFont, monoFont].filter(Boolean).map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`),
     ...(hints.match(/<link[^>]*\/>/g) ?? []),
@@ -102,6 +122,7 @@ function page(e, rendered, opts) {
   const html = template
     .replace(/<title>[\s\S]*?<\/title>/, () => [...preloads, `<title>${esc(e.meta.title)}</title>`].join('\n    '))
     .replace(/<meta\s+name="description"[\s\S]*?\/>/, () => `<meta name="description" content="${esc(e.meta.description)}" />`)
+    .replace(stylesheet, (link) => [link, ...screenLinks].join('\n    '))
     .replace('</head>', () => `    ${head(e, opts)}\n  </head>`)
     .replace('<div id="root"></div>', () => `<div id="root">${appHtml}</div>`)
   if (html.includes('<div id="root"></div>')) throw new Error(`Nothing rendered for ${e.meta.path}`)
@@ -362,6 +383,14 @@ for (const { e, app } of rendered) {
   }
 }
 
+/* The browser never loads a screen to see whose workspace it shows, so components/workspace.ts lists the agency ones:
+   every screen that says "Your agency" must be on it. */
+for (const f of readdirSync(join(root, 'src/screens/html')).filter((f) => f.endsWith('.html'))) {
+  const name = f.slice(0, -5)
+  if ((await readFile(join(root, 'src/screens/html', f), 'utf8')).includes('Your agency') && !AGENCY_SCREENS.has(name))
+    fail(`The ${name} screen is drawn for an agency: add it to AGENCY_SCREENS in src/components/workspace.ts.`)
+}
+
 /* Every internal link lands on a page, a redirect or a file. */
 const known = new Set(entries.map((e) => e.meta.path))
 const redirects = existsSync(join(dist, '_redirects'))
@@ -386,6 +415,10 @@ for (const { e, app } of [...rendered, { e: notFound, app: render('/404') }])
   if (/\[(registered|company name|address|placeholder|todo)[^\]]*\]/i.test(app)) fail(`${e.meta.path}: a bracketed placeholder is on the page.`)
 
 await rm(server, { recursive: true, force: true })
+
+/* The stylesheet every page blocks on, without the rules no page uses (scripts/purge-css.mjs). */
+const purged = await purgeCss(dist)
+if (purged) notes.push(`css: ${purged.to}, ${Math.round(purged.before / 1024)} KB to ${Math.round(purged.after / 1024)} KB (${purged.dropped} unused rules dropped).`)
 
 for (const n of [...new Set(notes)]) console.warn(`  note: ${n}`)
 if (problems.length) {
