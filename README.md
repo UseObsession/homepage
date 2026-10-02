@@ -5,7 +5,7 @@ The marketing site, rebuilt in React (Vite, TypeScript, React Router) from the s
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # static files in dist/
+npm run build    # static files in dist/, every page prerendered to HTML
 ```
 
 ## Where things live
@@ -21,6 +21,14 @@ npm run build    # static files in dist/
   - To change the script: paste `waitlist/Code.js` into the Apps Script editor, save, then Deploy, Manage deployments, edit, New version. The URL stays the same.
   - After adding anything that needs a new permission, run `authorize` once from the editor and tick every box.
   - The form has a hidden `website` field; anything that fills it is treated as a bot and dropped.
+
+## Prerendering
+
+`npm run build` renders every page to its own HTML file (`scripts/prerender.mjs`), so crawlers, link previews and AI agents read the full copy without running JavaScript. React then hydrates that HTML in the browser. It also writes `sitemap.xml`, `robots.txt`, `llms.txt` and a `404.html`.
+
+- Page titles and descriptions live in `src/content/meta.ts`. A new page needs an entry there, or it won't be prerendered.
+- Code that runs while a component renders must not touch `window` or `document`; do that inside `useEffect`.
+- Deploy the whole `dist/` folder. On Cloudflare Pages, keep the build command as `npm run build`.
 
 ## Copy rules
 

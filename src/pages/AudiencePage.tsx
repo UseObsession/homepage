@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Faq, FinalCta, Rules, SampleTeaser, SectionHead, RecipeGrid, UseCases, Watched, type UseCase } from '../components/Blocks'
 import type { QA } from '../content/shared'
@@ -33,9 +32,6 @@ export type Audience = {
 
 /* Agencies, sales and marketing share one layout. Only the words and examples change. */
 export function AudiencePage({ a }: { a: Audience }) {
-  useEffect(() => {
-    document.title = a.docTitle
-  }, [a.docTitle])
 
   return (
     <>

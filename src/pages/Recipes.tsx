@@ -1,12 +1,8 @@
-import { useEffect } from 'react'
 import { FinalCta, InputsOutputs, SectionHead, RecipeGrid } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
 import { allRecipeIds } from '../content/recipes'
 
 export function Recipes() {
-  useEffect(() => {
-    document.title = 'Recipes · Obsession'
-  }, [])
 
   return (
     <>

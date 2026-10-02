@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Navigate, Outlet, Route, Routes, useLocation } fro
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { agencies, marketing, sales } from './content/audiences'
+import { metaFor } from './content/meta'
 import { AudiencePage } from './pages/AudiencePage'
 import { Developers } from './pages/Developers'
 import { Home } from './pages/Home'
@@ -14,7 +15,7 @@ function ScrollManager() {
   const { pathname, hash } = useLocation()
 
   useEffect(() => {
-    if (pathname === '/') document.title = 'Obsession · The intelligence infrastructure for commercial teams'
+    document.title = metaFor(pathname).title
     if (hash) {
       const el = document.getElementById(hash.slice(1))
       if (el) {
@@ -54,10 +55,10 @@ function NotFound() {
   )
 }
 
-export default function App() {
+/* The route tree, shared by the browser (BrowserRouter) and the prerender (StaticRouter). */
+export function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="agencies" element={<AudiencePage key="agencies" a={agencies} />} />
@@ -70,7 +71,14 @@ export default function App() {
           <Route path="sample-report" element={<SampleReport />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-      </Routes>
+    </Routes>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   )
 }

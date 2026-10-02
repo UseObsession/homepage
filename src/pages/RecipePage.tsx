@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Faq, FinalCta, InputsOutputs, SectionHead, RecipeGrid, Watched } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
@@ -14,9 +14,6 @@ export function RecipePage() {
   const { slug = '' } = useParams()
   const t = recipeBySlug[slug]
 
-  useEffect(() => {
-    if (t) document.title = `${t.name} · Obsession`
-  }, [t])
 
   if (!t) {
     return (

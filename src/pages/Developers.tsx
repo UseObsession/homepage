@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Faq, FinalCta, Rules, SectionHead, UseCases } from '../components/Blocks'
 import { Code, sdkExample, webhookExample } from '../components/Code'
 import { Reveal } from '../components/Reveal'
@@ -17,9 +16,6 @@ const blocks = [
 ]
 
 export function Developers() {
-  useEffect(() => {
-    document.title = 'Obsession for founders and developers'
-  }, [])
 
   return (
     <>

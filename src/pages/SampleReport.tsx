@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FinalCta } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
 import { report } from '../content/report'
 import './SampleReport.css'
 
 export function SampleReport() {
-  useEffect(() => {
-    document.title = 'Sample report · Obsession'
-  }, [])
 
   return (
     <>
