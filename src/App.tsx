@@ -4,7 +4,7 @@ import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { absolute, metaFor } from './content/meta'
 import { ctaFor, nav } from './content/nav'
-import { recipeBySlug } from './content/registry'
+import { pages, recipeBySlug } from './content/registry'
 import { Lab } from './Lab'
 import { Agencies } from './pages/Agencies'
 import { Agents } from './pages/Agents'
@@ -115,11 +115,17 @@ function ScrollManager() {
   return null
 }
 
+/* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers) take the nav's call to action from their own
+   capture: the hero form's button, landing on the page's final form (#join). */
+const STORY_CTAS = new Map(Object.values(pages).map((p) => [p.meta.path, { label: p.hero.capture.button, to: '#join' }]))
+
 /* Pages without a form of their own send the nav's call to action to Home's waitlist. */
 const NO_FORM = new Set(['/privacy', '/agents'])
 function ctaAt(pathname: string) {
-  const cta = ctaFor(pathname)
   const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+  const story = STORY_CTAS.get(clean)
+  if (story) return story
+  const cta = ctaFor(pathname)
   return NO_FORM.has(clean) && cta.to.startsWith('#') ? { ...cta, to: `/${cta.to}` } : cta
 }
 
