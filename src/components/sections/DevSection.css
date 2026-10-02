@@ -1,0 +1,100 @@
+/* The developer section: the shared head (the claim, its line, the call to action), then the code beside its app
+   screen. The code is the point, so it takes 7 of 12 columns; the screen stays in view beside long code. */
+
+/* ---- The shared section head (SectionHead, also used by the output viewer) ----------------------------------- */
+.s-sechead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: var(--ob-space-32);
+  margin-bottom: var(--ob-space-block);
+}
+.s-sechead__text { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); min-width: 0; }
+.s-sechead__h { max-width: 20ch; margin: 0; }
+.s-sechead__line { max-width: var(--ob-measure-lede); margin: 0; color: var(--ob-text-2); }
+.s-sechead__cta { text-decoration: none; }
+@media (min-width: 860px) {
+  .s-sechead.has-cta {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: var(--ob-space-48);
+  }
+}
+
+/* ---- The code and its screen --------------------------------------------------------------------------------- */
+.s-dev__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-32);
+}
+.s-dev__code,
+.s-dev__screen { min-width: 0; }
+/* Stacked, the screen keeps to its design width (720) instead of filling a tablet. */
+@media (max-width: 1079px) {
+  .s-dev__screen { width: 100%; max-width: 720px; }
+}
+@media (min-width: 1080px) {
+  .s-dev__body {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+  }
+  .s-dev__screen {
+    position: sticky;
+    top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32));
+  }
+}
+
+/* ---- The code well (tokens.css: --ob-bg-sunken holds code) -------------------------------------------------------- */
+.s-code {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.s-code__pre {
+  margin: 0;
+  padding: var(--ob-space-28) var(--ob-space-32);
+  font: var(--ob-type-code);
+  font-size: var(--ob-type-mono-sm-size);
+  letter-spacing: var(--ob-type-code-tracking);
+  color: var(--ob-text);
+  tab-size: 2;
+}
+@media (max-width: 519px) {
+  .s-code__pre { padding: var(--ob-space-24) var(--ob-space-20) var(--ob-space-20); }
+}
+.s-code-lines { display: block; font: inherit; }
+
+/* 1 block per line. A long line wraps under itself, 2 characters in from where it starts. */
+.s-code-line {
+  display: block;
+  padding-inline-start: calc((var(--s-indent, 0) + 2) * 1ch);
+  text-indent: calc((var(--s-indent, 0) + 2) * -1ch);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.s-code-line:empty::before { content: " "; }
+/* The first line keeps clear of the copy button in the corner. */
+.s-code__pre .s-code-line:first-child { padding-inline-end: var(--ob-space-40); }
+
+/* Quiet colour from the 3 inks only. Mono stays 400. */
+.s-tok-key { color: var(--ob-text); }
+.s-tok-s,
+.s-tok-v { color: var(--ob-text-2); }
+.s-tok-k,
+.s-tok-p,
+.s-tok-c { color: var(--ob-text-3); }
+
+/* The copy button sits in the top right corner of the well; its tooltip opens to the left, inside the well. */
+.s-code__copy {
+  position: absolute;
+  top: var(--ob-space-12);
+  right: var(--ob-space-12);
+}
+.s-code__tip { white-space: nowrap; }
+@media (max-width: 519px) {
+  .s-code__copy { top: var(--ob-space-8); right: var(--ob-space-8); }
+}
+
