@@ -3,13 +3,18 @@ import type { BlogPost } from './types'
 /* Post 4 (docs/SEARCH.md section 5): a source-graded ledger of every speed to lead number in circulation, the 2026
    measurements read with their own caveats, and the own-funnel test (labelled, the owner's OK, never another company's
    staff). Hub: Speed to lead. Thought leadership: studies are named as sources only, no product is reviewed.
-   Every figure was read at its source between 1 and 3 October 2026. The 2007 study is cited from its 2013 archived copy
-   because its original address now serves a rewritten page. No design partner run is included (no written consent
+   Every figure was read at its source between 1 and 3 October 2026. The 2007 study is cited from the original paper
+   MarketingSherpa still hosts; its old address now serves a rewritten page. No design partner run is included (no written consent
    yet); the worked example and both screens are examples and say so. Marklinea's results (due 1 Oct 2026) were not up
    when checked on 3 Oct 2026: re-check before publishing and add them to the ledger if they are. */
 
 const HBR = 'https://hbr.org/2011/03/the-short-life-of-online-sales-leads'
-const LRM = 'https://web.archive.org/web/2013/http://www.leadresponsemanagement.org/lrm_study'
+const LRM = 'https://content.marketingsherpa.com/heap/DG07SFSlides/LeadResponseManagementReport.pdf'
+const LRM_ARCHIVE = 'https://web.archive.org/web/2013/http://www.leadresponsemanagement.org/lrm_study'
+const XANT_INFO = 'https://resources.insidesales.com/wp-content/uploads/2019/11/infograpic-%5FLeadRespMgmt.pdf'
+const XANT21 = 'https://www.insidesales.com/response-time-matters/'
+const LRR2014 = 'https://resources.insidesales.com/wp-content/uploads/2019/11/2014-Lead-Response-Report.pdf'
+const VELOCIFY = 'https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P3000000P3dgaEAB'
 const CLAY = 'https://www.clay.com/blog/claygent-experiment-speed-to-lead'
 const CLAY_BENCH = 'https://makes.clay.com/benchmarks/speed-to-lead'
 const RH = 'https://www.revenuehero.io/blog/b2b-lead-response-times'
@@ -35,9 +40,9 @@ export const post: BlogPost = {
   dek: 'The 5 minute rule came from phone calls at 6 companies in 2007, and it never measured a sale. Every number in circulation, traced to its source and graded, plus a test you can run on your own leads this week.',
   metaTitle: 'Speed to lead statistics: which numbers hold up in 2026',
   description:
-    'The 5 minute rule came from a 2007 InsideSales study, not Harvard. Every speed to lead statistic graded by source, plus how to time your own funnel.',
+    'The 5 minute rule came from a 2007 InsideSales study, not Harvard. Speed to lead statistics graded at their source, plus how to time your own funnel.',
   answer:
-    'The best known speed to lead statistics come from a 2007 InsideSales.com study analysed by James Oldroyd, not from Harvard Business Review: leads called within 5 minutes were 100 times likelier to be reached than leads called after 30. Harvard Business Review’s 2011 audit of 2,241 companies found an average first reply of 42 hours among those that replied, and in September 2026 Clay reported that 68% of 6,346 companies never replied to a demo or contact form.',
+    'The best known speed to lead statistics come from a 2007 InsideSales.com study analysed by James Oldroyd, not from Harvard Business Review: the odds of reaching a lead by phone were 100 times higher within 5 minutes than after 30. Harvard Business Review’s 2011 audit of 2,241 companies found an average first reply of 42 hours among those that replied within 30 days, and in September 2026 Clay reported that 68% of 6,346 companies never replied to a demo or contact form.',
   primaryKeyword: 'speed to lead statistics',
   keywords: [
     'speed to lead harvard study',
@@ -53,7 +58,7 @@ export const post: BlogPost = {
   category: 'Speed to lead',
   published: '2026-10-03',
   updated: '2026-10-03',
-  readingMinutes: 12,
+  readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
     { name: 'James Akinniranye', role: 'Cofounder' },
@@ -63,7 +68,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: `The best known speed to lead statistics come from a 2007 InsideSales.com study analysed by James Oldroyd, not from Harvard Business Review: leads called within 5 minutes were 100 times likelier to be reached than leads called after 30. [Harvard Business Review’s 2011 audit](${HBR}) of 2,241 companies found an average first reply of 42 hours among those that replied, and in September 2026 [Clay reported](${CLAY}) that 68% of 6,346 companies never replied to a demo or contact form.`,
+      text: `The best known speed to lead statistics come from a 2007 InsideSales.com study analysed by James Oldroyd, not from Harvard Business Review: the odds of reaching a lead by phone were 100 times higher within 5 minutes than after 30. [Harvard Business Review’s 2011 audit](${HBR}) of 2,241 companies found an average first reply of 42 hours among those that replied within 30 days, and in September 2026 [Clay reported](${CLAY}) that 68% of 6,346 companies never replied to a demo or contact form.`,
     },
     {
       kind: 'p',
@@ -83,7 +88,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         `**What it timed.** [RevenueHero’s 2024 test](${RH}) counted automatic replies, so 172 companies “replied” within 2 minutes. [Marklinea’s 2026 test](${MARKLINEA}) won’t let an automatic reply stop its clock at all.`,
-        `**Whose leads.** A test lead sent from outside sees everything, silence included. CRM records show only the leads someone logged. That’s how [one 2026 CRM study](${VM}) reports a median reply of 1 hour 42 minutes, while the test lead audits of 2024 and 2026 found about two thirds of companies silent.`,
+        `**Whose leads.** A test lead sent from outside sees everything, silence included. Data from inside a company sees only what its systems caught, and comes from teams that already measure. That’s how [one 2026 study of an agency’s own clients](${VM}) reports a median first touch of 1 hour 42 minutes and 4.8% never answered, while the test lead audits of 2024 and 2026 found about two thirds of companies silent.`,
         '**Which question.** How fast companies reply and whether replying fast changes the outcome need different evidence. Most of the folklore answers one with the other.',
       ],
     },
@@ -91,26 +96,30 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'five-minute-rule', text: 'Where does the 5 minute rule come from?' },
     {
       kind: 'p',
-      text: `From the [Lead Response Management Study](${LRM}), presented in 2007 by InsideSales.com’s chief executive David Elkington and James Oldroyd, then a faculty fellow at MIT. People call it the MIT study. The data came from InsideSales.com’s own system: 3 years of call records from 6 companies, over 15,000 web leads and over 100,000 call attempts.`,
+      text: `From the [Lead Response Management Study](${LRM}), presented on 16 October 2007 at a MarketingSherpa summit by InsideSales.com’s chief executive David Elkington and James Oldroyd, then a faculty fellow at MIT. People call it the MIT study. The data came from InsideSales.com’s own system: 3 years of call records from 6 companies, over 15,000 web leads and over 100,000 call attempts.`,
     },
     {
       kind: 'stat',
       value: '100x',
       label: 'higher odds of reaching a web lead by phone when the first call came within 5 minutes rather than 30. The odds of qualifying it were 21 times higher.',
-      source: 'Lead Response Management Study, InsideSales.com and James Oldroyd, 2007 (archived copy)',
+      source: 'Lead Response Management Study, InsideSales.com and James Oldroyd, presented 16 October 2007',
       href: LRM,
     },
     {
       kind: 'p',
-      text: 'Qualifying meant the lead entered the sales process. From 5 to 10 minutes alone, those odds fell 4 times, and after 20 hours every extra dial made contact less likely.',
+      text: 'A contact was a call that reached a live person and lasted a set time, 2 to 6 minutes depending on the company. Qualifying meant the lead was willing to enter the sales process, sometimes by booking a meeting, and each of the 6 companies marked it its own way. From 5 to 10 minutes alone, those odds fell 4 times, and after 20 hours every extra dial made contact less likely.',
     },
     {
       kind: 'p',
-      text: '2 things get dropped when it’s quoted. The study says it did not address close ratios, so it tells you nothing about sales. And it timed phone calls only, for a company whose lead response software was used heavily by mortgage and insurance firms. Its old web address now serves a rewritten copy beside links to casino reviews; the 2013 archive keeps the original.',
+      text: `2 things get dropped when it’s quoted. The study says it did not address close ratios, so on its own it tells you nothing about sales. And it timed phone calls only, for a company whose lead response software was used heavily by mortgage and insurance firms. Its old web address now serves a rewritten copy beside links to casino reviews; MarketingSherpa still hosts [the original 2007 paper](${LRM}), and the Internet Archive keeps [the 2013 web page](${LRM_ARCHIVE}).`,
     },
     {
       kind: 'p',
-      text: 'Use it to argue for calling web leads within minutes. It never tested whether a fast email reply sells more.',
+      text: 'That paper holds 3 findings the usual citations skip. Oldroyd’s survey of 495 companies found close rates fell nearly 2% for each step of delay, such as 30 minutes instead of 10, on numbers the companies reported themselves. A case study with FranklinCovey found the worst time to call back a buyer who’d left a basket was within the first 24 hours: people who’d stopped without a card to hand, or changed their mind, often reacted badly to a quick call. And Oldroyd said the patterns showed only when several companies’ data was pooled, and varied a lot from one company to the next.',
+    },
+    {
+      kind: 'p',
+      text: 'Use it to argue for calling web leads within minutes, then check the pattern holds for your own buyers. It never tested whether a fast email reply sells more.',
     },
 
     { kind: 'h2', id: 'harvard-business-review-study', text: 'What did the Harvard Business Review study actually find?' },
@@ -135,21 +144,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The authors blamed the system more than the reps: leads pulled from the CRM once a day, salespeople busy with their own prospects, and leads shared out by territory and by rules meant to be fair to reps. Elkington ran InsideSales.com at the time, which the article states.',
+      text: 'The authors gave 3 reasons for the delay: leads pulled from the CRM once a day instead of as they arrived, salespeople chasing leads they’d found themselves, and leads shared among reps and partners by geography and “fairness”. Elkington ran InsideSales.com at the time, which the article states.',
     },
     {
       kind: 'p',
-      text: `Then the 2 studies blur. [Workato’s lead response study](${WORKATO}), dated March 2026, credits Harvard Business Review with the 2007 sample of 15,000 leads and 100,000 call attempts, and turns the 2007 study’s 4 times drop into “400%”.`,
+      text: `Then the 2 studies blur, and the blur started with the sponsor. InsideSales.com, by then called XANT, lists Harvard Business Review as a source on its own [2019 infographic of the 2007 study](${XANT_INFO}), which restates the result as a “900%” jump in contact and a “10X” drop after 5 minutes. [Workato’s lead response study](${WORKATO}), dated March 2026, credits Harvard Business Review with the 2007 sample of 15,000 leads and 100,000 call attempts, and turns the 2007 study’s 4 times drop into “400%”.`,
     },
 
     { kind: 'h2', id: 'statistics-with-no-source', text: 'Which speed to lead statistics have no source?' },
     {
       kind: 'p',
-      text: `The 2 most repeated. “78% of customers buy from the company that responds first” is usually credited to a Lead Connect survey. [Expertise.ai’s July 2026 audit](${EXPERTISE}) found no report, sample or method behind it, and our own search found only pages citing each other. [Some 2026 vendor guides](${MB}) now credit it to Oldroyd’s study, which never looked at sales.`,
+      text: `The 2 most repeated. “78% of customers buy from the company that responds first” is usually credited to a Lead Connect survey. [Expertise.ai’s July 2026 audit](${EXPERTISE}) found no report or method behind it, and our own search found only pages citing each other. [Some 2026 vendor guides](${MB}) now credit it to Oldroyd’s study, which never looked at sales.`,
     },
     {
       kind: 'p',
-      text: `“35 to 50% of sales go to the vendor that responds first” is pinned on InsideSales. [EmailAnalytics](${EA}), whose guide once quoted it without comment, now says it has no traceable primary source. For a business case, use the 7 times from Harvard Business Review. It’s smaller, and somebody measured it.`,
+      text: `“35 to 50% of sales go to the vendor that responds first” is pinned on InsideSales. [EmailAnalytics](${EA}) now says it has no traceable primary source, though its own guide still repeats it further down. For a business case, use the 7 times from Harvard Business Review. It’s smaller, and somebody measured it.`,
     },
     {
       kind: 'table',
@@ -157,15 +166,15 @@ export const post: BlogPost = {
       cols: ['The number', 'Source', 'What it measured', 'Grade'],
       rows: [
         [
-          '100x likelier to reach a lead at 5 minutes than at 30',
+          '100x higher odds of reaching a lead at 5 minutes than at 30',
           `[Lead Response Management Study](${LRM}), 2007`,
-          'Phone calls connecting; 6 companies, 15,000+ leads',
+          'Phone calls reaching a live person for 2 to 6 minutes; 6 companies, 15,000+ leads',
           'Holds up, for phone contact',
         ],
         [
-          '21x likelier to qualify at 5 minutes than at 30',
+          '21x higher odds of qualifying at 5 minutes than at 30',
           'Same study',
-          'Leads entering the sales process; no close rates',
+          'Leads willing to enter the sales process; no close rates',
           'Holds up, for qualification',
         ],
         [
@@ -173,6 +182,12 @@ export const post: BlogPost = {
           `Same study, [often credited to HBR](${WORKATO})`,
           'Qualification odds fell 4 times',
           'Holds up as 4 times; the 400% and the HBR credit are wrong',
+        ],
+        [
+          'Odds of qualifying drop 10x after 5 minutes',
+          `[Drift](${DRIFT}), 2017; [RevenueHero](${RH}), 2024, crediting HBR`,
+          'The 2007 study’s 10 times was contact odds over the first hour',
+          'Misquoted: the study has no 10x after 5 minutes',
         ],
         [
           '42 hour average reply; 23% never reply',
@@ -187,10 +202,28 @@ export const post: BlogPost = {
           'Holds up; a ratio with no baseline',
         ],
         [
+          '47% never reply; first call after a median 3 hours 8 minutes',
+          `[InsideSales.com Lead Response Report](${LRR2014}), 2014`,
+          'Test leads under an alias to 9,538 companies in 2013, sent 8am to 5pm only',
+          'Holds up, for 2013',
+        ],
+        [
           'Only 7% reply within 5 minutes',
           `[Drift](${DRIFT}), 2017`,
           'Test leads to 433 B2B SaaS companies',
           'Holds up; 9 years old',
+        ],
+        [
+          '391% higher conversion from a call within 1 minute',
+          `[Velocify](${VELOCIFY}), 2012`,
+          'Nearly 3.5 million leads at 400+ Velocify clients, first half of 2012',
+          'Directional: vendor data; the chart doesn’t say what the 391% is measured against',
+        ],
+        [
+          'Conversion 8x higher within 5 minutes',
+          `[InsideSales.com, then XANT](${XANT21}), 2021`,
+          '5.7 million inbound leads at 400+ companies; 5 minutes against 5 minutes to 24 hours',
+          'Directional: vendor data, conversion not defined, and only 0.1% of leads were engaged that fast',
         ],
         [
           '78% buy from the company that replies first',
@@ -211,16 +244,16 @@ export const post: BlogPost = {
           'Directional: what buyers say, not what they do',
         ],
         [
-          'Average reply takes 47 hours',
+          'Average reply takes 47 hours; 32% close within 5 minutes',
           `[Optifai](${OPTIFAI}), 2025 to 2026`,
-          'CRM records at 939 companies',
+          'CRM records at 939 B2B SaaS companies, with InsideSales and LeanData reports listed among its sources',
           'Directional: vendor data, no dataset published',
         ],
         [
           '21x qualification lift at 5 minutes, 2026 data',
           `[Visionary Marketing](${VM}), 2026`,
-          'CRM records for 28,400 leads at 184 client accounts',
-          'Directional: the page sets its 21x against 4 different time windows',
+          'Form timestamps and CRM records for 28,400 inbound and outbound leads at 184 client accounts',
+          'Directional: the page sets its own 21x against 4 different windows, from within an hour to over a day',
         ],
         [
           'Median reply is 42 hours, 2026 benchmark',
@@ -243,10 +276,10 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'measurements-2026', text: 'What do the 2026 measurements show?' },
+    { kind: 'h2', id: 'measurements-2026', text: 'What do the 2026 speed to lead benchmarks show?' },
     {
       kind: 'p',
-      text: 'The largest test lead audit is Clay’s. Its agents filled in 6,346 B2B demo and contact forms, sent no follow up, and timed what came back. The results went up on 22 September 2026.',
+      text: 'The newest test lead audit is Clay’s. Its agents filled in 6,346 B2B demo and contact forms, sent no follow up, and timed what came back. The results went up on 22 September 2026.',
     },
     {
       kind: 'stat',
@@ -266,7 +299,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Read it with Clay’s caveats. Every form carried 1 identity: the founder of the startup that built the browser agent, which [Clay’s benchmark page](${CLAY_BENCH}) calls synthetic. Some of the 68% may have ruled him out, correctly. The post doesn’t say the forms told companies an agent had filled them in, and more than 50 companies looked him up and called his real number. It also timed email and phone only.`,
+      text: `Read it with Clay’s own caveats. Every form carried 1 identity, which [Clay’s benchmark page](${CLAY_BENCH}) calls synthetic: the name of the founder of the startup that built its browser agent. Some of the 68% may have ruled him out, correctly; spam filters may have caught the agents’ addresses; and AI judged which replies came from a person. The post doesn’t say the forms told companies an agent had filled them in, and more than 50 companies looked him up and called his real number. It also timed email and phone only.`,
     },
     {
       kind: 'p',
@@ -278,7 +311,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `2 studies from 2026 read CRM records instead. [Optifai](${OPTIFAI}) reports a 47 hour average across 939 companies, with no dataset published. [Visionary Marketing](${VM}) reports a median of 1 hour 42 minutes across 28,400 leads at its clients. Both see only the leads that reached a CRM.`,
+      text: `2 studies from 2026 read companies’ own records instead. [Optifai](${OPTIFAI}) reports a 47 hour average across 939 companies, with no dataset published, and lists InsideSales and LeanData reports among its data sources. [Visionary Marketing](${VM}) reports a median first touch of 1 hour 42 minutes across 28,400 inbound and outbound leads at 184 of its clients. Both measure companies that already track their leads, the sample most likely to look good.`,
     },
     {
       kind: 'p',
@@ -296,13 +329,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `The one to watch is [Marklinea’s test](${MARKLINEA}) of 100 B2B software companies, its method published before any data, which times both the first human reply and the first real answer to a specific question. Results were due on 1 October 2026. When we checked on 3 October, they weren’t up.`,
+      text: `The one to watch is [Marklinea’s test](${MARKLINEA}) of 100 B2B software companies, its method published before any data, which times both the first human reply and the first real answer to a specific question. It uses its own company name and a real email address, but doesn’t tell companies they’re being timed, and says so. Results were due on 1 October 2026. When we checked on 3 October, they weren’t up.`,
     },
 
     {
       kind: 'h2',
       id: 'time-your-own-lead-response',
-      text: 'How do you time your own lead response across form, chat, phone and text?',
+      text: 'How do you test your own lead response time across form, chat, phone and text?',
     },
     {
       kind: 'p',
@@ -313,9 +346,9 @@ export const post: BlogPost = {
       ordered: true,
       items: [
         '**Get the owner’s OK in writing.** Your head of sales, your founder or, for an [agency running lead generation](/agencies), the client. Tell the team tests will arrive, not when.',
-        '**Label every test** with a name like “Test lead, RevOps” and an address you control, such as test-lead@yourcompany.example. If an AI agent sends it, it says so.',
+        '**Label every test** with a name like “Test lead, RevOps” and an address you control, such as testlead@yourcompany.example. If an AI agent sends it, it says so.',
         '**Cover every way in:** each form, site chat, every phone line, your texting number and your published email address, the old contact form included.',
-        '**Ask 1 specific question** in your buyers’ words, one that takes 2 sentences to answer, so you can time the answer as well as the reply.',
+        '**Ask 1 specific question** in your buyers’ words, one that takes 2 sentences to answer, as Marklinea’s test does, so you can time the answer as well as the reply.',
         '**Book 3 slots each working day for a week,** at 09:00, 13:00 and 20:00, plus 1 on Saturday morning. That’s 16 tests, rotated so each channel meets each weekday slot. [Founders who answer leads themselves](/founders) should watch 20:00.',
         '**Set targets before the first test,** or you’ll set them where you landed. When a person replies, tell them it’s the test, thank them and book nothing. Fix the biggest leak, then rerun that slot.',
       ],
@@ -334,11 +367,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A labelled test has 1 limit: once a rep opens it, they know. What it measures well is how long your system takes to put a lead in front of a person, which is where Harvard Business Review’s authors found the time going.',
+      text: 'A labelled test has 1 limit: once a rep opens it, they know. What it measures well is how long your system takes to put a lead in front of a person, which covers 2 of the 3 causes Harvard Business Review’s authors named.',
     },
     {
       kind: 'p',
-      text: 'Pair it with your CRM: for your last 20 inbound leads, note when each arrived, when a person replied and when the question was answered. Calls that rang out and chats that never became leads only show up in the test.',
+      text: 'Pair it with your CRM, a check Marklinea also suggests: for your last 20 inbound leads, note when each arrived, when a person replied and when the question was answered. Calls that rang out and chats that never became leads only show up in the test.',
     },
     {
       kind: 'p',
@@ -349,11 +382,11 @@ export const post: BlogPost = {
       screen: 'inbound',
       workspace: 'company',
       caption:
-        'A labelled test lead at 09:00, 13:00 and 17:00 against a 5 minute target, with the routing fix approved and the 17:00 retest timed.',
+        'The invented example above as the agent logs it: a labelled test lead at 09:00, 13:00 and 17:00 against a 5 minute target, the routing fix approved and the 17:00 retest timed.',
     },
     {
       kind: 'p',
-      text: 'The same test works on a free trial, a booking or a checkout, which is [mystery shopping your own business](/recipes/mystery-shopper). We also compared the [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools) that run tests like these.',
+      text: 'The same test works on a free trial, a booking or a checkout, which is [mystery shopping your own business](/recipes/mystery-shopper); our [sample output](/sample-output) shows one we ran on a real store in September 2026. We also compared the [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools) that run tests like these.',
     },
     {
       kind: 'cta',
@@ -379,25 +412,26 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Then track 3 numbers, in this order: the share of leads that never get a reply, the 90th percentile and the median. In the test lead audits, companies that never replied went from 23% in 2011 to 63.5% in 2024 and 68% in 2026. Samples and methods differ, so read that as a warning rather than a trend line.',
+      text: 'Then track 3 numbers, in this order: the share of leads that never get a reply, the 90th percentile and the median. In the test lead audits, companies that never replied went from 23% in 2011 to 47% in 2013, 63.5% in 2024 and 68% in 2026. Samples and methods differ, so read that as a warning rather than a trend line.',
+    },
+    {
+      kind: 'p',
+      text: 'For a client report or a [sales pilot](/sales), add wrong answers to those numbers. A fast reply that gets the price wrong isn’t progress.',
     },
     {
       kind: 'screen',
       screen: 'pilot',
       workspace: 'company',
       caption:
-        'A 30 day pilot on an account’s own inbound, run with their OK: answered within an hour goes from 6 to 17 of 20 questions, the median reply from 9 h 40 m to 38 m, wrong answers from 5 to 1.',
-    },
-    {
-      kind: 'p',
-      text: 'For a client report or a [sales pilot](/sales), add wrong answers to those numbers. A fast reply that gets the price wrong isn’t progress.',
+        'An example, not a client result: a 30 day pilot on an account’s own inbound, run with their OK. Answered within an hour goes from 6 to 17 of 20 questions, the median reply from 9 h 40 m to 38 m, wrong answers from 5 to 1.',
     },
 
     { kind: 'h2', id: 'speed-to-lead-in-b2b', text: 'Does speed to lead matter in B2B?' },
     {
       kind: 'p',
-      text: `Yes, though the evidence is thinner than the folklore. Harvard Business Review’s 1.25 million leads included 13 B2B companies, and every test lead audit here since 2017 is B2B. The buyer has changed: [Gartner’s survey of 646 B2B buyers](${GARTNER}), published in March 2026, found 67% prefer to buy without a sales rep, and 45% had used AI in a recent purchase. A buyer who’d rather skip the rep still wants an answer, so time the first useful answer as well as the first reply.`,
+      text: `Yes, though the evidence is thinner than the folklore. Harvard Business Review’s 1.25 million leads included 13 B2B companies, and every test lead audit here since 2017 is B2B. The buyer has changed: [Gartner’s survey of 646 B2B buyers](${GARTNER}), run in August and September 2025 and published in March 2026, found 67% prefer to buy without a sales rep, and 45% had used AI in a recent purchase. A buyer who’d rather skip the rep still wants an answer, so time the first useful answer as well as the first reply.`,
     },
+    { kind: 'h2', id: 'questions', text: 'Time your own leads, never a rival’s staff' },
     {
       kind: 'faq',
       items: [
@@ -411,7 +445,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can I test a competitor’s response time?',
-          a: 'We don’t, and we’d advise against it. A test lead at another company spends their staff’s time on a buyer who doesn’t exist: in Clay’s study, 445 salespeople tried to start a sales conversation and more than 50 companies rang a real founder’s own number. Read what’s public instead, such as their stated reply times and what their chat bot says, and test your own funnel for a number you can change. [Is it legal to mystery shop your competitors?](/blog/is-it-legal-to-mystery-shop-competitors) covers where the lines sit.',
+          a: 'We don’t, and we’d advise against it. A test lead at another company spends their staff’s time on a buyer who doesn’t exist: in Clay’s study, 445 replies came from salespeople trying to start a sales conversation, and more than 50 companies rang a real founder’s own number. Read what’s public instead, such as their stated reply times and what their chat bot says, and test your own funnel for a number you can change. [Is it legal to mystery shop your competitors?](/blog/is-it-legal-to-mystery-shop-competitors) covers where the lines sit.',
         },
         {
           q: 'Does an automatic reply count as a response?',
@@ -419,7 +453,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How should we handle leads that arrive after hours?',
-          a: 'Test them first, because the classic studies say little about evenings: the 2007 study left the hours before 8am and after 6pm out of its time of day analysis. Send test leads at 20:00 and on a Saturday, then give out of hours leads an instant reply that answers what it can and says when a person will follow up.',
+          a: 'Test them first, because the classic studies say little about evenings: the 2007 study left the hours before 8am and after 6pm out of its time of day analysis, and InsideSales.com’s 2013 audit sent its test leads only between 8am and 5pm. Send test leads at 20:00 and on a Saturday, then give out of hours leads an instant reply that answers what it can and says when a person will follow up.',
         },
       ],
     },
@@ -433,10 +467,25 @@ export const post: BlogPost = {
   sources: [
     { title: 'The Short Life of Online Sales Leads', publisher: 'Harvard Business Review', url: HBR, date: '2011-03-01' },
     {
-      title: 'The Lead Response Management Study (2007), archived copy',
-      publisher: 'InsideSales.com and James Oldroyd, via the Internet Archive',
+      title: 'How Much Time Do You Have Before Web-Generated Leads Go Cold? Lead Response Management research summary',
+      publisher: 'InsideSales.com and James Oldroyd, via MarketingSherpa',
       url: LRM,
+      date: '2007-10-16',
     },
+    {
+      title: 'The Lead Response Management Study, archived copy',
+      publisher: 'LeadResponseManagement.org, via the Internet Archive',
+      url: LRM_ARCHIVE,
+    },
+    {
+      title: 'Best Practices for Lead Response Management (infographic)',
+      publisher: 'XANT (InsideSales.com)',
+      url: XANT_INFO,
+      date: '2019-09-17',
+    },
+    { title: 'Lead Response Study 2021: Response Time Matters', publisher: 'InsideSales.com (XANT)', url: XANT21, date: '2021-02-17' },
+    { title: 'Annual 2014 Lead Response Report', publisher: 'InsideSales.com (XANT)', url: LRR2014 },
+    { title: 'The Ultimate Contact Strategy (2012)', publisher: 'Velocify (then Leads360)', url: VELOCIFY },
     { title: 'We asked 6,346 companies for a demo. Most never wrote back.', publisher: 'Clay', url: CLAY, date: '2026-09-22' },
     { title: 'The 2026 Speed to Lead Benchmark', publisher: 'Clay', url: CLAY_BENCH },
     { title: 'We Tested Lead Response Times Of 1000 B2B Sales Teams', publisher: 'RevenueHero', url: RH, date: '2024-03-20' },
@@ -444,7 +493,7 @@ export const post: BlogPost = {
     { title: 'B2B Lead Response Times: What We Learned from 114 Companies', publisher: 'Workato', url: WORKATO, date: '2026-03-19' },
     { title: 'Speed-to-Lead Statistics, With Folklore Debunked', publisher: 'Expertise AI', url: EXPERTISE, date: '2026-07-06' },
     { title: 'Lead Response Time: Benchmarks, Sources and How to Measure It', publisher: 'EmailAnalytics', url: EA, date: '2026-09-08' },
-    { title: 'How Live Chat Exposes a Fatal Flaw in Your Go-to-Market', publisher: 'HubSpot Research', url: HUBSPOT },
+    { title: 'How Live Chat Exposes a Fatal Flaw in Your Go-to-Market', publisher: 'HubSpot Research', url: HUBSPOT, date: '2018-06-21' },
     { title: 'Lead Response Time Benchmarks (939 Companies)', publisher: 'Optifai', url: OPTIFAI, date: '2026-04-20' },
     { title: 'Lead Response Time Statistics 2026', publisher: 'Visionary Marketing', url: VM, date: '2026-05-31' },
     { title: 'The 42-hour problem', publisher: 'Tenbound', url: TENBOUND, date: '2026-06-26' },
@@ -470,6 +519,7 @@ export const post: BlogPost = {
     'best-ai-mystery-shopping-tools',
     'recipe:speed-to-lead',
     'recipe:mystery-shopper',
+    '/sample-output',
     '/sales',
     '/founders',
     '/agencies',
