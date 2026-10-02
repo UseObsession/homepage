@@ -106,7 +106,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'It spots each customer’s moment',
-      line: 'A delivery, a solved ticket or the end of onboarding, from the orders, help desk and onboarding tools you connect, read only.',
+      line: 'A delivery, a solved ticket or the end of onboarding, from the orders, helpdesk and onboarding tools you connect, read only.',
     },
     {
       title: 'It asks everyone the same way',

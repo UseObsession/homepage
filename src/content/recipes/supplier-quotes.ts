@@ -65,7 +65,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Price rise',
+    tab: 'Example: a box supplier’s price rise',
     recipe: 'supplier-quotes',
     task: 'Our box supplier wants 18% more from 1 Nov. Get quotes for our real order, push back with the best 3, and chase until the price is in writing.',
     targets: 'Your supplier, and 16 box makers on your list',

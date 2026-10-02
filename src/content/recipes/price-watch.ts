@@ -66,7 +66,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Black Friday week',
+    tab: 'Example: Black Friday week',
     recipe: 'prices',
     task: 'Check our 3 rivals’ prices, offers and delivery every morning. Tell me the moment one undercuts us.',
     targets: 'rival-a.example, rival-b.example, rival-c.example',

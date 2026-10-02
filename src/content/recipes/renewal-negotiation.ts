@@ -1,9 +1,12 @@
 import type { Capture, Recipe } from '../types'
 
-/* Renewal negotiation (/recipes/renewal-negotiation). Keep and grow customers. Screen: renewal (a logistics customer, $48,000 a
-   year, renews 1 Dec; 4 Sep their procurement agent, declared as AI, asks for 22% off; 10 minutes later the real usage
-   goes back with 6% for a 2 year term, from the approved limits; 12 Sep their agent says usage fell, the record shows
-   it rose 14%; 1 Oct their agent accepts 6% for 2 years, you tap OK and sign; 29 Nov paid through their supplier portal).
+/* Renewal negotiation (/recipes/renewal-negotiation). Keep and grow customers. Screen: renewal (Dental group, $48,000 a
+   year, renews 21 Nov; round 1, Mon 09:12, their declared procurement agent asks "18% off, or we go to tender"; Mon
+   14:40, the same day, your agent answers with the signed usage, 112 of 120 seats used, 4,820 visits booked, usage up
+   14% in 90 days, and offers 5% for a 2 year term from the grid AM approved (1 year 0% or 2% paid up front, 2 years 5%
+   or 7%, 3 years 8% or 10%; cap 10% off, floor $43,200); round 2, Tue 10:05, they accept; held at $45,600, 95% of list,
+   against $39,360 asked; signature requested, then PO, then paid on 30 days). The run tells that story (3 Oct): round 1
+   on Mon 7 Sep, 120 days out is 24 Jul and 90 days out 23 Aug; $45,600 - $39,360 = $6,240 a year kept.
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 3 (research name retired; the plain name is Renewal negotiation).
    It upgrades Business case from a renewal document to a closed renewal.
    Red lines held: declared as AI for the seller, and it asks the other side's agent to say it's AI and whom it acts for;
@@ -45,7 +48,7 @@ export const recipe: Recipe = {
     description:
       'When a customer or its AI agent asks for a discount at renewal, your declared AI agent answers the same day with real usage, inside your limits. You sign.',
     answer:
-      'Renewal negotiation is an Obsession recipe. When a customer, or the AI agent negotiating for it, asks for a discount at renewal, a declared AI agent answers each round the same day with the customer’s real usage, offers only what you approved in advance, and takes the deal to signature, purchase order and payment. People sign.',
+      'Renewal negotiation is an Obsession recipe. When a customer, or the AI agent negotiating for it, asks for a discount at renewal, a declared AI agent answers each round the same day with the customer’s real usage, offers only what you approved in advance, and takes the deal to signature, PO and payment. People sign.',
     ogImage: '/og/renewal-negotiation.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -72,22 +75,21 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: a $48,000 renewal',
     recipe: 'renewal',
-    task: 'A logistics customer renews on 1 Dec at $48,000 a year. Answer every round inside my limits, bring me anything outside them, and take it to signature and payment.',
-    targets: 'A logistics customer, $48,000 a year',
+    task: 'Dental group renews on 21 Nov at $48,000 a year. Answer every round inside my limits, bring me anything outside them, and take it to signature and payment.',
+    targets: 'Dental group, $48,000 a year',
     journey: ['Send the quote, after your OK', 'Answer every round the same day', 'Offer only what you approved', 'Take it to signature and payment'],
     schedule: 'From 120 days before renewal until paid',
     report: 'Each round in Slack, the deal in your CRM',
     kit: ['Agent ID, declared as AI', 'Own inbox and line', 'Usage, read only', 'Your limits'],
     events: [
-      { time: '3 Aug, 09:00', text: 'Contract, usage and tickets read. Renews 1 Dec at $48,000. Usage up 14% this year.' },
-      { time: '2 Sep, 10:00', text: 'You check the usage and approve the quote. It goes out with the usage behind it.' },
-      { time: '4 Sep, 14:12', text: 'Their procurement agent, declared as AI, asks for 22% off.' },
-      { time: '4 Sep, 14:22', text: 'Answered in 10 minutes: their usage, and 6% off for a 2 year term, from your limits.' },
-      { time: '12 Sep, 11:05', text: 'Their agent says usage fell. The signed record, sent back the same day, shows it rose 14%.' },
-      { time: '1 Oct, 16:30', text: 'Their agent accepts 6% for 2 years. You tap OK and sign. The agent chases their signer.' },
-      { time: '29 Nov, 09:40', text: 'Invoice accepted in their supplier portal. Paid 2 days before renewal.' },
+      { time: '24 Jul, 09:00', text: 'Contract, usage and tickets read. Renews 21 Nov at $48,000.' },
+      { time: '23 Aug, 10:00', text: 'You check the usage and approve the quote. It goes out with the usage behind it.' },
+      { time: '7 Sep, 09:12', text: 'Their procurement agent, declared as AI, asks for 18% off, or they go to tender.' },
+      { time: '7 Sep, 14:40', text: 'Answered the same day with the signed usage: 112 of 120 seats used, 4,820 visits booked, usage up 14% in 90 days. The offer: 5% off for a 2 year term, from your limits.' },
+      { time: '8 Sep, 10:05', text: 'Their agent accepts 5% for 2 years. The order form goes out for signature after your OK, and the agent chases their signer.' },
+      { time: '19 Nov, 09:40', text: 'Invoice accepted in their supplier portal. Paid 2 days before renewal.' },
     ],
-    finding: 'Their agent asked for 22% off. They renewed at 6% for 2 years: $7,680 a year kept, 16% of $48,000.',
+    finding: 'Their agent asked for 18% off. They renewed at 5% for 2 years: $45,600 a year, $6,240 more than they asked to pay.',
     fix: 'The next renewal opens 120 days out, with 2 years of usage. Its first quote waits for your OK.',
     ledger: 'Example run. Every ask, answer, offer and approval signed and dated.',
   },
@@ -95,7 +97,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Set your limits once',
-      line: 'What you’ll give and what for, say up to 6% off for a 2 year term or 4% for paying up front, and never a discount for nothing. The agent can’t go past them.',
+      line: 'What you’ll give and what for, say 5% off for a 2 year term and 2% more for paying up front, and never a discount for nothing. The agent can’t go past them.',
     },
     {
       title: 'It sends the quote before they ask',
@@ -107,7 +109,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'It gets the deal signed and paid',
-      line: 'You sign. It chases their signer, files the invoice in their supplier portal against the new purchase order, and chases the payment until it lands.',
+      line: 'You sign. It chases their signer, files the invoice in their supplier portal against the new PO, and chases the payment until it lands.',
     },
   ],
 
@@ -138,7 +140,7 @@ export const recipe: Recipe = {
       group: 'After the yes',
       items: [
         { title: 'Signature', line: 'The agreed order form goes out for signature. People sign: you, then their signer, chased until done.' },
-        { title: 'Purchase order and invoice', line: 'The invoice filed in their supplier portal against the new purchase order, and checked as accepted.' },
+        { title: 'PO and invoice', line: 'The invoice filed in their supplier portal against the new PO, and checked as accepted.' },
         {
           title: 'Payment',
           line: 'A failed card or a late invoice gets an email, a call to the billing number they gave you and a payment link. It never takes card details.',
@@ -154,7 +156,7 @@ export const recipe: Recipe = {
       { format: 'Your OK, when it’s needed', line: 'In Slack or email: the first quote and its usage, anything outside your limits, any change to terms, every signature.' },
       { format: 'The usage behind every answer', line: 'The export each answer relied on, signed, so a disputed figure can be checked.' },
       { format: 'Your CRM, kept current', line: 'Stage, price, term and next step on the renewal record, after every round.' },
-      { format: 'Cash in', line: 'The purchase order, the accepted invoice and the payment, matched to the renewal.' },
+      { format: 'Cash in', line: 'The PO, the accepted invoice and the payment, matched to the renewal.' },
       { format: 'A weekly note', line: 'Renewals in play, the price held so far, and anything waiting on you.' },
     ],
   },
@@ -162,7 +164,7 @@ export const recipe: Recipe = {
   settings: [
     { k: 'Renewals', v: 'Every renewal on your book, or the ones you pick' },
     { k: 'Start', v: '120 days before renewal, or the date you choose' },
-    { k: 'Limits', v: 'What you’ll give and for what, for example up to 6% for a 2 year term, up to 4% for paying up front' },
+    { k: 'Limits', v: 'What you’ll give and for what, for example 5% for a 2 year term, 2% more for paying up front, and never more than 10%' },
     { k: 'Channels', v: 'Email, phone and straight to the buyer’s AI agent' },
     { k: 'Needs your OK', v: 'The first quote and its usage, anything outside your limits, any change to terms, their own contract in place of yours' },
     { k: 'Signing', v: 'Always a person' },
@@ -221,7 +223,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is it different from Business case?',
-        a: 'Business case proves your value before the renewal. Renewal negotiation puts that proof to work: it answers every round, then gets the signature, the purchase order and the payment.',
+        a: 'Business case proves your value before the renewal. Renewal negotiation puts that proof to work: it answers every round, then gets the signature, the PO and the payment.',
       },
       {
         q: 'How does it chase payment?',

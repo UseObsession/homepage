@@ -11,6 +11,10 @@ import type { UseCaseStudy } from '../types'
    Fixed (red lines and copy rules): inboxes and phones are kept open continuously, not "for weeks"; the members say
    they're AI; "the identities" is "the members", so nothing reads as an invented identity; basket and delivery fee
    readings need the retailer's OK and stop before payment; numerals; no meta headings.
+   Narrative edit (3 Oct): the hero is a complete claim and names the declared AI members; How says what the firm sends
+   and what each member does; the things to sell read as 6 jobs, each example true to the screens (Brand A's macinato
+   16% off for Corvalle members, Rival B's 21%); the proof's 2 steps say what each row holds and where it sits; the real
+   run's line states what it found.
    Screens: members (the collecting), memberfeed (what lands in the platform). The set up phase shows its chips. */
 
 export const study: UseCaseStudy = {
@@ -35,8 +39,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'The prices retailers only show after sign up',
-    sub: 'You already watch flyers, shelves, online prices and newsletters. Obsession adds what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform with the proof.',
+    headline: 'AI agents bring back the prices retailers show only to members.',
+    sub: 'You already watch flyers, shelves, online prices and newsletters. Declared AI members add what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, each sent to your platform with its proof.',
     example: {
       chips: ['Example: a price intelligence firm', 'Its client: a coffee brand', '120 Italian grocery retailers'],
       note: 'The firm, its client, the retailers, the products, the prices and the numbers on this page are made up.',
@@ -72,7 +76,7 @@ export const study: UseCaseStudy = {
   },
 
   how: {
-    heading: 'From a retailer list to a new domain in your platform.',
+    heading: 'You choose the retailers and the basket. A declared AI member joins each one.',
     sub: 'A price intelligence firm adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers.',
     steps: [
       {
@@ -119,7 +123,7 @@ export const study: UseCaseStudy = {
             title: 'It keeps the inbox open',
             line: 'Welcome offers, member emails, texts and win back coupons arrive over days and weeks. Each one is captured as it lands, with its dates and conditions.',
             example:
-              'Day 7, by text: “Solo con la Carta: −20% sul caffè fino a domenica 11/10”, 20% off coffee for card holders, 5 to 11 October. Day 21: a win back coupon, €10 off €50, until Friday.',
+              'Day 7, by text: “Solo con la Carta: −20% sul caffè fino a domenica 11/10”, 20% off coffee for card holders, 5 to 11 October. Day 21: a win back coupon, 10 € off 50 €, until Friday.',
           },
         ],
       },
@@ -163,7 +167,7 @@ export const study: UseCaseStudy = {
   },
 
   outputs: {
-    heading: 'A new module for the clients you already have.',
+    heading: 'Sell it as a new module to the clients you already have.',
     groups: [
       {
         label: 'For brands',
@@ -175,12 +179,12 @@ export const study: UseCaseStudy = {
             example: 'The 20% coffee offer reached Corvalle members, 5 to 11 October.',
           },
           {
-            title: 'See who discounts you to members',
+            title: 'See whose products get the member price',
             line: 'Member price against public price, per retailer and per item.',
-            example: 'Rival B is 21% cheaper for Corvalle members.',
+            example: 'At Corvalle, members get Rival B’s macinato 21% off and Brand A’s 16% off.',
           },
           {
-            title: 'Price erosion behind the login',
+            title: 'Catch price erosion behind the login',
             line: 'Which retailer goes below a threshold first, for members only.',
             example: 'Brand A macinato: 2,49 € for Corvalle members on 14 October.',
           },
@@ -196,12 +200,12 @@ export const study: UseCaseStudy = {
             example: 'Corvalle: 5 € off a 30 € shop, valid 14 days.',
           },
           {
-            title: 'Rivals’ member prices on your basket',
+            title: 'Read rivals’ member prices on your basket',
             line: 'Your tracking basket, read as a member at each rival.',
             example: '14 of 40 items carry a member price at Corvalle.',
           },
           {
-            title: 'The sequence after sign up',
+            title: 'Map the sequence after sign up',
             line: 'Every email and text a rival sends new members, by day.',
             example: '9 messages in 30 days, 3 with a coupon.',
           },
@@ -212,18 +216,18 @@ export const study: UseCaseStudy = {
 
   proof: {
     heading: 'Member offers land in your platform, next to flyers and newsletters.',
-    line: 'Each one arrives as a row with its proof, and takes its place on your promo calendar beside every other channel.',
+    line: 'Each arrives as a row with its proof, in the feed your platform already takes.',
     screen: 'memberfeed',
     steps: [
       {
-        title: 'An identity card for every observation',
+        title: 'A full record behind every observation',
         line: 'Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations already do.',
         example:
           'Corvalle, SMS to members, Mon 5 Oct 2026, 11:15: 20% off coffee for card holders, valid 5 to 11 October in all stores, with the message as received.',
       },
       {
-        title: 'Next to flyers, web campaigns and newsletters',
-        line: 'Member offers become 1 more line on your promo calendar, so your client sees every channel at once: did the coffee promotion reach the flyer, the website, the newsletter or only the members?',
+        title: '1 more line on your promo calendar',
+        line: 'Member offers sit beside flyers, web campaigns and newsletters, so your client sees every channel at once: did the coffee promotion reach the flyer, the website, the newsletter or only the members?',
         example:
           'Only members saw it. 5 to 11 October: 20% off coffee for card holders. That week’s flyer had no coffee, and no web campaign or newsletter mentioned it.',
       },
@@ -240,7 +244,7 @@ export const study: UseCaseStudy = {
     sample: {
       label: '1 real run',
       title: 'Sample output',
-      line: 'A real store check from September 2026, shown in every format it can arrive in.',
+      line: 'A UK store checked in September 2026: 1 basket and 1 checkout left, and nobody wrote to either in 48 hours.',
       cta: { label: 'See it', to: '/sample-output' },
     },
   },

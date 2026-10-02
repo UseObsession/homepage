@@ -35,7 +35,7 @@ export const recipe: Recipe = {
   line: 'Sets you up in a new customer’s supplier portal the day they sign, then chases every invoice until it’s paid.',
   gets: 'New customers set up in their supplier portal from the day they sign, and every overdue invoice chased until it’s paid.',
   kit: [
-    'An agent ID that names your company',
+    'An agent ID, declared as AI for your company',
     'Its own billing inbox and phone line',
     'Your invoices, read only',
     'Your company pack: tax, insurance and security answers',
@@ -74,19 +74,19 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Overdue invoices',
+    tab: 'Example: overdue invoices',
     recipe: 'get-paid',
     task: 'Chase our 15 overdue invoices until they’re paid. Email first, call on day 5, stop if asked, and bring any dispute to me.',
     targets: '15 overdue invoices, from your accounting tool',
     journey: ['Email a reminder', 'Call from its own line', 'Match every payment', 'Bring disputes to you'],
     schedule: 'Every weekday until paid',
     report: 'A daily note and a cash sheet',
-    kit: ['Agent ID, names your company', 'Billing inbox', 'Phone line', 'Invoices, read only'],
+    kit: ['Agent ID, declared as AI for your company', 'Billing inbox', 'Phone line', 'Invoices, read only'],
     events: [
       { time: 'Mon 09:00', text: '15 overdue invoices read from your books: $54,600, 6 to 34 days late.' },
       { time: 'Mon 09:10', text: 'A reminder to each customer from your declared AI agent, invoice and payment link attached.' },
       { time: 'Tue 10:30', text: 'Dental group, on a call: “$9,800 on Friday.” The date is logged.' },
-      { time: 'Wed 14:20', text: 'A customer, on a day 5 call: “We use 6 seats, not 10.” That chase pauses and comes to you.' },
+      { time: 'Wed 14:20', text: 'Print shop, on a day 5 call: “We use 6 seats, not 10.” That chase pauses and comes to you.' },
       { time: 'Thu 16:00', text: 'Law firm pays $6,400. Matched to its invoice, so chasing stops.' },
     ],
     finding: '$6,400 paid and $9,800 promised for Friday. 1 dispute needs your call.',

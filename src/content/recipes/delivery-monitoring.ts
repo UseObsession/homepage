@@ -22,7 +22,7 @@ export const recipe: Recipe = {
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
   group: 'Check your own journeys',
-  line: 'Labelled test customers live your first 14 days on real inboxes and numbers, and prove every message arrives.',
+  line: 'Lives your first 14 days as labelled test customers on real inboxes and numbers, and proves every message arrives.',
   gets: 'Every email, text and code your customers should get, timed, and anything missing flagged the day it’s due.',
   kit: [
     'Labelled AI test customers',
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Release 4.2',
+    tab: 'Example: release 4.2',
     recipe: 'delivery',
     task: 'After release 4.2, start 3 labelled test customers in the UK and US. Live our first 14 days and flag anything that never arrives.',
     targets: 'Your app, UK and US',
@@ -80,7 +80,7 @@ export const recipe: Recipe = {
       { time: 'Day 6, 09:22', text: 'Both UK customers: no code after 10 minutes.' },
     ],
     finding: 'Login codes stopped reaching UK numbers on day 6. US numbers still get them in 6 seconds.',
-    fix: 'Fix ticket drafted for your tracker, with the text log. After your fix, both UK customers try again.',
+    fix: 'A fix ticket drafted for your tracker with the text log, filed after your OK. Once it’s fixed, both UK customers try again.',
     ledger: 'Example run. Every email, text and code timed, screenshotted and signed.',
   },
 

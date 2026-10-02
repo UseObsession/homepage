@@ -63,7 +63,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Payroll SaaS renewal',
+    tab: 'Example: the Payroll SaaS renewal',
     recipe: 'business-case',
     task: 'Payroll SaaS renews on 29 Dec. Build the case from the usage and tickets they share with us, in their own costs, and keep it current until they sign.',
     targets: '1 renewal, from your CRM',
@@ -72,11 +72,11 @@ export const recipe: Recipe = {
     report: 'A page their finance team can open',
     kit: ['Agent ID, declared as AI', 'Tools you connect', 'Their own costs', 'Signed record'],
     events: [
-      { time: 'Day 1, 09:00', text: 'Usage, help desk and CRM read, with their consent. Usage up 41% in 6 months.' },
+      { time: 'Day 1, 09:00', text: 'Usage, helpdesk and CRM read, with their consent. Usage up 41% in 6 months.' },
       { time: 'Day 1, 09:20', text: '312 tickets resolved a month. Their own figures: 50 minutes a ticket, $59 an hour.' },
       { time: 'Day 1, 10:00', text: 'Case ready: up to $184,000 a year saved, from 312 × 12 × 50 minutes × $59 an hour.' },
       { time: 'Day 3, 14:10', text: 'Your rep approves. The agent adds the case to the rep’s thread with their champion, from its own address.' },
-      { time: 'Day 9, 11:30', text: 'Their finance team asks how tickets are counted. The help desk export goes back, after your OK.' },
+      { time: 'Day 9, 11:30', text: 'Their finance team asks how tickets are counted. The helpdesk export goes back, after your OK.' },
     ],
     finding: 'Up to $184,000 a year saved: 312 tickets a month × 12 × 50 minutes × $59 an hour, all from their own data.',
     fix: 'A short reply for the champion, drafted in your rep’s thread. Sent after your OK.',
@@ -84,7 +84,7 @@ export const recipe: Recipe = {
   },
 
   steps: [
-    { title: 'Connect what they share', line: 'Usage, help desk and CRM, read only, with the account’s consent.' },
+    { title: 'Connect what they share', line: 'Usage, helpdesk and CRM, read only, with the account’s consent.' },
     { title: 'Price it in their costs', line: 'Their hourly rate and their cost per ticket, never a benchmark.' },
     { title: 'Sign every number', line: 'Each figure links to the record it came from, so finance can check it without a call.' },
     {
@@ -127,7 +127,7 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Renewals', v: 'Every renewal on your book, or the ones you pick' },
-    { k: 'Data', v: 'Usage, help desk and CRM, connected with the account’s consent' },
+    { k: 'Data', v: 'Usage, helpdesk and CRM, connected with the account’s consent' },
     { k: 'Costs', v: 'The account’s own rates, never a benchmark' },
     { k: 'How often', v: 'Every Monday until renewal' },
     { k: 'Follow ups', v: 'In your rep’s thread, from the agent’s own address, after your OK' },
@@ -147,8 +147,8 @@ export const recipe: Recipe = {
     cols: ['Their number', 'Where it comes from'],
     rows: [
       { label: 'Usage', values: ['Up 41% in 6 months', 'Product analytics'] },
-      { label: 'Tickets resolved', values: ['312 a month', 'Help desk'] },
-      { label: 'Median reply', values: ['38 minutes', 'Help desk'] },
+      { label: 'Tickets resolved', values: ['312 a month', 'Helpdesk'] },
+      { label: 'Median reply', values: ['38 minutes', 'Helpdesk'] },
       { label: 'Teams using it', values: ['From 2 to 5', 'CRM'] },
       { label: 'Staff time, in their costs', values: ['Up to $184,000 a year', '312 × 12 × 50 minutes × $59 an hour, their own rates'] },
     ],

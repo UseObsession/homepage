@@ -2,7 +2,11 @@ import type { BlogIndexPage, Capture, Final, ResourcesPage, UseCasesIndexPage } 
 
 /* The Resources hub (/resources), the Use cases index (/use-cases) and the Blog index (/blog), plus the words every
    post shares (content/blog/*.ts carries the posts). Copy rules: docs/REBUILD.md, "Copy". The worked examples carry
-   their own names and lines (content/usecases), and so does every post. */
+   their own names and lines (content/usecases), and so does every post.
+   Narrative edit (3 Oct): each hero is a complete claim and its sub names what the rows below hold; the real run's row
+   states what it found (1 basket, 1 checkout, nobody wrote), as every page does; the blog's words name the topics its
+   posts cover (mystery shopping, competitor tracking, prospect audits, speed to lead); the shared close names the
+   job ("every company on your list") instead of "on your list". */
 
 const waitlist = (source: string): Capture => ({
   kind: 'waitlist',
@@ -18,7 +22,7 @@ const waitlist = (source: string): Capture => ({
 })
 
 const final = (source: string): Final => ({
-  heading: 'Put declared AI agents on your list.',
+  heading: 'Send declared AI agents to every company on your list.',
   sub: 'Join the waitlist and tell us the first job to set up. We confirm the plan with you before anything runs.',
   capture: waitlist(source),
 })
@@ -39,7 +43,7 @@ export const resourcesPage: ResourcesPage = {
   },
   hero: {
     headline: 'See the work before you join.',
-    sub: 'Worked examples from set up to proof, a real store check in every format, and the blog.',
+    sub: 'Follow 1 job from set up to proof, open the 1 real store check in every format it arrives in, and read the founders’ guides.',
   },
   groups: {
     useCases: {
@@ -51,15 +55,15 @@ export const resourcesPage: ResourcesPage = {
       id: 'sample-output',
       name: 'Sample output',
       line: 'The 1 real run: a store check from September 2026, with the store’s name hidden.',
-      link: { label: 'The September store check', to: '/sample-output', line: '4 test customers, 48 hours watched, shown in every format it arrives in.' },
+      link: { label: 'The September store check', to: '/sample-output', line: '4 test customers, every inbox watched for 48 hours. 1 left a basket, 1 stopped at checkout, and nobody wrote to either.' },
     },
     blog: {
       id: 'blog',
       name: 'Blog',
-      line: 'What we learn by being every company’s customer, with every source linked.',
+      line: 'Guides from both founders, with every price dated and every source linked.',
       all: { label: 'Every post', to: '/blog' },
       /* The row while the blog has no posts. */
-      empty: { label: 'Guides from the founders', line: 'Mystery shopping, competitor tracking and prospect intelligence.' },
+      empty: { label: 'Guides from the founders', line: 'Mystery shopping, competitor tracking, prospect audits and speed to lead.' },
     },
   },
   final: final('resources-final'),
@@ -81,8 +85,8 @@ export const useCasesPage: UseCasesIndexPage = {
     ],
   },
   hero: {
-    headline: '1 job, start to finish, for 1 kind of customer.',
-    sub: 'Each example follows the set up, the agents’ work and what lands in the customer’s own tools. The names and numbers are made up.',
+    headline: 'See 1 job run from a list to proof in the tools you already use.',
+    sub: 'Each example follows declared AI agents through 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
   },
   group: {
     id: 'examples',
@@ -97,9 +101,9 @@ export const blogPage: BlogIndexPage = {
     path: '/blog',
     title: 'The Obsession blog: AI agents that do commercial legwork',
     description:
-      'Guides to mystery shopping, competitor tracking, prospect intelligence and verifying AI agents, from the founders of Obsession, with every source linked.',
+      'Guides to mystery shopping, competitor tracking, prospect audits and speed to lead, by the founders of Obsession, with every price dated and source linked.',
     answer:
-      'The Obsession blog covers the commercial legwork AI agents can do as a declared customer: mystery shopping, competitor tracking, prospect intelligence and verifying other companies’ AI agents, written by the founders with every source linked.',
+      'The Obsession blog covers the commercial legwork AI agents can do as a declared customer: mystery shopping, competitor tracking, prospect audits and speed to lead, written by both founders with every source linked.',
     ogImage: '/og/blog.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -107,8 +111,8 @@ export const blogPage: BlogIndexPage = {
     ],
   },
   hero: {
-    headline: 'What you learn by being every company’s customer.',
-    sub: 'Guides to mystery shopping, competitor tracking and prospect intelligence, from the founders of Obsession.',
+    headline: 'Find out what any company’s customers actually receive.',
+    sub: 'Guides to mystery shopping, competitor tracking, prospect audits and speed to lead, from both founders of Obsession, with every source linked.',
   },
   empty: {
     heading: 'Start with the work itself.',

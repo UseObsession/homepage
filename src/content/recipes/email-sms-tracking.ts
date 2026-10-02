@@ -66,7 +66,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: '3 rivals, 30 days',
+    tab: 'Example: 3 rivals, 30 days',
     recipe: 'email-sms',
     task: 'Subscribe to our 3 rivals’ emails and texts. Log every message and flag every new offer.',
     targets: 'rival-a.example, rival-b.example, rival-c.example',

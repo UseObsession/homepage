@@ -43,7 +43,7 @@ export const recipe: Recipe = {
     'Each customer’s public news, read daily',
     'Your price book, which it can’t change',
     'Drafts in each rep’s own thread',
-    'Every moment, offer and OK signed',
+    'Every moment, offer and OK signed and dated',
   ],
 
   meta: {

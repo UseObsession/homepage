@@ -22,7 +22,7 @@ export const recipe: Recipe = {
   slug: 'website-audit',
   name: 'Website audit',
   group: 'Check your own journeys',
-  line: 'After every release or every morning, a fresh test customer signs up, fills in every form, opens every email and link, and stops before payment.',
+  line: 'Signs up as a fresh test customer after every release or every morning, fills in every form, opens every email and link, and stops before payment.',
   gets: 'A pass or a break for every step of every release, with the screenshot and a drafted fix.',
   kit: [
     'A labelled AI test customer per run',
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Release v2.15',
+    tab: 'Example: release v2.15',
     recipe: 'audit',
     task: 'After every release, sign up as a new customer, enter the code, open every email and try our launch code. Stop before payment.',
     targets: 'your-store.example, on phone and desktop',

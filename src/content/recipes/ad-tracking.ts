@@ -67,7 +67,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Friday’s new ads',
+    tab: 'Example: Friday’s new ads',
     recipe: 'ads',
     task: 'Every morning, read the ads our 3 rivals run in public. Follow each to its page and flag any offer that undercuts us.',
     targets: 'rival-a.example, rival-b.example, rival-c.example',

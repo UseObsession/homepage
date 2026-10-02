@@ -1,9 +1,10 @@
 import type { Capture, Recipe } from '../types'
 
-/* Software renewals (/recipes/software-renewals). Get paid and save. Screen: spend (the design tool tries $1,840
-   against a $1,200 cap: held; the contract allows no rise before March; the account manager emailed and chased twice;
-   2 offers, the best $1,200 to March then $1,260 for 12 months; you tap Accept; the cap stays at $1,200 to March,
-   then moves to $1,260; $6,960 a year saved).
+/* Software renewals (/recipes/software-renewals). Get paid and save. Screen: spend (6 tools on their own capped
+   cards, £4,950 a month in all; Brindle, the design tool, renews 16% higher, £1,392 a month against its £1,200 cap,
+   and the card holds it; a thread to keep last year's £30 a seat; 9 seats unused for 60 days removed under JO's OK,
+   40 to 31; £5,544 a year saved: (£1,392 - 31 x £30) x 12). The run tells the same story, in the same words as the
+   Founders page's Software renewals demo (3 Oct).
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 6 (research name retired; the plain name is Seun's, 3 Oct).
    Red lines held: only vendors the company already pays; each card is capped by the customer and enforced by the card
    issuer, and the agent can't raise its own limit; a charge above the cap is held for the customer's decision inside
@@ -12,7 +13,7 @@ import type { Capture, Recipe } from '../types'
    are cited only when switching is really on the table, never as a fake buyer, and no invented deadlines; new prices,
    seat cuts, notices, switches and cancellations only after the customer's OK; a new plan is bought only on a card capped to it,
    after OK. Up-to-50 rule: the modelled figures carry their model in the same line (up to 16.4% held off the software bill
-   each year, software inflation's June 2026 record; up to $19,680 a year on a $120,000 bill, 16.4% of it; up to 36% of seats,
+   each year, software inflation's June 2026 record; up to £19,680 a year on a £120,000 bill, 16.4% of it; up to 36% of seats,
    the share of licences left unused). No sources on the page. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
@@ -69,24 +70,22 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Design tool renewal',
+    tab: 'Example: a design tool renewal',
     recipe: 'spend',
-    task: 'Pay every tool from its own capped card. When one tries to charge more, hold it, check the contract, negotiate with our real usage and bring me the offer.',
+    task: 'Pay every tool from its own capped card. When one tries to charge more, hold it, ask to keep last year’s price, and bring me the seats nobody uses to remove.',
     targets: 'Every software vendor you pay, from your accounting tool and card feed',
     journey: ['Cap each vendor’s card', 'Hold any charge above it', 'Negotiate with real usage', 'Check the next invoice'],
     schedule: 'Every charge, and 90 days before each notice date',
     report: 'A Slack note when a charge is held, and a monthly savings sheet',
     kit: ['Agent ID, declared as AI', 'A capped card per vendor', 'Billing inbox', 'Seat counts, read only'],
     events: [
-      { time: 'Day 1, 06:12', text: 'The design tool tries to charge $1,840 for the month against its $1,200 cap. Held for your decision.' },
-      { time: 'Day 1, 06:20', text: 'Contract read: no price rise allowed before March.' },
-      { time: 'Day 1, 09:00', text: 'Your declared AI agent emails the vendor’s account manager, with the contract line attached.' },
-      { time: 'Day 5, 09:00', text: 'Chased twice. The account manager replies.' },
-      { time: 'Day 6, 11:30', text: '2 offers in writing. The best: $1,200 a month to March, then $1,260 a month for 12 months.' },
-      { time: 'Day 6, 11:45', text: 'You tap Accept. The cap stays at $1,200 to March, then moves to $1,260, on that vendor’s card only.' },
+      { time: 'Day 1, 06:12', text: 'The design tool renews 16% higher: £1,392 a month against its £1,200 cap. Held for your decision.' },
+      { time: 'Day 1, 06:20', text: 'Seat use read: 31 of 40 seats used, 9 unused for 60 days.' },
+      { time: 'Day 1, 09:10', text: 'After your OK, your declared AI agent asks the vendor to renew 31 seats at last year’s £30 a seat.' },
+      { time: 'Day 3, 11:30', text: 'The vendor agrees in writing. 9 seats removed: £930 a month from here.' },
     ],
-    finding: 'A $1,840 charge held. $1,200 kept to March, then $1,260 for 12 months: $6,960 a year less than the rise.',
-    fix: 'The next invoice checked against the agreed price. If the saving is missing, the case reopens.',
+    finding: 'A 16% rise held at the cap, last year’s price kept and 9 unused seats removed: £5,544 a year saved.',
+    fix: 'The cap lowered to £930 to match, ready for your OK. The next invoice is checked against it, and if the saving is missing, the case reopens.',
     ledger: 'Example run. Every charge, email, offer and OK dated and signed.',
   },
 
@@ -166,7 +165,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'A higher charge is held at the cap, not paid on the renewal date.',
-    line: 'Example: a $120,000 a year software bill. Software inflation hit 16.4% in June 2026, so a cap at the agreed price holds up to $19,680 a year of rises off it.',
+    line: 'Example: a £120,000 a year software bill. Software inflation hit 16.4% in June 2026, so a cap at the agreed price holds up to £19,680 a year of rises off it.',
     cols: ['Today', 'With a capped card'],
     rows: [
       { label: 'The renewal email', values: ['Lost in an inbox', 'Read the day it lands, contract checked'] },

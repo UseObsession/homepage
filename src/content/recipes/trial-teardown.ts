@@ -39,7 +39,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'Every email, prompt and offer in a rival’s free trial.',
+    headline: 'AI agents that log every email, prompt and offer in a rival’s free trial.',
     sub: 'A declared AI agent starts each rival’s free trial, with no card, and logs everything until it ends. It never replies, and closes the trial the moment a rep writes or calls.',
     screen: 'battlecard',
     capture: {

@@ -11,7 +11,10 @@ import type { SamplePage, ViewerFormat } from './types'
    - Welcome: 2 messages, too few to call (No verdict). Browse: 3 messages (Delivered). 5 messages, 15 screenshots.
    There was NO control message and NO second run, and the run is never shown as signed. UK time in September is
    BST, so the webhook window carries +01:00. Every other run or row on the page says it is an example.
-   The report images still say "cart"; the site says "basket". "James" in the drafts is a placeholder name. */
+   The report images still say "cart"; the site says "basket". "James" in the drafts is a placeholder name.
+   Narrative edit (3 Oct): the page reads in the order it renders (pages/SampleOutput): the finding > all 4 journeys >
+   the basket gap > the checkout gap, which builds on it ("heard nothing either") > the same run in every format > the
+   questions > the free shop. The drafts' words stay as the images show them. */
 
 /* The same run in every format it can arrive in. Home imports this too, and opens it on its own format. */
 export const outputFormats: ViewerFormat[] = [
@@ -141,7 +144,7 @@ export const sample: SamplePage = {
   hero: {
     pill: 'Real run · September 2026 · name hidden',
     headline: '1 shopper left a basket, 1 stopped at checkout. Neither heard a thing in 48 hours.',
-    sub: 'Obsession’s agents shopped a skincare store as 4 labelled test customers, 1 inbox each, and watched every inbox for 48 hours.',
+    sub: 'Obsession’s agents shopped a UK skincare store as 4 labelled test customers, 1 inbox each, and watched every inbox for 48 hours.',
     figures: [
       { value: '4', label: 'test customers, 1 inbox each' },
       { value: '5', label: 'messages, all on welcome and browse' },
@@ -151,7 +154,7 @@ export const sample: SamplePage = {
   },
 
   formats: {
-    heading: 'The same run, however you work.',
+    heading: 'The same run reaches you however you work.',
     line: 'The PDF is the real report. The other tabs show its verdict the way you’d get it: email, Slack, Clay or a sheet, your app, or a workflow.',
     start: 'pdf',
   },
@@ -253,7 +256,7 @@ export const sample: SamplePage = {
     {
       n: 2,
       journey: 'Checkout',
-      heading: 'Nothing followed up a shopper who left at checkout.',
+      heading: 'The shopper who stopped at checkout heard nothing either.',
       finding: 'No email arrived in the 48 hours after our test customer started checkout and left without paying.',
       consent: 'Our test shopper subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
       nothing: {

@@ -2,13 +2,20 @@ import { consoleHeading } from '../console'
 import type { Capture, Page } from '../types'
 
 /* Sales (/sales): sales and customer success teams of any kind, SaaS first. Win and renew.
-   The story: what Obsession is for a sales team > how it works > the gap (most tools read what a company publishes;
-   agents go through it as a customer) > use cases (brief, account watch, expansion, business case, pilot, win back, battlecards,
-   lead leaks on your own funnel, the supplier portal) > outcomes (up to ceilings with the model in the line; deliverables
-   flat) > every kind of team > recipes > proof (the real September store check, as it happened) > questions (red
-   lines) > early access.
+   The story: what Obsession is for a sales team > how it works > the gap (your team hears what an account says; agents
+   see what it does, as its customer, and every step is signed) > use cases in the order a deal runs (brief, lead leaks,
+   battlecards, pilot, supplier portal, account watch, expansion, business case, win back) > outcomes (up to ceilings
+   with the model in the line; deliverables flat) > every kind of team > recipes > proof (the real September store
+   check, as it happened) > questions (red lines) > early access ("Pick an account. See what it does.", which the gap
+   sets up).
    Base: _research/site_sales.json (approved), James's sales lines ("Pick an account. See what it does.").
    Every console run and use case is an example; the September store check is the one real run and is never called signed.
+   The console runs that tell a use case's story use its screen's figures (Account brief: 12 sales roles, a new VP of
+   Support, 2 of 5 bot answers wrong, trial emails stop after day 2; Account watch: 38 renewals, Snack brand at risk,
+   Payroll SaaS ready to grow), so the page never tells 1 story with 2 sets of numbers. The console ends on the renewal.
+   Up-to-50 rule: up to $96,000 a year is 2 accounts at $48,000 a year each, 1 renewal saved and 1 deal won; up to 5
+   hours a week is 10 first calls at 30 minutes each; the renewal run keeps $7,680 a year (22% asked less 6% given, of
+   $48,000).
    Screens: How uses the flow screens (compose, templates, kit, run); each use case has its own (docs/REBUILD.md §6). */
 
 const roles: Capture['roles'] = {
@@ -23,9 +30,9 @@ export const page: Page = {
     path: '/sales',
     title: 'Obsession for sales: AI agents that win and renew accounts',
     description:
-      'AI agents with their own inboxes, numbers and browsers sign up and ask the bot at every account and rival on your list, continuously. Every step signed.',
+      'Declared AI agents become a customer of every account and rival on your list, quote buyers and negotiate renewals inside your limits. Every step signed.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. For sales and customer success, it runs declared AI agents, each with its own inbox, phone number and browser, that sign up and ask the bot at every account and rival on your list, continuously, and send back signed proof and the next move for every call, pilot and renewal.',
+      'Obsession is the intelligence infrastructure for commercial teams. For sales and customer success, it runs declared AI agents, each with its own inbox, phone number and browser, that become a customer of every account and rival on your list, continuously, quote buyers and negotiate renewals inside your limits, and send back signed proof and the next move for every call, pilot and renewal.',
     ogImage: '/og/sales.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -36,7 +43,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your team win and renew accounts.',
-    sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up and ask the chat bot at every account and rival on your list, continuously. You get signed proof and your next move before every call, pilot and renewal.',
+    sub: 'Declared AI agents, each with its own inbox, phone number and browser, become a customer of every account and rival on your list, continuously. They quote buyers and negotiate renewals inside your limits, with every step signed.',
     capture: {
       kind: 'waitlist',
       source: 'sales-hero',
@@ -64,12 +71,12 @@ export const page: Page = {
         kit: ['Agent ID', 'Own inbox', 'Own browser', '7 day watch'],
         events: [
           { time: 'Fri 16:10', text: 'Newsletter joined. Trial started with no card, declared as an AI agent.' },
-          { time: 'Sat 10:00', text: 'Welcome email and 1 setup tip. Then nothing.' },
-          { time: 'Mon 09:00', text: 'New VP of Sales announced. 6 sales roles posted.' },
-          { time: 'Tue 11:20', text: 'Help bot asked 2 questions. 1 answer contradicts their own docs.' },
+          { time: 'Sun 09:14', text: 'A welcome email and 1 setup tip. Then nothing.' },
+          { time: 'Mon 09:00', text: 'A new VP of Support announced. 12 sales roles posted.' },
+          { time: 'Thu 11:20', text: 'Help bot asked 5 questions. 2 answers contradict their own docs.' },
           { time: 'Thu 17:00', text: 'Trial closed. Brief in your CRM, every line linked to its proof.' },
         ],
-        finding: 'Hiring 6 reps under a new VP. Trial emails stop after day 2.',
+        finding: 'Hiring 12 reps, yet trial emails stop after day 2.',
         fix: 'Opener and 3 questions drafted from the record. Added to Friday’s call notes after your OK.',
         ledger: '7 days, every email, page and answer dated and signed.',
       },
@@ -92,46 +99,6 @@ export const page: Page = {
         finding: '2 requests quoted in under 5 minutes, after hours. The big one held above your floor.',
         fix: 'Their security questions sent to your team, with replies drafted from your approved answers.',
         ledger: 'Every quote and counter dated, signed and in your CRM.',
-      },
-      {
-        tab: 'Account watch',
-        recipe: 'account-watch',
-        task: 'Every morning, check our 40 renewals: the usage, tickets and calls we connect, their news and hiring, and what their customers get. Flag churn or upsell.',
-        targets: '40 renewals, from your CRM',
-        journey: ['Read the tools you connect', 'Scan news and hiring', 'Join as a declared customer', 'Flag churn or upsell'],
-        schedule: 'Daily at 07:00',
-        report: 'Slack alert, the play in your CRM',
-        kit: ['Agent ID', 'Tools you connect', '40 inboxes', 'Daily 07:00 check'],
-        events: [
-          { time: 'Day 1, 07:00', text: '40 accounts read from your CRM, help desk and usage, with consent.' },
-          { time: 'Day 9', text: 'Account 22 raises $30m. Seats 92% used, 14 jobs posted.' },
-          { time: 'Day 10', text: 'As a subscriber: Account 22 announces 3 new countries.' },
-          { time: 'Day 12', text: 'Account 9: logins down 38% in 3 weeks. 4 billing tickets.' },
-          { time: 'Day 12, 07:20', text: 'A rival named on their last 2 calls. Slack alert sent.' },
-        ],
-        finding: 'Account 9: churn risk, 3 reasons. Account 22: ready to grow, 3 reasons.',
-        fix: 'Drafted: a save plan for Account 9 and a seat offer for Account 22. Sent after your OK.',
-        ledger: 'Every reason linked to its source, dated and signed.',
-      },
-      {
-        tab: 'Renewal negotiation',
-        recipe: 'renewal',
-        task: 'Account 31 renews on 1 Dec. Answer every round from their procurement agent the same day, with real usage, inside our limits, through to signature and payment.',
-        targets: 'Account 31, $48,000 a year',
-        journey: ['Answer each round the same day', 'Show their real usage', 'Offer only inside your limits', 'Signature, PO and payment'],
-        schedule: 'From 120 days out until paid',
-        report: 'Each round in your CRM, Slack when it’s agreed',
-        kit: ['Agent ID, names your company', 'Usage, connected by you', 'Your discount limits', 'Signing and billing tools'],
-        events: [
-          { time: '88 days out', text: 'Their procurement agent, declared as AI, asks for 22% off.' },
-          { time: '88 days out', text: 'Same day: their usage, checked by your team, and 6% for 2 years, inside your limits.' },
-          { time: '80 days out', text: 'It says usage fell. The record shows a 14% rise, sent with the proof.' },
-          { time: '61 days out', text: 'Agreed. Your account manager signs, and the agent chases their signer.' },
-          { time: '2 days out', text: 'PO in, invoice accepted in their portal, paid.' },
-        ],
-        finding: 'Asked for 22% off, renewed at 6% for 2 years: $7,680 a year kept on $48,000.',
-        fix: 'Anything outside your limits comes to you. Next year’s renewal starts 120 days out.',
-        ledger: 'Every round, usage file and signature dated and signed.',
       },
       {
         tab: 'Battlecard',
@@ -173,6 +140,46 @@ export const page: Page = {
         fix: 'Next year’s PO lined up before the renewal invoice, so year 2 isn’t late either.',
         ledger: 'Every form and chase signed. Bank details entered by your finance team.',
       },
+      {
+        tab: 'Account watch',
+        recipe: 'account-watch',
+        task: 'Every morning, check our 38 renewals: the usage, tickets and calls we connect, their news and hiring, and what their customers get. Flag churn or upsell.',
+        targets: '38 renewals, from your CRM',
+        journey: ['Read the tools you connect', 'Scan news and hiring', 'Join as a declared customer', 'Flag churn or upsell'],
+        schedule: 'Daily at 07:00',
+        report: 'Slack alert, the play in your CRM',
+        kit: ['Agent ID', 'Tools you connect', '38 inboxes', 'Daily 07:00 check'],
+        events: [
+          { time: 'Day 1, 07:00', text: '38 accounts read from your CRM, help desk and usage, with consent.' },
+          { time: 'Day 9', text: 'Payroll SaaS raises $30m. Seats 92% used, 12 sales roles posted.' },
+          { time: 'Day 10', text: 'As a subscriber: Payroll SaaS announces 3 new countries.' },
+          { time: 'Day 12', text: 'Snack brand: usage down 38% in 14 days. 3 urgent tickets.' },
+          { time: 'Day 12, 07:20', text: 'As their customer: Snack brand’s site went down twice. Slack alert sent.' },
+        ],
+        finding: 'Snack brand: churn risk, 3 reasons. Payroll SaaS: ready to grow, 3 reasons.',
+        fix: 'Drafted: a save plan for Snack brand and a seat offer for Payroll SaaS. Sent after your OK.',
+        ledger: 'Every reason linked to its source, dated and signed.',
+      },
+      {
+        tab: 'Renewal negotiation',
+        recipe: 'renewal',
+        task: 'Account 31 renews on 1 Dec. Answer every round from their procurement agent the same day, with real usage, inside our limits, through to signature and payment.',
+        targets: 'Account 31, $48,000 a year',
+        journey: ['Answer each round the same day', 'Show their real usage', 'Offer only inside your limits', 'Signature, PO and payment'],
+        schedule: 'From 120 days out until paid',
+        report: 'Each round in your CRM, Slack when it’s agreed',
+        kit: ['Agent ID, names your company', 'Usage, connected by you', 'Your discount limits', 'Signing and billing tools'],
+        events: [
+          { time: '88 days out', text: 'Their procurement agent, declared as AI, asks for 22% off.' },
+          { time: '88 days out', text: 'Same day: their usage, checked by your team, and 6% for 2 years, inside your limits.' },
+          { time: '80 days out', text: 'It says usage fell. The record shows a 14% rise, sent with the proof.' },
+          { time: '61 days out', text: 'Agreed. Your account manager signs, and the agent chases their signer.' },
+          { time: '2 days out', text: 'PO in, invoice accepted in their portal, paid.' },
+        ],
+        finding: 'Asked for 22% off, renewed at 6% for 2 years: $7,680 a year kept on $48,000.',
+        fix: 'Anything outside your limits comes to you. Next year’s renewal starts 120 days out.',
+        ledger: 'Every round, usage file and signature dated and signed.',
+      },
     ],
   },
 
@@ -208,13 +215,13 @@ export const page: Page = {
   },
 
   gap: {
-    heading: 'Most tools read what a company publishes. Obsession goes through it as a customer.',
-    sub: 'Every step is signed and dated, so a buyer, a CFO or a renewal committee can check it without taking your word.',
+    heading: 'Your team hears what an account says. Agents see what it does, as its customer.',
+    sub: 'Every step comes back signed and dated, so a buyer, a CFO or a renewal committee can check it for themselves.',
     rows: [
       { today: 'A contact list and a summary of their website', obsession: '7 days as their customer, every email and bot answer dated' },
+      { today: 'Battlecards from a rival’s pricing page, stale by next quarter', obsession: 'Built from each rival’s real trial, and checked again every week' },
       { today: 'Health scores stay green until the account leaves', obsession: 'Churn and upsell flagged every morning, from your tools and as their customer' },
       { today: 'Your renewal deck is your word, so finance discounts it', obsession: 'Every number linked to their own data, and signed' },
-      { today: 'Battlecards from a rival’s pricing page, stale by next quarter', obsession: 'Built from each rival’s real trial, and checked again every week' },
       { today: 'An assistant in your own inbox, 1 account at a time', obsession: 'Agents with their own declared inbox and number, at every account at once' },
     ],
   },
@@ -232,31 +239,22 @@ export const page: Page = {
         screen: 'brief',
       },
       {
-        tab: 'Account watch',
-        moment: 'Monday 08:00. 2 hours before the forecast call.',
-        outcome: 'See churn and upsell coming, with the play drafted.',
-        line: 'With consent, agents read the CRM, tickets and calls you connect, follow each account’s news and join its emails and texts as a declared customer.',
-        whyOnly: 'It lives as their customer, so it sees what breaks for them before their usage drops.',
-        recipe: 'account-watch',
-        screen: 'acctwatch',
+        tab: 'Lead leaks',
+        moment: 'Thursday 09:00. Inbound is up, meetings booked are not.',
+        outcome: 'Find where your form, chat and phone drop leads.',
+        line: 'Every day, a labelled test lead uses your own form, chat and phone, times each reply and checks who got it.',
+        whyOnly: 'Your CRM shows the lead arrived. Only a lead on the other side, with its own inbox and number, can time the 4 hour wait and the missed call.',
+        recipe: 'speed',
+        screen: 'inbound',
       },
       {
-        tab: 'Expansion offers',
-        moment: 'Monday 08:00. An account is using 113 of its 120 seats.',
-        outcome: 'Offer more the week an account needs it, on your price book.',
-        line: 'Agents read the usage and CRM you connect and each account’s public news, build the case from its own usage and draft the offer. Your rep sends it from their own thread.',
-        whyOnly: 'A usage dashboard shows the seats. Only an agent reads every account’s usage and public news each morning, builds the case and keeps each follow up drafted in your rep’s thread until the PO lands.',
-        recipe: 'expansion',
-        screen: 'expansion',
-      },
-      {
-        tab: 'Business case',
-        moment: 'Wednesday 11:00. 90 days to renewal, and budgets are cut.',
-        outcome: 'Renew and expand on ROI their CFO can check.',
-        line: 'Agents build the case from the usage and tickets you connect, priced in the account’s own costs, and keep it current until renewal.',
-        whyOnly: 'Refreshed every week, and every number opens its signed source, so finance never has to take your word.',
-        recipe: 'business-case',
-        screen: 'case',
+        tab: 'Battlecards',
+        moment: 'Wednesday 15:00. A buyer says the rival is cheaper.',
+        outcome: 'Know every rival’s discount before your buyer quotes it.',
+        line: 'Declared agents start each rival’s trial with no card and log every email, price and offer. They never reply, and close the trial the moment a rep writes or calls.',
+        whyOnly: 'Rival A’s 20% off only reaches trials still open on day 13. Each agent stays in its trial until it ends or a rep writes, then checks the rival’s pages every Monday.',
+        recipe: 'trial',
+        screen: 'battlecard',
       },
       {
         tab: 'Pilot proof',
@@ -268,52 +266,61 @@ export const page: Page = {
         screen: 'pilot',
       },
       {
+        tab: 'Supplier portal',
+        moment: 'Friday 17:00. Contract signed. Then come the vendor forms.',
+        outcome: 'From signed contract to accepted invoice, with no forms for your rep.',
+        line: 'The day the contract is signed, a declared agent registers you in their supplier portal, files every form and security questionnaire from your pack, then chases the PO and the invoice until you’re paid.',
+        whyOnly: 'It has its own supplier inbox and checks it every morning. Anything to sign waits for you, and your finance team enters the bank details.',
+        recipe: 'get-paid',
+        screen: 'vendor',
+      },
+      {
+        tab: 'Account watch',
+        moment: 'Monday 08:00. 2 hours before the forecast call.',
+        outcome: 'See churn and upsell coming, with the play drafted.',
+        line: 'With consent, agents read the CRM, tickets and calls you connect, follow each account’s news and join its emails and texts as a declared customer.',
+        whyOnly: 'Each agent also lives as their customer, so it sees what breaks for them before their usage drops.',
+        recipe: 'account-watch',
+        screen: 'acctwatch',
+      },
+      {
+        tab: 'Expansion offers',
+        moment: 'Monday 09:00. An account is using 113 of its 120 seats.',
+        outcome: 'Offer more the week an account needs it, on your price book.',
+        line: 'Agents read the usage and CRM you connect and each account’s public news, build the case from its own usage and draft the offer. Your rep sends it from their own thread.',
+        whyOnly: 'A usage dashboard shows the seats. An agent turns them into a priced offer each morning, and keeps every follow up drafted in your rep’s thread until the PO lands.',
+        recipe: 'expansion',
+        screen: 'expansion',
+      },
+      {
+        tab: 'Business case',
+        moment: 'Wednesday 11:00. 90 days to renewal, and budgets are cut.',
+        outcome: 'Renew and expand on ROI their CFO can check.',
+        line: 'Agents build the case from the usage and tickets you connect, priced in the account’s own costs, and keep it current until renewal.',
+        whyOnly: 'It’s refreshed every week, and every number opens its signed source in the account’s own data.',
+        recipe: 'business-case',
+        screen: 'case',
+      },
+      {
         tab: 'Win back',
         moment: 'Thursday 14:00. The lost deals list nobody reopens.',
         outcome: 'Reopen lost accounts the week their new setup breaks.',
         line: 'A declared agent joins each lost account’s emails and texts, logs what breaks or changes, and drafts your rep’s note.',
-        whyOnly: 'Its own inbox and texting number at every lost account, continuously, every message dated.',
+        whyOnly: 'Each agent stays on every lost account’s list with its own inbox and number, so it sees the welcome email stop and the code expire after the move.',
         recipe: 'email-sms',
         screen: 'winback',
-      },
-      {
-        tab: 'Battlecards',
-        moment: 'Wednesday 15:00. A buyer says the rival is cheaper.',
-        outcome: 'Know every rival’s discount before your buyer quotes it.',
-        line: 'Declared agents start each rival’s trial with no card and log every email, price and offer. They never reply, and close the trial the moment a rep writes or calls.',
-        whyOnly: 'A day 13 discount only reaches an inbox inside the trial. Each agent has its own, at every rival, checked again every Monday.',
-        recipe: 'trial',
-        screen: 'battlecard',
-      },
-      {
-        tab: 'Lead leaks',
-        moment: 'Thursday 09:00. Inbound is up, meetings booked are not.',
-        outcome: 'Find where your form, chat and phone drop leads.',
-        line: 'Every day, a labelled test lead uses your own form, chat and phone, times each reply and checks who got it.',
-        whyOnly: 'Its own inbox and number wait out every reply, each timed and signed.',
-        recipe: 'speed',
-        screen: 'inbound',
-      },
-      {
-        tab: 'Supplier portal',
-        moment: 'Friday 17:00. Contract signed. Then come the vendor forms.',
-        outcome: 'Forms filed on day 1, chased until you’re paid.',
-        line: 'The day the contract is signed, a declared agent registers you in their supplier portal, files every form and security questionnaire from your pack, then chases the PO and the invoice until you’re paid.',
-        whyOnly: 'Its own supplier inbox, checked every morning. Anything to sign waits for you, and your finance team enters bank details.',
-        recipe: 'get-paid',
-        screen: 'vendor',
       },
     ],
   },
 
   outcomes: {
-    heading: 'Up to $96,000 a year from 1 renewal saved and 1 pilot won.',
-    sub: '1 renewal saved on an early churn flag and 1 deal won on a signed pilot, at $48,000 each. Every rep opens every call, pilot and renewal on signed proof.',
+    heading: 'Up to $96,000 a year from 1 renewal saved and 1 deal won on a signed pilot.',
+    sub: 'If each account is worth $48,000 a year: 1 saved on an early churn flag, and 1 won on a before and after their CFO could check.',
     items: [
-      { value: 'Up to 5 hours', label: 'back a week per rep: 10 first calls, 30 minutes of research each' },
-      { value: 'Every morning', label: 'each renewal checked from your tools and as their customer' },
+      { value: 'Up to 5 hours', label: 'a week saved per rep, on 10 first calls at 30 minutes of research each' },
       { value: 'Day 0, 14 and 28', label: 'of every pilot, each answer timed and signed' },
-      { value: 'Day 1', label: 'vendor forms filed, then chased until you’re paid' },
+      { value: 'Every invoice', label: 'chased each morning until it’s paid, from the day you sign' },
+      { value: 'Every morning', label: 'each renewal checked from your tools and as their customer' },
     ],
   },
 
@@ -363,7 +370,7 @@ export const page: Page = {
       },
       {
         name: 'Any other team',
-        line: 'If your reps do it in a browser, an inbox or a portal, type it. Agents set it up and show their work.',
+        line: 'If your reps do it in a browser, an inbox or a portal, type it. Obsession sets up the agents, and every step comes back signed.',
         recipes: [],
       },
     ],
@@ -371,12 +378,12 @@ export const page: Page = {
 
   recipes: {
     heading: 'From the first call to the renewal, a recipe is ready to run.',
-    ids: ['prospect', 'quotes', 'account-watch', 'expansion', 'business-case', 'renewal', 'reviews', 'mystery', 'email-sms', 'trial', 'competitor', 'speed', 'get-paid'],
+    ids: ['prospect', 'speed', 'quotes', 'trial', 'competitor', 'mystery', 'get-paid', 'account-watch', 'expansion', 'business-case', 'renewal', 'reviews', 'email-sms'],
   },
 
   proof: {
-    heading: '1 shopper left a basket and 1 stopped at checkout on a real store. Neither got a reminder in 48 hours.',
-    line: 'September 2026, a skincare store, 4 test customers: a £40 gift set left in the basket at 02:57 and £21 of deodorant left at checkout at 03:11, each logged with its time and screenshots. Your briefs, cases and battlecards come back the same way.',
+    heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
+    line: 'A skincare store in September 2026, name hidden: 4 test customers, every inbox watched for 48 hours, 15 screenshots. The £40 gift set was left in the basket at 02:57 and the £21 deodorant at checkout at 03:11. Your briefs, cases and battlecards come back with the same detail.',
     cta: { label: 'See the real report', to: '/sample-output' },
   },
 

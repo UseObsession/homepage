@@ -41,7 +41,7 @@ export const recipe: Recipe = {
     'Your service list and prices, which it can’t change',
     'Proposals in your brand, proof attached',
     'Drafts in your own thread',
-    'Every check, proposal and OK signed',
+    'Every check, proposal and OK signed and dated',
   ],
 
   meta: {

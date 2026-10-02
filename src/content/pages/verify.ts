@@ -22,6 +22,10 @@ import type { Page } from '../types'
    Outcomes, recomputed: 11 days to notice, cut to 1 by a daily check, is up to 10 days sooner; 10,000 billed
    resolutions a month x $0.99 x 19 in 100 not real x 12 = $22,572 (19 in 100 is the resolution screen's own rate);
    15 hours a week of transcript reading x 52 = 780 hours.
+   Narrative edit (3 Oct): the hero sub names the 3 agents the console opens on (support bot, AI receptionist, AI SDR);
+   How's heading says what you give it, so its first step isn't said twice; the use cases cover more than answers
+   (a discount over its limit, a vendor that keeps a customer waiting), so their claim does too; the kinds cover agents
+   that send as well as answer. The console's last tab and its use case share 1 name, "After every update".
    "Customer-Side Assurance" is the category's name for decks and analysts: it appears once here, in the questions,
    and never as a button. */
 
@@ -43,7 +47,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Declared test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and sales agent the way your customers do, every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+    sub: 'Declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR the way your customers do, every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -139,7 +143,7 @@ export const page: Page = {
         ledger: 'Example run. 40 runs over 2 weeks, every answer signed and dated.',
       },
       {
-        tab: 'After an update',
+        tab: 'After every update',
         recipe: 'drift',
         task: 'Replay our 40 hardest support cases every morning, and again within the hour of any update. Tell me what changed.',
         targets: 'Your support bot, with Vendor A’s OK',
@@ -162,8 +166,8 @@ export const page: Page = {
   },
 
   how: {
-    heading: 'Point it at your AI agent. Test customers bring back the proof.',
-    sub: 'You give it your agent and your policies. Obsession writes the checks, and nothing runs until you approve them.',
+    heading: 'Name your AI agent and your policies. Test customers bring back the proof.',
+    sub: 'There’s nothing to install. They use the same chat, phone and inbox your customers do, and run only once you approve the checks.',
     steps: [
       {
         title: 'Point it at your AI agent',
@@ -202,7 +206,7 @@ export const page: Page = {
   },
 
   uses: {
-    heading: 'Find the wrong answer before a customer hears it.',
+    heading: 'Catch what your AI agent gets wrong before a customer does.',
     items: [
       {
         tab: 'Support bot',
@@ -253,7 +257,7 @@ export const page: Page = {
   },
 
   kinds: {
-    heading: 'Whatever answers your customers gets a test customer.',
+    heading: 'Every AI agent your customers meet gets its own test customer.',
     label: 'Pick your AI agent',
     items: [
       {

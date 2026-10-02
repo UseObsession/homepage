@@ -44,7 +44,7 @@ export const recipe: Recipe = {
     'A phone and a desktop browser',
     'A check every morning at 07:00',
     'Changes only after your OK',
-    'Every check and OK signed',
+    'Every check and OK signed and dated',
   ],
 
   meta: {

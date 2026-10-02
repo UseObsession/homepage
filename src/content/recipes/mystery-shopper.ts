@@ -197,7 +197,7 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. Nothing is bought without your OK.',
     items: [
       {
-        q: 'Is the run on this page real?',
+        q: 'Is the September run on this page real?',
         a: 'Yes. In September 2026, 4 labelled test customers shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
       },
       {

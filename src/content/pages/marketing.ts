@@ -3,18 +3,21 @@ import type { Page } from '../types'
 
 /* Marketing (/marketing). Marketing teams at brands of any kind, B2C and B2B, organised by marketing function (Seun,
    3 Oct): rivals are 1 strand, Product marketing, not the whole page.
-   The story: what Obsession is for a marketing team (win, convert and keep customers) > how it works > the gap (James's
-   line: most tools read what a company publishes, Obsession goes through it as a customer; a dashboard shows what you
-   sent, spent and published, only a customer sees what arrived) > use cases, 1 tab per function in the order a
+   The story: what Obsession is for a marketing team (win, convert and keep customers) > how it works > the gap, in the
+   reader's words (your dashboards show what you sent, spent and published; only a customer sees what arrived, and
+   Obsession's agents are that customer: James's "goes through it as a customer", made theirs) > use cases, 1 tab per
+   function in the order a
    customer meets them: win (Brand and AI search, Product marketing, Demand generation), convert (Performance,
    Partnerships, Ecommerce), keep (Lifecycle, Retention), each with its own screen and the recipe it runs on >
    outcomes, 1 per stage plus the hours back > every team: the same 8 functions in the same order, each in its own
-   words with all its recipes > recipes > the real September store check > questions (red lines) > the free store
-   mystery shop (a store you run, or one with the owner's OK).
+   words with all its recipes > recipes > the real September store check, ending on "your free report comes back the
+   same way" > questions (red lines; the free report answer says what's in it, the final says how it runs) > the free
+   store mystery shop (a store you run, or one with the owner's OK).
    Screens, none twice: how it works compose, templates, kit, run; use cases listings, inbox, inbound, adcheck,
    partners, checkout, campaign, reviews. The hero runs are words only (a B2B webinar, rival prices, your own cancel
    requests, a B2B rival trial), so none repeats a use case's story; the console opens on your own job, not a rival.
-   The 2 Monday tabs open on different minutes (Performance 07:04, Partnerships 07:12).
+   The Monday tabs open on different minutes (Brand 09:00, Performance 07:04, Partnerships 07:12); Demand generation
+   is a Wednesday. No "route": a form goes to nobody, a wrong listing is claimed through your own listed number.
    Every console run and use case screen is an example (the Example tags say so); the only real run is the September
    store check, stated as it happened in the proof fact and the proof beat.
    Red lines held here: at rivals, only the public paths any customer can use (sign ups, newsletters, text opt ins,
@@ -46,7 +49,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your marketing team win, convert and keep customers.',
-    sub: 'Declared AI agents with their own inboxes, phone numbers and browsers go through your ad landing pages, partner links, launches and checkout as a customer would, and sign up to every rival on your list, continuously. You get signed proof and the fix, ready for your OK.',
+    sub: 'Declared AI agents, each with its own inbox, phone number and browser, go through your ads, partner links, launches and checkout as a customer would, and sign up to every rival on your list, continuously. Every step signed.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -85,7 +88,7 @@ export const page: Page = {
         report: 'Slack alert, then a PDF',
         kit: ['Agent ID', '4 inboxes', 'UK and US calendars', 'Phone and desktop'],
         events: [
-          { time: 'Tue 10:00', text: 'The invite lands in 4 inboxes, UK and US' },
+          { time: 'Tue 10:00', text: 'The invite lands in 4 inboxes, UK and US.' },
           { time: 'Tue 10:02', text: 'Sign up works on phone and desktop. Confirmation in 40 seconds.' },
           { time: 'Tue 10:03', text: 'US calendar invites say 15:00 New York time. The webinar starts at 10:00 there.' },
           { time: 'Wed 09:00', text: 'The reminder arrives. Its join link opens a page that doesn’t exist.' },
@@ -118,9 +121,9 @@ export const page: Page = {
       {
         tab: 'Your cancellations',
         recipe: 'saves',
-        task: 'When a subscriber, or their AI assistant, asks to cancel, offer 1 pause next to “cancel now”, and do what they pick at once.',
+        task: 'When a subscriber, or their AI assistant, asks to cancel, offer 1 pause next to “Cancel now”, and do what they pick at once.',
         targets: 'Phone, email, chat and AI assistants',
-        journey: ['Say it’s your AI agent', 'Confirm it’s the subscriber', '1 pause next to cancel now', 'Do what they pick at once'],
+        journey: ['Say it’s your AI agent', 'Confirm it’s the subscriber', '1 pause next to “Cancel now”', 'Do what they pick at once'],
         schedule: 'Every cancel request, as it lands',
         report: 'A weekly note: pauses, cancels and returns',
         kit: ['Agent ID, names your brand', 'Own inbox and number', 'Your billing, connected by you', 'Offers you approved'],
@@ -145,10 +148,10 @@ export const page: Page = {
         report: 'Day by day PDF and a Slack summary',
         kit: ['Agent ID', 'Own inbox', 'Own browser', 'Watched to the last day'],
         events: [
-          { time: 'Day 0, 10:00', text: 'Started a free trial with no card, declared as an AI agent' },
-          { time: 'Day 0, 10:01', text: 'Welcome email with a setup checklist' },
-          { time: 'Day 3, 09:00', text: 'Case study email and a tour inside the app' },
-          { time: 'Day 12, 09:00', text: 'Reminder: 2 days left, 20% off a year upfront' },
+          { time: 'Day 0, 10:00', text: 'Started a free trial with no card, declared as an AI agent.' },
+          { time: 'Day 0, 10:01', text: 'Welcome email with a setup checklist.' },
+          { time: 'Day 3, 09:00', text: 'Case study email and a tour inside the app.' },
+          { time: 'Day 12, 09:00', text: 'Reminder: 2 days left, 20% off a year upfront.' },
           { time: 'Day 14, 11:00', text: 'Trial ends. 30% off arrives an hour later.' },
         ],
         finding: 'Rival A’s best offer, 30% off, only goes to people who let the trial end.',
@@ -190,8 +193,8 @@ export const page: Page = {
   },
 
   gap: {
-    heading: 'Most tools read what a company publishes. Obsession goes through it as a customer.',
-    sub: 'Your dashboards show what you sent, spent and published. Only a customer sees what arrived.',
+    heading: 'Your dashboards show what you sent, spent and published. Only a customer sees what arrived.',
+    sub: 'Obsession’s AI agents are that customer, at every ad, link, launch and rival on your list.',
     rows: [
       {
         today: 'Your ad dashboard counts the click',
@@ -203,7 +206,7 @@ export const page: Page = {
       },
       {
         today: 'Your email tool shows what was sent',
-        obsession: 'Agents show what each customer actually got',
+        obsession: 'Agents show what reached each customer',
       },
       {
         today: 'Your launch tested once, from the office',
@@ -227,8 +230,8 @@ export const page: Page = {
         tab: 'Brand and AI search',
         moment: 'Monday, 09:00. A buyer asks an AI assistant for the best in your category. It names 3 rivals and says your Leeds branch has closed.',
         outcome: 'Every wrong fact AI assistants tell your buyers corrected at its source, and asked again every Monday until the answer changes.',
-        line: 'Agents ask the assistants your buyers use the same questions each week, trace each wrong answer to the page it cites, and get it corrected there after your OK.',
-        whyOnly: 'A visibility score stops at the score. Agents fix each wrong fact at its source, through the site’s own correction route and after your OK, then ask again to prove it.',
+        line: 'Agents ask the assistants your buyers use the same questions each week and trace each wrong answer to the page it cites.',
+        whyOnly: 'A visibility score counts how often AI names you. An agent claims each wrong listing through your own listed phone number and corrects it there, after your OK.',
         recipe: 'listings',
         screen: 'listings',
       },
@@ -243,8 +246,8 @@ export const page: Page = {
       },
       {
         tab: 'Demand generation',
-        moment: 'Monday, 09:00. A lead fills in your demo form and waits 4 hours 12 minutes for a reply, because the form routes to nobody.',
-        outcome: 'Every form, chat and phone line timed from a new lead’s side, with the slow route fixed and tested again.',
+        moment: 'Wednesday, 09:00. A lead fills in your demo form and waits 4 hours 12 minutes for a reply, because nobody owns the form.',
+        outcome: 'Every form, chat and phone line timed from a new lead’s side, with the slow one fixed and tested again.',
         line: 'A labelled test lead uses your own form, chat and phone at 09:00, 13:00 and 17:00 each day, times every first reply and checks who picked it up.',
         whyOnly: 'Your CRM shows the lead arrived. Only a lead on the other side sees the phone ring out and the form go to nobody.',
         recipe: 'speed',
@@ -253,15 +256,15 @@ export const page: Page = {
       {
         tab: 'Performance',
         moment: 'Monday, 07:04. Ad 4 is spending $410 a day sending clicks to a table lamp that’s sold out.',
-        outcome: 'Every live ad’s landing page opened as a customer each morning, and the 1 that can’t sell paused after your OK.',
-        line: 'An agent opens the landing page of every live ad on a phone and a desktop, without clicking the ad, and checks the page loads, the offer and price match, and the product is in stock.',
-        whyOnly: 'Your ad dashboard counts the click. Only a visit to the page shows the sold out sign, and agents make that visit every morning.',
+        outcome: 'Every live ad checked against the page it lands on, and the ad that can’t sell paused after your OK.',
+        line: 'Each morning, an agent opens the landing page of every live ad on a phone and a desktop, and checks the page loads, the offer and price match, and the product is in stock.',
+        whyOnly: 'The sold out sign only shows on the page itself. Agents go straight to every live ad’s page, so the morning check never pays for a click.',
         recipe: 'adcheck',
         screen: 'adcheck',
       },
       {
         tab: 'Partnerships',
-        moment: 'Monday, 07:12. Deals site still shows your summer sale, and its code, SUMMER20, ended on 31 Aug.',
+        moment: 'Monday, 07:12. A deals site still shows your summer sale. Its code, SUMMER20, ended on 31 Aug.',
         outcome: 'Every partner’s link, code and banner tried as a customer each week, with a note ready for any that’s out of date.',
         line: 'An agent visits each partner’s page, follows your link to your store and tries their code in your basket, stopping before payment. Links, codes and creative only, never partner prices.',
         whyOnly: 'Partner reports show the sales that came through. Only a customer’s visit shows the code that turned the rest away.',
@@ -301,10 +304,10 @@ export const page: Page = {
   outcomes: {
     heading: 'Your team stops checking by hand and starts fixing what customers see.',
     items: [
-      { value: 'Every Monday', label: 'what AI assistants tell your buyers, asked again, with every wrong fact corrected at its source' },
+      { value: 'Every Monday', label: 'AI assistants asked what they tell your buyers, and every wrong fact corrected at its source' },
       { value: 'Up to $2,870', label: 'a week saved on 1 ad that sent clicks to a sold out page, at $410 a day' },
       { value: 'Within minutes', label: 'of every send, a broken link, code or text flagged as a customer sees it, with the fix drafted' },
-      { value: 'Up to 18 hours', label: 'back a month, if your team spends 90 minutes a week on each of 3 rivals' },
+      { value: 'Up to 18 hours', label: 'a month saved, if your team spends 90 minutes a week on each of 3 rivals' },
     ],
   },
 
@@ -314,7 +317,7 @@ export const page: Page = {
     items: [
       {
         name: 'Brand and AI search',
-        line: 'Show up right wherever buyers and AI assistants look: maps, review sites and AI answers, with every wrong fact fixed at its source.',
+        line: 'Be listed right wherever buyers and AI assistants look: maps, review sites and AI answers, with every wrong fact fixed at its source.',
         recipes: ['listings', 'reviews'],
       },
       {
@@ -382,8 +385,8 @@ export const page: Page = {
   },
 
   proof: {
-    heading: '1 test customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
-    line: 'A real check of a skincare store in September, name hidden: 4 test customers, watched for 48 hours. A £40 gift set left in the basket at 02:57 and a £21 deodorant left at checkout at 03:11 got no reminder.',
+    heading: 'On a real store, 1 test customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
+    line: 'A skincare store in September 2026, name hidden: 4 test customers, every inbox watched for 48 hours, 15 screenshots. The £40 gift set was left in the basket at 02:57 and the £21 deodorant at checkout at 03:11. A free report on your own store comes back the same way.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
 
@@ -428,14 +431,14 @@ export const page: Page = {
       },
       {
         q: 'What’s in the free report?',
-        a: 'Name a store you run. 4 test customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t, and the fix.',
+        a: 'Whether a store you run sends a new customer the welcome, the browse and basket reminders and the checkout follow up. Every gap comes with its screenshots and a follow up drafted for you to send. Nothing is bought.',
       },
     ],
   },
 
   final: {
     heading: 'See what your own customers get. The first report is free.',
-    sub: 'Name a store you run. 4 test customers shop it as new customers, every inbox is watched for 48 hours, and your report arrives within 4 days.',
+    sub: 'Name a store you run. 4 test customers shop it, every inbox is watched for 48 hours, and your report arrives within 4 days.',
     capture: {
       kind: 'mystery',
       source: 'marketing-final',

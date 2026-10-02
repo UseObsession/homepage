@@ -5,7 +5,7 @@ import type { Page } from '../types'
    The story: what Obsession is for a developer (1 API call, declared agents with their own ID, inbox, number and browser,
    signed steps to your webhook) > how it works (the 4 step flow, from code) > the code (the `developers` beat: the SDK
    call and what the webhook receives, beside the `dev` screen; render it straight after How, as James had the code at
-   the top) > the gap (James's "The hard parts, run for you") > use cases a developer builds (release tests in CI,
+   the top) > the gap (James's "The hard parts, run for you", as a sentence) > use cases a developer builds (release tests in CI,
    prospect intelligence in a product, rival monitoring as a feature, merchant checks, lead leaks for customers,
    quotes with proof) > outcomes > every kind of product > recipes > the real September store check > questions >
    "Get API access".
@@ -23,6 +23,9 @@ import type { Page } from '../types'
    (every example domain ends in .example).
    Vocabulary: the API object is a mission (`obs.missions.create`, `mission.verdict`), as on Home and in the screens;
    the jobs are recipes.
+   Narrative edit (3 Oct): the sub names the agents' own inbox, number and browser as every reader page does, so the
+   proof facts say how they start (any language), how many (every company) and the signature; How says what your code
+   picks, the code shows the call, the gap says what sits behind it, and the proof hands a developer the run's webhook.
    Every console run is an example (the console’s Example tag and each ledger say so). The only real run is the September store
    check (proof), never shown as signed, so the `run` screen (a signed receipt on that run) is not used here.
    Screens, each once: How (compose, templates, kit, qa), the code (dev), use cases (ship, leads, rivals, shop, inbound,
@@ -46,7 +49,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your product win and keep users.',
-    sub: 'Your code passes in the companies. Declared AI agents sign up, shop and ask the chat bot at each one, and post what they find to your webhook.',
+    sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up, shop and ask the chat bot at every company you name, continuously, and post what they find to your webhook.',
     capture: {
       kind: 'waitlist',
       source: 'developers-hero',
@@ -61,9 +64,9 @@ export const page: Page = {
     },
     secondary: { label: 'See a real run', to: '/sample-output' },
     proof: [
-      { value: '1 API call', label: 'starts an agent with its own ID, inbox, number and browser' },
-      { value: 'Every company', label: 'you pass in, at once and continuously' },
-      { value: 'Every step', label: 'signed, so anyone can verify it' },
+      { value: '1 API call', label: 'starts the agents, from any language' },
+      { value: 'Every company', label: 'you pass in, at once' },
+      { value: 'Every step signed', label: 'so your users can verify it' },
     ],
     consoleHeading,
     demos: [
@@ -151,8 +154,8 @@ export const page: Page = {
   },
 
   how: {
-    heading: 'Your code picks the job and the companies. Declared agents do the rest.',
-    sub: 'A recipe comes with its agents, inboxes and numbers already set up. Type a task and the system sets them up for you, or build your own from the same parts.',
+    heading: 'Your code picks the job and the companies. Declared AI agents do the rest.',
+    sub: 'A recipe comes with its agents, inboxes and numbers already set up. Type a task and Obsession sets them up for you, or build your own from the same parts.',
     steps: [
       {
         title: 'Pick a recipe, type a task, or build your own',
@@ -226,7 +229,7 @@ await obs.missions.create({
   },
 
   gap: {
-    heading: 'The hard parts, run for you.',
+    heading: 'We run the hard parts for you.',
     sub: 'Signing up once is easy. Doing it at every company on your list, waiting for every reply and proving what arrived is the part nobody wants to build.',
     rows: [
       {
@@ -324,13 +327,13 @@ await obs.missions.create({
         label: 'of build skipped: identities, inboxes, numbers, browsers, waits and signed receipts, at 2 weeks each',
       },
       { value: '0', label: 'inboxes, numbers or browsers for your team to keep alive' },
-      { value: 'Every deploy', label: 'tested by a fresh sign up before a customer finds the break' },
+      { value: 'Every deploy', label: 'tested by a fresh sign up on a real inbox and number' },
       { value: 'Every customer', label: 'in your product gets its own agents, with nothing more to build' },
     ],
   },
 
   kinds: {
-    heading: 'Wherever your users deal with other companies, agents can do the legwork.',
+    heading: 'Wherever your users deal with other companies, AI agents can do the legwork.',
     label: 'Pick your product',
     items: [
       {
@@ -382,13 +385,13 @@ await obs.missions.create({
   },
 
   recipes: {
-    heading: 'Every recipe runs from 1 API call, at every company you pass in.',
+    heading: 'Call any recipe by name, at every company you pass in.',
     ids: ['audit', 'delivery', 'prospect', 'competitor', 'prices', 'mystery', 'speed', 'email-sms', 'supplier-quotes', 'quotes', 'checkout'],
   },
 
   proof: {
-    heading: '1 test customer left a basket and 1 stopped at checkout on a real store. 0 reminders came in 48 hours.',
-    line: 'In September, 4 test customers shopped a skincare store, name hidden, and agents watched every inbox for 48 hours. The shopper who left a £40 gift set in the basket at 02:57 and the one who stopped at checkout with £21 of deodorant at 03:11 got no reminder.',
+    heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
+    line: 'In September, 4 test customers shopped a UK skincare store, name hidden: a £40 gift set left in the basket at 02:57, £21 of deodorant at checkout at 03:11. Open the run as the report, or as the webhook your code would get.',
     cta: { label: 'Open the real run', to: '/sample-output' },
   },
 
@@ -409,7 +412,7 @@ await obs.missions.create({
       },
       {
         q: 'Can I run a job that isn’t a recipe?',
-        a: 'Yes. Type it as a task and the system sets up the agents it needs, or set every step yourself. A recipe is a job with its infrastructure already set up.',
+        a: 'Yes. Type it as a task and Obsession sets up the agents it needs, or set every step yourself. A recipe is a job with its infrastructure already set up.',
       },
       {
         q: 'How do my users check a result?',
@@ -417,7 +420,7 @@ await obs.missions.create({
       },
       {
         q: 'Do companies know it’s an AI agent?',
-        a: 'Yes. Every agent says it’s AI. On your own journeys, or a customer’s with their OK, it says who it works for. At rivals and prospects it uses only public sign ups, pages and the site’s chat bot, links to useobsession.com/agents, and never names you or your customer.',
+        a: 'Yes. Every agent says it’s AI. On your own journeys, or a customer’s with their OK, it says who it works for. At rivals and prospects it says it’s from Obsession, links to useobsession.com/agents, uses only public sign ups, pages and the site’s chat bot, and never names you or your customer.',
       },
       {
         q: 'What stops an agent doing something it shouldn’t?',
@@ -435,7 +438,7 @@ await obs.missions.create({
   },
 
   final: {
-    heading: 'Send your first agent from code.',
+    heading: 'Send your first AI agent from code.',
     sub: 'Tell us what you’d build, and we’ll set up your API access with you. Every agent declared, every step signed.',
     capture: {
       kind: 'waitlist',

@@ -1,9 +1,10 @@
 import type { Capture, Recipe } from '../types'
 
-/* Cancellation saves (/recipes/cancellation-saves). Keep and grow customers. Screen: saves (an AI assistant acting for Jane D.
-   asks to cancel her meal kit plan; the agent says it's the brand's AI and sends a code to Jane's own phone; its reply
-   puts "Cancel now" and "Pause for 2 months" side by side; Jane picks the pause; billing paused and confirmed in the
-   same channel; a note set for 1 Dec, before the pause ends; every step signed).
+/* Cancellation saves (/recipes/cancellation-saves). Keep and grow customers. Screen: saves (a coffee plan in October:
+   Dana R.'s AI assistant asks to cancel; "Cancel now" and "Pause 2 months" side by side; Dana picks the pause; the
+   month reads Saved 28 of 100: 19 paused, 6 skipped a box, 3 took 20% off for 3 months; 1 offer per request; a £400
+   discount budget, £40 used; AM's signed approval). The run tells that story (3 Oct), and its 28 of 100 is the same
+   figure the up-to-50 line models.
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 4 (research name retired; the plain name is Cancellation saves).
    Red lines held: declared as the brand's AI, and calls say they're recorded; it never obstructs or delays a cancel:
    the 1 offer always sits next to "Cancel now", on the phone it first says the caller can say "cancel" at any time,
@@ -69,24 +70,24 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: a meal kit subscription',
+    tab: 'Example: a coffee subscription',
     recipe: 'saves',
-    task: 'Answer every cancel request for our meal kit plan. Offer a 2 month pause next to “Cancel now”, do what they pick at once, and write before a pause ends.',
-    targets: 'A meal kit subscription, every channel',
+    task: 'Answer every cancel request for our coffee plan. Put 1 offer from our menu next to “Cancel now”, do what they pick at once, and write before a pause ends.',
+    targets: 'A coffee subscription, every channel',
     journey: ['Check it’s the subscriber', '“Cancel now” and 1 pause, side by side', 'Do what they pick at once', 'Write before the pause ends'],
     schedule: 'Every request, the minute it arrives',
     report: 'A weekly note: cancels, pauses and who came back',
     kit: ['Agent ID, declared as AI', 'Inbox, number and chat', 'Cancel channel for AI assistants', 'Billing, connected by you'],
     events: [
-      { time: 'Tue 14:02', text: 'An AI assistant, acting for Jane D., asks to cancel her meal kit plan.' },
-      { time: 'Tue 14:02', text: 'The agent says it’s your brand’s AI and sends a code to Jane’s own phone. Confirmed in 40 seconds.' },
-      { time: 'Tue 14:03', text: 'Its reply, side by side: “Cancel now” or “Pause for 2 months”.' },
-      { time: 'Tue 14:05', text: 'Jane picks the pause. Billing paused, and confirmed in the same channel.' },
+      { time: 'Tue 14:02', text: 'An AI assistant, acting for Dana R., asks to cancel her coffee plan.' },
+      { time: 'Tue 14:02', text: 'The agent says it’s your brand’s AI and sends a code to Dana’s own phone. Confirmed in 40 seconds.' },
+      { time: 'Tue 14:03', text: 'Its reply, side by side: “Cancel now” or “Pause 2 months”.' },
+      { time: 'Tue 14:05', text: 'Dana picks the pause. Billing paused, and confirmed in the same channel.' },
       { time: 'Tue 16:40', text: 'A caller hears they can say “cancel” at any time, and says it. Cancelled and confirmed on the same call.' },
-      { time: '1 Dec, 10:00', text: 'A note to Jane before the pause ends: the restart date, with cancelling 1 tap away.' },
+      { time: '1 Dec, 10:00', text: 'A note to Dana before the pause ends: the restart date, with cancelling 1 tap away.' },
     ],
-    finding: 'This week: 212 cancel requests, 41 of them from AI assistants. 52 chose the pause. 160 cancelled, each done the same minute.',
-    fix: 'A smaller box drafted as next month’s offer, to try in place of the pause. It goes live only after your OK.',
+    finding: 'This month: 100 cancel requests. 28 stayed: 19 paused, 6 skipped a box and 3 took 20% off for 3 months. 72 cancelled, each the same minute.',
+    fix: 'A smaller box drafted as a new offer for your menu, to try next month. It goes live only after your OK.',
     ledger: 'Example run. Every disclosure, check, offer, choice and cancel signed and dated.',
   },
 
@@ -174,7 +175,7 @@ export const recipe: Recipe = {
   table: {
     heading: '“Cancel now” sits beside every offer, on every channel.',
     line: 'Example offer: a 2 month pause. It always sits next to “Cancel now”, and “cancel, no offers” always cancels.',
-    cols: ['What they’re told first', 'Cancel now', 'The offer'],
+    cols: ['What they’re told first', 'How they cancel', 'The offer'],
     rows: [
       { label: 'AI assistant', values: ['It’s your brand’s AI, and it asks whom the assistant acts for', 'In the same reply', '1 pause, side by side'] },
       { label: 'Phone', values: ['It’s AI, the call is recorded, and they can say “cancel” at any time', 'Done on the call', '1 pause, after that'] },

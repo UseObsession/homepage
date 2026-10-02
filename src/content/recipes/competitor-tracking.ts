@@ -67,7 +67,7 @@ export const recipe: Recipe = {
     events: [
       { time: 'Mon 07:02', text: 'Signs up from the pop up as a declared AI agent, with its own inbox and number.' },
       { time: 'Mon 07:04', text: 'Welcome email: 15% off your first order.' },
-      { time: 'Mon 07:20', text: 'Asks the site’s bot how long delivery takes. Answered in 6 s.' },
+      { time: 'Mon 07:20', text: 'Asks the site’s chat bot how long delivery takes. Answered in 6 seconds.' },
       { time: 'Tue 19:30', text: 'First text: a free gift on orders over £40.' },
       { time: 'Thu 08:15', text: 'Free delivery now starts at £35, down from £50.' },
       { time: 'Fri 11:40', text: '14 new public ads, 9 of them leading with the free gift.' },

@@ -7,7 +7,11 @@ import type { Page } from '../types'
    outcomes > every kind of business > recipes > the real September store check > questions > "Get early access".
    Every console run is an example and says so in its ledger line. The only real run is the September store check
    (proof and the third hero fact): 4 test customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders.
-   Each use case line matches what its screen shows (leads, switch, ship, qa, rivals, listings, invoices, suppliers). */
+   Each use case line matches what its screen shows (leads, switch, ship, qa, rivals, listings, invoices, suppliers).
+   Software renewals matches the spend screen: 6 tools on £4,950 of caps; the design tool asks 16% more, £1,200 to
+   £1,392 a month, held at the £1,200 cap; last year's £30 a seat kept for 31 seats, 9 unused for 60 days removed
+   after your OK, so £930 a month; (£1,392 - £930) x 12 = £5,544 a year. The supplier outcome is the hero run's model:
+   $16,000 a month x (18% + 6%) x 12 = $46,080. */
 
 export const page: Page = {
   meta: {
@@ -27,7 +31,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    sub: 'Declared AI agents with their own inbox, phone number and browser sign up at every prospect to find the gap you fix, and test every release as a new customer, continuously. You get signed proof and your next move.',
+    sub: 'Declared AI agents with their own inbox, phone, card and browser sign up at your prospects and rivals, test every release as a new customer, and quote, chase and negotiate within your limits. Every step signed.',
     capture: {
       kind: 'waitlist',
       source: 'founders-hero',
@@ -151,28 +155,28 @@ export const page: Page = {
       {
         tab: 'Software renewals',
         recipe: 'spend',
-        task: 'Put each software vendor on its own card, capped at the agreed price. Hold any charge above it, negotiate, and check the next invoice.',
-        targets: '14 software vendors, from your books',
-        journey: ['1 capped card per vendor', 'Hold any charge over the cap', 'Negotiate with your real usage', 'Check the next invoice'],
+        task: 'Put each software tool on its own card, capped at what we pay now. Hold any rise, ask to keep last year’s price, and remove seats nobody uses.',
+        targets: '6 software tools, from your books',
+        journey: ['1 capped card per tool', 'Hold any charge over the cap', 'Ask to keep last year’s price', 'Remove unused seats after your OK'],
         schedule: 'Every charge, and 90 days before each renewal',
         report: 'A Slack note per renewal, a monthly savings sheet',
-        kit: ['Agent ID, names your company', '14 capped cards', 'Seat usage, connected by you', 'Billing inbox'],
+        kit: ['Agent ID, names your company', '6 capped cards', 'Seat use, connected by you', 'Billing inbox'],
         events: [
-          { time: 'Day 1', text: 'Your caps approved. 14 vendors moved to their own cards, each capped at the agreed price.' },
-          { time: 'Day 12, 06:00', text: 'The design tool charges $1,840 a month against a $1,200 cap. Held, not paid.' },
-          { time: 'Day 12, 09:10', text: 'The contract allows no rise until March. The vendor is told, contract attached.' },
-          { time: 'Day 15', text: 'After 2 chases: $1,200 to March, then $1,260. You accept, and the cap moves.' },
-          { time: 'Day 42', text: 'Next invoice checked: $1,200, as agreed until March.' },
+          { time: 'Day 1', text: 'Your caps approved. 6 tools on their own cards, £4,950 a month in all.' },
+          { time: 'Day 14, 06:00', text: 'The design tool renews 16% higher: £1,392 a month against a £1,200 cap. Held, not paid.' },
+          { time: 'Day 14, 06:05', text: 'Seat use read: 31 of 40 seats used, 9 unused for 60 days.' },
+          { time: 'Day 14, 09:10', text: 'After your OK, the vendor is asked to renew 31 seats at last year’s £30 a seat.' },
+          { time: 'Day 16', text: 'The vendor agrees in writing. 9 seats removed: £930 a month from here.' },
         ],
-        finding: 'A $1,840 charge held at the cap and settled at $1,260: $6,960 a year kept.',
-        fix: '9 unused seats and 2 unused tools: cancellations drafted for your OK.',
+        finding: 'A 16% rise held at the cap, last year’s price kept and 9 unused seats removed: £5,544 a year saved.',
+        fix: 'The cap lowered to £930 to match, ready for your OK. The next invoice gets checked against it.',
         ledger: 'Example run. Every held charge, reply and invoice signed.',
       },
     ],
   },
 
   how: {
-    heading: 'Pick the job, add the companies, and declared AI agents do the legwork.',
+    heading: 'Pick the job and add the companies. Agents bring back signed proof.',
     sub: 'A recipe comes with its agents, inboxes and numbers already set up. Type any other job and Obsession sets them up for you.',
     steps: [
       {
@@ -211,10 +215,6 @@ export const page: Page = {
         obsession: 'Each company comes with signed proof of the gap you fix',
       },
       {
-        today: 'AI assistants act as you, from your own inbox and logins',
-        obsession: 'Agents work under their own declared ID, inbox and number',
-      },
-      {
         today: '1 company at a time, checked once',
         obsession: 'Every company on your list at once, continuously',
       },
@@ -226,18 +226,22 @@ export const page: Page = {
         today: 'Reminders go out from your inbox, then nobody calls',
         obsession: 'A declared agent emails and calls, politely, until it’s paid',
       },
+      {
+        today: 'AI assistants act as you, from your own inbox and logins',
+        obsession: 'Agents work under their own declared ID, inbox and number',
+      },
     ],
   },
 
   uses: {
-    heading: 'Agents find, collect and protect revenue while you build.',
+    heading: 'While you build, agents find, protect and collect your revenue.',
     items: [
       {
         tab: 'Leads with proof',
         moment: 'Sunday 21:00. Every name on Monday’s list looks the same.',
         outcome: 'Pitch only the companies with the gap you fix.',
         line: 'Agents join each company’s newsletter or free trial with no card, log what arrives, never reply, and close the trial if a rep writes or calls. You send the opener yourself.',
-        whyOnly: 'Your whole list at once, each company with signed proof it can check itself.',
+        whyOnly: 'What a company sends only reaches an inbox that signed up. Agents join all 50 at once, and every step is signed.',
         recipe: 'prospect',
         screen: 'leads',
       },
@@ -253,7 +257,7 @@ export const page: Page = {
       {
         tab: 'Ship clean',
         moment: 'Thursday 06:02. You’ve shipped. The launch email goes at 08:00.',
-        outcome: 'Catch what a release broke before a customer does.',
+        outcome: 'Catch the broken launch code before the 08:00 email sends it to everyone.',
         line: 'After every release, a fresh test customer signs up, enters the login code from the text, opens every email and tries your launch code, then stops before payment.',
         whyOnly: 'A fresh inbox and number every run, so your tools see a stranger, not you.',
         recipe: 'audit',
@@ -271,9 +275,9 @@ export const page: Page = {
       {
         tab: 'Rival watch',
         moment: 'Friday 15:00. A buyer quotes a rival offer you never saw.',
-        outcome: 'Answer every rival price and offer the week it lands.',
+        outcome: 'Answer every rival price and offer the morning it lands.',
         line: 'Declared agents join each rival’s newsletter and free trial with no card, log every email, price and offer, never reply, and close the trial if a rep writes or calls.',
-        whyOnly: 'Signed up at every rival at once, continuously, with each email kept raw and dated.',
+        whyOnly: 'A rival can raise a price in 1 country only. Agents check from the US and UK every morning, and keep each email raw and dated.',
         recipe: 'competitor',
         screen: 'rivals',
       },
@@ -282,15 +286,15 @@ export const page: Page = {
         moment: 'Tuesday 11:00. A buyer quotes your old hours, straight from an AI answer.',
         outcome: 'Every listing and AI answer about you, kept right.',
         line: 'Every Monday, agents check your listings and ask 4 AI assistants what buyers ask, then get every wrong fact corrected where it comes from.',
-        whyOnly: 'Asked the official way from a clean history, not your accounts, and every fact checked until the answer changes.',
+        whyOnly: 'Agents ask from a clean history, not your accounts, so they see what a stranger sees, and ask again until the answer changes.',
         recipe: 'listings',
         screen: 'listings',
       },
       {
         tab: 'Get paid',
-        moment: 'Friday 17:00. 15 invoices overdue, payroll on Monday.',
+        moment: 'Friday 17:00. 14 invoices overdue, payroll on Monday.',
         outcome: 'Every overdue invoice chased until it’s paid.',
-        line: 'Each morning, agents read overdue invoices from the accounting tool you connect, then email and call each customer, politely, until it’s paid.',
+        line: 'Each morning, agents read overdue invoices from the accounting tool you connect, then email and call each customer, politely, until it’s paid. A dispute comes to you.',
         whyOnly: 'An agent with its own inbox and number, every chase dated, and it stops the moment you’re paid.',
         recipe: 'get-paid',
         screen: 'invoices',
@@ -299,8 +303,8 @@ export const page: Page = {
         tab: 'Cut costs',
         moment: 'Monday 09:00. Your packaging supplier wants 18% more from 1 November.',
         outcome: 'Answer every price rise with 3 written quotes.',
-        line: 'When a price rise lands, a declared agent asks other suppliers to quote, then pushes back with the best 3.',
-        whyOnly: 'Their own inbox and number chase every supplier until it’s in writing. You approve. They never pay.',
+        line: 'When a price rise lands, a declared agent asks other suppliers to quote, then pushes back with the best 3 after your OK.',
+        whyOnly: 'Their own inbox and number chase every supplier until the price is in writing. They never pay.',
         recipe: 'supplier-quotes',
         screen: 'suppliers',
       },
@@ -313,12 +317,12 @@ export const page: Page = {
       { value: 'Every prospect', label: 'checked for the gap you fix, with signed proof you can send' },
       { value: 'Every release', label: 'tested by a fresh test customer as soon as it ships' },
       { value: 'Up to 6 hours', label: 'back a week: 2 hours each on chasing invoices, getting quotes and testing releases' },
-      { value: 'Up to $46,080', label: 'a year kept on a $16,000 monthly order: the 18% rise dropped and 6% off' },
+      { value: 'Up to $46,080', label: 'a year kept on a $16,000 monthly order, if the 18% rise is dropped and you get 6% off' },
     ],
   },
 
   kinds: {
-    heading: 'Whatever you sell, agents do the legwork with your prospects, rivals, customers and suppliers.',
+    heading: 'Whatever you sell, agents deal with your prospects, rivals, customers and suppliers for you.',
     label: 'Pick your business',
     items: [
       {
@@ -375,13 +379,13 @@ export const page: Page = {
   },
 
   recipes: {
-    heading: 'Prospects, quotes, upgrades, ads, reviews, rivals, invoices and software bills each have a recipe ready to run.',
-    ids: ['prospect', 'quotes', 'expansion', 'upsells', 'audit', 'delivery', 'adcheck', 'partners', 'reviews', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'spend', 'mystery'],
+    heading: 'From your first prospect to your software bill, a recipe is ready to run.',
+    ids: ['prospect', 'quotes', 'listings', 'expansion', 'upsells', 'reviews', 'competitor', 'trial', 'audit', 'delivery', 'mystery', 'adcheck', 'partners', 'get-paid', 'supplier-quotes', 'spend'],
   },
 
   proof: {
     heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither heard a thing in 48 hours.',
-    line: 'September, a skincare store, 4 test customers: a £40 gift set left in the basket at 02:57, £21 of deodorant left at checkout at 03:11. Your sign up gets the same check after every release.',
+    line: 'September, a skincare store, name hidden, 4 test customers: a £40 gift set left in the basket at 02:57, £21 of deodorant left at checkout at 03:11. Your own sign up can get the same test customers after every release.',
     cta: { label: 'Read the report', to: '/sample-output' },
   },
 
@@ -390,7 +394,7 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'The intelligence infrastructure for commercial teams. Declared AI agents, each with its own ID, inbox, phone number and browser, do business with other companies for you: they sign up, shop, ask the chat bot, chase, check and wait at every company on your list, continuously. Every step is signed, and you get the proof and your next move.',
+        a: 'The intelligence infrastructure for commercial teams. Declared AI agents, each with its own ID, inbox, phone number, card and browser, do business with other companies for you: they sign up, ask the chat bot, test, quote, chase and negotiate within your limits at every company on your list, continuously. Every step is signed, and you get the proof and your next move.',
       },
       {
         q: 'Is it a lead list?',
@@ -398,7 +402,7 @@ export const page: Page = {
       },
       {
         q: 'What do agents do at a prospect or rival?',
-        a: 'Only what any customer can do alone: sign up, join the newsletter, start a free trial with no card, read public pages and ask the site’s chat bot. Each says it’s an AI agent, links to useobsession.com/agents, never names you and never replies. If a person picks up the chat, or a rep writes or calls, it stops.',
+        a: 'Only what any customer can do alone: sign up, join the newsletter, start a free trial with no card, read public pages and ask the site’s chat bot. Each says it’s an AI agent from Obsession, links to useobsession.com/agents, never names you and never replies. If a person picks up the chat, or a rep writes or calls, it stops.',
       },
       {
         q: 'How is it different from our own tests?',
@@ -429,7 +433,7 @@ export const page: Page = {
 
   final: {
     heading: 'Point your first agent at Monday’s list.',
-    sub: 'No card. Nothing runs without your OK, and every step is signed.',
+    sub: 'Or at your next release, or the invoices still unpaid. Tell us which comes first when you sign up.',
     capture: {
       kind: 'waitlist',
       source: 'founders-final',

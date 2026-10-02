@@ -42,7 +42,7 @@ export const recipe: Recipe = {
     'A browser to visit every partner',
     'A basket on your store, never paid',
     'Notes in your team’s own thread',
-    'Every check and OK signed',
+    'Every check and OK signed and dated',
   ],
 
   meta: {

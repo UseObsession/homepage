@@ -15,14 +15,18 @@ import type { Page } from '../types'
    Screens, each once: the hero tabs (pack, shop, rivals, inbound, checkout, botcheck), how (templates, agencytask,
    kit, run: all in the agency workspace), the 4th job, a typed task (compose), the AI agent checks (callcheck, drawn
    for an agency and its client Dental group, as Home's workspace is; botcheck is in the hero, so it can't be here
-   too), developers (qa). The picker has no screens: each reader's own page shows theirs. */
+   too), developers (qa). The picker has no screens: each reader's own page shows theirs.
+   Narrative edit (3 Oct): the sub names the full range in 30 words (each agent's inbox, phone and card are in How step
+   3 and the gap); each heading hands off to the next (the band's "legwork" > How's "signed proof" > the gap's "as a
+   customer" > the jobs' "your own included" > the verify section's "your own AI agents"); the gap no longer repeats
+   the hero's proof facts word for word; the real run reads 1 basket and 1 checkout, as on every other page. */
 
 export const page: Page = {
   meta: {
     path: '/',
     title: 'Obsession · Intelligence infrastructure for commercial teams',
     description:
-      'Send declared AI agents with their own ID, inbox, phone, card and browser to research prospects, test journeys, track rivals, chase and negotiate for you.',
+      'Declared AI agents with their own inbox, phone and card research prospects, test journeys, track rivals, negotiate and check the AI agents you run.',
     answer:
       'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number, card and browser, that work with other companies for you. They research prospects as their customer, test any journey, track rivals, answer and chase, buy and negotiate within the limits you set, and check the AI agents you run, at every company on your list, continuously, with every step signed.',
     ogImage: '/og/home.png',
@@ -31,7 +35,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
-    sub: 'Send declared AI agents, with their own ID, inbox, phone, card and browser, to research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. Every step signed.',
+    sub: 'Declared AI agents research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. Every step signed.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
@@ -87,14 +91,14 @@ export const page: Page = {
       {
         tab: 'Check your AI agents',
         screen: 'botcheck',
-        line: 'Test customers ask your support bot on every channel, and check each answer.',
+        line: 'Declared test customers ask your support bot on every channel, and check each answer.',
         link: { label: 'See how it works', to: '/verify' },
       },
     ],
   },
 
   how: {
-    heading: 'Pick the job and the companies. Agents bring back the proof.',
+    heading: 'Pick the job, add the companies, and get back signed proof.',
     sub: 'A recipe comes with its agents, inboxes and schedule already set up. Type a task and Obsession sets them up for you.',
     steps: [
       {
@@ -110,12 +114,12 @@ export const page: Page = {
       },
       {
         title: 'Declared AI agents run it',
-        line: 'Each gets its own ID, inbox, phone number and browser, says it’s AI, and keeps at it continuously.',
+        line: 'Each gets its own ID, inbox, phone number, card and browser, says it’s AI, and keeps at it continuously.',
         screen: 'kit',
       },
       {
         title: 'You get the proof and your next move',
-        line: 'Every step signed and dated, by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
+        line: 'What they found, with every screenshot and message behind it, by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
         screen: 'run',
       },
     ],
@@ -130,8 +134,8 @@ export const page: Page = {
         today: 'AI assistants act as you, from your own inbox and logins',
         obsession: 'Agents have their own ID, inbox and number, and say they’re AI',
       },
-      { today: '1 company at a time, while you watch', obsession: 'Every company on your list at once' },
-      { today: 'A single check, stale by next week', obsession: 'Checked continuously, and again after every fix' },
+      { today: '1 company at a time, while you watch', obsession: 'Your whole list at once, while you do other work' },
+      { today: 'A single check, stale by next week', obsession: 'Run again on the schedule you set, with every change dated' },
       { today: 'Screenshots in a folder, easy to doubt', obsession: 'Every step signed and dated, so anyone can check it' },
     ],
   },
@@ -168,81 +172,92 @@ export const page: Page = {
 
   /* The 4th way in, after the 4 jobs (VERIFY.md 10): its own short section, linking /verify. */
   verify: {
-    heading: 'Check your AI agents the way your customers meet them, every day.',
-    line: 'Declared test customers use your support bot, AI receptionist, AI SDR or sales agent as your customers do, and sign what they find.',
+    heading: 'Your own AI agents meet declared test customers every day.',
+    line: 'They call, chat and book with your support bot, AI receptionist or sales agent, check each answer against your prices and policies, and sign what they find.',
     screen: 'callcheck',
     cta: { label: 'See how it works', to: '/verify' },
   },
 
   /* The reader picker. Each line is 70 characters at most, so all 5 sit on 3 lines in the band. The picks differ on
-     every panel: recipes whose own page names that reader in its audiences (content/recipes/*.ts), echoing the line,
-     and for developers the ways in from code. For the narrative edit: this heading and How's after it both put
-     "Agents" up front. */
+     every panel and are the strongest recipe pair for that reader (3 Oct, after Client upsells, Expansion offers,
+     Review requests, Ad landing check, Partner checks and the 8 AI agent checks landed): each is listed on the reader's
+     own page (content/pages/*.ts recipes.ids) and in Home's recipe grid below, and its line, opening on what the reader
+     does, says what the pair does for them.
+     The AI agent checks are not picks: no reader page lists them, and Home gives them their own section (verify)
+     linking /verify. Developers keep the ways in from code. How's heading after this one no longer opens on "Agents". */
   audiences: {
     heading: 'Agents do the legwork behind every pitch, launch, release and renewal.',
     items: [
       {
         audience: 'agencies',
         name: 'Agencies',
-        line: 'Check every client and prove every pitch, sold as your own research.',
-        picks: ['Mystery shopper', 'Competitor tracking'],
+        line: 'Check every client as a customer, then propose its next service.',
+        picks: ['Mystery shopper', 'Client upsells'],
         to: '/agencies',
       },
       {
         audience: 'founders',
         name: 'Founders',
-        line: 'Leads with a proven gap, and a test customer after every release.',
+        line: 'Find leads with a proven gap, and test every release as a customer.',
         picks: ['Prospect intelligence', 'Website audit'],
         to: '/founders',
       },
       {
         audience: 'sales',
         name: 'Sales',
-        line: 'See what each account’s customers get, before every call and renewal.',
-        picks: ['Account watch', 'Trial teardown'],
+        line: 'See what each account’s customers get, and spot when it needs more.',
+        picks: ['Account watch', 'Expansion offers'],
         to: '/sales',
       },
       {
         audience: 'marketing',
         name: 'Marketing',
-        line: 'See every rival offer the day it lands, and check your own launches.',
-        picks: ['Email and SMS tracking', 'Delivery monitoring'],
+        line: 'Catch every broken ad page, and every rival offer the day it lands.',
+        picks: ['Ad landing check', 'Competitor tracking'],
         to: '/marketing',
       },
       {
         audience: 'developers',
         name: 'Developers',
-        line: 'The same agents, inboxes, numbers and browsers, from your own code.',
+        line: 'Build on the same agents, inboxes, numbers and browsers in your code.',
         picks: ['API and webhooks', 'Release tests in CI'],
         to: '/developers',
       },
     ],
   },
 
+  /* The strongest recipes of each of the 6 jobs, in pairs so every job's rows fill both columns (RecipeGrid groups them
+     by job in the nav's order). Every reader pick in the band above and every hero tab's recipe is here, and the AI agent
+     checks show the 2 Home already plays: the support bot (hero) and the voice agent (the verify section). */
   recipes: {
     heading: 'Every recipe comes ready to run, and you can change any step.',
     ids: [
-      'mystery',
-      'competitor',
       'prospect',
+      'quotes',
       'account-watch',
+      'expansion',
+      'upsells',
+      'reviews',
+      'competitor',
       'trial',
       'prices',
       'ads',
-      'email-sms',
+      'mystery',
       'speed',
+      'checkout',
+      'adcheck',
       'audit',
       'delivery',
-      'listings',
-      'business-case',
       'get-paid',
       'supplier-quotes',
+      'support-bot',
+      'voice-agent',
     ],
   },
 
   outputs: {
     heading: '1 real run. The output, however you work.',
-    line: '4 test customers shopped a UK store in September, name hidden. 2 left a basket or stopped at checkout, and in 48 hours nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.',
+    line: '4 test customers shopped a UK store in September, name hidden. 1 left a basket and 1 stopped at checkout, and in 48 hours nobody wrote to either. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.',
     facts: [
       { value: '4', label: 'journeys run' },
       { value: '2', label: 'silent' },
@@ -327,7 +342,7 @@ await obs.missions.create({
     items: [
       {
         q: 'What is Obsession?',
-        a: 'The intelligence infrastructure for commercial teams. Declared AI agents, each with its own ID, inbox, phone number and browser, do business with other companies for you: they sign up, shop, ask the bot, chase and check at every company on your list, continuously. You get signed proof and your next move.',
+        a: 'The intelligence infrastructure for commercial teams. Declared AI agents, each with its own ID, inbox, phone number, card and browser, do business with other companies for you: they sign up, shop, ask the bot and chase at every company on your list, continuously, buy and negotiate within your limits, and check the AI agents you run. You get signed proof and your next move.',
       },
       {
         q: 'How is it different from an AI assistant or a data tool?',
@@ -339,7 +354,7 @@ await obs.missions.create({
       },
       {
         q: 'What will the agents never do?',
-        a: 'Pretend to be a person, or send cold spam. Contact a person at a prospect or rival: no forms, no emails, and if a person picks up the chat, the step ends. Start a rival’s trial that asks for a card, reply in one, or stay once a rep writes or calls. Pay on anyone else’s store, or go behind a login it wasn’t given.',
+        a: 'Pretend to be a person, use a fake identity or send cold spam. Contact a person at a prospect or rival: no forms, no emails, and if a person picks up the chat, the step ends. Start a rival’s trial that asks for a card, reply in one, or stay once a rep writes or calls. Pay on anyone else’s store, or go behind a login it wasn’t given.',
       },
       {
         q: 'What do I get back?',
@@ -347,7 +362,7 @@ await obs.missions.create({
       },
       {
         q: 'Can it check our own AI agents?',
-        a: 'Yes. Give us the chat page, phone number or inbox your AI agent answers on, or a client’s with their OK. Declared test customers use it as your customers do, every day, and sign what they find.',
+        a: 'Yes. Give us the chat page, phone number or inbox your AI agent answers on, or a client’s with their OK, and the policies it should follow. Obsession writes the checks, and once you approve them, declared test customers use it as your customers do, every day, and sign what they find.',
       },
       {
         q: 'How many companies can it cover?',
@@ -359,14 +374,14 @@ await obs.missions.create({
       },
       {
         q: 'How do I start?',
-        a: 'Join the waitlist and tell us what to set up first. If you run a store, or have a client’s OK, your first mystery shop is free, with the report within 4 days.',
+        a: 'Join the waitlist and tell us what to set up first. Your first mystery shop is free for a store you run, or a client’s with their OK, and so is your first check of an AI agent you run. Each report comes within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Hand the legwork to declared AI agents.',
-    sub: 'Tell us what to set up first: a recipe, a task in plain words, or the API.',
+    sub: 'Tell us what to set up first: a recipe, a task in plain words, the API or a check on your own AI agent.',
     capture: {
       kind: 'waitlist',
       source: 'home-final',

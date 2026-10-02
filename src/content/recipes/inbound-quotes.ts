@@ -1,9 +1,11 @@
 import type { Capture, Recipe } from '../types'
 
-/* Inbound quotes (/recipes/inbound-quotes). Win customers. Screen: quotes (Sat 03:12, a procurement agent for a
-   logistics firm, signed, asks for 40 seats and a 2 year price; 03:14 the quote, 12% off for 2 years as the rules
-   allow; 03:20 it asks for 18%, held at 12% with quarterly billing offered; Mon 09:02 a call booked with the rep;
-   answered in 2 minutes).
+/* Inbound quotes (/recipes/inbound-quotes). Win customers. Screen: quotes (a price book of 412 lines; 5 requests, a
+   median of 3 minutes; Logistics firm's procurement agent at 10:42 asks for 40 pallet bays, 120 beam pairs and
+   installation at 3 sites: $7,440 + $4,560 + $3,600 = $15,600 at list, less 5% for volume (the cap is 10%), $14,820,
+   quoted in 2 min 40 s, follow up Thursday; Dental group's form asks for something off the price book and needs you;
+   Pet food quoted in 3 minutes, Coffee roaster in 4 and said yes, Outdoor gear in 2 and said no). The run tells that
+   story (3 Oct); its counter holds at 5% and trades 8% for payment on order: $15,600 x 0.92 = $14,352.
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 2 (research name retired; the plain name is Seun's, 3 Oct).
    Lead leaks tests your channels and finds where leads leak; Inbound quotes is the answer to every real request.
    Red lines held: it answers only people and agents who got in touch, existing customers and tenders the reader was
@@ -16,8 +18,7 @@ import type { Capture, Recipe } from '../types'
    asked. No real company names: the buyer is a logistics firm and a clinic owner.
    Up-to-50 rule: the 1 modelled figure (up to 3.1 times as many requests answered) carries its model in the same line:
    when 6,346 real demo and contact forms were filled in, 68 in 100 got no reply; answering all 100 is 100 / 32 = 3.1.
-   The run is an example and says so: 40 seats at $30 a seat a month is $14,400 a year at list, $12,672 at 12% off, over the
-   $10,000 line where a rep is booked. */
+   The run is an example and says so: $14,352 is over the $10,000 line where a rep is booked. */
 
 const roles: Capture['roles'] = {
   question: 'Where do most price requests reach you?',
@@ -34,7 +35,7 @@ export const recipe: Recipe = {
   line: 'Quotes every buyer who asks, person or AI agent, from your price book in minutes, and follows up until it’s a yes or a no.',
   gets: 'A correct quote for every request in minutes, and a follow up until it’s a yes or a no.',
   kit: [
-    'An agent ID that names your company',
+    'An agent ID, declared as AI for your company',
     'Its own sales inbox and phone number',
     'Your web forms, answered as they land',
     'A front door for buyers’ AI agents',
@@ -73,23 +74,23 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: a weekend of price requests',
+    tab: 'Example: this week’s price requests',
     recipe: 'quotes',
     task: 'Answer every price request on our form, inbox, phone and front door for buyers’ agents with a quote from our price book. Hold the floor, follow up until it’s a yes or a no, and book a rep over $10,000.',
     targets: 'Your demo form, sales inbox, sales line and front door for buyers’ agents',
     journey: ['Say it’s an AI agent for you', 'Quote from your price book', 'Counter inside your floor', 'Follow up to a yes or a no'],
     schedule: 'Every request, day and night',
     report: 'Every quote in your CRM, a Slack note on each deal',
-    kit: ['Agent ID, names your company', 'Own inbox and phone number', 'Your price book and floors', 'Your CRM, connected by you'],
+    kit: ['Agent ID, declared as AI for your company', 'Own inbox and phone number', 'Your price book and floors', 'Your CRM, connected by you'],
     events: [
-      { time: 'Sat 03:12', text: 'A procurement agent for a logistics firm, with a signed ID, asks for 40 seats and a 2 year price.' },
-      { time: 'Sat 03:14', text: 'Quote sent: 40 seats at $30 a seat a month, 12% off for 2 years, as your rules allow.' },
-      { time: 'Sat 03:20', text: 'The buyer’s agent asks for 18%. Held at 12%, with quarterly billing offered instead, also in your rules.' },
-      { time: 'Sat 10:05', text: 'A clinic owner asks for a price for 5 seats on your demo form. Quoted in 3 minutes.' },
-      { time: 'Mon 09:02', text: 'The logistics firm takes 12%. A 20 minute call booked with your rep for Thursday.' },
+      { time: 'Tue 09:31', text: 'Dental group asks on your web form for something that isn’t in your price book. It waits for you, with a reply drafted.' },
+      { time: 'Tue 10:42', text: 'A procurement agent for a logistics firm, with a signed ID, asks for 40 pallet bays, 120 beam pairs and installation at 3 sites.' },
+      { time: 'Tue 10:45', text: 'Quoted from your price book in 2 minutes 40 seconds: $15,600 at list, less 5% for volume, $14,820. Valid 14 days.' },
+      { time: 'Tue 11:20', text: 'The buyer’s agent asks for 15% off. Held at 5%, with 8% offered for payment on order, inside your floor.' },
+      { time: 'Thu 10:00', text: 'The follow up goes. The logistics firm takes 8% for payment on order, $14,352, and a 20 minute call is booked with your rep.' },
     ],
-    finding: '2 requests over the weekend, both quoted within 3 minutes. The 40 seat deal held at 12% and is with your rep.',
-    fix: 'The order form for 40 seats at 12% off, drafted. It binds only when both sides sign.',
+    finding: 'Price requests quoted in a median of 3 minutes. The logistics firm’s went in 2 minutes 40 seconds, and the 1 request off your price book waits for you.',
+    fix: 'The order form for $14,352, drafted. It binds only when both sides sign.',
     ledger: 'Example run. Every quote, counter and reply dated, signed and in your CRM.',
   },
 
@@ -131,7 +132,7 @@ export const recipe: Recipe = {
         { title: 'From your price book', line: 'Your prices and approved answers only. No invented features, discounts or deadlines.' },
         {
           title: 'Inside your floor',
-          line: 'It trades before it discounts, like a longer term for a better price, and never goes below the floor you set.',
+          line: 'It trades before it discounts, like payment on order for a better price, and never goes below the floor you set.',
         },
         { title: 'For people and agents', line: 'A clear email for the buyer, and a version their AI agent can read.' },
         { title: 'In your CRM', line: 'Every quote, counter and outcome on the deal, signed.' },
@@ -164,7 +165,7 @@ export const recipe: Recipe = {
   settings: [
     { k: 'Channels', v: 'Your web forms, its own inbox and number, and a front door for buyers’ AI agents' },
     { k: 'Price book', v: 'Your prices, plans and approved answers' },
-    { k: 'Floors', v: 'The lowest price per plan, and what you’ll give for what, like 12% off for 2 years' },
+    { k: 'Floors', v: 'The lowest price you’ll take, and what you’ll give for what, like 5% off for volume or 8% for payment on order' },
     { k: 'Follow up', v: 'Days 2, 5 and 10 by default, on the channel the buyer used' },
     { k: 'Your rep', v: 'Booked above the deal size you set' },
     { k: 'Hours', v: 'Day and night, or your working hours only' },
@@ -202,7 +203,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can it give discounts?',
-        a: 'Only the ones you’ve approved, like 12% off for a 2 year term. It can’t go below your floor; anything under it comes to you.',
+        a: 'Only the ones you’ve approved, like 5% off for volume. It can’t go below your floor; anything under it comes to you.',
       },
       {
         q: 'Can a buyer talk it into a lower price?',

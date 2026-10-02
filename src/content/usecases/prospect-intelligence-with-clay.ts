@@ -5,8 +5,11 @@ import type { UseCaseStudy } from '../types'
    brands for 1 client, an SMS app, from a Clay view and back. Every name and figure is invented and the page says so.
    Kept from James: the cast and numbers (Client A, Tidewren Swim, Halvard & Moss, Fennick Home, Larkbound, 300 and 296
    brands, 61, 19, 74, Hannah and Sam, TIDE10), his 10 steps in 3 phases, the picks, the Clay columns, the opener email
-   and mockup, the 4 ways to use the facts, the final offer. The control message and second run stay only as how the
-   product confirms a gap.
+   and mockup, the 4 ways to use the facts, the final offer. The control text and second run stay only as this
+   example's recheck setting, which the agency turns on, never as how every gap is confirmed: the real September run had
+   neither.
+   Narrative edit (3 Oct): the hero is a complete claim and names the declared shopper; How says what the agency picks
+   and what the shopper does; the proof hands off to the first email; the real run's line states what it found.
    Fixed (red lines and copy rules): the support question is a question to the site's chat bot (no answer within 24
    hours is the gap, and the step ends if a person picks up); live chat is gone; basket and checkout need the brand's
    OK and stop before payment; no real company names but Clay (Store Leads, BuiltWith, Klaviyo and Shopify are gone);
@@ -35,8 +38,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Proof of a real gap at every brand on your list',
-    sub: 'Obsession becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table.',
+    headline: 'AI agents prove a real gap at every brand on your list.',
+    sub: 'A declared AI shopper becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table.',
     example: {
       chips: ['Example: an outbound agency', 'Its client: an SMS app', '300 UK ecommerce brands'],
       note: 'The agency, its client, the brands, the people and the numbers on this page are made up.',
@@ -51,7 +54,7 @@ export const study: UseCaseStudy = {
       {
         label: 'Obsession',
         title: 'A shopper for each brand',
-        items: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'A control message and a second run'],
+        items: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'Says it’s AI'],
         foot: 'Watching for 48 hours',
       },
       {
@@ -72,7 +75,7 @@ export const study: UseCaseStudy = {
   },
 
   how: {
-    heading: 'From recipe to facts in Clay.',
+    heading: 'You pick the gap and the Clay view. A declared AI shopper watches each brand.',
     sub: 'An outbound agency runs it for 1 client, an SMS app, across 300 UK ecommerce brands.',
     steps: [
       {
@@ -88,19 +91,20 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'Create a watch',
-            line: 'A watch is 1 list of companies, the checks to run on them, and how long to keep watching. Start one from a recipe, or by describing what you want to know.',
+            line: 'A watch is 1 list of companies, the checks to run on them, and how long to keep watching.',
             example: 'The agency starts a new watch for Client A, an SMS app.',
           },
           {
             title: 'Pick a recipe',
-            line: 'A recipe sets up the checks for 1 job. Launch it as it is, change anything you like, or skip recipes and describe what you want to know in your own words.',
+            line: 'A recipe comes with the checks for 1 job already set up. Launch it as it is, change anything you like, or skip it and describe what you want to know in your own words.',
             example:
               'The agency picks Prospect intelligence. It proves a gap at companies you’re about to write to. Competitor tracking is for watching rivals over time.',
           },
           {
             title: 'Configure it',
             line: 'Choose the gap your client’s product closes and what counts as a gap. Each check has its own deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer.',
-            example: 'Email sign up, text opt in and 1 question to the site’s chat bot, watched for 48 hours, then every week.',
+            example:
+              'Email sign up, text opt in and 1 question to the site’s chat bot, watched for 48 hours, then every week. Rechecks are on: a control text proves each phone gets texts, and every miss runs again from a fresh number.',
           },
           {
             title: 'Add the companies',
@@ -117,7 +121,7 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Obsession does the watching',
-        line: '48 hours in this example. Each brand gets its own declared shopper, and only a confirmed miss counts.',
+        line: '48 hours in this example. Each brand gets its own declared shopper, and a miss counts only once the recheck confirms it.',
         screen: 'brandwatch',
         chips: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'Says it’s AI'],
         steps: [
@@ -129,13 +133,13 @@ export const study: UseCaseStudy = {
           },
           {
             title: 'It waits, up to 48 hours',
-            line: 'Every email and text lands in that brand’s own inbox and phone, and every answer from its chat bot is saved. When a deadline passes with nothing, it tries again from a fresh number before calling it. Brands added later run on their own clock.',
+            line: 'Every email and text lands in that brand’s own inbox and phone, and every answer from its chat bot is saved. With rechecks on, a deadline that passes with nothing gets a second run from a fresh number before it counts. Brands added later run on their own clock.',
             example:
               'Hour 30 of 48: 1,104 emails and 466 texts in, 74 brands with no text 24 hours after opting in, and 12 new rows from Clay on their own watch.',
           },
           {
             title: 'Results after 48 hours',
-            line: 'A finding for every brand. A missed deadline only counts as a gap once a control message and a second run from a fresh number confirm it.',
+            line: 'A finding for every brand. With rechecks on, as here, a missed deadline counts as a gap only once the control text and the second run confirm it.',
             example:
               '61 of 296 brands opted in for texts and never got one, 19 sent no welcome email at all, and at 84 the site’s chat bot gave no answer within 24 hours. 4 had no working sign up form, which is logged as a finding too.',
           },
@@ -208,25 +212,25 @@ export const study: UseCaseStudy = {
   },
 
   proof: {
-    heading: 'Proof for every brand, and the facts back in Clay.',
-    line: 'A verdict and a proof link for every brand, written back to the same rows and ready for the first line of your email.',
+    heading: 'Every brand comes back as 4 new columns in Clay, with a proof link anyone can open.',
+    line: 'Your own Clay prompts turn those facts into the first line of your email.',
     screen: 'proofmail',
     steps: [
       {
-        title: 'Proof for every brand',
+        title: 'A proof link for every brand',
         line: 'The verdict, a timeline with every step’s time, the screenshots and the actual emails and texts. All in a link anyone can open, including the brand.',
         example:
-          'Tidewren Swim: opted in for texts on 15 September. No texts in 48 hours, confirmed the way every gap is, with a control text and a second run from a fresh number.',
+          'Tidewren Swim: opted in for texts on 15 September. No texts in 48 hours, confirmed by the control text and a second run from a fresh number.',
       },
       {
         title: 'The facts land back in Clay',
-        line: '4 new columns on the same rows: the gap, the date it was seen, what happened in 1 plain sentence, and the proof link. Obsession reports what happened; your own Clay prompts decide what to say.',
+        line: '4 new columns on the same rows: the gap, the date it was seen, what happened in 1 plain sentence, and the proof link. Obsession reports what happened, and never writes to the brand.',
         example:
           'In #signals_client_a: UK ecommerce TAM, the first 300 brands are done. 61 opted in for texts and never got one, and 19 never sent a welcome email. New rows report as they finish.',
       },
     ],
     opener: {
-      heading: 'Our proof and your mockup, in 1 email.',
+      heading: 'Your first email carries our proof and your mockup.',
       line: 'The proof shows what’s happening at the brand today. Your mockup shows what it could look like with your client’s product.',
       mail: {
         from: 'Sam, Client A',
@@ -264,7 +268,7 @@ export const study: UseCaseStudy = {
     sample: {
       label: '1 real run',
       title: 'Sample output',
-      line: 'A real store check from September 2026, shown in every format it can arrive in.',
+      line: 'A UK store checked in September 2026: 1 basket and 1 checkout left, and nobody wrote to either in 48 hours.',
       cta: { label: 'See it', to: '/sample-output' },
     },
   },
@@ -276,11 +280,11 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'Does it contact anyone at the brand?',
-        a: 'No. It signs up, opts in to texts and asks the site’s chat bot 1 question, declared as AI. If a person picks up the chat, the step ends. It never writes to staff.',
+        a: 'No. Declared as AI and from Obsession, it signs up, opts in to texts and asks the site’s chat bot 1 question. If a person picks up the chat, the step ends. It never writes to staff.',
       },
       {
         q: 'How do you know a gap is real?',
-        a: 'A missed deadline only counts once a control message and a second run from a fresh number confirm it. Fixed rules decide every verdict, so the same evidence always gets the same answer.',
+        a: 'Each check has a deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer. You can also turn on rechecks, as this agency did: a control text proves the phone gets texts, and every miss runs again from a fresh number before it counts.',
       },
       {
         q: 'Does it fill a basket or buy anything?',

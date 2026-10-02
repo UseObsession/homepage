@@ -31,7 +31,7 @@ export const recipe: Recipe = {
   slug: 'listings-ai-answers',
   name: 'Listings and AI answers',
   group: 'Win customers',
-  line: 'When a listing or an AI assistant gets a fact about you wrong, it corrects the source and asks again until the answer changes.',
+  line: 'Corrects the source when a listing or an AI assistant gets a fact about you wrong, and asks again until the answer changes.',
   gets: 'Each wrong fact about you corrected where AI assistants read it, and the question asked again every Monday until the answer is right.',
   kit: [
     'An agent ID, declared as AI for your company',
@@ -39,7 +39,7 @@ export const recipe: Recipe = {
     'Listings claimed through your own number or domain',
     'Each AI assistant asked the official way',
     'A check every Monday, and after every price change',
-    'Every answer, source and fix signed',
+    'Every answer, source and fix signed and dated',
   ],
 
   meta: {
@@ -80,12 +80,12 @@ export const recipe: Recipe = {
     journey: ['Ask what buyers ask', 'Trace each wrong answer', 'Fix it at the source', 'Ask again until it changes'],
     schedule: 'Every Monday, and after any price change',
     report: 'A Monday email and a sheet',
-    kit: ['Agent ID, for your company', 'Your number or domain', 'Clean AI history', 'Every Monday'],
+    kit: ['Agent ID, declared as AI for your company', 'Your number or domain', 'Clean AI history', 'Every Monday'],
     events: [
       { time: 'Mon 09:00', text: '4 AI assistants asked what buyers ask. Assistant C says Leeds opens at 9. It opens at 8.' },
       { time: 'Mon 09:05', text: 'The source: Assistant C cites Directory B, which still lists the old hours.' },
-      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its own route, after your OK, as your declared AI agent.' },
-      { time: 'Mon 09:42', text: 'Your own listings fixed after your OK, claimed through your domain. Review site B no longer says closed.' },
+      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its edit form, after your OK, as your declared AI agent.' },
+      { time: 'Mon 09:42', text: 'Your own listings fixed after your OK, claimed with a code to your listed number. Review site B no longer says closed.' },
       { time: 'Week 2, Mon', text: 'Directory B unchanged. 1 polite chase, the first of 2 at most.' },
       { time: 'Week 3, Mon', text: 'Directory B updated. Asked again, Assistant C says Leeds opens at 8.' },
     ],
@@ -105,7 +105,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'Wrong facts fixed at the source',
-      line: 'Each wrong answer is traced to the page it cites. Your own pages and listings are fixed after your OK; every other site gets 1 correction through its own route.',
+      line: 'Each wrong answer is traced to the page it cites. Your own pages and listings are fixed after your OK; every other site gets 1 correction through its own edit form.',
     },
     {
       title: 'Closed only when the answer changes',
@@ -136,7 +136,7 @@ export const recipe: Recipe = {
       group: 'The fix',
       items: [
         { title: 'Your own pages first', line: 'Your site and the profiles you run, corrected through the logins you connect, after your OK.' },
-        { title: 'Other sites', line: '1 correction with the evidence, through each site’s own route, as your declared AI agent. 2 polite chases at most.' },
+        { title: 'Other sites', line: '1 correction with the evidence, through each site’s own edit form, as your declared AI agent. 2 polite chases at most.' },
         { title: 'After every change', line: 'A new price, a launch or a rename sends the questions out again within a day.' },
         { title: 'Asked until it changes', line: 'Every Monday, so you see the day each answer turns right.' },
       ],
@@ -161,7 +161,7 @@ export const recipe: Recipe = {
     { k: 'Where', v: 'Maps, directories, review sites and AI assistants' },
     { k: 'Questions', v: 'The ones your buyers ask, in their words' },
     { k: 'Your own pages', v: 'Fixed through the logins you connect, after your OK' },
-    { k: 'Other sites', v: '1 correction through their own route, 2 chases at most' },
+    { k: 'Other sites', v: '1 correction through their own edit form, 2 chases at most' },
     { k: 'Verification', v: 'Through your own listed number or domain' },
     { k: 'How often', v: 'Every Monday, and within a day of any price change' },
   ],
@@ -188,7 +188,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Only your own facts, fixed through the owner’s own route.',
+    heading: 'Only facts about you, corrected through each site’s own form.',
     items: [
       {
         q: 'Can it change what an AI assistant says?',
@@ -200,11 +200,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Which AI assistants does it ask?',
-        a: 'The ones your buyers use, with the questions they ask, through each assistant’s official route and from a clean history, so yours doesn’t colour the answer.',
+        a: 'The ones your buyers use, with the questions they ask, asked the official way and from a clean history, so yours doesn’t colour the answer.',
       },
       {
         q: 'Who does it contact?',
-        a: 'Only the sites showing a wrong fact about you, through their own correction route, as your declared AI agent: 1 correction with the evidence, 2 polite chases at most. The first message to each new site goes after your OK.',
+        a: 'Only the sites showing a wrong fact about you, through their own edit form, as your declared AI agent: 1 correction with the evidence, 2 polite chases at most. The first message to each new site goes after your OK.',
       },
       {
         q: 'How does it claim our listings?',

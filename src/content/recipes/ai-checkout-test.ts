@@ -1,8 +1,11 @@
 import type { Capture, Recipe } from '../types'
 
-/* AI checkout test (/recipes/ai-checkout-test). Check your own journeys. Screen: checkout (path tiles; every path that
-   works shows its signed receipt, "$48.20 on card ending 4417, refunded"; 1 path fails: the basket empties after add
-   and sizes are hidden from agents; 1 button, Approve fix).
+/* AI checkout test (/recipes/ai-checkout-test). Check your own journeys. Screen: checkout (fernleaf.example, 3 Oct: 6
+   AI checkout paths, each placing a £48.20 order for a linen shirt on its own single-use card capped at £48.20, inside a
+   £300 monthly budget; 5 land and are refunded, £241.00 in all; Assistant A's path finds the shirt in M, adds it, then
+   reads "Cart: 0 items" because sizes are hidden from agents, and its card is never charged; the drafted fix, "Add
+   sizes to the product feed", approved, and a re-test booked for 14:00). The run matches it: £, the linen shirt, the
+   store, the times and the 1 fix (3 Oct).
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 1 (research name retired; the plain name is Seun's, 3 Oct).
    It upgrades Mystery shopper from watching to buying: it pays, refunds and drafts the fix (live after the reader's OK).
    Red lines held: only the reader's own store, or a client's with the owner's written OK, never a competitor's; the agent
@@ -75,21 +78,21 @@ export const recipe: Recipe = {
     tab: 'Example: your store, monthly',
     recipe: 'checkout',
     task: 'Every month, place a real order through each AI checkout into our store, each on its own capped card. Check them, refund them, and draft the fix for any path that breaks.',
-    targets: 'your-store.example, your own running shoe store',
+    targets: 'fernleaf.example, your own clothing store',
     journey: ['Map every AI checkout', 'Buy on a capped card', 'Check it, then refund it', 'Draft the fix for each break'],
     schedule: 'Monthly, and after every checkout change',
     report: 'A report by path, with fixes ready to approve',
-    kit: ['Agent ID, names your store', 'A capped card per order', 'Your store, connected by you', 'Checkout routes for agents'],
+    kit: ['Agent ID, declared as AI for your store', 'A capped card per order', 'Your store, connected by you', 'Checkouts built for agents'],
     events: [
-      { time: 'Mon 09:00', text: '6 ways an AI shopper can buy from you, mapped. You’re not listed on 2 AI shopping channels.' },
-      { time: 'Mon 09:20', text: 'You confirm the $48.20 total on each path. Each order is paid on its own card, locked to your store and capped at $48.20.' },
-      { time: 'Mon 09:45', text: '5 of 6 paths take a paid order, each with the right price, size, delivery and tax.' },
-      { time: 'Mon 10:10', text: 'The link from an AI assistant fails: the basket empties after add, and sizes are hidden from agents. It stops and logs why.' },
-      { time: 'Mon 14:00', text: '5 orders refunded through your normal process. Every refund back on its card.' },
+      { time: '3 Oct, 09:00', text: '6 ways an AI shopper can buy from you, mapped. You’re not listed on 2 AI shopping channels.' },
+      { time: '3 Oct, 09:10', text: 'You confirm the £48.20 total for a linen shirt on each path. Each order is paid on its own card, locked to your store and capped at £48.20.' },
+      { time: '3 Oct, 09:15', text: '5 of 6 paths take a paid order, each with the right price, size, delivery and tax.' },
+      { time: '3 Oct, 09:16', text: 'Assistant A finds the shirt in size M and adds it, then the cart shows 0 items: sizes are hidden from agents. It stops, logs why, and its card is never charged.' },
+      { time: '3 Oct, 10:00', text: '5 orders refunded through your normal process, £241.00 back on their cards.' },
     ],
-    finding: '1 of 6 AI checkouts fails: the basket empties after add, and sizes are hidden from agents.',
-    fix: 'A feed change that shows every size, and a theme fix, drafted. Live after your OK, then it buys again.',
-    ledger: 'Example run. 5 orders placed and refunded, 1 blocked, every receipt signed.',
+    finding: '1 of 6 AI checkouts fails: Assistant A’s cart empties after add, because sizes are hidden from agents.',
+    fix: 'Sizes added to your product feed, drafted for your OK. Once it’s live, Assistant A’s path buys again at 14:00.',
+    ledger: 'Example run. 5 orders placed and refunded, 1 blocked and never charged, every receipt signed.',
   },
 
   steps: [
@@ -115,7 +118,7 @@ export const recipe: Recipe = {
     {
       group: 'Every way an AI can buy',
       items: [
-        { title: 'Checkouts built for agents', line: 'Your store’s own checkout for AI agents, and the shared routes AI assistants buy through.' },
+        { title: 'Checkouts built for agents', line: 'Your store’s own checkout for AI agents, and the shared checkouts AI assistants buy through.' },
         { title: 'AI assistants', line: 'The link from an AI assistant’s product card into your checkout.' },
         { title: 'Product feeds', line: 'Whether every size, colour, price and stock level an AI reads matches your store.' },
         { title: 'Your normal checkout', line: 'The same order through your web checkout, as a declared agent.' },
@@ -199,8 +202,8 @@ export const recipe: Recipe = {
       { label: 'Bot rule', values: ['Every agent turned away at checkout', 'Let declared, signed agents through, with bot protection still on'] },
       { label: 'Forced login', values: ['No way to check out as a guest', 'Guest checkout for agents'] },
       { label: 'Empty basket', values: ['The item vanishes after add', 'A theme fix for your developer'] },
-      { label: 'Hidden sizes', values: ['The AI can’t see which sizes are in stock', 'Every size added to your product feed'] },
-      { label: 'Price mismatch', values: ['The feed says $42, checkout says $48', 'Your feed matched to your store'] },
+      { label: 'Hidden sizes', values: ['The AI can’t see which sizes you sell', 'Sizes added to your product feed'] },
+      { label: 'Price mismatch', values: ['The feed says £42, checkout says £48', 'Your feed matched to your store'] },
       { label: 'Missing channel', values: ['Not listed where AI shoppers look', 'The application, sent after your OK'] },
     ],
   },

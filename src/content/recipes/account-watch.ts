@@ -1,7 +1,7 @@
 import type { Capture, Recipe } from '../types'
 
 /* Account watch (/recipes/account-watch). Keep and grow customers. Screen: acctwatch (38 accounts; Inside, Outside, Lived;
-   Snack brand at risk: usage down 38% in 14 days, 3 urgent tickets, its checkout broke twice; Payroll SaaS hiring 12
+   Snack brand at risk: usage down 38% in 14 days, 3 urgent tickets in 5 days, its site down twice; Payroll SaaS hiring 12
    sales roles; the save plan approved).
    Base: site_sales.json "Account watch" (approved copy and demo) and its cofounder flags: news and hiring are the
    commodity half, so the page builds to what only a live, declared customer sees (a journey that breaks, emails that
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
   kit: [
     'An agent ID, declared as AI',
     'An inbox per account, and its own number',
-    'Your CRM, help desk and calls, read only',
+    'Your CRM, helpdesk and calls, read only',
     'Each account’s news and hiring, read daily',
     'A check at 07:00, every day',
     'Every signal signed and dated',
@@ -67,7 +67,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Renewals this quarter',
+    tab: 'Example: renewals this quarter',
     recipe: 'account-watch',
     task: 'Every morning, check the 38 accounts renewing this quarter: the usage, tickets and calls we connect, their news, and what their customers get. Flag churn or upsell.',
     targets: '38 accounts, from your CRM',
@@ -76,11 +76,11 @@ export const recipe: Recipe = {
     report: 'A Slack alert, the play in your CRM',
     kit: ['Agent ID, declared as AI', 'An inbox per account', 'Its own number', 'Tools you connect'],
     events: [
-      { time: 'Mon 07:00', text: '38 accounts read from your CRM, help desk and call notes, with consent.' },
+      { time: 'Mon 07:00', text: '38 accounts read from your CRM, helpdesk and call notes, with consent.' },
       { time: 'Mon 07:04', text: 'A declared AI agent joins each account’s emails and texts, the way its customers do.' },
       { time: 'Tue 07:00', text: 'Payroll SaaS posts 12 sales roles. Its seats are 92% used.' },
       { time: 'Thu 07:00', text: 'Snack brand: usage down 38% in 14 days, and 3 urgent tickets in 5.' },
-      { time: 'Thu 07:05', text: 'With Snack brand’s OK, its declared test customer hits a broken checkout for the 2nd time this week.' },
+      { time: 'Thu 07:05', text: 'Snack brand’s site goes down for the 2nd time this week, seen the way its own customers see it.' },
     ],
     finding: 'Snack brand is at risk, for 3 reasons. Payroll SaaS is ready to grow.',
     fix: 'A save plan and an expansion note, drafted in your CRM for your team to send.',
@@ -88,7 +88,7 @@ export const recipe: Recipe = {
   },
 
   steps: [
-    { title: 'Connect your tools', line: 'Your CRM, help desk and call notes, read only, with consent.' },
+    { title: 'Connect your tools', line: 'Your CRM, helpdesk and call notes, read only, with consent.' },
     { title: 'Add the accounts', line: 'Every account on your book, from your CRM, a CSV, Clay or the API.' },
     {
       title: 'Agents watch each one',
