@@ -54,7 +54,10 @@ export const post: BlogPost = {
   published: '2026-10-03',
   updated: '2026-10-03',
   readingMinutes: 12,
-  author: { name: 'Obsession', role: 'Research' },
+  authors: [
+    { name: 'Seun Akinniranye', role: 'Cofounder' },
+    { name: 'James Akinniranye', role: 'Cofounder' },
+  ],
   hero: {},
 
   blocks: [
