@@ -25,6 +25,10 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 **Home, in order:** hero (the category headline, a literal sub, typed tasks, the waitlist, the console of what Obsession can do) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > recipes > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
 
+## 1c. The hero (the same on every page)
+
+**Centred**, one column, spread across the page width: never a narrow block, never a left/right split. Top to bottom: the pill (if any), the headline (display type, wide measure so it sits on 1 or 2 balanced lines, `text-wrap: balance`, widening equally to both sides), the typed task line, the sub (centred, about 60 characters wide), the capture form (centred, about 560px), the micro line, the 3 proof facts in a centred row, then the console full width below. Identical structure, spacing and type on Home, Agencies, Founders, Sales, Marketing and Developers; only the words and the console's runs change. Check the centre line at 1000, 1280, 1440 and 1920 wide: every element shares 1 vertical axis.
+
 ## 2. The story every page tells
 
 1 arc, easy to follow, never told as a story. In this order (a page may skip a beat, never reorder):
