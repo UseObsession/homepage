@@ -1,41 +1,41 @@
 # The rebuild: how this site is made
 
-The site James shipped on 2 Oct is the base. We keep its core (prerendering, the waitlist backend, the template pages, the sample output and the best of its copy) and rebuild the rest to the Obsession standard: the design system in full, every motion, every illustration, the navigation, SEO and answer engines, the capture forms, and the copy.
+The site James shipped on 2 Oct is the base. We keep its core (prerendering, the waitlist backend, the recipe pages, the sample output and the best of its copy) and rebuild the rest to the Obsession standard: the design system in full, every motion, every illustration, the navigation, SEO and answer engines, the capture forms, and the copy.
 
 ## 1. Decisions (Seun, 2 Oct)
 
-- **Pages:** Home (`/`), Agencies (`/agencies`), Founders (`/founders`), Sales (`/sales`), Marketing (`/marketing`), Developers (`/developers`), Templates (`/templates` and `/templates/SLUG`), Sample output (`/sample-output`). `/recipes` and `/recipes/SLUG` redirect (301) to the template pages.
-- **Name:** the ready-made jobs are **Templates**. Never "recipes", never a count of them.
+- **Pages:** Home (`/`), Agencies (`/agencies`), Founders (`/founders`), Sales (`/sales`), Marketing (`/marketing`), Developers (`/developers`), Recipes (`/recipes` and `/recipes/SLUG`, James's live URLs), Sample output (`/sample-output`), Privacy (`/privacy`), Agents (`/agents`). Only `/recipes/prospect-research` redirects (301) to `/recipes/prospect-intelligence`.
+- **Name:** the ready-made jobs are **Recipes** (James's word; Seun confirmed 2 Oct). A recipe comes with all its infrastructure already set up; a typed task has the system set it up for you. Never a count of them.
 - **Headlines:**
   - Home: **"The intelligence infrastructure for commercial teams"**.
   - Every other page: an "AI agents that ..." headline. Agencies "AI agents that help your agency win and keep clients.", Founders "AI agents that help your business win and keep customers.", Sales "AI agents that help your team win and renew accounts.", Marketing in the same pattern.
   - Under every headline, the typed line and the sub make it literal what Obsession does, and why only Obsession: declared AI agents with their own identity, inboxes, phone numbers and browsers that do business with other companies (sign up, shop, ask, chase, check), continuously, at every company on your list, every step signed. Specific, novel, differentiated. No "Early access" pill.
-- **Calls to action:** Home "Join the waitlist" (plus the free mystery shop as the second path). Agencies and Marketing: waitlist, plus "mystery-shop a store free" (your own store, or a client's with their OK). Founders "Get early access". Sales "Get early access for my team". Developers "Get API access". Template pages: the free mystery shop on the Mystery shopper page, the waitlist (with the template preset as interest) elsewhere. Sample output: "Get one for your store".
+- **Calls to action:** Home "Join the waitlist" (plus the free mystery shop as the second path). Agencies and Marketing: waitlist, plus "mystery-shop a store free" (your own store, or a client's with their OK). Founders "Get early access". Sales "Get early access for my team". Developers "Get API access". Recipe pages: the free mystery shop on the Mystery shopper page, the waitlist (with the recipe preset as interest) elsewhere. Sample output: "Get one for your store".
 
 ## 1b. From the 2 Oct call with James (`Calls/Obsession Call with James - 2 Oct 2026 (Homepage review).md`)
 
-- **Prospect intelligence**, not prospect research: agents become the prospect's customer and see what they actually do. It is not contact finding. Template slug `prospect-intelligence`; `/recipes/prospect-research` redirects there.
-- **How it works is 1 flow in 4 steps**, shown with motion: (1) pick a template, type a task, or build your own; (2) add the companies: paste a list, upload a CSV, connect Clay, or the API; (3) declared agents run it, each with its own ID, inbox, number and browser; (4) you get back what they did, with signed proof and your next move. A template comes with all its infrastructure set up; a typed task has the system set it up for you.
-- **Kept from James's Home**, restyled and brought to life: the 4 jobs (your competitors' playbook, where prospects lose money, where your own journeys break, anything else you can describe); template cards that open their own pages; the template page's infrastructure spinning up; the output viewer (PDF, email, Slack, sheet, expandable on click); the developer code section; the closing questions.
+- **Prospect intelligence**, not prospect research: agents become the prospect's customer and see what they actually do. It is not contact finding. Recipe slug `prospect-intelligence`; `/recipes/prospect-research` redirects there.
+- **How it works is 1 flow in 4 steps**, shown with motion: (1) pick a recipe, type a task, or build your own; (2) add the companies: paste a list, upload a CSV, connect Clay, or the API; (3) declared agents run it, each with its own ID, inbox, number and browser; (4) you get back what they did, with signed proof and your next move. A recipe comes with all its infrastructure already set up; a typed task has the system set it up for you.
+- **Kept from James's Home**, restyled and brought to life: the 4 jobs (your competitors' playbook, where prospects lose money, where your own journeys break, anything else you can describe); recipe cards that open their own pages; the recipe page's infrastructure spinning up; the output viewer (PDF, email, Slack, sheet, expandable on click); the developer code section; the closing questions.
 - **The comparison is ours:** today vs with Obsession.
 - **Mystery shopper shows its range:** B2B SaaS trials and demos, B2C stores and bookings, any business, not only basket abandonment.
-- **James's Mystery shopper and Competitor tracking pages are the strongest copy** (written from buyers' own terms): keep their core. Rewrite the other template pages.
+- **James's Mystery shopper and Competitor tracking pages are the strongest copy** (written from buyers' own terms): keep their core. Rewrite the other recipe pages.
 - **"Join the waitlist" leads.** "Try your first shop free" lives with the sample report.
 - **Every page reads as 1 narrative**: each section hands off to the next, the body copy builds, and every illustration is placed where it proves the sentence beside it.
 
-**Home, in order:** hero (the category headline, a literal sub, typed tasks, the waitlist, the console of what Obsession can do) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > templates > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
+**Home, in order:** hero (the category headline, a literal sub, typed tasks, the waitlist, the console of what Obsession can do) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > recipes > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
 
 ## 2. The story every page tells
 
 1 arc, easy to follow, never told as a story. In this order (a page may skip a beat, never reorder):
 
 1. **Hero:** what Obsession is, for this reader. Headline, typed tasks, 1-line sub, the capture, 3 proof facts, the console (a live run).
-2. **How it works:** pick a template, type a task, or build your own; agents get their own ID, inbox, number and browser; you get signed proof and your next move.
+2. **How it works:** pick a recipe, type a task, or build your own; agents get their own ID, inbox, number and browser; you get signed proof and your next move.
 3. **The gap:** why it matters to them. Today vs with Obsession, in their words.
 4. **Use cases:** tabs, each with its own app screen: the moment in their week, the outcome, what the agents do, why only agents can.
 5. **Outcomes:** what changes, in numbers. Up-to-50 rule: every modelled number is an "up to" ceiling; deliverables are flat.
 6. **Every kind of:** the kinds of agencies, businesses, teams it fits.
-7. **Templates:** the ones that fit this reader, linking to their pages.
+7. **Recipes:** the ones that fit this reader, linking to their pages.
 8. **Proof:** the real September store check (sample output) and the signed record.
 9. **Questions:** trust and the red lines, as a claim heading ("Every agent declared. Every step yours to approve.").
 10. **Final call to action.**
@@ -46,7 +46,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - Headings make a claim; they never name their section, label the reasoning, or tease a payoff with a question. Run `node ~/.claude/skills/no-meta-callouts/scan.mjs` on the words a reader sees.
 - Numerals, British spelling, contractions, no em or en dashes, no hyphenated compounds where a plain word works.
 - "Continuously", never "for weeks". Never cap scale ("every company on your list", never "up to 50 companies"); example numbers inside demos are fine.
-- No internal decisions on the page: no template counts, "soon", "join order", "Early access" pills, what is not built yet.
+- No internal decisions on the page: no recipe counts, "soon", "join order", "Early access" pills, what is not built yet.
 - No Obsession prices, no guarantees, no money promises, no sources or citations on the page, no real company names (use categories, Rival A/B/C, invented names checked to be unused).
 - Every example that is not from a real run is clearly an example in context; the real September store check is the one real run.
 - **Red lines** (on every page and in every screen): agents are declared and say who they work for; a client's or account's systems and journeys only with the owner's OK; prospects and rivals only through public self-serve paths (trial and newsletter sign-ups allowed: declared as AI, never reply, close if a rep writes); never fake buyers, never contact staff as a fake buyer ("ask the bot, never staff"); inside data only through tools the customer connects, with consent; stop before payment; no cold spam; no fake identities.
@@ -85,7 +85,7 @@ App screens only (`components/AppScreen`, the screens in `src/screens`, built to
 | Founders | `leads`, `switch`, `invoices`, `suppliers`, `ship`, `qa`, `listings`, `rivals` |
 | Sales | `brief`, `acctwatch`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |
 | Marketing | `inbox`, `ads`, `prices`, `campaign` (new), plus `listings` and `inbound` as they apply to marketing |
-| Templates | each template's own screen: competitor `rivals`, prospect intelligence `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings` |
+| Recipes | each recipe's own screen: competitor `rivals`, prospect intelligence `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings` |
 | Developers | `dev`, `compose` |
 | Sample output | the real report captures (`public/report`) |
 
@@ -93,23 +93,27 @@ New screens to build: `shop` (the mystery shopper run on a store: basket, inboxe
 
 ## 7. Navigation
 
-- Desktop: the ring mark and wordmark; **Solutions** (a menu: Agencies, Founders, Sales, Marketing, each with 1 line), **Templates** (a menu grouped by job: Win customers, Watch rivals, Check your own journeys, Get paid and save, plus "All templates"), **Developers**, **Sample output**; on the right the theme switch and the page's call to action. Sticky, quiet, keyboard and screen reader complete (`.ob-nav`, `.ob-menu`).
+- Desktop: the lockup; **Solutions** (a menu: Agencies, Founders, Sales, Marketing, each with 1 line), **Recipes** (a menu grouped by job: Win customers, Keep customers, Watch rivals, Check your own journeys, Get paid and save, plus "All recipes"), **Developers**, **Sample output**; on the right the theme switch and the page's call to action. Sticky, quiet, keyboard and screen reader complete (`.ob-nav`, `.ob-menu`).
 - Phone: a sheet (`.ob-mnav`, `.ob-anim-sheet`) with the same groups and the call to action.
-- Footer: a full site map (every page and template), the red lines in 1 line, the theme switch.
+- Footer: a full site map (every page and recipe), the red lines in 1 line, the theme switch.
 
 ## 8. SEO and answer engines
 
 - 1 `h1` per page. Unique title (55 to 60 characters) and description (140 to 155) per page in `content/meta`.
 - Canonical, Open Graph and Twitter large image per page (`public/og/*.png`, 1200 x 630).
-- JSON-LD: `Organization` and `WebSite` on every page, `SoftwareApplication` on Home, `FAQPage` wherever questions show, `BreadcrumbList` on audience and template pages.
+- JSON-LD: `Organization` and `WebSite` on every page, `SoftwareApplication` on Home, `FAQPage` wherever questions show, `BreadcrumbList` on audience and recipe pages.
 - Answer-ready copy: each page opens with 1 plain sentence that defines its subject ("Obsession is ..."), its `meta.answer`, and questions phrased the way buyers ask them.
-- `llms.txt` (short) and `llms-full.txt` (every page's copy as plain text), `sitemap.xml`, `robots.txt` that welcomes search and AI crawlers, `_redirects` for `/recipes`.
-- Internal links: audience pages to their templates, templates to the audiences they serve, every page to the sample output.
+- `llms.txt` (short) and `llms-full.txt` (every page's copy as plain text), `sitemap.xml`, `robots.txt` that welcomes search and AI crawlers, `_redirects` for `/recipes/prospect-research`.
+- Internal links: audience pages to their recipes, recipes to the audiences they serve, every page to the sample output.
+
+## 8b. Hosting
+
+Free Cloudflare plan (Workers static assets). Everything is static and made at build time: prerendered pages, share images, sitemap, `llms.txt`. Redirects go in `public/_redirects`, headers in `public/_headers`. Nothing may need a paid feature (no image resizing, no paid rules). James's dashboard fixes are free: a proxied `www` record redirecting to the apex, Always Use HTTPS, then HSTS, and real 404s.
 
 ## 9. Capture
 
 - 1 form component (`.ob-pill-form`), 2 kinds: `waitlist` (email) and `mystery` (store address first, then email). Clear errors (message, danger edge, `aria-invalid`, `aria-describedby`), busy and done states, a hidden bot field, no double submit, works without JavaScript as a plain POST fallback where possible.
-- After a sign up: 1 tap tells us what to set up first (role or template). It is saved with the sign up.
+- After a sign up: 1 tap tells us what to set up first (role or recipe). It is saved with the sign up.
 - `waitlist/Code.js` saves email, company, source, page, plus role, interest and store as extra columns (old rows unaffected). James redeploys it once.
 - A short privacy line under every form: what we keep and why.
 

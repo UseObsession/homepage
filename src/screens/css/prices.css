@@ -1,17 +1,17 @@
 /* app-prices: Rivals / Prices. Price monitoring for Your company: 6 products priced against Rival A, B and C,
-   checked every morning from public pages by a declared agent. Each row: the mark (landed = checked, needs you = a rival
-   now undercuts you), your price, each rival's price in tabular mono, and the cheapest rival over 14 days as a sparkline.
-   Under the prices, the codes row: Rival A's CYBER25 worked until 19:00, then was rejected (tried at checkout, stopped
-   before payment). Below: the finding with before and after captures, the agent outline on the new price; the declared
-   agent; the toast.
-   Story: the header mark works while the check visits Rival A, then B, then C (a column band). On Rival B, 3 cells flip:
-   the candle £24 to £19, the diffuser £30 to £28, wax melts £10 to £9. The check lands, every sparkline steps to today
-   (the 3 cut rows dip), the candle row goes needs you (Undercut 0 to 1, Needs you 2 to 3), the finding rises with its
-   captures, the agent outlines £19, the toast. Rest state (no .play) = the finished scene.
-   Main grid (design px, inside 14/16 padding): header 0..24, table 36..256 (524 wide), bottom row 268..386:
-   finding 340 wide, right column 172. Table columns: 140 | 68 x4 | 112. */
+   read every morning from public pages by a declared agent (the header pill).
+   Rows: the product, your price, each rival's price in tabular mono (every figure right-aligned to 1 edge), and the
+   cheapest rival over 14 days as a sparkline with today's change. Only the row that needs you carries a mark.
+   Under the prices, the codes row: last year's Cyber Monday code from Rival A, tried at checkout, stopped before payment.
+   Below: the finding with its before and after captures, the agent's outline on the new price. Then the toast's slot.
+   Story: the check's band visits Rival A, then B, then C. On Rival B, 3 cells flip to the cut (candle £24 to £19,
+   diffuser £30 to £28, wax melts £10 to £9). Every sparkline steps to today (the 3 cut rows dip), the candle row
+   needs you (Needs you 2 to 3), the finding rises with its captures, the agent outlines £19, the toast.
+   Rest state (no .play) = the finished scene.
+   Main (528 x 386, padding 14): header 24 | 12 | table 196 (head 24, 6 rows x 24, codes 28) | 12 | finding 94 | 8 | toast 40.
+   Table columns: 136 | 72 x 4 | 104. Status slot at x 12, names at x 32, figures 12px in from each column's right edge. */
 
-.app-prices .ax-main{grid-template-columns:minmax(0,1fr) 172px;grid-template-rows:24px 218px minmax(0,1fr);gap:12px;padding:14px 16px}
+.app-prices .ax-main{grid-template-rows:24px 196px 94px;gap:12px;padding:14px}
 
 /* stacked states: only the last child shows at rest */
 .app-prices .pr-stk{display:inline-grid;vertical-align:top;align-items:center}
@@ -19,47 +19,46 @@
 .app-prices .pr-stk>:not(:last-child){opacity:0}
 .app-prices .ax-badge .pr-stk{line-height:1}
 
-/* ---------- header: the check's mark, title, schedule, filters ---------- */
-.app-prices .pr-h{grid-column:1/-1;display:flex;align-items:center;gap:10px;height:24px;min-width:0}
-.app-prices .pr-hm{flex:none}
-.ilwrap .app-prices .pr-hm .sig{width:16px;height:16px;color:var(--fg)}
+/* ---------- header: title, schedule, the declared agent ---------- */
+.app-prices .pr-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
 .app-prices .pr-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
 .app-prices .pr-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
-.app-prices .pr-meta .ax-mono{font-size:11px;font-variant-numeric:tabular-nums}
-/* filters: a segmented control, control edges on the group and the selected segment */
-.app-prices .pr-tabs{margin-left:auto;display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-prices .pr-tab{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
-.app-prices .pr-tab.pr-on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-prices .pr-tab i{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
-.app-prices .pr-tab i b{font-weight:inherit}
-.ilwrap .app-prices .pr-tab svg.sig,.ilwrap .app-prices .pr-tab svg.pr-dn{width:10px;height:10px;color:var(--fg-2)}
+.app-prices .pr-time{font:400 11px/1 var(--mono);font-variant-numeric:tabular-nums}
+.app-prices .pr-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-prices .pr-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-prices .pr-av svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- the price table ---------- */
-.app-prices .pr-tb{grid-column:1/-1;position:relative;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
-.app-prices .pr-r{position:relative;z-index:1;display:grid;grid-template-columns:140px repeat(4,68px) minmax(0,1fr);align-items:center;height:28px;box-shadow:0 -1px 0 var(--line) inset}
-.app-prices .pr-r>span{min-width:0;padding:0 12px;white-space:nowrap;text-align:right;font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
-.app-prices .pr-r>.pr-p{display:flex;align-items:center;gap:8px;text-align:left;font:500 11.5px/1 var(--sans);color:var(--fg)}
-.app-prices .pr-r>.pr-p b{font-weight:500;overflow:hidden;text-overflow:ellipsis}
+.app-prices .pr-tb{position:relative;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-prices .pr-r{position:relative;z-index:1;display:grid;grid-template-columns:136px repeat(4,72px) minmax(0,1fr);align-items:center;height:24px;box-shadow:0 -1px 0 var(--line) inset}
+/* every price cell ends on the same edge: 12px in from its column's right */
+.app-prices .pr-r>span{display:flex;align-items:center;justify-content:flex-end;min-width:0;padding:0 12px 0 4px;white-space:nowrap;
+  font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-prices .pr-r>.pr-p{position:relative;justify-content:flex-start;padding:0 8px 0 32px;font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-prices .pr-r>.pr-p b{min-width:0;font-weight:500;overflow:hidden;text-overflow:ellipsis}
 .app-prices .pr-r>.pr-y{color:var(--fg);font-weight:500}
-.ilwrap .app-prices .pr-r .pr-p svg.sig{width:12px;height:12px;color:var(--fg)}
 .app-prices .pr-th{height:24px;box-shadow:0 -1px 0 var(--line-2) inset}
 .app-prices .pr-th>span,.app-prices .pr-th>.pr-p,.app-prices .pr-th>.pr-y{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
-.app-prices .pr-r.pr-r6{box-shadow:none}
+.app-prices .pr-r.pr-last{box-shadow:none}
 
-/* the row that now needs you */
+/* the 1 row that needs you: its mark in the status slot, a tint, a bar */
+.app-prices .pr-mk{position:absolute;left:12px;top:50%;width:12px;height:12px;margin-top:-6px}
+.ilwrap .app-prices .pr-mk svg.sig{width:12px;height:12px;color:var(--fg)}
 .app-prices .pr-r.pr-hot{background:rgb(var(--fg-rgb) / .05)}
+.app-prices .pr-r.pr-hot::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
 
-/* Rival B's cut: the old price struck, the new one held in a pill whose figures keep the column's right edge */
+/* Rival B's cut: the old price struck, the new one in a pill whose figures keep the column's right edge */
 .app-prices .pr-flip{justify-items:end}
-.app-prices .pr-cut{display:inline-flex;align-items:center;gap:5px;height:20px;margin-right:-6px;padding:0 6px;border-radius:5px;
+.app-prices .pr-cut{display:inline-flex;align-items:center;gap:4px;height:18px;margin-right:-5px;padding:0 5px;border-radius:5px;
   background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-3) inset}
 .app-prices .pr-cut s{font-size:10.5px;color:var(--fg-3);text-decoration-thickness:1px}
 .app-prices .pr-cut b{font-weight:500;color:var(--fg)}
 
-/* 14 days: the cheapest rival, today on the right */
-.app-prices .pr-r>.pr-c{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 10px;text-align:left}
-.app-prices .pr-th>.pr-c{padding-left:10px}
-.ilwrap .app-prices svg.pr-sp{width:56px;height:18px;overflow:visible}
+/* 14 days: the cheapest rival, today on the right, today's change at the column's edge */
+.app-prices .pr-r>.pr-c{justify-content:space-between;gap:8px;padding:0 12px 0 10px}
+.app-prices .pr-th>.pr-c{justify-content:flex-start}
+.ilwrap .app-prices svg.pr-sp{width:52px;height:17px;overflow:visible}
 .app-prices .pr-sp path{fill:none;stroke:var(--fg-3);stroke-width:1.25;stroke-linejoin:round;stroke-linecap:round}
 .app-prices .pr-sp circle{fill:var(--fg-3)}
 .app-prices .pr-sp .pr-d0{opacity:0}
@@ -68,75 +67,61 @@
 .app-prices .pr-sp.pr-hot .pr-d1{fill:var(--fg)}
 .app-prices .pr-r>.pr-c em{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
 
-/* the codes row: a code tried at checkout, stopped before payment */
-.app-prices .pr-code{height:26px;background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
-.app-prices .pr-code>.pr-p b{font-weight:500;color:var(--fg-2)}
-.ilwrap .app-prices .pr-code svg.pr-ic{width:12px;height:12px;color:var(--fg-3)}
-.app-prices .pr-code>.pr-cd{grid-column:2/-1;display:flex;align-items:center;gap:8px;text-align:left}
+/* the codes row: last year's code, tried at checkout, stopped before payment */
+.app-prices .pr-code{position:relative;z-index:1;display:flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 32px;white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
+.ilwrap .app-prices svg.pr-ic{width:12px;height:12px;flex:none;color:var(--fg-3)}
+.ilwrap .app-prices .pr-code svg.pr-tag{position:absolute;left:12px;top:8px}
 .app-prices .pr-code .ax-chip{height:18px;color:var(--fg-2)}
-.app-prices .pr-code .pr-who{font:500 11px/1 var(--sans);color:var(--fg)}
-.app-prices .pr-code .ax-mono{font-size:10.5px;color:var(--fg-2)}
+.app-prices .pr-who{font-size:11px;color:var(--fg-3)}
+.app-prices .pr-who b{font-weight:500;color:var(--fg)}
+.app-prices .pr-who .ax-mono{font-size:10.5px;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-prices .pr-rl{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--fg-2)}
 
-/* the check's band, visiting 1 rival column at a time (seen only in play) */
-/* it appears by colour, not opacity, so it is painted from the first frame */
-.app-prices .pr-band{position:absolute;z-index:0;left:208px;top:0;width:68px;height:192px;
+/* the check visiting 1 rival column at a time (seen only in play): 1 highlight per column, each handing to the next.
+   Colour only, so it is painted from the first frame and never waits on a transform */
+.app-prices .pr-band{position:absolute;z-index:0;left:var(--pr-x);top:0;width:72px;height:168px;
   background-color:rgb(var(--fg-rgb) / 0);box-shadow:1px 0 0 transparent inset,-1px 0 0 transparent inset}
 
 /* ---------- the finding: what changed, and the proof ---------- */
-.app-prices .pr-find{grid-column:1;grid-row:3;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:12px;min-width:0;min-height:0}
-.app-prices .pr-txt{display:grid;grid-template-rows:auto auto auto minmax(0,1fr);min-width:0;white-space:nowrap}
+.app-prices .pr-find{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding:12px;min-width:0;min-height:0}
+.app-prices .pr-txt{display:grid;grid-template-rows:auto auto minmax(0,1fr);min-width:0;white-space:nowrap}
 .app-prices .pr-txt .ax-k{line-height:12px}
-.app-prices .pr-txt h3{margin-top:8px;font:600 17px/22px var(--display);letter-spacing:-.02em;color:var(--fg)}
-.app-prices .pr-sub{margin-top:2px;font-size:11px;line-height:16px;color:var(--fg-2)}
+.app-prices .pr-txt h3{margin-top:6px;font:600 17px/22px var(--display);letter-spacing:-.02em;color:var(--fg)}
 .app-prices .pr-when{justify-self:start;align-self:end;display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:5px;
   font:500 10.5px/1 var(--sans);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
 
-/* before and after, as the agent captured them */
-.app-prices .pr-caps{display:grid;grid-template-columns:72px 72px;gap:8px;min-height:0}
+/* before and after, as the agent captured them: 2 product pages, wide */
+.app-prices .pr-caps{display:grid;grid-template-columns:144px 144px;gap:10px;min-height:0}
 .app-prices .pr-cap{margin:0;display:grid;grid-template-rows:minmax(0,1fr) 12px;gap:4px;min-width:0;min-height:0}
 .app-prices .pr-cap .ax-shot{min-height:0}
 .app-prices .pr-cap figcaption{font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
 .app-prices .pr-c2 figcaption{color:var(--fg-2)}
-.app-prices .pr-pg{display:grid;align-content:start;padding:4px 6px 0;min-height:0}
-.app-prices .pr-top{display:grid;grid-template-columns:14px minmax(0,1fr);gap:5px;align-items:center}
-.app-prices .pr-pg .pr-img{height:14px;border-radius:2px;background:#D6CCBF}
-.app-prices .pr-tl{display:grid;gap:3px}
-.app-prices .pr-tl i{height:4px}
-.app-prices .pr-tl i+i{width:62%}
-.app-prices .pr-pg b{display:block;margin-top:5px;height:16px;font:600 14px/16px var(--sans);letter-spacing:-.01em;color:#1E1D1A;font-variant-numeric:tabular-nums}
+.app-prices .pr-pg{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:8px;padding:4px 7px 4px 5px;min-height:0}
+.app-prices .pr-pg .pr-img{border-radius:3px;background:#D6CCBF}
+.app-prices .pr-inf{display:grid;align-content:start;min-width:0}
+.app-prices .pr-inf .pr-tl{width:74%;height:4px}
+.app-prices .pr-pg b{display:block;margin-top:3px;height:16px;font:600 14px/16px var(--sans);letter-spacing:-.01em;color:#1E1D1A;font-variant-numeric:tabular-nums}
 .app-prices .pr-sh{display:flex;align-items:center;gap:3px;height:12px;margin-top:2px;font:400 10.5px/12px var(--mono);color:#46433D;white-space:nowrap}
 .ilwrap .app-prices svg.pr-tk{width:11px;height:11px;color:#46433D}
-.app-prices .pr-pg .pr-cta{height:7px;margin-top:5px;border-radius:2px;background:#3A3834}
+.app-prices .pr-sh .pr-cta{margin-left:auto;width:28px;height:8px;border-radius:2px;background:#3A3834}
 /* the agent's outline on the new price, with the mark's square on its corner */
 .app-prices .pr-ring{position:relative;display:inline-block;margin-left:-3px;padding:0 3px;border-radius:3px;box-shadow:0 0 0 1.25px #1E1D1A inset}
 .app-prices .pr-ring::after{content:"";position:absolute;right:-2px;top:-2px;width:4px;height:4px;background:#1E1D1A}
 
-/* ---------- the declared agent ---------- */
-.app-prices .pr-agent{grid-column:2;grid-row:3;align-self:start;display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:5px 9px;padding:7px 10px;border-radius:10px;
-  background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line) inset;white-space:nowrap}
-.app-prices .pr-av{display:grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--fg)}
-.ilwrap .app-prices .pr-av .sig{width:13px;height:13px;color:var(--bg)}
-.app-prices .pr-agent p{display:grid;gap:1px;min-width:0}
-.app-prices .pr-agent p b{font:500 11.5px/14px var(--sans);color:var(--fg)}
-.app-prices .pr-agent p span{font-size:10.5px;line-height:13px;color:var(--fg-3)}
-.app-prices .pr-agent .pr-rl{grid-column:1/-1;display:flex;align-items:center;gap:9px;padding-top:5px;border-top:1px solid var(--line);font-size:10.5px;line-height:12px;color:var(--fg-2)}
-.ilwrap .app-prices .pr-rl svg.pr-ic{width:12px;height:12px;margin:0 5px;color:var(--fg-3)}
-
-/* ---------- toast: the right column's foot, on the finding card's foot ---------- */
-.app-prices .pr-toast{right:16px;bottom:14px;width:172px;gap:9px;padding:7px 11px}
-.app-prices .pr-toast p{display:grid;gap:0;white-space:nowrap}
-.app-prices .pr-toast b{font:500 11.5px/15px var(--sans);color:var(--fg)}
-.app-prices .pr-toast span{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+/* ---------- toast: 1 line and an action, in its own slot under the finding ---------- */
+.app-prices .pr-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-prices .pr-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-prices .pr-toast b{font-weight:500;color:var(--fg)}
+.app-prices .pr-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes pr-show{from{opacity:0}to{opacity:1}}
 @keyframes pr-hide{from{opacity:1}to{opacity:0}}
 @keyframes pr-up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 @keyframes pr-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
-@keyframes pr-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes pr-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
-@keyframes pr-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
 @keyframes pr-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes pr-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
 @keyframes pr-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes pr-dot{from{opacity:0;transform:scale(0)}to{opacity:1;transform:none}}
 @keyframes pr-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}18%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .05)}}
@@ -144,44 +129,28 @@
 @keyframes pr-ring{from{box-shadow:0 0 0 1.25px transparent inset}to{box-shadow:0 0 0 1.25px #1E1D1A inset}}
 @keyframes pr-sq{from{opacity:0;transform:translate(3px,-3px) scale(.3)}to{opacity:1;transform:none}}
 @keyframes pr-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-/* the band: 2.5s from .65s. Rival A until 1.3s, glides to B (1.55s), holds while B's cells flip, glides to C (2.4s), fades by 3.15s */
-@keyframes pr-band{
-  0%{transform:translateX(0)}
-  26%{transform:translateX(0);animation-timing-function:var(--ob-ease-in-out,cubic-bezier(.45,0,.25,1))}
-  36%{transform:translateX(68px)}
-  60%{transform:translateX(68px);animation-timing-function:var(--ob-ease-in-out,cubic-bezier(.45,0,.25,1))}
-  70%{transform:translateX(136px)}
-  100%{transform:translateX(136px)}}
+/* a column lights, holds while it is read, and hands to the next: Rival A .65 to 1.55s, B 1.4 to 2.4s
+   (its 3 cells flip inside the hold), C 2.25 to 3.1s */
 @keyframes pr-lit{
-  0%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:1px 0 0 transparent inset,-1px 0 0 transparent inset}
-  6%,88%{background-color:rgb(var(--fg-rgb) / .055);box-shadow:1px 0 0 var(--line-2) inset,-1px 0 0 var(--line-2) inset}
+  0%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:1px 0 0 transparent inset,-1px 0 0 transparent inset;animation-timing-function:var(--ease)}
+  18%,80%{background-color:rgb(var(--fg-rgb) / .06);box-shadow:1px 0 0 var(--line-2) inset,-1px 0 0 var(--line-2) inset;animation-timing-function:var(--ob-ease-in,cubic-bezier(.3,0,1,1))}
   100%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:1px 0 0 transparent inset,-1px 0 0 transparent inset}}
 
-/* 1. the check works: the header mark circles while the band visits each rival */
-.appx-il.play.app-prices .pr-hm .pr-w0{animation:pr-hide .25s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 3.2s both}
-.appx-il.play.app-prices .pr-hm .pr-w0 .sig-rot{animation:pr-spin 3.2s linear .2s both}
-.appx-il.play.app-prices .pr-hm .pr-w0 .sig-orb{animation:pr-spinr 3.2s linear .2s both}
-.appx-il.play.app-prices .pr-band{animation:pr-band 2.5s linear .65s both,pr-lit 2.5s linear .65s both}
+/* 1. the check visits each rival in turn */
+.appx-il.play.app-prices .pr-band{animation:pr-lit var(--pr-l) linear var(--pr-t) both}
 
 /* 2. on Rival B, 3 cells flip to the cut, 1 by 1 */
 .appx-il.play.app-prices .pr-flip .pr-v0{animation:pr-out .25s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) calc(1.62s + var(--pr-i) * .14s) both}
 .appx-il.play.app-prices .pr-flip .pr-v1{animation:pr-up .4s var(--ease) calc(1.68s + var(--pr-i) * .14s) both}
-.appx-il.play.app-prices .pr-n3>:first-child{animation:pr-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.05s both}
-.appx-il.play.app-prices .pr-n3>:last-child{animation:pr-up .3s var(--ease) 2.08s both}
 
-/* 3. the check lands; every row's line steps to today (the cuts dip); the candle row needs you */
-.appx-il.play.app-prices .pr-hm .pr-w1{animation:pr-show .25s var(--ease) 3.2s both}
-.appx-il.play.app-prices .pr-hm .pr-w1 .sig-sq{animation:pr-home .55s var(--snap) 3.25s both}
-.appx-il.play.app-prices .pr-hm .pr-w1 .sig-gap{animation:pr-show .3s var(--ease) 3.45s both}
+/* 3. the check lands: every line steps to today (the cuts dip); the candle row needs you */
 .appx-il.play.app-prices .pr-sp .pr-ex{stroke-dasharray:1;animation:pr-draw .4s var(--ease) calc(2.95s + var(--pr-i) * .06s) both}
 .appx-il.play.app-prices .pr-sp .pr-d0{animation:pr-hide .15s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) calc(2.95s + var(--pr-i) * .06s) both}
 .appx-il.play.app-prices .pr-sp .pr-d1{transform-box:fill-box;transform-origin:center;animation:pr-dot .3s var(--ease) calc(3.25s + var(--pr-i) * .06s) both}
 .appx-il.play.app-prices .pr-r>.pr-c em{animation:pr-show .35s var(--ease) calc(3.3s + var(--pr-i) * .06s) both}
-.appx-il.play.app-prices .pr-rm .pr-w0{animation:pr-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 3.55s both}
-.appx-il.play.app-prices .pr-rm .pr-w1{animation:pr-mark .45s var(--ease) 3.58s both}
 .appx-il.play.app-prices .pr-r.pr-hot{animation:pr-glow 1.8s var(--ease) 3.55s both}
-.appx-il.play.app-prices .pr-n1>:first-child{animation:pr-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 3.62s both}
-.appx-il.play.app-prices .pr-n1>:last-child{animation:pr-up .3s var(--ease) 3.65s both}
+.appx-il.play.app-prices .pr-r.pr-hot::before{animation:pr-bar .4s var(--ease) 3.6s both}
+.appx-il.play.app-prices .pr-mk{animation:pr-mark .45s var(--ease) 3.58s both}
 .appx-il.play.app-prices .pr-nb>:first-child{animation:pr-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 3.7s both}
 .appx-il.play.app-prices .pr-nb>:last-child{animation:pr-show .25s var(--ease) 3.72s both}
 

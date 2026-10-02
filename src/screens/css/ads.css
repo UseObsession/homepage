@@ -1,12 +1,14 @@
 /* app-ads: Rivals / Ads. Ad tracking for your company: the live ads of Rival A, B and C, read daily from the
    public ad libraries and followed to the page each one lands on.
    Grid: 6 ad cards (newest first). Each card is the creative (grey capture), its 1-line hook, the rival and channel,
-   then first seen and days running in mono. Rival C's search ad is marked as the longest running.
-   Panel: the open ad, its landing page capture, what the page offers, the price on it, and the check.
+   then first seen and days running in mono. Rival C's search ad carries the longest-running chip.
+   Panel: the open ad, its landing page capture, what the page offers, then the finding: what it means for you
+   (the £38 on the page against your £40 gift set).
    Story: the old row slides down as Rival A's 3 new creatives (9 ads) rise into the top row; the pointer opens the
-   newest; the panel's mark works while the page capture loads, then closes as the check ticks; the toast.
-   Layout (main 528 x 386): header 24, gap 12, body 350 = grid 334 (3 x 106, gaps 8) + 10 + column 184
-   (panel 300, gap 10, toast 40); cards 146 tall, so the panel ends with the grid. Rest state (no .play) = the finished scene. */
+   newest; the panel's mark works while grey skeleton blocks stand in for the page, the page loads, the offer and the
+   finding land, the mark closes; the toast offers the 9 new ads.
+   Layout (main 528 x 386): header 24, gap 12, body 350 = grid 324 (3 x 104, gaps 6) + 8 + column 196
+   (panel 298, gap 12, toast 40); cards 146 tall, so the panel ends with the grid. Rest state (no .play) = the finished scene. */
 
 .app-ads .ax-main{grid-template-rows:24px minmax(0,1fr);align-content:stretch;padding:14px;gap:12px}
 
@@ -21,18 +23,17 @@
 .ilwrap .app-ads .ad-av svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- body: the grid, then the open ad ---------- */
-.app-ads .ad-wrap{display:grid;grid-template-columns:minmax(0,1fr) 184px;column-gap:10px;min-height:0}
-.app-ads .ad-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:146px 146px minmax(0,1fr);gap:8px;min-width:0;min-height:0}
+.app-ads .ad-wrap{display:grid;grid-template-columns:minmax(0,1fr) 196px;column-gap:8px;min-height:0}
+.app-ads .ad-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:146px 146px minmax(0,1fr);gap:6px;min-width:0;min-height:0}
 
 /* an ad card: creative, hook, rival and channel, first seen and days running */
-.app-ads .ad-card{display:flex;flex-direction:column;min-width:0;padding:5px 5px 0;border-radius:9px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-ads .ad-card{display:flex;flex-direction:column;min-width:0;padding:4px 4px 0;border-radius:9px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
 .app-ads .ad-card.ad-on{background:rgb(var(--fg-rgb) / .065);box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-ads .ad-cr{flex:none;height:80px;border-radius:5px}
-.app-ads .ad-card>p{padding:0 1px;white-space:nowrap;overflow:hidden}
-.app-ads .ad-hk{margin-top:8px;font:500 11px/14px var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.app-ads .ad-card>p{white-space:nowrap;overflow:hidden}
+.app-ads .ad-hk{margin-top:8px;font:500 11px/14px var(--sans);letter-spacing:-.015em;color:var(--fg)}
 .app-ads .ad-ch{margin-top:2px;font:400 10.5px/13px var(--sans);color:var(--fg-3)}
 .app-ads .ad-dt{margin-top:4px;display:flex;justify-content:space-between;font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
-.app-ads .ad-lg .ad-dt span:last-child{font-weight:500;color:var(--fg)}
 
 /* the red line, shown under the grid */
 .app-ads .ad-foot{grid-column:1/-1;align-self:end;display:flex;align-items:center;gap:7px;height:40px;padding-left:2px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
@@ -89,7 +90,7 @@
 .app-ads .ad-run{left:4px;padding:0 4px;font:500 10.5px/1 var(--sans);color:#F6F5F1;background:#1E1D1A}
 
 /* ---------- the open ad ---------- */
-.app-ads .ad-pan{align-self:start;height:300px;display:flex;flex-direction:column;padding:12px;border-radius:10px;
+.app-ads .ad-pan{align-self:start;height:298px;display:flex;flex-direction:column;padding:12px;border-radius:10px;
   background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
 .app-ads .ad-ph{display:grid;gap:4px}
 .app-ads .ad-pk{display:flex;align-items:center;gap:6px;height:14px;font:500 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
@@ -97,7 +98,7 @@
 .ilwrap .app-ads .ad-pk svg.ad-x{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
 .app-ads .ad-ph h3{font:600 15px/18px var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
 
-/* the landing page, captured */
+/* the landing page, captured (page area 172 x 71 under the capture's bar) */
 .app-ads .ad-lp{margin:10px 0 0;display:grid;gap:5px}
 .app-ads .ad-pg{height:80px}
 .app-ads .ad-lp figcaption{display:flex;justify-content:space-between;font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
@@ -108,33 +109,39 @@
 .app-ads .ad-page .ad-pl2{left:8px;top:24px;width:40px;height:6px;background:#3A3834}
 .app-ads .ad-page .ad-pl3{left:8px;top:35px;width:56px;height:3px;background:#A8A398}
 .app-ads .ad-page .ad-bn{left:8px;top:45px;width:36px;height:11px;border-radius:3px;background:#3A3834}
-.app-ads .ad-page .ad-tl{left:88px;top:13px;width:64px;height:50px;border-radius:3px;background:#E3DACE}
-.app-ads .ad-page .ad-gb{left:96px;top:40px;width:24px;height:17px;background:#C9B49C}
-.app-ads .ad-page .ad-gl{left:94px;top:35px;width:28px;height:6px;background:#BBA48A}
+.app-ads .ad-page .ad-tl{left:100px;top:13px;width:64px;height:50px;border-radius:3px;background:#E3DACE}
+.app-ads .ad-page .ad-gb{left:108px;top:40px;width:24px;height:17px;background:#C9B49C}
+.app-ads .ad-page .ad-gl{left:106px;top:35px;width:28px;height:6px;background:#BBA48A}
 .app-ads .ad-page .ad-gb::before,.app-ads .ad-page .ad-gl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:#F3EEE6}
-.app-ads .ad-page .ad-bt{left:129px;top:27px;width:12px;height:30px;border-radius:3px;background:#8F877C}
-.app-ads .ad-page .ad-bc{left:132px;top:22px;width:6px;height:6px;border-radius:1.5px;background:#5E5850}
+.app-ads .ad-page .ad-bt{left:141px;top:27px;width:12px;height:30px;border-radius:3px;background:#8F877C}
+.app-ads .ad-page .ad-bc{left:144px;top:22px;width:6px;height:6px;border-radius:1.5px;background:#5E5850}
 .app-ads .ad-px{position:absolute;left:51px;top:45px;font:600 10.5px/11px var(--sans);color:#1E1D1A;white-space:nowrap}
-.app-ads .ad-page .ad-load{left:0;top:0;width:100%;height:2px;border-radius:0;background:#1E1D1A;transform-origin:0 50%;opacity:0}
+/* skeleton: the same layout in flat grey, under the page; shown only while it loads (hidden at rest) */
+.app-ads .ad-sk{position:absolute;inset:0;opacity:0}
+.app-ads .ad-sk i{background:#D8D4CC}
+.app-ads .ad-sk .k-bar{left:0;right:0;top:0;height:7px;border-radius:0;background:#DEDAD3}
+.app-ads .ad-sk .k-l1{left:8px;top:15px;width:58px;height:6px}
+.app-ads .ad-sk .k-l2{left:8px;top:24px;width:40px;height:6px}
+.app-ads .ad-sk .k-l3{left:8px;top:35px;width:56px;height:3px}
+.app-ads .ad-sk .k-bn{left:8px;top:45px;width:36px;height:11px;border-radius:3px}
+.app-ads .ad-sk .k-tl{left:100px;top:13px;width:64px;height:50px;border-radius:3px}
 
-/* what the page offers, what it charges */
+/* what the page offers */
 .app-ads .ad-of{margin-top:10px;display:grid;gap:4px}
 .app-ads .ad-o1{font:500 11px/15px var(--sans);color:var(--fg);white-space:nowrap}
 .app-ads .ad-o2{display:flex;align-items:center;gap:6px;height:19px;font-size:11px;color:var(--fg-3)}
-.app-ads .ad-pr{margin-top:6px;display:flex;align-items:center;justify-content:space-between;height:24px;box-shadow:0 1px 0 var(--line) inset;font-size:11px;color:var(--fg-3);white-space:nowrap}
-.app-ads .ad-pr b{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
 
-/* the check */
-.app-ads .ad-ck{margin-top:auto;display:flex;align-items:center;gap:9px;height:42px;padding:0 10px;border-radius:8px;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
-.app-ads .ad-ck p{display:grid;gap:1px;white-space:nowrap}
-.app-ads .ad-ck b{font:500 11px/14px var(--sans);color:var(--fg)}
-.app-ads .ad-ck p span{font-size:10.5px;line-height:13px;color:var(--fg-2)}
+/* the finding: what their offer means for you */
+.app-ads .ad-fd{margin-top:auto;display:grid;padding:8px 10px;border-radius:8px;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-ads .ad-f1{height:22px;margin-bottom:3px;font:500 12px/16px var(--sans);letter-spacing:-.01em;color:var(--fg);white-space:nowrap;box-shadow:0 -1px 0 var(--line) inset}
+.app-ads .ad-fr{display:flex;align-items:center;justify-content:space-between;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.app-ads .ad-fr b{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
 
-/* ---------- toast: under the panel, on the column's own edges ---------- */
-.app-ads .ad-toast{right:14px;bottom:14px;width:184px;height:40px;gap:8px;padding:0 10px}
-.app-ads .ad-toast p{white-space:nowrap}
-.app-ads .ad-toast b{font:500 11px/15px var(--sans);color:var(--fg)}
-.app-ads .ad-toast .ad-ts{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+/* ---------- toast (the board pattern): what landed, and the 1 action; on the column's own edges ---------- */
+.app-ads .ad-toast{right:14px;bottom:14px;width:196px;height:40px;gap:8px;padding:0 8px 0 10px}
+.app-ads .ad-toast p{font-size:11.5px;white-space:nowrap}
+.app-ads .ad-toast b{font-weight:500;color:var(--fg)}
+.app-ads .ad-toast .ax-btn{margin-left:auto}
 
 /* pointer: clicks the newest Rival A ad; hidden at rest */
 .app-ads .ad-ptr{left:64px;top:96px;transform-origin:3px 1.5px}
@@ -142,9 +149,10 @@
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes ad-fade{from{opacity:0}to{opacity:1}}
+@keyframes ad-out{from{opacity:1}to{opacity:0}}
 @keyframes ad-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @keyframes ad-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes ad-down{from{transform:translateY(-154px)}to{transform:none}}
+@keyframes ad-down{from{transform:translateY(-152px)}to{transform:none}}
 @keyframes ad-slide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
 @keyframes ad-sel{
   from{background-color:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
@@ -153,12 +161,6 @@
 @keyframes ad-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes ad-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 @keyframes ad-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
-@keyframes ad-load{
-  0%{opacity:1;transform:scaleX(0)}
-  45%{transform:scaleX(.82)}
-  80%{opacity:1;transform:scaleX(1)}
-  100%{opacity:0;transform:scaleX(1)}}
-@keyframes ad-tick{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
 @keyframes ad-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 /* 1.6s from 1.9s: glides in from the empty column, clicks the newest ad at 2.52s, drifts toward the panel and fades */
 @keyframes ad-ptr{
@@ -176,23 +178,22 @@
 /* 2. Rival A's 3 new creatives rise into the top row as the running ads make room */
 .appx-il.play.app-ads .ad-nw{animation:ad-rise .55s var(--ease) var(--d) both}
 
-/* 3. the pointer opens the newest: the card selects, the panel slides in, its mark works */
+/* 3. the pointer opens the newest: the card selects, the panel slides in, its mark works (1 turn, 1.4s) */
 .appx-il.play.app-ads .ad-ptr{animation:ad-ptr 1.6s var(--ease) 1.9s both}
 .appx-il.play.app-ads .ad-card.ad-on{animation:ad-rise .55s var(--ease) var(--d) both,ad-sel .3s var(--ease) 2.58s both,ad-press .24s ease-out 2.5s}
 .appx-il.play.app-ads .ad-pan{animation:ad-slide .6s var(--ease) 2.66s both}
-.appx-il.play.app-ads .ad-mk .sig-rot{animation:ad-spin 1.5s linear 2.75s both}
-.appx-il.play.app-ads .ad-mk .sig-orb{animation:ad-spinr 1.5s linear 2.75s both}
+.appx-il.play.app-ads .ad-mk .sig-rot{animation:ad-spin 1.4s linear 2.66s both}
+.appx-il.play.app-ads .ad-mk .sig-orb{animation:ad-spinr 1.4s linear 2.66s both}
 
-/* 4. the landing page capture loads, then what it offers and charges */
-.appx-il.play.app-ads .ad-page .ad-load{animation:ad-load 1.1s var(--ease) 2.8s both}
-.appx-il.play.app-ads .ad-page>:not(.ad-load){animation:ad-fade .4s var(--ease) 3.7s both}
-.appx-il.play.app-ads .ad-lp figcaption span:last-child{animation:ad-fade .3s var(--ease) 3.7s both}
-.appx-il.play.app-ads .ad-of{animation:ad-in .4s var(--ease) 3.85s both}
-.appx-il.play.app-ads .ad-pr{animation:ad-in .4s var(--ease) 3.95s both}
+/* 4. skeleton blocks hold the page's shape; the page loads over them (same geometry, so no frame is blank),
+   then the skeleton leaves unseen; what the page offers follows */
+.appx-il.play.app-ads .ad-page>:not(.ad-sk){animation:ad-fade .35s var(--ease) 3.35s both}
+.appx-il.play.app-ads .ad-sk{animation:ad-out .16s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 3.75s both}
+.appx-il.play.app-ads .ad-lp figcaption span:last-child{animation:ad-fade .3s var(--ease) 3.35s both}
+.appx-il.play.app-ads .ad-of{animation:ad-in .4s var(--ease) 3.5s both}
 
-/* 5. the check: the mark closes, the tick snaps, the toast */
-.appx-il.play.app-ads .ad-mk .sig-sq{animation:ad-home .55s var(--snap) 4.25s both}
-.appx-il.play.app-ads .ad-mk .sig-gap{animation:ad-fade .35s var(--ease) 4.45s both}
-.appx-il.play.app-ads .ad-ck{animation:ad-in .4s var(--ease) 4.2s both}
-.appx-il.play.app-ads .ad-ck .ax-tick{animation:ad-tick .45s var(--snap) 4.32s both}
-.appx-il.play.app-ads .ad-toast{animation:ad-toast .45s var(--ease) 4.9s both}
+/* 5. the finding lands, the mark closes, the toast */
+.appx-il.play.app-ads .ad-fd{animation:ad-in .4s var(--ease) 3.66s both}
+.appx-il.play.app-ads .ad-mk .sig-sq{animation:ad-home .55s var(--snap) 4.06s both}
+.appx-il.play.app-ads .ad-mk .sig-gap{animation:ad-fade .35s var(--ease) 4.25s both}
+.appx-il.play.app-ads .ad-toast{animation:ad-toast .45s var(--ease) 4.6s both}

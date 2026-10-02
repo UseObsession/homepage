@@ -2,9 +2,9 @@
    Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/html/NAME.html (see components/AppScreen). */
 
 export type ScreenName = string
-/* Slugs: competitor-tracking, prospect-intelligence, mystery-shopper, speed-to-lead, price-watch, ad-tracking, trial-teardown,
+/* Recipe slugs (/recipes/SLUG): competitor-tracking, prospect-intelligence, mystery-shopper, speed-to-lead, price-watch, ad-tracking, trial-teardown,
    email-sms-tracking, website-audit, delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers. */
-export type TemplateId =
+export type RecipeId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
@@ -31,15 +31,15 @@ export type Capture = {
   micro?: string
   /* After a sign up: 1 tap tells us what to set up first. */
   roles?: { question: string; options: string[] }
-  interest?: TemplateId | 'any'
+  interest?: RecipeId | 'any'
 }
 
 export type Cta = { label: string; to: string }
 
-/* A run shown in the hero console: a template (or a typed task) running against real-looking targets. */
+/* A run shown in the hero console: a recipe (or a typed task) running against real-looking targets. */
 export type Demo = {
   tab: string
-  template: TemplateId | 'task'
+  recipe: RecipeId | 'task'
   task: string
   targets: string
   journey: string[]
@@ -66,14 +66,14 @@ export type Hero = {
 
 /* The story every page tells, in this order:
    hero (what Obsession is, for this reader) > how it works > gap (why it matters to them, today vs with Obsession) >
-   use cases (each with its own screen) > outcomes > kinds (every kind of reader it fits) > templates > proof >
+   use cases (each with its own screen) > outcomes > kinds (every kind of reader it fits) > recipes > proof >
    questions (trust and red lines) > final call to action. A page may skip a beat, never reorder it. */
 export type How = { heading: string; sub?: string; steps: { title: string; line: string; screen: ScreenName; chips?: string[] }[] }
 export type Gap = { heading: string; sub?: string; rows: { today: string; obsession: string }[] }
-export type UseCase = { tab: string; moment: string; outcome: string; line: string; whyOnly: string; template: TemplateId | 'task'; screen: ScreenName }
+export type UseCase = { tab: string; moment: string; outcome: string; line: string; whyOnly: string; recipe: RecipeId | 'task'; screen: ScreenName }
 export type Uses = { heading: string; items: UseCase[] }
 export type Outcomes = { heading: string; sub?: string; items: { value: string; label: string; note?: string }[] }
-export type Kinds = { heading: string; label: string; items: { name: string; line: string; templates: TemplateId[] }[] }
+export type Kinds = { heading: string; label: string; items: { name: string; line: string; recipes: RecipeId[] }[] }
 export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
 export type Faq = { heading: string; items: { q: string; a: string }[] }
 export type Final = { heading: string; sub: string; capture: Capture }
@@ -92,7 +92,7 @@ export type Page = {
   uses: Uses
   outcomes?: Outcomes
   kinds?: Kinds
-  templates?: { heading: string; ids: TemplateId[] }
+  recipes?: { heading: string; ids: RecipeId[] }
   proof?: Proof
   jobs?: Jobs
   audiences?: Audiences
@@ -102,14 +102,14 @@ export type Page = {
   final: Final
 }
 
-/* A template's own page (/templates/SLUG). James's recipe pages are the base: their structure stays.
-   A template comes with all its infrastructure set up; `kit` is what choosing it spins up. */
-export type TemplateGroup = 'Win customers' | 'Keep customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
-export type Template = {
-  id: TemplateId
+/* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
+   A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
+export type RecipeGroup = 'Win customers' | 'Keep customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
+export type Recipe = {
+  id: RecipeId
   slug: string
   name: string
-  group: TemplateGroup
+  group: RecipeGroup
   /* 1 line for cards and menus. */
   line: string
   /* What you get, in 1 line. */
