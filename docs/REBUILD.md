@@ -128,6 +128,10 @@ Free Cloudflare plan (Workers static assets). Everything is static and made at b
 
 Every page, the use-case pages included, gets a dedicated narrative edit once it renders: an editor reads it top to bottom as its reader would and rewrites the headings and opening lines so each section hands off to the next and the copy builds to the call to action. Then a second editor checks the flow and the rules. Specifics stay; transitions, order and emphasis change.
 
+## 9c. Blog bylines
+
+Every post is by both founders: Seun Akinniranye, Cofounder, and James Akinniranye, Cofounder (Seun, 3 Oct). The article's structured data lists both as authors.
+
 ## 10. Quality gates (before Seun sees anything)
 
 `npm run build` passes (types, lint, prerender). Every page screenshotted at 1440 and 390, dark and light, and looked at. The no-meta scanner is clean on every page's text. No overlaps, clipping, orphans or dead space. Lighthouse-level basics: headings in order, labels, contrast, focus, alt text. The red lines hold everywhere.
