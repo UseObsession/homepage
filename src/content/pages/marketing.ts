@@ -1,3 +1,4 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Marketing (/marketing). Marketing teams at brands of any kind, B2C and B2B.
@@ -6,7 +7,7 @@ import type { Page } from '../types'
    and texts, rival ads, rival prices, your own launch, AI answers and listings, your own lead leaks) > outcomes >
    every kind of brand > recipes > the real September store check > questions (red lines) > the free store mystery
    shop (a store you run, or one with the owner’s OK).
-   Every console run is an example (consoleLabel says so); the only real run is the September store check, stated as
+   Every console run is an example (the console’s Example tag says so); the only real run is the September store check, stated as
    it happened in the proof fact and the proof beat. The hero runs are B2C rival emails, a B2B rival trial, a B2B
    webinar launch, your own store's AI checkouts and your own cancel requests, so they don't repeat the stories the
    use case screens tell.
@@ -30,16 +31,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Your first store mystery shop is free',
+    pill: 'Early access',
     headline: 'AI agents that help your brand beat every rival.',
-    typed: [
-      'Log every email and text our 3 rivals send',
-      'Flag any rival ad that undercuts our price',
-      'Screenshot every rival price change',
-      'Check our launch as a new customer at 08:00',
-      'Ask 4 AI assistants who’s best in our category',
-      'Time how fast our demo form gets a reply',
-    ],
     sub: 'Declared AI agents with their own inboxes, phone numbers and browsers sign up to every rival on your list and check your own launches as a customer, continuously. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
@@ -66,7 +59,7 @@ export const page: Page = {
       { value: 'Every message', label: 'a rival sends new customers, on 1 timeline' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Rival welcome offers',

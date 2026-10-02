@@ -1,3 +1,4 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Founders (/founders). Founders of any kind, technical or not, SaaS weighted.
@@ -24,17 +25,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'For founders',
+    pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    typed: [
-      'Find which of our 50 prospects go quiet after sign up',
-      'Test our sign up after every release',
-      'Live our first 14 days as a new customer',
-      'Tell me the day a rival changes its prices',
-      'Chase our 11 overdue invoices until they’re paid',
-      'Get 3 quotes before we accept the 18% rise',
-      'Correct what AI assistants say about us',
-    ],
     sub: 'Declared AI agents with their own inbox, phone number and browser sign up at every prospect to find the gap you fix, and test every release as a new customer, continuously. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
@@ -54,7 +46,7 @@ export const page: Page = {
       { value: 'Every step', label: 'signed, so anyone can check it' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Find customers',

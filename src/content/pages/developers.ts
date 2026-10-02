@@ -1,3 +1,4 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Developers (/developers). Developers, and the technical founders who build on the same infrastructure as the recipes.
@@ -22,7 +23,7 @@ import type { Page } from '../types'
    (every example domain ends in .example).
    Vocabulary: the API object is a mission (`obs.missions.create`, `mission.verdict`), as on Home and in the screens;
    the jobs are recipes.
-   Every console run is an example (consoleLabel and each ledger say so). The only real run is the September store
+   Every console run is an example (the console’s Example tag and each ledger say so). The only real run is the September store
    check (proof), never shown as signed, so the `run` screen (a signed receipt on that run) is not used here.
    Screens, each once: How (compose, templates, kit, qa), the code (dev), use cases (ship, leads, rivals, shop, inbound,
    suppliers). */
@@ -43,17 +44,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'For developers',
+    pill: 'Early access',
     headline: 'AI agents that help your product win and keep users.',
-    typed: [
-      'Test our sign up after every deploy',
-      'Fail the build if a login code never arrives',
-      'Time each customer’s reply to a test lead, with their OK',
-      'Post every rival price change to our webhook',
-      'Tell our users which prospects never send a welcome email',
-      'Shop each merchant who opts in, every Monday',
-      'Get 3 signed quotes for every order over £5,000',
-    ],
     sub: 'Your code passes in the companies. Declared AI agents sign up, shop and ask the chat bot at each one, and post what they find to your webhook.',
     capture: {
       kind: 'waitlist',
@@ -73,7 +65,7 @@ export const page: Page = {
       { value: 'Every company', label: 'you pass in, at once and continuously' },
       { value: 'Every step', label: 'signed, so anyone can verify it' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Every deploy',

@@ -11,7 +11,7 @@
   min-width: 0;
 }
 
-/* "Example runs": quiet, above the tabs. */
+/* A recipe page's run: its name, quiet, above the window. In the hero the typed heading takes its place. */
 .s-console-label {
   margin: 0 0 var(--ob-space-12);
   font: var(--ob-type-caption);

@@ -1,3 +1,4 @@
+import { consoleHeading } from '../console'
 import type { Capture, Page } from '../types'
 
 /* Sales (/sales): sales and customer success teams of any kind, SaaS first. Win and renew.
@@ -33,18 +34,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'For sales and customer success',
+    pill: 'Early access',
     headline: 'AI agents that help your team win and renew accounts.',
-    typed: [
-      'Brief me before Friday’s call',
-      'Flag any renewal at risk',
-      'Tell me which accounts are ready to grow',
-      'Prove our pilot to their CFO by day 30',
-      'Build a renewal case their CFO can check',
-      'Run our 3 rivals’ trials for a battlecard',
-      'Tell me when a lost account’s new setup breaks',
-      'Get us set up in their supplier portal',
-    ],
     sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up and ask the chat bot at every account and rival on your list, continuously. You get signed proof and your next move before every call, pilot and renewal.',
     capture: {
       kind: 'waitlist',
@@ -60,7 +51,7 @@ export const page: Page = {
       { value: '7 days', label: 'as their customer before a first call' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Account brief',

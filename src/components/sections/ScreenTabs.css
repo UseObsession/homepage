@@ -1,0 +1,91 @@
+/* Home's hero console (components/sections/ScreenTabs): the scenario row of Console.css (.s-console-tabs), then the
+   chosen app screen with its line. Built on the design system's tabs (.ob-ptabs), autoplay bar (.ob-anim-bar), tag,
+   link button and icon button. Motion is opacity and transform only; reduced motion shows every screen finished. */
+
+.s-shots {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* The autoplay bar in the chosen tab: a 2px line along the pill's foot, in the tab's own ink, filling over the tab's
+   stay. It shows the tabs move on by themselves, and how soon. */
+.s-shots-bar {
+  position: absolute;
+  inset: auto var(--ob-control-pad-md) var(--ob-space-4);
+  height: var(--ob-border-focus);
+  border-radius: var(--ob-border-focus);
+  background-color: currentColor;
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* The screen at the medium container: large enough to read as the product, never so large its type looks zoomed. The
+   screen's frame insets its window (screens/base.css .appx-il), so the line under it uses the same inset. */
+.s-shots-stage {
+  --s-shots-inset: clamp(10px, 3.4%, 24px);
+  position: relative;
+  width: 100%;
+  max-width: calc(var(--ob-container-md) + 2 * var(--ob-space-24));
+  margin-top: var(--ob-space-8);
+}
+.s-shots-panels { display: grid; }
+.s-shots-panel {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  visibility: hidden;
+}
+.s-shots-panel.is-active {
+  visibility: visible;
+  animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+/* A screen not chosen holds still; its story plays when its tab is chosen. */
+.s-shots-panel:not(.is-active) :is(.appx-il, .appx-il *) { animation: none !important; }
+
+/* Under the screen: the Example tag and the line on the left, the recipe on the right, the pause beside it. */
+.s-shots-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-4) var(--ob-space-24);
+  min-height: var(--ob-target-min);
+  margin-top: var(--ob-space-12);
+  padding-inline: var(--s-shots-inset) calc(var(--s-shots-inset) + var(--ob-control-xs) + var(--ob-space-16));
+  text-align: start;
+}
+.s-shots-line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-shots-tag { flex: none; align-self: center; }
+.s-shots-link { flex: none; }
+.s-shots-pause {
+  position: absolute;
+  right: var(--s-shots-inset);
+  bottom: calc((var(--ob-target-min) - var(--ob-control-xs)) / 2);
+}
+
+/* Phones: the line takes the row, the recipe goes under it, the pause stays at the row's end. */
+@media (max-width: 559.98px) {
+  .s-shots-stage { --s-shots-inset: 10px; }
+  .s-shots-foot { padding-top: var(--ob-space-4); }
+  /* The tag runs inline with the words, so it never takes a line of its own. */
+  .s-shots-line { display: block; }
+  .s-shots-tag { display: inline-flex; margin-inline-end: var(--ob-space-8); vertical-align: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-shots-panel.is-active { animation: none; }
+}

@@ -58,16 +58,24 @@ export type Demo = {
   ledger: string
 }
 
+/* A tab of Home's hero console: a kind of work, shown as its full app screen, which plays its story when its tab is
+   chosen. `line` sits under the screen (1 short line); the tab links to the recipe it runs on. A tab whose screen is
+   not in src/screens/html yet is left out, so nothing renders broken. */
+export type HeroScreen = { tab: string; screen: ScreenName; recipe: RecipeId; line: string }
+
+/* The hero (docs/REBUILD.md 1c). `consoleHeading` is the typed heading over the console: it types the first line,
+   holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
+   screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
 export type Hero = {
   pill: string
   headline: string
-  typed: string[]
   sub: string
   capture: Capture
   secondary?: Cta
   proof: { value: string; label: string }[]
-  consoleLabel: string
-  demos: Demo[]
+  consoleHeading: string[]
+  screens?: HeroScreen[]
+  demos?: Demo[]
 }
 
 /* The story every page tells, in this order:
@@ -77,7 +85,7 @@ export type Hero = {
 export type How = { heading: string; sub?: string; steps: { title: string; line: string; screen: ScreenName; chips?: string[] }[] }
 export type Gap = { heading: string; sub?: string; rows: { today: string; obsession: string }[] }
 /* Every use case screen shows example data: the Uses render puts a quiet "Example" tag on each screen, matching the
-   console's "Example runs". No copy field needed. */
+   hero console's Example tag. No copy field needed. */
 export type UseCase = { tab: string; moment: string; outcome: string; line: string; whyOnly: string; recipe: RecipeId | 'task'; screen: ScreenName }
 export type Uses = { heading: string; items: UseCase[] }
 export type Outcomes = { heading: string; sub?: string; items: { value: string; label: string; note?: string }[] }

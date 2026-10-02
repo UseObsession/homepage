@@ -1,10 +1,11 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Agencies (/agencies), the main ICP. The story: what Obsession is for an agency > how it works > the gap (the
    agency's problem: unpaid pitch work, proving value, rivals selling AI) > use cases (win, deliver, keep, sell,
    mystery shop) > outcomes (up to ceilings, each with its model in the line) > every kind of agency > recipes >
    proof (the real September store check) > questions (red lines) > the free report.
-   Hero demos are examples (consoleLabel and every ledger say so). The one real run appears only in the third proof
+   Hero demos are examples (the console’s Example tag and every ledger say so). The one real run appears only in the third proof
    fact and the proof beat, stated as it happened. Demo clients avoid "skincare" so no example reads as the real run.
    Screens: How uses the flow screens (agencytask, templates, kit, run); each use case has its own (pack, board,
    approve, report, shop). */
@@ -25,16 +26,8 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Your first store mystery shop is free',
+    pill: 'Early access',
     headline: 'AI agents that help your agency win and keep clients.',
-    typed: [
-      'Join this prospect’s emails and texts before Thursday',
-      'Shop our client’s store as 4 customers, with their OK',
-      'Check every client’s live ads each morning',
-      'Log every offer our client’s 3 rivals send',
-      'Test every code in each client’s Black Friday send, with their OK',
-      'Send each client this month’s signed record',
-    ],
     sub: 'Declared AI agents with their own inboxes, phone numbers and browsers sign up at every prospect and rival, and go through every client’s store, trial or booking with their OK, continuously. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
@@ -54,7 +47,7 @@ export const page: Page = {
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
       { value: 'Every step signed', label: 'so clients can check the work' },
     ],
-    consoleLabel: 'Example runs',
+    consoleHeading,
     demos: [
       {
         tab: 'Before a pitch',

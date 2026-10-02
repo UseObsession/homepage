@@ -1,38 +1,31 @@
+import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Home (/). Generalised and industry agnostic: an agency, a founder, a salesperson, a marketer and a developer each
    see in 5 seconds that it's for them, across B2B SaaS, stores, services and any business.
    The story: what Obsession is > how it works (1 flow, 4 steps) > the gap (today vs with Obsession) > the 4 jobs >
    who it's for > recipes > the real September store check, in every output > developers > questions > the waitlist.
-   Every console run is an example and says so in its ledger line. The only real run is the September store check
+   Every hero screen is an example and says so (its Example tag). The only real run is the September store check
    (outputs and the third proof fact): 4 test customers, 48 hours watched, 2 full baskets, 0 reminders.
-   Screens, each once: how (templates, agencytask, kit, run: all in the agency workspace), the 4th job, a typed task
-   (compose), who it's for (board, leads, brief, inbox, dev), developers (qa). */
+   Screens, each once: the hero tabs (pack, shop, rivals, inbound, checkout), how (templates, agencytask, kit, run: all
+   in the agency workspace), the 4th job, a typed task (compose), who it's for (board, leads, brief, inbox, dev),
+   developers (qa). */
 
 export const page: Page = {
   meta: {
     path: '/',
     title: 'Obsession · Intelligence infrastructure for commercial teams',
     description:
-      'Declared AI agents with their own inbox, phone number and browser sign up, shop, ask the bot and check at every company on your list. You get signed proof.',
+      'Send declared AI agents with their own ID, inbox, phone, card and browser to research prospects, test journeys, track rivals, chase and negotiate for you.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you. They sign up, shop, ask the bot, chase and check at every company on your list, continuously, sign every step and send you the proof and your next move.',
+      'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number, card and browser, that work with other companies for you. They research prospects as their customer, test any journey, track rivals, answer and chase, buy and negotiate within the limits you set, and check the AI agents you run, at every company on your list, continuously, with every step signed.',
     ogImage: '/og/home.png',
   },
 
   hero: {
-    pill: 'Declared AI agents, every step signed',
+    pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
-    typed: [
-      'Shop our client’s store as 4 customers, with their OK',
-      'Find which prospects never send a welcome email',
-      'Log every offer our 3 rivals send',
-      'Brief me before Thursday’s call',
-      'Test our onboarding after every release',
-      'Time how fast our clinics answer a new lead',
-      'Chase every invoice over 30 days',
-    ],
-    sub: 'Declared AI agents with their own inbox, phone number and browser sign up, shop, ask the chat bot and chase at every company on your list, continuously. You get the proof and your next move.',
+    sub: 'Send declared AI agents, with their own ID, inbox, phone, card and browser, to research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. Every step signed.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
@@ -50,147 +43,39 @@ export const page: Page = {
       { value: 'Continuously', label: 'and again after every fix' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
-    consoleLabel: 'Example runs',
-    demos: [
+    consoleHeading,
+    /* Category tabs, each a full app screen that plays its story when chosen. AI checkout test lands with its screen
+       (src/screens/html/checkout.html); until then its tab is left out. Room for a 6th: the AI agent checks. */
+    screens: [
       {
-        tab: 'Track rivals',
-        recipe: 'competitor',
-        task: 'Join the emails and texts of our client’s 3 rivals. Log every offer, price change and public ad, continuously.',
-        targets: 'Rival A, B and C, coffee subscriptions',
-        journey: ['Sign up, box ticked', 'Opt in to texts', 'Read the ads they run in public', 'Check prices daily'],
-        schedule: 'Daily at 07:00',
-        report: 'Weekly digest, Slack when anything changes',
-        kit: ['Agent ID, declared as AI', '3 inboxes', '3 phone numbers', 'Browser set to the UK'],
-        events: [
-          { time: 'Mon 07:02', text: 'Signs up at Rival A, B and C, declared as AI.' },
-          { time: 'Mon 07:04', text: 'Rival B welcome email: 15% off your first bag.' },
-          { time: 'Tue 19:30', text: 'Rival A text: a free grinder with every 6 month plan.' },
-          { time: 'Thu 08:15', text: 'Rival C: free delivery now from £20, down from £30.' },
-          { time: 'Fri 11:40', text: 'Rival A starts 9 new public ads, 6 leading with the grinder.' },
-        ],
-        finding: 'Rival A leads with a free grinder on 6 month plans, by text and in 6 of its 9 new ads.',
-        fix: 'A counter offer drafted for your client’s Friday email. Sent after your OK.',
-        ledger: 'Example run. Every email, text and ad signed and dated.',
-      },
-      {
-        tab: 'Start a rival’s trial',
-        recipe: 'trial',
-        task: 'Start Rival A’s free trial with no card. Show me every email and offer it sends, and where it goes quiet.',
-        targets: 'Rival A, a payroll SaaS',
-        journey: ['Sign up, no card', 'Ask the bot, never staff', 'Log every email and offer', 'Close if a rep writes or calls'],
-        schedule: 'Daily, until the trial ends',
-        report: 'Talking points in your CRM, PDF timeline',
-        kit: ['Agent ID, declared as AI', 'Own inbox', 'Own browser', 'Watched until the trial ends'],
-        events: [
-          { time: 'Day 1, 10:00', text: 'Signs up as a declared AI agent. No card asked.' },
-          { time: 'Day 1, 10:02', text: 'Welcome email, then a setup checklist with 6 steps.' },
-          { time: 'Day 1, 10:15', text: 'Asks the bot about pricing. It says: ask sales.' },
-          { time: 'Day 3, 09:00', text: 'Email 2. Then nothing for 3 days.' },
-          { time: 'Day 6, 14:12', text: 'A rep writes. The trial closes with no reply sent. That email is the last record.' },
-        ],
-        finding: 'Rival A’s bot can’t answer pricing, and its trial emails stop after day 3.',
-        fix: '3 talking points drafted for your reps, each linked to its screenshot.',
-        ledger: 'Example run. It never replied, and every step is signed.',
-      },
-      {
-        tab: 'Qualify prospects',
+        tab: 'Prospect intelligence',
+        screen: 'pack',
         recipe: 'prospect',
-        task: 'Join the emails and texts of the 60 gyms on our list. Keep the ones that never follow up, with proof.',
-        targets: '60 gyms, from Clay',
-        journey: ['Join emails and texts', 'Ask the bot, never staff', 'Wait 7 days', 'Check again on day 30'],
-        schedule: 'Day 1, then days 7 and 30',
-        report: 'Clay columns, a proof link each',
-        kit: ['Agent ID, declared as AI', '60 inboxes', '60 phone numbers', 'Watched for 30 days'],
-        events: [
-          { time: 'Day 1, 09:00', text: 'Joins the emails and texts of 60 gyms, declared as AI.' },
-          { time: 'Day 1, 09:20', text: 'Asks each chat bot about a first class. 6 hand over to a person, so the step ends.' },
-          { time: 'Day 3', text: '38 welcome emails arrive. 22 gyms send nothing.' },
-          { time: 'Day 7', text: 'Checked again: 4 sent late. 18 still silent.' },
-          { time: 'Day 30', text: 'Checked again: 3 fixed it, so they drop off your list.' },
-        ],
-        finding: '15 of 60 gyms never sent a welcome email in 30 days.',
-        fix: '15 proof links written back to Clay. Your team writes and sends each opener.',
-        ledger: 'Example run. Each gym can open its own dated, signed proof.',
+        line: 'Becomes each prospect’s customer and proves the gap you fix.',
       },
       {
-        tab: 'Keep accounts',
-        recipe: 'account-watch',
-        task: 'With their OK, watch our 20 biggest accounts as their customer. Flag any that look ready to leave or grow.',
-        targets: '20 accounts, from your CRM',
-        journey: ['Join each account’s emails, with its OK', 'Read its public pages', 'Read usage you connect', 'Flag risk and growth'],
-        schedule: 'Every morning, continuously',
-        report: 'Slack alert, note in your CRM',
-        kit: ['Agent ID, declared as AI', '20 inboxes', 'Own browser', 'Your CRM, connected by you'],
-        events: [
-          { time: 'Mon 08:00', text: 'Joins the emails of your 20 biggest accounts, with their OK, declared as AI.' },
-          { time: 'Tue 09:10', text: 'The pet food account’s emails now come from Rival B’s platform.' },
-          { time: 'Wed 08:00', text: 'Its usage is down 38% in the CRM you connected.' },
-          { time: 'Thu 08:00', text: 'The outdoor gear account opens 2 new countries on its site.' },
-          { time: 'Thu 08:05', text: 'A save plan and an upgrade note drafted for each owner.' },
-        ],
-        finding: 'The pet food account now sends from Rival B’s platform. The outdoor gear account is ready to grow.',
-        fix: 'A save call and an upgrade offer drafted in your CRM. You send them.',
-        ledger: 'Example run. Every signal linked to its screenshot and date.',
+        tab: 'Mystery shopper',
+        screen: 'shop',
+        recipe: 'mystery',
+        line: 'Any trial, store, app or booking, walked as a customer with the owner’s OK.',
       },
       {
-        tab: 'Check a release',
-        recipe: 'delivery',
-        task: 'After every release, sign up to our app as a new customer and live its first 14 days. Tell me what breaks.',
-        targets: 'Your app, UK and US',
-        journey: ['Sign up by text code', 'Onboard, reset password', 'Reach the end of the trial', 'Stop before payment'],
-        schedule: 'Every release, and Mondays',
-        report: 'Slack alert, ticket drafted',
-        kit: ['Agent ID, declared as AI', 'Fresh inbox', 'UK and US numbers', 'Phone and desktop'],
-        events: [
-          { time: 'Day 1, 09:00', text: 'Release 3.6 ships. Test customer 6 signs up. Code by text in 8 seconds.' },
-          { time: 'Day 1, 09:03', text: 'Welcome email in 3 minutes. Setup link opens on phone and desktop.' },
-          { time: 'Day 6, 10:20', text: 'Password reset email in 40 seconds. Link works on phone.' },
-          { time: 'Day 13, 18:00', text: 'Trial end reminder due. Nothing by email or text.' },
-          { time: 'Day 13, 18:02', text: 'Slack alert with the day, the screenshot and a drafted ticket.' },
-        ],
-        finding: 'After release 3.6, the trial end email stopped. Customer 5 got it. Customer 6 didn’t.',
-        fix: 'Fix ticket drafted for your tracker. Customer 7 checks it on its day 13.',
-        ledger: 'Example run. Every email, text and code timed and signed.',
+        tab: 'Competitor tracking',
+        screen: 'rivals',
+        recipe: 'competitor',
+        line: 'Signs up to every rival and logs each email, text, price and ad.',
       },
       {
-        tab: 'Get paid',
-        recipe: 'get-paid',
-        task: 'Chase every invoice over 30 days until it’s paid. Email first, then call on day 7.',
-        targets: '14 invoices, from your accounts tool',
-        journey: ['Email a reminder', 'Call on day 7', 'Answer what it can', 'Log every promise'],
-        schedule: 'Every weekday until paid',
-        report: 'Daily email, a sheet of promises',
-        kit: ['Agent ID, names your firm', 'Billing inbox', 'Phone number', 'Accounts tool, connected by you'],
-        events: [
-          { time: 'Day 1, 09:00', text: '14 reminders sent by a declared AI agent for your firm.' },
-          { time: 'Day 2, 11:20', text: '5 customers reply. 3 give a date to pay.' },
-          { time: 'Day 7, 10:00', text: '6 calls made. 1 customer says a March visit was cancelled. Flagged for you.' },
-          { time: 'Day 8, 09:30', text: 'Your reply sent after your OK, with the visit log attached.' },
-          { time: 'Day 12, 16:00', text: '9 of 14 paid. 3 more have a date.' },
-        ],
-        finding: '9 of 14 overdue invoices paid in 12 days. 3 more promised by Friday.',
-        fix: 'The last 2 come to you with every email and call attached.',
-        ledger: 'Example run. Every email, call and promise signed and dated.',
+        tab: 'Lead leaks',
+        screen: 'inbound',
+        recipe: 'speed',
+        line: 'A labelled test lead times your speed to lead on form, chat and phone.',
       },
       {
-        tab: 'Type any task',
-        recipe: 'task',
-        task: 'Find the stockists still showing our old ingredients list. Send each the new product pack, and check until every page is right.',
-        targets: '40 stockists, from a CSV',
-        journey: ['Check each stockist’s pages', 'Send the new product pack', 'Chase after 3 days', 'Check the pages again'],
-        schedule: 'Daily, until every page is right',
-        report: 'Email digest, a sheet of every page',
-        kit: ['Agent ID, names your brand', 'Own inbox for replies', 'Own browser', 'Your OK before it writes'],
-        events: [
-          { time: 'Day 1, 09:00', text: 'Checks the pages of 40 stockists. 11 still show the old ingredients list.' },
-          { time: 'Day 1, 10:30', text: 'You OK the email. The product pack goes to all 11 from the agent’s own inbox, for your brand.' },
-          { time: 'Day 3, 14:00', text: '6 pages updated. The other 5 get a reminder.' },
-          { time: 'Day 6, 09:00', text: 'Pages checked again: 10 of 11 right. 1 says its site changes in November.' },
-          { time: 'Day 6, 09:05', text: 'November logged. The agent checks that page again then.' },
-        ],
-        finding: '10 of 11 stockists now show your new ingredients list, each page captured.',
-        fix: 'The last one is booked for a fresh check in November.',
-        ledger: 'Example run. Every page, email and reply signed and dated.',
+        tab: 'AI checkout test',
+        screen: 'checkout',
+        recipe: 'checkout',
+        line: 'A real order through every AI checkout into your store, refunded each month.',
       },
     ],
   },

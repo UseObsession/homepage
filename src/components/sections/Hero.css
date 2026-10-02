@@ -43,35 +43,10 @@
   text-wrap: balance;
 }
 
-/* The typed task line: what a reader could ask, in the mono the agent's tasks are set in (tokens.css: anything the
-   agent is told, logs or signs is Geist Mono). Wide enough that every page's longest task (65 characters) sits on 1
-   line on a desktop, so the gap under it is the same on every page. */
-.s-typed {
-  display: grid;
-  width: 100%;
-  max-width: 72ch;
-  margin: var(--ob-space-28) 0 0;
-  font: var(--ob-weight-regular) var(--ob-type-body-lg-size) / 1.5 var(--ob-font-mono);
-  letter-spacing: 0;
-  color: var(--ob-text);
-  text-wrap: balance;
-  user-select: none;
-  -webkit-user-select: none;
-}
-.s-typed > * { grid-area: 1 / 1; }
-.s-typed-size { visibility: hidden; }
-.s-typed-line { align-self: center; transition: opacity var(--ob-dur-base) var(--ob-ease-out); }
-.s-typed-line.is-swap { opacity: 0; transition: opacity var(--ob-dur-fast) var(--ob-ease-in); }
-.s-typed-gt { color: var(--ob-text-3); }
-.s-typed-off { color: transparent; }
-/* The caret is glued to the letters beside it and takes no width, so the line keeps its final layout as it types. */
-.s-typed-glue { white-space: nowrap; }
-.s-typed-caret.ob-caret { margin-right: -.83em; vertical-align: baseline; }
-
-/* The sub: centred, about 60 characters a line. */
+/* The sub: centred, about 64 characters a line, straight under the headline. */
 .s-hero-sub {
-  max-width: 60ch;
-  margin: var(--ob-space-20) 0 0;
+  max-width: 64ch;
+  margin: var(--ob-space-28) 0 0;
   font: var(--ob-type-body-lg);
   letter-spacing: var(--ob-type-body-lg-tracking);
   color: var(--ob-text-2);
@@ -142,20 +117,36 @@
   text-wrap: balance;
 }
 
-/* The console: the product object, full width under the words. It is the last step of the hero sequence, 1 stagger
-   after the form (motion.css puts every product object at 4 steps; the form already holds that step). */
+/* The console: the product object, full width under the words, named by its typed heading. It is the last step of the
+   hero sequence, 1 stagger after the proof facts (motion.css puts every product object at 4 steps; the form already
+   holds that step). */
 .s-hero-console {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
   width: 100%;
-  margin-top: var(--ob-space-80);
+  margin-top: var(--ob-space-96);
 }
 .s-hero-console.ob-anim-hero-object { animation-delay: calc(5 * var(--ob-stagger-hero)); }
+
+/* The typed heading over the console (Typed.tsx TypedHeading): a heading from the type scale, centred on the axis, with
+   the design system's caret. It replaces the console's label; the tabs sit under it. */
+.s-hero-console-h {
+  width: 100%;
+  max-width: var(--ob-container-sm);
+  margin: 0 0 var(--ob-space-32);
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  color: var(--ob-text);
+  text-align: center;
+  text-wrap: balance;
+}
 
 /* Phones and narrow tablets: the facts stack, each still centred, with a short rule between them. */
 @media (max-width: 759.98px) {
   .s-hero { padding-top: var(--ob-space-48); }
   .s-hero-pill { margin-bottom: var(--ob-space-20); }
-  .s-typed { margin-top: var(--ob-space-20); }
-  .s-hero-sub { margin-top: var(--ob-space-16); }
+  .s-hero-sub { margin-top: var(--ob-space-20); }
   .s-hero-act { margin-top: var(--ob-space-32); }
   .s-hero-proof {
     grid-template-columns: minmax(0, 1fr);
@@ -165,5 +156,6 @@
   }
   .s-hero-proof > li { padding: 0; }
   .s-hero-proof > li + li { box-shadow: none; }
-  .s-hero-console { margin-top: var(--ob-space-56); }
+  .s-hero-console { margin-top: var(--ob-space-64); }
+  .s-hero-console-h { margin-bottom: var(--ob-space-24); }
 }
