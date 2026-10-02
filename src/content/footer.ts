@@ -14,6 +14,7 @@ export const footer = {
         { label: 'Developers', to: '/developers' },
       ],
     },
+    { label: nav.useCases.label, links: nav.useCases.items.map(({ label, to }) => ({ label, to })) },
   ] satisfies { label: string; links: NavPage[] }[],
   recipes: nav.recipes.label,
   /* The red lines, said once and calmly. */

@@ -1,5 +1,6 @@
 /* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7. */
 import type { Cta, RecipeGroup, RecipeId } from './types'
+import { useCasePages } from './useCases'
 
 export type NavPage = { label: string; to: string; line?: string }
 export type NavRecipe = { id: RecipeId; label: string; to: string }
@@ -73,6 +74,11 @@ export const nav = {
     all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
     /* The desktop menu lays the groups out in 3 columns of 5 recipes. */
     columns: [['Win customers', 'Keep customers'], ['Watch rivals'], ['Check your own journeys', 'Get paid and save']] satisfies RecipeGroup[][],
+  },
+  /* The worked examples (content/useCases). Their links are sent to prospects, so they always stay reachable. */
+  useCases: {
+    label: 'Use cases',
+    items: useCasePages.map(({ label, path, line }) => ({ label, to: path, line })) satisfies NavPage[],
   },
   links: [
     { label: 'Developers', to: '/developers' },

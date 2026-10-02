@@ -1,12 +1,14 @@
 /* The site footer (components/Footer): the brand, the full site map, the red lines in 1 line, the trust links and the
    theme switch. Tokens only. Labels are quiet sentence case; links rest in the second ink and take full ink on hover.
 
-   1 column grid for the whole footer (--s-foot-cols: 5, then 3, then 2). The brand takes every column but the last 2;
-   the page links take the last 2; the 5 recipe groups fill the grid under them. The page links sit in their own 2
-   column grid with the same gap, so their columns land exactly on the grid's. */
+   1 column grid for the whole footer (--s-foot-cols: 5, then 3, then 2). The brand takes every column but the last 3;
+   the page links (Solutions, Product, Use cases) take the last 3; the 5 recipe groups fill the grid under them. The
+   page links sit in their own grid with the same gap, so their columns land exactly on the grid's. Under 1080px the
+   brand takes its own row and the page links span the grid. */
 
 .s-foot {
   --s-foot-cols: 5;
+  --s-foot-map-cols: 3;
   --s-foot-gap: var(--ob-space-24);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
   background-color: var(--ob-bg);
@@ -28,16 +30,16 @@
   gap: var(--ob-space-32) var(--s-foot-gap);
 }
 
-.s-foot__brand { grid-column: 1 / -3; display: grid; align-content: start; justify-items: start; gap: var(--ob-space-16); }
+.s-foot__brand { grid-column: 1 / -4; display: grid; align-content: start; justify-items: start; gap: var(--ob-space-16); }
 .s-foot__tagline { max-width: 30ch; margin: 0; color: var(--ob-text-2); text-wrap: balance; }
 /* The lockup is brand.css .ob-brand-link, like the nav's. */
 .s-foot__home { transition: scale var(--ob-dur-fast) var(--ob-ease-out); }
 .s-foot__home:active { scale: var(--ob-press-scale); }
 
 .s-foot__map {
-  grid-column: -3 / -1;
+  grid-column: -4 / -1;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--s-foot-map-cols), minmax(0, 1fr));
   gap: var(--ob-space-32) var(--s-foot-gap);
 }
 
@@ -114,10 +116,11 @@
 
 @media (max-width: 1079.98px) {
   .s-foot { --s-foot-cols: 3; }
+  .s-foot__brand,
+  .s-foot__map { grid-column: 1 / -1; }
 }
 @media (max-width: 859.98px) {
-  .s-foot { --s-foot-cols: 2; }
-  .s-foot__brand { grid-column: 1 / -1; }
+  .s-foot { --s-foot-cols: 2; --s-foot-map-cols: 2; }
 }
 @media (max-width: 519.98px) {
   .s-foot { --s-foot-gap: var(--ob-space-16); }

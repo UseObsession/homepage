@@ -10,22 +10,25 @@ import {
   type ReactNode,
 } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { nav, recipeGroups } from '../content/nav'
+import { nav, recipeGroups, type NavPage } from '../content/nav'
 import type { Cta } from '../content/types'
 import { Lockup } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
 import './Nav.css'
 
 /* The site navigation, on the design system's .ob-nav, .ob-menu and .ob-mnav (docs/REBUILD.md, section 7).
-   Desktop: 2 disclosure menus (Solutions, Recipes) that open on click and keys, plus 2 links, the theme switch and
-   the page's call to action. Phone: a sheet with the same groups, focus held inside it and the page behind it locked.
+   Desktop: 3 disclosure menus (Solutions, Recipes, Use cases) that open on click and keys, plus 2 links, the theme
+   switch and the page's call to action. Phone: a sheet with the same groups, focus held inside it and the page behind it locked.
    The menus are disclosures (a button with aria-expanded and a list of links), not ARIA menus. */
 
-type MenuId = 'solutions' | 'recipes'
+type MenuId = 'solutions' | 'recipes' | 'usecases'
+/* The menus whose rows carry a name and a line. */
+type RichId = Exclude<MenuId, 'recipes'>
 type Focus = 'first' | 'last' | null
 
 const groupByName = new Map(recipeGroups.map((g) => [g.name, g]))
 const solutionPaths = new Set<string>(nav.solutions.items.map((i) => i.to))
+const useCasePaths = new Set<string>(nav.useCases.items.map((i) => i.to))
 
 /* Keeps a closing surface on screen long enough for its leave animation (.is-leaving). */
 function usePresence(open: boolean, ms: number) {
@@ -132,18 +135,18 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
   const navRef = useRef<HTMLElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
-  const triggers = useRef<Record<MenuId, HTMLButtonElement | null>>({ solutions: null, recipes: null })
-  const panels = useRef<Record<MenuId, HTMLDivElement | null>>({ solutions: null, recipes: null })
+  const triggers = useRef<Record<MenuId, HTMLButtonElement | null>>({ solutions: null, recipes: null, usecases: null })
+  const panels = useRef<Record<MenuId, HTMLDivElement | null>>({ solutions: null, recipes: null, usecases: null })
 
   /* What is open belongs to the page it was opened on, so a new page (or a jump to #join) closes everything. */
   const here = pathname + hash
   /* The prerendered pages can be served with a trailing slash (/agencies/). */
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
 
-  /* How much room the call to action needs (Nav.css): a longer label hides sooner on phones, and the longest ones take
-     the compact bar up to 920px. */
+  /* How much room the call to action needs (Nav.css): a longer label hides sooner on phones and keeps the compact bar
+     to a wider width (950px, 990px, 1080px), so the links stay centred. */
   const ctaSize = cta.label.length > 22 ? 'l' : cta.label.length > 17 ? 'm' : ''
-  const compactBelow = ctaSize === 'l' ? 920 : 860
+  const compactBelow = ctaSize === 'l' ? 1080 : ctaSize === 'm' ? 990 : 950
   const [menuAt, setMenuAt] = useState<{ id: MenuId; at: string } | null>(null)
   const [sheetAt, setSheetAt] = useState<string | null>(null)
   const menu = menuAt && menuAt.at === here ? menuAt.id : null
@@ -157,9 +160,19 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
 
   const solutions = usePresence(menu === 'solutions', 160)
   const recipes = usePresence(menu === 'recipes', 160)
+  const usecases = usePresence(menu === 'usecases', 160)
+  const presence = { solutions, usecases }
   const sheetPresence = usePresence(sheet, 260)
 
-  const ids = { solutions: `${uid}-solutions`, recipes: `${uid}-recipes`, sheet: `${uid}-sheet`, ms: `${uid}-ms`, mr: `${uid}-mr` }
+  const ids = {
+    solutions: `${uid}-solutions`,
+    recipes: `${uid}-recipes`,
+    usecases: `${uid}-usecases`,
+    sheet: `${uid}-sheet`,
+    ms: `${uid}-ms`,
+    mr: `${uid}-mr`,
+    mu: `${uid}-mu`,
+  }
 
   /* An open menu moves focus in when it was opened from the keyboard. */
   useEffect(() => {
@@ -310,6 +323,63 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
     </button>
   )
 
+  /* A menu of pages, each row a name and 1 line (Solutions, Use cases). */
+  const richMenu = (id: RichId, label: string, items: NavPage[], current: boolean) => (
+    <li className="s-nav__item" onBlur={onItemBlur}>
+      {trigger(id, label, current)}
+      <div
+        ref={(el) => {
+          panels.current[id] = el
+        }}
+        id={ids[id]}
+        className={`ob-menu s-menu s-menu--rich ob-anim-pop${presence[id].leaving ? ' is-leaving' : ''}`}
+        hidden={!presence[id].present}
+        onKeyDown={(e) => onPanelKey(e, id)}
+      >
+        <ul className="s-menu__list">
+          {items.map((i) => (
+            <li key={i.to}>
+              <NavLink className="ob-menu__item s-menu__item s-menu__item--rich" to={i.to} onClick={close}>
+                <span className="s-menu__name">{i.label}</span>
+                <span className="s-menu__line">{i.line}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  )
+
+  /* The same pages in the phone sheet, as a disclosure group. */
+  const richGroup = (id: RichId, panelId: string, label: string, items: NavPage[]) => (
+    <li>
+      <button
+        type="button"
+        className="ob-mnav__link s-mnav__toggle"
+        aria-expanded={group === id}
+        aria-controls={panelId}
+        onClick={() => setGroup((g) => (g === id ? null : id))}
+      >
+        {label}
+        <Chevron />
+      </button>
+      <div id={panelId} className={`ob-anim-expand s-mnav__more${group === id ? ' is-open' : ''}`}>
+        <div>
+          <ul className="s-mnav__sub">
+            {items.map((i) => (
+              <li key={i.to}>
+                <NavLink className="ob-mnav__link s-mnav__item s-mnav__item--rich" to={i.to} onClick={close}>
+                  <span className="s-menu__name">{i.label}</span>
+                  <span className="s-menu__line">{i.line}</span>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </li>
+  )
+
   return (
     <nav
       ref={navRef}
@@ -322,29 +392,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
         </Link>
 
         <ul className="ob-nav__links s-nav__links">
-          <li className="s-nav__item" onBlur={onItemBlur}>
-            {trigger('solutions', nav.solutions.label, solutionPaths.has(path))}
-            <div
-              ref={(el) => {
-                panels.current.solutions = el
-              }}
-              id={ids.solutions}
-              className={`ob-menu s-menu s-menu--solutions ob-anim-pop${solutions.leaving ? ' is-leaving' : ''}`}
-              hidden={!solutions.present}
-              onKeyDown={(e) => onPanelKey(e, 'solutions')}
-            >
-              <ul className="s-menu__list">
-                {nav.solutions.items.map((i) => (
-                  <li key={i.to}>
-                    <NavLink className="ob-menu__item s-menu__item s-menu__item--rich" to={i.to} onClick={close}>
-                      <span className="s-menu__name">{i.label}</span>
-                      <span className="s-menu__line">{i.line}</span>
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
+          {richMenu('solutions', nav.solutions.label, nav.solutions.items, solutionPaths.has(path))}
 
           <li className="s-nav__item" onBlur={onItemBlur}>
             {trigger('recipes', nav.recipes.label, path === '/recipes' || path.startsWith('/recipes/'))}
@@ -392,6 +440,8 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
             </div>
           </li>
 
+          {richMenu('usecases', nav.useCases.label, nav.useCases.items, useCasePaths.has(path))}
+
           {nav.links.map((l) => (
             <li key={l.to}>
               <NavLink className="ob-nav__link" to={l.to} onClick={close}>
@@ -433,32 +483,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
         role="region"
       >
         <ul className="ob-mnav__list">
-          <li>
-            <button
-              type="button"
-              className="ob-mnav__link s-mnav__toggle"
-              aria-expanded={group === 'solutions'}
-              aria-controls={ids.ms}
-              onClick={() => setGroup((g) => (g === 'solutions' ? null : 'solutions'))}
-            >
-              {nav.solutions.label}
-              <Chevron />
-            </button>
-            <div id={ids.ms} className={`ob-anim-expand s-mnav__more${group === 'solutions' ? ' is-open' : ''}`}>
-              <div>
-                <ul className="s-mnav__sub">
-                  {nav.solutions.items.map((i) => (
-                    <li key={i.to}>
-                      <NavLink className="ob-mnav__link s-mnav__item s-mnav__item--rich" to={i.to} onClick={close}>
-                        <span className="s-menu__name">{i.label}</span>
-                        <span className="s-menu__line">{i.line}</span>
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </li>
+          {richGroup('solutions', ids.ms, nav.solutions.label, nav.solutions.items)}
           <li>
             <button
               type="button"
@@ -498,6 +523,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
               </div>
             </div>
           </li>
+          {richGroup('usecases', ids.mu, nav.useCases.label, nav.useCases.items)}
           {nav.links.map((l) => (
             <li key={l.to}>
               <NavLink className="ob-mnav__link" to={l.to} onClick={close}>

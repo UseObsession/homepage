@@ -1,5 +1,6 @@
 import { agencies, marketing, sales } from './audiences'
 import { recipes } from './recipes'
+import { useCasePages } from './useCases'
 
 export const SITE = 'https://useobsession.com'
 
@@ -31,6 +32,7 @@ export const pages: PageMeta[] = [
       'Each recipe sets up what its job needs: shoppers with their own inboxes, phone numbers and browsers, the waits, and the checks. Competitor tracking, mystery shopper, prospect research and more.',
   },
   ...Object.values(recipes).map((r) => ({ path: `/recipes/${r.slug}`, title: `${r.name} · Obsession`, description: r.lede })),
+  ...useCasePages.map(({ path, title, description }) => ({ path, title, description })),
   {
     path: '/sample-output',
     title: 'Sample output · Obsession',
