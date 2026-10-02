@@ -1,0 +1,156 @@
+/* app-handover: Your agency / Missions / Account handover. A newly signed Outdoor gear client; every account it must own
+   moves into its name at the same time, each by its own route (4 steps: owner found, asked, approved, in the client's name).
+   Left: the checklist (mark, account and route, route steps, status and day). Right: the readout, days to full access.
+   Story: the routes step forward together and the estimate falls with each step (31 to 6, drawn as a staircase);
+   Search console lands, Analytics lands (6), then Social goes to the client for approval (needs you: 2 to 3) and the
+   toast points at it, so the badge, the row and the toast are 1 beat.
+   Chrome (canonical, 2 Oct 2026): Your agency, Missions selected, client Outdoor gear; the declared-agent pill in the head;
+   the lock line at the foot, level with the toast.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, body 50..348 (table 28 + 6 x 45, panel alongside),
+   toast and lock line 360..400, the same band as board, quotes, saves and spend. Rest state (no .play) = the finished scene. */
+@property --hnd-n{syntax:"<integer>";inherits:false;initial-value:6}
+@property --hnd-w{syntax:"<number>";inherits:false;initial-value:1}
+
+.app-handover .ax-main{padding:14px;gap:12px}
+
+/* sidebar: the client this mission belongs to */
+.app-handover .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-handover .ax-clients a.on i{background:var(--fg-2)}
+.app-handover .hnd-nb{display:inline-grid;overflow:hidden;line-height:1.2}
+.app-handover .hnd-nb b{grid-area:1/1;font-weight:inherit}
+.app-handover .hnd-nb b:first-child{opacity:0}
+
+/* head: title, client and day, the declared agent */
+.app-handover .hnd-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-handover .hnd-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-handover .hnd-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-handover .hnd-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-handover .hnd-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-handover .hnd-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-handover .hnd-body{display:grid;grid-template-columns:368px minmax(0,1fr);grid-template-rows:298px;gap:12px;align-items:stretch}
+
+/* ---------- the checklist ---------- */
+.app-handover .hnd-tb{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-handover .hnd-row{display:grid;grid-template-columns:132px 70px minmax(0,1fr);align-items:center;height:45px;box-shadow:0 -1px 0 var(--line) inset}
+.app-handover .hnd-row:last-child{box-shadow:none}
+.app-handover .hnd-row>span{min-width:0;padding:0 8px;overflow:hidden;white-space:nowrap}
+.app-handover .hnd-row>span:first-child{padding-left:12px}
+.app-handover .hnd-row>.r{padding:0 4px 0 8px}
+.app-handover .hnd-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-handover .hnd-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* account: the mark, the account, its route */
+.app-handover .hnd-row .a{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;row-gap:2px;align-content:center;align-self:stretch}
+.app-handover .hnd-row .a>.sig,.app-handover .hnd-row .a>.hnd-mk{grid-row:1;align-self:center}
+.ilwrap .app-handover .hnd-row .a svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-handover .hnd-row .a b{font:500 11.5px/15px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-handover .hnd-row .a small{grid-column:2;font:400 10.5px/13px var(--sans);color:var(--fg-3)}
+.app-handover .hnd-mk{display:grid;width:12px;height:12px}
+.app-handover .hnd-mk>svg{grid-area:1/1}
+.app-handover .hnd-mk .w0{opacity:0}
+
+/* route: 4 steps, filled as each is done; a hollow step waits on the client */
+.app-handover .hnd-pips{display:flex;gap:3px}
+.app-handover .hnd-pips i{position:relative;width:12px;height:4px;border-radius:2px;background:rgb(var(--fg-rgb) / .12);overflow:hidden}
+.app-handover .hnd-pips i.on::after,.app-handover .hnd-seg i.on::after{content:"";position:absolute;inset:0;background:var(--fg);transform-origin:0 50%}
+.app-handover .hnd-pips i.nd,.app-handover .hnd-seg i.nd{background:transparent;box-shadow:0 0 0 1px var(--fg) inset}
+
+/* status in words, then the day (the agent's log line, mono) */
+.app-handover .hnd-row .s{display:grid;row-gap:2px;align-content:center;align-self:stretch}
+.app-handover .hnd-row .s b{font:400 11.5px/15px var(--sans);color:var(--fg-2)}
+.app-handover .hnd-row .s small{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* the 1 account waiting on the client */
+.app-handover .hnd-hot{background:rgb(var(--fg-rgb) / .05)}
+.app-handover .hnd-hot .a{position:relative}
+.app-handover .hnd-hot .a::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-handover .hnd-hot .s .hnd-stk>:last-child{color:var(--fg);font-weight:500}
+
+/* stacked states: only the last child shows at rest */
+.app-handover .hnd-stk,.app-handover .hnd-n3{display:inline-grid;justify-items:start;vertical-align:top}
+.app-handover .hnd-stk>*,.app-handover .hnd-n3>*{grid-area:1/1}
+.app-handover .hnd-stk>:not(:last-child),.app-handover .hnd-n3>:not(:last-child){opacity:0}
+
+/* ---------- the readout ---------- */
+.app-handover .hnd-pan{display:flex;flex-direction:column;padding:12px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;min-width:0}
+.app-handover .hnd-ps{display:grid;gap:6px}
+.app-handover .hnd-ps:first-child{gap:8px}
+.app-handover .hnd-ps+.hnd-ps{margin-top:16px;padding-top:16px;box-shadow:0 1px 0 var(--line) inset}
+.app-handover .hnd-k{font:500 10.5px/12px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-handover .hnd-big{display:flex;align-items:baseline;height:40px}
+.app-handover .hnd-cnt{counter-reset:hnd-n var(--hnd-n);font:600 40px/40px var(--display);letter-spacing:-.04em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-handover .hnd-cnt::before{content:counter(hnd-n)}
+.app-handover .hnd-big span{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-handover svg.hnd-spark{width:124px;height:36px;margin-top:2px;clip-path:inset(0 calc((1 - var(--hnd-w)) * 100%) 0 0)}
+.app-handover .hnd-spark .ar{fill:rgb(var(--fg-rgb) / .06)}
+.app-handover .hnd-spark .ln{fill:none;stroke:var(--fg);stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.app-handover .hnd-spark .dt{fill:var(--fg);transform-box:fill-box;transform-origin:center}
+.app-handover .hnd-ax{display:flex;justify-content:space-between;font:400 10.5px/12px var(--mono);color:var(--fg-3)}
+.app-handover .hnd-v{display:flex;align-items:baseline;gap:6px;height:18px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-handover .hnd-v b{font:600 16px/18px var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-handover .hnd-who{color:var(--fg-2)}
+.app-handover .hnd-seg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px}
+.app-handover .hnd-seg i{position:relative;height:6px;border-radius:2px;background:rgb(var(--fg-rgb) / .12);overflow:hidden}
+
+/* the red line, level with the toast */
+.app-handover .hnd-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-handover .hnd-note svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* toast (the board's pattern: 1 line, 1 action) */
+.app-handover .hnd-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-handover .hnd-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-handover .hnd-toast b{font-weight:500;color:var(--fg)}
+.app-handover .hnd-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes hnd-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes hnd-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes hnd-show{from{opacity:0}to{opacity:1}}
+@keyframes hnd-gone{from{opacity:1}to{opacity:0}}
+@keyframes hnd-fill{from{transform:scaleX(0)}to{transform:none}}
+@keyframes hnd-hollow{
+  from{background-color:rgb(var(--fg-rgb) / .12);box-shadow:0 0 0 1px rgb(var(--fg-rgb) / 0) inset}
+  to{background-color:transparent;box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes hnd-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes hnd-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes hnd-glow{
+  0%{background-color:rgb(var(--fg-rgb) / 0)}
+  14%{background-color:rgb(var(--fg-rgb) / .13)}
+  100%{background-color:rgb(var(--fg-rgb) / .05)}}
+@keyframes hnd-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes hnd-wipe{from{--hnd-w:0}to{--hnd-w:1}}
+@keyframes hnd-dot{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes hnd-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* the estimate steps down as each route moves (a 1.75s clock from .9s): 31, 26 (Ads asked, 1s), 21 (Analytics approved, 1.4s),
+   17 (Website, 1.7s), 12 (Search console, 2s), 6 (Analytics, 2.6s). The staircase's steps sit where the wipe is at those times. */
+@keyframes hnd-count{0%{--hnd-n:31}6%{--hnd-n:26}29%{--hnd-n:21}46%{--hnd-n:17}63%{--hnd-n:12}97%{--hnd-n:6}100%{--hnd-n:6}}
+
+/* 1. the routes step forward together; the estimate falls with each step and draws its staircase (a clock, so linear) */
+.appx-il.play.app-handover i.go::after{animation:hnd-fill .5s var(--ease) var(--t) both}
+.appx-il.play.app-handover i.nd{animation:hnd-hollow .4s var(--ease) var(--t) both}
+.appx-il.play.app-handover .hnd-cnt{animation:hnd-count 1.75s steps(1,end) .9s both}
+.appx-il.play.app-handover .hnd-spark{animation:hnd-wipe 1.75s linear .9s both}
+.appx-il.play.app-handover .hnd-spark .dt{animation:hnd-dot .4s var(--snap) 2.65s both}
+
+/* 2. Search console, then Analytics, land: the square snaps home, the ring closes, the words follow */
+.appx-il.play.app-handover .sig.land .sig-sq{animation:hnd-home .6s var(--snap) var(--t) both}
+.appx-il.play.app-handover .sig.land .sig-gap{animation:hnd-show .35s var(--ease) calc(var(--t) + .2s) both}
+.appx-il.play.app-handover .hnd-stk>:first-child{animation:hnd-out .3s var(--ease) var(--t) both}
+.appx-il.play.app-handover .hnd-stk>:last-child{animation:hnd-in .35s var(--ease) calc(var(--t) + .05s) both}
+.appx-il.play.app-handover .hnd-n3>:nth-child(1){animation:hnd-out .3s var(--ease) 2s both}
+.appx-il.play.app-handover .hnd-n3>:nth-child(2){animation:hnd-in .3s var(--ease) 2.05s both,hnd-out .3s var(--ease) 2.6s forwards}
+.appx-il.play.app-handover .hnd-n3>:nth-child(3){animation:hnd-in .3s var(--ease) 2.65s both}
+
+/* 3. last, Social goes to the client: its mark turns to needs you, the row lifts, the counts tick */
+.appx-il.play.app-handover .r-so{animation:ax-in .55s var(--ease) .2s both,hnd-glow 2.2s var(--ease) 3.2s both}
+.appx-il.play.app-handover .r-so .a::before{animation:hnd-bar .4s var(--ease) 3.25s both}
+.appx-il.play.app-handover .hnd-mk .w0{animation:hnd-gone .2s var(--ease) 3.2s both}
+.appx-il.play.app-handover .hnd-mk .w1{animation:hnd-mark .5s var(--snap) 3.22s both}
+.appx-il.play.app-handover .hnd-who{animation:hnd-show .35s var(--ease) 3.3s both}
+.appx-il.play.app-handover .hnd-nb b:first-child{animation:hnd-out .25s var(--ease) 3.3s both}
+.appx-il.play.app-handover .hnd-nb b:last-child{animation:hnd-in .3s var(--ease) 3.34s both}
+
+/* 4. the toast names the 1 thing waiting: Social needs the client, approval link sent */
+.appx-il.play.app-handover .hnd-toast{animation:hnd-toast .45s var(--ease) 4s both}

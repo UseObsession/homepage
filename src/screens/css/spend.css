@@ -1,0 +1,202 @@
+/* app-spend: Missions / Software renewals, for a company. Every tool is paid by its own capped card.
+   Each row: the mark, the tool and its next renewal, its card with the monthly cap, seats used against seats paid.
+   Brindle's renewal arrives 16% higher (£1,200 to £1,392 a month). The card holds the charge at the £1,200 cap and
+   never pays over it; the agent opens a thread to keep last year's £30 a seat and removes 9 seats unused for 60 days
+   (JO's OK), so Brindle drops from 40 paid seats to 31: £5,544 a year off the asked price.
+   Red lines shown: the declared-agent pill; every cap on its card, and the cap holding; JO's OK on the seat rule;
+   the lock line (never paid over a cap).
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, list Suppliers.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, wrap 50..348 (table 292 | 12 | panel 224),
+   lock line and toast 360..400.
+   Story (about 5.5 s): the renewal lands in the open panel; spend fills to the cap and the rise pushes past it; the cap holds (the overflow
+   is refused, the asked price struck, the card goes solid); the thread opens; seats drop 40 to 31 in the panel and the row;
+   Brindle's mark closes; the saving counts up; the toast.
+   Rest state (no .play) = the finished scene. */
+@property --spd-k{syntax:"<integer>";inherits:false;initial-value:5}
+@property --spd-r{syntax:"<integer>";inherits:false;initial-value:544}
+@counter-style spd-pad3{system:extends decimal;pad:3 "0"}
+
+.app-spend .ax-main{padding:14px;gap:12px}
+
+/* sidebar: the list these vendors belong to */
+.app-spend .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-spend .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- page head: title, the caps in force, the declared agent ---------- */
+.app-spend .spd-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-spend .spd-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-spend .spd-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-spend .spd-meta .ax-mono{font-size:11px;color:var(--fg-2)}
+.app-spend .spd-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-spend .spd-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-spend .spd-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-spend .spd-wrap{display:grid;grid-template-columns:292px 224px;gap:12px;height:298px}
+
+/* stacked states: only the last child shows at rest */
+.app-spend .spd-stk{display:inline-grid;align-items:center;vertical-align:top}
+.app-spend .spd-stk>*{grid-area:1/1}
+.app-spend .spd-stk>:not(:last-child){opacity:0}
+
+/* ---------- the vendors ---------- */
+.app-spend .spd-tb{display:grid;grid-template-rows:28px repeat(6,45px);border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-spend .spd-row{display:grid;grid-template-columns:110px 104px 78px;align-items:center;box-shadow:0 -1px 0 var(--line) inset}
+.app-spend .spd-row:last-child{box-shadow:none}
+.app-spend .spd-row>span{min-width:0;padding:0 8px;white-space:nowrap}
+.app-spend .spd-row>span:first-child{padding-left:12px}
+.app-spend .spd-th{box-shadow:0 -1px 0 var(--line-2) inset}
+.app-spend .spd-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* tool: mark, name, next renewal */
+.app-spend .spd-row .t{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;row-gap:2px;align-content:center}
+.ilwrap .app-spend .spd-row .t svg.sig{width:12px;height:12px;color:var(--fg);align-self:center}
+.app-spend .spd-row .t b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-spend .spd-row .t small{grid-column:2;font:400 10.5px/13px var(--sans);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* the card, with its cap */
+.app-spend .spd-cc{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px 0 5px;border-radius:5px;
+  font:400 10.5px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums;background:rgb(var(--fg-rgb) / .045);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-spend .spd-cc em{font-style:normal;color:var(--fg-3)}
+.app-spend .spd-cc span{white-space:nowrap}
+.ilwrap .app-spend .spd-cc svg.spd-cg{width:12px;height:12px;color:var(--fg-3)}
+/* the cap that held: solid */
+.app-spend .spd-cc.on{color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+.app-spend .spd-cc.on em{color:var(--bg);opacity:.62}
+.ilwrap .app-spend .spd-cc.on svg.spd-cg{color:var(--bg)}
+
+/* seats used / paid, and a meter */
+.app-spend .spd-se{display:flex;align-items:center;gap:7px}
+.app-spend .spd-sn{min-width:31px;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-spend .spd-sn b{font-weight:400;color:var(--fg)}
+.app-spend .spd-sb{position:relative;display:block;width:24px;height:4px;border-radius:2px;background:rgb(var(--fg-rgb) / .14);overflow:hidden}
+.app-spend .spd-sb i{position:absolute;inset:0;border-radius:2px;background:var(--fg-2);transform-origin:0 50%;transform:scaleX(var(--spd-u))}
+
+/* the renewal that came in high */
+.app-spend .spd-hot{position:relative;background:rgb(var(--fg-rgb) / .055)}
+.app-spend .spd-hot::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+
+/* ---------- the renewal, open ---------- */
+.app-spend .spd-pan{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;min-height:0;
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-spend .spd-pt{display:flex;align-items:center;gap:8px;height:20px;margin-bottom:4px}
+.app-spend .spd-pt h3{font:600 15px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-spend .spd-card{margin-left:auto;display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 7px 0 6px;border-radius:5px;
+  font:400 10.5px/1 var(--mono);color:var(--fg-2);box-shadow:0 0 0 1px var(--line-2) inset;white-space:nowrap}
+.ilwrap .app-spend .spd-card svg.spd-cg{width:12px;height:12px;color:var(--fg-3)}
+
+/* the hold: asked, the cap, what is charged */
+.app-spend .spd-cap{display:grid;gap:10px;padding:10px;border-radius:8px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-spend .spd-ask{display:flex;align-items:center;gap:6px;height:16px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-spend .spd-up{display:inline-grid;place-items:center;height:16px;padding:0 5px;border-radius:4px;font:500 10.5px/1 var(--mono);font-style:normal;color:var(--fg);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-spend .spd-was{position:relative;margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-spend .spd-was em{font-style:normal}
+.app-spend .spd-was::after{content:"";position:absolute;left:-2px;right:-2px;top:50%;height:1px;background:var(--fg-2);transform-origin:0 50%}
+
+/* the bar: £0 to £1,450; the cap at £1,200 (149px of 180), the ask at £1,392 (173px) */
+.app-spend .spd-bar{position:relative;height:8px;margin:0 2px;border-radius:3px;background:rgb(var(--fg-rgb) / .07)}
+.app-spend .spd-bar .f{position:absolute;left:0;top:0;bottom:0;width:149px;border-radius:3px 0 0 3px;background:var(--fg);transform-origin:0 50%}
+.app-spend .spd-bar .o,.app-spend .spd-bar .oh{position:absolute;left:150px;top:0;bottom:0;width:23px;border-radius:0 3px 3px 0;transform-origin:0 50%}
+.app-spend .spd-bar .o{background:var(--fg-2);opacity:0}
+.app-spend .spd-bar .oh{background:repeating-linear-gradient(135deg,rgb(var(--fg-rgb) / .55) 0 1.2px,transparent 1.2px 4px);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-spend .spd-bar .tk{position:absolute;left:148.5px;top:-4px;width:2px;height:16px;border-radius:1px;background:var(--fg);box-shadow:0 0 0 2px var(--panel-2)}
+
+.app-spend .spd-hold{display:flex;align-items:center;gap:8px;height:20px;white-space:nowrap}
+.app-spend .spd-hold b{font:600 17px/1 var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-spend .spd-hold b em{font:400 11px/1 var(--mono);font-style:normal;color:var(--fg-3);letter-spacing:0;margin-left:2px}
+.app-spend .spd-held{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:500 11px/1 var(--sans);color:var(--fg)}
+
+/* the thread with the vendor */
+.app-spend .spd-thr{display:grid;gap:6px;padding:8px 10px 9px;border-radius:8px;box-shadow:0 0 0 1px var(--line-2) inset}
+.app-spend .spd-tth{display:flex;align-items:center;gap:6px;height:16px;font-size:11px;white-space:nowrap}
+.app-spend .spd-tth b{font-weight:500;color:var(--fg)}
+.app-spend .spd-tth .ax-mono{font-size:10.5px;color:var(--fg-3)}
+.ilwrap .app-spend .spd-pan svg.spd-ic{width:12px;height:12px;color:var(--fg-2);flex:none}
+.ilwrap .app-spend .spd-tth svg.spd-wt{width:12px;height:12px;margin-left:auto;color:var(--fg)}
+.app-spend .spd-msg{font:400 10.5px/14px var(--mono);color:var(--fg-2);white-space:nowrap}
+
+/* seats: the drop, and whose rule it is */
+.app-spend .spd-st{display:grid;gap:3px;padding:0 2px}
+.app-spend .spd-sl{display:flex;align-items:center;gap:6px;height:18px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-spend .spd-sl b{margin-left:4px;font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-spend .spd-m9{margin-left:auto;height:18px;font-weight:500}
+.app-spend .spd-rule{padding-left:18px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+
+/* the saving */
+.app-spend .spd-sv{margin-top:auto;display:flex;align-items:baseline;gap:8px;padding:10px 2px 0;box-shadow:0 1px 0 var(--line) inset;white-space:nowrap}
+.app-spend .spd-sv span{font-size:11px;color:var(--fg-2)}
+.app-spend .spd-cnt{margin-left:auto;font:600 17px/1 var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums;
+  counter-reset:spd-k var(--spd-k) spd-r var(--spd-r)}
+.app-spend .spd-cnt::before{content:"£" counter(spd-k) "," counter(spd-r,spd-pad3)}
+
+/* ---------- the red line, and the toast ---------- */
+.app-spend .spd-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-spend .spd-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-spend .spd-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-spend .spd-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-spend .spd-toast b{font-weight:500;color:var(--fg)}
+.app-spend .spd-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes spd-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes spd-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes spd-show{from{opacity:0}to{opacity:1}}
+@keyframes spd-hide{from{opacity:1}to{opacity:0}}
+@keyframes spd-grow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes spd-push{from{opacity:1;transform:scaleX(0)}to{opacity:1;transform:none}}
+@keyframes spd-tick{0%{transform:none}40%{transform:scaleY(1.45)}100%{transform:none}}
+@keyframes spd-strike{from{transform:scaleX(0)}to{transform:none}}
+@keyframes spd-snap{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes spd-pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes spd-slide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes spd-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}18%{background-color:rgb(var(--fg-rgb) / .13)}100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes spd-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes spd-seat{from{transform:scaleX(.775)}to{transform:none}}
+@keyframes spd-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes spd-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes spd-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes spd-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes spd-count{
+  0%{--spd-k:1;--spd-r:48} 10%{--spd-k:1;--spd-r:512} 20%{--spd-k:1;--spd-r:986} 30%{--spd-k:2;--spd-r:431} 40%{--spd-k:2;--spd-r:907}
+  50%{--spd-k:3;--spd-r:368} 60%{--spd-k:3;--spd-r:820} 70%{--spd-k:4;--spd-r:277} 80%{--spd-k:4;--spd-r:709} 90%{--spd-k:5;--spd-r:136} 100%{--spd-k:5;--spd-r:544}}
+
+/* 1. the renewal lands on Brindle */
+.appx-il.play.app-spend .spd-hot{animation:spd-in .55s var(--ease) .16s both,spd-glow 2.2s var(--ease) .6s both}
+.appx-il.play.app-spend .spd-hot::before{animation:spd-bar .4s var(--ease) .7s both}
+.appx-il.play.app-spend .spd-ask{animation:spd-in .45s var(--ease) .6s both}
+
+/* 2. spend fills to the cap, the rise pushes past it */
+.appx-il.play.app-spend .spd-bar .f{animation:spd-grow .8s var(--ease) .8s both}
+.appx-il.play.app-spend .spd-bar .o{animation:spd-push .4s var(--ease) 1.55s both,spd-hide .3s var(--ease) 2s forwards}
+
+/* 3. the cap holds: the overflow is refused, the ask struck, the card goes solid, the charge stays £1,200 */
+.appx-il.play.app-spend .spd-bar .oh{animation:spd-show .3s var(--ease) 2s both}
+.appx-il.play.app-spend .spd-bar .tk{animation:spd-tick .45s var(--snap) 1.95s both}
+.appx-il.play.app-spend .spd-was::after{animation:spd-strike .3s var(--ease) 2.05s both}
+.appx-il.play.app-spend .spd-hc>:first-child{animation:spd-hide .2s var(--ease) 2.25s both}
+.appx-il.play.app-spend .spd-hc>:last-child{animation:spd-pop .4s var(--snap) 2s both}
+.appx-il.play.app-spend .spd-hold b{animation:spd-in .45s var(--ease) 2.05s both}
+.appx-il.play.app-spend .spd-held{animation:spd-show .3s var(--ease) 2.1s both}
+.appx-il.play.app-spend .spd-held .ax-tick{animation:spd-snap .45s var(--snap) 2.15s both}
+
+/* 4. the thread opens */
+.appx-il.play.app-spend .spd-thr{animation:spd-slide .5s var(--ease) 2.75s both}
+
+/* 5. seats drop 40 to 31, in the panel and the row */
+.appx-il.play.app-spend .spd-st{animation:spd-in .45s var(--ease) 3.45s both}
+.appx-il.play.app-spend .spd-m9{animation:spd-pop .4s var(--snap) 3.7s both}
+.appx-il.play.app-spend .spd-pd>:first-child{animation:spd-out .3s var(--ease) 3.75s both}
+.appx-il.play.app-spend .spd-pd>:last-child{animation:spd-in .35s var(--ease) 3.78s both}
+.appx-il.play.app-spend .spd-hot .spd-sb i{animation:spd-seat .5s var(--ease) 3.78s both}
+
+/* 6. Brindle's mark: works, then closes */
+.appx-il.play.app-spend .spd-gm .sig-rot{animation:spd-spin 3.2s linear .6s both}
+.appx-il.play.app-spend .spd-gm .sig-orb{animation:spd-spinr 3.2s linear .6s both}
+.appx-il.play.app-spend .spd-gm .sig-sq{animation:spd-home .7s var(--snap) 3.95s both}
+.appx-il.play.app-spend .spd-gm .sig-gap{animation:spd-show .4s var(--ease) 4.2s both}
+
+/* 7. the saving counts up; the toast */
+.appx-il.play.app-spend .spd-sv{animation:spd-show .35s var(--ease) 4.2s both}
+.appx-il.play.app-spend .spd-cnt{animation:spd-count .8s steps(1,end) 4.25s both}
+.appx-il.play.app-spend .spd-toast{animation:spd-toast .45s var(--ease) 5.05s both}

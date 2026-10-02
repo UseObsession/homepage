@@ -1,0 +1,196 @@
+/* app-quotes: Missions / Inbound quotes, for Your company.
+   Requests arrive by email, phone, a web form and a buyer's own AI agent (declared: "Procurement agent for
+   Logistics firm"). Each is answered from the price book in minutes, then followed up to a yes or a no. A request outside
+   the price book is never guessed: it waits for a person (needs you). Discounts stay under the cap shown on the quote.
+   Layout (design px, main 556 x 414, padding 14): head 14..38; wrap 50..348 = inbox 226 | 12 | open request 290;
+   lock line and toast share the foot (toast 360..400).
+   Story: the buyer agent's request lands on top of the inbox, its quote opens and builds from 3 price-book lines and a
+   capped discount while the clock runs; it sends, the clock stops at 2 min 40 s, the row lands, the follow-up is set,
+   toast "Quote sent · Follow-up Thu". No pointer: an in-book quote needs no click. Rest state (no .play) = the finished scene. */
+@property --qt-m{syntax:"<integer>";inherits:false;initial-value:2}
+@property --qt-s{syntax:"<integer>";inherits:false;initial-value:40}
+
+.app-quotes .ax-main{grid-template-rows:24px auto;padding:14px;gap:12px}
+
+/* ---------- head: the page, the price book, the declared agent ---------- */
+.app-quotes .qt-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-quotes .qt-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-quotes .qt-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-quotes .qt-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-quotes .qt-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-quotes .qt-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-quotes .qt-wrap{display:grid;grid-template-columns:226px 290px;gap:12px;height:298px;min-height:0}
+
+/* stacked states: only the last child shows at rest */
+.app-quotes .qt-stk{display:inline-grid;vertical-align:top;align-items:center}
+.app-quotes .qt-stk>*{grid-area:1/1;font-style:normal}
+.app-quotes .qt-stk>:not(:last-child){opacity:0}
+
+/* ---------- the inbox ---------- */
+.app-quotes .qt-ls{display:flex;flex-direction:column;min-height:0;overflow:hidden;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-quotes .qt-lh{flex:none;display:flex;align-items:center;gap:7px;height:28px;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset;white-space:nowrap}
+.app-quotes .qt-lh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-quotes .qt-ct{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-quotes .qt-md{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+.app-quotes .qt-r{position:relative;display:grid;grid-template-rows:15px 14px;row-gap:5px;align-content:center;height:54px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-quotes .qt-ls>.qt-r:last-child{box-shadow:none}
+.app-quotes .qt-l1,.app-quotes .qt-l2{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}
+.app-quotes .qt-l1 b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-quotes .qt-l1 span{font-size:11px;color:var(--fg-3)}
+.app-quotes .qt-l1 time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-quotes .qt-l2{gap:8px}
+.app-quotes .qt-q{font:400 10.5px/14px var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-quotes .qt-wk{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+.app-quotes .qt-off{font:400 10.5px/14px var(--mono);color:var(--fg-3)}
+.app-quotes .qt-l2 .ax-st{margin-left:auto}
+
+/* the open row, and the row that needs you */
+.app-quotes .qt-sel{background:rgb(var(--fg-rgb) / .05)}
+.app-quotes .qt-sel::before{content:"";position:absolute;left:0;top:15px;width:2px;height:24px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-quotes .qt-hot .ax-st{font-weight:500;color:var(--fg)}
+.app-quotes .qt-off{color:var(--fg-2)}
+
+/* the new request arrives inside a grid expander (rows open with grid-template-rows, never height) */
+.app-quotes .qt-new{flex:none;display:grid;grid-template-rows:1fr}
+.app-quotes .qt-clip{min-height:0;overflow:hidden}
+
+/* ---------- the open request ---------- */
+.app-quotes .qt-dt{display:flex;flex-direction:column;min-width:0;min-height:0;padding:12px;border-radius:10px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -24px rgb(0 0 0 / calc(.6 * var(--sh-k,1)))}
+
+.app-quotes .qt-dh{display:flex;align-items:center;gap:8px;height:22px;white-space:nowrap}
+.app-quotes .qt-dh h3{font:600 15px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg)}
+.app-quotes .qt-no{padding-top:2px;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+/* the clock: from the request landing to the quote leaving; solid once it stops */
+.app-quotes .qt-tm{margin-left:auto;display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 8px 0 6px;border-radius:6px;
+  font:500 10.5px/1 var(--mono);color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset;font-variant-numeric:tabular-nums}
+.ilwrap .app-quotes .qt-tm svg{width:12px;height:12px}
+.app-quotes .qt-tv{display:inline-block;min-width:10ch;text-align:right;counter-reset:qtm var(--qt-m) qts var(--qt-s)}
+.app-quotes .qt-mn{display:inline-block;vertical-align:top;overflow:hidden;max-width:6em}
+.app-quotes .qt-mn::before{content:counter(qtm) "\00a0min\00a0"}
+.app-quotes .qt-sc::before{content:counter(qts) "\00a0s"}
+
+/* who asked: the buyer's agent, declared as itself */
+.app-quotes .qt-who{align-self:start;display:inline-flex;align-items:center;gap:4px;height:20px;margin-top:6px;padding:0 8px;border-radius:6px;white-space:nowrap;
+  font-size:10.5px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-quotes .qt-who b{font-weight:500;color:var(--fg)}
+
+/* what it asked, in its own words */
+.app-quotes .qt-rq{display:grid;align-content:center;gap:3px;height:46px;margin-top:8px;padding:0 10px;border-radius:8px;background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line) inset}
+.app-quotes .qt-rq p{font:400 10.5px/14px var(--mono);white-space:nowrap}
+.app-quotes .qt-fr{color:var(--fg-3)}
+.app-quotes .qt-ask{color:var(--fg)}
+
+/* the quote, line by line from the price book */
+.app-quotes .qt-k{display:flex;align-items:center;gap:6px;height:12px;margin-top:10px;font:500 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-quotes .qt-k svg{width:12px;height:12px;color:var(--fg-3)}
+.app-quotes .qt-k em{margin-left:auto;font:400 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-quotes .qt-pl{display:grid;margin-top:4px}
+.app-quotes .qt-ln{display:grid;grid-template-columns:44px minmax(0,1fr) 34px 52px;column-gap:8px;align-items:center;height:22px;box-shadow:0 -1px 0 var(--line) inset;white-space:nowrap}
+.app-quotes .qt-ln .c{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-quotes .qt-ln .i{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--fg)}
+.app-quotes .qt-ln .n{text-align:right;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-quotes .qt-ln .a{text-align:right;font:400 10.5px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-quotes .qt-dc .i{grid-column:1/4;color:var(--fg-2)}
+.app-quotes .qt-dc .a{grid-column:4;color:var(--fg-2)}
+.app-quotes .qt-cap{height:17px;gap:4px;padding:0 6px 0 3px}
+.app-quotes .qt-cap .ax-tick{width:11px;height:11px;border-radius:3px}
+.app-quotes .qt-tot{display:flex;align-items:center;height:26px;box-shadow:0 1px 0 var(--line-2) inset}
+.app-quotes .qt-tot b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-quotes .qt-sum{margin-left:auto;justify-items:end;font:600 15px/1 var(--display);letter-spacing:-.01em;color:var(--fg);font-variant-numeric:tabular-nums}
+
+/* the follow-up cadence, to a yes or a no */
+.app-quotes .qt-cd{display:flex;align-items:center;gap:5px;height:22px;margin-top:auto;white-space:nowrap}
+.app-quotes .qt-ck{margin-right:4px;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-quotes .qt-n{display:inline-flex;align-items:center;gap:5px;font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-quotes .qt-n>i{width:6px;height:6px;border-radius:50%;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-quotes .qt-n1{color:var(--fg-2)}
+.app-quotes .qt-n1>i{background:var(--fg-2);box-shadow:none}
+.app-quotes .qt-n2{color:var(--fg);font-weight:500}
+.app-quotes .qt-n2>i{box-shadow:0 0 0 1.5px var(--fg) inset}
+.app-quotes .qt-end>i{border-radius:1.5px}
+.app-quotes .qt-cn{flex:1;min-width:6px;height:1px;background:var(--line-3);transform-origin:0 50%}
+.app-quotes .qt-c1{background:var(--fg-3)}
+
+/* ---------- the foot: the red line, and the toast ---------- */
+.app-quotes .qt-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-quotes .qt-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-quotes .qt-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-quotes .qt-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-quotes .qt-toast b{font-weight:500;color:var(--fg)}
+.app-quotes .qt-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes qt-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes qt-glow{from{background-color:rgb(var(--fg-rgb) / .13)}to{background-color:rgb(var(--fg-rgb) / .05)}}
+@keyframes qt-show{from{opacity:0}to{opacity:1}}
+@keyframes qt-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+@keyframes qt-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes qt-land{
+  0%{opacity:0;transform:translateY(4px);background-color:rgb(var(--fg-rgb) / .08)}
+  35%{opacity:1;transform:none;background-color:rgb(var(--fg-rgb) / .08)}
+  100%{opacity:1;transform:none;background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes qt-tick{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes qt-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes qt-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes qt-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes qt-run{
+  0%{--qt-m:0;--qt-s:0} 4.17%{--qt-m:0;--qt-s:7} 8.33%{--qt-m:0;--qt-s:13} 12.5%{--qt-m:0;--qt-s:20} 16.67%{--qt-m:0;--qt-s:27}
+  20.83%{--qt-m:0;--qt-s:33} 25%{--qt-m:0;--qt-s:40} 29.17%{--qt-m:0;--qt-s:47} 33.33%{--qt-m:0;--qt-s:53} 37.5%{--qt-m:1;--qt-s:0}
+  41.67%{--qt-m:1;--qt-s:7} 45.83%{--qt-m:1;--qt-s:13} 50%{--qt-m:1;--qt-s:20} 54.17%{--qt-m:1;--qt-s:27} 58.33%{--qt-m:1;--qt-s:33}
+  62.5%{--qt-m:1;--qt-s:40} 66.67%{--qt-m:1;--qt-s:47} 70.83%{--qt-m:1;--qt-s:53} 75%{--qt-m:2;--qt-s:0} 79.17%{--qt-m:2;--qt-s:7}
+  83.33%{--qt-m:2;--qt-s:13} 87.5%{--qt-m:2;--qt-s:20} 91.67%{--qt-m:2;--qt-s:27} 95.83%{--qt-m:2;--qt-s:33} 100%{--qt-m:2;--qt-s:40}}
+@keyframes qt-min{0%{max-width:0} 37.5%{max-width:6em} 100%{max-width:6em}}
+@keyframes qt-stop{
+  from{color:var(--fg);background-color:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+  to{color:var(--bg);background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes qt-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes qt-dot{
+  from{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line-3) inset}
+  to{background-color:var(--fg-2);box-shadow:0 0 0 1px var(--fg-2) inset}}
+@keyframes qt-draw{from{transform:scaleX(0)}to{transform:none}}
+@keyframes qt-next{
+  from{box-shadow:0 0 0 1px var(--line-3) inset}
+  to{box-shadow:0 0 0 1.5px var(--fg) inset}}
+@keyframes qt-lit{from{color:var(--fg-3);font-weight:400}to{color:var(--fg);font-weight:500}}
+@keyframes qt-done{from{color:var(--fg-3)}to{color:var(--fg-2)}}
+@keyframes qt-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. the buyer agent's request lands on top; the inbox count ticks to 5 */
+.appx-il.play.app-quotes .qt-new{animation:qt-open .55s var(--ease) .55s both}
+.appx-il.play.app-quotes .qt-sel{animation:qt-glow 1.8s var(--ease) .65s both}
+.appx-il.play.app-quotes .qt-sel>p{animation:qt-show .4s var(--ease) .75s both}
+.appx-il.play.app-quotes .qt-ct>:first-child{animation:qt-out .25s var(--ob-ease-in) .6s both}
+.appx-il.play.app-quotes .qt-ct>:last-child{animation:qt-in .3s var(--ease) .64s both}
+/* its mark works (1 turn at the working pace) until the quote leaves */
+.appx-il.play.app-quotes .qt-gm .sig-rot{animation:qt-spin 2.8s linear .6s both}
+.appx-il.play.app-quotes .qt-gm .sig-orb{animation:qt-spinr 2.8s linear .6s both}
+
+/* 2. the request opens; the clock runs 2.4 s for 2 min 40 s (a clock, so linear steps) */
+.appx-il.play.app-quotes .qt-tv{animation:qt-run 2.4s steps(1,end) 1s both}
+.appx-il.play.app-quotes .qt-mn{animation:qt-min 2.4s steps(1,end) 1s both}
+.appx-il.play.app-quotes .qt-tm{animation:qt-stop .3s var(--ease) 3.4s both,qt-press .24s ease-out 3.4s}
+
+/* 3. the quote builds from price-book lines; the running total follows each one; the discount checks its cap */
+.appx-il.play.app-quotes .qt-ln{animation:qt-land .9s var(--ease) var(--qt-t) both}
+.appx-il.play.app-quotes .qt-cap .ax-tick{animation:qt-tick .45s var(--snap) 2.9s both}
+.appx-il.play.app-quotes .qt-sum>:first-child{animation:qt-out .15s var(--ob-ease-in) var(--qt-b) both}
+.appx-il.play.app-quotes .qt-sum>:not(:first-child):not(:last-child){animation:qt-in .3s var(--ease) calc(var(--qt-a) + .1s) both,qt-out .15s var(--ob-ease-in) var(--qt-b) forwards}
+.appx-il.play.app-quotes .qt-sum>:last-child{animation:qt-in .3s var(--ease) calc(var(--qt-a) + .1s) both}
+
+/* 4. it sends: the clock stops, the row lands, the first follow-up is set */
+.appx-il.play.app-quotes .qt-gm .sig-sq{animation:qt-home .55s var(--snap) 3.42s both}
+.appx-il.play.app-quotes .qt-gm .sig-gap{animation:qt-show .35s var(--ease) 3.6s both}
+.appx-il.play.app-quotes .qt-s1>:first-child,.appx-il.play.app-quotes .qt-s2>:first-child{animation:qt-out .25s var(--ob-ease-in) 3.45s both}
+.appx-il.play.app-quotes .qt-s1>:last-child,.appx-il.play.app-quotes .qt-s2>:last-child{animation:qt-in .35s var(--ease) 3.5s both}
+.appx-il.play.app-quotes .qt-n1{animation:qt-done .3s var(--ease) 3.55s both}
+.appx-il.play.app-quotes .qt-n1>i{animation:qt-dot .3s var(--ease) 3.55s both}
+.appx-il.play.app-quotes .qt-c1{animation:qt-draw .4s var(--ease) 3.65s both}
+.appx-il.play.app-quotes .qt-n2{animation:qt-lit .3s var(--ease) 3.95s both}
+.appx-il.play.app-quotes .qt-n2>i{animation:qt-next .3s var(--ease) 3.95s both}
+
+/* 5. the toast */
+.appx-il.play.app-quotes .qt-toast{animation:qt-toast .45s var(--ease) 4.15s both}

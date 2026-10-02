@@ -1,0 +1,206 @@
+/* app-checkout: Missions / AI checkout test, for a store owner (workspace Your company).
+   Once a month a declared agent places 1 real order on every AI checkout path into the store's own shop, each on its
+   own single-use card capped to that order (£48.20), inside a monthly budget, and refunds every one.
+   6 path tiles: 5 land with a receipt (amount, order, card ending, refunded). ChatGPT checkout ends with an empty cart
+   because sizes are hidden from agents (the store's feed, not the assistant): the needs-you mark, what the agent saw, a drafted fix.
+   The ChatGPT tile is the point: it spans 2 x 2 and carries a whole-tile fill, as app-board highlights its row.
+   Story: the paths run side by side (the ring circles), orders land one by one and the budget fills to £241.00;
+   ChatGPT's log reads "Cart: 0 items" and turns into the finding with the fix; the pointer clicks Approve fix,
+   the approval is signed by AM, the path waits for its re-test, the toast confirms.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, rail 50..82, tiles 94..344 (3 rows of 78, gap 8),
+   lock line and toast 360..400. The ChatGPT tile spans 2 x 2 (349 x 164).
+   Rest state (no .play) = the finished scene: 5 landed, fix approved, re-test booked. */
+@property --ck-p{syntax:"<integer>";inherits:false;initial-value:241}
+@property --ck-c{syntax:"<integer>";inherits:false;initial-value:0}
+@property --ck-f{syntax:"<number>";inherits:false;initial-value:1}
+
+.app-checkout .ax-main{grid-template-rows:24px 32px 250px;padding:14px;gap:12px}
+
+/* ---------- head: the page, the store, the declared agent ---------- */
+.app-checkout .ck-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-checkout .ck-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-checkout .ck-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-checkout .ck-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-checkout .ck-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-checkout .ck-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the money rail: budget and cap, always in view ---------- */
+.app-checkout .ck-sp{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-radius:10px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-checkout .ck-sp>span{display:flex;align-items:center;gap:10px;height:32px;padding:0 12px;white-space:nowrap;min-width:0}
+.app-checkout .ck-cp{gap:8px;box-shadow:1px 0 0 var(--line) inset}
+.ilwrap .app-checkout .ck-cp svg{width:14px;height:14px;color:var(--fg-3);flex:none}
+.app-checkout .ck-k{font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-checkout .ck-cp b{margin-left:3px;font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-checkout .ck-mt{position:relative;flex:1;min-width:40px;height:4px;border-radius:2px;background:rgb(var(--fg-rgb) / .09);overflow:hidden}
+.app-checkout .ck-mt i{position:absolute;left:0;top:0;bottom:0;width:80.33%;border-radius:2px;background:var(--fg);transform-origin:0 50%;transform:scaleX(var(--ck-f))}
+.app-checkout .ck-sum{display:inline-flex;align-items:baseline;gap:4px;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-checkout .ck-cnt{font-weight:500;color:var(--fg);counter-reset:ck-p var(--ck-p) ck-c var(--ck-c)}
+.app-checkout .ck-cnt::before{content:"£" counter(ck-p) "." counter(ck-c,decimal-leading-zero)}
+
+/* ---------- the 6 paths ---------- */
+.app-checkout .ck-gr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,78px);gap:8px;
+  grid-template-areas:"a f f" "b f f" "c d e"}
+.app-checkout .ck-t{position:relative;min-width:0;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* stacked states: only the last child shows at rest */
+.app-checkout .ck-stk{display:grid}
+.app-checkout .ck-stk>*{grid-area:1/1}
+.app-checkout .ck-stk>:not(:last-child){opacity:0}
+
+/* tile head: mark, path, time */
+.app-checkout .ck-th{display:flex;align-items:center;gap:8px;height:14px;white-space:nowrap}
+.ilwrap .app-checkout .ck-th svg.sig{width:12px;height:12px;color:var(--fg);flex:none}
+.app-checkout .ck-th b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-checkout .ck-th time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* a landed path: the order, then its card and refund */
+.app-checkout .ck-s{display:grid;grid-template-rows:14px 18px 12px;row-gap:6px;padding:11px 12px}
+.app-checkout .ck-am{align-items:center}
+.app-checkout .ck-wk{align-self:center;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-checkout .ck-ok1{display:flex;align-items:baseline;gap:8px}
+.app-checkout .ck-ok1 b{font:600 15px/18px var(--display);letter-spacing:-.01em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-checkout .ck-ok1 em{margin-left:auto;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-checkout .ck-rc{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.app-checkout .ck-cd{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-checkout .ck-rf{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font:400 10.5px/1 var(--sans);color:var(--fg-2)}
+.ilwrap .app-checkout .ck-rf svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* ---------- the path that needs you ---------- */
+.app-checkout .ck-f{display:grid;grid-template-rows:16px 52px 48px;row-gap:12px;padding:12px;
+  box-shadow:0 0 0 1px var(--line-3) inset,0 0 0 200px rgb(var(--fg-rgb) / .035) inset}
+.app-checkout .ck-f .ck-th{height:16px}
+.app-checkout .ck-f .ck-th b{font-size:12px}
+.app-checkout .ck-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-checkout .ck-mk>svg{grid-area:1/1}
+.app-checkout .ck-mk>svg:not(:last-child){opacity:0}
+.app-checkout .ck-ss{margin-left:auto;justify-items:end;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-checkout .ck-ss .ck-nd{font:500 11px/1 var(--sans);color:var(--fg)}
+
+.app-checkout .ck-fb{display:grid;min-width:0}
+.app-checkout .ck-fb>*{grid-area:1/1}
+/* the agent's log, seen only while it runs */
+.app-checkout .ck-log{display:grid;align-content:start;gap:4px;opacity:0}
+.app-checkout .ck-log li{display:flex;gap:10px;height:13px;font:400 10.5px/13px var(--mono);color:var(--fg-2);white-space:nowrap}
+.app-checkout .ck-log time{color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-checkout .ck-log li:last-child{color:var(--fg)}
+/* the finding and what the agent saw */
+.app-checkout .ck-fd{display:flex;align-items:center;gap:8px;min-width:0}
+.app-checkout .ck-tx{flex:1;min-width:0;display:grid;grid-template-rows:18px 14px 13px;row-gap:3px;align-content:center;white-space:nowrap}
+.app-checkout .ck-tx h3{font:600 15px/18px var(--display);letter-spacing:-.015em;color:var(--fg)}
+.app-checkout .ck-why{font:400 11.5px/14px var(--sans);color:var(--fg-2)}
+.app-checkout .ck-cd2{font:400 10.5px/13px var(--mono);color:var(--fg-3)}
+.ilwrap .app-checkout svg.ck-ar{width:10px;height:10px;color:var(--fg-3);flex:none}
+
+/* captures: a product page whose sizes agents cannot see, then the empty cart (hex allowed only here) */
+.app-checkout .ck-c{width:56px;height:46px;flex:none;grid-template-rows:6px 1fr}
+.app-checkout .ck-pg{position:relative;display:grid;min-height:0;padding:4px 5px}
+.app-checkout .ck-prod{grid-template-columns:15px minmax(0,1fr);grid-template-rows:minmax(0,1fr) 4px;column-gap:4px;row-gap:4px}
+.app-checkout .ck-prod .ck-im{height:auto;background:#D8C4B6}
+.app-checkout .ck-pl{display:grid;align-content:start;gap:3px}
+.app-checkout .ck-pl>i{height:3px}
+.app-checkout .ck-pl>i+i{width:55%}
+.app-checkout .ck-sz{display:flex;gap:2px;margin-top:1px}
+.app-checkout .ck-sz i{width:7px;height:6px;border-radius:1.5px;background:none;outline:1px dashed #A8A398;outline-offset:-1px}
+.app-checkout .ck-prod .ck-bt{grid-column:1/-1;height:4px;background:#3A3834}
+.app-checkout .ck-cart{grid-template-rows:3px minmax(0,1fr) 4px;row-gap:3px}
+.app-checkout .ck-cart .ck-ln{width:45%;height:3px}
+.app-checkout .ck-zero{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:5px}
+.app-checkout .ck-zero b{font:600 10.5px/11px var(--sans);color:#1E1D1A}
+.app-checkout .ck-zero i{height:0;border-radius:0;background:none;border-top:1px dashed #A8A398}
+.app-checkout .ck-cart .ck-bt{height:4px;background:#CFCBC3}
+
+/* the drafted fix, then the human OK */
+.app-checkout .ck-fx{display:grid;grid-template-columns:14px minmax(0,1fr) auto;align-items:center;gap:9px;padding:0 10px 0 11px;border-radius:8px;
+  background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-checkout .ck-fx svg.ck-ic{width:14px;height:14px;color:var(--fg-2)}
+.app-checkout .ck-fxt{display:grid;grid-template-rows:12px 15px;row-gap:3px;min-width:0;white-space:nowrap}
+.app-checkout .ck-fl{font:400 10.5px/12px var(--sans);color:var(--fg-3)}
+.app-checkout .ck-fl i{font:400 10.5px/12px var(--mono);font-style:normal}
+.app-checkout .ck-fxt>b{font:500 12px/15px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-checkout .ck-act{justify-items:end}
+.app-checkout .ck-act .ax-btn{justify-content:center}
+/* once approved: a quiet chip, no border, the tick and 1 word */
+.app-checkout .ck-dn{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px 0 6px;border-radius:6px;white-space:nowrap;
+  font:500 11px/1 var(--sans);color:var(--fg-2);background:rgb(var(--fg-rgb) / .05)}
+.app-checkout .ck-dn .ax-tick{width:11px;height:11px}
+
+/* ---------- foot: the red lines, and the toast ---------- */
+.app-checkout .ck-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-checkout .ck-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-checkout .ck-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-checkout .ck-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-checkout .ck-toast b{font-weight:500;color:var(--fg)}
+.app-checkout .ck-toast p span{color:var(--fg-3)}
+
+/* the pointer: parks on Approve fix; hidden at rest */
+.app-checkout .ck-ptr{left:472px;top:220px}
+.ilwrap .app-checkout .appx svg.ck-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ck-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ck-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes ck-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes ck-show{from{opacity:0}to{opacity:1}}
+@keyframes ck-hide{from{opacity:1}to{opacity:0}}
+@keyframes ck-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes ck-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes ck-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes ck-edge{from{box-shadow:0 0 0 1px var(--line-2) inset,0 0 0 200px rgb(var(--fg-rgb) / 0) inset}to{box-shadow:0 0 0 1px var(--line-3) inset,0 0 0 200px rgb(var(--fg-rgb) / .035) inset}}
+@keyframes ck-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes ck-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes ck-spend{
+  0%{--ck-p:0;--ck-c:0} 39.29%{--ck-p:48;--ck-c:20} 53.57%{--ck-p:96;--ck-c:40} 67.86%{--ck-p:144;--ck-c:60}
+  82.14%{--ck-p:192;--ck-c:80} 96.43%{--ck-p:241;--ck-c:0} 100%{--ck-p:241;--ck-c:0}}
+@keyframes ck-fill{
+  0%,36.67%{--ck-f:0} 46.67%,50%{--ck-f:.2} 60%,63.33%{--ck-f:.4}
+  73.33%,76.67%{--ck-f:.6} 86.67%,90%{--ck-f:.8} 100%{--ck-f:1}}
+@keyframes ck-ptr{
+  0%{opacity:0;transform:translate(64px,96px)}
+  12%{opacity:1}
+  30%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(0,0) scale(.9)}
+  38%{transform:translate(0,0) scale(1)}
+  70%{opacity:1;transform:translate(0,0)}
+  100%{opacity:0;transform:translate(16px,36px)}}
+
+/* 1. the paths run side by side: each ring circles at the same pace until its order lands */
+.appx-il.play.app-checkout .ck-spn .sig-rot{animation:ck-spin .8s linear var(--ck-s) var(--ck-n)}
+.appx-il.play.app-checkout .ck-spn .sig-orb{animation:ck-spinr .8s linear var(--ck-s) var(--ck-n)}
+
+/* 2. an order lands: the square snaps home, the ring closes, the receipt follows; the budget fills with it */
+.appx-il.play.app-checkout .ck-lnd .sig-sq{animation:ck-home .55s var(--snap) var(--ck-t) both}
+.appx-il.play.app-checkout .ck-lnd .sig-gap{animation:ck-show .3s var(--ease) calc(var(--ck-t) + .12s) both}
+.appx-il.play.app-checkout .ck-s .ck-th time{animation:ck-show .3s var(--ease) var(--ck-t) both}
+.appx-il.play.app-checkout .ck-s .ck-wk{opacity:1;animation:ck-out .25s var(--ob-ease-in) var(--ck-t) forwards}
+.appx-il.play.app-checkout .ck-s .ck-ok1{animation:ck-in .35s var(--ease) calc(var(--ck-t) + .05s) both}
+.appx-il.play.app-checkout .ck-s .ck-rc{animation:ck-in .35s var(--ease) calc(var(--ck-t) + .14s) both}
+.appx-il.play.app-checkout .ck-cnt{animation:ck-spend 2.8s steps(1,end) both}
+.appx-il.play.app-checkout .ck-mt i{animation:ck-fill 3s var(--ease) both}
+
+/* 3. ChatGPT checkout: the log reads an empty cart, then the finding lands and needs you */
+.appx-il.play.app-checkout .ck-mk .w0{opacity:1;animation:ck-hide .2s var(--ob-ease-in) 3.1s forwards}
+.appx-il.play.app-checkout .ck-mk .w1{animation:ck-mark .45s var(--snap) 3.12s both,ck-hide .2s var(--ob-ease-in) 4.72s forwards}
+.appx-il.play.app-checkout .ck-mk .w2{animation:ck-mark .45s var(--snap) 4.74s both}
+.appx-il.play.app-checkout .ck-ss>:nth-child(1){opacity:1;animation:ck-out .25s var(--ob-ease-in) 3.08s forwards}
+.appx-il.play.app-checkout .ck-ss>:nth-child(2){animation:ck-in .35s var(--ease) 3.14s both,ck-out .25s var(--ob-ease-in) 4.74s forwards}
+.appx-il.play.app-checkout .ck-ss>:nth-child(3){animation:ck-in .35s var(--ease) 4.8s both}
+.appx-il.play.app-checkout .ck-log{opacity:1;animation:ck-hide .25s var(--ob-ease-in) 3.02s forwards}
+.appx-il.play.app-checkout .ck-log li{animation:ck-in .35s var(--ease) var(--ck-l) both}
+.appx-il.play.app-checkout .ck-f{animation:ax-in .55s var(--ease) var(--d) both,ck-edge .5s var(--ease) 3.1s both}
+.appx-il.play.app-checkout .ck-tx h3{animation:ck-in .4s var(--ease) 3.18s both}
+.appx-il.play.app-checkout .ck-why{animation:ck-in .4s var(--ease) 3.26s both}
+.appx-il.play.app-checkout .ck-cd2{animation:ck-in .4s var(--ease) 3.32s both}
+.appx-il.play.app-checkout .ck-c1{animation:ck-in .4s var(--ease) 3.22s both}
+.appx-il.play.app-checkout .ck-ar{animation:ck-show .3s var(--ease) 3.34s both}
+.appx-il.play.app-checkout .ck-c2{animation:ck-in .4s var(--ease) 3.38s both}
+.appx-il.play.app-checkout .ck-fx{animation:ck-in .45s var(--ease) 3.56s both}
+
+/* 4. the pointer approves the fix: the OK is signed, the path waits for its re-test, the toast confirms */
+.appx-il.play.app-checkout .ck-ptr{animation:ck-ptr 2.2s var(--ease) 3.7s both}
+.appx-il.play.app-checkout .ck-go{opacity:1;animation:ck-press .22s ease-out 4.4s,ck-hide .2s var(--ob-ease-in) 4.6s forwards}
+.appx-il.play.app-checkout .ck-dn{animation:ck-in .35s var(--ease) 4.64s both}
+.appx-il.play.app-checkout .ck-fl>:first-child{opacity:1;animation:ck-out .25s var(--ob-ease-in) 4.62s forwards}
+.appx-il.play.app-checkout .ck-fl>:last-child{animation:ck-in .35s var(--ease) 4.68s both}
+.appx-il.play.app-checkout .ck-toast{animation:ck-toast .45s var(--ease) 5.05s both}

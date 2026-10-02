@@ -1,0 +1,151 @@
+/* app-saves: Missions / Cancellation saves, for a coffee subscription (Your company, list Customers).
+   Left: the stream of cancellation requests, newest on top. Each came from the subscriber (email, account page) or from
+   their AI assistant. Every request is answered the same way: Cancel now, always first, beside 1 offer a person approved;
+   the pick is solid and goes through at once. Cancel is never hidden and never a second step.
+   Right: the month, Saved 28 of 100, drawn as 100 squares (1 per request, oldest first, solid = saved; the last 6 are the
+   6 rows); then the offers, their cap (1 per request), the discount budget and AM's signed approval.
+   Story: Dana R.'s assistant asks to cancel; the row lands on top (the month counts 99 to 100, its square appears),
+   Cancel now and Pause 2 months land side by side, the mark blinks while Dana chooses, she picks Pause, the mark lands,
+   Saved ticks 27 to 28, her square fills, the offer count ticks, the toast.
+   Only Dana's row carries a mark (waiting while she chooses, then landed); earlier rows are done and need none.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; content 50..348 (stream 328 wide: 28 + 6 x 44,
+   columns 108 + 2 equal 102px chips; side 188 wide: summary 116, gap 12, offers 170); foot row 360..400: lock footnote
+   left, toast right.
+   Rest state (no .play) = the finished scene. */
+
+.app-saves .ax-main{grid-template-columns:minmax(0,1fr) 188px;grid-template-rows:24px minmax(0,1fr) 40px;align-content:stretch;gap:12px;padding:14px}
+
+/* sidebar: the list this page serves */
+.app-saves .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-saves .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked values: only the last child shows at rest */
+.app-saves .sv-stk{display:inline-grid;vertical-align:top}
+.app-saves .sv-stk>*{grid-area:1/1}
+.app-saves .sv-stk>:not(:last-child){opacity:0}
+
+/* ---------- header: the page, the plan and month, the declared agent ---------- */
+.app-saves .sv-h{grid-column:1 / -1;display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-saves .sv-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-saves .sv-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-saves .sv-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-saves .sv-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-saves .sv-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the stream ---------- */
+.app-saves .sv-tb{grid-column:1;grid-row:2;display:flex;flex-direction:column;min-height:0;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-saves .sv-row{display:grid;grid-template-columns:108px minmax(0,1fr);align-items:center;height:44px;flex:none;box-shadow:0 -1px 0 var(--line) inset}
+.app-saves .sv-row>span{min-width:0;white-space:nowrap}
+.app-saves .sv-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-saves .sv-th>span{padding-left:32px;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-saves .sv-th>span+span{padding-left:0}
+.app-saves .sv-old>.sv-row:last-child{box-shadow:none}
+
+/* who asked, and how */
+.app-saves .sv-who{position:relative;align-self:stretch;display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;row-gap:2px;align-content:center;padding-left:12px}
+.app-saves .sv-who>.sig,.app-saves .sv-who>.sv-mk{grid-row:1;align-self:center}
+.ilwrap .app-saves .sv-who svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-saves .sv-mk{display:grid;width:12px;height:12px}
+.app-saves .sv-who b{grid-column:2;font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-saves .sv-who em{grid-column:2;font:400 10.5px/13px var(--sans);font-style:normal;color:var(--fg-3)}
+
+/* the 2 choices, always side by side, cancel first and exactly the same size (the red line); the pick is solid */
+.app-saves .sv-pair{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4px;padding-right:12px}
+.app-saves .sv-opt{display:flex;align-items:center;justify-content:center;height:22px;padding:0 4px;border-radius:6px;
+  font:500 11px/1 var(--sans);letter-spacing:-.01em;white-space:nowrap}
+/* earlier rows: the pick is a filled chip in full ink; the road not taken is text only, its border at half strength */
+.app-saves .sv-old .sv-opt{color:var(--fg-3);box-shadow:0 0 0 1px color-mix(in srgb,var(--line-2) 50%,transparent) inset}
+.app-saves .sv-old .sv-opt.on{color:var(--fg);background:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 1px var(--line-ui) inset}
+
+/* the request that just arrived (a grid expander: it opens with grid-template-rows, never height) */
+.app-saves .sv-new{display:grid;grid-template-rows:1fr;flex:none}
+.app-saves .sv-clip{min-height:0;overflow:hidden}
+.app-saves .sv-hot{background:rgb(var(--fg-rgb) / .055)}
+.app-saves .sv-hot .sv-who::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-saves .sv-hot .sv-opt{color:var(--fg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-saves .sv-hot .sv-opt.on{color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+
+/* ---------- the month and the offers ---------- */
+.app-saves .sv-side{grid-column:2;grid-row:2;display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;min-height:0}
+.app-saves .sv-sum,.app-saves .sv-off{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;padding:12px}
+.app-saves .sv-sum{display:grid;gap:8px}
+.app-saves .sv-big{display:flex;align-items:baseline;gap:6px;height:26px;font:400 12px/1 var(--sans);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-saves .sv-big>b{font:600 26px/26px var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-saves .sv-big .sv-stk{justify-items:start}
+/* 100 requests, oldest first: solid = saved */
+.app-saves .sv-grid{display:grid;grid-template-columns:repeat(20,6px);grid-auto-rows:6px;gap:2px}
+.app-saves .sv-grid i{border-radius:1.5px;background:rgb(var(--fg-rgb) / .13)}
+.app-saves .sv-grid i.s,.app-saves .sv-grid i.sv-c100{background:var(--fg)}
+.app-saves .sv-key{display:flex;align-items:center;gap:12px;height:12px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.app-saves .sv-key span{display:inline-flex;align-items:center;gap:5px}
+.app-saves .sv-key i{width:6px;height:6px;border-radius:1.5px;background:rgb(var(--fg-rgb) / .13)}
+.app-saves .sv-key span:first-child i{background:var(--fg)}
+
+.app-saves .sv-off{display:flex;flex-direction:column;min-height:0}
+.app-saves .sv-oh{display:flex;align-items:center;gap:8px;height:16px;margin-bottom:6px;white-space:nowrap}
+.app-saves .sv-oh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-saves .sv-oh span{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-saves .sv-ol li{display:flex;align-items:center;height:22px;font-size:11.5px;color:var(--fg);white-space:nowrap;box-shadow:0 1px 0 var(--line) inset}
+.app-saves .sv-ol li>i{margin-left:auto;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-saves .sv-ol li>i.sv-stk{justify-items:end}
+.app-saves .sv-bud{display:grid;gap:6px;padding-top:8px;box-shadow:0 1px 0 var(--line) inset}
+.app-saves .sv-bud p{display:flex;align-items:center;height:14px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-saves .sv-bud p i{margin-left:auto;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-saves .sv-bar{display:block;height:3px;border-radius:2px;background:rgb(var(--fg-rgb) / .1)}
+.app-saves .sv-bar i{display:block;width:10%;height:100%;border-radius:2px;background:var(--fg)}
+.app-saves .sv-ok{margin-top:auto;display:flex;align-items:center;gap:6px;height:16px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-saves .sv-ok svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-saves .sv-ok b{font-weight:500;color:var(--fg)}
+.app-saves .sv-ok span{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+/* ---------- the red line, and the toast ---------- */
+.app-saves .sv-note{grid-column:1 / -1;grid-row:3;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-saves .sv-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-saves .sv-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-saves .sv-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-saves .sv-toast b{font-weight:500;color:var(--fg)}
+.app-saves .sv-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes sv-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes sv-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}18%{background-color:rgb(var(--fg-rgb) / .13)}100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes sv-show{from{opacity:0}to{opacity:1}}
+@keyframes sv-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes sv-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes sv-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes sv-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes sv-blink{0%{opacity:1}50%{opacity:0}}
+@keyframes sv-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes sv-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes sv-pick{
+  from{color:var(--fg-2);background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line-ui) inset}
+  to{color:var(--bg);background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes sv-cell{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes sv-fill{from{background-color:rgb(var(--fg-rgb) / .13)}to{background-color:var(--fg)}}
+@keyframes sv-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. the assistant's request lands on top; the month counts it */
+.appx-il.play.app-saves .sv-new{animation:sv-open .6s var(--ease) .5s both}
+.appx-il.play.app-saves .sv-hot{animation:sv-glow 2.6s var(--ease) .55s both}
+.appx-il.play.app-saves .sv-hot .sv-who{animation:sv-show .45s var(--ease) .68s both}
+.appx-il.play.app-saves .sv-hot .sv-who::before{animation:sv-bar .4s var(--ease) .75s both}
+.appx-il.play.app-saves .sv-big>span .sv-stk>:first-child{animation:sv-out .3s var(--ease) .85s both}
+.appx-il.play.app-saves .sv-big>span .sv-stk>:last-child{animation:sv-in .3s var(--ease) .88s both}
+.appx-il.play.app-saves .sv-c100{animation:sv-cell .4s var(--snap) .9s both,sv-fill .4s var(--ease) 3.38s both}
+
+/* 2. the choice is shown: Cancel now and 1 approved offer, side by side; the mark waits on Dana */
+.appx-il.play.app-saves .sv-hot .sv-o1{animation:sv-land .45s var(--ease) 1.3s both}
+.appx-il.play.app-saves .sv-hot .sv-o2{animation:sv-land .45s var(--ease) 1.38s both,sv-pick .3s var(--ease) 2.78s both,sv-press .24s ease-out 2.72s}
+.appx-il.play.app-saves .sv-mk .sig-sq{animation:sv-blink 1.06s steps(1,end) .72s 2,sv-home .6s var(--snap) 3.05s both}
+.appx-il.play.app-saves .sv-mk .sig-gap{animation:sv-show .35s var(--ease) 3.25s both}
+
+/* 3. she picks Pause: it lands, Saved ticks, her square fills, the offer counts it */
+.appx-il.play.app-saves .sv-big>b.sv-stk>:first-child{animation:sv-out .3s var(--ease) 3.35s both}
+.appx-il.play.app-saves .sv-big>b.sv-stk>:last-child{animation:sv-in .32s var(--ease) 3.38s both}
+.appx-il.play.app-saves .sv-ol .sv-stk>:first-child{animation:sv-out .3s var(--ease) 3.45s both}
+.appx-il.play.app-saves .sv-ol .sv-stk>:last-child{animation:sv-in .3s var(--ease) 3.48s both}
+
+/* 4. the toast */
+.appx-il.play.app-saves .sv-toast{animation:sv-toast .45s var(--ease) 4s both}

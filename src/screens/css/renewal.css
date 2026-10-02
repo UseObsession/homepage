@@ -1,0 +1,191 @@
+/* app-renewal: Accounts / Renewal, for sales and success teams. 1 account's renewal ($48,000 a year) negotiated
+   agent to agent with the customer's declared procurement agent.
+   Round 1: their agent asks 18% off (over the cap). The same day your agent answers with a signed usage record
+   (seats used, visits booked, usage) and offers only from the concession grid AM approved: 2-year term for 5%.
+   Round 2: they accept. The round closes, the renewal is held at $45,600 (95%), then Signature (requested), PO, Paid.
+   The point: Held, the hero of the money card. Only the grid cell is solid; the counter is its outline twin.
+   Only the live step (Signature, requested) carries a mark; PO and Paid are plain step pips.
+   Red lines shown: the declared-agent pill (and theirs, declared in the thread head); the grid is AM's OK, with its cap
+   and floor; offers only from the grid (lock line); people sign.
+   Chrome (canonical, 2 Oct 2026): Your company, Accounts selected, list Customers.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, wrap 50..348 (thread 320 | 12 | side 196:
+   grid card 176, gap 12, money card 110 = Held 38 + 3 rows of 24), lock line and toast 360..400.
+   Story (about 4.6 s): their ask sits there; your counter lands with its signed record and the offer; the grid cell
+   lights; round 2 accepts; the round closes and the price is held; the signature is requested; the toast.
+   Rest state (no .play) = the finished scene. */
+
+.app-renewal .ax-main{padding:14px;gap:12px}
+
+/* sidebar: the list this account belongs to */
+.app-renewal .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-renewal .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- page head: title, the account, the declared agent ---------- */
+.app-renewal .rnw-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-renewal .rnw-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-renewal .rnw-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-renewal .rnw-meta .ax-mono{font-size:11px;color:var(--fg-2)}
+.app-renewal .rnw-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-renewal .rnw-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-renewal .rnw-wrap{display:grid;grid-template-columns:320px 196px;gap:12px;height:298px}
+
+/* stacked states: only the last child shows at rest */
+.app-renewal .rnw-stk{display:inline-grid;align-items:center}
+.app-renewal .rnw-stk>*{grid-area:1/1}
+.app-renewal .rnw-stk>:not(:last-child){opacity:0}
+
+/* ---------- the thread ---------- */
+.app-renewal .rnw-th{display:grid;grid-template-rows:34px minmax(0,1fr) 42px;min-height:0;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-thh{display:flex;align-items:center;gap:8px;padding:0 8px 0 12px;box-shadow:0 -1px 0 var(--line) inset;min-width:0}
+.app-renewal .rnw-who{font-size:11px;color:var(--fg-3);white-space:nowrap}
+.app-renewal .rnw-who b{font-weight:500;font-size:11.5px;color:var(--fg)}
+.app-renewal .rnw-state{margin-left:auto;display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;
+  font-size:11px;color:var(--fg-2);white-space:nowrap;background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-state .rnw-stk>*{display:inline-flex;align-items:center;gap:6px}
+.app-renewal .rnw-state .rnw-stk{justify-items:end}
+.ilwrap .app-renewal .rnw-state svg.sig{width:11px;height:11px;color:var(--fg)}
+
+/* who speaks: their agent (initials) and yours (the mark) */
+.app-renewal .rnw-a{display:grid;place-items:center;width:20px;height:20px;flex:none;border-radius:6px}
+.app-renewal .rnw-a.them{font:600 9px/1 var(--sans);letter-spacing:.02em;color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-a.us{background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-renewal .rnw-a.us svg.sig{width:11px;height:11px;color:var(--fg)}
+
+.app-renewal .rnw-log{display:grid;align-content:start;gap:10px;padding:10px 12px 0;min-height:0}
+.app-renewal .rnw-m{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:8px;align-items:start}
+.app-renewal .rnw-mb{display:grid;min-width:0}
+.app-renewal .rnw-mh{display:flex;align-items:center;gap:8px;height:14px;white-space:nowrap}
+.app-renewal .rnw-mh b{font:500 11px/1 var(--sans);color:var(--fg)}
+.app-renewal .rnw-mh>span{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-renewal .rnw-mh .rnw-same{display:inline-flex;align-items:center;height:16px;padding:0 6px;border-radius:5px;font:500 10.5px/1 var(--sans);color:var(--fg);
+  background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-tx{display:flex;align-items:center;gap:7px;height:18px;margin-top:4px;font-size:11.5px;color:var(--fg);white-space:nowrap}
+.app-renewal .rnw-ask{margin-left:auto;display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:5px;font:400 10.5px/1 var(--mono);color:var(--fg-2);
+  outline:1px dashed var(--line-3);outline-offset:-1px}
+
+/* the signed usage record */
+.app-renewal .rnw-ev{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:7px;padding:8px 10px 0;border-radius:8px;
+  background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-stat{display:grid;gap:2px;min-width:0;white-space:nowrap}
+.app-renewal .rnw-stat b{font:600 13px/16px var(--display);letter-spacing:-.01em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-renewal .rnw-stat em{font:400 10.5px/13px var(--sans);font-style:normal;color:var(--fg-3)}
+.app-renewal .rnw-sig{grid-column:1/-1;display:flex;align-items:center;gap:6px;height:22px;margin-top:6px;font:400 10.5px/1 var(--mono);color:var(--fg-3);
+  white-space:nowrap;box-shadow:0 1px 0 var(--line) inset}
+.ilwrap .app-renewal .rnw-sig svg{width:11px;height:11px;color:var(--fg-3)}
+
+/* the counter: an outline chip; the grid cell it came from is the 1 solid thing */
+.app-renewal .rnw-tx.rnw-offer{gap:8px;height:22px;color:var(--fg-2)}
+.app-renewal .rnw-offer b{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg);
+  background:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--fg-3) inset}
+.app-renewal .rnw-from{font-size:10.5px;color:var(--fg-3)}
+
+/* after the deal: Signature, PO, Paid on 1 rail */
+.app-renewal .rnw-steps{display:flex;align-items:center;padding:0 12px;box-shadow:0 1px 0 var(--line) inset}
+.app-renewal .rnw-step{display:flex;align-items:center;gap:8px;flex:none}
+.app-renewal .rnw-ln{flex:1;height:1px;margin:0 12px;background:var(--line-2)}
+.app-renewal .rnw-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-renewal .rnw-mk .rnw-stk{width:12px;height:12px}
+.app-renewal .rnw-mk .rnw-stk>*{display:grid;place-items:center;width:12px;height:12px}
+.ilwrap .app-renewal .rnw-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-renewal .rnw-pip{display:block;width:6px;height:6px;border-radius:50%;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-renewal .rnw-pip.end{border-radius:1.5px}
+.app-renewal .rnw-sl{display:grid;gap:1px;white-space:nowrap}
+.app-renewal .rnw-sl b{font:500 11px/14px var(--sans);color:var(--fg-2)}
+.app-renewal .rnw-sl em{font:400 10.5px/13px var(--mono);font-style:normal;color:var(--fg-3)}
+.app-renewal .rnw-steps .sg b{color:var(--fg)}
+.app-renewal .rnw-steps .sg em.v1{color:var(--fg-2)}
+
+/* ---------- the side: the grid AM approved, and the money ---------- */
+.app-renewal .rnw-side{display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;min-height:0}
+.app-renewal .rnw-gc,.app-renewal .rnw-sm{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-gh{display:flex;align-items:center;gap:8px;height:32px;padding:0 12px;white-space:nowrap}
+.app-renewal .rnw-gh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-renewal .rnw-gh span{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+.app-renewal .rnw-grid{display:grid;grid-template-columns:44px repeat(2,minmax(0,1fr));grid-template-rows:14px repeat(3,26px);gap:4px;padding:0 12px 10px}
+.app-renewal .rnw-gk{align-self:center;font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-renewal .rnw-grid>.rnw-gk:nth-child(2),.app-renewal .rnw-grid>.rnw-gk:nth-child(3){justify-self:center}
+.app-renewal .rnw-gk.col,.app-renewal .rnw-gk.row{color:var(--fg);font-weight:500}
+.app-renewal .rnw-c{display:grid;place-items:center;border-radius:6px;font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums;
+  background:rgb(var(--fg-rgb) / .025);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-renewal .rnw-c.on{font-weight:500;color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+.app-renewal .rnw-cap{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;font-size:10.5px;color:var(--fg-3);white-space:nowrap;box-shadow:0 1px 0 var(--line) inset}
+.app-renewal .rnw-cap b{font:500 10.5px/1 var(--mono);color:var(--fg)}
+.app-renewal .rnw-floor{margin-left:auto;font-family:var(--mono)}
+
+.app-renewal .rnw-sm{display:grid;align-content:center;padding:0 12px}
+.app-renewal .rnw-r{display:flex;align-items:center;gap:8px;height:24px;font-size:11px;color:var(--fg-3);white-space:nowrap;box-shadow:0 -1px 0 var(--line) inset}
+.app-renewal .rnw-r:last-child{box-shadow:none}
+.app-renewal .rnw-r>span:first-child{width:44px;flex:none}
+.app-renewal .rnw-r b{font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-renewal .rnw-r em{margin-left:auto;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-renewal .rnw-r.ask b{text-decoration:line-through;text-decoration-color:var(--fg-3);color:var(--fg-3)}
+.app-renewal .rnw-r.held{height:38px}
+.app-renewal .rnw-r.held>span:first-child{padding-top:4px;color:var(--fg);font-weight:500}
+.app-renewal .rnw-hv{flex:1;display:grid;align-items:center;height:38px}
+.app-renewal .rnw-hv .v0{padding-top:4px;font-size:11px;color:var(--fg-3)}
+.app-renewal .rnw-hv .v1{display:flex;align-items:baseline}
+.app-renewal .rnw-r.held .v1 b{font:600 19px/1 var(--display);letter-spacing:-.02em;color:var(--fg)}
+.app-renewal .rnw-r.held .v1 em{font-weight:500;color:var(--fg)}
+
+/* ---------- the red line, and the toast ---------- */
+.app-renewal .rnw-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-renewal .rnw-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-renewal .rnw-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-renewal .rnw-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-renewal .rnw-toast b{font-weight:500;color:var(--fg)}
+.app-renewal .rnw-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes rnw-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes rnw-up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes rnw-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes rnw-show{from{opacity:0}to{opacity:1}}
+@keyframes rnw-hide{from{opacity:1}to{opacity:0}}
+@keyframes rnw-tick{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes rnw-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes rnw-cell{
+  0%{color:var(--fg-2);background-color:rgb(var(--fg-rgb) / .025);box-shadow:0 0 0 1px var(--line-2) inset}
+  40%{color:var(--fg);background-color:rgb(var(--fg-rgb) / .14);box-shadow:0 0 0 1px var(--fg) inset}
+  100%{color:var(--bg);background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes rnw-ring{
+  0%{background-color:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--line-2) inset}
+  45%{background-color:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 1px var(--fg) inset}
+  100%{background-color:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--fg-3) inset}}
+@keyframes rnw-key{from{color:var(--fg-3)}to{color:var(--fg)}}
+@keyframes rnw-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. their ask is on the table */
+.appx-il.play.app-renewal .m1{animation:rnw-in .5s var(--ease) .2s both}
+
+/* 2. the counter lands the same day, with its signed usage record */
+.appx-il.play.app-renewal .m2{animation:rnw-in .55s var(--ease) .95s both}
+.appx-il.play.app-renewal .rnw-stat{animation:rnw-up .4s var(--ease) 1.15s both}
+.appx-il.play.app-renewal .rnw-stat.s2{animation-delay:1.22s}
+.appx-il.play.app-renewal .rnw-stat.s3{animation-delay:1.29s}
+.appx-il.play.app-renewal .rnw-sig{animation:rnw-show .4s var(--ease) 1.42s both}
+
+/* 3. the counter rings once and the grid cell it came from goes solid */
+.appx-il.play.app-renewal .rnw-offer b{animation:rnw-ring .8s var(--ease) 1.75s both}
+.appx-il.play.app-renewal .rnw-c.on{animation:rnw-cell .7s var(--ease) 1.95s both}
+.appx-il.play.app-renewal .rnw-gk.col,.appx-il.play.app-renewal .rnw-gk.row{animation:rnw-key .4s var(--ease) 1.95s both}
+
+/* 4. round 2 accepts; the round closes and the price is held */
+.appx-il.play.app-renewal .m3{animation:rnw-in .5s var(--ease) 2.6s both}
+.appx-il.play.app-renewal .m3 .ax-tick{animation:rnw-tick .45s var(--snap) 2.78s both}
+.appx-il.play.app-renewal .rnw-state .v0{animation:rnw-out .3s var(--ease) 3s both}
+.appx-il.play.app-renewal .rnw-state .v1{animation:rnw-up .35s var(--ease) 3.05s both}
+.appx-il.play.app-renewal .rnw-state .v1 .sig-sq{animation:rnw-home .6s var(--snap) 3.12s both}
+.appx-il.play.app-renewal .rnw-state .v1 .sig-gap{animation:rnw-show .3s var(--ease) 3.36s both}
+.appx-il.play.app-renewal .rnw-hv .v0,.appx-il.play.app-renewal .rnw-tv .v0{animation:rnw-out .3s var(--ease) 3.15s both}
+.appx-il.play.app-renewal .rnw-hv .v1,.appx-il.play.app-renewal .rnw-tv .v1{animation:rnw-up .35s var(--ease) 3.2s both}
+
+/* 5. the signature is requested */
+.appx-il.play.app-renewal .sg .rnw-mk .v0,.appx-il.play.app-renewal .sg em.v0{animation:rnw-hide .25s var(--ease) 3.65s both}
+.appx-il.play.app-renewal .sg .rnw-mk .v1,.appx-il.play.app-renewal .sg em.v1{animation:rnw-show .3s var(--ease) 3.68s both}
+
+/* 6. the toast */
+.appx-il.play.app-renewal .rnw-toast{animation:rnw-toast .45s var(--ease) 4.2s both}
