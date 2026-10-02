@@ -268,7 +268,8 @@ await obs.missions.create({
 
   /* The trust beat (James's "Built to behave.", docs/REBUILD.md 1d), before the questions. Each rule agrees with the
      /agents page and the questions below: declared, the bot never staff, public journeys only, stop before payment,
-     nothing sent, signed or spent without your OK, every step signed. Never "it follows robots.txt". */
+     nothing sent, signed or spent without your OK, every step signed. Never "it follows robots.txt".
+     The no-break space in "site’s bot" breaks that title after its comma. */
   rules: {
     heading: 'Built to behave.',
     line: 'Any company an agent meets can ask us what it did, and keep our agents off its site with 1 email.',
@@ -278,7 +279,7 @@ await obs.missions.create({
         line: 'On your own journeys, quotes and renewals it names you. At rivals and prospects it says it’s from Obsession and keeps your name out.',
       },
       {
-        title: 'It asks the site’s bot, never staff.',
+        title: 'It asks the site’s\u00a0bot, never staff.',
         line: 'At prospects and rivals it only asks the chat bot. If a person picks up, the step ends, and it never writes to their staff.',
       },
       {
