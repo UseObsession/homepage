@@ -9,6 +9,7 @@ export const AGENCY_SCREENS: ReadonlySet<string> = new Set([
   'board',
   'brandwatch',
   'claycols',
+  'handover',
   'kit',
   'pack',
   'proofmail',
