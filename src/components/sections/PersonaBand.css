@@ -109,6 +109,7 @@
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
   --s-pb-glow: var(--s-accent-glow-rest);
+  --s-pb-glow-at: 90% 70% at 50% 0%;
   transition:
     background-color var(--ob-dur-base) var(--ob-ease-out),
     --s-pb-glow var(--ob-dur-moderate) var(--ob-ease-out);
@@ -128,12 +129,18 @@
   clip-path: var(--cut);
   pointer-events: none;
 }
-/* The face: the raised surface under 1 soft glow of the reader's hue, rising from the top edge (never a flat tint). */
+/* The face: the raised surface under 1 soft glow of the reader's hue, rising from the top edge (never a flat tint).
+   The glow eases out (smoothstep: 1, .84, .5, .16 and 0 of --s-pb-glow) instead of ramping straight down, so it has
+   no hot spot and no rim, and never passes the token's alpha. --s-pb-glow-at is where it rises from: the top centre
+   here, the top left in stacked rows. */
 .s-pb__item::before {
   background:
     radial-gradient(
-      90% 70% at 50% 0%,
+      var(--s-pb-glow-at),
       color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-pb-glow), transparent),
+      color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-pb-glow) * .84), transparent) 18%,
+      color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-pb-glow) * .5), transparent) 36%,
+      color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-pb-glow) * .16), transparent) 54%,
       transparent 72%
     ),
     var(--ob-surface-raised);
@@ -297,15 +304,7 @@
   /* The key moves inline before the name, like a legend key, and the glow rises from the row's top left, where the
      name is. */
   .s-pb__key.ob-sq { position: static; display: inline-block; margin-right: var(--ob-space-12); vertical-align: .16em; }
-  .s-pb__item::before {
-    background:
-      radial-gradient(
-        70% 160% at 0% 0%,
-        color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-pb-glow), transparent),
-        transparent 72%
-      ),
-      var(--ob-surface-raised);
-  }
+  .s-pb__item { --s-pb-glow-at: 70% 160% at 0% 0%; }
 }
 
 @media (max-width: 959.98px) {

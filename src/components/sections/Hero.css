@@ -153,7 +153,9 @@
 
 /* A reader's own page: 1 soft glow of the reader's hue behind the pill and the headline, the hero's 1 glow. The ellipse
    fades to nothing at the hero's top edge, so there is no seam under the sticky nav, and before the form and the
-   console. The pill's ring stays --ob-text: the glow lights the words, never the mark. */
+   console. It eases out (smoothstep: 1, .84, .5, .16 and 0 of the hero alpha) instead of ramping straight down, so it
+   reads as light, with no hot spot and no oval rim, and never passes the token's alpha. The pill's ring stays
+   --ob-text: the glow lights the words, never the mark. */
 .s-hero[data-reader] {
   position: relative;
   isolation: isolate;
@@ -170,6 +172,9 @@
   background: radial-gradient(
     closest-side,
     color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent),
+    color-mix(in srgb, var(--s-accent-glow) calc(var(--s-accent-glow-hero) * .84), transparent) 25%,
+    color-mix(in srgb, var(--s-accent-glow) calc(var(--s-accent-glow-hero) * .5), transparent) 50%,
+    color-mix(in srgb, var(--s-accent-glow) calc(var(--s-accent-glow-hero) * .16), transparent) 75%,
     transparent
   );
   pointer-events: none;
