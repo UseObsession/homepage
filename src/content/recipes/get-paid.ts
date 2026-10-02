@@ -32,13 +32,13 @@ export const recipe: Recipe = {
   slug: 'get-paid',
   name: 'Get paid',
   group: 'Get paid and save',
-  line: 'Sets you up in a new customer’s supplier portal the day they sign, then chases every invoice politely until it’s paid.',
-  gets: 'Every invoice paid sooner: new customers set up from the day they sign, and every overdue invoice chased until it’s paid.',
+  line: 'Sets you up in a new customer’s supplier portal the day they sign, then chases every invoice until it’s paid.',
+  gets: 'New customers set up in their supplier portal from the day they sign, and every overdue invoice chased until it’s paid.',
   kit: [
     'An agent ID that names your company',
     'Its own billing inbox and phone line',
     'Your invoices, read only',
-    'Your company pack, ready for any supplier portal',
+    'Your company pack: tax, insurance and security answers',
     'A chase on the rhythm you set',
     'Every step signed and dated',
   ],
@@ -47,9 +47,9 @@ export const recipe: Recipe = {
     path: '/recipes/get-paid',
     title: 'Get paid: AI agents that chase overdue invoices · Obsession',
     description:
-      'A declared AI agent sets you up in each new customer’s supplier portal the day they sign, then chases every overdue invoice politely until it’s paid.',
+      'The day a customer signs, a declared AI agent sets you up in their supplier portal, then chases every overdue invoice by email and phone until it’s paid.',
     answer:
-      'Get paid is an Obsession recipe. On the day a customer signs, a declared AI agent registers you in their supplier portal, gets the vendor ID and PO, and submits the first invoice. It chases every overdue invoice from its own billing inbox and phone line, politely, until it’s paid. Bank details, portal terms and anything firmer wait for your OK.',
+      'Get paid is an Obsession recipe. On the day a customer signs, a declared AI agent registers you in their supplier portal, gets the vendor ID and PO, and submits the first invoice. It chases every overdue invoice from its own billing inbox and phone line until it’s paid. Portal terms and anything firmer wait for your OK, and your finance team enters bank details.',
     ogImage: '/og/get-paid.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,8 +59,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that chase every invoice from contract to cash.',
-    sub: 'The day a customer signs, a declared AI agent sets you up in their supplier portal. Then it chases every invoice politely, by email and phone, until it’s paid.',
+    headline: 'AI agents that chase every invoice, from signed contract to cash.',
+    sub: 'The day a customer signs, a declared AI agent sets you up in their supplier portal. Then it chases every invoice by email and phone until it’s paid.',
     screen: 'invoices',
     capture: {
       kind: 'waitlist',
@@ -76,15 +76,15 @@ export const recipe: Recipe = {
   run: {
     tab: 'Overdue invoices',
     recipe: 'get-paid',
-    task: 'Chase our 15 overdue invoices until they’re paid. Email first, call on day 5, stay polite, stop if asked, and bring any dispute to me.',
+    task: 'Chase our 15 overdue invoices until they’re paid. Email first, call on day 5, stop if asked, and bring any dispute to me.',
     targets: '15 overdue invoices, from your accounting tool',
-    journey: ['Email a polite reminder', 'Call from its own line', 'Match every payment', 'Bring disputes to you'],
+    journey: ['Email a reminder', 'Call from its own line', 'Match every payment', 'Bring disputes to you'],
     schedule: 'Every weekday until paid',
     report: 'A daily note and a cash sheet',
     kit: ['Agent ID, names your company', 'Billing inbox', 'Phone line', 'Invoices, read only'],
     events: [
       { time: 'Mon 09:00', text: '15 overdue invoices read from your books: $54,600, 6 to 34 days late.' },
-      { time: 'Mon 09:10', text: 'A polite reminder to each customer from your declared AI agent, invoice and payment link attached.' },
+      { time: 'Mon 09:10', text: 'A reminder to each customer from your declared AI agent, invoice and payment link attached.' },
       { time: 'Tue 10:30', text: 'Dental group, on a call: “$9,800 on Friday.” The date is logged.' },
       { time: 'Wed 14:20', text: 'A customer, on a day 5 call: “We use 6 seats, not 10.” That chase pauses and comes to you.' },
       { time: 'Thu 16:00', text: 'Law firm pays $6,400. Matched to its invoice, so chasing stops.' },
@@ -104,12 +104,12 @@ export const recipe: Recipe = {
       line: 'The day a deal is won, it registers you in the customer’s supplier portal, files the forms, gets the vendor ID and PO, and submits the invoice.',
     },
     {
-      title: 'Every invoice chased politely',
-      line: 'From its own billing inbox and phone line, named as your AI agent, on the rhythm you set, until it’s paid or a customer asks it to stop.',
+      title: 'Every invoice chased until it’s paid',
+      line: 'From its own billing inbox and phone line, named as your AI agent, on the rhythm you set. It stops when a customer pays or asks.',
     },
     {
       title: 'You make the hard calls',
-      line: 'Bank details, portal terms, disputes, final notices and anything firmer come to you first, drafted.',
+      line: 'Portal terms, disputes, final notices and anything firmer come to you first, drafted. Bank details stay with your finance team.',
     },
   ],
 
@@ -126,7 +126,7 @@ export const recipe: Recipe = {
     {
       group: 'Every chase',
       items: [
-        { title: 'Reminders', line: 'Polite emails with the invoice and your payment link, on your schedule.' },
+        { title: 'Reminders', line: 'Emails with the invoice and your payment link, on your schedule.' },
         { title: 'Calls', line: 'From the agent’s own line, in working hours, saying it’s an AI agent for your company.' },
         { title: 'Promises', line: 'Every date a customer gives, logged and checked the day after.' },
         { title: 'Payments', line: 'Matched to their invoice, so the chasing stops the same day.' },
@@ -171,7 +171,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'founders', line: 'Cash in before payroll, without spending Friday on the phone or in a supplier portal.' },
-    { audience: 'agencies', line: 'Set up in a new client’s supplier portal the week they sign, and every late client chased politely.' },
+    { audience: 'agencies', line: 'Set up in a new client’s supplier portal the day they sign, and every late invoice chased until it’s paid.' },
     { audience: 'sales', line: 'From signed contract to PO and first payment, without chasing procurement yourself.' },
     { audience: 'developers', line: 'Start a chase from your own billing system through the API.' },
   ],
@@ -182,11 +182,11 @@ export const recipe: Recipe = {
     cols: ['What the agent does'],
     rows: [
       { label: 'Day 1', values: ['Opens the supplier invite and registers you from your company pack. Portal terms wait for your OK.'] },
-      { label: 'Day 2', values: ['Files the tax, insurance and security forms from your approved answers. New questions come to you.'] },
-      { label: 'Bank details', values: ['Entered by your finance team, never by the agent.'] },
+      { label: 'Day 2', values: ['Fills the tax, insurance and security forms from your approved answers. New questions, and anything to sign, come to you.'] },
+      { label: 'Day 6', values: ['Your finance team enters the bank details. The agent never does.'] },
       { label: 'Day 9', values: ['Vendor ID and PO in hand, after 2 chases to their procurement team.'] },
       { label: 'Day 10', values: ['Invoice submitted against the PO, and checked until it shows as accepted.'] },
-      { label: 'Due date', values: ['Checks the payment landed. If it hasn’t, the polite chase starts.'] },
+      { label: 'Due date', values: ['Checks the payment landed. If it hasn’t, the chase starts.'] },
     ],
   },
 

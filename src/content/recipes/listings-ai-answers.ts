@@ -31,12 +31,12 @@ export const recipe: Recipe = {
   slug: 'listings-ai-answers',
   name: 'Listings and AI answers',
   group: 'Win customers',
-  line: 'When AI assistants or listings get a fact about you wrong, it fixes the page they read and asks again until the answer changes.',
-  gets: 'Every wrong fact about you fixed where AI assistants read it, and asked again every Monday until the answer is right.',
+  line: 'When a listing or an AI assistant gets a fact about you wrong, it corrects the source and asks again until the answer changes.',
+  gets: 'Each wrong fact about you corrected where AI assistants read it, and the question asked again every Monday until the answer is right.',
   kit: [
     'An agent ID, declared as AI for your company',
     'Your facts, approved by you once',
-    'Claims through your own number or domain',
+    'Listings claimed through your own number or domain',
     'Each AI assistant asked the official way',
     'A check every Monday, and after every price change',
     'Every answer, source and fix signed',
@@ -46,9 +46,9 @@ export const recipe: Recipe = {
     path: '/recipes/listings-ai-answers',
     title: 'Listings and AI answers, fixed at the source · Obsession',
     description:
-      'When AI assistants or listings get a fact about you wrong, a declared AI agent fixes the page they read, asks its owner to correct it, and asks again.',
+      'When an AI assistant or a listing gets a fact about you wrong, a declared AI agent fixes it at the source and asks again until the answer changes.',
     answer:
-      'Listings and AI answers is an Obsession recipe. Every Monday, and after every price change, declared AI agents ask AI assistants what your buyers ask and check your listings. When a fact is wrong, they trace it to the page the answer cites, fix your own pages after your OK, ask every other site’s owner to correct theirs, and ask again until the answer changes.',
+      'Listings and AI answers is an Obsession recipe. Every Monday, and after every price change, declared AI agents ask AI assistants what your buyers ask and check your listings. When a fact is wrong, they trace it to the page the answer cites, fix your own pages after your OK, ask the owner of any other page that’s wrong to correct it, and ask again until the answer changes.',
     ogImage: '/og/listings-ai-answers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'When AI gets a fact about you wrong, fix the page it read.',
-    sub: 'Every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site. Each wrong fact is fixed where it comes from, and asked again until the answer changes.',
+    sub: 'Every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site. Each wrong fact is corrected where it comes from, then the question goes out again until the answer changes.',
     screen: 'listings',
     capture: {
       kind: 'waitlist',
@@ -84,8 +84,8 @@ export const recipe: Recipe = {
     events: [
       { time: 'Mon 09:00', text: '4 AI assistants asked what buyers ask. Assistant C says Leeds opens at 9. It opens at 8.' },
       { time: 'Mon 09:05', text: 'The source: Assistant C cites Directory B, which still lists the old hours.' },
+      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its own route, after your OK, as your declared AI agent.' },
       { time: 'Mon 09:42', text: 'Your own listings fixed after your OK, claimed through your domain. Review site B no longer says closed.' },
-      { time: 'Mon 10:00', text: '1 correction filed with Directory B through its own edit form, as your declared AI agent.' },
       { time: 'Week 2, Mon', text: 'Directory B unchanged. 1 polite chase, the first of 2 at most.' },
       { time: 'Week 3, Mon', text: 'Directory B updated. Asked again, Assistant C says Leeds opens at 8.' },
     ],
@@ -169,12 +169,12 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'founders', line: 'Stop losing buyers to an old price, a retired plan or the wrong hours.' },
     { audience: 'marketing', line: 'Fix what AI assistants tell your buyers at the source, and see the day each answer changes.' },
-    { audience: 'agencies', line: 'Sell AI answer fixes as a service, with every client’s before and after signed.' },
+    { audience: 'agencies', line: 'Correct what AI assistants say about each client, with their OK, and show the before and after signed.' },
     { audience: 'developers', line: 'Pull every answer, source and fix into your own dashboard through the API.' },
   ],
 
   table: {
-    heading: 'Every wrong fact fixed where buyers see it, or chased until it is.',
+    heading: 'Every wrong fact corrected at its source, and asked again until the answer changes.',
     line: 'Example: the Leeds location.',
     cols: ['First Monday', '3 Mondays on'],
     rows: [

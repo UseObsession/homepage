@@ -77,7 +77,7 @@ export const page: Page = {
         ledger: 'Example run. Every step signed and dated, in 1 link to share before Thursday.',
       },
       {
-        tab: 'New client',
+        tab: 'Account handover',
         recipe: 'handover',
         task: 'We signed a new client. Move their ads, analytics, social, domain and search accounts from the old agency into the client’s name.',
         targets: '1 new client, 12 accounts',
@@ -119,7 +119,7 @@ export const page: Page = {
       {
         tab: 'AI checkouts',
         recipe: 'checkout',
-        task: 'Each month, with each client’s written OK, buy through every AI checkout into their store, refund it, and draft a fix for any that breaks.',
+        task: 'Each month, with each client’s written OK, place a real order through every AI checkout on their store, refund it, and draft a fix for any that breaks.',
         targets: '8 client stores, with written OK',
         journey: ['Find every AI checkout', 'Buy on a card capped to the order', 'Check the order, then refund it', 'Draft the fix for each break'],
         schedule: 'Monthly, and after every checkout change',
@@ -127,9 +127,9 @@ export const page: Page = {
         kit: ['Agent ID, declared as AI', 'A single use card per order', 'Each store, connected by the client', 'A budget each client sets'],
         events: [
           { time: '1st, 09:00', text: '34 AI checkouts found on 8 client stores. 3 stores aren’t on every AI channel.' },
-          { time: '1st, 09:20', text: 'Clients confirm the totals. 34 orders placed, each noted as an AI test.' },
-          { time: '1st, 09:31', text: 'Homeware store: AI shoppers can’t pick a size, so the basket empties.' },
-          { time: '1st, 11:00', text: '33 orders checked and refunded the normal way, each refund confirmed.' },
+          { time: '1st, 09:20', text: 'Clients confirm the totals. Each order is noted as an AI test.' },
+          { time: '1st, 09:31', text: 'Homeware store: no AI shopper can pick a size, so the basket empties. Stopped there.' },
+          { time: '1st, 11:00', text: '33 orders placed, checked and refunded the normal way, each refund confirmed.' },
           { time: '3rd, 10:00', text: 'Fix approved by the client. Bought again: it goes through, then it’s refunded.' },
         ],
         finding: '1 checkout in 34 broke: on the homeware store, no AI shopper could pick a size.',
@@ -278,7 +278,7 @@ export const page: Page = {
       },
       {
         name: 'SEO and AI search',
-        line: 'AI assistants asked who they recommend each week, and every client’s forms and booking links tested with their OK.',
+        line: 'Wrong facts in each client’s AI answers corrected at the source, and every form and booking link tested, with their OK.',
         recipes: ['listings', 'audit', 'prospect'],
       },
       {
@@ -323,7 +323,7 @@ export const page: Page = {
       },
       {
         name: 'PR and comms',
-        line: 'AI assistants asked about each client every week, with every wrong fact and its source logged.',
+        line: 'AI assistants asked about each client every week, and every wrong fact corrected at its source with the client’s OK.',
         recipes: ['listings', 'competitor'],
       },
       {
@@ -341,11 +341,11 @@ export const page: Page = {
 
   recipes: {
     heading: 'Each recipe does the work of a whole tool, for every client.',
-    ids: ['mystery', 'prospect', 'competitor', 'email-sms', 'ads', 'prices', 'audit', 'delivery', 'listings', 'speed'],
+    ids: ['mystery', 'prospect', 'handover', 'checkout', 'competitor', 'email-sms', 'ads', 'prices', 'audit', 'delivery', 'listings', 'speed'],
   },
 
   proof: {
-    heading: '2 shoppers left full baskets. 0 reminders reached them in 48 hours.',
+    heading: '1 shopper left a basket, 1 stopped at checkout. 0 reminders reached them in 48 hours.',
     line: 'A real September check of a skincare store, name hidden: 4 test customers, every inbox watched for 48 hours, and a follow up drafted for each gap.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
@@ -375,7 +375,7 @@ export const page: Page = {
       },
       {
         q: 'What do the agents never do?',
-        a: 'Pretend to be a person, use a fake identity or send cold spam. Message staff at a prospect or rival, start a rival’s trial that needs a card, reply inside a trial, or stay in one once a rep writes or calls. Pay on anyone else’s store, or go behind a login they weren’t given. At rivals and prospects they say they’re AI agents and link to useobsession.com/agents, without naming your client.',
+        a: 'Pretend to be a person, use a fake identity or send cold spam. Message staff at a prospect or rival, start a rival’s trial that needs a card, reply inside a trial, or stay in one once a rep writes or calls. Pay on anyone else’s store, spend past the budget you set, sign anything for you, or go behind a login they weren’t given. At rivals and prospects they say they’re AI agents and link to useobsession.com/agents, without naming your client.',
       },
       {
         q: 'What’s in the free report?',

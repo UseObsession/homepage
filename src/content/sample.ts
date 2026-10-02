@@ -127,9 +127,9 @@ export const sample: SamplePage = {
     path: '/sample-output',
     title: 'Sample output: a real store check with 0 basket reminders',
     description:
-      'A real September 2026 check of a skincare store: 4 test customers, 48 hours watched, 2 full baskets left, 0 reminders. As a PDF, email, Slack and more.',
+      'A real September 2026 check of a skincare store: 4 test customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders. As a PDF, email or Slack.',
     answer:
-      'Obsession’s sample output is a real September 2026 store check: 4 labelled test customers shopped a skincare store, name hidden, and in the 48 hours watched, 2 left full baskets and neither got a reminder. The same run is shown as a PDF report, an email, a Slack message, sheet or Clay columns, a webhook and a workflow.',
+      'Obsession’s sample output is a real September 2026 store check: 4 labelled test customers shopped a skincare store, name hidden, and in the 48 hours watched, 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. The same run is shown as a PDF report, an email, a Slack message, sheet or Clay columns, a webhook and a workflow.',
     ogImage: '/og/sample-output.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -139,7 +139,7 @@ export const sample: SamplePage = {
 
   hero: {
     pill: 'Real run · September 2026 · name hidden',
-    headline: '2 shoppers left full baskets. Neither heard a thing in 48 hours.',
+    headline: '1 shopper left a basket, 1 stopped at checkout. Neither heard a thing in 48 hours.',
     sub: 'Obsession’s agents shopped a skincare store as 4 labelled test customers, 1 inbox each, and watched every inbox for 48 hours.',
     figures: [
       { value: '4', label: 'test customers, 1 inbox each' },
@@ -157,7 +157,7 @@ export const sample: SamplePage = {
 
   report: {
     heading: 'Welcome and browse got messages. Basket and checkout got none.',
-    line: '£61 was left in those 2 baskets, and nothing asked either shopper back.',
+    line: '£61 was left at basket and checkout, and nothing asked either shopper back.',
     journeys: [
       {
         n: 1,
@@ -220,7 +220,7 @@ export const sample: SamplePage = {
     {
       n: 1,
       journey: 'Basket',
-      heading: 'Nothing followed up a shopper who left a full basket.',
+      heading: 'Nothing followed up a shopper who left a basket.',
       finding: 'No email arrived in the 48 hours after our test customer put a Body Care Gift Set in the basket and left.',
       consent: 'Our test shopper subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
       nothing: {

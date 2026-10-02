@@ -131,7 +131,7 @@ export const page: Page = {
       {
         tab: 'Your AI checkout',
         recipe: 'checkout',
-        task: 'Each month, buy through every AI checkout into our store, refund each order, and draft a fix for anything that breaks.',
+        task: 'Each month, place a real order through every AI checkout on our store, refund each one, and draft a fix for anything that breaks.',
         targets: 'your-store.example, your own store',
         journey: ['Find every AI checkout', 'Buy on a card capped to the order', 'Check it against your store', 'Refund, then draft the fix'],
         schedule: 'Monthly, and after every checkout change',
@@ -140,7 +140,7 @@ export const page: Page = {
         events: [
           { time: '1st, 09:00', text: '5 AI checkouts found. Your store isn’t on 1 AI shopping channel.' },
           { time: '1st, 09:12', text: 'You confirm the totals. 5 orders placed, each noted as an AI test.' },
-          { time: '1st, 09:14', text: '1 checkout shows AI shoppers $4.95 delivery. Your checkout charges $8.95.' },
+          { time: '1st, 09:14', text: '1 AI checkout shows $4.95 delivery. Your store charges $8.95.' },
           { time: '1st, 10:30', text: 'All 5 refunded. None was marked in your store as an AI sale.' },
           { time: '3rd, 10:00', text: 'Both fixes live after your OK. Bought again: right price, marked AI, refunded.' },
         ],
@@ -271,8 +271,8 @@ export const page: Page = {
       {
         tab: 'AI answers and listings',
         moment: 'Monday, 09:00. A buyer asks an AI assistant for the best in your category. It names 3 rivals and says your Leeds branch has closed.',
-        outcome: 'What AI assistants tell your buyers, asked again every Monday, and every wrong listing claimed, corrected or chased.',
-        line: 'Agents ask the assistants your buyers use the same questions each week, find the listings behind the answers, and fix yours after your OK.',
+        outcome: 'Every wrong fact AI assistants tell your buyers corrected at its source, and asked again every Monday until the answer changes.',
+        line: 'Agents ask the assistants your buyers use the same questions each week, trace each wrong answer to the page it cites, and get it corrected there after your OK.',
         whyOnly: 'A visibility score stops at the score. Agents fix each wrong fact at its source, through the site’s own correction route and after your OK, then ask again to prove it.',
         recipe: 'listings',
         screen: 'listings',
@@ -295,7 +295,7 @@ export const page: Page = {
       { value: 'Up to 18 hours', label: 'back a month, if your team spends 90 minutes a week on each of 3 rivals' },
       { value: 'The same morning', label: 'a rival’s new price or ad reaches your Slack, screenshot attached' },
       { value: 'Within minutes', label: 'of every send, a broken link, code or text flagged as a customer sees it, with the fix drafted' },
-      { value: 'Every Monday', label: 'what AI assistants tell your buyers, asked again, with every wrong listing chased' },
+      { value: 'Every Monday', label: 'what AI assistants tell your buyers, asked again, with every wrong fact corrected at its source' },
     ],
   },
 
@@ -338,11 +338,11 @@ export const page: Page = {
 
   recipes: {
     heading: 'From a rival’s first email to your own launch, a recipe is ready to run.',
-    ids: ['competitor', 'email-sms', 'ads', 'prices', 'delivery', 'listings', 'speed', 'trial', 'mystery'],
+    ids: ['competitor', 'email-sms', 'ads', 'prices', 'delivery', 'listings', 'speed', 'trial', 'mystery', 'checkout', 'saves'],
   },
 
   proof: {
-    heading: '2 test customers left full baskets. Neither got a reminder in 48 hours.',
+    heading: '1 test customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
     line: 'A real check of a skincare store in September, name hidden: 4 test customers, watched for 48 hours. A £40 gift set left in the basket at 02:57 and a £21 deodorant left at checkout at 03:11 got no reminder.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
@@ -376,11 +376,11 @@ export const page: Page = {
       },
       {
         q: 'Which channels does it cover?',
-        a: 'At rivals: emails, texts, the ads they run in public, prices, offers and pages. On your own: launches, codes, forms, chat, phone, listings and what AI assistants say about you.',
+        a: 'At rivals: emails, texts, the ads they run in public, prices, offers and pages. On your own: launches, codes, forms, chat, phone, listings, AI checkouts, cancel requests and what AI assistants say about you.',
       },
       {
         q: 'Does it need access to our own tools?',
-        a: 'Only to fix something. Checks run from outside, the way a customer sees you. A fix goes through a tool you connect and can disconnect at any time, and only after your OK.',
+        a: 'Only where an agent acts for you: a fix, a test order’s refund, or a pause or cancel in your billing. Checks run from outside, the way a customer sees you. You connect each tool and can disconnect it at any time, and every fix waits for your OK.',
       },
       {
         q: 'What’s in the free report?',

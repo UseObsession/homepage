@@ -255,7 +255,7 @@ await obs.missions.create({
       },
       {
         today: 'Consent rules and spend limits coded into every script',
-        obsession: 'Built into the engine: agents say they’re AI, never message staff at a rival or prospect, and never pay on anyone else’s store',
+        obsession: 'Built into the engine: agents say they’re AI, never message staff at a rival or prospect, spend only inside the budget you set, and never pay on anyone else’s store',
       },
       {
         today: '1 company at a time, in a loop you babysit',
@@ -391,12 +391,12 @@ await obs.missions.create({
 
   recipes: {
     heading: 'Every recipe runs from 1 API call, at every company you pass in.',
-    ids: ['audit', 'delivery', 'prospect', 'competitor', 'prices', 'mystery', 'speed', 'email-sms', 'supplier-quotes'],
+    ids: ['audit', 'delivery', 'prospect', 'competitor', 'prices', 'mystery', 'speed', 'email-sms', 'supplier-quotes', 'quotes', 'checkout'],
   },
 
   proof: {
-    heading: '2 test customers left full baskets on a real store. 0 reminders came in 48 hours.',
-    line: 'In September, 4 test customers shopped a skincare store, name hidden, and agents watched every inbox for 48 hours. The shoppers who left a £40 gift set at 02:57 and £21 of deodorant at 03:11 got no reminder.',
+    heading: '1 test customer left a basket and 1 stopped at checkout on a real store. 0 reminders came in 48 hours.',
+    line: 'In September, 4 test customers shopped a skincare store, name hidden, and agents watched every inbox for 48 hours. The shopper who left a £40 gift set in the basket at 02:57 and the one who stopped at checkout with £21 of deodorant at 03:11 got no reminder.',
     cta: { label: 'Open the real run', to: '/sample-output' },
   },
 
@@ -429,7 +429,7 @@ await obs.missions.create({
       },
       {
         q: 'What stops an agent doing something it shouldn’t?',
-        a: 'The rules are in the engine, not a setting. An agent never pretends to be a person, sends cold spam or asks staff at a prospect or rival anything: if a person picks up the chat, the step ends. It starts only trials that need no card, never replies in them, and closes them the moment a rep writes or calls. It never pays on anyone else’s store, goes behind a login it wasn’t given or gets round a CAPTCHA.',
+        a: 'The rules are in the engine, not a setting. An agent never pretends to be a person, sends cold spam or asks staff at a prospect or rival anything: if a person picks up the chat, the step ends. It starts only trials that need no card, never replies in them, and closes them the moment a rep writes or calls. It spends only on a card capped at the budget you set, never pays on anyone else’s store, never signs or accepts terms for you, and never goes behind a login it wasn’t given or gets round a CAPTCHA.',
       },
       {
         q: 'Can my customers use it inside my product?',
