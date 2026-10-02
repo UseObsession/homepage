@@ -1,8 +1,8 @@
-/* The September store check behind the sample report, as data. Text is from the report itself
+/* The September store check behind the sample output, as data. Text is from the report itself
    (site/sample-report.html), with the store name hidden as "Brand G". */
 
 export const report = {
-  kicker: 'Sample report · store name hidden · September 2026',
+  kicker: 'Sample output · store name hidden · September 2026',
   store: 'Brand G',
   headline: 'Shoppers who left with a full cart, or at checkout, heard nothing',
   summary:

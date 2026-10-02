@@ -15,7 +15,7 @@ npm run build    # static files in dist/, every page prerendered to HTML
   - `roles.ts`: the three ways to use it, and which ways each audience sees (agencies, sales and marketing get recipes and tasks; founders and developers also get the API)
   - `runs.ts`: the example runs played in the hero window. The mystery shopper run is the real September store check; the others are labelled as examples.
   - `audiences.ts`: the agencies, sales and marketing pages, which share one layout (`pages/AudiencePage.tsx`)
-  - `report.ts`: the sample report, as data
+  - `report.ts`: the September store check behind the sample output, as data
 - **Design tokens:** `src/styles/tokens.css`, ported from the v1.0 design system. Dark by default, light via the toggle.
 - **Waitlist:** sign ups go to a Google Apps Script web app (`waitlist/Code.js`) owned by jamesniranye@gmail.com. It writes each one to the "Sign ups" tab of the **Obsession waitlist** sheet in that Drive and emails the owner. The site reads the web app URL from `VITE_WAITLIST_URL` in `.env`. Without it the form runs in preview and sends nothing.
   - To change the script: paste `waitlist/Code.js` into the Apps Script editor, save, then Deploy, Manage deployments, edit, New version. The URL stays the same.

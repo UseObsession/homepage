@@ -1,4 +1,4 @@
-import { Faq, FinalCta, Rules, SectionHead, UseCases } from '../components/Blocks'
+import { Faq, FinalCta, Rules, SampleTeaser, SectionHead, UseCases } from '../components/Blocks'
 import { Code, sdkExample, webhookExample } from '../components/Code'
 import { Reveal } from '../components/Reveal'
 import { WaitlistForm } from '../components/WaitlistForm'
@@ -55,6 +55,12 @@ export function Developers() {
               </Reveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="section sunken">
+        <div className="wrap">
+          <SampleTeaser start="webhook" />
         </div>
       </section>
 

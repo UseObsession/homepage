@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report formats: variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Throwaway comparison page. Not part of the site build. */
+:root {
+  --bg: #080807; --bg-2: #0d0d0c; --panel: #121211; --panel-2: #181816; --line: #2a2927; --line-2: #3d3c38;
+  --fg: #edebe5; --fg-2: #b7b5ac; --fg-3: #98968e; --tint: 237 235 229;
+  --ok: #94cf9f; --ok-bg: #152318; --bad: #f5a39b; --bad-bg: #2e1817; --warn: #edc47d; --warn-bg: #292010;
+  --sans: "Geist", system-ui, sans-serif; --mono: "Geist Mono", ui-monospace, monospace;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 16px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p { margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+header.top { padding: 56px 0 24px; border-bottom: 1px solid var(--line); }
+header.top h1 { font-size: clamp(30px, 4vw, 46px); letter-spacing: -.04em; line-height: 1.05; }
+header.top p { color: var(--fg-2); margin-top: 12px; max-width: 70ch; }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.jump a { color: var(--fg-2); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 999px; box-shadow: 0 0 0 1px var(--line-2) inset; }
+.jump a:hover { color: var(--fg); }
+section.v { padding: 64px 0; border-bottom: 1px solid var(--line); }
+.v-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; margin-bottom: 28px; align-items: end; }
+.v-k { font: 500 12px/1 var(--mono); color: var(--fg-3); text-transform: uppercase; letter-spacing: .06em; }
+.v-head h2 { font-size: 30px; letter-spacing: -.035em; margin-top: 10px; }
+.v-note { color: var(--fg-2); font-size: 14.5px; }
+.v-note b { color: var(--fg); font-weight: 500; }
+.sec-title { font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.04em; line-height: 1.05; margin-bottom: 8px; }
+.sec-lede { color: var(--fg-2); max-width: 60ch; margin-bottom: 24px; }
+.kicker { font: 500 12px/1 var(--mono); color: var(--fg-3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+
+/* Shared format previews. Sizes are in em so .mini can shrink them. */
+.fmt { font-size: 15px; }
+.mini .fmt { font-size: 10.5px; }
+.paper { background: #fff; border-radius: .4em; overflow: hidden; box-shadow: 0 0 0 1px rgb(0 0 0 / .2), 0 2em 4em -2em rgb(0 0 0 / .8); }
+.paper { max-height: 30em; } .paper img { display: block; width: 100%; }
+.client { background: var(--panel); border-radius: .9em; box-shadow: 0 0 0 1px var(--line) inset; overflow: hidden; }
+.client-bar { display: flex; align-items: center; gap: .6em; padding: .7em 1em; border-bottom: 1px solid var(--line); font: 500 .8em/1 var(--mono); color: var(--fg-3); text-transform: uppercase; letter-spacing: .04em; }
+.client-bar i { width: .6em; height: .6em; border-radius: 50%; background: rgb(var(--tint) / .15); }
+.client-body { padding: 1.2em 1.3em; display: grid; gap: .7em; }
+.mail-meta { display: grid; grid-template-columns: 5em 1fr; gap: .25em .8em; font-size: .9em; }
+.mail-meta dt { color: var(--fg-3); }
+.mail-meta dd { margin: 0; }
+.mail-subj { font-weight: 600; font-size: 1.15em; letter-spacing: -.01em; }
+.verdict { display: inline-flex; align-items: center; gap: .4em; height: 1.7em; padding: 0 .6em; border-radius: .4em; font: 500 .8em/1 var(--mono); letter-spacing: .02em; }
+.verdict.bad { color: var(--bad); background: var(--bad-bg); }
+.verdict.ok { color: var(--ok); background: var(--ok-bg); }
+.tl { display: grid; gap: .35em; font-size: .92em; }
+.tl div { display: grid; grid-template-columns: 7.5em 1fr; gap: .8em; }
+.tl time { font: 400 .9em/1.5 var(--mono); color: var(--fg-3); }
+.btnish { display: inline-flex; align-items: center; height: 2.2em; padding: 0 1em; border-radius: 999px; background: var(--fg); color: var(--bg); font-weight: 600; font-size: .85em; width: fit-content; }
+.slack { background: #1a1d21; border-radius: .9em; box-shadow: 0 0 0 1px #2c2f33 inset; padding: 1.1em 1.2em; display: grid; gap: .6em; }
+.slack-ch { font: 500 .8em/1 var(--mono); color: #9aa0a6; }
+.slack-msg { display: grid; grid-template-columns: 2.4em 1fr; gap: .8em; }
+.slack-av { width: 2.4em; height: 2.4em; border-radius: .5em; background: var(--fg); color: var(--bg); display: grid; place-items: center; font-weight: 700; }
+.slack-name { font-weight: 700; } .slack-name span { font-weight: 400; color: #9aa0a6; font-size: .85em; margin-left: .4em; }
+.slack-card { margin-top: .4em; border-left: .25em solid var(--bad); padding: .4em .9em; display: grid; gap: .3em; background: rgb(255 255 255 / .03); border-radius: 0 .4em .4em 0; }
+.slack-btns { display: flex; gap: .5em; margin-top: .3em; }
+.slack-btns span { font-size: .85em; padding: .35em .8em; border-radius: .35em; box-shadow: 0 0 0 1px #3a3d42 inset; }
+.clay { background: var(--panel); border-radius: .9em; box-shadow: 0 0 0 1px var(--line) inset; overflow: hidden; }
+.clay table { width: 100%; border-collapse: collapse; font-size: .85em; }
+.clay th, .clay td { text-align: left; padding: .6em .8em; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.clay th { font: 500 .85em/1 var(--mono); color: var(--fg-3); text-transform: uppercase; letter-spacing: .04em; background: var(--bg-2); }
+.clay .new { background: rgb(116 174 242 / .08); }
+.clay th.new { color: #74aef2; }
+.clay .gap { color: var(--bad); }
+.clay .none { color: var(--fg-3); }
+.code { background: var(--bg-2); border-radius: .9em; box-shadow: 0 0 0 1px var(--line) inset; overflow: hidden; }
+.code pre { margin: 0; padding: 1em 1.2em; font: 400 .82em/1.65 var(--mono); color: var(--fg-2); overflow-x: auto; }
+.code .k { color: var(--fg); } .code .s { color: var(--ok); } .code .c { color: var(--fg-3); }
+.fmt-cap { font-size: 13px; color: var(--fg-3); margin-top: 12px; }
+
+/* A. Tabs */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.tabs button { position: relative; overflow: hidden; height: 38px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--fg-3); font: 500 14px var(--sans); cursor: pointer; box-shadow: 0 0 0 1px var(--line) inset; }
+.tabs button.on { color: var(--fg); background: rgb(var(--tint) / .06); box-shadow: 0 0 0 1px var(--line-2) inset; }
+.tabs button i { position: absolute; left: 14px; right: 14px; bottom: 5px; height: 1.5px; background: var(--fg-3); transform-origin: left; transform: scaleX(0); }
+.tabs button.on i { animation: fill 5s linear forwards; }
+.tabs.paused button.on i { animation: none; transform: scaleX(0); }
+@keyframes fill { to { transform: scaleX(1); } }
+.stage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 28px; align-items: center; padding: 28px; border-radius: 22px; background: var(--panel); box-shadow: 0 0 0 1px var(--line) inset; min-height: 460px; }
+.stage-copy h3 { font-size: 24px; letter-spacing: -.03em; margin-bottom: 8px; }
+.stage-copy p { color: var(--fg-2); }
+.stage-view { animation: rise .45s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+
+/* B. Carousel (coverflow) */
+.cf { position: relative; height: 520px; perspective: 1400px; overflow: hidden; }
+.cf-slide { position: absolute; top: 20px; left: 50%; width: min(520px, 62vw); transform-origin: center; transition: transform .7s var(--ease), opacity .7s var(--ease), filter .7s var(--ease); cursor: pointer; }
+.cf-label { font: 500 12px/1 var(--mono); color: var(--fg-3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; text-align: center; }
+.cf-ctrl { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 8px; }
+.cf-ctrl button { width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgb(var(--tint) / .06); color: var(--fg); cursor: pointer; box-shadow: 0 0 0 1px var(--line-2) inset; font-size: 16px; }
+.dots { display: flex; gap: 6px; } .dots i { width: 7px; height: 7px; border-radius: 2px; background: var(--line-2); cursor: pointer; } .dots i.on { background: var(--fg); }
+
+/* C. Marquee */
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; gap: 18px; width: max-content; animation: slide 45s linear infinite; padding: 6px 0; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.mcard { width: 340px; flex: none; display: grid; gap: 10px; align-content: start; }
+.mcard .v-k { text-align: left; }
+
+/* D. Bento */
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: minmax(150px, auto); gap: 14px; }
+.tile { border-radius: 20px; background: var(--panel); box-shadow: 0 0 0 1px var(--line) inset; padding: 18px; display: grid; gap: 12px; align-content: start; overflow: hidden; }
+.tile .v-k { margin-bottom: 2px; }
+.t-pdf { grid-column: span 2; grid-row: span 2; }
+.t-clay { grid-column: span 4; }
+.t-mail { grid-column: span 2; } .t-slack { grid-column: span 2; }
+.t-hook { grid-column: span 6; }
+
+/* E. Hub and spoke */
+.hub { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 28px; align-items: center; }
+.hub-map { position: relative; height: 460px; }
+.hub-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hub-map path { fill: none; stroke: var(--line-2); stroke-width: 1.5; transition: stroke .3s; }
+.hub-map path.on { stroke: var(--fg); stroke-dasharray: 6 6; animation: dash 1s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.hub-centre { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 230px; padding: 16px; border-radius: 18px; background: var(--panel-2); box-shadow: 0 0 0 1px var(--line-2) inset, 0 30px 60px -30px #000; display: grid; gap: 8px; text-align: left; }
+.hub-centre b { font-size: 15px; letter-spacing: -.01em; }
+.hub-centre p { font-size: 13px; color: var(--fg-2); }
+.spoke { position: absolute; transform: translate(-50%, -50%); height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--panel); color: var(--fg-2); font: 500 14px var(--sans); cursor: pointer; box-shadow: 0 0 0 1px var(--line-2) inset; white-space: nowrap; transition: background .3s, color .3s; }
+.spoke.on { background: var(--fg); color: var(--bg); box-shadow: none; }
+.hub-view { animation: rise .45s var(--ease) both; }
+
+/* F. Workflow */
+.flow-wrap { border-radius: 22px; background: radial-gradient(circle at 1px 1px, rgb(var(--tint) / .08) 1px, transparent 0) 0 0 / 22px 22px, var(--bg-2); box-shadow: 0 0 0 1px var(--line) inset; padding: 24px; }
+.flow { position: relative; height: 430px; min-width: 980px; }
+.flow-scroll { overflow-x: auto; }
+.flow svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.flow path { fill: none; stroke: var(--line-2); stroke-width: 1.5; }
+.flow path.live { stroke: var(--fg-3); stroke-dasharray: 5 7; animation: dash 1.2s linear infinite; }
+.node { position: absolute; width: 190px; padding: 12px 14px; border-radius: 14px; background: var(--panel); box-shadow: 0 0 0 1px var(--line-2) inset; cursor: pointer; display: grid; gap: 4px; transition: box-shadow .25s, transform .25s; }
+.node:hover { transform: translateY(-2px); }
+.node.on { box-shadow: 0 0 0 1.5px var(--fg) inset; }
+.node .nk { font: 500 10.5px/1 var(--mono); color: var(--fg-3); text-transform: uppercase; letter-spacing: .05em; }
+.node b { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+.node p { font-size: 12.5px; color: var(--fg-2); line-height: 1.35; }
+.node.trigger { box-shadow: 0 0 0 1px var(--bad) inset; }
+.node.custom { background: var(--fg); color: var(--bg); box-shadow: none; } .node.custom p, .node.custom .nk { color: #4d4a44; }
+.inspector { margin-top: 18px; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 20px; align-items: start; }
+.inspector h3 { font-size: 20px; letter-spacing: -.02em; margin-bottom: 6px; }
+.inspector p { color: var(--fg-2); font-size: 14.5px; }
+
+@media (max-width: 900px) {
+  .v-head, .stage, .hub, .inspector { grid-template-columns: 1fr; }
+  .bento { grid-template-columns: 1fr 1fr; } .t-pdf, .t-clay, .t-mail, .t-slack, .t-hook { grid-column: span 2; grid-row: auto; }
+  .hub-map { height: 380px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="v-k">Throwaway · sample report section</p>
+    <h1>One finding, every format: six ways to show it</h1>
+    <p>Each variant shows the same real finding from the September store check (Brand G, a basket left with no reminder in 48 hours) as a PDF, an email, a Slack message, Clay columns and a webhook. The last one adds a workflow, where a verdict triggers whatever you build.</p>
+    <nav class="jump">
+      <a href="#a">A. Tabs</a><a href="#b">B. Carousel</a><a href="#c">C. Marquee</a><a href="#d">D. Bento grid</a><a href="#e">E. Hub and spoke</a><a href="#f">F. Workflow</a>
+    </nav>
+  </div>
+</header>
+
+<section class="v" id="a"><div class="wrap">
+  <div class="v-head">
+    <div><p class="v-k">Variant A</p><h2>Tabs, with auto advance</h2></div>
+    <p class="v-note"><b>For:</b> clearest, accessible, matches the run window above it. <b>Against:</b> only one format visible at a time; people rarely click past the second tab, so auto advance does the work.</p>
+  </div>
+  <h3 class="sec-title">The same proof, wherever you work.</h3>
+  <p class="sec-lede">One finding from a real store check, delivered five ways.</p>
+  <div class="tabs" id="a-tabs" role="tablist"></div>
+  <div class="stage"><div class="stage-copy" id="a-copy"></div><div class="stage-view" id="a-view"></div></div>
+</div></section>
+
+<section class="v" id="b"><div class="wrap">
+  <div class="v-head">
+    <div><p class="v-k">Variant B</p><h2>Carousel (coverflow)</h2></div>
+    <p class="v-note"><b>For:</b> the "rolling gallery" feel; neighbours peek in, so people see there's more. <b>Against:</b> hidden slides get little attention, and carousels are fiddly on phones.</p>
+  </div>
+  <h3 class="sec-title">The same proof, wherever you work.</h3>
+  <p class="sec-lede">Click a side card or use the arrows. It also turns on its own.</p>
+  <div class="cf" id="cf"></div>
+  <div class="cf-ctrl"><button id="cf-prev" aria-label="Previous">←</button><div class="dots" id="cf-dots"></div><button id="cf-next" aria-label="Next">→</button></div>
+</div></section>
+
+<section class="v" id="c"><div class="wrap">
+  <div class="v-head">
+    <div><p class="v-k">Variant C</p><h2>Marquee (infinite rolling row)</h2></div>
+    <p class="v-note"><b>For:</b> constant motion and breadth at a glance; pauses on hover. <b>Against:</b> nothing is readable in detail; best as a band, with a link to the full sample report.</p>
+  </div>
+  <h3 class="sec-title">The same proof, wherever you work.</h3>
+  <p class="sec-lede">Hover to pause.</p>
+</div>
+  <div class="marquee mini"><div class="marquee-track" id="mq"></div></div>
+</section>
+
+<section class="v" id="d"><div class="wrap">
+  <div class="v-head">
+    <div><p class="v-k">Variant D</p><h2>Bento grid</h2></div>
+    <p class="v-note"><b>For:</b> every format visible at once, no clicks, works well on phones as a stack. <b>Against:</b> busy; each tile is small, so it shows the shape of each format more than the detail.</p>
+  </div>
+  <h3 class="sec-title">The same proof, wherever you work.</h3>
+  <p class="sec-lede">One finding from a real store check, delivered five ways.</p>
+  <div class="bento mini" id="bento"></div>
+</div></section>
+
+<section class="v" id="e"><div class="wrap">
+  <div class="v-head">
+    <div><p class="v-k">Variant E</p><h2>Hub and spoke</h2></div>
+    <p class="v-note"><b>For:</b> says "one finding, many destinations" in a single picture, and hints at infrastructure. <b>Against:</b> a little more abstract; needs a stacked layout on phones.</p>
+  </div>
+  <h3 class="sec-title">One finding. Every place your team works.</h3>
+  <p class="sec-lede">Pick a destination to see what arrives there.</p>
+  <div class="hub"><div class="hub-map" id="hub"></div><div id="hub-view"></div></div>
+</div></section>
+
+<section class="v" id="f"><div class="wrap">
+  <div class="v-head">
+    <div><p class="v-k">Variant F</p><h2>Workflow</h2></div>
+    <p class="v-note"><b>For:</b> shows formats and the custom build story together: a verdict is a trigger, and anything can follow. Strong on the developers page and for agencies reselling. <b>Against:</b> promises a workflow feature, so it needs to be real or clearly a concept.</p>
+  </div>
+  <h3 class="sec-title">A verdict can start anything.</h3>
+  <p class="sec-lede">Click any step to see what it sends. The last step is whatever you build.</p>
+  <div class="flow-wrap"><div class="flow-scroll"><div class="flow" id="flow"></div></div>
+    <div class="inspector" id="insp"></div></div>
+</div></section>
+
+<script>
+const F = {
+  pdf: {
+    label: 'PDF report', short: 'PDF',
+    line: 'A report to forward to anyone, with the verdicts first and the proof behind each one.',
+    html: () => `<div class="fmt"><div class="paper"><img src="/report/page-1.jpg" alt="Page 1 of the sample report"></div></div>`,
+  },
+  email: {
+    label: 'Email', short: 'Email',
+    line: 'An alert the moment a verdict lands, or one digest on the schedule you set.',
+    html: () => `<div class="fmt"><div class="client"><div class="client-bar"><i></i><i></i><i></i> Inbox</div><div class="client-body">
+      <dl class="mail-meta"><dt>From</dt><dd>Obsession alerts</dd><dt>To</dt><dd>you@agency.com</dd></dl>
+      <p class="mail-subj">Brand G: no basket reminder in 48 hours</p>
+      <span class="verdict bad">Silent · Cart journey</span>
+      <div class="tl"><div><time>22 Sep, 02:57</time><span>Left a Body Care Gift Set (£40) in the basket</span></div><div><time>24 Sep, 02:57</time><span>Nothing arrived. Control message and second run agree.</span></div></div>
+      <span class="btnish">Open the proof</span></div></div></div>`,
+  },
+  slack: {
+    label: 'Slack', short: 'Slack',
+    line: 'A message in the channel you choose, with the verdict and a link to the proof.',
+    html: () => `<div class="fmt"><div class="slack"><p class="slack-ch"># client-brand-g</p><div class="slack-msg"><div class="slack-av">O</div><div>
+      <p class="slack-name">Obsession <span>APP · 02:58</span></p>
+      <div class="slack-card"><b>Silent: Brand G, cart journey</b><span>No reminder 48 hours after a £40 basket was left. Confirmed by a second run.</span></div>
+      <div class="slack-btns"><span>View proof</span><span>See all journeys</span></div></div></div></div></div>`,
+  },
+  clay: {
+    label: 'Clay', short: 'Clay',
+    line: 'New columns on the rows you already have: the gap, the date it was seen and a proof link.',
+    html: () => `<div class="fmt"><div class="clay"><table>
+      <thead><tr><th>Company</th><th>Domain</th><th class="new">Gap</th><th class="new">Seen on</th><th class="new">Proof</th></tr></thead>
+      <tbody>
+      <tr><td>Brand G</td><td>brand-g.example</td><td class="new gap">No basket reminder</td><td class="new">24 Sep</td><td class="new">link</td></tr>
+      <tr><td>Brand K</td><td>brand-k.example</td><td class="new none">No gap</td><td class="new">24 Sep</td><td class="new">link</td></tr>
+      <tr><td>Brand R</td><td>brand-r.example</td><td class="new gap">No text after opt in</td><td class="new">25 Sep</td><td class="new">link</td></tr>
+      <tr><td>Brand T</td><td>brand-t.example</td><td class="new none">Checking</td><td class="new">·</td><td class="new">·</td></tr>
+      </tbody></table></div></div>`,
+  },
+  hook: {
+    label: 'API and webhooks', short: 'Webhook',
+    line: 'Every result as JSON, posted to your endpoint, with links to the evidence.',
+    html: () => `<div class="fmt"><div class="code"><pre><span class="c">// POST https://yourapp.com/hooks/obsession</span>
+{
+  <span class="k">"target"</span>: <span class="s">"brand-g.example"</span>,
+  <span class="k">"journey"</span>: <span class="s">"cart"</span>,
+  <span class="k">"verdict"</span>: <span class="s">"silent"</span>,
+  <span class="k">"window"</span>: [<span class="s">"2026-09-22T02:57Z"</span>, <span class="s">"2026-09-24T02:57Z"</span>],
+  <span class="k">"checks"</span>: { <span class="k">"control_message"</span>: true, <span class="k">"second_run"</span>: true },
+  <span class="k">"evidence"</span>: {
+    <span class="k">"screenshots"</span>: <span class="s">"https://api.useobsession.com/v1/evidence/run_8f2c"</span>,
+    <span class="k">"report"</span>: <span class="s">"https://useobsession.com/r/brand-g"</span>
+  }
+}</pre></div></div>`,
+  },
+}
+const ORDER = ['pdf', 'email', 'slack', 'clay', 'hook']
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/* A. Tabs */
+;(() => {
+  const tabs = document.getElementById('a-tabs'), view = document.getElementById('a-view'), copy = document.getElementById('a-copy')
+  let i = 0, timer, mine = false
+  function show(n) {
+    i = n
+    tabs.innerHTML = ORDER.map((k, j) => `<button role="tab" aria-selected="${j === i}" class="${j === i ? 'on' : ''}" data-i="${j}">${F[k].label}<i></i></button>`).join('')
+    copy.innerHTML = `<p class="kicker">${F[ORDER[i]].label}</p><h3>${F[ORDER[i]].line}</h3><p class="fmt-cap">Brand G · cart journey · silent for 48 hours</p>`
+    view.innerHTML = F[ORDER[i]].html(); view.style.animation = 'none'; view.offsetHeight; view.style.animation = ''
+    clearTimeout(timer); if (!mine && !reduce) timer = setTimeout(() => show((i + 1) % ORDER.length), 5000)
+  }
+  tabs.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; mine = true; tabs.classList.add('paused'); show(+b.dataset.i) })
+  show(0)
+})()
+
+/* B. Coverflow */
+;(() => {
+  const cf = document.getElementById('cf'), dots = document.getElementById('cf-dots')
+  cf.innerHTML = ORDER.map((k, j) => `<div class="cf-slide" data-i="${j}"><p class="cf-label">${F[k].label}</p>${F[k].html()}</div>`).join('')
+  dots.innerHTML = ORDER.map((_, j) => `<i data-i="${j}"></i>`).join('')
+  const slides = [...cf.children]; let i = 0, timer
+  function layout() {
+    slides.forEach((s, j) => {
+      let d = j - i; if (d > 2) d -= ORDER.length; if (d < -2) d += ORDER.length
+      const x = d * 72, z = -Math.abs(d) * 160, r = d * -18
+      s.style.transform = `translateX(calc(-50% + ${x}%)) translateZ(${z}px) rotateY(${r}deg)`
+      s.style.opacity = Math.abs(d) > 1 ? .15 : d === 0 ? 1 : .5
+      s.style.filter = d === 0 ? 'none' : 'saturate(.6)'
+      s.style.zIndex = 10 - Math.abs(d)
+    })
+    ;[...dots.children].forEach((d, j) => d.classList.toggle('on', j === i))
+  }
+  function go(n, user) { i = (n + ORDER.length) % ORDER.length; layout(); clearTimeout(timer); if (!user && !reduce) timer = setTimeout(() => go(i + 1), 4000) }
+  cf.addEventListener('click', (e) => { const s = e.target.closest('.cf-slide'); if (s) go(+s.dataset.i, true) })
+  dots.addEventListener('click', (e) => { if (e.target.dataset.i) go(+e.target.dataset.i, true) })
+  document.getElementById('cf-prev').onclick = () => go(i - 1, true)
+  document.getElementById('cf-next').onclick = () => go(i + 1, true)
+  go(0)
+})()
+
+/* C. Marquee */
+;(() => {
+  const cards = ORDER.map((k) => `<div class="mcard"><p class="v-k">${F[k].label}</p>${F[k].html()}</div>`).join('')
+  document.getElementById('mq').innerHTML = cards + cards
+})()
+
+/* D. Bento */
+;(() => {
+  const cls = { pdf: 't-pdf', email: 't-mail', slack: 't-slack', clay: 't-clay', hook: 't-hook' }
+  document.getElementById('bento').innerHTML = ['pdf', 'clay', 'email', 'slack', 'hook'].map((k) => `<div class="tile ${cls[k]}"><p class="v-k">${F[k].label}</p>${F[k].html()}</div>`).join('')
+})()
+
+/* E. Hub and spoke */
+;(() => {
+  const hub = document.getElementById('hub'), view = document.getElementById('hub-view')
+  const pos = { pdf: [16, 16], email: [84, 16], slack: [88, 62], clay: [50, 92], hook: [12, 66] }
+  hub.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${ORDER.map((k) => `<path data-k="${k}" d="M50 50 Q ${(50 + pos[k][0]) / 2} ${pos[k][1]} ${pos[k][0]} ${pos[k][1]}" vector-effect="non-scaling-stroke"/>`).join('')}</svg>
+    <div class="hub-centre"><span class="verdict bad">Silent</span><b>Brand G, cart journey</b><p>No reminder 48 hours after a £40 basket was left. Confirmed by a second run.</p></div>
+    ${ORDER.map((k) => `<button class="spoke" data-k="${k}" style="left:${pos[k][0]}%;top:${pos[k][1]}%">${F[k].label}</button>`).join('')}`
+  let i = 0, timer, mine = false
+  function show(k) {
+    hub.querySelectorAll('.spoke').forEach((b) => b.classList.toggle('on', b.dataset.k === k))
+    hub.querySelectorAll('path').forEach((p) => p.classList.toggle('on', p.dataset.k === k))
+    view.innerHTML = `<div class="hub-view"><p class="kicker">${F[k].label}</p>${F[k].html()}<p class="fmt-cap">${F[k].line}</p></div>`
+    clearTimeout(timer); if (!mine && !reduce) timer = setTimeout(() => { i = (i + 1) % ORDER.length; show(ORDER[i]) }, 4500)
+  }
+  hub.addEventListener('click', (e) => { const b = e.target.closest('.spoke'); if (b) { mine = true; show(b.dataset.k) } })
+  show(ORDER[0])
+})()
+
+/* F. Workflow */
+;(() => {
+  const flow = document.getElementById('flow'), insp = document.getElementById('insp')
+  const N = [
+    { id: 't', x: 20, y: 175, cls: 'trigger', k: 'Trigger', b: 'A verdict comes in', p: 'Prospect research · journey: cart · verdict: silent', show: 'hook', d: 'Every verdict is an event. Pick the ones that matter: a gap found, a gap closed, a rival that changed its price.' },
+    { id: 'f', x: 260, y: 175, k: 'Filter', b: 'Only Client A’s list', p: 'Clay table “Client A, UK TAM”, rows with an SMS pop up', show: 'clay', d: 'Narrow it down before anything fires, using fields from the run or from your own list.' },
+    { id: 's', x: 520, y: 20, k: 'Action', b: 'Post to Slack', p: '#client-a, with a proof link', show: 'slack' },
+    { id: 'c', x: 520, y: 128, k: 'Action', b: 'Update the Clay row', p: 'Gap, seen on, proof link', show: 'clay' },
+    { id: 'e', x: 520, y: 236, k: 'Action', b: 'Add to the weekly email', p: 'One digest every Monday', show: 'email' },
+    { id: 'h', x: 520, y: 344, k: 'Action', b: 'Send a webhook', p: 'POST to your endpoint', show: 'hook' },
+    { id: 'x', x: 780, y: 290, cls: 'custom', k: 'Your build', b: 'Anything you want next', p: 'Start a sequence, open a ticket, brief a rep, pause outreach when the gap closes', show: 'hook', d: 'The webhook is where custom work starts: your app, your agency’s product, or a solution we build with you.' },
+  ]
+  const E = [['t', 'f'], ['f', 's'], ['f', 'c'], ['f', 'e'], ['f', 'h'], ['h', 'x']]
+  const W = 190, H = 76
+  const c = (n, side) => [side === 'r' ? n.x + W : n.x, n.y + H / 2]
+  flow.innerHTML = `<svg>${E.map(([a, b]) => { const A = c(N.find((n) => n.id === a), 'r'), B = c(N.find((n) => n.id === b), 'l'), mx = (A[0] + B[0]) / 2
+      return `<path class="live" d="M${A[0]} ${A[1]} C ${mx} ${A[1]}, ${mx} ${B[1]}, ${B[0]} ${B[1]}"/>` }).join('')}</svg>` +
+    N.map((n) => `<div class="node ${n.cls || ''}" data-id="${n.id}" style="left:${n.x}px;top:${n.y}px"><span class="nk">${n.k}</span><b>${n.b}</b><p>${n.p}</p></div>`).join('')
+  function pick(id) {
+    const n = N.find((m) => m.id === id)
+    flow.querySelectorAll('.node').forEach((el) => el.classList.toggle('on', el.dataset.id === id))
+    insp.innerHTML = `<div><p class="kicker">${n.k}</p><h3>${n.b}</h3><p>${n.d || F[n.show].line}</p></div><div class="mini">${F[n.show].html()}</div>`
+  }
+  flow.addEventListener('click', (e) => { const el = e.target.closest('.node'); if (el) pick(el.dataset.id) })
+  pick('t')
+})()
+</script>
+</body>
+</html>

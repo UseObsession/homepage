@@ -11,12 +11,13 @@ export const agencies: Audience = {
   lede: 'Run a client’s sign up, basket and support journeys with a test customer. Follow the rivals they care about. Take what you find into the pitch, the monthly report and the renewal.',
   watched: ['Sign ups', 'Baskets', 'Support', 'Emails', 'Texts', 'Ads', 'Codes', 'Prices', 'Pages'],
   runs: [mysteryRun, prospectRun, competitorRun],
+  outputStart: 'pdf',
   stats: [
     { value: 'Up to 1,080 hours', label: 'back a year, across 15 clients' },
-    { value: '0 emails in 48 hours', label: 'found on a real store', to: '/sample-report' },
+    { value: '0 emails in 48 hours', label: 'found on a real store', to: '/sample-output' },
     { value: 'Every client', label: 'checked at once, not one at a time' },
   ],
-  statsNote: 'Hours: 15 clients × 6 hours of manual checks a month. Emails: the September store check in the sample report.',
+  statsNote: 'Hours: 15 clients × 6 hours of manual checks a month. Emails: the September store check in the sample output.',
   usesTitle: 'One set of checks, across every client and pitch.',
   uses: [
     {
@@ -65,9 +66,10 @@ export const sales: Audience = {
   lede: 'A test customer goes through each account’s sign up, trial or enquiry and records what happens. Your reps open with something the account can check for itself.',
   watched: ['Sign ups', 'Trials', 'Enquiries', 'Replies', 'Calls', 'Emails', 'Texts', 'Pages'],
   runs: [prospectRun, speedRun, trialRun],
+  outputStart: 'clay',
   stats: [
     { value: 'Every account', label: 'on your list, checked at once' },
-    { value: '0 emails in 48 hours', label: 'found on a real store', to: '/sample-report' },
+    { value: '0 emails in 48 hours', label: 'found on a real store', to: '/sample-output' },
     { value: 'Every reply', label: 'timed, across your whole list' },
   ],
   usesTitle: 'Evidence for every account on your list.',
@@ -111,6 +113,7 @@ export const marketing: Audience = {
   lede: 'A test customer signs up to each competitor and records what they send, what they change and when. It runs your own journeys too, so you hear the day one breaks.',
   watched: ['Emails', 'Texts', 'Meta ads', 'Google ads', 'TikTok', 'Offers', 'Prices', 'Pages'],
   runs: [competitorRun, priceRun, mysteryWeeklyRun],
+  outputStart: 'slack',
   usesTitle: 'See the whole playbook, not just the ads.',
   uses: [
     {

@@ -7,7 +7,7 @@ import { metaFor } from './content/meta'
 import { AudiencePage } from './pages/AudiencePage'
 import { Developers } from './pages/Developers'
 import { Home } from './pages/Home'
-import { SampleReport } from './pages/SampleReport'
+import { SampleOutput } from './pages/SampleOutput'
 import { RecipePage } from './pages/RecipePage'
 import { Recipes } from './pages/Recipes'
 
@@ -68,7 +68,8 @@ export function AppRoutes() {
           <Route path="recipes" element={<Recipes />} />
           <Route path="recipes/:slug" element={<RecipePage />} />
           <Route path="templates/*" element={<Navigate to="/recipes" replace />} />
-          <Route path="sample-report" element={<SampleReport />} />
+          <Route path="sample-output" element={<SampleOutput />} />
+          <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
           <Route path="*" element={<NotFound />} />
         </Route>
     </Routes>

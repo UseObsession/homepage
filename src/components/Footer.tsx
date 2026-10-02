@@ -21,7 +21,7 @@ export function Footer() {
             <p className="kicker">Product</p>
             <Link to="/#how">How it works</Link>
             <Link to="/recipes">All recipes</Link>
-            <Link to="/sample-report">Sample report</Link>
+            <Link to="/sample-output">Sample output</Link>
           </div>
           <div>
             <p className="kicker">Recipes</p>

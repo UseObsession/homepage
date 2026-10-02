@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Faq, FinalCta, Rules, SampleTeaser, SectionHead, RecipeGrid, UseCases, Watched, type UseCase } from '../components/Blocks'
+import type { FormatId } from '../components/OutputFormats'
 import type { QA } from '../content/shared'
 import { Reveal } from '../components/Reveal'
 import { RunWindow } from '../components/RunWindow'
@@ -19,6 +20,7 @@ export type Audience = {
   watched: string[]
   runs: Run[]
   stats?: { value: string; label: string; to?: string }[]
+  outputStart?: FormatId
   statsNote?: string
   usesTitle: string
   uses: UseCase[]
@@ -92,7 +94,7 @@ export function AudiencePage({ a }: { a: Audience }) {
 
       <section className="section sunken">
         <div className="wrap">
-          <SampleTeaser />
+          <SampleTeaser start={a.outputStart} />
         </div>
       </section>
 

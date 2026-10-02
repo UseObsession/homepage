@@ -33,7 +33,7 @@ export const competitorRun: Run = {
   summary: 'Week 1: 5 emails, 2 texts, 1 price change, 14 new ads.',
 }
 
-/* The September store check behind the sample report, name hidden. */
+/* The September store check behind the sample output, name hidden. */
 export const mysteryRun: Run = {
   id: 'mystery',
   tab: 'Mystery shopper',

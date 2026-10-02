@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { defaultRules, inputs, outputs, type QA } from '../content/shared'
 import { recipes, type RecipeId } from '../content/recipes'
+import { OutputFormats, type FormatId } from './OutputFormats'
 import { Reveal } from './Reveal'
 import { WaitlistForm } from './WaitlistForm'
 import './Blocks.css'
@@ -131,16 +132,16 @@ export function RecipeGrid({ ids }: { ids: RecipeId[] }) {
   )
 }
 
-/* A real store check, name hidden. The two page images are the report itself. */
-export function SampleTeaser() {
+/* One real run, the September store check, shown in every format its output can arrive in. */
+export function SampleTeaser({ start }: { start?: FormatId }) {
   return (
     <div className="sample">
       <Reveal className="sample-copy">
-        <p className="kicker">Sample report</p>
-        <h2 className="h2">A real store check, with the name hidden.</h2>
+        <p className="kicker">Sample output</p>
+        <h2 className="h2">One real run. The output, however you work.</h2>
         <p className="lede">
-          Four test customers shopped a UK store in September. Each had its own inbox. Two left a basket or stopped at checkout, and
-          in 48 hours nobody wrote to them.
+          Four test customers shopped a UK store in September, name hidden. Two left a basket or stopped at checkout, and in 48 hours
+          nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.
         </p>
         <ul className="sample-facts">
           <li>
@@ -156,17 +157,12 @@ export function SampleTeaser() {
             <b>48h</b> watched
           </li>
         </ul>
-        <Link className="btn-2" to="/sample-report">
-          Read the sample report
+        <Link className="btn-2" to="/sample-output">
+          Read the full report
         </Link>
       </Reveal>
-      <Reveal className="sample-pages">
-        <Link to="/sample-report" className="sample-page back" tabIndex={-1} aria-hidden="true">
-          <img src="/report/page-2.jpg" alt="" width={992} height={1403} loading="lazy" />
-        </Link>
-        <Link to="/sample-report" className="sample-page front" aria-label="Open the sample report">
-          <img src="/report/page-1.jpg" alt="Page 1 of the sample report: summary, scorecard and a checkout screenshot" width={992} height={1403} loading="lazy" />
-        </Link>
+      <Reveal className="sample-formats">
+        <OutputFormats start={start} />
       </Reveal>
     </div>
   )

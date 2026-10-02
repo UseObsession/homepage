@@ -32,10 +32,10 @@ export const pages: PageMeta[] = [
   },
   ...Object.values(recipes).map((r) => ({ path: `/recipes/${r.slug}`, title: `${r.name} · Obsession`, description: r.lede })),
   {
-    path: '/sample-report',
-    title: 'Sample report · Obsession',
+    path: '/sample-output',
+    title: 'Sample output · Obsession',
     description:
-      'A real store check from September 2026, with the store’s name hidden: 4 test customers, 48 hours watched, and 2 journeys that heard nothing.',
+      'A real store check from September 2026, with the store’s name hidden: 4 test customers, 48 hours watched, and 2 journeys that heard nothing. Shown as a report, an email, a Slack message, Clay columns, a webhook and a workflow.',
   },
 ]
 

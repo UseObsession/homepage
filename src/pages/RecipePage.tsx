@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Faq, FinalCta, InputsOutputs, SectionHead, RecipeGrid, Watched } from '../components/Blocks'
+import { Faq, FinalCta, InputsOutputs, RecipeGrid, SampleTeaser, SectionHead, Watched } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
 import { RunWindow } from '../components/RunWindow'
 import { Compare, Ladder, Proof, TimeStrip, Timing } from '../components/RecipeBlocks'
@@ -129,19 +129,10 @@ export function RecipePage() {
         </div>
       </section>
 
-      {t.reportImage && (
-        <section className="section">
-          <div className="wrap tp-report">
-            <SectionHead
-              kicker="The report"
-              title="One page tells you what happened."
-              lede="Verdicts first, then the proof behind each one. This is page one of a real run, with the store’s name hidden."
-            />
-            <Reveal>
-              <Link to="/sample-report" aria-label="Open the sample report">
-                <img src="/report/page-1.jpg" alt="Page 1 of the sample report" width={992} height={1403} loading="lazy" />
-              </Link>
-            </Reveal>
+      {t.sampleOutput && (
+        <section className="section sunken">
+          <div className="wrap">
+            <SampleTeaser />
           </div>
         </section>
       )}

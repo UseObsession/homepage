@@ -167,7 +167,7 @@ export function Home() {
               },
               {
                 q: 'Is it live?',
-                a: 'Store checks like the sample report run today. The other recipes open to early access teams one at a time.',
+                a: 'Store checks like the one in the sample output run today. The other recipes open to early access teams one at a time.',
               },
               {
                 q: 'How long does a run take?',

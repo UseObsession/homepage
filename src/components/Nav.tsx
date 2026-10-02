@@ -10,7 +10,7 @@ const links = [
   { to: '/marketing', label: 'Marketing' },
   { to: '/developers', label: 'Developers' },
   { to: '/recipes', label: 'Recipes' },
-  { to: '/sample-report', label: 'Sample report' },
+  { to: '/sample-output', label: 'Sample output' },
 ]
 
 export function Nav() {

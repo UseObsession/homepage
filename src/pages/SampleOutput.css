@@ -259,3 +259,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+.rep-formats {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .rep-formats {
+    grid-template-columns: 1fr;
+  }
+}

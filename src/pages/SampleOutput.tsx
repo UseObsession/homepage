@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { FinalCta } from '../components/Blocks'
+import { FinalCta, SectionHead } from '../components/Blocks'
+import { OutputFormats } from '../components/OutputFormats'
 import { Reveal } from '../components/Reveal'
 import { report } from '../content/report'
-import './SampleReport.css'
+import './SampleOutput.css'
 
-export function SampleReport() {
-
+/* One real run: first in every format it can arrive in, then the full report. */
+export function SampleOutput() {
   return (
     <>
       <section className="section rep-top">
@@ -25,8 +26,22 @@ export function SampleReport() {
         </div>
       </section>
 
+      <section className="section sunken">
+        <div className="wrap split rep-formats">
+          <SectionHead
+            kicker="Every format"
+            title="The same run, however you work."
+            lede="A report to forward, an alert in your inbox or Slack, new columns in Clay, a webhook to your own app, or a workflow that starts whatever comes next."
+          />
+          <Reveal>
+            <OutputFormats />
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section">
         <div className="wrap">
+          <SectionHead kicker="The full report" title="What the report says, page by page." />
           <p className="kicker rep-k">Scorecard · 4 journeys, 1 test customer each</p>
           <ul className="rep-cards">
             {report.journeys.map((j) => (
@@ -89,7 +104,7 @@ export function SampleReport() {
         <Gap key={g.n} g={g} />
       ))}
 
-      <FinalCta title="Name a company. Get a report like this." line="Tell us which store or company you’d check first." source="sample-report" />
+      <FinalCta title="Name a company. Get a run like this." line="Tell us which store or company you’d check first." source="sample-output" />
     </>
   )
 }

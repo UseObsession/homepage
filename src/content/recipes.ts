@@ -32,7 +32,7 @@ export type Recipe = {
   timing?: { when: string; what: string }[]
   compare?: { title: string; caption: string; cols: string[]; rows: { label: string; values: string[] }[] }
   ladder?: boolean
-  reportImage?: boolean
+  sampleOutput?: boolean
 }
 
 export const recipes: Record<RecipeId, Recipe> = {
@@ -301,11 +301,11 @@ export const recipes: Record<RecipeId, Recipe> = {
       { title: 'A verdict on every journey', line: 'Delivered, silent, no verdict or couldn’t test, with the rule that decided it.' },
       { title: 'A timed log', line: 'Every step and message with its time, from the first click to the last email.' },
       { title: 'The evidence', line: 'Screenshots, the raw emails with headers, the texts as received, and the network log for the privacy check.' },
-      { title: 'A report to share', line: 'A page and a PDF. The sample report is one.' },
+      { title: 'A report to share', line: 'A page and a PDF, like the one in the sample output.' },
       { title: 'What changed', line: 'On a schedule, the journeys that broke or recovered since the last run.' },
       { title: 'Rivals side by side', line: 'The same journeys and timings on the competitors you name.' },
     ],
-    reportImage: true,
+    sampleOutput: true,
     compare: {
       title: 'The same journeys, on the rivals you name.',
       caption: 'Example. Rivals get the public steps only. Basket rows need the company’s OK.',
