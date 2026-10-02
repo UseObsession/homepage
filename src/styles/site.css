@@ -1,0 +1,47 @@
+/* Page primitives shared by every section. Built on the design system (src/styles/ds); every site class starts s-
+   so nothing collides with the app screens. Components add their own s-* classes in their own CSS files. */
+
+.s-page {
+  background: var(--ob-bg);
+  color: var(--ob-text);
+  font-family: var(--ob-font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+.s-wrap {
+  width: 100%;
+  max-width: calc(var(--ob-container, 1160px) + 2 * var(--s-gutter));
+  margin-inline: auto;
+  padding-inline: var(--s-gutter);
+}
+.s-wrap--wide { max-width: calc(1360px + 2 * var(--s-gutter)); }
+.s-wrap--narrow { max-width: calc(760px + 2 * var(--s-gutter)); }
+
+:root { --s-gutter: clamp(16px, 4vw, 32px); }
+
+/* Section rhythm: 1 spacing token for every section, so the page breathes evenly. */
+.s-section { padding-block: var(--ob-space-section, clamp(72px, 10vw, 128px)); }
+.s-section + .s-section { padding-top: 0; }
+.s-section--rule { border-top: 1px solid var(--ob-line-subtle); }
+.s-section--rule + .s-section { padding-top: var(--ob-space-section, clamp(72px, 10vw, 128px)); }
+.s-section--sunken { background: var(--ob-bg-sunken); }
+.s-section--sunken, .s-section--sunken + .s-section { padding-top: var(--ob-space-section, clamp(72px, 10vw, 128px)); }
+
+/* A section's heading block: the claim, then at most 1 line under it. */
+.s-head { display: grid; gap: var(--ob-space-16, 16px); margin-bottom: var(--ob-space-block, clamp(40px, 5vw, 64px)); max-width: 30ch; }
+.s-head--center { margin-inline: auto; text-align: center; justify-items: center; }
+.s-head > p { max-width: 52ch; color: var(--ob-text-2); }
+.s-head--wide { max-width: 44ch; }
+
+/* Keyboard users can skip the navigation. */
+.s-skip {
+  position: absolute; left: var(--s-gutter); top: -100px; z-index: 100;
+  padding: 10px 16px; border-radius: var(--ob-radius-pill, 999px);
+  background: var(--ob-solid); color: var(--ob-text-inverse); font-weight: 500;
+}
+.s-skip:focus-visible { top: 12px; }
+
+/* Visually hidden, still read aloud. */
+.s-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
