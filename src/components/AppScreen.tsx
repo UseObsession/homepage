@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
-import '../screens/kit.css'
-import '../screens/base.css'
 
 /* Every app screen: one 720 x 450 window of the Obsession product, drawn in HTML and CSS (src/screens, synced from
    the workspace by scripts/sync-assets.mjs). Its rest state is the finished scene; adding .play runs its story. */
 const HTML = import.meta.glob('../screens/html/*.html', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
+/* The shared kit and base first, then each screen's own CSS, so a screen's rules win over the base at equal
+   specificity (its icon sizes, for one). Eager globs are hoisted above plain imports, so all 3 load as globs, in order. */
+import.meta.glob('../screens/kit.css', { eager: true })
+import.meta.glob('../screens/base.css', { eager: true })
 import.meta.glob('../screens/css/*.css', { eager: true })
 
 export type ScreenName = string

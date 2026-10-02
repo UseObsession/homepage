@@ -1,0 +1,137 @@
+/* The gap (sections/Gap.tsx). Design system tokens only; site classes start s-gap. */
+
+.s-gap-head { max-width: 44rem; }
+
+/* 1 grid for the whole comparison, so every row's 2 sides share a line, and the Obsession panel runs behind its column
+   from the column name to the last row. Rows and names sit on the same columns through subgrid. */
+.s-gap-cmp {
+  --s-gap-pad: var(--ob-space-40);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-rows: auto repeat(var(--s-gap-rows, 5), auto);
+}
+
+.s-gap-panel {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+
+.s-gap-cols {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: center;
+}
+.s-gap-col {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  padding-block: var(--ob-space-24) var(--ob-space-20);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+}
+.s-gap-col--today { padding-right: var(--s-gap-pad); color: var(--ob-text-3); }
+.s-gap-col--obs { padding-inline: var(--s-gap-pad); color: var(--ob-text); }
+.s-gap-arrow { display: none; }
+
+.s-gap-rows {
+  grid-column: 1 / -1;
+  grid-row: 2 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-gap-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+}
+/* The rules between rows sit on the row's top edge in each column, so they stay level while the 2 sides share a
+   baseline. The Obsession side's rule is inset to the panel's padding. */
+.s-gap-row::before,
+.s-gap-row::after {
+  content: "";
+  grid-row: 1;
+  align-self: start;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-gap-row::before { grid-column: 1; margin-right: var(--s-gap-pad); }
+.s-gap-row::after { grid-column: 2; margin-inline: var(--s-gap-pad); }
+.s-gap-row > p {
+  grid-row: 1;
+  padding-block: var(--ob-space-24);
+  text-wrap: pretty;
+}
+.s-gap-today {
+  grid-column: 1;
+  margin: 0 var(--s-gap-pad) 0 0;
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+}
+.s-gap-obs {
+  grid-column: 2;
+  margin: 0 var(--s-gap-pad);
+  font: var(--ob-type-body-lg);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -.01em;
+  color: var(--ob-text);
+}
+.s-gap-row:last-child > .s-gap-obs { padding-bottom: var(--ob-space-32); }
+
+/* Wide: the panel starts on the same line as the How screen and the 4th job's screen (a 376px column plus the 64px
+   gap), so the page keeps 1 vertical axis. */
+@media (min-width: 1080px) {
+  .s-gap-cmp { grid-template-columns: 440px minmax(0, 1fr); }
+}
+
+/* Narrow: 1 panel holds the comparison. The names become 1 key (Today, then With Obsession), and each row reads
+   the same way: today, quiet, then what changes, in full ink. */
+@media (max-width: 859.98px) {
+  .s-gap-cmp {
+    --s-gap-pad: var(--ob-space-20);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .s-gap-panel { grid-column: 1; grid-row: 1 / -1; }
+  .s-gap-cols {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ob-space-8);
+    padding: var(--ob-space-20) var(--s-gap-pad) var(--ob-space-16);
+  }
+  .s-gap-col { padding: 0; }
+  .s-gap-arrow {
+    display: block;
+    width: var(--ob-icon-sm);
+    height: var(--ob-icon-sm);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .s-gap-rows { grid-column: 1; grid-row: 2; display: block; padding: 0 var(--s-gap-pad) var(--ob-space-8); }
+  .s-gap-row {
+    display: grid;
+    gap: var(--ob-space-6);
+    padding-block: var(--ob-space-16);
+    border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  }
+  .s-gap-row::before,
+  .s-gap-row::after { display: none; }
+  .s-gap-row > p { grid-column: 1; grid-row: auto; padding: 0; }
+  .s-gap-today { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+  .s-gap-obs { margin: 0; font: var(--ob-type-body); font-weight: var(--ob-weight-medium); }
+  .s-gap-row:last-child > .s-gap-obs { padding-bottom: 0; }
+}

@@ -1,0 +1,66 @@
+/* Every kind of (sections/Kinds.tsx). Design system tokens and classes only; site classes start s-kinds. */
+
+.s-kinds-head { max-width: 44rem; }
+
+.s-kinds-body {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--ob-space-64);
+  align-items: start;
+}
+
+.s-kinds-chips { align-content: start; }
+.ob-chips > legend.s-kinds-legend {
+  margin-bottom: var(--ob-space-12);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+}
+
+/* The open kind: its name, its line, then its recipes as links. */
+.s-kinds-result { min-width: 0; padding-top: var(--ob-space-24); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-kinds-pick { display: grid; gap: var(--ob-space-12); }
+.s-kinds-name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.s-kinds-line {
+  max-width: 44ch;
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+.s-kinds-recipes { display: grid; margin: var(--ob-space-12) 0 0; padding: 0; list-style: none; }
+.s-kinds-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-16);
+  min-height: var(--ob-target-touch);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-kinds-recipes li:last-child .s-kinds-link { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-kinds-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
+.s-kinds-go {
+  flex: none;
+  width: var(--ob-icon-md);
+  height: var(--ob-icon-md);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-kinds-link:hover .s-kinds-go { color: var(--ob-text); translate: var(--ob-space-4) 0; }
+}
+
+@media (max-width: 859.98px) {
+  .s-kinds-body { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
+}

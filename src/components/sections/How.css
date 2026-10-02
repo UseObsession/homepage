@@ -1,0 +1,148 @@
+/* How it works (sections/How.tsx). Design system tokens and classes only; site classes start s-how. */
+
+.s-how-head { max-width: 44rem; }
+
+/* ---- Wide: the step rail beside 1 large screen ---------------------------------------------------------------- */
+.s-how-body { display: none; }
+
+
+.s-how-side {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--ob-space-16);
+  padding-top: var(--ob-space-8);
+}
+
+.s-how-rail { display: grid; width: 100%; }
+
+/* Each step is a tab. The rail is 1 hairline down the left edge, drawn by every tab in turn, so it runs unbroken. */
+.s-how-tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--ob-space-24) minmax(0, 1fr);
+  column-gap: var(--ob-space-8);
+  align-items: start;
+  width: 100%;
+  margin: 0;
+  padding: var(--ob-space-16) var(--ob-space-16) var(--ob-space-16) var(--ob-space-24);
+  border: 0;
+  border-radius: var(--ob-radius-sm);
+  background: transparent;
+  color: var(--ob-text-2);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.s-how-tab::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: var(--ob-border-hair);
+  background-color: var(--ob-line);
+}
+/* The ring sits outside the step, so it never hides the progress line on the step's left edge. */
+.s-how-tab:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* The selected step's progress line: a 3:1 track the height of the step, and the ink that fills it over the dwell. */
+.s-how-track {
+  position: absolute;
+  inset-block: 0;
+  left: calc(var(--ob-border-hair) / 2 - var(--ob-border-focus) / 2);
+  width: var(--ob-border-focus);
+  overflow: hidden;
+  background-color: var(--ob-line-ui);
+  opacity: 0;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-how-tab.is-on .s-how-track { opacity: 1; }
+.s-how-fill { display: block; height: 100%; background-color: var(--ob-text); transform-origin: 50% 0; }
+.s-how-fill.is-running { animation: s-how-fill var(--ob-autoplay-dwell, 7000ms) linear forwards; }
+.s-how-fill.is-held { animation-play-state: paused; }
+@keyframes s-how-fill { from { scale: 1 0; } to { scale: 1 1; } }
+
+.s-how-num {
+  padding-top: var(--ob-space-4);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-how-title {
+  display: block;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  text-wrap: balance;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-how-tab.is-on :is(.s-how-num, .s-how-title) { color: var(--ob-text); }
+@media (hover: hover) and (pointer: fine) {
+  .s-how-tab:hover .s-how-title { color: var(--ob-text); }
+}
+
+/* The selected step opens its line and chips (motion.css .ob-anim-expand). */
+.s-how-more { grid-column: 2; }
+.s-how-more > span { display: block; }
+.s-how-line {
+  display: block;
+  max-width: 40ch;
+  padding-top: var(--ob-space-8);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-how-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: var(--ob-space-16) 0 var(--ob-space-4); list-style: none; }
+
+/* Pause sits at the foot of the rail, centred on its line. */
+.s-how-toggle { margin-left: calc(var(--ob-control-xs) / -2 + var(--ob-border-hair) / 2); }
+
+/* The stage: every step's screen in 1 cell. The open one fades in over the one leaving. */
+.s-how-stage { display: grid; align-self: start; min-width: 0; }
+.s-how-panel {
+  grid-area: 1 / 1;
+  min-width: 0;
+  border-radius: var(--ob-radius-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--ob-dur-moderate) var(--ob-ease-in), visibility 0s linear var(--ob-dur-moderate);
+}
+.s-how-panel.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--ob-dur-slow) var(--ob-ease-in-out), visibility 0s;
+}
+.s-how-panel:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.s-how-panel .ilwrap { cursor: pointer; }
+
+/* ---- Narrow: the steps stack, each with its screen under it ---------------------------------------------------- */
+.s-how-list { display: grid; gap: var(--ob-space-64); margin: 0; padding: 0; list-style: none; }
+.s-how-item { display: grid; gap: var(--ob-space-24); min-width: 0; }
+.s-how-copy {
+  display: grid;
+  grid-template-columns: var(--ob-space-24) minmax(0, 1fr);
+  column-gap: var(--ob-space-8);
+  align-items: start;
+}
+.s-how-copy > :not(.s-how-num) { grid-column: 2; }
+.s-how-copy .s-how-num { color: var(--ob-text); }
+.s-how-copy .s-how-title { margin: 0; color: var(--ob-text); }
+.s-how-copy .s-how-line { padding-top: var(--ob-space-8); margin: 0; }
+.s-how-copy .s-how-chips { padding-bottom: 0; }
+
+/* Wide screens show the rail; the stacked list stays for narrower ones. Last, so it wins over both bases. */
+@media (min-width: 1080px) {
+  .s-how-body {
+    display: grid;
+    grid-template-columns: minmax(0, 376px) minmax(0, 1fr);
+    gap: var(--ob-space-64);
+    align-items: start;
+  }
+  .s-how-list { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-how-fill { animation: none; }
+}

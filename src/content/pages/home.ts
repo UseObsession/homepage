@@ -6,7 +6,8 @@ import type { Page } from '../types'
    who it's for > recipes > the real September store check, in every output > developers > questions > the waitlist.
    Every console run is an example and says so in its ledger line. The only real run is the September store check
    (outputs and the third proof fact): 4 test customers, 48 hours watched, 2 full baskets, 0 reminders.
-   Screens, each once: how (compose, templates, kit, run), who it's for (board, leads, brief, inbox, dev), developers (qa). */
+   Screens, each once: how (agencytask, templates, kit, run: all in the agency workspace), the 4th job, a typed task
+   (compose), who it's for (board, leads, brief, inbox, dev), developers (qa). */
 
 export const page: Page = {
   meta: {
@@ -201,7 +202,7 @@ export const page: Page = {
       {
         title: 'Pick a recipe, type a task, or build your own',
         line: 'Recipes cover the jobs teams repeat. For anything else, type it in plain words or use the API.',
-        screen: 'compose',
+        screen: 'agencytask',
       },
       {
         title: 'Add the companies',
@@ -262,6 +263,7 @@ export const page: Page = {
         title: 'Anything else you can describe',
         line: 'Type it in plain words. Obsession sets up the agents, asks what it needs and runs it after your OK.',
         example: 'Get our supplier to credit the 40 faulty units, and chase until the credit note lands',
+        screen: 'compose',
       },
     ],
   },
