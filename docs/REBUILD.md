@@ -5,6 +5,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 ## 1. Decisions (Seun, 2 Oct)
 
 - **Pages:** Home (`/`), Agencies (`/agencies`), Founders (`/founders`), Sales (`/sales`), Marketing (`/marketing`), Developers (`/developers`), Recipes (`/recipes` and `/recipes/SLUG`, James's live URLs), Sample output (`/sample-output`), Privacy (`/privacy`), Agents (`/agents`). Only `/recipes/prospect-research` redirects (301) to `/recipes/prospect-intelligence`.
+- **Use cases (James, 2 Oct, on main):** worked examples for named prospects at `/use-cases/prospect-intelligence-with-clay` and `/use-cases/member-prices-for-price-intelligence`, under a "Use cases" nav menu. Their URLs must keep working (James sends them to prospects). Merge `origin/main` into the rebuild after the build, keep both pages and the menu, bring them onto the design system without changing their substance, and fix the Clay page's "No support reply within 24 hours" check (staff at prospects: use the site's chat bot) and "for weeks" (continuously).
 - **Name:** the ready-made jobs are **Recipes** (James's word; Seun confirmed 2 Oct). A recipe comes with all its infrastructure already set up; a typed task has the system set it up for you. Never a count of them.
 - **Headlines:**
   - Home: **"The intelligence infrastructure for commercial teams"**.
