@@ -9,12 +9,12 @@ import './Outputs.css'
 /* The output viewer: the 1 real run (the September store check) in every format it can arrive in. A row of pill tabs
    (.ob-ptabs) picks the format; 1 calm stage shows it. Rebuilt from James's OutputFormats on the design system:
    no auto-advance, so nothing moves until the reader picks a tab; the PDF's 2 pages spread out on click and stack
-   again on the next. The status of a verdict is the ring mark plus its word, never a colour. */
+   again on the next (on a phone the click brings page 2 to the front, since 2 pages side by side would be too small). The status of a verdict is the ring mark plus its word, never a colour. */
 
 /* The words the controls need. They are chrome, not copy; a page can pass its own. */
 const outputsUi = {
   tabs: 'Output formats',
-  spread: 'Spread the report pages',
+  spread: 'Show page 2 of the report',
   report: 'Read the full report',
   from: 'From',
   to: 'To',

@@ -111,7 +111,7 @@
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
 }
 
-/* ---- PDF: 2 real pages, stacked; a click spreads them side by side ------------------------------------------------- */
+/* ---- PDF: 2 real pages, stacked; a click spreads them side by side (on a phone, brings page 2 forward) ------------ */
 .s-ov-pdf {
   position: relative;
   width: 100%;
@@ -143,10 +143,13 @@
 }
 .s-ov-pdf.is-spread .s-ov-page--front { translate: calc(-100% - var(--ob-space-12)) -50%; rotate: 0deg; scale: 1; }
 .s-ov-pdf.is-spread .s-ov-page--back { translate: var(--ob-space-12) -50%; rotate: 0deg; scale: 1; }
-/* On a narrow stage the stacked pages may grow, since they have the room the spread does not. */
+/* A narrow stage has no room for 2 readable pages side by side, so the stack stays large and a click brings page 2
+   to the front instead (and page 1 back on the next). */
 @container (max-width: 560px) {
-  .s-ov-pdf:not(.is-spread) .s-ov-page--front { scale: 1.5; translate: calc(-50% - 16px) calc(-50% + 6px); }
-  .s-ov-pdf:not(.is-spread) .s-ov-page--back { scale: 1.42; translate: calc(-50% + 20px) calc(-50% - 6px); }
+  .s-ov-pdf .s-ov-page--front { scale: 1.5; translate: calc(-50% - 16px) calc(-50% + 6px); }
+  .s-ov-pdf .s-ov-page--back { scale: 1.42; translate: calc(-50% + 20px) calc(-50% - 6px); }
+  .s-ov-pdf.is-spread .s-ov-page--front { z-index: 1; scale: 1.42; translate: calc(-50% + 20px) calc(-50% - 6px); rotate: 3deg; }
+  .s-ov-pdf.is-spread .s-ov-page--back { z-index: 2; scale: 1.5; translate: calc(-50% - 16px) calc(-50% + 6px); rotate: -2deg; }
 }
 .s-ov-pdf__toggle {
   position: absolute;
