@@ -1,0 +1,66 @@
+/* What a recipe sets up (components/sections/RecipeKit): a product window, its bar counting the items in, then 1 row per
+   item. The ring carries the state: still and quiet while it waits, turning while it is set up, landed when done.
+   Colour changes only follow the ring (text-3 to text-2 to text), never stand in for it. */
+
+.s-kit {
+  width: 100%;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .s-kit { cursor: pointer; }
+}
+
+.s-kit__bar { gap: var(--ob-space-12); }
+.s-kit__name { margin: 0; color: var(--ob-text-2); }
+.s-kit__count {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+.s-kit__of { color: var(--ob-text-3); }
+.s-kit__of::before { content: "\00B7"; content: "\00B7" / ""; margin-inline-end: var(--ob-space-8); }
+
+.s-kit__list {
+  display: grid;
+  margin: 0;
+  padding: var(--ob-space-8) 0;
+  list-style: none;
+}
+.s-kit__item {
+  display: grid;
+  grid-template-columns: var(--ob-space-20) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ob-space-16);
+  min-height: var(--ob-space-48);
+  padding: var(--ob-space-8) var(--ob-space-20);
+  font: var(--ob-type-code);
+  letter-spacing: 0;
+  color: var(--ob-text);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-kit__item + .s-kit__item { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
+.s-kit__item.is-pending { color: var(--ob-text-3); }
+.s-kit__item.is-working { color: var(--ob-text-2); }
+
+.s-kit__mark {
+  display: grid;
+  place-items: center;
+  width: var(--ob-space-20);
+  height: var(--ob-space-20);
+  color: var(--ob-text);
+}
+.s-kit__mark .s-status { color: inherit; }
+.s-kit__item.is-pending .s-kit__mark { color: var(--ob-text-3); opacity: .55; }
+.s-kit__text { min-width: 0; text-wrap: pretty; }
+
+@media (max-width: 519.98px) {
+  .s-kit__item { gap: var(--ob-space-12); padding-inline: var(--ob-space-16); font: var(--ob-type-mono-sm); letter-spacing: var(--ob-type-mono-sm-tracking); }
+}

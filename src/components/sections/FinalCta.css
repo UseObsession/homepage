@@ -1,7 +1,7 @@
 /* The final call to action (components/sections/FinalCta): 1 centred column on the page's axis. The ring sits in the
    section's only glow; the form keeps its own left-aligned micro line, centred as a block. */
 
-.s-final { position: relative; isolation: isolate; overflow: clip; }
+.s-final { position: relative; isolation: isolate; overflow-x: clip; }
 
 .s-final__in {
   display: grid;

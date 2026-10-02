@@ -1,0 +1,228 @@
+/* /recipes (pages/Recipes). The hero is the shared centred hero (sections/Hero.css). Then 1 row per job on its own
+   hairline, the job on the left and its recipes as quiet link rows on the right: the rows every page's Recipes
+   section uses (sections/RecipeGrid), at the index's own scale. Design system tokens only; site classes start s-ri. */
+
+/* ---- Hero --------------------------------------------------------------------------------------------------------- */
+
+.s-hero.s-ri-hero { padding-bottom: var(--ob-space-96); }
+.s-hero-sub.s-ri-hero__sub { margin-top: var(--ob-space-24); }
+
+/* The 5 jobs as jump links: quiet pills, centred on the axis, wrapping on phones. */
+.s-ri-jump { margin-top: var(--ob-space-40); }
+.s-ri-jump > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-ri-jump__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-16);
+  border-radius: var(--ob-radius-pill);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out),
+    box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (pointer: coarse) {
+  .s-ri-jump__link::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-ri-jump__link:hover { color: var(--ob-text); background-color: var(--ob-state-hover); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
+}
+.s-ri-jump__link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.s-ri-jump__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* ---- The jobs ----------------------------------------------------------------------------------------------------- */
+
+.s-ri-jobs {
+  display: grid;
+  padding-bottom: var(--ob-space-section);
+}
+.s-ri-job {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--ob-space-16) var(--ob-space-32);
+  padding-block: var(--ob-space-40);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  /* A jump lands with the job's rule clear of the sticky nav. */
+  scroll-margin-top: var(--ob-space-64);
+}
+.s-ri-job:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-ri-job__head {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  /* The job's name sits level with the first recipe's name. */
+  padding-top: var(--ob-space-12);
+}
+.s-ri-job__name {
+  margin: 0;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-ri-job__line {
+  margin: 0;
+  max-width: 36ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* The rows bleed 16px past the column, so their words line up with the job's name while the hover layer has room. */
+.s-ri-job__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin: 0 calc(var(--ob-space-16) * -1);
+  padding: 0;
+  list-style: none;
+}
+.s-ri-job__list > li { display: grid; }
+.s-ri-item {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-20);
+  border-radius: var(--ob-radius-sm);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-ri-item__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+}
+.s-ri-item__arrow {
+  flex: none;
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-ri-item__line {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-ri-item:hover { background-color: var(--ob-state-hover); }
+  .s-ri-item:hover .s-ri-item__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+}
+.s-ri-item:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.s-ri-item:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+
+@media (max-width: 1079.98px) {
+  .s-ri-job__list { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 859.98px) {
+  .s-ri-job { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); padding-block: var(--ob-space-32); }
+  .s-ri-job__head { padding-top: 0; margin-bottom: var(--ob-space-8); }
+}
+
+/* ---- Where the companies come from, and where the proof goes ------------------------------------------------------ */
+
+.s-section.s-ri-hub { padding-top: 0; }
+.s-head.s-ri-hub__head { max-width: none; }
+.s-ri-hub__head > h2 { max-width: var(--ob-measure-heading); margin: 0; }
+.s-ri-hub__line {
+  margin: 0;
+  max-width: var(--ob-measure-lede);
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+
+/* Sources, the ring, destinations: 1 row, every pill joined to the ring by the wires either side of it. */
+.s-ri-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 280px) minmax(0, 1fr);
+  align-items: center;
+  max-width: var(--ob-container-md);
+  margin-inline: auto;
+}
+.s-ri-flow__col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-ri-flow__col--in { justify-content: flex-end; }
+.s-ri-flow__col--out { justify-content: flex-start; }
+.s-ri-flow__pill {
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-md);
+  padding: 0 var(--ob-space-16);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-shadow-1);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  white-space: nowrap;
+}
+.s-ri-flow__core {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  padding-inline: var(--ob-space-16);
+}
+.s-ri-flow__wire { height: var(--ob-border-hair); background-color: var(--ob-line-strong); }
+.s-ri-flow__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--ob-space-80);
+  height: var(--ob-space-80);
+  border-radius: var(--ob-radius-pill);
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight), var(--ob-shadow-2);
+}
+/* The section's 1 glow: the ring's own light. */
+.s-ri-flow__mark::before {
+  content: "";
+  position: absolute;
+  inset: -96px;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgb(var(--ob-glow-rgb) / .06), transparent);
+  pointer-events: none;
+}
+.s-ri-hub .s-wrap { position: relative; isolation: isolate; }
+
+/* Narrow: sources over the ring over destinations, the wires running down. */
+@media (max-width: 859.98px) {
+  .s-ri-flow { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .s-ri-flow__col { justify-content: center; }
+  .s-ri-flow__core { grid-template-columns: auto; grid-template-rows: var(--ob-space-32) auto var(--ob-space-32); justify-items: center; padding: var(--ob-space-12) 0; }
+  .s-ri-flow__wire { width: var(--ob-border-hair); height: 100%; }
+  .s-ri-flow__mark { width: var(--ob-space-64); height: var(--ob-space-64); }
+}

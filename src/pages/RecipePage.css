@@ -1,189 +1,347 @@
-.hero-pill a {
-  color: var(--text-2);
-  text-decoration: none;
-}
+/* A recipe's own page (pages/RecipePage). The hero is the shared centred hero (sections/Hero.css); every other section
+   is the claim (and at most 1 line) over its content, or beside it on wide screens (.s-rp--split). Design system tokens
+   only; spacing on the 4px grid; site classes start s-rp. */
 
-.hero-pill a:hover {
-  color: var(--text);
-}
+/* ---- Hero ------------------------------------------------------------------------------------------------------- */
 
-.hero-pill b {
-  font-weight: 400;
-  color: var(--text-3);
-}
-
-.tp-h1 {
-  font-size: clamp(38px, 5.6vw, 72px);
-  max-width: 18ch;
-}
-
-.tp-checks {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px;
-}
-
-.tp-group {
-  display: grid;
-  align-content: start;
-  gap: 16px;
-  padding: 24px;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line) inset;
-}
-
-.tp-group ul {
-  display: grid;
-  gap: 16px;
-}
-
-.tp-group li {
-  display: grid;
-  gap: 4px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line-subtle);
-}
-
-.tp-group li:first-child {
-  padding-top: 0;
-  border-top: 0;
-}
-
-.tp-group .h3 {
-  font-size: 17px;
-}
-
-.tp-group .muted {
-  font-size: 15px;
-}
-
-.tp-locked {
-  opacity: .62;
-}
-
-.tp-locked .h3 {
+/* The pill is the way back: Recipes / this recipe. */
+.s-rp-crumbs { min-width: 0; }
+.s-rp-crumbs__list {
   display: flex;
   align-items: center;
-  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-rp-crumbs__list > li { display: flex; align-items: center; min-width: 0; }
+.s-rp-crumbs__list > li + li::before {
+  content: "/";
+  content: "/" / "";
+  padding-inline: var(--ob-space-6);
+  color: var(--ob-text-3);
+}
+.s-rp-crumbs__list [aria-current] { overflow: hidden; color: var(--ob-text); text-overflow: ellipsis; }
+.s-rp-crumbs__link {
+  position: relative;
+  border-radius: var(--ob-radius-xs);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.s-rp-crumbs__link::before { content: ""; position: absolute; inset: calc(var(--ob-space-8) * -1) calc(var(--ob-space-6) * -1); }
+@media (hover: hover) and (pointer: fine) {
+  .s-rp-crumbs__link:hover { color: var(--ob-text); }
+}
+.s-rp-crumbs__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* No typed line on a recipe: the sub follows the headline at the hero's own step. */
+.s-hero-sub.s-rp-hero__sub { margin-top: var(--ob-space-24); }
+
+/* The recipe's screen: the product object under the words, at a size where its text reads like the app's. */
+.s-rp-hero__screen { max-width: 960px; }
+.s-rp-hero__screen .ilwrap { cursor: pointer; }
+
+/* ---- Sections ----------------------------------------------------------------------------------------------------- */
+
+.s-rp .s-head { max-width: none; }
+.s-rp .s-head > h2 { max-width: var(--ob-measure-heading); margin: 0; }
+.s-rp__line {
+  margin: 0;
+  max-width: var(--ob-measure-lede);
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-rp__action { justify-self: start; margin-top: var(--ob-space-4); }
+@media (hover: hover) and (pointer: fine) {
+  .s-rp__action:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+.s-rp__body { min-width: 0; }
+
+/* The claim beside its content: 5 columns to 7. */
+@media (min-width: 1080px) {
+  .s-rp--split .s-rp__in {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--ob-space-64);
+    align-items: start;
+  }
+  .s-rp--split .s-head { margin-bottom: 0; }
 }
 
-.tp-cards {
+/* What it sets up: the claim sits level with the middle of the window. */
+@media (min-width: 1080px) {
+  .s-rp-kit .s-rp__in { align-items: center; }
+}
+
+/* The run: the console takes the full width under its claim; the run's name sits close above the window, on the
+   section's left edge like the claim. */
+.s-rp-run .s-console { justify-items: stretch; }
+.s-rp-run .s-console-label { justify-self: start; margin-bottom: var(--ob-space-12); }
+.s-rp-run .s-console-win { margin-top: 0; }
+
+/* ---- Steps: 4 in a row, each under its own rule ------------------------------------------------------------------ */
+
+.s-rp-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--ob-space-40) var(--ob-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-rp-steps__item {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  gap: var(--ob-space-8);
+  padding-top: var(--ob-space-20);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-rp-steps__n {
+  margin-bottom: var(--ob-space-8);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text-3);
+}
+.s-rp-steps__title {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-rp-steps__line {
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+@media (max-width: 1079.98px) {
+  .s-rp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 519.98px) {
+  .s-rp-steps { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
+}
+
+/* ---- What it checks: 1 row per group, its name on the left, its checks in 2 columns on the right --------------- */
+
+.s-rp-groups { display: grid; border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-rp-group {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--ob-space-16) var(--ob-space-32);
+  padding-block: var(--ob-space-32);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-rp-group__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-rp-group__items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-24) var(--ob-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-rp-group__items > li { display: grid; align-content: start; gap: var(--ob-space-4); }
+.s-rp-group__title {
+  margin: 0;
+  font: var(--ob-type-body);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -0.01em;
+  color: var(--ob-text);
+}
+.s-rp-group__line {
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+@media (max-width: 1079.98px) {
+  .s-rp-group__items { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 859.98px) {
+  .s-rp-group { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); padding-block: var(--ob-space-24); }
+}
+
+/* ---- What you get: 1 board of formats, seamed by hairlines ------------------------------------------------------ */
+
+/* Each cell draws the seam on its top and left edge, outside itself; the board clips the ones on its own edge, so a
+   last row with fewer cells leaves plain surface, never a gap. */
+.s-rp-outs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle), var(--ob-shadow-1);
 }
-
-.tp-card {
+.s-rp-outs > li {
   display: grid;
   align-content: start;
-  gap: 8px;
-  padding: 24px;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-24);
+  box-shadow: calc(var(--ob-border-hair) * -1) calc(var(--ob-border-hair) * -1) 0 0 var(--ob-line-subtle);
+}
+.s-rp-outs__format {
+  margin: 0;
+  font: var(--ob-type-body);
+  font-weight: var(--ob-weight-semibold);
+  letter-spacing: -0.01em;
+  color: var(--ob-text);
+}
+.s-rp-outs__line {
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+@media (max-width: 859.98px) {
+  .s-rp-outs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 519.98px) {
+  .s-rp-outs { grid-template-columns: minmax(0, 1fr); }
+  .s-rp-outs > li { padding: var(--ob-space-20); }
 }
 
-.tp-card .muted {
-  font-size: 15px;
-}
+/* ---- What you can change: the recipe's settings, 1 rule a row ----------------------------------------------------- */
 
-.tp-infra {
+.s-rp-settings { display: grid; margin: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-rp-settings > div {
   display: grid;
-  border-top: 1px solid var(--line);
-}
-
-.tp-infra-row {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 2fr) minmax(0, 3fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
+  gap: var(--ob-space-8) var(--ob-space-24);
   align-items: baseline;
-  gap: 16px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
+  padding-block: var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-rp-settings dt {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+.s-rp-settings dd {
+  margin: 0;
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+@media (max-width: 519.98px) {
+  .s-rp-settings > div { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
 }
 
-.tp-infra-n {
-  font: 500 13px/1 var(--font-mono);
-  color: var(--text-3);
-}
+/* ---- Who it's for: 1 link row per audience, to its own page ------------------------------------------------------- */
 
-.tp-infra-row .h3 {
-  font-size: clamp(20px, 2.2vw, 26px);
-  letter-spacing: -.03em;
-}
-
-.tp-settings {
+.s-rp-who {
   display: grid;
-  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
 }
-
-.tp-settings > div {
+.s-rp-who > li { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* The rows bleed 16px past the column, so their words line up with the section while the hover layer has room. */
+.s-rp-who__link {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line-subtle);
-  font-size: 15px;
-}
-
-.tp-settings dt {
-  color: var(--text-3);
-}
-
-.tp-io {
-  padding-top: 8px;
-}
-
-.tp-who {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-}
-
-.tp-who-card {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 12px;
-  height: 100%;
-  padding: 22px;
-  color: var(--text);
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  align-items: baseline;
+  gap: var(--ob-space-8) var(--ob-space-32);
+  margin-inline: calc(var(--ob-space-16) * -1);
+  padding: var(--ob-space-24) var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  color: var(--ob-text);
   text-decoration: none;
-  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-rp-who__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+}
+.s-rp-who__arrow {
+  flex: none;
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-rp-who__line {
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-rp-who__link:hover { background-color: var(--ob-state-hover); }
+  .s-rp-who__link:hover .s-rp-who__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+}
+.s-rp-who__link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.s-rp-who__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+@media (max-width: 859.98px) {
+  .s-rp-who__link { grid-template-columns: minmax(0, 1fr); padding-block: var(--ob-space-20); }
 }
 
-.tp-who-card:hover {
-  box-shadow: 0 0 0 1px var(--line-strong) inset;
-  transform: translateY(-2px);
+/* ---- The table: the design system's data table; cells wrap, and the row names lead each row ------------------- */
+
+.s-rp-table .ob-table thead td {
+  height: var(--ob-control-md);
+  padding: 0 var(--ob-space-16);
+  background-color: var(--ob-fill-subtle);
+  border-block: var(--ob-border-hair) solid var(--ob-line);
 }
-
-.tp-who-line {
-  font-size: 16px;
-  line-height: 1.45;
+.s-rp-table .ob-table tbody th {
+  height: var(--ob-control-lg);
+  padding: var(--ob-space-12) var(--ob-space-16);
+  text-align: left;
+  vertical-align: middle;
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: var(--ob-type-small-tracking);
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+  color: var(--ob-text);
+  white-space: nowrap;
+  background-color: var(--ob-row-layer);
+  border-top: 0;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
 }
-
-.tp-who-go {
-  color: var(--text-3);
-  font-size: 18px;
+.s-rp-table .ob-table td {
+  padding-block: var(--ob-space-12);
+  white-space: normal;
+  text-wrap: pretty;
 }
-
-@media (max-width: 960px) {
-  .tp-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.s-rp-table .ob-table tbody tr:last-child th { border-bottom: 0; }
+@container (max-width: 600px) {
+  .s-rp-table .ob-table :is(thead td, tbody th):first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: 1px 0 0 var(--ob-table-edge);
+    background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface);
   }
-}
-
-@media (max-width: 640px) {
-  .tp-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .tp-infra-row {
-    grid-template-columns: 36px minmax(0, 1fr);
-  }
-
-  .tp-infra-row .muted {
-    grid-column: 2;
-  }
-
-  .tp-settings > div {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
+  .s-rp-table .ob-table tbody th:first-child { background: var(--ob-surface); }
 }
