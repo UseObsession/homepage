@@ -391,18 +391,30 @@ type Props = ViewerProps & {
   heading: string
   line?: string
   cta?: Cta
+  /* The run's numbers, read before the viewer (page.outputs.facts). */
+  facts?: { value: string; label: string }[]
   /* page.outputs.formats: the page's own line for each format. */
   formats?: { format: string; line: string }[]
   id?: string
   className?: string
 }
 
-export function Outputs({ heading, line, cta, formats, views, lines, initial, ui, id, className }: Props) {
+export function Outputs({ heading, line, cta, facts, formats, views, lines, initial, ui, id, className }: Props) {
   const headingId = useId()
   return (
     <section id={id} className={'s-section s-out' + (className ? ' ' + className : '')} aria-labelledby={headingId}>
       <div className="s-wrap">
         <SectionHead id={headingId} heading={heading} line={line} cta={cta} />
+        {facts && facts.length > 0 && (
+          <dl className="s-out-facts">
+            {facts.map((f) => (
+              <div key={f.label} className="s-out-fact">
+                <dt className="s-out-fact__label">{f.label}</dt>
+                <dd className="s-out-fact__value ob-num">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <OutputViewer views={views} lines={lines ?? formats} initial={initial} ui={ui} />
       </div>
     </section>

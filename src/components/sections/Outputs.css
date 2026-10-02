@@ -480,3 +480,32 @@
     width: var(--ob-space-24);
   }
 }
+
+/* The run's numbers: 4 calm figures between the claim and the viewer, read left to right. */
+.s-out-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 0 var(--ob-space-block, 48px);
+  border-top: 1px solid var(--ob-line-subtle);
+  border-bottom: 1px solid var(--ob-line-subtle);
+}
+.s-out-fact {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--ob-space-4, 4px);
+  padding: var(--ob-space-24, 24px) var(--ob-space-24, 24px) var(--ob-space-24, 24px) 0;
+}
+.s-out-fact + .s-out-fact { padding-left: var(--ob-space-24, 24px); border-left: 1px solid var(--ob-line-subtle); }
+.s-out-fact__value {
+  margin: 0;
+  font: 600 clamp(32px, 3.4vw, 44px) / 1 var(--ob-font-sans);
+  letter-spacing: -0.035em;
+  color: var(--ob-text);
+  font-variant-numeric: tabular-nums;
+}
+.s-out-fact__label { font: 400 15px / 1.4 var(--ob-font-sans); color: var(--ob-text-2); }
+@media (max-width: 640px) {
+  .s-out-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-out-fact:nth-child(3) { padding-left: 0; border-left: 0; }
+  .s-out-fact:nth-child(n + 3) { border-top: 1px solid var(--ob-line-subtle); }
+}

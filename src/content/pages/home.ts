@@ -331,8 +331,14 @@ export const page: Page = {
   },
 
   outputs: {
-    heading: '2 shoppers left full baskets. 0 reminders came in 48 hours.',
-    line: 'A real September check of a skincare store, name hidden: 4 test customers, watched for 48 hours. Open the same run as a PDF, an email, a Slack message, a sheet or Clay, a webhook or a workflow.',
+    heading: '1 real run. The output, however you work.',
+    line: '4 test customers shopped a UK store in September, name hidden. 2 left a basket or stopped at checkout, and in 48 hours nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.',
+    facts: [
+      { value: '4', label: 'journeys run' },
+      { value: '2', label: 'silent' },
+      { value: '15', label: 'screenshots' },
+      { value: '48h', label: 'watched' },
+    ],
     formats: [
       { format: 'PDF report', line: 'A report to forward to anyone: the verdicts first, then the proof behind each one.' },
       { format: 'Email', line: 'An alert the moment a verdict lands, or 1 digest on the schedule you set.' },

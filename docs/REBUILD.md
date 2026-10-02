@@ -31,6 +31,12 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 **Centred**, one column, spread across the page width: never a narrow block, never a left/right split. Top to bottom: the pill (if any), the headline (display type, wide measure so it sits on 1 or 2 balanced lines, `text-wrap: balance`, widening equally to both sides), the typed task line, the sub (centred, about 60 characters wide), the capture form (centred, about 560px), the micro line, the 3 proof facts in a centred row, then the console full width below. Identical structure, spacing and type on Home, Agencies, Founders, Sales, Marketing and Developers; only the words and the console's runs change. Check the centre line at 1000, 1280, 1440 and 1920 wide: every element shares 1 vertical axis.
 
+## 1d. James's trust sections, made ours (Seun, 3 Oct)
+
+- **The rules every run follows** (James's "Built to behave." section): keep the idea and James's claim heading "Built to behave.", rebuilt on the design system (no all-caps eyebrow, no bullet squares, the ring mark where it helps) with the rules as we agreed: every agent says it's AI and who it works for; it asks the site's bot, never staff, at prospects and rivals; public journeys only, nothing behind a login it wasn't given; it stops before payment unless you set a budget; nothing is sent, signed or spent without your OK; every step is signed. Never "it follows robots.txt". Placed on Home after the proof and before the questions, as the trust beat.
+- **The questions** (James's "Before you name a company"): his heading is a good claim for Home's FAQ; no "Questions" eyebrow.
+- **The real run** (Home's output viewer): heading "1 real run. The output, however you work.", the line "4 test customers shopped a UK store in September, name hidden. 2 left a basket or stopped at checkout, and in 48 hours nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.", and 4 facts: 4 journeys run, 2 silent, 15 screenshots, 48h watched. Other pages' proof lines must agree: 1 shopper left a basket and 1 stopped at checkout (never "2 full baskets").
+
 ## 2. The story every page tells
 
 1 arc, easy to follow, never told as a story. In this order (a page may skip a beat, never reorder):

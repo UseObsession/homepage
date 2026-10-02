@@ -85,7 +85,7 @@ export type Final = { heading: string; sub: string; capture: Capture }
 /* Home's own beats, kept from James's Home and rebuilt. */
 export type Jobs = { heading: string; items: { title: string; line: string; example?: string; screen?: ScreenName }[] }
 export type Audiences = { heading: string; items: { audience: AudienceId | 'developers'; name: string; line: string; screen: ScreenName; to: string }[] }
-export type Outputs = { heading: string; line: string; formats: { format: string; line: string }[]; cta: Cta }
+export type Outputs = { heading: string; line: string; facts?: { value: string; label: string }[]; formats: { format: string; line: string }[]; cta: Cta }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
 export type Page = {
