@@ -1,0 +1,17 @@
+// Cloudflare Workers static assets (free plan): the built site in dist/, served as files, nothing else.
+// - not_found_handling "404-page": any address without a page gets dist/404.html with a real 404 status, never Home
+//   with a 200 (docs/REBUILD.md 8b, "real 404s").
+// - html_handling "auto-trailing-slash": dist/agencies.html answers /agencies; public/_redirects sends /agencies/ there
+//   for good.
+// With this file in place Cloudflare no longer configures the deploy itself, so `npm run build` writes dist/ directly.
+// Before merging: "name" must be the name of the Worker useobsession.com runs on (Workers & Pages in the dashboard).
+// After the deploy: curl -sI https://useobsession.com/nope should answer 404 with the 404 page.
+{
+  "name": "useobsession",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

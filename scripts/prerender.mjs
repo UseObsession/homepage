@@ -13,9 +13,10 @@
    Then it checks what it wrote: 1 h1 per page, unique titles and descriptions, every share image present, the JSON-LD
    parses, and every internal link lands on a page or a file. Broken promises fail the build; style notes only warn.
 
-   It builds its own server bundle with a fixed config instead of reading vite.config.ts. On Cloudflare, `wrangler
-   deploy` adds the Cloudflare Vite plugin to the project at build time, which moves Vite's output (the client build
-   lands in dist/client) and would break a second `vite build --ssr`. */
+   It builds its own server bundle with a fixed config instead of reading vite.config.ts. Without wrangler.jsonc,
+   Cloudflare's own deploy set up added its Vite plugin at build time, which moved the client build to dist/client and
+   would break a second `vite build --ssr`; wrangler.jsonc now names dist/ itself, and dist/client is still read if
+   it is ever there. Then it trims the shared stylesheet (scripts/purge-css.mjs). */
 import react from '@vitejs/plugin-react'
 import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync } from 'node:fs'
