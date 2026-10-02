@@ -151,7 +151,7 @@ export const page: Page = {
   },
 
   gap: {
-    heading: 'Most of your week goes unpaid, and rival agencies already sell AI.',
+    heading: 'Pitch audits and client checks eat your unpaid hours.',
     sub: 'Most tools read what a company publishes. Obsession goes through it as a customer.',
     rows: [
       { today: 'Pitch audits on unpaid weekends', obsession: 'Every prospect checked before the call' },
@@ -215,7 +215,6 @@ export const page: Page = {
 
   outcomes: {
     heading: 'Up to $276,000 more a year for an agency with 15 clients.',
-    sub: 'From 1 more client kept and 2 more pitches won on $6,000 monthly retainers, plus a $1,000 monthly rival report sold to 5 of them.',
     items: [
       { value: 'Up to 1,080 hours', label: 'back a year: 15 clients, 6 hours of checks each a month' },
       { value: 'Up to $216,000', label: 'a year from 1 more client kept and 2 more pitches won, on $6,000 monthly retainers' },
@@ -354,6 +353,7 @@ export const page: Page = {
       button: 'Get my free report',
       placeholder: 'Store address, e.g. your-store.example',
       micro: 'No store client yet? Leave the address blank and you join the waitlist. We keep your email to send your report and tell you about Obsession, and nothing else.',
+      orWaitlist: true,
       roles: {
         question: 'What kind of agency are you?',
         options: ['Performance', 'Email and CRM', 'SEO', 'Web and CRO', 'Ecommerce', 'Creative', 'Full service', 'Other'],

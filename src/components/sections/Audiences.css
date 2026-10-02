@@ -10,9 +10,9 @@
   /* A shorter panel keeps its words and screen together; the spare room falls below. */
   align-content: start;
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: var(--ob-space-56);
-  align-items: center;
+  grid-template-columns: var(--s-split);
+  gap: var(--s-split-gap);
+  align-items: start;
   min-width: 0;
 }
 /* The readers not chosen keep their room but are hidden from sight, the keyboard and screen readers. */
@@ -20,17 +20,20 @@
 .s-aud__panel[hidden] .appx-il,
 .s-aud__panel[hidden] .appx-il * { animation: none !important; }
 
+/* The words start level with the window inside the screen's frame, as in Use cases. */
 .s-aud__copy {
   display: grid;
   justify-items: start;
-  gap: var(--ob-space-32);
+  gap: var(--ob-space-24);
+  padding-top: var(--ob-space-24);
   min-width: 0;
 }
+/* The reader's line is the panel's title, under the section's 1 headline: the title size Use cases gives its outcome. */
 .s-aud__line {
   margin: 0;
-  max-width: 18ch;
-  font: var(--ob-type-h3);
-  letter-spacing: var(--ob-type-h3-tracking);
+  max-width: 30ch;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
   color: var(--ob-text);
   text-wrap: balance;
 }
@@ -41,13 +44,10 @@
 .s-aud__screen { min-width: 0; }
 .s-aud__screen .ilwrap { cursor: pointer; }
 
-@media (max-width: 1080px) {
-  .s-aud__panel { gap: var(--ob-space-40); }
-}
 @media (max-width: 860px) {
   .s-aud__panels { margin-top: var(--ob-space-32); }
-  .s-aud__panel { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); align-items: start; }
-  .s-aud__copy { gap: var(--ob-space-24); }
+  .s-aud__panel { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
+  .s-aud__copy { padding-top: 0; }
   .s-aud__panel[hidden] { display: none; }
 }
 

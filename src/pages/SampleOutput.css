@@ -79,13 +79,19 @@
 
 .s-so-proof {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: var(--ob-space-24);
+  grid-template-columns: var(--s-split-flip);
+  gap: var(--ob-space-24) var(--s-split-gap);
   align-items: start;
   margin-top: var(--ob-space-24);
 }
 .s-so-shot.ob-evidence { max-width: none; gap: var(--ob-space-12); padding: var(--ob-space-12); }
-.s-so-shot__frame.ob-evidence-shot { min-height: 0; padding: var(--ob-space-16); }
+/* The capture sits in the same tray as the Proof report (Proof.css): no viewfinder corners, nothing but the image. */
+.s-so-shot__frame {
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight);
+}
 .s-so-shot__cap {
   padding: 0 var(--ob-space-4) var(--ob-space-4);
   font: var(--ob-type-caption);
@@ -161,15 +167,6 @@
   padding: 0;
   list-style: none;
 }
-.s-so-pages__line {
-  margin: 0;
-  max-width: 36ch;
-  padding-top: var(--ob-space-4);
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
-  text-wrap: pretty;
-}
 .s-so-pages__row > li { display: grid; justify-items: center; gap: var(--ob-space-8); }
 .s-so-pages__thumb {
   position: relative;
@@ -226,8 +223,8 @@
 .s-so-gap { scroll-margin-top: var(--ob-space-64); }
 .s-so-gap__in {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  column-gap: var(--ob-space-64);
+  grid-template-columns: var(--s-split);
+  column-gap: var(--s-split-gap);
   row-gap: var(--ob-space-block);
   align-items: start;
 }

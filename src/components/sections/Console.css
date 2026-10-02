@@ -203,10 +203,11 @@
   padding: 0;
   list-style: none;
 }
+/* Each event is a rule with its time beside it; the hairlines and the mono time column carry the list, no marks. */
 .s-console-event {
   display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) auto;
-  gap: var(--ob-space-12);
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--ob-space-16);
   align-items: baseline;
   padding: var(--ob-space-8) 0;
   border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
@@ -214,14 +215,6 @@
 }
 .s-console-event:last-child { border-bottom: 0; }
 .s-console-event.is-in { opacity: 1; }
-/* The square sits on the event's first line, like the ledger's chain, however many lines the event takes. */
-.s-console-node {
-  display: grid;
-  place-items: center start;
-  align-self: start;
-  height: calc(var(--ob-type-small-size) * var(--ob-type-small-leading));
-  color: var(--ob-text-3);
-}
 .s-console-text {
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
@@ -292,9 +285,16 @@
   .s-console-row--more { display: none; }
   .s-console-status .ob-status__detail { display: none; }
   .s-console-row { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
-  .s-console-event { grid-template-columns: 16px minmax(0, 1fr); row-gap: var(--ob-space-2); }
-  .s-console-time { grid-column: 2; grid-row: 1; text-align: left; }
-  .s-console-text { grid-column: 2; }
+  .s-console-event { grid-template-columns: minmax(0, 1fr); row-gap: var(--ob-space-2); }
+  .s-console-time { grid-column: 1; grid-row: 1; text-align: left; }
+  .s-console-text { grid-column: 1; }
+  /* The runs stack here and differ most in height, so only the chosen run takes room, and its log grows as each
+     event lands instead of holding the finished run's space open while it plays. */
+  .s-console-panel:not(.is-active) { display: none; }
+  .s-console-event:not(.is-in),
+  .s-console-finding:not(.is-in),
+  .s-console-fix:not(.is-in),
+  .s-console-ledger:not(.is-in) { display: none; }
 }
 
 /* The plan pane already names the run under the bar, so a phone's bar keeps the tag, the status and the pause. */

@@ -2,9 +2,13 @@
    On the design system's tokens and type scale; every class starts s-notice. Spacing sits on the 4px grid. */
 
 /* ---- The hero: centred, 1 column, 1 vertical axis (docs/REBUILD.md, 1c). ---- */
+/* It starts where every page's hero starts (Hero.css .s-hero), so the first line never jumps between pages. */
 .s-notice-hero {
-  padding-block: var(--ob-space-section) var(--ob-space-block);
+  padding-block: var(--ob-space-80) var(--ob-space-block);
   text-align: center;
+}
+@media (max-width: 759.98px) {
+  .s-notice-hero { padding-top: var(--ob-space-48); }
 }
 .s-notice-hero__in {
   display: grid;
@@ -48,6 +52,14 @@
   width: 100%;
   max-width: var(--ob-container-xs);
   margin-top: var(--ob-space-16);
+}
+/* Its micro line, an error and the privacy line centre under the pill too, as in every centred hero (Hero.css). */
+.s-notice-hero__join .ob-pill-foot,
+.s-notice-hero__join .s-capture__privacy {
+  justify-items: center;
+  padding-inline: 0;
+  text-align: center;
+  text-wrap: balance;
 }
 /* A hero with nothing under it closes the page with the full section space. */
 .s-notice-hero--end { padding-bottom: var(--ob-space-section); }
@@ -96,22 +108,15 @@
 }
 .s-notice__list li:last-child { padding-bottom: 0; }
 
-/* From 860px the row sits on the footer's column grid (24px gaps; 3 columns, then 5 from 1080px), so the claims and the
-   details line up with the site map's columns below: the claim on the first columns, the details across the rest. */
+/* From 860px the row sits on the page split every 2 column section uses (site.css --s-split): the claim on the left,
+   the details on the right, starting on the same line as the rest of the site. */
 @media (min-width: 860px) {
   .s-notice__row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: var(--s-split);
     align-items: baseline;
-    gap: var(--ob-space-24);
+    gap: var(--ob-space-24) var(--s-split-gap);
     padding-block: var(--ob-space-40);
   }
-  .s-notice__h { grid-column: 1 / 2; }
-  .s-notice__body { grid-column: 2 / -1; }
-}
-@media (min-width: 1080px) {
-  .s-notice__row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .s-notice__h { grid-column: 1 / 3; }
-  .s-notice__body { grid-column: 3 / -1; }
 }
 
 /* An address in a sentence: the system's inline link, kept on 1 line. */

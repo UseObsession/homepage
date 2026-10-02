@@ -19,14 +19,16 @@ const LOCKUP = {
 
 export function Lockup({ height = 20, tone = 'auto', className }: { height?: number; tone?: Tone; className?: string }) {
   const kind = height < 32 ? LOCKUP.nav : LOCKUP.full
-  const width = Math.round(height * kind.ratio * 10) / 10
+  /* The width attribute must be a whole number; the exact width (157.7px at 20 tall) is set inline, so it never rounds. */
+  const exact = Math.round(height * kind.ratio * 10) / 10
   const img = (ink: 'white' | 'black', extra: string) => (
     <img
       key={ink}
       className={'s-lockup ' + extra + (className ? ' ' + className : '')}
       src={`/logo/${kind.file}-${ink}.svg`}
-      width={width}
+      width={Math.round(exact)}
       height={height}
+      style={{ width: `${exact}px`, height: `${height}px` }}
       alt="Obsession"
       decoding="async"
     />

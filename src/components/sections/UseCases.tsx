@@ -214,6 +214,8 @@ export function UseCases({
                 id={`${base}-panel-${i}`}
                 aria-labelledby={`${base}-tab-${i}`}
                 hidden={!on}
+                /* Hidden from sight until picked, but part of the page's words (llms-full.txt, scripts/prerender.mjs). */
+                data-llms="keep"
                 tabIndex={on && !recipe ? 0 : undefined}
               >
                 <div className="s-uses__copy">

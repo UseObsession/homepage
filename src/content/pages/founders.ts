@@ -73,7 +73,7 @@ export const page: Page = {
           { time: 'Day 14', text: 'Trials end. Still nothing from 4. Proof ready for your OK.' },
         ],
         finding: '4 of 12 sent nothing between the welcome email and the end of the trial.',
-        fix: '4 openers with signed proof go to Clay after your OK. You send each one yourself.',
+        fix: '4 gaps with signed proof go to Clay after your OK. You write and send each opener.',
         ledger: 'Example run. Every email signed, so each company can check its own proof.',
       },
       {

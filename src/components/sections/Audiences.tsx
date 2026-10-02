@@ -60,6 +60,8 @@ export function Audiences({
                 id={`${base}-panel-${i}`}
                 aria-labelledby={`${base}-tab-${i}`}
                 hidden={!on}
+                /* Hidden from sight until picked, but part of the page's words (llms-full.txt, scripts/prerender.mjs). */
+                data-llms="keep"
               >
                 <div className="s-aud__copy">
                   <h3 className="s-aud__line">{tie(a.line)}</h3>

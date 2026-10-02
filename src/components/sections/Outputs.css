@@ -57,7 +57,6 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--ob-space-8) var(--ob-space-24);
-  padding-inline: var(--ob-space-4);
 }
 .s-ov__line {
   max-width: var(--ob-measure);

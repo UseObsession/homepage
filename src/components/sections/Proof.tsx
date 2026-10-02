@@ -6,6 +6,10 @@ import './Proof.css'
 /* A numeral never ends a line apart from its word ("0 reminders", "48 hours"). */
 const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
 
+/* A claim longer than this would run past 3 lines of h2 in the 5 column side, so it takes the h3 size there, as the
+   Questions' claim does (Faq.tsx). The lasting fix is a shorter claim (docs/REBUILD.md 9b). */
+const LONG = 50
+
 /* The first page of the real September report: the 1 real run, shown as the document it is. */
 const pdf = outputFormats.find((f) => f.view.kind === 'pdf')?.view
 const page = pdf?.kind === 'pdf' ? pdf.pages[0] : undefined
@@ -18,7 +22,7 @@ export function Proof({ proof, id = 'proof', className = '' }: { proof: ProofCon
     <section className={`s-section s-proof ${className}`} id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-proof__in">
         <div className="s-proof__copy">
-          <h2 className="ob-type-h2 s-proof__h" id={`${id}-h`}>
+          <h2 className={'ob-type-h2 s-proof__h' + (proof.heading.length > LONG ? ' s-proof__h--long' : '')} id={`${id}-h`}>
             {tie(proof.heading)}
           </h2>
           <p className="s-proof__line">{tie(proof.line)}</p>

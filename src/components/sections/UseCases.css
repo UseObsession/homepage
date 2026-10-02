@@ -34,8 +34,8 @@
   /* A shorter panel keeps its words and screen together; the spare room falls below. */
   align-content: start;
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: var(--ob-space-56);
+  grid-template-columns: var(--s-split);
+  gap: var(--s-split-gap);
   align-items: start;
   min-width: 0;
 }
@@ -57,8 +57,8 @@
 .s-uses__moment {
   margin: 0;
   max-width: 44ch;
-  font: var(--ob-type-code);
-  letter-spacing: var(--ob-type-code-tracking);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
   color: var(--ob-text-2);
   text-wrap: pretty;
 }
@@ -97,9 +97,6 @@
 .s-uses__screen { min-width: 0; }
 .s-uses__screen .ilwrap { cursor: pointer; }
 
-@media (max-width: 1080px) {
-  .s-uses__panel { gap: var(--ob-space-40); }
-}
 /* Phones and narrow tablets: the words, then the screen under them. */
 @media (max-width: 860px) {
   .s-uses__panels { margin-top: var(--ob-space-32); }

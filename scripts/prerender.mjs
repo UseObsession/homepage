@@ -39,7 +39,7 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, entries, notFound, jsonLdScript, absolute, SITE, llms } = await import(pathToFileURL(join(server, 'entry-server.js')).href)
+const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER } = await import(pathToFileURL(join(server, 'entry-server.js')).href)
 const template = await readFile(join(dist, 'index.html'), 'utf8')
 if (!template.includes('<div id="root"></div>')) throw new Error('dist/index.html is already prerendered. Run vite build first.')
 
@@ -50,10 +50,13 @@ const warn = (m) => notes.push(m)
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-/* The main font, preloaded so the first paint is already in Geist: the latin sans file the stylesheet points at. */
+/* The fonts the first view sets, preloaded so the first paint is already in Geist: the latin sans the words use, and
+   the latin mono the hero's typed task line uses (anything the agent is told is Geist Mono). */
 const assets = existsSync(join(dist, 'assets')) ? readdirSync(join(dist, 'assets')) : []
 const mainFont = assets.find((f) => /^geist-latin-wght-normal-[\w-]+\.woff2$/.test(f))
+const monoFont = assets.find((f) => /^geist-mono-latin-wght-normal-[\w-]+\.woff2$/.test(f))
 if (!mainFont) fail('The Geist latin font is missing from the build (src/styles/fonts.css).')
+if (!monoFont) fail('The Geist Mono latin font is missing from the build (src/styles/fonts.css).')
 
 function head(e, { noindex = false } = {}) {
   const m = e.meta
@@ -66,7 +69,8 @@ function head(e, { noindex = false } = {}) {
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="Obsession" />`,
     `<meta property="og:locale" content="en_GB" />`,
-    `<meta property="og:url" content="${url}" />`,
+    /* A noindex page (404.html) has no address of its own to share. */
+    noindex ? '' : `<meta property="og:url" content="${url}" />`,
     `<meta property="og:title" content="${esc(m.title)}" />`,
     `<meta property="og:description" content="${esc(m.description)}" />`,
     `<meta property="og:image" content="${image}" />`,
@@ -91,7 +95,7 @@ function page(e, rendered, opts) {
   const hints = rendered.match(/^(?:<link rel="preload"[^>]*\/>)+/)?.[0] ?? ''
   const appHtml = rendered.slice(hints.length)
   const preloads = [
-    mainFont ? `<link rel="preload" href="/assets/${mainFont}" as="font" type="font/woff2" crossorigin />` : '',
+    ...[mainFont, monoFont].filter(Boolean).map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`),
     ...(hints.match(/<link[^>]*\/>/g) ?? []),
   ].filter(Boolean)
   /* Replacements are functions, so a "$" in the copy is never read as a pattern. */
@@ -238,6 +242,9 @@ const decode = (s) =>
     .replace(/&gt;/g, '>')
     .replace(/&amp;/g, '&')
 const attr = (attrs, name) => attrs.match(new RegExp(`\\s${name}="([^"]*)"`))?.[1]
+/* A hidden element is not the page's words, unless it's a panel the reader opens by picking a tab or a chip (Use cases,
+   Who it's for, Every kind of): those carry data-llms="keep" and are read like the rest. */
+const hiddenFromWords = (attrs) => /\shidden(=|\s|$)/.test(attrs) && !/\sdata-llms="keep"/.test(attrs)
 
 function textOf(html) {
   const main = html.match(/<main\b[^>]*>([\s\S]*)<\/main>/)?.[1] ?? html
@@ -253,19 +260,23 @@ function textOf(html) {
     }
     const name = rawName.toLowerCase()
     if (close) {
-      const i = stack.lastIndexOf(name)
+      /* A skipped element sits on the stack as !name, so its own closing tag must find it too. */
+      const i = stack.findLastIndex((n) => n === name || n === '!' + name)
       if (i === -1) continue
       const popped = stack.splice(i)
       skip -= popped.filter((n) => n.startsWith('!')).length
       if (BLOCK.has(name) && !skip) out.push('\n')
       continue
     }
-    const hidden = SKIP.has(name) || /\saria-hidden="true"/.test(attrs) || /\shidden(=|\s|$)/.test(attrs)
+    const hidden = SKIP.has(name) || /\saria-hidden="true"/.test(attrs) || hiddenFromWords(attrs)
     /* An app screen (role="img") reads as its description; a heading with its own label reads as the label. */
     const pictured = /\srole="img"/.test(attrs) && attr(attrs, 'aria-label')
     const labelled = /^h[1-6]$/.test(name) && attr(attrs, 'aria-label')
     if (!skip) {
-      if (BLOCK.has(name)) out.push('\n')
+      /* A list item that opens with a block (a heading, a paragraph) keeps its marker on the block's own line. */
+      if (BLOCK.has(name)) {
+        if (out[out.length - 1] !== '- ') out.push('\n')
+      }
       else if (out.length && !/\s$/.test(out[out.length - 1])) out.push(' ')
       if (/^h[1-6]$/.test(name)) out.push('#'.repeat(Number(name[1])) + ' ')
       if (name === 'li') out.push('- ')
@@ -288,6 +299,28 @@ function textOf(html) {
     .trim()
 }
 
+/* How many h2s a reader sees on a page: those outside the app screens (role="img", read as their description) and
+   outside anything hidden. llms-full.txt must carry every one of them as a "## " line. */
+function visibleH2s(html) {
+  const main = html.match(/<main\b[^>]*>([\s\S]*)<\/main>/)?.[1] ?? html
+  const src = main.replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, '')
+  const stack = []
+  let n = 0
+  for (const [, close, rawName, attrs = '', selfClose] of src.matchAll(/<(\/?)([a-zA-Z][\w-]*)([^>]*?)(\/?)>/g)) {
+    const name = rawName.toLowerCase()
+    if (close) {
+      const i = stack.findLastIndex((s) => s.name === name)
+      if (i !== -1) stack.splice(i)
+      continue
+    }
+    const out = /\srole="img"/.test(attrs) || /\saria-hidden="true"/.test(attrs) || hiddenFromWords(attrs) || SKIP.has(name)
+    if (name === 'h2' && !out && !stack.some((s) => s.out)) n++
+    if (VOID.has(name) || selfClose) continue
+    stack.push({ name, out })
+  }
+  return n
+}
+
 const full = [
   '# Obsession: every page as plain text',
   '',
@@ -297,7 +330,11 @@ const full = [
   '',
 ]
 for (const { e, app } of rendered) {
-  full.push('---', '', `Page: ${e.meta.title}`, `URL: ${absolute(e.meta.path)}`, `In short: ${e.meta.answer}`, '', textOf(app), '')
+  const text = textOf(app)
+  const sections = text.split('\n').filter((l) => l.startsWith('## ')).length
+  const h2s = visibleH2s(app)
+  if (sections < h2s) fail(`${e.meta.path}: llms-full.txt carries ${sections} of the page's ${h2s} sections (textOf in scripts/prerender.mjs).`)
+  full.push('---', '', `Page: ${e.meta.title}`, `URL: ${absolute(e.meta.path)}`, `In short: ${e.meta.answer}`, '', text, '')
 }
 await writeFile(join(dist, 'llms-full.txt'), full.join('\n'))
 
@@ -342,10 +379,11 @@ for (const { e, app } of rendered) {
   }
 }
 
-/* The privacy notice names its controller: the founders supply the registered name and address before it ships. */
-const privacy = rendered.find(({ e }) => e.kind === 'privacy')
-if (privacy && /\[registered (company name|address)\]/.test(privacy.app))
-  warn('/privacy: the controller is still "[registered company name], [registered address]" (content/site.ts). Fill it in before the site ships.')
+/* The privacy notice names its controller: the founders supply the registered name and address before it ships. Until
+   then the notice gives only its contact line. A bracketed placeholder on any page fails the build. */
+if (!CONTROLLER) warn('/privacy: no controller named yet (CONTROLLER in content/site.ts). The founders supply the registered name and address before the site ships.')
+for (const { e, app } of [...rendered, { e: notFound, app: render('/404') }])
+  if (/\[(registered|company name|address|placeholder|todo)[^\]]*\]/i.test(app)) fail(`${e.meta.path}: a bracketed placeholder is on the page.`)
 
 await rm(server, { recursive: true, force: true })
 

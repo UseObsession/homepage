@@ -44,7 +44,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'What a customer actually gets after they show up.',
+    headline: 'See what a customer actually gets after they show up.',
     sub: 'Declared AI agents sign up, shop, book and start trials at your business, or a client’s with their OK. They time every email, text and reply that follows.',
     screen: 'shop',
     capture: {

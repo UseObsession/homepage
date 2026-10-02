@@ -21,6 +21,18 @@
 
 :root { --s-gutter: clamp(16px, 4vw, 32px); }
 
+/* The 1 column split every 2 column section sits on, so the right column starts on the same line all the way down a
+   page (at 1440: x 661, and 843 for the mirror). The words take 5 of 12 columns and the thing they prove takes 7
+   (--s-split); a section led by its object mirrors it (--s-split-flip). The gap is 64px from 1080px, 40px below. */
+:root {
+  --s-split: minmax(0, 5fr) minmax(0, 7fr);
+  --s-split-flip: minmax(0, 7fr) minmax(0, 5fr);
+  --s-split-gap: var(--ob-space-40);
+}
+@media (min-width: 1080px) {
+  :root { --s-split-gap: var(--ob-space-64); }
+}
+
 /* Section rhythm: 1 spacing token for every section, so the page breathes evenly. */
 .s-section { padding-block: var(--ob-space-section, clamp(72px, 10vw, 128px)); }
 .s-section + .s-section { padding-top: 0; }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { recipePage } from '../content/recipe-page'
 import { recipes, recipesPage as page } from '../content/registry'
 import type { RecipeGroup } from '../content/types'
 import '../components/sections/Hero.css'
@@ -85,11 +86,16 @@ export function Recipes() {
 
       <section className="s-section s-ri-hub" aria-labelledby={`${id}-hub`}>
         <div className="s-wrap">
-          <header className="s-head s-head--center s-ri-hub__head">
+          <header className="s-head s-ri-hub__head">
             <h2 className="ob-type-h2" id={`${id}-hub`}>
               {tie(page.hub.heading)}
             </h2>
             <p className="s-ri-hub__line">{tie(page.hub.line)}</p>
+            {/* Every page links to the 1 real report (docs/REBUILD.md 8): here, what a recipe returns. */}
+            <Link className="ob-btn ob-btn--link s-ri-hub__cta" to={recipePage.outputs.cta.to}>
+              <span className="ob-btn-label">{recipePage.outputs.cta.label}</span>
+              <Arrow className="ob-btn-glyph ob-btn-arrow" />
+            </Link>
           </header>
           <div className="s-ri-flow">
             <ul className="s-ri-flow__col s-ri-flow__col--in" aria-label={UI.inputs}>

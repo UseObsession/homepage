@@ -8,7 +8,8 @@
   --s-gap-pad: var(--ob-space-40);
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: var(--s-split);
+  column-gap: var(--s-split-gap);
   grid-template-rows: auto repeat(var(--s-gap-rows, 5), auto);
 }
 
@@ -35,7 +36,7 @@
   font: var(--ob-type-label);
   letter-spacing: var(--ob-type-label-tracking);
 }
-.s-gap-col--today { padding-right: var(--s-gap-pad); color: var(--ob-text-3); }
+.s-gap-col--today { color: var(--ob-text-3); }
 .s-gap-col--obs { padding-inline: var(--s-gap-pad); color: var(--ob-text); }
 .s-gap-arrow { display: none; }
 
@@ -64,7 +65,7 @@
   align-self: start;
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
 }
-.s-gap-row::before { grid-column: 1; margin-right: var(--s-gap-pad); }
+.s-gap-row::before { grid-column: 1; }
 .s-gap-row::after { grid-column: 2; margin-inline: var(--s-gap-pad); }
 .s-gap-row > p {
   grid-row: 1;
@@ -73,7 +74,7 @@
 }
 .s-gap-today {
   grid-column: 1;
-  margin: 0 var(--s-gap-pad) 0 0;
+  margin: 0;
   font: var(--ob-type-body);
   letter-spacing: var(--ob-type-body-tracking);
   color: var(--ob-text-2);
@@ -87,12 +88,6 @@
   color: var(--ob-text);
 }
 .s-gap-row:last-child > .s-gap-obs { padding-bottom: var(--ob-space-32); }
-
-/* Wide: the panel starts on the same line as the How screen and the 4th job's screen (a 376px column plus the 64px
-   gap), so the page keeps 1 vertical axis. */
-@media (min-width: 1080px) {
-  .s-gap-cmp { grid-template-columns: 440px minmax(0, 1fr); }
-}
 
 /* Narrow: 1 panel holds the comparison. The names become 1 key (Today, then With Obsession), and each row reads
    the same way: today, quiet, then what changes, in full ink. */

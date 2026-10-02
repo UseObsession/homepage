@@ -3,7 +3,6 @@
    - src/content/pages/NAME.ts exports `page` (a Page), served at its meta.path.
    - src/content/recipes/SLUG.ts exports `recipe` (a Recipe), served at /recipes/SLUG.
    The site's own pages (Recipes index, Sample output, Privacy, Agents, 404) live in site.ts and sample.ts. */
-import { recipeGroups } from './nav'
 import { sample } from './sample'
 import { agentsPage, notFoundPage, privacyPage, recipesPage } from './site'
 import type { Page, Recipe, RecipeId } from './types'
@@ -17,11 +16,29 @@ const nameOf = (file: string) => file.slice(file.lastIndexOf('/') + 1, -'.ts'.le
 export type PageName = 'home' | 'agencies' | 'founders' | 'sales' | 'marketing' | 'developers'
 export const pages = Object.fromEntries(Object.entries(pageFiles).map(([file, p]) => [nameOf(file), p])) as Record<PageName, Page>
 
-/* Every recipe, in the order the nav, the footer and the Recipes index list them. */
-const navOrder = recipeGroups.flatMap((g) => g.items.map((r) => r.id))
+/* Every recipe, in the order the nav menu, the phone sheet, the footer and the Recipes index list them within their job.
+   Each recipe's job (group), name and address come from its own file, and content/nav builds its groups from this list,
+   so every surface names and groups a recipe the same way. */
+const ORDER: RecipeId[] = [
+  'prospect',
+  'listings',
+  'account-watch',
+  'business-case',
+  'competitor',
+  'prices',
+  'ads',
+  'email-sms',
+  'trial',
+  'mystery',
+  'speed',
+  'audit',
+  'delivery',
+  'get-paid',
+  'supplier-quotes',
+]
 const rank = (id: RecipeId) => {
-  const i = navOrder.indexOf(id)
-  return i === -1 ? navOrder.length : i
+  const i = ORDER.indexOf(id)
+  return i === -1 ? ORDER.length : i
 }
 export const recipes: Recipe[] = Object.values(recipeFiles).sort((a, b) => rank(a.id) - rank(b.id))
 export const recipeBySlug: Record<string, Recipe | undefined> = Object.fromEntries(recipes.map((r) => [r.slug, r]))

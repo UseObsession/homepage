@@ -7,12 +7,18 @@
   row-gap: var(--ob-space-block);
 }
 .s-faq__h { max-width: 20ch; margin: 0; }
+/* A long claim steps down to the h3 size, so the claim that stays in view never runs past 3 lines. */
+.s-faq__h--long.ob-type-h2 {
+  max-width: 24ch;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+}
 .s-faq__list { min-width: 0; }
 
 @media (min-width: 1080px) {
   .s-faq__grid {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    column-gap: var(--ob-space-64);
+    grid-template-columns: var(--s-split);
+    column-gap: var(--s-split-gap);
     align-items: start;
   }
   .s-faq__head {

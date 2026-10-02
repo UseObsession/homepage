@@ -5,7 +5,8 @@ import './Kinds.css'
 
 /* Every kind of reader it fits (docs/REBUILD.md 2, beat 6): 1 chip per kind (forms.css option chips, single choice, so
    arrows move between them natively). Picking one shows its line and the recipes it runs, each linking to its own page.
-   The open kind swaps in with the system's panel entrance (.ob-anim-rise) and is announced politely. */
+   The open kind swaps in with the system's panel entrance (.ob-anim-rise) and is announced politely. Every kind's
+   result is in the page (the others hidden), so crawlers and llms-full.txt read every kind and its recipe links. */
 
 const RECIPES = import.meta.glob('../../content/recipes/*.ts', { eager: true, import: 'recipe' }) as Record<string, Recipe>
 const byId = new Map<RecipeId, Recipe>(Object.values(RECIPES).map((r) => [r.id, r]))
@@ -16,7 +17,7 @@ export function Kinds({ kinds, id }: { kinds: KindsContent; id?: string }) {
   /* The panel only moves once the reader picks: nothing animates on load. */
   const [picked, setPicked] = useState(false)
   const kind = kinds.items[sel] ?? kinds.items[0]
-  const recipes = kind.recipes.map((r) => byId.get(r)).filter((r): r is Recipe => !!r)
+  const recipesOf = (ids: RecipeId[]) => ids.map((r) => byId.get(r)).filter((r): r is Recipe => !!r)
   const headId = `${uid}-h`
 
   return (
@@ -49,25 +50,33 @@ export function Kinds({ kinds, id }: { kinds: KindsContent; id?: string }) {
             ))}
           </fieldset>
 
-          <div className="s-kinds-result" aria-live="polite">
-            <div key={sel} className={'s-kinds-pick' + (picked ? ' ob-anim-rise' : '')}>
-              <p className="s-kinds-name">{kind.name}</p>
-              <p className="s-kinds-line">{kind.line}</p>
-              {recipes.length > 0 && (
-                <ul className="s-kinds-recipes">
-                  {recipes.map((r) => (
-                    <li key={r.id}>
-                      <Link className="s-kinds-link" to={`/recipes/${r.slug}`}>
-                        <span>{r.name}</span>
-                        <svg className="s-kinds-go" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                          <path d="M3 8h10M9 4l4 4-4 4" />
-                        </svg>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+          <div className="s-kinds-result">
+            {kinds.items.map((k, i) => {
+              const recipes = recipesOf(k.recipes)
+              return (
+                <div key={k.name} className={'s-kinds-pick' + (picked && i === sel ? ' ob-anim-rise' : '')} hidden={i !== sel} data-llms="keep">
+                  <p className="s-kinds-name">{k.name}</p>
+                  <p className="s-kinds-line">{k.line}</p>
+                  {recipes.length > 0 && (
+                    <ul className="s-kinds-recipes">
+                      {recipes.map((r) => (
+                        <li key={r.id}>
+                          <Link className="s-kinds-link" to={`/recipes/${r.slug}`}>
+                            <span>{r.name}</span>
+                            <svg className="s-kinds-go" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                              <path d="M3 8h10M9 4l4 4-4 4" />
+                            </svg>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )
+            })}
+            <p className="s-sr" aria-live="polite">
+              {picked ? `${kind.name}. ${kind.line}` : ''}
+            </p>
           </div>
         </div>
       </div>

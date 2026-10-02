@@ -1,10 +1,10 @@
 /* Proof (components/sections/Proof): the claim beside the top of the real report. The report sits in a tray like the
-   app screens' frame and runs out of its bottom edge, so it reads as the first page of a longer document. */
+   app screens' frame and fades out at its bottom edge, so it reads as the first page of a longer document, not a crop. */
 
 .s-proof__in {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: var(--ob-space-64);
+  grid-template-columns: var(--s-split);
+  gap: var(--s-split-gap);
   align-items: center;
 }
 
@@ -14,6 +14,7 @@
   min-width: 0;
 }
 .s-proof__h { margin: 0; max-width: var(--ob-measure-heading); }
+.s-proof__h--long.ob-type-h2 { max-width: 24ch; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); }
 .s-proof__line {
   margin: var(--ob-space-20) 0 0;
   max-width: 46ch;
@@ -35,6 +36,9 @@
   border-radius: var(--ob-radius-lg);
   background: var(--ob-sheen), var(--ob-bg-sunken);
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight);
+  /* A mask, not a colour: the page and its tray thin out together over the last quarter. */
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent);
+  mask-image: linear-gradient(to bottom, black 72%, transparent);
 }
 .s-proof__page {
   display: block;
@@ -45,7 +49,6 @@
 }
 
 @media (max-width: 1080px) {
-  .s-proof__in { gap: var(--ob-space-40); }
   .s-proof__tray { padding: var(--ob-space-32) var(--ob-space-32) 0; }
 }
 @media (max-width: 860px) {

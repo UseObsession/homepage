@@ -16,8 +16,11 @@ import './CaptureForm.css'
      nothing.
    - After a sign up, 1 tap answers the roles question. It is saved with the sign up: a 2nd post with the same email
      and source, which the script folds into the same row. Arrowing through the chips sends only the last one.
-   - Under every form, 1 privacy line links /privacy. When the page's own micro line already says what we keep, the
-     privacy line is just the link, so the promise is never said twice. */
+   - Under every form, 1 privacy line links /privacy. When the page's own micro line already says what we keep, the link
+     closes that line instead, so the promise is never said twice and the foot stays 1 line.
+   - A mystery form with `orWaitlist` takes a blank store: the reader joins the waitlist instead (its micro says so).
+   - Before the script runs, the mystery form's email row is hidden (:root.js), so its email field is only required once
+     the page has hydrated: a native post in that moment never fails on a field the reader can't see. */
 
 type Step = 'start' | 'email' | 'done'
 type Field = 'store' | 'email'
@@ -45,6 +48,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const hydrated = useHydrated()
   const [step, setStep] = useState<Step>('start')
   const [store, setStore] = useState('')
+  /* A mystery form sends a shop only with a store; a blank one (orWaitlist) is a waitlist sign up. */
+  const shop = mystery && !!store.trim()
   const [email, setEmail] = useState('')
   const [trap, setTrap] = useState('')
   const [problem, setProblem] = useState<Problem>(null)
@@ -97,8 +102,9 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     setProblem(null)
 
     if (mystery) {
-      if (!store.trim()) return flag('store', copy.errors.storeEmpty)
-      if (!isAddress(store)) return flag('store', copy.errors.storeBad)
+      if (!store.trim()) {
+        if (!capture.orWaitlist) return flag('store', copy.errors.storeEmpty)
+      } else if (!isAddress(store)) return flag('store', copy.errors.storeBad)
       if (step === 'start' && !email.trim()) {
         moved.current = true
         setStep('email')
@@ -114,7 +120,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     setLive(copy.sending)
     const res = await submitSignup({
       email,
-      store: mystery ? store : undefined,
+      store: shop ? store : undefined,
       interest: capture.interest,
       source: capture.source,
       page: pathname,
@@ -145,7 +151,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       const res = await submitSignup({
         email,
         role: value,
-        store: mystery ? store : undefined,
+        store: shop ? store : undefined,
         interest: capture.interest,
         source: capture.source,
         page: pathname,
@@ -160,11 +166,17 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const describe = (field: Field) =>
     [errorOn(field) ? id.error : '', capture.micro ? id.help : ''].filter(Boolean).join(' ') || undefined
 
-  const privacyText = saysWhatWeKeep(capture.micro) ? '' : mystery ? copy.privacy.mystery : copy.privacy.waitlist
+  const inline = saysWhatWeKeep(capture.micro)
+  const privacyText = inline ? '' : mystery ? copy.privacy.mystery : copy.privacy.waitlist
+  const privacyLink = (
+    <Link className="s-capture__plink" to={copy.privacy.to}>
+      {copy.privacy.link}
+    </Link>
+  )
   const privacy = (
     <p className="s-capture__privacy">
       {privacyText && <>{privacyText} </>}
-      <Link to={copy.privacy.to}>{copy.privacy.link}</Link>
+      {privacyLink}
     </p>
   )
   const status = (
@@ -174,7 +186,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   )
 
   if (step === 'done') {
-    const done = mystery ? copy.done.mystery : copy.done.waitlist
+    const done = shop ? copy.done.mystery : copy.done.waitlist
     /* The store and the email are set as values that never break at a hyphen ("your-" / "store.example"). */
     const values: Record<string, string> = { '{store}': hostOf(store), '{email}': email.trim() }
     const fill = (t: string) =>
@@ -250,7 +262,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 autoComplete="url"
                 autoCapitalize="none"
                 spellCheck={false}
-                required
+                required={!capture.orWaitlist}
                 pattern={ADDRESS_PATTERN}
                 placeholder={storePlaceholder}
                 value={store}
@@ -288,7 +300,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 <div className="ob-pill-more-in">
                   <div className="ob-field">
                     <label className="ob-label" htmlFor={id.email}>
-                      {copy.store.next}
+                      {store.trim() || !capture.orWaitlist ? copy.store.next : copy.email.label}
                     </label>
                     <input
                       ref={emailRef}
@@ -300,7 +312,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                       autoComplete="email"
                       autoCapitalize="none"
                       spellCheck={false}
-                      required
+                      required={hydrated}
                       placeholder={copy.email.placeholder}
                       value={email}
                       onChange={(e) => edit('email', e.target.value)}
@@ -325,6 +337,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
           {capture.micro && (
             <p className="ob-field-help" id={id.help}>
               {capture.micro}
+              {inline && <> {privacyLink}</>}
             </p>
           )}
           <p className="ob-field-error ob-anim-message" id={id.error} hidden={!problem || problem.field === 'form'}>
@@ -346,7 +359,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
         <input type="hidden" name="page" value={pathname} />
         {capture.interest && <input type="hidden" name="interest" value={capture.interest} />}
       </form>
-      {privacy}
+      {!inline && privacy}
       {status}
     </div>
   )

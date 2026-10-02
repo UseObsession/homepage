@@ -27,16 +27,17 @@
 }
 .s-hero-pill .s-mark { color: var(--ob-text); }
 
-/* The headline: display type on a wide measure, so it sits on 1 or 2 balanced lines that widen equally to both sides.
-   It may run past the 1160px container into the spare room beside it on wide screens (never past the page's own
-   gutter), by the same amount on each side, so its centre stays the column's centre. */
+/* The headline: display type on the container's full measure, so it sits on 1 or 2 balanced lines that widen equally
+   to both sides and never run past the 1160px column the nav's lockup and call to action line up on. Its size tops out
+   at 80px (the display scale's 90px would push the longest story headline to 3 lines inside the column). */
 .s-hero-h {
-  --s-hero-h-w: min(100vw - 2 * var(--s-gutter), 1280px);
+  --s-hero-h-w: min(100vw - 2 * var(--s-gutter), var(--ob-container));
   justify-self: start;
   width: var(--s-hero-h-w);
   max-width: none;
   margin: 0 calc((100% - var(--s-hero-h-w)) / 2);
   font: var(--ob-type-display);
+  font-size: clamp(44px, 5.6vw, 80px);
   letter-spacing: var(--ob-type-display-tracking);
   color: var(--ob-text);
   text-wrap: balance;
@@ -107,6 +108,8 @@
 }
 .s-hero .s-hero-form .ob-pill-foot { margin-top: var(--ob-space-4); }
 .s-hero .s-hero-form .ob-pill-foot > * { text-wrap: balance; }
+/* The second path is a separate way in, not more fine print: 8px more air than the form's own lines. */
+.s-hero-secondary { margin-top: var(--ob-space-8); }
 
 /* The 3 proof facts: 1 centred row, divided by hairlines. */
 .s-hero-proof {

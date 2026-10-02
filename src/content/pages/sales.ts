@@ -45,12 +45,11 @@ export const page: Page = {
       'Tell me when a lost account’s new setup breaks',
       'Get us set up in their supplier portal',
     ],
-    sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up and ask the bot at every account and rival on your list, continuously. You get signed proof and your next move before every call, pilot and renewal.',
+    sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up and ask the chat bot at every account and rival on your list, continuously. You get signed proof and your next move before every call, pilot and renewal.',
     capture: {
       kind: 'waitlist',
       source: 'sales-hero',
       button: 'Get early access for my team',
-      placeholder: 'Work email',
       micro,
       roles,
       interest: 'any',
@@ -139,7 +138,7 @@ export const page: Page = {
           { time: 'Day 13', text: 'Rival A: 20% off. Rival C: 30% off if paid within 7 days.' },
           { time: 'Day 14', text: 'Trials closed. Battlecard built from 41 emails and steps, by rival.' },
         ],
-        finding: 'Rival A offers 20% off on day 13, Rival C 30% off. Rival B’s 1-day setup took 3.',
+        finding: 'Rival A offers 20% off on day 13, Rival C 30% off. Rival B promises setup in 1 day. It took 3.',
         fix: 'Battlecard and 2 objection answers drafted. Shared with your team after your OK.',
         ledger: 'Every email and step dated and signed. No replies sent.',
       },
@@ -288,8 +287,8 @@ export const page: Page = {
   },
 
   outcomes: {
-    heading: 'Up to $96,000 a year: 1 renewal saved on an early churn flag and 1 deal won on a signed pilot, at $48,000 each.',
-    sub: 'Every rep also opens every call, pilot and renewal on signed proof.',
+    heading: 'Up to $96,000 a year from 1 renewal saved and 1 pilot won.',
+    sub: '1 renewal saved on an early churn flag and 1 deal won on a signed pilot, at $48,000 each. Every rep opens every call, pilot and renewal on signed proof.',
     items: [
       { value: 'Up to 5 hours', label: 'back a week per rep: 10 first calls, 30 minutes of research each' },
       { value: 'Every morning', label: 'each renewal checked from your tools and as their customer' },
@@ -402,7 +401,6 @@ export const page: Page = {
       kind: 'waitlist',
       source: 'sales-final',
       button: 'Get early access for my team',
-      placeholder: 'Work email',
       micro,
       roles,
       interest: 'any',

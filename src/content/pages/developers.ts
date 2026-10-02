@@ -54,7 +54,7 @@ export const page: Page = {
       'Shop each merchant who opts in, every Monday',
       'Get 3 signed quotes for every order over £5,000',
     ],
-    sub: 'Your code passes in the companies. Declared AI agents sign up, shop and ask the bot at each one, and post what they find to your webhook.',
+    sub: 'Your code passes in the companies. Declared AI agents sign up, shop and ask the chat bot at each one, and post what they find to your webhook.',
     capture: {
       kind: 'waitlist',
       source: 'developers-hero',

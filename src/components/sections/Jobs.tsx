@@ -38,6 +38,9 @@ function tokenMs(name: string, fallback: number) {
   return m ? parseFloat(m[1]) * (m[2] === 's' ? 1000 : 1) : fallback
 }
 
+/* A numeral never ends a line apart from its word ("7 days", "40 packaging suppliers"), as in Use cases and Questions. */
+const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
+
 /* Text that types itself once. The full text holds the space from the first frame, so nothing below it moves. */
 function Typed({ text, phase, onDone, caret = false }: { text: string; phase: Phase; onDone: () => void; caret?: boolean }) {
   /* Characters typed so far; only read while typing. Each line types once, so it starts at 0. */
@@ -147,14 +150,14 @@ export function Jobs({ jobs, workspace = 'agency', id }: Props) {
                 <li key={j.title} className="s-job s-job--wide">
                   <div className="s-job-copy">
                     <h3 className="s-job-title">{j.title}</h3>
-                    <p className="s-job-line">{j.line}</p>
+                    <p className="s-job-line">{tie(j.line)}</p>
                     {j.example && (
                       <div className="ob-prompt s-job-prompt" ref={ref}>
                         <span className="ob-prompt-gt" aria-hidden="true">
-                          &gt;
+                          ›
                         </span>
                         <p className="ob-prompt-text">
-                          <Typed text={j.example} phase={phase} onDone={() => finish(i)} caret />
+                          <Typed text={tie(j.example)} phase={phase} onDone={() => finish(i)} caret />
                         </p>
                       </div>
                     )}
@@ -169,13 +172,13 @@ export function Jobs({ jobs, workspace = 'agency', id }: Props) {
             return (
               <li key={j.title} className="s-job">
                 <h3 className="s-job-title">{j.title}</h3>
-                <p className="s-job-line">{j.line}</p>
+                <p className="s-job-line">{tie(j.line)}</p>
                 {j.example && (
                   <p className="s-job-log" ref={ref}>
                     <span className={'s-job-mark' + (phase === 'static' ? '' : ' ob-anim-fade')} key={mark} aria-hidden="true">
                       <StatusMark state={mark} size={20} />
                     </span>
-                    <Typed text={j.example} phase={phase} onDone={() => finish(i)} />
+                    <Typed text={tie(j.example)} phase={phase} onDone={() => finish(i)} />
                   </p>
                 )}
               </li>

@@ -122,7 +122,6 @@ function Pages() {
             </li>
           ))}
         </ul>
-        {pdfFormat && <p className="s-so-pages__line">{tie(pdfFormat.line)}</p>}
       </div>
       <div className={'ob-disclose s-so-pages__open' + (open !== null ? ' is-open' : '')} id={`${base}-page`}>
         <div>
@@ -176,7 +175,7 @@ function Report() {
         <div className="s-so-proof">
           <div className="s-so-proof__doc">
             <figure className="ob-evidence s-so-shot">
-              <div className="ob-evidence-shot s-so-shot__frame">
+              <div className="s-so-shot__frame">
                 <img
                   className="ob-evidence-img"
                   src={r.shot.src}
@@ -186,12 +185,6 @@ function Report() {
                   loading="lazy"
                   decoding="async"
                 />
-                <span className="ob-evidence-marks" aria-hidden="true">
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                </span>
               </div>
               <figcaption className="s-so-shot__cap">{tie(r.shot.caption)}</figcaption>
             </figure>
@@ -366,11 +359,11 @@ export function SampleOutput() {
   return (
     <>
       <Hero />
-      <Outputs id="formats" heading={sample.formats.heading} line={sample.formats.line} initial={sample.formats.start} className="s-so-formats" />
       <Report />
       {sample.gaps.map((g) => (
         <Gap key={g.n} g={g} />
       ))}
+      <Outputs id="formats" heading={sample.formats.heading} line={sample.formats.line} initial={sample.formats.start} className="s-so-formats" />
       <Faq faq={sample.faq} id="questions" />
       <FinalCta final={sample.final} id="get-one" />
     </>

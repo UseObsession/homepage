@@ -6,7 +6,7 @@ import type { Page } from '../types'
    who it's for > recipes > the real September store check, in every output > developers > questions > the waitlist.
    Every console run is an example and says so in its ledger line. The only real run is the September store check
    (outputs and the third proof fact): 4 test customers, 48 hours watched, 2 full baskets, 0 reminders.
-   Screens, each once: how (agencytask, templates, kit, run: all in the agency workspace), the 4th job, a typed task
+   Screens, each once: how (templates, agencytask, kit, run: all in the agency workspace), the 4th job, a typed task
    (compose), who it's for (board, leads, brief, inbox, dev), developers (qa). */
 
 export const page: Page = {
@@ -32,7 +32,7 @@ export const page: Page = {
       'Time how fast our clinics answer a new lead',
       'Chase every invoice over 30 days',
     ],
-    sub: 'AI agents with their own inbox, phone number and browser sign up, shop, ask the bot and chase at every company on your list, continuously. You get the proof and your next move.',
+    sub: 'Declared AI agents with their own inbox, phone number and browser sign up, shop, ask the chat bot and chase at every company on your list, continuously. You get the proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
@@ -109,7 +109,7 @@ export const page: Page = {
           { time: 'Day 30', text: 'Checked again: 3 fixed it, so they drop off your list.' },
         ],
         finding: '15 of 60 gyms never sent a welcome email in 30 days.',
-        fix: '15 proof links and openers drafted in Clay. You send each one yourself.',
+        fix: '15 proof links written back to Clay. Your team writes and sends each opener.',
         ledger: 'Example run. Each gym can open its own dated, signed proof.',
       },
       {
@@ -202,12 +202,12 @@ export const page: Page = {
       {
         title: 'Pick a recipe, type a task, or build your own',
         line: 'Recipes cover the jobs teams repeat. For anything else, type it in plain words or use the API.',
-        screen: 'agencytask',
+        screen: 'templates',
       },
       {
         title: 'Add the companies',
         line: 'Rivals, prospects, accounts, suppliers, even your own business. Every company on your list, from wherever it lives.',
-        screen: 'templates',
+        screen: 'agencytask',
         chips: ['Paste a list', 'Upload a CSV', 'Connect Clay', 'API'],
       },
       {
@@ -262,7 +262,7 @@ export const page: Page = {
       {
         title: 'Anything else you can describe',
         line: 'Type it in plain words. Obsession sets up the agents, asks what it needs and runs it after your OK.',
-        example: 'Get our supplier to credit the 40 faulty units, and chase until the credit note lands',
+        example: 'Get quotes from 40 packaging suppliers for 10,000 mailer boxes, and compare',
         screen: 'compose',
       },
     ],
@@ -345,7 +345,7 @@ export const page: Page = {
   },
 
   developers: {
-    heading: '1 call starts a declared agent with its own inbox, number and browser.',
+    heading: '1 API call starts a declared agent with its own inbox, number and browser.',
     line: 'We keep every inbox, number and browser working, wait as long as the journey takes, and post each signed step to your webhook.',
     code: `import { Obsession } from '@useobsession/sdk'
 

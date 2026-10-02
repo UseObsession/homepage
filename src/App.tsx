@@ -129,15 +129,20 @@ function ctaAt(pathname: string) {
   return NO_FORM.has(clean) && cta.to.startsWith('#') ? { ...cta, to: `/${cta.to}` } : cta
 }
 
+/* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
+   view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
+const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes'])
+
 function Layout() {
   const { pathname } = useLocation()
+  const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
   return (
     <>
       <ScrollManager />
       <a className="ob-skip s-skip" href="#main">
         {nav.skip}
       </a>
-      <Nav cta={ctaAt(pathname)} />
+      <Nav cta={ctaAt(pathname)} heroForm={!NO_HERO_FORM.has(clean)} />
       <main id="main" tabIndex={-1}>
         <Outlet />
       </main>

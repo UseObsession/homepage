@@ -8,6 +8,7 @@ import {
   type KeyboardEvent,
   type MouseEvent,
   type ReactNode,
+  type RefObject,
 } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { nav, recipeGroups } from '../content/nav'
@@ -71,6 +72,45 @@ function focusables(el: HTMLElement | null) {
   )
 }
 
+/* 1 primary button per view (docs/REBUILD.md, Look). While a primary button of the page's own is on screen (the hero's
+   capture, the final form, Sample output's button), the bar's call to action steps down to secondary; it is the primary
+   again once they have scrolled away. `atTop` is the first view's answer, so the prerendered bar already matches it. */
+const PRIMARY = 'main .ob-btn:not(.ob-btn--secondary):not(.ob-btn--ghost):not(.ob-btn--link):not(.ob-btn--icon)'
+function usePagePrimaryShown(path: string, atTop: boolean, navRef: RefObject<HTMLElement | null>) {
+  const [state, setState] = useState({ path, shown: atTop })
+  useEffect(() => {
+    const main = document.getElementById('main')
+    if (!main || !('IntersectionObserver' in window)) return
+    const seen = new Set<Element>()
+    const top = navRef.current?.offsetHeight ?? 0
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) seen.add(e.target)
+          else seen.delete(e.target)
+        }
+        setState({ path, shown: seen.size > 0 })
+      },
+      { rootMargin: `${-top}px 0px 0px 0px` },
+    )
+    /* A page that arrives later (a new route) brings its own buttons: watch them as they mount. */
+    const watch = () => {
+      io.disconnect()
+      seen.clear()
+      document.querySelectorAll(PRIMARY).forEach((b) => io.observe(b))
+    }
+    watch()
+    const mo = new MutationObserver(watch)
+    mo.observe(main, { childList: true })
+    return () => {
+      io.disconnect()
+      mo.disconnect()
+    }
+  }, [path, navRef])
+  /* Until this page's buttons are measured, the first view's answer stands. */
+  return state.path === path ? state.shown : atTop
+}
+
 /* The page's form for an in-page call to action: its own anchor, else the page's #join, else its first form. */
 function formFor(hash: string) {
   const id = hash.slice(1)
@@ -97,6 +137,13 @@ function Arrow() {
    form, so the button always lands somewhere. From the keyboard it also puts focus in the form's first field. */
 function CtaLink({ cta, className, onClick, children }: { cta: Cta; className: string; onClick?: () => void; children?: ReactNode }) {
   const inner = children ?? <span className="ob-btn-label">{cta.label}</span>
+  /* An email or another site: a plain link. */
+  if (/^(mailto:|https?:)/.test(cta.to))
+    return (
+      <a className={className} href={cta.to} onClick={onClick}>
+        {inner}
+      </a>
+    )
   if (cta.to.startsWith('/'))
     return (
       <Link className={className} to={cta.to} onClick={onClick}>
@@ -126,7 +173,7 @@ function CtaLink({ cta, className, onClick, children }: { cta: Cta; className: s
   )
 }
 
-export function Nav({ cta = nav.cta }: { cta?: Cta }) {
+export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?: boolean }) {
   const uid = useId()
   const { pathname, hash } = useLocation()
   const navRef = useRef<HTMLElement>(null)
@@ -154,6 +201,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
   const focus = useRef<Focus>(null)
   const [group, setGroup] = useState<MenuId | null>(null)
   const top = useSyncExternalStore(onScroll, atTop, filled)
+  const quiet = usePagePrimaryShown(path, heroForm, navRef)
 
   const solutions = usePresence(menu === 'solutions', 160)
   const recipes = usePresence(menu === 'recipes', 160)
@@ -403,7 +451,7 @@ export function Nav({ cta = nav.cta }: { cta?: Cta }) {
 
         <div className="ob-nav__end">
           <ThemeToggle className="s-nav__theme" />
-          <CtaLink cta={cta} className="ob-btn ob-btn--sm ob-nav__cta" onClick={close} />
+          <CtaLink cta={cta} className={`ob-btn ob-btn--sm ob-nav__cta${quiet ? ' ob-btn--secondary' : ''}`} onClick={close} />
           <button
             ref={menuBtnRef}
             type="button"

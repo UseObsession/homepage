@@ -52,8 +52,8 @@
 }
 .s-ri-job {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: var(--ob-space-16) var(--ob-space-32);
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-16) var(--s-split-gap);
   padding-block: var(--ob-space-40);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
   /* A jump lands with the job's rule clear of the sticky nav. */
@@ -149,6 +149,10 @@
 .s-section.s-ri-hub { padding-top: 0; }
 .s-head.s-ri-hub__head { max-width: none; }
 .s-ri-hub__head > h2 { max-width: var(--ob-measure-heading); margin: 0; }
+.s-ri-hub__cta { justify-self: start; margin-top: var(--ob-space-4); }
+@media (hover: hover) and (pointer: fine) {
+  .s-ri-hub__cta:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
 .s-ri-hub__line {
   margin: 0;
   max-width: var(--ob-measure-lede);

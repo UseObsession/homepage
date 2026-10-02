@@ -35,7 +35,8 @@
 }
 @media (min-width: 1080px) {
   .s-dev__body {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-columns: var(--s-split-flip);
+    column-gap: var(--s-split-gap);
     align-items: start;
   }
   .s-dev__screen {
@@ -76,6 +77,16 @@
   overflow-wrap: anywhere;
 }
 .s-code-line:empty::before { content: " "; }
+/* A phone keeps each line whole and scrolls the code sideways instead of wrapping almost every line under itself; the
+   right edge fades to say there is more. */
+@media (max-width: 519px) {
+  .s-code__pre {
+    overflow-x: auto;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - var(--ob-space-24)), transparent);
+    mask-image: linear-gradient(to right, black calc(100% - var(--ob-space-24)), transparent);
+  }
+  .s-code-line { padding-inline-start: 0; text-indent: 0; white-space: pre; overflow-wrap: normal; }
+}
 /* The first line keeps clear of the copy button in the corner. */
 .s-code__pre .s-code-line:first-child { padding-inline-end: var(--ob-space-40); }
 

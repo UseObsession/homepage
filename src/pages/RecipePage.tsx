@@ -253,6 +253,7 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
       <Section
         id="outputs"
         heading={r.outputs.heading}
+        split
         action={
           <Link className="ob-btn ob-btn--link s-rp__action" to={ui.outputs.cta.to}>
             <span className="ob-btn-label">{ui.outputs.cta.label}</span>

@@ -11,9 +11,10 @@ import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } fr
    site ships (agents@ or privacy@ can be aliases that forward here). */
 export const CONTACT_EMAIL = 'hello@useobsession.com'
 
-/* The controller named in the privacy notice (UK GDPR article 13(1)(a)). The founders supply the legal entity's
-   registered name and address before merge; the build must not ship /privacy until they do. */
-const CONTROLLER = '[registered company name], [registered address]'
+/* The controller named in the privacy notice (UK GDPR article 13(1)(a)): the legal entity's registered name and address,
+   as 'Name Ltd, 1 Street, Town, POSTCODE'. The founders supply it before the site ships. Until then the notice gives
+   only the contact line (never a bracketed placeholder), and the prerender prints a note on every build. */
+export const CONTROLLER: string | null = null
 
 const waitlistRoles = {
   question: 'What should we set up first for you?',
@@ -29,7 +30,7 @@ export const recipesPage: RecipesIndexPage = {
     description:
       'Pick a recipe and declared AI agents arrive set up for it: their own inbox, number and browser, every wait and every check. Or type any job.',
     answer:
-      'Obsession recipes are ready-made jobs for declared AI agents, from competitor tracking and prospect intelligence to mystery shopping and invoice chasing. Each comes with its agents, their inboxes, phone numbers and browsers, the schedule and the checks already set up, and you can type any other job in plain words.',
+      'Obsession recipes are jobs ready to run for declared AI agents, from competitor tracking and prospect intelligence to mystery shopping and invoice chasing. Each comes with its agents, their inboxes, phone numbers and browsers, the schedule and the checks already set up, and you can type any other job in plain words.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -147,7 +148,9 @@ export const privacyPage: PrivacyPage = {
       id: 'who',
       heading: 'Obsession is responsible for your details.',
       lines: [
-        `${CONTROLLER} is the controller of the details you give us on this site. Write to ${CONTACT_EMAIL} about anything in this notice.`,
+        CONTROLLER
+          ? `${CONTROLLER} is the controller of the details you give us on this site. Write to ${CONTACT_EMAIL} about anything in this notice.`
+          : `Write to ${CONTACT_EMAIL} about anything in this notice.`,
       ],
     },
     {
@@ -345,7 +348,7 @@ export const notFoundPage: NotFoundPage = {
       'There’s no page at this address on useobsession.com. Obsession is the intelligence infrastructure for commercial teams: declared AI agents that do business with other companies for you.',
   },
   headline: 'There’s no page at this address.',
-  sub: 'The link may be old or mistyped. If an Obsession agent sent you here, start at useobsession.com/agents.',
+  sub: 'The link may be old or mistyped. Obsession sends declared AI agents to sign up, shop and check at every company on your list. If an agent sent you here, start at useobsession.com/agents.',
   links: [
     { label: 'Home', to: '/' },
     { label: 'Recipes', to: '/recipes' },

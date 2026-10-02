@@ -38,7 +38,13 @@
   letter-spacing: 0;
   color: var(--ob-text-2);
 }
-.s-out-words { text-wrap: balance; }
+/* A value in words ("Every prospect", "Within minutes") steps down to the h3 size, so the real numerals stay the
+   largest thing in the row and the words never read as 4 more headings. */
+.s-out-words {
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  text-wrap: balance;
+}
 
 .s-out-label {
   max-width: 38ch;

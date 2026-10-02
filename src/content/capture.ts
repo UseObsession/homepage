@@ -4,7 +4,7 @@ import { ctaFor, recipeAt } from './nav'
 import type { Capture } from './types'
 
 export const capture = {
-  email: { label: 'Work email', placeholder: 'Work email' },
+  email: { label: 'Work email', placeholder: 'Your work email' },
   store: {
     label: 'Your store’s web address',
     prefix: 'https://',
@@ -22,8 +22,8 @@ export const capture = {
   },
   sending: 'Sending',
   privacy: {
-    waitlist: 'We’ll only use your email to tell you about Obsession.',
-    mystery: 'We’ll only use your email and store to run your shop and tell you about Obsession.',
+    waitlist: 'We keep your email to tell you about Obsession, and nothing else.',
+    mystery: 'We keep your email and store address to run your shop and tell you about Obsession, and nothing else.',
     link: 'Privacy notice',
     to: '/privacy',
   },

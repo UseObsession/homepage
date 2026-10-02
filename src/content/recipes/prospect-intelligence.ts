@@ -41,7 +41,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'Proof of a real gap at every company on your list.',
+    headline: 'Prove a real gap at every company on your list.',
     sub: 'A declared AI agent becomes a customer of every prospect you add. It signs up, opts in and asks the bot, then hands you a signed fact to open each pitch with.',
     screen: 'pack',
     capture: {
@@ -49,7 +49,7 @@ export const recipe: Recipe = {
       source: 'recipe-prospect-hero',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We’ll only use your email to tell you about Obsession.',
+      micro: 'We keep your email to tell you about Obsession, and nothing else.',
       roles: {
         question: 'Who are your prospects?',
         options: ['Stores and consumer brands', 'Software companies', 'Clinics and local services', 'An agency’s pitch list', 'Something else'],
@@ -220,7 +220,7 @@ export const recipe: Recipe = {
       source: 'recipe-prospect-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We’ll only use your email to tell you about Obsession.',
+      micro: 'We keep your email to tell you about Obsession, and nothing else.',
       roles: {
         question: 'What gap does your product close?',
         options: ['Welcome emails', 'Texts', 'Chat and bots', 'Ads and landing pages', 'Bookings', 'Something else'],

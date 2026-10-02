@@ -14,13 +14,15 @@ import './Console.css'
      plan already set up, a typed task has the system set it up.
    - The ring marks carry the status, never colour, and only 1 moves at a time: the bar's mark turns while the run
      works (working) and blinks once it waits for the next run (waiting); the fix shows needs you and the ledger line
-     landed, both still. Each event that lands is a signed step: the brand square, as on the ledger's chain.
+     landed, both still. The log is a list of rules with the time beside each event: no bullet marks. The square stays
+     only on the Finding's head.
    - It moves through the tabs by itself, once, then rests on the last. Hover or focus holds it; a click, a key or
      the pause button stops it for good, and the reader's choice stays. It waits while off screen or in a hidden tab.
    - The prerendered HTML is the first run, finished: legible with no script. Reduced motion keeps every run finished
      and never advances on its own.
    - Every run's panel is in the page at once, stacked in 1 cell (only the chosen one shown), so the window is
-     always as tall as its tallest run and nothing below it moves when the tab changes. */
+     always as tall as its tallest run and nothing below it moves when the tab changes. On a phone, where the runs
+     stack and differ most, only the chosen run takes room and its log grows as each event lands (Console.css). */
 
 const RECIPES: Record<string, string> = Object.fromEntries(recipeGroups.flatMap((g) => g.items.map((r) => [r.id, r.label])))
 
@@ -225,9 +227,6 @@ const Panel = memo(function Panel({
         <ol className="s-console-log">
           {d.events.map((e, i) => (
             <li key={i} className={'s-console-event' + enter(i < view.events)}>
-              <span className="s-console-node" aria-hidden="true">
-                <span className="ob-sq" />
-              </span>
               <span className="s-console-text">{e.text}</span>
               <span className="s-console-time">{e.time}</span>
             </li>

@@ -65,8 +65,8 @@
 @media (min-width: 1080px) {
   .s-rp--split .s-rp__in {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    column-gap: var(--ob-space-64);
+    grid-template-columns: var(--s-split);
+    column-gap: var(--s-split-gap);
     align-items: start;
   }
   .s-rp--split .s-head { margin-bottom: 0; }
@@ -134,8 +134,8 @@
 .s-rp-groups { display: grid; border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .s-rp-group {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: var(--ob-space-16) var(--ob-space-32);
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-16) var(--s-split-gap);
   padding-block: var(--ob-space-32);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
 }
@@ -145,10 +145,12 @@
   letter-spacing: var(--ob-type-title-tracking);
   color: var(--ob-text);
 }
+/* The 2nd column's words start where the recipe rows' do on every page (RecipeGrid.css: rows that bleed 16px with a
+   16px gap), so the 2 lists share their inner line too. */
 .s-rp-group__items {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--ob-space-24) var(--ob-space-32);
+  gap: var(--ob-space-24) var(--ob-space-48);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -175,32 +177,30 @@
   .s-rp-group { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); padding-block: var(--ob-space-24); }
 }
 
-/* ---- What you get: 1 board of formats, seamed by hairlines ------------------------------------------------------ */
+/* ---- What you get: the formats as a list of rules, beside the claim like the checks and settings ------------------ */
 
-/* Each cell draws the seam on its top and left edge, outside itself; the board clips the ones on its own edge, so a
-   last row with fewer cells leaves plain surface, never a gap. */
+/* No board, no boxes: each format is a title and a line on its own top hairline, 2 to a row in the 7 column side, the
+   2nd column starting where the checks' does. The list's own bottom rule closes it, as the checks' does. */
 .s-rp-outs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--ob-space-48);
   margin: 0;
   padding: 0;
   list-style: none;
-  overflow: hidden;
-  border-radius: var(--ob-radius-lg);
-  background-color: var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle), var(--ob-shadow-1);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
 }
 .s-rp-outs > li {
   display: grid;
   align-content: start;
-  gap: var(--ob-space-8);
-  padding: var(--ob-space-24);
-  box-shadow: calc(var(--ob-border-hair) * -1) calc(var(--ob-border-hair) * -1) 0 0 var(--ob-line-subtle);
+  gap: var(--ob-space-4);
+  padding-block: var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
 }
 .s-rp-outs__format {
   margin: 0;
   font: var(--ob-type-body);
-  font-weight: var(--ob-weight-semibold);
+  font-weight: var(--ob-weight-medium);
   letter-spacing: -0.01em;
   color: var(--ob-text);
 }
@@ -211,12 +211,9 @@
   color: var(--ob-text-2);
   text-wrap: pretty;
 }
-@media (max-width: 859.98px) {
-  .s-rp-outs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
 @media (max-width: 519.98px) {
   .s-rp-outs { grid-template-columns: minmax(0, 1fr); }
-  .s-rp-outs > li { padding: var(--ob-space-20); }
+  .s-rp-outs > li { padding-block: var(--ob-space-20); }
 }
 
 /* ---- What you can change: the recipe's settings, 1 rule a row ----------------------------------------------------- */
@@ -259,9 +256,9 @@
 /* The rows bleed 16px past the column, so their words line up with the section while the hover layer has room. */
 .s-rp-who__link {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  grid-template-columns: var(--s-split);
   align-items: baseline;
-  gap: var(--ob-space-8) var(--ob-space-32);
+  gap: var(--ob-space-8) var(--s-split-gap);
   margin-inline: calc(var(--ob-space-16) * -1);
   padding: var(--ob-space-24) var(--ob-space-16);
   border-radius: var(--ob-radius-sm);
@@ -306,6 +303,15 @@
 }
 
 /* ---- The table: the design system's data table; cells wrap, and the row names lead each row ------------------- */
+
+/* Column heads in sentence case, the label type the comparison uses elsewhere ("Today", "With Obsession"), never caps
+   mono (docs/REBUILD.md, Look). The design system's .ob-table th is caps mono: listed for the system to absorb. */
+.s-rp-table .ob-table thead th {
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  text-transform: none;
+  color: var(--ob-text-2);
+}
 
 .s-rp-table .ob-table thead td {
   height: var(--ob-control-md);

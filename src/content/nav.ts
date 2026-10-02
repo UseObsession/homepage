@@ -1,53 +1,21 @@
 /* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7. */
+import { recipes } from './registry'
+import { agentsPage } from './site'
 import type { Cta, RecipeGroup, RecipeId } from './types'
 
 export type NavPage = { label: string; to: string; line?: string }
 export type NavRecipe = { id: RecipeId; label: string; to: string }
 export type NavRecipeGroup = { name: RecipeGroup; items: NavRecipe[] }
 
-/* Every recipe, by the job it does. The order here is the order in the menu, the phone sheet and the footer. */
-export const recipeGroups: NavRecipeGroup[] = [
-  {
-    name: 'Win customers',
-    items: [
-      { id: 'prospect', label: 'Prospect intelligence', to: '/recipes/prospect-intelligence' },
-      { id: 'speed', label: 'Speed to lead', to: '/recipes/speed-to-lead' },
-      { id: 'listings', label: 'Listings and AI answers', to: '/recipes/listings-ai-answers' },
-    ],
-  },
-  {
-    name: 'Keep customers',
-    items: [
-      { id: 'account-watch', label: 'Account watch', to: '/recipes/account-watch' },
-      { id: 'business-case', label: 'Business case', to: '/recipes/business-case' },
-    ],
-  },
-  {
-    name: 'Watch rivals',
-    items: [
-      { id: 'competitor', label: 'Competitor tracking', to: '/recipes/competitor-tracking' },
-      { id: 'prices', label: 'Price and promotion watch', to: '/recipes/price-watch' },
-      { id: 'ads', label: 'Ad tracking', to: '/recipes/ad-tracking' },
-      { id: 'email-sms', label: 'Email and SMS tracking', to: '/recipes/email-sms-tracking' },
-      { id: 'trial', label: 'Trial teardown', to: '/recipes/trial-teardown' },
-    ],
-  },
-  {
-    name: 'Check your own journeys',
-    items: [
-      { id: 'mystery', label: 'Mystery shopper', to: '/recipes/mystery-shopper' },
-      { id: 'audit', label: 'Website audit', to: '/recipes/website-audit' },
-      { id: 'delivery', label: 'Delivery monitoring', to: '/recipes/delivery-monitoring' },
-    ],
-  },
-  {
-    name: 'Get paid and save',
-    items: [
-      { id: 'get-paid', label: 'Get paid', to: '/recipes/get-paid' },
-      { id: 'supplier-quotes', label: 'Supplier quotes', to: '/recipes/supplier-quotes' },
-    ],
-  },
-]
+/* The 5 jobs, in the order the menu, the phone sheet and the footer list them. */
+const JOBS: RecipeGroup[] = ['Win customers', 'Keep customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
+
+/* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
+   in the registry's order, so the menu, the phone sheet, the footer, the Recipes index and every page agree. */
+export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
+  name,
+  items: recipes.filter((r) => r.group === name).map((r) => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })),
+}))
 
 /* The recipe with this /recipes/SLUG, for presets such as the waitlist's interest. */
 export function recipeAt(path: string): NavRecipe | undefined {
@@ -71,7 +39,7 @@ export const nav = {
   recipes: {
     label: 'Recipes',
     all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
-    /* The desktop menu lays the groups out in 3 columns of 5 recipes. */
+    /* The desktop menu lays the 5 jobs out in 3 columns, in reading order: 4, 5 and 6 recipes. */
     columns: [['Win customers', 'Keep customers'], ['Watch rivals'], ['Check your own journeys', 'Get paid and save']] satisfies RecipeGroup[][],
   },
   links: [
@@ -90,6 +58,8 @@ export const pageCtas: Record<string, Cta> = {
   '/recipes/mystery-shopper': { label: 'Get my free report', to: '#join' },
   /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
   '/sample-output': { label: 'Get one for your store', to: '#get-one' },
+  /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
+  '/agents': agentsPage.contact.cta,
 }
 
 export function ctaFor(path: string): Cta {

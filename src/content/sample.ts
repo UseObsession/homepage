@@ -11,7 +11,7 @@ import type { SamplePage, ViewerFormat } from './types'
    - Welcome: 2 messages, too few to call (No verdict). Browse: 3 messages (Delivered). 5 messages, 15 screenshots.
    There was NO control message and NO second run, and the run is never shown as signed. UK time in September is
    BST, so the webhook window carries +01:00. Every other run or row on the page says it is an example.
-   The report images still say "cart"; the site says "basket". "James" in the drafts is a stand-in name. */
+   The report images still say "cart"; the site says "basket". "James" in the drafts is a placeholder name. */
 
 /* The same run in every format it can arrive in. Home imports this too, and opens it on its own format. */
 export const outputFormats: ViewerFormat[] = [
@@ -143,7 +143,7 @@ export const sample: SamplePage = {
     sub: 'Obsession’s agents shopped a skincare store as 4 labelled test customers, 1 inbox each, and watched every inbox for 48 hours.',
     figures: [
       { value: '4', label: 'test customers, 1 inbox each' },
-      { value: '5', label: 'messages, all after welcome and browse' },
+      { value: '5', label: 'messages, all on welcome and browse' },
       { value: '15', label: 'screenshots kept as proof' },
     ],
     cta: { label: 'Get one for your store', to: '#get-one' },
@@ -246,7 +246,7 @@ export const sample: SamplePage = {
           height: 1594,
         },
         text: 'Still in your bag. James, your Body Care Gift Set is still in your bag. You added it late on Monday night and left before checking out. We’ve kept it exactly as you left it. Resume your order. Nothing has been charged. If something made you stop, reply and tell us what it was.',
-        note: 'James is a stand-in name. The test customer gave the store none.',
+        note: 'James is a placeholder name. The test customer gave the store none.',
       },
     },
     {
@@ -278,7 +278,7 @@ export const sample: SamplePage = {
           height: 1644,
         },
         text: 'One step left. James, your order is one step from done. You filled in your details late on Monday night and stopped at payment. The Deodorant is still in your order, and nothing has been charged. Finish your order. If something at payment put you off, reply and tell us. We’d rather fix it than lose the order.',
-        note: 'James is a stand-in name. The test customer gave the store none.',
+        note: 'James is a placeholder name. The test customer gave the store none.',
       },
     },
   ],
@@ -317,7 +317,8 @@ export const sample: SamplePage = {
       source: 'sample-output-final',
       button: 'Get one for your store',
       placeholder: 'Store address, e.g. your-store.example',
-      micro: 'You join the waitlist too. We keep your email and store address to run the shop, send your report and tell you about Obsession.',
+      micro: 'No store? Leave the address blank and you join the waitlist. We keep your email and store address to run the shop, send your report and tell you about Obsession.',
+      orWaitlist: true,
       roles: { question: 'Whose store is it?', options: ['Mine', 'A client’s, with their OK'] },
       interest: 'mystery',
     },

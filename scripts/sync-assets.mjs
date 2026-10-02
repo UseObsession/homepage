@@ -72,8 +72,9 @@ for (const name of names) {
   let html = (await readFile(join(SCREENS, `app-${name}.html`), 'utf8')).trim()
   html = html.replace('<main class="ax-main">', '<div class="ax-main">').replace('</main>', '</div>')
   html = html.replace(/(Templates)<em>\d+<\/em>/g, '$1')
-  /* the ready-made jobs are called Recipes (2 Oct): rename them in what a reader sees or hears, never in class names */
-  const recipes = (t) => t.replace(/\bTemplates\b/g, 'Recipes').replace(/\btemplates\b/g, 'recipes').replace(/\bTemplate\b/g, 'Recipe').replace(/\btemplate\b/g, 'recipe').replace(/\b\d+ ready-made recipes\b/g, 'ready-made recipes')
+  /* the jobs that come ready to run are called Recipes (2 Oct): rename them in what a reader sees or hears, never in class
+     names; no count of them, and no hyphenated "ready-made" (docs/REBUILD.md, Copy) */
+  const recipes = (t) => t.replace(/\bTemplates\b/g, 'Recipes').replace(/\btemplates\b/g, 'recipes').replace(/\bTemplate\b/g, 'Recipe').replace(/\btemplate\b/g, 'recipe').replace(/\b(\d+ )?ready-made recipes\b/g, 'recipes')
   html = html.replace(/>([^<]*)</g, (_, t) => '>' + recipes(t) + '<').replace(/aria-label="([^"]*)"/g, (_, t) => `aria-label="${recipes(t)}"`)
   /* every status mark in a screen uses the final logo's geometry (Brand/Logo/states) */
   html = html

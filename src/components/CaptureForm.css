@@ -27,7 +27,7 @@
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
 }
-.s-capture__privacy a {
+.s-capture__plink {
   border-radius: var(--ob-radius-glyph);
   color: var(--ob-text-2);
   text-decoration: underline;
@@ -38,13 +38,13 @@
   transition: color var(--ob-dur-base) var(--ob-ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .s-capture__privacy a:hover { color: var(--ob-text); text-decoration-color: currentColor; }
+  .s-capture__plink:hover { color: var(--ob-text); text-decoration-color: currentColor; }
 }
-.s-capture__privacy a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.s-capture__plink:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 /* On touch the link grows a 44px tall hit area without moving the line. */
 @media (pointer: coarse) {
-  .s-capture__privacy a { position: relative; }
-  .s-capture__privacy a::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) calc(var(--ob-space-8) * -1); }
+  .s-capture__plink { position: relative; }
+  .s-capture__plink::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) calc(var(--ob-space-8) * -1); }
 }
 
 /* The bot field: out of sight and out of the tab order. */

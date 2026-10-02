@@ -31,6 +31,9 @@ type Props = {
 
 const STEP_KEYS: Record<string, number> = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }
 
+/* The pause control's words: a visible label, so it reads as a control, never a stray mark under the rail. */
+const UI = { pause: 'Pause', play: 'Play', what: ' the steps' }
+
 /* A time token in ms. The build minifies times ("7000ms" ships as "7s"), so read the unit. */
 function tokenMs(name: string, fallback: number) {
   const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
@@ -216,16 +219,14 @@ export function How({ how, workspace = 'agency', id }: Props) {
             </div>
 
             {motionOk && (
-              <button
-                type="button"
-                className="ob-navbtn s-how-toggle"
-                aria-label="Pause the steps"
-                aria-pressed={!auto}
-                onClick={toggle}
-              >
-                <svg className="ob-navicon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <button type="button" className="ob-btn ob-btn--ghost ob-btn--sm s-how-toggle" onClick={toggle}>
+                <svg className="ob-btn-glyph" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                   {auto ? <path d="M6 4v8M10 4v8" /> : <path d="M5.5 3.8v8.4L12 8z" />}
                 </svg>
+                <span className="ob-btn-label">
+                  {auto ? UI.pause : UI.play}
+                  <span className="s-sr">{UI.what}</span>
+                </span>
               </button>
             )}
           </div>

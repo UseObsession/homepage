@@ -356,7 +356,8 @@ export const page: Page = {
       source: 'marketing-final',
       button: 'Get my free report',
       placeholder: 'Store address, e.g. your-store.example',
-      micro: 'A store you run, or one you have the owner’s OK to test. You join the waitlist too. We keep your email to send your report and tell you about Obsession, and nothing else.',
+      micro: 'No store? Leave the address blank and you join the waitlist. We keep your email to send your report and tell you about Obsession, and nothing else.',
+      orWaitlist: true,
       roles: {
         question: 'What should your test customers check first?',
         options: ['Welcome emails', 'Browse reminders', 'Basket reminders', 'Checkout follow ups'],

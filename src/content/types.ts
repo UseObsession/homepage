@@ -32,6 +32,8 @@ export type Capture = {
   /* After a sign up: 1 tap tells us what to set up first. */
   roles?: { question: string; options: string[] }
   interest?: RecipeId | 'any'
+  /* `mystery` only: a blank store address joins the waitlist instead of asking for one. The micro line says so. */
+  orWaitlist?: boolean
 }
 
 export type Cta = { label: string; to: string }

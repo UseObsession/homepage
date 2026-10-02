@@ -29,6 +29,11 @@
   cursor: pointer;
 }
 .s-nav__trigger[aria-expanded="true"] { color: var(--ob-text); background-color: var(--ob-state-pressed); }
+/* The current-page square sits under the word, not under the word and its chevron: shifted left by half of what the
+   chevron adds (its gap, its width, and the trimmed end padding), so it centres on the label as under a plain link. */
+.s-nav__trigger.is-selected::after {
+  margin-left: calc(var(--ob-sq-sm) / -2 - (var(--ob-space-4) + var(--ob-icon-sm) + var(--ob-space-8) - var(--ob-control-pad-sm)) / 2);
+}
 .s-nav__chev { color: var(--ob-text-3); }
 .s-nav__trigger:is(:hover, [aria-expanded="true"]) .s-nav__chev { color: currentColor; }
 

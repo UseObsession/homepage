@@ -14,7 +14,7 @@ const roles: Capture['roles'] = {
   options: ['Account management', 'Customer success', 'Sales', 'Agency', 'Founder', 'Something else'],
 }
 
-const micro = 'We’ll only use your email to tell you about Obsession.'
+const micro = 'We keep your email to tell you about Obsession, and nothing else.'
 
 export const recipe: Recipe = {
   id: 'business-case',

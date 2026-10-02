@@ -67,9 +67,9 @@
 /* The 4th job: its copy and the typed task beside the screen that runs it. */
 .s-job--wide {
   grid-column: 1 / -1;
-  grid-template-columns: minmax(0, 376px) minmax(0, 1fr);
+  grid-template-columns: var(--s-split);
   grid-template-rows: none;
-  gap: var(--ob-space-64);
+  gap: var(--s-split-gap);
   align-items: start;
   padding: var(--ob-space-56) 0 0;
   border-left: 0;

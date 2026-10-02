@@ -8,8 +8,8 @@
 
 .s-recipes__job {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: var(--ob-space-16) var(--ob-space-32);
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-16) var(--s-split-gap);
   padding-block: var(--ob-space-32);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
 }

@@ -4,8 +4,8 @@
 
 .s-kinds-body {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: var(--ob-space-64);
+  grid-template-columns: var(--s-split-flip);
+  gap: var(--s-split-gap);
   align-items: start;
 }
 
@@ -20,6 +20,7 @@
 /* The open kind: its name, its line, then its recipes as links. */
 .s-kinds-result { min-width: 0; padding-top: var(--ob-space-24); border-top: var(--ob-border-hair) solid var(--ob-line); }
 .s-kinds-pick { display: grid; gap: var(--ob-space-12); }
+.s-kinds-pick[hidden] { display: none; }
 .s-kinds-name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
 .s-kinds-line {
   max-width: 44ch;

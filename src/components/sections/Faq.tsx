@@ -24,6 +24,10 @@ export function faqJsonLd(faq: FaqContent) {
 /* A numeral stays on the line of the word it counts: the words are unchanged. */
 const keepNumerals = (text: string) => text.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
+/* A claim longer than this would run past 3 lines of h2 in the 5 column side, so it takes the h3 size there (Faq.css).
+   The lasting fix is a shorter claim (docs/REBUILD.md 9b, the narrative edit). */
+const LONG = 50
+
 type Props = {
   faq: FaqContent
   /* The questions open at first, by index. The first answer shows the reader what the list holds. */
@@ -48,7 +52,7 @@ export function Faq({ faq, open = [0], id, className }: Props) {
     <section id={id} className={'s-section s-faq' + (className ? ' ' + className : '')} aria-labelledby={`${base}-h`}>
       <div className="s-wrap s-faq__grid">
         <div className="s-faq__head">
-          <h2 id={`${base}-h`} className="ob-type-h2 s-faq__h">
+          <h2 id={`${base}-h`} className={'ob-type-h2 s-faq__h' + (faq.heading.length > LONG ? ' s-faq__h--long' : '')}>
             {keepNumerals(faq.heading)}
           </h2>
         </div>

@@ -96,8 +96,9 @@
 }
 .s-how-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: var(--ob-space-16) 0 var(--ob-space-4); list-style: none; }
 
-/* Pause sits at the foot of the rail, centred on its line. */
-.s-how-toggle { margin-left: calc(var(--ob-control-xs) / -2 + var(--ob-border-hair) / 2); }
+/* Pause sits at the foot of the rail, its icon on the step numbers' column (the tabs' 24px inset, less the button's own
+   padding). */
+.s-how-toggle { margin-left: calc(var(--ob-space-24) - var(--ob-btn-c-px)); }
 
 /* The stage: every step's screen in 1 cell. The open one fades in over the one leaving. */
 .s-how-stage { display: grid; align-self: start; min-width: 0; }
@@ -136,8 +137,8 @@
 @media (min-width: 1080px) {
   .s-how-body {
     display: grid;
-    grid-template-columns: minmax(0, 376px) minmax(0, 1fr);
-    gap: var(--ob-space-64);
+    grid-template-columns: var(--s-split);
+    gap: var(--s-split-gap);
     align-items: start;
   }
   .s-how-list { display: none; }
