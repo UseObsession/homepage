@@ -1,0 +1,52 @@
+/* The final call to action (components/sections/FinalCta): 1 centred column on the page's axis. The ring sits in the
+   section's only glow; the form keeps its own left-aligned micro line, centred as a block. */
+
+.s-final { position: relative; isolation: isolate; overflow: clip; }
+
+.s-final__in {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.s-final__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: var(--ob-text);
+}
+/* The glow: the ring's own light, wide and faint, never a coloured wash. */
+.s-final__mark::before {
+  content: "";
+  position: absolute;
+  inset: -160px -280px;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgb(var(--ob-glow-rgb) / .07), transparent);
+  pointer-events: none;
+}
+
+.s-final__h {
+  margin: var(--ob-space-32) 0 0;
+  max-width: 18ch;
+}
+.s-final__sub {
+  margin: var(--ob-space-20) 0 0;
+  max-width: 56ch;
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+.s-final__form.s-capture {
+  margin-top: var(--ob-space-40);
+  justify-self: center;
+}
+
+/* In a centred column the form's micro line and privacy line centre under the pill too. */
+.s-final__form .ob-pill-foot,
+.s-final__form .s-capture__privacy { padding-inline: 0; text-align: center; }
+
+@media (max-width: 860px) {
+  .s-final__h { margin-top: var(--ob-space-24); }
+  .s-final__form.s-capture { margin-top: var(--ob-space-32); }
+}

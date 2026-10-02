@@ -1,0 +1,114 @@
+/* Use cases (components/sections/UseCases) and the tab row it shares with Audiences (TabRail).
+   The tabs are navigation.css .ob-utabs (fit) with its 1 sliding bar; the panel is the words beside the app screen
+   that proves them. */
+
+/* ---- The tab row ------------------------------------------------------------------------------------------------
+   The hairline belongs to the column, so it lines up with everything above and below. The tabs bleed 12px past it, so
+   the first label starts on the column's edge, under the heading. On phones the row runs to the screen's edges and
+   scrolls, fading the edge that has more. */
+.s-rail {
+  position: relative;
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+}
+.s-rail__list.ob-utabs {
+  margin-inline: calc(var(--ob-control-pad-sm) * -1);
+  box-shadow: none;
+}
+@media (max-width: 860px) {
+  .s-rail { margin-inline: calc(var(--s-gutter) * -1); }
+  .s-rail__list.ob-utabs {
+    margin-inline: 0;
+    padding-inline: calc(var(--s-gutter) - var(--ob-control-pad-sm));
+  }
+}
+
+/* ---- The panels -------------------------------------------------------------------------------------------------
+   Side by side, every panel sits in the same grid cell: the ones not chosen keep their room but are hidden from sight,
+   the keyboard and screen readers, so the section's height never jumps as the reader moves between tabs. */
+.s-uses__panels {
+  display: grid;
+  margin-top: var(--ob-space-40);
+}
+.s-uses__panel {
+  grid-area: 1 / 1;
+  /* A shorter panel keeps its words and screen together; the spare room falls below. */
+  align-content: start;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--ob-space-56);
+  align-items: start;
+  min-width: 0;
+}
+.s-uses__panel[hidden] { display: grid; visibility: hidden; }
+/* A hidden screen holds still; its story plays when its tab is picked. */
+.s-uses__panel[hidden] .appx-il,
+.s-uses__panel[hidden] .appx-il * { animation: none !important; }
+.s-uses__panel:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-space-8); border-radius: var(--ob-radius-sm); }
+
+/* The words: the moment, the outcome, what the agents do, why only agents can, the recipe. They start level with the
+   window inside the screen's frame. */
+.s-uses__copy {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  padding-top: var(--ob-space-24);
+  min-width: 0;
+}
+.s-uses__moment {
+  margin: 0;
+  max-width: 44ch;
+  font: var(--ob-type-code);
+  letter-spacing: var(--ob-type-code-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-uses__outcome {
+  margin: var(--ob-space-16) 0 0;
+  max-width: 30ch;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-uses__line {
+  margin: var(--ob-space-12) 0 0;
+  max-width: 48ch;
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+/* Why only agents can: a ruled note, set off from the claim above it. */
+.s-uses__why {
+  margin: var(--ob-space-24) 0 0;
+  padding-top: var(--ob-space-16);
+  max-width: 48ch;
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-uses__recipe { margin-top: var(--ob-space-24); }
+@media (hover: hover) and (pointer: fine) {
+  .s-uses__recipe:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+
+.s-uses__screen { min-width: 0; }
+.s-uses__screen .ilwrap { cursor: pointer; }
+
+@media (max-width: 1080px) {
+  .s-uses__panel { gap: var(--ob-space-40); }
+}
+/* Phones and narrow tablets: the words, then the screen under them. */
+@media (max-width: 860px) {
+  .s-uses__panels { margin-top: var(--ob-space-32); }
+  .s-uses__panel { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
+  .s-uses__copy { padding-top: 0; }
+  /* Stacked, the words vary more than the screens do: only the chosen panel takes room, so a short one leaves no gap. */
+  .s-uses__panel[hidden] { display: none; }
+}
+
+/* The heading takes the type scale's measure for an h2 (20ch of its own size), not the body's. */
+.s-uses .s-head { max-width: none; }
+.s-uses .s-head > h2 { max-width: var(--ob-measure-heading); }
