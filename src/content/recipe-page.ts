@@ -27,8 +27,9 @@ export const recipePage = {
 
   steps: { heading: 'The agents do the legwork. You make the calls.' },
   checks: { heading: 'It covers the whole job, and stops where it should.' },
-  /* Every recipe page links to the 1 real report. */
-  outputs: { cta: { label: 'See a real report', to: '/sample-output' } satisfies Cta },
+  /* Every recipe page links to the 1 real run, the September store check, by what it is: no AI agent check has run
+     yet, so "a real report" beside an AI agent check's outputs would imply one. The label matches Founders' hero link. */
+  outputs: { cta: { label: 'See a real store check', to: '/sample-output' } satisfies Cta },
   settings: { heading: 'Start from the recipe. Change anything.' },
   forWho: { heading: 'The same recipe, different jobs.' },
 }

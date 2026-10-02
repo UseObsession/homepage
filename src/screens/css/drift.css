@@ -1,0 +1,153 @@
+/* app-drift: Drift watch, the 4th pillar (Check your AI agents) the morning after a vendor update.
+   Test customer 2, declared as AI, replays the same 40 support cases every day at 07:00 and again after every update.
+   Top left: the daily pass rate against a 90 to 100% baseline band; the vendor's update is a dashed marker, and the
+   re-run after it lands at 70% with the needs-you mark. Top right: a note to Vendor A, drafted and signed, sent only
+   after your OK. Below: the 9 cases that newly fail, each with the rule it broke and the bot's new answer (mono).
+   Numbers agree with 40 cases: 37 of 40 (92.5%) on 2 Oct, 28 of 40 (70%) after the update, so 9 newly fail.
+   Chrome is canonical (APP-SPEC, Product chrome, 2 Oct 2026): Your company, Missions selected, no list; the
+   declared-agent pill in the head; 1 lock line bottom left, level with the 1 toast bottom right.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38 (1 line, like the siblings), top row 50..207
+   (chart 328 + 12 + note 188), failures 219..348 (24 + 3 x 35), lock line 372..388, toast 360..400.
+   Plot box 304 x 113: flag strip 0..14, plot 18..95 (100% to 65%, 2.2 px per point), x labels 101..113;
+   runs every 20.92 px from x 32 (20 Sep) to x 304 (re-run, 3 Oct 00:10); vendor marker at x 293.5.
+   Story (5.25 s): the daily points draw; the update marker drops in; the re-run falls to 70% and its mark goes
+   hollow; the 9 failures fill in, counted; the note slides in; Needs you ticks 2 to 3; the toast.
+   Red lines on screen: Test customer 2 declared as AI; tests run with your OK and Vendor A's (a vendor's agent),
+   tagged so they are not billed; the note goes only after your OK. No attacks, nothing bought.
+   Rest state (no .play) = the finished scene. */
+@property --dft-n{syntax:"<integer>";inherits:false;initial-value:9}
+
+.app-drift .ax-main{grid-template-rows:24px auto;padding:14px;gap:12px}
+
+/* ---------- head: 1 line, title and meta, the declared agent on the right ---------- */
+.app-drift .dft-h{height:24px;gap:10px;min-width:0}
+.app-drift .dft-h h2{white-space:nowrap}
+.app-drift .dft-h .ax-meta{padding-top:2px;white-space:nowrap}
+.app-drift .dft-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-drift .dft-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-drift .dft-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: Needs you gains this mission */
+.app-drift .dft-nb{display:inline-grid}
+.app-drift .dft-nb b{grid-area:1/1;font-weight:inherit}
+.app-drift .dft-nb b:first-child{opacity:0}
+
+/* stacked states: only the last child shows at rest */
+.app-drift .dft-stk{display:inline-grid;align-items:center;min-width:0}
+.app-drift .dft-stk>*{grid-area:1/1}
+.app-drift .dft-stk>:not(:last-child){opacity:0}
+
+.app-drift .dft-top{display:grid;grid-template-columns:328px 188px;gap:12px;height:157px}
+
+/* ---------- the chart: daily pass rate, the update, the drop ---------- */
+.app-drift .dft-ch{position:relative;padding:10px 12px 0;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-drift .dft-chh{display:flex;align-items:center;gap:10px;height:18px;white-space:nowrap}
+.app-drift .dft-chh>b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-drift .dft-lg{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--fg-3)}
+.app-drift .dft-lg i{width:10px;height:8px;border-radius:2px;background:rgb(var(--fg-rgb) / .08);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-drift .dft-kpi{margin-left:auto;display:inline-flex;align-items:center;gap:4px}
+.app-drift .dft-was{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-drift .dft-now{display:inline-flex;align-items:center;gap:4px}
+.ilwrap .app-drift .dft-now svg{width:11px;height:11px;color:var(--fg-3)}
+.app-drift .dft-now b{font:600 15px/18px var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+
+.app-drift .dft-pl{position:relative;width:304px;height:113px;margin-top:4px}
+.ilwrap .app-drift svg.dft-svg{position:absolute;left:0;top:0;width:304px;height:113px;overflow:visible}
+.app-drift .dft-band{fill:rgb(var(--fg-rgb) / .05)}
+.app-drift .dft-gd{fill:none;stroke:var(--line);stroke-width:1}
+.app-drift .dft-ax{fill:none;stroke:var(--line-2);stroke-width:1}
+.app-drift .dft-mk{fill:none;stroke:var(--fg-3);stroke-width:1;stroke-dasharray:2.5 2.5;transform-box:fill-box;transform-origin:50% 0}
+.app-drift .dft-ln,.app-drift .dft-dp{fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1 1}
+.app-drift .dft-dts circle{fill:var(--fg);stroke:var(--panel-2);stroke-width:1.5;transform-box:fill-box;transform-origin:center}
+
+/* labels on the plot: the agent's log, in mono */
+.app-drift .dft-yl,.app-drift .dft-xl,.app-drift .dft-fg,.app-drift .dft-rr{position:absolute;height:12px;font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-drift .dft-yl{left:0;width:25px;text-align:right}
+.app-drift .dft-xl{top:101px}
+.app-drift .dft-xr{right:-6px}
+.app-drift .dft-fg{top:1px;right:16.5px;color:var(--fg-2)}
+.app-drift .dft-rr{top:78px;right:16.5px;color:var(--fg)}
+
+/* the re-run's point: the needs-you mark on a disc, so the line stops at its edge */
+.app-drift .dft-pt{position:absolute;left:296px;top:76px;display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--panel-2)}
+.ilwrap .app-drift .dft-pt svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the note to the vendor: drafted, signed, sent after your OK ---------- */
+.app-drift .dft-nt{display:flex;flex-direction:column;min-width:0;padding:10px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-drift .dft-nh{display:flex;align-items:center;gap:7px;height:19px;white-space:nowrap}
+.ilwrap .app-drift .dft-nh svg{flex:none;width:13px;height:13px;color:var(--fg-2)}
+.app-drift .dft-nh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-drift .dft-nh .ax-chip{margin-left:auto}
+.app-drift .dft-nx{margin-top:8px;font:400 10.5px/14px var(--mono);color:var(--fg-2);white-space:nowrap}
+.app-drift .dft-ns{margin-top:4px;font:400 10.5px/14px var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-drift .dft-send{margin-top:auto;align-self:flex-start}
+
+/* ---------- the 9 cases that newly fail: the rule, the bot's new answer ---------- */
+.app-drift .dft-fl{height:129px;border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-drift .dft-flh{display:flex;align-items:center;gap:10px;height:24px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-drift .dft-flh .dft-stk>span{display:inline-flex;align-items:baseline;gap:8px}
+.app-drift .dft-flh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-drift .dft-ok,.app-drift .dft-sn{font-size:11.5px;color:var(--fg-3)}
+.app-drift .dft-cnt{counter-reset:dftn var(--dft-n);font-variant-numeric:tabular-nums}
+.app-drift .dft-cnt::before{content:counter(dftn)}
+.app-drift .dft-who{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--fg-2)}
+.app-drift .dft-gr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:35px}
+.app-drift .dft-c{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;padding:0 10px 0 12px;box-shadow:inset -1px -1px 0 var(--line)}
+.app-drift .dft-c:nth-child(3n){box-shadow:inset 0 -1px 0 var(--line)}
+.app-drift .dft-c:nth-child(n+7){box-shadow:inset -1px 0 0 var(--line)}
+.app-drift .dft-c:nth-child(9){box-shadow:none}
+.app-drift .dft-r{display:flex;align-items:center;gap:6px;height:13px;white-space:nowrap}
+.ilwrap .app-drift .dft-r svg.sig{width:11px;height:11px;color:var(--fg)}
+.app-drift .dft-r b{min-width:0;overflow:hidden;text-overflow:ellipsis;font:500 11px/13px var(--sans);color:var(--fg)}
+.app-drift .dft-r i{margin-left:auto;padding-left:6px;font:400 10.5px/13px var(--mono);font-style:normal;color:var(--fg-3)}
+.app-drift .dft-x{padding-left:17px;font:400 10.5px/13px var(--mono);color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- the red line and the toast ---------- */
+.app-drift .dft-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-drift .dft-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-drift .dft-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-drift .dft-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-drift .dft-toast b{font-weight:500;color:var(--fg)}
+.app-drift .dft-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes dft-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes dft-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes dft-fade{from{opacity:0}to{opacity:1}}
+@keyframes dft-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes dft-dot{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes dft-drop{from{transform:scaleY(0)}to{transform:none}}
+@keyframes dft-flag{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@keyframes dft-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes dft-cell{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes dft-slide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes dft-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes dft-count{0%{--dft-n:1} 11.1%{--dft-n:2} 22.2%{--dft-n:3} 33.3%{--dft-n:4} 44.4%{--dft-n:5}
+  55.6%{--dft-n:6} 66.7%{--dft-n:7} 77.8%{--dft-n:8} 88.9%{--dft-n:9} 100%{--dft-n:9}}
+
+/* 1. two weeks of daily runs draw in, point by point */
+.app-drift.play .dft-ln{animation:dft-draw 2s linear .5s both}
+.app-drift.play .dft-dts circle{animation:dft-dot .32s var(--snap) var(--d) both}
+
+/* 2. the vendor's update lands */
+.app-drift.play .dft-mk{animation:dft-drop .45s var(--ease) 2.75s both}
+.app-drift.play .dft-fg{animation:dft-flag .4s var(--ease) 2.9s both}
+
+/* 3. the re-run after it falls to 70%, and its mark goes hollow */
+.app-drift.play .dft-dp{animation:dft-draw .38s cubic-bezier(.5,0,.75,0) 3.2s both}
+.app-drift.play .dft-pt{animation:dft-pop .42s var(--snap) 3.52s both}
+.app-drift.play .dft-rr{animation:dft-fade .4s var(--ease) 3.62s both}
+.app-drift.play .dft-now{animation:dft-in .35s var(--ease) 3.62s both}
+
+/* 4. the 9 cases that newly fail fill in, counted */
+.app-drift.play .dft-flh .dft-stk>:first-child{animation:dft-out .25s var(--ease) 3.5s both}
+.app-drift.play .dft-flh .dft-stk>:last-child{animation:dft-in .3s var(--ease) 3.55s both}
+.app-drift.play .dft-cnt{animation:dft-count .72s steps(1,end) 3.6s both}
+.app-drift.play .dft-c{animation:dft-cell .4s var(--ease) var(--d) both}
+
+/* 5. the note to the vendor is drafted; Needs you ticks 2 to 3; the toast */
+.app-drift.play .dft-nt{animation:dft-slide .6s var(--ease) 3.95s both}
+.app-drift.play .dft-nb b:first-child{animation:dft-out .3s var(--ease) 4.45s both}
+.app-drift.play .dft-nb b:last-child{animation:dft-in .3s var(--ease) 4.45s both}
+.app-drift.play .dft-toast{animation:dft-toast .45s var(--ease) 4.8s both}

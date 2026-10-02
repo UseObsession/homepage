@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { outputFormats, sample } from '../../content/sample'
 import type { Proof as ProofContent } from '../../content/types'
+import { AppScreen, type Workspace } from '../AppScreen'
 import './Proof.css'
 
 /* A numeral never ends a line apart from its word ("0 reminders", "48 hours"). */
@@ -16,8 +17,20 @@ const page = pdf?.kind === 'pdf' ? pdf.pages[0] : undefined
 
 /* Proof (docs/REBUILD.md, story beat 8): the real September store check, as a teaser for /sample-output. The claim
    and its line on 1 side; on the other, the top of the real report, cut off by its frame so it reads as a document
-   to open, not a picture to read. Its tag says it's the real run, where every app screen says "Example". */
-export function Proof({ proof, id = 'proof', className = '' }: { proof: ProofContent; id?: string; className?: string }) {
+   to open, not a picture to read. Its tag says it's the real run, where every app screen says "Example".
+   The same claim beside an app screen when `proof.screen` is set (Home's short section on the AI agent checks): the
+   screen plays its story when it comes into view and carries its Example tag, and `workspace` names whose it is. */
+export function Proof({
+  proof,
+  id = 'proof',
+  className = '',
+  workspace = 'company',
+}: {
+  proof: ProofContent
+  id?: string
+  className?: string
+  workspace?: Workspace
+}) {
   return (
     <section className={`s-section s-proof ${className}`} id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-proof__in">
@@ -34,7 +47,11 @@ export function Proof({ proof, id = 'proof', className = '' }: { proof: ProofCon
           </Link>
         </div>
 
-        {page && (
+        {proof.screen ? (
+          <div className="s-proof__screen">
+            <AppScreen name={proof.screen} workspace={workspace} />
+          </div>
+        ) : page && (
           <figure className="s-proof__doc">
             <div className="s-proof__tray">
               <img className="s-proof__page" src={page.src} alt={page.alt} width={page.width} height={page.height} loading="lazy" decoding="async" />

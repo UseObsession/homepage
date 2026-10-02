@@ -1,6 +1,7 @@
 /* The footer's words (components/Footer): the full site map, the red lines in 1 line, and the trust links.
    The recipes come from content/nav, so the menu, the phone sheet and the footer always list the same ones. */
 import { nav, type NavPage } from './nav'
+import { ways } from './ways'
 
 export const footer = {
   tagline: 'The intelligence infrastructure for commercial teams.',
@@ -10,6 +11,7 @@ export const footer = {
       label: 'Product',
       links: [
         { label: 'Recipes', to: '/recipes' },
+        { label: ways.verify.name, to: ways.verify.to },
         { label: 'Developers', to: '/developers' },
       ],
     },

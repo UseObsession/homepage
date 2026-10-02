@@ -18,8 +18,9 @@ const postFiles = import.meta.glob<BlogPost>(['./blog/*.ts', '!./blog/types.ts']
 
 const nameOf = (file: string) => file.slice(file.lastIndexOf('/') + 1, -'.ts'.length)
 
-/* The pages built on the Page contract, by file name: home, agencies, founders, sales, marketing, developers. */
-export type PageName = 'home' | 'agencies' | 'founders' | 'sales' | 'marketing' | 'developers'
+/* The pages built on the Page contract, by file name: home, agencies, founders, sales, marketing, developers, and
+   verify (/verify, Check your AI agents). */
+export type PageName = 'home' | 'agencies' | 'founders' | 'sales' | 'marketing' | 'developers' | 'verify'
 export const pages = Object.fromEntries(Object.entries(pageFiles).map(([file, p]) => [nameOf(file), p])) as Record<PageName, Page>
 
 /* Every recipe, in the order the nav menu, the phone sheet, the footer and the Recipes index list them within their job.
@@ -41,6 +42,14 @@ const ORDER: RecipeId[] = [
   'delivery',
   'get-paid',
   'supplier-quotes',
+  'support-bot',
+  'voice-agent',
+  'outbound-agent',
+  'sales-agent',
+  'vendor-agent',
+  'resolution',
+  'disclosure',
+  'drift',
 ]
 const rank = (id: RecipeId) => {
   const i = ORDER.indexOf(id)

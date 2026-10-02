@@ -1,0 +1,138 @@
+/* app-outcheck: Your company / Missions / Outbound agent check (the 4th pillar, Check your AI agents).
+   Obsession's 2 declared test prospects sit on the AI SDR's prospect list with the owner's OK. They only receive: every
+   email, text and call the SDR sends lands here and is checked against the company's policies and the law. Each verdict
+   reads as evidence: the finding, the rule it was judged by (Policy or Law), the quote or recording excerpt (mono), the
+   time, and the signature line. Pass is the landed mark, fail is needs you; never colour.
+   The 1 point: the false customer claim, the only row with the band and the bold title. The other 2 flags keep their
+   needs-you mark in regular weight.
+   Geometry (design px, main 556 x 414, padding 14, same as app-board): header 14..38, summary 50..98, table 110..348
+   (bar 28, 5 rows of 42), lock note and toast share the foot (note left 14 bottom 26, toast right 14 bottom 14).
+   Story (about 5 s): the scene settles; 5 new messages land on top of the inbox, one by one, pushing older ones down;
+   each is checked (the mark circles, then closes as passed or goes hollow as flagged) and signed; the counts climb to
+   3 flagged, 37 passed; the SDR flips from Sending to Paused by your rule; Needs you ticks 2 to 3; the toast.
+   Rest state (no .play) = the finished scene. */
+@property --appoc-f{syntax:"<integer>";inherits:false;initial-value:3}
+@property --appoc-p{syntax:"<integer>";inherits:false;initial-value:37}
+
+.app-outcheck .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: title, channels, the declared agent ---------- */
+.app-outcheck .oc-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-outcheck .oc-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-outcheck .oc-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-outcheck .oc-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-outcheck .oc-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-outcheck .oc-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: Needs you gains this mission */
+.app-outcheck .oc-nb{display:inline-grid}
+.app-outcheck .oc-nb b{grid-area:1/1;font-weight:inherit}
+.app-outcheck .oc-nb b:first-child{opacity:0}
+
+/* ---------- summary: 3 flagged · 37 passed · the SDR's state ---------- */
+.app-outcheck .oc-sum{display:grid;grid-template-columns:96px 96px minmax(0,1fr);height:48px;border-radius:10px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-outcheck .oc-cell{display:grid;align-content:center;gap:6px;padding:0 12px;min-width:0}
+.app-outcheck .oc-cell+.oc-cell{box-shadow:1px 0 0 var(--line) inset}
+.app-outcheck .oc-k{font:500 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-outcheck .oc-v{display:flex;align-items:center;gap:6px;height:16px;font:600 16px/1 var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.ilwrap .app-outcheck .oc-v svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-outcheck .oc-nf{counter-reset:appoc-f var(--appoc-f)}
+.app-outcheck .oc-nf::before{content:counter(appoc-f)}
+.app-outcheck .oc-np{counter-reset:appoc-p var(--appoc-p)}
+.app-outcheck .oc-np::before{content:counter(appoc-p)}
+/* the SDR: Sending, then Paused by your rule (stacked, the last shows at rest) */
+.app-outcheck .oc-st{display:grid;height:16px}
+.app-outcheck .oc-st>span{grid-area:1/1;display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-outcheck .oc-st .s0{opacity:0;color:var(--fg-2)}
+.ilwrap .app-outcheck .oc-st svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the inbox the test customers receive into ---------- */
+.app-outcheck .oc-tb{display:grid;grid-template-rows:28px 210px;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-outcheck .oc-bar{display:flex;align-items:center;gap:7px;padding:0 12px;font-size:11px;color:var(--fg-2);white-space:nowrap;
+  box-shadow:0 -1px 0 var(--line-2) inset}
+.app-outcheck .oc-to{color:var(--fg-3)}
+.app-outcheck .oc-rt{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+.app-outcheck .oc-rows{min-height:0;overflow:hidden}
+
+/* a new message opens on top of the list (grid rows, never height) */
+.app-outcheck .oc-x{display:grid;grid-template-rows:1fr}
+.app-outcheck .oc-c{min-height:0;overflow:hidden}
+
+/* 1 received message, checked: mark | channel + time | finding + rule | quote + signature */
+.app-outcheck .oc-row{display:grid;grid-template-columns:32px 76px 206px minmax(0,1fr);align-items:center;height:42px;box-shadow:0 -1px 0 var(--line) inset}
+.app-outcheck .oc-row>span{min-width:0}
+.app-outcheck .oc-lead{background:rgb(var(--fg-rgb) / .045)}
+.app-outcheck .oc-mk{display:grid;align-self:start;margin-top:8px;padding-left:12px;width:24px;height:12px}
+.app-outcheck .oc-mk svg{grid-area:1/1}
+.app-outcheck .oc-mk .w0{opacity:0}
+.ilwrap .app-outcheck .oc-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-outcheck .oc-rc,.app-outcheck .oc-ck1,.app-outcheck .oc-ev{display:grid;gap:3px}
+.app-outcheck .oc-chn{display:inline-flex;align-items:center;gap:6px;font:400 11.5px/14px var(--sans);color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-outcheck .oc-chn svg.oc-ic{width:12px;height:12px;color:var(--fg-3)}
+.app-outcheck .oc-rc time{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-outcheck .oc-ck{display:grid;padding-right:12px}
+.app-outcheck .oc-ck>span{grid-area:1/1}
+.app-outcheck .oc-ck0{align-self:start;font:400 10.5px/14px var(--mono);color:var(--fg-3);opacity:0;white-space:nowrap}
+.app-outcheck .oc-ck1 b{font:400 11.5px/14px var(--sans);color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-outcheck .oc-ck1 small{font:400 10.5px/13px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-outcheck .oc-ck1 i{font-style:normal;color:var(--fg-2)}
+.app-outcheck .oc-lead .oc-ck1 b{font-weight:600;color:var(--fg)}
+.app-outcheck .oc-ev{padding-right:12px}
+.app-outcheck .oc-q{font:400 10.5px/14px var(--mono);color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-outcheck .oc-lead .oc-q{color:var(--fg)}
+.app-outcheck .oc-sg{font:400 10.5px/13px var(--mono);color:var(--fg-3);white-space:nowrap}
+
+/* ---------- foot: the red line, level with the toast ---------- */
+.app-outcheck .oc-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-outcheck .oc-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-outcheck .oc-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-outcheck .oc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-outcheck .oc-toast b{font-weight:500;color:var(--fg)}
+.app-outcheck .oc-toast p span{color:var(--fg-3)}
+
+/* ---------- motion: land, check, sign, count, pause, tell ---------- */
+@keyframes appoc-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes appoc-fade{from{opacity:0}to{opacity:1}}
+@keyframes appoc-drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes appoc-out{from{opacity:1}to{opacity:0}}
+@keyframes appoc-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+@keyframes appoc-up{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+@keyframes appoc-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes appoc-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes appoc-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes appoc-glowf{from{background:rgb(var(--fg-rgb) / .1)}to{background:rgb(var(--fg-rgb) / .045)}}
+@keyframes appoc-glowp{from{background:rgb(var(--fg-rgb) / .08)}to{background:rgb(var(--fg-rgb) / 0)}}
+@keyframes appoc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* flags at 1.35, 2.25, 2.7 s */
+@keyframes appoc-f{0%{--appoc-f:0} 50%{--appoc-f:1} 83.33%{--appoc-f:2} 100%{--appoc-f:3}}
+/* passes at 1.8, 3.15 s */
+@keyframes appoc-p{0%{--appoc-p:35} 57.14%{--appoc-p:36} 100%{--appoc-p:37}}
+
+/* 1. messages land on top, each with a brief light */
+.app-outcheck.play .oc-x{animation:appoc-open .5s var(--ease) var(--t) both}
+.app-outcheck.play .oc-x .oc-row{animation:appoc-drop .45s var(--ease) var(--t) both,appoc-glowp 1.4s var(--ease) var(--t) both}
+.app-outcheck.play .oc-x .oc-lead{animation:appoc-drop .45s var(--ease) var(--t) both,appoc-glowf 1.4s var(--ease) var(--t) both}
+/* 2. each is checked: the mark circles, then closes (passed) or goes hollow (flagged); the finding replaces "Checking" */
+.app-outcheck.play .oc-x .oc-mk .w0{animation:appoc-out .2s var(--ease) var(--r) both}
+.app-outcheck.play .oc-x .oc-mk .w0 .sig-rot{animation:appoc-spin .75s linear var(--t) both}
+.app-outcheck.play .oc-x .oc-mk .w0 .sig-orb{animation:appoc-spinr .75s linear var(--t) both}
+.app-outcheck.play .oc-x .oc-mk .w1{animation:appoc-pop .45s var(--snap) var(--r) both}
+.app-outcheck.play .oc-x .oc-ck0{animation:appoc-up .25s var(--ease) var(--r) both}
+.app-outcheck.play .oc-x .oc-ck1{animation:appoc-in .4s var(--ease) calc(var(--r) + .05s) both}
+/* 3. and signed */
+.app-outcheck.play .oc-x .oc-sg{animation:appoc-fade .4s var(--ease) calc(var(--r) + .15s) both}
+/* the counts follow */
+.app-outcheck.play .oc-nf{animation:appoc-f 2.7s steps(1,end) both}
+.app-outcheck.play .oc-np{animation:appoc-p 3.15s steps(1,end) both}
+/* 4. the SDR is paused by your rule */
+.app-outcheck.play .oc-st .s0{animation:appoc-up .3s var(--ease) 3.7s both}
+.app-outcheck.play .oc-st .s0m .sig-rot{animation:appoc-spin 1.75s linear .2s 2 both}
+.app-outcheck.play .oc-st .s0m .sig-orb{animation:appoc-spinr 1.75s linear .2s 2 both}
+.app-outcheck.play .oc-st .s1{animation:appoc-in .4s var(--ease) 3.8s both}
+/* 5. Needs you gains it; the toast */
+.app-outcheck.play .oc-nb b:first-child{animation:appoc-up .3s var(--ease) 4.05s both}
+.app-outcheck.play .oc-nb b:last-child{animation:appoc-in .3s var(--ease) 4.05s both}
+.app-outcheck.play .oc-toast{animation:appoc-toast .45s var(--ease) 4.3s both}

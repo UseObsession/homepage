@@ -10,7 +10,8 @@ import './ScreenTabs.css'
 /* Home's hero console (Seun, 3 Oct): a tab per kind of work, each a full app screen that plays its story when its tab
    is chosen (components/AppScreen, playKey).
    - The tabs are the hero's scenario row (Console's .ob-ptabs rail), named by the typed heading above them.
-   - Under the screen: the Example tag, 1 line on what it shows, and the recipe it runs on.
+   - Under the screen: the Example tag, 1 line on what it shows, and the recipe it runs on (or, for a tab that is a whole
+     way in, its own page: the AI agent checks link /verify).
    - It moves through the tabs by itself, calmly, once, then rests on the last. Each tab stays for its screen's story
      plus time to read the finished scene, shown by the design system's autoplay bar in the chosen tab (motion.css
      .ob-anim-bar: it advances on the bar's animationend, so pausing the bar pauses the timer). Hover, keyboard focus,
@@ -193,7 +194,12 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
         <div className="s-shots-panels" ref={stageRef}>
           {tabs.map((t, i) => {
             const on = i === active
-            const recipe = recipeById[t.recipe]
+            const recipe = t.recipe ? recipeById[t.recipe] : undefined
+            /* Where the tab leads: its own page, else its recipe. The tab's name or the recipe's completes the label
+               for screen readers. */
+            const go = t.link
+              ? { to: t.link.to, label: t.link.label, name: t.tab }
+              : recipe && { to: `/recipes/${recipe.slug}`, label: UI.recipe, name: recipe.name }
             return (
               <div
                 key={t.screen}
@@ -209,11 +215,11 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
                     <span className="ob-tag s-shots-tag">{UI.example}</span>
                     <span>{t.line}</span>
                   </p>
-                  {recipe && (
-                    <Link className="ob-btn ob-btn--link s-shots-link" to={`/recipes/${recipe.slug}`}>
+                  {go && (
+                    <Link className="ob-btn ob-btn--link s-shots-link" to={go.to}>
                       <span className="ob-btn-label">
-                        {UI.recipe}
-                        <span className="ob-sr">: {recipe.name}</span>
+                        {go.label}
+                        <span className="ob-sr">: {go.name}</span>
                       </span>
                       <svg className="ob-btn-glyph ob-btn-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                         <path d="M3.5 8h9M9 4.5 12.5 8 9 11.5" />

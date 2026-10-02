@@ -1,0 +1,193 @@
+/* app-salescheck: Your company / Missions / Sales agent check (pillar 4, Check your AI agents).
+   A declared test customer ("Test customer 2 · AI · for Your company") asks the brand's own AI sales agent on WhatsApp
+   for the Duo bundle. The agent says it is AI, gets stock and delivery right, and quotes €89 for the €189 bundle.
+   Left: the conversation as it happened, under the declared notice (the shared test-customer avatar, then
+   "Test customer 2 · AI · for Your company"), ending on the checkout the agent sent, stopped before payment on a €0 budget.
+   Right: 4 checks read as evidence: each names its rule (price list, stock feed, delivery page, AI Act Art. 50), quotes
+   the agent in mono, gives the time, and the card foot carries the signature. The 1 failing check is the point:
+   €89 against €189, with its "up to" model (27 bundle chats last week). It is marked by a band (needs you), never an
+   edge bar (an edge bar means selected).
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, no list; plain h2, meta, the declared-agent pill;
+   lock line bottom left and app-board's toast bottom right, level with each other.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38; grid 50..348 (chat 230, gap 12, checks 286);
+   lock line and toast share the band 360..400.
+   Story (~5.2 s): the notice and the customer's question land, the agent types and answers, the 3 checks that pass land
+   one by one, the customer asks to order, the checkout card and its stop stamp land; then the €89 is ringed as the price list row lands, the
+   working mark flips to needs you and the band rises, the risk and signature land, Needs you ticks 2 to 3, the toast
+   ("Wrong price caught · fix drafted for your OK": Obsession drafts, the company decides; it never switches their agent off).
+   Rest state (no .play) = the finished scene. */
+
+.app-salescheck .ax-main{grid-template-rows:24px 298px;gap:12px;padding:14px}
+
+/* ---------- header: the page, its channels, the declared agent ---------- */
+.app-salescheck .slc-h{height:24px;min-width:0}
+.app-salescheck .slc-h h2{white-space:nowrap}
+.app-salescheck .slc-h .ax-meta{padding-top:2px;white-space:nowrap}
+.app-salescheck .slc-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-salescheck .slc-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: Needs you gains this check (stacked; only the last shows at rest) */
+.app-salescheck .slc-nb{display:inline-grid;overflow:hidden;line-height:1.2}
+.app-salescheck .slc-nb b{grid-area:1/1;font-weight:inherit}
+.app-salescheck .slc-nb b:first-child{opacity:0}
+
+.app-salescheck .slc-grid{display:grid;grid-template-columns:230px minmax(0,1fr);gap:12px;min-height:0}
+
+/* ---------- the conversation ---------- */
+.app-salescheck .slc-chat{display:grid;grid-template-rows:32px minmax(0,1fr);min-height:0;border-radius:10px;overflow:hidden;
+  background:var(--bg-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-ct{display:flex;align-items:center;gap:8px;padding:0 12px 0 4px;background:var(--panel-2);box-shadow:0 -1px 0 var(--line-2) inset,0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-seg{display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-salescheck .slc-seg span{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-salescheck .slc-seg .on{color:var(--fg);background:var(--panel-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-salescheck .slc-day{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.app-salescheck .slc-cv{display:flex;flex-direction:column;gap:8px;padding:12px 8px 0;min-height:0}
+/* the test customer is declared, as a notice at the top of the thread, behind the shared test-customer avatar */
+.app-salescheck .slc-dc{align-self:center;display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px 0 3px;border-radius:6px;white-space:nowrap;
+  font:400 10.5px/1 var(--sans);color:var(--fg-2);background:rgb(var(--fg-rgb) / .045);box-shadow:0 0 0 1px var(--line) inset}
+.app-salescheck .slc-dav{display:grid;place-items:center;flex:none;width:14px;height:14px;border-radius:4px;background:var(--fg)}
+.ilwrap .app-salescheck .slc-dav svg.sig{width:9px;height:9px;color:var(--bg)}
+
+/* bubbles: the customer's on the right, the agent's on the left */
+.app-salescheck .slc-b{max-width:178px;padding:6px 10px 7px;border-radius:10px;font:400 11.5px/15px var(--sans);color:var(--fg)}
+.app-salescheck .slc-out{align-self:flex-end;border-bottom-right-radius:4px;background:rgb(var(--fg-rgb) / .1)}
+.app-salescheck .slc-in{border-bottom-left-radius:4px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-b2w{position:relative;display:flex}
+/* the wrong price, ringed once it is caught */
+.app-salescheck .slc-hit{padding:0 3px;margin:0 1px;border-radius:4px;font-weight:600;color:var(--fg);background:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 1.5px var(--fg)}
+/* typing, only during play */
+.app-salescheck .slc-typ{position:absolute;left:0;top:0;display:flex;align-items:center;gap:4px;height:28px;padding:0 11px;border-radius:10px;border-bottom-left-radius:4px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;opacity:0}
+.app-salescheck .slc-typ i{width:5px;height:5px;border-radius:50%;background:var(--fg-3)}
+
+/* the checkout the agent sent, and where the test customer stopped */
+.app-salescheck .slc-co{display:flex;align-items:center;gap:9px;width:178px;height:36px;padding:0 12px 0 4px;border-radius:10px;border-bottom-left-radius:4px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-cs{width:34px;height:26px;flex:none;grid-template-rows:5px 1fr}
+.app-salescheck .slc-cpg{display:grid;align-content:center;gap:2px;padding:2px 4px}
+.app-salescheck .slc-cpg .t{width:70%;height:3px}
+.app-salescheck .slc-cpg .l{height:3px}
+.app-salescheck .slc-cpg .b{height:4px;background:#3A3834}
+.app-salescheck .slc-cot{display:grid;gap:2px;min-width:0}
+.app-salescheck .slc-cot b{font:500 11px/1.2 var(--sans);color:var(--fg)}
+.app-salescheck .slc-cot em{font:400 10.5px/1.2 var(--sans);font-style:normal;color:var(--fg-3);white-space:nowrap}
+.app-salescheck .slc-cop{margin-left:auto;font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-salescheck .slc-stop{display:flex;align-items:center;gap:6px;height:16px;font:500 10.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-salescheck .slc-bud{font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-salescheck .slc-bud::before{content:"·";margin-right:6px}
+
+/* ---------- the checks ---------- */
+.app-salescheck .slc-ck{display:grid;grid-template-rows:30px auto repeat(3,40px) minmax(0,1fr);min-height:0;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-kh{display:flex;align-items:center;gap:10px;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-salescheck .slc-kh>b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-salescheck .slc-sum{margin-left:auto;display:flex;gap:12px}
+.app-salescheck .slc-sum span{display:inline-flex;align-items:center;gap:5px;font:400 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-salescheck .slc-sum .sig{width:10px;height:10px;color:var(--fg-2)}
+
+/* the 1 that needs you: a band (needs you), no edge bar (that means selected) */
+.app-salescheck .slc-fail{display:grid;gap:8px;padding:12px;background:rgb(var(--fg-rgb) / .05);box-shadow:0 -1px 0 var(--line) inset}
+.app-salescheck .slc-ft{display:flex;align-items:center;gap:8px;height:18px}
+.app-salescheck .slc-ft b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-salescheck .slc-ft time,.app-salescheck .slc-row time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-salescheck .slc-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-salescheck .slc-mk>svg{grid-area:1/1}
+.app-salescheck .slc-mk .w0{opacity:0}
+.ilwrap .app-salescheck .slc-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* agent against price list, like a diff: the 2 numbers stack so the gap reads at a glance */
+.app-salescheck .slc-df{display:grid;border-radius:8px;overflow:hidden;background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-salescheck .slc-dr{display:grid;grid-template-columns:62px minmax(0,1fr) auto;align-items:center;gap:8px;height:26px;padding:0 12px}
+.app-salescheck .slc-d2{box-shadow:0 1px 0 var(--line) inset}
+.app-salescheck .slc-dr .k{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-salescheck .slc-dr .q{font:400 10.5px/1 var(--mono);color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-salescheck .slc-dr .s{font:400 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-salescheck .slc-dr>b{font:600 15px/1 var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums;text-align:right}
+
+.app-salescheck .slc-rk{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.app-salescheck .slc-rk b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-salescheck .slc-rk span{font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* checks that pass: name and time, then the agent's words = the rule they match */
+.app-salescheck .slc-row{display:grid;grid-template-columns:12px minmax(0,1fr) auto;grid-template-rows:14px 13px;column-gap:8px;row-gap:4px;align-content:center;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-salescheck .slc-rm{display:grid;place-items:center}
+.ilwrap .app-salescheck .slc-rm svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-salescheck .slc-row>b{font:500 11.5px/14px var(--sans);color:var(--fg);white-space:nowrap}
+.app-salescheck .slc-ev{grid-column:2/-1;display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}
+.app-salescheck .slc-ev .q{font:400 10.5px/13px var(--mono);color:var(--fg-2)}
+.app-salescheck .slc-ev i{font:400 10.5px/13px var(--mono);font-style:normal;color:var(--fg-3)}
+.app-salescheck .slc-ev span:last-child{font:400 10.5px/13px var(--sans);color:var(--fg-3)}
+
+/* the signature: every check above is signed */
+.app-salescheck .slc-sg{display:flex;align-items:center;gap:8px;padding:0 12px;white-space:nowrap}
+.app-salescheck .slc-sg span:first-child{font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-salescheck .slc-sg .ax-mono{font-size:10.5px;color:var(--fg-2)}
+
+/* ---------- foot: the red lines, and the toast ---------- */
+.app-salescheck .slc-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-salescheck .slc-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-salescheck .slc-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-salescheck .slc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-salescheck .slc-toast b{font-weight:500;color:var(--fg)}
+.app-salescheck .slc-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes slc-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes slc-show{from{opacity:0}to{opacity:1}}
+@keyframes slc-hide{from{opacity:1}to{opacity:0}}
+@keyframes slc-on{from{opacity:1}to{opacity:1}}
+@keyframes slc-typ{0%{opacity:0;transform:translateY(4px)}12%{opacity:1;transform:none}85%{opacity:1}100%{opacity:0}}
+@keyframes slc-dot{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes slc-ring{from{background:transparent;box-shadow:0 0 0 1.5px transparent}to{background:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 1.5px var(--fg)}}
+@keyframes slc-row{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes slc-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes slc-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes slc-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes slc-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+@keyframes slc-pulse{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes slc-tick{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes slc-glow{from{background:rgb(var(--fg-rgb) / 0)}50%{background:rgb(var(--fg-rgb) / .09)}to{background:rgb(var(--fg-rgb) / .05)}}
+@keyframes slc-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes slc-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes slc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. the conversation types in */
+.appx-il.play.app-salescheck .slc-dc{animation:slc-show .4s var(--ease) .35s both}
+.appx-il.play.app-salescheck .slc-m1{animation:slc-land .4s var(--ease) .7s both}
+.appx-il.play.app-salescheck .slc-typ{animation:slc-typ .75s linear 1.1s both}
+.appx-il.play.app-salescheck .slc-typ i{animation:slc-dot .5s ease-in-out 1.1s 2 both}
+.appx-il.play.app-salescheck .slc-typ i:nth-child(2){animation-delay:1.2s}
+.appx-il.play.app-salescheck .slc-typ i:nth-child(3){animation-delay:1.3s}
+.appx-il.play.app-salescheck .slc-m2{animation:slc-land .4s var(--ease) 1.82s both}
+.appx-il.play.app-salescheck .slc-m3{animation:slc-land .4s var(--ease) 2.45s both}
+.appx-il.play.app-salescheck .slc-co{animation:slc-land .4s var(--ease) 2.85s both}
+.appx-il.play.app-salescheck .slc-stop{animation:slc-show .3s var(--ease) 3.15s both}
+.appx-il.play.app-salescheck .slc-stop .ax-tick{animation:slc-tick .45s var(--snap) 3.2s both}
+.appx-il.play.app-salescheck .slc-hit{animation:slc-ring .4s var(--ease) 3.4s both}
+
+/* 2. the checks that pass land as the answer arrives: the square snaps home, the ring closes, the evidence shows */
+.appx-il.play.app-salescheck .slc-row .sig-sq{animation:slc-home .55s var(--snap) var(--t) both}
+.appx-il.play.app-salescheck .slc-row .sig-gap{animation:slc-show .3s var(--ease) calc(var(--t) + .17s) both}
+.appx-il.play.app-salescheck .slc-row .slc-ev,.appx-il.play.app-salescheck .slc-row time{animation:slc-show .35s var(--ease) calc(var(--t) + .05s) both}
+.appx-il.play.app-salescheck .slc-sum{animation:slc-show .4s var(--ease) 3.85s both}
+
+/* 3. the price is checked against the price list: works, is caught, needs you */
+.appx-il.play.app-salescheck .slc-mk .w0{animation:slc-on .01s linear both,slc-hide .2s var(--ob-ease-in) 3.75s forwards}
+.appx-il.play.app-salescheck .slc-mk .w0 .sig-rot{animation:slc-spin 3.2s linear .3s infinite}
+.appx-il.play.app-salescheck .slc-mk .w0 .sig-orb{animation:slc-spinr 3.2s linear .3s infinite}
+.appx-il.play.app-salescheck .slc-mk .w1{animation:slc-show .25s var(--ease) 3.77s both}
+.appx-il.play.app-salescheck .slc-mk .w1 .sig-sq{animation:slc-sqin .45s var(--snap) 3.77s both,slc-pulse 2.6s ease-in-out 4.3s infinite}
+.appx-il.play.app-salescheck .slc-ft time{animation:slc-show .3s var(--ease) 2.05s both}
+.appx-il.play.app-salescheck .slc-d1>*{animation:slc-show .35s var(--ease) 2.05s both}
+.appx-il.play.app-salescheck .slc-d2>*{animation:slc-row .45s var(--ease) 3.4s both}
+.appx-il.play.app-salescheck .slc-fail{animation:slc-glow 1.4s var(--ease) 3.75s both}
+.appx-il.play.app-salescheck .slc-rk{animation:slc-land .4s var(--ease) 4.05s both}
+.appx-il.play.app-salescheck .slc-sg{animation:slc-show .4s var(--ease) 4.2s both}
+
+/* 4. it reaches Needs you, and the toast */
+.appx-il.play.app-salescheck .slc-nb b:first-child{animation:slc-out .25s var(--ob-ease-in) 4.35s both}
+.appx-il.play.app-salescheck .slc-nb b:last-child{animation:slc-in .3s var(--ease) 4.39s both}
+.appx-il.play.app-salescheck .slc-toast{animation:slc-toast .45s var(--ease) 4.7s both}

@@ -109,7 +109,7 @@
   background-color: currentColor;
 }
 
-/* Recipes: 3 columns of 5, each group under its own name. */
+/* Recipes: 3 columns of about the same height, each group under its own name (content/nav, recipes.columns). */
 .s-menu__cols { display: grid; grid-template-columns: repeat(3, 208px); gap: var(--ob-space-8); }
 .s-menu__group + .s-menu__group { margin-top: var(--ob-space-8); }
 .s-menu__label {

@@ -222,7 +222,7 @@ await writeFile(
     '',
     '## Pages',
     '',
-    ...ofKind('home', 'audience', 'developers', 'recipes', 'sample', 'resources').map(link),
+    ...ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources').map(link),
     '',
     '## Recipes',
     '',

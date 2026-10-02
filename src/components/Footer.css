@@ -1,13 +1,13 @@
 /* The site footer (components/Footer): the brand, the full site map, the red lines in 1 line, the trust links and the
    theme switch. Tokens only. Labels are quiet sentence case; links rest in the second ink and take full ink on hover.
 
-   1 column grid for the whole footer (--s-foot-cols: 5, then 3, then 2). The brand takes every column but the last 3;
-   the page links (Solutions, Product, Use cases) take the last 3; the 5 recipe groups fill the grid under them. The
+   1 column grid for the whole footer (--s-foot-cols: 6, then 3, then 2). The brand takes every column but the last 3;
+   the page links (Solutions, Product, Use cases) take the last 3; the 6 recipe groups fill the grid under them. The
    page links sit in their own grid with the same gap, so their columns land exactly on the grid's. Under 1080px the
    brand takes its own row and the page links span the grid. */
 
 .s-foot {
-  --s-foot-cols: 5;
+  --s-foot-cols: 6;
   --s-foot-map-cols: 3;
   --s-foot-gap: var(--ob-space-24);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);

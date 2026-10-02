@@ -4,14 +4,18 @@ import type { Page } from '../types'
 /* Home (/). Generalised and industry agnostic: an agency, a founder, a salesperson, a marketer and a developer each
    see in 5 seconds that it's for them, across B2B SaaS, stores, services and any business.
    The story: what Obsession is > who it's for (the reader picker, right under the console, for readers who know who
-   they are) > how it works (1 flow, 4 steps) > the gap (today vs with Obsession) > the 4 jobs > recipes > the real
-   September store check, in every output > developers > questions > the waitlist.
+   they are) > how it works (1 flow, 4 steps; step 1 names the 4 ways in, content/ways.ts) > the gap (today vs with
+   Obsession) > the 4 jobs > the AI agent checks (the 4th way in, a short section of its own so the jobs grid holds and
+   the pillar reads as a pillar; VERIFY.md 10) > recipes > the real September store check, in every output >
+   developers > questions > the waitlist.
    Every hero screen is an example and says so (its Example tag). The only real run is the September store check
    (outputs and the third proof fact): 4 test customers, 48 hours watched, 1 shopper left a basket and 1 stopped at
    checkout, 0 reminders.
-   Screens, each once: the hero tabs (pack, shop, rivals, inbound, checkout), how (templates, agencytask, kit, run: all
-   in the agency workspace), the 4th job, a typed task (compose), developers (qa). The picker has no screens: each
-   reader's own page shows theirs. */
+   No AI agent check has run yet: the botcheck tab and the callcheck section are examples under their Example tags.
+   Screens, each once: the hero tabs (pack, shop, rivals, inbound, checkout, botcheck), how (templates, agencytask,
+   kit, run: all in the agency workspace), the 4th job, a typed task (compose), the AI agent checks (callcheck, drawn
+   for an agency and its client Dental group, as Home's workspace is; botcheck is in the hero, so it can't be here
+   too), developers (qa). The picker has no screens: each reader's own page shows theirs. */
 
 export const page: Page = {
   meta: {
@@ -46,8 +50,9 @@ export const page: Page = {
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
     consoleHeading,
-    /* Category tabs, each a full app screen that plays its story when chosen. AI checkout test lands with its screen
-       (src/screens/html/checkout.html); until then its tab is left out. Room for a 6th: the AI agent checks. */
+    /* Category tabs, each a full app screen that plays its story when chosen (REBUILD 1c): AI checkout test is the 5th,
+       and the 6th is a whole way in, not 1 recipe: Check your AI agents, linking /verify, named as the nav, the footer
+       and the breadcrumb name it. */
     screens: [
       {
         tab: 'Prospect intelligence',
@@ -79,6 +84,12 @@ export const page: Page = {
         recipe: 'checkout',
         line: 'A real order through every AI checkout into your store, refunded each month.',
       },
+      {
+        tab: 'Check your AI agents',
+        screen: 'botcheck',
+        line: 'Test customers ask your support bot on every channel, and check each answer.',
+        link: { label: 'See how it works', to: '/verify' },
+      },
     ],
   },
 
@@ -87,8 +98,8 @@ export const page: Page = {
     sub: 'A recipe comes with its agents, inboxes and schedule already set up. Type a task and Obsession sets them up for you.',
     steps: [
       {
-        title: 'Pick a recipe, type a task, or build your own',
-        line: 'Recipes cover the jobs teams repeat. For anything else, type it in plain words or use the API.',
+        title: 'Pick a recipe, type a task, build your own, or check your AI agents',
+        line: 'Recipes cover the jobs teams repeat. Type anything else in plain words, use the API, or point Obsession at your own AI agent.',
         screen: 'templates',
       },
       {
@@ -153,6 +164,14 @@ export const page: Page = {
         screen: 'compose',
       },
     ],
+  },
+
+  /* The 4th way in, after the 4 jobs (VERIFY.md 10): its own short section, linking /verify. */
+  verify: {
+    heading: 'Check your AI agents the way your customers meet them, every day.',
+    line: 'Declared test customers use your support bot, AI receptionist, AI SDR or sales agent as your customers do, and sign what they find.',
+    screen: 'callcheck',
+    cta: { label: 'See how it works', to: '/verify' },
   },
 
   /* The reader picker. Each line is 70 characters at most, so all 5 sit on 3 lines in the band. The picks differ on
@@ -288,6 +307,10 @@ await obs.missions.create({
       {
         q: 'What do I get back?',
         a: 'What happened, the proof and your next move. Every step is signed and dated, with the screenshots and the messages themselves, by email, PDF, Slack, a sheet, Clay, your CRM or a webhook. Next moves come drafted, and nothing goes out without your OK.',
+      },
+      {
+        q: 'Can it check our own AI agents?',
+        a: 'Yes. Give us the chat page, phone number or inbox your AI agent answers on, or a client’s with their OK. Declared test customers use it as your customers do, every day, and sign what they find.',
       },
       {
         q: 'How many companies can it cover?',

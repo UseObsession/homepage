@@ -2,12 +2,13 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEven
 import { Link, useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
 import type { Capture } from '../content/types'
-import { ADDRESS_PATTERN, WAITLIST_URL, hostOf, isAddress, isEmail, submitSignup } from '../lib/waitlist'
+import { ADDRESS_PATTERN, AGENT_PATTERN, WAITLIST_URL, hostOf, isAddress, isAgent, isEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import './CaptureForm.css'
 
 /* The 1 capture form (docs/REBUILD.md, section 9), on the design system's .ob-pill-form, .ob-field, .ob-chips and
-   .ob-confirm. kind "waitlist" asks for an email; kind "mystery" asks for the store first, then opens the email under it.
+   .ob-confirm. kind "waitlist" asks for an email; kind "mystery" asks for the store first, then opens the email under it;
+   kind "verify" does the same with the AI agent to check (its chat page or phone number), saved as `agent`.
    - Before the script loads it is a real form: method="post" to the waitlist script, which takes form posts too, with
      the browser's own checks. Once hydrated it checks the fields itself and sends JSON, without leaving the page.
    - Errors show 3 ways: the message under the pill, the danger edge, and aria-invalid with aria-describedby. Typing
@@ -18,8 +19,9 @@ import './CaptureForm.css'
      and source, which the script folds into the same row. Arrowing through the chips sends only the last one.
    - Under every form, 1 privacy line links /privacy. When the page's own micro line already says what we keep, the link
      closes that line instead, so the promise is never said twice and the foot stays 1 line.
-   - A mystery form with `orWaitlist` takes a blank store: the reader joins the waitlist instead (its micro says so).
-   - Before the script runs, the mystery form's email row is hidden (:root.js), so its email field is only required once
+   - A mystery or verify form with `orWaitlist` takes a blank first field: the reader joins the waitlist instead (its
+     micro says so).
+   - Before the script runs, the 2 step form's email row is hidden (:root.js), so its email field is only required once
      the page has hydrated: a native post in that moment never fails on a field the reader can't see. */
 
 type Step = 'start' | 'email' | 'done'
@@ -41,14 +43,18 @@ const ROLE_SETTLE_MS = 600
 export function CaptureForm({ capture, className = '' }: { capture: Capture; className?: string }) {
   const uid = useId()
   const { pathname } = useLocation()
-  const mystery = capture.kind === 'mystery'
-  const roles = capture.roles ?? copy.roles
-  const storePlaceholder = capture.placeholder ?? copy.store.placeholder
+  /* The 2 step forms: the store (mystery) or the AI agent (verify) first, then the email. Their first field is held
+     in `store` either way, and sent as `store` or `agent`. */
+  const verify = capture.kind === 'verify'
+  const mystery = capture.kind === 'mystery' || verify
+  const first = verify ? copy.agent : copy.store
+  const roles = capture.roles ?? (verify ? copy.agent.roles : copy.roles)
+  const storePlaceholder = capture.placeholder ?? first.placeholder
 
   const hydrated = useHydrated()
   const [step, setStep] = useState<Step>('start')
   const [store, setStore] = useState('')
-  /* A mystery form sends a shop only with a store; a blank one (orWaitlist) is a waitlist sign up. */
+  /* A 2 step form sends a shop or a check only with its first field; a blank one (orWaitlist) is a waitlist sign up. */
   const shop = mystery && !!store.trim()
   const [email, setEmail] = useState('')
   const [trap, setTrap] = useState('')
@@ -103,12 +109,13 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
 
     if (mystery) {
       if (!store.trim()) {
-        if (!capture.orWaitlist) return flag('store', copy.errors.storeEmpty)
-      } else if (!isAddress(store)) return flag('store', copy.errors.storeBad)
+        if (!capture.orWaitlist)
+          return flag('store', capture.label ? `Enter ${capture.label[0].toLowerCase()}${capture.label.slice(1)}.` : verify ? copy.errors.agentEmpty : copy.errors.storeEmpty)
+      } else if (!(verify ? isAgent(store) : isAddress(store))) return flag('store', verify ? copy.errors.agentBad : copy.errors.storeBad)
       if (step === 'start' && !email.trim()) {
         moved.current = true
         setStep('email')
-        setLive(copy.store.next)
+        setLive(first.next)
         return
       }
     }
@@ -120,7 +127,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     setLive(copy.sending)
     const res = await submitSignup({
       email,
-      store: shop ? store : undefined,
+      store: shop && !verify ? store : undefined,
+      agent: shop && verify ? store : undefined,
       interest: capture.interest,
       source: capture.source,
       page: pathname,
@@ -151,7 +159,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       const res = await submitSignup({
         email,
         role: value,
-        store: shop ? store : undefined,
+        store: shop && !verify ? store : undefined,
+        agent: shop && verify ? store : undefined,
         interest: capture.interest,
         source: capture.source,
         page: pathname,
@@ -167,7 +176,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     [errorOn(field) ? id.error : '', capture.micro ? id.help : ''].filter(Boolean).join(' ') || undefined
 
   const inline = saysWhatWeKeep(capture.micro)
-  const privacyText = inline ? '' : mystery ? copy.privacy.mystery : copy.privacy.waitlist
+  const privacyText = inline ? '' : verify ? copy.privacy.verify : mystery ? copy.privacy.mystery : copy.privacy.waitlist
   const privacyLink = (
     <Link className="s-capture__plink" to={copy.privacy.to}>
       {copy.privacy.link}
@@ -186,11 +195,11 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   )
 
   if (step === 'done') {
-    const done = shop ? copy.done.mystery : copy.done.waitlist
-    /* The store and the email are set as values that never break at a hyphen ("your-" / "store.example"). */
-    const values: Record<string, string> = { '{store}': hostOf(store), '{email}': email.trim() }
+    const done = shop ? (verify ? copy.done.verify : copy.done.mystery) : copy.done.waitlist
+    /* The store, the AI agent and the email are set as values that never break at a hyphen ("your-" / "store.example"). */
+    const values: Record<string, string> = { '{store}': hostOf(store), '{agent}': hostOf(store), '{email}': email.trim() }
     const fill = (t: string) =>
-      t.split(/(\{store\}|\{email\})/).map((part, i) =>
+      t.split(/(\{store\}|\{agent\}|\{email\})/).map((part, i) =>
         values[part] ? (
           <span className="s-capture__value" key={i}>
             {values[part]}
@@ -246,8 +255,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
         <div className="ob-pill-field">
           {mystery ? (
             <label className="ob-pill-entry" htmlFor={id.store}>
-              <span className="ob-sr">{copy.store.label}</span>
-              {bareAddress(storePlaceholder) && (
+              <span className="ob-sr">{capture.label ?? first.label}</span>
+              {!verify && bareAddress(storePlaceholder) && (
                 <span className="ob-pill-affix" aria-hidden="true">
                   {copy.store.prefix}
                 </span>
@@ -256,14 +265,14 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 ref={storeRef}
                 className="ob-pill-input"
                 id={id.store}
-                name="store"
+                name={verify ? 'agent' : 'store'}
                 type="text"
-                inputMode="url"
-                autoComplete="url"
+                inputMode={verify ? undefined : 'url'}
+                autoComplete={verify ? 'off' : 'url'}
                 autoCapitalize="none"
                 spellCheck={false}
                 required={!capture.orWaitlist}
-                pattern={ADDRESS_PATTERN}
+                pattern={verify ? AGENT_PATTERN : ADDRESS_PATTERN}
                 placeholder={storePlaceholder}
                 value={store}
                 onChange={(e) => edit('store', e.target.value)}
@@ -300,7 +309,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 <div className="ob-pill-more-in">
                   <div className="ob-field">
                     <label className="ob-label" htmlFor={id.email}>
-                      {store.trim() || !capture.orWaitlist ? copy.store.next : copy.email.label}
+                      {store.trim() || !capture.orWaitlist ? first.next : copy.email.label}
                     </label>
                     <input
                       ref={emailRef}

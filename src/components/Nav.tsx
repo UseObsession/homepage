@@ -420,7 +420,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
           </li>
 
           <li className="s-nav__item" onBlur={onItemBlur}>
-            {trigger('recipes', nav.recipes.label, path === '/recipes' || path.startsWith('/recipes/'))}
+            {trigger('recipes', nav.recipes.label, path === '/recipes' || path.startsWith('/recipes/') || recipeGroups.some((g) => g.more?.to === path))}
             <div
               ref={(el) => {
                 panels.current.recipes = el
@@ -450,6 +450,14 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                                 </NavLink>
                               </li>
                             ))}
+                            {g.more && (
+                              <li>
+                                <NavLink className="ob-menu__item s-menu__item s-menu__all" to={g.more.to} end onClick={close}>
+                                  {g.more.label}
+                                  <Arrow />
+                                </NavLink>
+                              </li>
+                            )}
                           </ul>
                         </div>
                       )
@@ -599,6 +607,14 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                             </NavLink>
                           </li>
                         ))}
+                        {g.more && (
+                          <li>
+                            <NavLink className="ob-mnav__link s-mnav__item s-mnav__all" to={g.more.to} end onClick={close}>
+                              {g.more.label}
+                              <Arrow />
+                            </NavLink>
+                          </li>
+                        )}
                       </ul>
                     </div>
                   )

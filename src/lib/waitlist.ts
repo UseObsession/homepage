@@ -14,6 +14,8 @@ export type Signup = {
   role?: string
   interest?: string
   store?: string
+  /* The free AI agent check: the agent's chat page or phone number (Code.js saves it in the Agent column). */
+  agent?: string
   /* The hidden bot field. Anything in it and the script drops the sign up. */
   website?: string
 }
@@ -54,6 +56,8 @@ export async function submitSignup(signup: Signup): Promise<SignupResult> {
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const ADDRESS = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(:\d+)?(\/\S*)?$/i
+/* A phone number as people type it: an optional +, then digits with spaces, brackets or hyphens, 7 to 15 digits. */
+const PHONE = /^\+?[\d\s()-]{7,20}$/
 
 export function isEmail(value: string) {
   return EMAIL.test(value.trim())
@@ -63,8 +67,20 @@ export function isAddress(value: string) {
   return ADDRESS.test(value.trim())
 }
 
-/* The same check for the browser's own validation, before the script has loaded. */
+export function isPhone(value: string) {
+  const v = value.trim()
+  const digits = v.replace(/\D/g, '').length
+  return PHONE.test(v) && digits >= 7 && digits <= 15
+}
+
+/* An AI agent is reached at a chat page (a web address) or a phone number. */
+export function isAgent(value: string) {
+  return isAddress(value) || isPhone(value)
+}
+
+/* The same checks for the browser's own validation, before the script has loaded. */
 export const ADDRESS_PATTERN = '(https?://)?([A-Za-z0-9\\-]+\\.)+[A-Za-z]{2,}(:[0-9]+)?(/\\S*)?'
+export const AGENT_PATTERN = `(${ADDRESS_PATTERN})|(\\+?[0-9 \\(\\)\\-]{7,20})`
 
 /* "https://www.your-store.example/shop?x=1" becomes "your-store.example". */
 export function hostOf(value: string) {

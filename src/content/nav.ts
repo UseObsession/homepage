@@ -2,19 +2,35 @@
 import { recipes, studies } from './registry'
 import { agentsPage } from './site'
 import type { Cta, RecipeGroup, RecipeId } from './types'
+import { ways } from './ways'
 
 export type NavPage = { label: string; to: string; line?: string }
 export type NavRecipe = { id: RecipeId; label: string; to: string }
-export type NavRecipeGroup = { name: RecipeGroup; items: NavRecipe[] }
+/* `more` is the group's own page, listed after its recipes (Check your AI agents: /verify). */
+export type NavRecipeGroup = { name: RecipeGroup; items: NavRecipe[]; more?: NavPage }
 
-/* The 5 jobs, in the order the menu, the phone sheet and the footer list them. */
-const JOBS: RecipeGroup[] = ['Win customers', 'Keep customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
+/* The 6 jobs, in the order the menu, the phone sheet and the footer list them. Check your AI agents is the 4th way in
+   (content/ways.ts), and its recipes are a job of their own. */
+export const JOBS: RecipeGroup[] = [
+  'Win customers',
+  'Keep customers',
+  'Watch rivals',
+  'Check your own journeys',
+  'Get paid and save',
+  'Check your AI agents',
+]
+
+/* A job with a page of its own links to it after its recipes. */
+const MORE: Partial<Record<RecipeGroup, NavPage>> = {
+  'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
+}
 
 /* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
    in the registry's order, so the menu, the phone sheet, the footer, the Recipes index and every page agree. */
 export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
   name,
   items: recipes.filter((r) => r.group === name).map((r) => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })),
+  ...(MORE[name] ? { more: MORE[name] } : {}),
 }))
 
 export const nav = {
@@ -33,8 +49,13 @@ export const nav = {
   recipes: {
     label: 'Recipes',
     all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
-    /* The desktop menu lays the 5 jobs out in 3 columns, in reading order: 8, 5 and 8 recipes. */
-    columns: [['Win customers', 'Keep customers'], ['Watch rivals'], ['Check your own journeys', 'Get paid and save']] satisfies RecipeGroup[][],
+    /* The desktop menu lays the 6 jobs out in 3 columns of about the same height: winning, keeping and getting paid
+       (11 recipes); rivals and your own journeys (10); and the AI agent checks with their page (8 and the link). */
+    columns: [
+      ['Win customers', 'Keep customers', 'Get paid and save'],
+      ['Watch rivals', 'Check your own journeys'],
+      ['Check your AI agents'],
+    ] satisfies RecipeGroup[][],
   },
   /* Resources: the worked examples (content/usecases, which James sends to prospects, so they always stay reachable),
      then the blog and the 1 real run. */

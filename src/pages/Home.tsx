@@ -7,14 +7,16 @@ import { How } from '../components/sections/How'
 import { Jobs } from '../components/sections/Jobs'
 import { Outputs } from '../components/sections/Outputs'
 import { PersonaBand } from '../components/sections/PersonaBand'
+import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { pages } from '../content/registry'
 import './StoryPage.css'
 
 /* Home (/), composed from content/pages/home.ts in the order of docs/REBUILD.md 1b:
    hero > who it's for (the reader picker, right under the console: the fork for readers who know who they are) >
-   how it works > the gap > the 4 jobs > recipes > proof (the real September store check, in every output, with "Try
-   your first shop free") > developers > questions > the waitlist (#join, where the nav's call to action lands).
+   how it works > the gap > the 4 jobs > the AI agent checks (the 4th way in: the claim beside its screen, linking
+   /verify) > recipes > proof (the real September store check, in every output, with "Try your first shop free") >
+   developers > questions > the waitlist (#join, where the nav's call to action lands).
    Home is drawn in the agency workspace, like Agencies. */
 const page = pages.home
 const workspace = 'agency'
@@ -27,6 +29,7 @@ export function Home() {
       <How how={page.how} workspace={workspace} id="how" />
       <Gap gap={page.gap} id="gap" />
       {page.jobs && <Jobs jobs={page.jobs} workspace={workspace} id="jobs" />}
+      {page.verify && <Proof proof={page.verify} workspace={workspace} id="verify" />}
       {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" id="proof" />}
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="developers" />}
