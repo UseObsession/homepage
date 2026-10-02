@@ -1,7 +1,7 @@
-import { agencies } from '../content/audiences'
+import { pages } from '../content/registry'
 import { AudiencePage } from './AudiencePage'
 
-/* /agencies. James's audience layout until the Pages phase rebuilds it from content/pages/agencies.ts. */
+/* /agencies: the shared audience story (AudiencePage) with content/pages/agencies.ts, in the agency workspace. */
 export function Agencies() {
-  return <AudiencePage key="agencies" a={agencies} />
+  return <AudiencePage key="agencies" page={pages.agencies} workspace="agency" />
 }

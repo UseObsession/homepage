@@ -1,9 +1,7 @@
 import { pages } from '../content/registry'
-import { Placeholder } from './Placeholder'
+import { AudiencePage } from './AudiencePage'
 
-/* /founders. New with the rebuild: its hero stands in until the Pages phase builds the page from
-   content/pages/founders.ts. */
+/* /founders: the shared audience story (AudiencePage) with content/pages/founders.ts, in the reader's own company. */
 export function Founders() {
-  const { hero } = pages.founders
-  return <Placeholder pill={hero.pill} headline={hero.headline} sub={hero.sub} capture={hero.capture} />
+  return <AudiencePage key="founders" page={pages.founders} workspace="company" />
 }
