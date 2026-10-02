@@ -183,7 +183,7 @@ export function PriceIntelligence() {
               <ul>
                 <li>A test customer per retailer and city, with its own inbox, Italian mobile number and browser</li>
                 <li>The sign ups, the store choice and the readings on your basket</li>
-                <li>Inboxes and phones kept open for weeks</li>
+                <li>Inboxes and phones kept open, continuously</li>
                 <li>A screenshot or the message behind every observation</li>
               </ul>
             </div>

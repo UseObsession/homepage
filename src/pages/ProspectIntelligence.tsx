@@ -13,7 +13,7 @@ const brands = [
   { name: 'Tidewren Swim', gap: 'No texts after opt in', tone: 'bad' },
   { name: 'Halvard & Moss', gap: 'No gap', tone: 'idle' },
   { name: 'Fennick Home', gap: 'No welcome email', tone: 'bad' },
-  { name: 'Larkbound', gap: 'No texts, no reply', tone: 'bad' },
+  { name: 'Larkbound', gap: 'No texts, no bot answer', tone: 'bad' },
 ]
 
 const shortLine: Record<RecipeId, string> = {
@@ -41,7 +41,7 @@ const clayRows = [
     name: 'Leo Grant',
     role: 'Founder',
     gap: 'No gap',
-    what: 'Welcome email in 2 min, 2 texts, support reply in 3 hours.',
+    what: 'Welcome email in 2 min, 2 texts, the chat bot answered in 3 s.',
     none: true,
   },
   {
@@ -55,8 +55,8 @@ const clayRows = [
     company: 'Larkbound',
     name: 'Owen Hale',
     role: 'Ecommerce Director',
-    gap: 'No texts, no reply',
-    what: 'Opted in on 15 Sep. 4 emails, 0 texts, no reply to a support question.',
+    gap: 'No texts, no bot answer',
+    what: 'Opted in on 15 Sep. 4 emails, 0 texts, no answer from the site’s chat bot.',
   },
 ]
 
@@ -77,7 +77,7 @@ export function ProspectIntelligence() {
             <ul className="uc-meta">
               <li className="chip">Example: an outbound agency</li>
               <li className="chip">Its client: an SMS app</li>
-              <li className="chip">300 UK Shopify brands</li>
+              <li className="chip">300 UK ecommerce brands</li>
             </ul>
             <p className="uc-note">
               <span className="tag warn">Illustration</span>
@@ -146,7 +146,7 @@ export function ProspectIntelligence() {
             <Reveal as="li" className="card">
               <h3 className="h3">Everyone has the same signals</h3>
               <p className="muted">
-                Store Leads and BuiltWith are open to every agency, so the brands you write to hear “noticed you use Klaviyo” every week.
+                Every agency can buy the same install data, so the brands you write to hear the same “noticed you use” line every week.
               </p>
             </Reveal>
             <Reveal as="li" className="card">
@@ -176,7 +176,7 @@ export function ProspectIntelligence() {
             <ul>
               <li>
                 <b>Your list is already there</b>
-                Each client’s TAM is a Clay table, built from your ecommerce data, Store Leads and BuiltWith.
+                Each client’s TAM is a Clay table, built from your ecommerce and install data.
               </li>
               <li>
                 <b>Facts come back as columns</b>
@@ -196,7 +196,7 @@ export function ProspectIntelligence() {
           <SectionHead
             kicker="Step by step"
             title="From recipe to facts in Clay."
-            lede="How the agency in this example runs it for one client, an SMS app, across 300 UK Shopify brands."
+            lede="How the agency in this example runs it for one client, an SMS app, across 300 UK ecommerce brands."
           />
 
           <div className="uc-phase first">
@@ -263,7 +263,7 @@ export function ProspectIntelligence() {
                 ))}
                 <li style={at(allRecipeIds.length)} className="uc-rcard own">
                   <b>Describe it yourself</b>
-                  “Does each brand answer a sizing question within a day?”
+                  “Does each brand’s chat bot answer a sizing question within a day?”
                 </li>
               </ul>
               <div className="uc-sets">
@@ -280,7 +280,7 @@ export function ProspectIntelligence() {
             n={3}
             title="Configure it"
             line="Choose the gap your client’s product closes and what counts as a gap. Each check has its own deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer."
-            pick="Email sign up, SMS opt in and one support question, watched for 48 hours, then every week."
+            pick="Email sign up, SMS opt in and one question to the site’s chat bot, watched for 48 hours, then every week."
           >
             <Win title="New watch · Prospect research · Configure">
               <div className="uc-cfg">
@@ -302,19 +302,15 @@ export function ProspectIntelligence() {
                       </li>
                       <li>
                         <span className="uc-cb on" style={at(2)} />
-                        One support question
+                        One question to the site’s chat bot
                       </li>
                       <li>
                         <span className="uc-cb" />
                         WhatsApp opt in
                       </li>
-                      <li>
-                        <span className="uc-cb" />
-                        Live chat
-                      </li>
                       <li className="locked">
                         <span className="uc-cb lock" />
-                        Basket, checkout and purchase
+                        Basket and checkout, stopped before payment
                         <span className="tag idle">Needs the brand’s OK</span>
                       </li>
                     </ul>
@@ -331,7 +327,7 @@ export function ProspectIntelligence() {
                         No welcome email within <em>1 hour</em>
                       </li>
                       <li style={at(5)}>
-                        No support reply within <em>24 hours</em>
+                        No answer from the site’s chat bot within <em>24 hours</em>
                       </li>
                       <li style={at(6)}>Recheck every miss from a fresh number before it counts</li>
                     </ul>
@@ -450,8 +446,8 @@ export function ProspectIntelligence() {
                   ['Recipe', 'Prospect research'],
                   ['For', 'Client A, SMS app'],
                   ['Brands', '300 now, plus new rows from the Clay view'],
-                  ['Checks', 'Email sign up, SMS opt in, one support question'],
-                  ['Gaps', 'No welcome in 1 hour · No text in 24 hours · No reply in 24 hours'],
+                  ['Checks', 'Email sign up, SMS opt in, one question to the site’s chat bot'],
+                  ['Gaps', 'No welcome in 1 hour · No text in 24 hours · No bot answer in 24 hours'],
                   ['Watch', '48 hours per brand, then every week'],
                   ['Results', 'Back to Clay as 4 columns, alerts in Slack'],
                 ].map(([k, v], i) => (
@@ -478,7 +474,7 @@ export function ProspectIntelligence() {
             title="Each brand gets its own shopper"
             line="A real inbox, a real UK mobile number and its own browser, used for that one brand only. It signs up the way a customer would and saves a screenshot at every step. It always says it’s automated."
           >
-            <Win title="UK Shopify TAM · Tidewren Swim">
+            <Win title="UK ecommerce TAM · Tidewren Swim">
               <div className="uc-s6">
                 <div className="uc-id">
                   <div className="uc-row uc-between">
@@ -544,11 +540,11 @@ export function ProspectIntelligence() {
           <Step
             n={7}
             title="It waits, up to 48 hours"
-            line="Every email, text and reply lands in that brand’s own inbox and phone. When a deadline passes with nothing, it tries again from a fresh number before calling it. Brands added later run on their own clock."
+            line="Every email and text lands in that brand’s own inbox and phone, and every answer from its chat bot is saved. When a deadline passes with nothing, it tries again from a fresh number before calling it. Brands added later run on their own clock."
           >
-            <Win title="Watches · UK Shopify TAM">
+            <Win title="Watches · UK ecommerce TAM">
               <div className="uc-row">
-                <span className="uc-mh">UK Shopify TAM</span>
+                <span className="uc-mh">UK ecommerce TAM</span>
                 <span className="tag idle">Hour 30 of 48</span>
                 <span className="uc-small">From the Prospect research recipe</span>
               </div>
@@ -573,10 +569,10 @@ export function ProspectIntelligence() {
                   </p>
                 </li>
                 <li>
-                  <small>Support replies</small>
+                  <small>Chat bot answers</small>
                   <p>
                     <b>
-                      <Count to={205} />
+                      <Count to={212} />
                     </b>
                     <em>of 296</em>
                   </p>
@@ -612,7 +608,7 @@ export function ProspectIntelligence() {
             title="Results after 48 hours"
             line="A finding for every brand. A missed deadline only counts as a gap once a control message and a second run from a fresh number confirm it."
           >
-            <Win title="Watches · UK Shopify TAM · Results">
+            <Win title="Watches · UK ecommerce TAM · Results">
               <ul className="uc-tiles">
                 <li className="bad">
                   <small>Opted in for texts, none sent</small>
@@ -642,7 +638,7 @@ export function ProspectIntelligence() {
                   </p>
                 </li>
                 <li>
-                  <small>Support took over 24 hours</small>
+                  <small>No chat bot answer in 24 hours</small>
                   <p>
                     <b>
                       <Count to={84} />
@@ -658,16 +654,16 @@ export function ProspectIntelligence() {
                       <th>Brand</th>
                       <th>Emails</th>
                       <th>Texts</th>
-                      <th>Support</th>
+                      <th>Chat bot</th>
                       <th>Finding</th>
                     </tr>
                   </thead>
                   <tbody className="uc-seq">
                     {[
-                      ['Tidewren Swim', '3', '0', '26 h', 'No texts after opt in'],
-                      ['Halvard & Moss', '2', '2', '3 h', ''],
-                      ['Fennick Home', '0', '1', '31 h', 'No welcome email'],
-                      ['Larkbound', '4', '0', 'none', 'No texts, no reply'],
+                      ['Tidewren Swim', '3', '0', '9 s', 'No texts after opt in'],
+                      ['Halvard & Moss', '2', '2', '3 s', ''],
+                      ['Fennick Home', '0', '1', '6 s', 'No welcome email'],
+                      ['Larkbound', '4', '0', 'none', 'No texts, no bot answer'],
                     ].map(([b, e, t, s, f], i) => (
                       <tr key={b} style={at(i + 3)}>
                         <td>
@@ -707,9 +703,8 @@ export function ProspectIntelligence() {
                   ['Tue 15 Sep 10:14', 'Signed up with an email and a UK mobile'],
                   ['Tue 15 Sep 10:15', 'Welcome email after 38 s'],
                   ['Tue 15 Sep 10:20', 'Control text to the same number arrived in 4 s'],
-                  ['Tue 15 Sep 10:31', 'Asked support about sizing, declared as automated'],
+                  ['Tue 15 Sep 10:31', 'Asked the site’s chat bot about sizing, declared as automated. It answered in 9 s'],
                   ['Wed 16 Sep 10:14', 'No text after 24 hours; second run from a fresh number'],
-                  ['Wed 16 Sep 12:40', 'Support replied after 26 hours'],
                   ['Thu 17 Sep 10:14', '48 hours: 3 emails, 0 texts on either number'],
                 ].map(([t, e], i, all) => (
                   <li key={t} style={at(i)} className={i === all.length - 1 ? 'bad' : ''}>
@@ -789,7 +784,7 @@ export function ProspectIntelligence() {
                 <p>
                   <b>Obsession</b> <span className="uc-small">#signals_client_a</span>
                   <br />
-                  UK Shopify TAM: the first 300 brands are done. <b>61</b> opted in for texts and never got one, and <b>19</b> never sent a
+                  UK ecommerce TAM: the first 300 brands are done. <b>61</b> opted in for texts and never got one, and <b>19</b> never sent a
                   welcome email. New rows report as they finish. The facts and proof are in your Clay table.
                 </p>
               </div>
@@ -885,8 +880,8 @@ export function ProspectIntelligence() {
           </Reveal>
           <p className="uc-fine">
             About this page: it illustrates how the product works. The agency, its client, the brands, the people, the phone number and every
-            figure are made up, and no real company’s results are shown. Basket, checkout and purchase checks run only with the brand’s OK.
-            Clay, Store Leads, BuiltWith and Klaviyo are trademarks of their owners, named here to describe where data comes from and goes.
+            figure are made up, and no real company’s results are shown. Basket and checkout checks run only with the brand’s OK, and stop before
+            payment. Clay is a trademark of its owner, named here to describe where data comes from and goes.
           </p>
         </div>
       </section>
