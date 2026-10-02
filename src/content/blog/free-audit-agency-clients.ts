@@ -15,7 +15,7 @@ import type { BlogPost } from './types'
    references to the run, and pull the post until a consented run exists.
 
    Thought leadership: no competitor product is named. Every number links to its source or sits in a stat block; every
-   source was read on 3 Oct 2026. The link to /blog/best-competitor-email-tracking-tools (Post 5) is held back until
+   source was checked on 3 Oct 2026. The link to /blog/best-competitor-email-tracking-tools (Post 5) is held back until
    Post 5 is live on 2 Nov: restore it in the monthly report list's last item and in `related` then. */
 
 export const post: BlogPost = {

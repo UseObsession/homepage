@@ -1,9 +1,9 @@
 import type { BlogPost } from './types'
 
-/* Post 5 (docs/SEARCH.md section 5). A review: every vendor fact read on the vendor's own pages on 3 Oct 2026, prices
+/* Post 5 (docs/SEARCH.md section 5). A review: every vendor fact checked on the vendor's own pages on 3 Oct 2026, prices
    as listed that day, nothing tested hands on (the method section says so). Obsession appears in the disclosure, the
    grid and its own entry only, judged on the same questions with its limits stated. Groups by how a tool collects
-   messages, alphabetical inside each. Recart, CompetitorTrack and Newsletrix added after review, each read on its own
+   messages, alphabetical inside each. Recart, CompetitorTrack and Newsletrix added after review, each checked on its own
    pages on 3 Oct 2026. Left out until verified on their own sites: Competitors App, Hoppy Copy, Reyo. The
    r/ProductMarketing quote in the brief was dropped: Reddit blocked every fetch, so it could not be re-checked at its
    URL. The FCC paragraph rests on the Ecommerce Innovation Alliance's 1 Oct account of the adopted order; swap in the
