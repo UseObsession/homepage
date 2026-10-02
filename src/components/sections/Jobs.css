@@ -59,10 +59,10 @@
 .s-job-mark { display: block; margin-top: calc((var(--ob-type-mono-sm-size) * var(--ob-type-code-leading) - var(--ob-icon-lg)) / 2); color: var(--ob-text); }
 
 /* Typed text: the whole line holds its space; the typed part sits over it. */
-.s-typed { display: grid; min-width: 0; }
-.s-typed > :not(.ob-sr) { grid-area: 1 / 1; min-width: 0; overflow-wrap: anywhere; }
-.s-typed-ghost { visibility: hidden; }
-.s-typed .ob-caret { vertical-align: baseline; }
+.s-job-typed { display: grid; min-width: 0; }
+.s-job-typed > :not(.ob-sr) { grid-area: 1 / 1; min-width: 0; overflow-wrap: anywhere; }
+.s-job-typed-ghost { visibility: hidden; }
+.s-job-typed .ob-caret { vertical-align: baseline; }
 
 /* The 4th job: its copy and the typed task beside the screen that runs it. */
 .s-job--wide {

@@ -65,11 +65,11 @@ function Typed({ text, phase, onDone, caret = false }: { text: string; phase: Ph
 
   const n = phase === 'typing' ? typed : phase === 'idle' ? 0 : text.length
   return (
-    <span className="s-typed">
-      <span className="s-typed-ghost" aria-hidden="true">
+    <span className="s-job-typed">
+      <span className="s-job-typed-ghost" aria-hidden="true">
         {text}
       </span>
-      <span className="s-typed-live" aria-hidden="true">
+      <span className="s-job-typed-live" aria-hidden="true">
         {text.slice(0, n)}
         {((caret && phase !== 'static') || phase === 'typing') && (
           <span className={'ob-caret' + (phase === 'typing' ? ' is-typing' : '')} />
