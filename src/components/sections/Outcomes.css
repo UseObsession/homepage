@@ -1,0 +1,59 @@
+/* Outcomes (sections/Outcomes.tsx). Design system tokens only; site classes start s-out. */
+
+.s-out-head { max-width: 44rem; }
+
+/* Open figures on a hairline each, never boxes: 3 across, or 2 by 2 when there are 4, so every figure keeps 1 line. */
+.s-out-list {
+  display: grid;
+  grid-template-columns: repeat(var(--s-out-cols, 3), minmax(0, 1fr));
+  gap: var(--ob-space-48) var(--ob-space-40);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-out-item {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  padding-top: var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+
+.s-out-value { margin: 0; color: var(--ob-text); }
+.s-out-figure { display: inline-flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--ob-space-8); }
+/* "Up to" reads first, on the figure's own line, in the lede's size: the ceiling is never hidden. */
+.s-out-qual {
+  font: var(--ob-type-body-lg);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+}
+/* The final figure holds the width while the tween runs over it, so the line never moves. */
+.s-out-num { display: inline-grid; justify-items: start; }
+.s-out-num > * { grid-area: 1 / 1; }
+.s-out-ghost { visibility: hidden; }
+.s-out-unit {
+  font: var(--ob-weight-medium) var(--ob-type-body-size) / 1 var(--ob-font-sans);
+  letter-spacing: 0;
+  color: var(--ob-text-2);
+}
+.s-out-words { text-wrap: balance; }
+
+.s-out-label {
+  max-width: 38ch;
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-out-note {
+  max-width: 44ch;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+
+@media (max-width: 859.98px) {
+  .s-out-list { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
+}

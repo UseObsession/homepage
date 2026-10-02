@@ -1,0 +1,97 @@
+/* Home's 4 jobs (sections/Jobs.tsx). Design system tokens and classes only; site classes start s-job. */
+
+.s-jobs-head { max-width: 44rem; }
+
+/* The jobs sit in columns divided by hairlines, never in boxes. A job with a screen takes the full width below. */
+.s-jobs-list {
+  display: grid;
+  grid-template-columns: repeat(var(--s-jobs-cols, 3), minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+
+.s-job {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  padding: var(--ob-space-32) var(--ob-space-32) var(--ob-space-40);
+  border-left: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-job:first-child { padding-left: 0; border-left: 0; }
+.s-job:nth-child(3n of :not(.s-job--wide)) { padding-right: 0; }
+
+.s-job-title {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-job-line {
+  max-width: 40ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* The example, as the agent logs it: the ring's status, then the line in the agent's mono. Every column's log sits on
+   the same line at the foot of its job. */
+.s-job-log {
+  align-self: end;
+  display: grid;
+  grid-template-columns: var(--ob-icon-lg) minmax(0, 1fr);
+  column-gap: var(--ob-space-12);
+  align-items: start;
+  margin-top: var(--ob-space-20);
+  padding-top: var(--ob-space-16);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-code);
+  font-size: var(--ob-type-mono-sm-size);
+  letter-spacing: var(--ob-type-code-tracking);
+  color: var(--ob-text);
+}
+/* The mark centres on the first line of the log. */
+.s-job-mark { display: block; margin-top: calc((var(--ob-type-mono-sm-size) * var(--ob-type-code-leading) - var(--ob-icon-lg)) / 2); color: var(--ob-text); }
+
+/* Typed text: the whole line holds its space; the typed part sits over it. */
+.s-typed { display: grid; min-width: 0; }
+.s-typed > :not(.ob-sr) { grid-area: 1 / 1; min-width: 0; overflow-wrap: anywhere; }
+.s-typed-ghost { visibility: hidden; }
+.s-typed .ob-caret { vertical-align: baseline; }
+
+/* The 4th job: its copy and the typed task beside the screen that runs it. */
+.s-job--wide {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 376px) minmax(0, 1fr);
+  grid-template-rows: none;
+  gap: var(--ob-space-64);
+  align-items: start;
+  padding: var(--ob-space-56) 0 0;
+  border-left: 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-job-copy { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; padding-top: var(--ob-space-24); }
+.s-job-prompt { margin-top: var(--ob-space-20); min-height: 0; }
+.s-job-prompt .ob-prompt-text { font: inherit; }
+.s-job-screen { min-width: 0; }
+
+@media (max-width: 1079.98px) {
+  .s-job--wide { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
+  .s-job-copy { max-width: 40rem; }
+}
+
+@media (max-width: 859.98px) {
+  .s-jobs-list { grid-template-columns: minmax(0, 1fr); }
+  .s-job,
+  .s-job:first-child {
+    padding: var(--ob-space-32) 0;
+    border-left: 0;
+  }
+  .s-job + .s-job { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+  .s-job--wide { padding-bottom: 0; }
+}
