@@ -171,7 +171,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What if the numbers are weak?',
-        a: 'You see them first. The case shows what the data shows, so you know which accounts need a save plan, not a pitch.',
+        a: 'You see them first. The case shows the numbers as they stand, so you know which accounts need a save plan instead of an upsell.',
       },
       {
         q: 'When should we start it?',

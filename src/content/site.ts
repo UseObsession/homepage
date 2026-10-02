@@ -50,7 +50,7 @@ export const recipesPage: RecipesIndexPage = {
     },
     {
       group: 'Keep and grow customers',
-      line: 'See churn and growth coming, send every upgrade and upsell after your OK, hold your price at renewal, and ask every customer for a review.',
+      line: 'See churn and growth coming, offer more after your OK, renew on real usage, offer a pause next to every cancel, and ask every customer for a review.',
     },
     {
       group: 'Watch rivals',

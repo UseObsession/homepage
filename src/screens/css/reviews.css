@@ -76,12 +76,12 @@
 /* ---------- the month ---------- */
 .app-reviews .rq-side{grid-column:2;grid-row:2;display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;min-width:0;min-height:0}
 .app-reviews .rq-sum,.app-reviews .rq-ask{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;padding:12px}
-.app-reviews .rq-sum{display:grid;gap:8px}
+.app-reviews .rq-sum{display:grid;gap:6px}
 .app-reviews .rq-big{display:flex;align-items:baseline;gap:6px;height:26px;font:400 12px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
 .app-reviews .rq-big>b{font:600 26px/26px var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums}
 .app-reviews .rq-big .rq-stk{justify-items:start}
 /* by stars: every review counts, the low ones too */
-.app-reviews .rq-dist{display:grid;gap:3px}
+.app-reviews .rq-dist{display:grid;gap:2px}
 .app-reviews .rq-dist li{display:grid;grid-template-columns:18px minmax(0,1fr) 12px;align-items:center;column-gap:8px;height:12px}
 .app-reviews .rq-k{display:flex;align-items:center;gap:3px;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
 .ilwrap .app-reviews svg.rq-st1{width:7px;height:7px;fill:var(--fg-3)}
@@ -91,12 +91,12 @@
 .app-reviews .rq-stk.rq-c{justify-items:end}
 
 /* ---------- the ask: 1 message, the same for everyone ---------- */
-.app-reviews .rq-ask{display:flex;flex-direction:column;gap:8px;min-height:0}
+.app-reviews .rq-ask{display:flex;flex-direction:column;gap:6px;min-height:0}
 .app-reviews .rq-ah{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
 .ilwrap .app-reviews .rq-ah svg.rq-ic{width:13px;height:13px;color:var(--fg-2)}
 .app-reviews .rq-ah b{font:500 11.5px/1 var(--sans);color:var(--fg)}
 .app-reviews .rq-ah>.rq-stk{margin-left:auto;justify-items:end;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
-.app-reviews .rq-q{padding:6px 10px;border-radius:6px;font:400 11px/16px var(--sans);color:var(--fg);white-space:nowrap;
+.app-reviews .rq-q{padding:5px 10px;border-radius:6px;font:400 11px/15px var(--sans);color:var(--fg);
   background:rgb(var(--fg-rgb) / .04);box-shadow:2px 0 0 var(--line-3) inset}
 .app-reviews .rq-dl{display:grid;margin:0}
 .app-reviews .rq-dl div{display:flex;align-items:baseline;height:20px;box-shadow:0 1px 0 var(--line) inset;white-space:nowrap}

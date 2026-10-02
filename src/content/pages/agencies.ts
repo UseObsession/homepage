@@ -211,8 +211,8 @@ export const page: Page = {
         tab: 'Deliver for every client',
         moment: 'Monday, 08:00. 15 clients, and any live ad could be landing on a sold out page.',
         outcome: 'Broken ads caught each morning, before the day’s spend, for every client at once.',
-        line: 'With each client’s OK, agents follow every live ad to its page, price and code each morning, and flag only what needs you.',
-        whyOnly: 'Agents open each ad on a phone, the way a customer does, so they see the sold out page your ad dashboard never shows.',
+        line: 'With each client’s OK, agents open the page behind every live ad each morning, check its offer, price and stock, and flag only what needs you.',
+        whyOnly: 'Agents open each ad’s page on a phone, the way a customer does, so they see the sold out page your ad dashboard never shows.',
         recipe: 'adcheck',
         screen: 'board',
       },
@@ -270,7 +270,7 @@ export const page: Page = {
     items: [
       {
         name: 'Performance and paid media',
-        line: 'Every client’s live ads opened on a phone each morning, and every rival’s new ads and prices logged.',
+        line: 'The page behind every client’s live ad opened on a phone each morning, and every rival’s new ads and prices logged.',
         recipes: ['adcheck', 'ads', 'prices', 'competitor', 'audit'],
       },
       {
@@ -280,8 +280,8 @@ export const page: Page = {
       },
       {
         name: 'SEO and AI search',
-        line: 'Wrong facts in each client’s AI answers corrected at the source, and every form and booking link tested, with their OK.',
-        recipes: ['listings', 'audit', 'prospect'],
+        line: 'Wrong facts in each client’s AI answers corrected at the source, every customer asked for a review, and every form and booking link tested, with their OK.',
+        recipes: ['listings', 'reviews', 'audit', 'prospect'],
       },
       {
         name: 'Web and CRO',

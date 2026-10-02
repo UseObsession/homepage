@@ -3,16 +3,18 @@ import type { Capture, Recipe } from '../types'
 /* Expansion offers (/recipes/expansion-offers). Keep and grow customers. For sales, customer success and SaaS founders.
    Screen: expansion (Your company / Accounts / Expansion: 5 moments this week, each from connected usage or public news;
    Freight broker, 120 seats, £43,200 a year, 113 of 120 seats used, 94% of plan after 90 days of growth; the offer from
-   the price book, 25 more seats for £9,000 a year; approved and sent from AM's own thread, Mon 14:02; offer sent, order
-   form to sign, PO next; follow up Thu. The others: Dental group 12 new seats, Payroll SaaS a US office, Outdoor gear a
-   Series B and its order form signed, Snack brand hiring 8 sales roles).
+   the price book, 25 more seats for £9,000 a year; approved by AM and sent from AM's own thread, Mon 14:02; offer sent,
+   order form to sign, PO next; follow up Thu. The others: Dental group 12 new seats, Logistics app a US office, Outdoor
+   gear a Series B and its order form signed, Payroll SaaS hiring 12 sales roles, the account Account watch hands over).
+   On the page AM is always "your rep": next to a time, "AM" reads as a.m., and nobody outside knows who AM is.
    Seun approved the recipe on 3 Oct. It upgrades Account watch from a flag to a signed order: Account watch sees the
-   growth coming; Expansion offers builds the case, drafts the offer and chases it to a signed order form and a PO.
+   growth coming; Expansion offers builds the case, drafts the offer and every reminder, and tracks it to a signed order
+   form and a PO.
    Red lines held: existing customers only, never a prospect, a bought list or anyone outside the account's thread; inside
    data only through the tools the customer connects, read only, with consent; public signals read from public pages
    only (news, job boards, the customer's own site), never by contacting the customer's staff; the agent never writes
-   to a customer as itself or as a person: every offer and every follow up is drafted in the rep's own thread and goes
-   only after that rep approves the words; offers come from the price book and the discounts approved in
+   to a customer as itself or as a person: every offer, every follow up and every reminder for the order form or the PO
+   is drafted in the rep's own thread and goes only after that rep approves the words; offers come from the price book and the discounts approved in
    advance, and anything off it waits for a person; people sign, and the agent never accepts terms; a "no" or a "not
    now" stops it for that account until a new moment and the rep's OK; an open complaint or a falling health score
    holds the offer and flags the account instead.
@@ -34,7 +36,7 @@ export const recipe: Recipe = {
   name: 'Expansion offers',
   group: 'Keep and grow customers',
   line: 'Spots when a customer needs more, builds the case from its own usage and drafts the offer for your rep to send.',
-  gets: 'Every customer ready to buy more, the offer drafted on your price book, and the deal chased to a signed order form.',
+  gets: 'Every customer ready to buy more, the offer drafted on your price book, and the deal tracked to a signed order form.',
   kit: [
     'An agent ID, declared as AI',
     'Usage, billing and CRM, read only',
@@ -50,7 +52,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent spots when a customer needs more, builds the case from its own usage and drafts the offer on your price book. Your rep sends it.',
     answer:
-      'Expansion offers is an Obsession recipe. A declared AI agent watches each existing customer’s usage and public news for the moment it needs more, builds the case from that customer’s own usage, drafts the offer on your price book in your rep’s own thread, and chases it to a signed order form and a PO once your rep approves it.',
+      'Expansion offers is an Obsession recipe. A declared AI agent watches each existing customer’s usage and public news for the moment it needs more, builds the case from that customer’s own usage, drafts the offer on your price book in your rep’s own thread, and once your rep approves it, tracks it to a signed order form and a PO, drafting every reminder for their OK.',
     ogImage: '/og/expansion-offers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -77,7 +79,7 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: a £43,200 account',
     recipe: 'expansion',
-    task: 'Watch every customer for the moment it needs more. Build the case from its own usage, draft the offer on our price book for the rep’s OK, and chase it to a signed order form and a PO.',
+    task: 'Watch every customer for the moment it needs more. Build the case from its own usage, draft the offer on our price book for the rep’s OK, and draft each reminder until the order form is signed and the PO lands.',
     targets: 'Your customers, among them a freight broker on 120 seats at £43,200 a year',
     journey: ['Watch usage and public news', 'Build the case from its usage', 'Draft the offer on your price book', 'Send from your rep’s thread after their OK'],
     schedule: 'Every morning, every customer',
@@ -87,12 +89,12 @@ export const recipe: Recipe = {
       { time: 'Mon 08:00', text: '5 moments this week. Freight broker is using 113 of its 120 seats, 94% of its plan, and has grown every month for 90 days.' },
       { time: 'Mon 08:20', text: 'The case, from its own usage: seats used week by week, and the 90 days of growth behind them.' },
       { time: 'Mon 08:25', text: 'Offer drafted on your price book: 25 more seats for £9,000 a year, the £360 a seat it already pays.' },
-      { time: 'Mon 14:02', text: 'AM approves the words. The offer goes from AM’s own thread, in AM’s name.' },
-      { time: 'Thu 09:00', text: 'No reply yet. A follow up drafted in the same thread waits for AM’s OK.' },
-      { time: 'Fri 11:30', text: 'Their operations lead says yes. The order form goes out for signature after AM’s OK, and the PO is next.' },
+      { time: 'Mon 14:02', text: 'Your rep approves the words. The offer goes from their own thread, in their name.' },
+      { time: 'Thu 09:00', text: 'No reply yet. A follow up drafted in the same thread waits for your rep’s OK.' },
+      { time: 'Fri 11:30', text: 'Their operations lead says yes. The order form goes out for signature after your rep’s OK, and the PO is next.' },
     ],
     finding: 'Freight broker is at 94% of its seats and still growing: 25 more seats for £9,000 a year, on your price book.',
-    fix: 'The offer went from AM’s thread after AM’s OK. The order form and the PO are chased until both are done.',
+    fix: 'The offer went from your rep’s thread after their OK. Each reminder for the order form and the PO is drafted in the same thread for their OK.',
     ledger: 'Example run. Every moment, case, offer and OK signed and dated.',
   },
 
@@ -110,8 +112,8 @@ export const recipe: Recipe = {
       line: 'Your list price, or a discount you approved in advance, in your rep’s own thread. Anything off the price book waits for you.',
     },
     {
-      title: 'Your rep sends it. The agent chases the signature.',
-      line: 'It goes only after your rep approves the words, and every follow up waits for their OK too. Then the order form goes out for signature and the PO is chased until it lands.',
+      title: 'Your rep sends it. The agent tracks it to signature.',
+      line: 'It goes only after your rep approves the words, and every follow up waits for their OK too. Then the order form goes out for signature, and each reminder for it and the PO waits for the same OK.',
     },
   ],
 
@@ -139,7 +141,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Before anything sends', line: 'The offer, every follow up and the order form wait for your rep’s OK.' },
+        { title: 'Before anything sends', line: 'The offer, every follow up, the order form and every reminder wait for your rep’s OK.' },
         { title: 'At a no', line: 'A “no” or a “not now” stops it for that account until a new moment and your rep’s OK.' },
         { title: 'At signature', line: 'People sign. It tracks the order form and the PO, and never accepts terms.' },
         { title: 'Prospects', line: 'Never. Customers already on your books only.' },
@@ -148,7 +150,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every offer on the record, from the moment to the PO.',
+    heading: 'Every offer stays on the record, from the moment to the PO.',
     items: [
       { format: 'Moments, as they land', line: 'Each account, what changed and where it came from, in Slack or email.' },
       { format: 'The case', line: 'A page and a PDF from the customer’s own usage, ready for their buyer.' },
@@ -165,7 +167,7 @@ export const recipe: Recipe = {
     { k: 'Data', v: 'Usage, billing and CRM from the tools you connect, read only' },
     { k: 'Price', v: 'Your price book and the discounts you approve in advance' },
     { k: 'Sends from', v: 'Your rep’s own thread' },
-    { k: 'Needs your OK', v: 'Every offer, every follow up and the order form' },
+    { k: 'Needs your OK', v: 'Every offer, follow up, reminder and order form' },
     { k: 'Signing', v: 'Always a person' },
     { k: 'Stops', v: 'At a no, a not now, or an open complaint' },
   ],
@@ -190,7 +192,7 @@ export const recipe: Recipe = {
       { label: 'Anything off the price book', values: ['Never on its own', 'Decides'] },
       { label: 'Each follow up', values: ['Drafts it in the same thread', 'Approves it'] },
       { label: 'Signature', values: ['Sends the order form after your rep’s OK, and tracks it', 'Signs, with their buyer'] },
-      { label: 'The PO', values: ['Chases it and matches it to the order', 'Nothing to do'] },
+      { label: 'The PO', values: ['Drafts each reminder in the same thread, and matches the PO to the order', 'Approves each reminder'] },
     ],
   },
 
@@ -223,7 +225,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does it sign anything?',
-        a: 'Never. People sign. It sends the order form after your OK, tracks it to signature and chases the PO.',
+        a: 'Never. People sign. It sends the order form after your rep’s OK, tracks it to signature, and drafts each PO reminder for their OK.',
       },
       {
         q: 'What’s it worth?',
@@ -231,7 +233,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is it different from Account watch?',
-        a: 'Account watch tells you every morning who’s at risk and who’s ready to grow. Expansion offers acts on the growth: it builds the case, drafts the offer for your rep and chases it to a signed order form.',
+        a: 'Account watch tells you every morning who’s at risk and who’s ready to grow. Expansion offers acts on the growth: it builds the case, drafts the offer for your rep and tracks it to a signed order form.',
       },
     ],
   },

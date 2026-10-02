@@ -1,5 +1,5 @@
 /* app-partners: Missions / Partner checks, Your company. Every Monday a declared agent visits each partner and affiliate page
-   as a customer: the link lands, the code applies in the cart, the current offer and creative are shown. Never their prices.
+   as a customer: the link lands, the code applies in the basket, the current offer and creative are shown. Never their prices.
    Chrome (canonical, 2 Oct 2026): Your company, Missions selected, no list; plain h2, sans meta, the declared-agent pill;
    lock line bottom left and app-board's toast bottom right, level with each other.
    Geometry (design px, main 556 x 414, padding 14): head 14..38; body 50..348 (adcheck's and reviews' bottom) = the partner
@@ -8,9 +8,9 @@
    Passed checks are quiet strokes; the 1 failure is the solid chip (the shop's "the 1 that needs you is solid"), black and
    white because it is the fail state. --pt-hi is the 1 accent touch: the open row's edge bar only, never text. It falls back
    to --fg until the site's accent palette lands.
-   Story: the partners tick through top to bottom, each mark landing as its 3 checks pass; Thrifty Owl's code is rejected
+   Story: the partners tick through top to bottom, each mark landing as its 3 checks pass; Deals site's code is rejected
    (solid SUMMER20, stale 20% off) and its mark goes to needs you; its card slides in with what a customer saw; the note drafts
-   in JO's thread; the pointer sends it (the OK), the row goes to waiting for Monday's re-check, the toast confirms.
+   in JO's thread; the pointer sends it (the OK), the row goes to waiting for Monday's next check, the toast confirms.
    Rest state (no .play) = the finished scene: all checked, note sent with your OK. */
 
 .app-partners{--pt-hi:var(--s-accent, var(--fg))}
@@ -152,7 +152,7 @@
 .appx-il.play.app-partners .pt-mk>.sig .sig-sq{animation:pt-home .55s var(--snap) calc(var(--t) + .32s) both}
 .appx-il.play.app-partners .pt-mk>.sig .sig-gap{animation:pt-show .3s var(--ease) calc(var(--t) + .5s) both}
 
-/* 2. Thrifty Owl: the link lands, SUMMER20 is rejected, last season's offer; the row goes to needs you */
+/* 2. Deals site: the link lands, SUMMER20 is rejected, last season's offer; the row goes to needs you */
 .appx-il.play.app-partners .pt-hot{animation:ax-in .55s var(--ease) var(--d) both,pt-glow 2.2s var(--ease) 1.72s both}
 .appx-il.play.app-partners .pt-hot>.c .pt-r{animation:pt-in .4s var(--ease) 1.45s both}
 .appx-il.play.app-partners .pt-hot>.o .pt-r{animation:pt-in .4s var(--ease) 1.6s both}

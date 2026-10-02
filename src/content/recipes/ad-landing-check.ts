@@ -1,25 +1,32 @@
 import type { Capture, Recipe } from '../types'
 
-/* Ad landing check (/recipes/ad-landing-check). Check your own journeys. For performance marketing.
-   WRITER: fill. This is a scaffold: every field marked WRITER: fill holds short interim copy so the build passes.
-   Rewrite each one to the standard of content/recipes/expansion-offers.ts, renewal-negotiation.ts and
-   ai-checkout-test.ts, then replace this note with the recipe's own header (screen story, base, red lines held,
-   up-to-50 model with its sum), as those files do. Keep id, slug, name, group, hero.screen, meta.path and the
-   breadcrumb as they are: the nav, the footer, the Recipes index, the Marketing page and the share image read them.
-   Screen: adcheck (Your company / Missions / Ad landing check: 6 live ads, checked daily at 07:00 as a customer, each
-   for load, offer, price and stock; Ad 4, a social ad at $410 a day, sends clicks to /table-lamp, which is sold out;
-   the drafted fix: pause Ad 4 or point it to the restocked page; paused by AM; "Never clicks your ads, pauses after
-   your OK"; toast "Ad 4 paused, $410 a day saved").
-   The job (Seun, 3 Oct): every live ad checked as a customer each morning (the page loads, the offer matches, the
-   price matches, it's in stock); pause or repoint only after the owner's OK. The canon fact: Ad 4 sends clicks to a
-   sold out lamp, $410 a day.
-   Red lines to hold: the reader's own ads, or a client's with their OK; the agent never clicks a paid ad (it opens the
-   landing page itself, so no ad spend is used); nothing paused, repointed or spent without the owner's OK; no claims
-   about collecting other platforms' ads beyond what this job does. */
+/* Ad landing check (/recipes/ad-landing-check). Check your own journeys. For performance marketing teams, and the
+   agencies that run their ads.
+   Screen: adcheck (Your company / Missions / Ad landing check: 6 live ads, daily at 07:00, each landing page opened as
+   a customer and checked 4 ways, Loads, Offer, Price and Stock, so 23 of 24 checks pass. Ad 1 search $120 a day
+   /linen-sheets 0.8 s, Ad 2 social $85 /stoneware-mugs 1.1 s, Ad 3 search $240 /wool-throw 0.9 s, Ad 4 social $410
+   /table-lamp 0.7 s and sold out, Ad 5 search $64 /oak-shelf 1.2 s, Ad 6 social $150 /linen-cushion 0.9 s. Ad 4 is
+   flagged at 07:04, "Sends clicks to a sold out page, $410 a day"; the drafted fix, "Pause Ad 4 or point it to a lamp
+   in stock", with 2 buttons, Change link and Pause Ad 4; "Paused by AM"; the note "Never clicks your ads, pauses
+   after your OK"; the toast "Ad 4 paused, $410 a day saved"). The products make it a homeware store.
+   Seun approved the recipe on 3 Oct. It is the twin of Ad tracking: Ad tracking watches the ads rivals run in public,
+   Ad landing check watches the reader's own, and drafts the fix when 1 sends clicks to a page that can't sell.
+   Red lines held: the reader's own ads, or a client's with their OK, never a rival's; ad accounts only through the
+   tools the reader connects; the agent never clicks an ad (it opens the landing page itself, so no click is paid for
+   and the ad numbers stay true); it reads the page and never buys; it can do 3 things to an ad, pause it, turn a paused
+   ad back on, or change its link, and each 1 only after the owner's OK (turning an ad back on spends money, so it is
+   named, never implied); it never edits copy, budgets or bids, or launches an ad, so nothing is spent without the
+   owner's OK; on the page the approver is "your ads lead", never "AM", which reads as a.m. next to a time; no
+   platform names, and no claim about collecting any platform's ads beyond the reader's own accounts.
+   Up-to-50 rule: the 1 modelled figure is the example ad's ceiling, with its sum in the same line: up to $410 a day
+   saved (never "back", which reads as a refund or as "ago"), $2,870 a week (7 × $410), the whole of what Ad 4 spends
+   while every click lands on a sold out lamp; 38% of the $1,069 a day the 6 ads spend (120 + 85 + 240 + 410 + 64 +
+   150 = 1,069; 410 ÷ 1,069 = 38.4%). No sources, prices of Obsession or real names on the page. The run is an example
+   and says so. */
 
 const roles: Capture['roles'] = {
-  question: 'Whose ads should we check first?', // WRITER: fill
-  options: ['Ours', 'A client’s, with their OK', 'Both'], // WRITER: fill
+  question: 'Whose ads should we check first?',
+  options: ['Ours', 'A client’s, with their OK', 'Both'],
 }
 
 const micro = 'We keep your email to tell you about Obsession, and nothing else.'
@@ -29,19 +36,24 @@ export const recipe: Recipe = {
   slug: 'ad-landing-check',
   name: 'Ad landing check',
   group: 'Check your own journeys',
-  // WRITER: fill (line, gets, kit)
-  line: 'Opens every live ad’s landing page as a customer each morning, and flags any that is broken, wrong or sold out.',
-  gets: 'Every live ad checked each morning, and the fix drafted for any landing page that lets a click down.',
-  kit: ['An agent ID, declared as AI', 'Your ad accounts, read only', 'A phone browser per ad', 'A check at 07:00, every day'],
+  line: 'Opens every live ad’s landing page as a customer each morning, and drafts the fix for any that’s broken, wrong or sold out.',
+  gets: 'Every live ad checked as a customer each morning, and the fix ready for any that sends clicks to a page that can’t sell.',
+  kit: [
+    'An agent ID, declared as AI',
+    'Your ad accounts, connected by you',
+    'A phone and a desktop browser',
+    'A check every morning at 07:00',
+    'Changes only after your OK',
+    'Every check and OK signed',
+  ],
 
   meta: {
     path: '/recipes/ad-landing-check',
-    // WRITER: fill (title 55 to 60 characters, description 140 to 155, answer)
-    title: 'Ad landing check: every live ad checked daily · Obsession',
+    title: 'Ad landing check: test every ad as a customer · Obsession',
     description:
-      'Each morning a declared AI agent opens every live ad’s landing page as a customer and checks it loads, matches the offer and price, and is in stock.',
+      'Each morning a declared AI agent opens every live ad’s landing page as a customer, checks the offer, price and stock, and drafts the fix for your OK.',
     answer:
-      'Ad landing check is an Obsession recipe. Each morning a declared AI agent opens the landing page of every live ad as a customer would, checks that it loads, that the offer and price match the ad and that the product is in stock, and drafts the fix. Nothing is paused or changed without your OK.',
+      'Ad landing check is an Obsession recipe. Each morning a declared AI agent opens the landing page of every live ad in the accounts you connect, as a customer would and without clicking the ad. It checks the page loads, the offer and price match the ad and the product is in stock, then drafts the fix. Nothing is paused or changed without your OK.',
     ogImage: '/og/ad-landing-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -51,9 +63,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    // WRITER: fill (headline, sub)
-    headline: 'AI agents that check every live ad lands where it should.',
-    sub: 'Each morning a declared AI agent opens every live ad’s landing page as a customer would: it checks the page loads, the offer and price match, and the product is in stock. Any fix waits for your OK.',
+    headline: 'AI agents that catch every ad sending clicks to a broken or sold out page.',
+    sub: 'Each morning a declared AI agent opens the landing page of every live ad as a customer would, without clicking the ad. It checks the page loads, the offer and price match, and the product is in stock, then drafts the fix for your OK.',
     screen: 'adcheck',
     capture: {
       kind: 'waitlist',
@@ -66,62 +77,177 @@ export const recipe: Recipe = {
     },
   },
 
-  // WRITER: fill (the whole run, matching the adcheck screen)
   run: {
-    tab: 'Example: 6 live ads, daily',
+    tab: 'Example: 6 live ads, each morning',
     recipe: 'adcheck',
-    task: 'Every morning, open each live ad’s landing page as a customer. Check it loads, the offer and price match, and it’s in stock. Draft the fix for any that fails.',
-    targets: 'Your 6 live ads',
-    journey: ['Read every live ad', 'Open its landing page as a customer', 'Check offer, price and stock', 'Draft the fix for your OK'],
-    schedule: 'Daily at 07:00',
-    report: 'A morning note, and fixes ready to approve',
-    kit: ['Agent ID, declared as AI', 'Ad accounts, read only', 'A phone browser', 'Daily at 07:00'],
+    task: 'Every morning, open the landing page of each live ad as a customer, without clicking the ad. Check it loads, the offer and price match the ad, and the product is in stock. Draft the fix for any that fails.',
+    targets: 'A homeware store’s 6 live search and social ads, $1,069 a day between them',
+    journey: ['Read every live ad', 'Open its page as a customer', 'Check offer, price and stock', 'Draft the fix for your OK'],
+    schedule: 'Every morning at 07:00',
+    report: 'A morning note, and Slack when an ad fails',
+    kit: ['Agent ID, declared as AI', 'Your ad accounts', 'Phone and desktop', 'Never clicks an ad'],
     events: [
-      { time: 'Mon 07:00', text: '6 live ads checked as a customer. 5 pass.' },
-      { time: 'Mon 07:04', text: 'Ad 4 sends clicks to a table lamp that is sold out. It spends $410 a day.' },
-      { time: 'Mon 08:30', text: 'You pause Ad 4. The fix is logged.' },
+      { time: 'Mon 07:00', text: '6 live ads read from your ad accounts: 3 search and 3 social, $1,069 a day between them.' },
+      {
+        time: 'Mon 07:04',
+        text: 'Ad 4, a social ad at $410 a day, sends clicks to /table-lamp. The page loads and the price matches, but the lamp is sold out.',
+      },
+      { time: 'Mon 07:05', text: 'Fix drafted: pause Ad 4, or change its link to a page that’s in stock. It waits for your OK.' },
+      {
+        time: 'Mon 07:06',
+        text: 'The other 5 pages pass all 4 checks. Each loads in 1.2 seconds or less, and the offer, price and stock match the ad.',
+      },
+      { time: 'Mon 07:40', text: 'Your ads lead approves. Ad 4 is paused, saving $410 a day.' },
+      { time: 'Tue 07:00', text: '5 live ads pass. The lamp is still sold out, so Ad 4 stays paused until you say otherwise.' },
     ],
-    finding: 'Ad 4 sends clicks to a sold out lamp, at $410 a day.',
-    fix: 'Pause Ad 4 or point it to the restocked page, after your OK.',
-    ledger: 'Example run. Every check and every OK signed and dated.',
+    finding: 'Ad 4 spends $410 a day sending clicks to a table lamp that’s sold out.',
+    fix: 'Ad 4 paused after your ads lead’s OK. The agent flags the morning the lamp is back, and the ad goes live again after your OK.',
+    ledger: 'Example run. Every check, screenshot and OK signed and dated.',
   },
 
-  // WRITER: fill (4 steps)
   steps: [
-    { title: 'Open every live ad’s page as a customer', line: 'Each morning, on a phone, without clicking the ad.' },
-    { title: 'Draft the fix for your OK', line: 'Pause the ad or point it to a page that works. Nothing changes without you.' },
-  ],
-
-  // WRITER: fill (3 groups of 3 or 4)
-  checks: [
     {
-      group: 'Every landing page',
-      items: [{ title: 'In stock', line: 'Whether the product the ad shows can still be bought.' }],
+      title: 'Read every live ad',
+      line: 'Each morning it reads every live search and social ad in the accounts you connect: where it points, the offer and price it shows, and what it spends a day.',
+    },
+    {
+      title: 'Open each page as a customer',
+      line: 'On a phone and a desktop, straight from the ad’s link, never by clicking the ad. It checks the page loads, the offer and price match, and the product is in stock.',
+    },
+    {
+      title: 'Draft the fix for your OK',
+      line: 'Pause the ad, or change its link to a page that can sell. The costliest break comes first, with a screenshot of what a customer sees.',
+    },
+    {
+      title: 'Check again the next morning',
+      line: 'Every ad, every day. A paused ad is flagged the morning its product is back, and it goes live again only after your OK.',
     },
   ],
 
-  // WRITER: fill (a claim heading and about 6 items)
+  checks: [
+    {
+      group: 'Every landing page',
+      items: [
+        { title: 'It loads', line: 'The page opens on a phone and a desktop, and how long it takes.' },
+        { title: 'The offer matches', line: 'Free delivery, a gift or 20% off: what the ad promises is on the page.' },
+        { title: 'The price matches', line: 'The price in the ad is the price on the page.' },
+        { title: 'It’s in stock', line: 'The product in the ad can still be bought, in the size or colour the ad shows.' },
+      ],
+    },
+    {
+      group: 'Every ad',
+      items: [
+        { title: 'Where it points', line: 'The link the ad sends people to, followed through every redirect.' },
+        { title: 'What it spends', line: 'Its daily spend from the account you connect, so the costliest break comes first.' },
+        { title: 'New ads', line: 'An ad that went live since yesterday is in the next morning’s check.' },
+      ],
+    },
+    {
+      group: 'Where it stops',
+      items: [
+        { title: 'At your ad', line: 'It never clicks it. It opens the page itself, so no click is paid for and your numbers stay true.' },
+        { title: 'Before any change', line: 'Pausing an ad, turning it back on or changing its link waits for your OK.' },
+        { title: 'Budgets and bids', line: 'Never. It can’t raise a budget, change a bid, edit an ad or launch one.' },
+        { title: 'Anyone else’s ads', line: 'Never. Your own ads, or a client’s with their OK.' },
+      ],
+    },
+  ],
+
   outputs: {
-    heading: 'A morning note on every live ad, and a fix for every one that fails.',
-    items: [{ format: 'A verdict per ad', line: 'Loads, offer, price and stock, with a screenshot of each.' }],
+    heading: 'Every live ad is checked before your day starts, with a fix ready for each one that fails.',
+    items: [
+      { format: 'A verdict per ad', line: 'Loads, offer, price and stock, with a screenshot of what a customer sees.' },
+      { format: 'The costliest first', line: 'Each break ranked by what its ad spends a day.' },
+      { format: 'The fix, drafted', line: 'Pause the ad or change its link, waiting for your OK.' },
+      { format: 'Alerts that matter', line: 'Slack or email when an ad fails. Nothing when every ad passes.' },
+      { format: 'A weekly note', line: 'Ads checked, breaks found, fixes made, and the daily spend each fix stopped.' },
+      { format: 'A record to share', line: 'Every check and every OK signed and dated, for your team or your client.' },
+    ],
   },
 
-  // WRITER: fill
-  settings: [{ k: 'Ads', v: 'Every live ad, or the campaigns you pick' }],
+  settings: [
+    { k: 'Ads', v: 'Every live search and social ad, or the campaigns you pick' },
+    { k: 'Accounts', v: 'Yours, or a client’s with their OK, connected by you' },
+    { k: 'How often', v: 'Every morning at 07:00, or more often in a sale' },
+    { k: 'Checks', v: 'Loads, offer, price and stock, plus any of your own' },
+    { k: 'Devices', v: 'Phone and desktop' },
+    { k: 'Alerts', v: 'Slack or email, only when an ad fails' },
+    { k: 'Needs your OK', v: 'Every pause, restart and link change' },
+    { k: 'Never', v: 'Clicks an ad, changes a budget or buys' },
+  ],
 
-  // WRITER: fill (marketing first; other readers only where it fits)
-  forWho: [{ audience: 'marketing', line: 'Catch the ad that sends clicks to a sold out page before the day’s spend.' }],
+  forWho: [
+    {
+      audience: 'marketing',
+      line: 'Performance teams see every ad that sends clicks to a broken, wrong or sold out page the same morning, with the fix ready.',
+    },
+    {
+      audience: 'agencies',
+      line: 'Every client’s live ads checked each morning with their OK, and a signed record of every break you caught.',
+    },
+    { audience: 'founders', line: 'Running your own ads? Know each one lands on a page that can sell, without opening them yourself.' },
+    { audience: 'developers', line: 'Run it through the API after every site release, and get each failing ad back by webhook.' },
+  ],
 
-  // WRITER: fill (a claim heading and about 8 questions, with "What’s it worth?" on the up-to-50 rule)
+  table: {
+    heading: 'The agent checks every ad you pay for, not the few someone remembers.',
+    line: 'Up to $410 a day saved, $2,870 a week, on the ad in the example: it spent all of it sending clicks to a sold out lamp, 38% of the $1,069 a day all 6 ads spend.',
+    cols: ['By hand', 'The agent'],
+    rows: [
+      { label: 'Which ads', values: ['The few someone opens when there’s time', 'Every live ad, every morning'] },
+      { label: 'How', values: ['Clicking the ad, which can cost a click', 'Opening its page directly, so no click is paid for'] },
+      { label: 'Where', values: ['A desktop at the office', 'A phone and a desktop'] },
+      { label: 'A sold out page', values: ['Found when sales drop', 'Found at 07:04, with the screenshot'] },
+      { label: 'The fix', values: ['Pause it, then remember to turn it back on', 'Paused after your OK, and flagged the day stock is back'] },
+      { label: 'The record', values: ['A message in a chat', 'Every check and OK signed and dated'] },
+    ],
+  },
+
   faq: {
-    heading: 'Your own ads only. Nothing paused without your OK.',
-    items: [{ q: 'Does it click our ads?', a: 'No. It opens each landing page itself, so it never spends your budget.' }],
+    heading: 'Your own ads only. Nothing paused or changed without your OK.',
+    items: [
+      {
+        q: 'Does it click our ads?',
+        a: 'No. It opens each ad’s landing page directly, so no click is paid for and your ad numbers stay true.',
+      },
+      {
+        q: 'Can it change our ads?',
+        a: 'Only 3 things, each after your OK: pause an ad, turn a paused ad back on, or change its link. It never edits an ad, changes a budget or a bid, or launches a new one.',
+      },
+      {
+        q: 'Which ads does it check?',
+        a: 'Every live search and social ad in the ad accounts you connect, or the campaigns you pick. Your own ads, or a client’s with their OK.',
+      },
+      {
+        q: 'Does it buy anything?',
+        a: 'No. It reads the page as a customer would and stops there. Nothing goes in a basket and nothing is paid for.',
+      },
+      {
+        q: 'How soon does it find a break?',
+        a: 'At the next check: every morning at 07:00, or more often in a sale. In the example, Ad 4 was flagged at 07:04.',
+      },
+      {
+        q: 'What happens after a pause?',
+        a: 'It keeps checking the page. The morning the product is back in stock, it tells you, and the ad goes live again after your OK.',
+      },
+      {
+        q: 'Can it check a rival’s ads?',
+        a: 'Not this recipe. Ad tracking reads the ads your rivals run in public and follows each one to its page, price and code.',
+      },
+      {
+        q: 'What’s it worth?',
+        a: 'Up to $410 a day saved, $2,870 a week (7 × $410), on the ad in the example: it spent all of it sending clicks to a sold out lamp. That was 38% of the $1,069 a day all 6 ads spend.',
+      },
+      {
+        q: 'How is it different from Mystery shopper?',
+        a: 'Mystery shopper goes through your whole journey as a customer and watches what follows. Ad landing check opens the exact page each live ad points to, every morning, and drafts the fix for any that fails.',
+      },
+    ],
   },
 
-  // WRITER: fill (heading, sub)
   final: {
-    heading: 'Know every ad lands on a page that sells.',
-    sub: 'Join the waitlist. Ad landing check comes ready to check every live ad each morning.',
+    heading: 'Know every ad you pay for lands on a page that can sell.',
+    sub: 'Join the waitlist. Ad landing check comes ready to read your live ads, open every landing page as a customer each morning, and wait for your OK before any change.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-final',

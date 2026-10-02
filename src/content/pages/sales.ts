@@ -241,11 +241,11 @@ export const page: Page = {
         screen: 'acctwatch',
       },
       {
-        tab: 'Expansion',
+        tab: 'Expansion offers',
         moment: 'Monday 08:00. An account is using 113 of its 120 seats.',
         outcome: 'Offer more the week an account needs it, on your price book.',
         line: 'Agents read the usage and CRM you connect and each account’s public news, build the case from its own usage and draft the offer. Your rep sends it from their own thread.',
-        whyOnly: 'Every account is read every morning, usage and news together, and every figure in the case opens its source, so their buyer can check it.',
+        whyOnly: 'A usage dashboard shows the seats. Only an agent reads every account’s usage and public news each morning, builds the case and keeps each follow up drafted in your rep’s thread until the PO lands.',
         recipe: 'expansion',
         screen: 'expansion',
       },
@@ -371,7 +371,7 @@ export const page: Page = {
 
   recipes: {
     heading: 'From the first call to the renewal, a recipe is ready to run.',
-    ids: ['prospect', 'quotes', 'account-watch', 'expansion', 'business-case', 'renewal', 'mystery', 'email-sms', 'trial', 'competitor', 'speed', 'get-paid'],
+    ids: ['prospect', 'quotes', 'account-watch', 'expansion', 'business-case', 'renewal', 'reviews', 'mystery', 'email-sms', 'trial', 'competitor', 'speed', 'get-paid'],
   },
 
   proof: {

@@ -1,28 +1,41 @@
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
-/* Marketing (/marketing). Marketing teams at brands of any kind, B2C and B2B.
-   The story: what Obsession is for a marketing team (beat every rival) > how it works > the gap (James's
-   line: most tools read what a company publishes, Obsession goes through it as a customer) > use cases (rival emails
-   and texts, rival ads, rival prices, your own launch, AI answers and listings, your own lead leaks) > outcomes >
-   every kind of brand > recipes > the real September store check > questions (red lines) > the free store mystery
-   shop (a store you run, or one with the owner’s OK).
-   Every console run is an example (the console’s Example tag says so); the only real run is the September store check, stated as
-   it happened in the proof fact and the proof beat. The hero runs are B2C rival emails, a B2B rival trial, a B2B
-   webinar launch, your own store's AI checkouts and your own cancel requests, so they don't repeat the stories the
-   use case screens tell.
-   Red lines held here: at rivals, public self-serve paths only (sign ups, newsletters, text opt ins, public pages,
-   the ads they run in public, the site's chat bot); never a person; rival trials need no card, never reply and close
-   the moment a rep writes or calls; launch checks and lead leaks only on your own journeys. */
+/* Marketing (/marketing). Marketing teams at brands of any kind, B2C and B2B, organised by marketing function (Seun,
+   3 Oct): rivals are 1 strand, Product marketing, not the whole page.
+   The story: what Obsession is for a marketing team (win, convert and keep customers) > how it works > the gap (James's
+   line: most tools read what a company publishes, Obsession goes through it as a customer; a dashboard shows what you
+   sent, spent and published, only a customer sees what arrived) > use cases, 1 tab per function in the order a
+   customer meets them: win (Brand and AI search, Product marketing, Demand generation), convert (Performance,
+   Partnerships, Ecommerce), keep (Lifecycle, Retention), each with its own screen and the recipe it runs on >
+   outcomes, 1 per stage plus the hours back > every team: the same 8 functions in the same order, each in its own
+   words with all its recipes > recipes > the real September store check > questions (red lines) > the free store
+   mystery shop (a store you run, or one with the owner's OK).
+   Screens, none twice: how it works compose, templates, kit, run; use cases listings, inbox, inbound, adcheck,
+   partners, checkout, campaign, reviews. The hero runs are words only (a B2B webinar, rival prices, your own cancel
+   requests, a B2B rival trial), so none repeats a use case's story; the console opens on your own job, not a rival.
+   The 2 Monday tabs open on different minutes (Performance 07:04, Partnerships 07:12).
+   Every console run and use case screen is an example (the Example tags say so); the only real run is the September
+   store check, stated as it happened in the proof fact and the proof beat.
+   Red lines held here: at rivals, only the public paths any customer can use (sign ups, newsletters, text opt ins,
+   public pages, the ads they run in public, the site's chat bot), never a person; rival trials need no card, never
+   reply and close the moment a rep writes or calls; your own ads are never clicked (an agent opens each ad's page,
+   never the ad), and pausing, restarting or changing 1 waits for your OK; partner checks read links, codes and
+   creative only, never partner prices, and every note goes from your own team after your OK; every customer is asked
+   for a review the same way, with the same review link, good or bad, from your own address;
+   launch checks, lead leaks and checkout tests run on your own journeys only.
+   Up-to-50 rule: up to $2,870 a week saved is Ad landing check's example (Ad 4 at $410 a day, 7 × $410; "saved",
+   never "back", which reads as "ago"); up to 18 hours a
+   month is 90 minutes a week on each of 3 rivals for 4 weeks (1.5 × 3 × 4). */
 
 export const page: Page = {
   meta: {
     path: '/marketing',
-    title: 'Obsession for marketing: AI agents on every rival and launch',
+    title: 'Obsession for marketing: AI agents to win and keep customers',
     description:
-      'Declared AI agents sign up to every rival on your list, follow the ads they run in public and check your own launches as a customer. Every step signed.',
+      'AI agents for marketing teams check every ad, partner link, launch and lead as a customer would, track every rival and draft each fix. Every step signed.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. For marketing teams, it runs declared AI agents, each with its own inbox, phone number and browser, that sign up to every rival on your list, follow the ads they run in public, track their prices and check your own launches as a customer, continuously, with every step signed.',
+      'Obsession is the intelligence infrastructure for commercial teams. For marketing teams, it runs declared AI agents, each with its own inbox, phone number and browser, that go through your ad landing pages, partner links, launches, forms and checkout as a customer would, sign up to every rival on your list and correct what AI assistants say about you, continuously, with every step signed.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -32,8 +45,8 @@ export const page: Page = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents that help your brand beat every rival.',
-    sub: 'Declared AI agents with their own inboxes, phone numbers and browsers sign up to every rival on your list and check your own launches as a customer, continuously. You get signed proof and your next move.',
+    headline: 'AI agents that help your marketing team win, convert and keep customers.',
+    sub: 'Declared AI agents with their own inboxes, phone numbers and browsers go through your ad landing pages, partner links, launches and checkout as a customer would, and sign up to every rival on your list, continuously. You get signed proof and the fix, ready for your OK.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -43,64 +56,25 @@ export const page: Page = {
       roles: {
         question: 'What should your agents do first?',
         options: [
-          'Track rivals’ emails and texts',
-          'Track rivals’ ads',
-          'Watch rivals’ prices',
-          'Check our own launches',
           'Fix what AI says about us',
+          'Track rivals’ offers and prices',
           'Time our replies to new leads',
+          'Check our ads land on working pages',
+          'Check partner links and codes',
+          'Check our launches',
+          'Ask customers for reviews',
         ],
       },
       interest: 'any',
     },
     secondary: { label: 'Get my free report', to: '#join' },
     proof: [
+      { value: 'Every live ad’s page', label: 'opened as a customer each morning' },
       { value: 'Every rival', label: 'on your list, at once and continuously' },
-      { value: 'Every message', label: 'a rival sends new customers, on 1 timeline' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
     consoleHeading,
     demos: [
-      {
-        tab: 'Rival welcome offers',
-        recipe: 'email-sms',
-        task: 'Sign up to our 3 rivals’ emails and texts. Flag every new offer.',
-        targets: 'rival-a.example, rival-b.example, rival-c.example',
-        journey: ['Sign up, declared as AI', 'Opt in to texts', 'Never reply', 'Log every message'],
-        schedule: 'Continuously, digest Mondays 08:00',
-        report: 'Slack alerts and a weekly digest',
-        kit: ['Agent ID', '3 inboxes', '3 phone numbers', '3 browsers'],
-        events: [
-          { time: 'Mon 07:02', text: 'Signed up to 3 rivals as a declared AI agent' },
-          { time: 'Mon 07:04', text: 'Rival A welcome email: 15% off your first order' },
-          { time: 'Tue 19:30', text: 'Rival C text: free delivery this weekend only' },
-          { time: 'Wed 10:15', text: 'Rival A second email: the code rises to 20%' },
-          { time: 'Fri 08:00', text: 'Rival B: 3 emails in 24 hours, all for a new bundle' },
-        ],
-        finding: 'Rival A raises its welcome code to 20% on day 3 for anyone who hasn’t bought.',
-        fix: 'A day 3 email for your own welcome series, drafted for your OK.',
-        ledger: 'Every message kept with its time, headers and screenshot. Every step signed.',
-      },
-      {
-        tab: 'Rival free trial',
-        recipe: 'trial',
-        task: 'Start Rival A’s free trial with no card. Log every email, prompt and offer until it ends.',
-        targets: 'rival-a.example, an invoicing app',
-        journey: ['Free trial, no card', 'Declared as AI', 'Never reply', 'Close if a rep writes or calls'],
-        schedule: 'For the length of the trial',
-        report: 'Day by day PDF and a Slack summary',
-        kit: ['Agent ID', 'Own inbox', 'Own browser', 'Watched to the last day'],
-        events: [
-          { time: 'Day 0, 10:00', text: 'Started a free trial with no card, declared as an AI agent' },
-          { time: 'Day 0, 10:01', text: 'Welcome email with a setup checklist' },
-          { time: 'Day 3, 09:00', text: 'Case study email and a tour inside the app' },
-          { time: 'Day 12, 09:00', text: 'Reminder: 2 days left, 20% off a year upfront' },
-          { time: 'Day 14, 11:00', text: 'Trial ends. 30% off arrives an hour later.' },
-        ],
-        finding: 'Rival A’s best offer, 30% off, only goes to people who let the trial end.',
-        fix: 'Your own trial end email and comparison page, drafted to answer it. Live after your OK.',
-        ledger: 'No rep got in touch, so the trial ran to the end. Every step signed.',
-      },
       {
         tab: 'Your webinar',
         recipe: 'delivery',
@@ -122,24 +96,24 @@ export const page: Page = {
         ledger: 'Every email, invite and link timed and signed.',
       },
       {
-        tab: 'Your AI checkout',
-        recipe: 'checkout',
-        task: 'Each month, place a real order through every AI checkout on our store, refund each one, and draft a fix for anything that breaks.',
-        targets: 'your-store.example, your own store',
-        journey: ['Find every AI checkout', 'Buy on a card capped to the order', 'Check it against your store', 'Refund, then draft the fix'],
-        schedule: 'Monthly, and after every checkout change',
-        report: 'A signed report, Slack when a checkout breaks',
-        kit: ['Agent ID, declared as AI', 'A single use card per order', 'Your store, connected by you', 'A monthly budget you set'],
+        tab: 'Rival prices',
+        recipe: 'prices',
+        task: 'Every morning, read our 3 rivals’ prices, offers and delivery costs on the products we both sell. Flag every cut next to our own price.',
+        targets: 'rival-a.example, rival-b.example, rival-c.example',
+        journey: ['Read public pages and email lists', 'From a browser in your country', 'Screenshot before and after', 'Line it up next to yours'],
+        schedule: 'Every morning at 06:00',
+        report: 'Slack alerts in #pricing and a weekly digest',
+        kit: ['Agent ID', '3 browsers', '3 inboxes on their lists', 'A screenshot of every price'],
         events: [
-          { time: '1st, 09:00', text: '5 AI checkouts found. Your store isn’t on 1 AI shopping channel.' },
-          { time: '1st, 09:12', text: 'You confirm the totals. 5 orders placed, each noted as an AI test.' },
-          { time: '1st, 09:14', text: '1 AI checkout shows $4.95 delivery. Your store charges $8.95.' },
-          { time: '1st, 10:30', text: 'All 5 refunded. None was marked in your store as an AI sale.' },
-          { time: '3rd, 10:00', text: 'Both fixes live after your OK. Bought again: right price, marked AI, refunded.' },
+          { time: 'Sun 06:02', text: 'Rival B’s soy candle: £24, the same as yours, plus £3.95 delivery.' },
+          { time: 'Mon 06:04', text: 'Rival B cuts it to £19 and ships it free, 4 days before Black Friday.' },
+          { time: 'Mon 06:05', text: 'Its reed diffuser and wax melts drop too: 3 prices cut overnight.' },
+          { time: 'Mon 06:06', text: 'Rivals A and C hold their prices. Before and after screenshots saved.' },
+          { time: 'Mon 06:07', text: 'Alert sent to #pricing, with your price next to each cut.' },
         ],
-        finding: 'AI shoppers saw delivery $4 cheaper than checkout charged, and AI sales went uncounted.',
-        fix: 'Your sign up for the missing AI channel, drafted. Sent after your OK.',
-        ledger: 'Every order, refund and fix dated and signed.',
+        finding: 'Rival B now sells its soy candle £5 under yours, with free delivery, 4 days before Black Friday.',
+        fix: 'A price match or a delivery offer on your soy candle, drafted for your OK.',
+        ledger: 'Every price, page and screenshot dated and signed.',
       },
       {
         tab: 'Your cancellations',
@@ -161,22 +135,42 @@ export const page: Page = {
         fix: '2 refunds outside your policy wait for your team, with the history attached.',
         ledger: 'Every request, offer and choice dated and signed.',
       },
+      {
+        tab: 'Rival free trial',
+        recipe: 'trial',
+        task: 'Start Rival A’s free trial with no card. Log every email, prompt and offer until it ends.',
+        targets: 'rival-a.example, an invoicing app',
+        journey: ['Free trial, no card', 'Declared as AI', 'Never reply', 'Close if a rep writes or calls'],
+        schedule: 'For the length of the trial',
+        report: 'Day by day PDF and a Slack summary',
+        kit: ['Agent ID', 'Own inbox', 'Own browser', 'Watched to the last day'],
+        events: [
+          { time: 'Day 0, 10:00', text: 'Started a free trial with no card, declared as an AI agent' },
+          { time: 'Day 0, 10:01', text: 'Welcome email with a setup checklist' },
+          { time: 'Day 3, 09:00', text: 'Case study email and a tour inside the app' },
+          { time: 'Day 12, 09:00', text: 'Reminder: 2 days left, 20% off a year upfront' },
+          { time: 'Day 14, 11:00', text: 'Trial ends. 30% off arrives an hour later.' },
+        ],
+        finding: 'Rival A’s best offer, 30% off, only goes to people who let the trial end.',
+        fix: 'Your own trial end email and comparison page, drafted to answer it. Live after your OK.',
+        ledger: 'No rep got in touch, so the trial ran to the end. Every step signed.',
+      },
     ],
   },
 
   how: {
-    heading: 'Pick the job, add your rivals, and declared agents do the legwork.',
+    heading: 'Pick the job, add your ads, partners and rivals, and declared agents do the legwork.',
     sub: 'A recipe arrives with its agents, inboxes, numbers and schedule set up. Type a task and Obsession sets them up for you.',
     steps: [
       {
         title: 'Pick a recipe, type a task, or build your own',
-        line: 'Recipes cover the checks you repeat on every rival and launch. Type anything else in plain words, or build on the API.',
+        line: 'Recipes cover the checks your team repeats: every ad, launch, partner and rival. Type anything else in plain words, or build on the API.',
         screen: 'compose',
         chips: ['Pick a recipe', 'Type a task', 'Build on the API'],
       },
       {
         title: 'Add the companies',
-        line: 'Your rivals, your own store or funnel, every company on your list.',
+        line: 'Your own store, ads, partners and pages, your rivals, every company on your list.',
         screen: 'templates',
         chips: ['Paste a list', 'Upload a CSV', 'Connect Clay', 'API'],
       },
@@ -197,15 +191,15 @@ export const page: Page = {
 
   gap: {
     heading: 'Most tools read what a company publishes. Obsession goes through it as a customer.',
-    sub: 'A rival’s best offers go to its subscribers, not its homepage.',
+    sub: 'Your dashboards show what you sent, spent and published. Only a customer sees what arrived.',
     rows: [
       {
-        today: 'A teammate signs up to rivals from a personal inbox',
-        obsession: 'Each agent has its own inbox and number, and says it’s AI',
+        today: 'Your ad dashboard counts the click',
+        obsession: 'Agents open the page it lands on, every morning',
       },
       {
-        today: '1 rival at a time, when someone remembers',
-        obsession: 'Every rival on your list at once, continuously',
+        today: 'A partner’s old code found when a customer complains',
+        obsession: 'Every partner’s link and code tried in your basket each week',
       },
       {
         today: 'Your email tool shows what was sent',
@@ -216,53 +210,21 @@ export const page: Page = {
         obsession: 'Checked as a new customer in each country, and again after every fix',
       },
       {
-        today: 'Ad and price screenshots in a folder, easy to doubt',
+        today: 'A teammate signs up to rivals from a personal inbox',
+        obsession: 'Each agent has its own inbox and number, and says it’s AI',
+      },
+      {
+        today: 'Screenshots in a folder, easy to doubt',
         obsession: 'Every step signed and dated, so anyone can check it',
       },
     ],
   },
 
   uses: {
-    heading: 'See your rivals’ whole playbook, and every break in your own.',
+    heading: 'From the first search to the next order, every team in marketing sees what its customers see.',
     items: [
       {
-        tab: 'Rival emails and texts',
-        moment: 'Thursday, 19:02. Rival B emails “20% off ends tonight”, and your team hears about it next week.',
-        outcome: 'Every email and text your rivals send, on 1 timeline, the minute it lands.',
-        line: 'An agent signs up to each rival with its own inbox and number, says it’s AI, and logs every message, offer and code. It never replies.',
-        whyOnly: 'Texts and subscriber codes only reach subscribers. Agents subscribe at every rival on your list at once.',
-        recipe: 'email-sms',
-        screen: 'inbox',
-      },
-      {
-        tab: 'Rival ads',
-        moment: 'Friday, 07:06. Rival A started 9 new ads overnight, and 1 sells its gift set at £56, £2 under yours.',
-        outcome: 'The ads your rivals run in public, read every morning and followed to the page, the price and the code.',
-        line: 'Agents read the ads each rival runs in public, open every page they point to on phone and desktop, and screenshot the offer. They open the page directly, so nobody pays for a click.',
-        whyOnly: 'Ad trackers stop at the ad. Agents follow it to the page and the code, then check it against what the rival emails its subscribers.',
-        recipe: 'ads',
-        screen: 'ads',
-      },
-      {
-        tab: 'Rival prices',
-        moment: 'Monday, 06:04, 4 days before Black Friday. Rival B cuts its bestseller from £24 to £19 and ships it free.',
-        outcome: 'Every price, offer and delivery change, screenshotted the morning it happens, next to yours.',
-        line: 'Agents read each rival’s prices, offers and delivery costs every morning, from a browser in your country, and line them up next to yesterday’s and yours.',
-        whyOnly: 'Price tools read the price on the page. Agents are on each rival’s list too, so they also catch the subscriber code that beats it.',
-        recipe: 'prices',
-        screen: 'prices',
-      },
-      {
-        tab: 'Your launch',
-        moment: 'Tuesday, 08:00. The autumn launch goes out, and the code only works for customers who’ve bought before.',
-        outcome: 'Broken codes, links and texts caught in the first minutes, then tested again after the fix.',
-        line: 'Declared test customers on your own list get the launch on phone and desktop in each country, open every link and try every code, stopping before payment.',
-        whyOnly: 'A test send only reaches your own team. Agents join your list as new customers, so they catch the US text that never came and the code that refused them.',
-        recipe: 'delivery',
-        screen: 'campaign',
-      },
-      {
-        tab: 'AI answers and listings',
+        tab: 'Brand and AI search',
         moment: 'Monday, 09:00. A buyer asks an AI assistant for the best in your category. It names 3 rivals and says your Leeds branch has closed.',
         outcome: 'Every wrong fact AI assistants tell your buyers corrected at its source, and asked again every Monday until the answer changes.',
         line: 'Agents ask the assistants your buyers use the same questions each week, trace each wrong answer to the page it cites, and get it corrected there after your OK.',
@@ -271,58 +233,127 @@ export const page: Page = {
         screen: 'listings',
       },
       {
-        tab: 'Your lead leaks',
-        moment: 'Friday, 13:00. A lead fills in your demo form and waits 4 hours, because the form routes to nobody.',
+        tab: 'Product marketing',
+        moment: 'Friday, 09:14. Rival B texts its subscribers a free gift over £40, the morning after its 20% off ended. Your team hears about it next week.',
+        outcome: 'Every rival’s emails, texts and offers on 1 timeline, the minute they land.',
+        line: 'An agent signs up to each rival with its own inbox and number, says it’s AI, and logs every message, offer and code. It never replies.',
+        whyOnly: 'Texts and subscriber codes only reach subscribers. Agents subscribe at every rival on your list at once.',
+        recipe: 'email-sms',
+        screen: 'inbox',
+      },
+      {
+        tab: 'Demand generation',
+        moment: 'Monday, 09:00. A lead fills in your demo form and waits 4 hours 12 minutes for a reply, because the form routes to nobody.',
         outcome: 'Every form, chat and phone line timed from a new lead’s side, with the slow route fixed and tested again.',
-        line: 'A declared test lead uses your own form, chat and phone each day and times every first reply, then checks who picked it up.',
+        line: 'A labelled test lead uses your own form, chat and phone at 09:00, 13:00 and 17:00 each day, times every first reply and checks who picked it up.',
         whyOnly: 'Your CRM shows the lead arrived. Only a lead on the other side sees the phone ring out and the form go to nobody.',
         recipe: 'speed',
         screen: 'inbound',
+      },
+      {
+        tab: 'Performance',
+        moment: 'Monday, 07:04. Ad 4 is spending $410 a day sending clicks to a table lamp that’s sold out.',
+        outcome: 'Every live ad’s landing page opened as a customer each morning, and the 1 that can’t sell paused after your OK.',
+        line: 'An agent opens the landing page of every live ad on a phone and a desktop, without clicking the ad, and checks the page loads, the offer and price match, and the product is in stock.',
+        whyOnly: 'Your ad dashboard counts the click. Only a visit to the page shows the sold out sign, and agents make that visit every morning.',
+        recipe: 'adcheck',
+        screen: 'adcheck',
+      },
+      {
+        tab: 'Partnerships',
+        moment: 'Monday, 07:12. Deals site still shows your summer sale, and its code, SUMMER20, ended on 31 Aug.',
+        outcome: 'Every partner’s link, code and banner tried as a customer each week, with a note ready for any that’s out of date.',
+        line: 'An agent visits each partner’s page, follows your link to your store and tries their code in your basket, stopping before payment. Links, codes and creative only, never partner prices.',
+        whyOnly: 'Partner reports show the sales that came through. Only a customer’s visit shows the code that turned the rest away.',
+        recipe: 'partners',
+        screen: 'partners',
+      },
+      {
+        tab: 'Ecommerce',
+        moment: 'Saturday, 09:16. An AI assistant shopping for a customer adds your linen shirt to the basket, and the basket comes back empty.',
+        outcome: 'A real order through every AI checkout into your store each month, refunded, and the fix for any that breaks.',
+        line: 'A declared AI agent buys through each path an AI shopper can use, on a card capped to that order, inside a monthly budget you set. It checks the order, refunds it and drafts the fix for any path that breaks.',
+        whyOnly: 'A check that stops before payment can’t tell you whether an AI shopper can pay. Agents buy for real on their own capped cards, then refund.',
+        recipe: 'checkout',
+        screen: 'checkout',
+      },
+      {
+        tab: 'Lifecycle',
+        moment: 'Tuesday, 08:00. The autumn launch goes out, and LAUNCH20 only works for customers who’ve bought before.',
+        outcome: 'Broken codes, links and texts caught in the first minutes, then tested again after the fix.',
+        line: 'Labelled test customers on your own list get the launch on phone and desktop, with UK and US numbers. They open every link and try every code, stopping before payment.',
+        whyOnly: 'A test send only reaches your own team. Agents join your list as new customers, so they catch the US text that never came and the code that refused them.',
+        recipe: 'delivery',
+        screen: 'campaign',
+      },
+      {
+        tab: 'Retention',
+        moment: 'Friday, 17:00. 42 customers got an order, finished onboarding or had a ticket solved this month, and nobody has asked them how it went.',
+        outcome: 'Every customer asked the same way at their moment, with 1 review link for all, and every complaint passed to your team the same day.',
+        line: 'When an order is delivered, onboarding is done or a ticket is solved, an agent asks that customer “How did we do? Leave us a review, good or bad.” from your own address, in words your team approved.',
+        whyOnly: 'Agents watch for each moment in the tools you connect, so every customer is asked, including the ones nobody would have remembered.',
+        recipe: 'reviews',
+        screen: 'reviews',
       },
     ],
   },
 
   outcomes: {
-    heading: 'Your team stops checking rivals by hand and starts answering them.',
+    heading: 'Your team stops checking by hand and starts fixing what customers see.',
     items: [
-      { value: 'Up to 18 hours', label: 'back a month, if your team spends 90 minutes a week on each of 3 rivals' },
-      { value: 'The same morning', label: 'a rival’s new price or ad reaches your Slack, screenshot attached' },
-      { value: 'Within minutes', label: 'of every send, a broken link, code or text flagged as a customer sees it, with the fix drafted' },
       { value: 'Every Monday', label: 'what AI assistants tell your buyers, asked again, with every wrong fact corrected at its source' },
+      { value: 'Up to $2,870', label: 'a week saved on 1 ad that sent clicks to a sold out page, at $410 a day' },
+      { value: 'Within minutes', label: 'of every send, a broken link, code or text flagged as a customer sees it, with the fix drafted' },
+      { value: 'Up to 18 hours', label: 'back a month, if your team spends 90 minutes a week on each of 3 rivals' },
     ],
   },
 
   kinds: {
-    heading: 'If a customer can sign up, an agent can see what they get.',
-    label: 'What you sell',
+    heading: 'Each team in marketing gets agents for its own job.',
+    label: 'Your team',
     items: [
       {
-        name: 'Ecommerce brands',
-        line: 'Rivals’ emails, texts, codes and prices, and every launch of yours checked as a new customer.',
-        recipes: ['email-sms', 'prices', 'ads', 'delivery'],
+        name: 'Brand and AI search',
+        line: 'Show up right wherever buyers and AI assistants look: maps, review sites and AI answers, with every wrong fact fixed at its source.',
+        recipes: ['listings', 'reviews'],
       },
       {
-        name: 'Subscription brands and apps',
-        line: 'What rivals send in a new customer’s first month, and whether your own onboarding emails and texts arrive.',
-        recipes: ['email-sms', 'delivery', 'mystery'],
+        name: 'Product marketing',
+        line: 'Know every rival’s offers, pricing, trials and launches the day they land, so your positioning answers them.',
+        recipes: ['competitor', 'email-sms', 'trial', 'ads', 'prices'],
       },
       {
-        name: 'B2B software',
-        line: 'Rivals’ free trials, emails and pricing pages, and every reply to your own demo form timed.',
-        recipes: ['trial', 'competitor', 'speed'],
+        name: 'Demand generation',
+        line: 'Know every lead you paid for gets a fast answer, every webinar invite and nurture email arrives, and how rival trials compare with yours.',
+        recipes: ['speed', 'delivery', 'trial'],
       },
       {
-        name: 'Clinics, gyms and local chains',
-        line: 'What AI assistants and listings say about every location, and how fast your enquiries get an answer.',
-        recipes: ['listings', 'speed'],
+        name: 'Performance',
+        line: 'Know every live ad lands on a page that loads, matches the ad and has stock, and see each new rival ad the morning it starts.',
+        recipes: ['adcheck', 'ads', 'audit'],
       },
       {
-        name: 'Travel and hospitality',
-        line: 'Rivals’ prices and offers in every market you sell in, and your own booking journey checked.',
-        recipes: ['prices', 'ads', 'mystery'],
+        name: 'Partnerships',
+        line: 'Know every affiliate, creator and partner shows your current code, offer and banner, and every link lands where it should.',
+        recipes: ['partners'],
       },
       {
-        name: 'Any other brand',
+        name: 'Ecommerce',
+        line: 'Your store shopped as a customer, a real order through every AI checkout, and every rival price and promo in view.',
+        recipes: ['checkout', 'mystery', 'prices', 'audit'],
+      },
+      {
+        name: 'Lifecycle',
+        line: 'Every welcome, basket, launch and win back message checked as it arrives, next to what rivals send their subscribers.',
+        recipes: ['delivery', 'mystery', 'email-sms'],
+      },
+      {
+        name: 'Retention',
+        line: 'Every customer asked for a review at the right moment, and every cancel request met with 1 pause next to “Cancel now”.',
+        recipes: ['reviews', 'saves'],
+      },
+      {
+        name: 'Any other team',
         line: 'If your customers sign up, book or buy online, type the job. Obsession sets it up and agents run it.',
         recipes: [],
       },
@@ -330,8 +361,24 @@ export const page: Page = {
   },
 
   recipes: {
-    heading: 'From a rival’s first email to your own launch, a recipe is ready to run.',
-    ids: ['competitor', 'email-sms', 'ads', 'prices', 'delivery', 'listings', 'speed', 'trial', 'mystery', 'checkout', 'saves', 'adcheck', 'reviews', 'partners'],
+    heading: 'From an AI answer to a review request, a recipe is ready to run.',
+    ids: [
+      'listings',
+      'competitor',
+      'email-sms',
+      'trial',
+      'ads',
+      'prices',
+      'speed',
+      'adcheck',
+      'partners',
+      'checkout',
+      'mystery',
+      'audit',
+      'delivery',
+      'reviews',
+      'saves',
+    ],
   },
 
   proof: {
@@ -341,7 +388,7 @@ export const page: Page = {
   },
 
   faq: {
-    heading: 'Rivals see a declared AI agent, never a fake customer.',
+    heading: 'Every agent declared. Nothing paused, sent or changed without your OK.',
     items: [
       {
         q: 'Do rivals know it’s an AI agent?',
@@ -356,24 +403,28 @@ export const page: Page = {
         a: 'Only when no card is needed. It says it’s AI, never replies, and closes the trial the moment a rep writes or calls.',
       },
       {
-        q: 'Can I pick any competitor?',
-        a: 'Yes. You name the company. It doesn’t need to be in anyone’s library first.',
+        q: 'Does it click our ads?',
+        a: 'No. It opens each ad’s landing page directly, so no click is paid for. Pausing an ad, turning it back on or changing its link waits for your OK.',
       },
       {
-        q: 'How far back does it go?',
-        a: 'From the day you add a rival. Every message from then on is dated from a known sign up, so you see the whole series and its rhythm, not a pile of old emails.',
+        q: 'Does it check our partners’ prices?',
+        a: 'No. Only your links, codes and banners. Every note to a partner is drafted in your team’s own thread and goes after your OK.',
       },
       {
-        q: 'How many rivals can we track?',
-        a: 'As many as you add. Every rival on your list runs at once, continuously.',
+        q: 'Does it only ask happy customers for reviews?',
+        a: 'No. Every customer is asked the same way at the same kind of moment, good experience or bad, from your own address, with the same review link for everyone.',
+      },
+      {
+        q: 'Which rivals can we track?',
+        a: 'Any company you name, as many as you add. It doesn’t need to be in anyone’s library first, and every rival on your list runs at once, continuously.',
       },
       {
         q: 'Which channels does it cover?',
-        a: 'At rivals: emails, texts, the ads they run in public, prices, offers and pages. On your own: launches, codes, forms, chat, phone, listings, AI checkouts, cancel requests and what AI assistants say about you.',
+        a: 'At rivals: emails, texts, the ads they run in public, prices, offers and pages. On your own: ads and landing pages, partner links and codes, launches, forms, chat, phone, listings, AI checkouts, review requests, cancel requests and what AI assistants say about you.',
       },
       {
         q: 'Does it need access to our own tools?',
-        a: 'Only where an agent acts for you: a fix, a test order’s refund, or a pause or cancel in your billing. Checks run from outside, the way a customer sees you. You connect each tool and can disconnect it at any time, and every fix waits for your OK.',
+        a: 'Only for jobs on your own side. To check your ads it reads your ad accounts, and to time each review request it reads your orders and tickets. To act, it needs the tool it changes: pausing an ad, a fix, a test order’s refund, or a pause or cancel in your billing. Everything at rivals runs from outside, the way any customer sees them. You connect each tool and can disconnect it at any time, and every change waits for your OK.',
       },
       {
         q: 'What’s in the free report?',
