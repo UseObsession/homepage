@@ -79,6 +79,9 @@ for (const name of names) {
   let html = (await readFile(join(SCREENS, `app-${name}.html`), 'utf8')).trim()
   html = html.replace('<main class="ax-main">', '<div class="ax-main">').replace('</main>', '</div>')
   html = html.replace(/(Templates)<em>\d+<\/em>/g, '$1')
+  /* a screen's sidebar links are drawn, never followed: an <a> with no href inside a screen the reader can click to
+     replay reads to crawlers as a link that goes nowhere (Lighthouse crawlable-anchors), so each one is role="none" */
+  html = html.replace(/<a( class="[^"]*")?>/g, '<a$1 role="none">')
   /* the jobs that come ready to run are called Recipes (2 Oct): rename them in what a reader sees or hears, never in class
      names; no count of them, and no hyphenated "ready-made" (docs/REBUILD.md, Copy) */
   const recipes = (t) => t.replace(/\bTemplates\b/g, 'Recipes').replace(/\btemplates\b/g, 'recipes').replace(/\bTemplate\b/g, 'Recipe').replace(/\btemplate\b/g, 'recipe').replace(/\b(\d+ )?ready-made recipes\b/g, 'recipes')

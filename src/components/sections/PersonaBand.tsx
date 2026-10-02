@@ -13,7 +13,9 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1 ')
    band is 1 object (1 outer hairline, 1 hairline seam between panels); each face carries a soft glow of its reader's
    hue, which rises when the panel is lit (PersonaBand.css, the reader accents of _research/colour/COLOUR.md P1).
    Below 1200px the rows stack, still cut on the slant.
-   A link reads as the reader's name, with its line and picks as the description; the arrow is hidden. */
+   A link reads its whole face, name first, with a pause after the name and the line; the arrow is hidden. Naming it
+   by the name alone left its visible line and picks out of its accessible name (WCAG 2.5.3, Lighthouse
+   label-content-name-mismatch). */
 export function PersonaBand({ audiences, id = 'for', className }: { audiences: Audiences; id?: string; className?: string }) {
   const base = useId().replace(/[^a-zA-Z0-9_-]/g, '') + id
 
@@ -29,8 +31,7 @@ export function PersonaBand({ audiences, id = 'for', className }: { audiences: A
         </div>
 
         <ul className="s-pb__list">
-          {audiences.items.map((a, i) => {
-            const k = `${base}-${i}`
+          {audiences.items.map((a) => {
             const picks = a.picks ?? []
             return (
               <li className="s-pb__cell" key={a.audience}>
@@ -38,18 +39,18 @@ export function PersonaBand({ audiences, id = 'for', className }: { audiences: A
                   className="s-pb__item"
                   data-reader={a.audience}
                   to={a.to}
-                  aria-labelledby={`${k}-n`}
-                  aria-describedby={picks.length ? `${k}-l ${k}-p` : `${k}-l`}
                 >
-                  <span className="s-pb__name" id={`${k}-n`}>
+                  <span className="s-pb__name">
                     <span className="s-pb__key ob-sq" aria-hidden="true" />
                     {a.name}
+                    <span className="s-sr">. </span>
                   </span>
-                  <span className="s-pb__line" id={`${k}-l`}>
+                  <span className="s-pb__line">
                     {tie(a.line)}
+                    {picks.length > 0 && <span className="s-sr">. </span>}
                   </span>
                   {picks.length > 0 && (
-                    <span className="s-pb__picks" id={`${k}-p`}>
+                    <span className="s-pb__picks">
                       {picks.map((p, pi) => (
                         <span className="s-pb__pick" key={p}>
                           {p}

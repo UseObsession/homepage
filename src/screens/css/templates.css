@@ -41,7 +41,11 @@
 .app-templates .tp-tx span{font:400 11px/14.5px var(--sans);color:var(--fg-3)}
 .app-templates .tp-use{margin-top:auto;padding-top:8px;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
 .app-templates .tp-ring{position:absolute;inset:0;border-radius:10px;box-shadow:0 0 0 1px var(--fg) inset,0 0 0 3px rgb(var(--fg-rgb) / .08)}
-.app-templates .tp-card:not(.is-pick) .tp-cin{opacity:.42}
+/* the cards not picked step back: the frame goes quiet, the tile fades and the title takes the muted ink, so every word
+   still reads at 4.5:1 (fading the whole card took its text to 2:1) */
+.app-templates .tp-card:not(.is-pick) .tp-cin{background:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line) inset}
+.app-templates .tp-card:not(.is-pick) .tp-tile{opacity:.42}
+.app-templates .tp-card:not(.is-pick) .tp-tx b{color:var(--fg-3)}
 
 /* ---------- the setup sheet ---------- */
 .app-templates .tp-sheet{position:absolute;z-index:3;top:98px;right:14px;bottom:14px;left:149px;display:grid;grid-template-rows:36px minmax(0,1fr) 44px;
@@ -128,8 +132,12 @@
   100%{transform:none;box-shadow:0 0 0 1px var(--line-2) inset,0 0 0 0 rgb(0 0 0 / 0)}}
 .appx-il.play.app-templates .tp-ring,.appx-il.play.app-templates .tp-tile-on{animation:tp-on .35s var(--ease) 2.04s both}
 @keyframes tp-on{from{opacity:0}to{opacity:1}}
-.appx-il.play.app-templates .tp-card:not(.is-pick) .tp-cin{animation:tp-dim .6s var(--ease) 2.2s both}
+.appx-il.play.app-templates .tp-card:not(.is-pick) .tp-cin{animation:tp-back .6s var(--ease) 2.2s both}
+.appx-il.play.app-templates .tp-card:not(.is-pick) .tp-tile{animation:tp-dim .6s var(--ease) 2.2s both}
+.appx-il.play.app-templates .tp-card:not(.is-pick) .tp-tx b{animation:tp-mute .6s var(--ease) 2.2s both}
+@keyframes tp-back{from{background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}to{background:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line) inset}}
 @keyframes tp-dim{from{opacity:1}to{opacity:.42}}
+@keyframes tp-mute{from{color:var(--fg)}to{color:var(--fg-3)}}
 
 /* the sheet slides in over columns 2 to 4 */
 .appx-il.play.app-templates .tp-sheet{animation:tp-sheet .7s var(--ease) 2.1s both}
