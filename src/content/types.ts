@@ -6,11 +6,13 @@ export type ScreenName = string
    speed-to-lead, which redirects), price-watch, ad-tracking, trial-teardown, email-sms-tracking, website-audit,
    delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
    ('checkout'), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
-   account-handover ('handover'), software-renewals ('spend'). */
+   account-handover ('handover'), software-renewals ('spend'), expansion-offers ('expansion'), client-upsells
+   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners'). */
 export type RecipeId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
   | 'checkout' | 'quotes' | 'renewal' | 'saves' | 'handover' | 'spend'
+  | 'expansion' | 'upsells' | 'reviews' | 'adcheck' | 'partners'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
 
@@ -127,7 +129,7 @@ export type Page = {
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
-export type RecipeGroup = 'Win customers' | 'Keep customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
+export type RecipeGroup = 'Win customers' | 'Keep and grow customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
 export type Recipe = {
   id: RecipeId
   slug: string

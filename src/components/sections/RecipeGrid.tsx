@@ -10,7 +10,7 @@ const FILES = import.meta.glob('../../content/recipes/*.ts', { eager: true, impo
 const RECIPES = Object.fromEntries(Object.values(FILES).map((r) => [r.id, r])) as Record<RecipeId, Recipe>
 
 /* The 5 jobs, in the order every page shows them. */
-const JOBS: RecipeGroup[] = ['Win customers', 'Keep customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
+const JOBS: RecipeGroup[] = ['Win customers', 'Keep and grow customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
 
 type Props = {
   heading: string

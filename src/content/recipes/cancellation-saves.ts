@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Cancellation saves (/recipes/cancellation-saves). Keep customers. Screen: saves (an AI assistant acting for Jane D.
+/* Cancellation saves (/recipes/cancellation-saves). Keep and grow customers. Screen: saves (an AI assistant acting for Jane D.
    asks to cancel her meal kit plan; the agent says it's the brand's AI and sends a code to Jane's own phone; its reply
    puts "Cancel now" and "Pause for 2 months" side by side; Jane picks the pause; billing paused and confirmed in the
    same channel; a note set for 1 Dec, before the pause ends; every step signed).
@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   id: 'saves',
   slug: 'cancellation-saves',
   name: 'Cancellation saves',
-  group: 'Keep customers',
+  group: 'Keep and grow customers',
   line: 'Answers every cancel request at once, with 1 pause or offer next to “Cancel now”, and does what the subscriber picks.',
   gets: 'Every cancel request answered at once: those who’d rather pause stay, and everyone else is cancelled the same minute.',
   kit: [

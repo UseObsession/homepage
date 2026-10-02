@@ -8,7 +8,7 @@ export type NavRecipe = { id: RecipeId; label: string; to: string }
 export type NavRecipeGroup = { name: RecipeGroup; items: NavRecipe[] }
 
 /* The 5 jobs, in the order the menu, the phone sheet and the footer list them. */
-const JOBS: RecipeGroup[] = ['Win customers', 'Keep customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
+const JOBS: RecipeGroup[] = ['Win customers', 'Keep and grow customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
 
 /* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
    in the registry's order, so the menu, the phone sheet, the footer, the Recipes index and every page agree. */
@@ -27,14 +27,16 @@ export const nav = {
       { label: 'Agencies', to: '/agencies', line: 'Every client checked. Every pitch proven.' },
       { label: 'Founders', to: '/founders', line: 'Leads with a proven gap. QA on every release.' },
       { label: 'Sales', to: '/sales', line: 'Know each account as its customers do.' },
-      { label: 'Marketing', to: '/marketing', line: 'Rival emails, ads and prices, seen as a customer.' },
+      { label: 'Marketing', to: '/marketing', line: 'Every ad, launch and rival, seen as a customer.' },
     ] satisfies NavPage[],
   },
   recipes: {
     label: 'Recipes',
     all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
-    /* The desktop menu lays the 5 jobs out in 3 columns, in reading order: 8, 5 and 8 recipes. */
-    columns: [['Win customers', 'Keep customers'], ['Watch rivals'], ['Check your own journeys', 'Get paid and save']] satisfies RecipeGroup[][],
+    /* The desktop menu lays the 5 jobs out in 3 columns of even height: winning customers and watching rivals,
+       keeping and growing customers with getting paid, then checking your own journeys. The phone sheet, the footer
+       and the Recipes index list the jobs in their own order. */
+    columns: [['Win customers', 'Watch rivals'], ['Keep and grow customers', 'Get paid and save'], ['Check your own journeys']] satisfies RecipeGroup[][],
   },
   /* Resources: the worked examples (content/usecases, which James sends to prospects, so they always stay reachable),
      then the blog and the 1 real run. */
