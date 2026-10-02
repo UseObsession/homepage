@@ -7,8 +7,9 @@ import type { Page } from '../types'
    every kind of brand > recipes > the real September store check > questions (red lines) > the free store mystery
    shop (a store you run, or one with the owner’s OK).
    Every console run is an example (consoleLabel says so); the only real run is the September store check, stated as
-   it happened in the proof fact and the proof beat. The hero runs are B2C rival emails, a B2B rival trial and a B2B
-   webinar launch, so they don't repeat the stories the use case screens tell.
+   it happened in the proof fact and the proof beat. The hero runs are B2C rival emails, a B2B rival trial, a B2B
+   webinar launch, your own store's AI checkouts and your own cancel requests, so they don't repeat the stories the
+   use case screens tell.
    Red lines held here: at rivals, public self-serve paths only (sign ups, newsletters, text opt ins, public pages,
    the ads they run in public, the site's chat bot); never a person; rival trials need no card, never reply and close
    the moment a rep writes or calls; launch checks and lead leaks only on your own journeys. */
@@ -126,6 +127,46 @@ export const page: Page = {
         finding: 'US guests would have joined 5 hours late, and the reminder’s join link was broken.',
         fix: 'Time zone and link fixed in the tool you connected, after your OK, then tested again.',
         ledger: 'Every email, invite and link timed and signed.',
+      },
+      {
+        tab: 'Your AI checkout',
+        recipe: 'checkout',
+        task: 'Each month, buy through every AI checkout into our store, refund each order, and draft a fix for anything that breaks.',
+        targets: 'your-store.example, your own store',
+        journey: ['Find every AI checkout', 'Buy on a card capped to the order', 'Check it against your store', 'Refund, then draft the fix'],
+        schedule: 'Monthly, and after every checkout change',
+        report: 'A signed report, Slack when a checkout breaks',
+        kit: ['Agent ID, declared as AI', 'A single use card per order', 'Your store, connected by you', 'A monthly budget you set'],
+        events: [
+          { time: '1st, 09:00', text: '5 AI checkouts found. Your store isn’t on 1 AI shopping channel.' },
+          { time: '1st, 09:12', text: 'You confirm the totals. 5 orders placed, each noted as an AI test.' },
+          { time: '1st, 09:14', text: '1 checkout shows AI shoppers $4.95 delivery. Your checkout charges $8.95.' },
+          { time: '1st, 10:30', text: 'All 5 refunded. None was marked in your store as an AI sale.' },
+          { time: '3rd, 10:00', text: 'Both fixes live after your OK. Bought again: right price, marked AI, refunded.' },
+        ],
+        finding: 'AI shoppers saw delivery $4 cheaper than checkout charged, and AI sales went uncounted.',
+        fix: 'Your sign up for the missing AI channel, drafted. Sent after your OK.',
+        ledger: 'Every order, refund and fix dated and signed.',
+      },
+      {
+        tab: 'Your cancellations',
+        recipe: 'saves',
+        task: 'When a subscriber, or their AI assistant, asks to cancel, offer 1 pause next to “cancel now”, and do what they pick at once.',
+        targets: 'Phone, email, chat and AI assistants',
+        journey: ['Say it’s your AI agent', 'Confirm it’s the subscriber', '1 pause next to cancel now', 'Do what they pick at once'],
+        schedule: 'Every cancel request, as it lands',
+        report: 'A weekly note: pauses, cancels and returns',
+        kit: ['Agent ID, names your brand', 'Own inbox and number', 'Your billing, connected by you', 'Offers you approved'],
+        events: [
+          { time: 'Mon 08:14', text: 'An AI assistant asks to cancel. A code to the subscriber’s phone confirms it’s them.' },
+          { time: 'Mon 08:15', text: '1 reply: cancel now, or pause for 2 months. Each takes 1 step.' },
+          { time: 'Mon 08:16', text: 'The assistant picks the pause. Billing updated, a check in set for 1 Dec.' },
+          { time: 'Mon 11:30', text: 'Another asks to cancel, no offers. Cancelled at once, confirmed by email.' },
+          { time: 'Fri 17:00', text: 'This week: 41 requests, 12 from AI assistants. 9 paused, 32 cancelled at once.' },
+        ],
+        finding: '9 of 41 chose a pause. Every cancel was done the minute it was asked for.',
+        fix: '2 refunds outside your policy wait for your team, with the history attached.',
+        ledger: 'Every request, offer and choice dated and signed.',
       },
     ],
   },
