@@ -7,10 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview",
-    "waitlist:login": "npx -y @google/clasp@3 login",
-    "waitlist:push": "npx -y @google/clasp@3 push --force",
-    "waitlist:deploy": "npx -y @google/clasp@3 create-deployment --description 'Obsession waitlist'"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.8",

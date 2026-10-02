@@ -17,7 +17,10 @@ npm run build    # static files in dist/
   - `audiences.ts`: the agencies, sales and marketing pages, which share one layout (`pages/AudiencePage.tsx`)
   - `report.ts`: the sample report, as data
 - **Design tokens:** `src/styles/tokens.css`, ported from the v1.0 design system. Dark by default, light via the toggle.
-- **Waitlist:** set `VITE_WAITLIST_URL` to an endpoint that accepts a JSON POST of `{ email, company, source, page }`. Without it the form runs in preview and sends nothing.
+- **Waitlist:** sign ups go to a Google Apps Script web app (`waitlist/Code.js`) owned by jamesniranye@gmail.com. It writes each one to the "Sign ups" tab of the **Obsession waitlist** sheet in that Drive and emails the owner. The site reads the web app URL from `VITE_WAITLIST_URL` in `.env`. Without it the form runs in preview and sends nothing.
+  - To change the script: paste `waitlist/Code.js` into the Apps Script editor, save, then Deploy, Manage deployments, edit, New version. The URL stays the same.
+  - After adding anything that needs a new permission, run `authorize` once from the editor and tick every box.
+  - The form has a hidden `website` field; anything that fills it is treated as a bot and dropped.
 
 ## Copy rules
 

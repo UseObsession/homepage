@@ -2,7 +2,7 @@
    sheet, created in the owner's Drive the first time the script runs. The site POSTs
    { email, company, source, page, website } as text/plain JSON; each sign up becomes a row, and the owner
    gets an email. "website" is a hidden field people never fill in, so a value there means a bot.
-   Deploy with clasp from obsession/web (see README). */
+   To change it, see the waitlist notes in obsession/web/README.md. */
 
 const BOOK_TITLE = 'Obsession waitlist'
 const SHEET_NAME = 'Sign ups'
@@ -30,8 +30,22 @@ function doPost(e) {
     return b
   })
 
-  if (NOTIFY) notify(row, book.getUrl())
+  /* A failed alert email must never lose a sign up. The row is already saved. */
+  if (NOTIFY) {
+    try {
+      notify(row, book.getUrl())
+    } catch (err) {
+      console.error('notify failed', err)
+    }
+  }
   return json({ ok: true })
+}
+
+/* Run this once from the editor. It asks for every permission the script uses and creates the sheet. */
+function authorize() {
+  console.log('Email quota left today: ' + MailApp.getRemainingDailyQuota())
+  console.log('Alerts go to: ' + Session.getEffectiveUser().getEmail())
+  console.log('Sheet: ' + withLock(() => book_()).getUrl())
 }
 
 /* Opening the web app link once, signed in as the owner, authorises the script and creates the sheet. */
