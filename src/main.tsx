@@ -12,7 +12,6 @@ import './styles/ds/components/brand.css'
 import './styles/tokens.css'
 import './styles/site.css'
 import './styles/base.css'
-import './styles/layout.css'
 import App from './App'
 
 const root = document.getElementById('root')!

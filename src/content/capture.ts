@@ -1,7 +1,5 @@
 /* The capture form's own words (components/CaptureForm). Each page's Capture (content/types) sets its button, source,
    placeholder, micro line and roles question; everything here is shared by every form. */
-import { ctaFor, recipeAt } from './nav'
-import type { Capture } from './types'
 
 export const capture = {
   email: { label: 'Work email', placeholder: 'Your work email' },
@@ -44,33 +42,4 @@ export const capture = {
   },
   /* Shown only when VITE_WAITLIST_URL is unset (local builds): nothing leaves the browser. */
   preview: 'Preview: nothing was sent.',
-}
-
-/* A waitlist capture for pages that haven't written their own yet. */
-export function waitlistCapture(source: string, overrides: Partial<Capture> = {}): Capture {
-  return { kind: 'waitlist', source, button: 'Join the waitlist', ...overrides }
-}
-
-/* The free mystery shop: a store the reader runs, or a client's with their OK. */
-export function mysteryCapture(source: string, overrides: Partial<Capture> = {}): Capture {
-  return {
-    kind: 'mystery',
-    source,
-    button: 'Get my free report',
-    micro: 'A store you run, or a client’s with their OK. 4 test customers, 48 hours, a report within 4 days.',
-    interest: 'mystery',
-    ...overrides,
-  }
-}
-
-/* The capture a page gets until its own content sets one (docs/REBUILD.md, "Calls to action"): the free mystery shop on
-   Sample output and the Mystery shopper recipe, the waitlist everywhere else, labelled with the page's call to action
-   and, on a recipe page, with that recipe as the interest. */
-export function captureFor(path: string, source: string): Capture {
-  const clean = path.length > 1 ? path.replace(/\/+$/, '') : path
-  const recipe = recipeAt(clean)
-  const cta = ctaFor(clean)
-  if (clean === '/sample-output') return mysteryCapture(source, { button: cta.label })
-  if (recipe?.id === 'mystery') return mysteryCapture(source)
-  return waitlistCapture(source, { button: cta.label, ...(recipe ? { interest: recipe.id } : {}) })
 }

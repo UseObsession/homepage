@@ -28,7 +28,6 @@ import { purgeCss } from './purge-css.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const server = join(root, 'dist-server')
-const LAB = process.env.VITE_LAB === '1'
 
 const dist = [join(root, 'dist', 'client'), join(root, 'dist')].find((d) => existsSync(join(d, 'index.html')))
 if (!dist) throw new Error('No built index.html in dist/ or dist/client/. Run vite build first.')
@@ -130,17 +129,12 @@ function page(e, rendered, opts) {
   return html
 }
 
-/* PATH.html for a page; in lab builds also PATH/index.html, so a plain static server (python -m http.server, which
-   serves only folders' index files) previews /PATH/ too. Production never gets the copies: Cloudflare would answer
-   /PATH/ with a second 200 instead of sending it to /PATH. */
+/* PATH.html for a page, never PATH/index.html: Cloudflare answers /PATH with it and sends /PATH/ to /PATH. */
 const fileFor = (path) => (path === '/' ? join(dist, 'index.html') : join(dist, `${path.slice(1)}.html`))
 async function write(path, html) {
-  const files = [fileFor(path)]
-  if (LAB && path !== '/') files.push(join(dist, path.slice(1), 'index.html'))
-  for (const f of files) {
-    await mkdir(dirname(f), { recursive: true })
-    await writeFile(f, html)
-  }
+  const f = fileFor(path)
+  await mkdir(dirname(f), { recursive: true })
+  await writeFile(f, html)
 }
 
 /* ---- Pages ---- */
@@ -149,15 +143,6 @@ for (const e of entries) {
   const app = render(e.meta.path)
   await write(e.meta.path, page(e, app))
   rendered.push({ e, app })
-}
-
-/* Builders' lab previews (src/lab, see src/Lab.tsx): only in builds made with VITE_LAB=1, never in production. */
-if (LAB && existsSync(join(root, 'src/lab'))) {
-  for (const f of readdirSync(join(root, 'src/lab')).filter((f) => f.endsWith('.tsx'))) {
-    const path = '/lab/' + f.slice(0, -4)
-    const e = { ...notFound, meta: { ...notFound.meta, path, title: 'Lab · ' + f.slice(0, -4) } }
-    await write(path, page(e, render(path), { noindex: true }))
-  }
 }
 
 /* Hosts serve 404.html, with a 404 status, for any path without its own page. */

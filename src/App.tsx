@@ -5,7 +5,6 @@ import { Nav } from './components/Nav'
 import { absolute, metaFor } from './content/meta'
 import { ctaFor, nav } from './content/nav'
 import { pages, recipeBySlug } from './content/registry'
-import { Lab } from './Lab'
 import { Agencies } from './pages/Agencies'
 import { Agents } from './pages/Agents'
 import { Developers } from './pages/Developers'
@@ -185,7 +184,6 @@ export function AppRoutes() {
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
         <Route path="templates" element={<Navigate to="/recipes" replace />} />
         <Route path="templates/*" element={<TemplatesRedirect />} />
-        {import.meta.env.VITE_LAB === '1' && <Route path="lab/:name" element={<Lab />} />}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

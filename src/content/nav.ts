@@ -17,12 +17,6 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
   items: recipes.filter((r) => r.group === name).map((r) => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })),
 }))
 
-/* The recipe with this /recipes/SLUG, for presets such as the waitlist's interest. */
-export function recipeAt(path: string): NavRecipe | undefined {
-  for (const g of recipeGroups) for (const r of g.items) if (r.to === path) return r
-  return undefined
-}
-
 export const nav = {
   home: 'Obsession home',
   skip: 'Skip to content',
