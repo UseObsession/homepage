@@ -1,21 +1,3 @@
-.theme-toggle {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: var(--radius-pill);
-  background: rgb(var(--tint) / .05);
-  box-shadow: 0 0 0 1px var(--line) inset;
-  color: var(--text-2);
-  cursor: pointer;
-  transition: color var(--dur) var(--ease);
-}
-
-.theme-toggle:hover {
-  color: var(--text);
-}
-
 /* Hero */
 .hero {
   position: relative;
@@ -153,52 +135,6 @@
   }
 }
 
-/* Footer */
-.foot {
-  border-top: 1px solid var(--line-subtle);
-  padding-block: 48px 32px;
-}
-
-.foot-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.foot-brand {
-  display: grid;
-  gap: 12px;
-  max-width: 280px;
-  font-size: 14px;
-}
-
-.foot-links {
-  display: flex;
-  gap: 56px;
-}
-
-.foot-links > div {
-  display: grid;
-  align-content: start;
-  gap: 10px;
-}
-
-.foot-links a {
-  font-size: 14px;
-  color: var(--text-2);
-  text-decoration: none;
-}
-
-.foot-links a:hover {
-  color: var(--text);
-}
-
-.foot-base {
-  margin-top: 40px;
-  font-size: 13px;
-}
-
 /* Code */
 .code {
   border-radius: var(--radius-md);
@@ -210,10 +146,9 @@
 .code-label {
   padding: 10px 16px;
   border-bottom: 1px solid var(--line-subtle);
-  font: 500 11.5px/1 var(--font-mono);
+  font: var(--ob-type-caption);
+  font-weight: var(--ob-weight-medium);
   color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: .04em;
 }
 
 .code pre {
@@ -230,7 +165,7 @@
 }
 
 .code .s {
-  color: var(--success);
+  color: var(--text);
 }
 
 .code .c {

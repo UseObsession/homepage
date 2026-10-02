@@ -35,13 +35,11 @@
 .s-head > p { max-width: 52ch; color: var(--ob-text-2); }
 .s-head--wide { max-width: 44ch; }
 
-/* Keyboard users can skip the navigation. */
-.s-skip {
-  position: absolute; left: var(--s-gutter); top: -100px; z-index: 100;
-  padding: 10px 16px; border-radius: var(--ob-radius-pill, 999px);
-  background: var(--ob-solid); color: var(--ob-text-inverse); font-weight: 500;
-}
-.s-skip:focus-visible { top: 12px; }
+/* Keyboard users can skip the navigation: navigation.css .ob-skip, the first stop on every page, shown only while it
+   has focus. The site lines it up with the page gutter instead of the system's 8px. */
+.s-skip.ob-skip { left: var(--s-gutter); }
+/* The skip link's target takes focus without drawing a ring around the whole page. */
+#main:focus { outline: none; }
 
 /* Visually hidden, still read aloud. */
 .s-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

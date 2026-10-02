@@ -16,11 +16,16 @@ npm run build    # static files in dist/, every page prerendered to HTML
   - `runs.ts`: the example runs played in the hero window. The mystery shopper run is the real September store check; the others are labelled as examples.
   - `audiences.ts`: the agencies, sales and marketing pages, which share one layout (`pages/AudiencePage.tsx`)
   - `report.ts`: the September store check behind the sample output, as data
-- **Design tokens:** `src/styles/tokens.css`, ported from the v1.0 design system. Dark by default, light via the toggle.
-- **Waitlist:** sign ups go to a Google Apps Script web app (`waitlist/Code.js`) owned by jamesniranye@gmail.com. It writes each one to the "Sign ups" tab of the **Obsession waitlist** sheet in that Drive and emails the owner. The site reads the web app URL from `VITE_WAITLIST_URL` in `.env`. Without it the form runs in preview and sends nothing.
-  - To change the script: paste `waitlist/Code.js` into the Apps Script editor, save, then Deploy, Manage deployments, edit, New version. The URL stays the same.
-  - After adding anything that needs a new permission, run `authorize` once from the editor and tick every box.
-  - The form has a hidden `website` field; anything that fills it is treated as a bot and dropped.
+- **Design system:** `src/styles/ds/` (tokens, motion, components), synced from the workspace by `scripts/sync-assets.mjs` and never edited here. `src/styles/tokens.css` keeps the old short names (`--bg`, `--text` and the rest) as aliases of its `--ob-` tokens. Dark by default, light via the switch in the nav and the footer.
+- **Navigation and footer:** `src/content/nav.ts` (menus, recipe groups, each page's call to action) and `src/content/footer.ts`.
+- **Waitlist:** every form is `components/CaptureForm` (kinds `waitlist` and `mystery`), sending through `src/lib/waitlist.ts` to a Google Apps Script web app (`waitlist/Code.js`) owned by jamesniranye@gmail.com. It writes each sign up to the "Sign ups" tab of the **Obsession waitlist** sheet in that Drive and emails an alert. The site reads the web app URL from `VITE_WAITLIST_URL` in `.env`. Without it the forms run in preview and send nothing.
+  - Columns: Received, Email, Company, Source, Page, Role, Interest, Store. Columns are found by their header, so old rows are untouched; Role, Interest and Store are added to row 1 the first time they're needed.
+  - After a sign up, 1 tap answers the roles question. The form posts again with the same email and source, and the script folds it into the same row (same email and source within 10 minutes updates the row instead of adding one).
+  - The forms work before the page's script loads: they are real `<form method="post">` forms aimed at the same URL, and the script takes form posts as well as JSON. A form post gets a short "You're on the list" page with a link back.
+  - Guards: a hidden `website` field (anything in it is treated as a bot and dropped), a formula guard on every cell, a lock around each write, and at most 8 posts per email per hour.
+  - Alerts go to every address in the script property `NOTIFY_TO` (comma separated), or to the owner when it isn't set.
+  - **To change the script (James, once per change):** paste `waitlist/Code.js` into the Apps Script editor, save, then Deploy, Manage deployments, the pencil on the live deployment, Version: New version, Deploy. The URL stays the same. To send alerts to both founders, add `NOTIFY_TO` under Project Settings, Script properties.
+  - After adding anything that needs a new permission, run `authorize` once from the editor and tick every box. The current version needs none beyond the first deploy's.
 
 ## Prerendering
 

@@ -1,10 +1,12 @@
 import { useState, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { defaultRules, inputs, outputs, type QA } from '../content/shared'
 import { recipes, type RecipeId } from '../content/recipes'
 import { OutputFormats, type FormatId } from './OutputFormats'
 import { Reveal } from './Reveal'
-import { WaitlistForm } from './WaitlistForm'
+import { CaptureForm } from './CaptureForm'
+import { captureFor } from '../content/capture'
+import type { Capture } from '../content/types'
 import './Blocks.css'
 
 export function SectionHead({
@@ -225,14 +227,15 @@ export function Faq({ items }: { items: QA[] }) {
   )
 }
 
-export function FinalCta({ title, line, source }: { title: string; line: string; source: string }) {
+export function FinalCta({ title, line, source, capture }: { title: string; line: string; source: string; capture?: Capture }) {
+  const { pathname } = useLocation()
   return (
     <section className="section final" id="join">
       <div className="wrap">
         <Reveal className="final-in">
           <h2 className="h1 final-h">{title}</h2>
           <p className="lede">{line}</p>
-          <WaitlistForm source={source} withCompany />
+          <CaptureForm capture={capture ?? captureFor(pathname, source)} />
         </Reveal>
       </div>
     </section>

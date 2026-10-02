@@ -1,7 +1,8 @@
 import { Faq, FinalCta, Rules, SampleTeaser, SectionHead, UseCases } from '../components/Blocks'
 import { Code, sdkExample, webhookExample } from '../components/Code'
 import { Reveal } from '../components/Reveal'
-import { WaitlistForm } from '../components/WaitlistForm'
+import { CaptureForm } from '../components/CaptureForm'
+import { captureFor } from '../content/capture'
 import { WaysPicker } from '../components/WaysPicker'
 import { pricingAnswer } from '../content/shared'
 import './Developers.css'
@@ -29,7 +30,7 @@ export function Developers() {
               the journey takes, and posts each result to your webhook.
             </p>
             <div className="hero-form">
-              <WaitlistForm source="developers-hero" button="Get API access" />
+              <CaptureForm capture={captureFor('/developers', 'developers-hero')} />
               <p className="faint dev-note">The API opens to early access teams first.</p>
             </div>
           </div>

@@ -62,8 +62,8 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--text);
-  outline-offset: 2px;
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
 }
 
 .wrap {
@@ -89,14 +89,19 @@ textarea {
   background: var(--bg-sunken);
 }
 
+/* A quiet label in sentence case, no caps, no mono, for the labels inside cards ("Spins up", "You get").
+   A label above a section heading only names the section (docs/REBUILD.md, Copy), so it no longer shows. */
+.head > .kicker {
+  display: none;
+}
+
 .kicker {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font: 500 13px/1.2 var(--font-mono);
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: .04em;
+  font: var(--ob-type-caption);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text-3);
 }
 
 .h1 {
@@ -241,8 +246,8 @@ textarea {
 }
 
 .tag.ok {
-  color: var(--success);
-  background: var(--success-bg);
+  color: var(--text-2);
+  background: rgb(var(--tint) / .07);
 }
 
 .tag.bad {
@@ -251,8 +256,8 @@ textarea {
 }
 
 .tag.warn {
-  color: var(--warning);
-  background: var(--warning-bg);
+  color: var(--text-2);
+  background: rgb(var(--tint) / .07);
 }
 
 .tag.idle {
@@ -266,12 +271,8 @@ textarea {
   box-shadow: 0 0 0 1px var(--line) inset;
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
-}
-
+/* Sections no longer fade in (docs/REBUILD.md, Motion). components/Reveal still adds .reveal and .in; they do nothing. */
+.reveal,
 .reveal.in {
   opacity: 1;
   transform: none;
@@ -289,12 +290,6 @@ textarea {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 
   *,

@@ -4,7 +4,8 @@ import type { FormatId } from '../components/OutputFormats'
 import type { QA } from '../content/shared'
 import { Reveal } from '../components/Reveal'
 import { RunWindow } from '../components/RunWindow'
-import { WaitlistForm } from '../components/WaitlistForm'
+import { CaptureForm } from '../components/CaptureForm'
+import { captureFor } from '../content/capture'
 import { WaysPicker } from '../components/WaysPicker'
 import type { RoleId } from '../content/roles'
 import type { Run } from '../content/runs'
@@ -44,7 +45,7 @@ export function AudiencePage({ a }: { a: Audience }) {
             <h1 className="h1">{a.title}</h1>
             <p className="lede">{a.lede}</p>
             <div className="hero-form">
-              <WaitlistForm source={`${a.source}-hero`} withCompany />
+              <CaptureForm capture={captureFor(`/${a.source}`, `${a.source}-hero`)} />
               <Watched items={a.watched} />
             </div>
           </div>
