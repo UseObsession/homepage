@@ -37,7 +37,8 @@
   max-width: none;
   margin: 0 calc((100% - var(--s-hero-h-w)) / 2);
   font: var(--ob-type-display);
-  font-size: clamp(44px, 5.6vw, 80px);
+  /* the floor shrinks below 44px only when the longest word ("infrastructure", about 5.9 em) would not fit the gutters */
+  font-size: clamp(min(44px, (100vw - 2 * var(--s-gutter)) / 6.1), 5.6vw, 80px);
   letter-spacing: var(--ob-type-display-tracking);
   color: var(--ob-text);
   text-wrap: balance;
