@@ -148,7 +148,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The report covers 1 run on 1 store, and it never says the basket flow is switched off. It says a customer who left a full basket heard nothing in 48 hours. The owner can check that, and an agency can fix it.',
+      text: 'The report covers 1 run on 1 store, and it never says the basket flow is switched off. It says a customer who left a basket heard nothing in 48 hours. The owner can check that, and an agency can fix it.',
     },
 
     { kind: 'h2', id: 'how-often-messages-fail', text: 'How often do welcome, cart and checkout messages fail?' },
