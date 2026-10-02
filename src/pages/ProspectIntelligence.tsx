@@ -88,7 +88,7 @@ export function ProspectIntelligence() {
             <div className="uc-flow">
               <div className="uc-node">
                 <span className="kicker">Clay in</span>
-                <b>Client A, UK TAM</b>
+                <b>UK Shopify brands</b>
                 <ul>
                   {brands.map((b) => (
                     <li key={b.name}>{b.name}</li>
@@ -208,7 +208,7 @@ export function ProspectIntelligence() {
             n={1}
             title="Create a watch"
             line="A watch is one list of companies, the checks to run on them, and how long to keep watching. Start one from a recipe, or by describing what you want to know."
-            pick="The agency starts a new watch for Client A, an SMS app."
+            pick="The agency starts a new watch on SMS app prospects."
           >
             <Win title="Obsession · Watches">
               <div className="uc-row uc-between">
@@ -218,7 +218,7 @@ export function ProspectIntelligence() {
               <ul className="uc-list uc-seq">
                 <li style={at(0)}>
                   <b>
-                    Client B, reviews app<small>From the Prospect research recipe</small>
+                    Reviews app prospects<small>From the Prospect research recipe</small>
                   </b>
                   <span>120 brands</span>
                   <span className="tag idle">Weekly</span>
@@ -232,7 +232,7 @@ export function ProspectIntelligence() {
                 </li>
                 <li style={at(2)}>
                   <b>
-                    Client C, loyalty app<small>Described in your own words</small>
+                    Loyalty app prospects<small>Described in your own words</small>
                   </b>
                   <span>210 brands</span>
                   <span className="tag idle">Weekly</span>
@@ -286,8 +286,8 @@ export function ProspectIntelligence() {
               <div className="uc-cfg">
                 <div>
                   <div className="uc-fld">
-                    <p className="uc-lab">Watch for</p>
-                    <div className="uc-field">Client A, SMS app</div>
+                    <p className="uc-lab">Watching</p>
+                    <div className="uc-field">SMS app prospects</div>
                   </div>
                   <div className="uc-fld">
                     <p className="uc-lab">The gap to prove</p>
@@ -357,7 +357,7 @@ export function ProspectIntelligence() {
                   </div>
                   <div className="uc-fld">
                     <p className="uc-lab">Alerts</p>
-                    <div className="uc-field uc-dd">Slack #signals_client_a</div>
+                    <div className="uc-field uc-dd">Slack #sms_app_prospects</div>
                   </div>
                 </div>
               </div>
@@ -394,7 +394,7 @@ export function ProspectIntelligence() {
                 <p className="uc-lab">Bring companies in</p>
                 <dl className="uc-kv">
                   <dt>Table</dt>
-                  <dd className="uc-field uc-dd">Client A, UK TAM</dd>
+                  <dd className="uc-field uc-dd">UK Shopify brands</dd>
                   <dt>View</dt>
                   <dd className="uc-field uc-dd">SMS popup is yes</dd>
                   <dt>Website column</dt>
@@ -448,7 +448,7 @@ export function ProspectIntelligence() {
               <dl className="uc-sum uc-seq">
                 {[
                   ['Recipe', 'Prospect research'],
-                  ['For', 'Client A, SMS app'],
+                  ['Watching', 'SMS app prospects'],
                   ['Brands', '300 now, plus new rows from the Clay view'],
                   ['Checks', 'Email sign up, SMS opt in, one support question'],
                   ['Gaps', 'No welcome in 1 hour · No text in 24 hours · No reply in 24 hours'],
@@ -743,7 +743,7 @@ export function ProspectIntelligence() {
             title="The facts land back in Clay"
             line="Four new columns on the same rows: the gap, the date it was seen, what happened in one plain sentence, and the proof link. Obsession reports what happened; your own Clay prompts decide what to say."
           >
-            <Win title="Clay table · Client A, UK TAM">
+            <Win title="Clay table · UK Shopify brands">
               <div className="uc-table uc-claytable">
                 <table>
                   <thead>
@@ -787,7 +787,7 @@ export function ProspectIntelligence() {
                   <Mark size={18} />
                 </span>
                 <p>
-                  <b>Obsession</b> <span className="uc-small">#signals_client_a</span>
+                  <b>Obsession</b> <span className="uc-small">#sms_app_prospects</span>
                   <br />
                   UK Shopify TAM: the first 300 brands are done. <b>61</b> opted in for texts and never got one, and <b>19</b> never sent a
                   welcome email. New rows report as they finish. The facts and proof are in your Clay table.
@@ -810,7 +810,7 @@ export function ProspectIntelligence() {
               </p>
               <div className="uc-mail">
                 <p className="uc-mail-head">
-                  From <b>Sam, Client A</b> to <b>Hannah Price, Tidewren Swim</b> · Subject <b>Tidewren’s texts</b>
+                  From <b>Sam, SMS app</b> to <b>Hannah Price, Tidewren Swim</b> · Subject <b>Tidewren’s texts</b>
                 </p>
                 <p>Hi Hannah,</p>
                 <p>We opted in for Tidewren’s texts on 15 September. Three emails arrived in the next two days, but not one text.</p>
