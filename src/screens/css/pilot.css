@@ -2,29 +2,29 @@
    A 30-day pilot at an invented account (Quillmere Dental), run with their OK: 6 labelled test customers ask the same
    20 questions on day 0 (before go-live), day 14 and day 28. One card, 3 metrics, each a before and after in big numbers,
    its change, and a 3-point chart whose points sit under the card's Day 0 / 14 / 28 axis. The card's foot carries the
-   signed record and the 1 primary action. Finance view is on.
+   signed record (its mark works while the pilot runs, then closes), Finance view (on) and the 1 primary action.
+   Chrome (canonical, 2 Oct 2026): Your company, Accounts selected, list Prospects; a plain h2, its meta and the
+   declared-agent pill; 1 lock line bottom left; the toast is app-board's (1 line, 1 action) bottom right.
    Story: day 0 values land, the day 14 then day 28 points draw in while the numbers step with them, the pilot's mark
    closes, the changes count up, the pointer clicks Share with the CFO, the toast lands under it.
    Geometry (design px, main 556 x 414, padding 14 16): header 14..38, card 50..346 (axis 34, 3 rows of 72, foot 46),
-   toast bottom-right 16 in, 14 up. Rest state (no .play) = the finished, shared scene. */
+   lock line and toast share the band 360..400. Rest state (no .play) = the finished, shared scene. */
 
 @property --apppilot-n{syntax:'<integer>';inherits:false;initial-value:0}
 @property --apppilot-d{syntax:'<integer>';inherits:false;initial-value:0}
 
-.app-pilot .ax-main{gap:12px}
+.app-pilot .ax-main{gap:12px;padding:14px}
 .app-pilot .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
 .app-pilot .ax-clients a.on i{background:var(--fg-2)}
 
-/* ---------- header ---------- */
-.app-pilot .pl-h{display:flex;align-items:center;gap:10px;height:24px}
-.app-pilot .pl-mk{display:grid}
-.app-pilot .pl-mk .sig{grid-area:1/1;color:var(--fg)}
-.ilwrap .app-pilot .pl-mk .sig{width:16px;height:16px}
-.app-pilot .pl-mk .w0{opacity:0}
+/* ---------- header: the account, the pilot, the declared agent ---------- */
+.app-pilot .pl-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
 .app-pilot .pl-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
-.app-pilot .pl-h .ax-meta{font-size:11.5px;color:var(--fg-3);white-space:nowrap}
-.app-pilot .pl-fv{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:24px;padding:0 10px 0 7px;border-radius:7px;
-  font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-pilot .pl-h .ax-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-pilot .pl-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-pilot .pl-idm{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-pilot .pl-idm svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- the card: 1 grid shared by the axis and the 3 rows, so every column aligns ---------- */
 .app-pilot .pl-card{display:grid;padding:0 14px}
@@ -89,16 +89,26 @@
 /* the foot: the signed record and the 1 primary action */
 .app-pilot .pl-f{display:flex;align-items:center;gap:9px;height:46px;margin:0 -14px;padding:0 11px 0 14px;border-radius:0 0 10px 10px;
   background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
+.app-pilot .pl-fm{display:grid;flex:none}
+.app-pilot .pl-fm .sig{grid-area:1/1}
+.app-pilot .pl-fm .w0{opacity:0}
 .ilwrap .app-pilot .pl-f .sig{width:13px;height:13px;color:var(--fg)}
 .app-pilot .pl-f p{font-size:11.5px;line-height:15px;color:var(--fg);white-space:nowrap}
 .app-pilot .pl-f .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
-.app-pilot .pl-act{position:relative;margin-left:auto}
+.app-pilot .pl-fv{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-pilot .pl-act{position:relative;margin-left:12px}
 .app-pilot .pl-share{padding:0 11px;transform-origin:center}
 .ilwrap .app-pilot .appx svg.pl-ptr{left:92px;top:13px;width:16px;height:16px}
 
-/* toast: under the button it answers */
-.app-pilot .pl-toast{right:16px;bottom:14px}
-.app-pilot .pl-toast p{white-space:nowrap;line-height:15px}
+/* the red line, shown once: bottom left, on the toast's band */
+.app-pilot .pl-note{position:absolute;left:16px;bottom:14px;display:flex;align-items:center;gap:7px;height:40px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-pilot .pl-note svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* toast (app-board's pattern): under the button it answers */
+.app-pilot .pl-toast{right:14px;bottom:14px;gap:10px;padding:8px 8px 8px 12px}
+.app-pilot .pl-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-pilot .pl-toast b{font-weight:500;color:var(--fg)}
+.app-pilot .pl-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes pl-show{from{opacity:0}to{opacity:1}}
@@ -143,11 +153,11 @@
 .appx-il.play.app-pilot .pl-hl{animation:pl-halo .7s var(--ease) calc(2.42s + var(--r) * .08s) both}
 .appx-il.play.app-pilot .pl-st .v2{animation:pl-up .25s var(--ease) 2.3s both}
 
-/* 4. the pilot's mark closes, the changes count up */
-.appx-il.play.app-pilot .pl-mk .w0{animation:pl-hide .25s var(--ease) 2.6s both}
-.appx-il.play.app-pilot .pl-mk .w1{animation:pl-show .25s var(--ease) 2.6s both}
-.appx-il.play.app-pilot .pl-mk .w1 .sig-sq{animation:pl-home .6s var(--snap) 2.65s both}
-.appx-il.play.app-pilot .pl-mk .w1 .sig-gap{animation:pl-show .35s var(--ease) 2.85s both}
+/* 4. the pilot's mark (the signed record's) closes, the changes count up */
+.appx-il.play.app-pilot .pl-fm .w0{animation:pl-hide .25s var(--ease) 2.6s both}
+.appx-il.play.app-pilot .pl-fm .w1{animation:pl-show .25s var(--ease) 2.6s both}
+.appx-il.play.app-pilot .pl-fm .w1 .sig-sq{animation:pl-home .6s var(--snap) 2.65s both}
+.appx-il.play.app-pilot .pl-fm .w1 .sig-gap{animation:pl-show .35s var(--ease) 2.85s both}
 .appx-il.play.app-pilot .pl-dn{animation:ax-pop .45s var(--snap) calc(2.6s + var(--r) * .08s) both,pl-count .9s var(--ease) calc(2.6s + var(--r) * .08s) both}
 
 /* 5. the pointer shares it; the toast lands under the button */

@@ -1,15 +1,17 @@
 /* app-case: Renewals, for sales and CS (template: Business case). 90 days out, the renewal case for Tamberlin Payroll,
    built from the account's own numbers in the tools you connect, with consent, and refreshed weekly to renewal.
    Layout: a document moment, unlike every table sibling. The main area is a viewer: the case's own bar on top
-   (what it is, that it refreshes weekly, Export PDF, Share with finance), then a sunken canvas holding 1 page.
+   (what it is, the declared agent, Share with finance), then a sunken canvas holding 1 page.
+   Chrome (canonical, 2 Oct 2026): Your company, Accounts selected, list Customers; a plain h2 and the declared-agent pill;
+   the toast is app-board's (1 line, 1 action) and says the case updates weekly to renewal.
    The page reads answer first: the 2 companies and the renewal date, the saving and its model, the 4 numbers that prove it
    (each with its source chip and a 6-month trend line), and the signature.
    Story: the page settles (the saving holds a quiet placeholder), the 4 numbers rise in and their trend lines draw,
    each source chip attaches, the model lands and the saving counts up to $184,000, the footer mark stops working
    and closes, and only then does the page say it is signed;
-   the pointer clicks Share with finance, the toast lands under the page.
+   the pointer clicks Share with finance, the toast lands bottom right, under the page.
    Geometry (design px, main 556 x 414): bar 0..44, canvas 44..414, page 456 wide centred (x 50..506) from y 58,
-   head 38, saving 72, numbers 2 x 66, foot 34; toast centred, 14 up. Rest state (no .play) = the finished, shared scene. */
+   head 38, saving 72, numbers 2 x 66, foot 34; toast bottom right, 14 in. Rest state (no .play) = the finished, shared scene. */
 @property --case-k{syntax:"<integer>";inherits:false;initial-value:0}
 
 .app-case .ax-main{grid-template-rows:44px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
@@ -17,13 +19,13 @@
 .app-case .ax-clients a.on i{background:var(--fg-2)}
 
 /* ---------- the case's bar ---------- */
-.app-case .cs-h{position:relative;z-index:3;display:flex;align-items:center;gap:10px;padding:0 14px 0 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.app-case .cs-h{position:relative;z-index:3;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--panel);border-bottom:1px solid var(--line)}
 .app-case .cs-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
-.app-case .cs-meta{gap:6px;padding-top:1px;font-size:11.5px;color:var(--fg-3)}
-.ilwrap .app-case .appx .cs-meta .sig{width:11px;height:11px;color:var(--fg-2)}
-.app-case .cs-acts{margin-left:auto;display:flex;align-items:center;gap:6px}
-.app-case .cs-pdf{box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-case .cs-sh{position:relative;display:flex}
+.app-case .cs-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-case .cs-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-case .appx .cs-av svg.sig{width:10px;height:10px;color:var(--bg)}
+.app-case .cs-sh{position:relative;display:flex;flex:none}
 .app-case .cs-share{padding:0 11px;transform-origin:center}
 .ilwrap .app-case .appx svg.cs-ptr{left:72px;top:11px;width:16px;height:16px}
 
@@ -73,12 +75,11 @@
 .app-case .cs-pf p{font-size:11px;line-height:1;color:var(--fg)}
 .app-case .cs-hash{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
 
-/* toast: centred under the page it answers for */
-.app-case .cs-toast{left:0;right:0;bottom:14px;width:max-content;margin:0 auto;padding:9px 13px 9px 12px}
-.app-case .cs-toast p{display:flex;align-items:baseline;gap:6px;white-space:nowrap;line-height:15px}
+/* toast (app-board's pattern): bottom right, under the page it answers for */
+.app-case .cs-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-case .cs-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
 .app-case .cs-toast b{font-weight:500;color:var(--fg)}
-.app-case .cs-toast p span{color:var(--fg-2)}
-.app-case .cs-toast .cs-dot{color:var(--fg-3)}
+.app-case .cs-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes cs-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}

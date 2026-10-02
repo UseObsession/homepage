@@ -2,28 +2,29 @@
    Left, the hero: what a customer of Larchwise actually gets, seen by a declared agent who joined their trial and asked only their bot.
    Right, quieter: the public signals anyone can read. Bottom: the talking points, drafted.
    Story: the 7 days fill, 3 findings land with their marks, signals pop in, talking points type,
-   the brief's mark closes, the pointer clicks Add to CRM, a signed toast confirms. Rest state = finished scene. */
+   the brief's mark closes, the pointer clicks Add to CRM, a signed toast confirms. Rest state = finished scene.
+   Chrome (canonical, 2 Oct 2026): Your company, Accounts selected, list Prospects; a plain h2 and the declared-agent pill;
+   the 7 days strip lives in the findings card's head; the brief's working mark sits by "drafted"; 1 lock line at the foot.
+   Geometry (design px, main 556 x 414, padding 14): head 24, gap 12, grid, gap 12, talking points 107, gap 12, foot 40 (lock line left, toast right). */
 
-.app-brief .ax-main{grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch;gap:12px}
+.app-brief .ax-main{grid-template-rows:auto minmax(0,1fr) auto 40px;align-content:stretch;gap:12px;padding:14px}
 .app-brief .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
 .app-brief .ax-clients a.on i{background:var(--fg-2)}
-.app-brief .ax-clients a em{margin-left:auto;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
 
-/* ---------- header ---------- */
-.app-brief .br-h{display:grid;grid-template-columns:16px minmax(0,1fr) auto;column-gap:10px;align-items:start}
-.app-brief .br-mk{display:grid;margin-top:2px}
-.app-brief .br-mk .sig{grid-area:1/1}
-.ilwrap .app-brief .br-mk .sig{width:16px;height:16px;color:var(--fg)}
-.app-brief .br-mk .w0{opacity:0}
-.app-brief .br-h h2{font:600 16px/20px var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
-.app-brief .br-h h2 i{font-style:normal;font-weight:500;color:var(--fg-3);margin:0 1px}
-.app-brief .br-h h2 span{color:var(--fg-2);font-weight:500}
-.app-brief .br-sub{display:flex;align-items:center;gap:10px;margin-top:3px;font-size:11.5px;line-height:16px;color:var(--fg-3);white-space:nowrap}
+/* ---------- header: the account and the call, the declared agent ---------- */
+.app-brief .br-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-brief .br-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-brief .br-meta{font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-brief .br-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-brief .br-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-brief .br-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* the 7 days as their customer, in the findings card's head */
+.app-brief .br-hd .br-dy{display:flex;align-items:center;gap:8px}
 .app-brief .br-days{display:flex;gap:3px}
 .app-brief .br-days i{width:7px;height:7px;border-radius:2px;background:transparent;box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-brief .br-days i.hit{background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
-.app-brief .br-ready{display:flex;align-items:center;gap:8px;height:20px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
-.app-brief .br-ready time{font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
 
 /* ---------- the two columns ---------- */
 .app-brief .br-grid{display:grid;grid-template-columns:minmax(0,1fr) 176px;gap:12px;min-height:0}
@@ -31,6 +32,7 @@
 .app-brief .br-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;height:29px;padding-bottom:9px;border-bottom:1px solid var(--line)}
 .app-brief .br-hd b{font:600 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
 .app-brief .br-hd span{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-brief .br-hd .br-days{line-height:0}
 .app-brief .br-fd ul,.app-brief .br-sg ul{flex:1;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));min-height:0}
 
 /* findings */
@@ -78,10 +80,15 @@
 .app-brief .br-tp{display:grid;gap:8px;padding:10px 12px 11px}
 .app-brief .br-tp-h{display:flex;align-items:center;gap:6px;height:24px}
 .app-brief .br-tp-h b{font:600 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
-.app-brief .br-sep{color:var(--fg-3);font-size:11.5px}
-.app-brief .br-st{display:inline-grid;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
-.app-brief .br-st > span{grid-area:1/1}
-.app-brief .br-st .a{opacity:0}
+/* the brief's own mark: working while the points draft, closed when done */
+.app-brief .br-st{display:inline-flex;align-items:center;gap:6px;margin-left:4px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-brief .br-mk{display:grid}
+.app-brief .br-mk .sig{grid-area:1/1}
+.ilwrap .app-brief .br-mk .sig{width:12px;height:12px;color:var(--fg)}
+.app-brief .br-mk .w0{opacity:0}
+.app-brief .br-sw{display:inline-grid}
+.app-brief .br-sw > span{grid-area:1/1}
+.app-brief .br-sw .a{opacity:0}
 .app-brief .br-acts{margin-left:auto;display:flex;gap:6px}
 .app-brief .br-acts .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-brief .br-add{display:grid;justify-items:end}
@@ -93,11 +100,16 @@
 .app-brief .br-tp li::before{content:"";width:4px;height:4px;border-radius:1px;background:var(--fg-3);flex:none}
 .app-brief .br-tl{display:block;overflow:hidden;white-space:nowrap;font-size:11.5px;line-height:18px;color:var(--fg);padding-right:2px;border-right:1.5px solid transparent}
 
-/* pointer and toast: the toast lands in the card's empty right side, on the card's own inset */
-.app-brief .br-ptr{left:474px;top:313px}
-.app-brief .br-toast{right:28px;bottom:25px;gap:10px;padding:8px 12px 8px 11px}
-.app-brief .br-toast p{white-space:nowrap;line-height:15px}
-.app-brief .br-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+/* the red line, shown once at the foot: the foot row is toast-high, the note left and the toast right */
+.app-brief .br-note{display:flex;align-items:center;gap:7px;height:40px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-brief .br-note svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* pointer and toast (app-board's pattern): bottom right of the content, level with the lock line */
+.app-brief .br-ptr{left:476px;top:261px}
+.app-brief .br-toast{right:14px;bottom:14px;gap:10px;padding:8px 8px 8px 12px}
+.app-brief .br-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-brief .br-toast b{font-weight:500;color:var(--fg)}
+.app-brief .br-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes br-out{from{opacity:1}to{opacity:0}}
@@ -130,8 +142,8 @@
 /* talking points type in, one line at a time */
 .appx-il.play.app-brief .br-tp li{animation:ax-fade .15s linear var(--d) both}
 .appx-il.play.app-brief .br-tl{animation:br-type var(--t) steps(40,end) var(--d) both,br-caret calc(var(--t) + .3s) linear var(--d) both}
-.appx-il.play.app-brief .br-st .a{animation:br-out .25s var(--ease) 5.02s both}
-.appx-il.play.app-brief .br-st .b{animation:ax-fade .3s var(--ease) 5.06s both}
+.appx-il.play.app-brief .br-sw .a{animation:br-out .25s var(--ease) 5.02s both}
+.appx-il.play.app-brief .br-sw .b{animation:ax-fade .3s var(--ease) 5.06s both}
 
 /* the brief's own mark: working while it builds, closes when done */
 .appx-il.play.app-brief .br-mk .w0{animation:br-out .3s var(--ease) 5s both}
@@ -139,7 +151,9 @@
 .appx-il.play.app-brief .br-mk .w1 .sig-sq{animation:br-home .6s var(--snap) 5.05s both}
 .appx-il.play.app-brief .br-mk .w1 .sig-gap{animation:br-gap .35s var(--ease) 5.25s both}
 
-/* the click */
+/* the click; the toast follows */
+@keyframes br-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.appx-il.play.app-brief .br-toast{animation:br-toast .45s var(--ease) 5.75s both}
 .appx-il.play.app-brief .br-ptr{animation:br-ptr 1.4s var(--ease) 4.7s both}
 .appx-il.play.app-brief .br-add .s1{animation:br-press .22s ease-out 5.4s both,br-out .16s linear 5.6s both}
 .appx-il.play.app-brief .br-add .s2{animation:ax-fade .3s var(--ease) 5.62s both}

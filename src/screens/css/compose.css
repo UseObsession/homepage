@@ -1,13 +1,24 @@
-/* app-compose: Home, the typed way in. A task typed in plain words becomes a plan you approve.
+/* app-compose: Missions / New mission, the typed way in. A task typed in plain words becomes a plan you approve.
+   Chrome is canonical (APP-SPEC, Product chrome): plain h2, clock, declared-agent pill; the lock line sits at the
+   foot of the content, in the plan's footer beside the approve it guards.
    Top: the typed line (mono, large). Middle: the agent asks 2 things as chips; AM picks.
-   Bottom, the hero: the plan card with its steps, the kit each step sets up, how long, and what still needs an OK.
+   Bottom, the hero: the plan card with its steps, the kit each step sets up, how long, and the red line.
    Story: the task types in and is sent; 2 questions land with the agent's mark hollow (needs you); the pointer
    picks Under £0.60 and By 20 Oct and the mark fills back; the plan builds row by row; the pointer clicks Approve plan, the plan's mark starts
    working and the pill reads Day 1 of 5. Rest state = the finished scene.
-   Geometry (design px, main 556 x 414): field 16..82, questions 98..122 and 128..152, plan 168..400
-   (header 48, steps 4 x 32 + 8, footer 48). Option chips 92 wide from x 166; Approve plan 432..528. */
+   Geometry (design px, main 556 x 414, padding 14 16): head 14..38, field 50..110, questions 122..146 and 152..176,
+   plan 188..400 (header 44, steps 4 x 30 + 8, footer 40). Option chips 92 wide from x 166; Approve plan 432..528. */
 
-.app-compose .ax-main{grid-template-rows:66px 54px 232px;gap:16px;padding:16px}
+.app-compose .ax-main{grid-template-rows:24px 60px 54px 212px;gap:12px;padding:14px}
+
+/* ---------- head: plain title, clock, the declared agent ---------- */
+.app-compose .cp-h{height:24px}
+.app-compose .cp-h h2{white-space:nowrap}
+.app-compose .cp-time{font:400 11px/1 var(--mono);color:var(--fg-3);padding-top:2px;font-variant-numeric:tabular-nums}
+.app-compose .cp-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-compose .cp-idav{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-compose .cp-idav svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* stacked states: only the last child shows at rest */
 .app-compose .cp-stk{display:inline-grid}
@@ -15,15 +26,15 @@
 .app-compose .cp-stk>:not(:last-child){opacity:0}
 
 /* ---------- 1. the typed line ---------- */
-.app-compose .cp-field{position:relative;display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;padding:11px 44px 11px 14px;border-radius:12px;
+.app-compose .cp-field{position:relative;display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;padding:9px 44px 9px 14px;border-radius:12px;
   background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-compose .cp-gt{font:500 15px/22px var(--mono);color:var(--fg-3)}
+.app-compose .cp-gt{font:500 15px/21px var(--mono);color:var(--fg-3)}
 .app-compose .cp-tx{display:grid;align-content:start;min-width:0}
 .app-compose .cp-l{display:block;width:max-content;box-sizing:content-box;overflow:hidden;white-space:nowrap;
-  font:400 15px/22px var(--mono);letter-spacing:0;color:var(--fg);border-right:1.5px solid transparent}
+  font:400 15px/21px var(--mono);letter-spacing:0;color:var(--fg);border-right:1.5px solid transparent}
 .app-compose .cp-l.l1{max-width:38ch}
 .app-compose .cp-l.l2{max-width:35ch}
-.app-compose .cp-enter{position:absolute;right:12px;bottom:12px;min-width:22px;height:20px;display:grid;place-items:center;padding:0 5px;
+.app-compose .cp-enter{position:absolute;right:12px;bottom:10px;min-width:22px;height:20px;display:grid;place-items:center;padding:0 5px;
   font:500 11px/1 var(--mono);color:var(--fg-3);box-shadow:0 0 0 1px var(--line-ui) inset}
 
 /* ---------- 2. the agent's 2 questions ---------- */
@@ -37,7 +48,7 @@
 .app-compose .cp-op.pk{font-weight:500;color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
 
 /* ---------- 3. the plan ---------- */
-.app-compose .cp-plan{display:grid;grid-template-rows:48px minmax(0,1fr) 48px;min-height:0;overflow:hidden}
+.app-compose .cp-plan{display:grid;grid-template-rows:44px minmax(0,1fr) 40px;min-height:0;overflow:hidden}
 .app-compose .cp-ph{display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--line)}
 .ilwrap .app-compose .cp-ph .cp-mk .sig{width:14px;height:14px}
 .app-compose .cp-tt{display:grid;gap:3px;min-width:0}
@@ -50,7 +61,7 @@
 .app-compose .cp-pill b{font-weight:500;color:var(--fg)}
 
 /* steps: number, what it does, the kit it sets up, when */
-.app-compose .cp-steps{position:relative;display:grid;grid-template-rows:repeat(4,32px);align-content:center;padding:4px 0}
+.app-compose .cp-steps{position:relative;display:grid;grid-template-rows:repeat(4,30px);align-content:center;padding:4px 0}
 .app-compose .cp-steps li{position:relative;display:grid;grid-template-columns:14px 150px minmax(0,1fr) 64px;column-gap:10px;align-items:center;padding:0 12px}
 .app-compose .cp-steps li+li::before{content:"";position:absolute;left:12px;right:12px;top:0;height:1px;background:var(--line)}
 .app-compose .cp-steps .n{font:400 11px/1 var(--mono);color:var(--fg-3);text-align:center;font-variant-numeric:tabular-nums}
@@ -59,12 +70,10 @@
 .ilwrap .app-compose .cp-kit svg{width:12px;height:12px;color:var(--fg-3)}
 .app-compose .cp-steps time{font:400 11px/1 var(--mono);color:var(--fg-3);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 
-/* footer: the OK it still needs, and the decision */
+/* footer: the red line, and the decision */
 .app-compose .cp-pf{display:flex;align-items:center;gap:10px;padding:0 12px;border-top:1px solid var(--line)}
-.app-compose .cp-ok{display:inline-flex;align-items:center;gap:10px;font:400 11.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
-.ilwrap .app-compose .cp-ok svg{width:14px;height:14px;color:var(--fg-2)}
-.app-compose .cp-ok b{font-weight:500;color:var(--fg)}
-.app-compose .cp-ok span{white-space:nowrap}
+.app-compose .cp-note{display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-compose .cp-note svg{width:12px;height:12px;color:var(--fg-3)}
 .app-compose .cp-acts{margin-left:auto;justify-items:end;align-items:center}
 .app-compose .cp-acts>span{display:flex;align-items:center;gap:6px;height:24px;white-space:nowrap}
 .app-compose .cp-acts .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
@@ -102,19 +111,19 @@
 /* 3.7s from 2.6s: in from the lower right, picks Under £0.60 (3.15s) and By 20 Oct (3.7s), waits by the
    questions while the plan builds, clicks Approve plan (5.5s), drifts off */
 @keyframes cp-ptr{
-  0%{opacity:0;transform:translate(500px,300px)}
+  0%{opacity:0;transform:translate(500px,324px)}
   6%{opacity:1}
-  14.9%{transform:translate(311px,112.5px) scale(1)}
-  16.2%{transform:translate(311px,112.5px) scale(.88)}
-  17.6%,22%{transform:translate(311px,112.5px) scale(1)}
-  29.7%{transform:translate(311px,142.5px) scale(1)}
-  31.1%{transform:translate(311px,142.5px) scale(.88)}
-  32.4%{transform:translate(311px,142.5px) scale(1)}
-  43.2%,59.5%{transform:translate(492px,146px) scale(1)}
-  77%{transform:translate(481px,378.5px) scale(1)}
-  78.4%{transform:translate(481px,378.5px) scale(.88)}
-  79.7%,85%{opacity:1;transform:translate(481px,378.5px) scale(1)}
-  100%{opacity:0;transform:translate(500px,396px)}}
+  14.9%{transform:translate(311px,136.5px) scale(1)}
+  16.2%{transform:translate(311px,136.5px) scale(.88)}
+  17.6%,22%{transform:translate(311px,136.5px) scale(1)}
+  29.7%{transform:translate(311px,166.5px) scale(1)}
+  31.1%{transform:translate(311px,166.5px) scale(.88)}
+  32.4%{transform:translate(311px,166.5px) scale(1)}
+  43.2%,59.5%{transform:translate(492px,170px) scale(1)}
+  77%{transform:translate(481px,382.5px) scale(1)}
+  78.4%{transform:translate(481px,382.5px) scale(.88)}
+  79.7%,85%{opacity:1;transform:translate(481px,382.5px) scale(1)}
+  100%{opacity:0;transform:translate(500px,400px)}}
 
 /* 1. the task is typed and sent */
 .appx-il.play.app-compose .cp-field{animation:cp-up .55s var(--ease) both,cp-focus 2.1s linear .25s both}

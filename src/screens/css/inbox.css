@@ -8,168 +8,168 @@
    showing the old offer; the toast says the offer changed and the weekly digest has it.
    Rest state (no .play) = the finished scene.
    Main grid (design px): header 24, strip 80, then list 308 wide and the open message 208 wide, both 206 tall;
-   the toast floats in the clear 52px below, as on the board. */
+   the list shows 4 rows of 51.5. The lock line (left) and the toast (right) share the clear 52px band below. */
 
 .app-inbox .ax-main{grid-template-columns:308px minmax(0,1fr);grid-template-rows:24px 80px 206px;align-content:start;gap:12px;padding:14px}
-.ilwrap .app-inbox .appx svg.ib-ic{width:12px;height:12px;color:var(--fg-3)}
+.ilwrap .app-inbox .appx svg.ibx-ic{width:12px;height:12px;color:var(--fg-3)}
 
 /* stacked values: only the last child shows at rest */
-.app-inbox .ib-n{display:inline-grid;vertical-align:top;overflow:hidden}
-.app-inbox .ib-n>b{grid-area:1/1;font:inherit;color:inherit}
-.app-inbox .ib-n>:not(:last-child){opacity:0}
+.app-inbox .ibx-n{display:inline-grid;vertical-align:top;overflow:hidden}
+.app-inbox .ibx-n>b{grid-area:1/1;font:inherit;color:inherit}
+.app-inbox .ibx-n>:not(:last-child){opacity:0}
 
 /* ---------- header: the page, the channel filter, the declared agent ---------- */
-.app-inbox .ib-h{grid-column:1/-1;display:flex;align-items:center;gap:12px;height:24px;min-width:0}
-.app-inbox .ib-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
-.app-inbox .ib-tabs{display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-inbox .ib-tab{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
-.app-inbox .ib-tab.on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-inbox .ib-tab>i{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
-.ilwrap .app-inbox .ib-tab svg.ib-ic{width:12px;height:12px;color:var(--fg-3)}
-.app-inbox .ib-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+.app-inbox .ibx-h{grid-column:1/-1;display:flex;align-items:center;gap:12px;height:24px;min-width:0}
+.app-inbox .ibx-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-inbox .ibx-tabs{display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-inbox .ibx-tab{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-inbox .ibx-tab.on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-inbox .ibx-tab>i{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.ilwrap .app-inbox .ibx-tab svg.ibx-ic{width:12px;height:12px;color:var(--fg-3)}
+.app-inbox .ibx-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
   font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
-.app-inbox .ib-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
-.ilwrap .app-inbox .ib-av svg.sig{width:10px;height:10px;color:var(--bg)}
+.app-inbox .ibx-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-inbox .ibx-av svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- the send rate: 30 days per rival ---------- */
-.app-inbox .ib-rate{grid-column:1/-1;position:relative;display:grid;grid-template-rows:14px repeat(3,18px);align-content:center;padding:0 12px}
-.app-inbox .ib-rr{position:relative;isolation:isolate;display:grid;grid-template-columns:56px 268px minmax(0,1fr);column-gap:12px;align-items:center}
-.app-inbox .ib-rr>b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
-.app-inbox .ib-sq{display:grid;grid-auto-flow:column;grid-auto-columns:7px;gap:2px;height:7px}
-.app-inbox .ib-sq i{position:relative;border-radius:1.5px;background:rgb(var(--fg-rgb) / .09)}
-.app-inbox .ib-sq i.ib-s{background:var(--fg-2)}
+.app-inbox .ibx-rate{grid-column:1/-1;position:relative;display:grid;grid-template-rows:14px repeat(3,18px);align-content:center;padding:0 12px}
+.app-inbox .ibx-rr{position:relative;isolation:isolate;display:grid;grid-template-columns:56px 268px minmax(0,1fr);column-gap:12px;align-items:center}
+.app-inbox .ibx-rr>b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-inbox .ibx-sq{display:grid;grid-auto-flow:column;grid-auto-columns:7px;gap:2px;height:7px}
+.app-inbox .ibx-sq i{position:relative;border-radius:1.5px;background:rgb(var(--fg-rgb) / .09)}
+.app-inbox .ibx-sq i.ibx-s{background:var(--fg-2)}
 /* today: outlined until the rival sends; Rival B's fills */
-.app-inbox .ib-sq i.ib-t{background:none;box-shadow:0 0 0 1px var(--line-3) inset}
-.app-inbox .ib-sq i.ib-t.ib-s::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--fg)}
-.app-inbox .ib-ct{justify-self:end;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
-.app-inbox .ib-ct b{font-weight:500;color:var(--fg)}
+.app-inbox .ibx-sq i.ibx-t{background:none;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-inbox .ibx-sq i.ibx-t.ibx-s::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--fg)}
+.app-inbox .ibx-ct{justify-self:end;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-inbox .ibx-ct b{font-weight:500;color:var(--fg)}
 /* the axis: first day, today (capped over its band), the window */
-.app-inbox .ib-cap{align-items:start;height:14px}
-.app-inbox .ib-ax{position:relative;font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap}
-.app-inbox .ib-today{position:absolute;top:0;left:264.5px;transform:translateX(-50%);color:var(--fg-2)}
-.app-inbox .ib-cap .ib-ct{line-height:12px}
-.app-inbox .ib-band{position:absolute;left:339px;top:19px;width:11px;height:56px;border-radius:3px;background:rgb(var(--fg-rgb) / .07)}
+.app-inbox .ibx-cap{align-items:start;height:14px}
+.app-inbox .ibx-ax{position:relative;font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-inbox .ibx-today{position:absolute;top:0;left:264.5px;transform:translateX(-50%);color:var(--fg-2)}
+.app-inbox .ibx-cap .ibx-ct{line-height:12px}
+.app-inbox .ibx-band{position:absolute;left:339px;top:19px;width:11px;height:56px;border-radius:3px;background:rgb(var(--fg-rgb) / .07)}
 
 /* ---------- the captured messages, newest first ---------- */
-.app-inbox .ib-list{display:grid;grid-template-rows:176px 30px;min-height:0;overflow:hidden}
-.app-inbox .ib-rows{min-height:0;overflow:hidden}
-.app-inbox .ib-m{position:relative;isolation:isolate;display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:10px;row-gap:3px;align-content:center;height:44px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
-.app-inbox .ib-m>svg.ib-ic,.app-inbox .ib-m>.ib-ico{grid-row:1;align-self:center}
-.app-inbox .ib-l1{grid-column:2;display:flex;align-items:center;gap:6px;height:15px;white-space:nowrap;min-width:0}
-.app-inbox .ib-l1 b{font:500 11.5px/15px var(--sans);color:var(--fg)}
-.app-inbox .ib-ch{font-size:10.5px;color:var(--fg-3)}
-.app-inbox .ib-l1 time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
-.app-inbox .ib-l2{grid-column:2;display:flex;align-items:center;gap:8px;height:18px;min-width:0}
-.app-inbox .ib-tx{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px;color:var(--fg-2)}
-.app-inbox .ib-tags{margin-left:auto;display:flex;gap:4px;flex:none}
-.app-inbox .ib-tags .ax-chip{height:18px;padding:0 6px;color:var(--fg)}
+.app-inbox .ibx-list{display:grid;grid-template-rows:minmax(0,1fr);min-height:0;overflow:hidden}
+.app-inbox .ibx-rows{min-height:0;overflow:hidden}
+.app-inbox .ibx-m{position:relative;isolation:isolate;display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:10px;row-gap:3px;align-content:center;height:51.5px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-inbox .ibx-m>svg.ibx-ic,.app-inbox .ibx-m>.ibx-ico{grid-row:1;align-self:center}
+.app-inbox .ibx-l1{grid-column:2;display:flex;align-items:center;gap:6px;height:15px;white-space:nowrap;min-width:0}
+.app-inbox .ibx-l1 b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-inbox .ibx-ch{font-size:10.5px;color:var(--fg-3)}
+.app-inbox .ibx-l1 time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-inbox .ibx-l2{grid-column:2;display:flex;align-items:center;gap:8px;height:18px;min-width:0}
+.app-inbox .ibx-tx{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px;color:var(--fg-2)}
+.app-inbox .ibx-tags{margin-left:auto;display:flex;gap:4px;flex:none}
+.app-inbox .ibx-tags .ax-chip{height:18px;padding:0 6px;color:var(--fg)}
 /* the offer the agent just read: inverse fill */
-.app-inbox .ib-tags .ib-tg{color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+.app-inbox .ibx-tags .ibx-tg{color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
 
 /* the open message: a bar and a quiet fill (pseudo layers, so the selection can move) */
-.app-inbox .ib-m::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg);opacity:0}
-.app-inbox .ib-m::after{content:"";position:absolute;z-index:-1;inset:0 0 1px;background:rgb(var(--fg-rgb) / .055);opacity:0}
-.app-inbox .ib-sel::before,.app-inbox .ib-sel::after{opacity:1}
-.app-inbox .ib-sel .ib-tx{color:var(--fg)}
+.app-inbox .ibx-m::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg);opacity:0}
+.app-inbox .ibx-m::after{content:"";position:absolute;z-index:-1;inset:0 0 1px;background:rgb(var(--fg-rgb) / .055);opacity:0}
+.app-inbox .ibx-sel::before,.app-inbox .ibx-sel::after{opacity:1}
+.app-inbox .ibx-sel .ibx-tx{color:var(--fg)}
 
 /* unread: a filled dot in the icon column, until the message is opened */
-.app-inbox .ib-ico{display:grid;width:12px;height:12px}
-.app-inbox .ib-ico>*{grid-area:1/1}
-.app-inbox .ib-dot{place-self:center;width:6px;height:6px;border-radius:50%;background:var(--fg);opacity:0}
+.app-inbox .ibx-ico{display:grid;width:12px;height:12px}
+.app-inbox .ibx-ico>*{grid-area:1/1}
+.app-inbox .ibx-dot{place-self:center;width:6px;height:6px;border-radius:50%;background:var(--fg);opacity:0}
 
 /* the new row arrives inside a grid expander (rows open with grid-template-rows, never height) */
-.app-inbox .ib-new{display:grid;grid-template-rows:1fr}
-.app-inbox .ib-clip{min-height:0;overflow:hidden}
+.app-inbox .ibx-new{display:grid;grid-template-rows:1fr}
+.app-inbox .ibx-clip{min-height:0;overflow:hidden}
 
-/* the red line, shown */
-.app-inbox .ib-foot{display:flex;align-items:center;gap:7px;padding:0 12px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
-.ilwrap .app-inbox .ib-foot svg.ib-lk{width:12px;height:12px;color:var(--fg-3)}
+/* the red line, shown: 1 lock line in the band under the board, as on every screen */
+.app-inbox .ibx-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-inbox .ibx-note svg.ibx-lk{width:12px;height:12px;color:var(--fg-3)}
 
 /* ---------- the open message: Thursday's email gives way to Friday's text ---------- */
-.app-inbox .ib-pv{display:grid;min-width:0;min-height:0;overflow:hidden}
-.app-inbox .ib-v{grid-area:1/1;display:grid;grid-template-rows:16px 104px 48px;align-content:start;gap:8px;padding:10px 12px;min-width:0}
-.app-inbox .ib-v0{opacity:0}
-.app-inbox .ib-ph{display:flex;align-items:center;gap:6px;height:16px;white-space:nowrap}
-.app-inbox .ib-ph b{font:500 11.5px/1 var(--sans);color:var(--fg)}
-.app-inbox .ib-ph span{font-size:10.5px;color:var(--fg-3)}
-.ilwrap .app-inbox .ib-ph svg.ib-x{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
-.app-inbox .ib-shot{height:104px}
+.app-inbox .ibx-pv{display:grid;min-width:0;min-height:0;overflow:hidden}
+.app-inbox .ibx-v{grid-area:1/1;display:grid;grid-template-rows:16px 104px 48px;align-content:start;gap:8px;padding:10px 12px;min-width:0}
+.app-inbox .ibx-v0{opacity:0}
+.app-inbox .ibx-ph{display:flex;align-items:center;gap:6px;height:16px;white-space:nowrap}
+.app-inbox .ibx-ph b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-inbox .ibx-ph span{font-size:10.5px;color:var(--fg-3)}
+.ilwrap .app-inbox .ibx-ph svg.ibx-x{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
+.app-inbox .ibx-shot{height:104px}
 
 /* capture 1: a calm promo email in grey blocks, its headline and its button */
-.app-inbox .ib-em{display:grid;justify-items:center;align-content:start;padding:9px 12px 0;min-height:0}
-.app-inbox .ib-em .ib-lg{width:30px;height:5px;background:#8C887F}
-.app-inbox .ib-em b{margin-top:7px;font:600 11px/13px var(--sans);letter-spacing:-.01em;color:#1E1D1A;white-space:nowrap}
-.app-inbox .ib-em .ib-ln{width:58%;height:4px;margin-top:5px}
-.app-inbox .ib-em .ib-cta{position:relative;width:58px;height:13px;margin-top:8px;border-radius:3px;background:#2B2925}
-.app-inbox .ib-em .ib-cta::after{content:"";position:absolute;left:50%;top:5px;width:26px;height:3px;margin-left:-13px;border-radius:1px;background:#E9E7E1}
-.app-inbox .ib-em .ib-tl{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%;margin-top:8px}
-.app-inbox .ib-em .ib-tl i{height:18px;border-radius:2px;background:#D8D3CA}
+.app-inbox .ibx-em{display:grid;justify-items:center;align-content:start;padding:9px 12px 0;min-height:0}
+.app-inbox .ibx-em .ibx-lg{width:30px;height:5px;background:#8C887F}
+.app-inbox .ibx-em b{margin-top:7px;font:600 11px/13px var(--sans);letter-spacing:-.01em;color:#1E1D1A;white-space:nowrap}
+.app-inbox .ibx-em .ibx-ln{width:58%;height:4px;margin-top:5px}
+.app-inbox .ibx-em .ibx-cta{position:relative;width:58px;height:13px;margin-top:8px;border-radius:3px;background:#2B2925}
+.app-inbox .ibx-em .ibx-cta::after{content:"";position:absolute;left:50%;top:5px;width:26px;height:3px;margin-left:-13px;border-radius:1px;background:#E9E7E1}
+.app-inbox .ibx-em .ibx-tl{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%;margin-top:8px}
+.app-inbox .ibx-em .ibx-tl i{height:18px;border-radius:2px;background:#D8D3CA}
 
 /* capture 2: the text on a phone, a sender, 1 received bubble, the reply field */
-.app-inbox .ib-sms{position:relative;display:grid;justify-items:center;align-content:start;padding:6px 10px 0;min-height:0}
-.app-inbox .ib-sms .ib-av2{width:10px;height:10px;border-radius:50%;background:#B7B2A8}
-.app-inbox .ib-sms .ib-nm{width:26px;height:4px;margin-top:3px;background:#8C887F}
-.app-inbox .ib-bub{justify-self:start;display:grid;justify-items:start;margin-top:6px;padding:5px 9px 6px;border-radius:9px 9px 9px 3px;background:#F7F5F0;box-shadow:0 1px 0 #D6D3CC}
-.app-inbox .ib-bub b{font:600 11px/13px var(--sans);letter-spacing:-.01em;color:#1E1D1A;white-space:nowrap}
-.app-inbox .ib-bub span{font:400 10.5px/13px var(--sans);color:#57544D;white-space:nowrap}
-.app-inbox .ib-bub i{width:54px;height:4px;margin-top:3px;background:#B7B2A8}
-.app-inbox .ib-sms .ib-inp{position:absolute;left:10px;right:10px;bottom:5px;height:9px;border-radius:5px;background:none;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-inbox .ibx-sms{position:relative;display:grid;justify-items:center;align-content:start;padding:6px 10px 0;min-height:0}
+.app-inbox .ibx-sms .ibx-av2{width:10px;height:10px;border-radius:50%;background:#B7B2A8}
+.app-inbox .ibx-sms .ibx-nm{width:26px;height:4px;margin-top:3px;background:#8C887F}
+.app-inbox .ibx-bub{justify-self:start;display:grid;justify-items:start;margin-top:6px;padding:5px 9px 6px;border-radius:9px 9px 9px 3px;background:#F7F5F0;box-shadow:0 1px 0 #D6D3CC}
+.app-inbox .ibx-bub b{font:600 11px/13px var(--sans);letter-spacing:-.01em;color:#1E1D1A;white-space:nowrap}
+.app-inbox .ibx-bub span{font:400 10.5px/13px var(--sans);color:#57544D;white-space:nowrap}
+.app-inbox .ibx-bub i{width:54px;height:4px;margin-top:3px;background:#B7B2A8}
+.app-inbox .ibx-sms .ibx-inp{position:absolute;left:10px;right:10px;bottom:5px;height:9px;border-radius:5px;background:none;box-shadow:0 0 0 1px #CFCBC3 inset}
 
 /* the agent's notes */
-.app-inbox .ib-notes{display:grid;margin:0}
-.app-inbox .ib-notes div{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;height:16px;font:400 10.5px/1 var(--mono);white-space:nowrap}
-.app-inbox .ib-notes dt{color:var(--fg-3)}
-.app-inbox .ib-notes dd{margin:0;color:var(--fg);font-variant-numeric:tabular-nums}
-.app-inbox .ib-notes dd.ib-now{font-weight:500}
-.app-inbox .ib-notes dd.ib-old{color:var(--fg-2)}
+.app-inbox .ibx-notes{display:grid;margin:0}
+.app-inbox .ibx-notes div{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;height:16px;font:400 10.5px/1 var(--mono);white-space:nowrap}
+.app-inbox .ibx-notes dt{color:var(--fg-3)}
+.app-inbox .ibx-notes dd{margin:0;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-inbox .ibx-notes dd.ibx-now{font-weight:500}
+.app-inbox .ibx-notes dd.ibx-old{color:var(--fg-2)}
 
 /* ---------- toast: what changed, then the action (the board's pattern) ---------- */
-.app-inbox .ib-toast{gap:10px;padding:8px 8px 8px 12px}
-.app-inbox .ib-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
-.app-inbox .ib-toast b{font-weight:500;color:var(--fg)}
-.app-inbox .ib-toast p span{color:var(--fg-3)}
+.app-inbox .ibx-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-inbox .ibx-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-inbox .ibx-toast b{font-weight:500;color:var(--fg)}
+.app-inbox .ibx-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play). Ease-out to enter, ease-in to leave; opacity, transform and colour only ---------- */
-@keyframes ib-show{from{opacity:0}to{opacity:1}}
-@keyframes ib-hide{from{opacity:1}to{opacity:0}}
-@keyframes ib-on{from{opacity:1}to{opacity:1}}
-@keyframes ib-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
-@keyframes ib-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-@keyframes ib-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
-@keyframes ib-glow{from{background-color:rgb(var(--fg-rgb) / .12)}to{background-color:rgb(var(--fg-rgb) / 0)}}
-@keyframes ib-rowlit{
+@keyframes ibx-show{from{opacity:0}to{opacity:1}}
+@keyframes ibx-hide{from{opacity:1}to{opacity:0}}
+@keyframes ibx-on{from{opacity:1}to{opacity:1}}
+@keyframes ibx-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes ibx-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes ibx-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes ibx-glow{from{background-color:rgb(var(--fg-rgb) / .12)}to{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes ibx-rowlit{
   0%,100%{background-color:rgb(var(--fg-rgb) / 0)}
   20%,65%{background-color:rgb(var(--fg-rgb) / .06)}}
-@keyframes ib-solid{
+@keyframes ibx-solid{
   from{color:transparent;background-color:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
   to{color:var(--bg);background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
-@keyframes ib-dim{from{color:var(--fg)}to{color:var(--fg-2)}}
-@keyframes ib-lift{from{color:var(--fg-2)}to{color:var(--fg)}}
-@keyframes ib-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes ibx-dim{from{color:var(--fg)}to{color:var(--fg-2)}}
+@keyframes ibx-lift{from{color:var(--fg-2)}to{color:var(--fg)}}
+@keyframes ibx-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* 1. a text lands from Rival B: its strip row lights and the row opens on top, unread */
-.appx-il.play.app-inbox .ib-rb::before{content:"";position:absolute;z-index:-1;inset:0 -6px;border-radius:5px;animation:ib-rowlit 2.4s var(--ease) 1s both}
-.appx-il.play.app-inbox .ib-new{animation:ib-open .6s var(--ease) 1.2s both}
-.appx-il.play.app-inbox .ib-new .ib-m{animation:ib-glow 2.2s var(--ease) 1.3s both}
-.appx-il.play.app-inbox .ib-new .ib-m>*{animation:ib-show .4s var(--ease) 1.4s both}
-.appx-il.play.app-inbox .ib-new .ib-dot{animation:ib-on .01s linear both,ib-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.9s forwards}
-.appx-il.play.app-inbox .ib-new .ib-ico svg{animation:ib-show .3s var(--ease) 2.95s both}
+.appx-il.play.app-inbox .ibx-rb::before{content:"";position:absolute;z-index:-1;inset:0 -6px;border-radius:5px;animation:ibx-rowlit 2.4s var(--ease) 1s both}
+.appx-il.play.app-inbox .ibx-new{animation:ibx-open .6s var(--ease) 1.2s both}
+.appx-il.play.app-inbox .ibx-new .ibx-m{animation:ibx-glow 2.2s var(--ease) 1.3s both}
+.appx-il.play.app-inbox .ibx-new .ibx-m>*{animation:ibx-show .4s var(--ease) 1.4s both}
+.appx-il.play.app-inbox .ibx-new .ibx-dot{animation:ibx-on .01s linear both,ibx-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.9s forwards}
+.appx-il.play.app-inbox .ibx-new .ibx-ico svg{animation:ibx-show .3s var(--ease) 2.95s both}
 
 /* 2. it is counted: today's square fills, the counts tick */
-.appx-il.play.app-inbox .ib-rb .ib-sq i.ib-t.ib-s::after{animation:ib-show .35s var(--ease) 1.5s both}
-.appx-il.play.app-inbox .ib-n>:first-child{animation:ib-out .24s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 1.6s both}
-.appx-il.play.app-inbox .ib-n>:last-child{animation:ib-in .35s var(--ease) 1.6s both}
+.appx-il.play.app-inbox .ibx-rb .ibx-sq i.ibx-t.ibx-s::after{animation:ibx-show .35s var(--ease) 1.5s both}
+.appx-il.play.app-inbox .ibx-n>:first-child{animation:ibx-out .24s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 1.6s both}
+.appx-il.play.app-inbox .ibx-n>:last-child{animation:ibx-in .35s var(--ease) 1.6s both}
 
 /* 3. its tags are read in: outlines first, then each fills (opacity and colour, no transform) */
-.appx-il.play.app-inbox .ib-new .ib-tg{animation:ib-show .25s var(--ease) 1.6s both,ib-solid .35s var(--ease) var(--ib-d) both}
+.appx-il.play.app-inbox .ibx-new .ibx-tg{animation:ibx-show .25s var(--ease) 1.6s both,ibx-solid .35s var(--ease) var(--ibx-d) both}
 
 /* 4. it opens: the selection moves up, Thursday's email gives way to the text */
-.appx-il.play.app-inbox .ib-was::before,.appx-il.play.app-inbox .ib-was::after{animation:ib-on .01s linear both,ib-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.9s forwards}
-.appx-il.play.app-inbox .ib-was .ib-tx{animation:ib-dim .3s var(--ease) 2.9s both}
-.appx-il.play.app-inbox .ib-new .ib-sel::before,.appx-il.play.app-inbox .ib-new .ib-sel::after{animation:ib-show .35s var(--ease) 2.95s both}
-.appx-il.play.app-inbox .ib-new .ib-sel .ib-tx{animation:ib-lift .3s var(--ease) 2.95s both}
-.appx-il.play.app-inbox .ib-v0{animation:ib-on .01s linear both,ib-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.95s forwards}
-.appx-il.play.app-inbox .ib-v1{animation:ib-show .4s var(--ease) 3.1s both}
+.appx-il.play.app-inbox .ibx-was::before,.appx-il.play.app-inbox .ibx-was::after{animation:ibx-on .01s linear both,ibx-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.9s forwards}
+.appx-il.play.app-inbox .ibx-was .ibx-tx{animation:ibx-dim .3s var(--ease) 2.9s both}
+.appx-il.play.app-inbox .ibx-new .ibx-sel::before,.appx-il.play.app-inbox .ibx-new .ibx-sel::after{animation:ibx-show .35s var(--ease) 2.95s both}
+.appx-il.play.app-inbox .ibx-new .ibx-sel .ibx-tx{animation:ibx-lift .3s var(--ease) 2.95s both}
+.appx-il.play.app-inbox .ibx-v0{animation:ibx-on .01s linear both,ibx-hide .2s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 2.95s forwards}
+.appx-il.play.app-inbox .ibx-v1{animation:ibx-show .4s var(--ease) 3.1s both}
 
 /* 5. the toast: what changed, and the digest that has it */
-.appx-il.play.app-inbox .ib-toast{animation:ib-toast .45s var(--ease) 3.9s both}
+.appx-il.play.app-inbox .ibx-toast{animation:ibx-toast .45s var(--ease) 3.9s both}

@@ -4,7 +4,7 @@
    the newest closes its mark and opens on the verdict payload with its receipt_url, then the webhook delivery
    lands: the row opens, its mark resolves to a tick, 200 OK. Rest state (no .play) = the finished scene. */
 
-.app-dev .ax-main{grid-template-rows:24px 40px minmax(0,1fr);align-content:stretch;padding:14px 16px;gap:12px}
+.app-dev .ax-main{grid-template-rows:24px 40px minmax(0,1fr);align-content:stretch;padding:14px;gap:12px}
 
 /* stacked states: only the last child shows at rest */
 .app-dev .dv-stk{display:inline-grid;place-items:center}
@@ -17,6 +17,12 @@
 .app-dev .dv-h .ax-meta{font:400 11px/1 var(--mono);color:var(--fg-3);padding-top:2px}
 .app-dev .dv-test{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 7px;border-radius:999px;white-space:nowrap;
   font:500 11.5px/1 var(--sans);color:var(--fg);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-ui) inset}
+
+/* the declared agent, in the page head (Test mode already pushes both right) */
+.app-dev .dv-id{display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-dev .dv-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-dev .dv-av svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- the secret key ---------- */
 .app-dev .dv-key{display:flex;align-items:center;gap:10px;height:40px;padding:0 8px 0 8px;min-width:0}

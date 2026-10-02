@@ -3,7 +3,7 @@
    Rows: the product, your price, each rival's price in tabular mono (every figure right-aligned to 1 edge), and the
    cheapest rival over 14 days as a sparkline with today's change. Only the row that needs you carries a mark.
    Under the prices, the codes row: last year's Cyber Monday code from Rival A, tried at checkout, stopped before payment.
-   Below: the finding with its before and after captures, the agent's outline on the new price. Then the toast's slot.
+   Below: the finding with its before and after captures, the agent's outline on the new price. Then the foot: the lock line (left) and the toast (right).
    Story: the check's band visits Rival A, then B, then C. On Rival B, 3 cells flip to the cut (candle £24 to £19,
    diffuser £30 to £28, wax melts £10 to £9). Every sparkline steps to today (the 3 cut rows dip), the candle row
    needs you (Needs you 2 to 3), the finding rises with its captures, the agent outlines £19, the toast.
@@ -67,7 +67,7 @@
 .app-prices .pr-sp.pr-hot .pr-d1{fill:var(--fg)}
 .app-prices .pr-r>.pr-c em{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
 
-/* the codes row: last year's code, tried at checkout, stopped before payment */
+/* the codes row: last year's code, from its email */
 .app-prices .pr-code{position:relative;z-index:1;display:flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 32px;white-space:nowrap;
   background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
 .ilwrap .app-prices svg.pr-ic{width:12px;height:12px;flex:none;color:var(--fg-3)}
@@ -76,7 +76,7 @@
 .app-prices .pr-who{font-size:11px;color:var(--fg-3)}
 .app-prices .pr-who b{font-weight:500;color:var(--fg)}
 .app-prices .pr-who .ax-mono{font-size:10.5px;color:var(--fg-2);font-variant-numeric:tabular-nums}
-.app-prices .pr-rl{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--fg-2)}
+.app-prices .pr-rl{margin-left:auto;font-size:10.5px;color:var(--fg-2)}
 
 /* the check visiting 1 rival column at a time (seen only in play): 1 highlight per column, each handing to the next.
    Colour only, so it is painted from the first frame and never waits on a transform */
@@ -110,6 +110,8 @@
 .app-prices .pr-ring::after{content:"";position:absolute;right:-2px;top:-2px;width:4px;height:4px;background:#1E1D1A}
 
 /* ---------- toast: 1 line and an action, in its own slot under the finding ---------- */
+/* the red line, 1 quiet line at the foot, level with the toast */
+.app-prices .pr-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
 .app-prices .pr-toast{gap:10px;padding:8px 8px 8px 12px}
 .app-prices .pr-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
 .app-prices .pr-toast b{font-weight:500;color:var(--fg)}

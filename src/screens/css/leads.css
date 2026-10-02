@@ -1,25 +1,29 @@
 /* app-leads: Missions. A founder's Monday list: 50 prospects imported from Clay, each tested by a labelled test customer.
    One ranked list. Only companies with a proven gap rank; the 37 with no gap fold into the footer, not on your list.
-   Story: the import is worked row by row (each mark closes as its result lands, the 50-square strip fills),
+   Story: the import is worked row by row (each mark closes as its result lands, the 50-square strip in the footer fills),
    then the list re-sorts (FLIP: gap rows slide up to their rank, no-gap rows drop away into the footer),
    the pointer opens rank 1 and its proof slides in: 3 dated captures and a drafted 3-line opener,
-   sent from your inbox only after your OK. Rest state (no .play) = the finished scene. */
+   sent from your inbox only after your OK (the lock footnote). Rest state (no .play) = the finished scene.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, card 50..374 (head 24, body 268, foot 32), note 386..400.
+   At rest the body holds rank 1, its proof (98 + 10) and ranks 2 to 5 exactly. */
 @property --appleads-n{syntax:"<integer>";inherits:false;initial-value:13}
 
-.app-leads .ax-main{grid-template-rows:24px minmax(0,1fr);align-content:stretch;padding:14px;gap:12px}
+.app-leads .ax-main{grid-template-rows:24px minmax(0,1fr) 14px;align-content:stretch;padding:14px;gap:12px}
 .app-leads .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
 .app-leads .ax-clients a.on i{background:var(--fg-2)}
 
-/* ---------- header: the list, where it came from, how much of it holds up ---------- */
+/* ---------- header: the list, where it came from, the declared agent ---------- */
 .app-leads .ld-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
-.app-leads .ld-mk{display:inline-grid;flex:none}
-.app-leads .ld-mk .sig{grid-area:1/1}
-.ilwrap .app-leads .ld-mk .sig{width:16px;height:16px;color:var(--fg)}
-.app-leads .ld-mk .w0{opacity:0}
 .app-leads .ld-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
 .app-leads .ld-h .ax-chip{gap:5px;color:var(--fg-2)}
 .ilwrap .app-leads .ld-h .ax-chip svg{width:11px;height:11px;color:var(--fg-3)}
-.app-leads .ld-t{margin-left:auto;display:flex;align-items:center;gap:10px}
+.app-leads .ld-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-leads .ld-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-leads .ld-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* how much of the list holds up: 50 squares, filled = a gap found (sits in the list footer) */
+.app-leads .ld-t{display:flex;align-items:center;gap:10px}
 .app-leads .ld-strip{display:grid}
 .app-leads .ld-strip>span{grid-area:1/1;display:grid;grid-template-rows:repeat(2,5px);grid-auto-flow:column;grid-auto-columns:5px;gap:2px}
 .app-leads .ld-strip i{border-radius:1.5px;background:rgb(var(--fg-rgb) / .17)}
@@ -65,12 +69,10 @@
 .app-leads .ld-xc{min-height:0;overflow:hidden}
 
 /* the proof card: 3 dated captures, the drafted opener */
-.app-leads .ld-pc{display:grid;grid-template-columns:226px minmax(0,1fr);column-gap:16px;margin:0 12px 14px 36px;padding:12px 14px 12px 12px;border-radius:9px;
+.app-leads .ld-pc{display:grid;grid-template-columns:226px minmax(0,1fr);column-gap:16px;margin:0 12px 10px 36px;padding:12px 14px 12px 12px;border-radius:9px;
   background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 10px 24px -16px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
 .app-leads .ld-pv,.app-leads .ld-op{display:grid;align-content:start;min-width:0}
-.app-leads .ld-by{display:flex;align-items:center;gap:6px;height:14px;font:400 10.5px/14px var(--mono);color:var(--fg-3);white-space:nowrap}
-.ilwrap .app-leads .ld-by .sig{width:10px;height:10px;color:var(--fg-2)}
-.app-leads .ld-caps{display:grid;grid-template-columns:repeat(3,70px);gap:8px;margin-top:8px}
+.app-leads .ld-caps{display:grid;grid-template-columns:repeat(3,70px);gap:8px}
 .app-leads .ld-caps figure{margin:0;display:grid;gap:5px;min-width:0}
 .app-leads .ld-caps .ax-shot{height:56px;grid-template-rows:6px 1fr}
 .app-leads .ld-caps figcaption{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -91,13 +93,16 @@
 .app-leads .ld-oh b{font-weight:500;color:var(--fg-2)}
 .app-leads .ld-ln{position:relative;font:400 11px/16px var(--sans);color:var(--fg);white-space:nowrap}
 .app-leads .ld-ln.l1{margin-top:8px}
-.app-leads .ld-hint{display:flex;align-items:center;gap:6px;height:14px;margin-top:12px;font:400 10.5px/14px var(--sans);color:var(--fg-3);white-space:nowrap}
-.ilwrap .app-leads .ld-hint svg{width:12px;height:12px;color:var(--fg-3)}
 
-/* footer: while working, the watch; after, the 37 folded away */
-.app-leads .ld-foot{display:grid;align-items:center;padding:0 12px;background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
-.app-leads .ld-foot>span{grid-area:1/1;display:grid;grid-template-columns:14px auto auto;column-gap:10px;justify-content:start;align-items:center;white-space:nowrap;font-size:11.5px}
-.ilwrap .app-leads .ld-foot svg{width:12px;height:12px;color:var(--fg-3)}
+/* the 1 lock footnote, at the foot of the content */
+.app-leads .ld-note{display:flex;align-items:center;gap:7px;height:14px;padding-left:2px;font-size:10.5px;line-height:14px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-leads .ld-note svg{width:12px;height:12px}
+
+/* footer: while working, the watch; after, the 37 folded away. On the right, the strip and the count */
+.app-leads .ld-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:0 12px;background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
+.app-leads .ld-foot>.ld-t{grid-area:1/2}
+.app-leads .ld-foot>.f0,.app-leads .ld-foot>.f1{grid-area:1/1;display:grid;grid-template-columns:14px auto auto;column-gap:10px;justify-content:start;align-items:center;white-space:nowrap;font-size:11.5px}
+.ilwrap .app-leads .ld-foot .f0 svg,.ilwrap .app-leads .ld-foot .f1 svg{width:12px;height:12px;color:var(--fg-3)}
 .app-leads .ld-foot .f0{opacity:0;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
 .app-leads .ld-foot .f1{column-gap:6px}
 .app-leads .ld-foot .f1 svg{margin-right:4px}
@@ -113,8 +118,6 @@
 @keyframes ld-hide{from{opacity:1}to{opacity:0}}
 @keyframes ld-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @keyframes ld-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
-@keyframes ld-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes ld-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 @keyframes ld-flip{from{transform:translateY(var(--y,0px))}to{transform:none}}
 @keyframes ld-drop{from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px)}}
 @keyframes ld-sweep{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
@@ -136,12 +139,6 @@
   100%{opacity:0;transform:translate(174px,90px)}}
 
 /* 1. the list is worked: rows arrive in import order, each result lands, the strip and count fill */
-.appx-il.play.app-leads .ld-mk .w0{animation:ld-show .01s linear both,ld-hide .25s var(--ease) 2.7s forwards}
-.appx-il.play.app-leads .ld-mk .w0 .sig-rot{animation:ld-spin 2.5s linear .2s both}
-.appx-il.play.app-leads .ld-mk .w0 .sig-orb{animation:ld-spinr 2.5s linear .2s both}
-.appx-il.play.app-leads .ld-mk .w1{animation:ld-show .25s var(--ease) 2.7s both}
-.appx-il.play.app-leads .ld-mk .w1 .sig-sq{animation:ld-home .55s var(--snap) 2.75s both}
-.appx-il.play.app-leads .ld-mk .w1 .sig-gap{animation:ld-show .3s var(--ease) 2.95s both}
 .appx-il.play.app-leads .ld-strip .b{animation:ld-sweep 1.75s steps(25,end) .85s both}
 .appx-il.play.app-leads .ld-tl b{animation:ld-count 1.75s steps(1,end) .85s both}
 
@@ -170,4 +167,4 @@
 .appx-il.play.app-leads .ld-caps figure{animation:ld-cap .4s var(--ease) var(--d) both}
 .appx-il.play.app-leads .ld-ln .sk{animation:ld-hide .3s var(--ease) var(--d) both}
 .appx-il.play.app-leads .ld-ln .v{animation:ld-show .4s var(--ease) var(--d) both}
-.appx-il.play.app-leads .ld-hint{animation:ld-in .45s var(--ease) 5.25s both}
+

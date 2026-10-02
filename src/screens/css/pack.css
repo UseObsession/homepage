@@ -1,12 +1,21 @@
 /* app-pack: Missions / Prospect research. 12 prospects from Clay resolve 1 by 1 with their proven gap;
-   when the selected Coffee prospect lands, its pitch pack builds (findings 1, 2, 3 with captures), a click on Copy link, toast. */
+   when the selected Coffee prospect lands, its pitch pack builds (findings 1, 2, 3 with captures), a click on Copy link, toast.
+   Chrome is canonical (APP-SPEC, Product chrome): head = title, source, declared-agent pill; the progress heads the list;
+   the foot band holds the lock line (left) and the toast (right), clear of both columns. */
 
-.app-pack .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
+.app-pack .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch;padding:14px 14px 66px}
 .app-pack .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
 
 /* header */
 .app-pack .pk-h{height:24px}
-.app-pack .pk-prog{margin-left:auto;display:flex;align-items:center;gap:10px}
+.app-pack .pk-h .ax-meta{white-space:nowrap}
+.app-pack .pk-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-pack .pk-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-pack .pk-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* the list's own header: how many gaps are proven */
+.app-pack .pk-lh{display:flex;align-items:center;justify-content:space-between;gap:10px;height:28px;padding:0 9px 2px;margin-bottom:2px;box-shadow:0 1px 0 var(--line)}
 .app-pack .pk-count{display:flex;align-items:baseline;gap:4px;font-size:11.5px;color:var(--fg-2);white-space:nowrap}
 .app-pack .pk-num{display:inline-grid;justify-items:end;font:600 11.5px/1 var(--sans);color:var(--fg);font-variant-numeric:tabular-nums}
 .app-pack .pk-num b{grid-area:1/1;font-weight:600;opacity:0}
@@ -21,7 +30,7 @@
 
 /* the list, in Clay's order */
 .app-pack .pk-list{display:grid;align-content:start;gap:2px;padding:4px;min-height:0}
-.app-pack .pk-row{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:10px;align-items:start;padding:6px 9px;border-radius:7px}
+.app-pack .pk-row{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:10px;align-items:start;padding:5px 9px;border-radius:7px}
 .ilwrap .app-pack .pk-row .sig{width:12px;height:12px;margin-top:2px;color:var(--fg)}
 .app-pack .pk-row > div{min-width:0}
 .app-pack .pk-nm{font:500 11.5px/16px var(--sans);color:var(--fg)}
@@ -31,10 +40,9 @@
 .app-pack .pk-row.on{background:rgb(var(--fg-rgb) / .08);box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-pack .pk-row.dim .pk-gp{color:var(--fg-3)}
 .ilwrap .app-pack .pk-row.dim .sig{color:var(--fg-3)}
-.app-pack .pk-more{padding:4px 9px 4px 31px;font:400 10.5px/15px var(--mono);color:var(--fg-3)}
 
 /* the pack, previewed on a quiet canvas */
-.app-pack .pk-pane{position:relative;display:grid;align-content:start;gap:10px;padding:10px;border-radius:10px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line) inset;min-height:0}
+.app-pack .pk-pane{position:relative;display:grid;align-content:start;gap:8px;padding:10px;border-radius:10px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line) inset;min-height:0}
 .app-pack .pk-bar{display:flex;justify-content:flex-end;gap:6px}
 .app-pack .pk-copy{display:inline-grid;place-items:center;transform-origin:center}
 .app-pack .pk-cl{grid-area:1/1;display:inline-flex;align-items:center;gap:6px}
@@ -46,8 +54,8 @@
 .app-pack .pk-brand i{width:16px;height:16px;border-radius:4px;display:grid;place-items:center;font:600 9.5px/1 var(--sans);font-style:normal;color:var(--bg);background:var(--fg)}
 .app-pack .pk-date{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
 .app-pack .pk-page h3{margin-top:10px;font:600 15px/1.2 var(--sans);letter-spacing:-.02em;color:var(--fg)}
-.app-pack .pk-finds{margin-top:10px;border-top:1px solid var(--line-2)}
-.app-pack .pk-f{display:grid;grid-template-columns:16px minmax(0,1fr) 58px;column-gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)}
+.app-pack .pk-finds{margin-top:8px;border-top:1px solid var(--line-2)}
+.app-pack .pk-f{display:grid;grid-template-columns:16px minmax(0,1fr) 58px;column-gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2)}
 .app-pack .pk-f > *{grid-row:1}
 .app-pack .pk-n,.app-pack .pk-sk.k1{grid-column:1}
 .app-pack .pk-ft,.app-pack .pk-sk.k2{grid-column:2}
@@ -101,10 +109,13 @@
 .app-pack .pk-s3 .q2{left:18px;top:28.5px;width:8px;height:2px;background:#BDB8AE}
 .app-pack .pk-s3 .bt{left:39px;top:24px;width:13px;height:8px;border-radius:2px;background:#2B2A27}
 
-/* toast, on the empty canvas under the page */
-.app-pack .pk-toast{left:0;right:0;bottom:12px;margin:0 auto;width:max-content;gap:8px;padding:8px 12px}
-.app-pack .pk-toast span{white-space:nowrap}
-.app-pack .pk-url{font:400 10.5px/1 var(--mono);color:var(--fg-2)}
+/* the foot: the red line on the left, level with the toast on the right (app-board's pattern) */
+.app-pack .pk-note{position:absolute;left:18px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-pack .pk-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-pack .pk-toast{right:14px;bottom:14px;gap:10px;padding:8px 8px 8px 12px}
+.app-pack .pk-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-pack .pk-toast b{font-weight:500;color:var(--fg)}
+.app-pack .pk-toast p span{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
 
 /* pointer: sized with a selector that beats the base ".appx svg{width:auto}" */
 .ilwrap .app-pack .appx svg.pk-ptr{width:16px;height:16px}
@@ -115,8 +126,7 @@
 @keyframes pk-close{from{opacity:0}to{opacity:1}}
 @keyframes pk-out{from{opacity:1}to{opacity:0}}
 @keyframes pk-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
-@keyframes pk-on{from,to{opacity:1}}
-@keyframes pk-off{from,to{opacity:0}}
+@keyframes pk-show{from{opacity:0}to{opacity:1}}
 @keyframes pk-seg{from{background-color:var(--line-3)}}
 @keyframes pk-press{0%,100%{transform:none}45%{transform:scale(.92)}}
 @keyframes pk-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -138,11 +148,11 @@
 .app-pack.appx-il.play :is(.pk-r1,.pk-r2,.pk-r3) .pk-gp .w{animation:pk-out .2s var(--ease) var(--t) backwards}
 .app-pack.appx-il.play :is(.pk-r1,.pk-r2,.pk-r3) .pk-gp .g{animation:pk-in .4s var(--ease) calc(var(--t) + .1s) backwards}
 
-/* the count ticks 7, 8, 9, 10 */
-.app-pack.appx-il.play .pk-num .n7{animation:pk-on .7s linear}
-.app-pack.appx-il.play .pk-num .n8{animation:pk-on .55s linear .7s}
-.app-pack.appx-il.play .pk-num .n9{animation:pk-on .55s linear 1.25s}
-.app-pack.appx-il.play .pk-num .n10{animation:pk-off 1.8s linear}
+/* the count ticks 7, 8, 9, 10 (each value held by fills, so the end state is always 10) */
+.app-pack.appx-il.play .pk-num .n7{animation:pk-out .01s linear .7s both}
+.app-pack.appx-il.play .pk-num .n8{animation:pk-show .01s linear .7s both,pk-out .01s linear 1.25s forwards}
+.app-pack.appx-il.play .pk-num .n9{animation:pk-show .01s linear 1.25s both,pk-out .01s linear 1.8s forwards}
+.app-pack.appx-il.play .pk-num .n10{animation:pk-show .01s linear 1.8s both}
 .app-pack.appx-il.play .pk-seg .s8{animation:pk-seg .35s var(--ease) .7s backwards}
 .app-pack.appx-il.play .pk-seg .s9{animation:pk-seg .35s var(--ease) 1.25s backwards}
 .app-pack.appx-il.play .pk-seg .s10{animation:pk-seg .35s var(--ease) 1.8s backwards}

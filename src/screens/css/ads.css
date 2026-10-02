@@ -138,10 +138,10 @@
 .app-ads .ad-fr b{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
 
 /* ---------- toast (the board pattern): what landed, and the 1 action; on the column's own edges ---------- */
-.app-ads .ad-toast{right:14px;bottom:14px;width:196px;height:40px;gap:8px;padding:0 8px 0 10px}
-.app-ads .ad-toast p{font-size:11.5px;white-space:nowrap}
+.app-ads .ad-toast{right:14px;bottom:14px;height:40px;gap:10px;padding:0 8px 0 12px}
+.app-ads .ad-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
 .app-ads .ad-toast b{font-weight:500;color:var(--fg)}
-.app-ads .ad-toast .ax-btn{margin-left:auto}
+.app-ads .ad-toast p span{color:var(--fg-3)}
 
 /* pointer: clicks the newest Rival A ad; hidden at rest */
 .app-ads .ad-ptr{left:64px;top:96px;transform-origin:3px 1.5px}
@@ -173,7 +173,7 @@
   100%{opacity:0;transform:translate(52px,10px)}}
 
 /* 1. the screen settles; the running ads sit in the top row */
-.appx-il.play.app-ads .ad-ol{animation:ad-fade .45s var(--ease) var(--d) both,ad-down .65s var(--ease) calc(.95s + var(--o)) both}
+.appx-il.play.app-ads .ad-ol{animation:ad-fade .45s var(--ease) var(--d) both,ad-down .65s var(--ease) calc(.95s + var(--ad-o)) both}
 
 /* 2. Rival A's 3 new creatives rise into the top row as the running ads make room */
 .appx-il.play.app-ads .ad-nw{animation:ad-rise .55s var(--ease) var(--d) both}

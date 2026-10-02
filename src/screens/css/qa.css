@@ -1,11 +1,12 @@
-/* app-qa: Missions. A release check after 4.2 ships: 3 labelled test customers live the product's first 14 days
+/* app-qa: Missions / First 14 days. A release check after 4.2 ships: 3 labelled test customers live the product's first 14 days
    on real phones and inboxes (2 UK numbers on different phones, 1 US). Each lane is a customer, each cell a day:
    filled = everything due arrived (envelope = email, bubble = text), faint = nothing was due, dashed = days still to live.
    Story: the lanes fill day by day while the today column walks to day 6. On day 6 the US code lands; both UK cells
-   wait (blinking square), then go hollow: needs you. The check's mark flips, Needs you counts 3 to 4, the evidence
-   comes in (UK login screen empty, US filled in 6 s) and a fix ticket drafts itself for the tracker, waiting on an OK.
-   Rest state = the finished scene. */
-@property --qa-d{syntax:"<integer>";inherits:false;initial-value:6}
+   wait (blinking square), then go hollow: needs you. Needs you ticks 2 to 3, the evidence comes in
+   (UK login screen empty, US filled in 6 s) and a fix ticket drafts itself for the tracker, waiting on an OK.
+   Chrome is canonical (APP-SPEC, Product chrome): plain h2, meta with the day, declared-agent pill; the lock line
+   sits at the foot of the content, in the ticket's footer beside the OK it guards. Rest state = the finished scene. */
+@property --appqa-d{syntax:"<integer>";inherits:false;initial-value:6}
 
 .app-qa .ax-main{padding:14px;gap:12px}
 
@@ -17,15 +18,16 @@
 .app-qa .qa-n b{grid-area:1/1;font-weight:inherit}
 .app-qa .qa-n b:first-child{opacity:0}
 
-/* ---------- header ---------- */
-.app-qa .qa-h{display:flex;align-items:center;gap:10px;height:24px}
-.ilwrap .app-qa .qa-mk .sig{width:16px;height:16px;color:var(--fg)}
-.app-qa .qa-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
-.app-qa .qa-h h2 i{font-style:normal;font-weight:500;color:var(--fg-3);margin:0 1px}
-.app-qa .qa-meta{font-size:11.5px;color:var(--fg-3);padding-top:1px;white-space:nowrap}
-.app-qa .qa-day{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
-.app-qa .qa-dc{font-weight:500;color:var(--fg);counter-reset:qa-d var(--qa-d)}
-.app-qa .qa-dc::before{content:counter(qa-d)}
+/* ---------- header: plain title, the day, the declared agent ---------- */
+.app-qa .qa-h{height:24px}
+.app-qa .qa-h h2{white-space:nowrap}
+.app-qa .qa-meta{padding-top:1px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-qa .qa-dc{font:500 11px/1 var(--mono);color:var(--fg);counter-reset:appqa-d var(--appqa-d)}
+.app-qa .qa-dc::before{content:counter(appqa-d)}
+.app-qa .qa-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-qa .qa-idav{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-qa .qa-idav svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- the lanes: 126px label + 14 days of 22px on a 27px pitch ---------- */
 .app-qa .qa-ln{padding:4px 12px 2px}
@@ -92,8 +94,8 @@
 .app-qa .qa-dl dd{position:relative;margin:0;font-size:11.5px;color:var(--fg);white-space:nowrap}
 .app-qa .qa-dl dd .ax-mono{margin-left:4px;font-size:10.5px;color:var(--fg-3)}
 .app-qa .qa-tf{margin-top:auto;display:flex;align-items:center;gap:6px}
-.app-qa .qa-hint{display:inline-flex;align-items:center;gap:6px;margin-right:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
-.ilwrap .app-qa .qa-hint svg{width:12px;height:12px;color:var(--fg-3)}
+.app-qa .qa-note{display:flex;align-items:center;gap:7px;margin-right:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-qa .qa-note svg{width:12px;height:12px;color:var(--fg-3)}
 .app-qa .qa-tf .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
 
 /* skeleton bars, seen only while the ticket drafts during play */
@@ -118,7 +120,7 @@
   62.5%,71.9%{transform:translateX(-54px)}
   81.25%,90.6%{transform:translateX(-27px)}
   100%{transform:none}}
-@keyframes qa-count{0%{--qa-d:1}20%{--qa-d:2}40%{--qa-d:3}60%{--qa-d:4}80%{--qa-d:5}100%{--qa-d:6}}
+@keyframes qa-count{0%{--appqa-d:1}20%{--appqa-d:2}40%{--appqa-d:3}60%{--appqa-d:4}80%{--appqa-d:5}100%{--appqa-d:6}}
 
 /* 1. the lanes fill day by day */
 .appx-il.play.app-qa .qa-band{animation:qa-show .3s var(--ease) .3s both,qa-walk 1.6s var(--ease) .35s both}
@@ -133,9 +135,7 @@
 .appx-il.play.app-qa .qa-c.miss .v1{animation:qa-mark .45s var(--snap) 2.98s both}
 .appx-il.play.app-qa .qa-lane.uk{animation:qa-glow 1.6s var(--ease) 2.95s both}
 
-/* 3. the check needs you */
-.appx-il.play.app-qa .qa-mk .w0{animation:qa-show .3s var(--ease) both,qa-hide .2s var(--ease) 3.02s forwards}
-.appx-il.play.app-qa .qa-mk .w1{animation:qa-mark .45s var(--snap) 3.04s both}
+/* 3. the check needs you: the sidebar's Needs you ticks 2 to 3 */
 .appx-il.play.app-qa .qa-n b:first-child{animation:qa-show .01s linear both,qa-out .25s var(--ease) 3.1s forwards}
 .appx-il.play.app-qa .qa-n b:last-child{animation:qa-in .3s var(--ease) 3.14s both}
 

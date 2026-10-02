@@ -1,8 +1,9 @@
 /* app-campaign: Missions / Autumn launch. Your own 08:00 launch, checked the way a customer gets it.
    4 labelled test customers (phone and desktop, a UK and a US number each) check 5 things: the launch email, the
-   text, the LAUNCH20 code, the landing page and unsubscribe. Each check has its mark, a mono time and 4 small
-   squares, 1 per test customer: filled = passed, hollow = failed. The squares are the 08:00 run's record, so a
-   failure stays hollow after it is fixed; the row's mark closes and a "fixed" chip says what happened next.
+   text, the LAUNCH20 code, the landing page and unsubscribe. Each check has a mono time and 4 small squares,
+   1 per test customer: filled = passed, hollow = failed. Only the 2 checks that failed carry a mark (needs you, then
+   landed), so the status glyph means something. The squares are the 08:00 run's record, so a failure stays hollow
+   after it is fixed; the row's mark closes and a "Fixed" chip says what happened next. 1 lock line under the board.
    Story: the run sweeps down the list and the checks tick in; the text to US numbers and the code fail and turn
    needs-you; the fixes card slides in; the pointer approves; each fix re-tests clean, its row closes and is marked
    fixed; the toast. Rest state (no .play) = the finished scene: 2 failures on record, both fixed, approved by AM. */
@@ -21,10 +22,9 @@
 .ilwrap .app-campaign .cg-av svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* stacked states: only the last child shows at rest */
-.app-campaign .cg-stk,.app-campaign .cg-mk3,.app-campaign .cg-bn{display:inline-grid;vertical-align:top;align-items:center}
-.app-campaign .cg-stk>*,.app-campaign .cg-mk3>*,.app-campaign .cg-bn>*{grid-area:1/1}
-.app-campaign .cg-stk>:not(:last-child),.app-campaign .cg-mk3>:not(:last-child),.app-campaign .cg-bn>:not(:last-child){opacity:0}
-.app-campaign .cg-bn b{font-weight:inherit}
+.app-campaign .cg-stk,.app-campaign .cg-mk3{display:inline-grid;vertical-align:top;align-items:center}
+.app-campaign .cg-stk>*,.app-campaign .cg-mk3>*{grid-area:1/1}
+.app-campaign .cg-stk>:not(:last-child),.app-campaign .cg-mk3>:not(:last-child){opacity:0}
 
 /* ---------- the checklist: 5 checks x 4 test customers ---------- */
 .app-campaign .cg-wrap{display:grid;grid-template-columns:minmax(0,1fr) 208px;gap:12px}
@@ -34,7 +34,7 @@
   align-content:center;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
 .app-campaign .cg-r>*{min-width:0;white-space:nowrap}
 .app-campaign .cg-r5{box-shadow:none}
-.app-campaign .cg-r>.sig,.app-campaign .cg-r>.cg-mk3{grid-column:1;grid-row:1;align-self:center}
+.app-campaign .cg-r>.cg-mk3{grid-column:1;grid-row:1;align-self:center}
 .ilwrap .app-campaign .cg-r .sig{width:12px;height:12px;color:var(--fg)}
 
 /* the column head: the 4 test customers, grouped by device, labelled by number */
@@ -164,8 +164,6 @@
 .app-campaign.play .cg-r:not(.cg-x):not(.cg-th){animation:cg-scan .7s var(--ease) calc(var(--cg-l) - .14s) both}
 .app-campaign.play .cg-r.cg-r5:not(.cg-x):not(.cg-th){animation-name:cg-scan5}
 .app-campaign.play .cg-r .cg-q i{animation:cg-qon .3s var(--ease) calc(var(--cg-l) + var(--cg-n,0s)) both}
-.app-campaign.play .cg-r>.cg-lv .sig-sq{animation:cg-home .55s var(--snap) calc(var(--cg-l) + .12s) both}
-.app-campaign.play .cg-r>.cg-lv .sig-gap{animation:cg-show .3s var(--ease) calc(var(--cg-l) + .3s) both}
 .app-campaign.play .cg-r:not(.cg-x) .cg-s,.app-campaign.play .cg-r .cg-t{animation:cg-show .35s var(--ease) calc(var(--cg-l) + .08s) both}
 
 /* 2. the text to US numbers and the code fail: hollow squares, the mark turns needs-you, the row lights */
@@ -174,9 +172,6 @@
 .app-campaign.play .cg-x .cg-w0{animation:cg-show .01s linear both,cg-hide .15s var(--cg-out) calc(var(--cg-l) + .1s) forwards}
 .app-campaign.play .cg-x .cg-w1{animation:cg-mark .4s var(--ease) calc(var(--cg-l) + .1s) both,cg-hide .2s var(--cg-out) var(--cg-f) forwards}
 .app-campaign.play .cg-x .cg-sx{animation:cg-in .35s var(--ease) calc(var(--cg-l) + .08s) both,cg-dim .45s var(--ease) var(--cg-f) both}
-.app-campaign.play .cg-bn b:nth-child(1){animation:cg-show .01s linear both,cg-hide .2s var(--cg-out) 1.42s forwards}
-.app-campaign.play .cg-bn b:nth-child(2){animation:cg-in .3s var(--ease) 1.44s both,cg-hide .2s var(--cg-out) 4.75s forwards}
-.app-campaign.play .cg-bn b:nth-child(3){animation:cg-in .3s var(--ease) 4.77s both}
 
 /* 3. the fixes card slides in, each fix waiting on your OK */
 .app-campaign.play .cg-fx{animation:cg-slide .6s var(--ease) 2.3s both}

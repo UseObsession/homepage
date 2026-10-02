@@ -1,15 +1,17 @@
-/* app-switch: Signals, for founders. "After the switch".
+/* app-switch: Signals, for founders. "After the switch". Crumb: Your company / Missions / Signals.
+   Chrome is canonical (APP-SPEC, Product chrome): page head across the top (title, count, declared-agent pill), the lock
+   line at the foot of the feed (bottom left), the toast in app-board's 1-line pattern (bottom right).
    Left: the feed of public signals about companies on your list. The new one, "30 switched email tool", ticks in on top
    and is selected. Right: 1 labelled test customer per switched company (joined within 24 h), each with a day 1 to 7 strip:
    a filled dot = an email arrived that day, a hollow ring = nothing came.
    Story: the feed ticks in, the strips fill day by day as a wave down both columns, 6 strips stop after day 1 to 3,
-   those 6 rows flag "Welcome series stopped after switch", the check closes, a toast offers 6 drafted openers.
-   Geometry (design px, main 556 x 414): feed 0..192, detail 192..556 (padding 12 14), header 12..36, card 48..338
-   (ruler 18, 15 rows of 16 per column, footer 26), toast bottom-right 14 in, 45 tall (top 355).
+   those 6 rows flag "Welcome series stopped after switch", the check closes, a toast offers 6 drafted openers, Needs you 2 to 3.
+   Geometry (design px, main 556 x 414): head 0..44; feed 0..192, detail 192..556 (padding 12 14); card 56..346
+   (head 30, ruler 20, 15 rows of 14 per column, footer 26); toast bottom-right 14 in, 40 tall (top 360); lock line level with it.
    Rest state (no .play) = the finished scene. */
 @property --appswitch-n{syntax:"<integer>";inherits:false;initial-value:30}
 
-.app-switch .ax-main{grid-template-columns:192px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
+.app-switch .ax-main{grid-template-columns:192px minmax(0,1fr);grid-template-rows:44px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
 .app-switch .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
 .app-switch .ax-clients a.on i{background:var(--fg-2)}
 
@@ -18,12 +20,17 @@
 .app-switch .sw-nb b{grid-area:1/1;font-weight:inherit}
 .app-switch .sw-nb b:first-child{opacity:0}
 
+/* ---------- page head: title, what is new, the declared agent ---------- */
+.app-switch .sw-ph{grid-column:1/-1;display:flex;align-items:center;gap:10px;min-width:0;padding:0 14px;border-bottom:1px solid var(--line)}
+.app-switch .sw-ph h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-switch .sw-meta{font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-switch .sw-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-switch .sw-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-switch .sw-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
 /* ---------- the feed ---------- */
-.app-switch .sw-feed{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:12px 6px;border-right:1px solid var(--line);min-width:0;min-height:0}
-.app-switch .sw-fh{display:flex;align-items:center;gap:8px;height:24px;padding:0 8px 0 9px}
-.app-switch .sw-fh h2{font:600 15px/1 var(--display);letter-spacing:-.02em}
-.app-switch .sw-cnt{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:5px;font:500 10.5px/1 var(--mono);color:var(--fg-2);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
-.app-switch .sw-pub{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-switch .sw-feed{display:grid;grid-template-rows:minmax(0,1fr) auto auto;gap:10px;padding:12px 6px 26px;border-right:1px solid var(--line);min-width:0;min-height:0}
 .app-switch .sw-list{display:grid;gap:2px;align-content:start}
 .app-switch .sw-new{display:grid;grid-template-rows:1fr}
 .app-switch .sw-clip{min-height:0;overflow:hidden}
@@ -41,27 +48,31 @@
 .app-switch .sw-watch p{font-size:11px;line-height:15px;color:var(--fg-2);white-space:nowrap}
 .app-switch .sw-watch .sw-wm{font:400 10.5px/14px var(--mono);color:var(--fg-3)}
 
+/* the red line: 1 lock line at the foot of the feed, level with the toast */
+.app-switch .sw-note{display:flex;align-items:center;gap:7px;height:16px;padding:0 10px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-switch .sw-note svg{width:12px;height:12px;color:var(--fg-3)}
+
 /* ---------- the detail ---------- */
-.app-switch .sw-det{display:grid;align-content:start;gap:12px;padding:12px 14px 14px;min-width:0}
-.app-switch .sw-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-switch .sw-det{display:grid;align-content:start;padding:12px 14px 14px;min-width:0}
+
+/* the table: a head, then 2 columns of 15, each row a company, its strip and its flag */
+.app-switch .sw-tb{padding:0 9px;display:grid}
+.app-switch .sw-ch{display:flex;align-items:center;gap:8px;height:30px;margin:0 -9px;padding:0 9px 0 13px;box-shadow:0 -1px 0 var(--line) inset}
+.app-switch .sw-ch b{font:600 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
 .app-switch .sw-mk{display:grid}
 .app-switch .sw-mk .sig{grid-area:1/1}
-.ilwrap .app-switch .sw-mk .sig{width:16px;height:16px;color:var(--fg)}
+.ilwrap .app-switch .sw-mk .sig{width:13px;height:13px;color:var(--fg)}
 .app-switch .sw-mk .w0{opacity:0}
-.app-switch .sw-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
 .app-switch .sw-j{margin-left:auto}
-
-/* the table: 2 columns of 15, each row a company, its strip and its flag */
-.app-switch .sw-tb{padding:2px 9px 0;display:grid}
-.app-switch .sw-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:10px;padding-bottom:2px}
+.app-switch .sw-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:10px;padding:2px 0}
 .app-switch .sw-col{position:relative;display:grid;align-content:start;min-width:0}
 .app-switch .sw-col + .sw-col::before{content:"";position:absolute;left:-5px;top:6px;bottom:2px;width:1px;background:var(--line)}
 .app-switch .sw-ru,.app-switch .sw-r{display:grid;grid-template-columns:minmax(0,1fr) 66px 10px;column-gap:4px;align-items:center;padding:0 4px}
 .app-switch .sw-ru{height:18px;margin-bottom:2px;box-shadow:0 -1px 0 var(--line) inset;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
 .app-switch .sw-days,.app-switch .sw-s{display:grid;grid-template-columns:repeat(7,6px);column-gap:4px;align-items:center}
 .app-switch .sw-days b{display:block;width:10px;margin:0 -2px;text-align:center;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
-.app-switch .sw-r{height:16px;border-radius:4px}
-.app-switch .sw-nm{font-size:11px;line-height:16px;color:var(--fg-2);white-space:nowrap;overflow:hidden}
+.app-switch .sw-r{height:14px;border-radius:3px}
+.app-switch .sw-nm{font-size:11px;line-height:14px;color:var(--fg-2);white-space:nowrap;overflow:hidden}
 
 /* a day: filled = an email arrived, ring = nothing came; the faint pip is a day not yet lived */
 .app-switch .sw-s i{position:relative;display:block;width:6px;height:6px}
@@ -95,11 +106,11 @@
 .app-switch .sw-ft b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
 .app-switch .sw-ft .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
 
-/* toast */
+/* toast, app-board's pattern: what is ready, 1 action; bottom right, clear of the table */
 .app-switch .sw-toast{gap:10px;padding:8px 8px 8px 12px}
-.app-switch .sw-toast p{white-space:nowrap;line-height:15px}
-.app-switch .sw-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
-.app-switch .sw-toast .ax-btn{margin-left:4px}
+.app-switch .sw-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-switch .sw-toast b{font-weight:500;color:var(--fg)}
+.app-switch .sw-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes sw-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
@@ -139,7 +150,7 @@
 .appx-il.play.app-switch .sw-r.br .sig{animation:sw-pop .45s var(--snap) var(--f) both}
 .appx-il.play.app-switch .sw-ft{animation:sw-in .5s var(--ease) 4.05s both}
 
-/* 5. the openers are drafted: the toast, and Needs you counts 3 to 4 */
+/* 5. the openers are drafted: the toast, and Needs you ticks 2 to 3 */
 .appx-il.play.app-switch .sw-toast{animation:ax-in .55s var(--ease) 4.6s both}
 .appx-il.play.app-switch .sw-nb b:first-child{animation:sw-show .01s linear both,sw-out .25s var(--ease) 4.7s forwards}
 .appx-il.play.app-switch .sw-nb b:last-child{animation:sw-in .3s var(--ease) 4.74s both}

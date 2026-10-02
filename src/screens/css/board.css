@@ -1,4 +1,5 @@
 /* Missions: an agency's Monday at 08:02. One table holds every client's mission.
+   Chrome is canonical (APP-SPEC, Product chrome): head = title, clock, declared-agent pill; filter row; table; lock line + toast at the foot.
    The story: Outdoor gear's link count climbs and lands, then Skincare arrives on top as the 1 thing that needs you.
    Rest state (no .play) = the finished scene. */
 @property --appboard-n{syntax:"<integer>";inherits:false;initial-value:214}
@@ -9,8 +10,14 @@
 .app-board .bd-h{display:flex;align-items:center;gap:10px;height:24px}
 .app-board .bd-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em}
 .app-board .bd-time{font:400 11px/1 var(--mono);color:var(--fg-3);padding-top:2px;font-variant-numeric:tabular-nums}
-/* the filter is a segmented control: control edge on the group and on the selected segment */
-.app-board .bd-tabs{margin-left:auto;display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+/* the declared agent, in the page head */
+.app-board .bd-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-board .bd-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-board .bd-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* the filter is a segmented control on its own row: control edge on the group and on the selected segment */
+.app-board .bd-tabs{justify-self:start;display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-board .bd-tab{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
 .app-board .bd-tab.on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-board .bd-tab i{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
@@ -45,6 +52,10 @@
 .app-board .bd-num>:not(:last-child),.app-board .bd-stk>:not(:last-child){opacity:0}
 .app-board .bd-cnt{counter-reset:appboard-n var(--appboard-n)}
 .app-board .bd-cnt::before{content:counter(appboard-n)}
+
+/* the red line, 1 quiet line at the foot, level with the toast */
+.app-board .bd-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-board .bd-note svg{width:12px;height:12px;color:var(--fg-3)}
 
 /* toast: who needs you, what is ready */
 .app-board .bd-toast{gap:10px;padding:8px 8px 8px 12px}

@@ -14,9 +14,7 @@
 @property --appbc-eb{syntax:"<integer>";inherits:false;initial-value:4}
 @property --appbc-ec{syntax:"<integer>";inherits:false;initial-value:2}
 
-.app-battlecard .ax-main{grid-template-rows:24px auto minmax(0,1fr);align-content:stretch;gap:12px;padding:14px 16px}
-.app-battlecard .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
-.app-battlecard .ax-clients a.on i{background:var(--fg-2)}
+.app-battlecard .ax-main{grid-template-rows:24px auto minmax(0,1fr);align-content:stretch;gap:12px;padding:14px}
 
 /* ---------- header ---------- */
 .app-battlecard .bc-h{position:relative;display:flex;align-items:center;gap:10px;height:24px}
@@ -25,7 +23,10 @@
 .app-battlecard .bc-dn{counter-reset:appbc-day var(--appbc-day)}
 .app-battlecard .bc-dn::before{content:counter(appbc-day)}
 .app-battlecard .bc-acts{margin-left:auto;display:flex;align-items:center;gap:6px}
-.app-battlecard .bc-edit{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-battlecard .bc-id{display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-battlecard .bc-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-battlecard .bc-av svg.sig{width:10px;height:10px;color:var(--bg)}
 .app-battlecard .bc-push{position:relative;display:block;width:96px;height:24px}
 .app-battlecard .bc-s{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:7px;font:600 11.5px/1 var(--sans);white-space:nowrap}
 .app-battlecard .bc-s1,.app-battlecard .bc-s2{color:var(--bg);background:var(--fg);opacity:0}
@@ -84,12 +85,13 @@
 .app-battlecard .bc-pf{position:relative;flex:none;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
 .app-battlecard .bc-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
 
-/* foot: the legend and the red lines */
+/* foot: the legend, and the red lines as 1 lock line */
 .app-battlecard .bc-f{display:flex;align-items:center;justify-content:space-between;gap:12px;height:30px;padding:0 12px;font-size:10.5px;color:var(--fg-3);background:rgb(var(--fg-rgb) / .02)}
 .app-battlecard .bc-f span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.ilwrap .app-battlecard .bc-note svg{width:12px;height:12px}
 
 /* ---------- bottom: talk track + the toast's place ---------- */
-.app-battlecard .bc-bot{display:grid;grid-template-columns:minmax(0,1fr) 212px;gap:12px;min-height:0}
+.app-battlecard .bc-bot{display:grid;grid-template-columns:minmax(0,1fr) 224px;gap:12px;min-height:0}
 .app-battlecard .bc-tt{display:grid;grid-template-rows:32px auto;align-content:start;padding:0 12px}
 .app-battlecard .bc-tt-h{display:flex;align-items:center;gap:7px}
 .ilwrap .app-battlecard .bc-tt-h svg{width:14px;height:14px;color:var(--fg-2)}
@@ -109,10 +111,12 @@
 .app-battlecard .bc-meta p{display:flex;align-items:center;gap:7px;font-size:11px;line-height:14px;color:var(--fg-3);white-space:nowrap}
 .ilwrap .app-battlecard .bc-meta svg{width:13px;height:13px}
 
-/* toast: in the bottom row's right column, on the card's bottom edge */
-.app-battlecard .bc-toast{right:16px;bottom:14px;width:212px;gap:9px;padding:9px 10px}
-.app-battlecard .bc-toast p{font-weight:500;white-space:nowrap;line-height:15px}
-.app-battlecard .bc-toast .ax-mono{font-weight:400;font-size:10.5px;line-height:14px;color:var(--fg-3)}
+/* toast (the board pattern): in the bottom row's right column, on the card's bottom edge */
+.app-battlecard .bc-toast{right:14px;bottom:14px;width:224px;gap:10px;padding:8px 8px 8px 12px}
+.app-battlecard .bc-toast .ax-btn{margin-left:auto}
+.app-battlecard .bc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-battlecard .bc-toast b{font-weight:500;color:var(--fg)}
+.app-battlecard .bc-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes appbc-day{from{--appbc-day:1}to{--appbc-day:14}}
@@ -142,40 +146,40 @@
 
 /* 1. the trial clock: Day 1 at .55s, 1 day every .18s, Day 14 at 2.89s */
 .app-battlecard.play .bc-dn{animation:appbc-day 2.34s steps(13,end) .55s both}
-.app-battlecard.play .bc-days i{animation:appbc-tick .3s var(--ease) calc(.55s + var(--i,0) * .18s) both;transform-origin:50% 100%}
-.app-battlecard .bc-days i:nth-child(2){--i:1}
-.app-battlecard .bc-days i:nth-child(3){--i:2}
-.app-battlecard .bc-days i:nth-child(4){--i:3}
-.app-battlecard .bc-days i:nth-child(5){--i:4}
-.app-battlecard .bc-days i:nth-child(6){--i:5}
-.app-battlecard .bc-days i:nth-child(7){--i:6}
-.app-battlecard .bc-days i:nth-child(8){--i:7}
-.app-battlecard .bc-days i:nth-child(9){--i:8}
-.app-battlecard .bc-days i:nth-child(10){--i:9}
-.app-battlecard .bc-days i:nth-child(11){--i:10}
-.app-battlecard .bc-days i:nth-child(12){--i:11}
-.app-battlecard .bc-days i:nth-child(13){--i:12}
-.app-battlecard .bc-days i:nth-child(14){--i:13}
+.app-battlecard.play .bc-days i{animation:appbc-tick .3s var(--ease) calc(.55s + var(--bc-i,0) * .18s) both;transform-origin:50% 100%}
+.app-battlecard .bc-days i:nth-child(2){--bc-i:1}
+.app-battlecard .bc-days i:nth-child(3){--bc-i:2}
+.app-battlecard .bc-days i:nth-child(4){--bc-i:3}
+.app-battlecard .bc-days i:nth-child(5){--bc-i:4}
+.app-battlecard .bc-days i:nth-child(6){--bc-i:5}
+.app-battlecard .bc-days i:nth-child(7){--bc-i:6}
+.app-battlecard .bc-days i:nth-child(8){--bc-i:7}
+.app-battlecard .bc-days i:nth-child(9){--bc-i:8}
+.app-battlecard .bc-days i:nth-child(10){--bc-i:9}
+.app-battlecard .bc-days i:nth-child(11){--bc-i:10}
+.app-battlecard .bc-days i:nth-child(12){--bc-i:11}
+.app-battlecard .bc-days i:nth-child(13){--bc-i:12}
+.app-battlecard .bc-days i:nth-child(14){--bc-i:13}
 .app-battlecard.play .bc-n.na{animation:appbc-ea 2.34s steps(1,end) .55s both}
 .app-battlecard.play .bc-n.nb{animation:appbc-eb 2.34s steps(1,end) .55s both}
 .app-battlecard.play .bc-n.nc{animation:appbc-ec 2.34s steps(1,end) .55s both}
 
 /* 2. each cell lands when its agent learns it: skeleton out, value up, then its capture */
-.app-battlecard.play .bc-c .bc-sk{animation:appbc-sk var(--t) linear both,appbc-out .2s var(--ease) var(--t) forwards}
-.app-battlecard.play .bc-c .bc-val{animation:appbc-land .45s var(--ease) var(--t) both}
-.app-battlecard.play .bc-c .bc-pf{animation:appbc-show .3s var(--ease) calc(var(--t) + .14s) both}
-.app-battlecard.play .bc-c{animation:appbc-clear var(--t) linear both,appbc-flash .9s var(--ease) var(--t) forwards}
-.app-battlecard.play .bc-c.hl{animation:appbc-clear var(--t) linear both,appbc-flash-hl .9s var(--ease) var(--t) forwards}
+.app-battlecard.play .bc-c .bc-sk{animation:appbc-sk var(--bc-t) linear both,appbc-out .2s var(--ease) var(--bc-t) forwards}
+.app-battlecard.play .bc-c .bc-val{animation:appbc-land .45s var(--ease) var(--bc-t) both}
+.app-battlecard.play .bc-c .bc-pf{animation:appbc-show .3s var(--ease) calc(var(--bc-t) + .14s) both}
+.app-battlecard.play .bc-c{animation:appbc-clear var(--bc-t) linear both,appbc-flash .9s var(--ease) var(--bc-t) forwards}
+.app-battlecard.play .bc-c.hl{animation:appbc-clear var(--bc-t) linear both,appbc-flash-hl .9s var(--ease) var(--bc-t) forwards}
 /* each trial's mark closes when the trial does (B on day 6, A and C on day 14) */
-.app-battlecard.play .bc-mk .w0{animation:appbc-sk var(--t) linear both,appbc-out .25s var(--ease) var(--t) forwards}
-.app-battlecard.play .bc-mk .w1{animation:appbc-show .3s var(--ease) var(--t) both}
-.app-battlecard.play .bc-mk .w1 .sig-sq{animation:appbc-home .6s var(--snap) var(--t) both}
+.app-battlecard.play .bc-mk .w0{animation:appbc-sk var(--bc-t) linear both,appbc-out .25s var(--ease) var(--bc-t) forwards}
+.app-battlecard.play .bc-mk .w1{animation:appbc-show .3s var(--ease) var(--bc-t) both}
+.app-battlecard.play .bc-mk .w1 .sig-sq{animation:appbc-home .6s var(--snap) var(--bc-t) both}
 @keyframes appbc-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
 
 /* 3. the talk track drafts from the cells */
 .app-battlecard.play .bc-dr{animation:appbc-show .4s var(--ease) 3s both}
-.app-battlecard.play .bc-tt li .bc-sk{animation:appbc-sk var(--t) linear both,appbc-out .2s var(--ease) var(--t) forwards}
-.app-battlecard.play .bc-tt li p{animation:appbc-land .45s var(--ease) var(--t) both}
+.app-battlecard.play .bc-tt li .bc-sk{animation:appbc-sk var(--bc-t) linear both,appbc-out .2s var(--ease) var(--bc-t) forwards}
+.app-battlecard.play .bc-tt li p{animation:appbc-land .45s var(--ease) var(--bc-t) both}
 
 /* 4. the click: Push to CRM, pushing, In CRM; then the toast */
 .app-battlecard.play .bc-ptr{animation:appbc-ptr 1.4s var(--ease) 3.55s both}

@@ -1,11 +1,13 @@
-/* app-ship: Releases. Launch morning for a founder: v2.15 went live at 06:02 and the launch email sends at 08:00.
-   One labelled test customer, on a real UK number and inbox, walks the release checklist to the stop before payment.
-   Story: the 5 checks land in order with their times while the countdown ticks; the first-order code is rejected,
-   the row turns needs you with a soft highlight and opens on the checkout capture; the pointer clicks
-   Hold the 08:00 send, and the pill becomes "Send held · fix drafted". Rest state = the finished scene. */
-@property --sh-m{syntax:"<integer>";inherits:false;initial-value:50}
+/* app-ship: Missions / Release v2.15. Launch morning for a founder: v2.15 went live at 06:02 and the launch email sends at 08:00.
+   Chrome is canonical (APP-SPEC, Product chrome): plain h2, meta, declared-agent pill; 1 lock line at the foot.
+   One labelled test customer, on a fresh UK number and inbox, walks the release checklist to the stop before payment.
+   Story: the 5 checks land in order with their times while the meta counts down to the email; the first-order code is
+   rejected, the row turns needs you (Needs you ticks 2 to 3) and opens on the checkout capture; the pointer clicks
+   Hold the 08:00 send, and the meta becomes "Launch email held". Rest state = the finished scene.
+   Geometry (main 556 x 414, padding 14 16): head 14..38, card 50..370 (header 44, rows 34, capture 88), lock line 382..398. */
+@property --appship-m{syntax:"<integer>";inherits:false;initial-value:50}
 
-.app-ship .ax-main{padding:14px 16px;gap:12px}
+.app-ship .ax-main{padding:14px;gap:12px}
 
 /* stacked states: only the last child shows at rest */
 .app-ship .sh-stk{display:inline-grid;place-items:center}
@@ -15,30 +17,26 @@
 .app-ship .sh-n b{grid-area:1/1;font-weight:inherit}
 .app-ship .sh-n b:first-child{opacity:0}
 
-/* ---------- header: the release, the morning, the countdown ---------- */
-.app-ship .sh-h{display:flex;align-items:center;gap:10px;height:24px}
-.ilwrap .app-ship .sh-mk .sig{width:16px;height:16px;color:var(--fg)}
-.app-ship .sh-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
-.app-ship .sh-meta{font-size:11.5px;color:var(--fg-3);padding-top:1px;white-space:nowrap}
-.app-ship .sh-meta .ax-mono{font-size:11px;color:var(--fg-2);font-variant-numeric:tabular-nums}
-.app-ship .sh-pills{margin-left:auto;display:grid;justify-items:end}
-.app-ship .sh-pills>*{grid-area:1/1}
-.app-ship .sh-pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px 0 8px;border-radius:999px;white-space:nowrap;
-  font:400 11px/1 var(--mono);color:var(--fg-3);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
-.ilwrap .app-ship .sh-pill svg{width:12px;height:12px;color:var(--fg-2)}
-.app-ship .sh-pill b{font-weight:500;color:var(--fg);font-variant-numeric:tabular-nums}
-.app-ship .sh-pill.c1{opacity:0}
-.app-ship .sh-mm{counter-reset:sh-m var(--sh-m)}
-.app-ship .sh-mm::before{content:counter(sh-m)}
-.app-ship .sh-pill.c2{font:400 11.5px/1 var(--sans);color:var(--fg-2);background:rgb(var(--fg-rgb) / .08);box-shadow:0 0 0 1px var(--line-ui) inset}
-.app-ship .sh-pill.c2 b{font-weight:600}
-.ilwrap .app-ship .sh-pill.c2 svg{color:var(--fg)}
+/* ---------- header: the release, the countdown to the email, the declared agent ---------- */
+.app-ship .sh-h{height:24px}
+.app-ship .sh-h h2{white-space:nowrap}
+.app-ship .sh-meta{place-items:center start;padding-top:1px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-ship .sh-meta>span{display:inline-flex;align-items:center;gap:5px}
+.app-ship .sh-meta b{font-weight:500;color:var(--fg-2)}
+.ilwrap .app-ship .sh-meta svg{width:11px;height:11px;color:var(--fg-2)}
+.app-ship .sh-mm{counter-reset:appship-m var(--appship-m)}
+.app-ship .sh-mm::before{content:counter(appship-m)}
+/* the declared agent, in the page head */
+.app-ship .sh-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-ship .sh-idav{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-ship .sh-idav svg.sig{width:10px;height:10px;color:var(--bg)}
 
 /* ---------- the checklist card ---------- */
 .app-ship .sh-card{display:grid;min-width:0}
 
 /* who runs it: the labelled test customer, its real number and inbox */
-.app-ship .sh-ch{display:flex;align-items:center;gap:10px;height:48px;padding:0 12px;border-bottom:1px solid var(--line)}
+.app-ship .sh-ch{display:flex;align-items:center;gap:10px;height:44px;padding:0 12px;border-bottom:1px solid var(--line)}
 .app-ship .sh-av{display:grid;place-items:center;width:26px;height:26px;border-radius:7px;flex:none;background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset;color:var(--fg-2)}
 .ilwrap .app-ship .sh-av svg{width:14px;height:14px}
 .app-ship .sh-who{display:grid;gap:3px;min-width:0;margin-right:auto;white-space:nowrap}
@@ -49,8 +47,8 @@
 .app-ship .sh-ch .sh-cp+.sh-cp{margin-left:-4px}
 
 /* the checks */
-.app-ship .sh-ls{position:relative;z-index:0;display:grid;padding:0 0 4px}
-.app-ship .sh-r{position:relative;display:grid;grid-template-columns:14px 14px minmax(0,1fr) 38px 56px;column-gap:10px;align-items:center;height:36px;padding:0 12px}
+.app-ship .sh-ls{position:relative;z-index:0;display:grid;padding:0 0 2px}
+.app-ship .sh-r{position:relative;display:grid;grid-template-columns:14px 14px minmax(0,1fr) 38px 56px;column-gap:10px;align-items:center;height:34px;padding:0 12px}
 .app-ship .sh-ls>li+li::before{content:"";position:absolute;left:12px;right:12px;top:0;height:1px;background:var(--line)}
 .app-ship .sh-s{display:grid;place-items:center;width:14px;height:14px}
 .app-ship .sh-s>*{grid-area:1/1}
@@ -75,8 +73,8 @@
 .app-ship .sh-dc{display:grid;grid-template-columns:148px minmax(0,1fr);column-gap:16px;padding:2px 6px 10px 30px}
 
 /* evidence: the checkout the test customer saw */
-.app-ship .sh-cap{height:92px}
-.app-ship .sh-pg{display:grid;align-content:start;gap:5px;padding:7px 8px;min-height:0}
+.app-ship .sh-cap{height:88px}
+.app-ship .sh-pg{display:grid;align-content:start;gap:4px;padding:6px 8px 7px;min-height:0}
 .app-ship .sh-it{display:grid;grid-template-columns:16px minmax(0,1fr);align-items:center;gap:6px}
 .app-ship .ax-shot .sh-it .tl{width:16px;height:16px;border-radius:3px;background:#D2C6BA}
 .app-ship .sh-it .sh-bars{display:grid;gap:3px;min-width:0}
@@ -107,6 +105,10 @@
 .app-ship .a2 .ht{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
 .app-ship .a2 .ax-btn{margin-left:4px}
 
+/* the red line, 1 quiet line at the foot */
+.app-ship .sh-note{display:flex;align-items:center;gap:7px;height:16px;padding-left:2px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-ship .sh-note svg{width:12px;height:12px;color:var(--fg-3)}
+
 /* pointer */
 .ilwrap .app-ship .appx svg.sh-ptr{width:16px;height:16px}
 .app-ship .sh-ptr{transform-origin:3px 1.5px}
@@ -125,22 +127,20 @@
 @keyframes sh-swap{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @keyframes sh-press{0%,100%{transform:none}45%{transform:scale(.94)}}
 /* the countdown: 1 h 58 m at 06:02, a minute off as each check lands, 1 h 50 m at 06:10 */
-@keyframes sh-count{0%{--sh-m:58}28.8%{--sh-m:56}40.7%{--sh-m:55}55.9%{--sh-m:53}76.3%{--sh-m:51}100%{--sh-m:50}}
+@keyframes sh-count{0%{--appship-m:58}28.8%{--appship-m:56}40.7%{--appship-m:55}55.9%{--appship-m:53}76.3%{--appship-m:51}100%{--appship-m:50}}
 /* 1.9s: enters from the lower right, clicks Hold the 08:00 send, drifts off */
 @keyframes sh-ptr{
-  0%{opacity:0;transform:translate(492px,404px)}
+  0%{opacity:0;transform:translate(492px,388px)}
   12%{opacity:1}
-  42%{transform:translate(386px,324px) scale(1)}
-  47%{transform:translate(386px,324px) scale(.88)}
-  53%,62%{opacity:1;transform:translate(386px,324px) scale(1)}
-  88%,100%{opacity:0;transform:translate(404px,342px)}}
+  42%{transform:translate(386px,308px) scale(1)}
+  47%{transform:translate(386px,308px) scale(.88)}
+  53%,62%{opacity:1;transform:translate(386px,308px) scale(1)}
+  88%,100%{opacity:0;transform:translate(404px,326px)}}
 
-/* 1. the release is checked: the header mark works, the countdown ticks */
-.appx-il.play.app-ship .sh-mk .w0{animation:sh-on .3s var(--ease) both,sh-off .2s var(--ease) 2.25s forwards}
-.appx-il.play.app-ship .sh-mk .w1{animation:sh-pop .45s var(--snap) 2.28s both}
-.appx-il.play.app-ship .sh-mk .w0 .sig-rot,.appx-il.play.app-ship .sh-s .w .sig-rot{animation:sh-spin 1.3s linear infinite}
-.appx-il.play.app-ship .sh-mk .w0 .sig-orb,.appx-il.play.app-ship .sh-s .w .sig-orb{animation:sh-spin-r 1.3s linear infinite}
-.appx-il.play.app-ship .sh-pill.c1{animation:sh-on .35s var(--ease) both,sh-off .22s var(--ease) 4.22s forwards}
+/* 1. the release is checked: each check's mark works in turn, the countdown to the email ticks */
+.appx-il.play.app-ship .sh-s .w .sig-rot{animation:sh-spin 1.3s linear infinite}
+.appx-il.play.app-ship .sh-s .w .sig-orb{animation:sh-spin-r 1.3s linear infinite}
+.appx-il.play.app-ship .sh-meta .m0{animation:sh-on .35s var(--ease) both,sh-off .22s var(--ease) 4.22s forwards}
 .appx-il.play.app-ship .sh-mm{animation:sh-count 3s steps(1,end) both}
 
 /* 2. the checks land in order: pending, working, done */
@@ -160,9 +160,9 @@
 .appx-il.play.app-ship .sh-n b:first-child{animation:sh-on .01s linear both,sh-out .25s var(--ease) 2.3s forwards}
 .appx-il.play.app-ship .sh-n b:last-child{animation:sh-up .3s var(--ease) 2.34s both}
 
-/* 4. hold the send: press, the choice resolves, the pill flips */
+/* 4. hold the send: press, the choice resolves, the meta reads held */
 .appx-il.play.app-ship .sh-acts .a1{animation:sh-up .45s var(--ease) 2.74s both,sh-off .2s var(--ease) 4.14s forwards}
 .appx-il.play.app-ship .sh-hold{animation:sh-press .22s ease-out 3.96s both}
 .appx-il.play.app-ship .sh-acts .a2{animation:sh-up .4s var(--ease) 4.26s both}
-.appx-il.play.app-ship .sh-pill.c2{animation:sh-swap .4s var(--ease) 4.3s both}
+.appx-il.play.app-ship .sh-meta .m1{animation:sh-swap .4s var(--ease) 4.3s both}
 .appx-il.play.app-ship .sh-ptr{animation:sh-ptr 1.9s var(--ease) 3.18s both}

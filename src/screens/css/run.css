@@ -1,18 +1,22 @@
 /* app-run: Records. One run's signed record for a client: the run log with captures, receipt 4 of 9 open,
    Verify, the link to forward. Story: rows land, a person opens the checkout step, its receipt fills,
    they click Verify, the chain is checked link by link, "Signature valid · chain intact", the link appears.
-   Rest state = the finished scene. */
+   Rest state = the finished scene. Chrome is canonical (APP-SPEC, Product chrome): plain h2, the declared-agent pill in the head,
+   1 lock line under the record. */
 
-.app-run .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
-.app-run .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .04)}
+.app-run .ax-main{grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch;padding:14px}
+.app-run .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
 .app-run .ax-clients a.on i{background:var(--fg-2)}
 
-/* header */
+/* header: plain title, meta, the declared agent, share */
 .app-run .rn-h{height:24px}
-.ilwrap .app-run .rn-h .sig{width:16px;height:16px;color:var(--fg)}
-.app-run .rn-h h2{white-space:nowrap}
-.app-run .rn-h h2 i{font-style:normal;font-weight:500;color:var(--fg-3);margin:0 1px}
-.app-run .rn-h .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-run .rn-h h2,.app-run .rn-h .ax-meta{white-space:nowrap}
+.app-run .rn-idp{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-run .rn-ag{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-run .rn-ag svg.sig{width:10px;height:10px;color:var(--bg)}
+.app-run .rn-sh{width:24px;padding:0;justify-content:center;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-run .rn-h .rn-sh{margin-left:-4px}
 
 .app-run .rn-grid{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,1fr);gap:12px;min-height:0}
 
@@ -22,7 +26,7 @@
 .app-run .rn-hd b,.app-run .rc-hd b{font:600 12px/1 var(--sans);color:var(--fg)}
 .app-run .rn-hd span{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
 .app-run .rn-log ol{position:relative;z-index:0;display:grid}
-.app-run .rn-r{position:relative;display:grid;grid-template-columns:36px 7px minmax(0,1fr);column-gap:11px;padding:5px 8px;border-radius:7px}
+.app-run .rn-r{position:relative;display:grid;grid-template-columns:36px 7px minmax(0,1fr);column-gap:11px;padding:4px 8px;border-radius:7px}
 .app-run .rn-r time{font:400 11px/16px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
 .app-run .rn-r .nd{position:relative;z-index:1;width:7px;height:7px;margin-top:4.5px;border-radius:2px;background:var(--fg-3)}
 .app-run .rn-r p{font:400 11px/16px var(--mono);color:var(--fg);white-space:nowrap}
@@ -98,6 +102,10 @@
 .app-run .rc-cp{margin-left:auto;display:grid;place-items:center;width:20px;height:20px;border-radius:5px;background:rgb(var(--fg-rgb) / .07);color:var(--fg-2)}
 .ilwrap .app-run .rc-link .rc-cp svg{width:12px;height:12px}
 
+/* the red line, 1 quiet line under the record */
+.app-run .rn-note{display:flex;align-items:center;gap:7px;height:16px;padding-left:2px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-run .rn-note svg{width:12px;height:12px;color:var(--fg-3)}
+
 /* pointer */
 .ilwrap .app-run .appx svg.rn-ptr{width:16px;height:16px}
 .app-run .rn-ptr{transform-origin:3px 1.5px}
@@ -109,15 +117,15 @@
 @keyframes rn-sel{from{opacity:0}to{opacity:1}}
 /* 5.6s: arrives 1.9s, clicks the checkout row at 2.55s, clicks Verify at 3.9s, gone by 5.15s */
 @keyframes rn-ptr{
-  0%,30%{opacity:0;transform:translate(424px,372px)}
+  0%,30%{opacity:0;transform:translate(424px,350px)}
   34%{opacity:1}
-  44%{transform:translate(147px,230px) scale(1)}
-  45.5%{transform:translate(147px,230px) scale(.88)}
-  47.5%,55%{transform:translate(147px,230px) scale(1)}
-  68%{transform:translate(343px,336px) scale(1)}
-  69.5%{transform:translate(343px,336px) scale(.88)}
-  71.5%,80%{opacity:1;transform:translate(343px,336px) scale(1)}
-  92%,100%{opacity:0;transform:translate(354px,346px)}
+  44%{transform:translate(147px,224px) scale(1)}
+  45.5%{transform:translate(147px,224px) scale(.88)}
+  47.5%,55%{transform:translate(147px,224px) scale(1)}
+  68%{transform:translate(343px,308px) scale(1)}
+  69.5%{transform:translate(343px,308px) scale(.88)}
+  71.5%,80%{opacity:1;transform:translate(343px,308px) scale(1)}
+  92%,100%{opacity:0;transform:translate(354px,318px)}
 }
 .app-run.play .rn-ptr{animation:rn-ptr 5.6s var(--ease) both}
 

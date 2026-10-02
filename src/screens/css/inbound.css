@@ -7,13 +7,13 @@
    and waits for a callback while the form runs past the line to 4 h 12 m and lands with no owner; the phone's wait
    ends with no owner either and the lane turns needs you; the routing fix is drafted, the pointer clicks Approve,
    the phone item closes and the toast reports the 17:00 re-test: 3 min 40 s. Bars share 1 clock, so their edges move together.
-   Geometry (design px, main 556 x 414, padding 14 16): header 14..38, chart 50..256, fix 268..344, toast 356..400.
+   Chrome (canonical): Missions selected, the declared-agent pill in the page head, 1 lock footnote at the foot (left),
+   the toast in app-board's 1-line pattern with 1 action (right), both on 1 line.
+   Geometry (design px, main 556 x 414, padding 14 16): header 14..38, chart 50..256, fix 268..344, foot 360..400.
    Chart lanes 92 | 234 | 150 (gaps 12); the plot overlay sits over the 234 track column (left 116).
    Rest state (no .play) = the finished scene. */
 
-.app-inbound .ax-main{grid-template-rows:24px 206px 76px minmax(0,1fr);gap:12px;padding:14px 16px;align-content:stretch}
-.app-inbound .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
-.app-inbound .ax-clients a.on i{background:var(--fg-2)}
+.app-inbound .ax-main{grid-template-rows:24px 206px 76px minmax(0,1fr);gap:12px;padding:14px;align-content:stretch}
 
 /* ---------- header ---------- */
 .app-inbound .ib-h{display:flex;align-items:center;gap:10px;height:24px}
@@ -98,12 +98,13 @@
 .ilwrap .app-inbound .ib-done .sig{width:12px;height:12px;color:var(--fg)}
 .ilwrap .app-inbound .appx .ib-ptr{left:83px;top:10px;width:16px;height:16px}
 
-/* ---------- foot: the signature, the toast ---------- */
-.app-inbound .ib-sig{display:flex;align-items:center;gap:8px;height:44px;font-size:11px;color:var(--fg-3);white-space:nowrap}
-.app-inbound .ib-sig span{font:400 10.5px/1 var(--mono)}
-.app-inbound .ib-toast{right:16px;bottom:14px;gap:10px;padding:9px 12px 9px 11px}
-.app-inbound .ib-toast p{white-space:nowrap;line-height:15px}
-.app-inbound .ib-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+/* ---------- foot: the red line (1 lock footnote), the toast (app-board's pattern) on its line ---------- */
+.app-inbound .ib-lock{align-self:end;display:flex;align-items:center;gap:7px;height:40px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-inbound .ib-lock svg{width:12px;height:12px}
+.app-inbound .ib-toast{right:14px;bottom:14px;gap:10px;padding:8px 8px 8px 12px}
+.app-inbound .ib-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-inbound .ib-toast b{font-weight:500;color:var(--fg)}
+.app-inbound .ib-toast p span{color:var(--fg-3)}
 
 /* ---------- motion (only with .play) ---------- */
 @keyframes ib-show{from{opacity:0}to{opacity:1}}
@@ -166,6 +167,5 @@
 .appx-il.play.app-inbound .ib-done .sig-gap{animation:ib-show .35s var(--ease) 5.25s both}
 .appx-il.play.app-inbound .ib-ptr{animation:ib-ptr 1.5s var(--ease) 4.05s both}
 
-/* 4. the re-test; the signed line settles under the fix */
-.appx-il.play.app-inbound .ib-sig{animation:ib-show .5s var(--ease) 4s both}
+/* 4. the re-test */
 .appx-il.play.app-inbound .ib-toast{animation:ax-in .55s var(--ease) 5.5s both}

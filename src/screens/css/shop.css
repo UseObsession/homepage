@@ -83,6 +83,8 @@
 .app-shop .ms-sp{position:absolute;left:var(--ms-x);top:68px;height:16px;display:inline-flex;align-items:center;gap:5px;
   font:500 10.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
 .app-shop .ms-sp .ax-tick{width:12px;height:12px}
+/* a journey that ends on its red line carries it on the path, like an end stamp */
+.app-shop .ms-sp.ms-row{top:43px}
 
 /* the mini pages inside captures (hex allowed only here) */
 .app-shop .ms-pg{position:relative;display:grid;align-content:center;gap:3px;padding:3px 5px;min-height:0}

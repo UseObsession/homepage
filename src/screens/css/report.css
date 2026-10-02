@@ -2,18 +2,29 @@
    The report is drawn as the client gets it: the agency's lockup, 3 counts, each brand's month as a bar of messages
    (1 tick = 1 captured message, offers solid), the read, the signature.
    Story: the counts tick up, the bars grow row by row (the client's is short), the read lands,
-   the pointer sends it and the button settles to "Sent · in your brand". Rest state = the finished, sent report. */
+   the pointer sends it and the button settles to "Sent · in your brand". Rest state = the finished, sent report.
+   Chrome is canonical (APP-SPEC, Product chrome): head = title, client, declared-agent pill; the foot holds the lock line and Send. */
 
 @property --apr-n{syntax:'<integer>';inherits:false;initial-value:0}
 
 .app-report{--apr-p:7.5px;--apr-w:5.5px}
-.app-report .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
-.app-report .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .04)}
+.app-report .ax-main{grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch;padding:14px}
+.app-report .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
 .app-report .ax-clients a.on i{background:var(--fg-2)}
 
 /* header */
 .app-report .apr-h{height:24px}
+.app-report .apr-h h2{white-space:nowrap}
 .app-report .apr-h .ax-meta{padding-top:1px;white-space:nowrap}
+.app-report .apr-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-report .apr-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-report .apr-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* the foot: the red line on the left, the send on the right */
+.app-report .apr-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;height:24px}
+.app-report .apr-note{display:flex;align-items:center;gap:7px;padding-left:2px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-report .apr-note svg{width:12px;height:12px;color:var(--fg-3)}
 .app-report .apr-send{display:inline-grid;place-items:center;padding:0 11px;transform-origin:center;
   color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-report .apr-send>span{grid-area:1/1;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
@@ -24,14 +35,14 @@
 /* the report, as the client gets it */
 .app-report .apr-page{display:flex;flex-direction:column;min-height:0;border-radius:10px;background:var(--panel-2);
   box-shadow:0 0 0 1px var(--line-2) inset,0 12px 24px -16px rgb(0 0 0 / calc(.8 * var(--sh-k,1)))}
-.app-report .apr-brand{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;flex:none;border-bottom:1px solid var(--line-2);
+.app-report .apr-brand{display:flex;align-items:center;gap:8px;height:36px;padding:0 16px;flex:none;border-bottom:1px solid var(--line-2);
   font:600 12px/1 var(--sans);letter-spacing:-.01em;color:var(--fg)}
 .app-report .apr-brand i{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font:600 10px/1 var(--sans);font-style:normal;color:var(--bg);background:var(--fg)}
 .app-report .apr-date{margin-left:auto;font:400 10.5px/1 var(--mono);letter-spacing:0;color:var(--fg-3)}
 
 /* 3 counts */
-.app-report .apr-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:none;padding:16px 0;border-bottom:1px solid var(--line-2)}
-.app-report .apr-kpi{display:grid;gap:7px;padding:0 16px}
+.app-report .apr-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:none;padding:14px 0;border-bottom:1px solid var(--line-2)}
+.app-report .apr-kpi{display:grid;gap:6px;padding:0 16px}
 .app-report .apr-kpi+.apr-kpi{box-shadow:1px 0 0 var(--line-2) inset}
 .app-report .apr-kpi .ax-k{white-space:nowrap}
 .app-report .apr-kpi .apr-cnt{font:600 22px/1 var(--display);letter-spacing:-.025em;color:var(--fg);font-variant-numeric:tabular-nums}
@@ -40,14 +51,14 @@
 .app-report .apr-pct::after{content:counter(apr-c) "%"}
 
 /* the month, 1 tick per message */
-.app-report .apr-chart{flex:1;display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:12px;min-height:0;padding:16px 8px}
+.app-report .apr-chart{flex:1;display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:10px;min-height:0;padding:12px 8px}
 .app-report .apr-ch{display:flex;align-items:center;height:14px;padding:0 8px}
 .app-report .apr-ch b{font:500 12px/1 var(--sans);color:var(--fg)}
 .app-report .apr-key{margin-left:auto;display:flex;align-items:center;gap:6px;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
 .app-report .apr-key i{width:var(--apr-w);height:10px;border-radius:1.5px;background:rgb(var(--fg-rgb) / .3)}
 .app-report .apr-key i.o{margin-left:8px;background:var(--fg)}
 .app-report .apr-rows{display:grid;align-content:space-between;gap:6px}
-.app-report .apr-row{display:grid;grid-template-columns:44px minmax(0,1fr) 28px;align-items:center;column-gap:12px;height:26px;padding:0 8px;border-radius:7px}
+.app-report .apr-row{display:grid;grid-template-columns:44px minmax(0,1fr) 28px;align-items:center;column-gap:12px;height:24px;padding:0 8px;border-radius:7px}
 .app-report .apr-row.me{background:rgb(var(--fg-rgb) / .05)}
 .app-report .apr-nm{font-size:11.5px;color:var(--fg-2);white-space:nowrap}
 .app-report .apr-row.me .apr-nm{font-weight:500;color:var(--fg)}
@@ -61,7 +72,7 @@
 .app-report .apr-row.me .apr-ct{color:var(--fg)}
 
 /* the read and the signature */
-.app-report .apr-read{display:flex;align-items:center;gap:16px;height:46px;flex:none;padding:0 16px;border-top:1px solid var(--line-2)}
+.app-report .apr-read{display:flex;align-items:center;gap:16px;height:40px;flex:none;padding:0 16px;border-top:1px solid var(--line-2)}
 .app-report .apr-ins{font:500 12.5px/1 var(--sans);letter-spacing:-.005em;color:var(--fg);white-space:nowrap}
 .app-report .apr-sign{margin-left:auto;display:flex;align-items:center;gap:6px;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
 .app-report .apr-sign span{font:500 10.5px/1 var(--sans);color:var(--fg-2)}
@@ -76,15 +87,15 @@
 @keyframes apr-solid{from{background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
 @keyframes apr-out{from{opacity:1}to{opacity:0}}
 @keyframes apr-in{from{opacity:0}to{opacity:1}}
-/* 2.5s from 2.7s: arrives over Send at 3.85s, presses, drifts off and is gone by 5.2s */
+/* 2.5s from 2.7s: rises from the chart to Send at the foot by 3.85s, presses, drifts off and is gone by 5.2s */
 @keyframes apr-ptr{
   0%{opacity:0;transform:translate(330px,250px)}
   12%{opacity:1}
-  46%{transform:translate(468px,24px) scale(1)}
-  50%{transform:translate(468px,24px) scale(.9)}
-  56%{transform:translate(468px,24px) scale(1)}
-  80%{opacity:1;transform:translate(476px,38px)}
-  100%{opacity:0;transform:translate(479px,43px)}}
+  46%{transform:translate(466px,384px) scale(1)}
+  50%{transform:translate(466px,384px) scale(.9)}
+  56%{transform:translate(466px,384px) scale(1)}
+  80%{opacity:1;transform:translate(472px,391px)}
+  100%{opacity:0;transform:translate(474px,394px)}}
 
 /* 1. the counts tick up */
 .app-report.play .apr-kpi .apr-cnt{animation:apr-count 1.5s var(--ease) var(--d) both}
