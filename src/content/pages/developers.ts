@@ -230,7 +230,7 @@ await obs.missions.create({
   }
 }`,
     screen: 'dev',
-    cta: { label: 'See every recipe', to: '/recipes' },
+    cta: { label: 'Get API access', to: '#join' },
   },
 
   gap: {

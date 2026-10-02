@@ -41,6 +41,13 @@ for (const f of (await readdir(join(LOGO, 'states'))).filter((f) => f.endsWith('
 await copyFile(join(LOGO, 'favicon.svg'), join(root, 'public/favicon.svg'))
 await copyFile(join(LOGO, 'obsession-app-icon-1024.png'), join(root, 'public/obsession-app-icon-1024.png'))
 await copyFile(join(LOGO, 'obsession-app-icon.svg'), join(root, 'public/obsession-app-icon.svg'))
+/* The PNG fallbacks: a 32px favicon for browsers and results pages that skip SVG, and the 180px touch icon. */
+{
+  const { Resvg } = await import('@resvg/resvg-js')
+  const icon = await readFile(join(LOGO, 'obsession-app-icon.svg'), 'utf8')
+  for (const [file, size] of [['favicon-32.png', 32], ['apple-touch-icon.png', 180]])
+    await writeFile(join(root, 'public', file), new Resvg(icon, { fitTo: { mode: 'width', value: size } }).render().asPng())
+}
 
 /* app screens: only well formed ones, with 1 main landmark per page and no template count */
 const VOID = new Set(['br', 'img', 'input', 'meta', 'link', 'hr', 'path', 'rect', 'circle', 'line', 'polyline', 'polygon', 'stop', 'use', 'ellipse'])

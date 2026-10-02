@@ -21,7 +21,9 @@ export function Lockup({ height = 20, tone = 'auto', className }: { height?: num
   const kind = height < 32 ? LOCKUP.nav : LOCKUP.full
   /* The width attribute must be a whole number; the exact width (157.7px at 20 tall) is set inline, so it never rounds. */
   const exact = Math.round(height * kind.ratio * 10) / 10
-  const img = (ink: 'white' | 'black', extra: string) => (
+  /* Dark is the default theme, so only the white file is fetched up front (and preloaded); the paper file loads lazily,
+     the moment it shows. */
+  const img = (ink: 'white' | 'black', extra: string, lazy = false) => (
     <img
       key={ink}
       className={'s-lockup ' + extra + (className ? ' ' + className : '')}
@@ -31,13 +33,14 @@ export function Lockup({ height = 20, tone = 'auto', className }: { height?: num
       style={{ width: `${exact}px`, height: `${height}px` }}
       alt="Obsession"
       decoding="async"
+      loading={lazy ? 'lazy' : undefined}
     />
   )
   if (tone !== 'auto') return img(tone, '')
   return (
     <>
       {img('white', 's-on-dark')}
-      {img('black', 's-on-paper')}
+      {img('black', 's-on-paper', true)}
     </>
   )
 }
