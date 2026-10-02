@@ -166,7 +166,7 @@ export const privacyPage: PrivacyPage = {
       id: 'browser',
       heading: 'We add nothing about your device to your sign up.',
       lines: [
-        'Our website host, font provider and form service see your device’s IP address, as they do on any website. We don’t keep it with your details.',
+        'Our website host and form service see your device’s IP address, as they do on any website. We don’t keep it with your details.',
         'We use no advertising or tracking cookies. Your light or dark choice is saved in your own browser.',
         'You don’t have to give us anything. Without an email address, we can’t add you to the waitlist.',
       ],
@@ -204,7 +204,6 @@ export const privacyPage: PrivacyPage = {
       list: [
         'The spreadsheet and email service that holds the waitlist',
         'Our website host',
-        'Our font provider, which sees your IP address when a page loads',
       ],
     },
     {
