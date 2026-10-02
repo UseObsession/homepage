@@ -4,7 +4,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 ## 1. Decisions (Seun, 2 Oct)
 
-- **Pages:** Home (`/`), Agencies (`/agencies`), Founders (`/founders`), Sales (`/sales`), Marketing (`/marketing`), Developers (`/developers`), Recipes (`/recipes` and `/recipes/SLUG`, James's live URLs), Sample output (`/sample-output`), Privacy (`/privacy`), Agents (`/agents`). Only `/recipes/prospect-research` redirects (301) to `/recipes/prospect-intelligence`.
+- **Pages:** Home (`/`), Agencies (`/agencies`), Founders (`/founders`), Sales (`/sales`), Marketing (`/marketing`), Developers (`/developers`), Recipes (`/recipes` and `/recipes/SLUG`, James's live URLs), Sample output (`/sample-output`), Privacy (`/privacy`), Agents (`/agents`), and under Resources (3 Oct): Resources (`/resources`), Use cases (`/use-cases` and James's 2 worked examples), Blog (`/blog`, `/blog/SLUG`, `/blog/rss.xml`). Only `/recipes/prospect-research` redirects (301) to `/recipes/prospect-intelligence`.
 - **Use cases (James, 2 Oct, on main):** worked examples for named prospects at `/use-cases/prospect-intelligence-with-clay` and `/use-cases/member-prices-for-price-intelligence`, under a "Use cases" nav menu. Their URLs must keep working (James sends them to prospects). Merge `origin/main` into the rebuild after the build, keep both pages and the menu, bring them onto the design system without changing their substance, and fix the Clay page's "No support reply within 24 hours" check (staff at prospects: use the site's chat bot) and "for weeks" (continuously).
 - **Lead leaks (3 Oct):** the Speed to lead recipe is renamed Lead leaks (slug `lead-leaks`; `/recipes/speed-to-lead` redirects 301). Its copy keeps the searched term "speed to lead".
 - **Name:** the ready-made jobs are **Recipes** (James's word; Seun confirmed 2 Oct). A recipe comes with all its infrastructure already set up; a typed task has the system set it up for you. Never a count of them.
@@ -100,15 +100,16 @@ New screens to build: `shop` (the mystery shopper run on a store: basket, inboxe
 
 ## 7. Navigation
 
-- Desktop: the lockup; **Solutions** (a menu: Agencies, Founders, Sales, Marketing, each with 1 line), **Recipes** (a menu grouped by job: Win customers, Keep customers, Watch rivals, Check your own journeys, Get paid and save, plus "All recipes"), **Developers**, **Sample output**; on the right the theme switch and the page's call to action. Sticky, quiet, keyboard and screen reader complete (`.ob-nav`, `.ob-menu`).
+- Desktop (3 Oct: at most 4 links plus the call to action): the lockup; **Solutions** (a menu: Agencies, Founders, Sales, Marketing, each with 1 line), **Recipes** (a menu grouped by job: Win customers, Keep customers, Watch rivals, Check your own journeys, Get paid and save, plus "All recipes"), **Resources** (a menu: Use cases with the worked examples and "All use cases"; Blog; Sample output; "All resources"), **Developers**; on the right the theme switch and the page's call to action. Sticky, quiet, keyboard and screen reader complete (`.ob-nav`, `.ob-menu`).
 - Phone: a sheet (`.ob-mnav`, `.ob-anim-sheet`) with the same groups and the call to action.
-- Footer: a full site map (every page and recipe), the red lines in 1 line, the theme switch.
+- Footer: a full site map (every page, recipe, use case, the blog and the sample output), the red lines in 1 line, the theme switch.
+- Breadcrumbs (`components/Crumbs`, `.ob-crumbs`): a calm line centred above the hero's pill on every page below Home, read from the page's `meta.breadcrumb`, which is also the `BreadcrumbList` JSON-LD, so the 2 always match. Trails: Home / Agencies; Home / Recipes / Mystery shopper; Home / Resources / Use cases / Prospect intelligence with Clay; Home / Resources / Sample output; Home / Blog / Post. On a phone a trail deeper than 2 drops the page's own name.
 
 ## 8. SEO and answer engines
 
 - 1 `h1` per page. Unique title (55 to 60 characters) and description (140 to 155) per page in `content/meta`.
 - Canonical, Open Graph and Twitter large image per page (`public/og/*.png`, 1200 x 630).
-- JSON-LD: `Organization` and `WebSite` on every page, `SoftwareApplication` on Home, `FAQPage` wherever questions show, `BreadcrumbList` on audience and recipe pages.
+- JSON-LD: `Organization` and `WebSite` on every page, `SoftwareApplication` on Home, `FAQPage` wherever questions show, `BreadcrumbList` on every page below Home, `BlogPosting` (both founders as authors) on every post and `Blog` on `/blog`.
 - Answer-ready copy: each page opens with 1 plain sentence that defines its subject ("Obsession is ..."), its `meta.answer`, and questions phrased the way buyers ask them.
 - `llms.txt` (short) and `llms-full.txt` (every page's copy as plain text), `sitemap.xml`, `robots.txt` that welcomes search and AI crawlers, `_redirects` for `/recipes/prospect-research`.
 - Internal links: audience pages to their recipes, recipes to the audiences they serve, every page to the sample output.
