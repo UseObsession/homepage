@@ -65,6 +65,7 @@ await copyFile(join(SCREENS, 'app-base.css'), join(out, 'base.css'))
 
 const names = (await readdir(SCREENS))
   .filter((f) => /^app-[a-z]+\.html$/.test(f) && f !== 'app-frame.html')
+  .filter((f) => !['app-watch.html'].includes(f)) /* superseded by app-acctwatch */
   .map((f) => f.slice(4, -5))
 const kept = []
 for (const name of names) {
