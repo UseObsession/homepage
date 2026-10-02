@@ -48,6 +48,7 @@
   .s-aud__panels { margin-top: var(--ob-space-32); }
   .s-aud__panel { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); align-items: start; }
   .s-aud__copy { gap: var(--ob-space-24); }
+  .s-aud__panel[hidden] { display: none; }
 }
 
 .s-aud .s-head { max-width: none; }

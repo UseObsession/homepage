@@ -10,8 +10,8 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
 
 /* Who it's for (Home, docs/REBUILD.md 1b): the reader picks who they are and sees their line, their screen and the
    way to their own page. The same tab row as the use cases (TabRail: keyboard and ARIA complete, 1 sliding bar,
-   sideways scroll on phones). Every reader's panel is in the page's HTML; the hidden ones keep their place, so the
-   section never changes height. Agencies' screen is drawn for an agency; every other reader's for their company. */
+   sideways scroll on phones). Every reader's panel is in the page's HTML; side by side, the hidden ones keep their
+   place, so the section never changes height. Agencies' screen is drawn for an agency; every other reader's for their company. */
 export function Audiences({
   audiences,
   initial = 0,
@@ -40,7 +40,7 @@ export function Audiences({
 
         <TabRail
           base={base}
-          label={audiences.heading}
+          labelledBy={`${base}-h`}
           tabs={audiences.items.map((a) => a.name)}
           index={index}
           onPick={(i) => {

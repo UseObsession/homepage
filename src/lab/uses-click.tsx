@@ -4,6 +4,16 @@ import { page as home } from '../content/pages/home'
 import { Audiences } from '../components/sections/Audiences'
 import { UseCases } from '../components/sections/UseCases'
 
+/* Anything React reports while hydrating the prerendered HTML lands here and prints with the log. */
+const errors: string[] = []
+if (typeof window !== 'undefined') {
+  const error = console.error.bind(console)
+  console.error = (...a: unknown[]) => {
+    errors.push(a.map(String).join(' ').slice(0, 300))
+    error(...a)
+  }
+}
+
 /* Lab: drives the tabs the way a reader would (a click, then the arrow keys and End) and prints what changed. */
 function Driver() {
   const [log, setLog] = useState<string[]>([])
@@ -25,7 +35,8 @@ function Driver() {
       t?.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true }))
     }
     const steps: [number, () => void][] = [
-      [300, () => say('start uses: ' + state('#uses'))],
+      [300, () => say('console errors: ' + (errors.length ? errors.join(' | ') : 'none'))],
+      [310, () => say('start uses: ' + state('#uses'))],
       [600, () => document.querySelectorAll<HTMLElement>('#uses [role="tab"]')[2].click()],
       [660, () => {
         const ind = document.querySelector<HTMLElement>('#uses .ob-utabs__indicator')
@@ -43,6 +54,7 @@ function Driver() {
       [3600, () => key('#for', 'Home')],
       [3900, () => say('readers Home: ' + state('#for'))],
       [4200, () => document.querySelectorAll<HTMLElement>('#for [role="tab"]')[3].click()],
+      [4500, () => say('console errors at the end: ' + (errors.length ? errors.join(' | ') : 'none'))],
     ]
     const ids = steps.map(([t, f]) => window.setTimeout(f, t + 2500))
     return () => ids.forEach(clearTimeout)

@@ -12,7 +12,7 @@ export default function UsesStatesLab() {
   return (
     <>
       {/* labRule: site.css gives a ruled section no top padding after another section; the lab adds it back. */}
-      <style>{'.s-section--rule{padding-top:var(--ob-space-section)}'}</style>
+      <style>{'.s-section.s-section--rule{padding-top:var(--ob-space-section)}'}</style>
       <UseCases uses={agencies.uses} workspace="agency" initial={4} />
       <UseCases uses={sales.uses} initial={7} id="uses-sales" className="s-section--rule" />
       {home.audiences && <Audiences audiences={home.audiences} initial={4} className="s-section--rule" />}

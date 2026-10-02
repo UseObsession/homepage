@@ -22,13 +22,14 @@ const reduced = () => typeof window !== 'undefined' && matchMedia('(prefers-redu
    - Picking a tab is the only thing that changes it: nothing advances on its own. */
 export function TabRail({
   base,
-  label,
+  labelledBy,
   tabs,
   index,
   onPick,
 }: {
   base: string
-  label: string
+  /* The id of the heading that names the tabs. */
+  labelledBy: string
   tabs: string[]
   index: number
   onPick: (i: number) => void
@@ -127,7 +128,7 @@ export function TabRail({
   const cls = ['ob-utabs', 's-rail__list', edge.scrollable && 'is-scrollable', edge.start && 'is-scroll-start', edge.end && 'is-scroll-end']
   return (
     <div className="s-rail">
-      <div ref={list} className={cls.filter(Boolean).join(' ')} role="tablist" aria-label={label} onKeyDown={onKey}>
+      <div ref={list} className={cls.filter(Boolean).join(' ')} role="tablist" aria-labelledby={labelledBy} onKeyDown={onKey}>
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -157,8 +158,9 @@ export function TabRail({
 
 /* Use cases (docs/REBUILD.md, story beat 4): a tab per moment in the reader's week. Each panel holds the moment, the
    outcome as its heading, what the agents do, why only agents can, the recipe it runs on, and its own app screen,
-   which plays its story when the tab is picked. Every panel is in the page's HTML; the ones not chosen keep their
-   place in the grid but stay hidden, so the section never changes height as the reader moves between tabs. */
+   which plays its story when the tab is picked. Every panel is in the page's HTML. Side by side, the ones not chosen
+   keep their place in the grid but stay hidden, so the section never changes height between tabs; stacked on a phone,
+   only the chosen one takes room. */
 export function UseCases({
   uses,
   workspace = 'company',
@@ -191,7 +193,7 @@ export function UseCases({
 
         <TabRail
           base={base}
-          label={uses.heading}
+          labelledBy={`${base}-h`}
           tabs={uses.items.map((u) => u.tab)}
           index={index}
           onPick={(i) => {

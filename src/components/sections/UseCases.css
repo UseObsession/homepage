@@ -23,8 +23,8 @@
 }
 
 /* ---- The panels -------------------------------------------------------------------------------------------------
-   Every panel sits in the same grid cell. The ones not chosen keep their room but are hidden from sight, the keyboard
-   and screen readers, so the section's height never jumps as the reader moves between tabs. */
+   Side by side, every panel sits in the same grid cell: the ones not chosen keep their room but are hidden from sight,
+   the keyboard and screen readers, so the section's height never jumps as the reader moves between tabs. */
 .s-uses__panels {
   display: grid;
   margin-top: var(--ob-space-40);
@@ -105,6 +105,8 @@
   .s-uses__panels { margin-top: var(--ob-space-32); }
   .s-uses__panel { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
   .s-uses__copy { padding-top: 0; }
+  /* Stacked, the words vary more than the screens do: only the chosen panel takes room, so a short one leaves no gap. */
+  .s-uses__panel[hidden] { display: none; }
 }
 
 /* The heading takes the type scale's measure for an h2 (20ch of its own size), not the body's. */
