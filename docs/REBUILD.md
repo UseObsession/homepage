@@ -53,6 +53,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 ## 4. Look
 
+- **The design system is owned elsewhere.** Seun builds it in its own chat, into `Brand/Design System/` (tokens, motion, components and the guideline page `Obsession Brand.html`). The site only consumes it: never edit `src/styles/ds/`; refresh it with `node scripts/sync-assets.mjs`. If a page needs something the system lacks (a menu pattern, a component state), build it in the site on `--ob-*` tokens and `.ob-*` classes, and list it in the PR so the system can absorb it.
 - **Design system only.** `src/styles/ds/` (tokens, motion, components) is loaded first. Use `--ob-*` tokens and the `.ob-*` component classes (`.ob-btn`, `.ob-nav`, `.ob-mnav`, `.ob-menu`, `.ob-pill-form`, `.ob-field`, `.ob-chips`, `.ob-prompt`, `.ob-ptabs`, `.ob-faq`, `.ob-receipt`, `.ob-finding`, `.ob-ledger`, `.ob-kit`, `.ob-card` ...). Read `Brand/Design System/README.md` (in the workspace) before styling anything.
 - **Class names:** every site class starts `s-` (`.s-hero`, `.s-hero-h`), so nothing collides with the screens' classes (`.ax-*`, `.app-*`, and the short names inside them).
 - **No AI tells:** no all-caps mono eyebrows over headings, no identical bordered cards, no bullet squares, no centred bullet lists, no demo chrome, no gradient text, no grid-paper backgrounds, no fade-up on every section. Colour is never a status: the ring mark's states are.
