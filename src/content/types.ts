@@ -2,6 +2,8 @@
    Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/html/NAME.html (see components/AppScreen). */
 
 export type ScreenName = string
+/* Slugs: competitor-tracking, prospect-intelligence, mystery-shopper, speed-to-lead, price-watch, ad-tracking, trial-teardown,
+   email-sms-tracking, website-audit, delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers. */
 export type TemplateId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
@@ -100,19 +102,31 @@ export type Page = {
   final: Final
 }
 
-/* A template's own page (/templates/SLUG). James's recipe pages are the base: their structure stays. */
+/* A template's own page (/templates/SLUG). James's recipe pages are the base: their structure stays.
+   A template comes with all its infrastructure set up; `kit` is what choosing it spins up. */
+export type TemplateGroup = 'Win customers' | 'Keep customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
 export type Template = {
   id: TemplateId
   slug: string
   name: string
-  group: 'Win customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
+  group: TemplateGroup
+  /* 1 line for cards and menus. */
+  line: string
+  /* What you get, in 1 line. */
+  gets: string
+  /* What choosing it sets up, a few words each (agent ID, inboxes, numbers, browsers, schedule, screenshots of every step). */
+  kit: string[]
   meta: Meta
   hero: { headline: string; sub: string; screen: ScreenName; capture: Capture }
+  /* The example run played on the page (labelled Example unless it is the real September store check). */
+  run: Demo
   steps: { title: string; line: string }[]
-  checks: string[]
+  checks: { group: string; items: { title: string; line: string }[] }[]
   outputs: { heading: string; items: { format: string; line: string }[] }
-  forWho: { audience: AudienceId; line: string }[]
-  example?: Demo
+  settings?: { k: string; v: string }[]
+  forWho: { audience: AudienceId | 'developers'; line: string }[]
+  /* Optional depth for the templates that need it: a comparison, a timeline, what is allowed where. */
+  table?: { heading: string; line?: string; cols: string[]; rows: { label: string; values: string[] }[] }
   faq: Faq
   final: Final
 }
