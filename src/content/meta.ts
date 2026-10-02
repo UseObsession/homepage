@@ -3,7 +3,7 @@
    lib/jsonld; the share images (scripts/og.mjs), sitemap.xml and llms.txt are made from the same list. */
 import { nav } from './nav'
 import { agentsPage, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
-import { blogAuthors, blogPage, resourcesPage, useCasesPage } from './resources'
+import { blogPage, resourcesPage, useCasesPage } from './resources'
 import type { Faq, Meta } from './types'
 
 export const SITE = 'https://useobsession.com'
@@ -190,7 +190,7 @@ export const entries: Entry[] = [
         updated: p.updated || p.published,
         section: p.category,
         keywords: [p.primaryKeyword, ...p.keywords.filter((k) => k !== p.primaryKeyword)],
-        authors: blogAuthors,
+        authors: p.authors,
       },
     }
   }),

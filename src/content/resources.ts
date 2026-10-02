@@ -117,12 +117,6 @@ export const blogPage: BlogIndexPage = {
   final: final('blog-final'),
 }
 
-/* Every post is by both founders (docs/REBUILD.md 9c). The byline and the article's structured data list both. */
-export const blogAuthors = [
-  { name: 'Seun Akinniranye', role: 'Cofounder' },
-  { name: 'James Akinniranye', role: 'Cofounder' },
-]
-
 /* The words around every post (pages/BlogPost): chrome, not copy. */
 export const blogUi = {
   toc: 'On this page',
