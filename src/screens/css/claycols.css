@@ -1,0 +1,108 @@
+/* app-claycols: Your agency / Missions / Prospect intelligence. "It starts and ends in your Clay table."
+   The agency's Clay table for Client A, an SMS app: the UK ecommerce TAM, filtered to its "SMS popup" view, new rows on.
+   Company comes from Clay; the 4 columns on the right are Obsession's, the page's 4: Gap, Seen, What happened, Proof.
+   James's 4 brands, his facts. A row with a gap gets a quiet fill, a 2px bar and its gap in full ink (no per-row marks).
+   Story (about 4.5s): the table settles with Company only; Obsession's 4 columns attach left to right, each cell pending;
+   48 hours on, the rows report back top to bottom (values arrive left to right) and the count rolls 292 to 296 of 300;
+   the toast says the facts are back in Clay.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; table 50..320 (bar 34, column head 28, 4 rows x 52);
+   lock line and toast share the foot (toast 360..400). Columns: 132 / 142 / 58 / 1fr (150) / 46.
+   Rest state (no .play) = the finished scene. */
+
+.app-claycols .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: title, the moment, the declared agent ---------- */
+.app-claycols .ccl-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-claycols .ccl-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-claycols .ccl-time{font:400 11px/1 var(--mono);color:var(--fg-3);padding-top:2px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-claycols .ccl-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-claycols .ccl-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-claycols .ccl-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the Clay table ---------- */
+.app-claycols .ccl-tb{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+
+/* table bar: which table and view, new rows on, how far it got */
+.app-claycols .ccl-bar{display:flex;align-items:center;gap:14px;height:34px;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-claycols .ccl-src{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-claycols .ccl-src svg{width:13px;height:13px;color:var(--fg-3)}
+.app-claycols .ccl-src b{font-weight:500;color:var(--fg)}
+.app-claycols .ccl-src i{font-style:normal;color:var(--fg-3)}
+.app-claycols .ccl-new{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-claycols .ccl-cnt{display:flex;align-items:center;gap:5px;padding-left:14px;font-size:11px;line-height:14px;color:var(--fg-3);white-space:nowrap;box-shadow:1px 0 0 var(--line-2) inset}
+/* the count is a stack: as each row lands the next number rolls in; at rest only the last, 296, shows */
+.app-claycols .ccl-num{display:inline-grid;overflow:hidden;font:500 11px/14px var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-claycols .ccl-num>span{grid-area:1/1}
+.app-claycols .ccl-num>:not(:last-child){opacity:0}
+
+/* rows and cells: a spreadsheet grid, hairlines both ways */
+.app-claycols .ccl-r{position:relative;display:grid;grid-template-columns:132px 142px 58px minmax(0,1fr) 46px;height:52px;box-shadow:0 -1px 0 var(--line) inset}
+.app-claycols .ccl-r>span{position:relative;display:flex;align-items:center;min-width:0;padding:0 8px 0 10px;white-space:nowrap;box-shadow:-1px 0 0 var(--line) inset}
+.app-claycols .ccl-r>span:first-child{padding-left:12px;box-shadow:-1px 0 0 var(--line-2) inset}
+.app-claycols .ccl-r>span:last-child{box-shadow:none}
+.app-claycols .ccl-r:last-child{box-shadow:none}
+.app-claycols .ccl-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-claycols .ccl-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+/* Obsession's columns: a faint lift on their heads */
+.app-claycols .ccl-th>.ccl-c{background:rgb(var(--fg-rgb) / .03);color:var(--fg-2)}
+
+/* company, from Clay: name and site */
+.app-claycols .ccl-r>.ccl-co{display:grid;align-content:center;row-gap:2px}
+.app-claycols .ccl-co b{font:500 11.5px/15px var(--sans);color:var(--fg);overflow:hidden}
+.app-claycols .ccl-co small{font:400 10.5px/13px var(--mono);letter-spacing:-.01em;color:var(--fg-3)}
+
+/* the facts Obsession writes back */
+.app-claycols .ccl-v{display:inline-flex;align-items:center}
+.app-claycols .ccl-gp .ccl-v{font:400 11px/15px var(--sans);color:var(--fg-3)}
+.app-claycols .ccl-sn .ccl-v{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-claycols .ccl-wh .ccl-v{display:grid;font:400 11px/15px var(--sans);color:var(--fg-2)}
+.app-claycols .ccl-lk{display:grid;place-items:center;width:22px;height:18px;border-radius:5px;background:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--line-2) inset;color:var(--fg-3)}
+.ilwrap .app-claycols .ccl-lk svg{width:11px;height:11px}
+
+/* a row with a gap: quiet fill, a 2px bar, the gap and its proof in full ink */
+.app-claycols .ccl-gap{background:rgb(var(--fg-rgb) / .045)}
+.app-claycols .ccl-gap::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-claycols .ccl-gap .ccl-gp .ccl-v{font-weight:500;color:var(--fg)}
+.app-claycols .ccl-gap .ccl-lk{color:var(--fg);background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-ui) inset}
+
+/* pending cells: seen only while a row is still out during play */
+.app-claycols .ccl-sk{position:absolute;left:10px;top:calc(50% + var(--ccl-y,0px));height:6px;margin-top:-3px;border-radius:3px;background:rgb(var(--fg-rgb) / .09);opacity:0}
+.app-claycols .ccl-pf .ccl-sk{width:22px;height:18px;margin-top:-9px;border-radius:5px;background:rgb(var(--fg-rgb) / .06)}
+
+/* ---------- foot: the red line, and the toast ---------- */
+.app-claycols .ccl-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-claycols .ccl-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-claycols .ccl-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-claycols .ccl-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-claycols .ccl-toast b{font-weight:500;color:var(--fg)}
+.app-claycols .ccl-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ccl-att{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes ccl-skel{from{opacity:1}to{opacity:0}}
+@keyframes ccl-val{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+@keyframes ccl-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}22%{background-color:rgb(var(--fg-rgb) / .11)}100%{background-color:rgb(var(--fg-rgb) / .045)}}
+@keyframes ccl-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes ccl-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-6px)}}
+@keyframes ccl-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes ccl-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. set up: Obsession's 4 columns attach to the view, left to right, every cell pending */
+.appx-il.play.app-claycols .ccl-c{animation:ccl-att .5s var(--ease) calc(.4s + var(--ccl-k) * .09s) both}
+
+/* 2. 48 hours on, each row reports back: pending cells give way to the facts, left to right */
+.appx-il.play.app-claycols .ccl-sk{animation:ccl-skel .22s var(--ease) calc(var(--ccl-t) + var(--ccl-k) * .07s + .06s) both}
+.appx-il.play.app-claycols .ccl-row .ccl-c>.ccl-v{animation:ccl-val .4s var(--ease) calc(var(--ccl-t) + var(--ccl-k) * .07s) both}
+/* a gap lands: the row lifts, then settles to its quiet fill, and the bar draws */
+.appx-il.play.app-claycols .ccl-gap{animation:ccl-glow 1.4s var(--ease) calc(var(--ccl-t) + .08s) both}
+.appx-il.play.app-claycols .ccl-gap::before{transform-origin:center;animation:ccl-bar .4s var(--ease) calc(var(--ccl-t) + .08s) both}
+/* the count rolls 292 to 296, 1 step as each row lands */
+.appx-il.play.app-claycols .ccl-num>:nth-child(1){animation:ccl-out .32s var(--ease) 1.9s both}
+.appx-il.play.app-claycols .ccl-num>:nth-child(2){animation:ccl-in .32s var(--ease) 1.9s both,ccl-out .32s var(--ease) 2.4s forwards}
+.appx-il.play.app-claycols .ccl-num>:nth-child(3){animation:ccl-in .32s var(--ease) 2.4s both,ccl-out .32s var(--ease) 2.9s forwards}
+.appx-il.play.app-claycols .ccl-num>:nth-child(4){animation:ccl-in .32s var(--ease) 2.9s both,ccl-out .32s var(--ease) 3.4s forwards}
+.appx-il.play.app-claycols .ccl-num>:nth-child(5){animation:ccl-in .32s var(--ease) 3.4s both}
+
+/* 3. the last row is in: the facts are back in Clay */
+.appx-il.play.app-claycols .ccl-toast{animation:ccl-toast .45s var(--ease) 4s both}

@@ -1,0 +1,166 @@
+/* app-memberfeed: Missions / Member prices / Feed. "It lands in your platform."
+   A price intelligence firm's feed: member prices read by declared test members at Italian grocery retailers
+   (Corvalle, Mirtena, Lisconte; the same Monday run as app-members, same prices and coupons),
+   1 row per observation (retailer, city and time, item, shelf price, member price with its gap, coupon, screenshot).
+   Right: where it lands. Your platform takes a webhook at your-platform.example and a daily CSV; the platform's
+   insight line reads the feed.
+   Story: 4 readings stream in on top (the list pushes down, the count climbs 1,236 to 1,240), the last one is
+   Rival B at Corvalle, 21% under its shelf price for members. The webhook lands 200 in 142 ms with a tick,
+   the CSV follows, the insight updates from 10% to 21%, the toast: Feed delivered · 1,240 observations.
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, no list selected; the declared-agent pill in the head;
+   the lock line and the toast share the foot.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38 | 12 | cards 50..338 (288) | toast 360..400.
+   Feed card 348: head 32, columns 28, body 228 = 6 rows x 38. Columns 85 | 83 | 48 | 48 | 46 | 38: an even 8px between every cell's text (macinato 250 g is 75 wide).
+   Prices read the way the page and the members screen write them: 3,19 € (the € keeps them apart from 1,240).
+   Rest state (no .play) = the finished scene. */
+@property --mf-n{syntax:"<integer>";inherits:false;initial-value:240}
+
+.app-memberfeed .ax-main{grid-template-rows:24px 288px;padding:14px;gap:12px}
+
+/* ---------- head: title, scope, the declared agent ---------- */
+.app-memberfeed .mf-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-memberfeed .mf-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-memberfeed .mf-h .ax-meta{white-space:nowrap}
+.app-memberfeed .mf-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-memberfeed .mf-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-memberfeed .mf-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- 2 cards: the feed, and where it lands ---------- */
+.app-memberfeed .mf-grid{display:grid;grid-template-columns:minmax(0,1fr) 168px;gap:12px;min-height:0}
+.app-memberfeed .mf-feed,.app-memberfeed .mf-pl{display:grid;min-height:0;overflow:hidden}
+.app-memberfeed .mf-feed{grid-template-rows:32px 28px minmax(0,1fr)}
+.app-memberfeed .mf-pl{grid-template-rows:32px auto minmax(0,1fr)}
+
+.app-memberfeed .mf-ch{display:flex;align-items:center;gap:8px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset;white-space:nowrap}
+.app-memberfeed .mf-ch b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-memberfeed .mf-n{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-cnt{counter-reset:mf-n var(--mf-n)}
+.app-memberfeed .mf-cnt::before{content:"1," counter(mf-n)}
+.app-memberfeed .mf-live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.ilwrap .app-memberfeed .mf-live svg.sig{width:10px;height:10px;color:var(--fg-2)}
+.app-memberfeed .mf-pl .mf-live{color:var(--fg-3)}
+
+/* ---------- the feed table ---------- */
+.app-memberfeed .mf-r{display:grid;grid-template-columns:85px 83px 48px 48px 46px minmax(0,1fr);align-items:center;height:38px;box-shadow:0 -1px 0 var(--line) inset}
+.app-memberfeed .mf-r>span{min-width:0;white-space:nowrap}
+.app-memberfeed .mf-r>.c{padding-left:12px}
+.app-memberfeed .mf-r>.i{padding-left:8px}
+.app-memberfeed .mf-r>.s,.app-memberfeed .mf-r>.m,.app-memberfeed .mf-r>.cp{text-align:right}
+.app-memberfeed .mf-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-memberfeed .mf-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* every cell is 2 lines (15 + 13) or sits on line 1, so values share 1 baseline across the row */
+.app-memberfeed .mf-r .c,.app-memberfeed .mf-r .i,.app-memberfeed .mf-r .m{display:grid;row-gap:2px;align-self:center}
+.app-memberfeed .mf-r .c b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-memberfeed .mf-r .i b{font:400 11.5px/15px var(--sans);color:var(--fg)}
+.app-memberfeed .mf-r small{display:flex;align-items:baseline;gap:4px;font:400 10.5px/13px var(--sans);color:var(--fg-3)}
+.app-memberfeed .mf-r .m small{justify-content:flex-end;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-r small i{font-style:normal;color:var(--fg-3);opacity:.7}
+.app-memberfeed .mf-r small time{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-r:not(.mf-th)>.s,.app-memberfeed .mf-r:not(.mf-th)>.cp{align-self:start;margin-top:4px;font:400 11px/15px var(--mono);font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-r>.s{color:var(--fg-3)}
+.app-memberfeed .mf-r .m b{font:500 11px/15px var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-r>.cp{color:var(--fg-2)}
+
+/* proof: the screenshot behind the reading */
+.app-memberfeed .mf-r>.pf{display:grid;justify-items:end;padding-right:12px}
+.app-memberfeed .mf-r:not(.mf-th)>.pf svg{box-sizing:content-box;padding:3px;border-radius:5px;color:var(--fg-3);box-shadow:0 0 0 1px var(--line) inset}
+.ilwrap .app-memberfeed .mf-r>.pf svg{width:12px;height:12px}
+
+/* the body is a window on a list that grows from the top */
+.app-memberfeed .mf-body{position:relative;min-height:0;overflow:hidden}
+.app-memberfeed .mf-list{display:grid}
+
+/* the reading the insight is about */
+.app-memberfeed .mf-r.hl{background:rgb(var(--fg-rgb) / .05)}
+.app-memberfeed .mf-r.hl .m small{color:var(--fg);font-weight:500}
+
+/* ---------- your platform ---------- */
+.app-memberfeed .mf-pb{display:grid;align-content:start;gap:12px;padding:12px}
+.app-memberfeed .mf-out{display:grid;row-gap:3px;min-width:0}
+.app-memberfeed .mf-csv{padding-top:12px;box-shadow:0 1px 0 var(--line) inset}
+.app-memberfeed .mf-ot{display:flex;align-items:center;justify-content:space-between;height:15px;margin-bottom:1px}
+.app-memberfeed .mf-ot b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-memberfeed .mf-ep{font:400 10.5px/13px var(--mono);color:var(--fg-2);white-space:nowrap}
+.app-memberfeed .mf-od{font:400 10.5px/13px var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-od b,.app-memberfeed .mf-csv .mf-od .mf-cnt{font-weight:500;color:var(--fg-2)}
+.app-memberfeed .mf-ic{width:12px;height:12px;place-items:center}
+.ilwrap .app-memberfeed .mf-ic svg.sig{width:12px;height:12px;color:var(--fg-2)}
+
+/* the insight, read from the feed */
+.app-memberfeed .mf-ins{align-self:end;display:grid;row-gap:6px;padding:12px;background:rgb(var(--fg-rgb) / .03);box-shadow:0 1px 0 var(--line) inset}
+.app-memberfeed .mf-ik{display:flex;align-items:center;gap:6px;font:500 10.5px/13px var(--sans);color:var(--fg-3)}
+.ilwrap .app-memberfeed .mf-ik svg{width:12px;height:12px}
+.app-memberfeed .mf-il{font:500 12.5px/17px var(--sans);letter-spacing:-.01em;color:var(--fg);white-space:nowrap}
+.app-memberfeed .mf-il b{font-weight:600;font-variant-numeric:tabular-nums}
+.app-memberfeed .mf-is{font:400 10.5px/13px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-memberfeed .mf-is i{font-style:normal;margin:0 3px;opacity:.7}
+.app-memberfeed .mf-is em{font-style:normal;font-family:var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+
+/* stacked states: only the last child shows at rest */
+.app-memberfeed .mf-stk{display:inline-grid;vertical-align:top}
+.app-memberfeed .mf-stk>*{grid-area:1/1}
+.app-memberfeed .mf-stk>:not(:last-child){opacity:0}
+
+/* ---------- foot: the lock line (left), the toast (right) ---------- */
+.app-memberfeed .mf-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-memberfeed .mf-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-memberfeed .mf-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-memberfeed .mf-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-memberfeed .mf-toast b{font-weight:500;color:var(--fg)}
+.app-memberfeed .mf-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes mf-in{from{opacity:0}to{opacity:1}}
+@keyframes mf-out{from{opacity:1}to{opacity:0}}
+@keyframes mf-up-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes mf-up-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes mf-tick{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:none}}
+@keyframes mf-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes mf-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes mf-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes mf-flash{from{background-color:rgb(var(--fg-rgb) / .08)}to{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes mf-flash-hl{from{background-color:rgb(var(--fg-rgb) / .11)}to{background-color:rgb(var(--fg-rgb) / .05)}}
+@keyframes mf-glow{from{background-color:rgb(var(--fg-rgb) / .09)}to{background-color:rgb(var(--fg-rgb) / .03)}}
+/* the list pushes down 1 row (38px) per reading: holds between, the DS ease on each push. 2.67s from 0. */
+@keyframes mf-feed{
+  0%{transform:translateY(-152px)}
+  28.09%{transform:translateY(-152px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  43.82%{transform:translateY(-114px)}
+  46.82%{transform:translateY(-114px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  62.55%{transform:translateY(-76px)}
+  65.54%{transform:translateY(-76px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  81.27%{transform:translateY(-38px)}
+  84.27%{transform:translateY(-38px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  100%{transform:none}}
+@keyframes mf-count{0%{--mf-n:236} 31.8%{--mf-n:237} 50.6%{--mf-n:238} 69.3%{--mf-n:239} 88%{--mf-n:240} 100%{--mf-n:240}}
+
+/* 1. readings stream in on top; each lands with a brief light, the count climbs */
+.appx-il.play.app-memberfeed .mf-list{animation:mf-feed 2.67s linear 0s both}
+.appx-il.play.app-memberfeed .mf-r.n>*{animation:mf-in .4s var(--ease) var(--t) both}
+.appx-il.play.app-memberfeed .mf-r.n{animation:mf-flash 1.4s var(--ease) var(--t) forwards}
+.appx-il.play.app-memberfeed .mf-r.n.hl{animation:mf-flash-hl 1.6s var(--ease) var(--t) forwards}
+.app-memberfeed .mf-r.n1{--t:.75s}
+.app-memberfeed .mf-r.n2{--t:1.25s}
+.app-memberfeed .mf-r.n3{--t:1.75s}
+.app-memberfeed .mf-r.n4{--t:2.25s}
+.appx-il.play.app-memberfeed .mf-cnt{animation:mf-count 2.67s steps(1,end) 0s both}
+
+/* 2. the delivery lands: the webhook's mark turns while it sends, then the tick; the CSV follows */
+.appx-il.play.app-memberfeed .mf-wh .mk .sig-rot{animation:mf-spin 1.45s linear 0s 2}
+.appx-il.play.app-memberfeed .mf-wh .mk .sig-orb{animation:mf-spinr 1.45s linear 0s 2}
+.appx-il.play.app-memberfeed .mf-wh .mk{animation:mf-out .2s var(--ease) 2.9s both}
+.appx-il.play.app-memberfeed .mf-wh .ax-tick{animation:mf-tick .45s var(--snap) 2.95s both}
+.appx-il.play.app-memberfeed .mf-wh .mf-od .mf-stk>:first-child{animation:mf-up-out .3s var(--ease) 2.9s both}
+.appx-il.play.app-memberfeed .mf-wh .mf-od .mf-stk>:last-child{animation:mf-up-in .35s var(--ease) 2.95s both}
+.appx-il.play.app-memberfeed .mf-csv .mk{animation:mf-out .2s var(--ease) 3.15s both}
+.appx-il.play.app-memberfeed .mf-csv .ax-tick{animation:mf-tick .45s var(--snap) 3.2s both}
+
+/* 3. the insight reads the new row: 10% becomes 21%, at Corvalle */
+.appx-il.play.app-memberfeed .mf-ins{animation:mf-glow 1.6s var(--ease) 3.7s forwards}
+.appx-il.play.app-memberfeed .mf-ins .mf-stk>:first-child{animation:mf-up-out .3s var(--ease) 3.7s both}
+.appx-il.play.app-memberfeed .mf-ins .mf-stk>:last-child{animation:mf-up-in .35s var(--ease) 3.75s both}
+
+/* 4. the toast */
+.appx-il.play.app-memberfeed .mf-toast{animation:mf-toast .5s var(--ease) 4.5s both}

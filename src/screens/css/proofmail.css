@@ -1,0 +1,157 @@
+/* app-proofmail: Your agency / Missions / Prospect intelligence, the opener. "Our proof and your mockup, in 1 email."
+   The drafted 1:1 from the client's sender (Sam, Client A) to Hannah Price at Tidewren Swim, with AM as the approver.
+   The facts match the page's opener beside it: opted in for texts on 15 Sep; 3 emails in 2 days, 0 texts; the mockup is
+   Tidewren's first text, 10% off with TIDE10. Under the 3 line opener: the proof (the public sign up with text consent ticked,
+   and the test phone's empty 48 hours) and the agency's mockup of the fix (a text thread).
+   Story: the card settles; the 2 captures attach, then the mockup; the opener types in line by line (a caret leads it);
+   the pointer clicks Approve; it becomes Sent, the mark lands; the toast says the opener went and the proof link is in Clay.
+   Chrome is canonical (APP-SPEC, Product chrome): Your agency, Missions selected, no client selected; plain h2, meta,
+   the declared-agent pill; the lock line at the content foot, bottom left, level with app-board's toast at the bottom right.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, card 50..350 (fields 3 x 28, body 72, attachments 104,
+   footer 40), note and toast 360..400. Approve 428..528 x 318..342.
+   Rest state (no .play) = the finished scene: attached, typed, sent, toast up. */
+
+.app-proofmail .ax-main{grid-template-rows:24px 300px;gap:12px;padding:14px}
+
+/* ---------- head: plain title, the prospect, the declared agent ---------- */
+.app-proofmail .pfm-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-proofmail .pfm-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-proofmail .pfm-meta{font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-proofmail .pfm-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-proofmail .pfm-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-proofmail .pfm-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the email ---------- */
+.app-proofmail .pfm-mail{display:grid;grid-template-rows:84px 72px 104px 40px;min-height:0;overflow:hidden}
+
+/* who and what: From (and, at the right, who approves), To, Subject */
+.app-proofmail .pfm-fields{display:grid;grid-template-rows:repeat(3,28px)}
+.app-proofmail .pfm-fr{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;padding:0 14px;box-shadow:0 -1px 0 var(--line) inset;white-space:nowrap}
+.app-proofmail .pfm-k{font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-proofmail .pfm-v{display:flex;align-items:center;gap:7px;min-width:0}
+.app-proofmail .pfm-v b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-proofmail .pfm-pp{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;flex:none;font:600 9px/1 var(--sans);color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-proofmail .pfm-ad{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-proofmail .pfm-rv{display:flex;align-items:center;gap:7px;font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-proofmail .pfm-rv .pfm-pp{color:var(--fg)}
+
+/* the 3 line opener: each line is uncovered by a sliding cover whose leading edge is the caret */
+.app-proofmail .pfm-bd{display:grid;align-content:start;padding:10px 14px 8px}
+.app-proofmail .pfm-ln{height:18px;font:400 11.5px/18px var(--sans);color:var(--fg);white-space:nowrap}
+.app-proofmail .pfm-tx{position:relative;display:inline-block;vertical-align:top;padding-right:3px;overflow:hidden}
+.app-proofmail .pfm-cv{position:absolute;left:-1px;top:0;bottom:0;width:calc(100% + 1px);background:var(--panel-2);transform:translateX(101%)}
+.app-proofmail .pfm-cv::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:1.5px;border-radius:1px;background:var(--fg);opacity:0}
+
+/* the attachments: the proof (2 captures) and, set apart, the agency's mockup */
+.app-proofmail .pfm-at{display:flex;gap:25px;padding:0 14px}
+.app-proofmail .pfm-g{position:relative;display:grid;grid-template-rows:13px auto;row-gap:6px;align-content:start}
+.app-proofmail .pfm-g2::before{content:"";position:absolute;left:-13px;top:1px;bottom:9px;width:1px;background:var(--line)}
+.app-proofmail .pfm-lab{display:flex;align-items:center;gap:7px;font:400 10.5px/13px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-proofmail .pfm-lab b{font-weight:500;color:var(--fg-2)}
+.app-proofmail .pfm-tiles{display:grid;grid-template-columns:156px 156px;gap:8px}
+.app-proofmail .pfm-t{margin:0;display:grid;grid-template-rows:58px 13px;row-gap:5px;width:156px;min-width:0}
+.app-proofmail .pfm-t figcaption{display:flex;align-items:baseline;gap:6px;font:400 11px/13px var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-proofmail .pfm-t time{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-proofmail .pfm-shot{height:58px}
+.app-proofmail .pfm-pg{position:relative;min-height:0}
+
+/* capture 1: the public sign up popup, the number entered and text consent ticked */
+.app-proofmail .pfm-pg1{display:grid;place-items:center}
+.app-proofmail .pfm-pg1 .pfm-bk{position:absolute;left:8px;top:7px;width:30px;height:34px;background:#DCD8D0}
+.app-proofmail .pfm-pg1 .pfm-bl{position:absolute;right:8px;top:9px;width:34px;height:4px;background:#DCD8D0}
+.app-proofmail .pfm-pop{position:relative;display:grid;gap:5px;padding:6px 8px 6px 7px;border-radius:3px;background:#F7F6F2;box-shadow:0 0 0 1px #D2CEC6,0 2px 6px rgb(30 29 26 / .14)}
+.app-proofmail .pfm-ok{display:flex;align-items:center;gap:5px}
+.app-proofmail .pfm-ok b{font:500 10.5px/12px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-proofmail .pfm-pop .pfm-tk{position:relative;width:9px;height:9px;flex:none;border-radius:2px;background:#2B2925}
+.app-proofmail .pfm-pop .pfm-tk::after{content:"";position:absolute;left:3px;top:1.5px;width:2px;height:4px;border:solid #F7F6F2;border-width:0 1.2px 1.2px 0;transform:rotate(45deg)}
+.app-proofmail .pfm-pop .pfm-fld{position:relative;height:9px;border-radius:2px;background:#ECEAE4;box-shadow:0 0 0 1px #D2CEC6 inset}
+.app-proofmail .pfm-pop .pfm-fld::after{content:"";position:absolute;left:4px;top:3.5px;width:58%;height:2px;border-radius:1px;background:#8C887F}
+
+/* capture 2: the test phone, day by day: no texts on any of the 3 days; the 3 emails as a side note */
+.app-proofmail .pfm-pg2{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:8px;padding:0 9px;font:400 10.5px/12px var(--mono);color:#56534C}
+.app-proofmail .pfm-days{display:grid;grid-template-columns:38px minmax(0,1fr);grid-auto-rows:12px;align-items:center;column-gap:6px;row-gap:3px;white-space:nowrap}
+.app-proofmail .pfm-days time{color:#77736B}
+.app-proofmail .pfm-pg2 .pfm-days i{height:0;border-radius:0;background:none;border-top:1px dashed #ABA69C}
+.app-proofmail .pfm-sum{display:grid;gap:3px;align-self:stretch;align-content:center;padding-left:8px;box-shadow:1px 0 0 #CFCBC3 inset;white-space:nowrap}
+.app-proofmail .pfm-sum b{font-weight:500;color:#1E1D1A}
+.app-proofmail .pfm-sum span{color:#77736B}
+
+/* the mockup: Tidewren's first text, drawn as a designed thread rather than a captured page (no browser bar) */
+.appx-il.app-proofmail .ax-shot.pfm-mock{grid-template-rows:minmax(0,1fr);background:#F3F1EC}
+.app-proofmail .pfm-mock::before{display:none}
+.app-proofmail .pfm-pg3{display:grid;align-content:center;justify-items:start;row-gap:3px;padding:0 9px}
+.app-proofmail .pfm-day{justify-self:center;font:400 10.5px/12px var(--mono);color:#77736B}
+.app-proofmail .pfm-bub{display:block;padding:4px 8px;border-radius:9px 9px 9px 3px;background:#DFDBD3;font:400 10.5px/12px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-proofmail .pfm-bub b{font-weight:600}
+
+/* the decision: Edit and Approve; Sent waits under Approve (same size), so the click only has to fade Approve away */
+.app-proofmail .pfm-ft{display:flex;align-items:center;justify-content:flex-end;padding:0 14px;box-shadow:0 1px 0 var(--line) inset}
+.app-proofmail .pfm-go{position:relative;display:grid;width:100px;height:24px}
+.app-proofmail .pfm-go>.pfm-ap,.app-proofmail .pfm-go>.pfm-sent{grid-area:1/1;justify-self:end}
+.app-proofmail .pfm-edit{position:absolute;right:106px;top:0;opacity:0;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-proofmail .pfm-ap{position:relative;z-index:1;width:100px;justify-content:center;opacity:0}
+.app-proofmail .pfm-sent{display:flex;align-items:center;justify-content:center;gap:6px;width:100px;height:24px;border-radius:7px;white-space:nowrap;
+  font:500 11.5px/1 var(--sans);color:var(--fg-2);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-proofmail .pfm-sent b{font-weight:600;color:var(--fg)}
+.app-proofmail .pfm-sent .ax-mono{font-size:10.5px;color:var(--fg-3)}
+.ilwrap .app-proofmail .pfm-sent svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* the red line, 1 quiet line at the content foot, bottom left, level with the toast (app-board's pattern) */
+.app-proofmail .pfm-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-proofmail .pfm-note svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* toast, app-board's pattern: bottom right, under the card */
+.app-proofmail .pfm-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-proofmail .pfm-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-proofmail .pfm-toast b{font-weight:500;color:var(--fg)}
+.app-proofmail .pfm-toast p span{color:var(--fg-3)}
+
+/* pointer (the base's ".appx svg{width:auto}" outranks .ax-ptr, so size it here); hidden at rest */
+.ilwrap .app-proofmail .appx svg.pfm-ptr{width:16px;height:16px}
+.app-proofmail .pfm-ptr{transform-origin:3px 1.5px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes pfm-show{from{opacity:0}to{opacity:1}}
+@keyframes pfm-hide{from{opacity:1}to{opacity:0}}
+@keyframes pfm-attach{from{opacity:0;transform:translateY(6px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pfm-type{from{transform:translateX(0)}to{transform:translateX(101%)}}
+@keyframes pfm-caret{0%,100%{opacity:1}}
+@keyframes pfm-press{0%,100%{transform:none}45%{transform:scale(.96)}}
+@keyframes pfm-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes pfm-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* 1.7s from 4.4s: rises from the mockup, clicks Approve at 5.11s, eases off up and right, gone by 6.1s */
+@keyframes pfm-ptr{
+  0%{opacity:0;transform:translate(372px,296px)}
+  12%{opacity:1}
+  42%{transform:translate(475px,328px) scale(1)}
+  46%{transform:translate(475px,328px) scale(.9)}
+  52%{transform:translate(475px,328px) scale(1)}
+  78%{opacity:1;transform:translate(506px,306px)}
+  100%{opacity:0;transform:translate(510px,300px)}}
+
+/* 1. the proof attaches, then the mockup */
+.appx-il.play.app-proofmail .pfm-g1 .pfm-lab{animation:pfm-show .35s var(--ease) .5s both}
+.appx-il.play.app-proofmail .pfm-t1{animation:pfm-attach .5s var(--ease) .56s both}
+.appx-il.play.app-proofmail .pfm-t2{animation:pfm-attach .5s var(--ease) .68s both}
+.appx-il.play.app-proofmail .pfm-g2::before{animation:pfm-show .35s var(--ease) .86s both}
+.appx-il.play.app-proofmail .pfm-g2 .pfm-lab{animation:pfm-show .35s var(--ease) .9s both}
+.appx-il.play.app-proofmail .pfm-t3{animation:pfm-attach .5s var(--ease) .96s both}
+
+/* 2. the opener types in, about 18ms a character (54, 42, 62), the caret leading */
+.appx-il.play.app-proofmail .pfm-l1 .pfm-cv{animation:pfm-type .97s steps(54,end) 1.45s both}
+.appx-il.play.app-proofmail .pfm-l1 .pfm-cv::before{animation:pfm-caret .97s linear 1.45s}
+.appx-il.play.app-proofmail .pfm-l2 .pfm-cv{animation:pfm-type .76s steps(42,end) 2.55s both}
+.appx-il.play.app-proofmail .pfm-l2 .pfm-cv::before{animation:pfm-caret .76s linear 2.55s}
+.appx-il.play.app-proofmail .pfm-l3 .pfm-cv{animation:pfm-type 1.12s steps(62,end) 3.42s both}
+.appx-il.play.app-proofmail .pfm-l3 .pfm-cv::before{animation:pfm-caret 1.12s linear 3.42s}
+
+/* 3. the pointer approves: Edit steps back, Approve presses and becomes Sent, the mark lands */
+.appx-il.play.app-proofmail .pfm-ptr{animation:pfm-ptr 1.7s var(--ease) 4.4s both}
+.appx-il.play.app-proofmail .pfm-edit{animation:pfm-show .01s linear both,pfm-hide .2s var(--ease) 5.22s forwards}
+.appx-il.play.app-proofmail .pfm-ap{animation:pfm-show .01s linear both,pfm-press .2s ease-out 5.11s,pfm-hide .3s var(--ease) 5.26s forwards}
+.appx-il.play.app-proofmail .pfm-sent .sig-sq{animation:pfm-home .55s var(--snap) 5.36s both}
+.appx-il.play.app-proofmail .pfm-sent .sig-gap{animation:pfm-show .3s var(--ease) 5.58s both}
+
+/* 4. the toast: the opener went, the proof link is in Clay */
+.appx-il.play.app-proofmail .pfm-toast{animation:pfm-toast .45s var(--ease) 5.74s both}
