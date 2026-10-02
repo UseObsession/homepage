@@ -1,11 +1,17 @@
 /* =============================================================================================
-   OBSESSION FORMS  v1.1  (2 Oct 2026)
+   OBSESSION FORMS  v1.2  (2 Oct 2026)
    Text field, affixed field, pill field, the free-report expansion, thank-you panel, textarea,
    select, search, checkbox, radio, switch, segmented control (the look switch included), option
    chips, field and form messages, and the error summary.
 
-   Load order: tokens.css, motion.css, buttons.css, forms.css.
+   Load order: tokens.css, motion.css, buttons.css, forms.css. navigation.css adds the tooltip that
+   names icon segments; without it the segments keep their names and lose only the visible tip.
    The pill's action is the Buttons chapter's .ob-btn; this file only sizes it for the pill.
+
+   One owner per component
+     This file owns the look switch. It is .ob-segmented.ob-segmented--sm.ob-segmented--icon with
+     .ob-look-swatch glyphs, the only build and the only swatch name. navigation.css places it in the
+     nav (.ob-nav__end > .ob-segmented) and never restyles it. Buttons owns no segmented control.
    No colour is set here: every colour is an --ob- token. Forced-colours fallbacks use system
    colour keywords only.
 
@@ -27,15 +33,16 @@
   --ob-field-font-size:      16px;    /* never below 16px: iOS zooms the page under it */
   --ob-field-leading:        1.25;
   --ob-choice-size:          18px;    /* checkbox box and radio ring */
-  --ob-radio-dot:            8px;
-  --ob-switch-w:             40px;
-  --ob-switch-h:             24px;
-  --ob-switch-thumb:         16px;
-  --ob-switch-inset:         4px;
-  --ob-pill-pad:             4px;
-  --ob-pill-input-pad:       16px;
-  --ob-chip-h:               32px;
+  --ob-radio-dot:            var(--ob-sq-md);
+  --ob-switch-w:             var(--ob-control-md);
+  --ob-switch-h:             var(--ob-control-xs);
+  --ob-switch-thumb:         var(--ob-icon-md);
+  --ob-switch-inset:         var(--ob-space-4);
+  --ob-pill-pad:             var(--ob-space-6);   /* 48 + 2 x 6 + 2 = 62px, the waitlist's pill */
+  --ob-pill-input-pad:       var(--ob-space-16);
+  --ob-option-chip-h:        var(--ob-control-sm);
   --ob-chip-glyph:           12px;
+  --ob-look-swatch:          10px;
   --ob-segmented-inset:      3px;     /* plus the 1px edge: a 4px inset */
   --ob-chevron-size:         7px;
   --ob-chevron-inset:        3px;     /* the turned chevron's centre lands 15px from the edge */
@@ -95,11 +102,14 @@
   white-space: nowrap;
 }
 
-/* The message slot is reserved, so an error never moves what sits below the field.
-   8px under 40 and 48px fields; 6px under 32px fields. */
+/* The message slot is reserved, so an error never moves what sits below the field. It holds 1 line,
+   so a field message is 36 characters or fewer: the narrowest field drawn, 255px, fits that.
+   8px under 40 and 48px fields; 6px under 32px fields. The count, when there is one, makes its own
+   column at the right; without it the message has the full width. */
 .ob-field-foot {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-columns: auto;
   align-items: start;
   column-gap: var(--ob-space-12);
   min-height: calc(var(--ob-type-caption-size) * var(--ob-type-caption-leading));
@@ -136,9 +146,25 @@
 .ob-field-error::before   { border: var(--ob-border-strong) solid currentColor; }
 .ob-field-success::before { background: currentColor; }
 .ob-field-error[hidden],
-.ob-field-success[hidden] { display: none; }
-/* The error takes the helper's slot until it is fixed. */
-.ob-field-foot:has(> .ob-field-error:not([hidden])) > .ob-field-help,
+.ob-field-success[hidden],
+.ob-field-pending[hidden] { display: none; }
+/* Checking: a lookup on the server (a store address) shows a 12px ring and the word, in the third
+   ink, only once it outlasts --ob-delay-busy. The success or error line then takes its place. */
+.ob-field-pending {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  animation: ob-fade-in var(--ob-dur-fast) var(--ob-ease-out) var(--ob-delay-busy) backwards;
+}
+.ob-field-pending.is-replay { animation-name: ob-fade-in-r; }
+.ob-field-pending .ob-sig { --ob-sig-size: 12px; }
+/* An error, a success or a check takes the helper's slot while it shows. */
+.ob-field-foot:has(> :is(.ob-field-error, .ob-field-success, .ob-field-pending):not([hidden])) > .ob-field-help,
 .ob-field.is-error .ob-field-help { display: none; }
 
 .ob-field-count {
@@ -184,7 +210,7 @@
   padding: 0 var(--ob-field-pad, var(--ob-control-pad-sm));
   border: var(--ob-border-hair) solid var(--ob-field-edge);
   border-radius: var(--ob-field-radius, var(--ob-radius-sm));
-  background-color: var(--ob-field-bg);
+  background-color: var(--ob-field-bg-solid);   /* opaque, so the edge reads 3:1 inside and out on any card */
   color: var(--ob-text);
   font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans);
   letter-spacing: 0;
@@ -229,20 +255,21 @@
   transition-duration: var(--ob-dur-instant);
 }
 
-/* Disabled: a tinted box with a firmer edge, so the shape stays. The value stays legible in the
-   second ink; only an empty field shows the placeholder ink. It leaves the tab order. */
+/* Disabled: the fill drops to --ob-field-bg-disabled and the edge goes quieter, so the shape stays and
+   the box reads off. The value stays legible in the third ink; an empty field shows the disabled ink,
+   as Buttons do. It leaves the tab order. */
 :is(.ob-input, .ob-textarea, .ob-select-input):is(:disabled, .is-disabled) {
   border-color: var(--ob-line-strong);
-  background-color: var(--ob-fill-subtle);
-  color: var(--ob-text-2);
-  -webkit-text-fill-color: var(--ob-text-2);
+  background-color: var(--ob-field-bg-disabled);
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
   box-shadow: none;
   cursor: not-allowed;
   opacity: 1;
 }
 :is(.ob-input, .ob-textarea):is(:disabled, .is-disabled)::placeholder {
-  color: var(--ob-text-3);
-  -webkit-text-fill-color: var(--ob-text-3);
+  color: var(--ob-text-disabled);
+  -webkit-text-fill-color: var(--ob-text-disabled);
   opacity: 1;
 }
 
@@ -254,15 +281,16 @@
 }
 :is(.ob-input, .ob-textarea):is([readonly], .is-readonly):is(:focus, .is-focus) { border-color: var(--ob-line-strong); }
 
-/* Browser autofill keeps the theme: the field's own fill, flattened, and the theme ink. */
-.ob-input:-webkit-autofill,
+/* Browser autofill keeps the theme: the browser's tint is painted over with the field's own fill and
+   the theme ink, so an autofilled field looks filled, nothing more. .is-autofill is the mirror. */
+.ob-input:is(:-webkit-autofill, .is-autofill),
 .ob-affix-input:-webkit-autofill,
 .ob-pill-input:-webkit-autofill {
   -webkit-text-fill-color: var(--ob-text);
   caret-color: var(--ob-text);
   box-shadow: 0 0 0 100vmax var(--ob-field-bg-solid) inset;
 }
-.ob-input:-webkit-autofill:is([aria-invalid="true"], .is-error) {
+.ob-input:is(:-webkit-autofill, .is-autofill):is([aria-invalid="true"], .is-error) {
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset, 0 0 0 100vmax var(--ob-field-bg-solid) inset;
 }
 
@@ -311,12 +339,12 @@
 }
 .ob-select-input:is(:invalid, .is-placeholder) { color: var(--ob-placeholder); }
 .ob-select-input:is(:disabled, .is-disabled):is(:invalid, .is-placeholder) {
-  color: var(--ob-text-3);
-  -webkit-text-fill-color: var(--ob-text-3);
+  color: var(--ob-text-disabled);
+  -webkit-text-fill-color: var(--ob-text-disabled);
 }
 .ob-select-input option { color: var(--ob-text); background-color: var(--ob-overlay); }
 .ob-select-input option:disabled { color: var(--ob-text-3); }
-.ob-select:is(.is-disabled, :has(> .ob-select-input:disabled))::after { border-color: var(--ob-text-3); }
+.ob-select:is(.is-disabled, :has(> .ob-select-input:disabled))::after { border-color: var(--ob-text-disabled); }
 /* While the list is open the chevron turns over (browsers with :open). */
 @supports selector(:open) {
   .ob-select:has(> .ob-select-input:open)::after { rotate: 225deg; translate: 0 -25%; }
@@ -338,7 +366,7 @@
   min-height: calc(var(--ob-touch) * var(--ob-target-touch));
   border: var(--ob-border-hair) solid var(--ob-field-edge);
   border-radius: var(--ob-field-radius, var(--ob-radius-sm));
-  background-color: var(--ob-field-bg);
+  background-color: var(--ob-field-bg-solid);
   color: var(--ob-text);
   overflow: hidden;
   cursor: text;
@@ -406,26 +434,27 @@
 .ob-affix-field:is(.is-readonly, :has(> [readonly])):focus-within { border-color: var(--ob-line-strong); }
 .ob-affix-field:is(.is-disabled, :has(> :disabled)) {
   border-color: var(--ob-line-strong);
-  background-color: var(--ob-fill-subtle);
+  background-color: var(--ob-field-bg-disabled);
   cursor: not-allowed;
 }
-.ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix { color: var(--ob-text-3); }
+.ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix { color: var(--ob-text-disabled); }
 .ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix-input {
-  color: var(--ob-text-2);
-  -webkit-text-fill-color: var(--ob-text-2);
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
   cursor: not-allowed;
 }
 .ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix-input::placeholder {
-  color: var(--ob-text-3);
-  -webkit-text-fill-color: var(--ob-text-3);
+  color: var(--ob-text-disabled);
+  -webkit-text-fill-color: var(--ob-text-disabled);
 }
 
 
 /* =============================================================================================
    4. PILL FIELD: 1 field and 1 action in 1 pill (waitlist, free report)
    The pill is a <form novalidate>. .ob-pill-form is a size container: below 420px of its own width
-   the action drops under the field. The radius is the action's plus the padding and edge (29px), so
+   the action drops under the field. The radius is the action's plus the padding and edge (31px), so
    the pill is fully round at rest and stays concentric when it stacks or expands.
+   A visible .ob-label.ob-pill-label names the input above the pill, lined up with the typed text.
    ============================================================================================= */
 .ob-pill-form {
   container: ob-pill / inline-size;
@@ -437,6 +466,7 @@
   min-width: 0;
   margin: 0;
 }
+.ob-pill-label { padding-left: calc(var(--ob-pill-pad) + var(--ob-border-hair) + var(--ob-pill-input-pad)); }
 .ob-pill-field {
   --ob-pill-radius: calc(var(--ob-control-lg) / 2 + var(--ob-pill-pad) + var(--ob-border-hair));
   position: relative;
@@ -450,7 +480,7 @@
   padding: var(--ob-pill-pad);
   border: var(--ob-border-hair) solid var(--ob-field-edge);
   border-radius: var(--ob-pill-radius);
-  background: var(--ob-sheen), var(--ob-field-bg);
+  background: var(--ob-sheen), var(--ob-field-bg-solid);
   box-shadow: var(--ob-highlight), var(--ob-shadow-2);
   cursor: text;
   transition-property: border-color, box-shadow;
@@ -510,24 +540,25 @@
 .ob-pill-field:is(.is-readonly, :has(.ob-pill-input[readonly])) {
   border-color: var(--ob-line);
   cursor: default;
-  transition-delay: var(--ob-delay-busy, 300ms);
+  transition-delay: var(--ob-delay-busy);
 }
 .ob-pill-field:is(.is-loading, :has([aria-busy="true"])) { cursor: progress; }
 /* Disabled: the list is closed. The fill goes quiet, the edge stays visible, the value stays legible. */
 .ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) {
   border-color: var(--ob-line-strong);
-  background: var(--ob-fill-subtle);
+  background: var(--ob-field-bg-disabled);
   box-shadow: none;
   cursor: not-allowed;
 }
+.ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) .ob-pill-affix { color: var(--ob-text-disabled); }
 .ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) .ob-pill-input {
-  color: var(--ob-text-2);
-  -webkit-text-fill-color: var(--ob-text-2);
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
   cursor: not-allowed;
 }
 .ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) .ob-pill-input::placeholder {
-  color: var(--ob-text-3);
-  -webkit-text-fill-color: var(--ob-text-3);
+  color: var(--ob-text-disabled);
+  -webkit-text-fill-color: var(--ob-text-disabled);
 }
 
 /* The ring moves from the input to the pill (and from the input to the affixed field's edge). */
@@ -543,7 +574,7 @@
 
 /* The action is the Buttons chapter's primary, .ob-btn.ob-btn--lg, at the pill's 48px.
    Its colours, lift, press, busy and done states all come from buttons.css. Its focus ring is drawn
-   inside, in the label's ink, so it never lands on the pill's edge 4px away. */
+   inside, in the label's ink, so it never lands on the pill's edge 6px away. */
 .ob-btn.ob-pill-action {
   --ob-btn-c-h: var(--ob-control-lg);
   flex: none;
@@ -554,7 +585,7 @@
   outline-offset: calc(var(--ob-focus-width) * -2);
 }
 
-/* Message slot under the pill: indented to the typed text (4px padding + 1px edge + 16px). */
+/* Message slot under the pill: indented to the typed text (6px padding + 1px edge + 16px = 23px). */
 .ob-pill-foot {
   display: grid;
   gap: var(--ob-space-4);
@@ -564,8 +595,12 @@
 .ob-pill-foot:has(> .ob-field-error:not([hidden]), > .ob-form-error:not(:empty)) > .ob-field-help,
 .ob-pill-form.is-error .ob-pill-foot > .ob-field-help { display: none; }
 
-/* Free report, step 2: name and email open inside the pill, under the address. The action stays
-   in the pill and its label changes; Enter sends from any field. Pair with .ob-anim-expand.is-open. */
+/* Free report, step 2: name and email open inside the pill, under the address. Markup puts
+   .ob-pill-more before the action, and the action takes its own row after the new fields, so the
+   screen, the Tab order and the reading order all run address, name, email, Send. Its label changes;
+   Enter sends from any field. Pair with .ob-anim-expand.is-open: rows open 0fr to 1fr in 240ms, the one
+   layout animation Motion allows, for expanders. The fields' reserved message slots and the 4px row gap
+   make the space above the action, so the inner box adds none at the bottom. */
 .ob-pill-more {
   flex: 1 0 100%;
   min-width: 0;
@@ -573,7 +608,11 @@
 .ob-pill-more-in {
   display: grid;
   gap: var(--ob-space-12);
-  padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-12);
+  padding: var(--ob-space-8) var(--ob-space-12) 0;
+}
+.ob-btn.ob-pill-action:where(.ob-pill-more ~ *) {
+  flex-basis: auto;
+  margin-inline-start: auto;
 }
 .ob-pill-more .ob-form-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 /* A ghost action under the address lines its label up with the typed text. */
@@ -583,15 +622,21 @@
 @container ob-pill (max-width: 420px) {
   .ob-btn.ob-pill-action { flex-basis: 100%; }
 }
-@container ob-pill (max-width: 460px) {
+/* 2 columns only at the pill's full 560px, where each field is 255px: below that a field message
+   would wrap, so the fields stack. */
+@container ob-pill (max-width: 559.98px) {
   .ob-pill-more .ob-form-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@container ob-pill (max-width: 460px) {
   .ob-pill-more-in { padding-inline: var(--ob-space-8); }
 }
 
 
 /* =============================================================================================
    5. THANK-YOU PANEL: the pill form's success state
-   Enter with .ob-anim-rise.is-slow; the mark runs .is-play once. Focus moves to the title.
+   Enter with .ob-anim-rise.is-slow; the mark runs .is-play once. Focus moves to the title, which is a
+   real heading (h2 or h3, by the page) with tabindex="-1". Specimens use a <p> so the guideline does
+   not repeat the heading.
    ============================================================================================= */
 .ob-confirm {
   box-sizing: border-box;
@@ -659,21 +704,23 @@
    role="search" (or <search>) goes on the form or region that holds the field, once per area.
    ============================================================================================= */
 :where(.ob-kbd) {
-  /* navigation.css owns the key cap; this zero-specificity copy matches it for standalone use. */
+  /* navigation.css owns the key cap; this zero-specificity copy repeats its declarations exactly. */
   display: inline-grid;
   place-items: center;
   flex: none;
   min-width: 20px;
   height: 20px;
   margin: 0;
-  padding: 0 5px;
+  padding: 0 var(--ob-space-6);
   border-radius: var(--ob-radius-xs);
   background-color: var(--ob-fill);
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-strong);
   color: var(--ob-text-2);
   font: var(--ob-type-mono-sm);
   line-height: 1;
+  letter-spacing: 0;
   white-space: nowrap;
+  vertical-align: middle;
 }
 .ob-search {
   --ob-search-clear: max(var(--ob-target-min), calc(var(--ob-touch) * var(--ob-target-touch)));
@@ -739,7 +786,7 @@
   -webkit-tap-highlight-color: transparent;
   transition:
     opacity var(--ob-dur-fast) var(--ob-ease-out),
-    visibility 0s linear var(--ob-dur-fast),
+    visibility var(--ob-dur-instant) var(--ob-ease-linear) var(--ob-dur-fast),
     background-color var(--ob-dur-base) var(--ob-ease-out),
     color var(--ob-dur-base) var(--ob-ease-out);
 }
@@ -758,14 +805,16 @@
 .ob-search.is-filled > .ob-search-clear {
   opacity: 1;
   visibility: visible;
-  transition-delay: 0s;
+  transition-delay: var(--ob-dur-instant);
 }
 @media (hover: hover) and (pointer: fine) {
   .ob-search-clear:hover { background-color: var(--ob-state-hover); color: var(--ob-text); }
 }
 .ob-search-clear:active { background-color: var(--ob-state-pressed); }
 .ob-search-clear:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 0; }
-.ob-search:is(.is-disabled, :has(> :disabled)) > :is(.ob-search-glyph, .ob-kbd) { opacity: .6; }
+/* Disabled: the glyph takes the disabled ink and the key hint goes, because the key does nothing. */
+.ob-search:is(.is-disabled, :has(> :disabled)) > .ob-search-glyph { color: var(--ob-text-disabled); }
+.ob-search:is(.is-disabled, :has(> :disabled)) > .ob-kbd { display: none; }
 
 
 /* =============================================================================================
@@ -795,8 +844,8 @@
   color: var(--ob-text-2);
   text-wrap: pretty;
 }
-.ob-choice:is(.is-disabled, :has(:disabled)) { color: var(--ob-text-3); cursor: not-allowed; }
-.ob-choice:is(.is-disabled, :has(:disabled)) .ob-choice-desc { color: var(--ob-text-3); }
+.ob-choice:is(.is-disabled, :has(:disabled)) { color: var(--ob-text-disabled); cursor: not-allowed; }
+.ob-choice:is(.is-disabled, :has(:disabled)) .ob-choice-desc { color: var(--ob-text-disabled); }
 
 .ob-group {
   display: grid;
@@ -825,6 +874,7 @@
 }
 .ob-group--inline .ob-group-items { display: flex; flex-wrap: wrap; gap: var(--ob-group-row-gap) var(--ob-space-24); }
 .ob-group-items--nested { padding-left: calc(var(--ob-choice-size) + var(--ob-space-12)); }
+/* A group's error sits under its options, in the same reserved slot as a field's. */
 .ob-group > .ob-field-foot { margin-top: calc(var(--ob-space-4) * -1); }
 
 
@@ -849,13 +899,14 @@
   margin: 0;
   border: var(--ob-border-strong) solid var(--ob-line-ui);
   border-radius: var(--ob-radius-glyph);
-  background-color: var(--ob-field-bg);
+  background-color: var(--ob-field-bg-solid);
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
+  /* The fill lands in 100ms; the edge answers hover in 160ms, like every field edge. */
   transition:
     background-color var(--ob-dur-fast) var(--ob-ease-out),
-    border-color var(--ob-dur-fast) var(--ob-ease-out);
+    border-color var(--ob-dur-base) var(--ob-ease-out);
 }
 .ob-check-mark {
   position: absolute;
@@ -899,12 +950,16 @@
   outline: var(--ob-focus-width) solid var(--ob-focus);
   outline-offset: var(--ob-focus-offset);
 }
-.ob-check-input:is([aria-invalid="true"], .is-error):not(:checked) { border-color: var(--ob-danger); }
+/* Error: danger and 2px, like a field's error edge, so it never rests on colour alone. */
+.ob-check-input:is([aria-invalid="true"], .is-error):not(:checked) {
+  border-width: var(--ob-border-focus);
+  border-color: var(--ob-danger);
+}
 
 .ob-check-input:disabled,
 .ob-choice.is-disabled .ob-check-input {
   border-color: var(--ob-line-strong);
-  background-color: var(--ob-fill-subtle);
+  background-color: var(--ob-field-bg-disabled);
   cursor: not-allowed;
 }
 .ob-check-input:disabled:is(:checked, :indeterminate),
@@ -929,7 +984,7 @@
   margin: var(--ob-space-2) 0 0;
   border: var(--ob-border-strong) solid var(--ob-line-ui);
   border-radius: var(--ob-radius-pill);
-  background-color: var(--ob-field-bg);
+  background-color: var(--ob-field-bg-solid);
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
@@ -948,27 +1003,37 @@
   scale: var(--ob-square-from);
   transition:
     opacity var(--ob-dur-base) var(--ob-ease-out),
-    scale var(--ob-dur-base) var(--ob-ease-out);
+    scale var(--ob-dur-base) var(--ob-ease-out),
+    background-color var(--ob-dur-base) var(--ob-ease-out);
 }
 .ob-radio-input:checked,
 .ob-choice.is-selected .ob-radio-input { border-color: var(--ob-solid); }
 .ob-radio-input:checked::before,
 .ob-choice.is-selected .ob-radio-input::before { opacity: 1; scale: 1; }
 
+/* Hover: an empty ring lifts its edge; a chosen ring and its square move to the solid hover ink,
+   as a checked box does. */
 @media (hover: hover) and (pointer: fine) {
   .ob-choice:hover .ob-radio-input:not(:checked, :disabled, [aria-invalid="true"]) { border-color: var(--ob-field-edge-hover); }
+  .ob-choice:hover .ob-radio-input:checked:not(:disabled) { border-color: var(--ob-solid-hover); }
+  .ob-choice:hover .ob-radio-input:checked:not(:disabled)::before { background-color: var(--ob-solid-hover); }
 }
 .ob-choice.is-hover .ob-radio-input:not(:checked) { border-color: var(--ob-field-edge-hover); }
+.ob-choice.is-hover .ob-radio-input:checked { border-color: var(--ob-solid-hover); }
+.ob-choice.is-hover .ob-radio-input:checked::before { background-color: var(--ob-solid-hover); }
 .ob-radio-input:focus-visible,
 .ob-choice.is-focus .ob-radio-input {
   outline: var(--ob-focus-width) solid var(--ob-focus);
   outline-offset: var(--ob-focus-offset);
 }
-.ob-radio-input:is([aria-invalid="true"], .is-error):not(:checked) { border-color: var(--ob-danger); }
+.ob-radio-input:is([aria-invalid="true"], .is-error):not(:checked) {
+  border-width: var(--ob-border-focus);
+  border-color: var(--ob-danger);
+}
 .ob-radio-input:disabled,
 .ob-choice.is-disabled .ob-radio-input {
   border-color: var(--ob-line-strong);
-  background-color: var(--ob-fill-subtle);
+  background-color: var(--ob-field-bg-disabled);
   cursor: not-allowed;
 }
 .ob-radio-input:disabled::before,
@@ -995,7 +1060,8 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.ob-switch .ob-choice-text { padding-top: 1px; }
+/* Centres the first line of text on the 24px track. */
+.ob-switch .ob-choice-text { padding-top: calc((var(--ob-switch-h) - var(--ob-type-small-size) * var(--ob-type-small-leading)) / 2); }
 .ob-switch--row { grid-template-columns: minmax(0, 1fr) auto; }
 .ob-switch--row .ob-switch-track { grid-column: 2; grid-row: 1 / span 2; }
 .ob-switch--row :is(.ob-choice-text, .ob-choice-desc) { grid-column: 1; }
@@ -1065,8 +1131,8 @@
   outline-offset: var(--ob-focus-offset);
 }
 .ob-switch.is-saving { cursor: progress; }
-.ob-switch:is(.is-disabled, :has(:disabled)) { color: var(--ob-text-3); cursor: not-allowed; }
-.ob-switch:is(.is-disabled, :has(:disabled)) .ob-choice-desc { color: var(--ob-text-3); }
+.ob-switch:is(.is-disabled, :has(:disabled)) { color: var(--ob-text-disabled); cursor: not-allowed; }
+.ob-switch:is(.is-disabled, :has(:disabled)) .ob-choice-desc { color: var(--ob-text-disabled); }
 .ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-track { box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-strong) inset; }
 .ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-thumb { background-color: var(--ob-line-strong); scale: none; }
 .ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-input:checked + .ob-switch-track { background-color: var(--ob-fill); box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-strong) inset; }
@@ -1089,9 +1155,11 @@
 .ob-switch-note--row,
 .ob-switch-list .ob-switch-note { padding-left: 0; }
 .ob-switch-note .ob-sig { --ob-sig-size: 12px; }
-.ob-switch-note .ob-sig:not(.is-spin) .ob-sig-rot { transform: rotate(90deg); }
-.ob-switch-note .ob-sig:not(.is-spin) .ob-sig-orb { transform: rotate(-90deg); }
-.ob-switch-note.is-saving { animation: ob-fade-in var(--ob-dur-fast) var(--ob-ease-out) var(--ob-delay-busy, 300ms) backwards; }
+/* Without .is-spin the 12px ring shows its still frame: the square a quarter turn on. */
+:is(.ob-switch-note, .ob-field-pending) .ob-sig:not(.is-spin) .ob-sig-rot { transform: rotate(90deg); }
+:is(.ob-switch-note, .ob-field-pending) .ob-sig:not(.is-spin) .ob-sig-orb { transform: rotate(-90deg); }
+.ob-switch-note.is-saving { animation: ob-fade-in var(--ob-dur-fast) var(--ob-ease-out) var(--ob-delay-busy) backwards; }
+.ob-switch-note.is-saving.is-replay { animation-name: ob-fade-in-r; }
 .ob-switch-note.is-error { align-items: baseline; color: var(--ob-danger); }
 .ob-switch-note.is-error::before {
   content: "";
@@ -1115,10 +1183,12 @@
 
 
 /* =============================================================================================
-   11. SEGMENTED CONTROL: 1 choice from 2 to 5. The single owner of the look switch.
+   11. SEGMENTED CONTROL: 1 choice from 2 to 5. This file owns the look switch; it has no other build.
    Native radios give 1 Tab stop and arrow keys. Set --ob-segmented-count inline; :has() moves the thumb.
    Markup: .ob-segmented > span.ob-segmented-thumb + label.ob-segmented-option > input.ob-segmented-input + span.ob-segmented-label
-   Look switch in the nav: .ob-segmented.ob-segmented--sm.ob-segmented--icon with .ob-look-swatch glyphs.
+   Look switch in the nav: .ob-segmented.ob-segmented--sm.ob-segmented--icon, role="radiogroup",
+   aria-label="Look", .ob-look-swatch glyphs, and an .ob-tooltip per segment that names it. Segments are
+   32 x 28px in a 36px track, the waitlist's size; on touch 44 x 40px in a 48px track.
    ============================================================================================= */
 .ob-segmented {
   --ob-segmented-h: var(--ob-control-sm);
@@ -1140,6 +1210,7 @@
   background-color: var(--ob-fill-subtle);
 }
 .ob-segmented--sm { --ob-segmented-h: var(--ob-control-xs); --ob-segmented-pad-x: var(--ob-space-12); }
+.ob-segmented--sm.ob-segmented--icon { --ob-segmented-h: var(--ob-control-chip); }
 @media (max-width: 520px) {
   .ob-segmented { --ob-segmented-pad-x: var(--ob-space-12); }
 }
@@ -1205,7 +1276,7 @@
 }
 .ob-segmented-input:checked + .ob-segmented-label {
   color: var(--ob-text);
-  transition-delay: var(--ob-delay-label), 0ms;
+  transition-delay: var(--ob-delay-label), var(--ob-dur-instant);
 }
 /* Hover changes colour only, so it never looks like a second thumb. */
 @media (hover: hover) and (pointer: fine) {
@@ -1217,7 +1288,7 @@
 .ob-segmented-option.is-active > .ob-segmented-label {
   scale: var(--ob-press-scale-sm);
   transition-duration: var(--ob-dur-base), var(--ob-dur-fast);
-  transition-delay: 0ms;
+  transition-delay: var(--ob-dur-instant);
 }
 /* Focus rings the whole track. With radios, focus always follows the choice, so the thumb already
    shows which segment has it. */
@@ -1232,9 +1303,18 @@
 /* Solid: for a choice that changes content, such as the plan presets. */
 .ob-segmented--solid .ob-segmented-thumb { background-color: var(--ob-solid); box-shadow: none; }
 .ob-segmented--solid .ob-segmented-input:checked + .ob-segmented-label { color: var(--ob-text-inverse); }
-.ob-segmented:is(.is-disabled, :has(.ob-segmented-input:disabled)) .ob-segmented-label { color: var(--ob-text-3); }
-.ob-segmented:is(.is-disabled, :has(.ob-segmented-input:disabled)) .ob-segmented-input { cursor: not-allowed; }
-.ob-segmented:is(.is-disabled, :has(.ob-segmented-input:disabled)) .ob-segmented-thumb { background-color: var(--ob-fill); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+/* Disabled control: .is-disabled, or every option disabled. The value it holds stays readable: the
+   chosen label keeps the second ink and the thumb keeps its 3:1 edge on a quiet fill. */
+.ob-segmented:is(.is-disabled, :not(:has(.ob-segmented-input:enabled))) .ob-segmented-label { color: var(--ob-text-disabled); }
+.ob-segmented:is(.is-disabled, :not(:has(.ob-segmented-input:enabled))) .ob-segmented-input:checked + .ob-segmented-label { color: var(--ob-text-2); }
+.ob-segmented:is(.is-disabled, :not(:has(.ob-segmented-input:enabled))) .ob-segmented-input { cursor: not-allowed; }
+.ob-segmented:is(.is-disabled, :not(:has(.ob-segmented-input:enabled))) .ob-segmented-thumb {
+  background-color: var(--ob-fill);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset;
+}
+/* 1 option unavailable: only that segment goes quiet; the rest of the control works as normal. */
+.ob-segmented-input:disabled { cursor: not-allowed; }
+.ob-segmented-input:disabled + .ob-segmented-label { color: var(--ob-text-disabled); }
 /* Without :has() the thumb cannot follow, so the chosen segment carries its own fill. */
 @supports not selector(:has(*)) {
   .ob-segmented-thumb { display: none; }
@@ -1242,13 +1322,14 @@
   .ob-segmented--solid .ob-segmented-input:checked + .ob-segmented-label { background-color: var(--ob-solid); box-shadow: none; }
 }
 
-/* Look swatches: filled for Dark, half for Hybrid, outlined for Light, in any theme. 10px. */
+/* Look swatches: filled for Dark, half for Hybrid, outlined for Light, in any theme. 10px.
+   The only swatch: navigation composes it and never draws its own. */
 .ob-look-swatch {
   display: inline-block;
   flex: none;
   box-sizing: border-box;
-  width: 10px;
-  height: 10px;
+  width: var(--ob-look-swatch);
+  height: var(--ob-look-swatch);
   border: var(--ob-border-strong) solid currentColor;
   border-radius: var(--ob-radius-glyph);
 }
@@ -1256,16 +1337,45 @@
 .ob-look-swatch.is-hybrid { background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
 .ob-look-swatch.is-light  { background: transparent; }
 
+/* Icon segments are named by navigation's .ob-tooltip: each input's aria-labelledby points to its tip.
+   Hidden at rest. A resting fine pointer shows it after --ob-delay-tooltip, keyboard focus at once,
+   and Esc hides it (.is-dismissed) until the pointer or focus leaves. navigation.css draws it. */
+.ob-segmented-option > .ob-tooltip {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--ob-dur-fast) var(--ob-ease-in),
+    visibility var(--ob-dur-instant) var(--ob-ease-linear) var(--ob-dur-fast);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-segmented-option:hover > .ob-tooltip:not(.is-dismissed) {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity var(--ob-dur-fast) var(--ob-ease-out) var(--ob-delay-tooltip),
+      visibility var(--ob-dur-instant) var(--ob-ease-linear) var(--ob-delay-tooltip);
+  }
+}
+.ob-segmented-input:focus-visible ~ .ob-tooltip:not(.is-dismissed),
+.ob-segmented-option.is-tip > .ob-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out), visibility var(--ob-dur-instant);
+}
+
 
 /* =============================================================================================
    12. OPTION CHIPS: a quick answer in 1 tap. Chosen fills with ink, so it never looks like hover.
    Single choice = radios. Any number = checkboxes with a plus that becomes a tick.
-   On touch the radio reaches 6px above and below the 32px chip (44px), and rows sit 12px apart.
+   On touch the radio reaches 6px above and below the 32px chip (44px), and rows sit 16px apart, so
+   neighbouring targets keep 4px clear.
    ============================================================================================= */
 .ob-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--ob-space-8) + var(--ob-touch) * var(--ob-space-4)) var(--ob-space-8);
+  gap: calc(var(--ob-space-8) + var(--ob-touch) * var(--ob-space-8)) var(--ob-space-8);
   min-inline-size: 0;
   margin: 0;
   padding: 0;
@@ -1280,7 +1390,7 @@
 }
 .ob-chip-input {
   position: absolute;
-  inset: calc(var(--ob-touch) * (var(--ob-target-touch) - var(--ob-chip-h)) / -2) 0;
+  inset: calc(var(--ob-touch) * (var(--ob-target-touch) - var(--ob-option-chip-h)) / -2) 0;
   z-index: 1;
   width: 100%;
   height: auto;
@@ -1295,7 +1405,7 @@
   align-items: center;
   gap: var(--ob-space-6);
   box-sizing: border-box;
-  height: var(--ob-chip-h);
+  height: var(--ob-option-chip-h);
   padding: 0 var(--ob-space-16);
   border: var(--ob-border-hair) solid var(--ob-line-strong);
   border-radius: var(--ob-radius-pill);
@@ -1341,26 +1451,36 @@
 }
 .ob-chip.is-hover > .ob-chip-input:checked + .ob-chip-label,
 .ob-chip.is-selected.is-hover > .ob-chip-label { background-color: var(--ob-solid-hover); border-color: var(--ob-solid-hover); }
+/* Pressed: 96% in 100ms. An unchosen chip takes the pressed tint; a chosen one the solid hover ink,
+   so its inverse label keeps its contrast. The .is-active mirror follows the same split. */
 .ob-chip:active > .ob-chip-input:not(:disabled) + .ob-chip-label,
 .ob-chip.is-active > .ob-chip-label {
   scale: var(--ob-press-scale-sm);
-  background-color: var(--ob-btn-2-bg-pressed);
   transition-duration: var(--ob-dur-fast);
 }
-.ob-chip:active > .ob-chip-input:checked:not(:disabled) + .ob-chip-label { background-color: var(--ob-solid-hover); }
+.ob-chip:active > .ob-chip-input:not(:disabled, :checked) + .ob-chip-label,
+.ob-chip.is-active > .ob-chip-input:not(:checked) + .ob-chip-label { background-color: var(--ob-btn-2-bg-pressed); }
+.ob-chip:active > .ob-chip-input:checked:not(:disabled) + .ob-chip-label,
+.ob-chip.is-active > .ob-chip-input:checked + .ob-chip-label { background-color: var(--ob-solid-hover); border-color: var(--ob-solid-hover); }
 .ob-chip-input:focus-visible + .ob-chip-label,
 .ob-chip.is-focus > .ob-chip-label {
   outline: var(--ob-focus-width) solid var(--ob-focus);
   outline-offset: var(--ob-focus-offset);
 }
 .ob-chip-input:disabled { cursor: not-allowed; }
+/* Disabled: no fill, the strong hairline, the disabled ink. A chosen chip still says so: a quiet fill,
+   the 3:1 control edge and the second ink. */
 .ob-chip-input:disabled + .ob-chip-label,
 .ob-chip.is-disabled > .ob-chip-label {
   border-color: var(--ob-line-strong);
   background-color: transparent;
-  color: var(--ob-text-3);
+  color: var(--ob-text-disabled);
 }
-.ob-chip-input:disabled:checked + .ob-chip-label { background-color: var(--ob-fill); border-color: var(--ob-line-strong); color: var(--ob-text-2); }
+.ob-chip-input:disabled:checked + .ob-chip-label {
+  background-color: var(--ob-fill);
+  border-color: var(--ob-line-ui);
+  color: var(--ob-text-2);
+}
 
 
 /* =============================================================================================
@@ -1380,7 +1500,9 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--ob-space-12);
 }
-@container ob-form (max-width: 460px) {
+.ob-form-grid > .ob-form-full { grid-column: 1 / -1; }
+/* 1 column below 522px of the form's own width, so no field is narrower than 255px. */
+@container ob-form (max-width: 521.98px) {
   .ob-form-grid { grid-template-columns: minmax(0, 1fr); }
 }
 .ob-form-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
@@ -1432,7 +1554,7 @@
   font: var(--ob-type-small);
   text-decoration: underline;
   text-decoration-thickness: var(--ob-border-hair);
-  text-underline-offset: 3px;
+  text-underline-offset: var(--ob-space-4);
 }
 @media (hover: hover) and (pointer: fine) {
   .ob-form-alert-list a:hover { text-decoration-thickness: var(--ob-border-focus); }
@@ -1441,7 +1563,8 @@
 
 /* Server error: the request failed, not a field. Everything typed stays and the button returns to
    its label. Block form sits above the submit; .ob-form-error--inline sits in a pill's message slot.
-   The element is a role="alert" region that is in the page before the failure, empty until then. */
+   The element is a role="alert" region that is in the page before the failure, empty until then.
+   Both danger boxes, the summary and this, take the 14px radius. */
 .ob-form-error {
   box-sizing: border-box;
   display: flex;
@@ -1449,7 +1572,7 @@
   gap: var(--ob-space-8);
   margin: 0;
   padding: var(--ob-space-12) var(--ob-space-16);
-  border-radius: var(--ob-radius-sm);
+  border-radius: var(--ob-radius-md);
   background-color: var(--ob-danger-bg);
   color: var(--ob-text);
   font: var(--ob-type-small);
@@ -1499,7 +1622,8 @@
   .ob-chip-label,
   .ob-segmented-label,
   .ob-switch-thumb { scale: none !important; }
-  .ob-switch-note.is-saving { animation-name: ob-fade-in; }
+  .ob-switch-note.is-saving,
+  .ob-field-pending { animation-name: ob-fade-in; }
 }
 
 
@@ -1523,6 +1647,16 @@
   .ob-form-alert,
   .ob-form-error:not(.ob-form-error--inline) { border: 1px solid CanvasText; }
   .ob-confirm-thanks:not(:empty)::before { background: CanvasText; }
+  /* Shapes drawn with a background vanish unless they keep their own paint. */
+  .ob-field-success::before,
+  .ob-search-clear::before,
+  .ob-search-clear::after { forced-color-adjust: none; background: CanvasText; }
+  /* The swatch keeps its fill and its half, drawn in system ink: CanvasText, HighlightText on the
+     chosen segment, GrayText on an unavailable one. */
+  .ob-look-swatch { forced-color-adjust: none; color: CanvasText; }
+  .ob-segmented-input:checked + .ob-segmented-label .ob-look-swatch { color: HighlightText; }
+  .ob-segmented-input:disabled + .ob-segmented-label .ob-look-swatch { color: GrayText; }
+  .ob-search > .ob-kbd { border: 1px solid CanvasText; }
   :is(.ob-input, .ob-textarea, .ob-select-input, .ob-affix-field, .ob-pill-field):is([aria-invalid="true"], .is-error, :has([aria-invalid="true"])) { border-width: 2px; }
   /* Disabled reads as GrayText, so it never looks the same as enabled. */
   :is(.ob-input, .ob-textarea, .ob-select-input, .ob-check-input, .ob-radio-input):disabled,
@@ -1530,7 +1664,8 @@
   .ob-pill-field:has(.ob-pill-input:disabled),
   .ob-chip-input:disabled + .ob-chip-label,
   .ob-switch:has(:disabled) .ob-switch-track,
-  .ob-segmented:has(:disabled) .ob-segmented-label { color: GrayText; border-color: GrayText; }
+  .ob-segmented:is(.is-disabled, :not(:has(.ob-segmented-input:enabled))) .ob-segmented-label,
+  .ob-segmented-input:disabled + .ob-segmented-label { color: GrayText; border-color: GrayText; }
   .ob-switch:has(:disabled) .ob-switch-thumb,
   .ob-radio-input:disabled::before { background-color: GrayText; }
   .ob-choice:has(:disabled),
@@ -1699,6 +1834,9 @@
 .ds-forms-matrix--mid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
 .ds-forms-matrix--narrow { grid-template-columns: repeat(auto-fill, minmax(min(100%, 176px), 1fr)); }
 .ds-forms-cell { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; }
+/* A state cell's specimen. Mirrors of a state are inert: out of the Tab order and the reading order,
+   because the live specimen above already has every name. */
+.ds-forms-cellbody { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; }
 .ds-forms-cell--full { grid-column: 1 / -1; }
 .ds-forms-cellhead { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-8); min-height: var(--ob-target-min); }
 .ds-forms-state {
@@ -1709,6 +1847,19 @@
   color: var(--ob-text-3);
 }
 .ds-forms-narrow { max-width: 340px; }
+/* Room under a specimen whose tooltip is showing, so the tip never covers the next cell. */
+.ds-forms-tipspace { padding-bottom: calc(var(--ob-control-chip) + var(--ob-space-8)); }
+/* A captured screenshot, such as forced colours, which a page cannot switch on by itself. */
+.ds-forms-shot { display: grid; gap: var(--ob-space-8); margin: 0; min-width: 0; }
+.ds-forms-shot img {
+  display: block;
+  width: 100%;
+  max-width: 880px;
+  height: auto;
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-forms-shot figcaption { font: var(--ob-type-caption); color: var(--ob-text-2); max-width: var(--ob-measure); text-wrap: pretty; }
 
 /* Fields on cards: the 3 surfaces a field can sit on. */
 .ds-forms-surfaces { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 232px), 1fr)); gap: var(--ob-space-16); }
@@ -1844,6 +1995,11 @@
   font: var(--ob-weight-regular) 13px/1.4 var(--ob-font-mono);
   overflow-wrap: anywhere;
 }
+/* Token names never break mid-token. Markup snippets longer than 24ch (.ds-forms-snippet) may. */
+.ds-forms :is(.ds-forms-lede, .ds-forms-legend, .ds-forms-list, .ds-forms-blocknote, .ds-forms-table) code:not(.ds-forms-snippet) {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
 .ds-forms-rules { display: grid; gap: var(--ob-space-24); }
 @media (min-width: 760px) { .ds-forms-rules { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--ob-space-40); } }
 .ds-forms-listlabel {
@@ -1875,6 +2031,11 @@
 
 /* Replay demos. Each one plays the component's own transition as a keyframe, with the same tokens,
    so a reader can watch it again. Toggling .is-replay swaps to the -r twin, which restarts it. */
+/* Every demo waits 2 busy delays (600ms) before it plays, so the reader sees the state before. */
+.ds-forms { --ds-forms-wait: calc(var(--ob-delay-busy) * 2); }
+/* The mixed bar fades in, the same 100ms as the product. A fade, so it also runs under reduced motion. */
+.ds-forms-demo .ob-check.is-mixed .ob-check-bar { animation: ds-forms-in var(--ob-dur-fast) var(--ob-ease-out) backwards; }
+.ds-forms-demo.is-replay .ob-check.is-mixed .ob-check-bar { animation-name: ds-forms-in-r; }
 @media (prefers-reduced-motion: no-preference) {
   .ds-forms-demo .ob-check-input:checked { animation: ds-forms-fill var(--ob-dur-fast) var(--ob-ease-out) backwards; }
   .ds-forms-demo .ob-check-input:checked ~ .ob-check-mark .ob-anim-check { animation: ds-forms-draw var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-tick) backwards; }
@@ -1906,15 +2067,16 @@
   .ds-forms .is-replay .ob-sig.is-play .ob-sig-sq { animation-name: ob-sig-snap-r, ob-sig-blink-r; }
 
   /* Search: the key cap leaves and the clear button arrives, crossing in 100ms. */
-  .ds-forms-xfade .ob-kbd { animation: ds-forms-out var(--ob-dur-fast) var(--ob-ease-out) 600ms backwards; }
-  .ds-forms-xfade .ob-search-clear { animation: ds-forms-in var(--ob-dur-fast) var(--ob-ease-out) 600ms backwards; }
+  .ds-forms-xfade .ob-kbd { animation: ds-forms-out var(--ob-dur-fast) var(--ob-ease-out) var(--ds-forms-wait) backwards; }
+  .ds-forms-xfade .ob-search-clear { animation: ds-forms-in var(--ob-dur-fast) var(--ob-ease-out) var(--ds-forms-wait) backwards; }
   .ds-forms-xfade.is-replay .ob-kbd { animation-name: ds-forms-out-r; }
   .ds-forms-xfade.is-replay .ob-search-clear { animation-name: ds-forms-in-r; }
 
   /* Error clears: the edge returns in 160ms, the line leaves in 100ms and the helper fades back. */
-  .ds-forms-clear .ob-input { animation: ds-forms-unerr var(--ob-dur-base) var(--ob-ease-out) 900ms backwards; }
-  .ds-forms-clear .ds-forms-clear-err { animation: ds-forms-leave var(--ob-dur-fast) var(--ob-ease-in) 900ms forwards; }
-  .ds-forms-clear .ob-field-help { animation: ds-forms-in var(--ob-dur-base) var(--ob-ease-out) 1000ms backwards; }
+  .ds-forms-clear { --ds-clear-at: calc(var(--ds-forms-wait) + var(--ob-delay-busy)); }
+  .ds-forms-clear .ob-input { animation: ds-forms-unerr var(--ob-dur-base) var(--ob-ease-out) var(--ds-clear-at) backwards; }
+  .ds-forms-clear .ds-forms-clear-err { animation: ds-forms-leave var(--ob-dur-fast) var(--ob-ease-in) var(--ds-clear-at) forwards; }
+  .ds-forms-clear .ob-field-help { animation: ds-forms-in var(--ob-dur-base) var(--ob-ease-out) calc(var(--ds-clear-at) + var(--ob-dur-fast)) backwards; }
   .ds-forms-clear.is-replay .ob-input { animation-name: ds-forms-unerr-r; }
   .ds-forms-clear.is-replay .ds-forms-clear-err { animation-name: ds-forms-leave-r; }
   .ds-forms-clear.is-replay .ob-field-help { animation-name: ds-forms-in-r; }
@@ -1927,7 +2089,7 @@
 
   /* Free report, step 2: the rows open 0fr to 1fr in 240ms and the fields fade in from 80ms. */
   .ds-forms-grow .ob-pill-more { animation: ds-forms-rows var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
-  .ds-forms-grow .ob-pill-more-in { animation: ds-forms-in var(--ob-dur-base) var(--ob-ease-out) 80ms backwards; }
+  .ds-forms-grow .ob-pill-more-in { animation: ds-forms-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-expand-delay) backwards; }
   .ds-forms-grow.is-replay .ob-pill-more { animation-name: ds-forms-rows-r; }
   .ds-forms-grow.is-replay .ob-pill-more-in { animation-name: ds-forms-in-r; }
 }
@@ -1938,25 +2100,31 @@
   .ds-forms-clear .ds-forms-clear-err { display: none; }
 }
 
-/* The waitlist sequence, end to end, from the moment of submit:
+/* The waitlist sequence, end to end, from the moment of submit. Every mark is a sum of tokens:
      0ms      nothing changes (--ob-delay-busy)
      300ms    the label fades out and the ring fades in (100ms); the edge drops to a hairline
-     300ms    the ring turns once (1400ms, linear)
-     1700ms   it lands: the square snaps home (500ms --ob-snap) and holds --ob-success-hold
+     300ms    the ring turns once (--ob-sig-spin, 1400ms, --ob-ease-linear)
+     1700ms   it lands: the square snaps home (--ob-sig-lock, 500ms, --ob-snap) and holds --ob-success-hold
      2600ms   the form leaves (100ms --ob-ease-in)
      2700ms   the thank-you panel rises 8px (400ms --ob-ease-out) and its mark draws on
    Doc only: product code swaps aria-busy, .is-done, .is-leaving and the panel at these moments. */
-.ds-forms-seq { --ds-seq-busy: var(--ob-delay-busy, 300ms); --ds-seq-land: 1700ms; --ds-seq-leave: 2600ms; --ds-seq-panel: 2700ms;
-  display: grid; min-width: 0; }
+.ds-forms-seq {
+  --ds-seq-busy: var(--ob-delay-busy);
+  --ds-seq-land: calc(var(--ob-delay-busy) + var(--ob-sig-spin));
+  --ds-seq-leave: calc(var(--ds-seq-land) + var(--ob-sig-lock) + var(--ob-success-hold));
+  --ds-seq-panel: calc(var(--ds-seq-leave) + var(--ob-dur-fast));
+  display: grid;
+  min-width: 0;
+}
 .ds-forms-seq > * { grid-area: 1 / 1; }
 .ds-forms-seq .ob-confirm { align-self: start; }
 @media (prefers-reduced-motion: no-preference) {
   .ds-forms-seq .ob-pill-field { animation: ds-forms-seq-edge var(--ob-dur-base) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
   .ds-forms-seq .ob-btn-label { animation: ds-forms-out var(--ob-dur-fast) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
   .ds-forms-seq .ob-btn-busy { animation: ds-forms-on var(--ob-dur-fast) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
-  .ds-forms-seq .ob-btn-busy .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-spin) linear var(--ds-seq-busy) 1; }
-  .ds-forms-seq .ob-btn-busy .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-spin) linear var(--ds-seq-busy) 1; }
-  .ds-forms-seq .ob-btn-busy .ob-sig-sq { animation: ob-sig-snap 500ms var(--ob-snap) var(--ds-seq-land) forwards; }
+  .ds-forms-seq .ob-btn-busy .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-spin) var(--ob-ease-linear) var(--ds-seq-busy) 1; }
+  .ds-forms-seq .ob-btn-busy .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-spin) var(--ob-ease-linear) var(--ds-seq-busy) 1; }
+  .ds-forms-seq .ob-btn-busy .ob-sig-sq { animation: ob-sig-snap var(--ob-sig-lock) var(--ob-snap) var(--ds-seq-land) forwards; }
   .ds-forms-seq .ob-pill-form { animation: ds-forms-gone var(--ob-dur-fast) var(--ob-ease-in) var(--ds-seq-leave) forwards; }
   .ds-forms-seq .ob-confirm { animation: ds-forms-rise var(--ob-dur-slow) var(--ob-ease-out) var(--ds-seq-panel) both; }
   .ds-forms-seq .ob-confirm .ob-sig-draw { animation-delay: var(--ds-seq-panel); }
@@ -1973,18 +2141,18 @@
 }
 /* Reduced motion: the same order as fades only. No turn, no snap, no rise. */
 @media (prefers-reduced-motion: reduce) {
-  .ds-forms-seq .ob-btn-label { animation: ds-forms-out var(--ob-dur-fast) linear var(--ds-seq-busy) forwards; }
-  .ds-forms-seq .ob-btn-busy { animation: ds-forms-on var(--ob-dur-fast) linear var(--ds-seq-busy) forwards; }
-  .ds-forms-seq .ob-pill-form { animation: ds-forms-gone var(--ob-dur-fast) linear var(--ds-seq-leave) forwards; }
-  .ds-forms-seq .ob-confirm { animation: ds-forms-on var(--ob-dur-base) linear var(--ds-seq-panel) both; }
+  .ds-forms-seq .ob-btn-label { animation: ds-forms-out var(--ob-dur-fast) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-btn-busy { animation: ds-forms-on var(--ob-dur-fast) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-pill-form { animation: ds-forms-gone var(--ob-dur-fast) var(--ob-ease-in) var(--ds-seq-leave) forwards; }
+  .ds-forms-seq .ob-confirm { animation: ds-forms-on var(--ob-dur-base) var(--ob-ease-out) var(--ds-seq-panel) both; }
   .ds-forms-seq.is-replay .ob-btn-label { animation-name: ds-forms-out-r; }
   .ds-forms-seq.is-replay .ob-btn-busy { animation-name: ds-forms-on-r; }
   .ds-forms-seq.is-replay .ob-pill-form { animation-name: ds-forms-gone-r; }
   .ds-forms-seq.is-replay .ob-confirm { animation-name: ds-forms-on-r; }
 }
 
-@keyframes ds-forms-fill     { from { background-color: var(--ob-field-bg); border-color: var(--ob-line-ui); } }
-@keyframes ds-forms-fill-r   { from { background-color: var(--ob-field-bg); border-color: var(--ob-line-ui); } }
+@keyframes ds-forms-fill     { from { background-color: var(--ob-field-bg-solid); border-color: var(--ob-line-ui); } }
+@keyframes ds-forms-fill-r   { from { background-color: var(--ob-field-bg-solid); border-color: var(--ob-line-ui); } }
 @keyframes ds-forms-draw     { from { stroke-dashoffset: 1; } }
 @keyframes ds-forms-draw-r   { from { stroke-dashoffset: 1; } }
 @keyframes ds-forms-ring     { from { border-color: var(--ob-line-ui); } }
@@ -2011,8 +2179,8 @@
 @keyframes ds-forms-leave-r  { to { opacity: 0; } }
 @keyframes ds-forms-gone     { to { opacity: 0; visibility: hidden; } }
 @keyframes ds-forms-gone-r   { to { opacity: 0; visibility: hidden; } }
-@keyframes ds-forms-rise     { from { opacity: 0; translate: 0 var(--ob-shift-sm, 8px); visibility: hidden; } 1% { visibility: visible; } to { opacity: 1; translate: 0 0; visibility: visible; } }
-@keyframes ds-forms-rise-r   { from { opacity: 0; translate: 0 var(--ob-shift-sm, 8px); visibility: hidden; } 1% { visibility: visible; } to { opacity: 1; translate: 0 0; visibility: visible; } }
+@keyframes ds-forms-rise     { from { opacity: 0; translate: 0 var(--ob-shift-sm); visibility: hidden; } 1% { visibility: visible; } to { opacity: 1; translate: 0 0; visibility: visible; } }
+@keyframes ds-forms-rise-r   { from { opacity: 0; translate: 0 var(--ob-shift-sm); visibility: hidden; } 1% { visibility: visible; } to { opacity: 1; translate: 0 0; visibility: visible; } }
 @keyframes ds-forms-unerr    { from { border-color: var(--ob-danger); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset; } }
 @keyframes ds-forms-unerr-r  { from { border-color: var(--ob-danger); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset; } }
 @keyframes ds-forms-rows     { from { grid-template-rows: 0fr; } }

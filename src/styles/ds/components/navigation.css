@@ -1,65 +1,78 @@
 /* =============================================================================================
-   OBSESSION  NAVIGATION, SELECTION AND STATUS  v1.1  (2 Oct 2026)
-   Load order: tokens.css, motion.css, buttons.css, brand.css, surfaces.css, then this file. Uses
-   --ob- tokens only; no colour literals. Every rule that composes another file's class is written so
-   it wins in any load order.
+   OBSESSION  NAVIGATION, SELECTION AND STATUS  v1.2  (2 Oct 2026)
+   Load order: tokens.css, motion.css, buttons.css, forms.css, brand.css, surfaces.css, then this
+   file. Uses --ob- tokens only; no colour literals. Every rule that composes another file's class
+   is written so it wins in any load order.
 
    Components (.ob-)
      .ob-skip ........... skip link, first in the Tab order
      .ob-nav ............ sticky top nav: lockup, links, theme switch, call to action
+     .ob-nav--product ... the product bar: mark, workspace, palette button, account
+     .ob-cmdk-trigger ... the palette's visible way in, a field-style button with its keys
      .ob-navbtn ......... 24px inline icon button: the breadcrumb's more, the tab row's Pause
-     .ob-look ........... theme switch (dark, hybrid, light); .ob-look--lg for touch
      .ob-mnav ........... mobile menu panel
      .ob-ptabs .......... pill tabs (the scenario row)
      .ob-utabs .......... underline tabs (fit, fill, auto-advance with a pause toggle)
-     .ob-crumbs ......... breadcrumbs
+     .ob-crumbs ......... breadcrumbs, with middle crumbs folded into a More menu
      .ob-pager .......... pagination
-     .ob-badge .......... counts and short facts
+     .ob-badge .......... counts and short facts; .ob-badge-anchor pins a dot to an icon
      .ob-status ......... status pill: the ring mark plus a word
      .ob-kitbox/.ob-kit . kit chips: what we set up for an agent
      .ob-tag ............ tags, removable tags, filter tags
      .ob-kbd ............ key caps
      .ob-tooltip ........ tooltip
-     .ob-menu ........... dropdown menu, its trigger and 1 level of submenu
+     .ob-menu ........... dropdown menu, its trigger, 1 level of submenu, drill-in on narrow screens
      .ob-cmdk ........... command palette (cmd K), inside a surfaces .ob-layer
 
    One owner per component
-     This file owns .ob-sr, .ob-kbd, .ob-status (with --failed), .ob-kit, .ob-look and everything
-       listed above. brand.css .ob-sig-label--pill is the same object as .ob-status--sm, and
-       brand.css .ob-setup-list is .ob-kit; forms.css .ob-look-swatch is .ob-look__sw. Those files
-       should alias these classes rather than restyle them. surfaces.css already borrows .ob-status.
+     This file owns .ob-sr, .ob-kbd, .ob-status (with --failed), .ob-kit and everything listed
+       above. brand.css and surfaces.css compose them; forms.css keeps a zero-specificity .ob-kbd
+       and .ob-sr with the same declarations for standalone use, which never override these.
      This file composes, and never restyles:
        buttons.css   .ob-btn: the nav's call to action (--sm), the panel's (--lg --block), the menu
                      button and tooltip anchors (--ghost --icon)
-       brand.css     .ob-brand-link, .ob-lockup, .ob-wordmark, .ob-sig.is-still
+       forms.css     the theme switch: .ob-segmented.ob-segmented--sm.ob-segmented--icon with
+                     .ob-look-swatch glyphs. Native radios, so it needs no script. This file only
+                     places it in the bar and in the menu panel (.ob-touch for the touch size).
+       brand.css     .ob-brand-link, .ob-lockup, .ob-wordmark, the status glyph (.ob-sig-glyph)
+                     and every ring frame: .is-still, the Working still turn, Paused and Stopped
        surfaces.css  .ob-layer and .ob-scrim, under the palette
        motion.css    .ob-anim-* utilities add transitions only; positions live here
 
    Every pseudo-state has a static twin so the guideline can show states side by side:
      :hover .is-hover   :active .is-active   :focus-visible .is-focus   :disabled .is-disabled
-     .is-loading   .is-selected (current, checked, expanded)   .is-error
+     [aria-expanded="true"] .is-expanded   current, checked or pressed .is-selected
+     .is-loading   .is-error
    Hover only applies to fine pointers. Focus rings appear in the same frame, never animated.
-   Disabled text uses --ob-text-disabled (3.2 to 3.9:1), never opacity.
+   Disabled text uses --ob-text-disabled (3.2 to 3.9:1 on its own surface), never opacity, and a
+   disabled control drops its fill so the text keeps that ratio.
 
    Containing blocks: .ob-nav has container-type and backdrop-filter, so it is the containing block
    for any position: fixed child. Menus, tooltips and the palette must render outside the nav, in
    the top layer (popover, dialog) or a portal at the end of body.
 
-   Doc layout (.ds-navigation-) is at the end and styles the guideline page only.
+   Doc layout (.ds-navigation-) is at the end and styles the guideline page only. Its rules have
+   zero specificity or name the frame they style, so no doc rule restyles a component.
    ============================================================================================= */
 
-:where(.ob-skip, .ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs,
-       .ob-pager, .ob-badge, .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-kbd, .ob-tip, .ob-tooltip,
-       .ob-menu, .ob-menu-trigger, .ob-cmdk-layer, .ob-cmdk, .ds-navigation),
-:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
+/* Component sizes. Colours never live here. */
+:where(:root) {
+  --ob-nav-h:         64px;   /* the bar */
+  --ob-nav-h-compact: 56px;   /* the bar under 860px of its own width */
+}
+
+:where(.ob-skip, .ob-nav, .ob-mnav, .ob-navbtn, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs,
+       .ob-pager, .ob-badge, .ob-badge-anchor, .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-kbd, .ob-tip,
+       .ob-tooltip, .ob-menu, .ob-menu-trigger, .ob-cmdk-trigger, .ob-cmdk-layer, .ob-cmdk, .ds-navigation),
+:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
        .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-tip, .ob-tooltip, .ob-menu, .ob-menu-trigger,
-       .ob-cmdk-layer, .ob-cmdk, .ds-navigation) *,
-:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
+       .ob-cmdk-trigger, .ob-cmdk-layer, .ob-cmdk, .ds-navigation) *,
+:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
        .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-tip, .ob-tooltip, .ob-menu, .ob-menu-trigger,
-       .ob-cmdk-layer, .ob-cmdk, .ds-navigation) ::before,
-:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
+       .ob-cmdk-trigger, .ob-cmdk-layer, .ob-cmdk, .ds-navigation) ::before,
+:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
        .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-tip, .ob-tooltip, .ob-menu, .ob-menu-trigger,
-       .ob-cmdk-layer, .ob-cmdk, .ds-navigation) ::after {
+       .ob-cmdk-trigger, .ob-cmdk-layer, .ob-cmdk, .ds-navigation) ::after {
   box-sizing: border-box;
 }
 
@@ -114,6 +127,7 @@
   text-decoration: none;
   white-space: nowrap;
 }
+@media (pointer: coarse) { .ob-skip { height: var(--ob-target-touch); } }
 .ob-skip:not(:focus, .is-focus) {
   width: 1px;
   height: 1px;
@@ -164,7 +178,7 @@
   scale: var(--ob-press-scale-sm);
   transition-duration: var(--ob-dur-fast);
 }
-.ob-navbtn:is([aria-expanded="true"], [aria-pressed="true"], .is-selected) { color: var(--ob-text); background-color: var(--ob-state-selected); }
+.ob-navbtn:is([aria-expanded="true"], .is-expanded, [aria-pressed="true"], .is-selected) { color: var(--ob-text); background-color: var(--ob-state-selected); }
 .ob-navbtn:focus-visible,
 .ob-navbtn.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 .ob-navbtn:is(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); background-color: transparent; cursor: default; }
@@ -183,8 +197,8 @@
 }
 .ob-navbtn__bars i:first-child { top: 4.25px; }
 .ob-navbtn__bars i:last-child  { top: 10.25px; }
-:is([aria-expanded="true"], .is-expanded, .is-selected) > .ob-navbtn__bars i:first-child { translate: 0 3px;  rotate: 45deg; }
-:is([aria-expanded="true"], .is-expanded, .is-selected) > .ob-navbtn__bars i:last-child  { translate: 0 -3px; rotate: -45deg; }
+:is([aria-expanded="true"], .is-expanded) > .ob-navbtn__bars i:first-child { translate: 0 3px;  rotate: 45deg; }
+:is([aria-expanded="true"], .is-expanded) > .ob-navbtn__bars i:last-child  { translate: 0 -3px; rotate: -45deg; }
 
 
 /* =============================================================================================
@@ -196,6 +210,10 @@
      860 to 1079px   the theme switch leaves the bar; it stays in the footer
      under 860px     compact: links and the switch move into the menu panel
      under 349px     the call to action waits in the panel too
+   Fit rule: the links stay centred while links + 2 x the wider side (lockup, or switch plus call to
+   action) + 2 x 16px fits the bar inside its gutters (796px at 860px). The site's 4 links
+   (Agencies, Founders, Sales, Developers) take 337px and fit from 860px. A 5th of 13 characters
+   misses by 2px at 860px, so the bar holds 4 links at most and the rest live in the footer.
    Script adds .is-top while the page sits at the very top. Without script the nav keeps its fill,
    which is the safe state.
    ============================================================================================= */
@@ -218,12 +236,15 @@
   box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 transparent;
 }
 /* While the panel is open the bar is solid, even at the top, so nothing shows through above it. */
-.ob-nav:has(.ob-nav__menu[aria-expanded="true"]) {
+.ob-nav:has(.ob-nav__menu:is([aria-expanded="true"], .is-expanded)) {
   background-color: var(--ob-bg);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
 }
+/* The panel carries its own full-width call to action, so the bar's pill steps aside while it is
+   open: 1 primary pill on screen. visibility also takes it out of the Tab order. */
+.ob-nav:has(.ob-nav__menu:is([aria-expanded="true"], .is-expanded)) .ob-nav__end > .ob-nav__cta { visibility: hidden; }
 .ob-nav__in {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -231,7 +252,7 @@
   gap: var(--ob-space-16);
   width: 100%;
   max-width: var(--ob-container);
-  height: 64px;
+  height: var(--ob-nav-h);
   margin-inline: auto;
   /* The page gutter, measured on the nav itself so a framed nav matches a real one. */
   padding-inline: clamp(var(--ob-space-16), 4cqi, var(--ob-space-32));
@@ -304,8 +325,14 @@
 }
 
 /* The nav's one primary pill is buttons.css .ob-btn.ob-btn--sm (36px, 44px hit area on touch).
-   In the menu panel it is .ob-btn--lg.ob-btn--block. The nav only places them. */
-.ob-nav__end > .ob-nav__cta { flex: none; }
+   In the menu panel it is .ob-btn--lg.ob-btn--block. The theme switch is forms.css .ob-segmented
+   (--sm --icon): 28 x 24px segments in a 32px track, 44 x 40px in a 48px track on touch. The nav
+   only places them. */
+.ob-nav__end > :is(.ob-nav__cta, .ob-segmented) { flex: none; }
+/* The bar is translucent, so whatever scrolls under it (a glossy object on a hybrid page, the
+   opposite theme's section) would show through the switch's tinted track and pull its thumb edge
+   under 3:1. In the bar the track is opaque: the same tint, laid over the page colour. */
+.ob-nav__end > .ob-segmented { background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-bg); }
 .ob-nav__end > .ob-nav__menu { display: none; }
 
 /* Touch: links keep their drawing and grow a 44px tall hit area. */
@@ -318,10 +345,10 @@
 }
 
 @container ob-nav (max-width: 1079.98px) {
-  .ob-nav__end > .ob-look { display: none; }
+  .ob-nav__end > .ob-segmented { display: none; }
 }
 @container ob-nav (max-width: 859.98px) {
-  .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: 56px; gap: var(--ob-space-8); }
+  .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
   .ob-nav__links { display: none; }
   .ob-nav__end > .ob-nav__menu { display: inline-flex; }
   .ob-nav__end { gap: var(--ob-space-8); }
@@ -334,79 +361,142 @@
 
 
 /* =============================================================================================
-   THEME SWITCH  .ob-look
-   A radiogroup of 3 equal 28 x 24 segments in a 32px track. The thumb carries a --ob-line-ui edge
-   (3:1) and sits on the checked segment by translate. Set data-value (dark | hybrid | light).
-   .ob-look--lg is the touch size: 44 x 40 segments in a 48px track, used in the menu panel.
+   PRODUCT BAR  .ob-nav.ob-nav--product
+   The app's top bar, on the same 64px blurred bar: the mark as the home link, the workspace
+   switcher, the palette button centred, then the account. Under 860px of its own width the
+   palette button folds into a 44px icon button beside the account, so a phone always has a way
+   into the palette. The bar never carries a primary pill; the page does.
    ============================================================================================= */
-.ob-look {
-  position: relative;
-  display: inline-grid;
-  grid-auto-flow: column;
-  grid-auto-columns: var(--ob-control-chip);
-  flex: none;
-  height: var(--ob-control-sm);
-  padding: var(--ob-space-4);
-  border-radius: var(--ob-radius-pill);
-  background-color: var(--ob-fill-subtle);
-  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
-}
-.ob-look__thumb {
-  position: absolute;
-  top: var(--ob-space-4);
-  left: var(--ob-space-4);
-  width: var(--ob-control-chip);
-  height: var(--ob-control-xs);
-  border-radius: var(--ob-radius-pill);
-  background-color: var(--ob-surface-raised);
-  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-ui), var(--ob-shadow-1);
-  pointer-events: none;
-  /* The position lives here; .ob-anim-thumb adds only the 240ms travel. */
-  translate: calc(var(--ob-index, 0) * 100%) 0;
-}
-.ob-look[data-value="hybrid"] .ob-look__thumb { --ob-index: 1; }
-.ob-look[data-value="light"]  .ob-look__thumb { --ob-index: 2; }
-.ob-look__opt {
-  position: relative;
-  z-index: 1;
+.ob-nav--product .ob-nav__in { grid-template-columns: minmax(0, 1fr) minmax(0, 360px) minmax(0, 1fr); }
+.ob-nav__start { display: flex; align-items: center; gap: var(--ob-space-4); min-width: 0; justify-self: start; }
+/* The mark alone, 22px, in brand.css .ob-brand-link: 44px square under a coarse pointer. */
+.ob-nav__mark { --ob-sig-size: 22px; }
+.ob-nav--product .ob-nav__brand { flex: none; justify-content: center; min-width: var(--ob-target-touch); margin-inline: 0; }
+/* The workspace: a ghost menu trigger with the workspace's initial on a 20px ink square. */
+.ob-nav__space-glyph {
   display: grid;
   place-items: center;
-  width: var(--ob-control-chip);
-  height: var(--ob-control-xs);
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-label-mono);
+  line-height: 1;
+}
+.ob-nav__space-name { min-width: 0; max-width: 20ch; overflow: hidden; text-overflow: ellipsis; }
+.ob-nav--product .ob-nav__end { gap: var(--ob-space-8); }
+
+/* Account: a 32px initials button that opens the account menu (44px hit area on touch). */
+.ob-nav__account {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--ob-control-sm);
+  height: var(--ob-control-sm);
   margin: 0;
   padding: 0;
   border: 0;
   border-radius: var(--ob-radius-pill);
-  background: transparent;
-  color: var(--ob-text-3);
+  background-color: var(--ob-fill);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  letter-spacing: 0;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: color var(--ob-dur-base) var(--ob-ease-out);
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
 }
-@media (hover: hover) and (pointer: fine) { .ob-look__opt:hover { color: var(--ob-text); } }
-.ob-look__opt.is-hover,
-.ob-look__opt:is([aria-checked="true"], .is-selected) { color: var(--ob-text); }
-.ob-look__opt:focus-visible,
-.ob-look__opt.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
-.ob-look__sw {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: var(--ob-radius-glyph);
-  box-shadow: inset 0 0 0 var(--ob-border-strong) currentColor;
+@media (pointer: coarse) {
+  .ob-nav__account::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2); }
 }
-.ob-look__sw--dark   { background-color: currentColor; }
-.ob-look__sw--hybrid { background-image: linear-gradient(90deg, currentColor 50%, transparent 50%); }
-/* Touch size. */
-.ob-look--lg { grid-auto-columns: var(--ob-target-touch); height: var(--ob-control-lg); }
-.ob-look--lg :is(.ob-look__opt, .ob-look__thumb) { width: var(--ob-target-touch); height: var(--ob-control-md); }
-.ob-look--lg .ob-look__sw { width: 12px; height: 12px; }
+@media (hover: hover) and (pointer: fine) { .ob-nav__account:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+.ob-nav__account.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-nav__account:is(:active, .is-active) { color: var(--ob-text); background-color: var(--ob-state-pressed); scale: var(--ob-press-scale-sm); transition-duration: var(--ob-dur-fast); }
+.ob-nav__account:is([aria-expanded="true"], .is-expanded) { color: var(--ob-text); background-color: var(--ob-state-selected); }
+.ob-nav__account:focus-visible,
+.ob-nav__account.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+
+/* =============================================================================================
+   PALETTE BUTTON  .ob-cmdk-trigger
+   The palette's visible way in, so it never depends on knowing Cmd K. It looks like a field and
+   is a button: a search glyph, the words, then the keys. 32px in the product bar (44px hit area
+   on touch). In a compact bar it folds into a 44px icon button; its words stay as its name.
+   ============================================================================================= */
+.ob-cmdk-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  width: 100%;
+  min-width: 0;
+  height: var(--ob-control-sm);
+  margin: 0;
+  padding: 0 var(--ob-space-6) 0 var(--ob-space-12);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong);
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  text-align: start;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-cmdk-trigger > .ob-navicon { color: var(--ob-text-3); }
+.ob-cmdk-trigger__text { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ob-cmdk-trigger > .ob-kbds { flex: none; }
+@media (pointer: coarse) {
+  .ob-cmdk-trigger::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
+  .ob-cmdk-trigger > .ob-kbds { display: none; }
+}
+@media (hover: hover) and (pointer: fine) { .ob-cmdk-trigger:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+.ob-cmdk-trigger.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-cmdk-trigger:is(:active, .is-active) { color: var(--ob-text); background-color: var(--ob-state-pressed); scale: var(--ob-press-scale); transition-duration: var(--ob-dur-fast); }
+.ob-cmdk-trigger:is([aria-expanded="true"], .is-expanded) { color: var(--ob-text); background-color: var(--ob-state-selected); }
+.ob-cmdk-trigger:focus-visible,
+.ob-cmdk-trigger.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+@container ob-nav (max-width: 859.98px) {
+  .ob-nav--product .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--ob-space-4); }
+  .ob-nav--product .ob-cmdk-trigger {
+    justify-content: center;
+    width: var(--ob-target-touch);
+    height: var(--ob-target-touch);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .ob-nav--product .ob-cmdk-trigger::before { content: none; }
+  .ob-nav--product .ob-cmdk-trigger > .ob-navicon { color: var(--ob-text-2); }
+  .ob-nav--product .ob-cmdk-trigger > .ob-kbds { display: none; }
+  .ob-nav--product .ob-cmdk-trigger__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .ob-nav--product .ob-nav__account::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2); }
+}
 
 
 /* =============================================================================================
    MOBILE MENU PANEL  .ob-mnav
    Opens under the compact nav and fills the screen below it. The panel fades in over 240ms and
    its rows rise 8px, 40ms apart (.ob-anim-stagger). It leaves with a 160ms fade (.is-leaving).
+   While it is open the bar turns solid and its call to action steps aside for the panel's.
+   Focus cycles through the menu button and the panel; Esc closes and returns focus to the button.
    Set --ob-mnav-height when the nav is not at the top of the viewport.
    ============================================================================================= */
 .ob-mnav {
@@ -417,7 +507,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--ob-space-24);
-  height: var(--ob-mnav-height, calc(100dvh - 56px - env(safe-area-inset-top, 0px)));
+  height: var(--ob-mnav-height, calc(100dvh - var(--ob-nav-h-compact) - env(safe-area-inset-top, 0px)));
   padding: var(--ob-space-8) clamp(var(--ob-space-16), 4cqi, var(--ob-space-32)) var(--ob-space-24);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -441,7 +531,7 @@
   color: var(--ob-text);
   font: var(--ob-type-body);
   font-weight: var(--ob-weight-medium);
-  letter-spacing: -.01em;
+  letter-spacing: var(--ob-type-button-tracking);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: background-color var(--ob-dur-base) var(--ob-ease-out);
@@ -478,6 +568,8 @@
   font: var(--ob-type-label);
   letter-spacing: var(--ob-type-label-tracking);
 }
+/* The panel's theme switch is forms.css .ob-segmented at touch size: put .ob-touch on it. */
+.ob-mnav__row > .ob-segmented { flex: none; }
 
 
 /* =============================================================================================
@@ -571,10 +663,14 @@
    UNDERLINE TABS  .ob-utabs / .ob-utab
    40px tabs on a hairline (44px under a coarse pointer), for tabs inside a page or a card.
    1 2px indicator per list.
-     fit (default)  tabs size to their labels; script inserts the indicator and sets --ob-x, --ob-w
-     --fill         equal columns; set --ob-count and --ob-index, no measuring needed
-     --auto         the selected tab fills a 2px bar over the dwell, then the next tab opens.
-                    Wrap it in .ob-utabs-row with a Pause toggle; pausing stops it for good.
+     fit (default)  tabs size to their labels; script inserts the indicator and sets --ob-x, --ob-w.
+                    The only mode that may scroll sideways.
+     --fill         equal columns; set --ob-count and --ob-index on the list, no measuring needed.
+                    Fill tabs never scroll: when labels outgrow their columns, use fit tabs.
+     --auto         the selected tab fills a 2px bar over the dwell, then the next tab opens. It
+                    makes 1 pass and stops on the last tab. Wrap it in .ob-utabs-row with a Pause
+                    toggle; pausing or picking a tab stops it for good. Auto tabs fit their row
+                    with no scrolling: 3 or 4 labels of 1 or 2 short words.
    ============================================================================================= */
 .ob-utabs {
   --ob-fade-s: 0px;
@@ -720,8 +816,12 @@
 
 /* =============================================================================================
    BREADCRUMBS  .ob-crumbs
-   One line. Links in --ob-text-2, the current page in --ob-text and not a link. Middle items
-   fold into a 24px "more" button when space runs out; the current item truncates last.
+   One line. Links in --ob-text-2, the current page in --ob-text and not a link.
+   Fold contract: when the list's scrollWidth passes its clientWidth, script folds middle crumbs
+   into the 24px More button, starting with the crumb after the first and moving right, until the
+   line fits. The first crumb and the current page never fold. More opens a menu that lists the
+   folded crumbs in path order. Without script, parent crumbs shrink with an ellipsis, 16ch at most
+   each, and the current page truncates last.
    ============================================================================================= */
 .ob-crumbs { min-width: 0; }
 .ob-crumbs__list {
@@ -734,8 +834,18 @@
   font: var(--ob-type-label);
   letter-spacing: var(--ob-type-label-tracking);
 }
-.ob-crumbs__item { display: flex; align-items: center; flex: none; min-width: 0; }
-.ob-crumbs__item:last-child { flex: 0 1 auto; }
+.ob-crumbs__item { display: flex; align-items: center; flex: 0 1 auto; min-width: 0; }
+.ob-crumbs__item:not(:last-child) { max-width: 16ch; }
+/* Shrink order: middle crumbs first (down to 6ch), then the current page. The first crumb keeps
+   its label. Weights stay 1 or more, because flex shares out only part of the space when the
+   factors add up to less than 1. */
+.ob-crumbs__item:first-child { flex-shrink: 0; }
+.ob-crumbs__item:not(:first-child, :last-child) { flex-shrink: 1000; min-width: 6ch; }
+.ob-crumbs__item:last-child { flex-shrink: 1; }
+.ob-crumbs__item.ob-crumbs__item--more { flex: none; min-width: 0; max-width: none; }
+.ob-crumbs__item[hidden] { display: none; }
+/* Script hook: while it measures, every crumb takes its natural width. */
+.ob-crumbs.is-measuring .ob-crumbs__item { flex-shrink: 0; max-width: none; }
 .ob-crumbs__item + .ob-crumbs__item::before {
   content: "/";
   content: "/" / "";
@@ -749,6 +859,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--ob-space-6);
+  min-width: 0;
   min-height: var(--ob-control-chip);
   padding: 0 var(--ob-space-6);
   border-radius: var(--ob-radius-xs);
@@ -777,6 +888,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* The label carries the ellipsis, so the link's touch hit area is never clipped. */
+.ob-crumbs__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .ob-crumbs .ob-sig { --ob-sig-size: var(--ob-icon-sm); }
 
 
@@ -785,7 +898,7 @@
    32px pills with tabular figures. The current page is the inverse pill. Previous and Next stay
    in place on the first and last page, in --ob-text-disabled and out of the Tab order. Below
    480px of its own width only the current page shows between Previous and Next. Under a coarse
-   pointer pages are 44px wide and every hit area is 44px tall.
+   pointer pages and icon-only steps are 44px wide and every hit area is 44px tall.
    ============================================================================================= */
 .ob-pager {
   container: ob-pager / inline-size;
@@ -834,7 +947,8 @@
 .ob-pager__step--icon { padding: 0; }
 @media (pointer: coarse) {
   .ob-pager__list { gap: 0; }
-  .ob-pager__page { min-width: var(--ob-target-touch); }
+  .ob-pager__page,
+  .ob-pager__step--icon { min-width: var(--ob-target-touch); }
   :is(.ob-pager__page, .ob-pager__step)::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -917,6 +1031,17 @@
   animation: ob-enter var(--ob-dur-base) var(--ob-ease-out) backwards;
 }
 .ob-badge.is-new.is-replay { animation-name: ob-enter-r; }
+/* Anchor: pins a dot or a count to the top end corner of an icon, an avatar or an icon button.
+   The dot sits 2px out and a count 8px out, so each takes the corner and leaves the glyph, the
+   initials or the label it marks readable. */
+.ob-badge-anchor { position: relative; display: inline-flex; flex: none; vertical-align: middle; }
+.ob-badge-anchor > .ob-badge {
+  position: absolute;
+  top: calc(var(--ob-space-8) * -1);
+  inset-inline-end: calc(var(--ob-space-8) * -1);
+  pointer-events: none;
+}
+.ob-badge-anchor > .ob-badge--dot { top: calc(var(--ob-space-2) * -1); inset-inline-end: calc(var(--ob-space-2) * -1); }
 
 
 /* =============================================================================================
@@ -926,9 +1051,13 @@
    mark shows its still frame (brand.css .ob-sig.is-still).
      Ready .is-ready     Working .is-spin     Waiting .is-wait     Needs you .is-needs (warning)
      Paused .is-paused   Stopped .is-stopped  Done .is-lock        Landed .is-landed (success)
-   Still frames differ by shape for Needs you (hollow square), Working (the cut turned to the
-   bottom), Paused (the cut empty), Stopped (the ring closed and empty) and Landed (the ring closed,
-   the square in the centre). Ready, Waiting and Done share the drawn mark; the word tells them apart.
+   Still frames differ by shape for Needs you (hollow square), Working (a quarter turn, the cut at
+   the bottom right), Paused (the cut empty), Stopped (the ring closed and empty) and Landed (the
+   ring closed, the square in the centre). Ready, Waiting and Done share the drawn mark; the word
+   tells them apart. brand.css owns every one of these frames; this file only sizes the mark.
+   Under 16px the mark is brand.css's status glyph (.ob-sig.ob-sig-glyph, an 8-unit cut), so the
+   square never merges into the ring at 12 and 14px. The mark is always --ob-text. A toned pill tints its fill, its word and its detail, never the
+   mark (brand.css section 4).
    ============================================================================================= */
 .ob-status {
   display: inline-flex;
@@ -957,26 +1086,11 @@
 .ob-status--landed { background-color: var(--ob-success-bg); box-shadow: none; color: var(--ob-success); }
 /* Failed is for data that did not verify, such as a receipt hash. An agent never shows it. */
 .ob-status--failed { background-color: var(--ob-danger-bg); box-shadow: none; color: var(--ob-danger); }
-.ob-status:is(.ob-status--needs, .ob-status--landed, .ob-status--failed) :is(.ob-sig, .ob-navicon, .ob-status__detail) { color: currentColor; }
+.ob-status:is(.ob-status--needs, .ob-status--landed, .ob-status--failed) :is(.ob-navicon, .ob-status__detail) { color: currentColor; }
 /* Bare: the same mark and word inside a list row, with no pill. */
 .ob-status--bare,
 .ob-status--bare:is(.ob-status--needs, .ob-status--landed, .ob-status--failed) { height: auto; padding: 0; background: none; box-shadow: none; }
 
-/* Ring frames the status pill adds to the ring states in tokens.css and motion.css. */
-/* Working, still: the cut turned 135deg to the bottom right, the square upright in it. Also the
-   reduced-motion frame, so Working never reads as Ready. */
-.ob-sig.is-spin.is-still .ob-sig-rot { transform: rotate(135deg); }
-.ob-sig.is-spin.is-still .ob-sig-orb { transform: rotate(-135deg); }
-/* Paused: the cursor leaves the cut. Stopped: the cut closes with nothing in it. */
-.ob-sig:is(.is-paused, .is-stopped) .ob-sig-sq {
-  opacity: 0;
-  transition: opacity var(--ob-dur-base) var(--ob-ease-in), transform var(--ob-sig-land) var(--ob-ease);
-}
-.ob-sig.is-stopped .ob-sig-gap { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .ob-sig.is-spin .ob-sig-rot { transform: rotate(135deg); }
-  .ob-sig.is-spin .ob-sig-orb { transform: rotate(-135deg); }
-}
 
 
 /* =============================================================================================
@@ -985,8 +1099,12 @@
      .is-pending   dashed --ob-line-strong edge, hollow square, --ob-text-3
      .is-loading   setting up now: a solid --ob-line-ui edge (3:1) and a half-filled square
      (done)        filled square with a check
-     .is-landing   the square snaps in (400ms, --ob-snap), then the check draws (160ms)
-   Chips land when the work lands, paced by real events. The header ring turns until the last one.
+     .is-needs     a step that cannot finish without a person, such as a number that will not
+                   verify: --ob-warning on --ob-warning-bg, a square inside a square, and the words
+                   Needs you after the name (.ob-kit__why). The header ring stops and shows Needs you.
+     .is-landing   the square snaps in (400ms, --ob-snap); the check draws as it settles (160ms)
+   Chips land when the work lands, paced by real events. The header ring turns until the last one,
+   or until a chip needs a person.
    ============================================================================================= */
 .ob-kitbox {
   position: relative;
@@ -1001,7 +1119,7 @@
 .ob-kitbox__head { display: flex; align-items: center; gap: var(--ob-space-12); min-width: 0; }
 .ob-kitbox__head .ob-sig { --ob-sig-size: 24px; }
 .ob-kitbox__title { display: grid; gap: var(--ob-space-2); min-width: 0; margin: 0; }
-.ob-kitbox__title b { font: var(--ob-type-small); font-weight: var(--ob-weight-semibold); letter-spacing: -.01em; }
+.ob-kitbox__title b { font: var(--ob-type-small); font-weight: var(--ob-weight-semibold); letter-spacing: var(--ob-type-button-tracking); }
 .ob-kitbox__title span { overflow: hidden; color: var(--ob-text-3); font: var(--ob-type-mono-sm); text-overflow: ellipsis; white-space: nowrap; }
 .ob-kitbox__runs { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; color: var(--ob-text-2); font: var(--ob-type-small); }
 .ob-kit { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; }
@@ -1043,13 +1161,19 @@
   background-image: linear-gradient(90deg, var(--ob-text) 50%, transparent 50%);
   box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text);
 }
-.ob-kit__chip:is(.is-pending, .is-loading) .ob-kit__tick svg { display: none; }
+.ob-kit__chip:is(.is-pending, .is-loading, .is-needs) .ob-kit__tick svg { display: none; }
+/* Needs you: the tone carries the urgency, the inner square and the words carry the meaning. */
+.ob-kit__chip.is-needs { border-color: var(--ob-warning); background-color: var(--ob-warning-bg); color: var(--ob-warning); }
+.ob-kit__chip.is-needs .ob-kit__tick { background-color: transparent; color: inherit; box-shadow: inset 0 0 0 var(--ob-border-strong) currentColor; }
+.ob-kit__chip.is-needs .ob-kit__tick::after { content: ""; width: var(--ob-space-4); height: var(--ob-space-4); border-radius: 1px; background-color: currentColor; }
+.ob-kit__why::before { content: "\00B7"; content: "\00B7" / ""; margin-inline-end: var(--ob-space-8); }
 /* Landing. --ob-anim-delay paces each chip to its real event (the demo uses 220ms steps). */
 .ob-kit__chip.is-landing { animation: ob-kit-chip var(--ob-dur-base) var(--ob-ease-out) var(--ob-anim-delay, 0ms) backwards; }
 .ob-kit__chip.is-landing .ob-kit__tick { animation: ob-square-in var(--ob-dur-slow) var(--ob-snap) var(--ob-anim-delay, 0ms) backwards; }
 .ob-kit__chip.is-landing .ob-kit__tick path {
   stroke-dasharray: 1;
-  animation: ob-kit-check var(--ob-dur-base) var(--ob-ease-out) calc(var(--ob-anim-delay, 0ms) + var(--ob-dur-base) + var(--ob-stagger)) backwards;
+  /* The check draws once the snapping square has filled its box: 280ms into its 400ms. */
+  animation: ob-kit-check var(--ob-dur-base) var(--ob-ease-out) calc(var(--ob-anim-delay, 0ms) + var(--ob-dur-slow) - var(--ob-dur-base) + var(--ob-delay-tick)) backwards;
 }
 .ob-kit.is-replay .ob-kit__chip.is-landing { animation-name: ob-kit-chip-r; }
 .ob-kit.is-replay .ob-kit__chip.is-landing .ob-kit__tick { animation-name: ob-square-in-r; }
@@ -1065,7 +1189,9 @@
    A human label for a thing: a client, a store, a kind of work. 24px with a 6px radius, so it
    never reads as a button or a badge.
      --removable   a 16px remove button with a 24px hit area (44px on touch)
-     --filter      a 32px toggle button (aria-pressed); the square fills when it is on
+     --filter      a 32px toggle button (aria-pressed); the square fills when it is on. It is a
+                   choice, so it takes the pill shape every choice in this file has, and it
+                   never reads as a kit chip, which is a status.
    ============================================================================================= */
 .ob-tag {
   position: relative;
@@ -1119,6 +1245,7 @@
   gap: var(--ob-space-8);
   height: var(--ob-control-sm);
   padding: 0 var(--ob-control-pad-sm) 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition-property: color, background-color, box-shadow, scale;
@@ -1145,6 +1272,7 @@
 }
 .ob-tag--filter.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
 .ob-tag--filter:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) {
+  color: var(--ob-text);
   background-color: var(--ob-state-pressed);
   scale: var(--ob-press-scale-sm);
   transition-duration: var(--ob-dur-fast);
@@ -1241,6 +1369,10 @@
    Groups: <div role="group" aria-labelledby> around a label and its rows.
    Submenu: 1 level. .ob-menu__sub (role="none") holds the parent row and its menu, which opens
    to the side 4px clear of the parent, its first row level with the parent row.
+   Drill-in: when the 2 menus do not fit side by side (under 520px, or 2 x 224px + 8px wider than
+   the room on both sides), script opens the submenu in place instead. It adds .is-drilled to the
+   menu and .is-open to the .ob-menu__sub; the parent's rows step out, a Back row
+   (.ob-menu__back) leads, and Left or Esc goes back to the parent row.
    ============================================================================================= */
 .ob-menu-trigger {
   position: relative;
@@ -1271,12 +1403,22 @@
 @media (hover: hover) and (pointer: fine) { .ob-menu-trigger:hover:not(:disabled, [aria-disabled="true"], .is-disabled) { background-color: var(--ob-btn-2-bg-hover); } }
 .ob-menu-trigger.is-hover { background-color: var(--ob-btn-2-bg-hover); }
 .ob-menu-trigger:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) { background-color: var(--ob-btn-2-bg-pressed); scale: var(--ob-press-scale-sm); transition-duration: var(--ob-dur-fast); }
-.ob-menu-trigger:is([aria-expanded="true"], .is-selected) { background-color: var(--ob-btn-2-bg-pressed); }
+.ob-menu-trigger:is([aria-expanded="true"], .is-expanded) { background-color: var(--ob-btn-2-bg-pressed); }
 .ob-menu-trigger:focus-visible,
 .ob-menu-trigger.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+/* Disabled keeps its edge and drops its tint, so the label holds 3.2:1 or more on the page. */
+.ob-menu-trigger:is(:disabled, [aria-disabled="true"], .is-disabled) { background-color: transparent; }
 .ob-menu-trigger:is(:disabled, [aria-disabled="true"], .is-disabled),
 .ob-menu-trigger:is(:disabled, [aria-disabled="true"], .is-disabled) .ob-navicon { color: var(--ob-text-disabled); cursor: default; }
-.ob-menu-trigger.is-selected .ob-anim-turn { rotate: var(--ob-turn, 180deg); }
+.ob-menu-trigger.is-expanded .ob-anim-turn { rotate: var(--ob-turn, 180deg); }
+/* Ghost: no tint and no edge until hover, for a trigger that names where you are, such as the
+   product bar's workspace switcher. */
+.ob-menu-trigger--ghost { padding-inline: var(--ob-space-6) var(--ob-space-8); gap: var(--ob-space-8); background-color: transparent; box-shadow: none; }
+@media (hover: hover) and (pointer: fine) { .ob-menu-trigger--ghost:hover:not(:disabled, [aria-disabled="true"], .is-disabled) { background-color: var(--ob-state-hover); } }
+.ob-menu-trigger--ghost.is-hover { background-color: var(--ob-state-hover); }
+.ob-menu-trigger--ghost:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled),
+.ob-menu-trigger--ghost:is([aria-expanded="true"], .is-expanded) { background-color: var(--ob-state-pressed); }
+.ob-menu-trigger--ghost { min-width: 0; }
 
 .ob-menu {
   display: grid;
@@ -1338,6 +1480,8 @@
 @media (pointer: coarse) { .ob-menu__item { min-height: var(--ob-target-touch); } }
 .ob-menu__item > .ob-navicon,
 .ob-menu__icon { color: var(--ob-text-2); }
+/* Plain: a menu of words with no icons, such as the breadcrumb's folded crumbs. */
+.ob-menu--plain .ob-menu__item { grid-template-columns: minmax(0, 1fr) auto; }
 .ob-menu__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ob-menu__hint { display: inline-flex; align-items: center; gap: var(--ob-space-4); color: var(--ob-text-3); font: var(--ob-type-mono-sm); }
 .ob-menu__check { visibility: hidden; color: var(--ob-text); }
@@ -1354,6 +1498,9 @@
 .ob-menu__item:is([aria-disabled="true"], :disabled, .is-disabled),
 .ob-menu__item:is([aria-disabled="true"], :disabled, .is-disabled) > .ob-navicon { color: var(--ob-text-disabled); cursor: default; }
 .ob-menu__item:is([aria-disabled="true"], :disabled, .is-disabled) .ob-menu__hint { color: var(--ob-text-3); }
+/* A disabled row that takes focus keeps the overlay under it: the ring alone marks focus, so the
+   label stays above 3.2:1. */
+.ob-menu__item:is([aria-disabled="true"], .is-disabled):is(:focus-visible, .is-focus) { background-color: transparent; }
 .ob-menu__item--danger,
 .ob-menu__item--danger > .ob-navicon { color: var(--ob-danger); }
 @media (hover: hover) and (pointer: fine) { .ob-menu__item--danger:hover:not([aria-disabled="true"], .is-disabled) { background-color: var(--ob-danger-bg); } }
@@ -1374,6 +1521,26 @@
 .ob-menu__sub > .ob-menu::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: calc(var(--ob-space-8) * -1); width: var(--ob-space-8); }
 .ob-menu__item:is([aria-haspopup="menu"], [aria-haspopup="true"])[aria-expanded="true"] { background-color: var(--ob-state-hover); }
 .ob-menu__item > .ob-menu__hint > .ob-navicon { color: var(--ob-text-3); }
+/* Drill-in. The Back row only shows inside a drilled menu. */
+.ob-menu__back,
+.ob-menu__back + .ob-menu__sep { display: none; }
+.ob-menu__back > .ob-menu__text { color: var(--ob-text-2); }
+.ob-menu.is-drilled > :not(.ob-menu__sub.is-open),
+.ob-menu.is-drilled > .ob-menu__group > :not(.ob-menu__sub.is-open),
+.ob-menu.is-drilled .ob-menu__sub.is-open > .ob-menu__item { display: none; }
+.ob-menu.is-drilled .ob-menu__sub.is-open > .ob-menu {
+  position: static;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+.ob-menu.is-drilled .ob-menu__sub.is-open > .ob-menu::before { content: none; }
+.ob-menu.is-drilled .ob-menu__back { display: grid; }
+.ob-menu.is-drilled .ob-menu__back + .ob-menu__sep { display: block; }
 
 
 /* =============================================================================================
@@ -1417,10 +1584,10 @@
   padding: 0 var(--ob-space-16) 0 var(--ob-space-20);
   box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
 }
-/* The field holds focus while the palette is open. Its rule steps up to a 2px --ob-line-ui edge
-   (3:1); forced colours swap in a real outline below. */
+/* The field holds focus while the palette is open. Its rule becomes a 2px --ob-focus line, the
+   same ink as every focus ring; forced colours swap in a real outline below. */
 .ob-cmdk__field:has(.ob-cmdk__input:focus-visible),
-.ob-cmdk__field.is-focus { box-shadow: inset 0 calc(var(--ob-border-focus) * -1) 0 var(--ob-line-ui); }
+.ob-cmdk__field.is-focus { box-shadow: inset 0 calc(var(--ob-border-focus) * -1) 0 var(--ob-focus); }
 .ob-cmdk__prompt { flex: none; color: var(--ob-text-3); font: var(--ob-type-code); }
 .ob-cmdk__input {
   flex: 1;
@@ -1532,6 +1699,7 @@
 }
 .ob-cmdk__foot > span { display: inline-flex; align-items: center; gap: var(--ob-space-8); min-width: 0; white-space: nowrap; }
 .ob-cmdk__foot-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ob-cmdk__foot-short { display: none; }
 .ob-cmdk__foot .ob-sig { --ob-sig-size: var(--ob-icon-sm); color: var(--ob-text-2); }
 .ob-cmdk__hints { display: flex; align-items: center; gap: var(--ob-space-16); }
 .ob-cmdk__hints > span { display: inline-flex; align-items: center; gap: var(--ob-space-6); white-space: nowrap; }
@@ -1542,7 +1710,18 @@
   .ob-cmdk__item:has(.ob-cmdk__end .ob-status) .ob-cmdk__end { grid-column: 2; }
   .ob-cmdk__foot > .ob-cmdk__hints,
   .ob-cmdk__meta,
-  .ob-cmdk__end .ob-status__detail { display: none; }
+  .ob-cmdk__end .ob-status__detail,
+  .ob-cmdk__foot-long { display: none; }
+  .ob-cmdk__foot-short { display: inline; }
+  /* Task titles are the content: they wrap to 2 lines instead of cutting off at 20 characters. */
+  .ob-cmdk__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    white-space: normal;
+    text-wrap: pretty;
+  }
 }
 
 
@@ -1563,7 +1742,6 @@
   .ob-navbtn__bars i { forced-color-adjust: none; background-color: CanvasText; }
   .ob-utabs--fill .ob-utabs__indicator { background-color: transparent; }
   .ob-utab__bar { forced-color-adjust: none; background-color: GrayText; }
-  .ob-look,
   .ob-ptabs,
   .ob-tag,
   .ob-kbd,
@@ -1571,11 +1749,13 @@
   .ob-status:not(.ob-status--bare),
   .ob-tooltip,
   .ob-menu,
-  .ob-menu-trigger,
+  .ob-menu-trigger:not(.ob-menu-trigger--ghost),
+  .ob-cmdk-trigger,
+  .ob-nav__account,
   .ob-cmdk,
   .ob-kitbox { border: 1px solid CanvasText; }
-  .ob-look__thumb { border: 2px solid Highlight; }
-  .ob-look__sw { forced-color-adjust: none; color: CanvasText; }
+  .ob-nav__space-glyph { forced-color-adjust: none; background-color: CanvasText; color: Canvas; }
+  .ob-menu.is-drilled .ob-menu__sub.is-open > .ob-menu { border: 0; }
   .ob-ptab:is([aria-selected="true"], .is-selected),
   .ob-pager__page:is([aria-current="page"], .is-selected),
   .ob-tag--filter:is([aria-pressed="true"], .is-selected),
@@ -1583,35 +1763,41 @@
   .ob-cmdk__item[aria-selected="true"] { forced-color-adjust: none; background-color: Highlight; color: HighlightText; }
   .ob-kit__tick,
   .ob-tag__sq { forced-color-adjust: none; border: 1.5px solid CanvasText; }
-  .ob-kit__chip:not(.is-pending, .is-loading) .ob-kit__tick,
+  .ob-kit__chip:not(.is-pending, .is-loading, .is-needs) .ob-kit__tick,
   .ob-tag--filter:is([aria-pressed="true"], .is-selected) .ob-tag__sq { background-color: CanvasText; color: Canvas; }
   .ob-kit__chip.is-loading .ob-kit__tick { background-image: linear-gradient(90deg, CanvasText 50%, transparent 50%); }
+  .ob-kit__chip.is-needs { border-style: double; border-width: 3px; }
+  .ob-kit__chip.is-needs .ob-kit__tick::after { forced-color-adjust: none; background-color: CanvasText; }
   /* The palette field: a real rule, and a real outline on the field while it has focus. */
   .ob-cmdk__field { border-bottom: 1px solid CanvasText; }
   .ob-cmdk__input:focus-visible { outline: 2px solid Highlight; outline-offset: -2px; }
   /* Disabled controls take the system's disabled ink. */
   :is(.ob-ptab, .ob-utab, .ob-pager__step, .ob-tag--filter, .ob-menu-trigger, .ob-menu__item, .ob-cmdk__item, .ob-navbtn):is(:disabled, [aria-disabled="true"], .is-disabled) { color: GrayText; }
+  /* Doc pins stay readable as numbered boxes. */
+  .ds-navigation-pin { forced-color-adjust: none; border: 1px solid CanvasText; background-color: Canvas; color: CanvasText; }
 }
 
 
 /* =============================================================================================
    REDUCED MOTION. motion.css already turns travel into fades and stops loops. These stop the
-   moves that live in this file: the menu glyph, the check draw, the thumb and the doc slides.
+   moves that live in this file: the menu glyph, the check draw and the doc slides.
    ============================================================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .ob-navbtn__bars i,
-  .ob-look__thumb { transition: none; }
+  .ob-navbtn__bars i { transition: none; }
   .ob-kit__chip.is-landing,
   .ob-kit__chip.is-landing .ob-kit__tick,
   .ob-kit__chip.is-landing .ob-kit__tick path,
   .ds-navigation-slide { animation: none; }
-  :is(.ob-nav__link, .ob-ptab, .ob-utab, .ob-pager__page, .ob-pager__step, .ob-tag--filter, .ob-tag__remove, .ob-navbtn, .ob-menu-trigger):is(:active, .is-active) { scale: 1; }
+  :is(.ob-nav__link, .ob-ptab, .ob-utab, .ob-pager__page, .ob-pager__step, .ob-tag--filter, .ob-tag__remove, .ob-navbtn, .ob-menu-trigger, .ob-cmdk-trigger, .ob-nav__account):is(:active, .is-active) { scale: 1; }
 }
 
 
 /* =============================================================================================
    DOC LAYOUT  .ds-navigation-   (the guideline page only; never ship in product)
-   Zero-specificity resets, so no doc rule ever outranks a component.
+   Every rule here has zero specificity on generic elements, or names the frame it styles. A rule
+   that reaches a component on purpose says why: a frame that stands in for the viewport (the nav
+   is not sticky inside it, the skip link and the palette's layer fill the frame), or an anatomy
+   that lets its pins show outside a clipping track.
    ============================================================================================= */
 .ds-navigation {
   --ds-nav-gap: clamp(56px, 8vw, 96px);
@@ -1634,7 +1820,7 @@
 .ds-navigation-title { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); text-wrap: balance; max-width: 20ch; }
 .ds-navigation-intro { color: var(--ob-text-2); font: var(--ob-type-body-lg); max-width: var(--ob-measure-lede); text-wrap: pretty; }
 .ds-navigation-toc { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin-top: var(--ob-space-8); padding: 0; list-style: none; }
-.ds-navigation-toc a {
+:where(.ds-navigation-toc) > li > a {
   display: inline-flex;
   align-items: center;
   height: var(--ob-control-chip);
@@ -1646,7 +1832,8 @@
   text-decoration: none;
   transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
 }
-@media (hover: hover) and (pointer: fine) { .ds-navigation-toc a:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+@media (hover: hover) and (pointer: fine) { :where(.ds-navigation-toc) > li > a:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+:where(.ds-navigation-toc) > li > a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 
 .ds-navigation-comp {
   display: grid;
@@ -1654,7 +1841,7 @@
   margin-top: var(--ds-nav-gap);
   padding-top: var(--ob-space-48);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
-  scroll-margin-top: 80px;
+  scroll-margin-top: calc(var(--ob-nav-h) + var(--ob-space-16));
 }
 .ds-navigation-comp-head { display: grid; gap: var(--ob-space-12); max-width: 760px; }
 .ds-navigation-comp-title { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); text-wrap: balance; max-width: 22ch; }
@@ -1663,7 +1850,9 @@
 
 .ds-navigation-pair { display: grid; gap: var(--ob-space-12); min-width: 0; }
 @media (min-width: 1080px) { .ds-navigation-pair--split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+/* Each stage is a size container, so narrow stages can drop their anatomy pins. */
 .ds-navigation-stage {
+  container: ds-nav-stage / inline-size;
   position: relative;
   display: grid;
   gap: var(--ob-space-24);
@@ -1677,8 +1866,10 @@
 }
 .ds-navigation-block { display: grid; gap: var(--ob-space-12); min-width: 0; }
 .ds-navigation-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-16); min-width: 0; }
+.ds-navigation-row--pins { padding-top: var(--ob-space-28); column-gap: var(--ob-space-32); }
 
-/* State matrix: cells wrap; each cell is a specimen over its caption. */
+/* State matrix: cells wrap; each cell is a specimen over its caption. State matrices are inert, so
+   their mirrors never take a Tab stop or announce as live controls. */
 .ds-navigation-matrix {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--ds-cell, 148px)), 1fr));
@@ -1695,10 +1886,14 @@
   border-radius: var(--ob-radius-md);
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
 }
-.ds-navigation-cell > :first-child { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8); min-width: 0; min-height: 48px; }
+.ds-navigation-specimen { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8); min-width: 0; min-height: 48px; }
 .ds-navigation-cell--wide { grid-column: 1 / -1; }
 .ds-navigation-fill { width: 100%; min-width: 0; }
-.ds-navigation-cell > :first-child > .ob-crumbs__current { flex: none; }
+/* A caption with its Replay at the end, so a specimen's width never pushes Replay onto a new line. */
+.ds-navigation-capline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8); min-height: var(--ob-control-xs); }
+/* The current crumb on its own keeps its full width in a cell (frame rule). */
+.ds-navigation-specimen > .ob-crumbs__current { flex: none; }
+.ds-navigation-specimen > .ob-mnav__link { flex: 1 1 auto; }
 
 /* Frames that stand in for a viewport. isolation keeps the nav's and the layers' z-index inside
    the frame, so nothing in a specimen ever paints over the guideline's own chrome. */
@@ -1713,12 +1908,18 @@
   scrollbar-width: thin;
 }
 .ds-navigation-viewport--tall { height: 320px; }
+.ds-navigation-viewport--bar { height: auto; overflow: visible; }
+/* Frame rule: a framed nav keeps the frame's rounded top. */
 .ds-navigation-viewport > .ob-nav { border-radius: var(--ob-radius-md) var(--ob-radius-md) 0 0; }
+/* Fixed-width frames prove the nav at a given width; the wrapper scrolls when the column is narrower. */
+.ds-navigation-widths { display: grid; gap: var(--ob-space-16); min-width: 0; }
+.ds-navigation-scroll { min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+.ds-navigation-fixed { width: var(--ds-w, 860px); max-width: none; }
 .ds-navigation-page { display: grid; gap: var(--ob-space-12); padding: var(--ob-space-40) clamp(16px, 4cqi, 32px) var(--ob-space-120); }
-.ds-navigation-page--under { margin-top: -64px; padding-top: var(--ob-space-12); }
+.ds-navigation-page--under { margin-top: calc(var(--ob-nav-h) * -1); padding-top: var(--ob-space-12); }
 .ds-navigation-page--object { padding-top: var(--ob-space-40); }
-.ds-navigation-page b { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); max-width: 14ch; }
-.ds-navigation-page span { color: var(--ob-text-2); font: var(--ob-type-body); max-width: 40ch; }
+:where(.ds-navigation-page) > b { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); max-width: 14ch; }
+:where(.ds-navigation-page) > span { color: var(--ob-text-2); font: var(--ob-type-body); max-width: 40ch; }
 /* A phone frame keeps 375 CSS px inside and is drawn smaller when the column is narrower, so it
    always shows the real 375px layout. */
 .ds-navigation-devices { container-type: inline-size; display: flex; flex-wrap: wrap; gap: var(--ob-space-16); align-items: flex-start; }
@@ -1732,9 +1933,10 @@
   border-radius: var(--ob-radius-xl);
   background-color: var(--ob-bg);
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
-  --ob-mnav-height: 504px;
+  --ob-mnav-height: calc(560px - var(--ob-nav-h-compact));
 }
 .ds-navigation-device--short { height: 240px; }
+.ds-navigation-device--menu { height: 300px; }
 /* The frame's edge, drawn over its content so an open panel never hides it. */
 .ds-navigation-device::after {
   content: "";
@@ -1745,6 +1947,7 @@
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
   pointer-events: none;
 }
+/* Frame rule: inside a phone frame the nav sits at the frame's top instead of sticking to the page. */
 .ds-navigation-device > .ob-nav { position: relative; border-radius: var(--ob-radius-xl) var(--ob-radius-xl) 0 0; }
 @container (max-width: 374.98px) { .ds-navigation-device { zoom: .95; } }
 @container (max-width: 356.23px) { .ds-navigation-device { zoom: .9; } }
@@ -1753,22 +1956,24 @@
 @container (max-width: 299.98px) { .ds-navigation-device { zoom: .75; } }
 @container (max-width: 281.23px) { .ds-navigation-device { zoom: .7; } }
 @container (max-width: 262.48px) { .ds-navigation-device { zoom: .6; } }
+/* A narrow phone page holding a drilled menu. */
+.ds-navigation-devicepage { display: grid; justify-items: start; gap: var(--ob-space-12); padding: var(--ob-space-16); }
 
 /* A dialog shown in place: the layer fills the frame instead of the viewport, and the frame takes
-   the dialog's height. */
+   the dialog's height (frame rule). */
 .ds-navigation-modal { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
 .ds-navigation-modal > .ob-layer.ob-cmdk-layer { position: relative; inset: auto; padding: var(--ob-space-40) var(--ob-space-16); }
 .ds-navigation-modal-page { position: absolute; inset: 0; display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-24); }
-.ds-navigation-modal-page i { display: block; height: 12px; border-radius: var(--ob-radius-xs); background-color: var(--ob-fill); }
-.ds-navigation-modal-page i:nth-child(1) { width: 40%; height: 20px; }
-.ds-navigation-modal-page i:nth-child(2) { width: 72%; }
-.ds-navigation-modal-page i:nth-child(3) { width: 64%; }
+:where(.ds-navigation-modal-page) > i { display: block; height: 12px; border-radius: var(--ob-radius-xs); background-color: var(--ob-fill); }
+:where(.ds-navigation-modal-page) > i:nth-child(1) { width: 40%; height: 20px; }
+:where(.ds-navigation-modal-page) > i:nth-child(2) { width: 72%; }
+:where(.ds-navigation-modal-page) > i:nth-child(3) { width: 64%; }
 
-/* The skip link shown in a frame: absolute to the frame instead of fixed to the viewport. */
+/* The skip link shown in a frame: absolute to the frame instead of fixed to the viewport (frame rule). */
 .ds-navigation-skipframe { height: 120px; }
 .ds-navigation-skipframe > .ob-skip { position: absolute; }
 
-/* Hybrid: a paper page with a glossy black product object scrolling under the bar. */
+/* Hybrid: a paper page with a glossy black product object. */
 .ds-navigation-object {
   display: grid;
   gap: var(--ob-space-16);
@@ -1776,26 +1981,36 @@
   padding: var(--ob-space-16) var(--ob-space-20) var(--ob-space-24);
   border-radius: var(--ob-radius-lg);
 }
+.ds-navigation-object--flush { margin: 0; }
 .ds-navigation-object-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8) var(--ob-space-16); }
-.ds-navigation-object-bar b { color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
-.ds-navigation-object p { color: var(--ob-text-2); font: var(--ob-type-small); }
+:where(.ds-navigation-object-bar) > b { color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
+:where(.ds-navigation-object) > p { color: var(--ob-text-2); font: var(--ob-type-small); }
 .ds-navigation-viewport .ds-navigation-object { margin-bottom: var(--ob-space-120); }
 
 /* Popovers shown in flow, under or beside their anchor, with room for the ring. */
 .ds-navigation-pop { display: grid; justify-items: start; gap: var(--ob-space-6); min-width: 0; }
-.ds-navigation-tipcell > :first-child { justify-content: center; min-height: 112px; padding-block: var(--ob-space-40); }
-.ds-navigation-tipcell--side > :first-child { justify-content: flex-start; padding-inline: var(--ob-space-8); }
-.ds-navigation-tipcell--side-left > :first-child { justify-content: flex-end; }
-/* An open menu is absolute under its trigger, so its specimen reserves the room it opens into. */
+.ds-navigation-tipcell > .ds-navigation-specimen { justify-content: center; min-height: 112px; padding-block: var(--ob-space-40); }
+.ds-navigation-tipcell--side > .ds-navigation-specimen { justify-content: flex-start; padding-inline: var(--ob-space-8); }
+.ds-navigation-tipcell--side-left > .ds-navigation-specimen { justify-content: flex-end; }
+/* An open menu is absolute under its trigger, so its specimen reserves the room it opens into.
+   Rows grow to 44px under a coarse pointer, so the room grows with them. */
 .ds-navigation-menuarea { position: relative; isolation: isolate; min-height: 420px; padding-top: var(--ob-space-12); }
 .ds-navigation-menuarea--sub { min-height: 168px; }
-.ds-navigation-menuarea .ds-navigation-pinned.ob-menu { overflow: visible; max-height: none; }
+.ds-navigation-menuarea--crumbs { min-height: 156px; }
+@media (pointer: coarse) {
+  .ds-navigation-menuarea { min-height: 560px; }
+  .ds-navigation-menuarea--sub { min-height: 220px; }
+  .ds-navigation-menuarea--crumbs { min-height: 200px; }
+}
+/* Frame rule: the anatomy menu shows its pins outside its own edge. */
+.ds-navigation-menuarea .ob-menu.ds-navigation-pinned { overflow: visible; max-height: none; }
 /* A submenu needs 2 menus of room side by side; on a narrow column the specimen scrolls. */
 .ds-navigation-subwrap { min-width: 0; overflow-x: auto; scrollbar-width: thin; }
 .ds-navigation-subwrap > .ds-navigation-menuarea { min-width: 500px; }
 
-/* Anatomy pins: numbered squares placed beside the part they name, never on it. */
-.ds-navigation-pinned { position: relative; }
+/* Anatomy pins: numbered squares placed beside the part they name, never on it. Under 520px of
+   stage there is no room beside the parts, so the pins step out and the legend stays. */
+:where(.ds-navigation-pinned) { position: relative; }
 .ds-navigation-pin {
   position: absolute;
   top: var(--ds-y, -10px);
@@ -1814,15 +2029,22 @@
 }
 .ds-navigation-pin--r { left: auto; right: var(--ds-x, -10px); }
 .ds-navigation-pin--b { top: auto; bottom: var(--ds-y, -10px); }
+@container ds-nav-stage (max-width: 519.98px) { .ds-navigation-pin { display: none; } }
 .ds-navigation-anatomy { position: relative; display: inline-flex; justify-self: start; max-width: 100%; }
+.ds-navigation-anatomy--block { display: block; }
+/* Room above and around an anatomy for its pins. */
+.ds-navigation-pad { padding: var(--ob-space-24) var(--ob-space-16) var(--ob-space-16); }
+.ds-navigation-pad--top { padding: var(--ob-space-28) 0 var(--ob-space-16); }
 /* Small parts are drawn 1.5 times larger for their anatomy; the pins stay at 1x. */
 .ds-navigation-zoom { zoom: 1.5; }
 .ds-navigation-zoom .ds-navigation-pin { zoom: .6667; }
-/* Anatomy: the track shows its pins; the wrapper scrolls instead when the track is too wide. */
+.ds-navigation-zoomrow { display: flex; flex-wrap: wrap; gap: var(--ob-space-24) var(--ob-space-32); padding: var(--ob-space-16) 0 var(--ob-space-4) var(--ob-space-16); }
+/* Frame rule: an anatomy track shows its pins; the wrapper scrolls instead when it is too wide. */
 .ds-navigation-unclip { overflow-x: auto; padding: var(--ob-space-24) var(--ob-space-12) var(--ob-space-28); scrollbar-width: thin; }
 .ds-navigation-unclip :is(.ob-ptabs, .ob-utabs) { overflow: visible; }
 .ds-navigation-unclip .ob-ptabs { max-width: none; }
-.ds-navigation-cell > :first-child > .ob-mnav__link { flex: 1 1 auto; }
+/* Frame rule: the kit anatomy lifts its chips clear of the pins above them. */
+.ds-navigation-kitanat .ob-kit { padding-top: var(--ob-space-24); }
 .ds-navigation-card {
   display: grid;
   min-width: 0;
@@ -1832,8 +2054,8 @@
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
 }
 .ds-navigation-card-body { display: grid; gap: var(--ob-space-2); padding: var(--ob-space-16) var(--ob-space-4) var(--ob-space-16); }
-.ds-navigation-card-body b { color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
-.ds-navigation-card-body span { color: var(--ob-text-3); font: var(--ob-type-mono-sm); }
+:where(.ds-navigation-card-body) > b { color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
+:where(.ds-navigation-card-body) > span { color: var(--ob-text-3); font: var(--ob-type-mono-sm); }
 
 /* A list of agent rows on a card, to show statuses in place. */
 .ds-navigation-rows {
@@ -1844,7 +2066,7 @@
   background-color: var(--ob-surface);
   box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
 }
-.ds-navigation-rows > div {
+:where(.ds-navigation-rows) > div {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
@@ -1852,66 +2074,70 @@
   min-height: 52px;
   padding: var(--ob-space-8) var(--ob-space-16);
 }
-.ds-navigation-rows > div + div { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
-.ds-navigation-rows p { display: grid; gap: var(--ob-space-2); min-width: 0; }
-.ds-navigation-rows b { overflow: hidden; color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); text-overflow: ellipsis; white-space: nowrap; }
-.ds-navigation-rows span { overflow: hidden; color: var(--ob-text-3); font: var(--ob-type-mono-sm); text-overflow: ellipsis; white-space: nowrap; }
+:where(.ds-navigation-rows) > div + div { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
+:where(.ds-navigation-rows) > div > p { display: grid; gap: var(--ob-space-2); min-width: 0; }
+:where(.ds-navigation-rows) > div > p > b { overflow: hidden; color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); text-overflow: ellipsis; white-space: nowrap; }
+:where(.ds-navigation-rows) > div > p > span { overflow: hidden; color: var(--ob-text-3); font: var(--ob-type-mono-sm); text-overflow: ellipsis; white-space: nowrap; }
 .ds-navigation-prose { color: var(--ob-text-2); font: var(--ob-type-small); }
 .ds-navigation-narrow { width: 100%; max-width: 300px; min-width: 0; }
 .ds-navigation-legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: var(--ob-space-8) var(--ob-space-24); padding: 0; list-style: none; counter-reset: ds-nav-legend; }
-.ds-navigation-legend li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: var(--ob-space-12); align-items: start; color: var(--ob-text-2); font: var(--ob-type-small); }
-.ds-navigation-legend li::before {
+:where(.ds-navigation-legend) > li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: var(--ob-space-12); align-items: start; color: var(--ob-text-2); font: var(--ob-type-small); }
+:where(.ds-navigation-legend) > li::before {
   counter-increment: ds-nav-legend;
   content: counter(ds-nav-legend);
   display: grid;
   place-items: center;
   width: 18px;
   height: 18px;
-  margin-top: 2px;
+  margin-top: var(--ob-space-2);
   border-radius: var(--ob-radius-glyph);
   background-color: var(--ob-solid);
   color: var(--ob-text-inverse);
   font: var(--ob-type-label-mono);
   line-height: 1;
 }
-.ds-navigation-legend b { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+:where(.ds-navigation-legend) > li b { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
 
 /* Spec and motion tables. */
 .ds-navigation-tablewrap { min-width: 0; overflow-x: auto; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
 .ds-navigation-table { width: 100%; min-width: 640px; border-collapse: collapse; font: var(--ob-type-small); }
-.ds-navigation-table th,
-.ds-navigation-table td { padding: var(--ob-space-12) var(--ob-space-16); text-align: start; vertical-align: top; }
-.ds-navigation-table thead th { color: var(--ob-text-3); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; white-space: nowrap; }
-.ds-navigation-table tbody tr { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
-.ds-navigation-table tbody th { color: var(--ob-text); font-weight: var(--ob-weight-medium); white-space: nowrap; }
-.ds-navigation-table td { color: var(--ob-text-2); }
-.ds-navigation code { color: var(--ob-text); font: var(--ob-type-mono-sm); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
-.ds-navigation-table code { white-space: nowrap; }
-.ds-navigation :is(.ds-navigation-notes, .ds-navigation-rules, .ds-navigation-legend, .ds-navigation-comp-lede) code { overflow-wrap: anywhere; }
+:where(.ds-navigation-table) :is(th, td) { padding: var(--ob-space-12) var(--ob-space-16); text-align: start; vertical-align: top; }
+:where(.ds-navigation-table) thead th { color: var(--ob-text-3); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; white-space: nowrap; }
+:where(.ds-navigation-table) tbody tr { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
+:where(.ds-navigation-table) tbody th { color: var(--ob-text); font-weight: var(--ob-weight-medium); white-space: nowrap; }
+:where(.ds-navigation-table) td { color: var(--ob-text-2); }
+:where(.ds-navigation) code { color: var(--ob-text); font: var(--ob-type-mono-sm); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+:where(.ds-navigation-table) code { white-space: nowrap; }
+:where(.ds-navigation-notes, .ds-navigation-rules, .ds-navigation-legend, .ds-navigation-comp-lede) code { overflow-wrap: anywhere; }
 
 /* Do and do not, accessibility notes. */
 .ds-navigation-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: var(--ob-space-12); }
-.ds-navigation-rules > div { display: grid; gap: var(--ob-space-12); align-content: start; padding: var(--ob-space-20); border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
-.ds-navigation-rules ul,
+:where(.ds-navigation-rules) > div { display: grid; gap: var(--ob-space-12); align-content: start; padding: var(--ob-space-20); border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
+:where(.ds-navigation-rules) ul,
 .ds-navigation-notes { display: grid; gap: var(--ob-space-8); padding: 0; list-style: none; }
-.ds-navigation-rules li,
-.ds-navigation-notes li { display: grid; grid-template-columns: 7px minmax(0, 1fr); gap: var(--ob-space-12); align-items: baseline; color: var(--ob-text-2); font: var(--ob-type-small); text-wrap: pretty; }
-.ds-navigation-rules li::before,
-.ds-navigation-notes li::before { content: ""; width: 7px; height: 7px; border-radius: 1px; background-color: var(--ob-text); translate: 0 -1px; }
-.ds-navigation-rules .ds-navigation-dont li::before { background-color: transparent; box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text-3); }
-.ds-navigation-notes b { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+:where(.ds-navigation-rules) li,
+:where(.ds-navigation-notes) > li { display: grid; grid-template-columns: 7px minmax(0, 1fr); gap: var(--ob-space-12); align-items: baseline; color: var(--ob-text-2); font: var(--ob-type-small); text-wrap: pretty; }
+:where(.ds-navigation-rules) li::before,
+:where(.ds-navigation-notes) > li::before { content: ""; width: 7px; height: 7px; border-radius: 1px; background-color: var(--ob-text); translate: 0 -1px; }
+:where(.ds-navigation-dont) li::before { background-color: transparent; box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text-3); }
+:where(.ds-navigation-notes) > li b { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
 
 /* Replay sits beside its specimen. The assembler toggles .is-replay on data-target; this
    zero-specificity look matches the other chapters and gives way to the assembler's own. */
 .ds-navigation-replayrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12); }
+.ds-navigation-replayrow--stack { display: grid; grid-template-columns: minmax(0, 1fr); }
+.ds-navigation-replayrow--stack > :is(.ds-replay, .ds-navigation-replayrow) { justify-self: start; }
+.ds-navigation-replayrow--top { align-items: flex-start; gap: var(--ob-space-48); }
 :where(.ds-navigation .ds-replay) {
+  flex: none;
   height: var(--ob-control-xs);
   padding: 0 var(--ob-space-12);
   border: var(--ob-border-hair) solid var(--ob-line-strong);
   border-radius: var(--ob-radius-pill);
   background: transparent;
   color: var(--ob-text-2);
-  font: var(--ob-weight-medium) 12px/1 var(--ob-font-sans);
+  font: var(--ob-weight-medium) var(--ob-type-caption-size)/1 var(--ob-font-sans);
+  white-space: nowrap;
   cursor: pointer;
   transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
 }
@@ -1931,15 +2157,20 @@
 .ds-navigation-landed.is-replay .ob-sig.is-landed .ob-sig-gap { animation-name: ob-fade-in-r; }
 @keyframes ds-navigation-land   { from { transform: none; } }
 @keyframes ds-navigation-land-r { from { transform: none; } }
-/* Doc-only: a still Working mark plays 2 turns on Replay and stops on its own still frame (135deg),
-   so the hand-off back to .is-still is seamless. Script swaps the classes. */
-.ds-navigation-play .ob-sig.is-spin :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 2.375; animation-fill-mode: forwards; }
+/* Doc-only: a still Working mark plays 2 turns on Replay and stops on brand.css's still frame.
+   Script reads that frame's angle and sets --ds-turns (2 plus the still turn), so the hand-off
+   back to .is-still is seamless whatever angle brand.css holds. */
+.ds-navigation-play .ob-sig.is-spin :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: var(--ds-turns, 2.25); animation-fill-mode: forwards; }
 /* Doc-only: a progress bar frozen part way, to show the auto-advance state. */
 .ds-navigation-bar-0  { scale: 0 1; }
 .ds-navigation-bar-40 { scale: .4 1; }
 .ds-navigation-bar-70 { scale: .7 1; }
+.ds-navigation-bar-100 { scale: 1 1; }
 .ds-navigation-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .ds-navigation-landed .ob-sig.is-landed :is(.ob-sig-sq, .ob-sig-gap) { animation: none; }
 }
+
+/* QA 2 Oct: menu rows were 4px wider than the menu, which showed a stray scrollbar */
+.ob-menu { overflow-x: hidden; }

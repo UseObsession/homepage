@@ -1,7 +1,7 @@
 /* =============================================================================================
-   OBSESSION BRAND, MOTION AND VOICE  v1.1  (2 Oct 2026)
-   Load after tokens.css, motion.css, buttons.css and forms.css. Colours come from --ob- tokens
-   only. Movement is transform and opacity, with 2 exceptions: the ring's draw-on animates
+   OBSESSION BRAND, MOTION AND VOICE  v1.2  (2 Oct 2026)
+   Load after tokens.css, motion.css, buttons.css and forms.css. The guideline's specimens also use
+   the Navigation chapter's .ob-status, .ob-kit and .ob-sr. Colours come from --ob- tokens only. Movement is transform and opacity, with 2 exceptions: the ring's draw-on animates
    stroke-dashoffset, and the hero copy rises out of a 4px blur (motion.css). Every transition and
    animation reads a motion token.
 
@@ -12,19 +12,21 @@
      .ob-sig--{size}, .ob-sig-glyph ...... ring mark sizes, and the status glyph for 12 to 15px
      .ob-sig--glow ....................... the dark hero mark's glow, the only glow on a mark
      .is-arriving, .is-still ............. a replayable landing, and a mark's still frame
-     .ob-sig-label ....................... a still or moving mark beside its status word
+     .is-paused, .is-stopped ............. the cursor steps out; the ring closes empty
+     .ob-sig-label ....................... a 16px mark beside its status word, on marketing pages
      .ob-appicon ......................... app icon and avatar plates
-     .ob-icon ............................ 1.5px line icons on 16, 20 and 24 grids
+     .ob-icon ............................ 1.5px line icons, each size on its own 16, 20 or 24 master
      .ob-sq--tick, .ob-sq--lg ............ the square as tick and as hollow status
-     .ob-setup-list ...................... agent set-up chips that tick in as work lands
      .ob-illus ........................... product illustration well (glossy object)
      .ob-grain--local .................... grain bound to one surface
      .ob-evidence ........................ a captured screenshot or email, with its source
      .ob-layout-* ........................ section head, eyebrow, actions, final call, result, footer
      .ob-cobrand, .ob-agent-id ........... the agency's report header and the declared agent
      .ob-og, .ob-emailsig ................ social card and email signature templates
-   Buttons and fields are the Buttons and Forms chapters' .ob-btn and .ob-input; nothing here
-   restyles them. Documentation layout (.ds-brand-) sits at the end of the file.
+   Buttons and fields are the Buttons and Forms chapters' .ob-btn and .ob-input; status pills and kit
+   chips are the Navigation chapter's .ob-status and .ob-kit. Nothing here restyles them.
+   This file owns every frame of the ring mark (section 3). Documentation layout (.ds-brand-) sits at
+   the end of the file.
 
    Static state mirrors for the guideline: .is-hover, .is-active, .is-focus, .is-disabled,
    .is-loading, .is-selected. They copy the real :hover, :active, :focus-visible and :disabled.
@@ -40,6 +42,8 @@
   --ob-measure-display:   14ch;    /* a display headline: the hero, the social card */
   --ob-measure-card:      40ch;    /* the line under a social card's headline */
   --ob-measure-note:      28ch;    /* a short note inside a small frame, such as a broken capture */
+  --ob-sig-idle-delay:    3200ms;  /* the hero and final marks start their 1 idle run this long after the draw-on.
+                                      A ring timing: it moves to tokens.css with the others */
 }
 /* Glows are light on ink: the dark hero mark's glow and the final call's glow from below. Paper has
    no glow, so light and hybrid set them to nothing. Each theme scope sets its own, so a dark band
@@ -47,8 +51,8 @@
 :root,
 .ob-theme-dark,
 [data-theme="dark"] {
-  --ob-sig-glow:   drop-shadow(0 0 22px rgb(237 235 229 / .22));
-  --ob-final-glow: rgb(237 235 229 / .10);
+  --ob-sig-glow:   drop-shadow(0 0 22px rgb(var(--ob-glow-rgb) / .22));
+  --ob-final-glow: rgb(var(--ob-glow-rgb) / .10);
 }
 .ob-theme-light,
 [data-theme="light"],
@@ -67,9 +71,11 @@
 
 /* =============================================================================================
    1. LOGO
-   The lockup is the mark plus the outlined wordmark, spaced exactly as obsession-lockup-*.svg:
-   total width = 7.005 x height; mark 0.9952 h; gap 0.4518 h; wordmark 0.9817 h, dropped 0.0182 h.
-   The mark inside a lockup uses viewBox="10 10 80 80", so the svg box is the mark itself.
+   The lockup is the mark plus the outlined wordmark, spaced exactly as Brand/Logo's
+   obsession-lockup-*.svg: width = 7.437 x height; mark 0.997 h; gap 0.471 h; wordmark 0.9373 h
+   tall, its top 0.0627 h below the mark's. The wordmark is Brand/Logo's outline, viewBox
+   "4.2 -71 459.8 72.2". The mark inside a lockup uses viewBox="10 10 80 80", so the svg box is the
+   mark itself. build_brand.py re-measures these from Brand/Logo and stops if they drift.
    ============================================================================================= */
 .ob-lockup {
   --ob-lockup-h: 22px;
@@ -81,18 +87,19 @@
   line-height: 0;
   vertical-align: middle;
 }
-.ob-lockup > .ob-sig { --ob-sig-size: calc(var(--ob-lockup-h) * .9952); }
+.ob-lockup > .ob-sig { --ob-sig-size: var(--ob-lockup-h); }
 .ob-lockup > .ob-wordmark {
-  height: calc(var(--ob-lockup-h) * .9817);
-  margin: calc(var(--ob-lockup-h) * .0182) 0 0 calc(var(--ob-lockup-h) * .4518);
+  height: calc(var(--ob-lockup-h) * .9866);
+  margin: calc(var(--ob-lockup-h) * .0134) 0 0 calc(var(--ob-lockup-h) * .3805);
 }
-.ob-lockup--16 { --ob-lockup-h: 16px; }   /* the smallest lockup: 112px wide */
-.ob-lockup--22 { --ob-lockup-h: 22px; }   /* nav and footer: 154px wide */
+.ob-lockup--16 { --ob-lockup-h: 16px; }   /* the smallest lockup: 119px wide */
+.ob-lockup--22 { --ob-lockup-h: 22px; }   /* nav and footer: 164px wide */
 .ob-lockup--32 { --ob-lockup-h: 32px; }
 .ob-lockup--48 { --ob-lockup-h: 48px; }
 .ob-lockup--fluid { --ob-lockup-h: clamp(32px, 7cqi, 64px); }
 
-/* Stacked: the mark centred over the wordmark. Mark M; one square (M / 4) of air; wordmark 0.45 M tall. */
+/* Stacked: the mark centred over the wordmark. Mark M; one square (M / 4) of air; wordmark 0.45 M tall,
+   so 2.866 M wide. Files: Brand/Logo/obsession-lockup-stacked-*.svg. */
 .ob-lockup--stacked {
   --ob-lockup-mark: 64px;
   flex-direction: column;
@@ -111,7 +118,7 @@
   flex: none;
   width: auto;
   height: var(--ob-wordmark-h, 1em);
-  aspect-ratio: 437.91 / 77.34;
+  aspect-ratio: 459.8 / 72.2;
   fill: currentColor;
   overflow: visible;
 }
@@ -173,14 +180,12 @@
 /* The hover mirror freezes the turn a third of the way round, with the square still upright. */
 .ob-brand-link.is-hover .ob-sig .ob-sig-rot { transform: rotate(120deg); }
 .ob-brand-link.is-hover .ob-sig .ob-sig-orb { transform: rotate(-120deg); }
-/* Guideline specimen: still on load. Replay adds .is-woken for 1 turn, then the script removes it
-   so hover works again. */
-.ob-brand-link.is-demo.is-woken .ob-sig .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-turn) var(--ob-ease-out) 1; }
-.ob-brand-link.is-demo.is-woken .ob-sig .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-turn) var(--ob-ease-out) 1; }
-.ob-brand-link.is-demo.is-woken.is-replay .ob-sig .ob-sig-rot { animation-name: ob-brand-spin-r; }
-.ob-brand-link.is-demo.is-woken.is-replay .ob-sig .ob-sig-orb { animation-name: ob-brand-spin-rev-r; }
-@keyframes ob-brand-spin-r     { to { transform: rotate(360deg); } }
-@keyframes ob-brand-spin-rev-r { to { transform: rotate(-360deg); } }
+/* The turn always finishes. With script, pointerenter adds .is-turning and the ring's animationend
+   removes it, so a pointer that leaves mid-turn never snaps the ring back to 0. It runs the same
+   keyframes as the :hover rule in tokens.css, which stays as the fallback without script, so the
+   2 never restart each other. Reduced motion stops it (tokens.css stops every .ob-sig animation). */
+.ob-sig-host.is-turning .ob-sig .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-turn) var(--ob-ease-out) 1; }
+.ob-sig-host.is-turning .ob-sig .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-turn) var(--ob-ease-out) 1; }
 
 
 /* =============================================================================================
@@ -193,8 +198,8 @@
 .ob-sig.is-landed.is-arriving .ob-sig-gap { animation: ob-brand-close var(--ob-dur-slow) var(--ob-ease-out) var(--ob-sig-land-delay) both; }
 .ob-sig.is-landed.is-arriving.is-replay .ob-sig-sq  { animation-name: ob-brand-home-r; }
 .ob-sig.is-landed.is-arriving.is-replay .ob-sig-gap { animation-name: ob-brand-close-r; }
-@keyframes ob-brand-home    { from { transform: none; } to { transform: translate(-26px, 26px) scale(.8); } }
-@keyframes ob-brand-home-r  { from { transform: none; } to { transform: translate(-26px, 26px) scale(.8); } }
+@keyframes ob-brand-home    { from { transform: none; } to { transform: translate(-24.7px, 24.7px) scale(.8); } }
+@keyframes ob-brand-home-r  { from { transform: none; } to { transform: translate(-24.7px, 24.7px) scale(.8); } }
 @keyframes ob-brand-close   { from { opacity: 0; } to { opacity: 1; } }
 @keyframes ob-brand-close-r { from { opacity: 0; } to { opacity: 1; } }
 
@@ -208,25 +213,40 @@
   0%, 7.9% { opacity: 1; } 8%, 13.9% { opacity: 0; } 14%, 19.9% { opacity: 1; } 20%, 25.9% { opacity: 0; } 26%, 100% { opacity: 1; }
 }
 
-/* A still frame: the mark holds its resting shape, with no animation and no transition. The second
+/* RING FRAMES. This file owns every frame of the mark: each state's still frame, Paused and Stopped.
+   No other chapter sets .ob-sig-rot or .ob-sig-orb. The doubled .ob-sig keeps these frames in force
+   whatever order the chapters load in.
+
+   A still frame: the mark holds its resting shape, with no animation and no transition. The second
    rule matches the specificity of the reduced-motion breathe in motion.css and loads later, so a
    still frame never moves, even with reduced motion on. */
 .ob-sig.is-still,
 .ob-sig.is-still * { animation: none !important; transition: none !important; }
 .ob-sig.is-still :is(.ob-sig-sq, .ob-sig-rot, .ob-sig-orb, .ob-sig-draw, .ob-sig-gap) { animation: none !important; transition: none !important; }
-/* Working holds a quarter turn, the square upright at the bottom right, so its still frame reads as
-   moving work and never as ready. The Buttons chapter's loading frame uses the same turn. */
-.ob-sig.is-spin.is-still .ob-sig-rot { transform: rotate(90deg); }
-.ob-sig.is-spin.is-still .ob-sig-orb { transform: rotate(-90deg); }
+/* Working still frame: a quarter turn (90deg). The cut sits at the bottom right with the square
+   upright in it, so the frame reads as moving work and never as ready. The Buttons chapter's loading
+   frame uses the same turn. */
+.ob-sig.ob-sig.is-spin.is-still .ob-sig-rot { transform: rotate(90deg); }
+.ob-sig.ob-sig.is-spin.is-still .ob-sig-orb { transform: rotate(-90deg); }
+/* Paused: the cursor steps out of the cut, and the open ring waits. Stopped: the ring closes with
+   nothing in it; the work ended without landing, and the words beside it say why. Both swap in from
+   working at the end of a turn. Resuming fades the square back in. */
+.ob-sig.ob-sig .ob-sig-sq { transition: transform var(--ob-sig-land) var(--ob-ease), opacity var(--ob-dur-base) var(--ob-ease-out); }
+.ob-sig.ob-sig:is(.is-paused, .is-stopped) .ob-sig-sq {
+  opacity: 0;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-in), transform var(--ob-sig-land) var(--ob-ease);
+}
+.ob-sig.ob-sig.is-stopped .ob-sig-gap { opacity: 1; }
 /* A busy ring that is not busy stays still: it is invisible, so it never runs a loop. */
 .ob-anim-busy:not([aria-busy="true"], .is-loading) .ob-anim-busy-ring :is(.ob-sig-rot, .ob-sig-orb, .ob-sig-sq) { animation: none !important; }
 
 
 /* =============================================================================================
-   4. STATUS LABEL: a mark beside its status word. Only 1 mark per view moves; the rest show their
-   still frame. The word carries the state, so motion and colour are never the only cue.
-   The mark is always --ob-text. Only a product status pill may tint its fill and its word with
-   --ob-warning or --ob-success (Navigation chapter, .ob-status); marketing pages never do.
+   4. STATUS LABEL: a 16px mark beside its status word, for marketing pages and logs. Only 1 mark per
+   view moves; the rest show their still frame. The word carries the state, so motion and colour are
+   never the only cue. Status pills are the Navigation chapter's .ob-status, with the status glyph
+   (its mark is 14px). The mark is always --ob-text. Only a product status pill may tint its fill
+   and its word with --ob-warning or --ob-success; marketing pages never do.
    ============================================================================================= */
 .ob-sig-label {
   display: inline-flex;
@@ -239,13 +259,6 @@
 }
 .ob-sig-label > .ob-sig { --ob-sig-size: 16px; color: var(--ob-text); }
 .ob-sig-label > .ob-sig.ob-sig-glyph { --ob-sig-size: 14px; }
-.ob-sig-label--pill {
-  height: var(--ob-control-xs);
-  padding: 0 var(--ob-space-12) 0 var(--ob-space-6);
-  border-radius: var(--ob-radius-pill);
-  background: var(--ob-fill-subtle);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
-}
 
 
 /* =============================================================================================
@@ -270,8 +283,11 @@
 
 
 /* =============================================================================================
-   6. ICONS: 1.5px line, round caps and joins, drawn on the 24 grid with 2px of padding.
-   The stroke stays 1.5px at 16, 20 and 24 (non-scaling stroke). Icons take the text colour.
+   6. ICONS: a 1.5px line, round caps and joins. Each size is drawn on its own master: the 24 and 20
+   grids with 2px of padding, the 16 grid with 1px. 14px icons use the 16 master; 12px glyphs have
+   their own 12 grid. The stroke is non-scaling, so the line is 1.5px at every size. The same rule
+   holds for every icon class: .ob-icon here, .ob-navicon, .ob-glyph and .ob-btn-glyph.
+   Icons take the text colour.
    ============================================================================================= */
 .ob-icon {
   display: inline-block;
@@ -287,6 +303,8 @@
   vertical-align: middle;
 }
 .ob-icon * { vector-effect: non-scaling-stroke; }
+.ob-icon--12 { --ob-icon-size: 12px; }
+.ob-icon--14 { --ob-icon-size: var(--ob-icon-sm); }
 .ob-icon--16 { --ob-icon-size: 16px; }
 .ob-icon--20 { --ob-icon-size: 20px; }
 .ob-icon--24 { --ob-icon-size: 24px; }
@@ -315,41 +333,10 @@
 
 
 /* =============================================================================================
-   7. SET-UP LIST: the agent's kit, ticking in as each step lands.
-   The square ticks in with .ob-anim-square-in (--ob-dur-slow, --ob-snap), paced by real events.
+   7. SET-UP CHIPS are the Navigation chapter's .ob-kit and .ob-kit__chip (28px, --ob-control-chip).
+   Each tick lands as its real step finishes. Put hidden text after each label, such as
+   <span class="ob-sr">, done</span> or ", pending", so the square's state is heard as well as seen.
    ============================================================================================= */
-.ob-setup-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ob-space-8);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.ob-setup-list > li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ob-space-8);
-  height: var(--ob-control-sm);
-  padding: 0 var(--ob-space-12);
-  border-radius: var(--ob-radius-xs);
-  font: var(--ob-type-mono-sm);
-  letter-spacing: var(--ob-type-mono-sm-tracking);
-  color: var(--ob-text);
-  background: var(--ob-fill);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
-  white-space: nowrap;
-  transition: color var(--ob-dur-base) var(--ob-ease-out),
-              background-color var(--ob-dur-base) var(--ob-ease-out),
-              box-shadow var(--ob-dur-base) var(--ob-ease-out);
-}
-.ob-setup-list > li.is-pending {
-  color: var(--ob-text-3);
-  background: transparent;
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
-}
-.ob-setup-list > li.is-pending > .ob-sq { color: var(--ob-text-3); }
-.ob-setup-list.is-replay .ob-anim-square-in { animation-name: ob-square-in-r; }
 
 
 /* =============================================================================================
@@ -498,7 +485,7 @@ a.ob-evidence { cursor: pointer; }
 .ob-evidence-cap { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ob-space-12); }
 .ob-evidence-cap > span:first-child { display: grid; gap: var(--ob-space-2); min-width: 0; }
 .ob-evidence-title { font: var(--ob-type-mono-sm); color: var(--ob-text); }
-.ob-evidence-meta  { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ob-evidence-meta  { font: var(--ob-type-mono-sm); color: var(--ob-text-2); }   /* text-2: the hover and pressed layers sit over it too */
 .ob-evidence-open {
   display: inline-flex;
   align-items: center;
@@ -533,6 +520,14 @@ a.ob-evidence:focus-visible,
 .ob-evidence:is([aria-current="true"], .is-selected) .ob-evidence-open { color: var(--ob-text); }
 .ob-evidence:is([aria-current="true"], .is-selected) .ob-evidence-open .ob-sq--tick { display: inline-block; }
 .ob-evidence:is([aria-current="true"], .is-selected) .ob-evidence-open .ob-icon { display: none; }
+/* A selected frame keeps a 3:1 edge on hover and press. The state layer darkens the frame, so the
+   edge firms from --ob-line-ui to --ob-text-3, as a field's edge does on hover. */
+@media (hover: hover) and (pointer: fine) {
+  a.ob-evidence:is([aria-current="true"], .is-selected):hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-3) inset, 0 0 0 100vmax var(--ob-state-hover) inset; }
+}
+.ob-evidence:is([aria-current="true"], .is-selected).is-hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-3) inset, 0 0 0 100vmax var(--ob-state-hover) inset; }
+a.ob-evidence:is([aria-current="true"], .is-selected):active,
+.ob-evidence:is([aria-current="true"], .is-selected).is-active { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-3) inset, 0 0 0 100vmax var(--ob-state-pressed) inset; }
 
 
 /* =============================================================================================
@@ -562,7 +557,7 @@ a.ob-evidence:focus-visible,
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
   white-space: nowrap;
 }
-.ob-layout-eyebrow > .ob-sig { --ob-sig-size: 18px; color: var(--ob-text); }
+.ob-layout-eyebrow > .ob-sig { --ob-sig-size: 20px; color: var(--ob-text); }   /* the waitlist's eyebrow mark */
 .ob-layout-title {
   margin: 0;
   max-width: var(--ob-measure-heading);
@@ -657,7 +652,9 @@ a.ob-evidence:focus-visible,
   font-variant-numeric: tabular-nums;
 }
 
-/* Footer: the lockup as the home link, the one-line promise, and the domain as plain text. */
+/* Footer: the lockup as the home link, the one-line promise, the privacy notice and contact links
+   (the Buttons chapter's .ob-btn--link), and the domain as plain text. In the page the links sit in a
+   <nav aria-label="Footer">. */
 .ob-layout-footer {
   display: flex;
   flex-wrap: wrap;
@@ -675,12 +672,22 @@ a.ob-evidence:focus-visible,
   font: var(--ob-type-small);
   color: var(--ob-text-2);
 }
+.ob-layout-footer-end { display: grid; justify-items: end; gap: var(--ob-space-8); }
+.ob-layout-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-4) var(--ob-space-20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .ob-layout-footer-meta {
   margin: 0;
   font: var(--ob-type-caption);
   color: var(--ob-text-3);
   font-variant-numeric: tabular-nums;
 }
+@media (max-width: 859.98px) { .ob-layout-footer-end { justify-items: start; } }
 
 
 /* =============================================================================================
@@ -817,12 +824,10 @@ a.ob-evidence:focus-visible,
    ============================================================================================= */
 @media (prefers-reduced-motion: reduce) {
   /* Working holds the quarter turn and breathes (motion.css), so it never looks like ready. */
-  .ob-sig.is-spin .ob-sig-rot { transform: rotate(90deg); }
-  .ob-sig.is-spin .ob-sig-orb { transform: rotate(-90deg); }
+  .ob-sig.ob-sig.is-spin .ob-sig-rot { transform: rotate(90deg); }
+  .ob-sig.ob-sig.is-spin .ob-sig-orb { transform: rotate(-90deg); }
   /* The guideline's capped spinners, and the sequence's working phase, breathe twice, then hold. */
   :is(.ob-sig.ds-brand-capped, .ds-brand-seq > .ob-sig).is-spin .ob-sig-sq { animation-iteration-count: 2 !important; }
-  .ob-brand-link.is-demo .ob-sig * { animation: none !important; }
-  .ob-setup-list > li { transition-duration: var(--ob-dur-base); }
   .ds-brand-playhead { animation: none !important; opacity: 0; }
 }
 
@@ -833,8 +838,6 @@ a.ob-evidence:focus-visible,
 @media (forced-colors: active) {
   .ob-evidence,
   .ob-layout-eyebrow,
-  .ob-setup-list > li,
-  .ob-sig-label--pill,
   .ob-cobrand,
   .ob-og { border: 1px solid CanvasText; }
   .ob-evidence-shot { border: 1px solid GrayText; }
@@ -844,6 +847,9 @@ a.ob-evidence:focus-visible,
   .ob-redact,
   .ob-cobrand-logo,
   .ob-logo-plate { forced-color-adjust: none; background: CanvasText; color: Canvas; }
+  /* On the plate the mark turns Canvas too, or it would draw CanvasText on a CanvasText plate. */
+  .ob-logo-plate .ob-sig :is(.ob-sig-ring, .ob-sig-sq, .ob-sig-gap) { fill: Canvas; }
+  .ob-logo-plate .ob-sig.is-needs .ob-sig-sq { fill: none; stroke: Canvas; }
   .ob-evidence-line,
   .ob-evidence-cta { forced-color-adjust: none; background: GrayText; }
 }
@@ -882,6 +888,8 @@ a.ob-evidence:focus-visible,
   text-transform: uppercase;
   color: var(--ob-text-3);
 }
+/* Class names are case-sensitive, so code inside a label keeps its case and the label's size. */
+.ds-brand-cap code { text-transform: none; letter-spacing: 0; font-size: inherit; }
 .ds-brand-h2 {
   max-width: 22ch;
   font: var(--ob-type-h2);
@@ -999,6 +1007,11 @@ a.ob-evidence:focus-visible,
 .ds-brand-stage-label { display: flex; align-items: center; gap: var(--ob-space-8); }
 .ds-brand-stage-label .ob-sq { color: var(--ob-text-3); }
 .ds-brand-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8) var(--ob-space-16); }
+/* The live specimen beside its note and Replay. */
+.ds-brand-live { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-24); padding: var(--ob-space-12) var(--ob-space-16); border-radius: var(--ob-radius-md); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.ds-brand-live > .ds-brand-cell-note { flex: 1 1 220px; min-width: 0; }
+/* A glossy object holding a specimen on a hybrid page. */
+.ds-brand-objwell { display: grid; place-items: center; box-sizing: border-box; width: 100%; padding: var(--ob-space-20); border-radius: var(--ob-radius-md); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-2); color: var(--ob-text); }
 
 /* State matrices and specimen cells. */
 .ds-brand-matrix {
@@ -1036,7 +1049,7 @@ a.ob-evidence:focus-visible,
 .ds-brand-cell-fig--col { flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--ob-space-4); }
 .ds-brand-cell-cap { display: grid; align-content: start; gap: var(--ob-space-2); min-width: 0; }
 .ds-brand-cell-name { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
-.ds-brand-cell-note { font: var(--ob-type-mono-sm); color: var(--ob-text-3); overflow-wrap: anywhere; }
+.ds-brand-cell-note { font: var(--ob-type-mono-sm); color: var(--ob-text-2); overflow-wrap: anywhere; }   /* notes run to sentences, so text-2 */
 
 /* Tables. The script makes a wrapper a tab stop only while it scrolls. */
 .ds-brand-table-wrap {
@@ -1079,7 +1092,33 @@ a.ob-evidence:focus-visible,
 .ds-brand-table td code,
 .ds-brand-table th code { font: var(--ob-type-mono-sm); color: var(--ob-text); white-space: nowrap; }
 .ds-brand-table td code.is-path { white-space: normal; overflow-wrap: anywhere; }
+/* 5 or more columns scroll sideways before any column gets too narrow to read. */
+.ds-brand-table--wide { min-width: 760px; }
+.ds-brand-table--wide td:last-child { min-width: 200px; }
 .ds-brand-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ds-brand-tok { white-space: nowrap; }
+/* On a phone, each row stacks into a card and each cell sits under its column's name. */
+@container (max-width: 560px) {
+  .ds-brand-table, .ds-brand-table--wide { min-width: 0; }
+  .ds-brand-table :is(tbody, tr, th, td) { display: block; }
+  .ds-brand-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .ds-brand-table tbody tr { padding: var(--ob-space-12) var(--ob-space-16); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+  .ds-brand-table tbody tr:last-child { border-bottom: 0; }
+  .ds-brand-table tbody :is(th, td) { padding: 0; border: 0; white-space: normal; }
+  .ds-brand-table tbody th { margin-bottom: var(--ob-space-8); }
+  .ds-brand-table tbody td + td, .ds-brand-table tbody th + td { margin-top: var(--ob-space-8); }
+  .ds-brand-table--wide td:last-child { min-width: 0; }
+  .ds-brand-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: var(--ob-space-2);
+    font: var(--ob-type-label-mono);
+    letter-spacing: var(--ob-type-label-mono-tracking);
+    text-transform: uppercase;
+    color: var(--ob-text-3);
+  }
+  .ds-brand-table td code { white-space: normal; overflow-wrap: anywhere; }
+}
 
 /* Usage rules: Do and Don't. */
 .ds-brand-rules {
@@ -1118,9 +1157,11 @@ a.ob-evidence:focus-visible,
 /* Accessibility notes. */
 .ds-brand-a11y {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: var(--ob-space-12);
 }
+/* 4 notes sit 2 and 2, never 3 and 1. */
+.ds-brand-a11y:has(> :nth-child(4):last-child) { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
 .ds-brand-a11y > div {
   display: grid;
   gap: var(--ob-space-6);
@@ -1182,7 +1223,7 @@ a.ob-evidence:focus-visible,
 .ds-brand-clear {
   position: relative;
   display: inline-flex;
-  padding: calc(var(--ob-lockup-h) * .2488);
+  padding: calc(var(--ob-lockup-h) * .2493);
   outline: 1px dashed var(--ob-line-ui);
   outline-offset: -1px;
   background:
@@ -1193,8 +1234,8 @@ a.ob-evidence:focus-visible,
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(var(--ob-lockup-h) * .2488);
-  height: calc(var(--ob-lockup-h) * .2488);
+  width: calc(var(--ob-lockup-h) * .2493);
+  height: calc(var(--ob-lockup-h) * .2493);
   background: var(--ob-text);
 }
 .ds-brand-clear--stacked { --ob-lockup-mark: 64px; padding: calc(var(--ob-lockup-mark) * .25); }
@@ -1204,6 +1245,7 @@ a.ob-evidence:focus-visible,
 
 /* Misuse tiles. A Do tile carries the filled square instead of the cross. */
 .ds-brand-misuse { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ob-space-12); }
+.ds-brand-misuse--lockup { grid-template-columns: repeat(3, minmax(0, 1fr)); }   /* 6 tiles: 3 and 3 */
 @container (max-width: 640px) { .ds-brand-misuse { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @container (max-width: 440px) { .ds-brand-misuse--lockup { grid-template-columns: minmax(0, 1fr); } }
 @container (max-width: 300px) { .ds-brand-misuse { grid-template-columns: minmax(0, 1fr); } }
@@ -1237,13 +1279,14 @@ a.ob-evidence:focus-visible,
 .ds-brand-x-effect .ob-sig-sq { stroke: var(--ob-text-3); stroke-width: 3px; }
 .ds-brand-x-type { display: inline-flex; align-items: center; gap: var(--ob-space-6); font: var(--ob-weight-semibold) clamp(15px, 4.4cqi, 22px)/1 var(--ob-font-sans); letter-spacing: -.02em; }
 /* Lockup misuse: each breaks 1 fixed relation of the lockup. */
-.ds-brand-lx { display: inline-flex; align-items: center; height: 20px; color: var(--ob-text); line-height: 0; }
-.ds-brand-lx > .ob-sig { --ob-sig-size: 19.9px; }
-.ds-brand-lx > .ob-wordmark { height: 19.6px; margin-left: 9px; }
-.ds-brand-lx.is-gap > .ob-wordmark { margin-left: 28px; }
+.ds-brand-lx { --ob-lockup-h: 20px; display: inline-flex; align-items: flex-start; height: var(--ob-lockup-h); color: var(--ob-text); line-height: 0; }
+.ds-brand-lx > .ob-sig { --ob-sig-size: calc(var(--ob-lockup-h) * .9970); }
+.ds-brand-lx > .ob-wordmark { height: calc(var(--ob-lockup-h) * .9373); margin: calc(var(--ob-lockup-h) * .0627) 0 0 calc(var(--ob-lockup-h) * .4710); }
+.ds-brand-lx.is-gap > .ob-wordmark { margin-left: calc(var(--ob-lockup-h) * 1.4); }
 .ds-brand-lx.is-order { flex-direction: row-reverse; }
-.ds-brand-lx.is-order > .ob-wordmark { margin: 0 9px 0 0; }
-.ds-brand-lx.is-scale > .ob-sig { --ob-sig-size: 34px; }
+.ds-brand-lx.is-order > .ob-wordmark { margin: calc(var(--ob-lockup-h) * .0627) calc(var(--ob-lockup-h) * .4710) 0 0; }
+.ds-brand-lx.is-scale { align-items: center; }
+.ds-brand-lx.is-scale > .ob-sig { --ob-sig-size: calc(var(--ob-lockup-h) * 1.7); }
 .ds-brand-lx.is-low { color: var(--ob-line-strong); }
 /* A busy ground: a stand-in for a photo or a capture, drawn from the line and fill tokens. */
 .ds-brand-busy {
@@ -1304,7 +1347,7 @@ a.ob-evidence:focus-visible,
 .ds-brand-lane { position: relative; height: 12px; border-radius: var(--ob-radius-glyph); background: var(--ob-fill-subtle); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; }
 .ds-brand-lane i { position: absolute; top: 2px; bottom: 2px; left: calc(var(--s) / var(--ds-brand-total) * 100%); width: calc((var(--e) - var(--s)) / var(--ds-brand-total) * 100%); border-radius: 1px; background: var(--ob-text); }
 .ds-brand-lane i.is-open { background: transparent; box-shadow: 0 0 0 1.5px var(--ob-text) inset; }
-.ds-brand-timeline { --ds-brand-total: 3700; }
+/* --ds-brand-total is set on the timeline from the tokens: inline at build time, then by the script. */
 .ds-brand-ticks { display: grid; grid-template-columns: var(--ds-brand-lab) minmax(0, 1fr); gap: var(--ob-space-12); }
 .ds-brand-ticks > div { position: relative; height: 16px; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
 .ds-brand-ticks > div > span { position: absolute; top: 0; translate: -50% 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -1340,8 +1383,8 @@ a.ob-evidence:focus-visible,
 .ds-brand-state-fig { grid-row: 1 / span 2; display: grid; place-items: center; width: 48px; height: 48px; }
 .ds-brand-state-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ob-space-4) var(--ob-space-8); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
 .ds-brand-state-when { font: var(--ob-type-caption); color: var(--ob-text-2); }
-.ds-brand-state-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8); padding-top: var(--ob-space-8); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
-.ds-brand-state-time { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-state-foot { grid-column: 1 / -1; display: flex; flex-wrap: nowrap; align-items: flex-start; justify-content: space-between; gap: var(--ob-space-8) var(--ob-space-12); padding-top: var(--ob-space-8); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ds-brand-state-time { flex: 1; min-width: 0; font: var(--ob-type-mono-sm); color: var(--ob-text-2); }
 .ds-brand-still-row { display: flex; flex-wrap: wrap; gap: var(--ob-space-12) var(--ob-space-24); }
 
 /* State sequence: 1 mark runs working, done, landed; the steps light up as it goes. */
@@ -1385,9 +1428,9 @@ a.ob-evidence:focus-visible,
 }
 
 /* Icon grids and set. */
-.ds-brand-keylines { display: flex; flex-wrap: wrap; gap: var(--ob-space-24) var(--ob-space-40); align-items: flex-start; }
+.ds-brand-keylines { display: flex; flex-wrap: wrap; gap: var(--ob-space-24) var(--ob-space-40); align-items: flex-end; }
 .ds-brand-keyline { display: grid; gap: var(--ob-space-8); justify-items: start; }
-.ds-brand-keyline svg { display: block; width: 168px; height: 168px; color: var(--ob-text); }
+.ds-brand-keyline svg { display: block; width: calc(var(--g, 24) * 7px); height: calc(var(--g, 24) * 7px); color: var(--ob-text); }   /* 7px a unit on every master */
 .ds-brand-keyline .ds-brand-k-grid { stroke: var(--ob-line-subtle); stroke-width: 1px; vector-effect: non-scaling-stroke; fill: none; }
 .ds-brand-keyline .ds-brand-k-pad  { fill: var(--ob-fill); }
 .ds-brand-keyline .ds-brand-k-key  { stroke: var(--ob-line-ui); stroke-width: 1px; vector-effect: non-scaling-stroke; fill: none; }
@@ -1397,13 +1440,19 @@ a.ob-evidence:focus-visible,
 .ds-brand-iconset span { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
 .ds-brand-iconsizes { display: grid; gap: var(--ob-space-12); }
 .ds-brand-iconsizes > div { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-16); color: var(--ob-text-2); }
+.ds-brand-iconsizes .is-14 { font: var(--ob-type-mono-sm); }
 .ds-brand-iconsizes .is-16 { font: var(--ob-type-label); }
 .ds-brand-iconsizes .is-20 { font: var(--ob-type-body); }
 .ds-brand-iconsizes .is-24 { font: var(--ob-type-title); color: var(--ob-text); }
 .ds-brand-inline { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.ds-brand-cell-fig--col.ds-brand-inline { align-items: flex-start; }
 .ds-brand-squares { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); gap: var(--ob-space-12); }
 .ds-brand-sqwrap { display: grid; gap: var(--ob-space-16); }
-.ds-brand-sqwrap.is-replay .ob-anim-square-in { animation-name: ob-square-in-r; }
+/* The specimen paces its kit chips --ob-dur-moderate apart; in product each lands on its real event. */
+.ds-brand-sqwrap .ob-kit__chip { --ob-anim-delay: calc(var(--ob-i, 0) * var(--ob-dur-moderate)); }
+.ds-brand-sqwrap.is-replay .ob-kit__chip.is-landing { animation-name: ob-kit-chip-r; }
+.ds-brand-sqwrap.is-replay .ob-kit__chip.is-landing .ob-kit__tick { animation-name: ob-square-in-r; }
+.ds-brand-sqwrap.is-replay .ob-kit__chip.is-landing .ob-kit__tick path { animation-name: ob-kit-check-r; }
 .ds-brand-sqwrap.is-replay .ob-caret { animation-name: ob-sig-blink-r; }
 
 /* Grain swatch. */
@@ -1423,8 +1472,9 @@ a.ob-evidence:focus-visible,
 .ds-brand-grain-loud.ob-grain::before { opacity: calc(var(--ob-grain-opacity) * 4); mix-blend-mode: normal; }
 .ds-brand-grain-chip { justify-self: start; padding: var(--ob-space-12) var(--ob-space-16); border-radius: var(--ob-radius-sm); }
 
-/* Layout schematics ("wire"). Real tokens at reduced scale. Numbers mark the parts in the legend. */
-.ds-brand-wire { position: relative; display: grid; gap: var(--ob-space-16); min-width: 0; }
+/* Layout schematics ("wire"). Real tokens at reduced scale. Numbers mark the parts in the legend.
+   The numbers sit outside each part's box, in a left gutter, so they never cover the copy. */
+.ds-brand-wire { position: relative; display: grid; gap: var(--ob-space-16); min-width: 0; padding-left: var(--ob-space-32); }
 :is(.ds-brand-wire, .ds-brand-annotated) [data-n] { position: relative; }
 :is(.ds-brand-wire, .ds-brand-annotated) [data-n]::before {
   content: attr(data-n);
@@ -1512,8 +1562,9 @@ a.ob-evidence:focus-visible,
 .ds-brand-wire-pane { display: grid; gap: var(--ob-space-8); align-content: start; padding: var(--ob-space-12); min-height: 96px; }
 .ds-brand-wire-pane + .ds-brand-wire-pane { border-left: var(--ob-border-hair) solid var(--ob-line-subtle); }
 @container (max-width: 480px) { .ds-brand-wire-pane + .ds-brand-wire-pane { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); } }
-.ds-brand-wire-prompt { display: flex; align-items: center; gap: var(--ob-space-8); min-height: 32px; padding: 0 var(--ob-space-12); border-radius: var(--ob-radius-xs); background: var(--ob-bg-sunken); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-mono-sm); color: var(--ob-text); min-width: 0; }
-.ds-brand-wire-prompt > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ds-brand-wire-prompt { display: flex; align-items: flex-start; gap: var(--ob-space-8); min-height: 32px; padding: var(--ob-space-8) var(--ob-space-12); box-sizing: border-box; border-radius: var(--ob-radius-xs); background: var(--ob-bg-sunken); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-mono-sm); color: var(--ob-text); min-width: 0; }
+/* The task is the 1 line that says what the agent is doing, so it wraps instead of cutting off. */
+.ds-brand-wire-prompt > span { min-width: 0; white-space: normal; overflow-wrap: anywhere; text-wrap: pretty; }
 .ds-brand-wire-text { display: grid; gap: var(--ob-space-6); }
 .ds-brand-wire-card { display: grid; gap: var(--ob-space-6); padding: var(--ob-space-8) var(--ob-space-12); border-radius: var(--ob-radius-xs); background: var(--ob-fill-subtle); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
 
@@ -1562,7 +1613,7 @@ a.ob-evidence:focus-visible,
 .ds-brand-map-break { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
 .ds-brand-map > div.is-ruled { border-block: var(--ob-border-hair) solid var(--ob-line); }
 
-/* Paper break, live: a dark band and a paper band, each with a focused field and button. */
+/* Paper break, live: a dark band and a paper band, each with a live field and a still, focused button. */
 .ds-brand-break { display: grid; border-radius: var(--ob-radius-md); overflow: hidden; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
 .ds-brand-break-band {
   display: grid;
@@ -1580,25 +1631,42 @@ a.ob-evidence:focus-visible,
 /* Hand-off: a live final call that runs busy, done, hold, then the result. */
 .ob-layout-final.ds-brand-handoff { min-height: 220px; align-content: center; padding-block: var(--ob-space-40); border-top: 0; }
 
-/* App window schematic: the 720 x 450 frame of a site product scene. */
+/* App window schematic: the 720 x 450 frame of a site product scene, drawn at its design size and
+   scaled as 1 picture. The frame is a container, so 1em inside is 1 design px at any width: a 36px
+   bar and a 164px sidebar, as _research/illus/app-base.css draws them. */
 .ds-brand-appwin {
-  display: grid;
-  grid-template-rows: 32px minmax(0, 1fr);
+  container-type: inline-size;
   width: 100%;
-  max-width: 560px;
+  max-width: 720px;
   aspect-ratio: 720 / 450;
   border-radius: var(--ob-radius-md);
   overflow: hidden;
 }
-.ds-brand-appwin-bar { display: flex; align-items: center; gap: var(--ob-space-12); min-width: 0; padding: 0 var(--ob-space-8) 0 var(--ob-space-12); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); background: var(--ob-bg-sunken); }
-.ds-brand-appwin-crumb { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-appwin-in {
+  display: grid;
+  grid-template-rows: 36em minmax(0, 1fr);
+  width: 720em;
+  height: 450em;
+  font-size: calc(100cqi / 720);
+}
+.ds-brand-appwin-bar { display: flex; align-items: center; gap: 12em; min-width: 0; padding: 0 10em 0 14em; border-bottom: 1em solid var(--ob-line-subtle); background: var(--ob-bg-sunken); }
+.ds-brand-appwin-dots { display: flex; gap: 6em; }
+.ds-brand-appwin-dots i { width: 9em; height: 9em; border-radius: 50%; background: var(--ob-surface-hover); box-shadow: 0 0 0 1em var(--ob-line) inset; }
+.ds-brand-appwin-crumb { flex: 1; min-width: 0; font-family: var(--ob-font-mono); font-size: 11.5em; color: var(--ob-text-3); white-space: nowrap; }
 .ds-brand-appwin-crumb b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
-.ds-brand-appwin-body { display: grid; grid-template-columns: 28% minmax(0, 1fr); min-height: 0; }
-.ds-brand-appwin-side { display: grid; align-content: start; gap: var(--ob-space-8); padding: var(--ob-space-12); border-right: var(--ob-border-hair) solid var(--ob-line-subtle); }
-.ds-brand-appwin-side i { display: block; height: 7px; border-radius: var(--ob-radius-glyph); background: var(--ob-text-3); opacity: .45; }
+.ds-brand-appwin-pill { display: inline-flex; align-items: center; gap: .6em; height: 2em; padding: 0 .8em 0 .5em; border-radius: var(--ob-radius-pill); background: var(--ob-fill-subtle); box-shadow: 0 0 0 .08em var(--ob-line) inset; font-family: var(--ob-font-mono); font-size: 11em; color: var(--ob-text-2); white-space: nowrap; }
+.ds-brand-appwin-pill > .ob-sig { --ob-sig-size: 1.1em; color: var(--ob-text); }
+.ds-brand-appwin-body { display: grid; grid-template-columns: 164em minmax(0, 1fr); min-height: 0; }
+.ds-brand-appwin-side { display: grid; align-content: start; gap: 12em; padding: 16em 14em; border-right: 1em solid var(--ob-line-subtle); }
+.ds-brand-appwin-side i { display: block; height: 8em; border-radius: 2em; background: var(--ob-text-3); opacity: .45; }
 .ds-brand-appwin-side i:nth-child(2n) { width: 70%; }
-.ds-brand-appwin-main { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-16); min-width: 0; }
+.ds-brand-appwin-main { display: grid; align-content: start; gap: 14em; padding: 22em 24em; min-width: 0; }
+.ds-brand-appwin-cap { font-family: var(--ob-font-mono); font-weight: var(--ob-weight-medium); font-size: 10.5em; letter-spacing: .06em; text-transform: uppercase; color: var(--ob-text-3); }
+.ds-brand-appwin-lines { display: grid; gap: 9em; }
+.ds-brand-appwin-lines i { display: block; height: 9em; border-radius: 2em; background: var(--ob-text-3); opacity: .55; }
+.ds-brand-appwin-lines i:last-child { width: 58%; }
 .ds-brand-appwin-act { display: flex; justify-content: flex-end; }
+.ds-brand-appwin-btn { display: inline-flex; align-items: center; height: 2.6em; padding: 0 1.2em; border-radius: var(--ob-radius-pill); background: var(--ob-btn-bg); box-shadow: var(--ob-btn-shadow); color: var(--ob-btn-text); font-family: var(--ob-font-sans); font-weight: var(--ob-weight-semibold); font-size: 12.5em; }
 
 /* Templates. */
 .ds-brand-mail {
@@ -1616,6 +1684,9 @@ a.ob-evidence:focus-visible,
 .ds-brand-mail hr { width: 100%; height: 0; margin: 0; border: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
 
 /* Guideline-only devices: loop caps, replays of whole specimens, small helpers. */
+/* A dormant working mark waits on the working still frame, not the rest shape. */
+:is(.ds-brand-dormant.ob-sig, .ds-brand-dormant .ob-sig).is-spin .ob-sig-rot { transform: rotate(90deg); }
+:is(.ds-brand-dormant.ob-sig, .ds-brand-dormant .ob-sig).is-spin .ob-sig-orb { transform: rotate(-90deg); }
 /* Working loops stop after 3 turns here (1 for the slow turn), so the guideline obeys WCAG 2.2.2.
    A capped spinner rests on the working still frame, a quarter turn along, and each turn starts and
    ends there, so it never jumps when it starts or stops. */
@@ -1699,6 +1770,7 @@ a.ob-evidence:focus-visible,
 /* Annotated specimens keep their numbers in a left gutter, clear of the copy. */
 .ds-brand-annotated { padding-left: var(--ob-space-32); }
 .ds-brand-annotated [data-n]::before { top: 3px; left: calc(var(--ob-space-32) * -1); }
+.ds-brand-wire [data-n]::before { top: 0; left: calc((18px + var(--ob-space-6)) * -1); }
 /* Every guideline grid gets a shrinkable track, so no specimen can push the page wider than the phone.
    Blocks are containers, so anatomy and legends reflow by the space they really have. */
 .ds-brand,
@@ -1710,3 +1782,32 @@ a.ob-evidence:focus-visible,
 .ds-brand-wire { grid-template-columns: minmax(0, 1fr); }
 .ds-brand-block { container-type: inline-size; }
 .ds-brand-center { display: grid; justify-items: center; min-width: 0; }
+
+/* Photography stand-ins: a figure in the ink-to-bone grade, with each crop's guides. Photos are
+   fixed objects, so they read the same in every theme. 2.2px a unit keeps the guide notes at 12px. */
+.ds-brand-ramp { display: grid; gap: var(--ob-space-8); }
+.ds-brand-ramp-bar {
+  display: block;
+  height: 28px;
+  border-radius: var(--ob-radius-xs);
+  background: linear-gradient(90deg, var(--ob-ink), var(--ob-bone));
+  background: linear-gradient(90deg in oklab, var(--ob-ink), var(--ob-bone));
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-brand-ramp-ends { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--ob-space-4) var(--ob-space-12); font: var(--ob-type-mono-sm); color: var(--ob-text-2); }
+.ds-brand-photo { display: block; width: 100%; max-width: calc(var(--w, 100) * 2.2px); height: auto; border-radius: var(--ob-radius-xs); }
+.ds-brand-ph-ground { fill: color-mix(in oklab, var(--ob-bone) 62%, var(--ob-ink)); }
+.ds-brand-ph-body   { fill: color-mix(in oklab, var(--ob-bone) 16%, var(--ob-ink)); }
+.ds-brand-ph-skin   { fill: color-mix(in oklab, var(--ob-bone) 84%, var(--ob-ink)); }
+.ds-brand-ph-hair   { fill: color-mix(in oklab, var(--ob-bone) 6%, var(--ob-ink)); }
+.ds-brand-ph-guide  { fill: none; stroke: var(--ob-ink); stroke-width: .6; stroke-dasharray: 2 1.5; }
+.ds-brand-ph-note   { font-family: var(--ob-font-mono); font-weight: var(--ob-weight-medium); font-size: 5.5px; fill: var(--ob-ink); }
+
+/* Forced colours: the guideline's Do and Don't marks are drawn with backgrounds, which the mode
+   removes, and the busy ground stands in for a photo, which keeps its own colours. */
+@media (forced-colors: active) {
+  .ds-brand-misuse figcaption b::before,
+  .ds-brand-rule-list li::before,
+  .ds-brand-x,
+  .ds-brand-busy { forced-color-adjust: none; }
+}
