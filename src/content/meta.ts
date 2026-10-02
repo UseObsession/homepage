@@ -9,7 +9,7 @@ const home: PageMeta = {
   path: '/',
   title: 'Obsession · The intelligence infrastructure for commercial teams',
   description:
-    'Obsession runs the inboxes, phone numbers and browsers to see what prospects, competitors and your own business actually do when a customer shows up. You get timestamped proof, once or on a schedule.',
+    'Every sales and marketing decision rests on what prospects, competitors and your own business actually do. Obsession runs the inboxes, phone numbers and browsers to research, sign up, ask, chase and check at any company. You get the proof and your next move.',
 }
 
 /* Every page that is prerendered to HTML, with the title and description crawlers and agents see. */

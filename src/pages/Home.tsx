@@ -30,7 +30,8 @@ export function Home() {
             <h1 className="h1">The intelligence infrastructure for commercial teams</h1>
             <p className="lede">
               Every sales and marketing decision rests on what prospects, competitors and your own business actually do. Obsession runs
-              the inboxes, phone numbers and browsers to find out. You get the proof, once or on a schedule.
+              the inboxes, phone numbers and browsers to research, sign up, ask, chase and check at any company. You get the proof and
+              your next move.
             </p>
             <div className="hero-form">
               <WaitlistForm source="home-hero" withCompany />
