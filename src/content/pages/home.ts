@@ -270,8 +270,44 @@ await obs.missions.create({
     cta: { label: 'Get API access', to: '/developers' },
   },
 
+  /* The trust beat (James's "Built to behave.", docs/REBUILD.md 1d), before the questions. Each rule agrees with the
+     /agents page and the questions below: declared, the bot never staff, public journeys only, stop before payment,
+     nothing sent, signed or spent without your OK, every step signed. Never "it follows robots.txt". */
+  rules: {
+    heading: 'Built to behave.',
+    line: 'Any company an agent meets can ask us what it did, and keep our agents off its site with 1 email.',
+    items: [
+      {
+        title: 'Every agent says it’s AI, and who it works for.',
+        line: 'On your own journeys, quotes and renewals it names you. At rivals and prospects it says it’s from Obsession and keeps your name out.',
+      },
+      {
+        title: 'It asks the site’s bot, never staff.',
+        line: 'At prospects and rivals it only asks the chat bot. If a person picks up, the step ends, and it never writes to their staff.',
+      },
+      {
+        title: 'Public journeys only.',
+        line: 'Nothing behind a login it wasn’t given. At a rival it only starts a trial that needs no card, and closes it the moment a rep writes or calls.',
+      },
+      {
+        title: 'It stops before payment, unless you set a budget.',
+        line: 'On anyone else’s store every checkout ends before payment. On your own, it pays only with a card capped at the budget you set.',
+      },
+      {
+        title: 'Nothing is sent, signed or spent without your OK.',
+        line: 'Every run starts with your OK. Replies and quotes come only from answers and prices you’ve approved, and anything new comes to you as a draft.',
+      },
+      {
+        title: 'Every step is signed.',
+        line: 'Each one is dated and kept with its screenshot or message, so anyone can check what happened without taking our word for it.',
+      },
+    ],
+    link: { label: 'The page our agents link to', to: '/agents' },
+  },
+
+  /* The questions under James's claim: what a reader wants to know before naming the first company. */
   faq: {
-    heading: 'Every agent says it’s AI. Nothing runs until you approve it.',
+    heading: 'Before you name a company.',
     items: [
       {
         q: 'What is Obsession?',

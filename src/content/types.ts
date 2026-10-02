@@ -97,6 +97,10 @@ export type Outcomes = { heading: string; sub?: string; items: { value: string; 
 export type Kinds = { heading: string; label: string; items: { name: string; line: string; recipes: RecipeId[] }[] }
 export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
 export type Faq = { heading: string; items: { q: string; a: string }[] }
+/* The rules every run follows (James's "Built to behave.", docs/REBUILD.md 1d): the trust beat before the questions. A
+   claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
+   agent meets can read (/agents). Never "it follows robots.txt". */
+export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
 export type Final = { heading: string; sub: string; capture: Capture }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
@@ -126,6 +130,7 @@ export type Page = {
   audiences?: Audiences
   outputs?: Outputs
   developers?: Developers
+  rules?: Rules
   faq: Faq
   final: Final
 }
