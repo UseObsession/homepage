@@ -1,13 +1,30 @@
 /* Prerenders every page to static HTML after `vite build`, so crawlers, link previews and AI agents get the
    full copy without running JavaScript. React hydrates the same HTML in the browser (src/main.tsx).
-   Also writes sitemap.xml, robots.txt and llms.txt. Run by `npm run build`. */
+   Also writes sitemap.xml, robots.txt and llms.txt. Run by `npm run build`, after `vite build`.
+
+   It builds its own server bundle with a fixed config instead of reading vite.config.ts. On Cloudflare,
+   `wrangler deploy` adds the Cloudflare Vite plugin to the project at build time, which moves Vite's output
+   (the client build lands in dist/client) and would break a second `vite build --ssr`. */
+import react from '@vitejs/plugin-react'
+import { existsSync } from 'node:fs'
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import { build } from 'vite'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const dist = join(root, 'dist')
 const server = join(root, 'dist-server')
+
+const dist = [join(root, 'dist', 'client'), join(root, 'dist')].find((d) => existsSync(join(d, 'index.html')))
+if (!dist) throw new Error('No built index.html in dist/ or dist/client/. Run vite build first.')
+
+await build({
+  configFile: false,
+  root,
+  logLevel: 'warn',
+  plugins: [react()],
+  build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
+})
 
 const { render, pages, notFound } = await import(pathToFileURL(join(server, 'entry-server.js')).href)
 const SITE = 'https://useobsession.com'
@@ -78,4 +95,4 @@ await writeFile(
 )
 
 await rm(server, { recursive: true, force: true })
-console.log(`Prerendered ${pages.length} pages and 404.html, with sitemap.xml, robots.txt and llms.txt.`)
+console.log(`Prerendered ${pages.length} pages and 404.html into ${dist.slice(root.length + 1)}/, with sitemap.xml, robots.txt and llms.txt.`)
