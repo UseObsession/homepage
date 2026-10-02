@@ -70,13 +70,15 @@ export function Audiences({
                     </svg>
                   </Link>
                 </div>
-                <div className="s-aud__screen">
-                  <AppScreen
-                    name={a.screen}
-                    workspace={a.audience === 'agencies' ? 'agency' : 'company'}
-                    playKey={on && picks > 0 ? picks : undefined}
-                  />
-                </div>
+                {a.screen && (
+                  <div className="s-aud__screen">
+                    <AppScreen
+                      name={a.screen}
+                      workspace={a.audience === 'agencies' ? 'agency' : 'company'}
+                      playKey={on && picks > 0 ? picks : undefined}
+                    />
+                  </div>
+                )}
               </div>
             )
           })}

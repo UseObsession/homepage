@@ -1,0 +1,323 @@
+/* Who it's for (components/sections/PersonaBand): James's persona band on the design system. Every reader sits side by
+   side on 1 band, cut on the diagonal; each panel is 1 link. Monochrome: --ob- surfaces, hairlines and ink only.
+
+   The cut. Every panel's box overlaps its neighbours by the slant less the seam, and clip-path cuts it to a
+   parallelogram (a trapezoid at either end, whose outer edge stays straight and round-cornered), so a 6px seam of the
+   page runs between every 2 panels at the same angle. Clipping the link itself keeps the click on the panel the eye
+   sees. Each panel is 2 layers cut alike: the link's own fill is the rim (a hairline, the focus ring when focused), and
+   its ::before is the panel's face, inset by the rim's width. The same polygon serves both: inset by a few pixels its
+   edges stay parallel to well under a pixel.
+
+   Rows. The list is 1 grid of 5 rows (number and arrow, space, name, line, ways in) that every panel shares through
+   subgrid, so names, lines and tags sit on common lines across the band whatever their length.
+
+   Motion has 1 job, feedback: on hover and keyboard focus the panel lifts 4px and brightens (on paper its shadow fades
+   in) and its arrow moves 4px. Only translate, opacity and colour change; the cut, widths and the grid never animate.
+   Reduced motion sets the distances to 0 (motion.css --ob-shift-xs), so only the colours answer.
+
+   The design system has no persona band, and its cards never move; this lift is the band's own, asked for by name.
+   Site additions for the system to absorb: the diagonal band, and a rim drawn inside a clip-path as the focus ring. */
+
+.s-pb {
+  --s-pb-slant: 36px;
+  --s-pb-seam: 6px;
+  --s-pb-rim: var(--ob-border-hair);
+  --s-pb-pad: var(--ob-space-20);
+  --s-pb-radius: var(--ob-radius-lg);
+  /* Ink: dark shows depth by lightness, so the face brightens and casts no shadow. */
+  --s-pb-face: var(--ob-surface);
+  --s-pb-face-on: var(--ob-surface-hover);
+  --s-pb-edge: var(--ob-line);
+  --s-pb-edge-on: var(--ob-line-strong);
+  --s-pb-shade: transparent;
+}
+/* Paper: the face starts a shade under the page and lifts to the brightest paper, on a warm shadow. */
+:is([data-theme="light"], [data-theme="hybrid"], .ob-theme-light) .s-pb {
+  --s-pb-face: var(--ob-bg-sunken);
+  --s-pb-face-on: var(--ob-surface);
+  --s-pb-shade: rgb(var(--ob-shadow-rgb) / .2);
+}
+
+.s-pb .s-head { max-width: none; }
+.s-pb .s-head > h2 { max-width: var(--ob-measure-heading); }
+
+/* ---- The band (1080px and up) ---- */
+
+.s-pb__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(var(--ob-space-40), 1fr) auto auto auto;
+  min-height: 320px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Each panel reaches half the overlap into each neighbour's column, so every face comes out the same width. */
+.s-pb__cell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  /* Only the cut panel takes the pointer, so the corner of a neighbour's box never steals it. */
+  pointer-events: none;
+}
+.s-pb__cell:not(:first-child) { margin-left: calc((var(--s-pb-seam) - var(--s-pb-slant)) / 2); }
+.s-pb__cell:not(:last-child) { margin-right: calc((var(--s-pb-seam) - var(--s-pb-slant)) / 2); }
+
+/* --l and --r say whether the left and right edges are cut (1) or straight (0). */
+.s-pb__item {
+  --l: 1;
+  --r: 1;
+  --s-pb-cut: polygon(
+    calc(var(--l) * var(--s-pb-slant)) 0,
+    100% 0,
+    calc(100% - var(--r) * var(--s-pb-slant)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  /* The words keep clear of the cut: the left cut is half its slant in by the name, the right cut nearly all of it
+     by the tags at the foot. */
+  padding: var(--ob-space-24) calc(var(--s-pb-pad) + var(--r) * var(--s-pb-slant) * .9) var(--ob-space-24)
+    calc(var(--s-pb-pad) + var(--l) * var(--s-pb-slant) * .5);
+  color: var(--ob-text);
+  text-decoration: none;
+  background-color: var(--s-pb-edge);
+  clip-path: var(--s-pb-cut);
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    translate var(--ob-dur-base) var(--ob-ease-out),
+    background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-pb__cell:first-child .s-pb__item { --l: 0; border-radius: var(--s-pb-radius) 0 0 var(--s-pb-radius); }
+.s-pb__cell:last-child .s-pb__item { --r: 0; border-radius: 0 var(--s-pb-radius) var(--s-pb-radius) 0; }
+
+.s-pb__item::before {
+  content: "";
+  position: absolute;
+  inset: var(--s-pb-rim);
+  z-index: -1;
+  border-radius: inherit;
+  background-color: var(--s-pb-face);
+  box-shadow: var(--ob-highlight);
+  clip-path: var(--s-pb-cut);
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-pb__cell:first-child .s-pb__item::before {
+  border-radius: calc(var(--s-pb-radius) - var(--s-pb-rim)) 0 0 calc(var(--s-pb-radius) - var(--s-pb-rim));
+}
+.s-pb__cell:last-child .s-pb__item::before {
+  border-radius: 0 calc(var(--s-pb-radius) - var(--s-pb-rim)) calc(var(--s-pb-radius) - var(--s-pb-rim)) 0;
+}
+
+/* The number leans with the cut: at the top the left edge is a full slant in. */
+.s-pb__num {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  margin-left: calc(var(--l) * var(--s-pb-slant) * .45);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+
+/* The arrow rides the top right corner, which the cut leaves almost whole. */
+.s-pb__go {
+  grid-row: 1;
+  grid-column: 2;
+  display: grid;
+  place-items: center;
+  width: var(--ob-control-sm);
+  height: var(--ob-control-sm);
+  margin-right: calc(var(--r) * var(--s-pb-slant) * -.8);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  color: var(--ob-text-3);
+  transition:
+    color var(--ob-dur-base) var(--ob-ease-out),
+    border-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-pb__go svg {
+  width: var(--ob-icon-md);
+  height: var(--ob-icon-md);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--ob-icon-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate var(--ob-dur-base) var(--ob-ease-out);
+}
+
+.s-pb__name {
+  grid-row: 3;
+  grid-column: 1 / -1;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-pb__line {
+  grid-row: 4;
+  grid-column: 1 / -1;
+  margin-top: var(--ob-space-8);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+/* The tags stand on the panel's foot, so every panel keeps the same bottom edge when 1 set wraps to 2 rows. */
+.s-pb__ways {
+  grid-row: 5;
+  grid-column: 1 / -1;
+  align-self: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-6);
+  margin-top: var(--ob-space-16);
+}
+
+/* The lift's shadow, under the face and a little inside it, so only its soft edge shows. */
+.s-pb__shade {
+  position: absolute;
+  inset: var(--ob-space-24) calc(var(--s-pb-slant) / 2 + var(--ob-space-8)) calc(var(--ob-space-8) * -1);
+  z-index: -1;
+  border-radius: var(--s-pb-radius);
+  background-color: var(--s-pb-shade);
+  filter: blur(var(--ob-space-16));
+  opacity: 0;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out);
+}
+
+/* ---- States. Hover only for fine pointers; keyboard focus gets the same answer plus the ring. Each pseudo-state has a
+   static twin (.is-hover, .is-focus, .is-active) so the states can be shown side by side, as in the design system. ---- */
+
+.s-pb__cell:has(> .s-pb__item:is(:focus-visible, .is-hover, .is-focus)) { z-index: 1; }
+.s-pb__item:is(:focus-visible, .is-hover, .is-focus) {
+  translate: 0 calc(var(--ob-shift-xs) * -1);
+  background-color: var(--s-pb-edge-on);
+  transition-duration: var(--ob-dur-moderate), var(--ob-dur-base);
+}
+.s-pb__item:is(:focus-visible, .is-hover, .is-focus)::before { background-color: var(--s-pb-face-on); }
+.s-pb__item:is(:focus-visible, .is-hover, .is-focus) .s-pb__num { color: var(--ob-text-2); }
+.s-pb__item:is(:focus-visible, .is-hover, .is-focus) .s-pb__go { color: var(--ob-text); border-color: var(--ob-text-3); }
+.s-pb__item:is(:focus-visible, .is-hover, .is-focus) .s-pb__go svg { translate: var(--ob-shift-xs) 0; }
+.s-pb__cell:has(> .s-pb__item:is(:focus-visible, .is-hover, .is-focus)) .s-pb__shade { opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .s-pb__cell:hover { z-index: 1; }
+  .s-pb__item:hover {
+    translate: 0 calc(var(--ob-shift-xs) * -1);
+    background-color: var(--s-pb-edge-on);
+    transition-duration: var(--ob-dur-moderate), var(--ob-dur-base);
+  }
+  .s-pb__item:hover::before { background-color: var(--s-pb-face-on); }
+  .s-pb__item:hover .s-pb__num { color: var(--ob-text-2); }
+  .s-pb__item:hover .s-pb__go { color: var(--ob-text); border-color: var(--ob-text-3); }
+  .s-pb__item:hover .s-pb__go svg { translate: var(--ob-shift-xs) 0; }
+  .s-pb__cell:hover .s-pb__shade { opacity: 1; }
+}
+
+/* Pressed: the panel sets down as it opens. */
+.s-pb__item:is(:active, .is-active) { translate: 0 0; transition-duration: var(--ob-dur-fast); }
+
+/* Focus: the rim thickens to the 2px ring in --ob-focus, drawn inside the cut (an outline would be clipped by it). */
+.s-pb__item:focus-visible { outline: none; }
+.s-pb__item:is(:focus-visible, .is-focus) {
+  --s-pb-rim: var(--ob-focus-width);
+  background-color: var(--ob-focus);
+  transition-duration: var(--ob-dur-moderate), var(--ob-dur-instant);
+}
+
+/* ---- Below 1080px: full-width rows, stacked, without the cut. The number sits in its own column beside the name,
+   the arrow at the right of the name, then the line and the ways in under the name. ---- */
+@media (max-width: 1079.98px) {
+  .s-pb__list {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    row-gap: var(--s-pb-seam);
+    min-height: 0;
+  }
+  .s-pb__cell,
+  .s-pb__cell:not(:first-child),
+  .s-pb__cell:not(:last-child) {
+    grid-row: auto;
+    grid-template-rows: none;
+    margin: 0;
+  }
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item {
+    --l: 0;
+    --r: 0;
+    grid-row: auto;
+    grid-template-rows: none;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "num name go"
+      ".   line line"
+      ".   ways ways";
+    column-gap: var(--ob-space-16);
+    min-height: var(--ob-space-56);
+    padding: var(--ob-space-20) var(--s-pb-pad);
+    border-radius: 0;
+    clip-path: none;
+  }
+  .s-pb__item::before,
+  .s-pb__cell:first-child .s-pb__item::before,
+  .s-pb__cell:last-child .s-pb__item::before { border-radius: 0; clip-path: none; }
+  .s-pb__cell:first-child .s-pb__item { border-radius: var(--s-pb-radius) var(--s-pb-radius) 0 0; }
+  .s-pb__cell:first-child .s-pb__item::before {
+    border-radius: calc(var(--s-pb-radius) - var(--s-pb-rim)) calc(var(--s-pb-radius) - var(--s-pb-rim)) 0 0;
+  }
+  .s-pb__cell:last-child .s-pb__item { border-radius: 0 0 var(--s-pb-radius) var(--s-pb-radius); }
+  .s-pb__cell:last-child .s-pb__item::before {
+    border-radius: 0 0 calc(var(--s-pb-radius) - var(--s-pb-rim)) calc(var(--s-pb-radius) - var(--s-pb-rim));
+  }
+
+  .s-pb__num { grid-area: num; align-self: baseline; margin-left: 0; }
+  .s-pb__name { grid-area: name; align-self: baseline; }
+  .s-pb__go { grid-area: go; align-self: center; margin-right: 0; }
+  .s-pb__line { grid-area: line; margin-top: var(--ob-space-4); }
+  .s-pb__ways { grid-area: ways; margin-top: var(--ob-space-12); }
+
+  .s-pb__shade { inset: var(--ob-space-12) var(--ob-space-16) calc(var(--ob-space-4) * -1); }
+}
+
+@media (max-width: 520px) {
+  .s-pb { --s-pb-pad: var(--ob-space-16); }
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item { column-gap: var(--ob-space-12); padding-block: var(--ob-space-16); }
+}
+
+/* Forced colours paint over the faces and rims: the panels fall back to plain boxes with a system edge and outline. */
+@media (forced-colors: active) {
+  .s-pb__list { column-gap: var(--ob-space-8); }
+  .s-pb__cell,
+  .s-pb__cell:not(:first-child),
+  .s-pb__cell:not(:last-child) { margin: 0; }
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item {
+    --l: 0;
+    --r: 0;
+    clip-path: none;
+    border: 1px solid CanvasText;
+  }
+  .s-pb__item::before,
+  .s-pb__shade { display: none; }
+  .s-pb__item:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+}
