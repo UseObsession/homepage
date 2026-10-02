@@ -4,7 +4,8 @@ import { Faq, FinalCta, InputsOutputs, RecipeGrid, SampleTeaser, SectionHead, Wa
 import { Reveal } from '../components/Reveal'
 import { RunWindow } from '../components/RunWindow'
 import { Compare, Ladder, Proof, TimeStrip, Timing } from '../components/RecipeBlocks'
-import { WaitlistForm } from '../components/WaitlistForm'
+import { CaptureForm } from '../components/CaptureForm'
+import { captureFor } from '../content/capture'
 import { roleById } from '../content/roles'
 import { allRecipeIds, recipeBySlug } from '../content/recipes'
 import './RecipePage.css'
@@ -41,7 +42,7 @@ export function RecipePage() {
             <h1 className="h1 tp-h1">{t.headline}</h1>
             <p className="lede">{t.lede}</p>
             <div className="hero-form">
-              <WaitlistForm source={`recipe-${t.slug}`} withCompany />
+              <CaptureForm capture={captureFor(`/recipes/${t.slug}`, `recipe-${t.slug}`)} />
               <Watched items={t.watched} />
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { Mark } from '../components/Logo'
 import { RunWindow } from '../components/RunWindow'
-import { WaitlistForm } from '../components/WaitlistForm'
+import { CaptureForm } from '../components/CaptureForm'
+import { captureFor } from '../content/capture'
 import { PersonaBand } from '../components/PersonaBand'
 import { Reveal } from '../components/Reveal'
 import {
@@ -34,7 +35,7 @@ export function Home() {
               your next move.
             </p>
             <div className="hero-form">
-              <WaitlistForm source="home-hero" withCompany />
+              <CaptureForm capture={captureFor('/', 'home-hero')} />
               <Watched items={['Sign ups', 'Baskets', 'Support', 'Emails', 'Texts', 'Ads', 'TikTok', 'Prices', 'Pages']} />
             </div>
           </div>

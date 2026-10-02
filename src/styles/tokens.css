@@ -1,116 +1,56 @@
-/* Obsession tokens, ported from the v1.0 design system (site/home.html, 1 Oct 2026).
-   Dark is the default. Light is the warm paper theme, set with <html data-theme="light">. */
+/* James's short token names, kept as aliases of the design system's --ob- tokens (src/styles/ds/tokens.css), so any of
+   his CSS that is still in use resolves to the system's values in every theme. New code uses --ob- tokens directly.
+   The aliases are declared on every theme scope, not only :root, so a section that flips to light (.ob-theme-light)
+   or a product object on a hybrid page (.ob-object) re-reads them from its own --ob- values. */
 
-:root {
-  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+:root,
+[data-theme],
+.ob-theme-dark,
+.ob-theme-light,
+.ob-theme-hybrid,
+.ob-object {
+  --font-sans: var(--ob-font-sans);
+  --font-mono: var(--ob-font-mono);
 
-  --gutter: clamp(16px, 4vw, 32px);
-  --section: clamp(72px, 10vw, 128px);
-  --container: 1160px;
-  --container-sm: 760px;
+  --gutter: var(--ob-gutter);
+  --section: var(--ob-space-section);
+  --container: var(--ob-container);
+  --container-sm: var(--ob-container-sm);
 
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-pill: 999px;
+  --radius-sm: var(--ob-radius-sm);
+  --radius-md: var(--ob-radius-md);
+  --radius-lg: var(--ob-radius-lg);
+  --radius-pill: var(--ob-radius-pill);
 
-  --ease: cubic-bezier(.22, 1, .36, 1);
-  --dur: 240ms;
+  --ease: var(--ob-ease-out);
+  --dur: var(--ob-dur-moderate);
 
-  --bg: #080807;
-  --bg-sunken: #0d0d0c;
-  --surface: #121211;
-  --surface-raised: #181816;
-  --surface-hover: #1f1f1c;
-  --line-subtle: #1e1e1c;
-  --line: #2a2927;
-  --line-strong: #3d3c38;
-  --line-ui: #6b6a65;
-  --text: #edebe5;
-  --text-2: #b7b5ac;
-  --text-3: #98968e;
-  --text-inverse: #080807;
-  --tint: 237 235 229;
-  --danger: #f5a39b;
-  --danger-bg: #2e1817;
-  --success: #94cf9f;
-  --success-bg: #152318;
-  --warning: #edc47d;
-  --warning-bg: #292010;
-  --btn-top: #f3f1ec;
-  --btn-bottom: #dddad2;
-  --btn-text: #121211;
-  --btn-highlight: rgb(255 255 255 / .85);
-  --btn-glow: rgb(237 235 229 / .22);
-  --nav-bg: rgb(8 8 7 / .82);
-  --shadow-window: 0 60px 140px -40px rgb(0 0 0 / .95);
-  --selection: rgb(237 235 229 / .24);
-  color-scheme: dark;
-}
-
-:root[data-theme="light"] {
-  --bg: #f5f4f0;
-  --bg-sunken: #efeee9;
-  --surface: #fcfbf9;
-  --surface-raised: #fcfbf9;
-  --surface-hover: #eae8e2;
-  --line-subtle: #e4e2dc;
-  --line: #d9d6ce;
-  --line-strong: #bdb9b0;
-  --line-ui: #87837a;
-  --text: #121211;
-  --text-2: #4d4a44;
-  --text-3: #67645d;
-  --text-inverse: #f5f4f0;
-  --tint: 18 18 17;
-  --danger: #b42318;
-  --danger-bg: #feebe9;
-  --success: #2c6d3e;
-  --success-bg: #e7f4e9;
-  --warning: #8a5410;
-  --warning-bg: #f9efda;
-  --btn-top: #2c2b28;
-  --btn-bottom: #121211;
-  --btn-text: #f5f4f0;
-  --btn-highlight: rgb(255 255 255 / .14);
-  --btn-glow: rgb(28 25 20 / .25);
-  --nav-bg: rgb(245 244 240 / .82);
-  --shadow-window: 0 2px 4px rgb(28 25 20 / .06), 0 48px 90px -42px rgb(28 25 20 / .45);
-  --selection: rgb(18 18 17 / .14);
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f5f4f0;
-    --bg-sunken: #efeee9;
-    --surface: #fcfbf9;
-    --surface-raised: #fcfbf9;
-    --surface-hover: #eae8e2;
-    --line-subtle: #e4e2dc;
-    --line: #d9d6ce;
-    --line-strong: #bdb9b0;
-    --line-ui: #87837a;
-    --text: #121211;
-    --text-2: #4d4a44;
-    --text-3: #67645d;
-    --text-inverse: #f5f4f0;
-    --tint: 18 18 17;
-    --danger: #b42318;
-    --danger-bg: #feebe9;
-    --success: #2c6d3e;
-    --success-bg: #e7f4e9;
-    --warning: #8a5410;
-    --warning-bg: #f9efda;
-    --btn-top: #2c2b28;
-    --btn-bottom: #121211;
-    --btn-text: #f5f4f0;
-    --btn-highlight: rgb(255 255 255 / .14);
-    --btn-glow: rgb(28 25 20 / .25);
-    --nav-bg: rgb(245 244 240 / .82);
-    --shadow-window: 0 2px 4px rgb(28 25 20 / .06), 0 48px 90px -42px rgb(28 25 20 / .45);
-    --selection: rgb(18 18 17 / .14);
-    color-scheme: light;
-  }
+  --bg: var(--ob-bg);
+  --bg-sunken: var(--ob-bg-sunken);
+  --surface: var(--ob-surface);
+  --surface-raised: var(--ob-surface-raised);
+  --surface-hover: var(--ob-surface-hover);
+  --line-subtle: var(--ob-line-subtle);
+  --line: var(--ob-line);
+  --line-strong: var(--ob-line-strong);
+  --line-ui: var(--ob-line-ui);
+  --text: var(--ob-text);
+  --text-2: var(--ob-text-2);
+  --text-3: var(--ob-text-3);
+  --text-inverse: var(--ob-text-inverse);
+  --tint: var(--ob-tint-rgb);
+  --danger: var(--ob-danger);
+  --danger-bg: var(--ob-danger-bg);
+  --success: var(--ob-success);
+  --success-bg: var(--ob-success-bg);
+  --warning: var(--ob-warning);
+  --warning-bg: var(--ob-warning-bg);
+  --btn-top: var(--ob-btn-top);
+  --btn-bottom: var(--ob-btn-bottom);
+  --btn-text: var(--ob-btn-text);
+  --btn-highlight: var(--ob-btn-highlight);
+  --btn-glow: var(--ob-btn-glow);
+  --nav-bg: var(--ob-nav-bg);
+  --shadow-window: var(--ob-shadow-3);
+  --selection: var(--ob-selection);
 }

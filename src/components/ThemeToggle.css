@@ -1,0 +1,5 @@
+/* The theme switch (components/ThemeToggle): a ghost icon button from buttons.css. The icon follows <html data-theme>
+   in CSS, so the prerendered page shows the right one before the script runs. */
+.s-theme .s-theme__moon { display: none; }
+:root[data-theme="light"] .s-theme .s-theme__sun { display: none; }
+:root[data-theme="light"] .s-theme .s-theme__moon { display: block; }

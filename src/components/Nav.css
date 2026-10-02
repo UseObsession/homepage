@@ -1,135 +1,166 @@
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--nav-bg);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  border-bottom: 1px solid var(--line-subtle);
+/* The site nav (components/Nav), composed from the design system: .ob-nav (bar), .ob-menu (surfaces), .ob-mnav (phone
+   sheet), .ob-btn (call to action, menu button, theme switch). These rules only place things and add what the system
+   lacks: a grouped, multi-column menu (.s-menu--recipes), 2-line menu rows (.s-menu__item--rich), disclosure groups in
+   the sheet (.s-mnav__toggle) and a sliding sheet (.ob-anim-sheet on .ob-mnav). Tokens only, no colour literals. */
+
+/* ---------------------------------------------------------------------------------------------
+   Bar
+   --------------------------------------------------------------------------------------------- */
+
+/* Line the lockup up with the page's content edge (the 1160px container plus the gutter). */
+.s-nav .s-nav__in {
+  max-width: calc(var(--ob-container) + 2 * var(--s-gutter, clamp(16px, 4vw, 32px)));
+  padding-inline: var(--s-gutter, clamp(16px, 4vw, 32px));
 }
 
-.nav-row {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  height: 64px;
-}
-
-.nav-brand {
-  text-decoration: none;
-  color: var(--text);
-}
-
-.logo {
+.s-nav__brand {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-}
-
-.logo-word {
-  font-weight: 600;
-  font-size: 19px;
-  letter-spacing: -.04em;
-}
-
-.nav-links {
-  display: flex;
-  gap: 4px;
-  margin-inline: auto;
-}
-
-.nav-links a {
-  padding: 8px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-2);
+  height: var(--ob-target-touch);
+  border-radius: var(--ob-radius-xs);
   text-decoration: none;
-  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+  -webkit-tap-highlight-color: transparent;
+  transition: scale var(--ob-dur-fast) var(--ob-ease-out);
 }
+.s-nav__brand:active { scale: var(--ob-press-scale); }
+.s-nav__brand:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 
-.nav-links a:hover {
-  color: var(--text);
-}
+.s-nav__item { position: relative; display: flex; }
 
-.nav-links a.active {
-  color: var(--text);
-  background: rgb(var(--tint) / .06);
-}
-
-.nav-end {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.nav-burger {
-  display: none;
-  width: 40px;
-  height: 40px;
+/* The menu triggers are buttons drawn as nav links, with a chevron that turns while open. */
+.s-nav__trigger {
+  gap: var(--ob-space-4);
+  margin: 0;
+  padding-inline-end: var(--ob-space-8);
   border: 0;
-  border-radius: var(--radius-pill);
-  background: rgb(var(--tint) / .06);
+  background-color: transparent;
   cursor: pointer;
-  place-content: center;
-  gap: 5px;
+}
+.s-nav__trigger[aria-expanded="true"] { color: var(--ob-text); background-color: var(--ob-state-pressed); }
+.s-nav__chev { color: var(--ob-text-3); }
+.s-nav__trigger:is(:hover, [aria-expanded="true"]) .s-nav__chev { color: currentColor; }
+
+/* Wide bar: the theme switch leaves under 1080px (it stays in the footer). Compact bar: the call to action leaves
+   when it no longer fits beside the 20px lockup and the menu button; it stays in the sheet. */
+@container ob-nav (max-width: 1079.98px) {
+  .ob-nav__end > .s-nav__theme { display: none; }
+}
+@container ob-nav (max-width: 419.98px) {
+  .ob-nav__end > .ob-nav__cta { display: none; }
+}
+@container ob-nav (max-width: 579.98px) {
+  .s-nav--long-cta .ob-nav__end > .ob-nav__cta { display: none; }
 }
 
-.nav-burger span {
-  display: block;
-  width: 16px;
-  height: 1.5px;
-  background: var(--text);
-  transition: transform var(--dur) var(--ease);
+
+/* ---------------------------------------------------------------------------------------------
+   Menus: .ob-menu surfaces under their trigger, centred on it, growing from it (.ob-anim-pop)
+   --------------------------------------------------------------------------------------------- */
+.s-menu {
+  --ob-origin: top center;
+  position: absolute;
+  top: calc(100% + var(--ob-space-6));
+  left: 50%;
+  z-index: var(--ob-z-popover);
+  max-width: calc(100vw - 2 * var(--ob-space-16));
+  transform: translateX(-50%);
+}
+.s-menu[hidden] { display: none; }
+.s-menu--solutions { width: 344px; }
+.s-menu--recipes { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
+
+.s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
+
+/* Rows carry no leading icon, so the text takes the first column. */
+.s-menu__item { position: relative; grid-template-columns: minmax(0, 1fr) auto; }
+.s-menu__item--rich {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  gap: var(--ob-space-2);
+  padding: var(--ob-space-8) var(--ob-space-32) var(--ob-space-8) var(--ob-space-12);
+}
+.s-menu__name { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.s-menu__line { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+
+/* The current page: a raised fill and the brand square at the row's end, never colour alone. */
+.s-menu__item[aria-current="page"] { background-color: var(--ob-state-selected); }
+.s-menu__item[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--ob-space-12);
+  width: var(--ob-sq-sm);
+  height: var(--ob-sq-sm);
+  margin-top: calc(var(--ob-sq-sm) / -2);
+  border-radius: 1px;
+  background-color: currentColor;
 }
 
-.nav.is-open .nav-burger span:first-child {
-  transform: translateY(3.25px) rotate(45deg);
+/* Recipes: 3 columns of 5, each group under its own name. */
+.s-menu__cols { display: grid; grid-template-columns: repeat(3, 208px); gap: var(--ob-space-8); }
+.s-menu__group + .s-menu__group { margin-top: var(--ob-space-8); }
+.s-menu__label {
+  margin: 0;
+  padding: var(--ob-space-8) var(--ob-space-8) var(--ob-space-4);
+  font: var(--ob-type-caption);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text-3);
 }
-
-.nav.is-open .nav-burger span:last-child {
-  transform: translateY(-3.25px) rotate(-45deg);
+.s-menu--recipes .ob-menu__sep { margin: var(--ob-space-8) calc(var(--ob-space-8) * -1); }
+.s-menu__all { grid-template-columns: auto auto; justify-content: start; gap: var(--ob-space-8); font-weight: var(--ob-weight-medium); }
+.s-menu__arrow { color: var(--ob-text-3); transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .s-menu__all:hover .s-menu__arrow { translate: var(--ob-space-2) 0; color: currentColor; }
 }
+.s-menu__all[aria-current="page"]::after { content: none; }
 
-.nav-sheet {
-  display: none;
+
+/* ---------------------------------------------------------------------------------------------
+   Phone sheet: .ob-mnav under the compact bar, sliding in from the right edge
+   --------------------------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .s-mnav.ob-anim-sheet { animation: ob-sheet-in var(--ob-dur-slow) var(--ob-ease-out) backwards; }
+  .s-mnav.ob-anim-sheet.is-leaving { animation: ob-sheet-out var(--ob-dur-moderate) var(--ob-ease-in) forwards; }
 }
-
-@media (max-width: 900px) {
-  .nav-links,
-  .nav-cta {
-    display: none;
-  }
-
-  .nav-end {
-    margin-left: auto;
-  }
-
-  .nav-burger {
-    display: grid;
-  }
-
-  .nav.is-open .nav-sheet {
-    display: grid;
-    gap: 4px;
-    padding: 8px var(--gutter) 20px;
-    border-top: 1px solid var(--line-subtle);
-  }
-
-  .nav-sheet a:not(.btn) {
-    padding: 12px 0;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--text-2);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line-subtle);
-  }
-
-  .nav-sheet a.active {
-    color: var(--text);
-  }
-
-  .nav-sheet .btn {
-    margin-top: 12px;
-  }
+@container ob-nav (min-width: 860px) {
+  .s-mnav { display: none; }
 }
+.s-mnav { gap: var(--ob-space-16); }
+
+.s-mnav__toggle {
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  text-align: start;
+  cursor: pointer;
+}
+.s-mnav__toggle .s-nav__chev { width: var(--ob-icon-md); height: var(--ob-icon-md); }
+
+.s-mnav__more > div { display: grid; gap: var(--ob-space-4); padding: 0 0 var(--ob-space-12) var(--ob-space-12); }
+.s-mnav__sub { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
+.s-mnav__group .s-menu__label { padding-inline: var(--ob-control-pad-sm); }
+.s-mnav__item {
+  position: relative;
+  min-height: var(--ob-target-touch);
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-medium);
+}
+.s-mnav__item--rich {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--ob-space-2);
+  padding-block: var(--ob-space-8);
+  padding-inline-end: var(--ob-space-32);
+}
+.s-mnav__item--rich[aria-current="page"]::after {
+  position: absolute;
+  top: 50%;
+  right: var(--ob-control-pad-sm);
+  margin-top: calc(var(--ob-sq-sm) / -2);
+}
+.s-mnav__all { gap: var(--ob-space-8); }
+.s-mnav__all[aria-current="page"]::after { content: none; }
+.s-mnav__all .s-menu__arrow { margin-inline-start: 0; }

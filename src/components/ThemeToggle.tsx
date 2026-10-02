@@ -1,43 +1,50 @@
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
+import { nav } from '../content/nav'
+import './ThemeToggle.css'
 
 type Theme = 'dark' | 'light'
 
-export function ThemeToggle() {
-  /* Starts dark to match the prerendered HTML, then reads the theme the boot script set. */
-  const [theme, setTheme] = useState<Theme>('dark')
+/* The theme lives on <html data-theme>, set before paint by the boot script in index.html. Every switch on the page
+   reads it through 1 store, so they agree with each other. The server and the hydration pass both see "dark" (the
+   prerendered default); a reader who chose light gets the right label straight after, with no hydration mismatch.
+   The icon itself is chosen by CSS from <html data-theme>, so it is right from the first frame. */
+function subscribe(onChange: () => void) {
+  const mo = new MutationObserver(onChange)
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+  return () => mo.disconnect()
+}
+const read = (): Theme => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
+const server = (): Theme => 'dark'
 
-  useEffect(() => {
-    if (document.documentElement.dataset.theme === 'light') setTheme('light')
-  }, [])
-
-  function toggle() {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark'
-    document.documentElement.dataset.theme = next
-    try {
-      localStorage.setItem('obs-theme', next)
-    } catch {
-      /* private mode: the choice lasts for this page only */
-    }
-    setTheme(next)
+function setTheme(next: Theme) {
+  document.documentElement.dataset.theme = next
+  try {
+    localStorage.setItem('obs-theme', next)
+  } catch {
+    /* private mode: the choice lasts for this page only */
   }
+}
+
+export function ThemeToggle({ className = '' }: { className?: string }) {
+  const theme = useSyncExternalStore(subscribe, read, server)
+  const label = theme === 'dark' ? nav.theme.toLight : nav.theme.toDark
 
   return (
     <button
-      className="theme-toggle"
-      onClick={toggle}
-      aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-      title={theme === 'dark' ? 'Light theme' : 'Dark theme'}
+      type="button"
+      className={`ob-btn ob-btn--ghost ob-btn--icon ob-btn--sm s-theme ${className}`}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      aria-label={label}
+      title={label}
     >
-      {theme === 'dark' ? (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.5" />
-          <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
-        </svg>
-      ) : (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-          <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
-        </svg>
-      )}
+      {/* Sun on dark (the switch goes to light), moon on paper. */}
+      <svg className="ob-btn-glyph s-theme__sun" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <circle cx="8" cy="8" r="2.75" />
+        <path d="M8 1.75v1.25M8 13v1.25M1.75 8H3M13 8h1.25M3.58 3.58l.88.88M11.54 11.54l.88.88M3.58 12.42l.88-.88M11.54 4.46l.88-.88" />
+      </svg>
+      <svg className="ob-btn-glyph s-theme__moon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M13.25 9.6A5.5 5.5 0 0 1 6.4 2.75a5.5 5.5 0 1 0 6.85 6.85Z" />
+      </svg>
     </button>
   )
 }

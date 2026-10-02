@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { CaptureForm } from './components/CaptureForm'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
+import { waitlistCapture } from './content/capture'
+import { ctaFor, nav } from './content/nav'
 import { agencies, marketing, sales } from './content/audiences'
 import { metaFor } from './content/meta'
 import { AudiencePage } from './pages/AudiencePage'
@@ -30,11 +33,15 @@ function ScrollManager() {
 }
 
 function Layout() {
+  const { pathname } = useLocation()
   return (
     <>
       <ScrollManager />
-      <Nav />
-      <main>
+      <a className="s-skip" href="#main">
+        {nav.skip}
+      </a>
+      <Nav cta={ctaFor(pathname)} />
+      <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />
@@ -50,6 +57,9 @@ function NotFound() {
         <p className="lede">
           <Link to="/">Back to the home page</Link>
         </p>
+        <div id="join">
+          <CaptureForm capture={waitlistCapture('404')} />
+        </div>
       </div>
     </section>
   )
