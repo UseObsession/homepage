@@ -16,7 +16,7 @@ export const post: BlogPost = {
   slug: 'best-competitor-email-tracking-tools',
   title: 'The best competitor email and SMS tracking tools in 2026',
   dek: '13 tools and the free method, sorted by where each one gets a rival’s messages and graded on what it can actually see. Every price checked on the vendor’s own site on 3 October 2026.',
-  metaTitle: 'Best competitor email and SMS tracking tools in 2026',
+  metaTitle: 'The best competitor email and SMS tracking tools in 2026',
   description:
     'Competitor email tracking tools compared on what each can see: campaigns, flows, texts, trials and STOP. 13 tools and the free method, prices checked.',
   answer:
