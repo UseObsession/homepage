@@ -13,6 +13,7 @@ import { Home } from './pages/Home'
 import { SampleOutput } from './pages/SampleOutput'
 import { RecipePage } from './pages/RecipePage'
 import { Recipes } from './pages/Recipes'
+import { Lab } from './Lab'
 
 const idOf = (hash: string) => {
   try {
@@ -93,6 +94,7 @@ export function AppRoutes() {
           <Route path="templates/*" element={<Navigate to="/recipes" replace />} />
           <Route path="sample-output" element={<SampleOutput />} />
           <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
+          {import.meta.env.VITE_LAB === '1' && <Route path="lab/:name" element={<Lab />} />}
           <Route path="*" element={<NotFound />} />
         </Route>
     </Routes>

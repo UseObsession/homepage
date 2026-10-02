@@ -6,7 +6,7 @@
    `wrangler deploy` adds the Cloudflare Vite plugin to the project at build time, which moves Vite's output
    (the client build lands in dist/client) and would break a second `vite build --ssr`. */
 import react from '@vitejs/plugin-react'
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -61,6 +61,16 @@ for (const meta of pages) {
   const file = meta.path === '/' ? join(dist, 'index.html') : join(dist, meta.path, 'index.html')
   await mkdir(dirname(file), { recursive: true })
   await writeFile(file, page(meta, render(meta.path)))
+}
+
+/* Builders' lab previews (src/lab, see src/Lab.tsx): only in builds made with VITE_LAB=1, never in production. */
+if (process.env.VITE_LAB === '1' && existsSync(join(root, 'src/lab'))) {
+  for (const f of readdirSync(join(root, 'src/lab')).filter((f) => f.endsWith('.tsx'))) {
+    const meta = { path: '/lab/' + f.slice(0, -4), title: 'Lab · ' + f.slice(0, -4), description: 'Lab' }
+    const file = join(dist, meta.path, 'index.html')
+    await mkdir(dirname(file), { recursive: true })
+    await writeFile(file, page(meta, render(meta.path), { noindex: true }))
+  }
 }
 
 /* Hosts such as Cloudflare Pages serve 404.html, with a 404 status, for any path without its own page. */
