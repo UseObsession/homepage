@@ -56,7 +56,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We ran that test on [a real skincare store](/sample-output) in September 2026: 4 labelled test customers, every inbox watched for 48 hours. The 2 who left full baskets heard nothing. A finding like that is hard to argue with, because the owner can repeat the test on their own phone.',
+      text: 'We ran that test on [a real skincare store](/sample-output) in September 2026: 4 labelled test customers, every inbox watched for 48 hours. The shopper who left a basket and the one who stopped at checkout both heard nothing. A finding like that is hard to argue with, because the owner can repeat the test on their own phone.',
     },
 
     { kind: 'h2', id: 'why-free-audits-fail', text: 'Why do so many free audits fail to win the client?' },
