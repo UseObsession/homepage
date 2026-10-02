@@ -24,3 +24,6 @@ dist-server
 *.sln
 *.sw?
 .env.local
+
+# Share images, made by scripts/og.mjs on every build
+public/og

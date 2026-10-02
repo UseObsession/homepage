@@ -1,0 +1,11 @@
+/* The 404 page's ways back (pages/NotFound.tsx): 1 centred row of the system's text links, wrapping to 2 on a phone. */
+.s-lost {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ob-space-8) var(--ob-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-lost .ob-btn--link { min-height: var(--ob-target-touch); }

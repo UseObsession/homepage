@@ -1,0 +1,29 @@
+# Response headers (Cloudflare static assets: free). A request takes the headers of every rule it matches.
+
+# Every response: no MIME sniffing, the origin only as the referrer to other sites, and no framing by other sites.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: frame-ancestors 'self'
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Built files carry a hash of their contents in their names, so they never change: cached for a year.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Share images, logos and the report captures keep their names when they change: cached for a day.
+/og/*
+  Cache-Control: public, max-age=86400
+/logo/*
+  Cache-Control: public, max-age=86400
+/report/*
+  Cache-Control: public, max-age=86400
+
+# The plain text guides for AI assistants, read as UTF-8 (their copy uses curly quotes).
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+/robots.txt
+  Content-Type: text/plain; charset=utf-8

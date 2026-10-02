@@ -1,0 +1,114 @@
+/* The site's plain pages (pages/Notice.tsx): Privacy, Agents, 404, and the stand-in heroes the Pages phase replaces.
+   On the design system's tokens and type scale; every class starts s-notice. Spacing sits on the 4px grid. */
+
+/* ---- The hero: centred, 1 column, 1 vertical axis (docs/REBUILD.md, 1c). ---- */
+.s-notice-hero {
+  padding-block: var(--ob-space-section) var(--ob-space-block);
+  text-align: center;
+}
+.s-notice-hero__in {
+  display: grid;
+  justify-items: center;
+  gap: var(--ob-space-24);
+}
+.s-notice-hero__h {
+  margin: 0;
+  max-width: 20ch;
+  font: var(--ob-type-h1);
+  letter-spacing: var(--ob-type-h1-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-notice-hero--display .s-notice-hero__h {
+  max-width: 18ch;
+  font: var(--ob-type-display);
+  letter-spacing: var(--ob-type-display-tracking);
+}
+.s-notice-hero__sub {
+  margin: 0;
+  max-width: 60ch;
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+.s-notice-hero__pill > .s-mark { color: var(--ob-text); }
+/* A quiet line under the sub: the notice's date. */
+.s-notice-hero__meta {
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+/* A form in the hero sits centred at the system's 560px, with 16px more air above it than the lines above. */
+.s-notice-hero__join {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  max-width: var(--ob-container-xs);
+  margin-top: var(--ob-space-16);
+}
+/* A hero with nothing under it closes the page with the full section space. */
+.s-notice-hero--end { padding-bottom: var(--ob-space-section); }
+
+/* ---- The notice: 1 row per claim. The claim on the left, what it means on the right; 1 column on a phone. ---- */
+.s-notice {
+  padding-bottom: var(--ob-space-section);
+}
+.s-notice--then-final { padding-bottom: 0; }
+.s-notice__row {
+  display: grid;
+  gap: var(--ob-space-12);
+  padding-block: var(--ob-space-32);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  /* A link to /privacy#rights lands with the row's rule clear of the sticky nav. */
+  scroll-margin-top: var(--ob-space-80);
+}
+.s-notice__h {
+  margin: 0;
+  max-width: 28ch;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-notice__body {
+  display: grid;
+  gap: var(--ob-space-16);
+  max-width: var(--ob-measure);
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+}
+.s-notice__body p { margin: 0; text-wrap: pretty; }
+/* A list is a stack of rules, never bullets: each item is a line of its own, in the body's full ink. */
+.s-notice__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-notice__list li {
+  padding-block: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-notice__list li:last-child { padding-bottom: 0; }
+
+@media (min-width: 860px) {
+  .s-notice__row {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: baseline;
+    gap: var(--ob-space-48);
+    padding-block: var(--ob-space-40);
+  }
+}
+
+/* An address in a sentence: the system's inline link, kept on 1 line. */
+.s-notice__link { white-space: nowrap; }
+
+/* ---- The closing call (Agents): the system's final block, set on the page's own width. ---- */
+.s-notice-final .ob-layout-final-title { max-width: 20ch; }
+.s-notice-final .ob-layout-micro { color: var(--ob-text-3); }
+.s-notice-final .ob-layout-micro a { color: var(--ob-text-2); }

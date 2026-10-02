@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Run } from '../content/runs'
-import { prefersReducedMotion, useInView } from '../hooks/useReveal'
+import { useInView, useReducedMotion } from '../hooks/useReveal'
 import { Mark } from './Logo'
 import './RunWindow.css'
 
@@ -15,11 +15,12 @@ export function RunWindow({ runs, headings }: { runs: Run[]; headings?: string[]
   const [auto, setAuto] = useState(true)
   const timer = useRef<number | undefined>(undefined)
   const run = runs[index]
-  const shown = prefersReducedMotion() ? run.events.length + 1 : step
+  const still = useReducedMotion()
+  const shown = still ? run.events.length + 1 : step
   const done = shown > run.events.length
 
   useEffect(() => {
-    if (!inView || prefersReducedMotion()) return
+    if (!inView || still) return
     window.clearTimeout(timer.current)
     if (!done) {
       timer.current = window.setTimeout(() => setShown((s) => s + 1), shown === 0 ? 500 : STEP_MS)
@@ -30,7 +31,7 @@ export function RunWindow({ runs, headings }: { runs: Run[]; headings?: string[]
       }, HOLD_MS)
     }
     return () => window.clearTimeout(timer.current)
-  }, [inView, shown, done, auto, run.events.length, runs.length])
+  }, [inView, still, shown, done, auto, run.events.length, runs.length])
 
   function pick(i: number) {
     setAuto(false)
@@ -137,7 +138,7 @@ function TypedHeading({ phrases, active }: { phrases: string[]; active: boolean 
   const [count, setCount] = useState(0)
   const [deleting, setDeleting] = useState(false)
   const phrase = phrases[i]
-  const still = prefersReducedMotion() || phrases.length === 0
+  const still = useReducedMotion() || phrases.length === 0
   const n = still ? phrase.length : count
 
   useEffect(() => {

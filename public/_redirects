@@ -1,0 +1,11 @@
+# Old addresses, sent for good to the pages that replaced them (Cloudflare static assets: free, run before any page).
+# A path with and without its trailing slash are 2 rules. Prerendered pages answer /PATH with a 200 and send /PATH/
+# to /PATH themselves, so only addresses that no longer have a page belong here.
+
+/recipes/prospect-research    /recipes/prospect-intelligence  301
+/recipes/prospect-research/   /recipes/prospect-intelligence  301
+/sample-report                /sample-output                  301
+/sample-report/               /sample-output                  301
+/templates                    /recipes                        301
+/templates/prospect-research  /recipes/prospect-intelligence  301
+/templates/*                  /recipes/:splat                 301

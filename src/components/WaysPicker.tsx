@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { roleById, roles, ways, type Role, type RoleId, type WayId } from '../content/roles'
 import { recipes } from '../content/recipes'
-import { prefersReducedMotion } from '../hooks/useReveal'
+import { useReducedMotion } from '../hooks/useReveal'
 import { Code, sdkExample } from './Code'
 import './WaysPicker.css'
 
@@ -133,7 +133,7 @@ function RecipesPreview({ role }: { role: Role }) {
 function TaskPreview({ role }: { role: Role }) {
   const [count, setTyped] = useState(0)
   const full = role.task.length
-  const typed = prefersReducedMotion() ? full : count
+  const typed = useReducedMotion() ? full : count
   const done = typed >= full
 
   useEffect(() => {
