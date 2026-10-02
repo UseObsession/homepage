@@ -96,13 +96,22 @@
 }
 .s-notice__list li:last-child { padding-bottom: 0; }
 
+/* From 860px the row sits on the footer's column grid (24px gaps; 3 columns, then 5 from 1080px), so the claims and the
+   details line up with the site map's columns below: the claim on the first columns, the details across the rest. */
 @media (min-width: 860px) {
   .s-notice__row {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: baseline;
-    gap: var(--ob-space-48);
+    gap: var(--ob-space-24);
     padding-block: var(--ob-space-40);
   }
+  .s-notice__h { grid-column: 1 / 2; }
+  .s-notice__body { grid-column: 2 / -1; }
+}
+@media (min-width: 1080px) {
+  .s-notice__row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .s-notice__h { grid-column: 1 / 3; }
+  .s-notice__body { grid-column: 3 / -1; }
 }
 
 /* An address in a sentence: the system's inline link, kept on 1 line. */

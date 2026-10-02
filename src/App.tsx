@@ -48,7 +48,9 @@ const SCROLL_STORE = 'obs-scroll'
 function ScrollManager() {
   const { pathname, hash, key } = useLocation()
   const how = useNavigationType()
-  const first = useRef(true)
+  /* The entry whose position was last set: null until the first load is handled. React's development double run of
+     effects sees the same entry again and leaves it alone. */
+  const handled = useRef<string | null>(null)
   const current = useRef(key)
   const saved = useRef<Record<string, number>>({})
 
@@ -92,10 +94,11 @@ function ScrollManager() {
     /* From here on, scrolling is saved against the entry now showing. */
     current.current = key
     syncHead(pathname)
-    if (first.current) {
-      first.current = false
+    if (handled.current === null || handled.current === key) {
+      handled.current = key
       return
     }
+    handled.current = key
     const target = hash ? document.getElementById(idOf(hash)) : null
     if (how === 'POP') {
       const y = saved.current[key]
