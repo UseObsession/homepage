@@ -22,14 +22,12 @@ export function Resources() {
         groups={[
           {
             ...g.useCases,
-            rows: [
-              ...studies.map((s) => ({ label: s.name, to: s.meta.path, line: s.line })),
-            ],
+            rows: studies.map((s) => ({ label: s.name, to: s.meta.path, line: s.line })),
           },
           { ...g.sample, rows: [{ label: g.sample.link.label, to: g.sample.link.to, line: g.sample.link.line }] },
           {
             ...g.blog,
-            rows: latest.length ? [...latest, { label: g.blog.all.label, to: g.blog.all.to }] : [{ label: g.blog.name, to: g.blog.all.to, line: g.blog.line }],
+            rows: latest.length ? [...latest, { label: g.blog.all.label, to: g.blog.all.to }] : [{ label: g.blog.empty.label, to: g.blog.all.to, line: g.blog.empty.line }],
           },
         ]}
       />

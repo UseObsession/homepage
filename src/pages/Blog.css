@@ -101,14 +101,15 @@
 .s-toc__link[aria-current] { color: var(--ob-text); box-shadow: inset var(--ob-border-focus) 0 0 var(--ob-text); }
 .s-toc__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
 
-/* The text: body type on a 680px measure. Every block keeps the same left edge and the same rhythm. */
+/* The text: body type on a 680px measure. Every block keeps the same left edge and the same rhythm: the blocks set no
+   margins of their own (base.css resets them), so these spacings always apply. */
 .s-art-main > * + * { margin-top: var(--ob-space-24); }
-.s-art-p { margin: 0; font: var(--ob-type-body); letter-spacing: var(--ob-type-body-tracking); color: var(--ob-text); text-wrap: pretty; }
+.s-art-main > .s-art-p + :is(.s-art-list) { margin-top: var(--ob-space-16); }
+.s-art-p { font: var(--ob-type-body); letter-spacing: var(--ob-type-body-tracking); color: var(--ob-text); text-wrap: pretty; }
 .s-art-p strong, .s-art-list strong { font-weight: var(--ob-weight-semibold); }
 .s-art-a { color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-ui); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out); }
 @media (hover: hover) and (pointer: fine) { .s-art-a:hover { text-decoration-color: currentColor; } }
 .s-art-h2 {
-  margin: 0;
   font: var(--ob-type-h3);
   letter-spacing: var(--ob-type-h3-tracking);
   color: var(--ob-text);
@@ -117,7 +118,6 @@
 }
 .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-64); }
 .s-art-h3 {
-  margin: 0;
   font: var(--ob-type-title);
   letter-spacing: var(--ob-type-title-tracking);
   color: var(--ob-text);
@@ -127,7 +127,7 @@
 .s-art-main > * + .s-art-h3 { margin-top: var(--ob-space-40); }
 .s-art-main > :is(.s-art-h2, .s-art-h3) + * { margin-top: var(--ob-space-16); }
 
-.s-art-list { display: grid; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; counter-reset: s-art; }
+.s-art-list { display: grid; gap: var(--ob-space-8); padding: 0; list-style: none; counter-reset: s-art; }
 .s-art-list > li {
   position: relative;
   padding-left: var(--ob-space-24);
@@ -163,7 +163,7 @@
 
 .s-art-quote { margin-inline: 0; padding: var(--ob-space-4) 0 var(--ob-space-4) var(--ob-space-24); box-shadow: inset var(--ob-border-focus) 0 0 var(--ob-line-strong); }
 .s-art-main > * + .s-art-quote { margin-top: var(--ob-space-40); }
-.s-art-quote + * { margin-top: var(--ob-space-40) !important; }
+.s-art-main > .s-art-quote + * { margin-top: var(--ob-space-40); }
 .s-art-quote blockquote { margin: 0; }
 .s-art-quote blockquote p { margin: 0; font: var(--ob-type-body-lg); font-weight: var(--ob-weight-medium); letter-spacing: -.01em; color: var(--ob-text); text-wrap: pretty; }
 .s-art-quote figcaption { margin-top: var(--ob-space-12); font: var(--ob-type-caption); color: var(--ob-text-3); }
@@ -190,7 +190,7 @@
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--ob-space-8) var(--ob-space-32);
   align-items: center;
-  margin: 0;
+  margin-inline: 0;
   padding-block: var(--ob-space-24);
   border-block: var(--ob-border-hair) solid var(--ob-line);
 }

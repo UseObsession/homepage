@@ -11,10 +11,16 @@ import { LinkGroups, type LinkGroupRows, type LinkRow } from '../components/sect
 import { drawnFor } from '../components/workspace'
 import type { BlogPost as Post } from '../content/blog/types'
 import { entryFor } from '../content/meta'
+import { nav } from '../content/nav'
 import { postBySlug, recipeBySlug } from '../content/registry'
 import { blogPage, blogUi, formatDate } from '../content/resources'
 import '../components/sections/Hero.css'
 import './Blog.css'
+
+/* A page's 1 line where the nav gives it one (the Solutions and Resources menus), else its share image's line. */
+const NAV_LINES = new Map<string, string>(
+  [...nav.solutions.items, ...nav.resources.items, ...nav.resources.useCases.items].flatMap((i) => (i.line ? [[i.to, i.line] as [string, string]] : [])),
+)
 
 /* What a post points to next: other posts (by slug), recipes ("recipe:SLUG") and pages ("/sample-output"). Anything
    that no longer exists is left out, so a renamed page never leaves a dead link. */
@@ -27,7 +33,7 @@ function relatedOf(post: Post): { reads: LinkRow[]; recipes: LinkRow[] } {
       if (rx) recipes.push({ label: rx.name, to: `/recipes/${rx.slug}`, line: rx.line })
     } else if (r.startsWith('/')) {
       const e = entryFor(r)
-      if (e.kind !== 'not-found') reads.push({ label: e.name, to: e.meta.path, line: e.line })
+      if (e.kind !== 'not-found') reads.push({ label: e.name, to: e.meta.path, line: NAV_LINES.get(e.meta.path) ?? e.line })
     } else {
       const p = postBySlug[r]
       if (p && p.slug !== post.slug) reads.push({ label: p.title, to: `/blog/${p.slug}`, line: p.dek, foot: `${formatDate(p.published)} · ${blogUi.read(p.readingMinutes)}` })

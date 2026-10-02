@@ -26,7 +26,7 @@ export function Row({ row }: { row: LinkRow }) {
     <Link className="s-lg-row" to={row.to}>
       {row.kicker && <span className="s-lg-row__kicker">{row.kicker}</span>}
       <span className="s-lg-row__name">
-        <span>{row.label}</span>
+        {row.label}
         <Arrow />
       </span>
       {row.line && <span className="s-lg-row__line">{tie(row.line)}</span>}

@@ -51,13 +51,15 @@ export const resourcesPage: ResourcesPage = {
       id: 'sample-output',
       name: 'Sample output',
       line: 'The 1 real run: a store check from September 2026, with the store’s name hidden.',
-      link: { label: 'Sample output', to: '/sample-output', line: '4 test customers, 48 hours watched, shown in every format it arrives in.' },
+      link: { label: 'The September store check', to: '/sample-output', line: '4 test customers, 48 hours watched, shown in every format it arrives in.' },
     },
     blog: {
       id: 'blog',
       name: 'Blog',
-      line: 'Mystery shopping, competitor tracking and prospect intelligence, with every source linked.',
+      line: 'What we learn by being every company’s customer, with every source linked.',
       all: { label: 'Every post', to: '/blog' },
+      /* The row while the blog has no posts. */
+      empty: { label: 'Guides from the founders', line: 'Mystery shopping, competitor tracking and prospect intelligence.' },
     },
   },
   final: final('resources-final'),
@@ -136,6 +138,9 @@ export const blogUi = {
   feedTitle: 'The Obsession blog',
 }
 
-/* Dates as the site writes them: 3 Oct 2026. */
-export const formatDate = (iso: string) =>
-  new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+/* Dates as the site writes them, the same on every machine: 3 Oct 2026, 28 Sep 2026. */
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+export const formatDate = (iso: string) => {
+  const [y, m, d] = iso.split('-').map(Number)
+  return `${d} ${MONTHS[m - 1]} ${y}`
+}

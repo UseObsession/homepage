@@ -39,10 +39,12 @@
   transition: background-color var(--ob-dur-base) var(--ob-ease-out);
 }
 .s-lg-row__kicker { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
-.s-lg-row__name { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); text-wrap: balance; }
-.s-lg-row__name > span { min-width: 0; }
+/* The arrow follows the name's last word, on whichever line that lands. */
+.s-lg-row__name { display: block; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); text-wrap: balance; }
 .s-lg-row__arrow {
-  flex: none;
+  display: inline-block;
+  margin-left: var(--ob-space-8);
+  vertical-align: -.1em;
   width: var(--ob-icon-sm);
   height: var(--ob-icon-sm);
   fill: none;

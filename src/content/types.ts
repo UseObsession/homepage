@@ -275,7 +275,11 @@ export type LinkGroup = { id: string; name: string; line: string }
 export type ResourcesPage = {
   meta: Meta
   hero: IndexHero
-  groups: { useCases: LinkGroup; sample: LinkGroup & { link: Cta & { line: string } }; blog: LinkGroup & { all: Cta } }
+  groups: {
+    useCases: LinkGroup
+    sample: LinkGroup & { link: Cta & { line: string } }
+    blog: LinkGroup & { all: Cta; empty: { label: string; line: string } }
+  }
   final: Final
 }
 export type UseCasesIndexPage = { meta: Meta; hero: IndexHero; group: LinkGroup; final: Final }
