@@ -29,6 +29,8 @@
 }
 
 .s-proof__doc { margin: 0; min-width: 0; }
+/* An app screen in place of the report: it keeps its own frame and its Example tag under it. */
+.s-proof__screen { min-width: 0; }
 .s-proof__tray {
   aspect-ratio: 5 / 4;
   padding: var(--ob-space-40) var(--ob-space-40) 0;
@@ -53,5 +55,7 @@
 }
 @media (max-width: 860px) {
   .s-proof__in { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-40); }
+  /* Stacked, the screen keeps to its design width (720) instead of filling a tablet. */
+  .s-proof__screen { width: 100%; max-width: 720px; }
   .s-proof__tray { padding: var(--ob-space-24) var(--ob-space-24) 0; aspect-ratio: 4 / 3; }
 }

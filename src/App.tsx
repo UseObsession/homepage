@@ -4,7 +4,7 @@ import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { absolute, metaFor } from './content/meta'
 import { ctaFor, nav } from './content/nav'
-import { pages, postBySlug, recipeBySlug, studyByPath } from './content/registry'
+import { pages, postBySlug, recipeBySlug, recipes, studyByPath } from './content/registry'
 import { Agencies } from './pages/Agencies'
 import { Agents } from './pages/Agents'
 import { Blog } from './pages/Blog'
@@ -22,6 +22,7 @@ import { Sales } from './pages/Sales'
 import { SampleOutput } from './pages/SampleOutput'
 import { UseCase } from './pages/UseCase'
 import { UseCases } from './pages/UseCases'
+import { Verify } from './pages/Verify'
 
 const idOf = (hash: string) => {
   try {
@@ -119,9 +120,11 @@ function ScrollManager() {
   return null
 }
 
-/* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers) take the nav's call to action from their own
-   capture: the hero form's button, landing on the page's final form (#join). */
-const STORY_CTAS = new Map(Object.values(pages).map((p) => [p.meta.path, { label: p.hero.capture.button, to: '#join' }]))
+/* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers, Check your AI agents) and every recipe take
+   the nav's call to action from their own capture: the hero form's button, landing on the page's final form (#join). */
+const STORY_CTAS = new Map(
+  [...Object.values(pages), ...recipes].map((p) => [p.meta.path, { label: p.hero.capture.button, to: '#join' }]),
+)
 
 /* Pages without a form of their own send the nav's call to action to Home's waitlist. */
 const NO_FORM = new Set(['/privacy', '/agents'])
@@ -195,6 +198,7 @@ export function AppRoutes() {
         <Route path="sales" element={<Sales />} />
         <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />
+        <Route path="verify" element={<Verify />} />
         <Route path="recipes" element={<Recipes />} />
         <Route path="recipes/prospect-research" element={<Navigate to="/recipes/prospect-intelligence" replace />} />
         <Route path="recipes/:slug" element={<RecipeRoute />} />

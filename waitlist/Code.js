@@ -3,7 +3,8 @@
 
    What it takes
      - JSON sent as text/plain from the site's forms (src/lib/waitlist.ts):
-         { email, company, source, page, role, interest, store, website }
+         { email, company, source, page, role, interest, store, agent, website }
+       `agent` is the AI agent a free AI agent check runs on: its chat page or phone number.
      - A plain form post (application/x-www-form-urlencoded) with the same field names, from a form used before the
        page's script has loaded. Those get a small "You're on the list" page with a link back, instead of JSON.
    What it does
@@ -13,8 +14,8 @@
      - More than RATE_LIMIT posts from 1 email in an hour are refused (error "rate_limited").
      - New rows send an alert to every address in the script property NOTIFY_TO (comma separated), or to the owner.
        A failed alert never loses a sign up: the row is saved first.
-     - Columns are found by their header, so old sheets keep their rows; missing headers (Role, Interest, Store) are
-       added at the end of row 1 the first time they're needed.
+     - Columns are found by their header, so old sheets keep their rows; missing headers (Role, Interest, Store,
+       Agent) are added at the end of row 1 the first time they're needed.
 
    Redeploy after changing this file (the URL stays the same, so the site needs no change):
      1. Paste this file into the Apps Script editor and save.
@@ -25,7 +26,7 @@
 
 const BOOK_TITLE = 'Obsession waitlist'
 const SHEET_NAME = 'Sign ups'
-const HEADERS = ['Received', 'Email', 'Company', 'Source', 'Page', 'Role', 'Interest', 'Store']
+const HEADERS = ['Received', 'Email', 'Company', 'Source', 'Page', 'Role', 'Interest', 'Store', 'Agent']
 const NOTIFY = true
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const SITE = 'https://useobsession.com'
@@ -57,6 +58,7 @@ function doPost(e) {
     Role: clean(data.role, 60),
     Interest: clean(data.interest, 60),
     Store: clean(data.store, 200),
+    Agent: clean(data.agent, 200),
   }
 
   const result = withLock(() => {
@@ -215,13 +217,14 @@ function recipients() {
 function notify(entry, url) {
   const to = recipients()
   if (!to.length) return
-  const store = entry.Store ? ` (${entry.Store})` : entry.Company ? ` (${entry.Company})` : ''
+  const store = entry.Store ? ` (${entry.Store})` : entry.Agent ? ` (AI agent: ${entry.Agent})` : entry.Company ? ` (${entry.Company})` : ''
   MailApp.sendEmail(
     to.join(','),
     `New Obsession sign up: ${entry.Email}${store}`,
     [
       `Email: ${entry.Email}`,
       `Store: ${entry.Store || 'not given'}`,
+      `AI agent: ${entry.Agent || 'not given'}`,
       `Company: ${entry.Company || 'not given'}`,
       `Interest: ${entry.Interest || 'not given'}`,
       `Form: ${entry.Source}`,

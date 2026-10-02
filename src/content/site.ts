@@ -1,4 +1,5 @@
 import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } from './types'
+import { WAYS } from './ways'
 
 /* Site pages: the Recipes index (/recipes), the privacy notice (/privacy), the page for companies an agent visits
    (/agents), the 404 page and the llms.txt intro. Copy rules: docs/REBUILD.md, "Copy". The red lines hold on every
@@ -64,6 +65,10 @@ export const recipesPage: RecipesIndexPage = {
       group: 'Get paid and save',
       line: 'Get paid from the day a customer signs, answer supplier price rises with quotes, and hold every software bill at the price you agreed.',
     },
+    {
+      group: 'Check your AI agents',
+      line: 'Declared test customers call, chat, email and shop the AI agents you run, or a client’s with their OK, every day, and sign what they find.',
+    },
   ],
 
   hub: {
@@ -118,7 +123,7 @@ export const recipesPage: RecipesIndexPage = {
       micro: 'We keep your email to tell you about Obsession, and nothing else.',
       roles: {
         question: 'Which job should we set up first?',
-        options: ['Win customers', 'Keep customers', 'Watch rivals', 'Check our own journeys', 'Get paid and save', 'Something else'],
+        options: ['Win customers', 'Keep customers', 'Watch rivals', 'Check our own journeys', 'Get paid and save', 'Check our AI agents', 'Something else'],
       },
       interest: 'any',
     },
@@ -136,7 +141,7 @@ export const privacyPage: PrivacyPage = {
     description:
       'What Obsession keeps when you join the waitlist or ask for a free mystery shop, why, for how long, who sees it, and how to see, change or delete it.',
     answer:
-      'Obsession keeps the email, company, role, interest, store address and page you give when you join its waitlist or ask for a free mystery shop. It uses them to tell you about Obsession and run what you asked for, never sells them, and deletes them 12 months after you sign up or the day you ask.',
+      'Obsession keeps the email, company, role, interest, store or AI agent address and page you give when you join its waitlist or ask for a free mystery shop or AI agent check. It uses them to tell you about Obsession and run what you asked for, never sells them, and deletes them 12 months after you sign up or the day you ask.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Privacy', path: '/privacy' },
@@ -144,8 +149,8 @@ export const privacyPage: PrivacyPage = {
   },
 
   headline: 'We keep what you type into our forms, and never sell it.',
-  sub: 'This notice covers the waitlist and the free mystery shop on useobsession.com, under UK data protection law.',
-  updated: '2 October 2026',
+  sub: 'This notice covers the waitlist, the free mystery shop and the free AI agent check on useobsession.com, under UK data protection law.',
+  updated: '3 October 2026',
 
   sections: [
     {
@@ -160,12 +165,13 @@ export const privacyPage: PrivacyPage = {
     {
       id: 'what',
       heading: 'We keep what you type, and the page you typed it on.',
-      lines: ['When you join the waitlist or ask for a free mystery shop, we keep:'],
+      lines: ['When you join the waitlist or ask for a free mystery shop or AI agent check, we keep:'],
       list: [
         'Your email address',
         'Your company, if you give it',
         'Your role and what you’d like set up first, if you tap them',
         'Your store’s web address, if you ask for a mystery shop',
+        'Your AI agent’s chat page or phone number, if you ask for an AI agent check',
         'The page and form you used, and when',
       ],
     },
@@ -185,7 +191,7 @@ export const privacyPage: PrivacyPage = {
       list: [
         'Tell you about Obsession',
         'Set up what you asked for first',
-        'Run the free mystery shop you asked for, and send you the report',
+        'Run the free mystery shop or AI agent check you asked for, and send you the report',
         'Keep our forms safe from bots and abuse',
       ],
     },
@@ -194,7 +200,7 @@ export const privacyPage: PrivacyPage = {
       heading: 'Your consent covers our emails, and you can withdraw it at any time.',
       lines: [
         `Emails about Obsession: your consent, given when you sign up. Withdraw it whenever you like by replying to any email from us or writing to ${CONTACT_EMAIL}.`,
-        'Your free mystery shop: you asked us for it, so we use your details to deliver it (the legal basis is contract).',
+        'Your free mystery shop or AI agent check: you asked us for it, so we use your details to deliver it (the legal basis is contract).',
         'Keeping the forms safe: our legitimate interest in stopping spam and abuse.',
         'We make no automated decisions about you.',
       ],
@@ -378,8 +384,9 @@ export const llms: Llms = {
   intro: [
     'Obsession’s agents sign up, shop, ask the site’s chat bot, chase, check and wait at every company on your list, continuously, and every step they take is signed.',
     'You get the proof and your next move by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
-    'There are 3 ways in: pick a recipe, which comes with everything it needs already set up; type a task in plain words, and the system sets it up for you; or build your own on the API.',
-    'Recipes cover winning customers (prospect intelligence, listings and AI answers, inbound quotes, account handover), keeping customers (account watch, business case, renewal negotiation, cancellation saves), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, lead leaks, website audit, delivery monitoring, AI checkout test), and getting paid and saving (get paid, supplier quotes, software renewals).',
+    `There are ${WAYS.length} ways in. ${WAYS.map((w) => `${w.name}, ${w.who.charAt(0).toLowerCase()}${w.who.slice(1)}: ${w.line}`).join(' ')}`,
+    'Recipes cover winning customers (prospect intelligence, listings and AI answers, inbound quotes, account handover), keeping customers (account watch, business case, renewal negotiation, cancellation saves), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, lead leaks, website audit, delivery monitoring, AI checkout test), getting paid and saving (get paid, supplier quotes, software renewals), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
+    'To check an AI agent, Obsession’s declared test customers use a company’s own support bot, voice agent, AI SDR or sales agent on its real channels, only with the owner’s OK, ask what an ordinary customer asks and never try to trick it, tag every test so it is never billed, and sign every step.',
     'Most tools read what a company publishes. Obsession goes through it as a customer.',
     'Every agent says it’s an AI agent and never pretends to be a person. At rivals and prospects it uses only the paths any customer can (sign ups, newsletters, texts, public pages, the ads they run in public, the site’s chat bot and trials that need no card), never contacts staff or replies, closes a trial the moment a rep writes or calls, never names its customer and links to useobsession.com/agents. A company’s own journeys, or a client’s or account’s, run only with the owner’s OK, and on anyone else’s store every checkout stops before payment. It spends only on a card capped at a budget the customer sets, and never signs or accepts terms without the customer’s OK.',
     'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours; 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency with a client’s OK, can get a first mystery shop free.',

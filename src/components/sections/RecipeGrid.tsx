@@ -9,8 +9,15 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
 const FILES = import.meta.glob('../../content/recipes/*.ts', { eager: true, import: 'recipe' }) as Record<string, Recipe>
 const RECIPES = Object.fromEntries(Object.values(FILES).map((r) => [r.id, r])) as Record<RecipeId, Recipe>
 
-/* The 5 jobs, in the order every page shows them. */
-const JOBS: RecipeGroup[] = ['Win customers', 'Keep customers', 'Watch rivals', 'Check your own journeys', 'Get paid and save']
+/* The 6 jobs, in the order every page shows them (content/nav JOBS). */
+const JOBS: RecipeGroup[] = [
+  'Win customers',
+  'Keep customers',
+  'Watch rivals',
+  'Check your own journeys',
+  'Get paid and save',
+  'Check your AI agents',
+]
 
 type Props = {
   heading: string

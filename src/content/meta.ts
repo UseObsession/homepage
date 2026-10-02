@@ -12,6 +12,7 @@ export type PageKind =
   | 'home'
   | 'audience'
   | 'developers'
+  | 'verify'
   | 'recipes'
   | 'recipe'
   | 'sample'
@@ -68,6 +69,7 @@ const AUDIENCES = ['agencies', 'founders', 'sales', 'marketing'] as const
 
 const home = pages.home
 const dev = pages.developers
+const verify = pages.verify
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
@@ -91,6 +93,15 @@ export const entries: Entry[] = [
     line: dev.hero.proof[0] ? `${dev.hero.proof[0].value} ${dev.hero.proof[0].label}` : dev.hero.pill,
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  {
+    kind: 'verify',
+    meta: ogFor(verify.meta),
+    name: crumbName(verify.meta, 'Check your AI agents'),
+    headline: verify.hero.headline,
+    line: firstSentence(verify.hero.sub),
+    faq: verify.faq,
+    source: 'src/content/pages/verify.ts',
   },
   {
     kind: 'recipes',

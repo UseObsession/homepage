@@ -6,11 +6,15 @@ export type ScreenName = string
    speed-to-lead, which redirects), price-watch, ad-tracking, trial-teardown, email-sms-tracking, website-audit,
    delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
    ('checkout'), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
-   account-handover ('handover'), software-renewals ('spend'). */
+   account-handover ('handover'), software-renewals ('spend').
+   Check your AI agents (3 Oct, _research/verify/VERIFY.md): support-bot-check ('support-bot'), voice-agent-check
+   ('voice-agent'), outbound-agent-check ('outbound-agent'), sales-agent-check ('sales-agent'), vendor-agent-check
+   ('vendor-agent'), resolution-check ('resolution'), ai-disclosure-check ('disclosure'), drift-watch ('drift'). */
 export type RecipeId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
   | 'checkout' | 'quotes' | 'renewal' | 'saves' | 'handover' | 'spend'
+  | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
 
@@ -26,9 +30,11 @@ export type Meta = {
 }
 
 /* Every capture goes to the waitlist (waitlist/Code.js). `mystery` asks for the store first, then the email:
-   the free mystery shop of a store the reader owns or has the owner's OK to test. */
+   the free mystery shop of a store the reader owns or has the owner's OK to test. `verify` asks for the AI agent
+   first (its chat page or phone number), then the email: the free check of an AI agent the reader runs, or a
+   client's with their OK. It asks "Whose AI agent is it?" after the sign up unless the page sets its own roles. */
 export type Capture = {
-  kind: 'waitlist' | 'mystery'
+  kind: 'waitlist' | 'mystery' | 'verify'
   source: string
   button: string
   placeholder?: string
@@ -36,7 +42,8 @@ export type Capture = {
   /* After a sign up: 1 tap tells us what to set up first. */
   roles?: { question: string; options: string[] }
   interest?: RecipeId | 'any'
-  /* `mystery` only: a blank store address joins the waitlist instead of asking for one. The micro line says so. */
+  /* `mystery` and `verify` only: a blank first field (the store, or the AI agent) joins the waitlist instead of asking
+     for one. The micro line says so. */
   orWaitlist?: boolean
 }
 
@@ -59,9 +66,10 @@ export type Demo = {
 }
 
 /* A tab of Home's hero console: a kind of work, shown as its full app screen, which plays its story when its tab is
-   chosen. `line` sits under the screen (1 short line); the tab links to the recipe it runs on. A tab whose screen is
-   not in src/screens/html yet is left out, so nothing renders broken. */
-export type HeroScreen = { tab: string; screen: ScreenName; recipe: RecipeId; line: string }
+   chosen. `line` sits under the screen (1 short line); the tab links to the recipe it runs on, or to `link` when the
+   tab is a whole way in rather than 1 recipe (the AI agent checks, /verify). A tab whose screen is not in
+   src/screens/html yet is left out, so nothing renders broken. */
+export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ recipe: RecipeId; link?: never } | { recipe?: never; link: Cta })
 
 /* The hero (docs/REBUILD.md 1c). `consoleHeading` is the typed heading over the console: it types the first line,
    holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
@@ -90,6 +98,8 @@ export type UseCase = { tab: string; moment: string; outcome: string; line: stri
 export type Uses = { heading: string; items: UseCase[] }
 export type Outcomes = { heading: string; sub?: string; items: { value: string; label: string; note?: string }[] }
 export type Kinds = { heading: string; label: string; items: { name: string; line: string; recipes: RecipeId[] }[] }
+/* The claim beside its object. Without `screen` the object is the real September report (story beat 8); with it, the
+   object is that app screen, under its Example tag (Home's short section on the AI agent checks). */
 export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
 export type Faq = { heading: string; items: { q: string; a: string }[] }
 export type Final = { heading: string; sub: string; capture: Capture }
@@ -121,13 +131,21 @@ export type Page = {
   audiences?: Audiences
   outputs?: Outputs
   developers?: Developers
+  /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */
+  verify?: Proof
   faq: Faq
   final: Final
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
-export type RecipeGroup = 'Win customers' | 'Keep customers' | 'Watch rivals' | 'Check your own journeys' | 'Get paid and save'
+export type RecipeGroup =
+  | 'Win customers'
+  | 'Keep customers'
+  | 'Watch rivals'
+  | 'Check your own journeys'
+  | 'Get paid and save'
+  | 'Check your AI agents'
 export type Recipe = {
   id: RecipeId
   slug: string
