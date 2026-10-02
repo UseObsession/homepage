@@ -16,6 +16,7 @@ export const AGENCY_SCREENS: ReadonlySet<string> = new Set([
   'report',
   'run',
   'templates',
+  'upsells',
 ])
 
 export type Workspace = 'agency' | 'company'

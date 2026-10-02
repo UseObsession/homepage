@@ -1,0 +1,196 @@
+/* app-upsells: Your agency / Missions / Client upsells. This month's next service for each client, each one earned by
+   proof from the agency's own checks, never a guess.
+   Left, the list: each client with its proof (fg-2) and, hung off a corner arrow, the service it points to, priced on the
+   first line; the 2 clients with no gap are named in 1 quiet row, so all 5 clients are accounted for.
+   Right, the proposal for the open row (Homeware), drawn as the client gets it: the agency's lockup, the service, the proof
+   (the public sign up with texts ticked on 24 Sep, the test phone's 7 empty days to 1 Oct, signed), the price; under it,
+   the approval.
+   Red lines shown: the declared-agent pill; existing clients only (the list is the client list, nothing else);
+   "Sends after your OK" as the 1 lock line, bottom left, level with the toast.
+   Story: the proposals assemble client by client (each mark works, the proof lands, the service and price follow, the mark
+   turns to needs you); Homeware's proposal builds beside it; the pointer clicks Approve; the footer reads "Sent in AM's thread", the
+   row's mark lands; the toast. Rest state (no .play) = that finished scene.
+   Chrome is canonical (APP-SPEC, Product chrome): Your agency, Missions selected, no client selected.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; wrap 50..346 (list 272, gap 12, proposal 244);
+   note and toast 360..400. Approve sits at 462..530 x 312..336.
+   --ups-hi is the 1 accent touch on this screen: the open row's edge bar only, never text. It falls back to --fg until the
+   site's accent palette lands. */
+
+.app-upsells{--ups-hi:var(--s-accent, var(--fg))}
+.app-upsells .ax-main{grid-template-rows:24px 296px;gap:12px;padding:14px}
+
+/* ---------- head: plain title, the scope, the declared agent ---------- */
+.app-upsells .ups-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-upsells .ups-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-upsells .ups-meta{padding-top:1px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-upsells .ups-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-upsells .ups-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-upsells .ups-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-upsells .ups-wrap{display:grid;grid-template-columns:272px 244px;gap:12px;min-height:0}
+
+/* ---------- the list ---------- */
+.app-upsells .ups-ls{display:grid;grid-template-rows:28px repeat(3,76px) minmax(0,1fr);min-height:0;overflow:hidden;border-radius:10px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-upsells .ups-th{display:flex;align-items:center;justify-content:space-between;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset;
+  font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* a row: mark, client and price; the proof; the arrow to the service */
+.app-upsells .ups-row{position:relative;display:grid;grid-template-columns:12px minmax(0,1fr) auto;grid-template-rows:16px 16px 16px;
+  column-gap:8px;row-gap:3px;align-content:center;align-items:center;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-upsells .ups-mk{grid-area:1/1;display:grid;place-items:center;width:12px;height:12px}
+.app-upsells .ups-mk>svg{grid-area:1/1}
+.ilwrap .app-upsells .ups-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-upsells .ups-mk .w0,.app-upsells .ups-mk .w1{opacity:0}
+.app-upsells .ups-r2 .ups-mk .w1,.app-upsells .ups-r3 .ups-mk .w1{opacity:1}
+.app-upsells .ups-cl{grid-area:1/2;font:500 11.5px/16px var(--sans);color:var(--fg);white-space:nowrap}
+.app-upsells .ups-pr{grid-area:1/3;justify-self:end;font:400 10.5px/16px var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-upsells .ups-pf{grid-area:2/2/3/4;font:400 11px/16px var(--sans);color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-upsells .ups-to{grid-area:3/1;align-self:center;justify-self:center}
+.ilwrap .app-upsells svg.ups-to{width:12px;height:12px;color:var(--fg-3)}
+.app-upsells .ups-sv{grid-area:3/2/4/4;font:500 11.5px/16px var(--sans);color:var(--fg);white-space:nowrap}
+
+/* the open row */
+.app-upsells .ups-row.on{background:rgb(var(--fg-rgb) / .05)}
+.app-upsells .ups-row.on::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--ups-hi)}
+.app-upsells .ups-row.on .ups-pr{color:var(--fg)}
+
+/* the clients with nothing to propose */
+.app-upsells .ups-qt{display:flex;align-items:center;padding:0 12px 0 32px;font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+
+/* ---------- the proposal ---------- */
+.app-upsells .ups-pp{display:grid;grid-template-rows:minmax(0,1fr) 44px;min-height:0;overflow:hidden;border-radius:10px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-2) inset,0 14px 28px -18px rgb(0 0 0 / calc(.8 * var(--sh-k,1)))}
+.app-upsells .ups-doc{display:grid;grid-template-rows:32px 48px 115px minmax(0,1fr);min-height:0}
+
+/* the agency's lockup: the client gets this in your brand */
+.app-upsells .ups-br{display:flex;align-items:center;gap:8px;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset;font:600 12px/1 var(--sans);letter-spacing:-.01em;color:var(--fg);white-space:nowrap}
+.app-upsells .ups-br i{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font:600 10px/1 var(--sans);font-style:normal;color:var(--bg);background:var(--fg)}
+.app-upsells .ups-dt{margin-left:auto;font:400 10.5px/1 var(--mono);letter-spacing:0;color:var(--fg-3)}
+
+/* who it is for, and the service */
+.app-upsells .ups-ti{display:grid;align-content:end;gap:4px;padding:0 12px}
+.app-upsells .ups-for{font:400 10.5px/13px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-upsells .ups-ti h3{font:600 15px/18px var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+
+/* the proof: 2 captures from the agency's own check, signed */
+.app-upsells .ups-ev{display:grid;grid-template-rows:13px auto;row-gap:6px;align-content:start;padding:10px 12px 0}
+.app-upsells .ups-lab{display:flex;align-items:center;gap:6px;font:500 10.5px/13px var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-upsells .ups-lab span{margin-left:auto;font:400 10.5px/13px var(--sans);color:var(--fg-3)}
+.app-upsells .ups-lab span i{font:400 10.5px/13px var(--mono);font-style:normal;margin-left:5px}
+.app-upsells .ups-caps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.app-upsells .ups-c{margin:0;display:grid;grid-template-rows:56px 13px;row-gap:5px;min-width:0}
+.app-upsells .ups-c figcaption{display:flex;align-items:baseline;gap:6px;font:400 11px/13px var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-upsells .ups-c time{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-upsells .ups-shot{height:56px;grid-template-rows:7px 1fr}
+.app-upsells .ups-pg{position:relative;min-height:0}
+
+/* capture 1: the store's public sign up, the number entered and texts ticked (hex only inside captures) */
+.app-upsells .ups-pg1{display:grid;place-items:center}
+.app-upsells .ups-pg1 .ups-pt{position:absolute;left:7px;top:6px;width:24px;height:30px;background:#D9CBBE}
+.app-upsells .ups-pg1 .ups-ln{position:absolute;right:7px;top:7px;width:26px;height:4px;background:#D6D2CA}
+.app-upsells .ups-pop{position:relative;display:grid;gap:5px;padding:6px 8px 6px 7px;border-radius:3px;background:#F7F6F2;box-shadow:0 0 0 1px #D2CEC6,0 2px 6px rgb(30 29 26 / .14)}
+.app-upsells .ups-ok{display:flex;align-items:center;gap:5px}
+.app-upsells .ups-ok b{font:500 10.5px/12px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-upsells .ups-pop .ups-tk{position:relative;width:9px;height:9px;flex:none;border-radius:2px;background:#2B2925}
+.app-upsells .ups-pop .ups-tk::after{content:"";position:absolute;left:3px;top:1.5px;width:2px;height:4px;border:solid #F7F6F2;border-width:0 1.2px 1.2px 0;transform:rotate(45deg)}
+.app-upsells .ups-pop .ups-fld{position:relative;height:9px;border-radius:2px;background:#ECEAE4;box-shadow:0 0 0 1px #D2CEC6 inset}
+.app-upsells .ups-pop .ups-fld::after{content:"";position:absolute;left:4px;top:3.5px;width:58%;height:2px;border-radius:1px;background:#8C887F}
+
+/* capture 2: the test phone, 7 days, not 1 text */
+.app-upsells .ups-pg2{display:grid;place-content:center;justify-items:center;row-gap:6px}
+.app-upsells .ups-zero{display:flex;align-items:baseline;gap:4px;white-space:nowrap}
+.app-upsells .ups-zero b{font:600 14px/14px var(--display);letter-spacing:-.02em;color:#1E1D1A}
+.app-upsells .ups-zero span{font:400 10.5px/12px var(--sans);color:#56534C}
+.app-upsells .ups-days{display:grid;grid-template-columns:repeat(7,9px);gap:3px}
+.app-upsells .ups-days i{height:9px;border-radius:2px;background:none;outline:1px dashed #A8A398;outline-offset:-1px}
+
+/* the price */
+.app-upsells .ups-px{display:flex;align-items:center;margin:0 12px;box-shadow:0 1px 0 var(--line) inset;white-space:nowrap}
+.app-upsells .ups-amt{display:flex;align-items:baseline;gap:2px}
+.app-upsells .ups-amt b{font:600 20px/1 var(--display);letter-spacing:-.025em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-upsells .ups-amt span{font:400 11.5px/1 var(--sans);color:var(--fg-3)}
+.app-upsells .ups-st{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+/* the approval: Edit and Approve, then the sent record in the same place */
+.app-upsells .ups-ft{display:grid;align-items:center;padding:0 12px;box-shadow:0 1px 0 var(--line-2) inset}
+.app-upsells .ups-ft>*{grid-area:1/1}
+.app-upsells .ups-f1{display:flex;justify-content:flex-end;gap:6px;opacity:0}
+.app-upsells .ups-f1 .ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-upsells .ups-ap{transform-origin:center}
+.app-upsells .ups-f2{display:flex;align-items:center;gap:7px;height:24px;padding:0 9px;border-radius:7px;font-size:11px;color:var(--fg-2);white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-upsells .ups-f2 svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-upsells .ups-f2 b{font-weight:500;color:var(--fg)}
+.app-upsells .ups-f2 .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+
+/* ---------- the content foot: the red line (left), the toast (right) ---------- */
+.app-upsells .ups-note{position:absolute;left:16px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-upsells .ups-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-upsells .ups-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-upsells .ups-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-upsells .ups-toast b{font-weight:500;color:var(--fg)}
+.app-upsells .ups-toast p span{color:var(--fg-3)}
+
+/* pointer: the base's ".appx svg{width:auto}" outranks .ax-ptr, so size it here; hidden at rest */
+.ilwrap .app-upsells .appx svg.ups-ptr{width:16px;height:16px}
+.app-upsells .ups-ptr{transform-origin:3px 1.5px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ups-show{from{opacity:0}to{opacity:1}}
+@keyframes ups-hide{from{opacity:1}to{opacity:0}}
+@keyframes ups-on{from{opacity:1}to{opacity:1}}
+@keyframes ups-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes ups-attach{from{opacity:0;transform:translateY(6px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes ups-spin{to{transform:rotate(360deg)}}
+@keyframes ups-spinr{to{transform:rotate(-360deg)}}
+@keyframes ups-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+@keyframes ups-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes ups-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes ups-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* 2.1s from 2.9s: rises from below the list to Approve by 3.74s, presses, eases off down and right, gone by 5s */
+@keyframes ups-ptr{
+  0%{opacity:0;transform:translate(400px,404px)}
+  12%{opacity:1}
+  40%{transform:translate(489px,320px) scale(1)}
+  44%{transform:translate(489px,320px) scale(.9)}
+  50%{transform:translate(489px,320px) scale(1)}
+  78%{opacity:1;transform:translate(512px,342px)}
+  100%{opacity:0;transform:translate(518px,348px)}}
+
+/* 1. the proposals assemble, client by client: the mark works, the proof lands, the service and price follow, needs you */
+.appx-il.play.app-upsells .ups-mk .w0{animation:ups-on .01s linear both,ups-hide .2s var(--ease) var(--ups-ok) forwards}
+.appx-il.play.app-upsells .ups-mk .w0 .sig-rot{animation:ups-spin 3.2s linear var(--ups-t) infinite both}
+.appx-il.play.app-upsells .ups-mk .w0 .sig-orb{animation:ups-spinr 3.2s linear var(--ups-t) infinite both}
+.appx-il.play.app-upsells .ups-mk .w1{animation:ups-show .2s var(--ease) var(--ups-ok) both}
+.appx-il.play.app-upsells .ups-mk .w1 .sig-sq{animation:ups-sqin .45s var(--snap) var(--ups-ok) both}
+.appx-il.play.app-upsells .ups-row .ups-pf{animation:ups-land .45s var(--ease) calc(var(--ups-t) + .15s) both}
+.appx-il.play.app-upsells .ups-row .ups-to,.appx-il.play.app-upsells .ups-row .ups-sv{animation:ups-land .45s var(--ease) calc(var(--ups-ok) - .4s) both}
+.appx-il.play.app-upsells .ups-row .ups-pr{animation:ups-show .4s var(--ease) calc(var(--ups-ok) - .3s) both}
+.app-upsells .ups-r1{--ups-t:.2s;--ups-ok:1.55s}
+.app-upsells .ups-r2{--ups-t:1.3s;--ups-ok:2.15s}
+.app-upsells .ups-r3{--ups-t:1.7s;--ups-ok:2.55s}
+.appx-il.play.app-upsells .ups-qt{animation:ups-show .45s var(--ease) 2.75s both}
+
+/* 2. Homeware's proposal builds beside it: the service, the proof attaches, the price, then the approval */
+.appx-il.play.app-upsells .ups-ti{animation:ups-land .45s var(--ease) .45s both}
+.appx-il.play.app-upsells .ups-lab{animation:ups-show .35s var(--ease) .65s both}
+.appx-il.play.app-upsells .ups-c1{animation:ups-attach .5s var(--ease) .75s both}
+.appx-il.play.app-upsells .ups-c2{animation:ups-attach .5s var(--ease) .95s both}
+.appx-il.play.app-upsells .ups-px{animation:ups-land .45s var(--ease) 1.3s both}
+.appx-il.play.app-upsells .ups-f1{animation:ups-show .3s var(--ease) 1.6s both,ups-hide .2s var(--ease) 3.95s forwards}
+
+/* 3. the pointer approves: Approve presses, the sent record takes its place, Homeware's mark lands */
+.appx-il.play.app-upsells .ups-ptr{animation:ups-ptr 2.1s var(--ease) 2.9s both}
+.appx-il.play.app-upsells .ups-ap{animation:ups-press .22s ease-out 3.78s}
+.appx-il.play.app-upsells .ups-f2{animation:ups-land .4s var(--ease) 4s both}
+.appx-il.play.app-upsells .ups-f2 .sig-sq{animation:ups-home .55s var(--snap) 4.1s both}
+.appx-il.play.app-upsells .ups-f2 .sig-gap{animation:ups-show .3s var(--ease) 4.3s both}
+.appx-il.play.app-upsells .ups-r1 .ups-mk .w1{animation:ups-show .2s var(--ease) var(--ups-ok) both,ups-hide .2s var(--ease) 4s forwards}
+.appx-il.play.app-upsells .ups-r1 .ups-mk .w2{animation:ups-show .01s linear 4s both}
+.appx-il.play.app-upsells .ups-r1 .ups-mk .w2 .sig-sq{animation:ups-home .55s var(--snap) 4s both}
+.appx-il.play.app-upsells .ups-r1 .ups-mk .w2 .sig-gap{animation:ups-show .3s var(--ease) 4.2s both}
+
+/* 4. the toast: the proposal sent to Homeware, named */
+.appx-il.play.app-upsells .ups-toast{animation:ups-toast .45s var(--ease) 4.6s both}
