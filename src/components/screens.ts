@@ -19,10 +19,14 @@ export function screenHtmlNow(name: string): string | undefined {
   return undefined
 }
 
-/* A screen's HTML, once its CSS is in the page too. */
+/* A screen's HTML, once its CSS is in the page too. A screen drawn by another screen's sheet as well (agencytask is
+   compose's markup, class "app-compose app-agencytask") brings every app-NAME sheet on its root, as the prerender does. */
 export async function loadScreen(name: string): Promise<string | undefined> {
   const html = HTML[`../screens/html/${name}.html`]
   if (!html) return undefined
   const [h] = await Promise.all([html(), CSS[`../screens/css/${name}.css`]?.()])
+  const root = h.match(/class="il appx-il ([^"]+)"/)?.[1] ?? ''
+  const more = [...root.matchAll(/\bapp-([a-z]+)\b/g)].map((m) => m[1]).filter((n) => n !== name)
+  await Promise.all(more.map((n) => CSS[`../screens/css/${n}.css`]?.()))
   return h
 }

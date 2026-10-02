@@ -117,7 +117,14 @@ function page(e, rendered, opts) {
      the head, beside the font's, not inside the root React hydrates. */
   const hints = rendered.match(/^(?:<link rel="preload"[^>]*\/>)+/)?.[0] ?? ''
   const appHtml = rendered.slice(hints.length)
-  const screens = [...new Set([...appHtml.matchAll(/\sdata-screen="([\w-]+)"/g)].map((m) => m[1]))]
+  /* A screen can be drawn by another screen's sheet too: agencytask is compose's markup with its own few rules on top
+     (class "app-compose app-agencytask"), so every app-NAME on a screen's root brings that sheet, not only its own. */
+  const screens = [
+    ...new Set([
+      ...[...appHtml.matchAll(/\sdata-screen="([\w-]+)"/g)].map((m) => m[1]),
+      ...[...appHtml.matchAll(/class="il appx-il ([^"]+)"/g)].flatMap((m) => [...m[1].matchAll(/\bapp-([a-z]+)\b/g)].map((n) => n[1])),
+    ]),
+  ]
   for (const s of screens) if (!screenCss.has(s) && existsSync(join(root, `src/screens/css/${s}.css`))) fail(`${e.meta.path}: no built CSS for the ${s} screen.`)
   const screenLinks = screens.filter((s) => screenCss.has(s)).map((s) => `<link rel="stylesheet" crossorigin href="/${screenCss.get(s)}">`)
   const preloads = [
