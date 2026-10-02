@@ -1,0 +1,7 @@
+/* An index page's hero (sections/IndexHero): the shared centred hero (Hero.css) with no form under it, so it closes on
+   the block space before the first group's hairline, as the Recipes index does. */
+.s-hero.s-ix-hero { padding-bottom: var(--ob-space-96); }
+.s-hero-sub.s-ix-hero__sub { margin-top: var(--ob-space-24); }
+@media (max-width: 759.98px) {
+  .s-hero.s-ix-hero { padding-bottom: var(--ob-space-64); }
+}

@@ -10,8 +10,16 @@ export const footer = {
       label: 'Product',
       links: [
         { label: 'Recipes', to: '/recipes' },
-        { label: 'Sample output', to: '/sample-output' },
         { label: 'Developers', to: '/developers' },
+      ],
+    },
+    {
+      label: nav.resources.label,
+      links: [
+        { label: nav.resources.useCases.label, to: nav.resources.useCases.all.to },
+        ...nav.resources.useCases.items.map(({ label, to }) => ({ label, to })),
+        ...nav.resources.items.map(({ label, to }) => ({ label, to })),
+        { label: nav.resources.all.label, to: nav.resources.all.to },
       ],
     },
   ] satisfies { label: string; links: NavPage[] }[],

@@ -7,8 +7,8 @@ import type { Cta } from './types'
    nothing that says a run was signed (the 1 real run, Mystery shopper's September store check, claims no signature). */
 
 export const recipePage = {
-  /* The hero's pill: the way back to the index, then the recipe's own name. */
-  crumbs: { label: 'Breadcrumb', index: { label: 'Recipes', to: '/recipes' } satisfies Cta },
+  /* The hero's pill, as on every page's hero. The way back (Home / Recipes / this recipe) is the breadcrumb above it. */
+  pill: 'Early access',
 
   /* What choosing the recipe sets up: its `kit`, landing 1 by 1. */
   kit: {

@@ -2,12 +2,38 @@
    (content/types). The prerender (scripts/prerender.mjs) writes it into each page's head, with the JSON-LD from
    lib/jsonld; the share images (scripts/og.mjs), sitemap.xml and llms.txt are made from the same list. */
 import { nav } from './nav'
-import { agentsPage, notFoundPage, pages, privacyPage, recipes, recipesPage, sample } from './registry'
+import { agentsPage, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
+import { blogAuthors, blogPage, resourcesPage, useCasesPage } from './resources'
 import type { Faq, Meta } from './types'
 
 export const SITE = 'https://useobsession.com'
 
-export type PageKind = 'home' | 'audience' | 'developers' | 'recipes' | 'recipe' | 'sample' | 'privacy' | 'agents' | 'not-found'
+export type PageKind =
+  | 'home'
+  | 'audience'
+  | 'developers'
+  | 'recipes'
+  | 'recipe'
+  | 'sample'
+  | 'resources'
+  | 'use-cases'
+  | 'use-case'
+  | 'blog'
+  | 'post'
+  | 'privacy'
+  | 'agents'
+  | 'not-found'
+
+/* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
+export type Article = {
+  headline: string
+  description: string
+  published: string
+  updated: string
+  section: string
+  keywords: string[]
+  authors: { name: string; role: string }[]
+}
 
 export type Entry = {
   kind: PageKind
@@ -23,6 +49,12 @@ export type Entry = {
   faq?: Faq
   /* The content file the page's words live in, for the sitemap's lastmod. */
   source: string
+  /* A date the page states itself (a post's updated date), used for the sitemap's lastmod instead of the last commit. */
+  lastmod?: string
+  /* Where the page sits, for the share image's foot. Defaults to its breadcrumb after Home. */
+  place?: string
+  /* A post's facts (BlogPosting JSON-LD, the RSS feed). */
+  article?: Article
 }
 
 /* The share image's line on an audience page: the line the Solutions menu gives it. */
@@ -81,6 +113,34 @@ export const entries: Entry[] = [
     }),
   ),
   {
+    kind: 'resources',
+    meta: ogFor(resourcesPage.meta),
+    name: crumbName(resourcesPage.meta, 'Resources'),
+    headline: resourcesPage.hero.headline,
+    line: resourcesPage.hero.sub,
+    source: 'src/content/resources.ts',
+  },
+  {
+    kind: 'use-cases',
+    meta: ogFor(useCasesPage.meta),
+    name: crumbName(useCasesPage.meta, 'Use cases'),
+    headline: useCasesPage.hero.headline,
+    line: firstSentence(useCasesPage.hero.sub),
+    source: 'src/content/resources.ts',
+  },
+  ...studies.map(
+    (st): Entry => ({
+      kind: 'use-case',
+      meta: ogFor(st.meta),
+      name: st.name,
+      headline: st.hero.headline,
+      line: st.line,
+      faq: st.faq,
+      source: `src/content/usecases/${st.meta.path.split('/').pop()}.ts`,
+      place: 'Resources / Use cases',
+    }),
+  ),
+  {
     kind: 'sample',
     meta: ogFor(sample.meta),
     name: crumbName(sample.meta, 'Sample output'),
@@ -89,6 +149,51 @@ export const entries: Entry[] = [
     faq: sample.faq,
     source: 'src/content/sample.ts',
   },
+  {
+    kind: 'blog',
+    meta: ogFor(blogPage.meta),
+    name: crumbName(blogPage.meta, 'Blog'),
+    headline: blogPage.hero.headline,
+    line: blogPage.hero.sub,
+    source: 'src/content/resources.ts',
+    lastmod: posts[0]?.updated,
+  },
+  ...posts.map((p): Entry => {
+    const path = `/blog/${p.slug}`
+    const faq = p.blocks.flatMap((b) => (b.kind === 'faq' ? b.items : []))
+    return {
+      kind: 'post',
+      meta: {
+        path,
+        title: p.metaTitle,
+        description: p.description,
+        answer: p.answer,
+        /* Posts share the /og/ folder with every page, so their cards carry a prefix: a post can never take a recipe's. */
+        ogImage: `/og/blog-${p.slug}.png`,
+        breadcrumb: [
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog' },
+          { name: p.title, path },
+        ],
+      },
+      name: p.title,
+      headline: p.title,
+      line: p.dek,
+      faq: faq.length ? { heading: p.title, items: faq } : undefined,
+      source: `src/content/blog/${postFileOf[p.slug] ?? p.slug}.ts`,
+      lastmod: p.updated || p.published,
+      place: `Blog / ${p.category}`,
+      article: {
+        headline: p.title,
+        description: p.description,
+        published: p.published,
+        updated: p.updated || p.published,
+        section: p.category,
+        keywords: [p.primaryKeyword, ...p.keywords.filter((k) => k !== p.primaryKeyword)],
+        authors: blogAuthors,
+      },
+    }
+  }),
   {
     kind: 'agents',
     meta: ogFor(agentsPage.meta),

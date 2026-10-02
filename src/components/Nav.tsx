@@ -11,22 +11,28 @@ import {
   type RefObject,
 } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { nav, recipeGroups } from '../content/nav'
+import { nav, recipeGroups, type NavPage } from '../content/nav'
 import type { Cta } from '../content/types'
 import { Lockup } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
 import './Nav.css'
 
 /* The site navigation, on the design system's .ob-nav, .ob-menu and .ob-mnav (docs/REBUILD.md, section 7).
-   Desktop: 2 disclosure menus (Solutions, Recipes) that open on click and keys, plus 2 links, the theme switch and
-   the page's call to action. Phone: a sheet with the same groups, focus held inside it and the page behind it locked.
+   Desktop: at most 4 links. 3 disclosure menus (Solutions, Recipes, Resources) that open on click and keys, then
+   Developers, the theme switch and the page's call to action. Phone: a sheet with the same groups, focus held inside it and the page behind it locked.
    The menus are disclosures (a button with aria-expanded and a list of links), not ARIA menus. */
 
-type MenuId = 'solutions' | 'recipes'
+type MenuId = 'solutions' | 'recipes' | 'resources'
 type Focus = 'first' | 'last' | null
 
 const groupByName = new Map(recipeGroups.map((g) => [g.name, g]))
 const solutionPaths = new Set<string>(nav.solutions.items.map((i) => i.to))
+/* The pages under Resources: the hub, the use cases, the blog and its posts, and the sample output. */
+const isResource = (path: string) =>
+  path === nav.resources.all.to ||
+  path === nav.resources.useCases.all.to ||
+  path.startsWith(`${nav.resources.useCases.all.to}/`) ||
+  nav.resources.items.some((i) => path === i.to || path.startsWith(`${i.to}/`))
 
 /* Keeps a closing surface on screen long enough for its leave animation (.is-leaving). */
 function usePresence(open: boolean, ms: number) {
@@ -179,8 +185,8 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const navRef = useRef<HTMLElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
-  const triggers = useRef<Record<MenuId, HTMLButtonElement | null>>({ solutions: null, recipes: null })
-  const panels = useRef<Record<MenuId, HTMLDivElement | null>>({ solutions: null, recipes: null })
+  const triggers = useRef<Record<MenuId, HTMLButtonElement | null>>({ solutions: null, recipes: null, resources: null })
+  const panels = useRef<Record<MenuId, HTMLDivElement | null>>({ solutions: null, recipes: null, resources: null })
 
   /* What is open belongs to the page it was opened on, so a new page (or a jump to #join) closes everything. */
   const here = pathname + hash
@@ -205,9 +211,18 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
 
   const solutions = usePresence(menu === 'solutions', 160)
   const recipes = usePresence(menu === 'recipes', 160)
+  const resources = usePresence(menu === 'resources', 160)
   const sheetPresence = usePresence(sheet, 260)
 
-  const ids = { solutions: `${uid}-solutions`, recipes: `${uid}-recipes`, sheet: `${uid}-sheet`, ms: `${uid}-ms`, mr: `${uid}-mr` }
+  const ids = {
+    solutions: `${uid}-solutions`,
+    recipes: `${uid}-recipes`,
+    resources: `${uid}-resources`,
+    sheet: `${uid}-sheet`,
+    ms: `${uid}-ms`,
+    mr: `${uid}-mr`,
+    mx: `${uid}-mx`,
+  }
 
   /* An open menu moves focus in when it was opened from the keyboard. */
   useEffect(() => {
@@ -341,6 +356,21 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     setSheet(false)
   }
 
+  /* A menu row with a name and 1 line (Solutions, Resources). */
+  const richRow = (i: NavPage) => (
+    <NavLink className="ob-menu__item s-menu__item s-menu__item--rich" to={i.to} end onClick={close}>
+      <span className="s-menu__name">{i.label}</span>
+      {i.line && <span className="s-menu__line">{i.line}</span>}
+    </NavLink>
+  )
+  /* The same row in the phone sheet. */
+  const sheetRow = (i: NavPage) => (
+    <NavLink className="ob-mnav__link s-mnav__item s-mnav__item--rich" to={i.to} end onClick={close}>
+      <span className="s-menu__name">{i.label}</span>
+      {i.line && <span className="s-menu__line">{i.line}</span>}
+    </NavLink>
+  )
+
   const trigger = (id: MenuId, label: string, current: boolean) => (
     <button
       ref={(el) => {
@@ -383,12 +413,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             >
               <ul className="s-menu__list">
                 {nav.solutions.items.map((i) => (
-                  <li key={i.to}>
-                    <NavLink className="ob-menu__item s-menu__item s-menu__item--rich" to={i.to} onClick={close}>
-                      <span className="s-menu__name">{i.label}</span>
-                      <span className="s-menu__line">{i.line}</span>
-                    </NavLink>
-                  </li>
+                  <li key={i.to}>{richRow(i)}</li>
                 ))}
               </ul>
             </div>
@@ -435,6 +460,50 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
               <hr className="ob-menu__sep" />
               <NavLink className="ob-menu__item s-menu__item s-menu__all" to={nav.recipes.all.to} end onClick={close}>
                 {nav.recipes.all.label}
+                <Arrow />
+              </NavLink>
+            </div>
+          </li>
+
+          <li className="s-nav__item" onBlur={onItemBlur}>
+            {trigger('resources', nav.resources.label, isResource(path))}
+            <div
+              ref={(el) => {
+                panels.current.resources = el
+              }}
+              id={ids.resources}
+              className={`ob-menu s-menu s-menu--resources ob-anim-pop is-large${resources.leaving ? ' is-leaving' : ''}`}
+              hidden={!resources.present}
+              onKeyDown={(e) => onPanelKey(e, 'resources')}
+            >
+              <div className="s-menu__cols s-menu__cols--resources">
+                <div className="s-menu__col" data-col>
+                  <p className="s-menu__label" id={`${ids.resources}-uc`}>
+                    {nav.resources.useCases.label}
+                  </p>
+                  <ul className="s-menu__list" aria-labelledby={`${ids.resources}-uc`}>
+                    {nav.resources.useCases.items.map((i) => (
+                      <li key={i.to}>{richRow(i)}</li>
+                    ))}
+                    <li>
+                      <NavLink className="ob-menu__item s-menu__item s-menu__all" to={nav.resources.useCases.all.to} end onClick={close}>
+                        {nav.resources.useCases.all.label}
+                        <Arrow />
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+                <div className="s-menu__col s-menu__col--more" data-col>
+                  <ul className="s-menu__list">
+                    {nav.resources.items.map((i) => (
+                      <li key={i.to}>{richRow(i)}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <hr className="ob-menu__sep" />
+              <NavLink className="ob-menu__item s-menu__item s-menu__all" to={nav.resources.all.to} end onClick={close}>
+                {nav.resources.all.label}
                 <Arrow />
               </NavLink>
             </div>
@@ -496,12 +565,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
               <div>
                 <ul className="s-mnav__sub">
                   {nav.solutions.items.map((i) => (
-                    <li key={i.to}>
-                      <NavLink className="ob-mnav__link s-mnav__item s-mnav__item--rich" to={i.to} onClick={close}>
-                        <span className="s-menu__name">{i.label}</span>
-                        <span className="s-menu__line">{i.line}</span>
-                      </NavLink>
-                    </li>
+                    <li key={i.to}>{sheetRow(i)}</li>
                   ))}
                 </ul>
               </div>
@@ -541,6 +605,47 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                 })}
                 <NavLink className="ob-mnav__link s-mnav__item s-mnav__all" to={nav.recipes.all.to} end onClick={close}>
                   {nav.recipes.all.label}
+                  <Arrow />
+                </NavLink>
+              </div>
+            </div>
+          </li>
+          <li>
+            <button
+              type="button"
+              className="ob-mnav__link s-mnav__toggle"
+              aria-expanded={group === 'resources'}
+              aria-controls={ids.mx}
+              onClick={() => setGroup((g) => (g === 'resources' ? null : 'resources'))}
+            >
+              {nav.resources.label}
+              <Chevron />
+            </button>
+            <div id={ids.mx} className={`ob-anim-expand s-mnav__more${group === 'resources' ? ' is-open' : ''}`}>
+              <div>
+                <div className="s-mnav__group">
+                  <p className="s-menu__label" id={`${ids.mx}-uc`}>
+                    {nav.resources.useCases.label}
+                  </p>
+                  <ul className="s-mnav__sub" aria-labelledby={`${ids.mx}-uc`}>
+                    {nav.resources.useCases.items.map((i) => (
+                      <li key={i.to}>{sheetRow(i)}</li>
+                    ))}
+                    <li>
+                      <NavLink className="ob-mnav__link s-mnav__item s-mnav__all" to={nav.resources.useCases.all.to} end onClick={close}>
+                        {nav.resources.useCases.all.label}
+                        <Arrow />
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+                <ul className="s-mnav__sub s-mnav__sub--more">
+                  {nav.resources.items.map((i) => (
+                    <li key={i.to}>{sheetRow(i)}</li>
+                  ))}
+                </ul>
+                <NavLink className="ob-mnav__link s-mnav__item s-mnav__all" to={nav.resources.all.to} end onClick={close}>
+                  {nav.resources.all.label}
                   <Arrow />
                 </NavLink>
               </div>

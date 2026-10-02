@@ -1,0 +1,352 @@
+/* A worked example's beats (components/study: Phases, Study). Built on the design system's tokens and type scale, on
+   the site's 5 and 7 column split (--s-split), the 4px grid and the section rhythm (site.css). Site classes start s-st.
+   No boxes around words: hairlines and the raised panel carry the structure; the screens are the only objects. */
+
+.s-st-head { max-width: none; }
+.s-st-head > h2 { max-width: var(--ob-measure-heading); }
+.s-st-head > p { max-width: var(--ob-measure-lede); }
+.s-st-lede {
+  margin: 0;
+  max-width: var(--ob-measure-lede);
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* ---- Example lines: the words that belong to the example, ruled off and led by "Example" ------------------------- */
+.s-st-ex {
+  margin: var(--ob-space-12) 0 0;
+  padding: var(--ob-space-2) 0 var(--ob-space-2) var(--ob-space-16);
+  max-width: 52ch;
+  box-shadow: inset var(--ob-border-hair) 0 0 var(--ob-line-strong);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-st-ex__k {
+  display: block;
+  margin-bottom: var(--ob-space-2);
+  font: var(--ob-type-caption);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+
+/* ---- Phases: the words and steps beside the screen that shows them ----------------------------------------------- */
+.s-st-phases { display: grid; gap: var(--ob-space-96); }
+.s-st-phase {
+  display: grid;
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-40) var(--s-split-gap);
+  align-items: start;
+}
+.s-st-phases > .s-st-phase + .s-st-phase { padding-top: var(--ob-space-96); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-st-phase__copy { display: grid; align-content: start; gap: var(--ob-space-40); min-width: 0; }
+.s-st-phase__head { display: grid; justify-items: start; gap: var(--ob-space-12); }
+.s-st-phase__title {
+  margin: 0;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-st-phase__line {
+  margin: 0;
+  max-width: 44ch;
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-st-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: var(--ob-space-8) 0 0; padding: 0; list-style: none; }
+
+/* The screen stays in view under the nav while its steps go by. */
+.s-st-phase__screen { min-width: 0; align-self: stretch; }
+.s-st-sticky { position: sticky; top: calc(var(--ob-nav-h, 64px) + var(--ob-space-24)); }
+.s-st-phase__screen .ilwrap { cursor: pointer; }
+
+/* The numbered steps: the number in the margin, then the title, the line and the example. */
+.s-st-steps { display: grid; gap: var(--ob-space-32); margin: 0; padding: 0; list-style: none; }
+.s-st-step {
+  display: grid;
+  grid-template-columns: var(--ob-space-32) minmax(0, 1fr);
+  column-gap: var(--ob-space-8);
+  align-items: baseline;
+}
+.s-st-step > :not(.s-st-step__n) { grid-column: 2; }
+.s-st-step__n {
+  grid-row: 1;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+}
+.s-st-step__title {
+  grid-row: 1;
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-st-step__line {
+  margin: var(--ob-space-8) 0 0;
+  max-width: 52ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+/* A phase without a screen: its steps take the screen's column. */
+.s-st-steps--beside { padding-top: var(--ob-space-8); }
+
+/* ---- The problem: the pains side by side, then the answer, raised ------------------------------------------------- */
+.s-st-points {
+  display: grid;
+  grid-template-columns: repeat(var(--s-st-cols, 3), minmax(0, 1fr));
+  gap: var(--ob-space-32) var(--ob-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-st-point { display: grid; align-content: start; gap: var(--ob-space-8); padding-top: var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-st-point__title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-st-point__line { margin: 0; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-st-answer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--ob-space-16);
+  align-items: start;
+  margin: var(--ob-space-56) 0 0;
+  padding: var(--ob-space-28) var(--ob-space-32);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+  font: var(--ob-type-body-lg);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -.01em;
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-st-answer > .s-mark { margin-top: var(--ob-space-4); color: var(--ob-text); }
+.s-st-answer > span { max-width: 64ch; }
+
+/* ---- How it fits: the claim beside its 3 rows ----------------------------------------------------------------------- */
+.s-st-fit__in { display: grid; grid-template-columns: var(--s-split); gap: var(--ob-space-40) var(--s-split-gap); align-items: start; }
+.s-st-fit__head { display: grid; gap: var(--ob-space-16); }
+.s-st-fit__head > h2 { margin: 0; max-width: var(--ob-measure-heading); }
+.s-st-rows { display: grid; margin: 0; padding: 0; list-style: none; }
+.s-st-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: var(--ob-space-8) var(--ob-space-32);
+  padding-block: var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-st-row:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.s-st-row__title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-st-row__line { margin: 0; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+
+/* ---- Who does what: yours, quiet; ours, raised ---------------------------------------------------------------------- */
+.s-st-split__in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-24); align-items: stretch; }
+.s-st-side { display: grid; align-content: start; gap: var(--ob-space-16); padding: var(--ob-space-40); border-radius: var(--ob-radius-lg); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
+.s-st-side.is-ours {
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+.s-st-side__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-3);
+}
+.is-ours .s-st-side__label { color: var(--ob-text); }
+.s-st-side__h { margin: 0; max-width: 22ch; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-st-side__list { display: grid; margin: var(--ob-space-8) 0 0; padding: 0; list-style: none; }
+.s-st-side__list > li {
+  padding-block: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-body);
+  letter-spacing: var(--ob-type-body-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.is-ours .s-st-side__list > li { color: var(--ob-text); border-top-color: var(--ob-line); }
+
+/* ---- What the reader does with it ---------------------------------------------------------------------------------- */
+.s-st-groups { display: grid; gap: var(--ob-space-64); }
+.s-st-group { display: grid; gap: var(--ob-space-24); }
+.s-st-group__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ob-space-4) var(--ob-space-16); }
+.s-st-group__name { margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); }
+.s-st-group__line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.s-st-uselist {
+  display: grid;
+  grid-template-columns: repeat(var(--s-st-cols, 2), minmax(0, 1fr));
+  gap: var(--ob-space-40) var(--ob-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-st-use { display: grid; align-content: start; gap: var(--ob-space-8); padding-top: var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-st-use__label { margin: 0; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-st-use__title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-st-use__line { margin: 0; max-width: 46ch; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.s-st-use .s-st-ex { margin-top: var(--ob-space-8); }
+
+/* ---- The proof's first email and the mockup it carries ------------------------------------------------------------ */
+.s-st-opener { display: grid; gap: var(--ob-space-40); margin-top: var(--ob-space-96); padding-top: var(--ob-space-96); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-st-opener__head { display: grid; gap: var(--ob-space-12); max-width: 44rem; }
+.s-st-opener__h { margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-st-opener__line { margin: 0; max-width: 56ch; font: var(--ob-type-body); color: var(--ob-text-2); text-wrap: pretty; }
+.s-st-opener__body { display: grid; grid-template-columns: var(--s-split-flip); gap: var(--s-split-gap); align-items: start; }
+.s-st-mail, .s-st-sms { margin: 0; min-width: 0; }
+
+.s-st-mail__card {
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+.s-st-mail__meta { display: grid; margin: 0; padding: var(--ob-space-8) var(--ob-space-28); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.s-st-mail__meta > div {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  padding-block: var(--ob-space-8);
+  font: var(--ob-type-small);
+}
+.s-st-mail__meta > div + div { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-st-mail__meta dt { color: var(--ob-text-3); }
+.s-st-mail__meta dd { margin: 0; min-width: 0; color: var(--ob-text); }
+.s-st-mail__subject { font-weight: var(--ob-weight-medium); }
+.s-st-mail__body { display: grid; gap: var(--ob-space-12); padding: var(--ob-space-24) var(--ob-space-28) var(--ob-space-8); }
+.s-st-mail__body > p { margin: 0; max-width: 58ch; font: var(--ob-type-body); letter-spacing: var(--ob-type-body-tracking); color: var(--ob-text); text-wrap: pretty; }
+.s-st-mail__files { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: var(--ob-space-16) var(--ob-space-28) var(--ob-space-28); list-style: none; }
+.s-st-mail__file {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  font: var(--ob-type-caption);
+  color: var(--ob-text-2);
+}
+.s-st-mail__file svg { width: var(--ob-icon-sm); height: var(--ob-icon-sm); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; color: var(--ob-text-3); }
+
+.s-st-sms__card {
+  border-radius: var(--ob-radius-lg);
+  padding: var(--ob-space-20) var(--ob-space-20) var(--ob-space-24);
+  background: var(--ob-sheen), var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight);
+}
+.s-st-sms__head { display: flex; justify-content: space-between; gap: var(--ob-space-12); margin: 0 0 var(--ob-space-16); padding: 0 var(--ob-space-4); font: var(--ob-type-caption); }
+.s-st-sms__from { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.s-st-sms__channel { color: var(--ob-text-3); }
+.s-st-sms__list { display: grid; gap: var(--ob-space-16); margin: 0; padding: 0; list-style: none; }
+.s-st-sms__msg { display: grid; justify-items: start; gap: var(--ob-space-6); }
+.s-st-sms__day { padding-inline: var(--ob-space-4); font: var(--ob-type-mono-sm); letter-spacing: var(--ob-type-mono-sm-tracking); color: var(--ob-text-3); }
+.s-st-sms__bubble {
+  margin: 0;
+  max-width: 34ch;
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-md) var(--ob-radius-md) var(--ob-radius-md) var(--ob-radius-xs);
+  background-color: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+
+/* ---- The recipe and the 1 real run, then the small print ---------------------------------------------------------- */
+.s-st-more__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin: 0 calc(var(--ob-space-16) * -1);
+  padding: 0;
+  list-style: none;
+}
+.s-st-more__list > li { display: grid; }
+.s-st-link {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-20) var(--ob-space-16) var(--ob-space-20);
+  border-radius: var(--ob-radius-sm);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+/* The rule over each link sits on the column, not on the link's bleed. */
+.s-st-link::before { content: ""; position: absolute; top: 0; inset-inline: var(--ob-space-16); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-st-link__label { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-st-link__title { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); }
+.s-st-link__arrow {
+  flex: none;
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-st-link__line { font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+@media (hover: hover) and (pointer: fine) {
+  .s-st-link:hover { background-color: var(--ob-state-hover); }
+  .s-st-link:hover .s-st-link__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+}
+.s-st-link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.s-st-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+.s-st-fine {
+  margin: var(--ob-space-40) 0 0;
+  max-width: 88ch;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* ---- The hero's example: who it's about, and the line that says it is made up ------------------------------------- */
+.s-st-who { display: grid; justify-items: center; gap: var(--ob-space-12); margin-top: var(--ob-space-48); }
+.s-st-who__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; }
+.s-st-who__note { margin: 0; max-width: 60ch; font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: balance; }
+
+/* ---- Narrower screens ------------------------------------------------------------------------------------------------ */
+@media (max-width: 1079.98px) {
+  .s-st-points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-st-uselist { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-st-opener__body { grid-template-columns: minmax(0, 1fr); }
+  .s-st-sms { max-width: 420px; }
+}
+@media (max-width: 859.98px) {
+  .s-st-phases { gap: var(--ob-space-64); }
+  .s-st-phases > .s-st-phase + .s-st-phase { padding-top: var(--ob-space-64); }
+  .s-st-phase { grid-template-columns: minmax(0, 1fr); }
+  /* Stacked, the screen comes first under its title, then the steps it shows. */
+  .s-st-phase__copy { display: contents; }
+  .s-st-phase__head { order: 1; }
+  .s-st-phase__screen { order: 2; }
+  .s-st-phase > .s-st-steps, .s-st-phase__copy > .s-st-steps { order: 3; }
+  .s-st-sticky { position: static; }
+  .s-st-points, .s-st-uselist { grid-template-columns: minmax(0, 1fr); }
+  .s-st-answer { padding: var(--ob-space-20) var(--ob-space-20); gap: var(--ob-space-12); }
+  .s-st-fit__in { grid-template-columns: minmax(0, 1fr); }
+  .s-st-row { grid-template-columns: minmax(0, 1fr); }
+  .s-st-split__in { grid-template-columns: minmax(0, 1fr); }
+  .s-st-side { padding: var(--ob-space-24); }
+  .s-st-opener { margin-top: var(--ob-space-64); padding-top: var(--ob-space-64); }
+  .s-st-more__list { grid-template-columns: minmax(0, 1fr); }
+  .s-st-mail__meta, .s-st-mail__body, .s-st-mail__files { padding-inline: var(--ob-space-20); }
+}

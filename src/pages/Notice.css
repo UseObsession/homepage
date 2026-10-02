@@ -10,8 +10,11 @@
 @media (max-width: 759.98px) {
   .s-notice-hero { padding-top: var(--ob-space-48); }
 }
+.s-notice-hero__wrap { display: grid; justify-items: center; }
+.s-notice-hero:has(.s-crumbs) { padding-top: var(--ob-space-40); }
 .s-notice-hero__in {
   display: grid;
+  width: 100%;
   justify-items: center;
   gap: var(--ob-space-24);
 }

@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Link } from 'react-router-dom'
+import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -38,6 +39,7 @@ export function Recipes() {
     <>
       <section className="s-hero s-ri-hero" aria-labelledby={`${id}-h`}>
         <div className="s-wrap s-hero-wrap">
+          <Crumbs />
           <div className="s-hero-head ob-anim-hero">
             <h1 className="s-hero-h" id={`${id}-h`}>
               {page.hero.headline}

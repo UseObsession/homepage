@@ -1,6 +1,6 @@
 /* The site nav (components/Nav), composed from the design system: .ob-nav (bar), .ob-menu (surfaces), .ob-mnav (phone
    sheet), .ob-btn (call to action, menu button, theme switch). These rules only place things and add what the system
-   lacks: a grouped, multi-column menu (.s-menu--recipes), 2-line menu rows (.s-menu__item--rich), disclosure groups in
+   lacks: grouped, multi-column menus (.s-menu--recipes, .s-menu--resources), 2-line menu rows (.s-menu__item--rich), disclosure groups in
    the sheet (.s-mnav__toggle) and a sliding sheet (.ob-anim-sheet on .ob-mnav). Tokens only, no colour literals. */
 
 /* ---------------------------------------------------------------------------------------------
@@ -53,8 +53,10 @@
 @container ob-nav (max-width: 489.98px) {
   .s-nav--cta-l .ob-nav__end > .ob-nav__cta { display: none; }
 }
-/* The 3-column bar holds the lockup, 418px of links and the call to action on equal sides. A long call to action needs
-   920px for that, so its bar goes compact below 920px instead of 860px (the menu button and the sheet take over). */
+/* The 3-column bar holds the lockup, the 4 links (Solutions, Recipes and Resources with their chevrons, then Developers:
+   about 400px, a little under the 418px the bar was measured with) and the call to action on equal sides. A long call
+   to action needs 920px for that, so its bar goes compact below 920px instead of 860px (the menu button and the sheet
+   take over). */
 @container ob-nav (max-width: 919.98px) {
   .s-nav--cta-l .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
   .s-nav--cta-l .ob-nav__links { display: none; }
@@ -77,7 +79,8 @@
 }
 .s-menu[hidden] { display: none; }
 .s-menu--solutions { width: 360px; }
-.s-menu--recipes { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
+.s-menu--recipes,
+.s-menu--resources { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
 
 .s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
 
@@ -116,7 +119,13 @@
   font-weight: var(--ob-weight-medium);
   color: var(--ob-text-3);
 }
-.s-menu--recipes .ob-menu__sep { margin: var(--ob-space-8) calc(var(--ob-space-8) * -1); }
+:is(.s-menu--recipes, .s-menu--resources) .ob-menu__sep { margin: var(--ob-space-8) calc(var(--ob-space-8) * -1); }
+
+/* Resources: the use cases under their name on the left; the blog and the sample output on the right, their first row
+   level with the first use case (the label's own height: its 8px and 4px of padding and 1 caption line). */
+.s-menu__cols--resources { grid-template-columns: 296px 272px; }
+.s-menu__col--more { padding-top: calc(var(--ob-space-12) + var(--ob-type-caption-size) * var(--ob-type-caption-leading)); }
+.s-menu__col .s-menu__all { margin-top: var(--ob-space-2); }
 .s-menu__all { grid-template-columns: auto auto; justify-content: start; gap: var(--ob-space-8); font-weight: var(--ob-weight-medium); }
 .s-menu__arrow { color: var(--ob-text-3); transition: translate var(--ob-dur-base) var(--ob-ease-out); }
 @media (hover: hover) and (pointer: fine) {
@@ -177,5 +186,6 @@
   margin-top: calc(var(--ob-sq-sm) / -2);
 }
 .s-mnav__all { gap: var(--ob-space-8); }
+.s-mnav__sub--more { margin-top: var(--ob-space-8); }
 .s-mnav__all[aria-current="page"]::after { content: none; }
 .s-mnav__all .s-menu__arrow { margin-inline-start: 0; }

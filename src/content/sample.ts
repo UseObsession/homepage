@@ -133,6 +133,7 @@ export const sample: SamplePage = {
     ogImage: '/og/sample-output.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
+      { name: 'Resources', path: '/resources' },
       { name: 'Sample output', path: '/sample-output' },
     ],
   },

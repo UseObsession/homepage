@@ -36,7 +36,8 @@ type Props = {
   className?: string
 }
 
-export function Faq({ faq, open = [0], id, className }: Props) {
+/* The accordion on its own (surfaces.css .ob-faq), for the questions inside a blog post too. */
+export function FaqList({ items, open = [0], className = '' }: { items: FaqContent['items']; open?: number[]; className?: string }) {
   const base = useId()
   const [shown, setShown] = useState<ReadonlySet<number>>(() => new Set(open))
 
@@ -49,6 +50,42 @@ export function Faq({ faq, open = [0], id, className }: Props) {
     })
 
   return (
+    <div className={'ob-faq ' + className}>
+      {items.map((item, i) => {
+        const isOpen = shown.has(i)
+        return (
+          <div key={item.q} className="ob-faq-item">
+            <h3 className="ob-faq-h">
+              <button
+                type="button"
+                className="ob-faq-q"
+                id={`${base}-q${i}`}
+                aria-expanded={isOpen}
+                aria-controls={`${base}-a${i}`}
+                onClick={() => toggle(i)}
+              >
+                <span>{item.q}</span>
+                <span className="ob-faq-icon" aria-hidden="true">
+                  <i />
+                  <i className="ob-anim-turn" />
+                </span>
+              </button>
+            </h3>
+            <div className={'ob-disclose' + (isOpen ? ' is-open' : '')} id={`${base}-a${i}`}>
+              <div>
+                <p className="ob-faq-a">{item.a}</p>
+              </div>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+export function Faq({ faq, open = [0], id, className }: Props) {
+  const base = useId()
+  return (
     <section id={id} className={'s-section s-faq' + (className ? ' ' + className : '')} aria-labelledby={`${base}-h`}>
       <div className="s-wrap s-faq__grid">
         <div className="s-faq__head">
@@ -56,39 +93,7 @@ export function Faq({ faq, open = [0], id, className }: Props) {
             {keepNumerals(faq.heading)}
           </h2>
         </div>
-        <div className="ob-faq s-faq__list">
-          {faq.items.map((item, i) => {
-            const isOpen = shown.has(i)
-            return (
-              <div key={item.q} className="ob-faq-item">
-                <h3 className="ob-faq-h">
-                  <button
-                    type="button"
-                    className="ob-faq-q"
-                    id={`${base}-q${i}`}
-                    aria-expanded={isOpen}
-                    aria-controls={`${base}-a${i}`}
-                    onClick={() => toggle(i)}
-                  >
-                    <span>{item.q}</span>
-                    <span className="ob-faq-icon" aria-hidden="true">
-                      <i />
-                      <i className="ob-anim-turn" />
-                    </span>
-                  </button>
-                </h3>
-                <div
-                  className={'ob-disclose' + (isOpen ? ' is-open' : '')}
-                  id={`${base}-a${i}`}
-                >
-                  <div>
-                    <p className="ob-faq-a">{item.a}</p>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+        <FaqList items={faq.items} open={open} className="s-faq__list" />
       </div>
     </section>
   )

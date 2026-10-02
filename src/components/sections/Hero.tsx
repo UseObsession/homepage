@@ -1,7 +1,8 @@
-import { useId } from 'react'
+import { useId, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { Cta, Hero as HeroContent } from '../../content/types'
 import { CaptureForm } from '../CaptureForm'
+import { Crumbs } from '../Crumbs'
 import { Mark } from '../Logo'
 import { Console } from './Console'
 import { ScreenTabs } from './ScreenTabs'
@@ -18,9 +19,15 @@ import './Hero.css'
    (`hero.demos`, Console).
    Props: `cta` shows the capture form and the second path (on by default); `workspace` names whose workspace the
    console's crumb shows, as AppScreen does: Home and Agencies keep 'agency', the other pages pass 'company'. Home's
-   screen tabs always show 'company': its screens are drawn for any company, and 1 workspace runs through the tabs. */
+   screen tabs always show 'company': its screens are drawn for any company, and 1 workspace runs through the tabs.
+   A page without a console (the use cases) passes its own product object as `object`, and `aside` in place of the 3
+   proof facts. Above it all, on every page below Home, the breadcrumb (components/Crumbs), which never moves. */
 
 type Workspace = 'agency' | 'company'
+
+/* The words every hero has; the proof facts and the console are a story page's. */
+type HeroWords = Pick<HeroContent, 'pill' | 'headline' | 'sub' | 'capture' | 'secondary'> &
+  Partial<Pick<HeroContent, 'proof' | 'consoleHeading' | 'screens' | 'demos'>>
 
 function Arrow() {
   return (
@@ -49,11 +56,25 @@ function Secondary({ cta }: { cta: Cta }) {
   )
 }
 
-export function Hero({ hero, cta = true, workspace = 'agency' }: { hero: HeroContent; cta?: boolean; workspace?: Workspace }) {
+export function Hero({
+  hero,
+  cta = true,
+  workspace = 'agency',
+  object,
+  aside,
+}: {
+  hero: HeroWords
+  cta?: boolean
+  workspace?: Workspace
+  object?: ReactNode
+  aside?: ReactNode
+}) {
   const id = useId()
+  const hasConsole = Boolean(hero.screens?.length || hero.demos?.length)
   return (
     <section className="s-hero" aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-hero-wrap">
+        <Crumbs />
         <div className="s-hero-head ob-anim-hero">
           {hero.pill && (
             <p className="ob-layout-eyebrow s-hero-pill">
@@ -71,23 +92,32 @@ export function Hero({ hero, cta = true, workspace = 'agency' }: { hero: HeroCon
               {hero.secondary && <Secondary cta={hero.secondary} />}
             </div>
           )}
-          <ul className="s-hero-proof">
-            {hero.proof.map((f, i) => (
-              <li key={i}>
-                <span className="s-hero-proof-v">{f.value}</span>
-                <span className="s-hero-proof-l">{f.label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="s-hero-console ob-anim-hero-object">
-          <TypedHeading phrases={hero.consoleHeading} id={`${id}-console`} className="s-hero-console-h" />
-          {hero.screens?.length ? (
-            <ScreenTabs screens={hero.screens} labelledBy={`${id}-console`} workspace="company" />
-          ) : (
-            hero.demos?.length ? <Console labelledBy={`${id}-console`} demos={hero.demos} workspace={workspace} /> : null
+          {hero.proof && hero.proof.length > 0 && (
+            <ul className="s-hero-proof">
+              {hero.proof.map((f, i) => (
+                <li key={i}>
+                  <span className="s-hero-proof-v">{f.value}</span>
+                  <span className="s-hero-proof-l">{f.label}</span>
+                </li>
+              ))}
+            </ul>
           )}
+          {aside}
         </div>
+        {object ? (
+          <div className="s-hero-console s-hero-object ob-anim-hero-object">{object}</div>
+        ) : (
+          hasConsole && (
+            <div className="s-hero-console ob-anim-hero-object">
+              <TypedHeading phrases={hero.consoleHeading ?? []} id={`${id}-console`} className="s-hero-console-h" />
+              {hero.screens?.length ? (
+                <ScreenTabs screens={hero.screens} labelledBy={`${id}-console`} workspace="company" />
+              ) : (
+                hero.demos?.length ? <Console labelledBy={`${id}-console`} demos={hero.demos} workspace={workspace} /> : null
+              )}
+            </div>
+          )
+        )}
       </div>
     </section>
   )
