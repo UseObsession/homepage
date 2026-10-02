@@ -37,7 +37,8 @@ export type BlogPost = {
   published: string // ISO date
   updated: string // ISO date
   readingMinutes: number
-  author: { name: string; role: string }
+  /* Both founders, listed as 2 authors in the structured data (docs/REBUILD.md section 9c). */
+  authors: { name: string; role: string }[]
   hero: { screen?: string; workspace?: 'agency' | 'company'; image?: { src: string; alt: string; width: number; height: number } }
   blocks: BlogBlock[]
   sources: { title: string; publisher: string; url: string; date?: string }[]
