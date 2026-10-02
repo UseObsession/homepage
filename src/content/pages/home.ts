@@ -3,13 +3,15 @@ import type { Page } from '../types'
 
 /* Home (/). Generalised and industry agnostic: an agency, a founder, a salesperson, a marketer and a developer each
    see in 5 seconds that it's for them, across B2B SaaS, stores, services and any business.
-   The story: what Obsession is > how it works (1 flow, 4 steps) > the gap (today vs with Obsession) > the 4 jobs >
-   who it's for > recipes > the real September store check, in every output > developers > questions > the waitlist.
+   The story: what Obsession is > who it's for (the reader picker, right under the console, for readers who know who
+   they are) > how it works (1 flow, 4 steps) > the gap (today vs with Obsession) > the 4 jobs > recipes > the real
+   September store check, in every output > developers > questions > the waitlist.
    Every hero screen is an example and says so (its Example tag). The only real run is the September store check
-   (outputs and the third proof fact): 4 test customers, 48 hours watched, 2 full baskets, 0 reminders.
+   (outputs and the third proof fact): 4 test customers, 48 hours watched, 1 shopper left a basket and 1 stopped at
+   checkout, 0 reminders.
    Screens, each once: the hero tabs (pack, shop, rivals, inbound, checkout), how (templates, agencytask, kit, run: all
-   in the agency workspace), the 4th job, a typed task (compose), who it's for (board, leads, brief, inbox, dev),
-   developers (qa). */
+   in the agency workspace), the 4th job, a typed task (compose), developers (qa). The picker has no screens: each
+   reader's own page shows theirs. */
 
 export const page: Page = {
   meta: {
@@ -153,42 +155,46 @@ export const page: Page = {
     ],
   },
 
+  /* The reader picker. Each line is 70 characters at most, so all 5 sit on 3 lines in the band. The picks differ on
+     every panel: recipes whose own page names that reader in its audiences (content/recipes/*.ts), echoing the line,
+     and for developers the ways in from code. For the narrative edit: this heading and How's after it both put
+     "Agents" up front. */
   audiences: {
     heading: 'Agents do the legwork behind every pitch, launch, release and renewal.',
     items: [
       {
         audience: 'agencies',
         name: 'Agencies',
-        line: 'Check every client, prove every pitch, and sell it as a research service under your name.',
-        screen: 'board',
+        line: 'Check every client and prove every pitch, sold as your own research.',
+        picks: ['Mystery shopper', 'Competitor tracking'],
         to: '/agencies',
       },
       {
         audience: 'founders',
         name: 'Founders',
-        line: 'Leads with a proven gap, and a fresh test customer after every release.',
-        screen: 'leads',
+        line: 'Leads with a proven gap, and a test customer after every release.',
+        picks: ['Prospect intelligence', 'Website audit'],
         to: '/founders',
       },
       {
         audience: 'sales',
         name: 'Sales',
         line: 'See what each account’s customers get, before every call and renewal.',
-        screen: 'brief',
+        picks: ['Account watch', 'Trial teardown'],
         to: '/sales',
       },
       {
         audience: 'marketing',
         name: 'Marketing',
-        line: 'See every rival offer the day it lands, and check your own launches as a new customer.',
-        screen: 'inbox',
+        line: 'See every rival offer the day it lands, and check your own launches.',
+        picks: ['Email and SMS tracking', 'Delivery monitoring'],
         to: '/marketing',
       },
       {
         audience: 'developers',
         name: 'Developers',
         line: 'The same agents, inboxes, numbers and browsers, from your own code.',
-        screen: 'dev',
+        picks: ['API and webhooks', 'Release tests in CI'],
         to: '/developers',
       },
     ],

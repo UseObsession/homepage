@@ -96,7 +96,14 @@ export type Final = { heading: string; sub: string; capture: Capture }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
 export type Jobs = { heading: string; items: { title: string; line: string; example?: string; screen?: ScreenName }[] }
-export type Audiences = { heading: string; items: { audience: AudienceId | 'developers'; name: string; line: string; screen: ScreenName; to: string }[] }
+/* Who it's for. Home shows it as the reader picker (components/sections/PersonaBand): each reader's name, 1 line
+   (70 characters at most, so it sits on 3 lines in the band) and `picks`, the 2 recipes or ways in that reader starts
+   with, different on every panel; the whole panel is a link to `to`. `screen` is only drawn by the tabbed Audiences
+   section, which no page uses now. */
+export type Audiences = {
+  heading: string
+  items: { audience: AudienceId | 'developers'; name: string; line: string; picks?: string[]; screen?: ScreenName; to: string }[]
+}
 export type Outputs = { heading: string; line: string; facts?: { value: string; label: string }[]; formats: { format: string; line: string }[]; cta: Cta }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 

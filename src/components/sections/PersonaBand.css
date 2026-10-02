@@ -1,0 +1,300 @@
+/* Who it's for (components/sections/PersonaBand): James's persona band on the design system. Every reader sits on 1
+   band, cut on the diagonal; each panel is 1 link. Monochrome: --ob- surfaces, hairlines and ink only.
+
+   1 object. The list is the band: the interactive card's surface (--ob-surface-raised, --ob-highlight, --ob-shadow-1),
+   1 outer hairline in --ob-line with the 22px end corners. The hairline is the list's own fill showing round the
+   panels (a 1px padding) and through the 1px seam between them, so every edge is 1 line, never 2.
+
+   The cut. Every panel's box overlaps its neighbours by the slant less the seam, and clip-path cuts it to a
+   parallelogram (a trapezoid at either end, whose outer edge stays straight and round cornered), so the seam runs at
+   the same angle between every 2 panels. Clipping the link itself keeps the click on the panel the eye sees. The
+   link's own fill is the rim, which only shows as the 2px focus ring; its ::before is the face, inset by the rim, and
+   its ::after the state layer. The same polygon serves all 3: inset by 2px its edges stay parallel to under a pixel.
+
+   A panel is a poster: the bare arrow (.ob-card-go) at the top right, the same inset on every panel, then at the foot
+   the name in h3, its line and the 2 picks. The panels share their rows through subgrid, so names, lines and picks
+   sit on common lines across the band.
+
+   States are the design system's interactive card (surfaces.css): cards never move. Hover lays --ob-state-hover over
+   the face and the arrow turns --ob-text and slides 4px; press lays --ob-state-pressed; keyboard focus draws the 2px
+   ring inside the cut. Only colour and the arrow's translate change; reduced motion sets the slide to 0
+   (motion.css --ob-shift-xs).
+
+   Below 1200px the panels stack as rows of the same band, cut by shallow slanted seams (James's mobile cut).
+
+   Site additions for the system to absorb: the diagonal band, and a rim drawn inside a clip-path as the focus ring. */
+
+.s-pb {
+  --s-pb-slant: 32px;
+  --s-pb-rise: clamp(var(--ob-space-16), 2vw, var(--ob-space-24));
+  --s-pb-seam: var(--ob-border-hair);
+  --s-pb-pad: var(--ob-space-20);
+  --s-pb-radius: var(--ob-radius-lg);
+  /* The panels' outer corners sit 1 hairline inside the band's. */
+  --s-pb-corner: calc(var(--s-pb-radius) - var(--ob-border-hair));
+}
+
+.s-pb .s-head { max-width: none; }
+.s-pb .s-head > h2 { max-width: var(--ob-measure-heading); }
+
+/* ---- The band (1200px and up) ---- */
+
+.s-pb__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(var(--ob-space-64), 1fr) auto auto auto;
+  min-height: 340px;
+  margin: 0;
+  padding: var(--ob-border-hair);
+  list-style: none;
+  border-radius: var(--s-pb-radius);
+  background-color: var(--ob-line);
+  box-shadow: var(--ob-shadow-1);
+}
+
+/* Each panel reaches half the overlap into each neighbour's column, so every face comes out the same width. */
+.s-pb__cell {
+  display: grid;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  /* Only the cut panel takes the pointer, so the corner of a neighbour's box never steals it. */
+  pointer-events: none;
+}
+.s-pb__cell:not(:first-child) { margin-left: calc((var(--s-pb-seam) - var(--s-pb-slant)) / 2); }
+.s-pb__cell:not(:last-child) { margin-right: calc((var(--s-pb-seam) - var(--s-pb-slant)) / 2); }
+
+/* --l and --r say whether the left and right edges are cut (1) or straight (0); --t and --b do the same for the top
+   and bottom edges of the stacked rows. The 4 corner radii are 0 except at the band's ends. */
+.s-pb__item {
+  --l: 1;
+  --r: 1;
+  --rim: 0px;
+  --tl: 0px;
+  --tr: 0px;
+  --br: 0px;
+  --bl: 0px;
+  --cut: polygon(
+    calc(var(--l) * var(--s-pb-slant)) 0,
+    100% 0,
+    calc(100% - var(--r) * var(--s-pb-slant)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr);
+  /* The words keep clear of the cut: on the left by the slant's run at the name's height, on the right by all of it,
+     where the picks meet the foot. */
+  padding: var(--ob-space-24) calc(var(--s-pb-pad) + var(--r) * var(--s-pb-slant)) var(--ob-space-24)
+    calc(var(--s-pb-pad) + var(--l) * var(--s-pb-slant) * .55);
+  border-radius: var(--tl) var(--tr) var(--br) var(--bl);
+  color: var(--ob-text);
+  text-decoration: none;
+  background-color: transparent;
+  clip-path: var(--cut);
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-pb__cell:first-child .s-pb__item { --l: 0; --tl: var(--s-pb-corner); --bl: var(--s-pb-corner); }
+.s-pb__cell:last-child .s-pb__item { --r: 0; --tr: var(--s-pb-corner); --br: var(--s-pb-corner); }
+
+/* The face and the state layer over it. */
+.s-pb__item::before,
+.s-pb__item::after {
+  content: "";
+  position: absolute;
+  inset: var(--rim);
+  z-index: -1;
+  border-radius: max(0px, var(--tl) - var(--rim)) max(0px, var(--tr) - var(--rim)) max(0px, var(--br) - var(--rim))
+    max(0px, var(--bl) - var(--rim));
+  clip-path: var(--cut);
+  pointer-events: none;
+}
+.s-pb__item::before {
+  background-color: var(--ob-surface-raised);
+  box-shadow: var(--ob-highlight);
+}
+.s-pb__item::after {
+  background-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+
+/* The arrow rides the top right corner, which the cut leaves almost whole: the same inset from the edge on every
+   panel (on a cut panel, the edge at the arrow's height is a tenth of the slant in). */
+.s-pb__go {
+  position: absolute;
+  top: var(--ob-space-24);
+  right: calc(var(--s-pb-pad) + var(--r) * var(--s-pb-slant) * .1);
+}
+.s-pb__go .ob-glyph { transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+
+.s-pb__name {
+  grid-row: 2;
+  align-self: end;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  color: var(--ob-text);
+  white-space: nowrap;
+}
+.s-pb__line {
+  grid-row: 3;
+  margin-top: var(--ob-space-8);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+/* The 2 picks: 1 quiet line each, no borders. */
+.s-pb__picks {
+  grid-row: 4;
+  align-self: start;
+  margin-top: var(--ob-space-16);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+}
+.s-pb__pick { display: block; }
+
+/* ---- States: the interactive card's. Hover only for fine pointers; keyboard focus gets the ring and the arrow. Each
+   pseudo-state has a static twin (.is-hover, .is-focus, .is-active) so the states can be shown side by side, as in
+   the design system. ---- */
+
+.s-pb__item.is-hover::after { background-color: var(--ob-state-hover); }
+.s-pb__item:is(.is-hover, :focus-visible, .is-focus) .s-pb__go { color: var(--ob-text); }
+.s-pb__item:is(.is-hover, :focus-visible, .is-focus) .s-pb__go .ob-glyph { translate: var(--ob-shift-xs) 0; }
+
+@media (hover: hover) and (pointer: fine) {
+  .s-pb__item:hover::after { background-color: var(--ob-state-hover); }
+  .s-pb__item:hover .s-pb__go { color: var(--ob-text); }
+  .s-pb__item:hover .s-pb__go .ob-glyph { translate: var(--ob-shift-xs) 0; }
+}
+
+.s-pb__item:is(:active, .is-active)::after {
+  background-color: var(--ob-state-pressed);
+  transition-duration: var(--ob-dur-fast);
+}
+
+/* Focus: the rim widens to the 2px ring in --ob-focus, drawn inside the cut (an outline would be clipped by it). */
+.s-pb__item:focus-visible { outline: none; }
+.s-pb__item:is(:focus-visible, .is-focus) {
+  --rim: var(--ob-focus-width);
+  background-color: var(--ob-focus);
+  transition-duration: var(--ob-dur-instant);
+}
+
+/* ---- Below 1200px: the panels stack as rows of the same band, each seam a shallow slant rising to the right. On a
+   tablet each row runs name, line, picks and arrow across; on a phone, name and arrow, then the line.
+   The words start at the left, where a row's top and bottom edges are both lowest, so a row adds the whole rise to its
+   top padding and half of it to its bottom padding: the name clears the seam above about as far as the line clears the
+   seam below, and the right end of a full last line still clears the bottom seam where it rises. ---- */
+@media (max-width: 1199.98px) {
+  .s-pb__list {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    min-height: 0;
+  }
+  .s-pb__cell,
+  .s-pb__cell:not(:first-child),
+  .s-pb__cell:not(:last-child) {
+    grid-row: auto;
+    grid-template-rows: none;
+    margin: 0;
+  }
+  /* Each row tucks under the one above by the rise less the seam. */
+  .s-pb__cell:not(:first-child) { margin-top: calc(var(--s-pb-seam) - var(--s-pb-rise)); }
+
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item {
+    --l: 0;
+    --r: 0;
+    --t: 1;
+    --b: 1;
+    --tl: 0px;
+    --tr: 0px;
+    --br: 0px;
+    --bl: 0px;
+    --cut: polygon(
+      0 calc(var(--t) * var(--s-pb-rise)),
+      100% 0,
+      100% calc(100% - var(--b) * var(--s-pb-rise)),
+      0 100%
+    );
+    --s-pb-clear-t: var(--ob-space-20);
+    --s-pb-clear-b: var(--ob-space-20);
+    grid-row: auto;
+    grid-template-rows: none;
+    grid-template-columns: clamp(10rem, 16vw, 12rem) minmax(0, 1fr) 11rem auto;
+    grid-template-areas: "name line picks go";
+    column-gap: var(--ob-space-24);
+    padding: calc(var(--s-pb-clear-t) + var(--t) * var(--s-pb-rise)) var(--s-pb-pad)
+      calc(var(--s-pb-clear-b) + var(--b) * var(--s-pb-rise) / 2);
+  }
+  .s-pb__cell:first-child .s-pb__item { --t: 0; --tl: var(--s-pb-corner); --tr: var(--s-pb-corner); }
+  .s-pb__cell:last-child .s-pb__item { --b: 0; --br: var(--s-pb-corner); --bl: var(--s-pb-corner); }
+  /* The band's outer edges stay a little further from the words than the seams. */
+  .s-pb__cell:first-child .s-pb__item { padding-top: var(--s-pb-pad); }
+  .s-pb__cell:last-child .s-pb__item { padding-bottom: var(--s-pb-pad); }
+
+  /* Every column centres on the row, so a 2 line pick or line never pushes the name off the row's middle. */
+  .s-pb__name { grid-area: name; align-self: center; }
+  .s-pb__line { grid-area: line; align-self: center; margin-top: 0; max-width: 52ch; }
+  .s-pb__picks { grid-area: picks; align-self: center; margin-top: 0; }
+  .s-pb__go { grid-area: go; position: static; align-self: center; }
+}
+
+@media (max-width: 959.98px) {
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item {
+    grid-template-columns: 10rem minmax(0, 1fr) auto;
+    grid-template-areas: "name line go";
+  }
+  .s-pb__picks { display: none; }
+}
+
+@media (max-width: 719.98px) {
+  .s-pb { --s-pb-pad: var(--ob-space-16); }
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item {
+    --s-pb-clear-t: var(--ob-space-16);
+    --s-pb-clear-b: var(--ob-space-12);
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "name go"
+      "line line";
+    column-gap: var(--ob-space-16);
+  }
+  .s-pb__line { margin-top: var(--ob-space-4); max-width: none; }
+}
+
+/* Forced colours paint over the faces, the rim and the band's hairline: the panels fall back to plain boxes with a
+   system edge and outline. */
+@media (forced-colors: active) {
+  .s-pb__list { gap: var(--ob-space-8); padding: 0; }
+  .s-pb__cell,
+  .s-pb__cell:not(:first-child),
+  .s-pb__cell:not(:last-child) { margin: 0; }
+  .s-pb__item,
+  .s-pb__cell:first-child .s-pb__item,
+  .s-pb__cell:last-child .s-pb__item {
+    --l: 0;
+    --r: 0;
+    --t: 0;
+    --b: 0;
+    clip-path: none;
+    border: 1px solid CanvasText;
+  }
+  .s-pb__item::before,
+  .s-pb__item::after { display: none; }
+  .s-pb__item:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+}

@@ -26,7 +26,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - **"Join the waitlist" leads.** "Try your first shop free" lives with the sample report.
 - **Every page reads as 1 narrative**: each section hands off to the next, the body copy builds, and every illustration is placed where it proves the sentence beside it.
 
-**Home, in order:** hero (the "Early access" pill, the category headline, a literal sub, the waitlist, the proof facts, then the console: the typed heading over category tabs, each a full app screen) > the 4-step flow > the gap > the 4 jobs > who it's for (agencies, founders, sales, marketing, developers, each with its screen and page) > recipes > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist.
+**Home, in order:** hero (the "Early access" pill, the category headline, a literal sub, the waitlist, the proof facts, then the console: the typed heading over category tabs, each a full app screen) > who it's for (the reader picker, James's diagonal band on the design system, right under the console as the fork for readers who know who they are: agencies, founders, sales, marketing, developers, each panel 1 link to its page with its name, its line and the 2 recipes or ways in that reader starts with; 1 object with hairline seams, stacked rows on slanted seams below 1200px) > the 4-step flow > the gap > the 4 jobs > recipes > proof (the output viewer and the real store check, "Try your first shop free") > developers > questions > the waitlist. The picker was added 3 Oct at Seun's request; it replaces the tabbed picker that sat after the 4 jobs, so Home has 1 picker.
 
 ## 1c. The hero (the same on every page)
 
@@ -100,7 +100,7 @@ App screens only (`components/AppScreen`, the screens in `src/screens`, built to
 
 | Page | Screens |
 |---|---|
-| Home | the hero tabs: `pack`, `shop`, `rivals`, `inbound`, `checkout`; how it works: `templates`, `kit`, `run`; the reader picker: `board` (agencies), `leads` (founders), `brief` (sales), `inbox` (marketing), `dev` (developers); type a task: `compose` |
+| Home | the hero tabs: `pack`, `shop`, `rivals`, `inbound`, `checkout`; how it works: `templates`, `kit`, `run`; type a task: `compose`. The reader picker has no screens: each reader's own page shows theirs |
 | Agencies | `pack`, `board`, `approve`, `report` (+ `shop` for the free mystery shop) |
 | Founders | `leads`, `switch`, `invoices`, `suppliers`, `ship`, `qa`, `listings`, `rivals` |
 | Sales | `brief`, `acctwatch`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |
