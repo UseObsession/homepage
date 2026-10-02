@@ -1,0 +1,166 @@
+/* The hero (components/sections/Hero), the same on every page: docs/REBUILD.md 1c. Centred, 1 column, every element on
+   1 vertical axis. Built on the design system's tokens (--ob-*), type scale and hero stagger (motion.css). Spacing is on
+   the 4px grid; each gap is set by the element under it, so the rhythm reads top to bottom. */
+
+.s-hero {
+  padding-block: var(--ob-space-80) var(--ob-space-section);
+}
+.s-hero-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+/* The words and the form: 1 centred column. Children are the hero stagger's steps (pill, headline, typed, sub, form). */
+.s-hero-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* The pill: the design system's hero eyebrow (.ob-layout-eyebrow), with the ring at 16px. */
+.s-hero-pill {
+  margin: 0 0 var(--ob-space-24);
+  max-width: 100%;
+}
+.s-hero-pill .s-mark { color: var(--ob-text); }
+
+/* The headline: display type on a wide measure, so it sits on 1 or 2 balanced lines that widen equally to both sides.
+   It may run past the 1160px container into the spare room beside it on wide screens (never past the page's own
+   gutter), by the same amount on each side, so its centre stays the column's centre. */
+.s-hero-h {
+  --s-hero-h-w: min(100vw - 2 * var(--s-gutter), 1280px);
+  justify-self: start;
+  width: var(--s-hero-h-w);
+  max-width: none;
+  margin: 0 calc((100% - var(--s-hero-h-w)) / 2);
+  font: var(--ob-type-display);
+  letter-spacing: var(--ob-type-display-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+
+/* The typed task line: what a reader could ask, in the mono the agent's tasks are set in (tokens.css: anything the
+   agent is told, logs or signs is Geist Mono). Wide enough that every page's longest task (65 characters) sits on 1
+   line on a desktop, so the gap under it is the same on every page. */
+.s-typed {
+  display: grid;
+  width: 100%;
+  max-width: 72ch;
+  margin: var(--ob-space-28) 0 0;
+  font: var(--ob-weight-regular) var(--ob-type-body-lg-size) / 1.5 var(--ob-font-mono);
+  letter-spacing: 0;
+  color: var(--ob-text);
+  text-wrap: balance;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.s-typed > * { grid-area: 1 / 1; }
+.s-typed-size { visibility: hidden; }
+.s-typed-line { align-self: center; transition: opacity var(--ob-dur-base) var(--ob-ease-out); }
+.s-typed-line.is-swap { opacity: 0; transition: opacity var(--ob-dur-fast) var(--ob-ease-in); }
+.s-typed-gt { color: var(--ob-text-3); }
+.s-typed-off { color: transparent; }
+/* The caret is glued to the letters beside it and takes no width, so the line keeps its final layout as it types. */
+.s-typed-glue { white-space: nowrap; }
+.s-typed-caret.ob-caret { margin-right: -.83em; vertical-align: baseline; }
+
+/* The sub: centred, about 60 characters a line. */
+.s-hero-sub {
+  max-width: 60ch;
+  margin: var(--ob-space-20) 0 0;
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+
+/* The form, its micro line and the second path, centred on the axis. The form is a surface: it rises with the stagger
+   but without the blur, which is for hero text only (motion.css). */
+.s-hero-act {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: var(--ob-space-16);
+  width: 100%;
+  margin-top: var(--ob-space-40);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .s-hero-head > .s-hero-act {
+    --ob-enter-x: 0px;
+    --ob-enter-y: var(--ob-shift-md);
+    --ob-enter-scale: 1;
+    animation-name: ob-enter;
+  }
+}
+.s-hero-form { margin-inline: auto; }
+/* The micro line, an error and the privacy line sit centred under the pill, on the axis, instead of indented to the
+   typed text: in a centred hero every line shares the centre. */
+.s-hero .s-hero-form .ob-pill-foot,
+.s-hero .s-hero-form .s-capture__privacy {
+  justify-items: center;
+  padding-inline: 0;
+  text-align: center;
+  text-wrap: balance;
+}
+.s-hero .s-hero-form .ob-pill-foot { margin-top: var(--ob-space-4); }
+.s-hero .s-hero-form .ob-pill-foot > * { text-wrap: balance; }
+
+/* The 3 proof facts: 1 centred row, divided by hairlines. */
+.s-hero-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-width: var(--ob-container-md);
+  margin: var(--ob-space-56) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.s-hero-proof > li {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-4);
+  padding: 0 var(--ob-space-24);
+}
+.s-hero-proof > li + li { box-shadow: inset var(--ob-border-hair) 0 0 var(--ob-line); }
+.s-hero-proof-v {
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-hero-proof-l {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+
+/* The console: the product object, full width under the words. It is the last step of the hero sequence, 1 stagger
+   after the form (motion.css puts every product object at 4 steps; the form already holds that step). */
+.s-hero-console {
+  width: 100%;
+  margin-top: var(--ob-space-80);
+}
+.s-hero-console.ob-anim-hero-object { animation-delay: calc(5 * var(--ob-stagger-hero)); }
+
+/* Phones and narrow tablets: the facts stack, each still centred, with a short rule between them. */
+@media (max-width: 759.98px) {
+  .s-hero { padding-top: var(--ob-space-48); }
+  .s-hero-pill { margin-bottom: var(--ob-space-20); }
+  .s-typed { margin-top: var(--ob-space-20); }
+  .s-hero-sub { margin-top: var(--ob-space-16); }
+  .s-hero-act { margin-top: var(--ob-space-32); }
+  .s-hero-proof {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ob-space-20);
+    max-width: var(--ob-container-xs);
+    margin-top: var(--ob-space-40);
+  }
+  .s-hero-proof > li { padding: 0; }
+  .s-hero-proof > li + li { box-shadow: none; }
+  .s-hero-console { margin-top: var(--ob-space-56); }
+}

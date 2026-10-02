@@ -1,0 +1,309 @@
+/* The hero console (components/sections/Console): example runs in 1 product window. The design system draws the parts
+   (.ob-ptabs, .ob-window, .ob-prompt, .ob-kit, .ob-finding, .ob-status, .ob-tag, .ob-navbtn); these rules lay them out
+   and add the run's own states. Status is the ring mark and its word, never colour. Motion is opacity and transform,
+   from the design system's tokens; reduced motion shows every run finished. */
+
+.s-console {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* "Example runs": quiet, above the tabs. */
+.s-console-label {
+  margin: 0 0 var(--ob-space-12);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+
+/* 1 row of equal tabs: the scenario row, centred on the axis and as wide as its tabs need (184px each, the window's
+   width at most), so 3 tabs never stretch into long bars. When the labels outgrow the row (phones), it scrolls
+   sideways and fades the edge with more (navigation.css). */
+.s-console-tabs {
+  position: relative;
+  display: flex;
+  width: min(100%, var(--s-console-count, 4) * 184px);
+}
+.s-console-tab {
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: max-content;
+}
+
+.s-console-win {
+  width: 100%;
+  margin-top: var(--ob-space-16);
+  text-align: start;
+}
+
+/* The title bar: the crumb, the Example tag, the status and the pause, with the run's progress along its foot. */
+.s-console-bar { position: relative; }
+.s-console-crumb {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.s-console-crumb b { font-weight: var(--ob-weight-medium); color: var(--ob-text-2); }
+.s-console-crumb-now { color: var(--ob-text-2); }
+.s-console-example { flex: none; }
+.s-console-end {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  flex: none;
+  margin-left: auto;
+  min-width: 0;
+}
+.s-console-status { max-width: 440px; }
+.s-console-mark { display: inline-grid; place-items: center; flex: none; color: var(--ob-text); }
+.s-console-mark .s-status { color: inherit; }
+.s-console-pause { margin-right: calc(var(--ob-space-4) * -1); }
+
+/* The run's progress: a 2px line along the bar's foot that fills as each beat lands, then fades once the run is in. */
+.s-console-progress {
+  position: absolute;
+  inset: auto 0 calc(var(--ob-border-hair) * -1);
+  height: var(--ob-border-focus);
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity var(--ob-dur-slow) var(--ob-ease-in) var(--ob-dur-slow);
+}
+.s-console-progress > i {
+  display: block;
+  height: 100%;
+  background-color: var(--ob-text-3);
+  transform-origin: 0 50%;
+  scale: var(--s-progress, 0) 1;
+  transition: scale var(--ob-dur-slow) var(--ob-ease-out);
+}
+.s-console-progress.is-done { opacity: 0; }
+
+/* Every run's panel sits in 1 cell, so the window is as tall as its tallest run. Only the chosen one shows. */
+.s-console-body { display: grid; }
+.s-console-panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  min-width: 0;
+  border-bottom-left-radius: var(--ob-radius-lg);
+  border-bottom-right-radius: var(--ob-radius-lg);
+  visibility: hidden;
+}
+.s-console-panel.is-active {
+  visibility: visible;
+  animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+.s-console-panel:focus-visible { outline-offset: var(--ob-focus-offset-inset); }
+
+.s-console-plan,
+.s-console-run {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-16);
+  min-width: 0;
+  padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-24);
+}
+.s-console-run { border-left: var(--ob-border-hair) solid var(--ob-line-subtle); }
+
+/* The plan: the recipe (or your own task), the task, then what it set up. */
+/* The 2 pane heads, the run's name and "Run log", share 1 style and 1 baseline. */
+.s-console-name,
+.s-console-h {
+  margin: 0;
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-semibold);
+  letter-spacing: var(--ob-type-button-tracking);
+  color: var(--ob-text);
+}
+.s-console-prompt { min-height: 0; }
+/* While a task is typed in, the prompt is the field (forms' edge at 3:1) at the prompt's own type size, so it sends
+   without reflowing. It is a picture of the field, not a real input, so the 16px phone rule does not apply. */
+.s-console-prompt.ob-prompt--field { font-size: var(--ob-type-code-size); }
+.s-console-prompt .ob-prompt-text { text-wrap: pretty; }
+/* A typed task lays out whole from the first key (TypedLine's TypedText): the rest is there, unseen, and the caret
+   takes no width and is glued to its letters, so the prompt never reflows as it types. */
+.s-console-prompt .s-typed-off { color: transparent; }
+.s-console-prompt .s-typed-glue { white-space: nowrap; }
+.s-console-prompt .ob-caret { margin-right: -.83em; }
+
+.s-console-rows {
+  display: grid;
+  gap: var(--ob-space-12);
+  margin: var(--ob-space-4) 0 0;
+}
+/* A typed task not sent yet: the plan's labels wait with quiet bars where the system will fill in the values, and the
+   set up shows its chips pending (navigation.css .is-pending). The words stay in place, unseen, so nothing moves. */
+.s-console-rows.is-wait dd:not(.s-console-kitrow) { position: relative; color: transparent; }
+.s-console-rows.is-wait dd:not(.s-console-kitrow) > * { visibility: hidden; }
+.s-console-rows.is-wait dd:not(.s-console-kitrow)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--ob-fill) 10px, transparent 0) left calc(.5lh - 5px) / 56% calc(1lh + var(--ob-space-4)) repeat-y;
+  border-radius: var(--ob-radius-glyph);
+}
+.s-console-rows.is-wait .s-console-row:first-child dd::before { background-size: 40% calc(1lh + var(--ob-space-4)); }
+.s-console-rows.is-wait .s-console-row--more:nth-child(3) dd::before { background-size: 32% calc(1lh + var(--ob-space-4)); }
+.s-console-rows.is-wait .s-console-kit .ob-kit__chip { color: transparent; }
+.s-console-row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: var(--ob-space-16);
+  align-items: baseline;
+}
+.s-console-row dt {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+.s-console-row dd {
+  margin: 0;
+  min-width: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+}
+.s-console-journey {
+  display: grid;
+  gap: var(--ob-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-console-journey li { display: flex; align-items: baseline; gap: var(--ob-space-8); }
+.s-console-n {
+  flex: none;
+  width: 1ch;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+/* The kit row: chips under their label, not beside it, so 2 sit on a line. */
+.s-console-row:last-child { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); }
+.s-console-kit { gap: var(--ob-space-8); }
+
+/* The run: the log, the finding with its fix, the ledger line. */
+.s-console-h--finding {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+}
+.s-console-log {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-console-event {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-8) 0;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  opacity: 0;
+}
+.s-console-event:last-child { border-bottom: 0; }
+.s-console-event.is-in { opacity: 1; }
+/* The square sits on the event's first line, like the ledger's chain, however many lines the event takes. */
+.s-console-node {
+  display: grid;
+  place-items: center start;
+  align-self: start;
+  height: calc(var(--ob-type-small-size) * var(--ob-type-small-leading));
+  color: var(--ob-text-3);
+}
+.s-console-text {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-console-time {
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.s-console-finding {
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-4);
+  border-radius: var(--ob-radius-sm);
+  opacity: 0;
+}
+.s-console-finding.is-in { opacity: 1; }
+.s-console-h.s-console-h--finding {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+.s-console-h--finding .ob-sq { color: var(--ob-text-3); }
+.s-console-finding-title { margin: 0; }
+.s-console-fix {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ob-space-12);
+  margin: var(--ob-space-4) 0 0;
+  padding-top: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+  opacity: 0;
+}
+.s-console-fix.is-in { opacity: 1; }
+.s-console-fix .s-console-mark { margin-top: 0; }
+
+.s-console-ledger {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+  opacity: 0;
+}
+.s-console-ledger.is-in { opacity: 1; }
+
+/* The window narrows: the run moves under the plan, the crumb keeps only the run's name, the status keeps its word. */
+@container (max-width: 760px) {
+  .s-console-panel { grid-template-columns: minmax(0, 1fr); }
+  .s-console-run { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+}
+@container (max-width: 560px) {
+  .s-console-plan,
+  .s-console-run { padding: var(--ob-space-16); }
+  .s-console-crumb-ws { display: none; }
+  /* On a phone the plan keeps what it runs against and what it set up; the run and its finding are the point. */
+  .s-console-row--more { display: none; }
+  .s-console-status .ob-status__detail { display: none; }
+  .s-console-row { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
+  .s-console-event { grid-template-columns: 16px minmax(0, 1fr); row-gap: var(--ob-space-2); }
+  .s-console-time { grid-column: 2; grid-row: 1; text-align: left; }
+  .s-console-text { grid-column: 2; }
+}
+
+/* The plan pane already names the run under the bar, so a phone's bar keeps the tag, the status and the pause. */
+@container (max-width: 480px) {
+  .s-console-crumb { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-console-panel.is-active { animation: none; }
+  .s-console-progress,
+  .s-console-progress > i { transition: none; }
+}
