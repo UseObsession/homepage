@@ -1,0 +1,105 @@
+/* app-report: Records. The monthly Email and SMS report for the Candles client, sold under the agency's own name.
+   The report is drawn as the client gets it: the agency's lockup, 3 counts, each brand's month as a bar of messages
+   (1 tick = 1 captured message, offers solid), the read, the signature.
+   Story: the counts tick up, the bars grow row by row (the client's is short), the read lands,
+   the pointer sends it and the button settles to "Sent · in your brand". Rest state = the finished, sent report. */
+
+@property --apr-n{syntax:'<integer>';inherits:false;initial-value:0}
+
+.app-report{--apr-p:7.5px;--apr-w:5.5px}
+.app-report .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
+.app-report .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .04)}
+.app-report .ax-clients a.on i{background:var(--fg-2)}
+
+/* header */
+.app-report .apr-h{height:24px}
+.app-report .apr-h .ax-meta{padding-top:1px;white-space:nowrap}
+.app-report .apr-send{display:inline-grid;place-items:center;padding:0 11px;transform-origin:center;
+  color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-report .apr-send>span{grid-area:1/1;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.app-report .apr-s1{opacity:0;color:var(--bg)}
+.app-report .apr-s2{font-weight:500;color:var(--fg)}
+.app-report .apr-send .ax-tick{width:11px;height:11px}
+
+/* the report, as the client gets it */
+.app-report .apr-page{display:flex;flex-direction:column;min-height:0;border-radius:10px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-2) inset,0 12px 24px -16px rgb(0 0 0 / calc(.8 * var(--sh-k,1)))}
+.app-report .apr-brand{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;flex:none;border-bottom:1px solid var(--line-2);
+  font:600 12px/1 var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.app-report .apr-brand i{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font:600 10px/1 var(--sans);font-style:normal;color:var(--bg);background:var(--fg)}
+.app-report .apr-date{margin-left:auto;font:400 10.5px/1 var(--mono);letter-spacing:0;color:var(--fg-3)}
+
+/* 3 counts */
+.app-report .apr-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:none;padding:16px 0;border-bottom:1px solid var(--line-2)}
+.app-report .apr-kpi{display:grid;gap:7px;padding:0 16px}
+.app-report .apr-kpi+.apr-kpi{box-shadow:1px 0 0 var(--line-2) inset}
+.app-report .apr-kpi .ax-k{white-space:nowrap}
+.app-report .apr-kpi .apr-cnt{font:600 22px/1 var(--display);letter-spacing:-.025em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-report .apr-cnt{counter-reset:apr-c var(--apr-n)}
+.app-report .apr-cnt::after{content:counter(apr-c)}
+.app-report .apr-pct::after{content:counter(apr-c) "%"}
+
+/* the month, 1 tick per message */
+.app-report .apr-chart{flex:1;display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:12px;min-height:0;padding:16px 8px}
+.app-report .apr-ch{display:flex;align-items:center;height:14px;padding:0 8px}
+.app-report .apr-ch b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-report .apr-key{margin-left:auto;display:flex;align-items:center;gap:6px;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-report .apr-key i{width:var(--apr-w);height:10px;border-radius:1.5px;background:rgb(var(--fg-rgb) / .3)}
+.app-report .apr-key i.o{margin-left:8px;background:var(--fg)}
+.app-report .apr-rows{display:grid;align-content:space-between;gap:6px}
+.app-report .apr-row{display:grid;grid-template-columns:44px minmax(0,1fr) 28px;align-items:center;column-gap:12px;height:26px;padding:0 8px;border-radius:7px}
+.app-report .apr-row.me{background:rgb(var(--fg-rgb) / .05)}
+.app-report .apr-nm{font-size:11.5px;color:var(--fg-2);white-space:nowrap}
+.app-report .apr-row.me .apr-nm{font-weight:500;color:var(--fg)}
+.app-report .apr-trk{display:block;min-width:0}
+.app-report .apr-bar{position:relative;display:block;height:12px;width:calc(var(--n) * var(--apr-p) - var(--apr-p) + var(--apr-w));
+  background:rgb(var(--fg-rgb) / .3);
+  -webkit-mask:repeating-linear-gradient(90deg,var(--fg) 0 var(--apr-w),transparent var(--apr-w) var(--apr-p));
+  mask:repeating-linear-gradient(90deg,var(--fg) 0 var(--apr-w),transparent var(--apr-w) var(--apr-p))}
+.app-report .apr-bar i{position:absolute;top:0;left:calc(var(--i) * var(--apr-p));width:var(--apr-w);height:12px;background:var(--fg)}
+.app-report .apr-ct{justify-self:end;font:500 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-report .apr-row.me .apr-ct{color:var(--fg)}
+
+/* the read and the signature */
+.app-report .apr-read{display:flex;align-items:center;gap:16px;height:46px;flex:none;padding:0 16px;border-top:1px solid var(--line-2)}
+.app-report .apr-ins{font:500 12.5px/1 var(--sans);letter-spacing:-.005em;color:var(--fg);white-space:nowrap}
+.app-report .apr-sign{margin-left:auto;display:flex;align-items:center;gap:6px;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-report .apr-sign span{font:500 10.5px/1 var(--sans);color:var(--fg-2)}
+
+/* pointer: the kit's svg reset outranks .ax-ptr, so size it here */
+.ilwrap .app-report .appx svg.apr-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play); the rest state above is the finished, sent report ---------- */
+@keyframes apr-count{from{--apr-n:0}}
+@keyframes apr-grow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes apr-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes apr-solid{from{background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes apr-out{from{opacity:1}to{opacity:0}}
+@keyframes apr-in{from{opacity:0}to{opacity:1}}
+/* 2.5s from 2.7s: arrives over Send at 3.85s, presses, drifts off and is gone by 5.2s */
+@keyframes apr-ptr{
+  0%{opacity:0;transform:translate(330px,250px)}
+  12%{opacity:1}
+  46%{transform:translate(468px,24px) scale(1)}
+  50%{transform:translate(468px,24px) scale(.9)}
+  56%{transform:translate(468px,24px) scale(1)}
+  80%{opacity:1;transform:translate(476px,38px)}
+  100%{opacity:0;transform:translate(479px,43px)}}
+
+/* 1. the counts tick up */
+.app-report.play .apr-kpi .apr-cnt{animation:apr-count 1.5s var(--ease) var(--d) both}
+
+/* 2. each brand's month grows, the client first; its count follows the bar */
+.app-report.play .apr-bar{animation:apr-grow .9s cubic-bezier(.65,0,.35,1) calc(.7s + var(--r) * .16s) both}
+.app-report.play .apr-ct{animation:apr-count .9s cubic-bezier(.65,0,.35,1) calc(.7s + var(--r) * .16s) both}
+
+/* 3. the read lands, then the signature */
+.app-report.play .apr-ins{animation:ax-in .5s var(--ease) 2.15s both}
+.app-report.play .apr-sign{animation:ax-fade .45s var(--ease) 2.35s both}
+
+/* 4. the pointer sends it: press, the label swaps, the fill settles to the sent state */
+.app-report.play .apr-ptr{animation:apr-ptr 2.5s var(--ease) 2.7s both}
+.app-report.play .apr-send{animation:apr-press .26s ease-out 3.8s,apr-solid .4s var(--ease) 3.98s both}
+.app-report.play .apr-s1{animation:apr-out .16s ease-out 3.98s both}
+.app-report.play .apr-s2{animation:apr-in .3s var(--ease) 4.06s both}
+.app-report.play .apr-s2 .ax-tick{animation:ax-pop .45s var(--snap) 4.08s both}

@@ -1,0 +1,193 @@
+/* app-listings: Presence (Founders · Be found). Every place buyers and AI look for the Leeds location.
+   Left: 1 table in 2 parts. Where buyers look (Maps, 3 review sites, 2 directories): the mark is where the agent stands,
+   the word is what the listing says, Updated is when it was put right. What AI says (4 assistants, 3 questions each = 12 answers):
+   the answer and 3 squares, filled = named.
+   Right: the number that moves (named in N of 12, over 6 Mondays) and the claim the agent is making with its own number.
+   Story: the code lands digit by digit at the agent's number, Review site B is claimed (closed to open, 9 to 5 to 8 to 6),
+   its row lands, then Maps; the Monday line draws across 6 Mondays while the count climbs 1 to 7 and the squares fill;
+   the toast closes the run. Rest state (no .play) = the finished scene.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, grid 50..400 (table 292 | gap 12 | column 224),
+   table 12 rows of 28 = 336; column: answers card 137, gap 10, claim card 146 (ends 343); toast 45 tall, bottom 14 (top 355). */
+@property --ls-n{syntax:"<integer>";inherits:false;initial-value:7}
+
+.app-listings .ax-main{grid-template-rows:24px minmax(0,1fr);align-content:stretch;padding:14px;gap:12px}
+.app-listings .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-listings .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked values: only the last child shows at rest */
+.app-listings .ls-stk{display:inline-grid;vertical-align:top;align-items:center;justify-items:start}
+.app-listings .ls-stk>*{grid-area:1/1;white-space:nowrap}
+.app-listings .ls-stk>:not(:last-child){opacity:0}
+
+/* ---------- header: page, location, time, the declared agent ---------- */
+.app-listings .ls-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-listings .ls-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-listings .ls-meta{font-size:11.5px;color:var(--fg-2);white-space:nowrap}
+.app-listings .ls-time{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-listings .ls-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-listings .ls-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg);color:var(--bg)}
+.ilwrap .app-listings .ls-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- layout ---------- */
+.app-listings .ls-grid{display:grid;grid-template-columns:minmax(0,1fr) 224px;gap:12px;align-items:start;min-height:0}
+.app-listings .ls-col{display:grid;gap:10px;align-content:start;min-width:0}
+
+/* ---------- the table ---------- */
+.app-listings .ls-tb{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-listings .ls-row{display:grid;grid-template-columns:112px 100px minmax(0,1fr);align-items:center;height:28px;box-shadow:0 -1px 0 var(--line) inset}
+.app-listings .ls-row>span{min-width:0;padding:0 8px;overflow:hidden;white-space:nowrap}
+.app-listings .ls-row>span:first-child{padding-left:12px}
+.app-listings .ls-row>span:last-child{display:flex;justify-content:flex-end;padding-right:12px}
+.app-listings .ls-th{box-shadow:0 -1px 0 var(--line-2) inset}
+.app-listings .ls-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+/* the AI half starts on a stronger rule */
+.app-listings .ls-sub{background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset,0 -1px 0 var(--line-2) inset}
+.app-listings .r-last,.app-listings .r-pre{box-shadow:none}
+
+.app-listings .ls-row .n{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-listings .ls-row .s{display:flex;align-items:center}
+.app-listings .ls-row .ax-st{gap:7px}
+.app-listings .ls-row .bad{color:var(--fg);font-weight:500}
+.app-listings .ls-row .m{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-listings .ls-row .q{font-size:11px;color:var(--fg-3)}
+/* AI answers have no agent mark: the word sits on the listings' word line */
+.app-listings .ls-row .a{padding-left:19px;font-size:11px;color:var(--fg-2)}
+
+/* the listing being claimed: raised, selected, tied to the card on the right */
+.app-listings .r-hot{position:relative;background:rgb(var(--fg-rgb) / .055)}
+.app-listings .r-hot::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+
+/* named: 3 questions per assistant, filled = named */
+.app-listings .ls-dots{display:grid;grid-template-columns:repeat(3,6px);gap:3px}
+.app-listings .ls-dots i{display:block;width:6px;height:6px;border-radius:1.5px;background:rgb(var(--fg-rgb) / .14)}
+.app-listings .ls-dots i.f{background:var(--fg-2)}
+
+/* ---------- the number that moves ---------- */
+.app-listings .ls-kpi{display:grid;padding:12px}
+.app-listings .ls-kh{display:flex;align-items:center;justify-content:space-between;height:14px;white-space:nowrap}
+.app-listings .ls-kh .ax-mono{font-size:10.5px;color:var(--fg-3)}
+.app-listings .ls-big{display:flex;align-items:baseline;gap:6px;height:28px;margin-top:6px;white-space:nowrap;font-size:12px;color:var(--fg-2)}
+.app-listings .ls-big b{font:600 26px/1 var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-listings .ls-cnt{counter-reset:ls-n var(--ls-n)}
+.app-listings .ls-cnt::before{content:counter(ls-n)}
+.ilwrap .app-listings .appx svg.ls-chart{width:200px;height:40px;margin-top:8px;overflow:visible}
+.app-listings .ls-cap{fill:none;stroke:var(--line-2);stroke-width:1;stroke-dasharray:2 3}
+.app-listings .ls-base{fill:none;stroke:var(--line-2);stroke-width:1}
+.app-listings .ls-line{fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.app-listings .ls-pt{fill:var(--panel-2);stroke:var(--fg);stroke-width:1.5;transform-box:fill-box;transform-origin:center}
+.app-listings .ls-pt.now{fill:var(--fg)}
+.app-listings .ls-ax{display:flex;justify-content:space-between;margin-top:6px;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+/* ---------- the claim ---------- */
+.app-listings .ls-claim{display:grid;padding:12px}
+.app-listings .ls-ch{display:flex;align-items:center;gap:8px;height:16px;white-space:nowrap}
+.ilwrap .app-listings .ls-ch svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-listings .ls-ch b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-listings .ls-stk.c{margin-left:auto;justify-items:end;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-listings .ls-stk.c .v1{color:var(--fg-2)}
+.app-listings .ls-cl{display:flex;align-items:center;justify-content:space-between;height:12px;margin-top:12px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.app-listings .ls-cl .ax-mono{font-size:10.5px;color:var(--fg-2)}
+/* the code, as it lands: 2 groups of 3, control edges */
+.app-listings .ls-cells{display:flex;gap:4px;margin-top:6px}
+.app-listings .ls-cells i{display:grid;place-items:center;width:24px;height:28px;border-radius:6px;font:500 14px/1 var(--mono);font-style:normal;color:var(--fg);
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-listings .ls-cells b{width:6px}
+.app-listings .ls-diff{display:grid;grid-template-columns:44px minmax(0,1fr);row-gap:4px;margin:12px 0 0}
+.app-listings .ls-diff dt{font-size:10.5px;line-height:16px;color:var(--fg-3)}
+.app-listings .ls-diff dd{display:flex;align-items:baseline;gap:6px;margin:0;font-size:11.5px;line-height:16px;white-space:nowrap}
+.app-listings .ls-diff s{color:var(--fg-3);text-decoration:line-through;text-decoration-color:currentColor}
+.app-listings .ls-diff dd>span{display:inline-flex;align-items:baseline;gap:6px;font-weight:500;color:var(--fg)}
+.app-listings .ls-diff em{font-style:normal;font-weight:400;color:var(--fg-3)}
+
+/* ---------- toast: under the claim, on the column's own edges ---------- */
+.app-listings .ls-toast{left:auto;right:14px;bottom:14px;width:224px;gap:9px;padding:8px 12px}
+.app-listings .ls-toast p{white-space:nowrap;line-height:15px}
+.app-listings .ls-toast b{font-weight:500;color:var(--fg)}
+.app-listings .ls-toast .ls-ts{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ls-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes ls-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes ls-fade{from{opacity:0}to{opacity:1}}
+@keyframes ls-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ls-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes ls-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes ls-digit{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes ls-cellon{from{background-color:var(--panel)}to{background-color:rgb(var(--fg-rgb) / .07)}}
+@keyframes ls-cellrest{from{background-color:rgb(var(--fg-rgb) / .07)}to{background-color:var(--panel)}}
+@keyframes ls-strike{from{text-decoration-color:transparent;color:var(--fg)}to{text-decoration-color:currentColor;color:var(--fg-3)}}
+@keyframes ls-new{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:none}}
+@keyframes ls-sel{
+  0%{background-color:rgb(var(--fg-rgb) / 0)}
+  18%{background-color:rgb(var(--fg-rgb) / .12)}
+  100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes ls-glow{
+  0%{background-color:rgb(var(--fg-rgb) / 0)}
+  18%{background-color:rgb(var(--fg-rgb) / .1)}
+  100%{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes ls-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes ls-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes ls-pt{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes ls-dot{from{background-color:rgb(var(--fg-rgb) / .14)}to{background-color:var(--fg-2)}}
+@keyframes ls-count{0%{--ls-n:1}20%{--ls-n:2}60%{--ls-n:4}80%{--ls-n:5}100%{--ls-n:7}}
+@keyframes ls-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* working marks circle at the working pace and finish a full turn the moment they land */
+.appx-il.play.app-listings .gm .sig-rot{animation:ls-spin 3.2s linear var(--spin) both}
+.appx-il.play.app-listings .gm .sig-orb{animation:ls-spinr 3.2s linear var(--spin) both}
+.appx-il.play.app-listings .gm .sig-sq{animation:ls-home .7s var(--snap) var(--land) both}
+.appx-il.play.app-listings .gm .sig-gap{animation:ls-fade .4s var(--ease) calc(var(--land) + .25s) both}
+.app-listings .ls-ch .gm{--spin:-1.2s;--land:2s}
+.app-listings .r-hot .gm{--spin:-.7s;--land:2.5s}
+.app-listings .r-maps .gm{--spin:-.2s;--land:3s}
+
+/* 1. the code lands at the agent's number, digit by digit */
+.appx-il.play.app-listings .ls-cells i span{animation:ls-digit .32s var(--ease) both}
+.appx-il.play.app-listings .ls-cells i{animation:ls-cellon .3s var(--ease) 1.3s both,ls-cellrest .6s var(--ease) 2s forwards}
+.appx-il.play.app-listings .ls-cells .g0{animation-delay:1.3s}
+.appx-il.play.app-listings .ls-cells .g1{animation-delay:1.37s}
+.appx-il.play.app-listings .ls-cells .g2{animation-delay:1.44s}
+.appx-il.play.app-listings .ls-cells .g3{animation-delay:1.54s}
+.appx-il.play.app-listings .ls-cells .g4{animation-delay:1.61s}
+.appx-il.play.app-listings .ls-cells .g5{animation-delay:1.68s}
+
+/* 2. claimed: the card's mark lands, the listing is set to open with the right hours */
+.appx-il.play.app-listings .ls-stk.c .v0{animation:ls-out .3s var(--ease) 2.05s both}
+.appx-il.play.app-listings .ls-stk.c .v1{animation:ls-in .35s var(--ease) 2.1s both}
+.appx-il.play.app-listings .ls-diff .o1{animation:ls-strike .35s var(--ease) 2.2s both}
+.appx-il.play.app-listings .ls-diff .n1{animation:ls-new .4s var(--ease) 2.2s both}
+.appx-il.play.app-listings .ls-diff .o2{animation:ls-strike .35s var(--ease) 2.32s both}
+.appx-il.play.app-listings .ls-diff .n2{animation:ls-new .4s var(--ease) 2.32s both}
+
+/* 3. the rows flip: Review site B, then Maps */
+.appx-il.play.app-listings .r-hot{animation:ls-sel 1.8s var(--ease) 2.5s both}
+.appx-il.play.app-listings .r-hot::before{animation:ls-bar .4s var(--ease) 2.5s both}
+.appx-il.play.app-listings .r-hot .w .v0{animation:ls-out .3s var(--ease) 2.55s both}
+.appx-il.play.app-listings .r-hot .w .v1{animation:ls-in .35s var(--ease) 2.6s both}
+.appx-il.play.app-listings .r-hot .u .v1{animation:ls-fade .35s var(--ease) 2.7s both}
+.appx-il.play.app-listings .r-maps{animation:ls-glow 1.6s var(--ease) 3s both}
+.appx-il.play.app-listings .r-maps .w .v0{animation:ls-out .3s var(--ease) 3.05s both}
+.appx-il.play.app-listings .r-maps .w .v1{animation:ls-in .35s var(--ease) 3.1s both}
+.appx-il.play.app-listings .r-maps .u .v1{animation:ls-fade .35s var(--ease) 3.2s both}
+
+/* 4. 6 Mondays: the line draws, the count climbs 1 to 7, the assistants' squares fill as each Monday lands */
+.appx-il.play.app-listings .ls-line{animation:ls-draw 1.4s linear 3.6s both}
+.appx-il.play.app-listings .ls-cnt{animation:ls-count 1.4s steps(1,end) 3.6s both}
+.appx-il.play.app-listings .ls-pt{animation:ls-pt .35s var(--snap) both}
+.appx-il.play.app-listings .ls-pt.p0{animation-delay:.3s}
+.appx-il.play.app-listings .ls-pt.p1{animation-delay:3.85s}
+.appx-il.play.app-listings .ls-pt.p2{animation-delay:4.13s}
+.appx-il.play.app-listings .ls-pt.p3{animation-delay:4.41s}
+.appx-il.play.app-listings .ls-pt.p4{animation-delay:4.69s}
+.appx-il.play.app-listings .ls-pt.p5{animation-delay:4.97s}
+.appx-il.play.app-listings .ls-dots :is(.k1,.k3,.k4,.k5){animation:ls-dot .3s var(--ease) both}
+.appx-il.play.app-listings .ls-dots i.k1{animation-delay:3.88s}
+.appx-il.play.app-listings .ls-dots i.k3{animation-delay:4.44s}
+.appx-il.play.app-listings .ls-dots i.k4{animation-delay:4.72s}
+.appx-il.play.app-listings .ls-dots i.k5{animation-delay:5s}
+.appx-il.play.app-listings .ab .v0{animation:ls-out .3s var(--ease) 3.88s both}
+.appx-il.play.app-listings .ab .v1{animation:ls-in .35s var(--ease) 3.92s both}
+
+/* 5. the run closes */
+.appx-il.play.app-listings .ls-toast{animation:ls-toast .45s var(--ease) 5.3s both}

@@ -1,0 +1,171 @@
+/* app-inbound: Inbound, for sales (Speed to lead). Your own funnel, tested with your OK by a labelled test lead
+   at 09:00, 13:00 and 17:00 every day: the demo form, the site chat and the sales line.
+   The hero is one chart: 3 lanes on a shared time scale (log-like: 0, 1 m, 5 min, 1 h, 4 h) crossed by the
+   dashed 5 minute target line. Within target is quiet, past the line is solid. Each lane ends in a large readout
+   and the routing check under it (did the lead reach the CRM, and who owns it).
+   Story: the 3 test leads go out, the timers run with the bars; chat lands at 38 s, the phone rings out (Missed)
+   and waits for a callback while the form runs past the line to 4 h 12 m and lands with no owner; the phone's wait
+   ends with no owner either and the lane turns needs you; the routing fix is drafted, the pointer clicks Approve,
+   the phone item closes and the toast reports the 17:00 re-test: 3 min 40 s. Bars share 1 clock, so their edges move together.
+   Geometry (design px, main 556 x 414, padding 14 16): header 14..38, chart 50..256, fix 268..344, toast 356..400.
+   Chart lanes 92 | 234 | 150 (gaps 12); the plot overlay sits over the 234 track column (left 116).
+   Rest state (no .play) = the finished scene. */
+
+.app-inbound .ax-main{grid-template-rows:24px 206px 76px minmax(0,1fr);gap:12px;padding:14px 16px;align-content:stretch}
+.app-inbound .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-inbound .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- header ---------- */
+.app-inbound .ib-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-inbound .ib-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg)}
+.app-inbound .ib-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-inbound .ib-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-inbound .ib-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-inbound .ib-av .sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the chart ---------- */
+.app-inbound .ib-chart{position:relative;display:grid;grid-template-rows:28px 144px 16px;padding:12px 12px 6px;min-height:0}
+.app-inbound .ib-ch{display:flex;align-items:center;gap:8px;height:20px;margin-bottom:8px;white-space:nowrap}
+.app-inbound .ib-ch b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-inbound .ib-ch>span:not(.ib-runs){font-size:11px;color:var(--fg-3)}
+/* which run you are looking at: a small segmented control */
+.app-inbound .ib-runs{margin-left:auto;display:flex;gap:2px;padding:2px;border-radius:7px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-inbound .ib-runs span{display:grid;place-items:center;height:16px;padding:0 6px;border-radius:5px;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-inbound .ib-runs span.on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
+
+.app-inbound .ib-lanes{margin:0 -12px}
+.app-inbound .ib-lane{display:grid;grid-template-columns:92px 234px 150px;column-gap:12px;align-items:center;height:48px;padding:0 12px}
+.app-inbound .ib-lane+.ib-lane{box-shadow:0 -1px 0 var(--line)}
+
+/* channel */
+.app-inbound .ib-ch-n{display:grid;grid-template-columns:12px minmax(0,1fr);align-items:center;gap:8px;white-space:nowrap}
+.app-inbound .ib-ch-n>span:last-child{display:grid;gap:3px}
+.app-inbound .ib-ch-n b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-inbound .ib-ch-n em{font:400 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-inbound .ib-mk{display:inline-grid;width:12px;height:12px}
+.app-inbound .ib-mk>svg{grid-area:1/1}
+.ilwrap .app-inbound .ib-mk .sig{width:12px;height:12px;color:var(--fg)}
+.app-inbound .ib-mk>svg:not(.v-land){opacity:0}
+
+/* track: rail, bars, the phone's wait */
+.app-inbound .ib-tr{position:relative;height:48px}
+.app-inbound .ib-tr i{position:absolute;display:block}
+.app-inbound .ib-rail{left:0;right:0;top:23px;height:2px;border-radius:1px;background:rgb(var(--fg-rgb) / .06)}
+.app-inbound .ib-b{top:20px;height:8px}
+.app-inbound .ib-b0{left:0;width:20.4%;border-radius:4px;background:rgb(var(--fg-rgb) / .3)}
+.app-inbound .ib-b1{left:0;width:44.7%;border-radius:4px 0 0 4px;background:rgb(var(--fg-rgb) / .3)}
+.app-inbound .ib-b2{left:44.7%;width:50.7%;border-radius:0 4px 4px 0;background:var(--fg)}
+.app-inbound .ib-dash{left:0;width:100%;top:23px;height:0;border-top:2px dashed rgb(var(--fg-rgb) / .38)}
+
+/* readout + routing check */
+.app-inbound .ib-rd{display:grid;gap:4px;white-space:nowrap}
+.app-inbound .ib-v{display:inline-grid;justify-items:start;font:600 22px/22px var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-inbound .ib-v>span{grid-area:1/1}
+.app-inbound .ib-v>span:not(.last){opacity:0}
+.app-inbound .ib-v i{margin:0 0 0 2px;font:500 12px/1 var(--sans);font-style:normal;letter-spacing:0;color:var(--fg-3)}
+.app-inbound .ib-rt{font:400 10.5px/13px var(--mono);color:var(--fg-3)}
+.app-inbound .ib-rt b{font-weight:500;color:var(--fg)}
+.app-inbound .ib-rts{display:grid}
+.app-inbound .ib-rts>span{grid-area:1/1}
+.app-inbound .ib-rts .w{opacity:0}
+
+/* plot overlay: the target line and the scale, over the track column */
+.app-inbound .ib-plot{position:absolute;left:116px;width:234px;top:40px;bottom:6px;pointer-events:none}
+.app-inbound .ib-tgt{position:absolute;left:44.7%;top:2px;height:142px;width:0;border-left:1px dashed var(--line-ui)}
+.app-inbound .ib-ax{position:absolute;bottom:0;left:calc(var(--p) * 1%);transform:translateX(-50%);font:400 10.5px/16px var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-inbound .ib-ax:first-of-type{transform:none}
+.app-inbound .ib-ax.t{color:var(--fg);font-weight:500}
+
+/* ---------- the routing fix ---------- */
+.app-inbound .ib-fix{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:16px;padding:12px 14px}
+.app-inbound .ib-fx{display:grid;gap:10px;min-width:0}
+.app-inbound .ib-fh{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
+.ilwrap .app-inbound .ib-fh .ib-ic{width:14px;height:14px;color:var(--fg-2)}
+.app-inbound .ib-fh b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-inbound .ib-fh span{font-size:11px;color:var(--fg-3)}
+.app-inbound .ib-rule{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.app-inbound .ib-rule>span{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font:400 10.5px/1 var(--mono)}
+.app-inbound .ib-old{color:var(--fg-3);text-decoration:line-through;text-decoration-color:rgb(var(--fg-rgb) / .45);background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-inbound .ib-new{color:var(--fg);font-weight:500;background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-inbound .ib-rule .ib-arw{width:14px;height:14px;color:var(--fg-3)}
+
+.app-inbound .ib-act{position:relative;width:118px;height:24px}
+.app-inbound .ib-edit{position:absolute;right:70px;top:0;opacity:0;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-inbound .ib-ok{position:absolute;right:0;top:0;width:64px;justify-content:center;opacity:0}
+.app-inbound .ib-done{position:absolute;right:0;top:0;display:flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:7px;white-space:nowrap;
+  font:500 11.5px/1 var(--sans);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-inbound .ib-done .sig{width:12px;height:12px;color:var(--fg)}
+.ilwrap .app-inbound .appx .ib-ptr{left:83px;top:10px;width:16px;height:16px}
+
+/* ---------- foot: the signature, the toast ---------- */
+.app-inbound .ib-sig{display:flex;align-items:center;gap:8px;height:44px;font-size:11px;color:var(--fg-3);white-space:nowrap}
+.app-inbound .ib-sig span{font:400 10.5px/1 var(--mono)}
+.app-inbound .ib-toast{right:16px;bottom:14px;gap:10px;padding:9px 12px 9px 11px}
+.app-inbound .ib-toast p{white-space:nowrap;line-height:15px}
+.app-inbound .ib-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ib-show{from{opacity:0}to{opacity:1}}
+@keyframes ib-hide{from{opacity:1}to{opacity:0}}
+@keyframes ib-grow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes ib-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ib-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes ib-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes ib-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes ib-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes ib-press{0%,100%{transform:none}45%{transform:scale(.92)}}
+@keyframes ib-glow{0%{background:rgb(var(--fg-rgb) / .1)}18%,82%{background:rgb(var(--fg-rgb) / .055)}100%{background:rgb(var(--fg-rgb) / 0)}}
+@keyframes ib-ptr{
+  0%{opacity:0;transform:translate(-170px,-74px)}
+  14%{opacity:1}
+  52%{transform:translate(0,0) scale(1)}
+  57%{transform:translate(0,0) scale(.9)}
+  63%{transform:translate(0,0) scale(1)}
+  84%{opacity:1;transform:translate(20px,12px)}
+  100%{opacity:0;transform:translate(24px,14px)}}
+
+.app-inbound .l-form{--wk:3.2s;--land:3.2s}
+.app-inbound .l-chat{--wk:1.3s;--land:1.3s}
+.app-inbound .l-phone{--wk:1.2s;--land:5.2s}
+
+/* 1. the 3 test leads go out: marks work, bars and timers run together */
+.appx-il.play.app-inbound .v-work{animation:ib-show .01s linear 0s both,ib-hide .12s linear var(--wk) forwards}
+.appx-il.play.app-inbound .v-work .sig-rot{animation:ib-spin 3.2s linear infinite}
+.appx-il.play.app-inbound .v-work .sig-orb{animation:ib-spinr 3.2s linear infinite}
+/* one clock: every leading edge sweeps the scale at the same 38.5% a second from .7s, and stops where its reply landed */
+.appx-il.play.app-inbound .ib-b0{animation:ib-grow .53s linear .7s both}
+.appx-il.play.app-inbound .ib-b1{animation:ib-grow 1.16s linear .7s both}
+.appx-il.play.app-inbound .ib-b2{animation:ib-grow 1.32s linear 1.86s both}
+.appx-il.play.app-inbound .ib-dash{animation:ib-grow 2.6s linear .7s both}
+.appx-il.play.app-inbound .ib-v>span:not(.last){animation:ib-show .01s linear var(--t) both,ib-hide .01s linear calc(var(--t) + var(--s,.25s)) forwards}
+.appx-il.play.app-inbound .ib-v>span.last{animation:ib-show .2s var(--ease) var(--t) both}
+.appx-il.play.app-inbound .ib-v>span.ib-word{animation-duration:.4s}
+.appx-il.play.app-inbound .ib-rt{animation:ib-show .4s var(--ease) var(--t) both}
+
+/* 2. each lane lands: the square snaps home, the ring closes */
+.appx-il.play.app-inbound .v-land{animation:ib-show .25s var(--ease) var(--land) both}
+.appx-il.play.app-inbound .v-land .sig-sq{animation:ib-home .6s var(--snap) var(--land) both}
+.appx-il.play.app-inbound .v-land .sig-gap{animation:ib-show .35s var(--ease) calc(var(--land) + .2s) both}
+
+/* the phone rings out, waits for a callback, then needs you */
+.appx-il.play.app-inbound .l-phone .v-wait{animation:ib-show .01s linear 1.2s both,ib-hide .01s linear 3.45s forwards}
+.appx-il.play.app-inbound .l-phone .v-wait .sig-sq{animation:ib-blink 1.06s linear 1.2s infinite}
+.appx-il.play.app-inbound .l-phone .v-need{animation:ib-show .15s linear 3.45s both,ib-hide .15s linear 5.2s forwards}
+.appx-il.play.app-inbound .l-phone .v-need .sig-sq{animation:ib-pulse 1.3s ease-in-out 3.45s infinite}
+.appx-il.play.app-inbound .ib-rts .w{animation:ib-show .3s var(--ease) 1.25s both,ib-hide .2s var(--ease) 3.45s forwards}
+.appx-il.play.app-inbound .ib-rts .n{animation:ib-show .35s var(--ease) 3.5s both}
+.appx-il.play.app-inbound .l-phone{animation:ib-glow 2.2s var(--ease) 3.45s forwards}
+
+/* 3. the fix is drafted, AM approves it */
+.appx-il.play.app-inbound .ib-fix{animation:ax-in .55s var(--ease) 3.7s both}
+.appx-il.play.app-inbound .ib-edit{animation:ib-show .01s linear 0s both,ib-hide .2s var(--ease) 4.95s forwards}
+.appx-il.play.app-inbound .ib-ok{animation:ib-show .01s linear 0s both,ib-press .2s ease-out 4.8s,ib-hide .14s linear 4.96s forwards}
+.appx-il.play.app-inbound .ib-done{animation:ib-show .35s var(--ease) 4.98s both}
+.appx-il.play.app-inbound .ib-done .sig-sq{animation:ib-home .6s var(--snap) 5.05s both}
+.appx-il.play.app-inbound .ib-done .sig-gap{animation:ib-show .35s var(--ease) 5.25s both}
+.appx-il.play.app-inbound .ib-ptr{animation:ib-ptr 1.5s var(--ease) 4.05s both}
+
+/* 4. the re-test; the signed line settles under the fix */
+.appx-il.play.app-inbound .ib-sig{animation:ib-show .5s var(--ease) 4s both}
+.appx-il.play.app-inbound .ib-toast{animation:ax-in .55s var(--ease) 5.5s both}

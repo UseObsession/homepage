@@ -1,0 +1,168 @@
+/* app-templates: How it works, step 1. The new-mission screen.
+   A typed line on top for any task, 8 templates below. Rest state is the finished scene: Mystery shopper picked,
+   its setup sheet open exactly over columns 2 to 4 (top, bottom and sides on the grid), the run starting.
+   With .play: the screen settles, the pointer glides to Mystery shopper and clicks, the sheet slides in from the right,
+   the always-on stop before payment settles, the pointer clicks Approve and run, and the button opens into the
+   working bar "Setting up 8 agents" while its 8 agent squares fill.
+   Geometry (design px, main 556 x 414): field 14..54, section row 66..80, grid 90..400 (2 rows of 151, gap 8),
+   card columns 125 wide; the sheet is left 149, top 90, right 16, bottom 14 (391 x 310). */
+
+.app-templates .ax-main{gap:0}
+
+/* ---------- the typed line ---------- */
+.app-templates .tp-field{display:flex;align-items:center;gap:10px;height:40px;padding:0 8px 0 14px;border-radius:10px;
+  background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-templates .tp-gt{font:500 14px/1 var(--mono);color:var(--fg-3);margin-top:-1px}
+.app-templates .tp-ph{position:relative;font:400 12px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-templates .tp-caret{position:absolute;left:-5px;top:-2px;width:1.5px;height:16px;border-radius:1px;background:var(--fg);opacity:0}
+.app-templates .tp-ico{margin-left:auto;display:grid;place-items:center;width:24px;height:24px;border-radius:6px;color:var(--fg-3)}
+.ilwrap .app-templates .tp-ico svg{width:14px;height:14px}
+.app-templates .tp-field .ax-kbd{margin-left:0;min-width:20px;text-align:center}
+
+/* ---------- section row ---------- */
+.app-templates .tp-sec{display:flex;align-items:center;gap:6px;height:14px;margin-top:12px}
+.app-templates .tp-n{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-templates .tp-filter{margin-left:auto;display:inline-flex;align-items:center;gap:3px;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.ilwrap .app-templates .tp-filter svg{width:12px;height:12px}
+
+/* ---------- the 8 templates ---------- */
+.app-templates .tp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,151px);gap:8px;margin-top:10px}
+.app-templates .tp-card{min-width:0;min-height:0}
+.app-templates .tp-cin{position:relative;height:100%;display:flex;flex-direction:column;padding:12px;border-radius:10px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-templates .tp-tile{position:relative;flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:7px;color:var(--fg-2);
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-templates .tp-tile svg{width:18px;height:18px}
+.app-templates .tp-tile-on{position:absolute;inset:0;display:grid;place-items:center;border-radius:7px;background:var(--fg);color:var(--bg)}
+.app-templates .tp-tx{display:grid;gap:4px;margin-top:12px}
+.app-templates .tp-tx b{font:500 12px/15px var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.app-templates .tp-tx span{font:400 11px/14.5px var(--sans);color:var(--fg-3)}
+.app-templates .tp-use{margin-top:auto;padding-top:8px;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-templates .tp-ring{position:absolute;inset:0;border-radius:10px;box-shadow:0 0 0 1px var(--fg) inset,0 0 0 3px rgb(var(--fg-rgb) / .08)}
+.app-templates .tp-card:not(.is-pick) .tp-cin{opacity:.42}
+
+/* ---------- the setup sheet ---------- */
+.app-templates .tp-sheet{position:absolute;z-index:3;top:90px;right:16px;bottom:14px;left:149px;display:grid;grid-template-rows:40px minmax(0,1fr) 48px;
+  border-radius:12px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-3),0 1px 0 rgb(var(--hi-rgb) / .05) inset,0 28px 50px -18px rgb(0 0 0 / calc(.9 * var(--sh-k,1))),-18px 0 40px -24px rgb(0 0 0 / calc(.8 * var(--sh-k,1)))}
+:root[data-look="light"] .ilwrap .app-templates .tp-sheet{background:var(--panel)}
+.app-templates .tp-sh-h{display:flex;align-items:center;gap:10px;padding:0 10px 0 16px;border-bottom:1px solid var(--line)}
+.app-templates .tp-sh-h h3{font:600 15px/1 var(--display);letter-spacing:-.015em;color:var(--fg)}
+.app-templates .tp-tile-sm{width:22px;height:22px;border-radius:6px;background:var(--fg);color:var(--bg);box-shadow:none}
+.ilwrap .app-templates .tp-tile-sm svg{width:14px;height:14px}
+.app-templates .tp-x{margin-left:auto;display:grid;place-items:center;width:22px;height:22px;border-radius:6px;color:var(--fg-3)}
+.ilwrap .app-templates .tp-x svg{width:13px;height:13px}
+
+.app-templates .tp-form{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:16px;row-gap:12px;align-content:start;padding:12px 16px}
+.app-templates .tp-l{line-height:26px;white-space:nowrap}
+.app-templates .tp-l-j{line-height:22px}
+.app-templates .tp-l-s{line-height:24px}
+.app-templates .tp-v{min-width:0}
+
+/* targets: a field holding the 2 client stores */
+.app-templates .tp-in{display:flex;align-items:center;gap:4px;height:26px;padding:0 8px 0 4px;border-radius:7px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-templates .tp-tok{display:inline-flex;align-items:center;gap:6px;height:18px;padding:0 4px 0 6px;border-radius:5px;font:500 11px/1 var(--sans);color:var(--fg);
+  background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-2) inset;white-space:nowrap}
+.app-templates .tp-tok i{width:7px;height:7px;border-radius:2px;background:var(--fg-3)}
+.ilwrap .app-templates .tp-tok svg{width:11px;height:11px;color:var(--fg-3)}
+.app-templates .tp-csv{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-templates .tp-csv svg{width:12px;height:12px}
+
+/* journey: 3 steps you can switch, 1 that is always on */
+.app-templates .tp-jr{display:grid;border-radius:8px;box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-templates .tp-jr li{display:flex;align-items:center;gap:8px;height:22px;padding:0 8px;font:400 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-templates .tp-jr li+li{box-shadow:0 -1px 0 var(--line)}
+.app-templates .tp-jr li i{width:8px;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-templates .tp-jr .ax-toggle{margin-left:auto}
+.app-templates .tp-jr li.tp-lock{font-weight:500;background:rgb(var(--fg-rgb) / .045)}
+.app-templates .tp-al{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font:400 10.5px/1 var(--mono);color:var(--fg-2)}
+.ilwrap .app-templates .tp-al svg{width:12px;height:12px}
+
+/* how often */
+.app-templates .tp-often{display:flex;align-items:center;gap:10px}
+.app-templates .tp-seg{display:inline-flex;padding:2px;border-radius:7px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-templates .tp-seg span{display:grid;place-items:center;height:20px;padding:0 10px;border-radius:5px;font:500 11px/1 var(--sans);color:var(--fg-3)}
+.app-templates .tp-seg span.on{color:var(--fg);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-templates .tp-when{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+
+/* report */
+.app-templates .tp-rep{display:flex;align-items:center;gap:14px;height:24px}
+.app-templates .tp-ck{display:inline-flex;align-items:center;gap:6px;font:500 11px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-templates .tp-rep .tp-when{margin-left:auto}
+
+/* footer: the summary and the one primary button; the working bar takes its place */
+.app-templates .tp-foot{position:relative;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-top:1px solid var(--line)}
+.app-templates .tp-sum{font:400 11px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-templates .tp-sum b{font-weight:500;color:var(--fg)}
+.app-templates .tp-go{width:112px;height:28px;justify-content:center;border-radius:8px}
+.app-templates .tp-run{position:absolute;left:16px;right:16px;top:10px;height:28px;display:flex;align-items:center;gap:8px;padding:0 10px;border-radius:8px;
+  background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset;white-space:nowrap}
+.ilwrap .app-templates .tp-run .sig{width:14px;height:14px;color:var(--fg)}
+.app-templates .tp-run b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-templates .tp-q{margin-left:auto;display:flex;gap:3px}
+.app-templates .tp-q i{position:relative;width:7px;height:7px;border-radius:2px;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-templates .tp-q i.on::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--fg)}
+/* at rest the run has started: the summary and the button have handed over to the working bar */
+.app-templates .tp-sum,.app-templates .tp-go{opacity:0}
+
+/* ---------- motion: only with .play ---------- */
+.app-templates .tp-cin,.app-templates .tp-go{transform-origin:center}
+.app-templates .tp-ptr{transform-origin:3px 1.5px}
+.ilwrap .app-templates .appx .tp-ptr{width:16px;height:16px}
+
+/* the field is focused first: the caret blinks, then focus moves on */
+.appx-il.play.app-templates .tp-field{animation:tp-focus 2.2s linear both}
+.appx-il.play.app-templates .tp-caret{animation:tp-caret 2.1s steps(1,end) .2s both}
+@keyframes tp-focus{0%,88%{box-shadow:0 0 0 1px var(--fg-3) inset,0 0 0 3px rgb(var(--fg-rgb) / .07)}100%{box-shadow:0 0 0 1px var(--line-ui) inset,0 0 0 0 rgb(var(--fg-rgb) / 0)}}
+@keyframes tp-caret{0%{opacity:1}25%{opacity:0}50%{opacity:1}75%{opacity:0}88%{opacity:1}100%{opacity:0}}
+
+/* hover lift, press, select */
+.appx-il.play.app-templates .is-pick .tp-cin{animation:tp-hover 2s var(--ease) 1.5s both}
+@keyframes tp-hover{
+  0%{transform:none;box-shadow:0 0 0 1px var(--line-2) inset,0 0 0 0 rgb(0 0 0 / 0)}
+  14%,23%{transform:translateY(-2px);box-shadow:0 0 0 1px var(--line-3) inset,0 14px 24px -14px rgb(0 0 0 / calc(.9 * var(--sh-k,1)))}
+  27%{transform:translateY(-1px) scale(.975)}
+  35%,80%{transform:translateY(-2px);box-shadow:0 0 0 1px var(--line-3) inset,0 14px 24px -14px rgb(0 0 0 / calc(.9 * var(--sh-k,1)))}
+  100%{transform:none;box-shadow:0 0 0 1px var(--line-2) inset,0 0 0 0 rgb(0 0 0 / 0)}}
+.appx-il.play.app-templates .tp-ring,.appx-il.play.app-templates .tp-tile-on{animation:tp-on .35s var(--ease) 2.04s both}
+@keyframes tp-on{from{opacity:0}to{opacity:1}}
+.appx-il.play.app-templates .tp-card:not(.is-pick) .tp-cin{animation:tp-dim .6s var(--ease) 2.2s both}
+@keyframes tp-dim{from{opacity:1}to{opacity:.42}}
+
+/* the sheet slides in over columns 2 to 4 */
+.appx-il.play.app-templates .tp-sheet{animation:tp-sheet .7s var(--ease) 2.1s both}
+@keyframes tp-sheet{from{transform:translateX(calc(100% + 40px))}to{transform:none}}
+
+/* the always-on stop settles once the sheet lands */
+.appx-il.play.app-templates .tp-lock{animation:tp-lock .6s var(--ease) 2.95s both}
+@keyframes tp-lock{from{background:rgb(var(--fg-rgb) / 0)}to{background:rgb(var(--fg-rgb) / .045)}}
+.appx-il.play.app-templates .tp-al{animation:ax-fade .45s var(--ease) 3.05s both}
+
+/* Approve and run opens into the working bar */
+.appx-il.play.app-templates .tp-sum{animation:tp-on .3s var(--ease) 4.3s reverse both}
+.appx-il.play.app-templates .tp-go{animation:tp-press 4.55s linear both}
+@keyframes tp-press{0%,91.5%{opacity:1;transform:none}93.5%{opacity:1;transform:scale(.95)}95.5%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+.appx-il.play.app-templates .tp-run{animation:tp-open .6s var(--ease) 4.32s both}
+.appx-il.play.app-templates .tp-run > *{animation:tp-on .4s var(--ease) 4.62s both}
+.appx-il.play.app-templates .tp-q i.on::after{animation:ax-pop .4s var(--snap) var(--d) both}
+@keyframes tp-open{
+  0%{opacity:0;clip-path:inset(0 0 0 calc(100% - 112px) round 8px);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+  8%{opacity:1;clip-path:inset(0 0 0 calc(100% - 112px) round 8px);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+  100%{opacity:1;clip-path:inset(0 0 0 0 round 8px);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}}
+
+/* the pointer: in from the lower right, to Mystery shopper, click; to Approve and run, click; away */
+.appx-il.play.app-templates .tp-ptr{animation:tp-ptr 4.8s linear .7s both}
+@keyframes tp-ptr{
+  0%{opacity:0;transform:translate(400px,330px)}
+  4%{opacity:1;transform:translate(400px,330px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  24%{transform:translate(101px,120px)}
+  27%{transform:translate(101px,120px) scale(1)}
+  28.5%{transform:translate(101px,120px) scale(.86)}
+  30.5%{transform:translate(101px,120px) scale(1)}
+  50%{transform:translate(101px,120px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  70%{transform:translate(487px,374px)}
+  73%{transform:translate(487px,374px) scale(1)}
+  74.5%{transform:translate(487px,374px) scale(.86)}
+  76.5%{transform:translate(487px,374px) scale(1);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  88%{opacity:1;transform:translate(498px,390px)}
+  96%,100%{opacity:0;transform:translate(502px,394px)}}

@@ -1,0 +1,129 @@
+/* app-case: Renewals, for sales and CS (template: Business case). 90 days out, the renewal case for Tamberlin Payroll,
+   built from the account's own numbers in the tools you connect, with consent, and refreshed weekly to renewal.
+   Layout: a document moment, unlike every table sibling. The main area is a viewer: the case's own bar on top
+   (what it is, that it refreshes weekly, Export PDF, Share with finance), then a sunken canvas holding 1 page.
+   The page reads answer first: the 2 companies and the renewal date, the saving and its model, the 4 numbers that prove it
+   (each with its source chip and a 6-month trend line), and the signature.
+   Story: the page settles (the saving holds a quiet placeholder), the 4 numbers rise in and their trend lines draw,
+   each source chip attaches, the model lands and the saving counts up to $184,000, the footer mark stops working
+   and closes, and only then does the page say it is signed;
+   the pointer clicks Share with finance, the toast lands under the page.
+   Geometry (design px, main 556 x 414): bar 0..44, canvas 44..414, page 456 wide centred (x 50..506) from y 58,
+   head 38, saving 72, numbers 2 x 66, foot 34; toast centred, 14 up. Rest state (no .play) = the finished, shared scene. */
+@property --case-k{syntax:"<integer>";inherits:false;initial-value:0}
+
+.app-case .ax-main{grid-template-rows:44px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
+.app-case .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-case .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- the case's bar ---------- */
+.app-case .cs-h{position:relative;z-index:3;display:flex;align-items:center;gap:10px;padding:0 14px 0 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.app-case .cs-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-case .cs-meta{gap:6px;padding-top:1px;font-size:11.5px;color:var(--fg-3)}
+.ilwrap .app-case .appx .cs-meta .sig{width:11px;height:11px;color:var(--fg-2)}
+.app-case .cs-acts{margin-left:auto;display:flex;align-items:center;gap:6px}
+.app-case .cs-pdf{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-case .cs-sh{position:relative;display:flex}
+.app-case .cs-share{padding:0 11px;transform-origin:center}
+.ilwrap .app-case .appx svg.cs-ptr{left:72px;top:11px;width:16px;height:16px}
+
+/* ---------- the canvas and the page ---------- */
+.app-case .cs-cv{display:grid;justify-content:center;align-content:start;padding-top:14px;background:var(--bg-2);min-height:0;overflow:hidden}
+.app-case .cs-pg{width:456px;border-radius:8px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-2),0 18px 34px -22px rgb(0 0 0 / calc(.85 * var(--sh-k,1)))}
+
+/* head: who it is from, who it is for, on what terms */
+.app-case .cs-ph{display:flex;align-items:center;height:38px;padding:0 16px;border-bottom:1px solid var(--line-2)}
+.app-case .cs-lk{display:flex;align-items:center;gap:6px;font:600 11.5px/1 var(--sans);letter-spacing:-.01em;color:var(--fg);white-space:nowrap}
+.app-case .cs-lk i{width:16px;height:16px;border-radius:4.5px;display:grid;place-items:center;font:600 9.5px/1 var(--sans);font-style:normal;letter-spacing:0}
+.app-case .cs-my{color:var(--bg);background:var(--fg)}
+.app-case .cs-mt{color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-case .cs-x{margin:0 3px;font-weight:400;color:var(--fg-3)}
+.app-case .cs-rn{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+
+/* the saving: the point of the page */
+.app-case .cs-roi{position:relative;display:grid;gap:7px;padding:14px 16px 13px}
+/* while the refresh runs, the saving holds its place */
+.app-case .cs-sk{position:absolute;left:16px;top:18px;display:grid;gap:14px;opacity:0;pointer-events:none}
+.app-case .cs-sk i{display:block;width:236px;height:20px;border-radius:5px;background:rgb(var(--fg-rgb) / .06)}
+.app-case .cs-sk i+i{width:340px;height:8px;border-radius:4px}
+.app-case .cs-hl{display:flex;align-items:baseline;gap:7px;height:28px;white-space:nowrap}
+.app-case .cs-hl span{font:500 14px/1 var(--sans);color:var(--fg-2)}
+.app-case .cs-k{font:600 28px/1 var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums;counter-reset:cs-k var(--case-k)}
+.app-case .cs-k::before{content:"$" counter(cs-k) ",000"}
+.app-case .cs-md{display:flex;align-items:baseline;gap:10px;font-size:11px;line-height:14px;color:var(--fg-2);white-space:nowrap}
+.app-case .cs-md .ax-mono{font-size:10.5px;color:var(--fg-3)}
+
+/* the 4 numbers: a 2 x 2 grid ruled by its own gaps */
+.app-case .cs-g{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-2);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.app-case .cs-tl{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:19px 24px;row-gap:6px;column-gap:8px;align-items:center;padding:11px 16px;background:var(--panel-2)}
+.app-case .cs-l{font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-case .cs-src{justify-self:end}
+.app-case .cs-v{display:flex;align-items:baseline;gap:5px;white-space:nowrap}
+.app-case .cs-v b{font:600 20px/1 var(--display);letter-spacing:-.025em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-case .cs-v small{font-size:11px;color:var(--fg-3)}
+.ilwrap .app-case .appx svg.cs-sp{justify-self:end;width:72px;height:24px;overflow:visible}
+.app-case .cs-sp .ar{fill:rgb(var(--fg-rgb) / .07)}
+.app-case .cs-sp .ln{fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.app-case .cs-sp .dt{fill:var(--fg);transform-box:fill-box;transform-origin:center}
+
+/* foot: the signature */
+.app-case .cs-pf{display:flex;align-items:center;gap:8px;height:34px;padding:0 16px;white-space:nowrap}
+.ilwrap .app-case .appx .cs-pf .sig{width:12px;height:12px;color:var(--fg)}
+.app-case .cs-pf p{font-size:11px;line-height:1;color:var(--fg)}
+.app-case .cs-hash{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+/* toast: centred under the page it answers for */
+.app-case .cs-toast{left:0;right:0;bottom:14px;width:max-content;margin:0 auto;padding:9px 13px 9px 12px}
+.app-case .cs-toast p{display:flex;align-items:baseline;gap:6px;white-space:nowrap;line-height:15px}
+.app-case .cs-toast b{font-weight:500;color:var(--fg)}
+.app-case .cs-toast p span{color:var(--fg-2)}
+.app-case .cs-toast .cs-dot{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes cs-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes cs-fade{from{opacity:0}to{opacity:1}}
+@keyframes cs-out{from{opacity:1}to{opacity:0}}
+@keyframes cs-dot{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes cs-chip{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:none}}
+@keyframes cs-count{from{--case-k:0}}
+@keyframes cs-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes cs-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes cs-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes cs-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes cs-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* 2s from 3.3s: arrives on Share with finance at 4.34s, presses, drifts off and is gone by 5.3s */
+@keyframes cs-ptr{
+  0%{opacity:0;transform:translate(-196px,176px)}
+  14%{opacity:1}
+  52%{transform:translate(0,0) scale(1)}
+  56%{transform:translate(0,0) scale(.9)}
+  62%{transform:translate(0,0) scale(1)}
+  84%{opacity:1;transform:translate(14px,12px)}
+  100%{opacity:0;transform:translate(18px,15px)}}
+
+/* 1. the numbers rise in, their lines draw, each source attaches */
+.appx-il.play.app-case .cs-v{animation:ax-in .5s var(--ease) calc(.34s + var(--i) * .12s) both}
+.appx-il.play.app-case .cs-sp .ln{animation:cs-draw .8s var(--ease) calc(.42s + var(--i) * .12s) both}
+.appx-il.play.app-case .cs-sp .ar{animation:cs-fade .6s var(--ease) calc(.8s + var(--i) * .12s) both}
+.appx-il.play.app-case .cs-sp .dt{animation:cs-dot .4s var(--ease) calc(1.1s + var(--i) * .12s) both}
+.appx-il.play.app-case .cs-src{animation:cs-chip .4s var(--ease) calc(1s + var(--i) * .12s) both}
+
+/* 2. the model lands, the saving counts up */
+.appx-il.play.app-case .cs-sk{animation:cs-out .35s var(--ease) 1.45s both}
+.appx-il.play.app-case .cs-md{animation:cs-fade .5s var(--ease) 1.5s both}
+.appx-il.play.app-case .cs-hl{animation:ax-in .5s var(--ease) 1.56s both}
+.appx-il.play.app-case .cs-k{animation:cs-count 1.15s var(--ease) 1.62s both}
+
+/* 3. the case is signed: the mark stops working, the square comes home, the ring closes */
+.appx-il.play.app-case .cs-mk .sig-rot{animation:cs-spin 2.6s linear .3s both}
+.appx-il.play.app-case .cs-mk .sig-orb{animation:cs-spinr 2.6s linear .3s both}
+.appx-il.play.app-case .cs-mk .sig-sq{animation:cs-home .6s var(--snap) 2.95s both}
+.appx-il.play.app-case .cs-mk .sig-gap{animation:cs-fade .35s var(--ease) 3.15s both}
+.appx-il.play.app-case .cs-pf p{animation:cs-fade .45s var(--ease) 3.05s both}
+.appx-il.play.app-case .cs-hash{animation:cs-fade .45s var(--ease) 3.2s both}
+
+/* 4. shared with finance */
+.appx-il.play.app-case .cs-ptr{animation:cs-ptr 2s var(--ease) 3.3s both}
+.appx-il.play.app-case .cs-share{animation:cs-press .26s ease-out 4.34s}
+.appx-il.play.app-case .cs-toast{animation:cs-toast .5s var(--ease) 4.6s both}

@@ -1,0 +1,749 @@
+/* =============================================================================================
+   OBSESSION DESIGN TOKENS  v1.0  (1 Oct 2026)
+   Built from the waitlist theme (_research/landing.css). Dark is the primary theme. Light, the warm
+   paper, is the secondary theme. Hybrid is the sanctioned way to use light on marketing pages: a paper
+   page where every product object stays glossy black.
+
+   Fonts (add to <head>):
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+
+   Applying a theme
+   - Brand pages: <html data-theme="dark"> (the default), "light" or "hybrid". Set it before paint.
+   - With no attribute, the page is dark unless the OS asks for light. That OS rule is for page chrome
+     such as documentation; brand pages set the attribute so dark stays the default.
+   - Any element: .ob-theme-dark, .ob-theme-light or .ob-theme-hybrid. Specimens always use these classes.
+   - A section that flips colour (the paper break in a dark page) is an .ob-theme-light element. It
+     redefines the whole set, focus and field edges included, so nothing is left reading the wrong ink.
+   - Hybrid: mark product objects (demo window, ledger, illustration wells, offer, calculator) with
+     .ob-object. In hybrid they become glossy black on paper; in dark and light they take the page theme.
+
+   Rules this file enforces
+   - One job per token, prefixed --ob-. No hex outside the token blocks.
+   - Text: --ob-text 7:1 or more, --ob-text-2 and --ob-text-3 4.5:1 or more on every surface in its theme.
+   - Anything that alone identifies a control (field edge, checkbox, thumb, track, selected segment)
+     uses --ob-line-ui, 3:1 or more. Hairlines are layout only.
+   - Focus is a 2px outline in --ob-focus. Never box-shadow alone: forced-colours mode removes it.
+   ============================================================================================= */
+
+:root {
+  /* Type families. Load Geist 400;500;600 and Geist Mono 400;500 only; mono never goes above 500. */
+  --ob-font-sans:       "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ob-font-mono:       "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ob-weight-regular:  400;
+  --ob-weight-medium:   500;
+  --ob-weight-semibold: 600;
+  /* Spacing on a 4px base. 2 and 6 are half steps for dense UI only. */
+  --ob-space-2:       2px;
+  --ob-space-4:       4px;
+  --ob-space-6:       6px;
+  --ob-space-8:       8px;
+  --ob-space-12:      12px;
+  --ob-space-16:      16px;
+  --ob-space-20:      20px;
+  --ob-space-24:      24px;
+  --ob-space-28:      28px;
+  --ob-space-32:      32px;
+  --ob-space-40:      40px;
+  --ob-space-48:      48px;
+  --ob-space-56:      56px;
+  --ob-space-64:      64px;
+  --ob-space-80:      80px;
+  --ob-space-96:      96px;
+  --ob-space-120:     120px;
+  --ob-gutter:        clamp(16px, 4vw, 32px);
+  --ob-space-section: clamp(64px, 9vw, 120px);
+  --ob-space-block:   clamp(36px, 5vw, 64px);
+  --ob-space-stack:   18px;
+  /* Radii. Nested radius = outer radius minus the padding between them, never below 6px. */
+  --ob-radius-glyph: 2px;
+  --ob-radius-xs:    6px;
+  --ob-radius-sm:    10px;
+  --ob-radius-md:    14px;
+  --ob-radius-lg:    22px;
+  --ob-radius-xl:    28px;
+  --ob-radius-pill:  999px;
+  /* Borders and focus geometry. */
+  --ob-border-hair:        1px;
+  --ob-border-strong:      1.5px;
+  --ob-border-focus:       2px;
+  --ob-focus-width:        2px;
+  --ob-focus-offset:       2px;
+  --ob-focus-offset-inset: -2px;
+  /* Controls and targets. Heights snap to 24, 32, 40, 48. */
+  --ob-control-xs:     24px;
+  --ob-control-sm:     32px;
+  --ob-control-md:     40px;
+  --ob-control-lg:     48px;
+  --ob-control-pad-xs: 8px;
+  --ob-control-pad-sm: 12px;
+  --ob-control-pad-md: 16px;
+  --ob-control-pad-lg: 20px;
+  --ob-icon-sm:        14px;
+  --ob-icon-md:        16px;
+  --ob-icon-lg:        20px;
+  --ob-target-min:     24px;
+  --ob-target-touch:   44px;
+  /* 28px is the one height off the 24-32-40-48 scale: status pills, kit chips, crumbs and tooltips. */
+  --ob-control-chip:   28px;
+  /* The brand square has 2 sizes in components: markers (current page, unread) and controls (filters). */
+  --ob-sq-sm:          6px;
+  --ob-sq-md:          8px;
+  /* Layers. */
+  --ob-z-base:    0;
+  --ob-z-raised:  1;
+  --ob-z-sticky:  40;
+  --ob-z-nav:     50;
+  --ob-z-popover: 60;
+  --ob-z-scrim:   70;
+  --ob-z-dialog:  80;
+  --ob-z-toast:   90;
+  --ob-z-tooltip: 95;
+  --ob-z-grain:   100;
+  /* Breakpoints and containers. Custom properties cannot sit inside @media, so copy the px values there. */
+  --ob-bp-sm:           520px;
+  --ob-bp-md:           860px;
+  --ob-bp-lg:           1080px;
+  --ob-bp-xl:           1280px;
+  --ob-container:       1160px;
+  --ob-container-md:    960px;
+  --ob-container-sm:    760px;
+  --ob-container-xs:    560px;
+  --ob-measure:         64ch;
+  --ob-measure-lede:    52ch;
+  --ob-measure-heading: 20ch;
+  /* Motion. Animate transform and opacity only. Exits run at about 70% of the entrance. */
+  --ob-ease:         cubic-bezier(.22, 1, .36, 1);
+  --ob-snap:         cubic-bezier(.34, 1.56, .64, 1);
+  --ob-ease-draw:    cubic-bezier(.65, 0, .35, 1);
+  --ob-ease-exit:    cubic-bezier(.3, 0, 1, 1);
+  --ob-dur-fast:     100ms;
+  --ob-dur-base:     160ms;
+  --ob-dur-moderate: 240ms;
+  --ob-dur-slow:     400ms;
+  --ob-dur-reveal:   800ms;
+  --ob-rise:         14px;
+  --ob-lift:         -1px;
+  --ob-press-scale:  .98;
+  /* Named jobs for the curves and the small steps every control uses. motion.css repeats these at zero
+     specificity, so a component never depends on motion.css for its own transition. */
+  --ob-ease-out:       var(--ob-ease);        /* enters and answers */
+  --ob-ease-in:        var(--ob-ease-exit);   /* leaves */
+  --ob-dur-instant:    0ms;                   /* focus rings, error edges */
+  --ob-press-scale-sm: .96;                   /* controls 32px tall or less */
+  --ob-delay-tick:     40ms;                  /* a tick starts drawing once its box has filled */
+  --ob-delay-label:    80ms;                  /* a segment label turns as the thumb arrives */
+  --ob-switch-stretch: 1.12;                  /* the switch thumb widens while pressed */
+  /* The brand square at text size: bullets, message marks, the error summary. */
+  --ob-sq-size:   7px;
+  --ob-sq-radius: 1px;
+  /* The ring mark's timing. The founders signed off on these; change them together or not at all. */
+  --ob-sig-draw:        1150ms;
+  --ob-sig-snap:        550ms;
+  --ob-sig-snap-delay:  950ms;
+  --ob-sig-blink:       1000ms;
+  --ob-sig-blink-delay: 1700ms;
+  --ob-sig-spin:        1400ms;
+  --ob-sig-idle:        9000ms;
+  --ob-sig-idle-count:  1;
+  --ob-sig-turn:        1100ms;  /* 1 turn on hovering the home link */
+  --ob-sig-wait:        1060ms;  /* each cursor blink while waiting on another company */
+  --ob-sig-pulse:       2600ms;  /* each pulse of the hollow square: needs you */
+  --ob-sig-lock:        500ms;   /* the square snaps home: a step is done */
+  --ob-sig-land:        800ms;   /* the square settles in the centre: the money landed */
+  --ob-sig-land-delay:  300ms;   /* the cut closes this long after the square starts home */
+  /* Grain: fractal noise, 160px tile, blended with overlay. */
+  --ob-grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Brand constants: the two inks. Fixed objects (logo files, app icon, pins on fixed chips) use these, never the page tokens. */
+  --ob-ink:   #121211;
+  --ob-paper: #F5F4F0;
+  --ob-black: #080807;
+  --ob-bone:  #EDEBE5;
+  /* Type scale: size, leading, tracking, weight, plus a font shorthand. Letter-spacing is not part of `font`, so set it too. */
+  /* display: hero headline, max 14ch, balance */
+  --ob-type-display-size: clamp(44px, 6.5vw, 90px); --ob-type-display-leading: .96; --ob-type-display-tracking: -.052em; --ob-type-display-weight: 600;
+  --ob-type-display: var(--ob-type-display-weight) var(--ob-type-display-size)/var(--ob-type-display-leading) var(--ob-font-sans);
+  /* h1: page title, closing call to action */
+  --ob-type-h1-size: clamp(36px, 5.4vw, 64px); --ob-type-h1-leading: 1; --ob-type-h1-tracking: -.048em; --ob-type-h1-weight: 600;
+  --ob-type-h1: var(--ob-type-h1-weight) var(--ob-type-h1-size)/var(--ob-type-h1-leading) var(--ob-font-sans);
+  /* h2: section heading, max 20ch */
+  --ob-type-h2-size: clamp(30px, 4.3vw, 52px); --ob-type-h2-leading: 1.04; --ob-type-h2-tracking: -.04em; --ob-type-h2-weight: 600;
+  --ob-type-h2: var(--ob-type-h2-weight) var(--ob-type-h2-size)/var(--ob-type-h2-leading) var(--ob-font-sans);
+  /* h3: panel heading, max 16ch */
+  --ob-type-h3-size: clamp(26px, 2.9vw, 38px); --ob-type-h3-leading: 1.08; --ob-type-h3-tracking: -.035em; --ob-type-h3-weight: 600;
+  --ob-type-h3: var(--ob-type-h3-weight) var(--ob-type-h3-size)/var(--ob-type-h3-leading) var(--ob-font-sans);
+  /* title: card, dialog and form-result title */
+  --ob-type-title-size: 20px; --ob-type-title-leading: 1.3; --ob-type-title-tracking: -.02em; --ob-type-title-weight: 600;
+  --ob-type-title: var(--ob-type-title-weight) var(--ob-type-title-size)/var(--ob-type-title-leading) var(--ob-font-sans);
+  /* stat: big figures; tabular numerals */
+  --ob-type-stat-size: clamp(34px, 3.7vw, 52px); --ob-type-stat-leading: 1.02; --ob-type-stat-tracking: -.045em; --ob-type-stat-weight: 600;
+  --ob-type-stat: var(--ob-type-stat-weight) var(--ob-type-stat-size)/var(--ob-type-stat-leading) var(--ob-font-sans);
+  /* body-lg: lede, max 52ch */
+  --ob-type-body-lg-size: clamp(17px, 1.6vw, 20px); --ob-type-body-lg-leading: 1.5; --ob-type-body-lg-tracking: 0; --ob-type-body-lg-weight: 400;
+  --ob-type-body-lg: var(--ob-type-body-lg-weight) var(--ob-type-body-lg-size)/var(--ob-type-body-lg-leading) var(--ob-font-sans);
+  /* body: marketing body; inputs never below 16px */
+  --ob-type-body-size: 17px; --ob-type-body-leading: 1.55; --ob-type-body-tracking: 0; --ob-type-body-weight: 400;
+  --ob-type-body: var(--ob-type-body-weight) var(--ob-type-body-size)/var(--ob-type-body-leading) var(--ob-font-sans);
+  /* small: card copy, rows, product body */
+  --ob-type-small-size: 15px; --ob-type-small-leading: 1.45; --ob-type-small-tracking: 0; --ob-type-small-weight: 400;
+  --ob-type-small: var(--ob-type-small-weight) var(--ob-type-small-size)/var(--ob-type-small-leading) var(--ob-font-sans);
+  /* label: tabs, nav links, chips, small buttons */
+  --ob-type-label-size: 14px; --ob-type-label-leading: 1.2; --ob-type-label-tracking: -.005em; --ob-type-label-weight: 500;
+  --ob-type-label: var(--ob-type-label-weight) var(--ob-type-label-size)/var(--ob-type-label-leading) var(--ob-font-sans);
+  /* button: button label (14px at sm) */
+  --ob-type-button-size: 15px; --ob-type-button-leading: 1; --ob-type-button-tracking: -.01em; --ob-type-button-weight: 600;
+  --ob-type-button: var(--ob-type-button-weight) var(--ob-type-button-size)/var(--ob-type-button-leading) var(--ob-font-sans);
+  /* caption: microcopy, errors, footnotes; 12px floor */
+  --ob-type-caption-size: 13px; --ob-type-caption-leading: 1.45; --ob-type-caption-tracking: 0; --ob-type-caption-weight: 400;
+  --ob-type-caption: var(--ob-type-caption-weight) var(--ob-type-caption-size)/var(--ob-type-caption-leading) var(--ob-font-sans);
+  /* label-mono: uppercase pane labels; the size floor */
+  --ob-type-label-mono-size: 11.5px; --ob-type-label-mono-leading: 1.2; --ob-type-label-mono-tracking: .06em; --ob-type-label-mono-weight: 500;
+  --ob-type-label-mono: var(--ob-type-label-mono-weight) var(--ob-type-label-mono-size)/var(--ob-type-label-mono-leading) var(--ob-font-mono);
+  /* mono-sm: times, hashes, status, kit chips */
+  --ob-type-mono-sm-size: 12.5px; --ob-type-mono-sm-leading: 1.5; --ob-type-mono-sm-tracking: 0; --ob-type-mono-sm-weight: 500;
+  --ob-type-mono-sm: var(--ob-type-mono-sm-weight) var(--ob-type-mono-sm-size)/var(--ob-type-mono-sm-leading) var(--ob-font-mono);
+  /* code: task text, JSON, prompts */
+  --ob-type-code-size: 14px; --ob-type-code-leading: 1.6; --ob-type-code-tracking: 0; --ob-type-code-weight: 400;
+  --ob-type-code: var(--ob-type-code-weight) var(--ob-type-code-size)/var(--ob-type-code-leading) var(--ob-font-mono);
+}
+
+/* =============================================================================================
+   DARK: the primary theme. Glossy warm black. Also re-scoped onto product objects in hybrid.
+   ============================================================================================= */
+:root,
+.ob-theme-dark,
+[data-theme="dark"],
+:is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
+  color-scheme: dark;
+  /* Surfaces. Dark lifts each level by lightness; light keeps one paper and lifts with shadow. */
+  --ob-bg:             #080807;
+  --ob-bg-sunken:      #0D0D0C;
+  --ob-surface:        #121211;
+  --ob-surface-raised: #181816;
+  --ob-surface-hover:  #1F1F1C;
+  --ob-overlay:        #181816;
+  --ob-solid:          #EDEBE5;
+  --ob-solid-hover:    #F8F7F3;
+  /* Hairlines draw layout and stay quiet. Only --ob-line-ui marks a control; it clears 3:1 on every surface. */
+  --ob-line-subtle: #1E1E1C;
+  --ob-line:        #2A2927;
+  --ob-line-strong: #3D3C38;
+  --ob-line-ui:     #6B6A65;
+  /* Text uses 3 inks. Never set text in a line token. */
+  --ob-text:           #EDEBE5;
+  --ob-text-2:         #B7B5AC;
+  --ob-text-3:         #98968E;
+  --ob-text-inverse:   #080807;
+  --ob-text-disabled:  #6E6D68;   /* 3.4 to 3.9:1: legible, clearly off */
+  --ob-placeholder:    var(--ob-text-3);
+  --ob-link-underline: var(--ob-text-3);
+  /* Focus is one neutral ring in every theme. */
+  --ob-focus: #EDEBE5;
+  /* Status. Colour is reserved for state, always paired with text or the square. Marketing pages use danger only. */
+  --ob-danger:     #F5A39B;
+  --ob-danger-bg:  #2E1817;
+  --ob-success:    #94CF9F;
+  --ob-success-bg: #152318;
+  --ob-warning:    #EDC47D;
+  --ob-warning-bg: #292010;
+  /* Tints and state layers: the text colour at low alpha, so one rule works on ink and on paper. */
+  --ob-tint-rgb:       237 235 229;
+  --ob-fill-subtle:    rgb(var(--ob-tint-rgb) / .035);
+  --ob-fill:           rgb(var(--ob-tint-rgb) / .06);
+  --ob-state-hover:    rgb(var(--ob-tint-rgb) / .06);
+  --ob-state-pressed:  rgb(var(--ob-tint-rgb) / .10);
+  --ob-state-selected: rgb(var(--ob-tint-rgb) / .08);
+  --ob-state-drag:     rgb(var(--ob-tint-rgb) / .16);
+  /* Fields. The edge does the identifying; the fill stays quiet. */
+  --ob-field-bg:         rgb(var(--ob-tint-rgb) / .04);
+  --ob-field-bg-solid:   #111110;   /* the field fill flattened onto the page, for autofill */
+  --ob-field-edge:       var(--ob-line-ui);
+  --ob-field-edge-hover: var(--ob-text-3);
+  --ob-track:            var(--ob-line-ui);
+  --ob-track-fill:       var(--ob-solid);
+  --ob-track-bg:         var(--ob-fill-subtle);
+  /* Primary button: a paper pill on ink, an ink pill on paper. Vertical gradient, 1px inset highlight, soft glow. */
+  --ob-btn-top:          #F3F1EC;
+  --ob-btn-bottom:       #DDDAD2;
+  --ob-btn-text:         #121211;
+  --ob-btn-highlight:    rgb(255 255 255 / .85);
+  --ob-btn-edge:         rgb(237 235 229 / .25);
+  --ob-btn-edge-hover:   rgb(237 235 229 / .4);
+  --ob-btn-glow:         rgb(237 235 229 / .22);
+  --ob-btn-bg:           linear-gradient(180deg, var(--ob-btn-top), var(--ob-btn-bottom));
+  --ob-btn-shadow:       0 1px 0 var(--ob-btn-highlight) inset, 0 0 0 1px var(--ob-btn-edge), 0 10px 30px -8px var(--ob-btn-glow);
+  --ob-btn-shadow-hover: 0 1px 0 var(--ob-btn-highlight) inset, 0 0 0 1px var(--ob-btn-edge-hover), 0 16px 40px -8px var(--ob-btn-glow);
+  /* Secondary button: a tinted pill. Its label identifies it, so the edge may be a hairline. */
+  --ob-btn-2-bg:         rgb(var(--ob-tint-rgb) / .06);
+  --ob-btn-2-bg-hover:   rgb(var(--ob-tint-rgb) / .10);
+  --ob-btn-2-bg-pressed: rgb(var(--ob-tint-rgb) / .14);
+  --ob-btn-2-text:       var(--ob-text);
+  --ob-btn-2-edge:       var(--ob-line-strong);
+  /* Chrome, scrim and selection. */
+  --ob-nav-bg:         rgb(8 8 7 / .82);
+  --ob-scrim:          rgb(4 4 3 / .72);
+  --ob-selection:      rgb(237 235 229 / .24);
+  --ob-selection-text: var(--ob-text);
+  /* Materials. Dark shows depth with lighter surfaces, a 1px top highlight and hairlines. Light shows depth with warm shadow. */
+  --ob-sheen-rgb:     237 235 229;
+  --ob-glow-rgb:      237 235 229;
+  --ob-shadow-rgb:    0 0 0;
+  --ob-sheen:         linear-gradient(180deg, rgb(var(--ob-sheen-rgb) / .05), rgb(var(--ob-sheen-rgb) / .012) 40%);
+  --ob-highlight:     0 1px 0 rgb(var(--ob-sheen-rgb) / .07) inset;
+  --ob-shadow-1:      0 0 #0000;
+  --ob-shadow-2:      0 20px 60px -30px rgb(var(--ob-shadow-rgb) / .9);
+  --ob-shadow-3:      0 60px 140px -40px rgb(var(--ob-shadow-rgb) / .95), 0 0 120px -30px rgb(var(--ob-glow-rgb) / .10);
+  --ob-shadow-4:      0 0 0 1px rgb(var(--ob-shadow-rgb) / .4), 0 24px 64px -16px rgb(var(--ob-shadow-rgb) / .85);
+  --ob-grain-opacity: .05;
+}
+
+/* =============================================================================================
+   LIGHT: the secondary theme, "the white". Soft warm paper; never pure white. Hybrid pages use it too.
+   ============================================================================================= */
+.ob-theme-light,
+[data-theme="light"],
+.ob-theme-hybrid,
+[data-theme="hybrid"] {
+  color-scheme: light;
+  /* Surfaces. Dark lifts each level by lightness; light keeps one paper and lifts with shadow. */
+  --ob-bg:             #F5F4F0;
+  --ob-bg-sunken:      #EFEEE9;
+  --ob-surface:        #FCFBF9;
+  --ob-surface-raised: #FCFBF9;
+  --ob-surface-hover:  #EAE8E2;
+  --ob-overlay:        #FCFBF9;
+  --ob-solid:          #121211;
+  --ob-solid-hover:    #2C2B28;
+  /* Hairlines draw layout and stay quiet. Only --ob-line-ui marks a control; it clears 3:1 on every surface. */
+  --ob-line-subtle: #E4E2DC;
+  --ob-line:        #D9D6CE;
+  --ob-line-strong: #BDB9B0;
+  --ob-line-ui:     #87837A;
+  /* Text uses 3 inks. Never set text in a line token. */
+  --ob-text:           #121211;
+  --ob-text-2:         #4D4A44;
+  --ob-text-3:         #67645D;
+  --ob-text-inverse:   #F5F4F0;
+  --ob-text-disabled:  #86837B;   /* 3.2 to 3.7:1: legible, clearly off */
+  --ob-placeholder:    var(--ob-text-3);
+  --ob-link-underline: var(--ob-text-3);
+  /* Focus is one neutral ring in every theme. */
+  --ob-focus: #121211;
+  /* Status. Colour is reserved for state, always paired with text or the square. Marketing pages use danger only. */
+  --ob-danger:     #B42318;
+  --ob-danger-bg:  #FEEBE9;
+  --ob-success:    #2C6D3E;
+  --ob-success-bg: #E7F4E9;
+  --ob-warning:    #8A5410;
+  --ob-warning-bg: #F9EFDA;
+  /* Tints and state layers: the text colour at low alpha, so one rule works on ink and on paper. */
+  --ob-tint-rgb:       18 18 17;
+  --ob-fill-subtle:    rgb(var(--ob-tint-rgb) / .035);
+  --ob-fill:           rgb(var(--ob-tint-rgb) / .06);
+  --ob-state-hover:    rgb(var(--ob-tint-rgb) / .05);
+  --ob-state-pressed:  rgb(var(--ob-tint-rgb) / .08);
+  --ob-state-selected: rgb(var(--ob-tint-rgb) / .06);
+  --ob-state-drag:     rgb(var(--ob-tint-rgb) / .12);
+  /* Fields. The edge does the identifying; the fill stays quiet. */
+  --ob-field-bg:         #FCFBF9;
+  --ob-field-bg-solid:   #FCFBF9;
+  --ob-field-edge:       var(--ob-line-ui);
+  --ob-field-edge-hover: var(--ob-text-3);
+  --ob-track:            var(--ob-line-ui);
+  --ob-track-fill:       var(--ob-solid);
+  --ob-track-bg:         var(--ob-surface);
+  /* Primary button: a paper pill on ink, an ink pill on paper. Vertical gradient, 1px inset highlight, soft glow. */
+  --ob-btn-top:          #2C2B28;
+  --ob-btn-bottom:       #121211;
+  --ob-btn-text:         #F5F4F0;
+  --ob-btn-highlight:    rgb(255 255 255 / .14);
+  --ob-btn-edge:         rgb(18 18 17 / .25);
+  --ob-btn-edge-hover:   rgb(18 18 17 / .4);
+  --ob-btn-glow:         rgb(28 25 20 / .25);
+  --ob-btn-bg:           linear-gradient(180deg, var(--ob-btn-top), var(--ob-btn-bottom));
+  --ob-btn-shadow:       0 1px 0 var(--ob-btn-highlight) inset, 0 0 0 1px var(--ob-btn-edge), 0 10px 30px -8px var(--ob-btn-glow);
+  --ob-btn-shadow-hover: 0 1px 0 var(--ob-btn-highlight) inset, 0 0 0 1px var(--ob-btn-edge-hover), 0 16px 40px -8px var(--ob-btn-glow);
+  /* Secondary button: a tinted pill. Its label identifies it, so the edge may be a hairline. */
+  --ob-btn-2-bg:         rgb(var(--ob-tint-rgb) / .04);
+  --ob-btn-2-bg-hover:   rgb(var(--ob-tint-rgb) / .08);
+  --ob-btn-2-bg-pressed: rgb(var(--ob-tint-rgb) / .11);
+  --ob-btn-2-text:       var(--ob-text);
+  --ob-btn-2-edge:       var(--ob-line-strong);
+  /* Chrome, scrim and selection. */
+  --ob-nav-bg:         rgb(245 244 240 / .82);
+  --ob-scrim:          rgb(28 25 20 / .36);
+  --ob-selection:      rgb(18 18 17 / .14);
+  --ob-selection-text: var(--ob-text);
+  /* Materials. Dark shows depth with lighter surfaces, a 1px top highlight and hairlines. Light shows depth with warm shadow. */
+  --ob-sheen-rgb:     255 255 255;
+  --ob-glow-rgb:      255 255 255;
+  --ob-shadow-rgb:    28 25 20;
+  --ob-sheen:         linear-gradient(180deg, rgb(var(--ob-sheen-rgb) / .6), rgb(var(--ob-sheen-rgb) / 0) 40%);
+  --ob-highlight:     0 1px 0 rgb(var(--ob-sheen-rgb) / .7) inset;
+  --ob-shadow-1:      0 1px 1px rgb(var(--ob-shadow-rgb) / .04), 0 12px 30px -16px rgb(var(--ob-shadow-rgb) / .18);
+  --ob-shadow-2:      0 1px 2px rgb(var(--ob-shadow-rgb) / .06), 0 18px 44px -22px rgb(var(--ob-shadow-rgb) / .24);
+  --ob-shadow-3:      0 1px 1px rgb(var(--ob-shadow-rgb) / .04), 0 30px 70px -36px rgb(var(--ob-shadow-rgb) / .26);
+  --ob-shadow-4:      0 2px 4px rgb(var(--ob-shadow-rgb) / .06), 0 32px 80px -24px rgb(var(--ob-shadow-rgb) / .32);
+  --ob-grain-opacity: .03;
+}
+
+/* Hybrid: glossy-black objects keep the dark set and cast a warm shadow onto the paper. */
+:is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
+  --ob-shadow-2: 0 10px 24px -14px rgb(28 25 20 / .45);
+  --ob-shadow-3: 0 2px 4px rgb(28 25 20 / .08), 0 48px 90px -42px rgb(28 25 20 / .55);
+}
+
+/* No attribute and a light OS: page chrome follows the reader. Brand pages set data-theme="dark". */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"], .ob-theme-dark) {
+    color-scheme: light;
+    /* Surfaces. Dark lifts each level by lightness; light keeps one paper and lifts with shadow. */
+    --ob-bg:             #F5F4F0;
+    --ob-bg-sunken:      #EFEEE9;
+    --ob-surface:        #FCFBF9;
+    --ob-surface-raised: #FCFBF9;
+    --ob-surface-hover:  #EAE8E2;
+    --ob-overlay:        #FCFBF9;
+    --ob-solid:          #121211;
+    --ob-solid-hover:    #2C2B28;
+    /* Hairlines draw layout and stay quiet. Only --ob-line-ui marks a control; it clears 3:1 on every surface. */
+    --ob-line-subtle: #E4E2DC;
+    --ob-line:        #D9D6CE;
+    --ob-line-strong: #BDB9B0;
+    --ob-line-ui:     #87837A;
+    /* Text uses 3 inks. Never set text in a line token. */
+    --ob-text:           #121211;
+    --ob-text-2:         #4D4A44;
+    --ob-text-3:         #67645D;
+    --ob-text-inverse:   #F5F4F0;
+    --ob-text-disabled:  #86837B;
+    --ob-placeholder:    var(--ob-text-3);
+    --ob-link-underline: var(--ob-text-3);
+    /* Focus is one neutral ring in every theme. */
+    --ob-focus: #121211;
+    /* Status. Colour is reserved for state, always paired with text or the square. Marketing pages use danger only. */
+    --ob-danger:     #B42318;
+    --ob-danger-bg:  #FEEBE9;
+    --ob-success:    #2C6D3E;
+    --ob-success-bg: #E7F4E9;
+    --ob-warning:    #8A5410;
+    --ob-warning-bg: #F9EFDA;
+    /* Tints and state layers: the text colour at low alpha, so one rule works on ink and on paper. */
+    --ob-tint-rgb:       18 18 17;
+    --ob-fill-subtle:    rgb(var(--ob-tint-rgb) / .035);
+    --ob-fill:           rgb(var(--ob-tint-rgb) / .06);
+    --ob-state-hover:    rgb(var(--ob-tint-rgb) / .05);
+    --ob-state-pressed:  rgb(var(--ob-tint-rgb) / .08);
+    --ob-state-selected: rgb(var(--ob-tint-rgb) / .06);
+    --ob-state-drag:     rgb(var(--ob-tint-rgb) / .12);
+    /* Fields. The edge does the identifying; the fill stays quiet. */
+    --ob-field-bg:         #FCFBF9;
+    --ob-field-bg-solid:   #FCFBF9;
+    --ob-field-edge:       var(--ob-line-ui);
+    --ob-field-edge-hover: var(--ob-text-3);
+    --ob-track:            var(--ob-line-ui);
+    --ob-track-fill:       var(--ob-solid);
+    --ob-track-bg:         var(--ob-surface);
+    /* Primary button: a paper pill on ink, an ink pill on paper. Vertical gradient, 1px inset highlight, soft glow. */
+    --ob-btn-top:          #2C2B28;
+    --ob-btn-bottom:       #121211;
+    --ob-btn-text:         #F5F4F0;
+    --ob-btn-highlight:    rgb(255 255 255 / .14);
+    --ob-btn-edge:         rgb(18 18 17 / .25);
+    --ob-btn-edge-hover:   rgb(18 18 17 / .4);
+    --ob-btn-glow:         rgb(28 25 20 / .25);
+    --ob-btn-bg:           linear-gradient(180deg, var(--ob-btn-top), var(--ob-btn-bottom));
+    --ob-btn-shadow:       0 1px 0 var(--ob-btn-highlight) inset, 0 0 0 1px var(--ob-btn-edge), 0 10px 30px -8px var(--ob-btn-glow);
+    --ob-btn-shadow-hover: 0 1px 0 var(--ob-btn-highlight) inset, 0 0 0 1px var(--ob-btn-edge-hover), 0 16px 40px -8px var(--ob-btn-glow);
+    /* Secondary button: a tinted pill. Its label identifies it, so the edge may be a hairline. */
+    --ob-btn-2-bg:         rgb(var(--ob-tint-rgb) / .04);
+    --ob-btn-2-bg-hover:   rgb(var(--ob-tint-rgb) / .08);
+    --ob-btn-2-bg-pressed: rgb(var(--ob-tint-rgb) / .11);
+    --ob-btn-2-text:       var(--ob-text);
+    --ob-btn-2-edge:       var(--ob-line-strong);
+    /* Chrome, scrim and selection. */
+    --ob-nav-bg:         rgb(245 244 240 / .82);
+    --ob-scrim:          rgb(28 25 20 / .36);
+    --ob-selection:      rgb(18 18 17 / .14);
+    --ob-selection-text: var(--ob-text);
+    /* Materials. Dark shows depth with lighter surfaces, a 1px top highlight and hairlines. Light shows depth with warm shadow. */
+    --ob-sheen-rgb:     255 255 255;
+    --ob-glow-rgb:      255 255 255;
+    --ob-shadow-rgb:    28 25 20;
+    --ob-sheen:         linear-gradient(180deg, rgb(var(--ob-sheen-rgb) / .6), rgb(var(--ob-sheen-rgb) / 0) 40%);
+    --ob-highlight:     0 1px 0 rgb(var(--ob-sheen-rgb) / .7) inset;
+    --ob-shadow-1:      0 1px 1px rgb(var(--ob-shadow-rgb) / .04), 0 12px 30px -16px rgb(var(--ob-shadow-rgb) / .18);
+    --ob-shadow-2:      0 1px 2px rgb(var(--ob-shadow-rgb) / .06), 0 18px 44px -22px rgb(var(--ob-shadow-rgb) / .24);
+    --ob-shadow-3:      0 1px 1px rgb(var(--ob-shadow-rgb) / .04), 0 30px 70px -36px rgb(var(--ob-shadow-rgb) / .26);
+    --ob-shadow-4:      0 2px 4px rgb(var(--ob-shadow-rgb) / .06), 0 32px 80px -24px rgb(var(--ob-shadow-rgb) / .32);
+    --ob-grain-opacity: .03;
+  }
+}
+
+/* More contrast on request: lightness only, hues held. */
+@media (prefers-contrast: more) {
+  :root,
+  .ob-theme-dark,
+  [data-theme="dark"],
+  :is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
+    --ob-text-2:      #CFCDC5;
+    --ob-text-3:      #B7B5AC;
+    --ob-line-subtle: #2A2927;
+    --ob-line:        #3D3C38;
+    --ob-line-strong: #57564F;
+    --ob-line-ui:     #8C8A83;
+    --ob-text-disabled: #86847E;
+  }
+  .ob-theme-light,
+  [data-theme="light"],
+  .ob-theme-hybrid,
+  [data-theme="hybrid"] {
+    --ob-text-2:      #3A3833;
+    --ob-text-3:      #4D4A44;
+    --ob-line-subtle: #D9D6CE;
+    --ob-line:        #BDB9B0;
+    --ob-line-strong: #A7A398;
+    --ob-line-ui:     #6F6B63;
+    --ob-text-disabled: #706C64;
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"], .ob-theme-dark) {
+    --ob-text-2:      #3A3833;
+    --ob-text-3:      #4D4A44;
+    --ob-line-subtle: #D9D6CE;
+    --ob-line:        #BDB9B0;
+    --ob-line-strong: #A7A398;
+    --ob-line-ui:     #6F6B63;
+    --ob-text-disabled: #706C64;
+  }
+}
+
+/* =============================================================================================
+   SCOPED BASE. Opt-in classes only; nothing here touches a host page's elements.
+   ============================================================================================= */
+
+/* A themed region carries its own ink and paper. */
+.ob-theme-dark,
+.ob-theme-light,
+.ob-theme-hybrid,
+[data-theme]:not(:root) {
+  color: var(--ob-text);
+  background-color: var(--ob-bg);
+}
+
+/* The page shell: put it on <body> or the outermost wrapper. */
+.ob-page {
+  background-color: var(--ob-bg);
+  color: var(--ob-text);
+  font: var(--ob-type-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus is always visible: a 2px outline, never removed without a replacement. */
+:where(.ob-page, .ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) :focus-visible {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+/* Inside clipped or scrolling tracks (tabs, segments, menu rows) draw the ring inside. */
+.ob-focus-inset:focus-visible { outline-offset: var(--ob-focus-offset-inset); }
+/* Pill fields: the wrapper carries the ring while its text field has focus. A button inside keeps its own ring.
+   Without :has() support the input keeps its own ring, so focus is never lost. */
+@supports selector(:has(*)) {
+  .ob-focus-within:has(:is(input, textarea, select):focus-visible) {
+    outline: var(--ob-focus-width) solid var(--ob-focus);
+    outline-offset: var(--ob-focus-offset);
+  }
+  .ob-focus-within :is(input, textarea, select):focus-visible { outline: none; }
+}
+/* Invalid fields: the field edge token turns --ob-danger, so any component drawing its edge from
+   --ob-field-edge follows. Pair it with aria-invalid and a text message; never colour alone. */
+:where(.ob-focus-within:has([aria-invalid="true"]), [aria-invalid="true"]) {
+  --ob-field-edge: var(--ob-danger);
+  --ob-field-edge-hover: var(--ob-danger);
+}
+
+:where(.ob-page, .ob-theme-dark, .ob-theme-light, .ob-theme-hybrid, [data-theme]) ::selection {
+  background: var(--ob-selection);
+  color: var(--ob-selection-text);
+}
+
+.ob-num { font-variant-numeric: tabular-nums; }
+
+/* Product object material: glossy in dark, paper in light, glossy black on paper in hybrid. */
+.ob-object {
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-3);
+}
+
+/* Grain: one fixed overlay per page. Put the class on <body> or the page shell. */
+.ob-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: var(--ob-z-grain);
+  pointer-events: none;
+  opacity: var(--ob-grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: var(--ob-grain-image);
+}
+
+/* The brand square: the bullet, the tick, the caret. Filled = done or ok. Outlined = held, flagged, pending. */
+.ob-sq {
+  display: inline-block;
+  flex: none;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
+  background: currentColor;
+}
+.ob-sq.is-open {
+  background: transparent;
+  box-shadow: 0 0 0 var(--ob-border-strong) currentColor inset;
+}
+.ob-caret {
+  display: inline-block;
+  width: .58em;
+  height: .58em;
+  margin-left: .25em;
+  background: currentColor;
+  animation: ob-sig-blink var(--ob-sig-blink) steps(1, end) 4;
+}
+
+/* Type classes: opt-in. Headings balance, paragraphs avoid orphans. */
+.ob-type-display { font: var(--ob-type-display); letter-spacing: var(--ob-type-display-tracking); text-wrap: balance; }
+.ob-type-h1 { font: var(--ob-type-h1); letter-spacing: var(--ob-type-h1-tracking); text-wrap: balance; }
+.ob-type-h2 { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); text-wrap: balance; }
+.ob-type-h3 { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); text-wrap: balance; }
+.ob-type-title { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); }
+.ob-type-stat { font: var(--ob-type-stat); letter-spacing: var(--ob-type-stat-tracking); font-variant-numeric: tabular-nums; text-wrap: balance; }
+.ob-type-body-lg { font: var(--ob-type-body-lg); letter-spacing: var(--ob-type-body-lg-tracking); text-wrap: pretty; }
+.ob-type-body { font: var(--ob-type-body); letter-spacing: var(--ob-type-body-tracking); text-wrap: pretty; }
+.ob-type-small { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); text-wrap: pretty; }
+.ob-type-label { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); }
+.ob-type-button { font: var(--ob-type-button); letter-spacing: var(--ob-type-button-tracking); }
+.ob-type-caption { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); }
+.ob-type-label-mono { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; }
+.ob-type-mono-sm { font: var(--ob-type-mono-sm); letter-spacing: var(--ob-type-mono-sm-tracking); }
+.ob-type-code { font: var(--ob-type-code); letter-spacing: var(--ob-type-code-tracking); }
+
+/* =============================================================================================
+   THE RING MARK  .ob-sig
+   A thick ring with an upright square cursor cut out at the top right.
+
+   Markup (each instance needs its own mask id):
+   <svg class="ob-sig" viewBox="6 6 88 88" aria-hidden="true">
+     <defs><mask id="ob-sig-m1" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+       <path class="ob-sig-draw" d="M66.5 21.42A33 33 0 1 0 78.58 33.5" fill="none" stroke="#fff" stroke-width="17" pathLength="100"/>
+     </mask></defs>
+     <g class="ob-sig-rot">
+       <path class="ob-sig-ring" mask="url(#ob-sig-m1)" d="M88.458 39A40 40 0 1 1 61 11.542V26.442A26 26 0 1 0 73.558 39Z"/>
+       <path class="ob-sig-gap" d="M61 11.542A40 40 0 0 1 88.458 39H73.558A26 26 0 0 0 61 26.442Z"/>
+       <g class="ob-sig-orb"><path class="ob-sig-sq" d="M66 14h20v20H66Z"/></g>
+     </g>
+   </svg>
+   (The mask stroke is white because a mask reads luminance; it is not a colour.)
+
+   States, one at a time:
+   rest        fully drawn. Use when nothing is happening.
+   .is-play    draws on (1.15s), the square snaps in at .95s and blinks twice. On load and on success.
+   .is-spin    working: the ring turns and the square rides it, upright. Only while real work is pending.
+   .is-lock    done: the square snaps home. Swap in when the work finishes.
+   .is-wait    waiting on someone else: the square blinks like a cursor, 4 times, then holds.
+   .is-needs   needs you: the square goes hollow and pulses twice, then holds hollow.
+   .is-landed  money landed: the cut closes and the square comes home to the centre.
+   .is-idle    rest loop: turns once, square blinks. Runs --ob-sig-idle-count times (1 by default).
+               A higher count needs a pause control (WCAG 2.2.2).
+   ============================================================================================= */
+.ob-sig {
+  display: block;
+  flex: none;
+  width: var(--ob-sig-size, 1em);
+  height: var(--ob-sig-size, 1em);
+  overflow: visible;
+}
+.ob-sig :is(.ob-sig-ring, .ob-sig-sq, .ob-sig-gap) { fill: currentColor; }
+.ob-sig .ob-sig-rot { transform-origin: 50px 50px; }
+.ob-sig :is(.ob-sig-orb, .ob-sig-sq) { transform-box: fill-box; transform-origin: center; }
+.ob-sig .ob-sig-gap { opacity: 0; transition: opacity var(--ob-dur-slow) var(--ob-ease); }
+.ob-sig .ob-sig-sq { transition: transform var(--ob-sig-land) var(--ob-ease); }
+
+.ob-sig.is-play .ob-sig-draw {
+  stroke-dasharray: 100;
+  animation: ob-sig-draw var(--ob-sig-draw) var(--ob-ease-draw) both;
+}
+.ob-sig.is-play .ob-sig-sq {
+  animation:
+    ob-sig-snap var(--ob-sig-snap) var(--ob-snap) var(--ob-sig-snap-delay) both,
+    ob-sig-blink var(--ob-sig-blink) steps(1, end) var(--ob-sig-blink-delay) 2;
+}
+.ob-sig.is-spin .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-spin) linear infinite; }
+.ob-sig.is-spin .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-spin) linear infinite; }
+.ob-sig.is-lock .ob-sig-sq  { animation: ob-sig-snap var(--ob-sig-lock) var(--ob-snap) both; }
+.ob-sig.is-wait .ob-sig-sq  { animation: ob-sig-blink var(--ob-sig-wait) steps(1, end) 4; }
+.ob-sig.is-needs .ob-sig-sq {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 6.6px;
+  transform: scale(.75);
+  animation: ob-sig-pulse var(--ob-sig-pulse) ease-in-out 2;
+}
+.ob-sig.is-landed .ob-sig-gap { opacity: 1; transition-delay: var(--ob-sig-land-delay); }
+.ob-sig.is-landed .ob-sig-sq  { transform: translate(-26px, 26px) scale(.8); }
+.ob-sig.is-idle .ob-sig-rot { animation: ob-sig-idle var(--ob-sig-idle) var(--ob-ease) var(--ob-sig-idle-count); }
+.ob-sig.is-idle .ob-sig-orb { animation: ob-sig-idle-rev var(--ob-sig-idle) var(--ob-ease) var(--ob-sig-idle-count); }
+.ob-sig.is-idle .ob-sig-sq  { animation: ob-sig-idle-blink var(--ob-sig-idle) linear var(--ob-sig-idle-count); }
+/* Brand link hover: one turn. Put .ob-sig-host on the link that holds the mark. */
+@media (hover: hover) {
+  .ob-sig-host:hover .ob-sig .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-turn) var(--ob-ease) 1; }
+  .ob-sig-host:hover .ob-sig .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-turn) var(--ob-ease) 1; }
+}
+
+@keyframes ob-sig-draw      { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes ob-sig-snap      { from { transform: translate(28%, -28%) scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ob-sig-blink     { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes ob-sig-pulse     { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
+@keyframes ob-sig-spin      { to { transform: rotate(360deg); } }
+@keyframes ob-sig-spin-rev  { to { transform: rotate(-360deg); } }
+@keyframes ob-sig-idle      { 0%, 76% { transform: rotate(0); } 94%, 100% { transform: rotate(360deg); } }
+@keyframes ob-sig-idle-rev  { 0%, 76% { transform: rotate(0); } 94%, 100% { transform: rotate(-360deg); } }
+@keyframes ob-sig-idle-blink {
+  0%, 7.9% { opacity: 1; } 8%, 13.9% { opacity: 0; } 14%, 19.9% { opacity: 1; } 20%, 25.9% { opacity: 0; } 26%, 100% { opacity: 1; }
+}
+
+
+/* =============================================================================================
+   REDUCED MOTION: no movement, no blink, no spin. Fades of 160ms or less stay. The mark renders drawn.
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ob-dur-moderate: 160ms;
+    --ob-dur-slow: 160ms;
+    --ob-dur-reveal: 160ms;
+    --ob-rise: 0px;
+    --ob-lift: 0px;
+    --ob-press-scale: 1;
+    --ob-press-scale-sm: 1;
+    --ob-delay-tick: 0ms;
+    --ob-delay-label: 0ms;
+    --ob-switch-stretch: 1;
+  }
+  .ob-sig *,
+  .ob-sig-host:hover .ob-sig * { animation: none !important; transition: none !important; }
+  .ob-caret { animation: none; }
+}
+
+/* =============================================================================================
+   FORCED COLOURS: box-shadow edges vanish, so objects and the mark fall back to system ink.
+   ============================================================================================= */
+@media (forced-colors: active) {
+  .ob-object { border: 1px solid CanvasText; }
+  .ob-sig :is(.ob-sig-ring, .ob-sig-sq, .ob-sig-gap) { fill: CanvasText; }
+  .ob-sig.is-needs .ob-sig-sq { fill: none; stroke: CanvasText; }
+  .ob-sq { background: CanvasText; }
+  .ob-sq.is-open { background: transparent; border: 1.5px solid CanvasText; box-shadow: none; }
+}

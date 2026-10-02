@@ -1,0 +1,165 @@
+/* app-winback: Accounts, filtered to "Lost to a rival". Sales wins back the account it lost.
+   Left top: the 4 lost accounts, the month each left and the date it renews with the rival (mono).
+   Left below: the selected account's 9 months on the rival, Jan to Sep. A declared test customer re-walks its emails
+   and texts every 2 weeks: each small dot is a check that passed, each solid square a dated break, pinned to its capture.
+   Right: the reopen note, drafted from those 3 breaks, sent only after your OK. The toast docks under it.
+   Story: the line draws left to right through the checks, the 3 breaks pop in with their captures, the note types
+   its first line and the cited breaks land, the account turns needs you, Needs you counts 3 to 4, the toast.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38; left column 300 wide: table 50..178 (24 + 4 x 25),
+   timeline 190..400; right column 216 wide: note 50..344, toast 356..400.
+   Rest state (no .play) = the finished scene. */
+
+.app-winback .ax-main{grid-template-columns:minmax(0,1fr) 216px;grid-template-rows:24px 128px minmax(0,1fr);align-content:stretch;gap:12px 12px;padding:14px}
+.app-winback .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-winback .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked states: only the last child shows at rest */
+.app-winback .wb-nb,.app-winback .wb-ns,.app-winback .wb-stk{display:inline-grid}
+.app-winback .wb-nb>*,.app-winback .wb-ns>*,.app-winback .wb-stk>*{grid-area:1/1}
+.app-winback .wb-nb b{font-weight:inherit}
+.app-winback .wb-nb>:first-child,.app-winback .wb-ns>:first-child,.app-winback .wb-stk>:first-child{opacity:0}
+
+/* ---------- header: the page and its filter ---------- */
+.app-winback .wb-h{grid-column:1 / -1;display:flex;align-items:center;gap:10px;height:24px}
+.app-winback .wb-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg)}
+.app-winback .wb-flt{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 7px 0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg);white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-winback .wb-flt svg{width:12px;height:12px;color:var(--fg-2)}
+.app-winback .wb-flt i{font-style:normal;font-weight:400;font-size:12px;color:var(--fg-3);margin-left:2px}
+.app-winback .wb-ct{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:5px;font:500 10.5px/1 var(--mono);color:var(--fg-2);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-winback .wb-ev{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+
+/* ---------- the 4 lost accounts ---------- */
+.app-winback .wb-tb{grid-column:1;grid-row:2;display:grid;align-content:start;padding:0 4px 4px}
+.app-winback .wb-r{display:grid;grid-template-columns:12px minmax(0,1fr) 44px 92px;column-gap:8px;align-items:center;height:25px;padding:0 8px;border-radius:6px}
+.app-winback .wb-r>span{min-width:0;white-space:nowrap}
+.app-winback .wb-hd{height:24px;margin:0 -4px;padding:0 12px;border-radius:0;box-shadow:0 -1px 0 var(--line) inset;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-winback .wb-r.on{background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-winback .wb-r .sig{width:12px;height:12px;color:var(--fg-2)}
+.ilwrap .app-winback .wb-r.on .sig{color:var(--fg)}
+.app-winback .wb-nm{font:500 11.5px/1 var(--sans);color:var(--fg-2)}
+.app-winback .wb-r.on .wb-nm{color:var(--fg)}
+.app-winback .wb-m{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-winback .wb-r.on .wb-m{color:var(--fg-2)}
+.app-winback .wb-r.on .wb-m:last-child{color:var(--fg);font-weight:500}
+
+/* ---------- the timeline: 9 months on the rival ---------- */
+.app-winback .wb-tl{grid-column:1;grid-row:3;display:flex;flex-direction:column;padding:12px;min-height:0}
+.app-winback .wb-th{display:flex;align-items:baseline;gap:8px;height:16px;white-space:nowrap}
+.app-winback .wb-th b{font:600 12px/16px var(--sans);color:var(--fg)}
+.app-winback .wb-th span{font-size:11px;line-height:16px;color:var(--fg-3)}
+
+.app-winback .wb-strip{margin-top:10px}
+.app-winback .wb-mo{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));height:12px}
+.app-winback .wb-mo span{font:400 10.5px/12px var(--mono);color:var(--fg-3);text-align:center}
+.app-winback .wb-tr{position:relative;height:14px;margin-top:6px}
+.app-winback .wb-tr i{position:absolute;display:block}
+.app-winback .wb-rail{left:4.03%;right:0;top:6px;height:2px;border-radius:1px;background:rgb(var(--fg-rgb) / .08)}
+.app-winback .wb-line{left:4.03%;right:0;top:6px;height:2px;border-radius:1px;background:rgb(var(--fg-rgb) / .3);transform-origin:0 50%}
+.app-winback .wb-start{left:4.03%;top:2px;width:2px;height:10px;margin-left:-1px;border-radius:1px;background:var(--fg-2)}
+.app-winback .wb-dot{left:calc(var(--p) * 1%);top:4.5px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--fg-3);box-shadow:0 0 0 2px var(--panel-2)}
+.app-winback .wb-mk{left:calc(var(--p) * 1%);top:2px;width:10px;height:10px;margin-left:-5px;border-radius:2.5px;background:var(--fg);box-shadow:0 0 0 2px var(--panel-2);z-index:1}
+.app-winback .wb-pin{left:calc(var(--p) * 1%);top:12px;width:1px;height:14px;margin-left:-.5px;background:var(--line-ui);transform-origin:50% 0}
+
+/* captures: what the test customer saw at each break */
+.app-winback .wb-caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.app-winback .wb-caps figure{margin:0;display:grid;gap:6px;min-width:0}
+.app-winback .wb-caps .ax-shot{height:50px;grid-template-rows:7px 1fr}
+.app-winback .wb-caps figcaption{display:grid;gap:1px;white-space:nowrap}
+.app-winback .wb-caps figcaption b{font:500 10.5px/13px var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-winback .wb-caps figcaption span{font-size:10.5px;line-height:13px;color:var(--fg-3)}
+.app-winback .wb-pg{display:grid;align-content:center;gap:5px;padding:4px 7px 5px;min-height:0}
+.app-winback .wb-pg b{font:600 10.5px/12px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-winback .wb-c1 .wb-it{display:grid;grid-template-columns:10px minmax(0,1fr);align-items:center;gap:5px}
+.app-winback .wb-c1 .wb-tile{width:10px;height:10px;border-radius:2px;background:#D8C4B6}
+.app-winback .wb-c1 .wb-bar{width:70%;height:4px}
+.app-winback .wb-c1 .wb-wait{height:0;border-radius:0;background:none;border-top:1px dashed #A8A398}
+.app-winback .wb-c2{gap:4px}
+.app-winback .wb-c2 span{display:inline-flex;align-items:center;height:14px;padding:0 6px;border-radius:7px;white-space:nowrap}
+.app-winback .wb-c2 .wb-out{justify-self:end;font:500 10.5px/1 var(--mono);color:#F6F5F1;background:#3A3834}
+.app-winback .wb-c2 .wb-inb{justify-self:start;font:500 10.5px/1 var(--sans);color:#46433D;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-winback .wb-c3 .wb-fld{display:flex;align-items:center;height:14px;padding:0 5px;border-radius:3px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-winback .wb-c3 s{font:400 10.5px/1 var(--mono);color:#77736B;text-decoration-color:#77736B}
+
+/* the declared agent */
+.app-winback .wb-by{display:flex;align-items:center;gap:6px;height:14px;margin-top:auto;font:400 10.5px/14px var(--mono);color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-winback .wb-by .sig{width:10px;height:10px;color:var(--fg-2)}
+
+/* ---------- the reopen note ---------- */
+.app-winback .wb-note{grid-column:2;grid-row:2 / 4;margin-bottom:56px;display:flex;flex-direction:column;align-items:stretch;padding:12px;min-width:0;min-height:0}
+.app-winback .wb-nh{display:flex;align-items:center;gap:6px;height:16px;white-space:nowrap}
+.ilwrap .app-winback .wb-nh .wb-ic{width:14px;height:14px;margin-right:1px;color:var(--fg-2)}
+.app-winback .wb-nh b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-winback .wb-sep{font-size:11.5px;color:var(--fg-3)}
+.app-winback .wb-ns{font-size:11.5px;line-height:16px;color:var(--fg-3)}
+.app-winback .wb-to{display:grid;gap:2px;margin:10px 0 0;padding-bottom:10px;box-shadow:0 -1px 0 var(--line) inset}
+.app-winback .wb-to>div{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:baseline;height:16px;white-space:nowrap}
+.app-winback .wb-to dt{font-size:10.5px;line-height:16px;color:var(--fg-3)}
+.app-winback .wb-to dd{margin:0;font-size:11px;line-height:16px;color:var(--fg-2)}
+.app-winback .wb-to .wb-sj{font-weight:500;font-size:11.5px;color:var(--fg)}
+.app-winback .wb-bd{margin-top:10px}
+.app-winback .wb-ask{position:relative}
+.app-winback .wb-ask>span{display:inline-block}
+.app-winback .wb-hi,.app-winback .wb-ask{height:18px;font-size:11.5px;line-height:18px;color:var(--fg);white-space:nowrap}
+.app-winback .wb-ty{display:inline-block;max-width:180px;overflow:hidden;vertical-align:top;padding-right:2px;border-right:1.5px solid transparent}
+.app-winback .wb-ci{display:grid;margin:4px 0}
+.app-winback .wb-ci li{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;height:20px;white-space:nowrap}
+.app-winback .wb-ci time{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-winback .wb-ci span{font-size:11.5px;line-height:20px;color:var(--fg)}
+/* skeleton bars: seen only while the note drafts during play */
+.app-winback .wb-sk{position:absolute;left:48px;top:50%;width:var(--w);height:6px;margin-top:-3px;border-radius:3px;background:rgb(var(--fg-rgb) / .09);opacity:0}
+.app-winback .wb-ask .wb-sk{left:0}
+.app-winback .wb-att{align-self:flex-start;margin-top:12px}
+.ilwrap .app-winback .wb-att svg{width:11px;height:11px;color:var(--fg-3)}
+.app-winback .wb-nf{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:10px;box-shadow:0 1px 0 var(--line) inset}
+.app-winback .wb-hint{display:inline-flex;align-items:center;gap:6px;margin-right:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-winback .wb-hint svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* ---------- toast: docked under the note ---------- */
+.app-winback .wb-toast{width:216px;gap:9px;padding:9px 12px}
+.app-winback .wb-toast p{white-space:nowrap;line-height:15px}
+.app-winback .wb-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes wb-draw{from{transform:scaleX(0)}to{transform:none}}
+@keyframes wb-dot{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes wb-mk{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:none}}
+@keyframes wb-pin{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+@keyframes wb-cap{from{opacity:0;transform:translateY(4px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes wb-show{from{opacity:0}to{opacity:1}}
+@keyframes wb-hide{from{opacity:1}to{opacity:0}}
+@keyframes wb-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes wb-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes wb-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes wb-type{from{max-width:0}to{max-width:180px}}
+@keyframes wb-caret{0%,100%{border-right-color:transparent}1%,94%{border-right-color:var(--fg)}}
+@keyframes wb-glow{0%{background-color:rgb(var(--fg-rgb) / .07)}35%{background-color:rgb(var(--fg-rgb) / .13)}100%{background-color:rgb(var(--fg-rgb) / .07)}}
+
+/* 1. the 9 months draw left to right; each check lands as the line passes it */
+.appx-il.play.app-winback .wb-line{animation:wb-draw 2s linear .7s both}
+.appx-il.play.app-winback .wb-start{animation:wb-pop .35s var(--snap) .62s both}
+.appx-il.play.app-winback .wb-dot{animation:wb-dot .32s var(--snap) var(--t) both}
+
+/* 2. the 3 breaks pop in and drop their captures */
+.appx-il.play.app-winback .wb-mk{animation:wb-mk .45s var(--snap) var(--t) both}
+.appx-il.play.app-winback .wb-pin{animation:wb-pin .26s var(--ease) calc(var(--t) + .12s) both}
+.appx-il.play.app-winback .wb-caps figure{animation:wb-cap .45s var(--ease) calc(var(--t) + .22s) both}
+.appx-il.play.app-winback .wb-by{animation:wb-show .4s var(--ease) 2.7s both}
+
+/* 3. the note types its first line, then cites each break */
+.appx-il.play.app-winback .wb-hi{animation:wb-show .12s linear 2.95s both}
+.appx-il.play.app-winback .wb-ty{animation:wb-type .7s steps(25,end) 2.95s both,wb-caret 1s linear 2.95s both}
+.appx-il.play.app-winback .wb-sk{animation:wb-show .3s var(--ease) .9s both,wb-hide .2s var(--ease) var(--d) forwards}
+.appx-il.play.app-winback .wb-ci li>:not(.wb-sk),.appx-il.play.app-winback .wb-ask>span{animation:wb-in .4s var(--ease) var(--d) both}
+.appx-il.play.app-winback .wb-att{animation:wb-in .4s var(--ease) 4.28s both}
+.appx-il.play.app-winback .wb-nf{animation:wb-in .4s var(--ease) 4.4s both}
+.appx-il.play.app-winback .wb-ns .a{animation:wb-show .01s linear both,wb-hide .25s var(--ease) 4.5s forwards}
+.appx-il.play.app-winback .wb-ns .b{animation:wb-show .3s var(--ease) 4.54s both}
+
+/* 4. the account needs you: its mark goes hollow, Needs you counts 3 to 4, the toast */
+.appx-il.play.app-winback .wb-stk .v0{animation:wb-show .01s linear both,wb-hide .2s var(--ease) 4.56s forwards}
+.appx-il.play.app-winback .wb-stk .v1{animation:wb-pop .45s var(--snap) 4.58s both}
+.appx-il.play.app-winback .wb-r.on{animation:ax-in .55s var(--ease) .12s both,wb-glow 1.2s var(--ease) 4.56s both}
+.appx-il.play.app-winback .wb-nb b:first-child{animation:wb-show .01s linear both,wb-out .25s var(--ease) 4.62s forwards}
+.appx-il.play.app-winback .wb-nb b:last-child{animation:wb-in .3s var(--ease) 4.66s both}
+.appx-il.play.app-winback .wb-toast{animation:ax-in .55s var(--ease) 4.78s both}

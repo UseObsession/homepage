@@ -1,0 +1,145 @@
+/* app-switch: Signals, for founders. "After the switch".
+   Left: the feed of public signals about companies on your list. The new one, "30 switched email tool", ticks in on top
+   and is selected. Right: 1 labelled test customer per switched company (joined within 24 h), each with a day 1 to 7 strip:
+   a filled dot = an email arrived that day, a hollow ring = nothing came.
+   Story: the feed ticks in, the strips fill day by day as a wave down both columns, 6 strips stop after day 1 to 3,
+   those 6 rows flag "Welcome series stopped after switch", the check closes, a toast offers 6 drafted openers.
+   Geometry (design px, main 556 x 414): feed 0..192, detail 192..556 (padding 12 14), header 12..36, card 48..338
+   (ruler 18, 15 rows of 16 per column, footer 26), toast bottom-right 14 in, 45 tall (top 355).
+   Rest state (no .play) = the finished scene. */
+@property --appswitch-n{syntax:"<integer>";inherits:false;initial-value:30}
+
+.app-switch .ax-main{grid-template-columns:192px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
+.app-switch .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-switch .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked values: only the last child shows at rest */
+.app-switch .sw-nb{display:inline-grid}
+.app-switch .sw-nb b{grid-area:1/1;font-weight:inherit}
+.app-switch .sw-nb b:first-child{opacity:0}
+
+/* ---------- the feed ---------- */
+.app-switch .sw-feed{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:12px 6px;border-right:1px solid var(--line);min-width:0;min-height:0}
+.app-switch .sw-fh{display:flex;align-items:center;gap:8px;height:24px;padding:0 8px 0 9px}
+.app-switch .sw-fh h2{font:600 15px/1 var(--display);letter-spacing:-.02em}
+.app-switch .sw-cnt{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:5px;font:500 10.5px/1 var(--mono);color:var(--fg-2);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-switch .sw-pub{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-switch .sw-list{display:grid;gap:2px;align-content:start}
+.app-switch .sw-new{display:grid;grid-template-rows:1fr}
+.app-switch .sw-clip{min-height:0;overflow:hidden}
+.app-switch .sw-it{display:grid;justify-items:stretch;gap:3px;padding:9px 9px 9px 10px;border-radius:8px}
+.app-switch .sw-it.on{background:rgb(var(--fg-rgb) / .08);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-switch .sw-t{font:500 11.5px/16px var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-switch .sw-it.on .sw-t{color:var(--fg)}
+.app-switch .sw-n{font-weight:inherit;font-variant-numeric:tabular-nums;counter-reset:appswitch-n var(--appswitch-n)}
+.app-switch .sw-n::before{content:counter(appswitch-n)}
+.app-switch .sw-m{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font:400 10.5px/14px var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-switch .sw-src{justify-self:start;margin-top:4px}
+
+/* watching your list, pinned to the bottom of the feed */
+.app-switch .sw-watch{display:flex;align-items:center;gap:10px;margin:0 3px;padding:9px 10px;border-radius:8px;background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line) inset}
+.app-switch .sw-watch p{font-size:11px;line-height:15px;color:var(--fg-2);white-space:nowrap}
+.app-switch .sw-watch .sw-wm{font:400 10.5px/14px var(--mono);color:var(--fg-3)}
+
+/* ---------- the detail ---------- */
+.app-switch .sw-det{display:grid;align-content:start;gap:12px;padding:12px 14px 14px;min-width:0}
+.app-switch .sw-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-switch .sw-mk{display:grid}
+.app-switch .sw-mk .sig{grid-area:1/1}
+.ilwrap .app-switch .sw-mk .sig{width:16px;height:16px;color:var(--fg)}
+.app-switch .sw-mk .w0{opacity:0}
+.app-switch .sw-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-switch .sw-j{margin-left:auto}
+
+/* the table: 2 columns of 15, each row a company, its strip and its flag */
+.app-switch .sw-tb{padding:2px 9px 0;display:grid}
+.app-switch .sw-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:10px;padding-bottom:2px}
+.app-switch .sw-col{position:relative;display:grid;align-content:start;min-width:0}
+.app-switch .sw-col + .sw-col::before{content:"";position:absolute;left:-5px;top:6px;bottom:2px;width:1px;background:var(--line)}
+.app-switch .sw-ru,.app-switch .sw-r{display:grid;grid-template-columns:minmax(0,1fr) 66px 10px;column-gap:4px;align-items:center;padding:0 4px}
+.app-switch .sw-ru{height:18px;margin-bottom:2px;box-shadow:0 -1px 0 var(--line) inset;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-switch .sw-days,.app-switch .sw-s{display:grid;grid-template-columns:repeat(7,6px);column-gap:4px;align-items:center}
+.app-switch .sw-days b{display:block;width:10px;margin:0 -2px;text-align:center;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-switch .sw-r{height:16px;border-radius:4px}
+.app-switch .sw-nm{font-size:11px;line-height:16px;color:var(--fg-2);white-space:nowrap;overflow:hidden}
+
+/* a day: filled = an email arrived, ring = nothing came; the faint pip is a day not yet lived */
+.app-switch .sw-s i{position:relative;display:block;width:6px;height:6px}
+.app-switch .sw-s i::before{content:"";position:absolute;left:2px;top:2px;width:2px;height:2px;border-radius:50%;background:rgb(var(--fg-rgb) / .24)}
+.app-switch .sw-s i::after{content:"";position:absolute;inset:0;border-radius:50%;background:rgb(var(--fg-rgb) / .5)}
+.app-switch .sw-s i.x::before{opacity:0}
+.app-switch .sw-s i.x::after{background:none;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-switch .sw-s i:nth-child(1){--t:1.25s}
+.app-switch .sw-s i:nth-child(2){--t:1.55s}
+.app-switch .sw-s i:nth-child(3){--t:1.85s}
+.app-switch .sw-s i:nth-child(4){--t:2.15s}
+.app-switch .sw-s i:nth-child(5){--t:2.45s}
+.app-switch .sw-s i:nth-child(6){--t:2.75s}
+.app-switch .sw-s i:nth-child(7){--t:3.05s}
+.app-switch .sw-days b:nth-child(1){--t:1.25s}
+.app-switch .sw-days b:nth-child(2){--t:1.55s}
+.app-switch .sw-days b:nth-child(3){--t:1.85s}
+.app-switch .sw-days b:nth-child(4){--t:2.15s}
+.app-switch .sw-days b:nth-child(5){--t:2.45s}
+.app-switch .sw-days b:nth-child(6){--t:2.75s}
+.app-switch .sw-days b:nth-child(7){--t:3.05s}
+
+/* the 6 flagged rows */
+.app-switch .sw-r.br{background:rgb(var(--fg-rgb) / .065)}
+.app-switch .sw-r.br .sw-nm{color:var(--fg);font-weight:500}
+.ilwrap .app-switch .sw-r .sig{width:10px;height:10px;color:var(--fg)}
+
+/* the finding, under the table */
+.app-switch .sw-ft{display:flex;align-items:center;gap:7px;height:26px;margin:0 -9px;padding:0 13px;box-shadow:0 1px 0 var(--line) inset}
+.ilwrap .app-switch .sw-ft .sig{width:12px;height:12px;color:var(--fg)}
+.app-switch .sw-ft b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-switch .sw-ft .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+
+/* toast */
+.app-switch .sw-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-switch .sw-toast p{white-space:nowrap;line-height:15px}
+.app-switch .sw-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+.app-switch .sw-toast .ax-btn{margin-left:4px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes sw-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes sw-count{from{--appswitch-n:0}to{--appswitch-n:30}}
+@keyframes sw-sel{from{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px transparent inset}}
+@keyframes sw-dot{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes sw-show{from{opacity:0}to{opacity:1}}
+@keyframes sw-hide{from{opacity:1}to{opacity:0}}
+@keyframes sw-tick{0%{color:var(--fg-3)}30%{color:var(--fg)}100%{color:var(--fg-3)}}
+@keyframes sw-flag{0%{background-color:rgb(var(--fg-rgb) / 0)}40%{background-color:rgb(var(--fg-rgb) / .13)}100%{background-color:rgb(var(--fg-rgb) / .065)}}
+@keyframes sw-name{from{color:var(--fg-2);font-weight:400}}
+@keyframes sw-pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:none}}
+@keyframes sw-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes sw-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes sw-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+
+/* 1. the feed ticks in: the new signal opens on top, counts to 30, and is selected */
+.appx-il.play.app-switch .sw-new{animation:sw-open .55s var(--ease) .3s both}
+.appx-il.play.app-switch .sw-new .sw-it{animation:sw-show .45s var(--ease) .42s both,sw-sel .4s var(--ease) .78s both}
+.appx-il.play.app-switch .sw-n{animation:sw-count .9s var(--ease) .4s both}
+
+/* 2. the strips fill day by day, a wave down both columns; days with nothing turn to rings */
+.appx-il.play.app-switch .sw-s i::after{animation:sw-dot .38s var(--snap) calc(var(--t) + var(--r) * 14ms) both}
+.appx-il.play.app-switch .sw-s i.x::after{animation:sw-show .35s var(--ease) calc(var(--t) + var(--r) * 14ms) both}
+.appx-il.play.app-switch .sw-s i.x::before{animation:sw-hide .35s var(--ease) calc(var(--t) + var(--r) * 14ms) both}
+.appx-il.play.app-switch .sw-days b{animation:sw-tick .7s var(--ease) var(--t) both}
+
+/* 3. day 7 lands: the check's mark closes */
+.appx-il.play.app-switch .sw-mk .w0{animation:sw-hide .25s var(--ease) 3.5s both}
+.appx-il.play.app-switch .sw-mk .w1{animation:sw-show .25s var(--ease) 3.5s both}
+.appx-il.play.app-switch .sw-mk .w1 .sig-sq{animation:sw-home .6s var(--snap) 3.55s both}
+.appx-il.play.app-switch .sw-mk .w1 .sig-gap{animation:sw-show .35s var(--ease) 3.75s both}
+
+/* 4. the 6 broken strips flag, top to bottom, and the finding reads out */
+.appx-il.play.app-switch .sw-r.br{animation:sw-flag .9s var(--ease) var(--f) both}
+.appx-il.play.app-switch .sw-r.br .sw-nm{animation:sw-name .4s var(--ease) var(--f) both}
+.appx-il.play.app-switch .sw-r.br .sig{animation:sw-pop .45s var(--snap) var(--f) both}
+.appx-il.play.app-switch .sw-ft{animation:sw-in .5s var(--ease) 4.05s both}
+
+/* 5. the openers are drafted: the toast, and Needs you counts 3 to 4 */
+.appx-il.play.app-switch .sw-toast{animation:ax-in .55s var(--ease) 4.6s both}
+.appx-il.play.app-switch .sw-nb b:first-child{animation:sw-show .01s linear both,sw-out .25s var(--ease) 4.7s forwards}
+.appx-il.play.app-switch .sw-nb b:last-child{animation:sw-in .3s var(--ease) 4.74s both}

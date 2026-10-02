@@ -1,0 +1,145 @@
+/* app-brief: Accounts. A rep's brief for Friday's call, built by being the account's customer for 7 days, not by searching.
+   Left, the hero: what a customer of Larchwise actually gets, seen by a declared agent who joined their trial and asked only their bot.
+   Right, quieter: the public signals anyone can read. Bottom: the talking points, drafted.
+   Story: the 7 days fill, 3 findings land with their marks, signals pop in, talking points type,
+   the brief's mark closes, the pointer clicks Add to CRM, a signed toast confirms. Rest state = finished scene. */
+
+.app-brief .ax-main{grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch;gap:12px}
+.app-brief .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-brief .ax-clients a.on i{background:var(--fg-2)}
+.app-brief .ax-clients a em{margin-left:auto;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+
+/* ---------- header ---------- */
+.app-brief .br-h{display:grid;grid-template-columns:16px minmax(0,1fr) auto;column-gap:10px;align-items:start}
+.app-brief .br-mk{display:grid;margin-top:2px}
+.app-brief .br-mk .sig{grid-area:1/1}
+.ilwrap .app-brief .br-mk .sig{width:16px;height:16px;color:var(--fg)}
+.app-brief .br-mk .w0{opacity:0}
+.app-brief .br-h h2{font:600 16px/20px var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-brief .br-h h2 i{font-style:normal;font-weight:500;color:var(--fg-3);margin:0 1px}
+.app-brief .br-h h2 span{color:var(--fg-2);font-weight:500}
+.app-brief .br-sub{display:flex;align-items:center;gap:10px;margin-top:3px;font-size:11.5px;line-height:16px;color:var(--fg-3);white-space:nowrap}
+.app-brief .br-days{display:flex;gap:3px}
+.app-brief .br-days i{width:7px;height:7px;border-radius:2px;background:transparent;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-brief .br-days i.hit{background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+.app-brief .br-ready{display:flex;align-items:center;gap:8px;height:20px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-brief .br-ready time{font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+
+/* ---------- the two columns ---------- */
+.app-brief .br-grid{display:grid;grid-template-columns:minmax(0,1fr) 176px;gap:12px;min-height:0}
+.app-brief .br-fd,.app-brief .br-sg{display:flex;flex-direction:column;padding:10px 12px 4px;min-height:0}
+.app-brief .br-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;height:29px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.app-brief .br-hd b{font:600 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-brief .br-hd span{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-brief .br-fd ul,.app-brief .br-sg ul{flex:1;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));min-height:0}
+
+/* findings */
+.app-brief .br-f{display:grid;grid-template-columns:12px minmax(0,1fr) 62px;column-gap:10px;align-items:center}
+.app-brief .br-f + .br-f{box-shadow:0 -1px 0 var(--line)}
+.ilwrap .app-brief .br-f .sig{width:12px;height:12px;align-self:start;margin-top:17px;color:var(--fg)}
+.app-brief .br-ft{display:grid;gap:3px;min-width:0}
+.app-brief .br-k{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:10.5px;line-height:14px;color:var(--fg-3);white-space:nowrap}
+.app-brief .br-k time{font:400 10.5px/14px var(--mono);font-variant-numeric:tabular-nums}
+.app-brief .br-v{font:500 12px/16px var(--sans);color:var(--fg);white-space:nowrap;letter-spacing:-.006em}
+
+/* captures: what the trial customer saw */
+.app-brief .br-cap{width:62px;height:42px}
+.app-brief .br-cap .cb{display:grid;min-height:0;padding:5px 6px}
+.app-brief .cap-mail .cb{grid-template-rows:repeat(3,5px);align-content:center;gap:5px}
+.app-brief .cap-mail .r{display:grid;grid-template-columns:5px minmax(0,1fr);gap:4px;align-items:center}
+.app-brief .cap-mail .a{height:5px;border-radius:1.5px;background:#8C887F}
+.app-brief .cap-mail .l{height:4px;width:90%}
+.app-brief .cap-mail .l.s{width:66%}
+.app-brief .cap-mail .r.e .a,.app-brief .cap-mail .r.e .l{background:none;outline:1px dashed #A8A398;outline-offset:-1px}
+.app-brief .cap-mail .r.e .l{height:5px;width:80%}
+.app-brief .cap-price .cb{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:4px 5px}
+.app-brief .cap-price .pl{display:grid;grid-template-rows:3px 5px 3px 3px;gap:3px;align-content:start;padding:4px 3px;border-radius:2px;background:#F6F5F1;box-shadow:0 0 0 1px #D2CEC6 inset}
+.app-brief .cap-price .n{width:70%}
+.app-brief .cap-price .p{background:#8C887F}
+.app-brief .cap-price .l:last-child{width:70%}
+.app-brief .cap-price .pl.on{box-shadow:0 0 0 1px #3A3834 inset}
+.app-brief .cap-price .pl.on .p{background:#3A3834}
+.app-brief .cap-chat .cb{grid-template-rows:repeat(4,5px);align-content:center;gap:3px;padding:4px 6px}
+.app-brief .cap-chat .q{justify-self:end;width:52%;height:5px;border-radius:3px;background:#8C887F}
+.app-brief .cap-chat .q.s{width:40%}
+.app-brief .cap-chat .a{width:70%;height:5px;border-radius:3px;background:#F6F5F1;box-shadow:0 0 0 1px #C9C5BC inset}
+.app-brief .cap-chat .a.x{box-shadow:0 0 0 1px #3A3834 inset}
+
+/* signals */
+.app-brief .br-s{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:10px;align-items:center}
+.app-brief .br-s + .br-s{box-shadow:0 -1px 0 var(--line)}
+.app-brief .br-ic{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;color:var(--fg-2);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-brief .br-ic svg{width:14px;height:14px}
+.app-brief .br-s > div{display:grid;gap:3px;min-width:0}
+.app-brief .br-s p{font:500 11.5px/16px var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-brief .br-s p.src{font:400 10.5px/14px var(--mono);color:var(--fg-3)}
+
+/* ---------- talking points ---------- */
+.app-brief .br-tp{display:grid;gap:8px;padding:10px 12px 11px}
+.app-brief .br-tp-h{display:flex;align-items:center;gap:6px;height:24px}
+.app-brief .br-tp-h b{font:600 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-brief .br-sep{color:var(--fg-3);font-size:11.5px}
+.app-brief .br-st{display:inline-grid;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-brief .br-st > span{grid-area:1/1}
+.app-brief .br-st .a{opacity:0}
+.app-brief .br-acts{margin-left:auto;display:flex;gap:6px}
+.app-brief .br-acts .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-brief .br-add{display:grid;justify-items:end}
+.app-brief .br-add > *{grid-area:1/1}
+.app-brief .br-add .s1{opacity:0}
+.app-brief .br-add .ax-tick{width:11px;height:11px}
+.app-brief .br-tp ul{display:grid}
+.app-brief .br-tp li{display:flex;align-items:center;gap:10px;height:18px}
+.app-brief .br-tp li::before{content:"";width:4px;height:4px;border-radius:1px;background:var(--fg-3);flex:none}
+.app-brief .br-tl{display:block;overflow:hidden;white-space:nowrap;font-size:11.5px;line-height:18px;color:var(--fg);padding-right:2px;border-right:1.5px solid transparent}
+
+/* pointer and toast: the toast lands in the card's empty right side, on the card's own inset */
+.app-brief .br-ptr{left:474px;top:313px}
+.app-brief .br-toast{right:28px;bottom:25px;gap:10px;padding:8px 12px 8px 11px}
+.app-brief .br-toast p{white-space:nowrap;line-height:15px}
+.app-brief .br-toast .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes br-out{from{opacity:1}to{opacity:0}}
+@keyframes br-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes br-gap{from{opacity:0}to{opacity:1}}
+@keyframes br-hit{
+  0%{background:transparent;box-shadow:0 0 0 1px var(--line-ui) inset;transform:none}
+  45%{transform:scale(1.3)}
+  100%{background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset;transform:none}}
+@keyframes br-type{from{max-width:0}to{max-width:var(--w,300px)}}
+@keyframes br-caret{0%,100%{border-right-color:transparent}1%,94%{border-right-color:var(--fg)}}
+@keyframes br-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes br-ptr{
+  0%{opacity:0;transform:translate(64px,74px)}
+  16%{opacity:1}
+  50%{transform:translate(0,0) scale(1)}
+  56%{transform:translate(0,0) scale(.9)}
+  62%{transform:translate(0,0) scale(1)}
+  82%{opacity:1;transform:translate(22px,-16px)}
+  100%{opacity:0;transform:translate(28px,-20px)}}
+
+/* the 7 days fill, finding days go solid as each finding lands */
+.appx-il.play.app-brief .br-days i{animation:ax-fade .3s var(--ease) var(--d) both}
+.appx-il.play.app-brief .br-days i.hit{animation:ax-fade .3s var(--ease) var(--d) both,br-hit .5s var(--snap) var(--h) both}
+
+/* each finding closes its mark as it lands */
+.appx-il.play.app-brief .br-f .sig-sq{animation:br-home .6s var(--snap) var(--m) both}
+.appx-il.play.app-brief .br-f .sig-gap{animation:br-gap .35s var(--ease) calc(var(--m) + .2s) both}
+
+/* talking points type in, one line at a time */
+.appx-il.play.app-brief .br-tp li{animation:ax-fade .15s linear var(--d) both}
+.appx-il.play.app-brief .br-tl{animation:br-type var(--t) steps(40,end) var(--d) both,br-caret calc(var(--t) + .3s) linear var(--d) both}
+.appx-il.play.app-brief .br-st .a{animation:br-out .25s var(--ease) 5.02s both}
+.appx-il.play.app-brief .br-st .b{animation:ax-fade .3s var(--ease) 5.06s both}
+
+/* the brief's own mark: working while it builds, closes when done */
+.appx-il.play.app-brief .br-mk .w0{animation:br-out .3s var(--ease) 5s both}
+.appx-il.play.app-brief .br-mk .w1{animation:ax-fade .25s var(--ease) 5s both}
+.appx-il.play.app-brief .br-mk .w1 .sig-sq{animation:br-home .6s var(--snap) 5.05s both}
+.appx-il.play.app-brief .br-mk .w1 .sig-gap{animation:br-gap .35s var(--ease) 5.25s both}
+
+/* the click */
+.appx-il.play.app-brief .br-ptr{animation:br-ptr 1.4s var(--ease) 4.7s both}
+.appx-il.play.app-brief .br-add .s1{animation:br-press .22s ease-out 5.4s both,br-out .16s linear 5.6s both}
+.appx-il.play.app-brief .br-add .s2{animation:ax-fade .3s var(--ease) 5.62s both}

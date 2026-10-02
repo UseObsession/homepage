@@ -1,0 +1,142 @@
+/* app-rivals: Rivals, for founders. 30 days of Rival A, B and C, each on its own vertical rail, oldest at the top,
+   today at the foot, so dates line up across all 3. A declared agent checks every rival each morning from the US and UK:
+   pricing pages, a declared no-card trial, the newsletter. Every change is a dot with a mono date and label.
+   Under the rails, today's finding: Rival A's US Pro rose $49 to $59, with the before and after captures and a drafted
+   update to your comparison page, live only after your OK. Right: the agent that watches, and the toast.
+   Story: the 3 rails draw down through 30 days and each event lands as the line reaches its date; at today B and C read
+   No change while Rival A's price change pops with a soft highlight; the finding card rises under it, its captures land,
+   the draft appears, Rival A's mark goes needs you, Needs you counts 2 to 3, the toast. Rest state = the finished scene.
+   Main grid (design px): header 14..38, rails 50..247, finding 259..398 (336 wide); right column 174 wide. */
+
+.app-rivals{--rv-k:5.41px}
+.app-rivals .ax-main{grid-template-columns:336px minmax(0,1fr);grid-template-rows:24px 197px 139px;gap:12px 14px;padding:14px 16px}
+
+/* stacked values: only the last child shows at rest */
+.app-rivals .rv-stk{display:inline-grid;vertical-align:top}
+.app-rivals .rv-stk>*{grid-area:1/1}
+.app-rivals .rv-stk>:not(:last-child){opacity:0}
+.app-rivals .ax-badge .rv-stk{line-height:1}
+
+/* ---------- header ---------- */
+.app-rivals .rv-h{grid-column:1/-1;display:flex;align-items:center;gap:10px;height:24px}
+.app-rivals .rv-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em}
+.app-rivals .rv-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-rivals .rv-add{margin-left:auto;padding:0 10px 0 8px;box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-rivals .rv-add svg{width:12px;height:12px}
+
+/* ---------- the rails ---------- */
+.app-rivals .rv-tl{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-height:0}
+.app-rivals .rv-col{display:grid;grid-template-rows:18px minmax(0,1fr);row-gap:8px;min-width:0}
+.app-rivals .rv-ch{display:flex;align-items:center;gap:6px;height:18px;padding:0 16px 0 2px;white-space:nowrap}
+.app-rivals .rv-ch b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-rivals .rv-ch time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-rivals .rv-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-rivals .rv-mk>*{grid-area:1/1}
+.ilwrap .app-rivals .rv-mk .sig{width:12px;height:12px;color:var(--fg-2)}
+.ilwrap .app-rivals .rv-a .rv-mk .sig{color:var(--fg)}
+
+.app-rivals .rv-rail{position:relative;min-height:0}
+.app-rivals .rv-line{position:absolute;left:7.5px;top:7px;width:1px;height:calc(29 * var(--rv-k));background:var(--line-3);transform-origin:50% 0}
+/* each event sits at its day: dot on the rail (x 8), the date, the label; the rail, mark, dates and card share the column's left edge */
+.app-rivals .rv-ev{position:absolute;left:0;top:calc((var(--day) - 1) * var(--rv-k) - 2px);height:18px;display:flex;align-items:center;gap:6px;
+  padding:0 8px 0 2px;border-radius:6px;white-space:nowrap;font:400 10.5px/1 var(--mono);font-variant-numeric:tabular-nums}
+.app-rivals .rv-dot{display:block;flex:none;width:7px;height:7px;margin:0 2.5px;border-radius:50%;background:var(--fg-2);box-shadow:0 0 0 2px var(--panel)}
+.app-rivals .rv-ev time{flex:none;width:42px;color:var(--fg-3)}
+.app-rivals .rv-ev span{color:var(--fg-2)}
+/* today, nothing moved: a hollow dot, quiet words */
+.app-rivals .rv-nil .rv-dot{background:var(--panel);box-shadow:0 0 0 1.25px var(--line-ui) inset,0 0 0 2px var(--panel)}
+.app-rivals .rv-nil span{color:var(--fg-3)}
+/* today, Rival A moved: the 1 thing on the board */
+/* the highlight is 2 layers behind the words, so it only ever animates opacity, on the same clock as the dot and label */
+.app-rivals .rv-hit{z-index:1}
+.app-rivals .rv-hit::before,.app-rivals .rv-hit::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:6px;pointer-events:none}
+.app-rivals .rv-hit::before{background:rgb(var(--fg-rgb) / .075);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-rivals .rv-hit::after{background:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 1px var(--line-3) inset;opacity:0}
+.app-rivals .rv-hit .rv-dot{width:9px;height:9px;margin:0 1.5px;background:var(--fg);box-shadow:0 0 0 3px rgb(var(--fg-rgb) / .16)}
+.app-rivals .rv-hit time{color:var(--fg-2)}
+.app-rivals .rv-hit span{color:var(--fg);font-weight:500}
+
+/* ---------- the finding ---------- */
+.app-rivals .rv-find{grid-column:1;grid-row:3;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 24px;gap:12px 14px;padding:12px;min-width:0}
+.app-rivals .rv-txt{display:grid;align-content:start;min-width:0;white-space:nowrap}
+.app-rivals .rv-txt .ax-k{line-height:12px}
+.app-rivals .rv-txt h3{margin:7px 0 0;display:flex;align-items:baseline;gap:6px;font:600 17px/22px var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-rivals .rv-was{color:var(--fg-3);font-weight:500}
+.app-rivals .rv-to{color:var(--fg-3);font-weight:400}
+.app-rivals .rv-sub{margin-top:4px;font-size:11px;line-height:16px;color:var(--fg-2)}
+.app-rivals .rv-you{font-size:11px;line-height:16px;color:var(--fg-3)}
+.app-rivals .rv-you b{font-weight:500;color:var(--fg)}
+
+/* before and after, as the agent captured them */
+.app-rivals .rv-caps{display:grid;grid-template-columns:76px 76px;gap:8px}
+.app-rivals .rv-cap{margin:0;display:grid;gap:5px;min-width:0}
+.app-rivals .rv-cap .ax-shot{height:62px}
+.app-rivals .rv-cap figcaption{font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-rivals .rv-c2 figcaption{color:var(--fg-2)}
+.app-rivals .rv-pg{display:grid;align-content:start;gap:2px;padding:4px 7px;min-height:0}
+.app-rivals .rv-pg p{display:flex;align-items:center;justify-content:space-between;height:13px;font:600 10.5px/1 var(--sans);color:#46433D}
+.app-rivals .rv-pg em{font:400 10.5px/1 var(--mono);font-style:normal;color:#7A766E}
+.app-rivals .rv-pg b{display:block;height:19px;font:600 15px/19px var(--sans);letter-spacing:-.01em;color:#1E1D1A;font-variant-numeric:tabular-nums}
+.app-rivals .rv-ring{display:inline-block;margin-left:-3px;padding:0 3px;border-radius:3px;box-shadow:0 0 0 1px #1E1D1A inset}
+.app-rivals .rv-pg .rv-cta{height:8px;margin-top:3px;border-radius:2px;background:#3A3834}
+
+/* the drafted move */
+.app-rivals .rv-act{grid-column:1/-1;display:flex;align-items:center;gap:8px;min-width:0}
+.app-rivals .rv-chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px 0 7px;border-radius:7px;white-space:nowrap;
+  font:500 11px/1 var(--sans);color:var(--fg);background:var(--panel);box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-rivals .rv-chip svg{width:12px;height:12px;color:var(--fg-2)}
+.app-rivals .rv-ok{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+
+/* ---------- the agent that watches ---------- */
+.app-rivals .rv-agent{grid-column:2;grid-row:3;align-self:start;display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:10px 9px;padding:10px 12px;border-radius:10px;
+  background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line) inset;white-space:nowrap}
+.app-rivals .rv-av{display:grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--fg)}
+.ilwrap .app-rivals .rv-av .sig{width:13px;height:13px;color:var(--bg)}
+.app-rivals .rv-agent p{display:grid;gap:2px}
+.app-rivals .rv-agent p b{font:500 11.5px/14px var(--sans);color:var(--fg)}
+.app-rivals .rv-agent p span{font-size:10.5px;line-height:13px;color:var(--fg-3)}
+.app-rivals .rv-agent .rv-next{grid-column:1/-1;display:flex;align-items:center;gap:7px;padding-top:9px;border-top:1px solid var(--line);font:400 10.5px/1 var(--mono);color:var(--fg-2)}
+.ilwrap .app-rivals .rv-next .sig{width:11px;height:11px;color:var(--fg-2)}
+
+/* ---------- toast: docked bottom right, under the agent, its foot on the card's foot ---------- */
+.app-rivals .rv-toast{right:16px;bottom:16px;width:174px;gap:9px;padding:9px 11px}
+.app-rivals .rv-toast p{display:grid;gap:1px;white-space:nowrap}
+.app-rivals .rv-toast b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-rivals .rv-toast span{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes rv-draw{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes rv-dot{from{opacity:0;transform:scale(0)}to{opacity:1;transform:none}}
+@keyframes rv-tx{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:none}}
+@keyframes rv-glow{0%{opacity:0}22%{opacity:1}100%{opacity:0}}
+@keyframes rv-halo{0%{box-shadow:0 0 0 0 rgb(var(--fg-rgb) / .3)}45%{box-shadow:0 0 0 7px rgb(var(--fg-rgb) / 0)}46%{box-shadow:0 0 0 0 rgb(var(--fg-rgb) / 0)}100%{box-shadow:0 0 0 3px rgb(var(--fg-rgb) / .16)}}
+@keyframes rv-out{from{opacity:1}to{opacity:0}}
+@keyframes rv-in{from{opacity:0}to{opacity:1}}
+@keyframes rv-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes rv-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes rv-ring{from{box-shadow:0 0 0 1px transparent inset}to{box-shadow:0 0 0 1px #1E1D1A inset}}
+
+/* 1. the rails draw down through 30 days; each event lands as the line reaches its day */
+.appx-il.play.app-rivals .rv-line{animation:rv-draw 2.4s linear .35s both}
+.appx-il.play.app-rivals .rv-ev .rv-dot{animation:rv-dot .4s var(--snap) calc(.35s + (var(--day) - 1) * .0828s) both}
+.appx-il.play.app-rivals .rv-ev time,
+.appx-il.play.app-rivals .rv-ev span{animation:rv-tx .45s var(--ease) calc(.39s + (var(--day) - 1) * .0828s) both}
+
+/* 2. today: Rival A's price change pops with a soft highlight */
+.appx-il.play.app-rivals .rv-hit::before{animation:rv-in .5s var(--ease) 2.78s both}
+.appx-il.play.app-rivals .rv-hit::after{animation:rv-glow 1.8s var(--ease) 2.78s both}
+.appx-il.play.app-rivals .rv-hit .rv-dot{animation:rv-dot .45s var(--snap) 2.78s both,rv-halo 1.3s var(--ease) 3.1s both}
+.appx-il.play.app-rivals .rv-a .rv-w{opacity:1;animation:rv-out .35s var(--ease) 3.8s forwards}
+.appx-il.play.app-rivals .rv-a .rv-w .sig-rot{animation:rv-spin 3.2s linear infinite}
+.appx-il.play.app-rivals .rv-a .rv-w .sig-orb{animation:rv-spinr 3.2s linear infinite}
+.appx-il.play.app-rivals .rv-a .st-needs{animation:rv-in .35s var(--ease) 3.8s both}
+
+/* 3. the finding rises under it: captures, the agent's mark on the new price, the draft, the toast */
+.appx-il.play.app-rivals .rv-find{animation:ax-in .55s var(--ease) 3.02s both}
+.appx-il.play.app-rivals .rv-c1{animation:ax-in .45s var(--ease) 3.22s both}
+.appx-il.play.app-rivals .rv-c2{animation:ax-pop .45s var(--snap) 3.42s both}
+.appx-il.play.app-rivals .rv-ring{animation:rv-ring .35s var(--ease) 3.8s both}
+.appx-il.play.app-rivals .rv-act{animation:ax-in .5s var(--ease) 3.85s both}
+.appx-il.play.app-rivals .ax-badge .rv-stk>:first-child{opacity:1;animation:rv-out .25s var(--ease) 4s forwards}
+.appx-il.play.app-rivals .ax-badge .rv-stk>:last-child{animation:rv-in .25s var(--ease) 4s both}
+.appx-il.play.app-rivals .rv-toast{animation:ax-in .55s var(--ease) 4.35s both}

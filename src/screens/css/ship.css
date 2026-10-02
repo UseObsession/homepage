@@ -1,0 +1,168 @@
+/* app-ship: Releases. Launch morning for a founder: v2.15 went live at 06:02 and the launch email sends at 08:00.
+   One labelled test customer, on a real UK number and inbox, walks the release checklist to the stop before payment.
+   Story: the 5 checks land in order with their times while the countdown ticks; the first-order code is rejected,
+   the row turns needs you with a soft highlight and opens on the checkout capture; the pointer clicks
+   Hold the 08:00 send, and the pill becomes "Send held · fix drafted". Rest state = the finished scene. */
+@property --sh-m{syntax:"<integer>";inherits:false;initial-value:50}
+
+.app-ship .ax-main{padding:14px 16px;gap:12px}
+
+/* stacked states: only the last child shows at rest */
+.app-ship .sh-stk{display:inline-grid;place-items:center}
+.app-ship .sh-stk>*{grid-area:1/1}
+.app-ship .sh-stk>:not(:last-child){opacity:0}
+.app-ship .sh-n{display:inline-grid}
+.app-ship .sh-n b{grid-area:1/1;font-weight:inherit}
+.app-ship .sh-n b:first-child{opacity:0}
+
+/* ---------- header: the release, the morning, the countdown ---------- */
+.app-ship .sh-h{display:flex;align-items:center;gap:10px;height:24px}
+.ilwrap .app-ship .sh-mk .sig{width:16px;height:16px;color:var(--fg)}
+.app-ship .sh-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-ship .sh-meta{font-size:11.5px;color:var(--fg-3);padding-top:1px;white-space:nowrap}
+.app-ship .sh-meta .ax-mono{font-size:11px;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-ship .sh-pills{margin-left:auto;display:grid;justify-items:end}
+.app-ship .sh-pills>*{grid-area:1/1}
+.app-ship .sh-pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px 0 8px;border-radius:999px;white-space:nowrap;
+  font:400 11px/1 var(--mono);color:var(--fg-3);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-ship .sh-pill svg{width:12px;height:12px;color:var(--fg-2)}
+.app-ship .sh-pill b{font-weight:500;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-ship .sh-pill.c1{opacity:0}
+.app-ship .sh-mm{counter-reset:sh-m var(--sh-m)}
+.app-ship .sh-mm::before{content:counter(sh-m)}
+.app-ship .sh-pill.c2{font:400 11.5px/1 var(--sans);color:var(--fg-2);background:rgb(var(--fg-rgb) / .08);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-ship .sh-pill.c2 b{font-weight:600}
+.ilwrap .app-ship .sh-pill.c2 svg{color:var(--fg)}
+
+/* ---------- the checklist card ---------- */
+.app-ship .sh-card{display:grid;min-width:0}
+
+/* who runs it: the labelled test customer, its real number and inbox */
+.app-ship .sh-ch{display:flex;align-items:center;gap:10px;height:48px;padding:0 12px;border-bottom:1px solid var(--line)}
+.app-ship .sh-av{display:grid;place-items:center;width:26px;height:26px;border-radius:7px;flex:none;background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset;color:var(--fg-2)}
+.ilwrap .app-ship .sh-av svg{width:14px;height:14px}
+.app-ship .sh-who{display:grid;gap:3px;min-width:0;margin-right:auto;white-space:nowrap}
+.app-ship .sh-who b{font:500 12px/1.2 var(--sans);color:var(--fg)}
+.app-ship .sh-who span{font:400 10.5px/1.2 var(--sans);color:var(--fg-3)}
+.app-ship .sh-cp{color:var(--fg-2)}
+.ilwrap .app-ship .sh-cp svg{width:11px;height:11px;color:var(--fg-3)}
+.app-ship .sh-ch .sh-cp+.sh-cp{margin-left:-4px}
+
+/* the checks */
+.app-ship .sh-ls{position:relative;z-index:0;display:grid;padding:0 0 4px}
+.app-ship .sh-r{position:relative;display:grid;grid-template-columns:14px 14px minmax(0,1fr) 38px 56px;column-gap:10px;align-items:center;height:36px;padding:0 12px}
+.app-ship .sh-ls>li+li::before{content:"";position:absolute;left:12px;right:12px;top:0;height:1px;background:var(--line)}
+.app-ship .sh-s{display:grid;place-items:center;width:14px;height:14px}
+.app-ship .sh-s>*{grid-area:1/1}
+.app-ship .sh-s .p{width:11px;height:11px;border-radius:3px;outline:1px dashed var(--line-3);outline-offset:-1px;opacity:0}
+.app-ship .sh-s .w{opacity:0}
+.ilwrap .app-ship .sh-s .sig{width:12px;height:12px;color:var(--fg)}
+.ilwrap .app-ship .sh-r .ic{width:14px;height:14px;color:var(--fg-3)}
+.app-ship .sh-r .l{font:400 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-ship .sh-r time{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-ship .sh-r .du{font:400 11px/1 var(--mono);color:var(--fg-2);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* the check that failed: needs you, a soft highlight, opened on its evidence */
+.app-ship .sh-fail{position:relative;margin:2px 6px}
+.app-ship .sh-ls>li.sh-fail::before{left:6px;right:6px;opacity:0}
+.app-ship .sh-fail::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:9px;background:rgb(var(--fg-rgb) / .045);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-ship .sh-fail .sh-r{padding:0 6px}
+.app-ship .sh-fail .l{font-weight:500}
+.app-ship .sh-fail .du{font-weight:500;color:var(--fg)}
+.app-ship .sh-fail+.sh-r::before{opacity:0}
+.app-ship .sh-x{display:grid;grid-template-rows:1fr}
+.app-ship .sh-xi{min-height:0;overflow:hidden}
+.app-ship .sh-dc{display:grid;grid-template-columns:148px minmax(0,1fr);column-gap:16px;padding:2px 6px 10px 30px}
+
+/* evidence: the checkout the test customer saw */
+.app-ship .sh-cap{height:92px}
+.app-ship .sh-pg{display:grid;align-content:start;gap:5px;padding:7px 8px;min-height:0}
+.app-ship .sh-it{display:grid;grid-template-columns:16px minmax(0,1fr);align-items:center;gap:6px}
+.app-ship .ax-shot .sh-it .tl{width:16px;height:16px;border-radius:3px;background:#D2C6BA}
+.app-ship .sh-it .sh-bars{display:grid;gap:3px;min-width:0}
+.app-ship .ax-shot .sh-bars i{height:4px}
+.app-ship .ax-shot .sh-bars i:first-child{width:72%}
+.app-ship .ax-shot .sh-bars i:last-child{width:40%}
+.app-ship .sh-fd{display:flex;gap:3px;height:16px}
+.app-ship .ax-shot .sh-fd .in{flex:1;min-width:0;height:16px;padding:0 5px;border-radius:3px;background:#F6F5F1;box-shadow:0 0 0 1px #6F6B63 inset;
+  font:500 10.5px/16px var(--mono);letter-spacing:.02em;color:#1E1D1A;white-space:nowrap}
+.app-ship .ax-shot .sh-fd .ap{width:26px;height:16px;border-radius:3px;background:#3A3834}
+.app-ship .ax-shot .sh-er{display:flex;align-items:center;gap:4px;height:12px;font:500 10.5px/12px var(--sans);color:#3A3834;white-space:nowrap}
+.ilwrap .app-ship .ax-shot .sh-er svg{width:10px;height:10px;color:#3A3834}
+.app-ship .ax-shot .sh-pg .py{height:10px;border-radius:3px;background:none;outline:1px dashed #9E9A91;outline-offset:-1px}
+
+/* the finding and the decision */
+.app-ship .sh-tx{display:flex;flex-direction:column;min-width:0;padding-top:1px}
+.app-ship .sh-tx h3{font:600 13.5px/18px var(--display);letter-spacing:-.015em;color:var(--fg);white-space:nowrap}
+.app-ship .sh-tx .cd{display:inline-block;padding:0 4px;margin:0 1px;border-radius:4px;font:500 12px/17px var(--mono);letter-spacing:0;
+  background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-ship .sh-tx p{margin-top:4px;font-size:11.5px;line-height:16px;color:var(--fg-2);white-space:nowrap}
+.app-ship .sh-acts{margin-top:auto;display:grid;height:24px}
+.app-ship .sh-acts>div{grid-area:1/1;display:flex;align-items:center;gap:6px;min-width:0}
+.app-ship .sh-acts .a1{opacity:0}
+.app-ship .sh-acts .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-ship .sh-hold{transform-origin:center}
+.app-ship .sh-acts .a2{gap:8px}
+.app-ship .a2 .hb{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-ship .a2 .ht{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-ship .a2 .ax-btn{margin-left:4px}
+
+/* pointer */
+.ilwrap .app-ship .appx svg.sh-ptr{width:16px;height:16px}
+.app-ship .sh-ptr{transform-origin:3px 1.5px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes sh-on{from{opacity:0}to{opacity:1}}
+@keyframes sh-off{from{opacity:1}to{opacity:0}}
+@keyframes sh-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+@keyframes sh-up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes sh-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes sh-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes sh-ink{from{color:var(--fg-3)}to{color:var(--fg)}}
+@keyframes sh-spin{to{transform:rotate(360deg)}}
+@keyframes sh-spin-r{to{transform:rotate(-360deg)}}
+@keyframes sh-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes sh-swap{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+@keyframes sh-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+/* the countdown: 1 h 58 m at 06:02, a minute off as each check lands, 1 h 50 m at 06:10 */
+@keyframes sh-count{0%{--sh-m:58}28.8%{--sh-m:56}40.7%{--sh-m:55}55.9%{--sh-m:53}76.3%{--sh-m:51}100%{--sh-m:50}}
+/* 1.9s: enters from the lower right, clicks Hold the 08:00 send, drifts off */
+@keyframes sh-ptr{
+  0%{opacity:0;transform:translate(492px,404px)}
+  12%{opacity:1}
+  42%{transform:translate(386px,324px) scale(1)}
+  47%{transform:translate(386px,324px) scale(.88)}
+  53%,62%{opacity:1;transform:translate(386px,324px) scale(1)}
+  88%,100%{opacity:0;transform:translate(404px,342px)}}
+
+/* 1. the release is checked: the header mark works, the countdown ticks */
+.appx-il.play.app-ship .sh-mk .w0{animation:sh-on .3s var(--ease) both,sh-off .2s var(--ease) 2.25s forwards}
+.appx-il.play.app-ship .sh-mk .w1{animation:sh-pop .45s var(--snap) 2.28s both}
+.appx-il.play.app-ship .sh-mk .w0 .sig-rot,.appx-il.play.app-ship .sh-s .w .sig-rot{animation:sh-spin 1.3s linear infinite}
+.appx-il.play.app-ship .sh-mk .w0 .sig-orb,.appx-il.play.app-ship .sh-s .w .sig-orb{animation:sh-spin-r 1.3s linear infinite}
+.appx-il.play.app-ship .sh-pill.c1{animation:sh-on .35s var(--ease) both,sh-off .22s var(--ease) 4.22s forwards}
+.appx-il.play.app-ship .sh-mm{animation:sh-count 3s steps(1,end) both}
+
+/* 2. the checks land in order: pending, working, done */
+.appx-il.play.app-ship .sh-s .p{animation:sh-on .01s linear both,sh-off .15s var(--ease) var(--a) forwards}
+.appx-il.play.app-ship .sh-s .w{animation:sh-on .15s var(--ease) var(--a) both,sh-off .12s var(--ease) var(--b) forwards}
+.appx-il.play.app-ship .sh-s .f{animation:sh-pop .42s var(--snap) var(--b) both}
+.appx-il.play.app-ship .sh-r .l{animation:sh-ink .3s var(--ease) var(--b) both}
+.appx-il.play.app-ship .sh-r time,.appx-il.play.app-ship .sh-r .du{animation:sh-in .35s var(--ease) var(--b) both}
+
+/* 3. the code is rejected: needs you, the highlight, the row opens on its evidence */
+.appx-il.play.app-ship .sh-fail::after{animation:ax-fade .45s var(--ease) 2.25s both}
+.appx-il.play.app-ship .sh-fail::before,.appx-il.play.app-ship .sh-fail+.sh-r::before{animation:sh-on .01s linear both,sh-off .3s var(--ease) 2.25s forwards}
+.appx-il.play.app-ship .sh-x{animation:sh-open .6s var(--ease) 2.32s both}
+.appx-il.play.app-ship .sh-cap{animation:sh-up .45s var(--ease) 2.5s both}
+.appx-il.play.app-ship .sh-tx h3{animation:sh-up .45s var(--ease) 2.58s both}
+.appx-il.play.app-ship .sh-tx p{animation:sh-up .45s var(--ease) 2.66s both}
+.appx-il.play.app-ship .sh-n b:first-child{animation:sh-on .01s linear both,sh-out .25s var(--ease) 2.3s forwards}
+.appx-il.play.app-ship .sh-n b:last-child{animation:sh-up .3s var(--ease) 2.34s both}
+
+/* 4. hold the send: press, the choice resolves, the pill flips */
+.appx-il.play.app-ship .sh-acts .a1{animation:sh-up .45s var(--ease) 2.74s both,sh-off .2s var(--ease) 4.14s forwards}
+.appx-il.play.app-ship .sh-hold{animation:sh-press .22s ease-out 3.96s both}
+.appx-il.play.app-ship .sh-acts .a2{animation:sh-up .4s var(--ease) 4.26s both}
+.appx-il.play.app-ship .sh-pill.c2{animation:sh-swap .4s var(--ease) 4.3s both}
+.appx-il.play.app-ship .sh-ptr{animation:sh-ptr 1.9s var(--ease) 3.18s both}

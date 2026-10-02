@@ -1,0 +1,156 @@
+/* app-pilot: Pilots, for sales. "Prove the pilot".
+   A 30-day pilot at an invented account (Quillmere Dental), run with their OK: 6 labelled test customers ask the same
+   20 questions on day 0 (before go-live), day 14 and day 28. One card, 3 metrics, each a before and after in big numbers,
+   its change, and a 3-point chart whose points sit under the card's Day 0 / 14 / 28 axis. The card's foot carries the
+   signed record and the 1 primary action. Finance view is on.
+   Story: day 0 values land, the day 14 then day 28 points draw in while the numbers step with them, the pilot's mark
+   closes, the changes count up, the pointer clicks Share with the CFO, the toast lands under it.
+   Geometry (design px, main 556 x 414, padding 14 16): header 14..38, card 50..346 (axis 34, 3 rows of 72, foot 46),
+   toast bottom-right 16 in, 14 up. Rest state (no .play) = the finished, shared scene. */
+
+@property --apppilot-n{syntax:'<integer>';inherits:false;initial-value:0}
+@property --apppilot-d{syntax:'<integer>';inherits:false;initial-value:0}
+
+.app-pilot .ax-main{gap:12px}
+.app-pilot .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-pilot .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- header ---------- */
+.app-pilot .pl-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-pilot .pl-mk{display:grid}
+.app-pilot .pl-mk .sig{grid-area:1/1;color:var(--fg)}
+.ilwrap .app-pilot .pl-mk .sig{width:16px;height:16px}
+.app-pilot .pl-mk .w0{opacity:0}
+.app-pilot .pl-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-pilot .pl-h .ax-meta{font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-pilot .pl-fv{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:24px;padding:0 10px 0 7px;border-radius:7px;
+  font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-ui) inset}
+
+/* ---------- the card: 1 grid shared by the axis and the 3 rows, so every column aligns ---------- */
+.app-pilot .pl-card{display:grid;padding:0 14px}
+.app-pilot .pl-g{display:grid;grid-template-columns:minmax(0,1fr) 70px 180px;column-gap:12px;align-items:center}
+
+/* axis row: who asked, and the 3 runs */
+.app-pilot .pl-ch{height:34px;box-shadow:0 -1px 0 var(--line) inset}
+.app-pilot .pl-who{grid-column:span 2;display:flex;align-items:center;gap:9px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-pilot .pl-av{display:flex}
+.app-pilot .pl-av i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 2px var(--panel-2)}
+.app-pilot .pl-av i+i{margin-left:-4px}
+.ilwrap .app-pilot .pl-av .sig{width:10px;height:10px}
+.app-pilot .pl-ax{display:grid;grid-template-columns:repeat(3,60px)}
+.app-pilot .pl-ax span{text-align:center;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-pilot .pl-ax .t2{color:var(--fg)}
+
+/* a metric */
+.app-pilot .pl-r{height:72px}
+.app-pilot .pl-r+.pl-r{box-shadow:0 1px 0 var(--line) inset}
+.app-pilot .pl-m{display:grid;gap:7px;min-width:0}
+.app-pilot .pl-l{font:500 11.5px/14px var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-pilot .pl-v{display:flex;align-items:baseline;height:26px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-pilot .pl-v b{font-weight:inherit}
+.app-pilot .pl-v small{font-size:11px;font-weight:400}
+.app-pilot .pl-v small{margin-left:3px}
+.app-pilot .pl-v small+b{margin-left:5px}
+
+/* before: Day 0, quiet */
+.app-pilot .pl-b{flex:none;width:76px;font:500 15px/1 var(--display);letter-spacing:-.01em;color:var(--fg-3)}
+.ilwrap .app-pilot .appx svg.pl-to{width:14px;height:14px;flex:none;align-self:center;margin:0 12px 0 0;color:var(--fg-3)}
+
+/* after: Day 28, the point of the screen */
+.app-pilot .pl-a{font:600 26px/1 var(--display);letter-spacing:-.03em;color:var(--fg)}
+.app-pilot .pl-a small{margin-left:4px;font-size:12px;font-weight:500;letter-spacing:0;color:var(--fg-2)}
+.app-pilot .pl-a small+b{margin-left:6px}
+.app-pilot .pl-n{counter-reset:pl-n var(--apppilot-n)}
+.app-pilot .pl-n::before{content:counter(pl-n)}
+.app-pilot .pl-st{display:inline-grid}
+.app-pilot .pl-st>span{grid-area:1/1}
+.app-pilot .pl-st .v0,.app-pilot .pl-st .v1{opacity:0}
+
+/* the change */
+.app-pilot .pl-d{display:flex;align-self:end;padding-bottom:14px}
+.app-pilot .pl-dn{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:20px;padding:0 7px;border-radius:6px;
+  font:500 11.5px/1 var(--sans);color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset;counter-reset:pl-d var(--apppilot-d)}
+.app-pilot .pl-dn::after{content:counter(pl-d) "%"}
+
+/* the 3-point chart: points sit at 30 / 90 / 150, under the axis labels */
+.ilwrap .app-pilot .appx svg.pl-c{width:180px;height:44px}
+.app-pilot .pl-c *{transform-box:fill-box;transform-origin:center}
+.app-pilot .pl-gd{fill:none;stroke:var(--line-2);stroke-width:1;stroke-dasharray:2 3}
+.app-pilot .pl-bl{fill:none;stroke:var(--line-2);stroke-width:1}
+.app-pilot .pl-s1,.app-pilot .pl-s2{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+.app-pilot .pl-s1{stroke:var(--fg-3)}
+.app-pilot .pl-s2{stroke:var(--fg)}
+.app-pilot .pl-p0{fill:var(--panel-2);stroke:var(--fg-3);stroke-width:1.5}
+.app-pilot .pl-p1{fill:var(--fg-2)}
+.app-pilot .pl-p2{fill:var(--fg)}
+.app-pilot .pl-hl{fill:rgb(var(--fg-rgb) / .12)}
+
+/* the foot: the signed record and the 1 primary action */
+.app-pilot .pl-f{display:flex;align-items:center;gap:9px;height:46px;margin:0 -14px;padding:0 11px 0 14px;border-radius:0 0 10px 10px;
+  background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
+.ilwrap .app-pilot .pl-f .sig{width:13px;height:13px;color:var(--fg)}
+.app-pilot .pl-f p{font-size:11.5px;line-height:15px;color:var(--fg);white-space:nowrap}
+.app-pilot .pl-f .ax-mono{font-size:10.5px;line-height:14px;color:var(--fg-3)}
+.app-pilot .pl-act{position:relative;margin-left:auto}
+.app-pilot .pl-share{padding:0 11px;transform-origin:center}
+.ilwrap .app-pilot .appx svg.pl-ptr{left:92px;top:13px;width:16px;height:16px}
+
+/* toast: under the button it answers */
+.app-pilot .pl-toast{right:16px;bottom:14px}
+.app-pilot .pl-toast p{white-space:nowrap;line-height:15px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes pl-show{from{opacity:0}to{opacity:1}}
+@keyframes pl-hide{from{opacity:1}to{opacity:0}}
+@keyframes pl-up{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes pl-dot{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes pl-halo{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:none}}
+@keyframes pl-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pl-tick{from{opacity:.3}to{opacity:1}}
+@keyframes pl-na{0%,42%{--apppilot-n:6}62%,77%{--apppilot-n:13}96%,100%{--apppilot-n:17}}
+@keyframes pl-nw{0%,42%{--apppilot-n:5}62%,77%{--apppilot-n:2}96%,100%{--apppilot-n:1}}
+@keyframes pl-count{from{--apppilot-d:0}}
+@keyframes pl-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes pl-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+/* 2.2s from 3.3s: arrives on Share at 4.4s, presses, drifts up off the button and is gone by 5.5s */
+@keyframes pl-ptr{
+  0%{opacity:0;transform:translate(-196px,64px)}
+  14%{opacity:1}
+  50%{transform:translate(0,0) scale(1)}
+  54%{transform:translate(0,0) scale(.9)}
+  60%{transform:translate(0,0) scale(1)}
+  82%{opacity:1;transform:translate(14px,-10px)}
+  100%{opacity:0;transform:translate(18px,-13px)}}
+
+/* 1. day 0: the values land row by row, each chart's first point */
+.app-pilot .pl-r .pl-v{--d:calc(.22s + var(--r) * .08s)}
+.appx-il.play.app-pilot .pl-p0{animation:pl-dot .4s var(--snap) calc(.4s + var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-n.na{animation:pl-na 2.6s linear calc(var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-n.nw{animation:pl-nw 2.6s linear calc(var(--r) * .08s) both}
+
+/* 2. day 14: the first line draws, the numbers step with it */
+.appx-il.play.app-pilot .pl-ax .t1{animation:pl-tick .5s var(--ease) 1.1s both}
+.appx-il.play.app-pilot .pl-s1{animation:pl-draw .5s var(--ease) calc(1.1s + var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-p1{animation:pl-dot .4s var(--snap) calc(1.52s + var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-st .v0{animation:pl-hide .2s var(--ease) 1.38s both}
+.appx-il.play.app-pilot .pl-st .v1{animation:pl-up .25s var(--ease) 1.4s both,pl-hide .2s var(--ease) 2.28s forwards}
+
+/* 3. day 28: the last line draws, the last point lands with its halo */
+.appx-il.play.app-pilot .pl-ax .t2{animation:pl-tick .5s var(--ease) 2s both}
+.appx-il.play.app-pilot .pl-s2{animation:pl-draw .5s var(--ease) calc(2s + var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-p2{animation:pl-dot .4s var(--snap) calc(2.42s + var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-hl{animation:pl-halo .7s var(--ease) calc(2.42s + var(--r) * .08s) both}
+.appx-il.play.app-pilot .pl-st .v2{animation:pl-up .25s var(--ease) 2.3s both}
+
+/* 4. the pilot's mark closes, the changes count up */
+.appx-il.play.app-pilot .pl-mk .w0{animation:pl-hide .25s var(--ease) 2.6s both}
+.appx-il.play.app-pilot .pl-mk .w1{animation:pl-show .25s var(--ease) 2.6s both}
+.appx-il.play.app-pilot .pl-mk .w1 .sig-sq{animation:pl-home .6s var(--snap) 2.65s both}
+.appx-il.play.app-pilot .pl-mk .w1 .sig-gap{animation:pl-show .35s var(--ease) 2.85s both}
+.appx-il.play.app-pilot .pl-dn{animation:ax-pop .45s var(--snap) calc(2.6s + var(--r) * .08s) both,pl-count .9s var(--ease) calc(2.6s + var(--r) * .08s) both}
+
+/* 5. the pointer shares it; the toast lands under the button */
+.appx-il.play.app-pilot .pl-ptr{animation:pl-ptr 2.2s var(--ease) 3.3s both}
+.appx-il.play.app-pilot .pl-share{animation:pl-press .26s ease-out 4.38s}
+.appx-il.play.app-pilot .pl-toast{animation:ax-in .55s var(--ease) 4.62s both}

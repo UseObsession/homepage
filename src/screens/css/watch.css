@@ -1,0 +1,175 @@
+/* app-watch: Accounts, on the Sales page (renewals). A sales team's renewals for the next 90 days.
+   One table, 6 accounts: the mark is where the agent stands on the account (needs you, waiting, landed, working),
+   under the name its renewal date, then a 5-step health meter, the latest signal and the next move.
+   Signals come from public pages, your own CRM and call notes taken with consent; the weekly test sign-up runs with the account's OK.
+   Story: the agent's weekly test sign-up at Oatlark Snacks finishes with no welcome email; the row flips to at risk
+   (mark goes hollow, health drops 3 to 1, At risk 1 to 2), a save plan is drafted in Next move (Needs you 3 to 4),
+   the pointer opens it, the table makes room and the plan docks: the capture, 3 steps, Approve.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, table and plan 50..400.
+   Table columns 140 | 60 | 132 | 196 (Next move); at rest the plan takes the Next move track (12 gap + 184).
+   Rest state (no .play) = the finished scene: plan open, row flipped. */
+
+.app-watch .ax-main{grid-template-rows:24px minmax(0,1fr);align-content:stretch;padding:14px;gap:12px}
+.app-watch .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-watch .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked values: only the last child shows at rest */
+.app-watch .aw-nb,.app-watch .aw-n{display:inline-grid}
+.app-watch .aw-nb b,.app-watch .aw-n b{grid-area:1/1;font-weight:inherit}
+.app-watch .aw-nb b:first-child,.app-watch .aw-n b:first-child{opacity:0}
+.app-watch .aw-stk{display:inline-grid;vertical-align:top;align-items:center;justify-items:start}
+.app-watch .aw-stk>*{grid-area:1/1}
+.app-watch .aw-stk>:not(:last-child){opacity:0}
+
+/* ---------- header: title, range, the filter ---------- */
+.app-watch .aw-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-watch .aw-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-watch .aw-meta{font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+/* a segmented control: control edge on the group and on the selected segment */
+.app-watch .aw-tabs{margin-left:auto;display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-watch .aw-tab{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-watch .aw-tab.on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-watch .aw-tab i{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.ilwrap .app-watch .aw-tab svg.sig,.ilwrap .app-watch .aw-tab svg.aw-up{width:10px;height:10px;color:var(--fg-2)}
+
+/* ---------- the table, and the track the plan docks into ---------- */
+.app-watch .aw-wrap{display:grid;grid-template-columns:minmax(0,1fr) 196px;min-height:0}
+.app-watch .aw-tb{display:grid;grid-template-rows:28px repeat(6,48px) minmax(0,1fr);min-width:0;min-height:0;border-radius:10px;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-watch .aw-row{display:grid;grid-template-columns:140px 60px 132px 196px;align-items:center;box-shadow:0 -1px 0 var(--line) inset}
+.app-watch .aw-row>span{min-width:0;padding:0 8px;overflow:hidden;white-space:nowrap}
+.app-watch .aw-row>span:first-child{padding-left:12px}
+.app-watch .aw-th{box-shadow:0 -1px 0 var(--line-2) inset}
+.app-watch .aw-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* account: the mark, the name, the renewal date */
+.app-watch .aw-row .a{display:flex;align-items:center;gap:10px}
+.ilwrap .app-watch .aw-row .a svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-watch .aw-mk{flex:none}
+.app-watch .nm{display:grid;gap:3px;min-width:0}
+.app-watch .nm b{font:500 11.5px/14px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-watch .nm time{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* health: 5 steps, filled = healthy */
+.app-watch .hm{display:grid;grid-template-columns:repeat(5,5px);gap:2px;width:33px}
+.app-watch .hm i{display:block;height:10px;border-radius:1.5px;background:rgb(var(--fg-rgb) / .14)}
+.app-watch .hm i.f{background:var(--fg-2)}
+
+/* latest signal */
+.app-watch .aw-row .s{font-size:11.5px;color:var(--fg-2)}
+.app-watch .aw-sg .v0{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+/* next move: a drafted play, or a quiet note; hidden at rest behind the open plan */
+.app-watch .aw-row>.n{opacity:0}
+.app-watch .aw-play{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px 0 7px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg);
+  background:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-watch .aw-play svg.aw-ic{width:12px;height:12px;color:var(--fg-3)}
+.app-watch .aw-play em{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-watch .aw-quiet{font-size:11px;color:var(--fg-3)}
+
+/* the account that changed: raised, selected */
+.app-watch .r-hot{background:rgb(var(--fg-rgb) / .055)}
+.app-watch .r-hot .s{color:var(--fg);font-weight:500}
+.app-watch .r-hot .a{position:relative}
+.app-watch .r-hot .a::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+
+/* where the signals come from: the red line, shown */
+.app-watch .aw-src{display:flex;align-items:center;gap:7px;padding:0 12px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-watch .aw-src svg.aw-ic{width:12px;height:12px;color:var(--fg-3)}
+
+/* ---------- the save plan, docked in the Next move track ---------- */
+.app-watch .aw-side{display:grid;min-width:0;min-height:0;padding-left:12px}
+.app-watch .aw-pan{width:184px;display:flex;flex-direction:column;gap:12px;padding:12px;border-radius:10px;
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-watch .aw-ph{display:grid;gap:6px}
+.app-watch .aw-ph .ax-k{white-space:nowrap}
+.app-watch .aw-ph .ax-k .ax-mono{font-size:10.5px}
+.app-watch .aw-pt{display:flex;align-items:center;gap:8px;height:18px}
+.app-watch .aw-pt h3{font:600 15px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.ilwrap .app-watch .aw-pt svg.aw-x{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
+
+/* evidence: the sign-up the agent made, and the inbox that stayed empty */
+.app-watch .aw-ev{margin:0;display:grid;gap:6px}
+.app-watch .aw-shot{height:68px}
+.app-watch .aw-pg{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:7px 8px;min-height:0}
+.app-watch .aw-form{display:grid;align-content:center;gap:5px}
+.app-watch .aw-form .aw-t{width:58%;height:4px}
+.app-watch .aw-form .aw-fld{height:10px;border-radius:2px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-watch .aw-form .aw-go{height:10px;border-radius:2px;background:#3A3834}
+.app-watch .aw-box{display:grid;align-content:center;gap:7px;padding:0 7px;border-radius:3px;background:#F6F5F1;box-shadow:0 0 0 1px #D6D3CC inset}
+.app-watch .aw-ml{display:grid;grid-template-columns:8px minmax(0,1fr);align-items:center;gap:5px}
+.app-watch .aw-ml .aw-env{height:6px;border-radius:1.5px;background:#8C887F}
+.app-watch .aw-ml .aw-wt{height:0;border-radius:0;background:none;border-top:1px dashed #A8A398}
+.app-watch .aw-box b{font:600 10.5px/12px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-watch .aw-ev figcaption{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:10.5px;line-height:12px;color:var(--fg-3);white-space:nowrap}
+.app-watch .aw-ev figcaption .ax-mono{font-size:10.5px}
+
+/* the 3 steps */
+.app-watch .aw-steps{display:grid}
+.app-watch .aw-steps li{display:flex;align-items:center;gap:8px;height:28px;font-size:11.5px;color:var(--fg);white-space:nowrap;box-shadow:0 -1px 0 var(--line) inset}
+.app-watch .aw-steps li:last-child{box-shadow:none}
+.app-watch .aw-steps li i{width:16px;height:16px;border-radius:4px;display:grid;place-items:center;flex:none;font:500 10.5px/1 var(--mono);font-style:normal;color:var(--fg-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-watch .aw-steps li .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+
+.app-watch .aw-hint{margin-top:auto;display:flex;align-items:center;gap:6px;height:14px;font-size:10.5px;line-height:14px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-watch .aw-hint svg{width:12px;height:12px;color:var(--fg-3)}
+.app-watch .aw-pf{display:flex;gap:6px}
+.app-watch .aw-pf .ax-btn{justify-content:center}
+.app-watch .aw-pf .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-watch .aw-ok{flex:1}
+
+/* pointer: its tip sits on the drafted save plan; the base's ".appx svg{width:auto}" outranks .ax-ptr, so size it here */
+.app-watch .aw-ptr{left:392px;top:245px;transform-origin:3px 1.5px}
+.ilwrap .app-watch .appx svg.aw-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes aw-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes aw-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes aw-gone{from{opacity:1}to{opacity:0}}
+@keyframes aw-show{from{opacity:0}to{opacity:1}}
+@keyframes aw-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes aw-drop{from{background-color:var(--fg-2)}to{background-color:rgb(var(--fg-rgb) / .14)}}
+@keyframes aw-glow{
+  0%{background-color:rgb(var(--fg-rgb) / 0)}
+  14%{background-color:rgb(var(--fg-rgb) / .12)}
+  100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes aw-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes aw-open{from{grid-template-columns:minmax(0,1fr) 0px}to{grid-template-columns:minmax(0,1fr) 196px}}
+@keyframes aw-pan{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes aw-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+/* 2.5s from 3.0s: glides in, clicks the save plan at 3.95s, then rests over Approve and fades by 5.5s */
+@keyframes aw-ptr{
+  0%{opacity:0;transform:translate(120px,118px)}
+  10%{opacity:1}
+  38%{transform:translate(0,0) scale(1)}
+  41%{transform:translate(0,0) scale(.9)}
+  46%{transform:translate(0,0) scale(1)}
+  58%{transform:translate(0,0)}
+  86%{opacity:1;transform:translate(76px,129px)}
+  100%{opacity:0;transform:translate(78px,132px)}}
+
+/* 1. the table is full width while the weekly test sign-up runs at Oatlark Snacks */
+.appx-il.play.app-watch .aw-wrap{animation:aw-open .62s var(--ease) 4.08s both}
+.appx-il.play.app-watch .aw-row>.n{animation:aw-gone .25s var(--ease) 4.02s both}
+
+/* 2. the sign-up ends with no welcome email: the row flips to at risk */
+.appx-il.play.app-watch .r-hot{animation:ax-in .55s var(--ease) .27s both,aw-glow 2.2s var(--ease) 2.2s both}
+.appx-il.play.app-watch .aw-mk .w0{animation:aw-gone .22s var(--ease) 2.2s both}
+.appx-il.play.app-watch .aw-mk .w1{animation:aw-mark .5s var(--snap) 2.22s both}
+.appx-il.play.app-watch .aw-sg .v0{animation:aw-out .3s var(--ease) 2.2s both}
+.appx-il.play.app-watch .aw-sg .v1{animation:aw-in .4s var(--ease) 2.28s both}
+.appx-il.play.app-watch .r-hot .hm i.d{animation:aw-drop .35s var(--ease) 2.42s both}
+.appx-il.play.app-watch .r-hot .hm i.d+i.d{animation-delay:2.32s}
+.appx-il.play.app-watch .aw-n b:first-child{animation:aw-gone .25s var(--ease) 2.4s both}
+.appx-il.play.app-watch .aw-n b:last-child{animation:aw-in .3s var(--ease) 2.45s both}
+
+/* 3. a save plan is drafted; Needs you counts 3 to 4 */
+.appx-il.play.app-watch .aw-nx .v0{animation:aw-out .3s var(--ease) 2.8s both}
+.appx-il.play.app-watch .aw-nx .v1{animation:aw-in .45s var(--ease) 2.88s both,aw-press .22s ease-out 3.97s}
+.appx-il.play.app-watch .aw-nb b:first-child{animation:aw-gone .25s var(--ease) 2.95s both}
+.appx-il.play.app-watch .aw-nb b:last-child{animation:aw-in .3s var(--ease) 3s both}
+
+/* 4. the pointer opens it: the row is selected, the table makes room, the plan docks */
+.appx-il.play.app-watch .aw-ptr{animation:aw-ptr 2.5s var(--ease) 3s both}
+.appx-il.play.app-watch .r-hot .a::before{animation:aw-bar .4s var(--ease) 4.1s both}
+.appx-il.play.app-watch .aw-pan{animation:aw-pan .6s var(--ease) 4.14s both}

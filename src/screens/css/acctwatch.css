@@ -1,0 +1,195 @@
+/* app-acctwatch: Account watch, for sales and success teams. Checked daily.
+   Each row: the health mark (needs you = at risk, landed = steady, waiting, working = checking now), the account and
+   its renewal, then the 3 signal sources as chips: Inside (your helpdesk and analytics, with consent), Outside
+   (news, hiring, pricing) and Lived (what the account's own customers get). A chip lights when its source has a signal;
+   it goes solid when the signal is new and urgent.
+   Story: Snack brand's usage drops 38% in 14 days and 3 urgent tickets arrive, its Inside chip goes solid, the mark
+   flips to at risk, a save plan is drafted. The pointer opens it: the table makes room, the account docks with the
+   reasons, the 3 steps and a QBR deck. The pointer clicks Approve and the plan reads "Approved by AM", signed.
+   Rest state = the finished scene (table narrow, account open, plan approved). */
+
+.app-acctwatch{--acw-tb:284px;--acw-pan:232px}
+.app-acctwatch .ax-main{padding:14px;gap:12px}
+
+/* sidebar: the open account */
+.app-acctwatch .ax-clients a.acw-on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-acctwatch .ax-clients a.acw-on i{background:var(--fg-2)}
+
+/* header: title, run time, filters (a segmented control: control edges) */
+.app-acctwatch .acw-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-acctwatch .acw-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em}
+.app-acctwatch .acw-time{font:400 11px/1 var(--mono);color:var(--fg-3);padding-top:2px;font-variant-numeric:tabular-nums}
+.app-acctwatch .acw-tabs{margin-left:auto;display:flex;gap:2px;padding:2px;border-radius:8px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-acctwatch .acw-tab{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-acctwatch .acw-tab.on{background:var(--panel-2);color:var(--fg);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-acctwatch .acw-tab i{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.ilwrap .app-acctwatch .acw-tab svg.sig,.ilwrap .app-acctwatch .acw-tab svg.acw-up{width:10px;height:10px;color:var(--fg-2)}
+.app-acctwatch .acw-n{display:inline-grid}
+.app-acctwatch .acw-n b{grid-area:1/1;font-weight:inherit}
+.app-acctwatch .acw-n b:first-child{opacity:0}
+
+/* the table: fixed columns, so making room for the account only clips Latest and Next move */
+.app-acctwatch .acw-wrap{position:relative}
+.app-acctwatch .acw-tb{width:var(--acw-tb);border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-acctwatch .acw-row{display:grid;grid-template-columns:128px 152px 124px 124px;align-items:center;height:48px;box-shadow:0 -1px 0 var(--line) inset}
+.app-acctwatch .acw-row>span{min-width:0;padding:0 8px;overflow:hidden;white-space:nowrap}
+.app-acctwatch .acw-row>span:first-child{padding-left:12px}
+.app-acctwatch .acw-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-acctwatch .acw-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-acctwatch .acw-row>.l,.app-acctwatch .acw-row>.n{opacity:0}
+
+/* account: mark, name, renewal */
+.app-acctwatch .acw-row .a{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;row-gap:2px;align-content:center;align-self:stretch}
+.ilwrap .app-acctwatch .acw-row .a svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-acctwatch .acw-row .a>.sig,.app-acctwatch .acw-row .a>.acw-stk{grid-row:1;align-self:center}
+.app-acctwatch .acw-row .a b{font:500 11.5px/15px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-acctwatch .acw-row .a small{grid-column:2;font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* the 3 signal sources */
+.app-acctwatch .acw-sg{display:grid;grid-template-columns:40px 48px 38px;gap:4px}
+.app-acctwatch .acw-sc{display:grid;place-items:center;height:18px;padding:0;border-radius:5px;font:500 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3);white-space:nowrap;box-shadow:0 0 0 1px var(--line-2) inset}
+.app-acctwatch .acw-sc.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-acctwatch .acw-sc.hot,.app-acctwatch .acw-sc.acw-lit{color:var(--bg);background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+
+/* latest signal and next move (shown while the table is full width) */
+.app-acctwatch .acw-row .l{font-size:11.5px;color:var(--fg-2)}
+.app-acctwatch .acw-lt .v1{display:grid;gap:2px;font-size:11px;line-height:14px}
+.app-acctwatch .acw-lt .l1{color:var(--fg);font-weight:500}
+.app-acctwatch .acw-play{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font:500 11px/1 var(--sans);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-acctwatch .acw-quiet{font-size:11px;color:var(--fg-3)}
+
+/* the account that just changed */
+.app-acctwatch .r-hot{background:rgb(var(--fg-rgb) / .055)}
+.app-acctwatch .r-hot .a{position:relative}
+.app-acctwatch .r-hot .a::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+
+/* stacked states: only the last child shows at rest */
+.app-acctwatch .acw-stk{display:inline-grid;vertical-align:top;align-items:center}
+.app-acctwatch .acw-stk>*{grid-area:1/1}
+.app-acctwatch .acw-stk>:not(:last-child){opacity:0}
+
+/* the red line, shown */
+.app-acctwatch .acw-foot{display:flex;align-items:center;gap:7px;height:34px;padding:0 12px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-acctwatch .acw-foot svg.acw-ic{width:12px;height:12px;color:var(--fg-3)}
+
+/* ---------- the account, docked where Latest and Next move were ---------- */
+.app-acctwatch .acw-pan{position:absolute;top:0;right:0;bottom:0;width:var(--acw-pan);display:flex;flex-direction:column;gap:12px;padding:12px;border-radius:10px;
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-acctwatch .acw-ph{display:grid;gap:5px}
+.app-acctwatch .acw-pk{display:flex;align-items:center;gap:6px;height:14px;font:500 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-acctwatch .acw-pk .ax-mono{font-size:10.5px;color:var(--fg-3)}
+.ilwrap .app-acctwatch .acw-pk svg.sig{width:11px;height:11px;color:var(--fg)}
+.ilwrap .app-acctwatch .acw-pk svg.acw-x{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
+.app-acctwatch .acw-ph h3{font:600 15px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+
+/* why: usage, tickets, what their customers got */
+.app-acctwatch .acw-why{display:grid;padding:0 10px;border-radius:8px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-acctwatch .acw-use{display:grid;gap:6px;padding:9px 0 10px}
+.app-acctwatch .acw-rl{display:flex;align-items:center;gap:8px;height:18px;font-size:11px;color:var(--fg);white-space:nowrap}
+.app-acctwatch .acw-rl>span{overflow:hidden;text-overflow:ellipsis}
+.app-acctwatch .acw-rl b{font:500 11px/1 var(--mono);color:var(--fg)}
+.app-acctwatch .acw-rl .acw-sc{margin-left:auto;flex:none;padding:0 6px}
+.app-acctwatch .acw-why>.acw-rl{height:28px;box-shadow:0 1px 0 var(--line) inset}
+.ilwrap .app-acctwatch svg.acw-chart{width:188px;height:24px;overflow:visible}
+.app-acctwatch .acw-chart .bd{fill:rgb(var(--fg-rgb) / .045)}
+.app-acctwatch .acw-chart .ar{fill:rgb(var(--fg-rgb) / .07)}
+.app-acctwatch .acw-chart .ln{fill:none;stroke:var(--fg);stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.app-acctwatch .acw-chart .dt{fill:var(--fg)}
+
+/* the save plan */
+.app-acctwatch .acw-plan{display:grid;gap:4px}
+.app-acctwatch .acw-pl{display:flex;align-items:center;gap:7px;height:20px}
+.ilwrap .app-acctwatch .acw-pl svg.acw-ic{width:13px;height:13px;color:var(--fg-2)}
+.app-acctwatch .acw-pl b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-acctwatch .acw-dr{margin-left:auto;justify-items:end}
+.app-acctwatch .acw-steps{display:grid}
+.app-acctwatch .acw-steps li{display:flex;align-items:center;gap:8px;height:26px;font-size:11.5px;color:var(--fg);white-space:nowrap;box-shadow:0 -1px 0 var(--line) inset}
+.app-acctwatch .acw-steps li:last-child{box-shadow:none}
+.app-acctwatch .acw-steps li i{width:16px;height:16px;border-radius:4px;display:grid;place-items:center;flex:none;font:500 10.5px/1 var(--mono);font-style:normal;color:var(--fg-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-acctwatch .acw-deck{margin-left:auto;display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 7px 0 6px;border-radius:5px;font:500 10.5px/1 var(--sans);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-acctwatch .acw-deck svg.acw-ic{width:12px;height:12px;color:var(--fg-2)}
+
+/* the decision: Approve, then the signed approval */
+.app-acctwatch .acw-pf{margin-top:auto;display:grid;height:24px}
+.app-acctwatch .acw-pf>*{grid-area:1/1}
+.app-acctwatch .acw-f1{display:flex;gap:6px;opacity:0}
+.app-acctwatch .acw-f1 .ax-btn{justify-content:center}
+.app-acctwatch .acw-f1 .ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-acctwatch .acw-ok{flex:1}
+.app-acctwatch .acw-f2{display:flex;align-items:center;gap:7px;height:24px;padding:0 9px;border-radius:7px;font-size:11px;color:var(--fg-2);white-space:nowrap;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-acctwatch .acw-f2 svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-acctwatch .acw-f2 b{font-weight:500;color:var(--fg)}
+.app-acctwatch .acw-f2 .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+
+/* pointer: parks on the drafted save plan; hidden at rest */
+.app-acctwatch .acw-ptr{left:456px;top:244px}
+.ilwrap .app-acctwatch .appx svg.acw-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes acw-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes acw-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes acw-gone{from{opacity:1}to{opacity:0}}
+@keyframes acw-show{from{opacity:0}to{opacity:1}}
+@keyframes acw-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes acw-glow{
+  0%{background-color:rgb(var(--fg-rgb) / 0)}
+  14%{background-color:rgb(var(--fg-rgb) / .13)}
+  100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes acw-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes acw-narrow{from{width:528px}to{width:var(--acw-tb)}}
+@keyframes acw-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes acw-lit{
+  from{color:var(--fg-3);background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line-2) inset}
+  to{color:var(--bg);background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes acw-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes acw-sel{
+  from{background-color:rgb(var(--fg-rgb) / 0);color:var(--fg-2)}
+  to{background-color:rgb(var(--fg-rgb) / .07);color:var(--fg)}}
+@keyframes acw-dot{from{background-color:var(--line-3)}to{background-color:var(--fg-2)}}
+@keyframes acw-ptr{
+  0%{opacity:0;transform:translate(80px,100px)}
+  8%{opacity:1}
+  24.6%{transform:translate(0,0) scale(1)}
+  26.3%{transform:translate(0,0) scale(.9)}
+  28.6%{transform:translate(0,0) scale(1)}
+  42.9%{transform:translate(0,0)}
+  72.9%{transform:translate(-9px,131px) scale(1)}
+  74.6%{transform:translate(-9px,131px) scale(.9)}
+  76.9%{transform:translate(-9px,131px) scale(1)}
+  88.6%{opacity:1;transform:translate(-5px,137px)}
+  100%{opacity:0;transform:translate(-2px,141px)}}
+
+/* 1. the table is full width while the signals land */
+.appx-il.play.app-acctwatch .acw-tb{animation:acw-narrow .62s var(--ease) 3.15s both}
+.appx-il.play.app-acctwatch .acw-row>.l,.appx-il.play.app-acctwatch .acw-row>.n{animation:acw-gone .28s var(--ease) 3.1s both}
+
+/* 2. usage drops and 3 urgent tickets arrive on Snack brand: Inside goes solid */
+.appx-il.play.app-acctwatch .r-hot{animation:ax-in .55s var(--ease) .27s both,acw-glow 2.2s var(--ease) 1.65s both}
+.appx-il.play.app-acctwatch .r-hot .acw-sc.acw-lit{animation:acw-lit .45s var(--ease) 1s both}
+.appx-il.play.app-acctwatch .acw-lt .v0{animation:acw-out .3s var(--ease) .95s both}
+.appx-il.play.app-acctwatch .acw-lt .v1{animation:acw-show .01s linear 1s both}
+.appx-il.play.app-acctwatch .acw-lt .l1{animation:acw-in .4s var(--ease) 1.02s both}
+.appx-il.play.app-acctwatch .acw-lt .l2{animation:acw-in .4s var(--ease) 1.36s both}
+
+/* 3. it flips to at risk; a save plan is drafted */
+.appx-il.play.app-acctwatch .acw-mk .w0{animation:acw-gone .22s var(--ease) 1.7s both}
+.appx-il.play.app-acctwatch .acw-mk .w1{animation:acw-mark .5s var(--snap) 1.72s both}
+.appx-il.play.app-acctwatch .r-hot .a::before{animation:acw-bar .4s var(--ease) 1.75s both}
+.appx-il.play.app-acctwatch .acw-n b:first-child{animation:acw-gone .25s var(--ease) 1.85s both}
+.appx-il.play.app-acctwatch .acw-n b:last-child{animation:acw-in .3s var(--ease) 1.85s both}
+.appx-il.play.app-acctwatch .acw-nx .v0{animation:acw-out .3s var(--ease) 2.1s both}
+.appx-il.play.app-acctwatch .acw-nx .v1{animation:acw-in .45s var(--ease) 2.18s both,acw-press .22s ease-out 2.98s}
+
+/* 4. the pointer opens it: the table makes room, the account docks, the sidebar selects it */
+.appx-il.play.app-acctwatch .acw-ptr{animation:acw-ptr 3.5s var(--ease) 2.2s both}
+.appx-il.play.app-acctwatch .ax-clients a.acw-on{animation:acw-sel .4s var(--ease) 3.25s both}
+.appx-il.play.app-acctwatch .ax-clients a.acw-on i{animation:acw-dot .4s var(--ease) 3.25s both}
+.appx-il.play.app-acctwatch .acw-chart .ln{stroke-dasharray:1;animation:acw-draw .9s var(--ease) 3.5s both}
+.appx-il.play.app-acctwatch .acw-chart .ar,.appx-il.play.app-acctwatch .acw-chart .dt{animation:acw-show .5s var(--ease) 4.05s both}
+
+/* 5. Approve: the buttons give way to the signed approval */
+.appx-il.play.app-acctwatch .acw-f1{animation:acw-show .01s linear 3.95s both,acw-gone .2s var(--ease) 4.94s forwards}
+.appx-il.play.app-acctwatch .acw-ok{animation:acw-press .22s ease-out 4.8s}
+.appx-il.play.app-acctwatch .acw-f2{animation:acw-in .4s var(--ease) 5s both}
+.appx-il.play.app-acctwatch .acw-dr>:first-child{animation:acw-show .01s linear 3.7s both,acw-gone .25s var(--ease) 5.04s forwards}
+.appx-il.play.app-acctwatch .acw-dr>:last-child{animation:acw-show .3s var(--ease) 5.08s both}

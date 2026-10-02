@@ -1,0 +1,173 @@
+/* app-leads: Missions. A founder's Monday list: 50 prospects imported from Clay, each tested by a labelled test customer.
+   One ranked list. Only companies with a proven gap rank; the 37 with no gap fold into the footer, not on your list.
+   Story: the import is worked row by row (each mark closes as its result lands, the 50-square strip fills),
+   then the list re-sorts (FLIP: gap rows slide up to their rank, no-gap rows drop away into the footer),
+   the pointer opens rank 1 and its proof slides in: 3 dated captures and a drafted 3-line opener,
+   sent from your inbox only after your OK. Rest state (no .play) = the finished scene. */
+@property --appleads-n{syntax:"<integer>";inherits:false;initial-value:13}
+
+.app-leads .ax-main{grid-template-rows:24px minmax(0,1fr);align-content:stretch;padding:14px;gap:12px}
+.app-leads .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-leads .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- header: the list, where it came from, how much of it holds up ---------- */
+.app-leads .ld-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-leads .ld-mk{display:inline-grid;flex:none}
+.app-leads .ld-mk .sig{grid-area:1/1}
+.ilwrap .app-leads .ld-mk .sig{width:16px;height:16px;color:var(--fg)}
+.app-leads .ld-mk .w0{opacity:0}
+.app-leads .ld-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-leads .ld-h .ax-chip{gap:5px;color:var(--fg-2)}
+.ilwrap .app-leads .ld-h .ax-chip svg{width:11px;height:11px;color:var(--fg-3)}
+.app-leads .ld-t{margin-left:auto;display:flex;align-items:center;gap:10px}
+.app-leads .ld-strip{display:grid}
+.app-leads .ld-strip>span{grid-area:1/1;display:grid;grid-template-rows:repeat(2,5px);grid-auto-flow:column;grid-auto-columns:5px;gap:2px}
+.app-leads .ld-strip i{border-radius:1.5px;background:rgb(var(--fg-rgb) / .17)}
+.app-leads .ld-strip .a i{background:none;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-leads .ld-strip .b i.g{background:var(--fg)}
+.app-leads .ld-tl{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-leads .ld-tl b{font-weight:500;color:var(--fg);counter-reset:appleads-n var(--appleads-n)}
+.app-leads .ld-tl b::before{content:counter(appleads-n)}
+
+/* ---------- the ranked list ---------- */
+.app-leads .ld-list{display:grid;grid-template-rows:24px minmax(0,1fr) 32px;min-height:0;overflow:hidden}
+.app-leads .ld-r{display:grid;grid-template-columns:14px 12px 120px minmax(0,1fr) 34px 58px;column-gap:10px;align-items:center;height:32px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-leads .ld-r>*{min-width:0;white-space:nowrap}
+.app-leads .ld-th{height:24px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-leads .ld-th span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-leads .rk{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.ilwrap .app-leads .ld-r .sig{width:12px;height:12px;color:var(--fg)}
+.app-leads .co{font:500 11.5px/1 var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-leads .gp{position:relative;font:400 10.5px/1 var(--mono);color:var(--fg)}
+.app-leads .pf{display:flex;align-items:center;gap:5px;font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.ilwrap .app-leads .pf svg{width:12px;height:12px;color:var(--fg-3)}
+.app-leads .sd{display:grid;justify-items:end}
+.app-leads .sd>*{grid-area:1/1}
+.app-leads .sd .ax-btn{height:20px;padding:0 8px;border-radius:6px;font-size:11px}
+.app-leads .sd .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-leads .r1 .sd .s0{opacity:0}
+/* skeletons: seen only while a result is still out during play */
+.app-leads .sk{position:absolute;left:0;top:50%;height:7px;margin-top:-3.5px;border-radius:3px;background:rgb(var(--fg-rgb) / .09);opacity:0}
+
+/* the body is a scroll area: at rest rank 1 and its proof plus ranks 2 to 5 fill it exactly; the rest sit below */
+.app-leads .ld-body{position:relative;min-height:0;overflow:hidden}
+
+/* companies with no gap: only on screen while the list is worked */
+.app-leads .ld-ng{position:absolute;left:0;right:0;opacity:0}
+.app-leads .ld-ng .co{color:var(--fg-2)}
+.app-leads .ld-ng .gp{color:var(--fg-3)}
+.ilwrap .app-leads .ld-ng .sig{color:var(--fg-3)}
+
+/* rank 1, opened: raised fill over the row and its proof */
+.app-leads .ld-sel{background:rgb(var(--fg-rgb) / .045);box-shadow:0 -1px 0 var(--line) inset}
+.app-leads .ld-sel .ld-r{box-shadow:none}
+.app-leads .ld-x{display:grid;grid-template-rows:1fr}
+.app-leads .ld-xc{min-height:0;overflow:hidden}
+
+/* the proof card: 3 dated captures, the drafted opener */
+.app-leads .ld-pc{display:grid;grid-template-columns:226px minmax(0,1fr);column-gap:16px;margin:0 12px 14px 36px;padding:12px 14px 12px 12px;border-radius:9px;
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 10px 24px -16px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-leads .ld-pv,.app-leads .ld-op{display:grid;align-content:start;min-width:0}
+.app-leads .ld-by{display:flex;align-items:center;gap:6px;height:14px;font:400 10.5px/14px var(--mono);color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-leads .ld-by .sig{width:10px;height:10px;color:var(--fg-2)}
+.app-leads .ld-caps{display:grid;grid-template-columns:repeat(3,70px);gap:8px;margin-top:8px}
+.app-leads .ld-caps figure{margin:0;display:grid;gap:5px;min-width:0}
+.app-leads .ld-caps .ax-shot{height:56px;grid-template-rows:6px 1fr}
+.app-leads .ld-caps figcaption{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-leads .ld-pg{display:grid;align-content:center;gap:5px;padding:5px 7px;min-height:0}
+.app-leads .ld-pg b{font:600 10.5px/12px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-leads .c1 .ld-tb{width:46%;height:4px}
+.app-leads .c1 .ld-fld{height:8px;border-radius:2px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-leads .c2 .ld-it{display:flex;align-items:center;gap:7px}
+.app-leads .c2 .ld-pt{width:20px;height:20px;border-radius:3px;background:#D8C4B6}
+.app-leads .c2 .ld-cta{height:8px;border-radius:2px;background:#3A3834}
+.app-leads .c3{gap:6px}
+.app-leads .c3 .ld-ml{display:grid;grid-template-columns:6px minmax(0,1fr);align-items:center;gap:5px}
+.app-leads .c3 .ld-md{height:6px;border-radius:1.5px;background:#8C887F}
+.app-leads .c3 .ld-mb{height:4px;width:78%}
+.app-leads .c3 .ld-wt{height:0;border-radius:0;background:none;border-top:1px dashed #A8A398}
+
+.app-leads .ld-oh{display:flex;gap:5px;height:14px;font:400 10.5px/14px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-leads .ld-oh b{font-weight:500;color:var(--fg-2)}
+.app-leads .ld-ln{position:relative;font:400 11px/16px var(--sans);color:var(--fg);white-space:nowrap}
+.app-leads .ld-ln.l1{margin-top:8px}
+.app-leads .ld-hint{display:flex;align-items:center;gap:6px;height:14px;margin-top:12px;font:400 10.5px/14px var(--sans);color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-leads .ld-hint svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* footer: while working, the watch; after, the 37 folded away */
+.app-leads .ld-foot{display:grid;align-items:center;padding:0 12px;background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
+.app-leads .ld-foot>span{grid-area:1/1;display:grid;grid-template-columns:14px auto auto;column-gap:10px;justify-content:start;align-items:center;white-space:nowrap;font-size:11.5px}
+.ilwrap .app-leads .ld-foot svg{width:12px;height:12px;color:var(--fg-3)}
+.app-leads .ld-foot .f0{opacity:0;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-leads .ld-foot .f1{column-gap:6px}
+.app-leads .ld-foot .f1 svg{margin-right:4px}
+.app-leads .ld-foot .f1 b{font-weight:500;color:var(--fg-2)}
+.app-leads .ld-foot .f1 span{color:var(--fg-3)}
+
+/* pointer (the base's ".appx svg{width:auto}" outranks .ax-ptr, so size it here) */
+.ilwrap .app-leads .appx svg.ld-ptr{width:16px;height:16px}
+.app-leads .ld-ptr{transform-origin:3px 1.5px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ld-show{from{opacity:0}to{opacity:1}}
+@keyframes ld-hide{from{opacity:1}to{opacity:0}}
+@keyframes ld-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes ld-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes ld-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ld-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes ld-flip{from{transform:translateY(var(--y,0px))}to{transform:none}}
+@keyframes ld-drop{from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px)}}
+@keyframes ld-sweep{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes ld-count{
+  0%{--appleads-n:0} 4%{--appleads-n:1} 12%{--appleads-n:2} 20%{--appleads-n:3} 28%{--appleads-n:4} 40%{--appleads-n:5} 48%{--appleads-n:6}
+  52%{--appleads-n:7} 60%{--appleads-n:8} 68%{--appleads-n:9} 76%{--appleads-n:10} 84%{--appleads-n:11} 92%{--appleads-n:12} 100%{--appleads-n:13}}
+@keyframes ld-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes ld-sel{from{background-color:rgb(var(--fg-rgb) / 0)}to{background-color:rgb(var(--fg-rgb) / .045)}}
+@keyframes ld-card{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes ld-cap{from{opacity:0;transform:translateY(4px) scale(.96)}to{opacity:1;transform:none}}
+/* 2.1s from 3.5s: glides in, clicks rank 1 at 4.4s, eases into the empty space of the row and fades by 5.6s */
+@keyframes ld-ptr{
+  0%{opacity:0;transform:translate(420px,318px)}
+  12%{opacity:1}
+  40%{transform:translate(110px,86px) scale(1)}
+  44%{transform:translate(110px,86px) scale(.88)}
+  50%{transform:translate(110px,86px) scale(1)}
+  74%{opacity:1;transform:translate(168px,88px)}
+  100%{opacity:0;transform:translate(174px,90px)}}
+
+/* 1. the list is worked: rows arrive in import order, each result lands, the strip and count fill */
+.appx-il.play.app-leads .ld-mk .w0{animation:ld-show .01s linear both,ld-hide .25s var(--ease) 2.7s forwards}
+.appx-il.play.app-leads .ld-mk .w0 .sig-rot{animation:ld-spin 2.5s linear .2s both}
+.appx-il.play.app-leads .ld-mk .w0 .sig-orb{animation:ld-spinr 2.5s linear .2s both}
+.appx-il.play.app-leads .ld-mk .w1{animation:ld-show .25s var(--ease) 2.7s both}
+.appx-il.play.app-leads .ld-mk .w1 .sig-sq{animation:ld-home .55s var(--snap) 2.75s both}
+.appx-il.play.app-leads .ld-mk .w1 .sig-gap{animation:ld-show .3s var(--ease) 2.95s both}
+.appx-il.play.app-leads .ld-strip .b{animation:ld-sweep 1.75s steps(25,end) .85s both}
+.appx-il.play.app-leads .ld-tl b{animation:ld-count 1.75s steps(1,end) .85s both}
+
+.appx-il.play.app-leads .ld-r.g{animation:ld-flip .7s var(--ease) calc(2.95s + var(--o)) both}
+.appx-il.play.app-leads .ld-r.g.lv{animation:ld-show .35s var(--ease) var(--e) both,ld-flip .7s var(--ease) calc(2.95s + var(--o)) both}
+.appx-il.play.app-leads .ld-ng{animation:ld-drop .4s var(--ease) calc(2.9s + var(--o)) both}
+.appx-il.play.app-leads .ld-ng .ld-r{animation:ld-show .35s var(--ease) var(--e) both}
+.appx-il.play.app-leads .lv .sig-sq{animation:ld-home .55s var(--snap) var(--l) both}
+.appx-il.play.app-leads .lv .sig-gap{animation:ld-show .3s var(--ease) calc(var(--l) + .18s) both}
+.appx-il.play.app-leads .lv .gp .sk{animation:ld-hide .25s var(--ease) var(--l) both}
+.appx-il.play.app-leads .lv .gp .v{animation:ld-show .35s var(--ease) calc(var(--l) + .05s) both}
+.appx-il.play.app-leads .lv.g .pf,.appx-il.play.app-leads .lv.g .sd{animation:ld-show .35s var(--ease) calc(var(--l) + .12s) both}
+
+/* 2. the re-sort: ranks appear, the 37 fold into the footer */
+.appx-il.play.app-leads .g .rk{animation:ld-show .3s var(--ease) calc(3.4s + var(--o)) both}
+.appx-il.play.app-leads .ld-foot .f0{animation:ld-show .01s linear both,ld-hide .25s var(--ease) 3.1s forwards}
+.appx-il.play.app-leads .ld-foot .f1{animation:ld-in .4s var(--ease) 3.2s both}
+
+/* 3. the pointer opens rank 1: its proof slides in, the opener fills, the send waits on your OK */
+.appx-il.play.app-leads .ld-ptr{animation:ld-ptr 2.1s var(--ease) 3.5s both}
+.appx-il.play.app-leads .ld-sel{animation:ld-sel .3s var(--ease) 4.42s both}
+.appx-il.play.app-leads .r1 .sd .s0{animation:ld-show .01s linear both,ld-hide .2s var(--ease) 4.48s forwards}
+.appx-il.play.app-leads .r1 .sd .s1{animation:ld-show .25s var(--ease) 4.5s both}
+.appx-il.play.app-leads .ld-x{animation:ld-open .55s var(--ease) 4.5s both}
+.appx-il.play.app-leads .ld-pc{animation:ld-card .6s var(--ease) 4.58s both}
+.appx-il.play.app-leads .ld-caps figure{animation:ld-cap .4s var(--ease) var(--d) both}
+.appx-il.play.app-leads .ld-ln .sk{animation:ld-hide .3s var(--ease) var(--d) both}
+.appx-il.play.app-leads .ld-ln .v{animation:ld-show .4s var(--ease) var(--d) both}
+.appx-il.play.app-leads .ld-hint{animation:ld-in .45s var(--ease) 5.25s both}

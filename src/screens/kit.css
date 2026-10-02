@@ -1,0 +1,54 @@
+/* The app screens' shared kit: what every screen (src/screens/html, css) expects from the page around it.
+   Colours, type and curves come from the design system (src/styles/ds/tokens.css). The screens use short names;
+   these alias the --ob- tokens, scoped to the screen frames only so they never collide with page variables.
+   They resolve wherever the frame sits, so a screen in a paper section or a hybrid product object gets the right ink. */
+.ilwrap, .appx-il, .sig {
+  --bg: var(--ob-bg); --bg-2: var(--ob-bg-sunken); --panel: var(--ob-surface); --panel-2: var(--ob-surface-raised); --panel-3: var(--ob-surface-hover);
+  --line: var(--ob-line-subtle); --line-2: var(--ob-line); --line-3: var(--ob-line-strong); --line-ui: var(--ob-line-ui);
+  --fg: var(--ob-text); --fg-2: var(--ob-text-2); --fg-3: var(--ob-text-3);
+  --fg-rgb: var(--ob-tint-rgb); --hi-rgb: var(--ob-sheen-rgb); --glow-rgb: var(--ob-glow-rgb);
+  --sans: var(--ob-font-sans); --display: var(--ob-font-sans); --mono: var(--ob-font-mono);
+  --ease: var(--ob-ease); --snap: var(--ob-snap);
+}
+
+/* The frame a screen sits in. */
+.ilwrap {
+  border-radius: var(--ob-radius-lg, 22px);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgb(var(--hi-rgb) / .04), rgb(var(--fg-rgb) / .008)), var(--bg-2);
+  box-shadow: 0 0 0 1px var(--line-2) inset, 0 1px 0 rgb(var(--hi-rgb) / .07) inset;
+}
+.ilwrap .il svg { display: block; width: 100%; height: auto; }
+.ilwrap .appx-il svg.ax-ptr { width: 16px !important; height: 16px !important; }
+
+/* Each screen is one 720 x 450 window scaled to its frame. The scale is pure CSS (container width / 720),
+   so a prerendered page is the right size before any script runs. tan(atan2()) turns the length ratio into a number. */
+.appx-fit { container-type: inline-size; }
+@supports (transform: scale(tan(atan2(1px, 1px)))) {
+  .appx-fit .appx { transform: scale(tan(atan2(100cqw, 720px))); }
+}
+
+/* The signature mark inside screens, in its 4 states: working (the square circles the ring, upright), waiting (it
+   blinks like a cursor), needs you (it goes hollow), landed (the ring closes and the square comes home). */
+.sig { display: block; flex: none; }
+.sig .sig-ring, .sig .sig-sq, .sig .sig-gap { fill: currentColor; }
+.sig .sig-gap { opacity: 0; stroke: currentColor; stroke-width: .6; transition: opacity .35s var(--ease); }
+.sig .sig-sq, .sig .sig-orb { transform-box: fill-box; transform-origin: center; }
+.sig .sig-sq { transition: transform .8s var(--ease); }
+.sig .sig-rot { transform-origin: 50px 50px; }
+.sig.st-needs .sig-sq { fill: none; stroke: currentColor; stroke-width: 6.6px; transform: scale(.75); }
+.sig.st-landed .sig-gap { opacity: 1; transition-delay: .3s; }
+.sig.st-landed .sig-sq { transform: translate(-26px, 26px) scale(.8); }
+.sig.st-working.moving .sig-rot { animation: sigSpin 3.2s linear infinite; }
+.sig.st-working.moving .sig-orb { animation: sigSpinRev 3.2s linear infinite; }
+.sig.st-waiting.moving .sig-sq { animation: sigBlink 1.06s steps(1, end) infinite; }
+.sig.st-needs.moving .sig-sq { animation: sigNeeds 2.6s ease-in-out infinite; }
+@keyframes sigBlink { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes sigNeeds { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
+@keyframes sigSpin { to { transform: rotate(360deg); } }
+@keyframes sigSpinRev { to { transform: rotate(-360deg); } }
+
+/* Reduced motion: every screen shows its finished scene and the marks hold still. */
+@media (prefers-reduced-motion: reduce) {
+  .appx-il, .appx-il * { animation: none !important; transition: none !important; }
+}

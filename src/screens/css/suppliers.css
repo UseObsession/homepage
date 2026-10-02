@@ -1,0 +1,210 @@
+/* app-suppliers: Spend, for founders cutting costs. Packaging's current supplier is raising prices 18% from 1 Nov.
+   Left: the rise and the supplier's notice. Centre: 16 quotes the agent asked for as your buyer, ranked by price per 1,000,
+   the current supplier's line marked, the best 3 highlighted. Right: the drafted push-back citing the best 3, and 6 unused plans.
+   Story: quotes land in the order they arrive and the list re-sorts, the best line glows, the push-back slides in,
+   the pointer clicks Send, the supplier replies (rise cut to 6%) and its line rises to 4th. Rest state = the finished scene.
+   Rows nest 3 layers so each phase owns 1 transform: .sp-q re-rank (--dz), .sp-qm sort (--dy), .sp-qc land (--a). */
+@property --sp-q{syntax:"<integer>";inherits:false;initial-value:16}
+
+.app-suppliers .ax-main{grid-template-columns:132px 208px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
+
+/* stacked values: only the last child shows at rest */
+.app-suppliers .sp-stk,.app-suppliers .sp-n{display:inline-grid}
+.app-suppliers .sp-stk>*,.app-suppliers .sp-n>*{grid-area:1/1}
+.app-suppliers .sp-stk>:not(:last-child),.app-suppliers .sp-n>:not(:last-child){opacity:0}
+.app-suppliers .sp-n b{font-weight:inherit}
+
+/* ---------- left: the rise ---------- */
+.app-suppliers .sp-l{display:flex;flex-direction:column;padding:14px 12px;border-right:1px solid var(--line);min-width:0}
+.app-suppliers .sp-lh{display:grid;gap:3px}
+.app-suppliers .sp-lh h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg)}
+.app-suppliers .sp-lh p{font-size:11px;line-height:14px;color:var(--fg-3)}
+.app-suppliers .sp-rise{margin-top:20px;display:grid;gap:6px}
+.app-suppliers .sp-big{display:flex;align-items:baseline;gap:8px;height:28px}
+.app-suppliers .sp-big .sp-stk{position:relative;font:600 26px/28px var(--display);letter-spacing:-.035em;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-suppliers .sp-big .o{position:absolute;left:0;top:0}
+.app-suppliers .sp-was{font:400 11px/1 var(--mono);color:var(--fg-3);text-decoration:line-through;text-decoration-color:var(--fg-3)}
+.app-suppliers .sp-from{font:400 10.5px/14px var(--mono);color:var(--fg-3)}
+
+/* the supplier's notice, as captured */
+.app-suppliers .sp-ev{margin:18px 0 0;display:grid;gap:6px}
+.app-suppliers .sp-ev figcaption{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-suppliers .sp-note{height:90px}
+.app-suppliers .sp-pg{display:grid;align-content:start;gap:6px;padding:8px 6px;min-height:0}
+.app-suppliers .sp-pg i{height:4px}
+.app-suppliers .sp-pg .lg{width:38%;height:6px;margin-bottom:2px;background:#BDB8AE}
+.app-suppliers .sp-pg .l1{width:92%}.app-suppliers .sp-pg .l2{width:70%}
+.app-suppliers .sp-pg .l3{width:88%}.app-suppliers .sp-pg .l4{width:62%}
+.app-suppliers .sp-pg .hl{justify-self:start;margin:1px 0;padding:3px 4px;border-radius:3px;background:#D3CFC7;font:500 10.5px/1 var(--sans);color:#1E1D1A;white-space:nowrap}
+
+/* the price and the volume behind the saving */
+.app-suppliers .sp-kv{margin:14px 0 0;display:grid;gap:8px}
+.app-suppliers .sp-kv div{display:grid;gap:3px}
+.app-suppliers .sp-kv dt{font-size:10.5px;line-height:13px;color:var(--fg-3)}
+.app-suppliers .sp-kv dd{margin:0;font:400 10.5px/13px var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* the outcome */
+.app-suppliers .sp-save{margin-top:auto;display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line) inset}
+.ilwrap .app-suppliers .sp-save .sig{width:13px;height:13px;color:var(--fg)}
+.app-suppliers .sp-save p{display:grid;gap:3px;white-space:nowrap}
+.app-suppliers .sp-save b{font:500 12px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-suppliers .sp-save span{font-size:10.5px;line-height:1;color:var(--fg-3)}
+
+/* ---------- centre: the quotes ---------- */
+.app-suppliers .sp-c{display:grid;align-content:start;padding:14px 12px;border-right:1px solid var(--line);min-width:0}
+.app-suppliers .sp-ch{display:flex;align-items:center;gap:8px;height:24px}
+.app-suppliers .sp-ch h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-suppliers .sp-cnt{counter-reset:spq var(--sp-q);font-variant-numeric:tabular-nums}
+.app-suppliers .sp-cnt::before{content:counter(spq)}
+.app-suppliers .sp-per{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+
+.app-suppliers .sp-th,.app-suppliers .sp-qc{display:grid;grid-template-columns:14px minmax(0,1fr) 30px 28px 16px;gap:6px;align-items:center;padding:0 6px}
+.app-suppliers .sp-th{margin-top:10px;height:20px;border-bottom:1px solid var(--line);font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-suppliers .sp-th .pr{grid-column:3/5;text-align:right}
+.app-suppliers .sp-th .dd{text-align:right}
+.app-suppliers .sp-list{position:relative;display:grid;margin-top:4px}
+
+.app-suppliers .sp-q{position:relative;height:18px}
+.app-suppliers .sp-qm{height:100%}
+.app-suppliers .sp-qc{position:relative;isolation:isolate;height:18px;background:var(--panel)}
+.app-suppliers .sp-qc>span{min-width:0;white-space:nowrap}
+.app-suppliers .sp-qc .rk{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-suppliers .sp-qc .nm{overflow:hidden;text-overflow:ellipsis;font-size:11px;line-height:1;color:var(--fg-2)}
+.app-suppliers .sp-qc .br{height:4px;border-radius:2px;background:rgb(var(--fg-rgb) / .07);overflow:hidden}
+.app-suppliers .sp-qc .br i{display:block;height:100%;border-radius:2px;background:var(--fg-3);transform-origin:0 50%;transform:scaleX(var(--s))}
+.app-suppliers .sp-qc .pr{justify-self:end;font:400 11px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-suppliers .sp-qc .dd{text-align:right;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* the best 3: one quiet band, the best line on top */
+.app-suppliers .best .nm{color:var(--fg)}
+.app-suppliers .best .pr{color:var(--fg);font-weight:500}
+.app-suppliers .best .br i{background:var(--fg)}
+.app-suppliers .best .sp-qc::before{content:"";position:absolute;inset:0;z-index:-1;background:rgb(var(--fg-rgb) / .06);
+  box-shadow:1px 0 0 var(--line-2) inset,-1px 0 0 var(--line-2) inset}
+.app-suppliers .b1 .sp-qc::before{border-radius:6px 6px 0 0;box-shadow:1px 0 0 var(--line-2) inset,-1px 0 0 var(--line-2) inset,0 1px 0 var(--line-2) inset}
+.app-suppliers .b3 .sp-qc::before{border-radius:0 0 6px 6px;box-shadow:1px 0 0 var(--line-2) inset,-1px 0 0 var(--line-2) inset,0 -1px 0 var(--line-2) inset}
+.app-suppliers .b1 .sp-qc::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:6px 6px 0 0;background:rgb(var(--fg-rgb) / .12);opacity:0}
+
+/* the current supplier's line */
+.app-suppliers .cur{z-index:2}
+.app-suppliers .cur .sp-qc::before{content:"";position:absolute;inset:1px 0;z-index:-1;border-radius:5px;background:rgb(var(--fg-rgb) / .04);outline:1px dashed var(--line-ui);outline-offset:-1px}
+.app-suppliers .cur .nm{color:var(--fg);font-weight:500}
+.app-suppliers .cur .pr{color:var(--fg)}
+.app-suppliers .cur .br i{background:var(--fg-2)}
+
+/* ---------- right: the push-back and the plans ---------- */
+.app-suppliers .sp-r{position:relative;display:grid;align-content:start;gap:10px;padding:14px 12px;min-width:0}
+.app-suppliers .sp-pb,.app-suppliers .sp-sk{grid-area:1/1}
+.app-suppliers .sp-pl{grid-area:2/1}
+.app-suppliers .sp-pb{display:grid;gap:8px;padding:10px}
+/* before the draft: the same card, drafting while quotes land (hidden at rest) */
+.app-suppliers .sp-sk{padding:10px;border-radius:10px;outline:1px dashed var(--line-3);outline-offset:-1px;opacity:0}
+.ilwrap .app-suppliers .sp-sk .sig{width:14px;height:14px;color:var(--fg-2)}
+.app-suppliers .sp-sk .sp-pbh b{color:var(--fg-2)}
+.app-suppliers .sp-pbh{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
+.ilwrap .app-suppliers .sp-pbh .sp-ic{width:14px;height:14px;color:var(--fg-2)}
+.app-suppliers .sp-pbh b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-suppliers .sp-pbh span{font-size:11.5px;line-height:1;color:var(--fg-3)}
+.app-suppliers .sp-hd{display:grid;grid-template-columns:46px minmax(0,1fr);row-gap:2px;margin:0;padding:6px 0 7px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.app-suppliers .sp-hd dt{font-size:10.5px;line-height:16px;color:var(--fg-3)}
+.app-suppliers .sp-hd dd{margin:0;font-size:11px;line-height:16px;color:var(--fg-2);white-space:nowrap;overflow:hidden}
+.app-suppliers .sp-hd .sj{font-weight:500;font-size:11.5px;color:var(--fg)}
+.app-suppliers .sp-bd{font-size:11px;line-height:15px;color:var(--fg-2)}
+.app-suppliers .sp-cite{display:flex;gap:4px}
+.app-suppliers .sp-cite .ax-chip{gap:4px;padding:0 6px 0 5px;font-variant-numeric:tabular-nums}
+.ilwrap .app-suppliers .sp-cite svg{width:10px;height:10px;color:var(--fg-3)}
+
+/* the action: Send morphs into the sent status */
+.app-suppliers .sp-act{position:relative;height:24px;margin-top:2px}
+.app-suppliers .sp-edit{position:absolute;right:70px;top:0;opacity:0;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-suppliers .sp-bg{position:absolute;inset:0;border-radius:7px;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset;transform-origin:calc(100% - 32px) 12px}
+.app-suppliers .sp-s{position:absolute;top:0;right:0;height:24px;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;font:600 11.5px/1 var(--sans)}
+.app-suppliers .sp-s1{width:64px;color:var(--bg);opacity:0}
+.app-suppliers .sp-s2{left:0;font-weight:500;color:var(--fg-2)}
+.app-suppliers .sp-s2 b{font-weight:600;color:var(--fg)}
+.ilwrap .app-suppliers .sp-s svg{width:12px;height:12px}
+.app-suppliers .sp-s2 .sig{color:var(--fg)}
+.ilwrap .app-suppliers .appx .sp-ptr{left:calc(100% - 36px);top:10px;width:16px;height:16px}
+
+/* 6 unused plans */
+.app-suppliers .sp-pl{display:grid;gap:9px;padding:10px}
+.app-suppliers .sp-plh{display:grid;gap:5px;white-space:nowrap}
+.app-suppliers .sp-plh b{font:600 12px/16px var(--sans);color:var(--fg)}
+.app-suppliers .sp-plh span{font-size:11px;line-height:14px;color:var(--fg-3)}
+.app-suppliers .sp-plh em{font:500 11.5px/1 var(--mono);font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-suppliers .sp-seg{display:grid;grid-template-columns:repeat(6,1fr);gap:3px}
+.app-suppliers .sp-seg i{height:6px;border-radius:2px;background:var(--fg)}
+.app-suppliers .sp-seg i.w{background:none;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-suppliers .sp-pls{display:flex;justify-content:space-between}
+
+/* toast: the reply, at the foot of the right column */
+.app-suppliers .sp-toast{left:12px;right:12px;bottom:12px;gap:9px;padding:9px 10px}
+.app-suppliers .sp-toast div{display:grid;gap:2px}
+.app-suppliers .sp-toast p{white-space:nowrap;line-height:15px}
+.app-suppliers .sp-toast b{font-weight:500;color:var(--fg)}
+.app-suppliers .sp-toast p+p{color:var(--fg-2)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes sp-count{from{--sp-q:0}to{--sp-q:16}}
+@keyframes sp-land{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes sp-sort{from{transform:translateY(var(--dy))}to{transform:none}}
+@keyframes sp-rerank{from{transform:translateY(var(--dz))}to{transform:none}}
+@keyframes sp-show{from{opacity:0}to{opacity:1}}
+@keyframes sp-hide{from{opacity:1}to{opacity:0}}
+@keyframes sp-up{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes sp-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes sp-ink{from{color:var(--fg-2)}to{color:var(--fg)}}
+@keyframes sp-bar{from{background:var(--fg-3)}to{background:var(--fg)}}
+@keyframes sp-glow{0%{opacity:0}22%{opacity:1}100%{opacity:0}}
+@keyframes sp-shrink{from{transform:scaleX(var(--s0))}to{transform:scaleX(var(--s))}}
+@keyframes sp-pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+@keyframes sp-ptr{
+  0%{opacity:0;transform:translate(-130px,-64px)}
+  12%{opacity:1}
+  42%{transform:translate(0,0) scale(1)}
+  47%{transform:translate(0,0) scale(.9)}
+  53%{transform:translate(0,0) scale(1)}
+  80%{opacity:1;transform:translate(18px,10px)}
+  100%{opacity:0;transform:translate(24px,14px)}}
+@keyframes sp-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes sp-bg{
+  0%{clip-path:inset(0 0 0 calc(100% - 64px) round 7px);background-color:var(--fg);box-shadow:0 0 0 1px transparent inset}
+  100%{clip-path:inset(0 0 0 0 round 7px);background-color:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}}
+@keyframes sp-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. quotes land in the order they arrive, the count climbs */
+.appx-il.play.app-suppliers .sp-cnt{animation:sp-count 1.6s linear .35s both}
+.appx-il.play.app-suppliers .sp-qc{animation:sp-land .4s var(--ease) var(--a) both}
+/* 2. the list re-sorts by price; ranks and the best 3 settle in; the best line glows */
+.appx-il.play.app-suppliers .sp-qm{animation:sp-sort .8s var(--ease) 2.25s both}
+.appx-il.play.app-suppliers .sp-qc .rk{animation:sp-show .4s var(--ease) 2.95s both}
+.appx-il.play.app-suppliers .best .sp-qc::before{animation:sp-show .5s var(--ease) 3.05s both}
+.appx-il.play.app-suppliers .best .nm,.appx-il.play.app-suppliers .best .pr{animation:sp-ink .5s var(--ease) 3.05s both}
+.appx-il.play.app-suppliers .best .br i{animation:sp-bar .5s var(--ease) 3.05s both}
+.appx-il.play.app-suppliers .b1 .sp-qc::after{animation:sp-glow 1.8s var(--ease) 3.15s both}
+/* 3. the push-back arrives, citing the best 3 */
+.appx-il.play.app-suppliers .sp-cite .c1{animation:sp-pop .4s var(--snap) 3.6s both}
+.appx-il.play.app-suppliers .sp-cite .c2{animation:sp-pop .4s var(--snap) 3.7s both}
+.appx-il.play.app-suppliers .sp-cite .c3{animation:sp-pop .4s var(--snap) 3.8s both}
+@keyframes sp-sk{0%{opacity:0}8%,100%{opacity:1}}
+.appx-il.play.app-suppliers .sp-sk{animation:sp-sk 3.2s linear both,sp-hide .3s var(--ease) 3.2s forwards}
+/* 4. your OK: the pointer clicks Send */
+.appx-il.play.app-suppliers .sp-ptr{animation:sp-ptr 1.8s var(--ease) 3.95s both}
+.appx-il.play.app-suppliers .sp-edit{animation:sp-hide .15s var(--ease) 4.8s both}
+.appx-il.play.app-suppliers .sp-s1{animation:sp-press .2s ease-out 4.76s both,sp-hide .14s linear 4.92s both}
+.appx-il.play.app-suppliers .sp-bg{animation:sp-press .2s ease-out 4.76s,sp-bg .5s var(--ease) 4.92s both}
+.appx-il.play.app-suppliers .sp-s2{animation:sp-show .35s var(--ease) 5.08s both}
+.appx-il.play.app-suppliers .sp-n b:first-child{animation:sp-hide .25s var(--ease) 5s both}
+.appx-il.play.app-suppliers .sp-n b:last-child{animation:sp-show .25s var(--ease) 5.08s both}
+/* 5. the supplier replies: rise cut to 6%, its line rises to 4th, the saving lands */
+.appx-il.play.app-suppliers .sp-toast{animation:sp-toast .45s var(--ease) 5.65s both}
+.appx-il.play.app-suppliers .sp-q{animation:sp-rerank .8s var(--ease) 5.8s both}
+.appx-il.play.app-suppliers .cur .pr>:first-child{animation:sp-out .3s var(--ease) 5.85s both}
+.appx-il.play.app-suppliers .cur .pr>:last-child{animation:sp-up .3s var(--ease) 5.9s both}
+.appx-il.play.app-suppliers .cur .br i{animation:sp-shrink .6s var(--ease) 5.85s both}
+.appx-il.play.app-suppliers .sp-kv .sp-stk>:first-child{animation:sp-out .3s var(--ease) 5.9s both}
+.appx-il.play.app-suppliers .sp-kv .sp-stk>:last-child{animation:sp-up .3s var(--ease) 5.96s both}
+.appx-il.play.app-suppliers .sp-big .o{animation:sp-out .35s var(--ease) 5.9s both}
+.appx-il.play.app-suppliers .sp-big .n{animation:sp-up .35s var(--ease) 5.98s both}
+.appx-il.play.app-suppliers .sp-was{animation:sp-show .4s var(--ease) 6.1s both}
+.appx-il.play.app-suppliers .sp-save{animation:sp-up .45s var(--ease) 6.15s both}

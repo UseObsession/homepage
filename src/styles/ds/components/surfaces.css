@@ -1,0 +1,2054 @@
+/* =============================================================================================
+   OBSESSION SURFACES, DATA AND FEEDBACK  v1.1  (2 Oct 2026)
+   Load order:
+     <link rel="stylesheet" href="tokens.css">
+     <link rel="stylesheet" href="motion.css">
+     <link rel="stylesheet" href="buttons.css">       every action here is an .ob-btn
+     <link rel="stylesheet" href="navigation.css">    every status word here is an .ob-status
+     <link rel="stylesheet" href="surfaces.css">
+   Every colour is a --ob- token; no hex appears in this file.
+
+   Components (.ob-)
+     cards ................ .ob-card (--raised, --interactive, --compact)
+     product window ....... .ob-window, -bar, -rail, -pane, .ob-prompt (--field), .ob-events
+     findings ............. .ob-finding (--needs, --done, --skipped), .ob-finding-record
+     receipts ............. .ob-ledger, .ob-receipt (--latest, --flagged, --needs, --landed, --broken)
+     data ................. .ob-table (--compact, --fit), .ob-stat, .ob-stats, .ob-calc, .ob-range
+     disclosure ........... .ob-faq
+     feedback ............. .ob-toasts, .ob-toast, .ob-alert (--banner), .ob-empty, .ob-skeleton,
+                            .ob-loading, .ob-progress
+     layers ............... .ob-layer, .ob-scrim, .ob-dialog, .ob-sheet
+
+   Borrowed, never redrawn
+     Buttons    .ob-btn from buttons.css. Approve and other primaries: .ob-btn (--sm inside cards).
+                Cancel, Skip, View proof: .ob-btn--ghost or --secondary. Stop: .ob-btn--danger.
+                Close and Dismiss: .ob-btn--ghost.ob-btn--icon.ob-btn--sm. Text actions: .ob-btn--link.
+                This file only places them.
+     Status     .ob-status from navigation.css, in pills and, with .ob-status--bare, inside rows.
+                .ob-status--failed is added here (section 0) and belongs with .ob-status.
+
+   Static state mirrors draw exactly what the pseudo-state draws, so a guideline can show every
+   state side by side: .is-hover .is-active .is-focus .is-disabled .is-selected .is-error
+   (plus .is-open, .is-running, .is-dragging and .is-swiping where a component has them).
+
+   Materials
+   - Page surfaces (card, finding outside a window, table, stat, accordion, toast, alert, empty
+     state, dialog, sheet) take the page theme. In hybrid they are paper.
+   - Product objects (window, ledger, calculator) also carry .ob-object. In hybrid they turn glossy
+     black on the paper and cast the warm shadow. tokens.css re-scopes their tokens.
+
+   Motion comes from motion.css: translate, scale and opacity for movement; colour, background and
+   box-shadow only to show state; never transition: all; the outline never animates.
+   ============================================================================================= */
+
+
+/* =============================================================================================
+   0. SHARED: hidden text, glyphs, the failed status
+   ============================================================================================= */
+
+/* Visually hidden, still read. navigation.css owns .ob-sr; this zero-specificity copy keeps the
+   file working alone. */
+:where(.ob-sr) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Glyphs that are not inside a button: the check, sort chevrons, deltas, the danger mark. */
+.ob-glyph {
+  display: block;
+  flex: none;
+  width: var(--ob-icon-md);
+  height: var(--ob-icon-md);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Failed: a status that stopped and needs a person. Same shape as --needs, in the danger pair.
+   It belongs in navigation.css beside the other .ob-status tones. */
+.ob-status--failed { background-color: var(--ob-danger-bg); box-shadow: none; color: var(--ob-danger); }
+.ob-status--failed :is(.ob-sig, .ob-glyph, .ob-status__detail) { color: currentColor; }
+.ob-status--failed.ob-status--bare { background: none; }
+.ob-status .ob-glyph { width: var(--ob-icon-sm); height: var(--ob-icon-sm); }
+
+/* =============================================================================================
+   1. CARDS   flat, raised, interactive
+   A card holds 1 idea. Dark lifts it with lightness and a 1px top highlight; light lifts it with
+   warm shadow. Cards never move: hover and press are a state layer and an edge.
+   ============================================================================================= */
+
+.ob-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--ob-space-8);
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  text-align: left;
+  text-decoration: none;
+  background-color: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ob-card--compact { padding: var(--ob-space-16); }
+.ob-card--raised {
+  background: var(--ob-sheen), var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+}
+
+.ob-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  min-width: 0;
+}
+.ob-card-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ob-card-meta {
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ob-card-title {
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  text-wrap: balance;
+}
+.ob-card-body {
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ob-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  margin-top: var(--ob-space-8);
+  padding-top: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+
+/* Interactive: the whole card is 1 link or button. It carries no sheen, so every state layer
+   sits on a flat surface and text-3 holds 4.5:1 in every state. */
+.ob-card--interactive {
+  width: 100%;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  background-color: var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-card--interactive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-card-go {
+  color: var(--ob-text-3);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-card--interactive:hover:not(:disabled, [aria-disabled="true"], .is-disabled) {
+    box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-1);
+  }
+  .ob-card--interactive:hover:not(:disabled, [aria-disabled="true"], .is-disabled)::after { background-color: var(--ob-state-hover); }
+  .ob-card--interactive:hover:not(:disabled, [aria-disabled="true"], .is-disabled) .ob-card-go { color: var(--ob-text); }
+}
+.ob-card--interactive.is-hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-1); }
+.ob-card--interactive.is-hover::after { background-color: var(--ob-state-hover); }
+.ob-card--interactive.is-hover .ob-card-go { color: var(--ob-text); }
+.ob-card--interactive:active:not(:disabled, [aria-disabled="true"], .is-disabled)::after,
+.ob-card--interactive.is-active::after {
+  background-color: var(--ob-state-pressed);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-card--interactive:focus-visible,
+.ob-card--interactive.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+
+/* The check: a 16px square with a text-3 edge (4.6:1 or more in every state), filled when selected. */
+.ob-card-check {
+  display: inline-grid;
+  place-items: center;
+  width: var(--ob-space-16);
+  height: var(--ob-space-16);
+  border-radius: var(--ob-radius-glyph);
+  color: var(--ob-text-inverse);
+  box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-text-3) inset;
+  transition-property: background-color, box-shadow;
+  transition-duration: var(--ob-dur-fast);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-card-check .ob-glyph { width: 12px; height: 12px; stroke-width: 2; opacity: 0; }
+
+/* Selected: a text-3 edge, the selected layer and a filled check. Never colour alone. */
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected) {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-3) inset, var(--ob-highlight), var(--ob-shadow-1);
+}
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected)::after { background-color: var(--ob-state-selected); }
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected) .ob-card-check {
+  background-color: var(--ob-solid);
+  box-shadow: none;
+}
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected) .ob-card-check .ob-glyph { opacity: 1; }
+
+/* Disabled: the buttons-chapter recipe. A quiet tinted slab, a subtle edge, and every line of text
+   in text-3 mixed 25% toward the page: 3.7:1 dark, 3.1:1 light. Never opacity. */
+.ob-card--interactive:is(:disabled, [aria-disabled="true"], .is-disabled) {
+  color: color-mix(in oklab, var(--ob-text-3), var(--ob-bg) 25%);
+  background: var(--ob-fill-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  cursor: not-allowed;
+}
+.ob-card--interactive:is(:disabled, [aria-disabled="true"], .is-disabled) :is(.ob-card-label, .ob-card-meta, .ob-card-title, .ob-card-body, .ob-card-foot, .ob-card-go) { color: inherit; }
+.ob-card--interactive:is(:disabled, [aria-disabled="true"], .is-disabled) .ob-card-check { box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-subtle) inset; }
+
+
+/* =============================================================================================
+   2. PRODUCT WINDOW   title bar, rail, panes, prompt with caret, live events
+   A glossy product object. Add .ob-object so hybrid pages keep it black on the paper.
+   Container widths: under 720px the rail hides, under 640px the panes stack, under 600px the
+   audience chip hides, under 420px the dots hide so the title keeps its room.
+   ============================================================================================= */
+
+.ob-window {
+  container-type: inline-size;
+  position: relative;
+  min-width: 0;
+  border-radius: var(--ob-radius-lg);
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-3);
+}
+.ob-window-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  min-height: var(--ob-control-lg);
+  padding: 0 var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-window-dots { display: flex; gap: var(--ob-space-6); flex: none; }
+.ob-window-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-surface-hover);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ob-window-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+.ob-window-for {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-xs);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-weight-medium) var(--ob-type-caption-size)/1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  white-space: nowrap;
+}
+.ob-window-bar > .ob-status { flex: none; }
+@container (max-width: 600px) { .ob-window-for { display: none; } }
+@container (max-width: 420px) { .ob-window-dots { display: none; } }
+
+.ob-window-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+.ob-window-body:has(> .ob-window-rail) { grid-template-columns: 52px minmax(0, 1.35fr) minmax(0, 1fr); }
+
+/* The rail: the workspace mark, then 1 icon per place. The current place takes the selected layer.
+   New activity shows as the brand square, an .ob-badge--dot, on the icon's corner. On marketing
+   pages the rail is part of the picture (aria-hidden); in the product it is a <nav> of links with
+   aria-current, and the link's name carries the count ("Inbox, 3 new"). */
+.ob-window-rail {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-12) 0;
+  border-right: var(--ob-border-hair) solid var(--ob-line-subtle);
+  border-bottom-left-radius: var(--ob-radius-lg);
+  background-color: var(--ob-fill-subtle);
+}
+.ob-window-ws {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-bottom: var(--ob-space-8);
+  border-radius: var(--ob-radius-xs);
+  font: var(--ob-weight-semibold) var(--ob-type-caption-size)/1 var(--ob-font-sans);
+  color: var(--ob-text-inverse);
+  background-color: var(--ob-solid);
+}
+.ob-window-railitem {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--ob-control-sm);
+  height: var(--ob-control-sm);
+  border-radius: var(--ob-radius-xs);
+  color: var(--ob-text-3);
+}
+.ob-window-railitem.is-current { color: var(--ob-text); background-color: var(--ob-state-selected); }
+.ob-window-railitem > .ob-badge--dot {
+  --ob-badge-ring: var(--ob-surface);
+  position: absolute;
+  top: var(--ob-space-6);
+  right: var(--ob-space-6);
+}
+
+.ob-window-pane {
+  display: grid;
+  gap: var(--ob-space-12);
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-24);
+}
+.ob-window-pane + .ob-window-pane { border-left: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* Nested radius: the window's 22px minus the pane's padding, floored at 6px. */
+.ob-window-pane .ob-finding { border-radius: var(--ob-radius-xs); }
+@container (max-width: 720px) {
+  .ob-window-rail { display: none; }
+  .ob-window-body:has(> .ob-window-rail) { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+}
+@container (max-width: 640px) {
+  .ob-window-body,
+  .ob-window-body:has(> .ob-window-rail) { grid-template-columns: minmax(0, 1fr); }
+  .ob-window-pane { padding: var(--ob-space-16); }
+  .ob-window-pane + .ob-window-pane { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+}
+.ob-window-label {
+  margin-top: var(--ob-space-8);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ob-window-label:first-child { margin-top: 0; }
+
+/* Prompt: a record of the task (read-only), or the field you type the task into. */
+.ob-prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ob-space-12);
+  min-height: 72px;
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  font: var(--ob-type-code);
+  letter-spacing: var(--ob-type-code-tracking);
+  color: var(--ob-text);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ob-prompt-gt { flex: none; color: var(--ob-text-3); user-select: none; }
+.ob-prompt-text { flex: 1; min-width: 0; margin: 0; overflow-wrap: anywhere; }
+.ob-prompt-text .ob-caret { vertical-align: baseline; }
+.ob-prompt.is-sent .ob-prompt-text { color: var(--ob-text-2); }
+.ob-prompt-meta {
+  display: block;
+  margin-top: var(--ob-space-4);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+
+/* Field: the edge identifies the control at 3:1. Text is 16px so phones never zoom on focus.
+   The wrapper draws the ring only while the text field has keyboard or pointer focus
+   (tokens.css, .ob-focus-within); the run button keeps its own ring. */
+.ob-prompt--field {
+  align-items: flex-end;
+  padding-right: var(--ob-space-12);
+  font-size: max(16px, var(--ob-type-code-size));
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-field-edge) inset;
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-prompt--field .ob-prompt-gt { align-self: flex-start; }
+.ob-prompt-input {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  min-height: calc(2 * var(--ob-type-code-leading) * 1em);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  resize: none;
+  font: inherit;
+  color: var(--ob-text);
+  caret-color: var(--ob-text);
+  background: transparent;
+}
+.ob-prompt-input::placeholder { color: var(--ob-placeholder); opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .ob-prompt--field:hover:not(:focus-within, .is-disabled, .is-running, :has(> .ob-prompt-input:disabled)) { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-field-edge-hover) inset; }
+}
+.ob-prompt--field.is-hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-field-edge-hover) inset; }
+.ob-prompt--field.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-prompt--field.is-error { --ob-field-edge: var(--ob-danger); --ob-field-edge-hover: var(--ob-danger); }
+/* Running: the task is read-only in text-2 and Run turns into Stop. The status ring carries the motion. */
+.ob-prompt--field.is-running .ob-prompt-input { color: var(--ob-text-2); }
+/* Disabled: the forms recipe. A tinted box, a subtle edge, text in text-3. */
+.ob-prompt--field:is(.is-disabled, :has(> .ob-prompt-input:disabled)) {
+  background-color: var(--ob-fill-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  cursor: not-allowed;
+}
+.ob-prompt--field:is(.is-disabled, :has(> .ob-prompt-input:disabled)) .ob-prompt-input {
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
+  cursor: not-allowed;
+}
+.ob-prompt--field:is(.is-disabled, :has(> .ob-prompt-input:disabled)) .ob-prompt-input::placeholder { opacity: .7; }
+/* The run button is an .ob-btn--icon.ob-btn--sm; this only seats it in the corner. */
+.ob-prompt-send {
+  flex: none;
+  align-self: flex-end;
+  margin: calc(var(--ob-space-4) * -1) 0;
+}
+.ob-prompt-error,
+.ob-prompt-note {
+  margin: var(--ob-space-8) 0 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+}
+.ob-prompt-error { color: var(--ob-danger); }
+.ob-prompt-note  { color: var(--ob-text-3); }
+
+/* Live events: a time column in mono and the event in sans. New rows rise 8px. */
+.ob-events { display: grid; margin: 0; padding: 0; list-style: none; }
+.ob-event {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-8) 0;
+  border-bottom: var(--ob-border-hair) dashed var(--ob-line);
+  font: var(--ob-type-small);
+}
+.ob-event:last-child { border-bottom: 0; }
+.ob-event time { font: var(--ob-type-mono-sm); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+
+
+/* =============================================================================================
+   3. FINDINGS, FIXES AND APPROVE
+   A finding says what broke and shows the proof. A fix lists its changes and waits for Approve,
+   an .ob-btn.ob-btn--sm with the ring in its .ob-btn-busy slot. When the work lands, the button
+   gives way to the record of the decision.
+   ============================================================================================= */
+
+.ob-finding {
+  display: grid;
+  gap: var(--ob-space-8);
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+}
+.ob-finding-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+}
+.ob-finding-title {
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  text-wrap: balance;
+}
+.ob-finding-body { font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-finding-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ob-space-4) var(--ob-space-12);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+.ob-finding-list { display: grid; gap: var(--ob-space-6); margin: var(--ob-space-4) 0 0; padding: 0; list-style: none; }
+.ob-finding-list li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-12);
+  font: var(--ob-type-small);
+}
+.ob-finding-list .ob-sq { translate: 0 -1px; }
+.ob-finding-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-8);
+}
+.ob-finding-actions + .ob-btn-note { margin-top: 0; }
+.ob-finding--needs .ob-card-label { color: var(--ob-warning); }
+.ob-finding--needs {
+  box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--ob-warning) 40%, transparent) inset, var(--ob-highlight), var(--ob-shadow-1);
+}
+.ob-finding:is(.ob-finding--done, .ob-finding--skipped) .ob-finding-title { color: var(--ob-text-2); }
+
+/* The record that replaces Approve: the same height as the button, so nothing below moves. */
+.ob-finding-record {
+  --ob-sig-size: var(--ob-icon-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-btn-height-sm, 36px);
+  margin: 0;
+  padding: 0 var(--ob-space-16) 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  white-space: nowrap;
+}
+.ob-finding-record:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-finding-sig { font: var(--ob-type-mono-sm); color: var(--ob-text-3); white-space: nowrap; }
+
+
+/* =============================================================================================
+   4. RECEIPTS AND THE LEDGER CHAIN
+   Each step is a signed record: what happened, when, who did it, the evidence, the receipt it
+   links to, and its signature. The rail joins each receipt to the one before it. A link that
+   fails verification turns dashed, in danger, between the 2 receipts it joins.
+   The verify chip is an .ob-status: verified, checking (.is-spin) or failed (--failed).
+   ============================================================================================= */
+
+.ob-ledger {
+  min-width: 0;
+  padding: var(--ob-space-8) var(--ob-space-8) var(--ob-space-12);
+  border-radius: var(--ob-radius-lg);
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-3);
+}
+.ob-ledger-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-8) var(--ob-space-12);
+  padding: var(--ob-space-12) var(--ob-space-12) var(--ob-space-16);
+}
+.ob-ledger-title {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ob-ledger-rows { display: grid; margin: 0; padding: 0; list-style: none; }
+
+.ob-receipt {
+  --ob-receipt-pad: var(--ob-space-12);
+  --ob-receipt-node: 22px;
+  /* The rail carries meaning, so it clears 3:1 on every row state: 3.2:1 dark, 3.4:1 light at worst. */
+  --ob-receipt-rail: color-mix(in oklab, var(--ob-line-ui), var(--ob-text-3) 25%);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--ob-receipt-node) minmax(0, 1fr) auto;
+  column-gap: var(--ob-space-12);
+  row-gap: var(--ob-space-2);
+  padding: var(--ob-receipt-pad) var(--ob-space-12);
+  /* Nested radius: the ledger's 22px minus its 8px inset. */
+  border-radius: var(--ob-radius-md);
+  transition: none; /* rows highlight in the same frame, like menu rows */
+}
+/* The rail: from this node's centre to the next node's centre. */
+.ob-receipt:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--ob-space-12) + var(--ob-receipt-node) / 2 - .5px);
+  top: calc(var(--ob-receipt-pad) + var(--ob-receipt-node) / 2);
+  height: 100%;
+  width: var(--ob-border-hair);
+  background-color: var(--ob-receipt-rail);
+}
+/* A broken link: the segment into the receipt that fails turns dashed, in danger. */
+.ob-receipt:has(+ .ob-receipt--broken)::before {
+  width: 0;
+  background: none;
+  border-left: var(--ob-border-hair) dashed var(--ob-danger);
+}
+.ob-receipt-node {
+  position: relative;
+  z-index: 1;
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  height: var(--ob-receipt-node);
+  color: var(--ob-text-3);
+}
+.ob-receipt-node .ob-sq { width: 8px; height: 8px; }
+.ob-receipt-node .ob-sq.is-open { background-color: var(--ob-surface); }
+
+/* The action names what happened and opens the receipt. Its hit area stretches over the whole row;
+   links in the meta line sit above it. The underline at rest is the cue that is not colour. */
+.ob-receipt-action {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-glyph);
+  background: none;
+  font: var(--ob-weight-medium) var(--ob-type-small-size)/var(--ob-type-small-leading) var(--ob-font-sans);
+  color: var(--ob-text);
+  text-align: left;
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-decoration-color: var(--ob-link-underline);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-receipt-action::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ob-radius-md);
+}
+.ob-receipt-action:focus-visible { outline: none; }
+.ob-receipt-action:focus-visible::after,
+.ob-receipt.is-focus .ob-receipt-action::after {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset-inset);
+}
+.ob-receipt-time {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ob-receipt-meta,
+.ob-receipt-sig {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ob-space-2) var(--ob-space-12);
+  min-width: 0;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+.ob-receipt-meta b { font-weight: var(--ob-weight-medium); color: var(--ob-text-2); }
+.ob-receipt-meta :is(a, button),
+.ob-receipt-sig :is(a, button) { position: relative; z-index: 1; }
+.ob-receipt-sig code { font: inherit; overflow-wrap: anywhere; }
+.ob-receipt-sig .ob-status { font: inherit; }
+@media (hover: hover) and (pointer: fine) {
+  .ob-receipt:hover { background-color: var(--ob-state-hover); }
+  .ob-receipt:hover .ob-receipt-action { text-decoration-color: var(--ob-text); }
+}
+.ob-receipt.is-hover { background-color: var(--ob-state-hover); }
+.ob-receipt.is-hover .ob-receipt-action { text-decoration-color: var(--ob-text); }
+.ob-receipt:has(> .ob-receipt-action:active),
+.ob-receipt.is-active { background-color: var(--ob-state-pressed); }
+.ob-receipt:has(> .ob-receipt-action:active) .ob-receipt-action,
+.ob-receipt.is-active .ob-receipt-action { text-decoration-color: var(--ob-text); }
+/* Selected: the receipt open in the sheet. The selected layer and a straight 2px bar. */
+.ob-receipt:is([aria-current="true"], .is-selected, :has(> .ob-receipt-action[aria-current="true"])) { background-color: var(--ob-state-selected); }
+.ob-receipt:is([aria-current="true"], .is-selected, :has(> .ob-receipt-action[aria-current="true"]))::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--ob-space-12);
+  bottom: var(--ob-space-12);
+  width: 2px;
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-text);
+}
+/* Node states. Filled = signed. Outlined = flagged, held or broken. Colour only where a person,
+   money or a broken chain is involved. */
+.ob-receipt--latest .ob-receipt-node  { color: var(--ob-text); }
+.ob-receipt--flagged .ob-receipt-node { color: var(--ob-text-2); }
+.ob-receipt--needs .ob-receipt-node   { color: var(--ob-warning); }
+.ob-receipt--landed .ob-receipt-node  { color: var(--ob-success); --ob-sig-size: var(--ob-icon-sm); }
+.ob-receipt--broken .ob-receipt-node,
+.ob-receipt--broken .ob-receipt-prev  { color: var(--ob-danger); }
+.ob-receipt--broken .ob-receipt-prev b { color: inherit; }
+
+
+/* =============================================================================================
+   5. DATA TABLE
+   Text left, numbers right in tabular figures. Rows are 48px (40px compact). The client link
+   stretches over its row; the selected row (aria-current on that link) gets a fill and a 2px bar.
+   Narrower than 600px, the table scrolls inside its frame and the first column stays put.
+   ============================================================================================= */
+
+.ob-table-wrap {
+  container-type: inline-size;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1);
+}
+.ob-table-wrap:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font: var(--ob-type-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text-2);
+}
+.ob-table--fit { min-width: 0; }
+.ob-table caption {
+  padding: var(--ob-space-16) var(--ob-space-16) var(--ob-space-12);
+  text-align: left;
+  font: var(--ob-weight-semibold) var(--ob-type-small-size)/1.3 var(--ob-font-sans);
+  color: var(--ob-text);
+}
+.ob-table th {
+  height: var(--ob-control-md);
+  padding: 0 var(--ob-space-16);
+  text-align: left;
+  vertical-align: middle;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+  white-space: nowrap;
+  /* Opaque, so a sticky header cell never shows the rows scrolling under it. */
+  background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface);
+  border-block: var(--ob-border-hair) solid var(--ob-line);
+}
+.ob-table tbody tr {
+  --ob-row-layer: transparent;
+  position: relative;
+}
+.ob-table td {
+  height: var(--ob-control-lg);
+  padding: 0 var(--ob-space-16);
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: var(--ob-row-layer);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  transition: none;
+}
+.ob-table tbody tr:last-child td { border-bottom: 0; }
+.ob-table td:first-child { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+.ob-table :is(th, td).is-num { text-align: right; }
+.ob-table--compact td { height: var(--ob-control-md); }
+
+/* The row link: full ink, a text-3 underline at rest, and a hit area the size of the row. */
+.ob-table-client {
+  color: var(--ob-text);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-decoration-color: var(--ob-link-underline);
+  text-underline-offset: 3px;
+  border-radius: var(--ob-radius-glyph);
+  transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-table-client::after { content: ""; position: absolute; inset: 0; }
+/* Focus: a 2px ring around the whole row, drawn on its cells so it holds with a sticky first
+   column. Without :has() the link keeps its own outline; forced colours restore it too. */
+@supports selector(:has(*)) {
+  .ob-table-client:focus-visible { outline: none; }
+}
+.ob-table tbody tr:is(.is-focus, :has(.ob-table-client:focus-visible)) td {
+  box-shadow: 0 var(--ob-focus-width) 0 var(--ob-focus) inset, 0 calc(var(--ob-focus-width) * -1) 0 var(--ob-focus) inset;
+}
+.ob-table tbody tr:is(.is-focus, :has(.ob-table-client:focus-visible)) td:first-child {
+  box-shadow: var(--ob-focus-width) 0 0 var(--ob-focus) inset, 0 var(--ob-focus-width) 0 var(--ob-focus) inset, 0 calc(var(--ob-focus-width) * -1) 0 var(--ob-focus) inset;
+}
+.ob-table tbody tr:is(.is-focus, :has(.ob-table-client:focus-visible)) td:last-child {
+  box-shadow: calc(var(--ob-focus-width) * -1) 0 0 var(--ob-focus) inset, 0 var(--ob-focus-width) 0 var(--ob-focus) inset, 0 calc(var(--ob-focus-width) * -1) 0 var(--ob-focus) inset;
+}
+
+/* Row states: hover and press in the same frame as the pointer and the keys. */
+@media (hover: hover) and (pointer: fine) {
+  .ob-table tbody tr:hover { --ob-row-layer: var(--ob-state-hover); }
+  .ob-table tbody tr:hover .ob-table-client { text-decoration-color: var(--ob-text); }
+}
+.ob-table tbody tr.is-hover { --ob-row-layer: var(--ob-state-hover); }
+.ob-table tbody tr.is-hover .ob-table-client { text-decoration-color: var(--ob-text); }
+.ob-table tbody tr:is(.is-active, :has(.ob-table-client:active)) { --ob-row-layer: var(--ob-state-pressed); }
+.ob-table tbody tr:is(.is-active, :has(.ob-table-client:active)) .ob-table-client { text-decoration-color: var(--ob-text); }
+.ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) { --ob-row-layer: var(--ob-state-selected); }
+.ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td { color: var(--ob-text); }
+.ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child { box-shadow: 2px 0 0 var(--ob-text) inset; }
+
+/* Sortable header: a real button inside the th, with aria-sort on the th. At rest a neutral
+   up-down glyph says the column sorts; once sorted, a chevron in full ink gives the direction. */
+.ob-table-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  height: var(--ob-control-xs);
+  margin: 0 calc(var(--ob-space-6) * -1);
+  padding: 0 var(--ob-space-6);
+  border: 0;
+  border-radius: var(--ob-radius-xs);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  transition-property: color, background-color;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-table-sort .ob-glyph { width: 12px; height: 12px; }
+.ob-table-sort-dir { display: none; }
+.ob-table th:is([aria-sort="ascending"], [aria-sort="descending"]) { color: var(--ob-text); }
+.ob-table th:is([aria-sort="ascending"], [aria-sort="descending"]) .ob-table-sort-idle { display: none; }
+.ob-table th:is([aria-sort="ascending"], [aria-sort="descending"]) .ob-table-sort-dir { display: block; }
+.ob-table th[aria-sort="ascending"] .ob-table-sort-dir { rotate: 180deg; }
+@media (hover: hover) and (pointer: fine) {
+  .ob-table-sort:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ob-table-sort.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-table-sort:active,
+.ob-table-sort.is-active { color: var(--ob-text); background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ob-table-sort:focus-visible,
+.ob-table-sort.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 0; }
+
+/* A message row (empty, error) spans every column and stays in view while the table scrolls. */
+.ob-table td.ob-table-message {
+  height: auto;
+  padding: 0;
+  white-space: normal;
+  font-weight: var(--ob-weight-regular);
+}
+.ob-table-message > * { position: sticky; left: 0; max-width: 100cqi; }
+.ob-table-status { margin: 0; padding: var(--ob-space-12) var(--ob-space-16); font: var(--ob-type-caption); color: var(--ob-text-2); }
+
+@container (max-width: 600px) {
+  .ob-table:not(.ob-table--fit) :is(th, td):first-child:not(.ob-table-message) {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: 1px 0 0 var(--ob-line-subtle);
+  }
+  .ob-table:not(.ob-table--fit) td:first-child:not(.ob-table-message) { background: linear-gradient(var(--ob-row-layer), var(--ob-row-layer)), var(--ob-surface); }
+  .ob-table:not(.ob-table--fit) tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child { box-shadow: 2px 0 0 var(--ob-text) inset, 1px 0 0 var(--ob-line-subtle); }
+}
+
+
+/* =============================================================================================
+   6. STAT AND METRIC
+   A figure, what it counts, and where it came from. Tabular numerals. No count-up on static figures.
+   ============================================================================================= */
+
+.ob-stat {
+  display: grid;
+  gap: var(--ob-space-8);
+  align-content: start;
+  min-width: 0;
+}
+.ob-stat--card {
+  padding: var(--ob-space-20) var(--ob-space-20) var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1);
+}
+.ob-stat-label {
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+}
+.ob-stat-value {
+  justify-self: start;
+  margin: 0 calc(var(--ob-space-4) * -1);
+  padding: 0 var(--ob-space-4);
+  border-radius: var(--ob-radius-xs);
+  font: var(--ob-type-stat);
+  letter-spacing: var(--ob-type-stat-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.ob-stat-value small {
+  margin-left: var(--ob-space-4);
+  font: var(--ob-weight-medium) var(--ob-type-body-size)/1 var(--ob-font-sans);
+  letter-spacing: 0;
+  color: var(--ob-text-2);
+}
+/* No figure yet, or none could load: words in the figure's slot, at the figure's height. */
+.ob-stat-value.is-empty {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--ob-type-stat-size) * var(--ob-type-stat-leading));
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text-2);
+}
+.ob-stat-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-2);
+}
+.ob-stat-delta .ob-glyph { width: 12px; height: 12px; stroke-width: 1.75; }
+.ob-stat-delta.is-good { color: var(--ob-success); }
+.ob-stat-delta.is-watch { color: var(--ob-warning); }
+.ob-stat-source {
+  font: var(--ob-type-caption);
+  color: var(--ob-text-3);
+}
+/* A band of figures with hairline seams. 4 at most. */
+.ob-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  gap: var(--ob-border-hair);
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-line-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle), var(--ob-shadow-1);
+}
+.ob-stats > .ob-stat {
+  padding: var(--ob-space-24) var(--ob-space-20) var(--ob-space-20);
+  background-color: var(--ob-surface);
+}
+
+
+/* =============================================================================================
+   7. MONEY CALCULATOR
+   Sliders in, money out. The figures move only when the reader moves a slider. A product object:
+   add .ob-object. On a dark page, put it in an .ob-theme-light section for the paper break.
+   Each output holds a moving figure (aria-hidden) and a hidden twin that updates once input
+   settles; 1 polite live region announces the total.
+   ============================================================================================= */
+
+.ob-calc {
+  container-type: inline-size;
+  display: grid;
+  gap: var(--ob-space-24);
+  min-width: 0;
+  padding: clamp(var(--ob-space-20), 3vw, var(--ob-space-32));
+  border-radius: var(--ob-radius-lg);
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+.ob-calc-input { display: grid; gap: var(--ob-space-8); }
+.ob-calc-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+}
+.ob-calc-row label { font: var(--ob-type-small); color: var(--ob-text-2); }
+.ob-calc-row output {
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+  white-space: nowrap;
+}
+.ob-calc-ticks {
+  position: relative;
+  height: var(--ob-space-16);
+  margin: calc(var(--ob-space-4) * -1) 10px 0;
+  font: var(--ob-type-label-mono);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+.ob-calc-ticks span { position: absolute; top: 0; translate: -50% 0; white-space: nowrap; }
+.ob-calc-ticks span:first-child { translate: -10px 0; }
+.ob-calc-ticks span:last-child { translate: calc(-100% + 10px) 0; }
+.ob-calc-outs { display: grid; margin: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ob-calc-outs > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-12) 0;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-calc-outs dt { font: var(--ob-type-small); color: var(--ob-text-2); }
+.ob-calc-outs dd {
+  margin: 0;
+  font: var(--ob-weight-semibold) var(--ob-type-title-size)/1.2 var(--ob-font-sans);
+  letter-spacing: var(--ob-type-title-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ob-calc-outs .ob-calc-total { border-bottom: 0; padding-top: var(--ob-space-20); flex-wrap: wrap; }
+.ob-calc-total dt { color: var(--ob-text); font-weight: var(--ob-weight-semibold); }
+.ob-calc-total dd { font: var(--ob-type-stat); letter-spacing: var(--ob-type-stat-tracking); }
+.ob-calc-note { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+
+/* The range: a 4px track in --ob-track (3:1) filled with --ob-track-fill up to --ob-range-value,
+   and the brand square as the thumb. Script sets --ob-range-value as a percentage. The thumb and
+   fill track the hand and never animate. */
+.ob-range {
+  --ob-range-value: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: var(--ob-control-sm);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: var(--ob-radius-xs);
+  cursor: pointer;
+}
+.ob-range:focus { outline: none; }
+.ob-range:focus-visible,
+.ob-range.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--ob-radius-pill);
+  background: linear-gradient(90deg, var(--ob-track-fill) var(--ob-range-value), var(--ob-track) var(--ob-range-value));
+}
+.ob-range::-moz-range-track { height: 4px; border-radius: var(--ob-radius-pill); background-color: var(--ob-track); }
+.ob-range::-moz-range-progress { height: 4px; border-radius: var(--ob-radius-pill); background-color: var(--ob-track-fill); }
+.ob-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  border: 0;
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-solid);
+  box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 4px transparent;
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-solid);
+  box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 4px transparent;
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-range:hover:not(:disabled)::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-hover); }
+  .ob-range:hover:not(:disabled)::-moz-range-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-hover); }
+}
+.ob-range.is-hover::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-hover); }
+.ob-range.is-hover::-moz-range-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-hover); }
+.ob-range:active:not(:disabled) { cursor: grabbing; }
+.ob-range:active:not(:disabled)::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ob-range:active:not(:disabled)::-moz-range-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ob-range.is-active::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-pressed); }
+.ob-range.is-active::-moz-range-thumb { box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 10px var(--ob-state-pressed); }
+/* Disabled: a line-strong track, a text-3 fill and thumb, no halo. Never opacity. */
+.ob-range:is(:disabled, .is-disabled) { --ob-track: var(--ob-line-strong); --ob-track-fill: var(--ob-text-3); cursor: not-allowed; }
+.ob-range:is(:disabled, .is-disabled)::-webkit-slider-thumb { background-color: var(--ob-text-3); }
+.ob-range:is(:disabled, .is-disabled)::-moz-range-thumb { background-color: var(--ob-text-3); }
+.ob-calc-input:has(.ob-range:is(:disabled, .is-disabled)) :is(label, output) { color: var(--ob-text-3); }
+
+
+/* =============================================================================================
+   8. ACCORDION FAQ
+   The question is a real button inside a heading. The answer opens out of it through
+   .ob-anim-expand: grid rows 0fr to 1fr in 240ms, closing in 160ms. The plus turns into a minus.
+   ============================================================================================= */
+
+.ob-faq { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ob-faq-item { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ob-faq-h { margin: 0; font: inherit; }
+.ob-faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-20);
+  width: calc(100% + 2 * var(--ob-space-12));
+  min-height: var(--ob-space-64);
+  margin: 0 calc(var(--ob-space-12) * -1);
+  padding: var(--ob-space-16) var(--ob-space-12);
+  border: 0;
+  border-radius: var(--ob-radius-sm);
+  background: none;
+  font: var(--ob-weight-medium) var(--ob-type-body-size)/1.4 var(--ob-font-sans);
+  letter-spacing: -.01em;
+  color: var(--ob-text);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-faq-q:focus-visible,
+.ob-faq-q.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+.ob-faq-icon {
+  position: relative;
+  flex: none;
+  width: var(--ob-control-sm);
+  height: var(--ob-control-sm);
+  border-radius: var(--ob-radius-pill);
+  color: var(--ob-text-2);
+  background-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-faq-icon i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: var(--ob-border-strong);
+  margin: -.75px 0 0 -6px;
+  border-radius: var(--ob-radius-pill);
+  background-color: currentColor;
+}
+.ob-faq-icon i + i { transform: rotate(90deg); --ob-turn: 90deg; }
+@media (hover: hover) and (pointer: fine) {
+  .ob-faq-q:hover .ob-faq-icon { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ob-faq-q.is-hover .ob-faq-icon { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-faq-q:active .ob-faq-icon,
+.ob-faq-q.is-active .ob-faq-icon {
+  color: var(--ob-text);
+  background-color: var(--ob-state-pressed);
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-faq-q[aria-expanded="true"] .ob-faq-icon { color: var(--ob-text); }
+.ob-faq-a {
+  max-width: var(--ob-measure);
+  margin: 0;
+  padding: 0 var(--ob-space-48) var(--ob-space-20) 0;
+  font: var(--ob-type-body);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+
+/* =============================================================================================
+   9. TOAST
+   News arrives in 1 place, bottom right, and stacks there. Info and success leave after 5s;
+   a toast with an action stays 10s; errors stay until dismissed. Every timer pauses on hover,
+   on focus inside and while the tab is hidden. Pair each toast with .ob-anim-toast and the
+   region with .ob-anim-toasts (motion.css). The region is a size container: under 360px the
+   action drops below the copy.
+   ============================================================================================= */
+
+.ob-toasts {
+  container: ob-toasts / inline-size;
+  position: fixed;
+  right: calc(var(--ob-space-16) + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--ob-space-16) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--ob-z-toast);
+  display: grid;
+  width: min(380px, calc(100vw - 2 * var(--ob-space-16) - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ob-toasts > * { grid-area: 1 / 1; align-self: end; }
+/* Docked inside a panel or a page section instead of the viewport. */
+.ob-toasts--inline { position: relative; right: auto; bottom: auto; z-index: auto; width: 100%; max-width: 380px; }
+
+.ob-toast {
+  --ob-toast-line: calc(var(--ob-type-small-size) * var(--ob-type-small-leading));
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  grid-template-areas: "icon copy actions close";
+  align-items: start;
+  column-gap: var(--ob-space-12);
+  row-gap: var(--ob-space-8);
+  width: 100%;
+  max-width: 380px;
+  min-width: 0;
+  padding: var(--ob-space-12) var(--ob-space-8) var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  background-color: var(--ob-overlay);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-4);
+}
+/* Toast and alert share 1 icon box: a 16px glyph centred on the first line of the title. */
+:is(.ob-toast-icon, .ob-alert-icon) {
+  display: grid;
+  place-items: center;
+  width: var(--ob-icon-md);
+  height: calc(var(--ob-type-small-size) * var(--ob-type-small-leading));
+  color: var(--ob-text-2);
+  --ob-sig-size: var(--ob-icon-md);
+}
+/* Toast and alert share 1 title style: 15px, 600. */
+:is(.ob-toast-title, .ob-alert-title) {
+  margin: 0;
+  font: var(--ob-weight-semibold) var(--ob-type-small-size)/var(--ob-type-small-leading) var(--ob-font-sans);
+  letter-spacing: -.005em;
+}
+.ob-toast-icon { grid-area: icon; }
+.ob-toast-copy { grid-area: copy; display: grid; gap: var(--ob-space-2); min-width: 0; }
+.ob-toast-body { font: var(--ob-type-caption); color: var(--ob-text-2); }
+.ob-toast-body code { font: var(--ob-type-mono-sm); }
+/* Buttons are 36px; this centres them on the title's first line. */
+.ob-toast-actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-4);
+  margin-top: calc((var(--ob-toast-line) - var(--ob-btn-height-sm, 36px)) / 2);
+}
+.ob-toast-close { grid-area: close; margin-top: calc((var(--ob-toast-line) - var(--ob-btn-height-sm, 36px)) / 2); }
+@container ob-toasts (max-width: 360px) {
+  .ob-toast {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "icon copy close" ". actions actions";
+  }
+  .ob-toast-actions { margin-top: 0; }
+}
+.ob-toast--success .ob-toast-icon { color: var(--ob-success); }
+.ob-toast--warning .ob-toast-icon { color: var(--ob-warning); }
+.ob-toast--danger .ob-toast-icon  { color: var(--ob-danger); }
+.ob-toast--working .ob-toast-icon { color: var(--ob-text); }
+/* Collapsed stack: the toasts behind show only their edge, never a title cut through, and their
+   buttons cannot be hit until the stack opens. Focus on the front toast opens it for keys. */
+.ob-anim-toasts .ob-anim-toast > * { transition: opacity var(--ob-dur-base) var(--ob-ease-in-out), visibility 0s; }
+.ob-anim-toasts:not(:hover, :focus-within, .is-hover) .ob-anim-toast:not(:last-child) > * {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-in-out), visibility 0s linear var(--ob-dur-base);
+}
+
+
+/* =============================================================================================
+   10. INLINE ALERT AND BANNER
+   An alert sits next to the work it describes. Words first; the glyph shape second; colour third.
+   Info is neutral. Success, warning and danger use their status pairs. Actions are .ob-btn--link
+   buttons; Dismiss is a ghost icon button.
+   ============================================================================================= */
+
+.ob-alert {
+  --ob-alert-edge: var(--ob-line);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: var(--ob-space-12);
+  row-gap: var(--ob-space-2);
+  align-items: start;
+  min-width: 0;
+  padding: var(--ob-space-12) var(--ob-space-12) var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-alert-edge) inset;
+}
+.ob-alert-icon { grid-row: 1; }
+.ob-alert-title { grid-column: 2; }
+.ob-alert-body { grid-column: 2; margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-alert-actions {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin-top: var(--ob-space-6);
+}
+.ob-alert-close {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  margin-top: calc((var(--ob-type-small-size) * var(--ob-type-small-leading) - var(--ob-btn-height-sm, 36px)) / 2);
+  margin-right: calc(var(--ob-space-4) * -1);
+}
+.ob-alert--success { --ob-alert-edge: color-mix(in srgb, var(--ob-success) 32%, transparent); background-color: var(--ob-success-bg); }
+.ob-alert--warning { --ob-alert-edge: color-mix(in srgb, var(--ob-warning) 32%, transparent); background-color: var(--ob-warning-bg); }
+.ob-alert--danger  { --ob-alert-edge: color-mix(in srgb, var(--ob-danger) 32%, transparent);  background-color: var(--ob-danger-bg); }
+.ob-alert--success .ob-alert-icon { color: var(--ob-success); }
+.ob-alert--warning .ob-alert-icon { color: var(--ob-warning); }
+.ob-alert--danger  .ob-alert-icon { color: var(--ob-danger); }
+/* Banner: page-wide, square-cornered, a single line where it fits, centred; Dismiss sits at the far end. */
+.ob-alert--banner {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, auto) minmax(var(--ob-btn-height-sm, 36px), 1fr);
+  align-items: center;
+  column-gap: var(--ob-space-12);
+  padding: var(--ob-space-6) var(--ob-space-8) var(--ob-space-6) var(--ob-gutter);
+  border-radius: 0;
+  box-shadow: 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-alert-edge) inset;
+}
+.ob-alert--banner .ob-alert-icon { grid-column: 2; }
+.ob-alert--banner .ob-alert-body { grid-column: 3; color: var(--ob-text); font: var(--ob-type-caption); }
+.ob-alert--banner .ob-alert-close { grid-column: 4; grid-row: 1; justify-self: end; margin: 0; }
+
+
+/* =============================================================================================
+   11. EMPTY STATE
+   Says what will fill the space and offers the first step. A dashed edge marks the empty slot.
+   ============================================================================================= */
+
+.ob-empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--ob-space-8);
+  min-width: 0;
+  padding: var(--ob-space-40) var(--ob-space-24);
+  border: var(--ob-border-hair) dashed var(--ob-line-strong);
+  border-radius: var(--ob-radius-lg);
+  text-align: center;
+  color: var(--ob-text);
+}
+.ob-empty-mark { display: block; margin-bottom: var(--ob-space-8); color: var(--ob-text); --ob-sig-size: 40px; }
+.ob-empty-mark.is-muted { color: var(--ob-text-3); }
+.ob-empty-mark .ob-glyph { width: 32px; height: 32px; }
+.ob-empty-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); text-wrap: balance; }
+.ob-empty-body { max-width: 40ch; margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-12);
+}
+.ob-empty-code { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ob-empty--inline { padding: var(--ob-space-32) var(--ob-space-16); border: 0; border-radius: 0; }
+.ob-empty--error .ob-empty-mark { color: var(--ob-danger); }
+
+
+/* =============================================================================================
+   12. LOADING   skeletons for known shapes, the ring for agent work
+   Never both in 1 region. Nothing shows for the first 300ms. The skeleton pulses 6 times (about
+   10s), then holds still and its status line becomes visible: words carry a long wait.
+   ============================================================================================= */
+
+.ob-skeleton { display: grid; gap: var(--ob-space-12); min-width: 0; }
+.ob-skeleton-row { display: flex; align-items: center; gap: var(--ob-space-12); }
+.ob-skeleton-line {
+  display: block;
+  flex: none;
+  width: var(--ob-skeleton-w, 100%);
+  max-width: 100%;
+  height: 12px;
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-fill);
+}
+.ob-skeleton-line.is-title { height: 18px; }
+.ob-skeleton-line.is-figure { height: 40px; }
+.ob-skeleton-line.is-sq { width: 8px; height: 8px; border-radius: var(--ob-radius-glyph); }
+.ob-skeleton-line.is-end { margin-left: auto; }
+.ob-skeleton-block {
+  display: block;
+  height: var(--ob-skeleton-h, 48px);
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-fill);
+}
+.ob-skeleton.is-static { animation: none; }
+/* Hidden (with .ob-sr) for the first 10s; then script removes .ob-sr and changes the words. */
+.ob-skeleton-status {
+  margin: var(--ob-space-12) 0 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+
+.ob-loading {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--ob-space-8) var(--ob-space-12);
+  color: var(--ob-text);
+}
+.ob-loading .ob-sig { --ob-sig-size: 20px; }
+.ob-loading .ob-glyph { width: 20px; height: 20px; }
+.ob-loading-word { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); }
+.ob-loading-count { font: var(--ob-type-mono-sm); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.ob-loading-block { display: grid; gap: var(--ob-space-12); min-width: 0; }
+.ob-loading-note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-loading--failed { color: var(--ob-danger); }
+
+/* Determinate progress: a 4px track at 3:1 and a fill that grows by scale, never by width. */
+.ob-progress {
+  position: relative;
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-track);
+}
+.ob-progress > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--ob-track-fill);
+  transform-origin: 0 50%;
+  scale: var(--ob-progress-value, 0) 1;
+  transition: scale var(--ob-dur-slow) var(--ob-ease-out);
+}
+
+
+/* =============================================================================================
+   13. LAYERS: modal dialog
+   A dialog stops the page for spend, send or stop, and nothing else. Use <dialog> with
+   showModal(); .ob-layer is the positioning shell when a portal is used instead.
+   ============================================================================================= */
+
+.ob-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ob-z-dialog);
+  display: grid;
+  place-items: center;
+  padding: var(--ob-space-16);
+}
+.ob-scrim { position: absolute; inset: 0; background-color: var(--ob-scrim); }
+.ob-dialog {
+  container-type: inline-size;
+  position: relative;
+  display: grid;
+  gap: var(--ob-space-16);
+  width: min(100%, 440px);
+  max-height: 100%;
+  overflow: auto;
+  margin: 0;
+  padding: var(--ob-space-24);
+  border: 0;
+  border-radius: var(--ob-radius-lg);
+  color: var(--ob-text);
+  background-color: var(--ob-overlay);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-4);
+}
+.ob-dialog::backdrop { background-color: var(--ob-scrim); }
+.ob-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ob-space-16);
+}
+/* The 36px close button centres on the title's first line and pulls into the corner. */
+.ob-dialog-head > .ob-btn {
+  margin-top: calc((var(--ob-type-title-size) * var(--ob-type-title-leading) - var(--ob-btn-height-sm, 36px)) / 2);
+  margin-right: calc(var(--ob-space-8) * -1);
+}
+.ob-dialog-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); text-wrap: balance; }
+.ob-dialog-body { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-dialog-summary {
+  display: grid;
+  margin: 0;
+  padding: var(--ob-space-4) var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ob-dialog-summary > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-8) 0;
+}
+.ob-dialog-summary > div + div { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ob-dialog-summary dt { font: var(--ob-type-small); color: var(--ob-text-2); }
+.ob-dialog-summary dd {
+  margin: 0;
+  font: var(--ob-weight-medium) var(--ob-type-small-size)/var(--ob-type-small-leading) var(--ob-font-sans);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.ob-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-8);
+}
+/* Narrow: the actions stack in reading order, so the primary sits last, nearest the thumb, and
+   focus order matches what the eye sees. */
+@container (max-width: 360px) {
+  .ob-dialog-actions { flex-direction: column; }
+  .ob-dialog-actions > * { width: 100%; }
+}
+
+
+/* =============================================================================================
+   14. LAYERS: sheet
+   Detail beside the list: a receipt, a client, an agent. Right on wide screens, bottom on phones.
+   It floats 8px in from the edge and goes back there on close.
+   ============================================================================================= */
+
+.ob-layer--sheet { place-items: stretch end; padding: var(--ob-space-8); }
+.ob-layer--sheet.is-bottom { place-items: end stretch; padding: var(--ob-space-8) var(--ob-space-8) 0; }
+.ob-sheet {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(100%, 420px);
+  height: 100%;
+  min-height: 0;
+  border-radius: var(--ob-radius-lg);
+  color: var(--ob-text);
+  background-color: var(--ob-overlay);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-4);
+}
+.ob-sheet[data-side="bottom"] {
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  width: 100%;
+  height: auto;
+  max-height: 85%;
+  border-radius: var(--ob-radius-lg) var(--ob-radius-lg) 0 0;
+}
+/* The grabber identifies the drag, so it clears 3:1. The close button is always there too. */
+.ob-sheet-grabber {
+  justify-self: center;
+  width: 36px;
+  height: 4px;
+  margin-top: var(--ob-space-8);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-line-ui);
+}
+.ob-sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-20) var(--ob-space-16) var(--ob-space-16) var(--ob-space-24);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-sheet-head > .ob-btn { margin-top: calc((var(--ob-type-title-size) * var(--ob-type-title-leading) - var(--ob-btn-height-sm, 36px)) / 2); }
+.ob-sheet-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); }
+.ob-sheet-sub { margin: var(--ob-space-4) 0 0; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ob-sheet-body { display: grid; gap: var(--ob-space-20); align-content: start; min-height: 0; overflow: auto; padding: var(--ob-space-20) var(--ob-space-24); }
+.ob-sheet-dl { display: grid; margin: 0; }
+.ob-sheet-dl > div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-8) 0;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-sheet-dl > div:last-child { border-bottom: 0; }
+.ob-sheet-dl dt { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
+.ob-sheet-dl dd { margin: 0; min-width: 0; font: var(--ob-type-small); overflow-wrap: anywhere; }
+.ob-sheet-dl dd code { font: var(--ob-type-mono-sm); color: var(--ob-text); }
+.ob-sheet-status { display: flex; flex-wrap: wrap; gap: var(--ob-space-8) var(--ob-space-16); margin: 0; }
+.ob-sheet-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-16) var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-sheet[data-side="bottom"] .ob-sheet-foot { padding-bottom: calc(var(--ob-space-16) + env(safe-area-inset-bottom, 0px)); }
+/* Dragging: the sheet follows the finger and the scrim follows the progress. The still frame
+   shows a 28% drag, so the scrim sits at 72%. */
+.ob-sheet.is-dragging { translate: 0 28%; }
+.ob-layer:has(.ob-sheet.is-dragging) > .ob-scrim { opacity: .72; }
+
+
+/* =============================================================================================
+   15. TOUCH
+   On a coarse pointer every control in this chapter reaches 44px without changing its drawing.
+   Buttons do this in buttons.css. These come last so they win over the base sizes above.
+   ============================================================================================= */
+@media (pointer: coarse) {
+  .ob-table-sort { position: relative; }
+  .ob-table-sort::before {
+    content: "";
+    position: absolute;
+    inset: calc((var(--ob-target-touch) - 100%) / -2) calc(var(--ob-space-4) * -1);
+  }
+  /* The header and compact rows grow to the target, so no hit area is clipped or overlaps a row. */
+  .ob-table th,
+  .ob-table--compact td { height: var(--ob-target-touch); }
+  /* Links set in a meta line or a short note get the full target too. Links inside running text,
+     such as the sheet's evidence list, keep the inline exception (WCAG 2.5.8). */
+  :is(.ob-finding-evidence, .ob-receipt-meta, .ob-stat-source, .ob-loading-note) .ob-btn--link.ob-btn--inline {
+    position: relative;
+    display: inline-block;
+  }
+  :is(.ob-finding-evidence, .ob-receipt-meta, .ob-stat-source, .ob-loading-note) .ob-btn--link.ob-btn--inline::before {
+    content: "";
+    inset: calc((var(--ob-target-touch) - 1lh) / -2) calc(var(--ob-space-4) * -1);
+  }
+  /* The actions sit clear of the evidence links above them. */
+  .ob-finding-actions { margin-top: var(--ob-space-20); }
+  .ob-range { height: var(--ob-target-touch); }
+}
+
+
+/* =============================================================================================
+   16. LAYER CHOREOGRAPHY AND REPLAY
+   A layer moves as 1: the scrim fades while the dialog rises, or the sheet slides from its edge.
+   Leaving always wins over a replay.
+   ============================================================================================= */
+
+.ob-layer.is-replay:not(.is-leaving) > .ob-anim-scrim  { animation-name: ob-fade-in-r; }
+.ob-layer.is-replay:not(.is-leaving) > .ob-anim-dialog { animation-name: ob-enter-r; }
+.ob-layer.is-replay:not(.is-leaving) > .ob-anim-sheet  { animation-name: ob-sheet-in-r; }
+.ob-layer.is-leaving > .ob-anim-scrim  { animation: ob-fade-out var(--ob-dur-base) var(--ob-ease-in) forwards; }
+.ob-layer.is-leaving > .ob-anim-dialog { animation: ob-exit var(--ob-dur-base) var(--ob-ease-in) forwards; }
+.ob-layer.is-leaving > .ob-anim-sheet  { animation: ob-sheet-out var(--ob-dur-moderate) var(--ob-ease-in) forwards; }
+.ob-layer.is-leaving > .ob-anim-scrim.is-sheet { animation-duration: var(--ob-dur-moderate); }
+
+
+/* =============================================================================================
+   17. REDUCED MOTION
+   Travel is already a fade through the motion tokens. These stop what is left in this chapter.
+   Dragging stays: direct manipulation is the hand, not animation.
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .ob-progress > i { transition: none; }
+  .ob-range::-webkit-slider-thumb { transition: none; }
+  .ob-range::-moz-range-thumb { transition: none; }
+  .ob-faq-icon { scale: none; }
+  .ob-layer.is-leaving > .ob-anim-sheet { animation-name: ob-fade-out; }
+  .ob-layer.is-replay:not(.is-leaving) > .ob-anim-sheet { animation-name: ob-fade-in-r; }
+}
+
+
+/* =============================================================================================
+   18. FORCED COLOURS
+   Box-shadow edges vanish, so every surface and control gets a real border or outline.
+   ============================================================================================= */
+@media (forced-colors: active) {
+  :is(.ob-card, .ob-window, .ob-finding, .ob-ledger, .ob-table-wrap, .ob-stat--card, .ob-stats, .ob-calc,
+      .ob-toast, .ob-alert, .ob-dialog, .ob-sheet, .ob-prompt, .ob-finding-record, .ob-card-check) {
+    border: 1px solid CanvasText;
+  }
+  .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected),
+  .ob-receipt:is([aria-current="true"], .is-selected),
+  .ob-table tbody tr.is-selected td { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected) .ob-card-check { background-color: Highlight; }
+  .ob-receipt:not(:last-child)::before,
+  .ob-progress > i,
+  .ob-skeleton-line,
+  .ob-skeleton-block,
+  .ob-sheet-grabber,
+  .ob-window-ws { background-color: CanvasText; }
+  .ob-receipt:has(+ .ob-receipt--broken)::before { background: none; border-left-color: CanvasText; }
+  .ob-window-railitem.is-current { outline: 1px solid CanvasText; }
+  .ob-table-client:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+  .ob-table tbody tr.is-focus td { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ob-progress { border: 1px solid CanvasText; }
+  .ob-range::-webkit-slider-runnable-track { background: CanvasText; }
+  .ob-range::-webkit-slider-thumb { background-color: Highlight; }
+  .ob-range::-moz-range-thumb { background-color: Highlight; }
+  .ob-faq-icon i { background-color: CanvasText; }
+}
+
+
+/* =============================================================================================
+   DOCUMENTATION LAYOUT   .ds-surfaces-*
+   Only the guideline uses these. They hold specimens; they are not components.
+   ============================================================================================= */
+
+.ds-surfaces {
+  display: grid;
+  gap: var(--ob-space-80);
+  min-width: 0;
+  color: var(--ob-text);
+  font: var(--ob-type-body);
+}
+/* Zero-specificity resets, so every component rule wins over them. */
+:where(.ds-surfaces) *,
+:where(.ds-surfaces) *::before,
+:where(.ds-surfaces) *::after { box-sizing: border-box; }
+:where(.ds-surfaces) :where(h2, h3, h4, p, ul, ol, dl, dd, figure) { margin: 0; }
+:where(.ds-surfaces) :where(ul, ol) { padding: 0; list-style: none; }
+:where(.ds-surfaces) :where(code) { font-family: var(--ob-font-mono); }
+
+.ds-surfaces-intro { display: grid; gap: var(--ob-space-16); max-width: var(--ob-container-sm); }
+.ds-surfaces-eyebrow {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-surfaces-h2 { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); text-wrap: balance; max-width: 24ch; }
+.ds-surfaces-lede { font: var(--ob-type-body-lg); color: var(--ob-text-2); max-width: var(--ob-measure-lede); text-wrap: pretty; }
+.ds-surfaces-index { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin-top: var(--ob-space-8); }
+.ds-surfaces-index a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  transition-property: color, background-color;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ds-surfaces-index a:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ds-surfaces-index a:active { color: var(--ob-text); background-color: var(--ob-state-pressed); }
+.ds-surfaces-index a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+.ds-surfaces-comp {
+  display: grid;
+  gap: var(--ob-space-24);
+  min-width: 0;
+  padding-top: var(--ob-space-48);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: var(--ob-space-80);
+}
+.ds-surfaces-head { display: grid; gap: var(--ob-space-12); max-width: var(--ob-container-sm); }
+.ds-surfaces-name {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-surfaces-h3 { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); text-wrap: balance; max-width: 24ch; }
+.ds-surfaces-p { font: var(--ob-type-body); color: var(--ob-text-2); max-width: var(--ob-measure); text-wrap: pretty; }
+.ds-surfaces-p code { font: var(--ob-weight-medium) .88em/1 var(--ob-font-mono); color: var(--ob-text); white-space: nowrap; }
+
+.ds-surfaces-stage {
+  container-type: inline-size;
+  display: grid;
+  gap: var(--ob-space-32);
+  min-width: 0;
+  padding: clamp(var(--ob-space-16), 3vw, var(--ob-space-32));
+  border-radius: var(--ob-radius-lg);
+  color: var(--ob-text);
+  background-color: var(--ob-bg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-surfaces-stagebar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-8) var(--ob-space-16);
+  margin-bottom: calc(var(--ob-space-8) * -1);
+}
+.ds-surfaces-tag { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-surfaces-tag .ob-sq { color: var(--ob-text); }
+.ds-surfaces-replays { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); }
+.ds-surfaces-replay {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  height: var(--ob-control-xs);
+  padding: 0 var(--ob-space-12);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-2);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  cursor: pointer;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ds-surfaces-replay::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent currentColor;
+}
+.ds-surfaces-replay.is-leave::before { border-width: 0; width: 7px; height: 7px; border-radius: 1px; background: currentColor; }
+@media (hover: hover) and (pointer: fine) {
+  .ds-surfaces-replay:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ds-surfaces-replay:active { color: var(--ob-text); background-color: var(--ob-state-pressed); scale: var(--ob-press-scale-sm); transition-duration: var(--ob-dur-fast); }
+.ds-surfaces-replay:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+@media (pointer: coarse) {
+  .ds-surfaces-replay { height: var(--ob-control-sm); }
+  :is(.ds-surfaces-replays, .ds-surfaces-index) { row-gap: var(--ob-space-12); }
+  :is(.ds-surfaces-replay, .ds-surfaces-index a)::after {
+    content: "";
+    position: absolute;
+    inset: calc((var(--ob-target-touch) - 100%) / -2) calc(var(--ob-space-2) * -1);
+  }
+}
+
+.ds-surfaces-group { display: grid; gap: var(--ob-space-16); min-width: 0; }
+.ds-surfaces-glabel {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-surfaces-glabel::after { content: ""; flex: 1; height: var(--ob-border-hair); background-color: var(--ob-line-subtle); }
+
+/* State matrices. Auto-fill by default; a count class fixes the columns on wide stages so every
+   set fills its rows exactly. */
+.ds-surfaces-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--ds-col, 220px)), 1fr));
+  gap: var(--ob-space-24) var(--ob-space-20);
+  align-items: start;
+  min-width: 0;
+}
+.ds-surfaces-matrix.is-narrow { --ds-col: 170px; }
+.ds-surfaces-matrix.is-wide { --ds-col: 300px; }
+.ds-surfaces-matrix.is-xwide { --ds-col: 420px; }
+.ds-surfaces-matrix.is-cols-1 { grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 560px) {
+  .ds-surfaces-matrix:is(.is-cols-2, .is-cols-4, .is-cols-6) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ds-surfaces-matrix.is-cols-3 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+  .ds-surfaces-matrix.is-cols-5 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); }
+}
+@container (min-width: 860px) {
+  .ds-surfaces-matrix.is-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ds-surfaces-matrix.is-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ds-surfaces-matrix.is-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .ds-surfaces-matrix.is-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+.ds-surfaces-cell { display: grid; gap: var(--ob-space-8); align-content: start; min-width: 0; }
+.ds-surfaces-cell > :is(.ob-status, .ob-btn, .ob-finding-record, .ob-loading, .ds-surfaces-well) { justify-self: start; }
+.ds-surfaces-cap { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-surfaces-cap b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+
+/* Measures and frames for specimens. */
+.ds-surfaces-measure-sm { max-width: var(--ob-container-sm); }
+.ds-surfaces-measure-xs { max-width: var(--ob-container-xs); }
+.ds-surfaces-phone { --ds-phone: 375px; width: 100%; max-width: var(--ds-phone); }
+.ds-surfaces-col { display: grid; gap: var(--ob-space-16); align-content: start; min-width: 0; }
+.ds-surfaces-well {
+  display: inline-flex;
+  padding: var(--ob-space-12);
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-surfaces-flex1 { position: relative; display: flex; flex: 1; min-width: 0; }
+.ds-surfaces-swipe { translate: 38% 0; opacity: .5; }
+/* Replay of a swipe: the toast follows the finger to 38%, holds, then leaves along the swipe. */
+.ds-surfaces-swipe.is-playing { animation: ds-surfaces-swipe 1100ms both; }
+@keyframes ds-surfaces-swipe {
+  0%   { translate: 0 0; opacity: 1; animation-timing-function: linear; }
+  40%  { translate: 38% 0; opacity: .5; }
+  75%  { translate: 38% 0; opacity: .5; animation-timing-function: var(--ob-ease-in); }
+  100% { translate: 110% 0; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-surfaces-swipe.is-playing { animation: ob-fade-out var(--ob-dur-base) var(--ob-ease-in) both; }
+}
+.ds-surfaces-clipx { overflow-x: clip; overflow-clip-margin: var(--ob-space-8); padding-block: var(--ob-space-4); }
+.ds-surfaces-unclip { overflow: visible; }
+.ds-surfaces-break { padding: var(--ob-space-24); border-radius: var(--ob-radius-md); }
+.ds-surfaces-calcbox { padding: var(--ob-space-16); gap: 0; }
+.ds-surfaces-gaptop { margin-top: var(--ob-space-24); }
+.ds-surfaces-oneline { min-height: 0; align-items: center; }
+.ds-surfaces-railpin { position: absolute; left: calc(var(--ob-space-12) + var(--ob-receipt-node) / 2 - var(--ob-space-4)); bottom: var(--ob-space-2); width: 0; height: 16px; }
+
+/* Anatomy: the specimen with numbered pins, and the legend beside it. */
+.ds-surfaces-anatomy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--ob-space-24) var(--ob-space-32);
+  align-items: start;
+}
+@container (max-width: 720px) { .ds-surfaces-anatomy { grid-template-columns: minmax(0, 1fr); } }
+.ds-surfaces-specimen { min-width: 0; padding: var(--ob-space-24) var(--ob-space-24) var(--ob-space-16); }
+.ds-surfaces-specimen.is-scroll { overflow-x: auto; }
+.ds-surfaces-specimen.is-scroll .ob-table-wrap { overflow: visible; }
+.ds-surfaces-at { position: relative; }
+.ds-surfaces-atblock { position: relative; display: block; }
+.ds-surfaces-atinline { position: relative; display: inline-flex; }
+/* Pins sit outside the part they number: left by default, or right, above, below. */
+.ds-surfaces-pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  translate: calc(-100% - 3px) 0;
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-weight-medium) var(--ob-type-label-mono-size)/1 var(--ob-font-mono);
+  color: var(--ob-text-inverse);
+  background-color: var(--ob-solid);
+  box-shadow: 0 0 0 2px var(--ob-bg);
+  pointer-events: none;
+}
+.ds-surfaces-pin.is-right  { left: auto; right: 0; translate: calc(100% + 3px) 0; }
+.ds-surfaces-pin.is-above  { translate: 0 calc(-100% - 3px); }
+.ds-surfaces-pin.is-below  { top: auto; bottom: 0; translate: -50% calc(100% + 3px); }
+.ds-surfaces-pin.is-bottom { top: auto; bottom: 0; translate: calc(-100% - 3px) 50%; }
+.ds-surfaces-pin.is-inside { translate: var(--ob-space-12) var(--ob-space-12); }
+.ds-surfaces-pinspot { position: absolute; left: var(--ds-x, 0%); bottom: 0; }
+.ds-surfaces-legend { display: grid; gap: var(--ob-space-12); counter-reset: ds-pin; }
+.ds-surfaces-legend.is-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.ds-surfaces-legend li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-surfaces-legend li::before {
+  counter-increment: ds-pin;
+  content: counter(ds-pin);
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-weight-medium) var(--ob-type-label-mono-size)/1 var(--ob-font-mono);
+  color: var(--ob-text-inverse);
+  background-color: var(--ob-solid);
+  translate: 0 2px;
+}
+.ds-surfaces-legend b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ds-surfaces-legend code { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+
+/* Specs, motion and accessibility live on the page, outside the stages. */
+.ds-surfaces-docs { display: grid; gap: var(--ob-space-24); min-width: 0; }
+.ds-surfaces-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--ob-space-24) var(--ob-space-32);
+}
+.ds-surfaces-block { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; }
+.ds-surfaces-label {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-surfaces-tablewrap {
+  min-width: 0;
+  overflow-x: auto;
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-surfaces-tablewrap:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ds-surfaces-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-surfaces-table th {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  text-align: left;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+  background-color: var(--ob-fill-subtle);
+  white-space: nowrap;
+}
+.ds-surfaces-table td {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  vertical-align: top;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ds-surfaces-table td:first-child { color: var(--ob-text); font-weight: var(--ob-weight-medium); white-space: nowrap; }
+.ds-surfaces-table code { font: var(--ob-type-mono-sm); color: var(--ob-text); overflow-wrap: anywhere; }
+.ds-surfaces-list { display: grid; gap: var(--ob-space-8); }
+.ds-surfaces-list li {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ds-surfaces-list li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background-color: var(--ob-text);
+  translate: 0 -1px;
+}
+.ds-surfaces-list.is-avoid li::before { background-color: transparent; box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-text-3) inset; }
+.ds-surfaces-list b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ds-surfaces-list code { font: var(--ob-type-mono-sm); color: var(--ob-text); }
+
+/* In the guideline every working ring stops after 3 turns (4.2s), inside the 5s limit of
+   WCAG 2.2.2, and Replay runs it again. In the product the ring turns while the work runs. */
+.ds-surfaces-stage .ob-sig.is-spin :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 3; }
+@media (prefers-reduced-motion: reduce) {
+  .ds-surfaces-stage .ob-sig.is-spin .ob-sig-sq { animation-iteration-count: 2 !important; }
+}
+
+/* A framed viewport, so layers show in place rather than over the guideline. */
+.ds-surfaces-viewport {
+  --ds-vh: 440px;
+  position: relative;
+  min-width: 0;
+  height: var(--ds-vh);
+  overflow: hidden;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-bg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-surfaces-viewport.is-short { --ds-vh: 360px; }
+.ds-surfaces-viewport.is-tall  { --ds-vh: 520px; }
+.ds-surfaces-viewport.is-xtall { --ds-vh: 580px; }
+@container (max-width: 520px) { .ds-surfaces-viewport { height: calc(var(--ds-vh) * 1.4); } }
+.ds-surfaces-viewport > .ob-layer,
+.ds-surfaces-viewport > .ob-toasts { position: absolute; z-index: auto; }
+.ds-surfaces-viewport > .ob-toasts { width: calc(100% - 2 * var(--ob-space-16)); max-width: 380px; }
+.ds-surfaces-behind { display: grid; gap: var(--ob-space-12); padding: var(--ob-space-20); }
+.ds-surfaces-objectblock { height: 120px; border-radius: var(--ob-radius-md); }
+.ds-surfaces-stack { position: relative; display: grid; align-items: end; height: 240px; }
+.ds-surfaces-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--ob-space-24);
+  align-items: start;
+}
+@container (max-width: 720px) { .ds-surfaces-split { grid-template-columns: minmax(0, 1fr); } }

@@ -1,0 +1,667 @@
+/* =============================================================================================
+   OBSESSION MOTION  v1.0  (1 Oct 2026)
+   The motion layer of the Obsession design system. Load it after tokens.css:
+     <link rel="stylesheet" href="tokens.css">
+     <link rel="stylesheet" href="motion.css">
+   It also works alone. Tokens that tokens.css already defines are repeated here with the same
+   values at zero specificity (:where(:root)), so tokens.css always wins and nothing conflicts.
+
+   Every motion has 1 of 4 jobs. Anything without a job stays still.
+     feedback     I pressed it and it heard me.
+     orientation  where this came from and where it went.
+     continuity   this became that.
+     status       the agent is working, waiting, needs you, or has landed.
+
+   Curves
+     enters, or answers a person ........ --ob-ease-out
+     leaves ............................. --ob-ease-in, one step faster on the duration scale
+     moves between 2 places by itself ... --ob-ease-in-out
+     lands as a success ................. --ob-snap (the ring's square and success ticks only)
+     turns or tracks time ............... linear; blinks use steps(1, end)
+
+   Properties
+     Movement uses opacity and the individual translate and scale properties, so a utility
+     composes with a component's own transform instead of replacing it.
+     State changes use color, background-color, border-color and box-shadow.
+     Never width, height, top, left, margin or padding. Expanders use grid-template-rows.
+     Never "transition: all", and never the outline: focus rings appear in the same frame.
+
+   Enter and leave
+     An enter animation runs when the element is inserted or stops being display:none.
+     To leave, add .is-leaving, wait for animationend, then hide or remove the element.
+     Enters fill backwards only, so a finished entrance never fights a later transition.
+
+   Replay
+     Toggle .is-replay on any .ob-anim-* element, or on a ring mark, to run its entrance again.
+     Each entrance has a twin keyframe (name-r); switching names restarts it. Toggle again to
+     replay again. From script: el.getAnimations({ subtree: true }).forEach(a => { a.cancel(); a.play(); });
+   ============================================================================================= */
+
+
+/* =============================================================================================
+   1. TOKENS
+   ============================================================================================= */
+:where(:root) {
+  /* Shared with tokens.css. Same values; tokens.css wins when both load. */
+  --ob-ease:          cubic-bezier(.22, 1, .36, 1);
+  --ob-snap:          cubic-bezier(.34, 1.56, .64, 1);
+  --ob-ease-draw:     cubic-bezier(.65, 0, .35, 1);
+  --ob-ease-exit:     cubic-bezier(.3, 0, 1, 1);
+  --ob-dur-fast:      100ms;   /* press down, tooltip, checkbox fill, small exits */
+  --ob-dur-base:      160ms;   /* hover, state colour, menu, toggle, tick draw, error line, dialog exit */
+  --ob-dur-moderate:  240ms;   /* tab indicator, segment thumb, dialog, accordion, toast stack, sheet exit */
+  --ob-dur-slow:      400ms;   /* sheet, toast arrival, success panel, ledger slide, number tween */
+  --ob-dur-reveal:    800ms;
+  --ob-rise:          14px;
+  --ob-lift:          -1px;
+  --ob-press-scale:   .98;
+
+  /* Duration scale: instant, fast, base, moderate, slow, slower. */
+  --ob-dur-instant:   0ms;                    /* focus ring, menu and list rows, a tooltip that follows another */
+  --ob-dur-slower:    var(--ob-dur-reveal);   /* 800ms: the hero sequence and section reveals only */
+
+  /* Curves. --ob-ease and --ob-snap keep their meaning; these name the job. */
+  --ob-ease-out:      var(--ob-ease);                  /* enters and answers: fast start, long settle */
+  --ob-ease-in:       var(--ob-ease-exit);             /* leaves: slow start, gone at speed */
+  --ob-ease-in-out:   cubic-bezier(.45, 0, .25, 1);    /* system moves: ledger slide, toast stack, reorder, crossfade */
+  --ob-ease-linear:   linear;                          /* the ring's turn, time-based progress */
+  --ob-ease-blink:    steps(1, end);                   /* cursor blinks */
+
+  /* Distance. Reduced motion sets all of these to 0. */
+  --ob-shift-xs:      4px;                 /* tooltip, error line */
+  --ob-shift-sm:      8px;                 /* dialog, list item, panel swap, success panel */
+  --ob-shift-md:      var(--ob-rise);      /* 14px: hero and section reveal */
+  --ob-enter-blur:    4px;                 /* hero text only, never a surface */
+  --ob-toast-step:    8px;                 /* each older toast peeks this far above the newest */
+
+  /* Scale. Reduced motion sets all of these to 1. */
+  --ob-press-scale-sm: .96;   /* controls 32px tall or less: chips, icon buttons, small pills */
+  --ob-switch-stretch: 1.12;  /* the switch thumb widens while pressed */
+  --ob-pop-scale:      .96;   /* menus and popovers grow from their trigger */
+  --ob-dialog-scale:   .97;
+  --ob-exit-scale:     .98;
+  --ob-drag-scale:     1.02;
+
+  /* Rhythm. Reduced motion sets every stagger to 0. */
+  --ob-stagger:         40ms;   /* list items; the 6th and every later item arrive together */
+  --ob-stagger-hero:    80ms;   /* hero lines; 5 steps at most */
+  --ob-stagger-section: 70ms;   /* section reveals, by index mod 4 */
+  --ob-stagger-grid:    16ms;   /* dense grids such as the 25-shop planner; set --ob-i inline */
+  --ob-delay-tick:      40ms;   /* a tick starts drawing once its box has filled */
+  --ob-delay-label:     80ms;   /* a segment label turns as the thumb arrives */
+
+  /* Waits and holds. Script reads these with getComputedStyle. */
+  --ob-delay-tooltip:  500ms;   /* pointer rests this long before the first tooltip shows */
+  --ob-tooltip-skip:   300ms;   /* after one closes, the next opens at once within this window */
+  --ob-delay-busy:     300ms;   /* a loading state shows only if work outlasts this */
+  --ob-busy-min:       600ms;   /* once shown, a loading state stays at least this long */
+  --ob-success-hold:   400ms;   /* the landed square holds before a button returns to its label */
+  --ob-toast-life:     5000ms;  /* info and success toasts; paused on hover, focus and hidden tab */
+  --ob-autoplay-dwell: 7000ms;  /* auto-advancing tabs; set per instance inline if different */
+  --ob-number-tween:   var(--ob-dur-slow);
+  --ob-skeleton-cycle: 1600ms;
+  --ob-skeleton-count: 6;       /* 6 pulses of 1600ms, about 10s; then it holds still and words take over */
+  --ob-toast-life-action: 10000ms;  /* a toast with Undo or another action */
+  --ob-expand-delay:   80ms;    /* accordion content fades in once the rows have started to open */
+  --ob-type-step-min:  20ms;    /* the agent types 1 character every 20 to 42ms */
+  --ob-type-step-max:  42ms;
+  --ob-sheet-dismiss:  .4;      /* a sheet dragged past 40% of its height closes on release */
+  --ob-sheet-flick:    .5;      /* or released faster than .5px per ms */
+
+  /* Ring mark additions. The founders' timings stay in tokens.css. */
+  --ob-sig-spin-slow:   3200ms;  /* background work in a list row; matches the working.svg orbit */
+  --ob-sig-ready-blink: 750ms;   /* snap to first blink, the same gap .is-play uses */
+  --ob-sig-breathe:     2400ms;  /* reduced motion: the working square fades instead of turning */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(:root) {
+    --ob-dur-moderate:   160ms;
+    --ob-dur-slow:       160ms;
+    --ob-dur-reveal:     160ms;
+    --ob-rise:           0px;
+    --ob-lift:           0px;
+    --ob-press-scale:    1;
+    --ob-shift-xs:       0px;
+    --ob-shift-sm:       0px;
+    --ob-shift-md:       0px;
+    --ob-enter-blur:     0px;
+    --ob-press-scale-sm: 1;
+    --ob-switch-stretch: 1;
+    --ob-pop-scale:      1;
+    --ob-dialog-scale:   1;
+    --ob-exit-scale:     1;
+    --ob-drag-scale:     1;
+    --ob-stagger:         0ms;
+    --ob-stagger-hero:    0ms;
+    --ob-stagger-section: 0ms;
+    --ob-stagger-grid:    0ms;
+    --ob-delay-tick:      0ms;
+    --ob-delay-label:     0ms;
+    --ob-number-tween:    0ms;
+  }
+}
+
+
+/* =============================================================================================
+   2. KEYFRAMES
+   Enters declare only "from", so they always land on the element's real resting style.
+   The -r twins are identical; .is-replay switches to them to restart an entrance.
+   ============================================================================================= */
+@keyframes ob-fade-in    { from { opacity: 0; } }
+@keyframes ob-fade-in-r  { from { opacity: 0; } }
+@keyframes ob-fade-out   { to   { opacity: 0; } }
+
+/* Generic entrance. Each utility sets --ob-enter-x, --ob-enter-y and --ob-enter-scale itself. */
+@keyframes ob-enter   { from { opacity: 0; translate: var(--ob-enter-x) var(--ob-enter-y); scale: var(--ob-enter-scale); } }
+@keyframes ob-enter-r { from { opacity: 0; translate: var(--ob-enter-x) var(--ob-enter-y); scale: var(--ob-enter-scale); } }
+@keyframes ob-exit    { to   { opacity: 0; translate: var(--ob-exit-x, 0px) var(--ob-exit-y, 0px); scale: var(--ob-exit-scale); } }
+
+/* Hero text: the one place blur is allowed, 4px at most. */
+@keyframes ob-hero   { from { opacity: 0; translate: 0 var(--ob-shift-md); filter: blur(var(--ob-enter-blur)); } }
+@keyframes ob-hero-r { from { opacity: 0; translate: 0 var(--ob-shift-md); filter: blur(var(--ob-enter-blur)); } }
+
+@keyframes ob-sheet-in    { from { translate: var(--ob-sheet-from); } }
+@keyframes ob-sheet-in-r  { from { translate: var(--ob-sheet-from); } }
+@keyframes ob-sheet-out   { to   { translate: var(--ob-sheet-from); } }
+
+@keyframes ob-toast-in    { from { opacity: 0; translate: 0 calc(100% + 16px); } }
+@keyframes ob-toast-in-r  { from { opacity: 0; translate: 0 calc(100% + 16px); } }
+@keyframes ob-toast-out   { to   { opacity: 0; scale: .96; } }
+
+/* The brand square landing: a success moment, so it may overshoot. */
+@keyframes ob-square-in   { from { opacity: 0; scale: .4; } }
+@keyframes ob-square-in-r { from { opacity: 0; scale: .4; } }
+
+@keyframes ob-skeleton    { 50% { opacity: .55; } }
+@keyframes ob-skeleton-r  { 50% { opacity: .55; } }
+@keyframes ob-breathe     { 50% { opacity: .35; } }
+
+/* A state highlight, not movement: the row or chip glows once, then returns to its own fill. */
+@keyframes ob-flash   { 0%, 20% { background-color: var(--ob-state-drag, rgb(237 235 229 / .16)); } }
+@keyframes ob-flash-r { 0%, 20% { background-color: var(--ob-state-drag, rgb(237 235 229 / .16)); } }
+
+@keyframes ob-bar   { from { scale: 0 1; } to { scale: 1 1; } }
+@keyframes ob-bar-r { from { scale: 0 1; } to { scale: 1 1; } }
+
+/* Twins of the ring keyframes in tokens.css, for replay. Keep them in step with tokens.css. */
+@keyframes ob-sig-draw-r  { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes ob-sig-snap-r  { from { transform: translate(28%, -28%) scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ob-sig-blink-r { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes ob-sig-pulse-r { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
+
+
+/* =============================================================================================
+   3. HOVER, PRESS, STATE   (feedback)
+   Transitions, not keyframes, so a reversal starts from wherever the element is.
+   ============================================================================================= */
+
+/* State colour: tabs, chips, links, selected rows, fields. */
+:where(.ob-anim-state) {
+  transition-property: color, background-color, border-color, box-shadow, text-decoration-color, fill, stroke;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+
+/* Press: scale down in 100ms, release in 160ms. Lift: 1px up on hover, pointer devices only. */
+:where(.ob-anim-press, .ob-anim-press-sm, .ob-anim-lift) {
+  transition-property: translate, scale, color, background-color, border-color, box-shadow, text-decoration-color;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-anim-press:active:not(:disabled, [aria-disabled="true"]) {
+  scale: var(--ob-press-scale);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-anim-press-sm:active:not(:disabled, [aria-disabled="true"]) {
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-anim-lift:hover:not(:active, :disabled, [aria-disabled="true"]) { translate: 0 var(--ob-lift); }
+}
+
+/* Menu rows and list rows highlight in the same frame, for pointer and keys alike. */
+.ob-anim-row { transition: none; }
+
+
+/* =============================================================================================
+   4. INDICATORS, THUMBS, SWITCHES   (continuity)
+   Script sets the position. Add .is-instant for first paint and resize so nothing slides then.
+   ============================================================================================= */
+
+/* Tab underline: a 1px-wide bar scaled to the tab. Set --ob-x (px) and --ob-w (a unitless px count). */
+.ob-anim-indicator {
+  width: 1px;
+  transform-origin: 0 50%;
+  translate: var(--ob-x, 0px) 0;
+  scale: var(--ob-w, 0) 1;
+  transition: translate var(--ob-dur-moderate) var(--ob-ease-out), scale var(--ob-dur-moderate) var(--ob-ease-out);
+}
+
+/* Segmented thumb over equal-width segments, the look switch included. Set --ob-index (0, 1, 2...). */
+.ob-anim-thumb {
+  translate: calc(var(--ob-index, 0) * 100%) 0;
+  transition: translate var(--ob-dur-moderate) var(--ob-ease-out);
+}
+
+/* Toggle thumb: travels in 160ms, stretches 12% while pressed. Set --ob-switch-travel on the switch. */
+.ob-anim-switch {
+  transform-origin: 50% 50%;
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), scale var(--ob-dur-fast) var(--ob-ease-out);
+}
+:is([aria-checked="true"], [aria-pressed="true"]) .ob-anim-switch,
+:checked ~ .ob-anim-switch,
+:checked ~ * .ob-anim-switch { translate: var(--ob-switch-travel, 16px) 0; }
+:is([role="switch"], label):active:not(:disabled, [aria-disabled="true"], :has(:disabled)) .ob-anim-switch { scale: var(--ob-switch-stretch) 1; }
+
+/* Rotating glyphs: a chevron turns 180deg, the plus sign's upright bar turns 90deg to make a minus. */
+.ob-anim-turn { transition: rotate var(--ob-dur-moderate) var(--ob-ease-out); }
+:is([aria-expanded="true"], .is-open, [data-state="open"]) .ob-anim-turn,
+.ob-anim-turn.is-open { rotate: var(--ob-turn, 180deg); }
+
+/* Ledger list and reorders: the system moves rows, so the curve is in-out. Script sets translate. */
+.ob-anim-slide { transition: translate var(--ob-dur-slow) var(--ob-ease-in-out); }
+
+/* Drag: the item lifts 2% and takes the overlay shadow; script sets translate while dragging. */
+.ob-anim-drag {
+  transition: translate var(--ob-dur-moderate) var(--ob-ease-out), scale var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-anim-drag.is-dragging {
+  scale: var(--ob-drag-scale);
+  box-shadow: var(--ob-shadow-4);
+  transition-property: scale, box-shadow;
+  cursor: grabbing;
+}
+
+:is(.ob-anim-indicator, .ob-anim-thumb, .ob-anim-switch, .ob-anim-slide, .ob-anim-drag, .ob-anim-turn).is-instant { transition: none; }
+
+
+/* =============================================================================================
+   5. CHECKS AND TICKS   (feedback, status)
+   ============================================================================================= */
+
+/* Checkbox tick: put pathLength="1" on the tick path. The box fills in 100ms (component),
+   the tick draws in 160ms from --ob-delay-tick (40ms). Unchecking fades the tick in 100ms; it never draws backwards. */
+.ob-anim-check {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition: stroke-dashoffset 0ms linear var(--ob-dur-fast), opacity var(--ob-dur-fast) var(--ob-ease-in);
+}
+[aria-checked="true"] .ob-anim-check,
+:checked ~ .ob-anim-check,
+:checked ~ * .ob-anim-check {
+  stroke-dashoffset: 0;
+  opacity: 1;
+  transition: stroke-dashoffset var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-tick), opacity 0ms;
+}
+
+/* The brand square ticks in: the agent finished a set-up step. Success, so it snaps. */
+.ob-anim-square-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ob-square-in var(--ob-dur-slow) var(--ob-snap) var(--ob-anim-delay, 0ms) backwards;
+}
+
+
+/* =============================================================================================
+   6. SURFACES THAT OPEN   (orientation)
+   ============================================================================================= */
+
+/* Menus and popovers grow from the trigger. Set --ob-origin to the trigger side (e.g. "top left").
+   .is-large for popovers over 320px. .is-instant for right-click menus: they appear where the pointer is. */
+.ob-anim-pop {
+  --ob-enter-x: 0px; --ob-enter-y: 0px; --ob-enter-scale: var(--ob-pop-scale);
+  transform-origin: var(--ob-origin, top center);
+  animation: ob-enter var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+.ob-anim-pop.is-large   { animation-duration: var(--ob-dur-moderate); }
+.ob-anim-pop.is-instant { animation: none; }
+
+/* Tooltips step 4px out of their anchor. Set data-side. .is-instant when one follows another. */
+.ob-anim-tooltip {
+  --ob-enter-x: 0px; --ob-enter-y: var(--ob-shift-xs); --ob-enter-scale: 1;
+  animation: ob-enter var(--ob-dur-fast) var(--ob-ease-out) backwards;
+}
+.ob-anim-tooltip[data-side="bottom"] { --ob-enter-y: calc(var(--ob-shift-xs) * -1); }
+.ob-anim-tooltip[data-side="left"]   { --ob-enter-x: var(--ob-shift-xs); --ob-enter-y: 0px; }
+.ob-anim-tooltip[data-side="right"]  { --ob-enter-x: calc(var(--ob-shift-xs) * -1); --ob-enter-y: 0px; }
+.ob-anim-tooltip.is-instant { animation: none; }
+
+/* Dialogs settle up 8px from 97%. The scrim fades with them. Works on <dialog> and its ::backdrop. */
+.ob-anim-dialog {
+  --ob-enter-x: 0px; --ob-enter-y: var(--ob-shift-sm); --ob-enter-scale: var(--ob-dialog-scale);
+  animation: ob-enter var(--ob-dur-moderate) var(--ob-ease-out) backwards;
+}
+.ob-anim-scrim,
+.ob-anim-dialog::backdrop { animation: ob-fade-in var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
+
+/* Sheets slide from their edge. data-side: right (default), left, bottom. Pair with .ob-anim-scrim.is-sheet. */
+.ob-anim-sheet {
+  --ob-sheet-from: 100% 0;
+  animation: ob-sheet-in var(--ob-dur-slow) var(--ob-ease-out) backwards;
+}
+.ob-anim-sheet[data-side="left"]   { --ob-sheet-from: -100% 0; }
+.ob-anim-sheet[data-side="bottom"] { --ob-sheet-from: 0 100%; }
+.ob-anim-scrim.is-sheet { animation-duration: var(--ob-dur-slow); }
+/* Dragging follows the finger 1:1. On release, .is-settling springs back or .is-leaving dismisses. */
+.ob-anim-sheet.is-dragging { animation: none; transition: none; }
+.ob-anim-sheet.is-settling { animation: none; transition: translate var(--ob-dur-moderate) var(--ob-ease-out); }
+
+/* Toasts rise from below their stack. Older toasts sit 8px higher and 4% smaller each; the 4th is hidden.
+   Script sets --ob-toast-index (0 = newest) and, for the expanded stack, --ob-toast-offset in px.
+   Put .ob-anim-toasts on the region: hover or focus inside opens the stack into a list. */
+.ob-anim-toast {
+  --ob-ti: var(--ob-toast-index, 0);
+  transform-origin: 50% 100%;
+  translate: 0 calc(var(--ob-ti) * var(--ob-toast-step) * -1);
+  scale: calc(1 - var(--ob-ti) * .04);
+  opacity: calc(1 - max(var(--ob-ti) - 2, 0));
+  transition:
+    translate var(--ob-dur-moderate) var(--ob-ease-in-out),
+    scale var(--ob-dur-moderate) var(--ob-ease-in-out),
+    opacity var(--ob-dur-base) var(--ob-ease-in-out);
+  animation: ob-toast-in var(--ob-dur-slow) var(--ob-ease-out) backwards;
+}
+.ob-anim-toasts:is(:hover, :focus-within) .ob-anim-toast {
+  translate: 0 calc(var(--ob-toast-offset, 0px) * -1);
+  scale: 1;
+  opacity: 1;
+}
+.ob-anim-toast.is-swiping { transition: none; }
+
+/* Leaving, one step faster than arriving. Menus and tooltips only fade. */
+.ob-anim-pop.is-leaving,
+.ob-anim-tooltip.is-leaving       { animation: ob-fade-out var(--ob-dur-fast) var(--ob-ease-in) forwards; }
+.ob-anim-dialog.is-leaving        { animation: ob-exit var(--ob-dur-base) var(--ob-ease-in) forwards; }
+.ob-anim-scrim.is-leaving,
+.ob-anim-dialog.is-leaving::backdrop { animation: ob-fade-out var(--ob-dur-base) var(--ob-ease-in) forwards; }
+.ob-anim-sheet.is-leaving         { animation: ob-sheet-out var(--ob-dur-moderate) var(--ob-ease-in) forwards; }
+.ob-anim-scrim.is-sheet.is-leaving { animation-duration: var(--ob-dur-moderate); }
+.ob-anim-toast.is-leaving         { animation: ob-toast-out var(--ob-dur-base) var(--ob-ease-in) forwards; }
+
+/* Accordion: rows go 0fr to 1fr. Opening 240ms ease-out, closing 160ms ease-in.
+   Content fades in from 80ms and out at once. Hidden content is also hidden from keys and readers. */
+.ob-anim-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows var(--ob-dur-base) var(--ob-ease-in), visibility 0s linear var(--ob-dur-base);
+}
+.ob-anim-expand > * {
+  min-height: 0;
+  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 4px;   /* room for the 2px focus ring at its 2px offset */
+  opacity: 0;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-in);
+}
+.ob-anim-expand:is(.is-open, [data-state="open"]) {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows var(--ob-dur-moderate) var(--ob-ease-out), visibility 0s;
+}
+.ob-anim-expand:is(.is-open, [data-state="open"]) > * {
+  opacity: 1;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out) var(--ob-expand-delay, 80ms);
+}
+
+
+/* =============================================================================================
+   7. LOADING, SUCCESS, ERROR   (status, feedback)
+   ============================================================================================= */
+
+/* Skeleton: invisible for the first 300ms, so fast loads never flash; then a slow opacity pulse,
+   6 times (about 10s), and then it holds still. Past 10s, words carry the wait: show the status
+   line ("Still loading receipts") instead of adding motion. Agent work uses the ring instead. */
+.ob-anim-skeleton {
+  animation:
+    ob-fade-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-busy) backwards,
+    ob-skeleton var(--ob-skeleton-cycle) var(--ob-ease-in-out) calc(var(--ob-delay-busy) + var(--ob-dur-base)) var(--ob-skeleton-count, 6);
+}
+
+/* Button loading: set aria-busy="true" on the button. After 300ms the label fades out (it keeps
+   its width) and the ring, an .ob-sig.is-spin inside .ob-anim-busy-ring, fades in at the centre.
+   Work that finishes inside 300ms changes nothing on screen. */
+.ob-anim-busy { position: relative; }
+.ob-anim-busy-label { transition: opacity var(--ob-dur-fast) var(--ob-ease-out); }
+.ob-anim-busy-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out);
+}
+.ob-anim-busy[aria-busy="true"] .ob-anim-busy-label { opacity: 0; transition-delay: var(--ob-delay-busy); }
+.ob-anim-busy[aria-busy="true"] .ob-anim-busy-ring  { opacity: 1; transition-delay: var(--ob-delay-busy); }
+/* .is-loading is the still frame of the same state, for documentation. */
+.ob-anim-busy.is-loading .ob-anim-busy-label { opacity: 0; }
+.ob-anim-busy.is-loading .ob-anim-busy-ring  { opacity: 1; }
+
+/* Panel and stage entrance: tab panels, the success panel, anything that replaces something.
+   Default 240ms and 8px up. .is-slow for the success panel (400ms). Set --ob-enter-x for sideways. */
+.ob-anim-rise {
+  --ob-enter-x: 0px; --ob-enter-y: var(--ob-shift-sm); --ob-enter-scale: 1;
+  animation: ob-enter var(--ob-dur-moderate) var(--ob-ease-out) var(--ob-anim-delay, 0ms) backwards;
+}
+.ob-anim-rise.is-slow { animation-duration: var(--ob-dur-slow); }
+.ob-anim-fade { animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-anim-delay, 0ms) backwards; }
+.ob-anim-rise.is-leaving,
+.ob-anim-fade.is-leaving { animation: ob-fade-out var(--ob-dur-fast) var(--ob-ease-in) forwards; }
+
+/* Error line: drops 4px into place under the field. No shake. */
+.ob-anim-message {
+  --ob-enter-x: 0px; --ob-enter-y: calc(var(--ob-shift-xs) * -1); --ob-enter-scale: 1;
+  animation: ob-enter var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+
+/* A row or chip confirms a change once, e.g. a ledger hash that just verified. */
+.ob-anim-flash { animation: ob-flash 500ms var(--ob-ease-out); }
+
+/* Auto-advance progress: a bar that fills over the dwell. Advance on its animationend, so pausing
+   the bar pauses the timer. .is-paused while hovered, focused inside, or off screen. */
+.ob-anim-bar { transform-origin: 0 50%; scale: 0 1; }
+.ob-anim-bar.is-running { animation: ob-bar var(--ob-autoplay-dwell) linear forwards; }
+.ob-anim-bar.is-paused  { animation-play-state: paused; }
+
+/* Money and counts: tabular figures so digits never shift. The tween itself is script:
+     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+     function tween(el, to, fmt, ms = 400) {
+       cancelAnimationFrame(el._raf);
+       const from = el._now ?? to, t0 = performance.now();
+       if (reduce.matches || from === to) { el._now = to; el.textContent = fmt(to); return; }
+       (function step(t) {
+         const p = Math.min(1, (t - t0) / ms), k = 1 - (1 - p) ** 3;
+         el._now = from + (to - from) * k; el.textContent = fmt(el._now);
+         if (p < 1) el._raf = requestAnimationFrame(step);
+       })(t0);
+     }
+   It starts from the value on screen, never the last target. While a slider is dragged, set the
+   value directly; tween only on clicks, keys and taps. Mark the moving figure aria-hidden and
+   update a visually hidden twin 500ms after input settles. */
+.ob-anim-number { font-variant-numeric: tabular-nums; }
+
+/* The caret holds solid while text is being typed and blinks only when idle, like a real editor. */
+.ob-caret.is-typing { animation: none; opacity: 1; }
+
+
+/* =============================================================================================
+   8. ARRIVALS   (orientation)
+   ============================================================================================= */
+
+/* The one orchestrated sequence per page: hero copy rises 14px out of a 4px blur over 800ms,
+   80ms apart, 5 steps at most. The product object follows at 320ms with no blur. */
+.ob-anim-hero > * { animation: ob-hero var(--ob-dur-slower) var(--ob-ease-out) calc(var(--ob-i, 0) * var(--ob-stagger-hero)) backwards; }
+.ob-anim-hero > :nth-child(2)   { --ob-i: 1; }
+.ob-anim-hero > :nth-child(3)   { --ob-i: 2; }
+.ob-anim-hero > :nth-child(4)   { --ob-i: 3; }
+.ob-anim-hero > :nth-child(n+5) { --ob-i: 4; }
+.ob-anim-hero-object {
+  --ob-enter-x: 0px; --ob-enter-y: var(--ob-shift-md); --ob-enter-scale: 1;
+  animation: ob-enter var(--ob-dur-slower) var(--ob-ease-out) calc(4 * var(--ob-stagger-hero)) backwards;
+}
+
+/* List stagger: 40ms apart, capped at the 6th item (200ms of added delay at most). First appearance only. */
+.ob-anim-stagger > * {
+  --ob-enter-x: 0px; --ob-enter-y: var(--ob-shift-sm); --ob-enter-scale: 1;
+  animation: ob-enter var(--ob-dur-moderate) var(--ob-ease-out) calc(var(--ob-i, 0) * var(--ob-stagger)) backwards;
+}
+.ob-anim-stagger > :nth-child(2)   { --ob-i: 1; }
+.ob-anim-stagger > :nth-child(3)   { --ob-i: 2; }
+.ob-anim-stagger > :nth-child(4)   { --ob-i: 3; }
+.ob-anim-stagger > :nth-child(5)   { --ob-i: 4; }
+.ob-anim-stagger > :nth-child(n+6) { --ob-i: 5; }
+.ob-anim-stagger.is-grid > * { animation-delay: calc(var(--ob-i, 0) * var(--ob-stagger-grid)); }
+
+/* Section reveal on scroll. Script adds .ob-anim-reveal only to blocks below the fold at load, sets
+   --ob-i to index mod 4, and adds .is-in at 8% visible. Without script nothing is ever hidden. */
+.ob-anim-reveal { opacity: 0; }
+.ob-anim-reveal.is-in {
+  opacity: 1;
+  --ob-enter-x: 0px; --ob-enter-y: var(--ob-shift-md); --ob-enter-scale: 1;
+  animation: ob-enter var(--ob-dur-slower) var(--ob-ease-out) calc(var(--ob-i, 0) * var(--ob-stagger-section)) backwards;
+}
+
+
+/* =============================================================================================
+   9. THEME SWITCH   (continuity)
+   Put .ob-anim-theme on <html> for the length of the switch. Component transitions are held so
+   every surface changes together, and the view transition crossfades the page in 240ms.
+     const root = document.documentElement;
+     function setTheme(t) {
+       const apply = () => { root.dataset.theme = t; };
+       root.classList.add('ob-anim-theme');
+       const done = () => root.classList.remove('ob-anim-theme');
+       if (document.startViewTransition) document.startViewTransition(apply).finished.finally(done);
+       else { apply(); requestAnimationFrame(() => requestAnimationFrame(done)); }
+     }
+   ============================================================================================= */
+.ob-anim-theme,
+.ob-anim-theme *,
+.ob-anim-theme *::before,
+.ob-anim-theme *::after { transition: none !important; }
+.ob-anim-theme::view-transition-old(root),
+.ob-anim-theme::view-transition-new(root) {
+  animation-duration: var(--ob-dur-moderate, 240ms);
+  animation-timing-function: var(--ob-ease-in-out, cubic-bezier(.45, 0, .25, 1));
+}
+
+
+/* =============================================================================================
+   10. THE RING MARK   (status)   Additions to the .ob-sig states in tokens.css.
+   rest       drawn, still                          nothing is happening
+   .is-play   draw on, snap, 2 blinks (3.7s)        first appearance, success
+   .is-ready  snap, 2 blinks (2.75s)                set up and ready for a task
+   .is-spin   turns, 1.4s a turn                    working while a person waits
+   .is-spin.is-slow   3.2s a turn                   working in the background (a list row)
+   .is-wait   4 cursor blinks, then solid           waiting on another company
+   .is-needs  hollow square, 2 pulses               needs you
+   .is-lock   square snaps home (500ms)             a step is done
+   .is-landed ring closes, square to the centre     the money landed
+   One mark moves per view. Every other mark shows its still frame beside its status word.
+   ============================================================================================= */
+.ob-sig.is-ready .ob-sig-sq {
+  animation:
+    ob-sig-snap var(--ob-sig-snap, 550ms) var(--ob-snap) both,
+    ob-sig-blink var(--ob-sig-blink, 1000ms) var(--ob-ease-blink) var(--ob-sig-ready-blink) 2;
+}
+.ob-sig.is-slow { --ob-sig-spin: var(--ob-sig-spin-slow); }
+
+
+/* =============================================================================================
+   11. REPLAY   Toggle .is-replay to restart an entrance. Leaving always wins.
+   ============================================================================================= */
+:is(.ob-anim-rise, .ob-anim-message, .ob-anim-pop, .ob-anim-tooltip, .ob-anim-dialog, .ob-anim-hero-object).is-replay:not(.is-leaving),
+.ob-anim-stagger.is-replay > *,
+.ob-anim-reveal.is-in.is-replay { animation-name: ob-enter-r; }
+.ob-anim-fade.is-replay:not(.is-leaving),
+.ob-anim-scrim.is-replay:not(.is-leaving),
+.ob-anim-dialog.is-replay:not(.is-leaving)::backdrop { animation-name: ob-fade-in-r; }
+.ob-anim-hero.is-replay > *                   { animation-name: ob-hero-r; }
+.ob-anim-sheet.is-replay:not(.is-leaving)     { animation-name: ob-sheet-in-r; }
+.ob-anim-toast.is-replay:not(.is-leaving)     { animation-name: ob-toast-in-r; }
+.ob-anim-square-in.is-replay                  { animation-name: ob-square-in-r; }
+.ob-anim-skeleton.is-replay                   { animation-name: ob-fade-in-r, ob-skeleton-r; }
+.ob-anim-flash.is-replay                      { animation-name: ob-flash-r; }
+.ob-anim-bar.is-running.is-replay             { animation-name: ob-bar-r; }
+.ob-sig.is-play.is-replay .ob-sig-draw        { animation-name: ob-sig-draw-r; }
+.ob-sig.is-play.is-replay .ob-sig-sq,
+.ob-sig.is-ready.is-replay .ob-sig-sq         { animation-name: ob-sig-snap-r, ob-sig-blink-r; }
+.ob-sig.is-lock.is-replay .ob-sig-sq          { animation-name: ob-sig-snap-r; }
+.ob-sig.is-wait.is-replay .ob-sig-sq          { animation-name: ob-sig-blink-r; }
+.ob-sig.is-needs.is-replay .ob-sig-sq         { animation-name: ob-sig-pulse-r; }
+.ob-sig.is-spin.is-replay .ob-sig-rot         { animation-name: ob-sig-spin-r; }
+.ob-sig.is-spin.is-replay .ob-sig-orb         { animation-name: ob-sig-spin-rev-r; }
+.ob-caret.is-replay                           { animation-name: ob-sig-blink-r; }
+@keyframes ob-sig-spin-r     { to { transform: rotate(360deg); } }
+@keyframes ob-sig-spin-rev-r { to { transform: rotate(-360deg); } }
+/* .is-landed is a transition: remove the class, read layout once, add it back. */
+
+/* Static mirrors, so a guideline can show a state without a pointer:
+   the open toast stack (the real one opens on :hover and :focus-within). */
+.ob-anim-toasts.is-hover .ob-anim-toast {
+  translate: 0 calc(var(--ob-toast-offset, 0px) * -1);
+  scale: 1;
+  opacity: 1;
+}
+
+
+/* =============================================================================================
+   12. REDUCED MOTION
+   Travel becomes a fade of 160ms or less. Loops, staggers, blur and the ring's movement stop.
+   Colour and state changes stay. Every status keeps a still frame and a word; the one working
+   mark breathes in opacity so it never reads as frozen.
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  /* Stops entirely: the content is simply there. */
+  .ob-anim-hero > *,
+  .ob-anim-hero-object,
+  .ob-anim-stagger > *,
+  .ob-anim-reveal.is-in,
+  .ob-anim-square-in,
+  .ob-anim-bar.is-running { animation: none; }
+  .ob-anim-reveal { opacity: 1; }
+  .ob-anim-skeleton { animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-busy) backwards; }
+  .ob-anim-skeleton.is-replay { animation-name: ob-fade-in-r; }
+
+  /* Jumps into place; any colour change on the control still fades. */
+  .ob-anim-indicator,
+  .ob-anim-thumb,
+  .ob-anim-switch,
+  .ob-anim-slide,
+  .ob-anim-turn,
+  .ob-anim-expand,
+  .ob-anim-expand:is(.is-open, [data-state="open"]) { transition: none; }
+  .ob-anim-drag,
+  .ob-anim-drag.is-dragging { transition-property: box-shadow; }
+  .ob-anim-toast { transition-property: opacity; }
+
+  /* Travel becomes a fade. Menus, tooltips, dialogs, panels and error lines already fade,
+     because their distances and scales are 0 and 1 here. */
+  .ob-anim-sheet,
+  .ob-anim-toast              { animation-name: ob-fade-in; }
+  .ob-anim-sheet.is-replay:not(.is-leaving),
+  .ob-anim-toast.is-replay:not(.is-leaving) { animation-name: ob-fade-in-r; }
+  .ob-anim-sheet.is-leaving,
+  .ob-anim-toast.is-leaving   { animation-name: ob-fade-out; }
+
+  /* Ticks appear whole and fade; they never draw. */
+  .ob-anim-check { stroke-dashoffset: 0 !important; transition: opacity var(--ob-dur-fast) var(--ob-ease-out) !important; }
+
+  /* The ring: tokens.css stops every ring animation. Working keeps one slow breathe. */
+  .ob-sig.is-spin .ob-sig-sq { animation: ob-breathe var(--ob-sig-breathe) ease-in-out infinite !important; }
+}
+
+/* Print: every entrance shows its resting frame. */
+@media print {
+  .ob-anim-reveal,
+  .ob-anim-hero > *,
+  .ob-anim-hero-object,
+  .ob-anim-stagger > *,
+  .ob-anim-rise,
+  .ob-anim-fade,
+  .ob-anim-message { animation: none !important; opacity: 1 !important; }
+}

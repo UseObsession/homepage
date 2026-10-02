@@ -1,0 +1,185 @@
+/* app-battlecard: Rivals, for sales. A battlecard built from 3 rivals' real 14-day trials.
+   One card is the battlecard: a head row with each rival's trial as 14 day-ticks (tall tick = an email arrived,
+   solid = the trial-end offer, hollow = a rep wrote and the trial closed), then 4 rows of findings, each cell
+   linked to its signed capture. Below it, the talk track drafted from those cells; the toast lands beside it.
+   Story: the trial clock runs Day 1 to 14 while the cells fill in the order the agents learned them
+   (price and first report on day 1, Rival B's first report on day 3, B closes on day 6 when its rep writes,
+   A's offer on day 13, C's on day 14), the talk track drafts, the pointer clicks Push to CRM, the button works,
+   lands as In CRM, the toast confirms 14 reps.
+   Geometry (design px, main 556 x 414, padding 14 16): header 14..38, card 50..274, bottom row 286..400.
+   Rest state (no .play) = the finished, pushed scene. */
+
+@property --appbc-day{syntax:"<integer>";inherits:false;initial-value:14}
+@property --appbc-ea{syntax:"<integer>";inherits:false;initial-value:11}
+@property --appbc-eb{syntax:"<integer>";inherits:false;initial-value:4}
+@property --appbc-ec{syntax:"<integer>";inherits:false;initial-value:2}
+
+.app-battlecard .ax-main{grid-template-rows:24px auto minmax(0,1fr);align-content:stretch;gap:12px;padding:14px 16px}
+.app-battlecard .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-battlecard .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- header ---------- */
+.app-battlecard .bc-h{position:relative;display:flex;align-items:center;gap:10px;height:24px}
+.app-battlecard .bc-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-battlecard .bc-day{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-battlecard .bc-dn{counter-reset:appbc-day var(--appbc-day)}
+.app-battlecard .bc-dn::before{content:counter(appbc-day)}
+.app-battlecard .bc-acts{margin-left:auto;display:flex;align-items:center;gap:6px}
+.app-battlecard .bc-edit{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-battlecard .bc-push{position:relative;display:block;width:96px;height:24px}
+.app-battlecard .bc-s{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:7px;font:600 11.5px/1 var(--sans);white-space:nowrap}
+.app-battlecard .bc-s1,.app-battlecard .bc-s2{color:var(--bg);background:var(--fg);opacity:0}
+.app-battlecard .bc-s3{color:var(--fg);font-weight:500;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-ui) inset}
+.ilwrap .app-battlecard .bc-s svg{width:12px;height:12px}
+.app-battlecard .bc-s .sig{color:currentColor}
+.ilwrap .app-battlecard .appx .bc-ptr{left:52px;top:10px;width:16px;height:16px}
+
+/* ---------- the battlecard ---------- */
+.app-battlecard .bc-card{position:relative;display:grid;overflow:hidden}
+/* the card's edge is drawn on top, so a tinted cell at the edge never hides it */
+.app-battlecard .bc-card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--line-2) inset;pointer-events:none}
+.app-battlecard .bc-g{display:grid;grid-template-columns:124px repeat(3,minmax(0,1fr))}
+.app-battlecard .bc-g>*{min-width:0}
+.app-battlecard .bc-g>:not(:first-child){box-shadow:1px 0 0 var(--line) inset}
+
+/* head: the trial per rival */
+.app-battlecard .bc-ch{height:50px;border-bottom:1px solid var(--line-2)}
+.app-battlecard .bc-cap,.app-battlecard .bc-rv{display:grid;align-content:center;gap:8px;padding:0 12px}
+.app-battlecard .bc-cap b{font:500 11.5px/14px var(--sans);color:var(--fg);white-space:nowrap}
+.app-battlecard .bc-cap span{font:400 10.5px/10px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-battlecard .bc-rv p{display:flex;align-items:center;justify-content:space-between;height:14px}
+.app-battlecard .bc-rv b{font:500 12px/14px var(--sans);color:var(--fg);white-space:nowrap}
+.app-battlecard .bc-mk{display:grid}
+.app-battlecard .bc-mk .sig{grid-area:1/1;color:var(--fg)}
+.ilwrap .app-battlecard .bc-mk .sig{width:12px;height:12px}
+.app-battlecard .bc-mk .w0{opacity:0}
+.app-battlecard .bc-days{display:grid;grid-template-columns:repeat(14,5px);justify-content:space-between;align-items:end;height:10px}
+.app-battlecard .bc-days i{display:block;height:3px;border-radius:1px;background:var(--line-3)}
+.app-battlecard .bc-days i.e{height:10px;background:var(--fg-3)}
+.app-battlecard .bc-days i.o{height:10px;background:var(--fg)}
+.app-battlecard .bc-days i.r{height:10px;background:none;box-shadow:0 0 0 1px var(--fg-2) inset}
+.app-battlecard .bc-days i.x{background:rgb(var(--fg-rgb) / .07)}
+
+/* rows */
+.app-battlecard .bc-r{height:34px;border-bottom:1px solid var(--line)}
+.app-battlecard .bc-r.tall{height:44px}
+.app-battlecard .bc-l{display:flex;align-items:center;padding:0 12px;font-size:11.5px;color:var(--fg-2);white-space:nowrap}
+.app-battlecard .bc-c{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px}
+.app-battlecard .bc-c.hl{background:rgb(var(--fg-rgb) / .05)}
+.app-battlecard .bc-v{display:grid;align-items:center;min-width:0}
+.app-battlecard .bc-v>*{grid-area:1/1}
+.app-battlecard .bc-val{display:grid;gap:2px}
+.app-battlecard .bc-val b{font:500 12px/14px var(--sans);color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-battlecard .bc-val small{font:400 10.5px/12px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-battlecard .bc-val.dim b{color:var(--fg-2)}
+.app-battlecard .bc-sk{display:block;width:36px;height:6px;border-radius:3px;background:rgb(var(--fg-rgb) / .08);opacity:0}
+.app-battlecard .bc-n.na{counter-reset:appbc-ea var(--appbc-ea)}
+.app-battlecard .bc-n.na::before{content:counter(appbc-ea)}
+.app-battlecard .bc-n.nb{counter-reset:appbc-eb var(--appbc-eb)}
+.app-battlecard .bc-n.nb::before{content:counter(appbc-eb)}
+.app-battlecard .bc-n.nc{counter-reset:appbc-ec var(--appbc-ec)}
+.app-battlecard .bc-n.nc::before{content:counter(appbc-ec)}
+
+/* the proof marker: a tiny capture, signed */
+.app-battlecard .bc-pf{position:relative;flex:none;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
+.app-battlecard .bc-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
+
+/* foot: the legend and the red lines */
+.app-battlecard .bc-f{display:flex;align-items:center;justify-content:space-between;gap:12px;height:30px;padding:0 12px;font-size:10.5px;color:var(--fg-3);background:rgb(var(--fg-rgb) / .02)}
+.app-battlecard .bc-f span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+
+/* ---------- bottom: talk track + the toast's place ---------- */
+.app-battlecard .bc-bot{display:grid;grid-template-columns:minmax(0,1fr) 212px;gap:12px;min-height:0}
+.app-battlecard .bc-tt{display:grid;grid-template-rows:32px auto;align-content:start;padding:0 12px}
+.app-battlecard .bc-tt-h{display:flex;align-items:center;gap:7px}
+.ilwrap .app-battlecard .bc-tt-h svg{width:14px;height:14px;color:var(--fg-2)}
+.app-battlecard .bc-tt-h b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-battlecard .bc-dr{font-size:11.5px;color:var(--fg-3)}
+.app-battlecard .bc-tt ul{display:grid;gap:2px}
+.app-battlecard .bc-tt li{display:grid;grid-template-columns:16px minmax(0,1fr);align-items:center;gap:9px;height:24px}
+.app-battlecard .bc-k{display:grid;place-items:center;width:16px;height:16px;border-radius:4px;font:500 10.5px/1 var(--mono);color:var(--fg-2);background:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-battlecard .bc-tx{display:grid;align-items:center;min-width:0}
+.app-battlecard .bc-tx>*{grid-area:1/1}
+.app-battlecard .bc-tx p{font-size:11.5px;line-height:16px;color:var(--fg-2);white-space:nowrap}
+.app-battlecard .bc-tx p b{font-weight:500;color:var(--fg)}
+.app-battlecard .bc-tx .bc-sk{width:70%;height:6px}
+.app-battlecard .bc-tt li:nth-child(2) .bc-sk{width:56%}
+.app-battlecard .bc-tt li:nth-child(3) .bc-sk{width:64%}
+.app-battlecard .bc-meta{display:grid;align-content:start;gap:8px;padding:9px 2px 0}
+.app-battlecard .bc-meta p{display:flex;align-items:center;gap:7px;font-size:11px;line-height:14px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-battlecard .bc-meta svg{width:13px;height:13px}
+
+/* toast: in the bottom row's right column, on the card's bottom edge */
+.app-battlecard .bc-toast{right:16px;bottom:14px;width:212px;gap:9px;padding:9px 10px}
+.app-battlecard .bc-toast p{font-weight:500;white-space:nowrap;line-height:15px}
+.app-battlecard .bc-toast .ax-mono{font-weight:400;font-size:10.5px;line-height:14px;color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes appbc-day{from{--appbc-day:1}to{--appbc-day:14}}
+@keyframes appbc-ea{0%{--appbc-ea:1} 7.69%{--appbc-ea:2} 15.38%{--appbc-ea:3} 23.08%{--appbc-ea:4} 30.77%{--appbc-ea:5}
+  46.15%{--appbc-ea:6} 53.85%{--appbc-ea:7} 69.23%{--appbc-ea:8} 76.92%{--appbc-ea:9} 92.31%{--appbc-ea:10} 100%{--appbc-ea:11}}
+@keyframes appbc-eb{0%{--appbc-eb:1} 7.69%{--appbc-eb:2} 15.38%{--appbc-eb:3} 30.77%{--appbc-eb:4} 100%{--appbc-eb:4}}
+@keyframes appbc-ec{0%{--appbc-ec:1} 100%{--appbc-ec:2}}
+@keyframes appbc-tick{from{opacity:0;transform:scaleY(.2)}to{opacity:1;transform:none}}
+@keyframes appbc-out{from{opacity:1}to{opacity:0}}
+@keyframes appbc-show{from{opacity:0}to{opacity:1}}
+@keyframes appbc-sk{0%,100%{opacity:1}}
+@keyframes appbc-clear{0%,100%{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes appbc-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes appbc-flash{from{background-color:rgb(var(--fg-rgb) / .1)}to{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes appbc-flash-hl{from{background-color:rgb(var(--fg-rgb) / .12)}to{background-color:rgb(var(--fg-rgb) / .05)}}
+@keyframes appbc-ptr{
+  0%{opacity:0;transform:translate(-190px,236px)}
+  12%{opacity:1}
+  55%{transform:translate(0,0) scale(1)}
+  60%{transform:translate(0,0) scale(.9)}
+  66%{transform:translate(0,0) scale(1)}
+  84%{opacity:1;transform:translate(18px,14px)}
+  100%{opacity:0;transform:translate(22px,17px)}}
+@keyframes appbc-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes appbc-mid{0%{opacity:0}12%{opacity:1}88%{opacity:1}100%{opacity:0}}
+@keyframes appbc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. the trial clock: Day 1 at .55s, 1 day every .18s, Day 14 at 2.89s */
+.app-battlecard.play .bc-dn{animation:appbc-day 2.34s steps(13,end) .55s both}
+.app-battlecard.play .bc-days i{animation:appbc-tick .3s var(--ease) calc(.55s + var(--i,0) * .18s) both;transform-origin:50% 100%}
+.app-battlecard .bc-days i:nth-child(2){--i:1}
+.app-battlecard .bc-days i:nth-child(3){--i:2}
+.app-battlecard .bc-days i:nth-child(4){--i:3}
+.app-battlecard .bc-days i:nth-child(5){--i:4}
+.app-battlecard .bc-days i:nth-child(6){--i:5}
+.app-battlecard .bc-days i:nth-child(7){--i:6}
+.app-battlecard .bc-days i:nth-child(8){--i:7}
+.app-battlecard .bc-days i:nth-child(9){--i:8}
+.app-battlecard .bc-days i:nth-child(10){--i:9}
+.app-battlecard .bc-days i:nth-child(11){--i:10}
+.app-battlecard .bc-days i:nth-child(12){--i:11}
+.app-battlecard .bc-days i:nth-child(13){--i:12}
+.app-battlecard .bc-days i:nth-child(14){--i:13}
+.app-battlecard.play .bc-n.na{animation:appbc-ea 2.34s steps(1,end) .55s both}
+.app-battlecard.play .bc-n.nb{animation:appbc-eb 2.34s steps(1,end) .55s both}
+.app-battlecard.play .bc-n.nc{animation:appbc-ec 2.34s steps(1,end) .55s both}
+
+/* 2. each cell lands when its agent learns it: skeleton out, value up, then its capture */
+.app-battlecard.play .bc-c .bc-sk{animation:appbc-sk var(--t) linear both,appbc-out .2s var(--ease) var(--t) forwards}
+.app-battlecard.play .bc-c .bc-val{animation:appbc-land .45s var(--ease) var(--t) both}
+.app-battlecard.play .bc-c .bc-pf{animation:appbc-show .3s var(--ease) calc(var(--t) + .14s) both}
+.app-battlecard.play .bc-c{animation:appbc-clear var(--t) linear both,appbc-flash .9s var(--ease) var(--t) forwards}
+.app-battlecard.play .bc-c.hl{animation:appbc-clear var(--t) linear both,appbc-flash-hl .9s var(--ease) var(--t) forwards}
+/* each trial's mark closes when the trial does (B on day 6, A and C on day 14) */
+.app-battlecard.play .bc-mk .w0{animation:appbc-sk var(--t) linear both,appbc-out .25s var(--ease) var(--t) forwards}
+.app-battlecard.play .bc-mk .w1{animation:appbc-show .3s var(--ease) var(--t) both}
+.app-battlecard.play .bc-mk .w1 .sig-sq{animation:appbc-home .6s var(--snap) var(--t) both}
+@keyframes appbc-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+
+/* 3. the talk track drafts from the cells */
+.app-battlecard.play .bc-dr{animation:appbc-show .4s var(--ease) 3s both}
+.app-battlecard.play .bc-tt li .bc-sk{animation:appbc-sk var(--t) linear both,appbc-out .2s var(--ease) var(--t) forwards}
+.app-battlecard.play .bc-tt li p{animation:appbc-land .45s var(--ease) var(--t) both}
+
+/* 4. the click: Push to CRM, pushing, In CRM; then the toast */
+.app-battlecard.play .bc-ptr{animation:appbc-ptr 1.4s var(--ease) 3.55s both}
+.app-battlecard.play .bc-s1{animation:appbc-sk 4.4s linear both,appbc-press .2s ease-out 4.32s,appbc-out .14s linear 4.46s forwards}
+.app-battlecard.play .bc-s2{animation:appbc-mid .62s linear 4.46s both}
+.app-battlecard.play .bc-s3{animation:appbc-show .35s var(--ease) 5.02s both}
+.app-battlecard.play .bc-toast{animation:appbc-toast .45s var(--ease) 5.12s both}

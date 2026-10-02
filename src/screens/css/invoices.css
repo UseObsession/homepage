@@ -1,0 +1,127 @@
+/* app-invoices: Get paid (Founders). A declared Obsession agent chases every overdue invoice by email and phone, politely,
+   stops on request, and hands a dispute to a person.
+   Layout: the money first (what is still owed, a progress line of what came in), then the ledger of invoices.
+   Story: Law firm's $6,400 lands, the row closes to Paid, overdue drops to $48,200 across 14 and the collected total
+   counts up to $31,600; then Print shop disputes on the Day 5 call, turns needs you and opens on a drafted reply that
+   sends only after your OK; the toast confirms the week. Rest state (no .play) = the finished scene. */
+@property --gp-k{syntax:"<integer>";inherits:false;initial-value:31}
+@property --gp-c{syntax:"<integer>";inherits:false;initial-value:6}
+
+.app-invoices .ax-main{padding:14px 16px;gap:12px}
+
+/* stacked values: only the last child shows at rest */
+.app-invoices .gp-stk{display:inline-grid;vertical-align:top}
+.app-invoices .gp-stk>*{grid-area:1/1}
+.app-invoices .gp-stk>:not(:last-child){opacity:0}
+.app-invoices .ax-nav em .gp-stk,.app-invoices .gp-bd{line-height:1}
+
+/* ---------- the money ---------- */
+.app-invoices .gp-h{display:grid;gap:8px}
+.app-invoices .gp-t{display:flex;align-items:center;gap:8px;height:24px}
+.app-invoices .gp-t h2{display:flex;align-items:baseline;gap:6px;font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-invoices .gp-dot{color:var(--fg-3);font-weight:400}
+.app-invoices .gp-meta{padding-top:2px;font-size:12px;color:var(--fg-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-invoices .gp-meta .gp-stk{color:var(--fg-2)}
+/* who chases: the declared agent, by name */
+.app-invoices .gp-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-invoices .gp-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg);color:var(--bg)}
+.ilwrap .app-invoices .gp-av .sig{width:10px;height:10px;color:var(--bg)}
+
+/* the progress line: collected this month */
+.app-invoices .gp-prog{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;height:20px}
+.app-invoices .gp-col{font-size:11.5px;color:var(--fg-2);white-space:nowrap}
+.app-invoices .gp-col b{font-weight:600;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-invoices .gp-cnt{counter-reset:gpk var(--gp-k) gpc var(--gp-c)}
+.app-invoices .gp-cnt::before{content:"$" counter(gpk) "," counter(gpc) "00"}
+.app-invoices .gp-bar{position:relative;height:4px;border-radius:2px;background:rgb(var(--fg-rgb) / .12);overflow:hidden}
+.app-invoices .gp-bar i{position:absolute;left:0;top:0;bottom:0;width:39.6%;border-radius:2px;background:var(--fg);transform-origin:0 50%}
+.app-invoices .gp-today{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:5px;white-space:nowrap;
+  font:400 10.5px/1 var(--mono);color:var(--fg);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset;font-variant-numeric:tabular-nums}
+
+/* ---------- the invoices ---------- */
+.app-invoices .gp-tb{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-invoices .gp-row{display:grid;grid-template-columns:112px 72px 64px minmax(0,1fr) 116px;align-items:center;height:32px;box-shadow:0 -1px 0 var(--line) inset}
+.app-invoices .gp-row>span{min-width:0;padding:0 8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.app-invoices .gp-row>span:first-child{padding-left:12px}
+.app-invoices .gp-row>span:last-child{padding-right:12px}
+.app-invoices .gp-th{height:26px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-invoices .gp-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-invoices .gp-row>.a{padding-right:16px;text-align:right}
+.app-invoices .gp-row .c{display:grid;gap:2px}
+.app-invoices .gp-row .c b{font:500 11.5px/1.2 var(--sans);color:var(--fg)}
+.app-invoices .gp-row .c em{font:400 10.5px/1.2 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-invoices .gp-row:not(.gp-th) .a{font:500 11.5px/1 var(--sans);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-invoices .gp-row .o{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-invoices .gp-row .l{font-size:11.5px;color:var(--fg-2)}
+.app-invoices .gp-row .s{display:flex;align-items:center}
+.app-invoices .gp-row .ax-st{gap:7px}
+.app-invoices .r-paid .pd{color:var(--fg);font-weight:500;font-variant-numeric:tabular-nums}
+.app-invoices .gp-mk{place-items:center}
+.ilwrap .app-invoices .gp-mk .sig{width:12px;height:12px;color:var(--fg)}
+
+/* the dispute: the row and its drafted reply read as one */
+.app-invoices .gp-grp{background:rgb(var(--fg-rgb) / .045)}
+.app-invoices .gp-grp .gp-row{box-shadow:none}
+.app-invoices .r-disp .c b,.app-invoices .r-disp .nu{font-weight:500;color:var(--fg)}
+.app-invoices .gp-x{display:grid;grid-template-rows:1fr}
+.app-invoices .gp-clip{min-height:0;overflow:hidden}
+.app-invoices .gp-draft{display:grid;gap:4px;margin:0 12px 10px;padding:8px 8px 8px 12px;border-radius:8px;background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-invoices .gp-draft .ln{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;column-gap:10px;min-height:18px}
+.app-invoices .gp-draft .ln+.ln{min-height:24px}
+.app-invoices .gp-draft .k{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-invoices .gp-draft .q{font-size:11.5px;line-height:16px;color:var(--fg);white-space:nowrap}
+.app-invoices .gp-draft .r{font-size:11.5px;line-height:16px;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-invoices .gp-ok{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+
+/* toast */
+.app-invoices .gp-toast{gap:9px;padding:9px 12px}
+.app-invoices .gp-toast p{display:flex;align-items:baseline;gap:6px;font-size:11.5px;white-space:nowrap}
+.app-invoices .gp-toast b{font-weight:500;color:var(--fg)}
+.app-invoices .gp-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes gp-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes gp-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes gp-fade{from{opacity:0}to{opacity:1}}
+@keyframes gp-hide{from{opacity:1}to{opacity:0}}
+@keyframes gp-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes gp-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes gp-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes gp-paid{0%{background:transparent}18%{background:rgb(var(--fg-rgb) / .09)}100%{background:transparent}}
+@keyframes gp-grp{0%{background:transparent}18%{background:rgb(var(--fg-rgb) / .11)}100%{background:rgb(var(--fg-rgb) / .045)}}
+@keyframes gp-fill{from{transform:scaleX(.798)}to{transform:none}}
+@keyframes gp-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes gp-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes gp-count{
+  0%{--gp-k:25;--gp-c:2} 10%{--gp-k:26;--gp-c:1} 20%{--gp-k:27;--gp-c:0} 30%{--gp-k:27;--gp-c:8} 40%{--gp-k:28;--gp-c:6}
+  50%{--gp-k:29;--gp-c:3} 60%{--gp-k:29;--gp-c:9} 70%{--gp-k:30;--gp-c:5} 80%{--gp-k:30;--gp-c:9} 90%{--gp-k:31;--gp-c:3} 100%{--gp-k:31;--gp-c:6}}
+
+/* 1. Law firm's payment lands: the mark finishes its circle, the square comes home, the ring closes */
+.app-invoices.play .r-paid .gm .sig-rot{animation:gp-spin 3.2s linear -1.5s both}
+.app-invoices.play .r-paid .gm .sig-orb{animation:gp-spinr 3.2s linear -1.5s both}
+.app-invoices.play .r-paid .gm .sig-sq{animation:gp-home .7s var(--snap) 1.7s both}
+.app-invoices.play .r-paid .gm .sig-gap{animation:gp-fade .4s var(--ease) 1.95s both}
+.app-invoices.play .r-paid .ww>:first-child{animation:gp-out .35s var(--ease) 1.8s both}
+.app-invoices.play .r-paid .ww>:last-child{animation:gp-in .35s var(--ease) 1.82s both}
+.app-invoices.play .r-paid{animation:ax-in .55s var(--ease) .22s both,gp-paid 2s var(--ease) 1.7s}
+
+/* 2. the money moves: overdue drops, collected counts up, the line fills */
+.app-invoices.play .gp-od>:first-child,.app-invoices.play .gp-oc>:first-child,.app-invoices.play .ax-nav a.on em .gp-stk>:first-child{animation:gp-out .35s var(--ease) 1.95s both}
+.app-invoices.play .gp-od>:last-child,.app-invoices.play .gp-oc>:last-child,.app-invoices.play .ax-nav a.on em .gp-stk>:last-child{animation:gp-in .35s var(--ease) 1.98s both}
+.app-invoices.play .gp-cnt{animation:gp-count 1.1s steps(1,end) 1.95s both}
+.app-invoices.play .gp-bar i{animation:gp-fill 1.1s var(--ease) 1.95s both}
+.app-invoices.play .gp-today{animation:gp-in .45s var(--ease) 2.1s both}
+
+/* 3. Print shop disputes: the mark goes hollow, the row lifts, the drafted reply opens */
+.app-invoices.play .gp-mk>:first-child,.app-invoices.play .nd>:first-child{animation:gp-hide .3s var(--ease) 3.4s both}
+.app-invoices.play .gp-mk>:last-child{animation:gp-fade .3s var(--ease) 3.45s both}
+.app-invoices.play .nd>:last-child{animation:gp-in .35s var(--ease) 3.45s both}
+.app-invoices.play .gp-bd>:first-child{animation:gp-out .3s var(--ease) 3.5s both}
+.app-invoices.play .gp-bd>:last-child{animation:gp-in .3s var(--ease) 3.52s both}
+.app-invoices.play .gp-grp{animation:ax-in .55s var(--ease) .4s backwards,gp-grp 1.8s var(--ease) 3.4s both}
+.app-invoices.play .gp-x{animation:gp-open .6s var(--ease) 3.6s both}
+.app-invoices.play .gp-draft{animation:gp-fade .45s var(--ease) 3.85s both}
+
+/* 4. the week, signed */
+.app-invoices.play .gp-toast{animation:gp-toast .45s var(--ease) 4.5s both}

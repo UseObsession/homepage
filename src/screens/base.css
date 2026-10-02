@@ -1,0 +1,113 @@
+/* Obsession app screens: the product, drawn as it runs.
+   Every screen is one 720 x 450 window (design px) scaled to its frame by landing.js (--k).
+   Brand rules carried in: black, white and grey only; people read Geist, the agent speaks Geist Mono;
+   the mark's motion is the status (working circles, waiting blinks, needs you goes hollow, landed closes);
+   hairlines, quiet panels, no gradients on content, no colour. */
+
+.appx-il{display:block;padding:clamp(10px,3.4%,24px)}
+:root[data-look="light"] .ilwrap .il.appx-il{filter:none}
+.appx-fit{position:relative;width:100%;aspect-ratio:720/450}
+.appx{position:absolute;left:0;top:0;width:720px;height:450px;transform-origin:0 0;transform:scale(var(--k,.82));
+  display:grid;grid-template-rows:36px minmax(0,1fr);overflow:hidden;border-radius:12px;
+  background:var(--panel);color:var(--fg);font:400 12px/1.45 var(--sans);letter-spacing:-.003em;text-align:left;
+  box-shadow:0 0 0 1px var(--line-2),0 1px 0 rgb(var(--hi-rgb) / .06) inset,0 30px 60px -28px rgb(0 0 0 / calc(.85 * var(--sh-k,1)))}
+.appx *{box-sizing:border-box}
+.appx p,.appx h1,.appx h2,.appx h3,.appx ul,.appx ol{margin:0;padding:0;list-style:none}
+
+/* window bar */
+.ax-bar{display:flex;align-items:center;gap:14px;padding:0 12px;background:var(--bg-2);border-bottom:1px solid var(--line)}
+.ax-dots{display:flex;gap:6px}
+.ax-dots i{width:9px;height:9px;border-radius:50%;background:var(--line-3)}
+.ax-crumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg-3)}
+.ax-crumb b{font-weight:500;color:var(--fg)}
+.ax-search{margin-left:auto;display:flex;align-items:center;gap:8px;height:22px;padding:0 6px 0 9px;border-radius:6px;background:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--line) inset;color:var(--fg-3);font-size:11.5px;min-width:190px}
+.ax-search svg{width:12px;height:12px}
+.ax-kbd{margin-left:auto;font:500 10px/1 var(--mono);padding:3px 5px;border-radius:4px;color:var(--fg-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.ax-team{display:flex}
+.ax-team span{width:21px;height:20px;border-radius:6px;display:grid;place-items:center;font:600 9px/1 var(--sans);color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 2px var(--bg-2)}
+.ax-team span+span{margin-left:-3px}
+
+/* body: sidebar + main */
+.ax-body{display:grid;grid-template-columns:164px minmax(0,1fr);min-height:0}
+.ax-side{display:grid;grid-template-rows:auto auto 1fr auto;gap:10px;padding:12px 10px;background:var(--bg-2);border-right:1px solid var(--line);min-height:0}
+.ax-ws{display:flex;align-items:center;gap:8px;padding:2px 6px;font-weight:600;font-size:12.5px}
+.ax-ws i{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font:700 10px/1 var(--display);font-style:normal;color:var(--bg);background:var(--fg)}
+.ax-nav{display:grid;gap:1px}
+.ax-nav a{display:flex;align-items:center;gap:9px;height:26px;padding:0 8px;border-radius:6px;color:var(--fg-2);text-decoration:none;font-size:12px}
+.ax-nav a svg{width:14px;height:14px;flex:none;color:var(--fg-3)}
+.ax-nav a em{margin-left:auto;font:500 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.ax-nav a.on{background:rgb(var(--fg-rgb) / .07);color:var(--fg)}
+.ax-nav a.on svg{color:var(--fg)}
+.ax-nav a .ax-badge{margin-left:auto;min-width:16px;height:16px;padding:0 4px;border-radius:5px;display:grid;place-items:center;font:500 10px/1 var(--mono);color:var(--bg);background:var(--fg)}
+.ax-side-h{padding:6px 8px 2px;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.ax-clients{display:grid;gap:1px;align-content:start}
+.ax-clients a{display:flex;align-items:center;gap:8px;height:24px;padding:0 8px;border-radius:6px;font-size:11.5px;color:var(--fg-2);text-decoration:none}
+.ax-clients a i{width:8px;height:8px;border-radius:2px;background:var(--line-3)}
+.ax-side-f{display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line) inset;font-size:11px;color:var(--fg-2)}
+.ax-side-f .sig{width:13px;height:13px;color:var(--fg)}
+.ax-side-f b{font:500 11px/1 var(--mono);color:var(--fg)}
+.ax-main{position:relative;display:grid;align-content:start;gap:12px;padding:14px 16px;min-width:0;min-height:0;overflow:hidden}
+
+/* type */
+.ax-h{display:flex;align-items:center;gap:10px}
+.ax-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em}
+.ax-h .ax-meta{font-size:11.5px;color:var(--fg-3)}
+.ax-h .ax-acts{margin-left:auto;display:flex;gap:6px}
+.ax-mono{font-family:var(--mono);font-size:11px}
+.ax-k{font:500 10.5px/1.2 var(--sans);color:var(--fg-3)}
+.ax-dim{color:var(--fg-3)}
+.ax-2{color:var(--fg-2)}
+
+/* atoms */
+.ax-btn{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:7px;font:600 11.5px/1 var(--sans);color:var(--bg);background:var(--fg);white-space:nowrap}
+.ax-btn.ghost{color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset;font-weight:500}
+.ax-btn svg{width:12px;height:12px}
+.ax-chip{display:inline-flex;align-items:center;gap:5px;height:19px;padding:0 7px;border-radius:5px;font:400 10.5px/1 var(--mono);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset;white-space:nowrap}
+.ax-chip.dash{background:none;box-shadow:none;outline:1px dashed var(--line-3);outline-offset:-1px;color:var(--fg-3)}
+.ax-chip.solid{color:var(--bg);background:var(--fg);box-shadow:none}
+.ax-card{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.ax-hr{height:1px;background:var(--line)}
+.ax-st{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.ax-st .sig{width:12px;height:12px;color:var(--fg)}
+.ax-tick{width:12px;height:12px;border-radius:3px;display:inline-grid;place-items:center;background:var(--fg);flex:none}
+.ax-tick::after{content:"";width:3px;height:6px;border:solid var(--bg);border-width:0 1.5px 1.5px 0;transform:translateY(-1px) rotate(45deg)}
+.ax-toggle{width:22px;height:13px;border-radius:7px;background:var(--fg);position:relative;flex:none}
+.ax-toggle::after{content:"";position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--bg)}
+.ax-toggle.off{background:var(--line-3)}
+.ax-toggle.off::after{right:auto;left:2px}
+
+/* a captured page: the evidence, drawn as a tiny storefront */
+.ax-shot{position:relative;display:grid;grid-template-rows:9px 1fr;overflow:hidden;border-radius:6px;background:#E9E7E1;box-shadow:0 0 0 1px var(--line-2)}
+.ax-shot::before{content:"";background:#D6D3CC}
+.ax-shot i{display:block;border-radius:2px;background:#CFCBC3}
+:root[data-look="light"] .appx-il .ax-shot{background:#E4E1DA}
+
+/* the pointer a person moves */
+.ax-ptr{position:absolute;left:0;top:0;width:16px;height:16px;z-index:5;pointer-events:none;opacity:0;filter:drop-shadow(0 2px 3px rgb(0 0 0 / .35))}
+.ax-ptr path{fill:var(--fg);stroke:var(--bg);stroke-width:1.2;stroke-linejoin:round}
+
+/* toast */
+.ax-toast{position:absolute;right:14px;bottom:14px;z-index:4;display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:10px;background:var(--panel-3);box-shadow:0 0 0 1px var(--line-3) inset,0 16px 30px -12px rgb(0 0 0 / calc(.8 * var(--sh-k,1)));font-size:11.5px}
+.ax-toast .sig{width:14px;height:14px;color:var(--fg)}
+
+/* shared motion, only with .play on the .il; the rest state is always the finished scene */
+@keyframes ax-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes ax-pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+@keyframes ax-fade{from{opacity:0}to{opacity:1}}
+@keyframes ax-slide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.appx-il.play .ax-in{animation:ax-in .55s var(--ease) var(--d,0s) both}
+.appx-il.play .ax-pop{animation:ax-pop .45s var(--snap) var(--d,0s) both}
+.appx-il.play .ax-fade{animation:ax-fade .5s var(--ease) var(--d,0s) both}
+.appx-il.play .ax-slide{animation:ax-slide .6s var(--ease) var(--d,0s) both}
+@media (prefers-reduced-motion:reduce){.appx-il.play *{animation:none!important}}
+
+/* the page sizes every illustration svg to 100%; inside the app, icons and marks keep their own sizes.
+   Size any svg in a screen with a selector that starts ".ilwrap .app-NAME" so it wins. */
+.ilwrap .appx-il .appx svg{display:block;width:auto;height:auto;max-width:none}
+.ilwrap .appx-il .ax-nav a svg{width:14px;height:14px}
+.ilwrap .appx-il .ax-search svg{width:12px;height:12px}
+.ilwrap .appx-il .ax-btn svg{width:12px;height:12px}
+.ilwrap .appx-il .ax-side-f .sig{width:13px;height:13px}
+.ilwrap .appx-il .ax-st .sig{width:12px;height:12px}
+.ilwrap .appx-il .ax-toast .sig{width:14px;height:14px}
+.ilwrap .appx-il .ax-ptr{width:16px;height:16px}

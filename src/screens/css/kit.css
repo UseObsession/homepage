@@ -1,0 +1,109 @@
+/* app-kit: Missions / Mystery shopper, being set up. Done for you: Obsession issues each test customer
+   everything an agent needs, nothing to install. One agent's ID is issued field by field like a passport
+   (inbox, phone, browser, capped card, watch, record), each field lands with a tick, the photo's mark
+   closes, the 4 agent squares fill (2 of 4, then all 4), the footer reads 4 agents ready, Start run wakes.
+   Rest state = the finished scene. */
+
+.app-kit .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
+.app-kit .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-kit .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- header ---------- */
+.app-kit .kt-h{height:24px}
+.app-kit .kt-team{margin-left:auto;display:flex;gap:8px;padding-right:3px}
+.app-kit .kt-av{position:relative;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-kit .kt-av::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--fg)}
+.app-kit .kt-av b{position:relative;font:500 10.5px/1 var(--mono);color:var(--bg);font-variant-numeric:tabular-nums}
+/* the one whose ID is open */
+.app-kit .kt-av.on::after{content:"";position:absolute;inset:-3px;border-radius:8px;box-shadow:0 0 0 1px var(--fg-2)}
+
+/* ---------- the desk: a quiet canvas the ID is issued on ---------- */
+.app-kit .kt-stage{display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0;border-radius:10px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line) inset}
+.app-kit .kt-desk{display:grid;place-items:center;min-height:0}
+
+/* ---------- the ID ---------- */
+.app-kit .kt-id{width:452px;border-radius:12px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-2) inset,0 1px 0 rgb(var(--hi-rgb) / .05) inset,0 18px 36px -22px rgb(0 0 0 / calc(.8 * var(--sh-k,1)))}
+.app-kit .kt-band{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 16px;border-bottom:1px solid var(--line-2)}
+.app-kit .kt-lbl{font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3)}
+.app-kit .kt-iss{display:inline-grid;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-kit .kt-iss>span{grid-area:1/1;justify-self:end;white-space:nowrap}
+.app-kit .kt-iss .v0{opacity:0}
+
+.app-kit .kt-body{display:grid;grid-template-columns:92px minmax(0,1fr);column-gap:18px;align-items:start;padding:14px 16px 8px}
+
+/* the photo: the agent's own mark, framed like a capture */
+.app-kit .kt-photo{position:relative;height:120px;border-radius:8px;display:grid;place-items:center;background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-kit .kt-photo>i{position:absolute;width:8px;height:8px;border:0 solid var(--fg-3)}
+.app-kit .kt-photo .c1{left:8px;top:8px;border-width:1px 0 0 1px;border-top-left-radius:2px}
+.app-kit .kt-photo .c2{right:8px;top:8px;border-width:1px 1px 0 0;border-top-right-radius:2px}
+.app-kit .kt-photo .c3{left:8px;bottom:8px;border-width:0 0 1px 1px;border-bottom-left-radius:2px}
+.app-kit .kt-photo .c4{right:8px;bottom:8px;border-width:0 1px 1px 0;border-bottom-right-radius:2px}
+.app-kit .kt-mk{display:grid}
+.app-kit .kt-mk .sig{grid-area:1/1}
+.ilwrap .app-kit .kt-mk .sig{width:40px;height:40px;color:var(--fg)}
+.app-kit .kt-mk .w0{opacity:0}
+
+/* name */
+.app-kit .kt-main{min-width:0}
+.app-kit .kt-name h3{font:600 15px/20px var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-kit .kt-name p{margin-top:2px;font-size:11.5px;line-height:16px;color:var(--fg-2);white-space:nowrap}
+.app-kit .kt-name p i{font-style:normal;color:var(--fg-3);margin:0 2px}
+
+/* fields */
+.app-kit .kt-fields{margin:10px 0 0;border-top:1px solid var(--line-2)}
+.app-kit .kt-f{display:grid;grid-template-columns:58px minmax(0,1fr) 12px;column-gap:10px;align-items:center;height:24px;box-shadow:0 -1px 0 var(--line) inset}
+.app-kit .kt-f:last-child{box-shadow:none}
+.app-kit .kt-f dt{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-kit .kt-f dd{position:relative;margin:0;min-width:0;font:400 11.5px/16px var(--sans);color:var(--fg);white-space:nowrap}
+.app-kit .kt-f dd.m{font:400 11px/16px var(--mono);font-variant-numeric:tabular-nums}
+.app-kit .kt-f .v{display:block;overflow:hidden;text-overflow:ellipsis}
+.app-kit .kt-f .sk{position:absolute;left:0;top:4px;height:8px;border-radius:3px;background:rgb(var(--fg-rgb) / .08);opacity:0}
+/* the checkbox each field ticks */
+.app-kit .kt-ck{position:relative;width:12px;height:12px;border-radius:3px;box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-kit .kt-ck .ax-tick{position:absolute;inset:0}
+
+/* ---------- footer ---------- */
+.app-kit .kt-foot{display:flex;align-items:center;gap:10px;height:44px;padding:0 12px 0 14px;border-top:1px solid var(--line)}
+.app-kit .kt-st{display:inline-grid;min-width:0}
+.app-kit .kt-st>span{grid-area:1/1;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.app-kit .kt-st .v0{opacity:0;font:400 11px/1 var(--mono);color:var(--fg-3)}
+.app-kit .kt-st .v1{font-size:12px;color:var(--fg-2)}
+.app-kit .kt-st .v1 b{font-weight:500;color:var(--fg)}
+.app-kit .kt-st .v1 i{font-style:normal;color:var(--fg-3);margin:0 -2px}
+.ilwrap .app-kit .kt-st .sig{width:14px;height:14px;color:var(--fg)}
+.app-kit .kt-go{margin-left:auto;height:28px;padding:0 14px;font-size:12px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes kt-out{from{opacity:1}to{opacity:0}}
+@keyframes kt-val{from{opacity:0;transform:translateX(-3px)}to{opacity:1;transform:none}}
+@keyframes kt-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes kt-gap{from{opacity:0}to{opacity:1}}
+@keyframes kt-fill{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes kt-num{from{color:var(--c0,var(--fg-3))}to{color:var(--bg)}}
+@keyframes kt-wake{from{opacity:.32}to{opacity:1}}
+
+/* 1. each field lands: the placeholder gives way to the value, its box ticks */
+.appx-il.play.app-kit .kt-f .sk{animation:kt-out .28s var(--ease) var(--t) both}
+.appx-il.play.app-kit .kt-f .v{animation:kt-val .42s var(--ease) var(--t) both}
+.appx-il.play.app-kit .kt-f .ax-tick{animation:ax-pop .42s var(--snap) calc(var(--t) + .14s) both}
+
+/* 2. the ID is issued: the working mark gives way, the ring closes */
+.appx-il.play.app-kit .kt-mk .w0{animation:kt-out .3s var(--ease) 3.2s both}
+.appx-il.play.app-kit .kt-mk .w1{animation:ax-fade .25s var(--ease) 3.22s both}
+.appx-il.play.app-kit .kt-mk .w1 .sig-sq{animation:kt-home .6s var(--snap) 3.26s both}
+.appx-il.play.app-kit .kt-mk .w1 .sig-gap{animation:kt-gap .35s var(--ease) 3.46s both}
+.appx-il.play.app-kit .kt-iss .v0{animation:kt-out .25s var(--ease) 3.3s both}
+.appx-il.play.app-kit .kt-iss .v1{animation:ax-fade .35s var(--ease) 3.34s both}
+
+/* 3. the 4 squares fill: 2 of 4, then all 4 */
+.app-kit .kt-av.a2{--c0:var(--fg)}
+.appx-il.play.app-kit .kt-av:not(.a1)::before{animation:kt-fill .45s var(--snap) var(--t) both}
+.appx-il.play.app-kit .kt-av:not(.a1) b{animation:kt-num .3s var(--ease) calc(var(--t) + .08s) both}
+
+/* 4. the mission is ready, nothing to install */
+.appx-il.play.app-kit .kt-st .v0{animation:kt-out .25s var(--ease) 4.75s both}
+.appx-il.play.app-kit .kt-st .v1{animation:ax-in .45s var(--ease) 4.8s both}
+.appx-il.play.app-kit .kt-st .v1 .sig-sq{animation:kt-home .6s var(--snap) 4.86s both}
+.appx-il.play.app-kit .kt-st .v1 .sig-gap{animation:kt-gap .35s var(--ease) 5.06s both}
+.appx-il.play.app-kit .kt-go{animation:kt-wake .4s var(--ease) 5.02s both}

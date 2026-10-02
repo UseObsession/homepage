@@ -1,0 +1,2023 @@
+/* =============================================================================================
+   OBSESSION FORMS  v1.1  (2 Oct 2026)
+   Text field, affixed field, pill field, the free-report expansion, thank-you panel, textarea,
+   select, search, checkbox, radio, switch, segmented control (the look switch included), option
+   chips, field and form messages, and the error summary.
+
+   Load order: tokens.css, motion.css, buttons.css, forms.css.
+   The pill's action is the Buttons chapter's .ob-btn; this file only sizes it for the pill.
+   No colour is set here: every colour is an --ob- token. Forced-colours fallbacks use system
+   colour keywords only.
+
+   Static state classes mirror the real pseudo-states so a guideline can show them side by side:
+     .is-hover  .is-active  .is-focus  .is-disabled  .is-readonly  .is-error  .is-selected
+     .is-mixed  .is-open  .is-filled  .is-loading  .is-saving
+   Real state always drives the product; the classes exist for specimens.
+
+   Touch: every target here grows to 44px or more on a coarse pointer. The rules read one flag,
+   --ob-touch (0 or 1). A coarse pointer sets it on the root; .ob-touch sets it on any element, so a
+   guideline can show the touch sizes at desktop width.
+
+   Motion follows motion.css: state colour 160ms --ob-ease-out, press 100ms, focus rings in the same
+   frame, movement on translate, scale and opacity only.
+   ============================================================================================= */
+
+/* Component sizes. Colours never live here. */
+:where(:root) {
+  --ob-field-font-size:      16px;    /* never below 16px: iOS zooms the page under it */
+  --ob-field-leading:        1.25;
+  --ob-choice-size:          18px;    /* checkbox box and radio ring */
+  --ob-radio-dot:            8px;
+  --ob-switch-w:             40px;
+  --ob-switch-h:             24px;
+  --ob-switch-thumb:         16px;
+  --ob-switch-inset:         4px;
+  --ob-pill-pad:             4px;
+  --ob-pill-input-pad:       16px;
+  --ob-chip-h:               32px;
+  --ob-chip-glyph:           12px;
+  --ob-segmented-inset:      3px;     /* plus the 1px edge: a 4px inset */
+  --ob-chevron-size:         7px;
+  --ob-chevron-inset:        3px;     /* the turned chevron's centre lands 15px from the edge */
+  --ob-select-chevron-room:  22px;    /* text stops this far before the right padding */
+  --ob-search-kbd-room:      32px;    /* room for a 1- or 2-key cap */
+  --ob-search-cross:         11px;
+  --ob-square-from:          .4;      /* the radio's square grows from 40% */
+  --ob-touch:                0;       /* 1 on a coarse pointer, or inside .ob-touch */
+}
+@media (pointer: coarse) {
+  :where(:root) { --ob-touch: 1; }
+}
+.ob-touch { --ob-touch: 1; }
+
+/* Visually hidden, still read. navigation.css owns .ob-sr; this zero-specificity copy keeps forms.css
+   working on its own and never overrides it. */
+:where(.ob-sr) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =============================================================================================
+   1. FIELD SHELL: label, control, message slot
+   ============================================================================================= */
+.ob-field {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-8);
+  min-width: 0;
+}
+.ob-field-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  min-width: 0;
+}
+.ob-label {
+  margin: 0;
+  padding: 0;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+}
+.ob-field-optional {
+  font: var(--ob-type-caption);
+  color: var(--ob-text-3);
+  white-space: nowrap;
+}
+
+/* The message slot is reserved, so an error never moves what sits below the field.
+   8px under 40 and 48px fields; 6px under 32px fields. */
+.ob-field-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: var(--ob-space-12);
+  min-height: calc(var(--ob-type-caption-size) * var(--ob-type-caption-leading));
+}
+.ob-field--sm > .ob-field-foot { margin-top: calc(var(--ob-space-2) * -1); }
+.ob-field-help,
+.ob-field-error,
+.ob-field-success {
+  grid-column: 1;
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  text-wrap: pretty;
+}
+.ob-field-help { color: var(--ob-text-2); }
+.ob-field-error,
+.ob-field-success {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+}
+.ob-field-error   { color: var(--ob-danger); }
+.ob-field-success { color: var(--ob-success); }
+/* The square carries the meaning: hollow needs you, filled is done. */
+.ob-field-error::before,
+.ob-field-success::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
+}
+.ob-field-error::before   { border: var(--ob-border-strong) solid currentColor; }
+.ob-field-success::before { background: currentColor; }
+.ob-field-error[hidden],
+.ob-field-success[hidden] { display: none; }
+/* The error takes the helper's slot until it is fixed. */
+.ob-field-foot:has(> .ob-field-error:not([hidden])) > .ob-field-help,
+.ob-field.is-error .ob-field-help { display: none; }
+
+.ob-field-count {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--ob-text-3);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-field-count.is-near { color: var(--ob-text-2); }
+.ob-field-count.is-over { color: var(--ob-danger); }
+
+/* Sizes. Put the modifier on .ob-field or on a standalone control or wrapper. */
+.ob-field--sm, .ob-input--sm, .ob-select--sm, .ob-search--sm, .ob-affix-field--sm {
+  --ob-field-h: var(--ob-control-sm);
+  --ob-field-pad: var(--ob-control-pad-sm);
+  --ob-field-radius: var(--ob-radius-xs);
+}
+.ob-field--lg, .ob-input--lg, .ob-select--lg, .ob-search--lg, .ob-affix-field--lg {
+  --ob-field-h: var(--ob-control-lg);
+  --ob-field-pad: var(--ob-control-pad-md);
+  --ob-field-radius: var(--ob-radius-md);
+}
+
+
+/* =============================================================================================
+   2. TEXT INPUT, TEXTAREA, SELECT: one control recipe
+   ============================================================================================= */
+.ob-input,
+.ob-textarea,
+.ob-select-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: var(--ob-field-h, var(--ob-control-md));
+  min-height: calc(var(--ob-touch) * var(--ob-target-touch));
+  margin: 0;
+  padding: 0 var(--ob-field-pad, var(--ob-control-pad-sm));
+  border: var(--ob-border-hair) solid var(--ob-field-edge);
+  border-radius: var(--ob-field-radius, var(--ob-radius-sm));
+  background-color: var(--ob-field-bg);
+  color: var(--ob-text);
+  font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans);
+  letter-spacing: 0;
+  caret-color: var(--ob-text);
+  -webkit-appearance: none;
+  appearance: none;
+  transition-property: border-color, background-color, color, box-shadow;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-input--mono,
+.ob-textarea--mono { font-family: var(--ob-font-mono); }
+
+:is(.ob-input, .ob-textarea, .ob-affix-input, .ob-pill-input)::placeholder {
+  color: var(--ob-placeholder);
+  opacity: 1;
+}
+
+/* Hover: pointer devices only. */
+@media (hover: hover) and (pointer: fine) {
+  :is(.ob-input, .ob-textarea, .ob-select-input):hover:not(:focus, :disabled, [readonly], [aria-invalid="true"]) {
+    border-color: var(--ob-field-edge-hover);
+  }
+}
+:is(.ob-input, .ob-textarea, .ob-select-input).is-hover { border-color: var(--ob-field-edge-hover); }
+
+/* Focus: a 2px ring at a 2px offset, in the same frame. The edge lifts with it. */
+:is(.ob-input, .ob-textarea, .ob-select-input):focus { border-color: var(--ob-field-edge-hover); }
+:is(.ob-input, .ob-textarea, .ob-select-input):focus-visible,
+:is(.ob-input, .ob-textarea, .ob-select-input).is-focus {
+  border-color: var(--ob-field-edge-hover);
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+
+/* Error: the edge turns --ob-danger and thickens to 2px in the same frame. Thickness is the cue
+   that does not rely on colour; the message is the other. */
+:is(.ob-input, .ob-textarea, .ob-select-input):is([aria-invalid="true"], .is-error) {
+  --ob-field-edge: var(--ob-danger);
+  --ob-field-edge-hover: var(--ob-danger);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset;
+  transition-duration: var(--ob-dur-instant);
+}
+
+/* Disabled: a tinted box with a firmer edge, so the shape stays. The value stays legible in the
+   second ink; only an empty field shows the placeholder ink. It leaves the tab order. */
+:is(.ob-input, .ob-textarea, .ob-select-input):is(:disabled, .is-disabled) {
+  border-color: var(--ob-line-strong);
+  background-color: var(--ob-fill-subtle);
+  color: var(--ob-text-2);
+  -webkit-text-fill-color: var(--ob-text-2);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+}
+:is(.ob-input, .ob-textarea):is(:disabled, .is-disabled)::placeholder {
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
+  opacity: 1;
+}
+
+/* Read-only: a value, not a box to type in. Full ink, hairline edge, still focusable and selectable. */
+:is(.ob-input, .ob-textarea):is([readonly], .is-readonly) {
+  border-color: var(--ob-line);
+  background-color: transparent;
+  color: var(--ob-text);
+}
+:is(.ob-input, .ob-textarea):is([readonly], .is-readonly):is(:focus, .is-focus) { border-color: var(--ob-line-strong); }
+
+/* Browser autofill keeps the theme: the field's own fill, flattened, and the theme ink. */
+.ob-input:-webkit-autofill,
+.ob-affix-input:-webkit-autofill,
+.ob-pill-input:-webkit-autofill {
+  -webkit-text-fill-color: var(--ob-text);
+  caret-color: var(--ob-text);
+  box-shadow: 0 0 0 100vmax var(--ob-field-bg-solid) inset;
+}
+.ob-input:-webkit-autofill:is([aria-invalid="true"], .is-error) {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset, 0 0 0 100vmax var(--ob-field-bg-solid) inset;
+}
+
+/* Textarea: 4 lines at rest, grows a line at a time to 8, then scrolls. Height never animates. */
+.ob-textarea {
+  height: auto;
+  min-height: calc(var(--ob-field-font-size) * 1.5 * 4 + var(--ob-space-12) * 2 + 2 * var(--ob-border-hair));
+  max-height: calc(var(--ob-field-font-size) * 1.5 * 8 + var(--ob-space-12) * 2 + 2 * var(--ob-border-hair));
+  padding: var(--ob-space-12) var(--ob-field-pad, var(--ob-control-pad-sm));
+  line-height: 1.5;
+  resize: vertical;
+  field-sizing: content;
+  overflow-wrap: break-word;
+}
+
+/* Select: the closed field is the text field plus a drawn chevron. The open list is the platform's. */
+.ob-select {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+.ob-select::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--ob-field-pad, var(--ob-control-pad-sm)) + var(--ob-chevron-inset));
+  box-sizing: border-box;
+  width: var(--ob-chevron-size);
+  height: var(--ob-chevron-size);
+  border-right: var(--ob-border-strong) solid var(--ob-text-2);
+  border-bottom: var(--ob-border-strong) solid var(--ob-text-2);
+  translate: 0 -70%;
+  rotate: 45deg;
+  pointer-events: none;
+  transition:
+    rotate var(--ob-dur-moderate) var(--ob-ease-out),
+    translate var(--ob-dur-moderate) var(--ob-ease-out),
+    border-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-select-input {
+  padding-right: calc(var(--ob-field-pad, var(--ob-control-pad-sm)) + var(--ob-select-chevron-room));
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.ob-select-input:is(:invalid, .is-placeholder) { color: var(--ob-placeholder); }
+.ob-select-input:is(:disabled, .is-disabled):is(:invalid, .is-placeholder) {
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
+}
+.ob-select-input option { color: var(--ob-text); background-color: var(--ob-overlay); }
+.ob-select-input option:disabled { color: var(--ob-text-3); }
+.ob-select:is(.is-disabled, :has(> .ob-select-input:disabled))::after { border-color: var(--ob-text-3); }
+/* While the list is open the chevron turns over (browsers with :open). */
+@supports selector(:open) {
+  .ob-select:has(> .ob-select-input:open)::after { rotate: 225deg; translate: 0 -25%; }
+}
+.ob-select.is-open::after { rotate: 225deg; translate: 0 -25%; }
+
+
+/* =============================================================================================
+   3. AFFIXED FIELD: a fixed prefix or suffix inside the field's edge
+   The wrapper is a <label>, so a click on the prefix focuses the input. The prefix is aria-hidden.
+   ============================================================================================= */
+.ob-affix-field {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  height: var(--ob-field-h, var(--ob-control-md));
+  min-height: calc(var(--ob-touch) * var(--ob-target-touch));
+  border: var(--ob-border-hair) solid var(--ob-field-edge);
+  border-radius: var(--ob-field-radius, var(--ob-radius-sm));
+  background-color: var(--ob-field-bg);
+  color: var(--ob-text);
+  overflow: hidden;
+  cursor: text;
+  transition-property: border-color, background-color, box-shadow;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-affix {
+  flex: none;
+  padding-left: var(--ob-field-pad, var(--ob-control-pad-sm));
+  color: var(--ob-text-3);
+  font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ob-affix--end {
+  padding-left: var(--ob-space-8);
+  padding-right: var(--ob-field-pad, var(--ob-control-pad-sm));
+}
+.ob-affix-input {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ob-field-pad, var(--ob-control-pad-sm)) 0 var(--ob-space-2);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ob-text);
+  font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans);
+  caret-color: var(--ob-text);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ob-affix-input:first-child { padding-left: var(--ob-field-pad, var(--ob-control-pad-sm)); }
+.ob-affix-input:has(+ .ob-affix--end) { padding-right: 0; }
+/* Fallback ring for browsers without :has(): drawn inside, because the wrapper clips. */
+.ob-affix-input:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+
+@media (hover: hover) and (pointer: fine) {
+  .ob-affix-field:hover:not(:focus-within, .is-disabled, .is-error, .is-readonly, :has(> :disabled), :has(> [aria-invalid="true"]), :has(> [readonly])) {
+    border-color: var(--ob-field-edge-hover);
+  }
+}
+.ob-affix-field.is-hover,
+.ob-affix-field:focus-within { border-color: var(--ob-field-edge-hover); }
+.ob-affix-field.is-focus {
+  border-color: var(--ob-field-edge-hover);
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-affix-field:is(.is-error, :has(> [aria-invalid="true"])) {
+  --ob-field-edge: var(--ob-danger);
+  --ob-field-edge-hover: var(--ob-danger);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset;
+  transition-duration: var(--ob-dur-instant);
+}
+.ob-affix-field:is(.is-readonly, :has(> [readonly])) {
+  border-color: var(--ob-line);
+  background-color: transparent;
+  cursor: default;
+}
+.ob-affix-field:is(.is-readonly, :has(> [readonly])):focus-within { border-color: var(--ob-line-strong); }
+.ob-affix-field:is(.is-disabled, :has(> :disabled)) {
+  border-color: var(--ob-line-strong);
+  background-color: var(--ob-fill-subtle);
+  cursor: not-allowed;
+}
+.ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix { color: var(--ob-text-3); }
+.ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix-input {
+  color: var(--ob-text-2);
+  -webkit-text-fill-color: var(--ob-text-2);
+  cursor: not-allowed;
+}
+.ob-affix-field:is(.is-disabled, :has(> :disabled)) .ob-affix-input::placeholder {
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
+}
+
+
+/* =============================================================================================
+   4. PILL FIELD: 1 field and 1 action in 1 pill (waitlist, free report)
+   The pill is a <form novalidate>. .ob-pill-form is a size container: below 420px of its own width
+   the action drops under the field. The radius is the action's plus the padding and edge (29px), so
+   the pill is fully round at rest and stays concentric when it stacks or expands.
+   ============================================================================================= */
+.ob-pill-form {
+  container: ob-pill / inline-size;
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-8);
+  width: 100%;
+  max-width: var(--ob-container-xs);
+  min-width: 0;
+  margin: 0;
+}
+.ob-pill-field {
+  --ob-pill-radius: calc(var(--ob-control-lg) / 2 + var(--ob-pill-pad) + var(--ob-border-hair));
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--ob-pill-pad);
+  border: var(--ob-border-hair) solid var(--ob-field-edge);
+  border-radius: var(--ob-pill-radius);
+  background: var(--ob-sheen), var(--ob-field-bg);
+  box-shadow: var(--ob-highlight), var(--ob-shadow-2);
+  cursor: text;
+  transition-property: border-color, box-shadow;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+/* The entry is a <label> around the prefix and the input, so a click on https:// focuses the field. */
+.ob-pill-entry { display: contents; cursor: text; }
+.ob-pill-affix {
+  flex: none;
+  padding-left: var(--ob-pill-input-pad);
+  color: var(--ob-text-3);
+  font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ob-pill-input {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  height: var(--ob-control-lg);
+  margin: 0;
+  padding: 0 var(--ob-space-8) 0 var(--ob-pill-input-pad);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text);
+  font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans);
+  caret-color: var(--ob-text);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ob-pill-affix + .ob-pill-input { padding-left: var(--ob-space-2); }
+.ob-pill-input:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+
+@media (hover: hover) and (pointer: fine) {
+  .ob-pill-field:hover:not(:focus-within, .is-error, .is-readonly, .is-disabled, :has(.ob-pill-input:is([aria-invalid="true"], [readonly], :disabled))) {
+    border-color: var(--ob-field-edge-hover);
+  }
+}
+.ob-pill-field.is-hover,
+.ob-pill-field:focus-within { border-color: var(--ob-field-edge-hover); }
+.ob-pill-field.is-focus {
+  border-color: var(--ob-field-edge-hover);
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-pill-field:is(.is-error, :has(.ob-pill-input[aria-invalid="true"])) {
+  --ob-field-edge: var(--ob-danger);
+  --ob-field-edge-hover: var(--ob-danger);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset, var(--ob-highlight), var(--ob-shadow-2);
+  transition-duration: var(--ob-dur-instant);
+}
+/* Read-only: the value is fixed after submit. The edge drops to a hairline once sending has
+   outlasted --ob-delay-busy, so a fast reply changes nothing on screen. */
+.ob-pill-field:is(.is-readonly, :has(.ob-pill-input[readonly])) {
+  border-color: var(--ob-line);
+  cursor: default;
+  transition-delay: var(--ob-delay-busy, 300ms);
+}
+.ob-pill-field:is(.is-loading, :has([aria-busy="true"])) { cursor: progress; }
+/* Disabled: the list is closed. The fill goes quiet, the edge stays visible, the value stays legible. */
+.ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) {
+  border-color: var(--ob-line-strong);
+  background: var(--ob-fill-subtle);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) .ob-pill-input {
+  color: var(--ob-text-2);
+  -webkit-text-fill-color: var(--ob-text-2);
+  cursor: not-allowed;
+}
+.ob-pill-field:is(.is-disabled, :has(.ob-pill-input:disabled)) .ob-pill-input::placeholder {
+  color: var(--ob-text-3);
+  -webkit-text-fill-color: var(--ob-text-3);
+}
+
+/* The ring moves from the input to the pill (and from the input to the affixed field's edge). */
+@supports selector(:has(*)) {
+  .ob-pill-field:has(.ob-pill-input:focus-visible),
+  .ob-affix-field:has(> .ob-affix-input:focus-visible) {
+    outline: var(--ob-focus-width) solid var(--ob-focus);
+    outline-offset: var(--ob-focus-offset);
+  }
+  .ob-pill-field .ob-pill-input:focus-visible,
+  .ob-affix-field > .ob-affix-input:focus-visible { outline: none; }
+}
+
+/* The action is the Buttons chapter's primary, .ob-btn.ob-btn--lg, at the pill's 48px.
+   Its colours, lift, press, busy and done states all come from buttons.css. Its focus ring is drawn
+   inside, in the label's ink, so it never lands on the pill's edge 4px away. */
+.ob-btn.ob-pill-action {
+  --ob-btn-c-h: var(--ob-control-lg);
+  flex: none;
+}
+.ob-btn.ob-pill-action:focus-visible,
+.ob-btn.ob-pill-action.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-btn-c-fg);
+  outline-offset: calc(var(--ob-focus-width) * -2);
+}
+
+/* Message slot under the pill: indented to the typed text (4px padding + 1px edge + 16px). */
+.ob-pill-foot {
+  display: grid;
+  gap: var(--ob-space-4);
+  min-height: calc(var(--ob-type-caption-size) * var(--ob-type-caption-leading));
+  padding-left: calc(var(--ob-pill-pad) + var(--ob-border-hair) + var(--ob-pill-input-pad));
+}
+.ob-pill-foot:has(> .ob-field-error:not([hidden]), > .ob-form-error:not(:empty)) > .ob-field-help,
+.ob-pill-form.is-error .ob-pill-foot > .ob-field-help { display: none; }
+
+/* Free report, step 2: name and email open inside the pill, under the address. The action stays
+   in the pill and its label changes; Enter sends from any field. Pair with .ob-anim-expand.is-open. */
+.ob-pill-more {
+  flex: 1 0 100%;
+  min-width: 0;
+}
+.ob-pill-more-in {
+  display: grid;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-12);
+}
+.ob-pill-more .ob-form-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+/* A ghost action under the address lines its label up with the typed text. */
+.ob-pill-more-in > .ob-btn { justify-self: start; }
+.ob-pill-more-in > .ob-btn--ghost:first-child { margin-inline-start: calc(var(--ob-space-12) * -1); }
+
+@container ob-pill (max-width: 420px) {
+  .ob-btn.ob-pill-action { flex-basis: 100%; }
+}
+@container ob-pill (max-width: 460px) {
+  .ob-pill-more .ob-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .ob-pill-more-in { padding-inline: var(--ob-space-8); }
+}
+
+
+/* =============================================================================================
+   5. THANK-YOU PANEL: the pill form's success state
+   Enter with .ob-anim-rise.is-slow; the mark runs .is-play once. Focus moves to the title.
+   ============================================================================================= */
+.ob-confirm {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--ob-space-8);
+  width: 100%;
+  max-width: var(--ob-container-xs);
+  padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: var(--ob-highlight), var(--ob-shadow-1);
+  color: var(--ob-text);
+}
+.ob-confirm-title {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+}
+.ob-confirm-title:focus { outline: none; }
+.ob-confirm-title:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-confirm-title .ob-sig { --ob-sig-size: 22px; }
+.ob-confirm-line {
+  margin: 0;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+/* The question is the chips' visible legend. */
+.ob-confirm .ob-chips > legend.ob-confirm-q {
+  float: left;
+  width: 100%;
+  margin: var(--ob-space-12) 0 var(--ob-space-4);
+  padding: 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+/* After a pick: a separate status line, so the legend never changes its name. Filled square = done. */
+.ob-confirm-thanks {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+  min-height: calc(var(--ob-type-caption-size) * var(--ob-type-caption-leading));
+  margin: var(--ob-space-4) 0 0;
+  font: var(--ob-type-caption);
+  color: var(--ob-text-2);
+}
+.ob-confirm-thanks:not(:empty)::before {
+  content: "";
+  flex: none;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
+  background: var(--ob-text);
+}
+
+
+/* =============================================================================================
+   6. SEARCH AND THE KEY HINT (the key cap is navigation.css .ob-kbd)
+   role="search" (or <search>) goes on the form or region that holds the field, once per area.
+   ============================================================================================= */
+:where(.ob-kbd) {
+  /* navigation.css owns the key cap; this zero-specificity copy matches it for standalone use. */
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  min-width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0 5px;
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-fill);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-strong);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  white-space: nowrap;
+}
+.ob-search {
+  --ob-search-clear: max(var(--ob-target-min), calc(var(--ob-touch) * var(--ob-target-touch)));
+  --ob-search-end: calc(var(--ob-space-8) * (1 - var(--ob-touch)));
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+.ob-search-glyph {
+  position: absolute;
+  top: 50%;
+  left: var(--ob-field-pad, var(--ob-control-pad-sm));
+  width: var(--ob-icon-md);
+  height: var(--ob-icon-md);
+  translate: 0 -50%;
+  color: var(--ob-text-3);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+.ob-search-input {
+  padding-left: calc(var(--ob-field-pad, var(--ob-control-pad-sm)) + var(--ob-icon-md) + var(--ob-space-8));
+  padding-right: max(calc(var(--ob-space-8) + var(--ob-search-kbd-room)), calc(var(--ob-search-end) + var(--ob-search-clear)));
+}
+.ob-search-input::-webkit-search-decoration,
+.ob-search-input::-webkit-search-cancel-button,
+.ob-search-input::-webkit-search-results-button,
+.ob-search-input::-webkit-search-results-decoration { -webkit-appearance: none; appearance: none; display: none; }
+.ob-search > .ob-kbd {
+  position: absolute;
+  top: 50%;
+  right: var(--ob-space-8);
+  translate: 0 -50%;
+  pointer-events: none;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out);
+}
+.ob-search-input:is(:focus, :not(:placeholder-shown), .is-focus) ~ .ob-kbd,
+.ob-search.is-filled > .ob-kbd { opacity: 0; }
+/* A key hint means nothing without a keyboard. */
+@media (pointer: coarse) { .ob-search > .ob-kbd { display: none; } }
+.ob-touch .ob-search > .ob-kbd { display: none; }
+
+.ob-search-clear {
+  position: absolute;
+  top: 50%;
+  right: var(--ob-search-end);
+  display: grid;
+  place-items: center;
+  width: var(--ob-search-clear);
+  height: var(--ob-search-clear);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-xs);
+  background-color: transparent;
+  color: var(--ob-text-2);
+  translate: 0 -50%;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    opacity var(--ob-dur-fast) var(--ob-ease-out),
+    visibility 0s linear var(--ob-dur-fast),
+    background-color var(--ob-dur-base) var(--ob-ease-out),
+    color var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-search-clear::before,
+.ob-search-clear::after {
+  content: "";
+  grid-area: 1 / 1;
+  width: var(--ob-search-cross);
+  height: var(--ob-border-strong);
+  border-radius: var(--ob-sq-radius);
+  background: currentColor;
+  rotate: 45deg;
+}
+.ob-search-clear::after { rotate: -45deg; }
+.ob-search-input:not(:placeholder-shown):not(:disabled) ~ .ob-search-clear,
+.ob-search.is-filled > .ob-search-clear {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-search-clear:hover { background-color: var(--ob-state-hover); color: var(--ob-text); }
+}
+.ob-search-clear:active { background-color: var(--ob-state-pressed); }
+.ob-search-clear:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 0; }
+.ob-search:is(.is-disabled, :has(> :disabled)) > :is(.ob-search-glyph, .ob-kbd) { opacity: .6; }
+
+
+/* =============================================================================================
+   7. CHOICE ROWS AND GROUPS: shared by checkbox, radio and switch
+   The whole row is a <label>, so the label text is part of the target. On touch the row pads to 44px.
+   ============================================================================================= */
+.ob-choice {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--ob-space-12);
+  min-height: max(var(--ob-target-min), calc(var(--ob-touch) * var(--ob-target-touch)));
+  padding-block: calc(var(--ob-touch) * var(--ob-space-12));
+  color: var(--ob-text);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-choice-text { grid-column: 2; min-width: 0; text-wrap: pretty; }
+.ob-choice-desc {
+  grid-column: 2;
+  margin-top: var(--ob-space-2);
+  font: var(--ob-type-caption);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ob-choice:is(.is-disabled, :has(:disabled)) { color: var(--ob-text-3); cursor: not-allowed; }
+.ob-choice:is(.is-disabled, :has(:disabled)) .ob-choice-desc { color: var(--ob-text-3); }
+
+.ob-group {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.ob-group > legend:not(.ob-sr) {
+  float: left;          /* takes the legend into the grid so the gap applies */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+}
+/* 12px between rows; 4px on touch, where each row carries its own 12px of padding. */
+.ob-group-items {
+  --ob-group-row-gap: calc(var(--ob-space-12) - var(--ob-touch) * var(--ob-space-8));
+  display: grid;
+  gap: var(--ob-group-row-gap);
+  min-width: 0;
+}
+.ob-group--inline .ob-group-items { display: flex; flex-wrap: wrap; gap: var(--ob-group-row-gap) var(--ob-space-24); }
+.ob-group-items--nested { padding-left: calc(var(--ob-choice-size) + var(--ob-space-12)); }
+.ob-group > .ob-field-foot { margin-top: calc(var(--ob-space-4) * -1); }
+
+
+/* =============================================================================================
+   8. CHECKBOX: the brand square at 18px. Filled means on.
+   Markup: .ob-check > input.ob-check-input + svg.ob-check-mark > path.ob-anim-check + path.ob-check-bar
+   ============================================================================================= */
+.ob-check {
+  position: relative;
+  flex: none;
+  width: var(--ob-choice-size);
+  height: var(--ob-choice-size);
+  margin-top: var(--ob-space-2);
+  transition: scale var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-check-input {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: var(--ob-border-strong) solid var(--ob-line-ui);
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-field-bg);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition:
+    background-color var(--ob-dur-fast) var(--ob-ease-out),
+    border-color var(--ob-dur-fast) var(--ob-ease-out);
+}
+.ob-check-mark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke: var(--ob-text-inverse);
+  stroke-width: 2;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+.ob-check-bar { opacity: 0; transition: opacity var(--ob-dur-fast) var(--ob-ease-out); }
+
+.ob-check-input:is(:checked, :indeterminate),
+.ob-check:is(.is-selected, .is-mixed) .ob-check-input {
+  border-color: var(--ob-solid);
+  background-color: var(--ob-solid);
+}
+.ob-check.is-selected .ob-anim-check { stroke-dashoffset: 0; opacity: 1; }
+.ob-check-input:indeterminate ~ .ob-check-mark .ob-check-bar,
+.ob-check.is-mixed .ob-check-bar { opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ob-choice:hover .ob-check-input:not(:checked, :indeterminate, :disabled, [aria-invalid="true"]) { border-color: var(--ob-field-edge-hover); }
+  .ob-choice:hover .ob-check-input:is(:checked, :indeterminate):not(:disabled) { border-color: var(--ob-solid-hover); background-color: var(--ob-solid-hover); }
+}
+.ob-choice.is-hover .ob-check-input:not(:checked, :indeterminate) { border-color: var(--ob-field-edge-hover); }
+.ob-choice.is-hover .ob-check-input:is(:checked, :indeterminate) { border-color: var(--ob-solid-hover); background-color: var(--ob-solid-hover); }
+
+.ob-choice:not(.is-disabled, :has(:disabled)):active :is(.ob-check, .ob-radio-input),
+.ob-choice.is-active :is(.ob-check, .ob-radio-input) {
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+
+.ob-check-input:focus-visible,
+.ob-choice.is-focus .ob-check-input {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-check-input:is([aria-invalid="true"], .is-error):not(:checked) { border-color: var(--ob-danger); }
+
+.ob-check-input:disabled,
+.ob-choice.is-disabled .ob-check-input {
+  border-color: var(--ob-line-strong);
+  background-color: var(--ob-fill-subtle);
+  cursor: not-allowed;
+}
+.ob-check-input:disabled:is(:checked, :indeterminate),
+.ob-choice.is-disabled .ob-check-input:is(:checked, :indeterminate) {
+  border-color: var(--ob-line-strong);
+  background-color: var(--ob-fill);
+}
+.ob-check-input:disabled ~ .ob-check-mark,
+.ob-choice.is-disabled .ob-check-mark { stroke: var(--ob-text-3); }
+
+
+/* =============================================================================================
+   9. RADIO: round means one of many. The chosen ring holds an 8px square.
+   ============================================================================================= */
+.ob-radio-input {
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  flex: none;
+  width: var(--ob-choice-size);
+  height: var(--ob-choice-size);
+  margin: var(--ob-space-2) 0 0;
+  border: var(--ob-border-strong) solid var(--ob-line-ui);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-field-bg);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition:
+    border-color var(--ob-dur-base) var(--ob-ease-out),
+    background-color var(--ob-dur-base) var(--ob-ease-out),
+    scale var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-radio-input::before {
+  content: "";
+  width: var(--ob-radio-dot);
+  height: var(--ob-radio-dot);
+  border-radius: var(--ob-sq-radius);
+  background-color: var(--ob-solid);
+  opacity: 0;
+  scale: var(--ob-square-from);
+  transition:
+    opacity var(--ob-dur-base) var(--ob-ease-out),
+    scale var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-radio-input:checked,
+.ob-choice.is-selected .ob-radio-input { border-color: var(--ob-solid); }
+.ob-radio-input:checked::before,
+.ob-choice.is-selected .ob-radio-input::before { opacity: 1; scale: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ob-choice:hover .ob-radio-input:not(:checked, :disabled, [aria-invalid="true"]) { border-color: var(--ob-field-edge-hover); }
+}
+.ob-choice.is-hover .ob-radio-input:not(:checked) { border-color: var(--ob-field-edge-hover); }
+.ob-radio-input:focus-visible,
+.ob-choice.is-focus .ob-radio-input {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-radio-input:is([aria-invalid="true"], .is-error):not(:checked) { border-color: var(--ob-danger); }
+.ob-radio-input:disabled,
+.ob-choice.is-disabled .ob-radio-input {
+  border-color: var(--ob-line-strong);
+  background-color: var(--ob-fill-subtle);
+  cursor: not-allowed;
+}
+.ob-radio-input:disabled::before,
+.ob-choice.is-disabled .ob-radio-input::before { background-color: var(--ob-text-3); }
+
+
+/* =============================================================================================
+   10. SWITCH: acts at once. The thumb is the brand square and travels 16px.
+   Markup: label.ob-switch > input.ob-switch-input[role=switch] + span.ob-switch-track > span.ob-switch-thumb
+   The thumb's motion lives here; it needs no motion utility class.
+   ============================================================================================= */
+.ob-switch {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--ob-space-12);
+  min-height: max(var(--ob-target-min), calc(var(--ob-touch) * var(--ob-target-touch)));
+  padding-block: calc(var(--ob-touch) * var(--ob-space-12));
+  color: var(--ob-text);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-switch .ob-choice-text { padding-top: 1px; }
+.ob-switch--row { grid-template-columns: minmax(0, 1fr) auto; }
+.ob-switch--row .ob-switch-track { grid-column: 2; grid-row: 1 / span 2; }
+.ob-switch--row :is(.ob-choice-text, .ob-choice-desc) { grid-column: 1; }
+.ob-switch-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.ob-switch-track {
+  --ob-switch-travel: calc(var(--ob-switch-w) - var(--ob-switch-thumb) - 2 * var(--ob-switch-inset));
+  position: relative;
+  display: block;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--ob-switch-w);
+  height: var(--ob-switch-h);
+  border-radius: var(--ob-radius-xs);
+  background-color: transparent;
+  box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-ui) inset;
+  transition:
+    background-color var(--ob-dur-base) var(--ob-ease-out),
+    box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-switch-thumb {
+  position: absolute;
+  top: var(--ob-switch-inset);
+  left: var(--ob-switch-inset);
+  width: var(--ob-switch-thumb);
+  height: var(--ob-switch-thumb);
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-text-3);
+  transform-origin: 50% 50%;
+  transition:
+    translate var(--ob-dur-base) var(--ob-ease-out),
+    scale var(--ob-dur-fast) var(--ob-ease-out),
+    background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-switch-input:checked + .ob-switch-track,
+.ob-switch.is-selected .ob-switch-track {
+  background-color: var(--ob-solid);
+  box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-solid) inset;
+}
+.ob-switch-input:checked + .ob-switch-track .ob-switch-thumb,
+.ob-switch.is-selected .ob-switch-thumb {
+  translate: var(--ob-switch-travel) 0;
+  background-color: var(--ob-text-inverse);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ob-switch:hover .ob-switch-input:not(:checked, :disabled) + .ob-switch-track { box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-field-edge-hover) inset; }
+  .ob-switch:hover .ob-switch-input:checked:not(:disabled) + .ob-switch-track { background-color: var(--ob-solid-hover); box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-solid-hover) inset; }
+}
+.ob-switch.is-hover .ob-switch-input:not(:checked) + .ob-switch-track { box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-field-edge-hover) inset; }
+.ob-switch.is-hover .ob-switch-input:checked + .ob-switch-track { background-color: var(--ob-solid-hover); box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-solid-hover) inset; }
+/* Pressed: the thumb widens by --ob-switch-stretch (12%) in 100ms. No bounce; 1 under reduced motion. */
+.ob-switch:not(.is-disabled, :has(:disabled)):active .ob-switch-thumb,
+.ob-switch.is-active .ob-switch-thumb {
+  scale: var(--ob-switch-stretch) 1;
+  transition-duration: var(--ob-dur-base), var(--ob-dur-fast), var(--ob-dur-base);
+}
+.ob-switch-input:focus-visible + .ob-switch-track,
+.ob-switch.is-focus .ob-switch-track {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-switch.is-saving { cursor: progress; }
+.ob-switch:is(.is-disabled, :has(:disabled)) { color: var(--ob-text-3); cursor: not-allowed; }
+.ob-switch:is(.is-disabled, :has(:disabled)) .ob-choice-desc { color: var(--ob-text-3); }
+.ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-track { box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-strong) inset; }
+.ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-thumb { background-color: var(--ob-line-strong); scale: none; }
+.ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-input:checked + .ob-switch-track { background-color: var(--ob-fill); box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-strong) inset; }
+.ob-switch:is(.is-disabled, :has(:disabled)) .ob-switch-input:checked + .ob-switch-track .ob-switch-thumb { background-color: var(--ob-text-3); }
+
+/* Saving and failed: a status line under the row, outside the <label> so it never joins the name.
+   Saving shows after --ob-delay-busy with a 12px ring; add .is-spin to the ring only while saving.
+   Without .is-spin the ring shows its still frame. A failed save flips the switch back. */
+.ob-switch-note {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-height: calc(var(--ob-type-caption-size) * var(--ob-type-caption-leading));
+  margin: var(--ob-space-4) 0 0;
+  padding-left: calc(var(--ob-switch-w) + var(--ob-space-12));
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+.ob-switch-note--row,
+.ob-switch-list .ob-switch-note { padding-left: 0; }
+.ob-switch-note .ob-sig { --ob-sig-size: 12px; }
+.ob-switch-note .ob-sig:not(.is-spin) .ob-sig-rot { transform: rotate(90deg); }
+.ob-switch-note .ob-sig:not(.is-spin) .ob-sig-orb { transform: rotate(-90deg); }
+.ob-switch-note.is-saving { animation: ob-fade-in var(--ob-dur-fast) var(--ob-ease-out) var(--ob-delay-busy, 300ms) backwards; }
+.ob-switch-note.is-error { align-items: baseline; color: var(--ob-danger); }
+.ob-switch-note.is-error::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border: var(--ob-border-strong) solid currentColor;
+  border-radius: var(--ob-sq-radius);
+}
+
+/* Settings list: label left, switch right, a hairline between rows, 48px rows.
+   On touch the row pads itself, so the list adds none. */
+.ob-switch-list { display: grid; margin: 0; padding: 0; list-style: none; }
+.ob-switch-list > li {
+  padding-block: calc(var(--ob-space-12) * (1 - var(--ob-touch)));
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-switch-list > li:first-child { border-top: 0; padding-top: 0; }
+.ob-switch-list > li:last-child { padding-bottom: 0; }
+
+
+/* =============================================================================================
+   11. SEGMENTED CONTROL: 1 choice from 2 to 5. The single owner of the look switch.
+   Native radios give 1 Tab stop and arrow keys. Set --ob-segmented-count inline; :has() moves the thumb.
+   Markup: .ob-segmented > span.ob-segmented-thumb + label.ob-segmented-option > input.ob-segmented-input + span.ob-segmented-label
+   Look switch in the nav: .ob-segmented.ob-segmented--sm.ob-segmented--icon with .ob-look-swatch glyphs.
+   ============================================================================================= */
+.ob-segmented {
+  --ob-segmented-h: var(--ob-control-sm);
+  --ob-segmented-pad-x: var(--ob-space-16);
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  box-sizing: border-box;
+  justify-self: start;      /* an inline control: it never stretches to its parent */
+  align-self: start;
+  max-width: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--ob-segmented-inset);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-fill-subtle);
+}
+.ob-segmented--sm { --ob-segmented-h: var(--ob-control-xs); --ob-segmented-pad-x: var(--ob-space-12); }
+@media (max-width: 520px) {
+  .ob-segmented { --ob-segmented-pad-x: var(--ob-space-12); }
+}
+.ob-segmented-thumb {
+  position: absolute;
+  z-index: 0;
+  top: var(--ob-segmented-inset);
+  bottom: var(--ob-segmented-inset);
+  left: var(--ob-segmented-inset);
+  width: calc((100% - 2 * var(--ob-segmented-inset)) / var(--ob-segmented-count, 3));
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset, var(--ob-shadow-1);
+  translate: calc(var(--ob-index, 0) * 100%) 0;
+  pointer-events: none;
+  transition: translate var(--ob-dur-moderate) var(--ob-ease-out);
+}
+.ob-segmented:has(> .ob-segmented-option:nth-of-type(2) > .ob-segmented-input:checked) { --ob-index: 1; }
+.ob-segmented:has(> .ob-segmented-option:nth-of-type(3) > .ob-segmented-input:checked) { --ob-index: 2; }
+.ob-segmented:has(> .ob-segmented-option:nth-of-type(4) > .ob-segmented-input:checked) { --ob-index: 3; }
+.ob-segmented:has(> .ob-segmented-option:nth-of-type(5) > .ob-segmented-input:checked) { --ob-index: 4; }
+.ob-segmented-option {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+}
+/* The radio covers its segment. On touch it also covers the 4px inset above and below: 48px. */
+.ob-segmented-input {
+  position: absolute;
+  inset: calc(var(--ob-touch) * (var(--ob-segmented-inset) + var(--ob-border-hair)) * -1) 0;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  opacity: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.ob-segmented-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ob-space-8);
+  box-sizing: border-box;
+  height: max(var(--ob-segmented-h), calc(var(--ob-touch) * var(--ob-control-md)));
+  padding: 0 var(--ob-segmented-pad-x);
+  border-radius: var(--ob-radius-pill);
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  pointer-events: none;
+  transition:
+    color var(--ob-dur-base) var(--ob-ease-out),
+    scale var(--ob-dur-base) var(--ob-ease-out);
+}
+/* Icon segments (the look switch): 4px wider than tall, 44px on touch. Unchosen glyphs sit in the third ink. */
+.ob-segmented--icon .ob-segmented-label {
+  width: max(calc(var(--ob-segmented-h) + var(--ob-space-4)), calc(var(--ob-touch) * var(--ob-target-touch)));
+  padding: 0;
+  color: var(--ob-text-3);
+}
+.ob-segmented-input:checked + .ob-segmented-label {
+  color: var(--ob-text);
+  transition-delay: var(--ob-delay-label), 0ms;
+}
+/* Hover changes colour only, so it never looks like a second thumb. */
+@media (hover: hover) and (pointer: fine) {
+  .ob-segmented-option:hover > .ob-segmented-input:not(:checked, :disabled) + .ob-segmented-label { color: var(--ob-text); }
+}
+.ob-segmented-option.is-hover > .ob-segmented-input:not(:checked) + .ob-segmented-label { color: var(--ob-text); }
+/* Pressed: the label presses to 96% in 100ms. */
+.ob-segmented-option:active > .ob-segmented-input:not(:disabled) + .ob-segmented-label,
+.ob-segmented-option.is-active > .ob-segmented-label {
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-base), var(--ob-dur-fast);
+  transition-delay: 0ms;
+}
+/* Focus rings the whole track. With radios, focus always follows the choice, so the thumb already
+   shows which segment has it. */
+.ob-segmented:is(:has(.ob-segmented-input:focus-visible), .is-focus) {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-segmented-input:focus-visible { outline: none; }
+@supports not selector(:has(*)) {
+  .ob-segmented-input:focus-visible + .ob-segmented-label { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+}
+/* Solid: for a choice that changes content, such as the plan presets. */
+.ob-segmented--solid .ob-segmented-thumb { background-color: var(--ob-solid); box-shadow: none; }
+.ob-segmented--solid .ob-segmented-input:checked + .ob-segmented-label { color: var(--ob-text-inverse); }
+.ob-segmented:is(.is-disabled, :has(.ob-segmented-input:disabled)) .ob-segmented-label { color: var(--ob-text-3); }
+.ob-segmented:is(.is-disabled, :has(.ob-segmented-input:disabled)) .ob-segmented-input { cursor: not-allowed; }
+.ob-segmented:is(.is-disabled, :has(.ob-segmented-input:disabled)) .ob-segmented-thumb { background-color: var(--ob-fill); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+/* Without :has() the thumb cannot follow, so the chosen segment carries its own fill. */
+@supports not selector(:has(*)) {
+  .ob-segmented-thumb { display: none; }
+  .ob-segmented-input:checked + .ob-segmented-label { background-color: var(--ob-surface-raised); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset; }
+  .ob-segmented--solid .ob-segmented-input:checked + .ob-segmented-label { background-color: var(--ob-solid); box-shadow: none; }
+}
+
+/* Look swatches: filled for Dark, half for Hybrid, outlined for Light, in any theme. 10px. */
+.ob-look-swatch {
+  display: inline-block;
+  flex: none;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border: var(--ob-border-strong) solid currentColor;
+  border-radius: var(--ob-radius-glyph);
+}
+.ob-look-swatch.is-dark   { background: currentColor; }
+.ob-look-swatch.is-hybrid { background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+.ob-look-swatch.is-light  { background: transparent; }
+
+
+/* =============================================================================================
+   12. OPTION CHIPS: a quick answer in 1 tap. Chosen fills with ink, so it never looks like hover.
+   Single choice = radios. Any number = checkboxes with a plus that becomes a tick.
+   On touch the radio reaches 6px above and below the 32px chip (44px), and rows sit 12px apart.
+   ============================================================================================= */
+.ob-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--ob-space-8) + var(--ob-touch) * var(--ob-space-4)) var(--ob-space-8);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.ob-chips > legend:not(.ob-sr) { float: left; width: 100%; margin: 0 0 var(--ob-space-4); padding: 0; font: var(--ob-type-label); color: var(--ob-text); }
+.ob-chip {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  border-radius: var(--ob-radius-pill);
+}
+.ob-chip-input {
+  position: absolute;
+  inset: calc(var(--ob-touch) * (var(--ob-target-touch) - var(--ob-chip-h)) / -2) 0;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  opacity: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.ob-chip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  box-sizing: border-box;
+  height: var(--ob-chip-h);
+  padding: 0 var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-btn-2-bg);
+  color: var(--ob-btn-2-text);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  transition-property: background-color, border-color, color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-chip-label:has(> .ob-chip-glyph) { padding-left: var(--ob-space-12); }
+.ob-chip-glyph {
+  flex: none;
+  width: var(--ob-chip-glyph);
+  height: var(--ob-chip-glyph);
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+}
+/* The plus returns as an entrance (ease-out) and leaves as an exit (ease-in). */
+.ob-chip-plus { transition: opacity var(--ob-dur-base) var(--ob-ease-out); }
+.ob-chip-input:checked + .ob-chip-label .ob-chip-plus,
+.ob-chip.is-selected .ob-chip-plus {
+  opacity: 0;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-in);
+}
+.ob-chip.is-selected .ob-anim-check { stroke-dashoffset: 0; opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ob-chip:hover > .ob-chip-input:not(:checked, :disabled) + .ob-chip-label { background-color: var(--ob-btn-2-bg-hover); border-color: var(--ob-line-ui); }
+  .ob-chip:hover > .ob-chip-input:checked:not(:disabled) + .ob-chip-label { background-color: var(--ob-solid-hover); border-color: var(--ob-solid-hover); }
+}
+.ob-chip.is-hover > .ob-chip-label { background-color: var(--ob-btn-2-bg-hover); border-color: var(--ob-line-ui); }
+.ob-chip-input:checked + .ob-chip-label,
+.ob-chip.is-selected > .ob-chip-label {
+  background-color: var(--ob-solid);
+  border-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+}
+.ob-chip.is-hover > .ob-chip-input:checked + .ob-chip-label,
+.ob-chip.is-selected.is-hover > .ob-chip-label { background-color: var(--ob-solid-hover); border-color: var(--ob-solid-hover); }
+.ob-chip:active > .ob-chip-input:not(:disabled) + .ob-chip-label,
+.ob-chip.is-active > .ob-chip-label {
+  scale: var(--ob-press-scale-sm);
+  background-color: var(--ob-btn-2-bg-pressed);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-chip:active > .ob-chip-input:checked:not(:disabled) + .ob-chip-label { background-color: var(--ob-solid-hover); }
+.ob-chip-input:focus-visible + .ob-chip-label,
+.ob-chip.is-focus > .ob-chip-label {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-chip-input:disabled { cursor: not-allowed; }
+.ob-chip-input:disabled + .ob-chip-label,
+.ob-chip.is-disabled > .ob-chip-label {
+  border-color: var(--ob-line-strong);
+  background-color: transparent;
+  color: var(--ob-text-3);
+}
+.ob-chip-input:disabled:checked + .ob-chip-label { background-color: var(--ob-fill); border-color: var(--ob-line-strong); color: var(--ob-text-2); }
+
+
+/* =============================================================================================
+   13. THE COMPOSED FORM, THE ERROR SUMMARY AND THE SERVER ERROR
+   ============================================================================================= */
+.ob-form {
+  container: ob-form / inline-size;
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-16);
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.ob-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--ob-space-12);
+}
+@container ob-form (max-width: 460px) {
+  .ob-form-grid { grid-template-columns: minmax(0, 1fr); }
+}
+.ob-form-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.ob-form-terms { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-form-actions { display: grid; gap: var(--ob-space-12); }
+
+/* Error summary: top of the form. It takes focus on submit, so it needs no live role. */
+.ob-form-alert {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-16) var(--ob-space-20);
+  border: var(--ob-border-hair) solid transparent;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-danger-bg);
+  color: var(--ob-text);
+}
+.ob-form-alert:focus { outline: none; }
+.ob-form-alert:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-form-alert-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-weight-semibold) var(--ob-type-small-size)/var(--ob-type-small-leading) var(--ob-font-sans);
+  letter-spacing: -.005em;
+  color: var(--ob-text);
+}
+.ob-form-alert-title::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border: var(--ob-border-strong) solid var(--ob-danger);
+  border-radius: var(--ob-sq-radius);
+}
+.ob-form-alert-list {
+  display: grid;
+  gap: var(--ob-space-4);
+  margin: 0;
+  padding: 0 0 0 calc(var(--ob-sq-size) + var(--ob-space-8));
+  list-style: none;
+}
+.ob-form-alert-list a {
+  display: inline-block;
+  padding-block: calc(var(--ob-touch) * var(--ob-space-12));
+  color: var(--ob-danger);
+  font: var(--ob-type-small);
+  text-decoration: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-underline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-form-alert-list a:hover { text-decoration-thickness: var(--ob-border-focus); }
+}
+.ob-form-alert-list a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-glyph); }
+
+/* Server error: the request failed, not a field. Everything typed stays and the button returns to
+   its label. Block form sits above the submit; .ob-form-error--inline sits in a pill's message slot.
+   The element is a role="alert" region that is in the page before the failure, empty until then. */
+.ob-form-error {
+  box-sizing: border-box;
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-danger-bg);
+  color: var(--ob-text);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  text-wrap: pretty;
+}
+.ob-form-error::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border: var(--ob-border-strong) solid var(--ob-danger);
+  border-radius: var(--ob-sq-radius);
+}
+.ob-form-error--inline {
+  padding: 0;
+  background-color: transparent;
+  color: var(--ob-danger);
+  font: var(--ob-type-caption);
+}
+.ob-form-error--inline::before { border-color: currentColor; }
+/* Empty, it stays in the page (so the alert is heard when text arrives) but takes no room. */
+.ob-form-error:empty { padding: 0; background-color: transparent; }
+.ob-form-error:empty::before { content: none; }
+.ob-form-actions > .ob-form-error:empty { margin-bottom: calc(var(--ob-space-12) * -1); }
+
+
+/* =============================================================================================
+   14. REDUCED MOTION: travel stops, colour fades of 160ms or less stay.
+   Press, lift, stretch and delays collapse through their tokens (tokens.css sets them to 1 and 0).
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  :where(:root) { --ob-square-from: 1; }
+  .ob-switch-thumb { transition: background-color var(--ob-dur-base) var(--ob-ease-out); }
+  .ob-radio-input::before { transition: opacity var(--ob-dur-base) var(--ob-ease-out); }
+  .ob-select::after { transition: border-color var(--ob-dur-base) var(--ob-ease-out); }
+  .ob-segmented-thumb { transition: none; }
+  /* Ticks appear whole and fade in; they never draw. */
+  .ob-check .ob-check-mark .ob-anim-check,
+  .ob-chip .ob-chip-glyph .ob-anim-check {
+    stroke-dashoffset: 0;
+    transition: opacity var(--ob-dur-fast) var(--ob-ease-out);
+  }
+  .ob-check,
+  .ob-radio-input,
+  .ob-chip-label,
+  .ob-segmented-label,
+  .ob-switch-thumb { scale: none !important; }
+  .ob-switch-note.is-saving { animation-name: ob-fade-in; }
+}
+
+
+/* =============================================================================================
+   15. FORCED COLOURS: box-shadow edges vanish, so state falls back to system colours.
+   ============================================================================================= */
+@media (forced-colors: active) {
+  .ob-pill-field { border-color: CanvasText; }
+  .ob-switch-track { border: 1px solid CanvasText; box-shadow: none; }
+  .ob-switch-thumb { forced-color-adjust: none; background-color: CanvasText; }
+  .ob-switch-input:checked + .ob-switch-track { forced-color-adjust: none; background-color: Highlight; border-color: Highlight; }
+  .ob-switch-input:checked + .ob-switch-track .ob-switch-thumb { background-color: HighlightText; }
+  .ob-check-input:is(:checked, :indeterminate) { forced-color-adjust: none; background-color: Highlight; border-color: Highlight; }
+  .ob-check-mark { stroke: HighlightText; }
+  .ob-radio-input::before { forced-color-adjust: none; background-color: Highlight; }
+  .ob-segmented { border-color: CanvasText; }
+  .ob-segmented-thumb { forced-color-adjust: none; background-color: Highlight; border: 1px solid Highlight; }
+  .ob-segmented-input:checked + .ob-segmented-label { forced-color-adjust: none; color: HighlightText; }
+  .ob-chip-input:checked + .ob-chip-label { forced-color-adjust: none; background-color: Highlight; border-color: Highlight; color: HighlightText; }
+  .ob-select::after { border-color: CanvasText; }
+  .ob-form-alert,
+  .ob-form-error:not(.ob-form-error--inline) { border: 1px solid CanvasText; }
+  .ob-confirm-thanks:not(:empty)::before { background: CanvasText; }
+  :is(.ob-input, .ob-textarea, .ob-select-input, .ob-affix-field, .ob-pill-field):is([aria-invalid="true"], .is-error, :has([aria-invalid="true"])) { border-width: 2px; }
+  /* Disabled reads as GrayText, so it never looks the same as enabled. */
+  :is(.ob-input, .ob-textarea, .ob-select-input, .ob-check-input, .ob-radio-input):disabled,
+  .ob-affix-field:has(> :disabled),
+  .ob-pill-field:has(.ob-pill-input:disabled),
+  .ob-chip-input:disabled + .ob-chip-label,
+  .ob-switch:has(:disabled) .ob-switch-track,
+  .ob-segmented:has(:disabled) .ob-segmented-label { color: GrayText; border-color: GrayText; }
+  .ob-switch:has(:disabled) .ob-switch-thumb,
+  .ob-radio-input:disabled::before { background-color: GrayText; }
+  .ob-choice:has(:disabled),
+  .ob-switch:has(:disabled) { color: GrayText; }
+}
+
+
+/* =============================================================================================
+   GUIDELINE LAYOUT  .ds-forms-*   (documentation only; never ship these in product)
+   ============================================================================================= */
+.ds-forms { color: var(--ob-text); }
+.ds-forms-head { display: grid; gap: var(--ob-space-16); max-width: 46rem; }
+.ds-forms-kicker {
+  margin: 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-forms-title {
+  margin: 0;
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  text-wrap: balance;
+  max-width: 22ch;
+}
+.ds-forms-intro {
+  margin: 0;
+  font: var(--ob-type-body-lg);
+  color: var(--ob-text-2);
+  max-width: var(--ob-measure-lede);
+  text-wrap: pretty;
+}
+.ds-forms-index { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: var(--ob-space-8) 0 0; padding: 0; list-style: none; }
+.ds-forms-index a {
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  text-decoration: none;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), border-color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ds-forms-index a:hover { color: var(--ob-text); border-color: var(--ob-line-ui); }
+}
+.ds-forms-index a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+.ds-forms-comp {
+  display: grid;
+  gap: var(--ob-space-24);
+  margin-top: var(--ob-space-64);
+  padding-top: var(--ob-space-64);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: var(--ob-space-80);
+  min-width: 0;
+}
+.ds-forms-comp-head { display: grid; gap: var(--ob-space-12); max-width: 46rem; }
+.ds-forms-h3 {
+  margin: 0;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  text-wrap: balance;
+  max-width: 24ch;
+}
+.ds-forms-lede { margin: 0; font: var(--ob-type-body); color: var(--ob-text-2); max-width: var(--ob-measure); text-wrap: pretty; }
+
+/* Stages. The assembler styles .ds-stage; this zero-specificity frame only applies when it does not. */
+:where(.ds-forms .ds-stage) {
+  padding: clamp(16px, 3vw, 32px);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+}
+.ds-forms-stagein { container: ds-forms-stage / inline-size; display: grid; gap: var(--ob-space-32); min-width: 0; }
+.ds-forms-stagehead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--ob-space-4) var(--ob-space-12); }
+.ds-forms-theme {
+  margin: 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text);
+}
+.ds-forms-themenote { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); }
+.ds-forms-block { display: grid; gap: var(--ob-space-16); min-width: 0; }
+.ds-forms-blocklabel {
+  margin: 0;
+  padding-bottom: var(--ob-space-8);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-forms-blocknote { margin: calc(var(--ob-space-4) * -1) 0 0; font: var(--ob-type-caption); color: var(--ob-text-2); max-width: var(--ob-measure); text-wrap: pretty; }
+
+/* Anatomy: the pinned specimen beside its legend. */
+.ds-forms-ana { display: grid; gap: var(--ob-space-24); align-items: center; }
+@container ds-forms-stage (min-width: 680px) {
+  .ds-forms-ana { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--ob-space-40); }
+  .ds-forms-ana--stack { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-24); }
+  .ds-forms-ana--stack .ds-forms-legend { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); column-gap: var(--ob-space-32); }
+}
+.ds-forms-ana-spec {
+  min-width: 0;
+  padding: var(--ob-space-24) var(--ob-space-20);
+  border: var(--ob-border-hair) dashed var(--ob-line);
+  border-radius: var(--ob-radius-md);
+}
+.ds-forms-ana-spec--zoom { display: grid; place-items: center; min-height: 168px; }
+.ds-forms-ana-spec--zoom > * { zoom: 1.6; }
+.ds-forms-ana-spec--zoom .ds-forms-pin { zoom: .625; }
+.ds-forms-legend { display: grid; gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
+.ds-forms-legend li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: start;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-forms-legend li p { margin: 0; text-wrap: pretty; }
+.ds-forms-legend b { display: block; font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+.ds-forms-pin {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-weight-medium) var(--ob-type-label-mono-size)/1 var(--ob-font-mono);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  user-select: none;
+}
+.ds-forms-legend .ds-forms-pin { margin-top: 1px; }
+.ds-forms-pinwrap { position: relative; display: block; min-width: 0; }
+.ds-forms-pinwrap--inline { display: inline-block; }
+.ds-forms-pinrow { display: inline-flex; align-items: center; gap: var(--ob-space-8); min-width: 0; }
+.ds-forms-pin--at {
+  position: absolute;
+  z-index: 3;
+  top: var(--y, -9px);
+  right: var(--r, auto);
+  bottom: var(--b, auto);
+  left: var(--x, auto);
+}
+.ds-forms-stack { display: grid; gap: var(--ob-space-28); }
+.ds-forms-formwrap { max-width: var(--ob-container-xs); }
+.ds-forms-countpin { grid-column: 2; grid-row: 1; justify-self: end; }
+
+/* Variants and state matrices wrap to 1 column at phone width. */
+.ds-forms-variants,
+.ds-forms-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 232px), 1fr));
+  gap: var(--ob-space-32) var(--ob-space-24);
+  align-items: start;
+}
+.ds-forms-variants { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.ds-forms-matrix--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); }
+.ds-forms-matrix--mid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.ds-forms-matrix--narrow { grid-template-columns: repeat(auto-fill, minmax(min(100%, 176px), 1fr)); }
+.ds-forms-cell { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; }
+.ds-forms-cell--full { grid-column: 1 / -1; }
+.ds-forms-cellhead { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-8); min-height: var(--ob-target-min); }
+.ds-forms-state {
+  margin: 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-forms-narrow { max-width: 340px; }
+
+/* Fields on cards: the 3 surfaces a field can sit on. */
+.ds-forms-surfaces { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 232px), 1fr)); gap: var(--ob-space-16); }
+.ds-forms-surface {
+  display: grid;
+  gap: var(--ob-space-12);
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1);
+}
+.ds-forms-surface--raised { background: var(--ob-surface-raised); }
+.ds-forms-surface--hover { background: var(--ob-surface-hover); }
+
+/* Phone frame: 375px wide with the touch flag on, so the 44px targets show at any screen size. */
+.ds-forms-phone {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 375px;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-bg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+}
+.ds-forms-phone-in { display: grid; gap: var(--ob-space-24); }
+.ds-forms-phonegrid { display: grid; gap: var(--ob-space-24) var(--ob-space-40); align-items: start; }
+@container ds-forms-stage (min-width: 760px) {
+  .ds-forms-phonegrid { grid-template-columns: 375px minmax(0, 1fr); }
+}
+/* Hit areas drawn for the guideline: a dashed outline on each touch target. */
+.ds-forms-hits :is(.ob-choice, .ob-switch, .ob-segmented-input, .ob-chip-input, .ob-search-clear, .ob-form-alert-list a, .ob-input, .ob-select-input) {
+  outline: var(--ob-border-hair) dashed var(--ob-line-ui);
+  outline-offset: 0;
+}
+.ds-forms-hits .ob-segmented-input,
+.ds-forms-hits .ob-chip-input { opacity: 1; background: transparent; }
+.ds-forms-hits .ob-search-clear { opacity: 1; visibility: visible; }
+
+/* Hybrid: a glossy-black product object on the paper page. */
+.ds-forms-object {
+  display: grid;
+  gap: var(--ob-space-20);
+  min-width: 0;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-lg);
+}
+.ds-forms-object-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  margin: 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-forms-hybridgrid { display: grid; gap: var(--ob-space-32); align-items: start; }
+@container ds-forms-stage (min-width: 760px) {
+  .ds-forms-hybridgrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+.ds-forms-edge {
+  display: grid;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-4);
+  border-radius: var(--ob-radius-md);
+}
+.ds-forms-edge--tight { padding: 0; border-radius: var(--ob-radius-sm); }
+.ds-forms-edge .ob-input { --ob-field-radius: var(--ob-radius-sm); }
+
+/* Replay buttons: the assembler wires them; this zero-specificity look applies only if it does not style them. */
+:where(.ds-forms .ds-replay) {
+  height: var(--ob-control-xs);
+  padding: 0 var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-2);
+  font: var(--ob-weight-medium) 12px/1 var(--ob-font-sans);
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+:where(.ds-forms .ds-replay):hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+:where(.ds-forms .ds-replay):focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* Specs, motion, rules and accessibility, in doc ink. */
+.ds-forms-details { display: grid; gap: var(--ob-space-40); min-width: 0; }
+.ds-forms-detail { display: grid; gap: var(--ob-space-12); min-width: 0; }
+.ds-forms-sub {
+  margin: 0;
+  font: var(--ob-weight-semibold) var(--ob-type-body-size)/1.35 var(--ob-font-sans);
+  letter-spacing: -.012em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.ds-forms-tablewrap {
+  overflow-x: auto;
+  border: var(--ob-border-hair) solid var(--ob-line-subtle);
+  border-radius: var(--ob-radius-md);
+  -webkit-overflow-scrolling: touch;
+}
+.ds-forms-tablewrap:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ds-forms-table { width: 100%; min-width: 620px; border-collapse: collapse; font: var(--ob-type-small); }
+.ds-forms-table th {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+  background-color: var(--ob-fill-subtle);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--ob-text-3);
+}
+.ds-forms-table td {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+  vertical-align: top;
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ds-forms-table td:first-child { color: var(--ob-text); font-weight: var(--ob-weight-medium); white-space: nowrap; }
+.ds-forms-table tr:last-child td { border-bottom: 0; }
+.ds-forms-table td code { white-space: nowrap; }
+.ds-forms-code,
+.ds-forms code {
+  padding: 1px 5px;
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-fill);
+  color: var(--ob-text);
+  font: var(--ob-weight-regular) 13px/1.4 var(--ob-font-mono);
+  overflow-wrap: anywhere;
+}
+.ds-forms-rules { display: grid; gap: var(--ob-space-24); }
+@media (min-width: 760px) { .ds-forms-rules { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--ob-space-40); } }
+.ds-forms-listlabel {
+  margin: 0 0 var(--ob-space-12);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-forms-list { display: grid; gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
+.ds-forms-list li {
+  display: grid;
+  grid-template-columns: var(--ob-sq-size) minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ds-forms-list li::before { content: ""; box-sizing: border-box; width: var(--ob-sq-size); height: var(--ob-sq-size); border-radius: var(--ob-sq-radius); background-color: var(--ob-text); }
+.ds-forms-list--dont li::before { background-color: transparent; border: var(--ob-border-strong) solid var(--ob-text-3); }
+.ds-forms-list b { color: var(--ob-text); font-weight: var(--ob-weight-semibold); }
+.ds-forms-ratio { font-variant-numeric: tabular-nums; color: var(--ob-text); font-weight: var(--ob-weight-medium); white-space: nowrap; }
+
+/* Doc-only cap: a working ring in a specimen turns 3 times, then rests. Specimens show busy work as
+   the .is-loading still frame, so this only guards a pasted product snippet. */
+.ds-forms .ds-stage .ob-sig.is-spin :is(.ob-sig-rot, .ob-sig-orb),
+.ds-forms .ds-stage .ob-btn[aria-busy="true"] .ob-sig :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 3; }
+
+/* Replay demos. Each one plays the component's own transition as a keyframe, with the same tokens,
+   so a reader can watch it again. Toggling .is-replay swaps to the -r twin, which restarts it. */
+@media (prefers-reduced-motion: no-preference) {
+  .ds-forms-demo .ob-check-input:checked { animation: ds-forms-fill var(--ob-dur-fast) var(--ob-ease-out) backwards; }
+  .ds-forms-demo .ob-check-input:checked ~ .ob-check-mark .ob-anim-check { animation: ds-forms-draw var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-tick) backwards; }
+  .ds-forms-demo.is-replay .ob-check-input:checked { animation-name: ds-forms-fill-r; }
+  .ds-forms-demo.is-replay .ob-check-input:checked ~ .ob-check-mark .ob-anim-check { animation-name: ds-forms-draw-r; }
+
+  .ds-forms-demo .ob-radio-input:checked { animation: ds-forms-ring var(--ob-dur-base) var(--ob-ease-out) backwards; }
+  .ds-forms-demo .ob-radio-input:checked::before { animation: ds-forms-square var(--ob-dur-base) var(--ob-ease-out) backwards; }
+  .ds-forms-demo.is-replay .ob-radio-input:checked { animation-name: ds-forms-ring-r; }
+  .ds-forms-demo.is-replay .ob-radio-input:checked::before { animation-name: ds-forms-square-r; }
+
+  .ds-forms-demo .ob-switch-input:checked + .ob-switch-track { animation: ds-forms-track var(--ob-dur-base) var(--ob-ease-out) backwards; }
+  .ds-forms-demo .ob-switch-input:checked + .ob-switch-track .ob-switch-thumb { animation: ds-forms-thumb var(--ob-dur-base) var(--ob-ease-out) backwards; }
+  .ds-forms-demo.is-replay .ob-switch-input:checked + .ob-switch-track { animation-name: ds-forms-track-r; }
+  .ds-forms-demo.is-replay .ob-switch-input:checked + .ob-switch-track .ob-switch-thumb { animation-name: ds-forms-thumb-r; }
+
+  .ds-forms-demo .ob-segmented-thumb { animation: ds-forms-slide var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
+  .ds-forms-demo .ob-segmented-input:checked + .ob-segmented-label { animation: ds-forms-label var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-label) backwards; }
+  .ds-forms-demo.is-replay .ob-segmented-thumb { animation-name: ds-forms-slide-r; }
+  .ds-forms-demo.is-replay .ob-segmented-input:checked + .ob-segmented-label { animation-name: ds-forms-label-r; }
+
+  .ds-forms-demo .ob-chip-input:checked + .ob-chip-label { animation: ds-forms-chip var(--ob-dur-base) var(--ob-ease-out) backwards; }
+  .ds-forms-demo .ob-chip-input:checked + .ob-chip-label .ob-anim-check { animation: ds-forms-draw var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-tick) backwards; }
+  .ds-forms-demo.is-replay .ob-chip-input:checked + .ob-chip-label { animation-name: ds-forms-chip-r; }
+  .ds-forms-demo.is-replay .ob-chip-input:checked + .ob-chip-label .ob-anim-check { animation-name: ds-forms-draw-r; }
+
+  /* A replayed panel draws its mark again. */
+  .ds-forms .is-replay .ob-sig.is-play .ob-sig-draw { animation-name: ob-sig-draw-r; }
+  .ds-forms .is-replay .ob-sig.is-play .ob-sig-sq { animation-name: ob-sig-snap-r, ob-sig-blink-r; }
+
+  /* Search: the key cap leaves and the clear button arrives, crossing in 100ms. */
+  .ds-forms-xfade .ob-kbd { animation: ds-forms-out var(--ob-dur-fast) var(--ob-ease-out) 600ms backwards; }
+  .ds-forms-xfade .ob-search-clear { animation: ds-forms-in var(--ob-dur-fast) var(--ob-ease-out) 600ms backwards; }
+  .ds-forms-xfade.is-replay .ob-kbd { animation-name: ds-forms-out-r; }
+  .ds-forms-xfade.is-replay .ob-search-clear { animation-name: ds-forms-in-r; }
+
+  /* Error clears: the edge returns in 160ms, the line leaves in 100ms and the helper fades back. */
+  .ds-forms-clear .ob-input { animation: ds-forms-unerr var(--ob-dur-base) var(--ob-ease-out) 900ms backwards; }
+  .ds-forms-clear .ds-forms-clear-err { animation: ds-forms-leave var(--ob-dur-fast) var(--ob-ease-in) 900ms forwards; }
+  .ds-forms-clear .ob-field-help { animation: ds-forms-in var(--ob-dur-base) var(--ob-ease-out) 1000ms backwards; }
+  .ds-forms-clear.is-replay .ob-input { animation-name: ds-forms-unerr-r; }
+  .ds-forms-clear.is-replay .ds-forms-clear-err { animation-name: ds-forms-leave-r; }
+  .ds-forms-clear.is-replay .ob-field-help { animation-name: ds-forms-in-r; }
+
+  /* After a pick: the thanks line fades in under the chosen chip. */
+  .ds-forms-demo.is-replay .ob-anim-fade { animation-name: ob-fade-in-r; }
+
+  /* The action lands: the square snaps home again. */
+  .ds-forms .ob-btn.is-done.is-replay .ob-sig .ob-sig-sq { animation-name: ob-sig-snap-r; }
+
+  /* Free report, step 2: the rows open 0fr to 1fr in 240ms and the fields fade in from 80ms. */
+  .ds-forms-grow .ob-pill-more { animation: ds-forms-rows var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
+  .ds-forms-grow .ob-pill-more-in { animation: ds-forms-in var(--ob-dur-base) var(--ob-ease-out) 80ms backwards; }
+  .ds-forms-grow.is-replay .ob-pill-more { animation-name: ds-forms-rows-r; }
+  .ds-forms-grow.is-replay .ob-pill-more-in { animation-name: ds-forms-in-r; }
+}
+/* The error-clear demo keeps its line in the same slot as the helper. */
+.ds-forms-clear .ob-field-foot > :is(.ob-field-help, .ds-forms-clear-err) { grid-row: 1; }
+.ds-forms .ds-forms-clear .ob-field-foot > .ob-field-help { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .ds-forms-clear .ds-forms-clear-err { display: none; }
+}
+
+/* The waitlist sequence, end to end, from the moment of submit:
+     0ms      nothing changes (--ob-delay-busy)
+     300ms    the label fades out and the ring fades in (100ms); the edge drops to a hairline
+     300ms    the ring turns once (1400ms, linear)
+     1700ms   it lands: the square snaps home (500ms --ob-snap) and holds --ob-success-hold
+     2600ms   the form leaves (100ms --ob-ease-in)
+     2700ms   the thank-you panel rises 8px (400ms --ob-ease-out) and its mark draws on
+   Doc only: product code swaps aria-busy, .is-done, .is-leaving and the panel at these moments. */
+.ds-forms-seq { --ds-seq-busy: var(--ob-delay-busy, 300ms); --ds-seq-land: 1700ms; --ds-seq-leave: 2600ms; --ds-seq-panel: 2700ms;
+  display: grid; min-width: 0; }
+.ds-forms-seq > * { grid-area: 1 / 1; }
+.ds-forms-seq .ob-confirm { align-self: start; }
+@media (prefers-reduced-motion: no-preference) {
+  .ds-forms-seq .ob-pill-field { animation: ds-forms-seq-edge var(--ob-dur-base) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-btn-label { animation: ds-forms-out var(--ob-dur-fast) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-btn-busy { animation: ds-forms-on var(--ob-dur-fast) var(--ob-ease-out) var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-btn-busy .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-spin) linear var(--ds-seq-busy) 1; }
+  .ds-forms-seq .ob-btn-busy .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-spin) linear var(--ds-seq-busy) 1; }
+  .ds-forms-seq .ob-btn-busy .ob-sig-sq { animation: ob-sig-snap 500ms var(--ob-snap) var(--ds-seq-land) forwards; }
+  .ds-forms-seq .ob-pill-form { animation: ds-forms-gone var(--ob-dur-fast) var(--ob-ease-in) var(--ds-seq-leave) forwards; }
+  .ds-forms-seq .ob-confirm { animation: ds-forms-rise var(--ob-dur-slow) var(--ob-ease-out) var(--ds-seq-panel) both; }
+  .ds-forms-seq .ob-confirm .ob-sig-draw { animation-delay: var(--ds-seq-panel); }
+  .ds-forms-seq .ob-confirm .ob-sig-sq { animation-delay: calc(var(--ds-seq-panel) + var(--ob-sig-snap-delay)), calc(var(--ds-seq-panel) + var(--ob-sig-blink-delay)); }
+
+  .ds-forms-seq.is-replay .ob-pill-field { animation-name: ds-forms-seq-edge-r; }
+  .ds-forms-seq.is-replay .ob-btn-label { animation-name: ds-forms-out-r; }
+  .ds-forms-seq.is-replay .ob-btn-busy { animation-name: ds-forms-on-r; }
+  .ds-forms-seq.is-replay .ob-btn-busy .ob-sig-rot { animation-name: ds-forms-spin-r; }
+  .ds-forms-seq.is-replay .ob-btn-busy .ob-sig-orb { animation-name: ds-forms-spin-rev-r; }
+  .ds-forms-seq.is-replay .ob-btn-busy .ob-sig-sq { animation-name: ob-sig-snap-r; }
+  .ds-forms-seq.is-replay .ob-pill-form { animation-name: ds-forms-gone-r; }
+  .ds-forms-seq.is-replay .ob-confirm { animation-name: ds-forms-rise-r; }
+}
+/* Reduced motion: the same order as fades only. No turn, no snap, no rise. */
+@media (prefers-reduced-motion: reduce) {
+  .ds-forms-seq .ob-btn-label { animation: ds-forms-out var(--ob-dur-fast) linear var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-btn-busy { animation: ds-forms-on var(--ob-dur-fast) linear var(--ds-seq-busy) forwards; }
+  .ds-forms-seq .ob-pill-form { animation: ds-forms-gone var(--ob-dur-fast) linear var(--ds-seq-leave) forwards; }
+  .ds-forms-seq .ob-confirm { animation: ds-forms-on var(--ob-dur-base) linear var(--ds-seq-panel) both; }
+  .ds-forms-seq.is-replay .ob-btn-label { animation-name: ds-forms-out-r; }
+  .ds-forms-seq.is-replay .ob-btn-busy { animation-name: ds-forms-on-r; }
+  .ds-forms-seq.is-replay .ob-pill-form { animation-name: ds-forms-gone-r; }
+  .ds-forms-seq.is-replay .ob-confirm { animation-name: ds-forms-on-r; }
+}
+
+@keyframes ds-forms-fill     { from { background-color: var(--ob-field-bg); border-color: var(--ob-line-ui); } }
+@keyframes ds-forms-fill-r   { from { background-color: var(--ob-field-bg); border-color: var(--ob-line-ui); } }
+@keyframes ds-forms-draw     { from { stroke-dashoffset: 1; } }
+@keyframes ds-forms-draw-r   { from { stroke-dashoffset: 1; } }
+@keyframes ds-forms-ring     { from { border-color: var(--ob-line-ui); } }
+@keyframes ds-forms-ring-r   { from { border-color: var(--ob-line-ui); } }
+@keyframes ds-forms-square   { from { opacity: 0; scale: var(--ob-square-from); } }
+@keyframes ds-forms-square-r { from { opacity: 0; scale: var(--ob-square-from); } }
+@keyframes ds-forms-track    { from { background-color: transparent; box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-ui) inset; } }
+@keyframes ds-forms-track-r  { from { background-color: transparent; box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-line-ui) inset; } }
+@keyframes ds-forms-thumb    { from { translate: 0 0; background-color: var(--ob-text-3); } }
+@keyframes ds-forms-thumb-r  { from { translate: 0 0; background-color: var(--ob-text-3); } }
+@keyframes ds-forms-slide    { from { translate: 0 0; } }
+@keyframes ds-forms-slide-r  { from { translate: 0 0; } }
+@keyframes ds-forms-label    { from { color: var(--ob-text-2); } }
+@keyframes ds-forms-label-r  { from { color: var(--ob-text-2); } }
+@keyframes ds-forms-chip     { from { background-color: var(--ob-btn-2-bg); border-color: var(--ob-line-strong); color: var(--ob-btn-2-text); } }
+@keyframes ds-forms-chip-r   { from { background-color: var(--ob-btn-2-bg); border-color: var(--ob-line-strong); color: var(--ob-btn-2-text); } }
+@keyframes ds-forms-in       { from { opacity: 0; } }
+@keyframes ds-forms-in-r     { from { opacity: 0; } }
+@keyframes ds-forms-out      { from { opacity: 1; } to { opacity: 0; } }
+@keyframes ds-forms-out-r    { from { opacity: 1; } to { opacity: 0; } }
+@keyframes ds-forms-on       { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ds-forms-on-r     { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ds-forms-leave    { to { opacity: 0; } }
+@keyframes ds-forms-leave-r  { to { opacity: 0; } }
+@keyframes ds-forms-gone     { to { opacity: 0; visibility: hidden; } }
+@keyframes ds-forms-gone-r   { to { opacity: 0; visibility: hidden; } }
+@keyframes ds-forms-rise     { from { opacity: 0; translate: 0 var(--ob-shift-sm, 8px); visibility: hidden; } 1% { visibility: visible; } to { opacity: 1; translate: 0 0; visibility: visible; } }
+@keyframes ds-forms-rise-r   { from { opacity: 0; translate: 0 var(--ob-shift-sm, 8px); visibility: hidden; } 1% { visibility: visible; } to { opacity: 1; translate: 0 0; visibility: visible; } }
+@keyframes ds-forms-unerr    { from { border-color: var(--ob-danger); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset; } }
+@keyframes ds-forms-unerr-r  { from { border-color: var(--ob-danger); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset; } }
+@keyframes ds-forms-rows     { from { grid-template-rows: 0fr; } }
+@keyframes ds-forms-rows-r   { from { grid-template-rows: 0fr; } }
+@keyframes ds-forms-seq-edge   { to { border-color: var(--ob-line); } }
+@keyframes ds-forms-seq-edge-r { to { border-color: var(--ob-line); } }
+@keyframes ds-forms-spin-r     { to { transform: rotate(360deg); } }
+@keyframes ds-forms-spin-rev-r { to { transform: rotate(-360deg); } }

@@ -1,0 +1,139 @@
+/* app-run: Records. One run's signed record for a client: the run log with captures, receipt 4 of 9 open,
+   Verify, the link to forward. Story: rows land, a person opens the checkout step, its receipt fills,
+   they click Verify, the chain is checked link by link, "Signature valid · chain intact", the link appears.
+   Rest state = the finished scene. */
+
+.app-run .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
+.app-run .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .04)}
+.app-run .ax-clients a.on i{background:var(--fg-2)}
+
+/* header */
+.app-run .rn-h{height:24px}
+.ilwrap .app-run .rn-h .sig{width:16px;height:16px;color:var(--fg)}
+.app-run .rn-h h2{white-space:nowrap}
+.app-run .rn-h h2 i{font-style:normal;font-weight:500;color:var(--fg-3);margin:0 1px}
+.app-run .rn-h .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+
+.app-run .rn-grid{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,1fr);gap:12px;min-height:0}
+
+/* ---------- the run log ---------- */
+.app-run .rn-log{display:flex;flex-direction:column;padding:10px 8px 8px;min-height:0}
+.app-run .rn-hd,.app-run .rc-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;height:26px;padding:0 8px 8px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.app-run .rn-hd b,.app-run .rc-hd b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-run .rn-hd span{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-run .rn-log ol{position:relative;z-index:0;display:grid}
+.app-run .rn-r{position:relative;display:grid;grid-template-columns:36px 7px minmax(0,1fr);column-gap:11px;padding:5px 8px;border-radius:7px}
+.app-run .rn-r time{font:400 11px/16px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-run .rn-r .nd{position:relative;z-index:1;width:7px;height:7px;margin-top:4.5px;border-radius:2px;background:var(--fg-3)}
+.app-run .rn-r p{font:400 11px/16px var(--mono);color:var(--fg);white-space:nowrap}
+.app-run .rn-r p b{font-weight:500;color:var(--fg)}
+/* the spine: each step draws its own segment down to the next node; the 48 hour wait is dashed */
+.app-run .rn-r::before{content:"";position:absolute;left:58px;top:13px;bottom:-13px;width:1px;background:var(--line-3)}
+.app-run .rn-r.r7::before{display:none}
+.app-run .rn-r.r4::before{background:repeating-linear-gradient(to bottom,var(--line-3) 0 3px,transparent 3px 6px)}
+.app-run .rn-r.r4 .nd,.app-run .rn-r.r7 .nd{background:var(--fg)}
+.app-run .rn-r.r5 .nd{background:var(--panel-2);box-shadow:0 0 0 1.5px var(--fg) inset}
+/* the step whose receipt is open: raised fill, control edge */
+.app-run .rn-r.r4::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:7px;background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-run .av{display:inline-grid;place-items:center;width:18px;height:16px;margin-left:4px;border-radius:4px;vertical-align:top;font:600 9.5px/1 var(--sans);color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* captures: the pages the shoppers saw */
+.app-run .rn-cap{width:80px;height:46px;margin-top:5px}
+.app-run .rn-cap .cb{display:grid;min-height:0}
+.app-run .cap-bag .cb{grid-template-columns:1fr 40px}
+.app-run .cap-bag .pg{display:grid;grid-template-rows:1fr 4px 4px;gap:3px;padding:5px 6px 5px}
+.app-run .cap-bag .pg .t1{width:80%}
+.app-run .cap-bag .pg .t2{width:44%}
+.app-run .cap-bag .dr{display:grid;grid-template-rows:12px 4px 4px 1fr;gap:3px;align-content:start;padding:5px;background:#F6F5F1;box-shadow:-1px 0 0 #D2CEC6}
+.app-run .cap-bag .dr .th{width:12px}
+.app-run .cap-bag .dr .ln{width:90%}
+.app-run .cap-bag .dr .ln.s{width:55%}
+.app-run .rn-cap i.bt{align-self:end;height:7px;border-radius:2px;background:#8C887F}
+.app-run .cap-co .cb{grid-template-columns:1fr 34px}
+.app-run .cap-co .fm{display:grid;grid-template-rows:6px 6px 6px 1fr;gap:3px;padding:5px 6px}
+.app-run .cap-co .fm .f{background:#F6F5F1;box-shadow:0 0 0 1px #D2CEC6 inset}
+.app-run .cap-co .fm .f.h{width:60%}
+.app-run .cap-co .fm .pay{background:none;border-radius:2px;outline:1px dashed #9E9A91;outline-offset:-1px;position:relative}
+.app-run .cap-co .fm .pay::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:1px;box-shadow:0 0 0 1.2px #8C887F inset}
+.app-run .cap-co .sm{display:grid;grid-template-rows:10px 4px 4px;gap:3px;align-content:start;padding:5px;background:#DEDBD4}
+.app-run .cap-co .sm .th{width:10px}
+.app-run .cap-co .sm .ln.s{width:60%}
+
+/* ---------- the receipt ---------- */
+.app-run .rn-rc{display:flex;flex-direction:column;padding:10px 12px 12px;min-height:0;font:400 11px/16px var(--mono)}
+.app-run .rc-hd{padding:0 0 8px;margin-bottom:12px}
+.app-run .rc-chain{position:relative;display:flex;align-items:center;gap:4px}
+.app-run .rc-chain::before{content:"";position:absolute;left:2px;right:2px;top:50%;height:1px;background:var(--line-3)}
+.app-run .rc-chain i{position:relative;width:5px;height:5px;border-radius:1.5px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-run .rc-chain i::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--fg-3)}
+.app-run .rc-chain i.me{width:7px;height:7px;border-radius:2px}
+.app-run .rc-chain i.me::after{background:var(--fg)}
+.app-run .rc-dl{display:grid;gap:12px;margin:0}
+.app-run .rc-dl > div{display:grid;grid-template-columns:54px minmax(0,1fr);column-gap:8px}
+.app-run .rc-dl dt{font:400 10.5px/16px var(--sans);color:var(--fg-3)}
+.app-run .rc-dl dd{position:relative;margin:0;color:var(--fg)}
+.app-run .nw{white-space:nowrap}
+.app-run .rc-sig{display:grid;gap:3px}
+.app-run .rc-k{font:400 10.5px/14px var(--sans);color:var(--fg-3)}
+.app-run .rc-sv{position:relative;white-space:nowrap;color:var(--fg)}
+/* skeleton bars, shown only while the receipt loads during play */
+.app-run .sk{position:absolute;left:0;top:4px;height:8px;border-radius:3px;background:rgb(var(--fg-rgb) / .08);opacity:0}
+.app-run .rc-hd .fl{position:relative}
+.app-run .rc-hd .sk{top:1px;height:10px}
+
+.app-run .rc-ft{margin-top:auto;display:grid;gap:10px;padding-top:12px;border-top:1px dashed var(--line-2)}
+.app-run .rc-slot{display:grid;height:28px}
+.app-run .rc-slot > div{grid-area:1/1;display:flex;align-items:center;gap:10px;min-width:0}
+.app-run .rc-pre,.app-run .rc-busy{opacity:0}
+.app-run .rc-vb{height:28px;padding:0 14px;font-size:12px}
+.app-run .rc-hint{font:400 11px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-run .rc-busy,.app-run .rc-ok{padding:0 10px;border-radius:7px;background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset;white-space:nowrap}
+.app-run .rc-busy{gap:8px!important;font:400 11px/1 var(--mono);color:var(--fg-2)}
+.ilwrap .app-run .rc-busy .sig{width:12px;height:12px;color:var(--fg)}
+.app-run .rc-ok{gap:8px!important;font:500 11.5px/1 var(--sans);color:var(--fg)}
+
+/* the link to forward: a field with a copy button */
+.app-run .rc-link{display:flex;align-items:center;gap:8px;height:26px;padding:0 3px 0 10px;border-radius:7px;background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line-ui) inset;color:var(--fg);white-space:nowrap}
+.app-run .rc-link > span:first-child{font:400 11px/1 var(--mono);min-width:0}
+.app-run .rc-cp{margin-left:auto;display:grid;place-items:center;width:20px;height:20px;border-radius:5px;background:rgb(var(--fg-rgb) / .07);color:var(--fg-2)}
+.ilwrap .app-run .rc-link .rc-cp svg{width:12px;height:12px}
+
+/* pointer */
+.ilwrap .app-run .appx svg.rn-ptr{width:16px;height:16px}
+.app-run .rn-ptr{transform-origin:3px 1.5px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes rn-out{from{opacity:1}to{opacity:0}}
+@keyframes rn-mid{0%{opacity:0}18%{opacity:1}82%{opacity:1}100%{opacity:0}}
+@keyframes rn-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes rn-sel{from{opacity:0}to{opacity:1}}
+/* 5.6s: arrives 1.9s, clicks the checkout row at 2.55s, clicks Verify at 3.9s, gone by 5.15s */
+@keyframes rn-ptr{
+  0%,30%{opacity:0;transform:translate(424px,372px)}
+  34%{opacity:1}
+  44%{transform:translate(147px,230px) scale(1)}
+  45.5%{transform:translate(147px,230px) scale(.88)}
+  47.5%,55%{transform:translate(147px,230px) scale(1)}
+  68%{transform:translate(343px,336px) scale(1)}
+  69.5%{transform:translate(343px,336px) scale(.88)}
+  71.5%,80%{opacity:1;transform:translate(343px,336px) scale(1)}
+  92%,100%{opacity:0;transform:translate(354px,346px)}
+}
+.app-run.play .rn-ptr{animation:rn-ptr 5.6s var(--ease) both}
+
+/* 1. the checkout step is opened: the row selects, the receipt fills field by field */
+.app-run.play .rn-r.r4::after{animation:rn-sel .3s var(--ease) 2.58s both}
+.app-run.play .fl .v{animation:ax-fade .4s var(--ease) var(--d) both}
+.app-run.play .fl .sk{animation:rn-out .3s var(--ease) var(--d) both}
+.app-run.play .rc-chain i.me::after{animation:ax-fade .3s var(--ease) 2.66s both}
+
+/* 2. Verify: press, the chain is checked link by link, then the result */
+.app-run.play .rc-pre{animation:ax-fade .35s var(--ease) 3.14s both,rn-out .18s var(--ease) 4s forwards}
+.app-run.play .rc-vb{animation:rn-press .24s var(--ease) 3.88s both}
+.app-run.play .rc-busy{animation:rn-mid .56s linear 4.02s both}
+.app-run.play .rc-chain i::after{animation:ax-fade .25s var(--ease) var(--d) both}
+.app-run.play .rc-ok{animation:ax-fade .35s var(--ease) 4.56s both}
+.app-run.play .rc-ok .ax-tick{animation:ax-pop .45s var(--snap) 4.6s both}
+
+/* 3. the link to forward appears */
+.app-run.play .rc-link{animation:ax-in .5s var(--ease) 4.88s both}

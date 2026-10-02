@@ -1,6 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 // Global styles load before any component styles, so components can override them.
+// The Obsession design system first (src/styles/ds, synced by scripts/sync-assets.mjs), then the site's own styles.
+import './styles/ds/tokens.css'
+import './styles/ds/motion.css'
+import './styles/ds/components/buttons.css'
+import './styles/ds/components/forms.css'
+import './styles/ds/components/navigation.css'
+import './styles/ds/components/surfaces.css'
+import './styles/ds/components/brand.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import './styles/layout.css'

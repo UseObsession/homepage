@@ -1,0 +1,146 @@
+/* app-qa: Missions. A release check after 4.2 ships: 3 labelled test customers live the product's first 14 days
+   on real phones and inboxes (2 UK numbers on different phones, 1 US). Each lane is a customer, each cell a day:
+   filled = everything due arrived (envelope = email, bubble = text), faint = nothing was due, dashed = days still to live.
+   Story: the lanes fill day by day while the today column walks to day 6. On day 6 the US code lands; both UK cells
+   wait (blinking square), then go hollow: needs you. The check's mark flips, Needs you counts 3 to 4, the evidence
+   comes in (UK login screen empty, US filled in 6 s) and a fix ticket drafts itself for the tracker, waiting on an OK.
+   Rest state = the finished scene. */
+@property --qa-d{syntax:"<integer>";inherits:false;initial-value:6}
+
+.app-qa .ax-main{padding:14px;gap:12px}
+
+/* stacked states: only the last child shows at rest */
+.app-qa .qa-stk{display:inline-grid;place-items:center}
+.app-qa .qa-stk>*{grid-area:1/1}
+.app-qa .qa-stk>:not(:last-child){opacity:0}
+.app-qa .qa-n{display:inline-grid}
+.app-qa .qa-n b{grid-area:1/1;font-weight:inherit}
+.app-qa .qa-n b:first-child{opacity:0}
+
+/* ---------- header ---------- */
+.app-qa .qa-h{display:flex;align-items:center;gap:10px;height:24px}
+.ilwrap .app-qa .qa-mk .sig{width:16px;height:16px;color:var(--fg)}
+.app-qa .qa-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-qa .qa-h h2 i{font-style:normal;font-weight:500;color:var(--fg-3);margin:0 1px}
+.app-qa .qa-meta{font-size:11.5px;color:var(--fg-3);padding-top:1px;white-space:nowrap}
+.app-qa .qa-day{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-qa .qa-dc{font-weight:500;color:var(--fg);counter-reset:qa-d var(--qa-d)}
+.app-qa .qa-dc::before{content:counter(qa-d)}
+
+/* ---------- the lanes: 126px label + 14 days of 22px on a 27px pitch ---------- */
+.app-qa .qa-ln{padding:4px 12px 2px}
+.app-qa .qa-grid{position:relative}
+.app-qa .qa-row{position:relative;display:grid;grid-template-columns:126px repeat(14,22px);column-gap:5px;align-items:center}
+.app-qa .qa-ru{height:28px}
+.app-qa .qa-lane{height:38px;box-shadow:0 1px 0 var(--line) inset}
+
+/* today: a quiet column through the ruler and every lane */
+.app-qa .qa-band{position:absolute;left:262px;top:4px;bottom:4px;width:30px;border-radius:7px;background:rgb(var(--fg-rgb) / .045);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* ruler */
+.app-qa .qa-ru .ax-k{padding-left:2px}
+.app-qa .qa-dn{position:relative;display:grid;place-items:center;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-qa .qa-dn.lv{color:var(--fg-2)}
+.app-qa .qa-dn.td b{display:grid;place-items:center;min-width:18px;height:16px;padding:0 4px;border-radius:5px;font-weight:500;color:var(--bg);background:var(--fg)}
+
+/* who: the labelled customer and their real number's country and phone */
+.app-qa .qa-who{display:grid;gap:2px;padding-left:2px;white-space:nowrap}
+.app-qa .qa-who b{font:500 11.5px/1.2 var(--sans);color:var(--fg)}
+.app-qa .qa-who em{font:400 10.5px/1.2 var(--sans);font-style:normal;color:var(--fg-3)}
+
+/* a day */
+.app-qa .qa-c{position:relative;width:22px;height:22px;border-radius:5px;display:grid;place-items:center}
+.app-qa .qa-c.ok{background:rgb(var(--fg-rgb) / .075);box-shadow:0 0 0 1px var(--line-2) inset;color:var(--fg-3)}
+.app-qa .qa-c.tx{background:rgb(var(--fg-rgb) / .14);box-shadow:0 0 0 1px var(--line-3) inset;color:var(--fg)}
+.app-qa .qa-c.miss{background:var(--panel);box-shadow:0 0 0 1px var(--line-ui) inset;color:var(--fg)}
+.app-qa .qa-c.q{background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line) inset}
+.app-qa .qa-c.fu{outline:1px dashed var(--line-3);outline-offset:-1px}
+.ilwrap .app-qa .qa-c svg{width:12px;height:12px}
+.ilwrap .app-qa .qa-c .sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- below: the evidence and the ticket ---------- */
+.app-qa .qa-bt{display:grid;grid-template-columns:236px minmax(0,1fr);gap:12px;min-height:0}
+
+/* evidence: the app's login screen on each phone */
+.app-qa .qa-ev{display:grid;align-content:start;gap:10px;padding:12px}
+.app-qa .qa-evh{display:flex;align-items:baseline;gap:8px;height:14px;font-size:11.5px;line-height:14px;color:var(--fg-2);white-space:nowrap}
+.app-qa .qa-evh b{font:500 10.5px/14px var(--mono);color:var(--fg-3)}
+.app-qa .qa-figs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.app-qa .qa-figs figure{margin:0;display:grid;gap:7px;min-width:0}
+.app-qa .qa-ph{height:94px}
+.app-qa .qa-pg{display:grid;align-content:center;justify-items:center;gap:7px;padding:4px 6px 6px;min-height:0}
+.app-qa .ax-shot .qa-pt{font:600 10.5px/1 var(--sans);color:#2E2C29;white-space:nowrap}
+.app-qa .qa-bx{display:flex;gap:3px}
+.app-qa .ax-shot .qa-bx i{position:relative;display:grid;place-items:center;width:12px;height:16px;border-radius:3px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset;
+  font:500 10.5px/1 var(--mono);font-style:normal;color:#1E1D1A}
+.app-qa .ax-shot .qa-bx i.cur{box-shadow:0 0 0 1px #6F6B63 inset}
+.app-qa .ax-shot .qa-bx i.cur::after{content:"";width:1px;height:9px;background:#2E2C29}
+.app-qa .ax-shot .qa-to{font:400 10.5px/1 var(--mono);color:#77736B;white-space:nowrap}
+.app-qa .qa-figs figcaption{display:grid;gap:3px;font-size:10.5px;line-height:13px;color:var(--fg-3);white-space:nowrap}
+.app-qa .qa-figs figcaption b{font:500 10.5px/13px var(--mono);color:var(--fg)}
+
+/* the ticket */
+.app-qa .qa-tk{display:flex;flex-direction:column;gap:10px;padding:12px;min-width:0}
+.app-qa .qa-tkh{display:flex;align-items:center;gap:7px;height:19px}
+.ilwrap .app-qa .qa-tkh .qa-ic{width:14px;height:14px;color:var(--fg-2)}
+.app-qa .qa-tkh b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-qa .qa-for{margin-left:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.app-qa .qa-tk h3{position:relative;font:600 13.5px/18px var(--display);letter-spacing:-.015em;color:var(--fg);white-space:nowrap}
+.app-qa .qa-dl{display:grid;margin:0}
+.app-qa .qa-dl>div{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;height:24px;box-shadow:0 1px 0 var(--line) inset}
+.app-qa .qa-dl dt{font-size:10.5px;color:var(--fg-3)}
+.app-qa .qa-dl dd{position:relative;margin:0;font-size:11.5px;color:var(--fg);white-space:nowrap}
+.app-qa .qa-dl dd .ax-mono{margin-left:4px;font-size:10.5px;color:var(--fg-3)}
+.app-qa .qa-tf{margin-top:auto;display:flex;align-items:center;gap:6px}
+.app-qa .qa-hint{display:inline-flex;align-items:center;gap:6px;margin-right:auto;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-qa .qa-hint svg{width:12px;height:12px;color:var(--fg-3)}
+.app-qa .qa-tf .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+
+/* skeleton bars, seen only while the ticket drafts during play */
+.app-qa .sk{position:absolute;left:0;top:50%;height:8px;margin-top:-4px;border-radius:3px;background:rgb(var(--fg-rgb) / .09);opacity:0}
+.app-qa h3 .sk{height:10px;margin-top:-5px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes qa-cell{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes qa-hide{from{opacity:1}to{opacity:0}}
+@keyframes qa-show{from{opacity:0}to{opacity:1}}
+@keyframes qa-mid{0%{opacity:0}8%{opacity:1}92%{opacity:1}100%{opacity:0}}
+@keyframes qa-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes qa-lv{from{color:var(--fg-3)}to{color:var(--fg-2)}}
+@keyframes qa-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes qa-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes qa-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .09)}100%{background-color:rgb(var(--fg-rgb) / 0)}}
+/* today walks from day 1 to day 6, 1 calm step per day (pitch 27px) */
+@keyframes qa-walk{
+  0%,15.6%{transform:translateX(-135px)}
+  25%,34.4%{transform:translateX(-108px)}
+  43.75%,53.1%{transform:translateX(-81px)}
+  62.5%,71.9%{transform:translateX(-54px)}
+  81.25%,90.6%{transform:translateX(-27px)}
+  100%{transform:none}}
+@keyframes qa-count{0%{--qa-d:1}20%{--qa-d:2}40%{--qa-d:3}60%{--qa-d:4}80%{--qa-d:5}100%{--qa-d:6}}
+
+/* 1. the lanes fill day by day */
+.appx-il.play.app-qa .qa-band{animation:qa-show .3s var(--ease) .3s both,qa-walk 1.6s var(--ease) .35s both}
+.appx-il.play.app-qa .qa-dc{animation:qa-count 1.5s steps(1,end) .45s both}
+.appx-il.play.app-qa .qa-dn.lv{animation:qa-lv .3s var(--ease) var(--d) both}
+.appx-il.play.app-qa .qa-dn.td b{animation:ax-pop .4s var(--snap) 1.9s both}
+.appx-il.play.app-qa .qa-c.ok,.appx-il.play.app-qa .qa-c.q,.appx-il.play.app-qa .qa-c.miss{animation:qa-cell .4s var(--snap) var(--d) both}
+
+/* 2. day 6: the US code lands, both UK cells wait, then go hollow */
+.appx-il.play.app-qa .qa-c.miss .v0{animation:qa-mid 1s linear 2s both}
+.appx-il.play.app-qa .qa-c.miss .v0 .sig-sq{animation:sigBlink .5s steps(1,end) 2.1s 2}
+.appx-il.play.app-qa .qa-c.miss .v1{animation:qa-mark .45s var(--snap) 2.98s both}
+.appx-il.play.app-qa .qa-lane.uk{animation:qa-glow 1.6s var(--ease) 2.95s both}
+
+/* 3. the check needs you */
+.appx-il.play.app-qa .qa-mk .w0{animation:qa-show .3s var(--ease) both,qa-hide .2s var(--ease) 3.02s forwards}
+.appx-il.play.app-qa .qa-mk .w1{animation:qa-mark .45s var(--snap) 3.04s both}
+.appx-il.play.app-qa .qa-n b:first-child{animation:qa-show .01s linear both,qa-out .25s var(--ease) 3.1s forwards}
+.appx-il.play.app-qa .qa-n b:last-child{animation:qa-in .3s var(--ease) 3.14s both}
+
+/* 4. the evidence, and the ticket drafts itself */
+.appx-il.play.app-qa .qa-bx.full i{animation:qa-show .18s var(--ease) var(--d) both}
+.appx-il.play.app-qa .fl .v{animation:ax-fade .4s var(--ease) var(--d) both}
+.appx-il.play.app-qa .fl .sk{animation:qa-hide .3s var(--ease) var(--d) both}
+.appx-il.play.app-qa .qa-tf{animation:ax-in .5s var(--ease) 4.14s both}

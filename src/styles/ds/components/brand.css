@@ -1,0 +1,1712 @@
+/* =============================================================================================
+   OBSESSION BRAND, MOTION AND VOICE  v1.1  (2 Oct 2026)
+   Load after tokens.css, motion.css, buttons.css and forms.css. Colours come from --ob- tokens
+   only. Movement is transform and opacity, with 2 exceptions: the ring's draw-on animates
+   stroke-dashoffset, and the hero copy rises out of a 4px blur (motion.css). Every transition and
+   animation reads a motion token.
+
+   Components (.ob-)
+     .ob-lockup, .ob-wordmark ............ the logo, built from the mark and the wordmark outlines
+     .ob-brand-link ...................... the logo as the home link (nav and footer)
+     .ob-logo-plate ...................... an ink plate for the logo on a photo or a busy capture
+     .ob-sig--{size}, .ob-sig-glyph ...... ring mark sizes, and the status glyph for 12 to 15px
+     .ob-sig--glow ....................... the dark hero mark's glow, the only glow on a mark
+     .is-arriving, .is-still ............. a replayable landing, and a mark's still frame
+     .ob-sig-label ....................... a still or moving mark beside its status word
+     .ob-appicon ......................... app icon and avatar plates
+     .ob-icon ............................ 1.5px line icons on 16, 20 and 24 grids
+     .ob-sq--tick, .ob-sq--lg ............ the square as tick and as hollow status
+     .ob-setup-list ...................... agent set-up chips that tick in as work lands
+     .ob-illus ........................... product illustration well (glossy object)
+     .ob-grain--local .................... grain bound to one surface
+     .ob-evidence ........................ a captured screenshot or email, with its source
+     .ob-layout-* ........................ section head, eyebrow, actions, final call, result, footer
+     .ob-cobrand, .ob-agent-id ........... the agency's report header and the declared agent
+     .ob-og, .ob-emailsig ................ social card and email signature templates
+   Buttons and fields are the Buttons and Forms chapters' .ob-btn and .ob-input; nothing here
+   restyles them. Documentation layout (.ds-brand-) sits at the end of the file.
+
+   Static state mirrors for the guideline: .is-hover, .is-active, .is-focus, .is-disabled,
+   .is-loading, .is-selected. They copy the real :hover, :active, :focus-visible and :disabled.
+   ============================================================================================= */
+
+
+/* =============================================================================================
+   0. BRAND TOKENS. Ring timings live in tokens.css; these are this chapter's own.
+   ============================================================================================= */
+:where(:root) {
+  --ob-illus-seal-delay:  420ms;   /* the record's seal snaps home once its rows have landed */
+  --ob-measure-hero-lede: 36ch;    /* the hero lede sits in the narrow right column */
+  --ob-measure-display:   14ch;    /* a display headline: the hero, the social card */
+  --ob-measure-card:      40ch;    /* the line under a social card's headline */
+  --ob-measure-note:      28ch;    /* a short note inside a small frame, such as a broken capture */
+}
+/* Glows are light on ink: the dark hero mark's glow and the final call's glow from below. Paper has
+   no glow, so light and hybrid set them to nothing. Each theme scope sets its own, so a dark band
+   inside a paper page keeps its glow. */
+:root,
+.ob-theme-dark,
+[data-theme="dark"] {
+  --ob-sig-glow:   drop-shadow(0 0 22px rgb(237 235 229 / .22));
+  --ob-final-glow: rgb(237 235 229 / .10);
+}
+.ob-theme-light,
+[data-theme="light"],
+.ob-theme-hybrid,
+[data-theme="hybrid"] {
+  --ob-sig-glow:   none;
+  --ob-final-glow: transparent;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"], .ob-theme-dark) {
+    --ob-sig-glow:   none;
+    --ob-final-glow: transparent;
+  }
+}
+
+
+/* =============================================================================================
+   1. LOGO
+   The lockup is the mark plus the outlined wordmark, spaced exactly as obsession-lockup-*.svg:
+   total width = 7.005 x height; mark 0.9952 h; gap 0.4518 h; wordmark 0.9817 h, dropped 0.0182 h.
+   The mark inside a lockup uses viewBox="10 10 80 80", so the svg box is the mark itself.
+   ============================================================================================= */
+.ob-lockup {
+  --ob-lockup-h: 22px;
+  display: inline-flex;
+  flex: none;
+  align-items: flex-start;
+  height: var(--ob-lockup-h);
+  color: var(--ob-text);
+  line-height: 0;
+  vertical-align: middle;
+}
+.ob-lockup > .ob-sig { --ob-sig-size: calc(var(--ob-lockup-h) * .9952); }
+.ob-lockup > .ob-wordmark {
+  height: calc(var(--ob-lockup-h) * .9817);
+  margin: calc(var(--ob-lockup-h) * .0182) 0 0 calc(var(--ob-lockup-h) * .4518);
+}
+.ob-lockup--16 { --ob-lockup-h: 16px; }   /* the smallest lockup: 112px wide */
+.ob-lockup--22 { --ob-lockup-h: 22px; }   /* nav and footer: 154px wide */
+.ob-lockup--32 { --ob-lockup-h: 32px; }
+.ob-lockup--48 { --ob-lockup-h: 48px; }
+.ob-lockup--fluid { --ob-lockup-h: clamp(32px, 7cqi, 64px); }
+
+/* Stacked: the mark centred over the wordmark. Mark M; one square (M / 4) of air; wordmark 0.45 M tall. */
+.ob-lockup--stacked {
+  --ob-lockup-mark: 64px;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+.ob-lockup--stacked > .ob-sig { --ob-sig-size: var(--ob-lockup-mark); }
+.ob-lockup--stacked > .ob-wordmark {
+  height: calc(var(--ob-lockup-mark) * .45);
+  margin: calc(var(--ob-lockup-mark) * .25) 0 0;
+}
+.ob-lockup--stacked.ob-lockup--fluid { --ob-lockup-mark: clamp(44px, 10cqi, 72px); }
+
+.ob-wordmark {
+  display: block;
+  flex: none;
+  width: auto;
+  height: var(--ob-wordmark-h, 1em);
+  aspect-ratio: 437.91 / 77.34;
+  fill: currentColor;
+  overflow: visible;
+}
+
+/* The logo on a photo or a busy capture sits on an ink plate, never straight on the picture.
+   The plate is a brand constant, so it reads the same over any image. */
+.ob-logo-plate {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border-radius: var(--ob-radius-sm);
+  background: var(--ob-ink);
+  color: var(--ob-bone);
+}
+.ob-logo-plate > .ob-lockup { color: inherit; }
+
+/* Ring mark sizes. The mark always takes --ob-text through currentColor. 16px is the smallest. */
+.ob-sig--16 { --ob-sig-size: 16px; }
+.ob-sig--20 { --ob-sig-size: 20px; }
+.ob-sig--24 { --ob-sig-size: 24px; }
+.ob-sig--32 { --ob-sig-size: 32px; }
+.ob-sig--40 { --ob-sig-size: 40px; }
+.ob-sig--48 { --ob-sig-size: 48px; }
+.ob-sig--72 { --ob-sig-size: 72px; }
+.ob-sig--96 { --ob-sig-size: 96px; }
+
+/* The status glyph: the mark redrawn with an 8-unit cut, so the square never merges into the ring
+   end at 12 to 15px. Same classes and states as .ob-sig; only the ring and gap paths differ. */
+:where(.ob-sig.ob-sig-glyph) { --ob-sig-size: 14px; }
+.ob-sig-glyph--12 { --ob-sig-size: 12px; }
+
+/* The dark hero mark only: 1 soft glow. --ob-sig-glow is none on paper. */
+.ob-sig.ob-sig--glow { filter: var(--ob-sig-glow); }
+
+
+/* =============================================================================================
+   2. BRAND LINK: the lockup as the home link.
+   Hover turns the ring once (tokens.css, .ob-sig-host). Press scales to .98 (motion.css,
+   .ob-anim-press). Focus is the 2px ring, in the same frame. The link is 44px tall; in a 60px
+   nav that leaves 8px above and below.
+   ============================================================================================= */
+.ob-brand-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ob-target-touch);
+  padding-inline: var(--ob-space-6);
+  margin-inline: calc(var(--ob-space-6) * -1);
+  border-radius: var(--ob-radius-xs);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.ob-brand-link:focus-visible,
+.ob-brand-link.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-brand-link.is-active { scale: var(--ob-press-scale); }
+/* The hover mirror freezes the turn a third of the way round, with the square still upright. */
+.ob-brand-link.is-hover .ob-sig .ob-sig-rot { transform: rotate(120deg); }
+.ob-brand-link.is-hover .ob-sig .ob-sig-orb { transform: rotate(-120deg); }
+/* Guideline specimen: still on load. Replay adds .is-woken for 1 turn, then the script removes it
+   so hover works again. */
+.ob-brand-link.is-demo.is-woken .ob-sig .ob-sig-rot { animation: ob-sig-spin var(--ob-sig-turn) var(--ob-ease-out) 1; }
+.ob-brand-link.is-demo.is-woken .ob-sig .ob-sig-orb { animation: ob-sig-spin-rev var(--ob-sig-turn) var(--ob-ease-out) 1; }
+.ob-brand-link.is-demo.is-woken.is-replay .ob-sig .ob-sig-rot { animation-name: ob-brand-spin-r; }
+.ob-brand-link.is-demo.is-woken.is-replay .ob-sig .ob-sig-orb { animation-name: ob-brand-spin-rev-r; }
+@keyframes ob-brand-spin-r     { to { transform: rotate(360deg); } }
+@keyframes ob-brand-spin-rev-r { to { transform: rotate(-360deg); } }
+
+
+/* =============================================================================================
+   3. RING ADDITIONS
+   .is-arriving plays the landing as an animation, so a mark already on screen can replay it.
+   Plain .is-landed (tokens.css) uses the transition. Timings match it: the square settles over
+   --ob-sig-land, the cut closes after --ob-sig-land-delay over --ob-dur-slow.
+   ============================================================================================= */
+.ob-sig.is-landed.is-arriving .ob-sig-sq  { animation: ob-brand-home var(--ob-sig-land) var(--ob-ease-out) both; }
+.ob-sig.is-landed.is-arriving .ob-sig-gap { animation: ob-brand-close var(--ob-dur-slow) var(--ob-ease-out) var(--ob-sig-land-delay) both; }
+.ob-sig.is-landed.is-arriving.is-replay .ob-sig-sq  { animation-name: ob-brand-home-r; }
+.ob-sig.is-landed.is-arriving.is-replay .ob-sig-gap { animation-name: ob-brand-close-r; }
+@keyframes ob-brand-home    { from { transform: none; } to { transform: translate(-26px, 26px) scale(.8); } }
+@keyframes ob-brand-home-r  { from { transform: none; } to { transform: translate(-26px, 26px) scale(.8); } }
+@keyframes ob-brand-close   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ob-brand-close-r { from { opacity: 0; } to { opacity: 1; } }
+
+/* Idle replay twins (the idle loop runs once by default). */
+.ob-sig.is-idle.is-replay .ob-sig-rot { animation-name: ob-brand-idle-r; }
+.ob-sig.is-idle.is-replay .ob-sig-orb { animation-name: ob-brand-idle-rev-r; }
+.ob-sig.is-idle.is-replay .ob-sig-sq  { animation-name: ob-brand-idle-blink-r; }
+@keyframes ob-brand-idle-r     { 0%, 76% { transform: rotate(0); } 94%, 100% { transform: rotate(360deg); } }
+@keyframes ob-brand-idle-rev-r { 0%, 76% { transform: rotate(0); } 94%, 100% { transform: rotate(-360deg); } }
+@keyframes ob-brand-idle-blink-r {
+  0%, 7.9% { opacity: 1; } 8%, 13.9% { opacity: 0; } 14%, 19.9% { opacity: 1; } 20%, 25.9% { opacity: 0; } 26%, 100% { opacity: 1; }
+}
+
+/* A still frame: the mark holds its resting shape, with no animation and no transition. The second
+   rule matches the specificity of the reduced-motion breathe in motion.css and loads later, so a
+   still frame never moves, even with reduced motion on. */
+.ob-sig.is-still,
+.ob-sig.is-still * { animation: none !important; transition: none !important; }
+.ob-sig.is-still :is(.ob-sig-sq, .ob-sig-rot, .ob-sig-orb, .ob-sig-draw, .ob-sig-gap) { animation: none !important; transition: none !important; }
+/* Working holds a quarter turn, the square upright at the bottom right, so its still frame reads as
+   moving work and never as ready. The Buttons chapter's loading frame uses the same turn. */
+.ob-sig.is-spin.is-still .ob-sig-rot { transform: rotate(90deg); }
+.ob-sig.is-spin.is-still .ob-sig-orb { transform: rotate(-90deg); }
+/* A busy ring that is not busy stays still: it is invisible, so it never runs a loop. */
+.ob-anim-busy:not([aria-busy="true"], .is-loading) .ob-anim-busy-ring :is(.ob-sig-rot, .ob-sig-orb, .ob-sig-sq) { animation: none !important; }
+
+
+/* =============================================================================================
+   4. STATUS LABEL: a mark beside its status word. Only 1 mark per view moves; the rest show their
+   still frame. The word carries the state, so motion and colour are never the only cue.
+   The mark is always --ob-text. Only a product status pill may tint its fill and its word with
+   --ob-warning or --ob-success (Navigation chapter, .ob-status); marketing pages never do.
+   ============================================================================================= */
+.ob-sig-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+.ob-sig-label > .ob-sig { --ob-sig-size: 16px; color: var(--ob-text); }
+.ob-sig-label > .ob-sig.ob-sig-glyph { --ob-sig-size: 14px; }
+.ob-sig-label--pill {
+  height: var(--ob-control-xs);
+  padding: 0 var(--ob-space-12) 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-fill-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+
+
+/* =============================================================================================
+   5. APP ICON AND AVATAR
+   The plate is the brand ink, the mark is bone. Both are brand constants, never page tokens,
+   so the icon looks the same in every theme.
+   ============================================================================================= */
+.ob-appicon {
+  display: block;
+  flex: none;
+  width: var(--ob-appicon-size, 64px);
+  height: var(--ob-appicon-size, 64px);
+}
+.ob-appicon-plate { fill: var(--ob-ink); }
+.ob-appicon-mark  { fill: var(--ob-bone); }
+.ob-appicon--16  { --ob-appicon-size: 16px; }
+.ob-appicon--32  { --ob-appicon-size: 32px; }
+.ob-appicon--48  { --ob-appicon-size: 48px; }
+.ob-appicon--64  { --ob-appicon-size: 64px; }
+.ob-appicon--96  { --ob-appicon-size: 96px; }
+.ob-appicon--128 { --ob-appicon-size: 128px; }
+
+
+/* =============================================================================================
+   6. ICONS: 1.5px line, round caps and joins, drawn on the 24 grid with 2px of padding.
+   The stroke stays 1.5px at 16, 20 and 24 (non-scaling stroke). Icons take the text colour.
+   ============================================================================================= */
+.ob-icon {
+  display: inline-block;
+  flex: none;
+  width: var(--ob-icon-size, 20px);
+  height: var(--ob-icon-size, 20px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+  vertical-align: middle;
+}
+.ob-icon * { vector-effect: non-scaling-stroke; }
+.ob-icon--16 { --ob-icon-size: 16px; }
+.ob-icon--20 { --ob-icon-size: 20px; }
+.ob-icon--24 { --ob-icon-size: 24px; }
+
+/* The square, at status size. .ob-sq (7px) is the bullet; these are the tick and the hollow square. */
+.ob-sq--lg { width: 12px; height: 12px; border-radius: var(--ob-radius-glyph); }
+.ob-sq--tick {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--ob-radius-glyph);
+  background: var(--ob-solid);
+}
+.ob-sq--tick::after {
+  content: "";
+  position: absolute;
+  left: 3.75px;
+  top: 1.75px;
+  box-sizing: content-box;
+  width: 3px;
+  height: 6px;
+  border: solid var(--ob-text-inverse);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+
+/* =============================================================================================
+   7. SET-UP LIST: the agent's kit, ticking in as each step lands.
+   The square ticks in with .ob-anim-square-in (--ob-dur-slow, --ob-snap), paced by real events.
+   ============================================================================================= */
+.ob-setup-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ob-setup-list > li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-xs);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text);
+  background: var(--ob-fill);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  white-space: nowrap;
+  transition: color var(--ob-dur-base) var(--ob-ease-out),
+              background-color var(--ob-dur-base) var(--ob-ease-out),
+              box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-setup-list > li.is-pending {
+  color: var(--ob-text-3);
+  background: transparent;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ob-setup-list > li.is-pending > .ob-sq { color: var(--ob-text-3); }
+.ob-setup-list.is-replay .ob-anim-square-in { animation-name: ob-square-in-r; }
+
+
+/* =============================================================================================
+   8. ILLUSTRATION WELL
+   A product scene drawn from the theme tokens, never inverted with a filter. The well is an
+   .ob-object, so it turns glossy black on a hybrid page. Rows rise in once (.ob-anim-stagger),
+   then the seal's square snaps home. The finished scene is the resting frame.
+   The well is a container: under 300px of drawing room it swaps the full scene (300 wide) for the
+   compact one (240 wide, no hash column), so no label ever renders under 11.5px.
+   ============================================================================================= */
+.ob-illus {
+  container-type: inline-size;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  max-width: 420px;
+  padding: var(--ob-space-8);
+  border-radius: var(--ob-radius-lg);
+  overflow: hidden;
+}
+.ob-illus > svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ob-illus > .ob-illus-compact { display: none; }
+@container (max-width: 299px) {
+  .ob-illus > .ob-illus-full { display: none; }
+  .ob-illus > .ob-illus-compact { display: block; }
+}
+.ob-illus-rule   { stroke: var(--ob-line-subtle); stroke-width: 1px; }
+.ob-illus-row    { fill: var(--ob-bg-sunken); stroke: var(--ob-line); stroke-width: 1px; }
+.ob-illus-row.is-flag { stroke: var(--ob-line-strong); }
+.ob-illus-ok     { fill: var(--ob-text); }
+.ob-illus-flag   { fill: none; stroke: var(--ob-text); stroke-width: 1.5px; }
+.ob-illus-link   { fill: var(--ob-text-3); }
+.ob-illus-label  { font-family: var(--ob-font-mono); font-weight: var(--ob-weight-medium); font-size: var(--ob-type-label-mono-size); letter-spacing: var(--ob-type-label-mono-tracking); fill: var(--ob-text-3); }
+.ob-illus-signed { font-family: var(--ob-font-mono); font-weight: var(--ob-weight-medium); font-size: var(--ob-type-label-mono-size); letter-spacing: var(--ob-type-label-mono-tracking); fill: var(--ob-text-2); }
+.ob-illus-time,
+.ob-illus-hash   { font-family: var(--ob-font-mono); font-weight: var(--ob-weight-regular); font-size: var(--ob-type-mono-sm-size); fill: var(--ob-text-3); }
+.ob-illus-text   { font-family: var(--ob-font-sans); font-weight: var(--ob-weight-regular); font-size: var(--ob-type-caption-size); fill: var(--ob-text); }
+.ob-illus .ob-sig { color: var(--ob-text); }
+.ob-illus .ob-sig.is-lock .ob-sig-sq { animation-delay: var(--ob-illus-seal-delay); }
+.ob-illus.is-replay .ob-anim-stagger > * { animation-name: ob-enter-r; }
+.ob-illus.is-replay .ob-sig.is-lock .ob-sig-sq { animation-name: ob-sig-snap-r; }
+
+
+/* =============================================================================================
+   9. GRAIN, bound to one surface (posters, social cards, a guideline swatch).
+   The page grain stays .ob-grain on <body>: fixed, 1 per page.
+   ============================================================================================= */
+.ob-grain.ob-grain--local { position: relative; isolation: isolate; }
+.ob-grain.ob-grain--local::before { position: absolute; z-index: var(--ob-z-raised); }
+@media print { .ob-grain::before { display: none; } }
+@media (forced-colors: active), (prefers-contrast: more) { .ob-grain::before { display: none; } }
+
+
+/* =============================================================================================
+   10. EVIDENCE: a captured screenshot or email, framed with its source.
+   The capture sits in its own colours inside a sunken frame; the caption is real text.
+   Hover firms the ring to --ob-line-strong and lays --ob-state-hover over the frame (160ms).
+   Press lays --ob-state-pressed. Cards never move. The state layer is an inset shadow, so it
+   fades with the ring instead of jumping.
+   ============================================================================================= */
+.ob-evidence {
+  display: grid;
+  box-sizing: border-box;
+  gap: var(--ob-space-12);
+  width: 100%;
+  max-width: 320px;
+  padding: var(--ob-space-12);
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, 0 0 0 100vmax transparent inset;
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+a.ob-evidence { cursor: pointer; }
+.ob-evidence-shot {
+  position: relative;
+  display: grid;
+  gap: var(--ob-space-8);
+  min-height: 148px;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-xs);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  overflow: hidden;
+  align-content: start;
+}
+/* A real capture is an <img> with width, height and alt. It fills the capture well. */
+.ob-evidence-img { display: block; width: 100%; height: auto; border-radius: var(--ob-radius-glyph); }
+/* Capture brackets: 4 corners, 12px arms, 1.5px, inset 6px. */
+.ob-evidence-marks { position: absolute; inset: var(--ob-space-6); pointer-events: none; }
+.ob-evidence-marks i {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 0 solid var(--ob-text);
+}
+.ob-evidence-marks i:nth-child(1) { top: 0; left: 0; border-top-width: 1.5px; border-left-width: 1.5px; }
+.ob-evidence-marks i:nth-child(2) { top: 0; right: 0; border-top-width: 1.5px; border-right-width: 1.5px; }
+.ob-evidence-marks i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.ob-evidence-marks i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+/* The captured content: neutral stand-ins drawn from tokens. A real capture is an <img>. */
+.ob-evidence-from { display: flex; justify-content: space-between; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.ob-evidence-from b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ob-evidence-subj { margin: 0; font: var(--ob-type-small); font-weight: var(--ob-weight-semibold); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.ob-evidence-line { display: block; height: 8px; border-radius: var(--ob-radius-glyph); background: var(--ob-fill); }
+.ob-evidence-line.is-short { width: 62%; }
+.ob-evidence-line.is-mid   { width: 84%; }
+.ob-evidence-cta  { display: block; width: 96px; height: 24px; margin-top: var(--ob-space-4); border-radius: var(--ob-radius-pill); background: var(--ob-solid); }
+.ob-evidence-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-xs);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text);
+}
+.ob-evidence-error { margin: 0; font: var(--ob-type-caption); color: var(--ob-danger); }
+.ob-redact {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-glyph);
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+}
+
+/* Loading: the frame keeps its size. Grey bars stand where the capture will be; after 300ms they
+   pulse (motion.css .ob-anim-skeleton). Set aria-busy="true" on the frame while it loads. */
+.ob-evidence-shot.is-loading { align-content: center; }
+.ob-evidence-shot.is-loading .ob-evidence-line { background: var(--ob-fill); }
+/* Broken: the image failed. The frame keeps its size, the hollow square says it needs you, and the
+   sentence says what to do. The alt text is still read. */
+.ob-evidence-shot.is-broken { place-content: center; justify-items: center; text-align: center; }
+.ob-evidence-note { margin: 0; max-width: var(--ob-measure-note); font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+.ob-evidence-note b { display: block; font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+
+.ob-evidence-cap { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ob-space-12); }
+.ob-evidence-cap > span:first-child { display: grid; gap: var(--ob-space-2); min-width: 0; }
+.ob-evidence-title { font: var(--ob-type-mono-sm); color: var(--ob-text); }
+.ob-evidence-meta  { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ob-evidence-open {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  flex: none;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-evidence-open .ob-sq--tick { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  a.ob-evidence:hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, 0 0 0 100vmax var(--ob-state-hover) inset; }
+  a.ob-evidence:hover .ob-evidence-open { color: var(--ob-text); }
+}
+.ob-evidence.is-hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, 0 0 0 100vmax var(--ob-state-hover) inset; }
+.ob-evidence.is-hover .ob-evidence-open { color: var(--ob-text); }
+a.ob-evidence:active,
+.ob-evidence.is-active {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, 0 0 0 100vmax var(--ob-state-pressed) inset;
+  transition-duration: var(--ob-dur-fast);
+}
+a.ob-evidence:focus-visible,
+.ob-evidence.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+/* Selected: the capture open in the viewer. A line-ui edge, a filled tick and the word change. */
+.ob-evidence[aria-current="true"],
+.ob-evidence.is-selected { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset, 0 0 0 100vmax transparent inset; }
+.ob-evidence:is([aria-current="true"], .is-selected) .ob-evidence-open { color: var(--ob-text); }
+.ob-evidence:is([aria-current="true"], .is-selected) .ob-evidence-open .ob-sq--tick { display: inline-block; }
+.ob-evidence:is([aria-current="true"], .is-selected) .ob-evidence-open .ob-icon { display: none; }
+
+
+/* =============================================================================================
+   11. LAYOUT PATTERNS
+   Section head, eyebrow, actions, final call, result panel and footer. The actions row holds the
+   Buttons chapter's .ob-btn--primary.ob-btn--lg and .ob-btn--link; these wrappers set layout only.
+   ============================================================================================= */
+
+/* Section head: eyebrow (hero only), heading that states a fact, lede, actions, microcopy. */
+.ob-layout-head {
+  display: grid;
+  justify-items: start;
+  gap: var(--ob-space-stack);
+  min-width: 0;
+}
+.ob-layout-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12) 0 var(--ob-space-8);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+  background: var(--ob-fill-subtle);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  white-space: nowrap;
+}
+.ob-layout-eyebrow > .ob-sig { --ob-sig-size: 18px; color: var(--ob-text); }
+.ob-layout-title {
+  margin: 0;
+  max-width: var(--ob-measure-heading);
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.ob-layout-lede {
+  margin: 0;
+  max-width: var(--ob-measure-lede);
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ob-layout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-12) var(--ob-space-20);
+  margin-top: var(--ob-space-6);
+}
+.ob-layout-actions[hidden] { display: none; }
+.ob-layout-micro {
+  margin: 0;
+  max-width: var(--ob-measure-lede);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+
+/* Final call to action: centred, the 72px mark draws on at 60% visible, 1 glow from below on ink.
+   Paper has no glow: --ob-final-glow is transparent in light and hybrid. */
+.ob-layout-final {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: var(--ob-space-20);
+  padding: var(--ob-space-section) var(--ob-gutter);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  text-align: center;
+  overflow: hidden;
+}
+.ob-layout-final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(700px 420px at 50% 100%, var(--ob-final-glow), transparent 65%);
+}
+.ob-layout-final > .ob-sig { --ob-sig-size: 72px; margin-bottom: var(--ob-space-8); }
+.ob-layout-final-title {
+  margin: 0;
+  max-width: var(--ob-measure-heading);
+  font: var(--ob-type-h1);
+  letter-spacing: var(--ob-type-h1-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.ob-layout-final .ob-layout-lede { margin-inline: auto; }
+.ob-layout-final .ob-layout-actions { justify-content: center; margin-top: var(--ob-space-4); }
+
+/* Result: what replaces the actions when the work lands. The mark draws on beside the title, the
+   line says what happens next. It rises 8px over --ob-dur-slow (.ob-anim-rise.is-slow). */
+.ob-layout-result {
+  display: grid;
+  justify-items: center;
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-4);
+}
+.ob-layout-result[hidden] { display: none; }
+.ob-layout-result-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.ob-layout-result-title:focus { outline: none; }
+.ob-layout-result-title:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-layout-result-title > .ob-sig { --ob-sig-size: 24px; }
+.ob-layout-result-line {
+  margin: 0;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Footer: the lockup as the home link, the one-line promise, and the domain as plain text. */
+.ob-layout-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--ob-space-24) var(--ob-space-48);
+  padding: var(--ob-space-48) var(--ob-gutter) var(--ob-space-40);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ob-layout-footer-brand { display: grid; gap: var(--ob-space-12); justify-items: start; }
+.ob-layout-footer-line {
+  margin: 0;
+  max-width: var(--ob-measure-lede);
+  text-wrap: balance;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ob-layout-footer-meta {
+  margin: 0;
+  font: var(--ob-type-caption);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =============================================================================================
+   12. CO-BRANDING: reports land under the agency's name.
+   The agency's logo leads the header at its own size. Where Obsession appears, it signs at the
+   foot: the 16px mark, the words Signed by Obsession and the short signature. The agent that did
+   the work declares itself as AI and names who it works for.
+   ============================================================================================= */
+.ob-cobrand {
+  display: grid;
+  box-sizing: border-box;
+  gap: var(--ob-space-16);
+  max-width: 520px;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1);
+}
+.ob-cobrand-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8) var(--ob-space-16); }
+/* The agency's own logo goes here, as supplied. The stand-in is a neutral monogram. */
+.ob-cobrand-agency { display: inline-flex; align-items: center; gap: var(--ob-space-12); min-width: 0; }
+.ob-cobrand-logo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ob-radius-xs);
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-label);
+  font-weight: var(--ob-weight-semibold);
+}
+.ob-cobrand-name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.ob-cobrand-meta { font: var(--ob-type-mono-sm); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.ob-cobrand-title { margin: 0; font: var(--ob-type-body); font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ob-cobrand-rows { display: grid; gap: var(--ob-space-6); }
+.ob-cobrand-rows .ob-evidence-line { background: var(--ob-fill); }
+.ob-cobrand-sign {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-4) var(--ob-space-12);
+  padding-top: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+.ob-cobrand-sign > span:first-child { display: inline-flex; align-items: center; gap: var(--ob-space-8); color: var(--ob-text-2); }
+.ob-cobrand-sign .ob-sig { --ob-sig-size: 16px; color: var(--ob-text); }
+
+/* The declared agent: who it is, that it is AI, and who it works for. */
+.ob-agent-id {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-2);
+}
+.ob-agent-id b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ob-agent-id > .ob-sig { --ob-sig-size: 16px; color: var(--ob-text); }
+
+
+/* =============================================================================================
+   13. TEMPLATES: the social card and the email signature.
+   .ob-og is a 1200 x 630 card that scales as 1 piece: it is a container, and every size inside is
+   a share of its width (1cqi = 12px at export). Export it at 1200 wide.
+   ============================================================================================= */
+.ob-og {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  border-radius: var(--ob-radius-md);
+  overflow: hidden;
+  color: var(--ob-text);
+  background-color: var(--ob-bg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ob-og-in {
+  position: relative;
+  z-index: calc(var(--ob-z-raised) + 1);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  padding: 5.3333cqi;                                         /* 64 */
+}
+.ob-og-in > .ob-lockup { --ob-lockup-h: 3.3333cqi; }        /* 40 */
+.ob-og-copy { align-self: end; display: grid; gap: 1.6667cqi; padding-bottom: 4cqi; }
+.ob-og-h {
+  margin: 0;
+  max-width: var(--ob-measure-display);
+  font-weight: var(--ob-type-display-weight);
+  font-size: 6cqi;                                            /* 72 */
+  line-height: var(--ob-type-display-leading);
+  letter-spacing: var(--ob-type-display-tracking);
+  text-wrap: balance;
+}
+.ob-og-line { margin: 0; max-width: var(--ob-measure-card); font-size: 2.3333cqi; line-height: 1.35; color: var(--ob-text-2); text-wrap: pretty; }   /* 28 */
+.ob-og-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqi;
+  font-family: var(--ob-font-mono);
+  font-weight: var(--ob-weight-medium);
+  font-size: 1.8333cqi;                                       /* 22 */
+  line-height: 1;
+  color: var(--ob-text-3);
+}
+
+/* Email signature: text first. The only image is the app icon, because its ink plate holds up on
+   white and on dark mail. In the email itself, write it as inline styles with these values. */
+.ob-emailsig {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: start;
+  font-family: var(--ob-font-sans);
+  color: var(--ob-text);
+}
+.ob-emailsig > .ob-appicon { --ob-appicon-size: 32px; margin-top: var(--ob-space-2); }
+.ob-emailsig p { margin: 0; }
+.ob-emailsig-name { font-size: var(--ob-type-label-size); font-weight: var(--ob-weight-semibold); line-height: 1.35; }
+.ob-emailsig-role { font-size: var(--ob-type-caption-size); line-height: 1.45; color: var(--ob-text-2); }
+.ob-emailsig-domain { font-size: var(--ob-type-caption-size); line-height: 1.45; color: var(--ob-text-2); }
+
+
+/* =============================================================================================
+   14. REDUCED MOTION for this file. tokens.css already stops every ring animation and
+   motion.css stops staggers, heroes and lifts. These cover the brand's own devices.
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  /* Working holds the quarter turn and breathes (motion.css), so it never looks like ready. */
+  .ob-sig.is-spin .ob-sig-rot { transform: rotate(90deg); }
+  .ob-sig.is-spin .ob-sig-orb { transform: rotate(-90deg); }
+  /* The guideline's capped spinners, and the sequence's working phase, breathe twice, then hold. */
+  :is(.ob-sig.ds-brand-capped, .ds-brand-seq > .ob-sig).is-spin .ob-sig-sq { animation-iteration-count: 2 !important; }
+  .ob-brand-link.is-demo .ob-sig * { animation: none !important; }
+  .ob-setup-list > li { transition-duration: var(--ob-dur-base); }
+  .ds-brand-playhead { animation: none !important; opacity: 0; }
+}
+
+
+/* =============================================================================================
+   15. FORCED COLOURS: box-shadow edges and gradients vanish, so these draw a real border.
+   ============================================================================================= */
+@media (forced-colors: active) {
+  .ob-evidence,
+  .ob-layout-eyebrow,
+  .ob-setup-list > li,
+  .ob-sig-label--pill,
+  .ob-cobrand,
+  .ob-og { border: 1px solid CanvasText; }
+  .ob-evidence-shot { border: 1px solid GrayText; }
+  .ob-evidence-marks i { border-color: CanvasText; }
+  .ob-sq--tick { forced-color-adjust: none; background: CanvasText; }
+  .ob-sq--tick::after { border-color: Canvas; }
+  .ob-redact,
+  .ob-cobrand-logo,
+  .ob-logo-plate { forced-color-adjust: none; background: CanvasText; color: Canvas; }
+  .ob-evidence-line,
+  .ob-evidence-cta { forced-color-adjust: none; background: GrayText; }
+}
+
+
+/* =============================================================================================
+   DOCUMENTATION LAYOUT (.ds-brand-). Guideline chrome only; never ship it in a product.
+   ============================================================================================= */
+.ds-brand { display: grid; gap: 0; min-width: 0; color: var(--ob-text); }
+.ds-brand :where(p, h2, h3, h4, ul, ol, dl, dd, figure) { margin: 0; }
+.ds-brand :where(ul, ol) { padding: 0; list-style: none; }
+
+/* Specimens rest until seen. The script arms an auto specimen (paused on its first frame) and plays
+   it once at 40% visible, and only when no other specimen on screen is still moving; a dormant
+   specimen holds its finished frame until its Replay. Without the script, auto specimens simply
+   play on load and dormant ones stay still. */
+.ds-brand-dormant,
+.ds-brand-dormant * { animation: none !important; }
+/* Outranks the reduced-motion breathe in motion.css, so a dormant mark stays still there too. */
+.ds-brand .ds-brand-dormant.ds-brand-dormant :is(.ob-sig-sq, .ob-sig-rot, .ob-sig-orb, .ob-sig-draw, .ob-sig-gap) { animation: none !important; }
+.ds-brand-armed,
+.ds-brand-armed * { animation-play-state: paused !important; }
+@media print {
+  .ds-brand-armed,
+  .ds-brand-armed * { animation: none !important; }
+}
+/* Resets a sequence to its first state in 1 frame, with no transition back. */
+.ds-brand-reset,
+.ds-brand-reset * { transition: none !important; animation: none !important; }
+
+.ds-brand-head { display: grid; gap: var(--ob-space-stack); }
+.ds-brand-kicker,
+.ds-brand-cap {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-brand-h2 {
+  max-width: 22ch;
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  text-wrap: balance;
+}
+.ds-brand-intro {
+  max-width: var(--ob-measure);
+  font: var(--ob-type-body-lg);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ds-brand-toc { display: flex; flex-wrap: wrap; gap: var(--ob-space-12) var(--ob-space-8); margin-top: var(--ob-space-8); }
+.ds-brand-toc a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ob-control-sm);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+/* 32px pill, 44px hit area: 6px above and below, which meets the next row's in its 12px gap. */
+.ds-brand-toc a::after { content: ""; position: absolute; inset: calc(var(--ob-space-6) * -1) calc(var(--ob-space-4) * -1); }
+@media (hover: hover) and (pointer: fine) {
+  .ds-brand-toc a:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ds-brand-toc a:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ds-brand-toc a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* Replay: a 28px secondary pill beside its specimen, with a 44px hit area. The assembler or this
+   chapter's script toggles .is-replay on the element named by data-target. */
+.ds-brand .ds-replay {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  height: 28px;
+  padding: 0 var(--ob-space-12);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-btn-2-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-btn-2-edge);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out), scale var(--ob-dur-base) var(--ob-ease-out);
+}
+.ds-brand .ds-replay::after { content: ""; position: absolute; inset: calc(var(--ob-space-8) * -1) calc(var(--ob-space-4) * -1); }
+@media (hover: hover) and (pointer: fine) {
+  .ds-brand .ds-replay:hover { color: var(--ob-text); background-color: var(--ob-btn-2-bg-hover); }
+}
+.ds-brand .ds-replay:active { scale: var(--ob-press-scale-sm); background-color: var(--ob-btn-2-bg-pressed); transition-duration: var(--ob-dur-fast); }
+.ds-brand .ds-replay:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+.ds-brand-block {
+  display: grid;
+  gap: var(--ob-space-32);
+  margin-top: clamp(56px, 8vw, 104px);
+  padding-top: var(--ob-space-48);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: var(--ob-space-80);
+  min-width: 0;
+}
+.ds-brand-block > * { min-width: 0; }
+.ds-brand-h3 {
+  max-width: 28ch;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  text-wrap: balance;
+}
+.ds-brand-h4 {
+  max-width: 44ch;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  text-wrap: balance;
+}
+.ds-brand-p {
+  max-width: var(--ob-measure);
+  font: var(--ob-type-body);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ds-brand-part { display: grid; gap: var(--ob-space-16); min-width: 0; }
+.ds-brand-part + .ds-brand-part { margin-top: var(--ob-space-16); }
+.ds-brand-code {
+  padding: 1px var(--ob-space-4);
+  border-radius: var(--ob-radius-glyph);
+  font: var(--ob-type-mono-sm);
+  font-size: .85em;
+  color: var(--ob-text);
+  background: var(--ob-fill);
+  overflow-wrap: anywhere;
+}
+
+/* Stages: one per theme, dark first. */
+.ds-brand-stages { display: grid; gap: var(--ob-space-16); min-width: 0; }
+.ds-brand-stages--row { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
+.ds-brand-stage {
+  container-type: inline-size;
+  position: relative;
+  display: grid;
+  gap: var(--ob-space-20);
+  min-width: 0;
+  padding: clamp(16px, 3vw, 32px);
+  border-radius: var(--ob-radius-lg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-brand-stage-label { display: flex; align-items: center; gap: var(--ob-space-8); }
+.ds-brand-stage-label .ob-sq { color: var(--ob-text-3); }
+.ds-brand-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8) var(--ob-space-16); }
+
+/* State matrices and specimen cells. */
+.ds-brand-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: var(--ob-space-12);
+}
+.ds-brand-matrix--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.ds-brand-matrix--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ds-brand-matrix--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ds-brand-matrix--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@container (max-width: 760px) { .ds-brand-matrix--three, .ds-brand-matrix--four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (max-width: 440px) { .ds-brand-matrix--three, .ds-brand-matrix--four { grid-template-columns: minmax(0, 1fr); } }
+@container (max-width: 600px) { .ds-brand-matrix--two { grid-template-columns: minmax(0, 1fr); } }
+.ds-brand-cell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-brand-cell-fig {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ob-space-16);
+  min-height: 88px;
+  min-width: 0;
+}
+.ds-brand-cell-fig--start { justify-content: flex-start; }
+.ds-brand-cell-fig--col { flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--ob-space-4); }
+.ds-brand-cell-cap { display: grid; align-content: start; gap: var(--ob-space-2); min-width: 0; }
+.ds-brand-cell-name { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.ds-brand-cell-note { font: var(--ob-type-mono-sm); color: var(--ob-text-3); overflow-wrap: anywhere; }
+
+/* Tables. The script makes a wrapper a tab stop only while it scrolls. */
+.ds-brand-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-brand-table-wrap:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ds-brand-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-brand-table caption {
+  padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-4);
+  text-align: left;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-brand-table th,
+.ds-brand-table td {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.ds-brand-table tr:last-child > * { border-bottom: 0; }
+.ds-brand-table thead th {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+  white-space: nowrap;
+}
+.ds-brand-table tbody th { font-weight: var(--ob-weight-medium); color: var(--ob-text); white-space: nowrap; }
+.ds-brand-table td code,
+.ds-brand-table th code { font: var(--ob-type-mono-sm); color: var(--ob-text); white-space: nowrap; }
+.ds-brand-table td code.is-path { white-space: normal; overflow-wrap: anywhere; }
+.ds-brand-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Usage rules: Do and Don't. */
+.ds-brand-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--ob-space-24) var(--ob-space-40);
+}
+.ds-brand-rule-col { display: grid; gap: var(--ob-space-12); align-content: start; }
+.ds-brand-rule-list { display: grid; gap: var(--ob-space-12); }
+.ds-brand-rule-list li {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-brand-rule-list li::before {
+  content: "";
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
+  translate: 0 -2px;
+}
+.ds-brand-rule-list--do li::before { background: var(--ob-text); }
+.ds-brand-rule-list--dont li::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 0;
+  translate: 0 0;
+  background:
+    linear-gradient(45deg, transparent calc(50% - .75px), var(--ob-text-2) calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px)),
+    linear-gradient(-45deg, transparent calc(50% - .75px), var(--ob-text-2) calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px));
+}
+
+/* Accessibility notes. */
+.ds-brand-a11y {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: var(--ob-space-12);
+}
+.ds-brand-a11y > div {
+  display: grid;
+  gap: var(--ob-space-6);
+  align-content: start;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-brand-a11y dt {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-brand-a11y dd { font: var(--ob-type-small); color: var(--ob-text-2); }
+.ds-brand-a11y dd b { font-weight: var(--ob-weight-medium); color: var(--ob-text); font-variant-numeric: tabular-nums; }
+
+/* Mark construction and anatomy. */
+.ds-brand-anatomy {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: var(--ob-space-32) var(--ob-space-48);
+  align-items: center;
+}
+@container (max-width: 640px) { .ds-brand-anatomy { grid-template-columns: minmax(0, 1fr); } }
+.ds-brand-construct { width: 100%; max-width: 300px; height: auto; display: block; color: var(--ob-text); }
+.ds-brand-construct .ds-brand-k-grid  { stroke: var(--ob-line-subtle); stroke-width: 1px; vector-effect: non-scaling-stroke; fill: none; }
+.ds-brand-construct .ds-brand-k-line  { stroke: var(--ob-line-ui); stroke-width: 1px; vector-effect: non-scaling-stroke; fill: none; stroke-dasharray: 4 3; }
+.ds-brand-construct .ds-brand-k-mark  { fill: currentColor; }
+.ds-brand-construct .ds-brand-k-space { fill: var(--ob-fill-subtle); stroke: var(--ob-line-ui); stroke-width: 1px; vector-effect: non-scaling-stroke; stroke-dasharray: 2 3; }
+.ds-brand-construct .ds-brand-k-pin   { fill: var(--ob-bg); stroke: currentColor; stroke-width: 1.25px; vector-effect: non-scaling-stroke; }
+.ds-brand-construct .ds-brand-k-num   { font-family: var(--ob-font-mono); font-weight: var(--ob-weight-medium); font-size: 5.6px; fill: currentColor; text-anchor: middle; dominant-baseline: central; }
+.ds-brand-legend { display: grid; gap: var(--ob-space-12); counter-reset: ds-brand-legend; }
+.ds-brand-legend li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  counter-increment: ds-brand-legend;
+}
+.ds-brand-legend li::before {
+  content: counter(ds-brand-legend);
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.25px var(--ob-text) inset;
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  color: var(--ob-text);
+  translate: 0 5px;
+}
+.ds-brand-legend b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+
+/* Clear space and minimum sizes. */
+.ds-brand-clear {
+  position: relative;
+  display: inline-flex;
+  padding: calc(var(--ob-lockup-h) * .2488);
+  outline: 1px dashed var(--ob-line-ui);
+  outline-offset: -1px;
+  background:
+    linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)) padding-box;
+}
+.ds-brand-clear .ob-lockup { outline: 1px solid var(--ob-line-strong); outline-offset: 0; background: var(--ob-bg); }
+.ds-brand-clear-unit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--ob-lockup-h) * .2488);
+  height: calc(var(--ob-lockup-h) * .2488);
+  background: var(--ob-text);
+}
+.ds-brand-clear--stacked { --ob-lockup-mark: 64px; padding: calc(var(--ob-lockup-mark) * .25); }
+.ds-brand-clear--stacked .ds-brand-clear-unit { width: calc(var(--ob-lockup-mark) * .25); height: calc(var(--ob-lockup-mark) * .25); }
+.ds-brand-sizes { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--ob-space-24) var(--ob-space-32); }
+.ds-brand-size { display: grid; justify-items: start; gap: var(--ob-space-8); }
+
+/* Misuse tiles. A Do tile carries the filled square instead of the cross. */
+.ds-brand-misuse { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ob-space-12); }
+@container (max-width: 640px) { .ds-brand-misuse { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (max-width: 440px) { .ds-brand-misuse--lockup { grid-template-columns: minmax(0, 1fr); } }
+@container (max-width: 300px) { .ds-brand-misuse { grid-template-columns: minmax(0, 1fr); } }
+.ds-brand-misuse figure { display: grid; grid-template-rows: 96px auto; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-16); border-radius: var(--ob-radius-md); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; min-width: 0; }
+.ds-brand-misuse .ds-brand-misuse-fig { display: grid; place-items: center; min-width: 0; overflow: hidden; border-radius: var(--ob-radius-sm); color: var(--ob-text); }
+.ds-brand-misuse figcaption { display: grid; gap: var(--ob-space-4); font: var(--ob-type-caption); color: var(--ob-text-2); }
+.ds-brand-misuse figcaption b {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text);
+}
+.ds-brand-misuse figcaption b::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background:
+    linear-gradient(45deg, transparent calc(50% - .75px), currentColor calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px)),
+    linear-gradient(-45deg, transparent calc(50% - .75px), currentColor calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px));
+}
+.ds-brand-misuse figure.is-do figcaption b::before { width: var(--ob-sq-size); height: var(--ob-sq-size); border-radius: var(--ob-sq-radius); background: currentColor; }
+.ds-brand-x-rotate   { rotate: 90deg; }
+.ds-brand-x-diamond .ob-sig-sq { transform-box: fill-box; transform-origin: center; transform: rotate(45deg) scale(.86); }
+.ds-brand-x-stretch  { scale: 1.45 .8; }
+.ds-brand-x-colour   { color: var(--ob-warning); }
+.ds-brand-x-effect   { filter: drop-shadow(0 0 10px rgb(var(--ob-glow-rgb) / .55)); }
+.ds-brand-x-effect .ob-sig-ring,
+.ds-brand-x-effect .ob-sig-sq { stroke: var(--ob-text-3); stroke-width: 3px; }
+.ds-brand-x-type { display: inline-flex; align-items: center; gap: var(--ob-space-6); font: var(--ob-weight-semibold) clamp(15px, 4.4cqi, 22px)/1 var(--ob-font-sans); letter-spacing: -.02em; }
+/* Lockup misuse: each breaks 1 fixed relation of the lockup. */
+.ds-brand-lx { display: inline-flex; align-items: center; height: 20px; color: var(--ob-text); line-height: 0; }
+.ds-brand-lx > .ob-sig { --ob-sig-size: 19.9px; }
+.ds-brand-lx > .ob-wordmark { height: 19.6px; margin-left: 9px; }
+.ds-brand-lx.is-gap > .ob-wordmark { margin-left: 28px; }
+.ds-brand-lx.is-order { flex-direction: row-reverse; }
+.ds-brand-lx.is-order > .ob-wordmark { margin: 0 9px 0 0; }
+.ds-brand-lx.is-scale > .ob-sig { --ob-sig-size: 34px; }
+.ds-brand-lx.is-low { color: var(--ob-line-strong); }
+/* A busy ground: a stand-in for a photo or a capture, drawn from the line and fill tokens. */
+.ds-brand-busy {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, transparent 0 58%, var(--ob-fill) 58% 100%) 0 0 / 100% 22px,
+    repeating-linear-gradient(0deg, var(--ob-line-strong) 0 6px, transparent 6px 14px),
+    var(--ob-surface-hover);
+}
+
+/* App icon and favicon specimens. */
+.ds-brand-icon-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: var(--ob-space-24); }
+.ds-brand-icon-item { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: var(--ob-space-8); min-width: 0; max-width: 100%; }
+.ds-brand-tab {
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-control-md);
+  max-width: 100%;
+  min-width: 0;
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-sm) var(--ob-radius-sm) 0 0;
+  background: var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1);
+  font: var(--ob-type-caption);
+  color: var(--ob-text);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ds-brand-tab .ob-sig { color: var(--ob-text); }
+.ds-brand-tab-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ds-brand-tab-x { margin-left: var(--ob-space-12); color: var(--ob-text-3); }
+.ds-brand-avatar-crop { position: relative; display: grid; place-items: center; }
+.ds-brand-avatar-crop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--ob-line-ui) inset;
+  pointer-events: none;
+}
+
+/* The draw-on timeline. A playhead runs in step with the specimen and replays with it. */
+.ds-brand-drawon {
+  display: grid;
+  grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+  gap: var(--ob-space-32);
+  align-items: center;
+}
+@container (max-width: 560px) { .ds-brand-drawon { grid-template-columns: minmax(0, 1fr); justify-items: start; } }
+.ds-brand-timeline { --ds-brand-lab: 132px; position: relative; display: grid; gap: var(--ob-space-12); width: 100%; min-width: 0; }
+.ds-brand-track { display: grid; grid-template-columns: var(--ds-brand-lab) minmax(0, 1fr); gap: var(--ob-space-12); align-items: center; }
+.ds-brand-track > span:first-child { font: var(--ob-type-mono-sm); color: var(--ob-text-2); white-space: nowrap; }
+.ds-brand-lane { position: relative; height: 12px; border-radius: var(--ob-radius-glyph); background: var(--ob-fill-subtle); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; }
+.ds-brand-lane i { position: absolute; top: 2px; bottom: 2px; left: calc(var(--s) / var(--ds-brand-total) * 100%); width: calc((var(--e) - var(--s)) / var(--ds-brand-total) * 100%); border-radius: 1px; background: var(--ob-text); }
+.ds-brand-lane i.is-open { background: transparent; box-shadow: 0 0 0 1.5px var(--ob-text) inset; }
+.ds-brand-timeline { --ds-brand-total: 3700; }
+.ds-brand-ticks { display: grid; grid-template-columns: var(--ds-brand-lab) minmax(0, 1fr); gap: var(--ob-space-12); }
+.ds-brand-ticks > div { position: relative; height: 16px; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-ticks > div > span { position: absolute; top: 0; translate: -50% 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ds-brand-ticks > div > span:first-child { translate: 0 0; }
+.ds-brand-ticks > div > span:last-child { translate: -100% 0; }
+/* Under 480px the 3s tick would touch 3.7s, so it steps aside. */
+@container (max-width: 480px) { .ds-brand-ticks > div > span:nth-child(4) { display: none; } }
+.ds-brand-playwrap { position: absolute; top: calc(var(--ob-space-6) * -1); bottom: 22px; left: calc(var(--ds-brand-lab) + var(--ob-space-12)); right: 0; overflow: hidden; pointer-events: none; }
+.ds-brand-playhead {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--ob-text), var(--ob-text)) 0 0 / 1.5px 100% no-repeat;
+  opacity: 0;
+  animation: ds-brand-playhead calc(var(--ob-sig-blink-delay) + 2 * var(--ob-sig-blink)) var(--ob-ease-linear) both;
+}
+.ds-brand-drawon.is-replay .ds-brand-playhead { animation-name: ds-brand-playhead-r; }
+.ds-brand-drawon.is-replay .ob-sig.is-play .ob-sig-draw { animation-name: ob-sig-draw-r; }
+.ds-brand-drawon.is-replay .ob-sig.is-play .ob-sig-sq { animation-name: ob-sig-snap-r, ob-sig-blink-r; }
+@keyframes ds-brand-playhead   { 0% { translate: 0 0; opacity: 1; } 99% { opacity: 1; } 100% { translate: 100% 0; opacity: 0; } }
+@keyframes ds-brand-playhead-r { 0% { translate: 0 0; opacity: 1; } 99% { opacity: 1; } 100% { translate: 100% 0; opacity: 0; } }
+
+/* Ring state gallery. */
+.ds-brand-states { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 248px), 1fr)); gap: var(--ob-space-12); }
+.ds-brand-state {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: var(--ob-space-8) var(--ob-space-16);
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-brand-state-fig { grid-row: 1 / span 2; display: grid; place-items: center; width: 48px; height: 48px; }
+.ds-brand-state-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ob-space-4) var(--ob-space-8); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.ds-brand-state-when { font: var(--ob-type-caption); color: var(--ob-text-2); }
+.ds-brand-state-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8); padding-top: var(--ob-space-8); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ds-brand-state-time { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-still-row { display: flex; flex-wrap: wrap; gap: var(--ob-space-12) var(--ob-space-24); }
+
+/* State sequence: 1 mark runs working, done, landed; the steps light up as it goes. */
+.ds-brand-seq { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--ob-space-16) var(--ob-space-32); align-items: center; }
+@container (max-width: 420px) { .ds-brand-seq { grid-template-columns: minmax(0, 1fr); justify-items: start; } .ds-brand-seq > .ds-brand-part { justify-self: stretch; } }
+/* Without the script the working turn still stops, after 3 turns. The script swaps to done after 2. */
+.ds-brand-seq > .ob-sig.is-spin :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 3; }
+.ds-brand-seq-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ob-space-8); }
+.ds-brand-seq-steps li {
+  display: grid;
+  gap: var(--ob-space-2);
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border-radius: var(--ob-radius-xs);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ds-brand-seq-steps li b { font-weight: var(--ob-weight-medium); color: var(--ob-text-2); transition: color var(--ob-dur-base) var(--ob-ease-out); }
+.ds-brand-seq-steps li[aria-current="step"] { color: var(--ob-text-2); background-color: var(--ob-fill-subtle); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset; }
+.ds-brand-seq-steps li[aria-current="step"] b { color: var(--ob-text); }
+@container (max-width: 420px) { .ds-brand-seq-steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* Founding log: 1 moving mark, the rest still. */
+.ds-brand-log { display: grid; }
+.ds-brand-log li {
+  display: grid;
+  grid-template-columns: 64px 136px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-12) 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+}
+.ds-brand-log li:first-child { border-top: 0; }
+.ds-brand-log time { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-log .ob-sig-label { translate: 0 3px; }
+@container (max-width: 520px) {
+  .ds-brand-log li { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
+}
+
+/* Icon grids and set. */
+.ds-brand-keylines { display: flex; flex-wrap: wrap; gap: var(--ob-space-24) var(--ob-space-40); align-items: flex-start; }
+.ds-brand-keyline { display: grid; gap: var(--ob-space-8); justify-items: start; }
+.ds-brand-keyline svg { display: block; width: 168px; height: 168px; color: var(--ob-text); }
+.ds-brand-keyline .ds-brand-k-grid { stroke: var(--ob-line-subtle); stroke-width: 1px; vector-effect: non-scaling-stroke; fill: none; }
+.ds-brand-keyline .ds-brand-k-pad  { fill: var(--ob-fill); }
+.ds-brand-keyline .ds-brand-k-key  { stroke: var(--ob-line-ui); stroke-width: 1px; vector-effect: non-scaling-stroke; fill: none; }
+.ds-brand-keyline .ds-brand-k-icon { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ds-brand-iconset { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--ob-space-8); }
+.ds-brand-iconset li { display: grid; justify-items: center; gap: var(--ob-space-8); padding: var(--ob-space-16) var(--ob-space-8) var(--ob-space-12); border-radius: var(--ob-radius-md); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; color: var(--ob-text); }
+.ds-brand-iconset span { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-iconsizes { display: grid; gap: var(--ob-space-12); }
+.ds-brand-iconsizes > div { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-16); color: var(--ob-text-2); }
+.ds-brand-iconsizes .is-16 { font: var(--ob-type-label); }
+.ds-brand-iconsizes .is-20 { font: var(--ob-type-body); }
+.ds-brand-iconsizes .is-24 { font: var(--ob-type-title); color: var(--ob-text); }
+.ds-brand-inline { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.ds-brand-squares { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); gap: var(--ob-space-12); }
+.ds-brand-sqwrap { display: grid; gap: var(--ob-space-16); }
+.ds-brand-sqwrap.is-replay .ob-anim-square-in { animation-name: ob-square-in-r; }
+.ds-brand-sqwrap.is-replay .ob-caret { animation-name: ob-sig-blink-r; }
+
+/* Grain swatch. */
+.ds-brand-grain { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--ob-space-12); }
+.ds-brand-grain > figure {
+  display: grid;
+  align-content: end;
+  gap: var(--ob-space-8);
+  min-height: 168px;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-bg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  overflow: hidden;
+}
+.ds-brand-grain > figure > * { position: relative; z-index: calc(var(--ob-z-raised) + 1); }
+.ds-brand-grain-loud.ob-grain::before { opacity: calc(var(--ob-grain-opacity) * 4); mix-blend-mode: normal; }
+.ds-brand-grain-chip { justify-self: start; padding: var(--ob-space-12) var(--ob-space-16); border-radius: var(--ob-radius-sm); }
+
+/* Layout schematics ("wire"). Real tokens at reduced scale. Numbers mark the parts in the legend. */
+.ds-brand-wire { position: relative; display: grid; gap: var(--ob-space-16); min-width: 0; }
+:is(.ds-brand-wire, .ds-brand-annotated) [data-n] { position: relative; }
+:is(.ds-brand-wire, .ds-brand-annotated) [data-n]::before {
+  content: attr(data-n);
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  z-index: calc(var(--ob-z-raised) + 2);
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-weight-medium) var(--ob-type-label-mono-size)/1 var(--ob-font-mono);
+  box-shadow: 0 0 0 2px var(--ob-bg);
+}
+.ds-brand-wire-nav { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-12); height: 40px; padding: 0 var(--ob-space-12); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ds-brand-wire-links { display: flex; gap: var(--ob-space-12); }
+.ds-brand-wire-links i { width: 40px; height: 6px; border-radius: var(--ob-radius-glyph); background: var(--ob-fill); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+@container (max-width: 560px) { .ds-brand-wire-links { display: none; } }
+.ds-brand-wire-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-weight-semibold) var(--ob-type-caption-size)/1 var(--ob-font-sans);
+  color: var(--ob-btn-text);
+  background: var(--ob-btn-bg);
+  box-shadow: var(--ob-btn-shadow);
+  white-space: nowrap;
+}
+.ds-brand-wire-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(0, .62fr);
+  grid-template-areas: "eyebrow ." "head lede" "head form";
+  gap: var(--ob-space-12) clamp(16px, 5cqi, 48px);
+  align-items: end;
+  padding: var(--ob-space-16) var(--ob-space-12) 0;
+}
+@container (max-width: 640px) {
+  .ds-brand-wire-top { grid-template-columns: minmax(0, 1fr); grid-template-areas: "eyebrow" "head" "lede" "form"; }
+}
+.ds-brand-wire-eyebrow { grid-area: eyebrow; justify-self: start; }
+.ds-brand-wire-eyebrow.ob-layout-eyebrow { height: 28px; font-size: var(--ob-type-caption-size); }
+.ds-brand-wire-eyebrow.ob-layout-eyebrow > .ob-sig { --ob-sig-size: 16px; }
+.ds-brand-wire-h {
+  grid-area: head;
+  max-width: var(--ob-measure-display);
+  font: var(--ob-type-display-weight) clamp(22px, 4.6cqi, 44px)/var(--ob-type-display-leading) var(--ob-font-sans);
+  letter-spacing: var(--ob-type-display-tracking);
+  text-wrap: balance;
+  color: var(--ob-text);
+}
+.ds-brand-wire-lede { grid-area: lede; display: grid; gap: var(--ob-space-8); align-self: end; }
+.ds-brand-wire-lede i,
+.ds-brand-wire-text i { display: block; height: 7px; border-radius: var(--ob-radius-glyph); background: var(--ob-text-3); opacity: .55; }
+.ds-brand-wire-lede i:last-child,
+.ds-brand-wire-text i:last-child { width: 64%; }
+.ds-brand-wire-form {
+  grid-area: form;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-8);
+  height: 40px;
+  padding: 0 var(--ob-space-4) 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-field-bg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-field-edge) inset;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+  min-width: 0;
+}
+.ds-brand-wire-form > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ds-brand-wire-objwrap { margin: var(--ob-space-8) var(--ob-space-12) var(--ob-space-12); }
+.ds-brand-wire-window { border-radius: var(--ob-radius-md); }
+.ds-brand-wire-winbar { display: flex; align-items: center; gap: var(--ob-space-8); height: 32px; padding: 0 var(--ob-space-12) 0 var(--ob-space-12); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ds-brand-wire-dots { display: flex; gap: var(--ob-space-4); }
+.ds-brand-wire-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--ob-surface-hover); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.ds-brand-wire-wintitle { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-wire-panes { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+@container (max-width: 480px) { .ds-brand-wire-panes { grid-template-columns: minmax(0, 1fr); } }
+.ds-brand-wire-pane { display: grid; gap: var(--ob-space-8); align-content: start; padding: var(--ob-space-12); min-height: 96px; }
+.ds-brand-wire-pane + .ds-brand-wire-pane { border-left: var(--ob-border-hair) solid var(--ob-line-subtle); }
+@container (max-width: 480px) { .ds-brand-wire-pane + .ds-brand-wire-pane { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); } }
+.ds-brand-wire-prompt { display: flex; align-items: center; gap: var(--ob-space-8); min-height: 32px; padding: 0 var(--ob-space-12); border-radius: var(--ob-radius-xs); background: var(--ob-bg-sunken); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-mono-sm); color: var(--ob-text); min-width: 0; }
+.ds-brand-wire-prompt > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ds-brand-wire-text { display: grid; gap: var(--ob-space-6); }
+.ds-brand-wire-card { display: grid; gap: var(--ob-space-6); padding: var(--ob-space-8) var(--ob-space-12); border-radius: var(--ob-radius-xs); background: var(--ob-fill-subtle); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+
+/* Section rhythm. */
+.ds-brand-rhythm { display: grid; min-width: 0; }
+.ds-brand-rhythm-sec { display: grid; padding: 0 var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ds-brand-rhythm-sec:first-child { border-top: 0; }
+.ds-brand-gapzone {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--ob-space-8);
+  background: repeating-linear-gradient(-45deg, var(--ob-fill-subtle) 0 6px, transparent 6px 12px);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+.ds-brand-gapzone.is-section { height: 40px; }
+.ds-brand-gapzone.is-block   { height: 28px; }
+.ds-brand-gapzone.is-stack   { height: 18px; }
+.ds-brand-rhythm-h { height: 14px; width: min(60%, 360px); border-radius: var(--ob-radius-glyph); background: var(--ob-text); }
+.ds-brand-rhythm-l { display: grid; gap: var(--ob-space-6); width: min(80%, 480px); }
+.ds-brand-rhythm-l i { display: block; height: 7px; border-radius: var(--ob-radius-glyph); background: var(--ob-text-3); opacity: .55; }
+.ds-brand-rhythm-l i:last-child { width: 70%; }
+.ds-brand-rhythm-obj { height: 64px; border-radius: var(--ob-radius-sm); }
+
+/* Page map: every band of the page, with the one paper break. */
+.ds-brand-map { display: grid; border-radius: var(--ob-radius-md); overflow: hidden; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.ds-brand-map > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  min-height: 30px;
+  padding: var(--ob-space-4) var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-2);
+}
+.ds-brand-map > div:first-child { border-top: 0; }
+.ds-brand-map > div.is-tall { min-height: 48px; }
+.ds-brand-map > div.ob-theme-light { border-top: 0; color: var(--ob-text); }
+.ds-brand-map-obj { flex: none; width: clamp(56px, 28cqi, 200px); height: 20px; border-radius: var(--ob-radius-xs); }
+.ds-brand-map > div.is-tall .ds-brand-map-obj { height: 32px; }
+.ds-brand-map-break { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.ds-brand-map > div.is-ruled { border-block: var(--ob-border-hair) solid var(--ob-line); }
+
+/* Paper break, live: a dark band and a paper band, each with a focused field and button. */
+.ds-brand-break { display: grid; border-radius: var(--ob-radius-md); overflow: hidden; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.ds-brand-break-band {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) auto;
+  justify-content: start;
+  align-items: end;
+  gap: var(--ob-space-16) var(--ob-space-16);
+  padding: var(--ob-space-24) clamp(16px, 4cqi, 32px) var(--ob-space-20);
+}
+@container (max-width: 560px) { .ds-brand-break-band { grid-template-columns: minmax(0, 1fr); justify-content: stretch; align-items: start; } }
+.ds-brand-break-band > .ds-brand-cap { grid-column: 1 / -1; }
+.ds-brand-break-band .ob-field { max-width: 360px; }
+.ds-brand-break-band > .ds-brand-cell-note { grid-column: 1 / -1; color: var(--ob-text-3); }
+
+/* Hand-off: a live final call that runs busy, done, hold, then the result. */
+.ob-layout-final.ds-brand-handoff { min-height: 220px; align-content: center; padding-block: var(--ob-space-40); border-top: 0; }
+
+/* App window schematic: the 720 x 450 frame of a site product scene. */
+.ds-brand-appwin {
+  display: grid;
+  grid-template-rows: 32px minmax(0, 1fr);
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 720 / 450;
+  border-radius: var(--ob-radius-md);
+  overflow: hidden;
+}
+.ds-brand-appwin-bar { display: flex; align-items: center; gap: var(--ob-space-12); min-width: 0; padding: 0 var(--ob-space-8) 0 var(--ob-space-12); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); background: var(--ob-bg-sunken); }
+.ds-brand-appwin-crumb { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.ds-brand-appwin-crumb b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ds-brand-appwin-body { display: grid; grid-template-columns: 28% minmax(0, 1fr); min-height: 0; }
+.ds-brand-appwin-side { display: grid; align-content: start; gap: var(--ob-space-8); padding: var(--ob-space-12); border-right: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ds-brand-appwin-side i { display: block; height: 7px; border-radius: var(--ob-radius-glyph); background: var(--ob-text-3); opacity: .45; }
+.ds-brand-appwin-side i:nth-child(2n) { width: 70%; }
+.ds-brand-appwin-main { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-16); min-width: 0; }
+.ds-brand-appwin-act { display: flex; justify-content: flex-end; }
+
+/* Templates. */
+.ds-brand-mail {
+  display: grid;
+  box-sizing: border-box;
+  gap: var(--ob-space-16);
+  max-width: 520px;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-brand-mail hr { width: 100%; height: 0; margin: 0; border: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+
+/* Guideline-only devices: loop caps, replays of whole specimens, small helpers. */
+/* Working loops stop after 3 turns here (1 for the slow turn), so the guideline obeys WCAG 2.2.2.
+   A capped spinner rests on the working still frame, a quarter turn along, and each turn starts and
+   ends there, so it never jumps when it starts or stops. */
+.ob-sig.ds-brand-capped.is-spin .ob-sig-rot { transform: rotate(90deg); animation-name: ds-brand-turn; }
+.ob-sig.ds-brand-capped.is-spin .ob-sig-orb { transform: rotate(-90deg); animation-name: ds-brand-turn-rev; }
+.ob-sig.ds-brand-capped.is-spin :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 3; }
+.ob-sig.ds-brand-capped.is-spin.is-slow :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 1; }
+:is(.ob-sig.ds-brand-capped.is-spin.is-replay, .ds-brand-log.is-replay .ob-sig.ds-brand-capped.is-spin) .ob-sig-rot { animation-name: ds-brand-turn-r; }
+:is(.ob-sig.ds-brand-capped.is-spin.is-replay, .ds-brand-log.is-replay .ob-sig.ds-brand-capped.is-spin) .ob-sig-orb { animation-name: ds-brand-turn-rev-r; }
+@keyframes ds-brand-turn       { from { transform: rotate(90deg); }  to { transform: rotate(450deg); } }
+@keyframes ds-brand-turn-r     { from { transform: rotate(90deg); }  to { transform: rotate(450deg); } }
+@keyframes ds-brand-turn-rev   { from { transform: rotate(-90deg); } to { transform: rotate(-450deg); } }
+@keyframes ds-brand-turn-rev-r { from { transform: rotate(-90deg); } to { transform: rotate(-450deg); } }
+/* The hero schematic replays its whole sequence. */
+.ds-brand-wire.is-replay .ob-anim-hero > * { animation-name: ob-hero-r; }
+.ds-brand-wire.is-replay .ob-anim-hero-object { animation-name: ob-enter-r; }
+.ds-brand-wire.is-replay .ob-sig.is-play .ob-sig-draw { animation-name: ob-sig-draw-r; }
+.ds-brand-wire.is-replay .ob-sig.is-play .ob-sig-sq { animation-name: ob-sig-snap-r, ob-sig-blink-r; }
+.ds-brand-wm32 { --ob-wordmark-h: 28px; color: var(--ob-text); }
+.ds-brand-mono { font: var(--ob-type-mono-sm); color: var(--ob-text); }
+.ds-brand-chain { gap: var(--ob-space-4); }
+.ds-brand-chain .ob-sq { color: var(--ob-text-3); }
+.ds-brand-chain .ob-sq:last-of-type { margin-right: var(--ob-space-4); }
+.ds-brand-legend--plain li::before {
+  content: "";
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
+  box-shadow: none;
+  background: var(--ob-text);
+  translate: 0 -2px;
+}
+.ds-brand-legend--plain li { grid-template-columns: 12px minmax(0, 1fr); }
+
+/* Voice. */
+.ds-brand-voice { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--ob-space-12); }
+.ds-brand-voice > figure { display: grid; align-content: start; gap: var(--ob-space-8); padding: var(--ob-space-16); border-radius: var(--ob-radius-md); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; }
+.ds-brand-voice blockquote { margin: 0; font: var(--ob-type-body); color: var(--ob-text); text-wrap: pretty; }
+.ds-brand-voice blockquote time { margin-right: var(--ob-space-12); color: var(--ob-text-3); }
+.ds-brand-voice figcaption { font: var(--ob-type-caption); color: var(--ob-text-2); }
+.ds-brand-voice--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .ds-brand-voice--three { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); } }
+.ds-brand-voice .ds-brand-voice-rule { font: var(--ob-type-body); font-weight: var(--ob-weight-medium); letter-spacing: -.01em; color: var(--ob-text); }
+.ds-brand-voice .ds-brand-voice-eg { font: var(--ob-type-small); color: var(--ob-text-2); }
+.ds-brand-voice blockquote.ds-brand-mono { font: var(--ob-type-code); color: var(--ob-text); }
+.ds-brand-pairs { display: grid; gap: var(--ob-space-12); }
+.ds-brand-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  overflow: hidden;
+}
+@media (max-width: 620px) { .ds-brand-pair { grid-template-columns: minmax(0, 1fr); } }
+.ds-brand-pair > div { display: grid; align-content: start; gap: var(--ob-space-8); padding: var(--ob-space-16); }
+.ds-brand-pair > div + div { box-shadow: -1px 0 0 var(--ob-line-subtle); }
+@media (max-width: 620px) { .ds-brand-pair > div + div { box-shadow: 0 -1px 0 var(--ob-line-subtle); } }
+.ds-brand-pair .ds-brand-cap { display: inline-flex; align-items: center; gap: var(--ob-space-6); }
+.ds-brand-pair-do { font: var(--ob-type-body); color: var(--ob-text); }
+.ds-brand-pair-dont { font: var(--ob-type-body); color: var(--ob-text-2); text-decoration: line-through; text-decoration-color: var(--ob-text-3); text-decoration-thickness: 1px; }
+.ds-brand-pair-why { grid-column: 1 / -1; padding: var(--ob-space-12) var(--ob-space-16); font: var(--ob-type-caption); color: var(--ob-text-2); box-shadow: 0 -1px 0 var(--ob-line-subtle); }
+.ds-brand-x {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background:
+    linear-gradient(45deg, transparent calc(50% - .75px), currentColor calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px)),
+    linear-gradient(-45deg, transparent calc(50% - .75px), currentColor calc(50% - .75px) calc(50% + .75px), transparent calc(50% + .75px));
+}
+.ds-brand-words { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--ob-space-12); }
+.ds-brand-words > div { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-16); border-radius: var(--ob-radius-md); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; }
+.ds-brand-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); }
+.ds-brand-chips li { display: inline-flex; align-items: center; height: 28px; padding: 0 var(--ob-space-12); border-radius: var(--ob-radius-pill); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.ds-brand-chips--avoid li { color: var(--ob-text-2); text-decoration: line-through; text-decoration-color: var(--ob-text-3); }
+
+/* The wordmark outline is defined once per page and drawn with <use>. */
+.ds-brand-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+/* Clear-space specimens scale with the stage so they never overflow a cell. */
+.ds-brand-clear-size { --ob-lockup-h: clamp(24px, 3.6cqi, 40px); }
+.ds-brand-clear--stacked, .ds-brand-clear--stacked .ob-lockup--stacked { --ob-lockup-mark: clamp(44px, 7cqi, 64px); }
+/* Annotated specimens keep their numbers in a left gutter, clear of the copy. */
+.ds-brand-annotated { padding-left: var(--ob-space-32); }
+.ds-brand-annotated [data-n]::before { top: 3px; left: calc(var(--ob-space-32) * -1); }
+/* Every guideline grid gets a shrinkable track, so no specimen can push the page wider than the phone.
+   Blocks are containers, so anatomy and legends reflow by the space they really have. */
+.ds-brand,
+.ds-brand-head,
+.ds-brand-block,
+.ds-brand-part,
+.ds-brand-stages:not(.ds-brand-stages--row),
+.ds-brand-stage,
+.ds-brand-wire { grid-template-columns: minmax(0, 1fr); }
+.ds-brand-block { container-type: inline-size; }
+.ds-brand-center { display: grid; justify-items: center; min-width: 0; }

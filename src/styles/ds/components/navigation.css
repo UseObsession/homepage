@@ -1,0 +1,1945 @@
+/* =============================================================================================
+   OBSESSION  NAVIGATION, SELECTION AND STATUS  v1.1  (2 Oct 2026)
+   Load order: tokens.css, motion.css, buttons.css, brand.css, surfaces.css, then this file. Uses
+   --ob- tokens only; no colour literals. Every rule that composes another file's class is written so
+   it wins in any load order.
+
+   Components (.ob-)
+     .ob-skip ........... skip link, first in the Tab order
+     .ob-nav ............ sticky top nav: lockup, links, theme switch, call to action
+     .ob-navbtn ......... 24px inline icon button: the breadcrumb's more, the tab row's Pause
+     .ob-look ........... theme switch (dark, hybrid, light); .ob-look--lg for touch
+     .ob-mnav ........... mobile menu panel
+     .ob-ptabs .......... pill tabs (the scenario row)
+     .ob-utabs .......... underline tabs (fit, fill, auto-advance with a pause toggle)
+     .ob-crumbs ......... breadcrumbs
+     .ob-pager .......... pagination
+     .ob-badge .......... counts and short facts
+     .ob-status ......... status pill: the ring mark plus a word
+     .ob-kitbox/.ob-kit . kit chips: what we set up for an agent
+     .ob-tag ............ tags, removable tags, filter tags
+     .ob-kbd ............ key caps
+     .ob-tooltip ........ tooltip
+     .ob-menu ........... dropdown menu, its trigger and 1 level of submenu
+     .ob-cmdk ........... command palette (cmd K), inside a surfaces .ob-layer
+
+   One owner per component
+     This file owns .ob-sr, .ob-kbd, .ob-status (with --failed), .ob-kit, .ob-look and everything
+       listed above. brand.css .ob-sig-label--pill is the same object as .ob-status--sm, and
+       brand.css .ob-setup-list is .ob-kit; forms.css .ob-look-swatch is .ob-look__sw. Those files
+       should alias these classes rather than restyle them. surfaces.css already borrows .ob-status.
+     This file composes, and never restyles:
+       buttons.css   .ob-btn: the nav's call to action (--sm), the panel's (--lg --block), the menu
+                     button and tooltip anchors (--ghost --icon)
+       brand.css     .ob-brand-link, .ob-lockup, .ob-wordmark, .ob-sig.is-still
+       surfaces.css  .ob-layer and .ob-scrim, under the palette
+       motion.css    .ob-anim-* utilities add transitions only; positions live here
+
+   Every pseudo-state has a static twin so the guideline can show states side by side:
+     :hover .is-hover   :active .is-active   :focus-visible .is-focus   :disabled .is-disabled
+     .is-loading   .is-selected (current, checked, expanded)   .is-error
+   Hover only applies to fine pointers. Focus rings appear in the same frame, never animated.
+   Disabled text uses --ob-text-disabled (3.2 to 3.9:1), never opacity.
+
+   Containing blocks: .ob-nav has container-type and backdrop-filter, so it is the containing block
+   for any position: fixed child. Menus, tooltips and the palette must render outside the nav, in
+   the top layer (popover, dialog) or a portal at the end of body.
+
+   Doc layout (.ds-navigation-) is at the end and styles the guideline page only.
+   ============================================================================================= */
+
+:where(.ob-skip, .ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs,
+       .ob-pager, .ob-badge, .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-kbd, .ob-tip, .ob-tooltip,
+       .ob-menu, .ob-menu-trigger, .ob-cmdk-layer, .ob-cmdk, .ds-navigation),
+:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
+       .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-tip, .ob-tooltip, .ob-menu, .ob-menu-trigger,
+       .ob-cmdk-layer, .ob-cmdk, .ds-navigation) *,
+:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
+       .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-tip, .ob-tooltip, .ob-menu, .ob-menu-trigger,
+       .ob-cmdk-layer, .ob-cmdk, .ds-navigation) ::before,
+:where(.ob-nav, .ob-mnav, .ob-navbtn, .ob-look, .ob-ptabs, .ob-utabs, .ob-utabs-row, .ob-crumbs, .ob-pager,
+       .ob-status, .ob-kitbox, .ob-kit, .ob-tag, .ob-tip, .ob-tooltip, .ob-menu, .ob-menu-trigger,
+       .ob-cmdk-layer, .ob-cmdk, .ds-navigation) ::after {
+  box-sizing: border-box;
+}
+
+/* Visually hidden, still read aloud. */
+.ob-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Stroke icons on a 16px grid: 1.5px stroke, round caps, currentColor. */
+.ob-navicon {
+  display: block;
+  flex: none;
+  width: var(--ob-icon-md);
+  height: var(--ob-icon-md);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ob-navicon--sm { width: var(--ob-icon-sm); height: var(--ob-icon-sm); }
+
+
+/* =============================================================================================
+   SKIP LINK  .ob-skip
+   The first thing in the page. Hidden until it takes focus, then a 40px inverse pill 8px from the
+   top left, above the nav. No motion: it is there on the frame focus lands.
+   ============================================================================================= */
+.ob-skip {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + var(--ob-space-8));
+  left: var(--ob-space-8);
+  z-index: calc(var(--ob-z-nav) + 1);
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-md);
+  padding: 0 var(--ob-control-pad-md);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ob-skip:not(:focus, .is-focus) {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.ob-skip:focus-visible,
+.ob-skip.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+
+/* =============================================================================================
+   INLINE ICON BUTTON  .ob-navbtn
+   24px, for dense rows where a 36px button would crowd the line: the breadcrumb's more and the
+   Pause toggle beside auto-advancing tabs. A 44px hit area under a coarse pointer. Every icon
+   button 36px and up is buttons.css .ob-btn--ghost.ob-btn--icon. It always needs an aria-label.
+   ============================================================================================= */
+.ob-navbtn {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--ob-control-xs);
+  height: var(--ob-control-xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: transparent;
+  color: var(--ob-text-2);
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (pointer: coarse) {
+  .ob-navbtn::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-navbtn:hover:not(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ob-navbtn.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-navbtn:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) {
+  color: var(--ob-text);
+  background-color: var(--ob-state-pressed);
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-navbtn:is([aria-expanded="true"], [aria-pressed="true"], .is-selected) { color: var(--ob-text); background-color: var(--ob-state-selected); }
+.ob-navbtn:focus-visible,
+.ob-navbtn.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-navbtn:is(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); background-color: transparent; cursor: default; }
+
+/* The menu glyph: 2 bars that turn into a cross while the menu is open. It sits in a buttons.css
+   .ob-btn--ghost.ob-btn--icon, 44px, so the menu button needs no extra hit area. */
+.ob-navbtn__bars { position: relative; display: block; width: var(--ob-icon-md); height: var(--ob-icon-md); }
+.ob-navbtn__bars i {
+  position: absolute;
+  left: 1px;
+  width: 14px;
+  height: var(--ob-border-strong);
+  border-radius: 1px;
+  background-color: currentColor;
+  transition: translate var(--ob-dur-moderate) var(--ob-ease-out), rotate var(--ob-dur-moderate) var(--ob-ease-out);
+}
+.ob-navbtn__bars i:first-child { top: 4.25px; }
+.ob-navbtn__bars i:last-child  { top: 10.25px; }
+:is([aria-expanded="true"], .is-expanded, .is-selected) > .ob-navbtn__bars i:first-child { translate: 0 3px;  rotate: 45deg; }
+:is([aria-expanded="true"], .is-expanded, .is-selected) > .ob-navbtn__bars i:last-child  { translate: 0 -3px; rotate: -45deg; }
+
+
+/* =============================================================================================
+   TOP NAV  .ob-nav
+   64px tall (56px compact), sticky under the safe area, translucent with a blur. A 3-column grid:
+   lockup, links centred on the bar, then the theme switch and 1 primary pill. Decided by the nav's
+   own width, so a phone-width frame shows the right layout anywhere:
+     1080px and up   everything in the bar
+     860 to 1079px   the theme switch leaves the bar; it stays in the footer
+     under 860px     compact: links and the switch move into the menu panel
+     under 349px     the call to action waits in the panel too
+   Script adds .is-top while the page sits at the very top. Without script the nav keeps its fill,
+   which is the safe state.
+   ============================================================================================= */
+.ob-nav {
+  container: ob-nav / inline-size;
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: var(--ob-z-nav);
+  background-color: var(--ob-nav-bg);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+  color: var(--ob-text);
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-nav.is-top {
+  background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 transparent;
+}
+/* While the panel is open the bar is solid, even at the top, so nothing shows through above it. */
+.ob-nav:has(.ob-nav__menu[aria-expanded="true"]) {
+  background-color: var(--ob-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+}
+.ob-nav__in {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--ob-space-16);
+  width: 100%;
+  max-width: var(--ob-container);
+  height: 64px;
+  margin-inline: auto;
+  /* The page gutter, measured on the nav itself so a framed nav matches a real one. */
+  padding-inline: clamp(var(--ob-space-16), 4cqi, var(--ob-space-32));
+}
+
+/* Lockup: brand.css .ob-brand-link holding a 22px .ob-lockup (154px wide). The link is 44px tall,
+   presses to .98 and turns the ring once on hover. The nav only places it. */
+.ob-nav__brand { justify-self: start; }
+
+.ob-nav__links {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: var(--ob-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ob-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-control-pad-sm);
+  border-radius: var(--ob-radius-pill);
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-nav__link:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ob-nav__link.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-nav__link:is(:active, .is-active) {
+  color: var(--ob-text);
+  background-color: var(--ob-state-pressed);
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-nav__link:focus-visible,
+.ob-nav__link.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+/* Current page: full ink plus the brand square under the label. Colour alone never marks it. */
+.ob-nav__link:is([aria-current="page"], .is-selected) { color: var(--ob-text); }
+/* The square sits 5px under the pill: 1px clear of the focus ring, so current and focused shows both. */
+.ob-nav__link:is([aria-current="page"], .is-selected)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(100% + var(--ob-focus-offset) + var(--ob-focus-width) + var(--ob-border-hair));
+  width: var(--ob-sq-sm);
+  height: var(--ob-sq-sm);
+  margin-left: calc(var(--ob-sq-sm) / -2);
+  border-radius: 1px;
+  background-color: currentColor;
+}
+.ob-nav__link .ob-badge { margin-inline-start: var(--ob-space-8); }
+
+.ob-nav__end {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: var(--ob-space-12);
+  margin: 0;
+}
+
+/* The nav's one primary pill is buttons.css .ob-btn.ob-btn--sm (36px, 44px hit area on touch).
+   In the menu panel it is .ob-btn--lg.ob-btn--block. The nav only places them. */
+.ob-nav__end > .ob-nav__cta { flex: none; }
+.ob-nav__end > .ob-nav__menu { display: none; }
+
+/* Touch: links keep their drawing and grow a 44px tall hit area. */
+@media (pointer: coarse) {
+  .ob-nav__link::before {
+    content: "";
+    position: absolute;
+    inset: calc((var(--ob-target-touch) - 100%) / -2) 0;
+  }
+}
+
+@container ob-nav (max-width: 1079.98px) {
+  .ob-nav__end > .ob-look { display: none; }
+}
+@container ob-nav (max-width: 859.98px) {
+  .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: 56px; gap: var(--ob-space-8); }
+  .ob-nav__links { display: none; }
+  .ob-nav__end > .ob-nav__menu { display: inline-flex; }
+  .ob-nav__end { gap: var(--ob-space-8); }
+}
+/* Lockup 154 + gap 8 + call to action 95 + gap 8 + menu 44 + gutters 2 x 16 = 341. Under 349 the
+   lockup would keep less than 16px of air, so the call to action waits in the panel. */
+@container ob-nav (max-width: 348.98px) {
+  .ob-nav__end > .ob-nav__cta { display: none; }
+}
+
+
+/* =============================================================================================
+   THEME SWITCH  .ob-look
+   A radiogroup of 3 equal 28 x 24 segments in a 32px track. The thumb carries a --ob-line-ui edge
+   (3:1) and sits on the checked segment by translate. Set data-value (dark | hybrid | light).
+   .ob-look--lg is the touch size: 44 x 40 segments in a 48px track, used in the menu panel.
+   ============================================================================================= */
+.ob-look {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--ob-control-chip);
+  flex: none;
+  height: var(--ob-control-sm);
+  padding: var(--ob-space-4);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.ob-look__thumb {
+  position: absolute;
+  top: var(--ob-space-4);
+  left: var(--ob-space-4);
+  width: var(--ob-control-chip);
+  height: var(--ob-control-xs);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-ui), var(--ob-shadow-1);
+  pointer-events: none;
+  /* The position lives here; .ob-anim-thumb adds only the 240ms travel. */
+  translate: calc(var(--ob-index, 0) * 100%) 0;
+}
+.ob-look[data-value="hybrid"] .ob-look__thumb { --ob-index: 1; }
+.ob-look[data-value="light"]  .ob-look__thumb { --ob-index: 2; }
+.ob-look__opt {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--ob-control-chip);
+  height: var(--ob-control-xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-3);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .ob-look__opt:hover { color: var(--ob-text); } }
+.ob-look__opt.is-hover,
+.ob-look__opt:is([aria-checked="true"], .is-selected) { color: var(--ob-text); }
+.ob-look__opt:focus-visible,
+.ob-look__opt.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-look__sw {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--ob-radius-glyph);
+  box-shadow: inset 0 0 0 var(--ob-border-strong) currentColor;
+}
+.ob-look__sw--dark   { background-color: currentColor; }
+.ob-look__sw--hybrid { background-image: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+/* Touch size. */
+.ob-look--lg { grid-auto-columns: var(--ob-target-touch); height: var(--ob-control-lg); }
+.ob-look--lg :is(.ob-look__opt, .ob-look__thumb) { width: var(--ob-target-touch); height: var(--ob-control-md); }
+.ob-look--lg .ob-look__sw { width: 12px; height: 12px; }
+
+
+/* =============================================================================================
+   MOBILE MENU PANEL  .ob-mnav
+   Opens under the compact nav and fills the screen below it. The panel fades in over 240ms and
+   its rows rise 8px, 40ms apart (.ob-anim-stagger). It leaves with a 160ms fade (.is-leaving).
+   Set --ob-mnav-height when the nav is not at the top of the viewport.
+   ============================================================================================= */
+.ob-mnav {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  z-index: var(--ob-z-nav);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ob-space-24);
+  height: var(--ob-mnav-height, calc(100dvh - 56px - env(safe-area-inset-top, 0px)));
+  padding: var(--ob-space-8) clamp(var(--ob-space-16), 4cqi, var(--ob-space-32)) var(--ob-space-24);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--ob-bg);
+  color: var(--ob-text);
+  box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle);
+  animation: ob-fade-in var(--ob-dur-moderate) var(--ob-ease-out) backwards;
+}
+.ob-mnav[hidden] { display: none; }
+.ob-mnav.is-leaving { animation: ob-fade-out var(--ob-dur-base) var(--ob-ease-in) forwards; }
+.ob-mnav.is-replay:not(.is-leaving) { animation-name: ob-fade-in-r; }
+.ob-mnav.is-replay:not(.is-leaving) .ob-anim-stagger > * { animation-name: ob-enter-r; }
+.ob-mnav__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
+.ob-mnav__link {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  min-height: var(--ob-control-lg);
+  padding: 0 var(--ob-control-pad-sm);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  font: var(--ob-type-body);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -.01em;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .ob-mnav__link:hover { background-color: var(--ob-state-hover); } }
+.ob-mnav__link.is-hover { background-color: var(--ob-state-hover); }
+.ob-mnav__link:is(:active, .is-active) { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ob-mnav__link:focus-visible,
+.ob-mnav__link.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+/* Current page: the square sits at the row's end, so labels never shift. */
+.ob-mnav__link:is([aria-current="page"], .is-selected)::after {
+  content: "";
+  flex: none;
+  width: var(--ob-sq-sm);
+  height: var(--ob-sq-sm);
+  margin-inline-start: auto;
+  border-radius: 1px;
+  background-color: currentColor;
+}
+.ob-mnav__foot {
+  display: grid;
+  gap: var(--ob-space-16);
+  margin-top: auto;
+  padding-top: var(--ob-space-16);
+  box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle);
+}
+.ob-mnav__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  margin: 0;
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+}
+
+
+/* =============================================================================================
+   PILL TABS  .ob-ptabs / .ob-ptab
+   The scenario row. 32px pills on a rail: recessed on ink, raised paper with a hairline on paper
+   (--ob-track-bg). Selected is the inverse pill. The rail scrolls sideways when it runs out of
+   room; script keeps the selected tab in view and sets .is-scrollable, .is-scroll-start and
+   .is-scroll-end, which fade the edge that has more. Focus is drawn inside because the rail clips.
+   Under a coarse pointer each pill is 40px with a 44px hit area.
+   ============================================================================================= */
+.ob-ptabs {
+  --ob-fade-s: 0px;
+  --ob-fade-e: 0px;
+  display: inline-flex;
+  gap: var(--ob-space-4);
+  max-width: 100%;
+  margin: 0;
+  padding: var(--ob-space-4);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-track-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--ob-space-4);
+  scrollbar-width: none;
+}
+.ob-ptabs::-webkit-scrollbar { display: none; }
+.ob-ptab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  flex: none;
+  height: var(--ob-control-sm);
+  margin: 0;
+  padding: 0 var(--ob-control-pad-md);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: transparent;
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (pointer: coarse) {
+  .ob-ptab { height: var(--ob-control-md); }
+  .ob-ptab::before { content: ""; position: absolute; inset: calc(var(--ob-space-2) * -1) 0; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-ptab:hover:not([aria-selected="true"], .is-selected, :disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text); background-color: var(--ob-state-hover); }
+  .ob-ptab:is([aria-selected="true"], .is-selected):hover { background-color: var(--ob-solid-hover); }
+}
+.ob-ptab.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-ptab:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) {
+  color: var(--ob-text);
+  background-color: var(--ob-state-pressed);
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-ptab:is([aria-selected="true"], .is-selected),
+.ob-ptab:is([aria-selected="true"], .is-selected):is(:active, .is-active) { color: var(--ob-text-inverse); background-color: var(--ob-solid); }
+.ob-ptab:is([aria-selected="true"], .is-selected).is-hover { color: var(--ob-text-inverse); background-color: var(--ob-solid-hover); }
+.ob-ptab:focus-visible,
+.ob-ptab.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+/* On the inverse pill the ring flips to the inverse ink and sits 2px further in. */
+.ob-ptab:is([aria-selected="true"], .is-selected):is(:focus-visible, .is-focus) {
+  outline-color: var(--ob-text-inverse);
+  outline-offset: calc(var(--ob-focus-offset-inset) * 2);
+}
+.ob-ptab:is(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); background-color: transparent; cursor: default; }
+/* A count inside a tab follows the tab's ink. */
+.ob-ptab .ob-badge { color: inherit; background-color: transparent; box-shadow: inset 0 0 0 var(--ob-border-hair) currentColor; }
+
+/* Overflow cue for any scrolling rail (pill tabs and underline tabs). A mask reads alpha only, so
+   currentColor here is an opaque stop, not a colour. */
+:is(.ob-ptabs, .ob-utabs).is-scrollable {
+  scroll-padding-inline: var(--ob-space-24);
+  -webkit-mask-image: linear-gradient(to right, transparent, currentColor var(--ob-fade-s), currentColor calc(100% - var(--ob-fade-e)), transparent);
+  mask-image: linear-gradient(to right, transparent, currentColor var(--ob-fade-s), currentColor calc(100% - var(--ob-fade-e)), transparent);
+}
+:is(.ob-ptabs, .ob-utabs).is-scrollable:not(.is-scroll-start) { --ob-fade-s: var(--ob-space-24); }
+:is(.ob-ptabs, .ob-utabs).is-scrollable:not(.is-scroll-end)   { --ob-fade-e: var(--ob-space-24); }
+
+
+/* =============================================================================================
+   UNDERLINE TABS  .ob-utabs / .ob-utab
+   40px tabs on a hairline (44px under a coarse pointer), for tabs inside a page or a card.
+   1 2px indicator per list.
+     fit (default)  tabs size to their labels; script inserts the indicator and sets --ob-x, --ob-w
+     --fill         equal columns; set --ob-count and --ob-index, no measuring needed
+     --auto         the selected tab fills a 2px bar over the dwell, then the next tab opens.
+                    Wrap it in .ob-utabs-row with a Pause toggle; pausing stops it for good.
+   ============================================================================================= */
+.ob-utabs {
+  --ob-fade-s: 0px;
+  --ob-fade-e: 0px;
+  position: relative;
+  display: flex;
+  gap: var(--ob-space-4);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+}
+.ob-utabs::-webkit-scrollbar { display: none; }
+.ob-utab {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ob-space-8);
+  flex: none;
+  height: var(--ob-control-md);
+  margin: 0;
+  padding: 0 var(--ob-control-pad-sm);
+  border: 0;
+  border-radius: var(--ob-radius-xs);
+  background: transparent;
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (pointer: coarse) { .ob-utab { height: var(--ob-target-touch); } }
+/* The hover layer sits 4px inside the tab, so it never touches the indicator. */
+.ob-utab::before {
+  content: "";
+  position: absolute;
+  inset: var(--ob-space-4) 0;
+  z-index: -1;
+  border-radius: var(--ob-radius-xs);
+  background-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-utab:hover:not(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text); }
+  .ob-utab:hover:not(:disabled, [aria-disabled="true"], .is-disabled)::before { background-color: var(--ob-state-hover); }
+}
+.ob-utab.is-hover { color: var(--ob-text); }
+.ob-utab.is-hover::before { background-color: var(--ob-state-hover); }
+.ob-utab:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text); scale: var(--ob-press-scale); transition-duration: var(--ob-dur-fast); }
+.ob-utab:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled)::before { background-color: var(--ob-state-pressed); }
+.ob-utab:is([aria-selected="true"], .is-selected) { color: var(--ob-text); }
+/* The ring sits 6px in: on the hover layer's edge, and 2px clear of the 2px bar. */
+.ob-utab:focus-visible,
+.ob-utab.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: calc(var(--ob-space-4) * -1 - var(--ob-focus-width));
+}
+.ob-utab:is(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); cursor: default; }
+
+/* Without an indicator element the selected tab draws its own bar. Once one is present (script
+   inserts it for fit tabs; fill tabs carry it in markup) the shared bar takes over. */
+.ob-utab:is([aria-selected="true"], .is-selected)::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--ob-control-pad-sm);
+  bottom: 0;
+  height: var(--ob-border-focus);
+  background-color: var(--ob-text);
+}
+.ob-utabs:has(> .ob-utabs__indicator) .ob-utab::after,
+.ob-utabs--auto .ob-utab::after { display: none; }
+.ob-utabs__indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: var(--ob-border-focus);
+  background-color: var(--ob-text);
+  pointer-events: none;
+}
+/* Fit: a 1px bar scaled to the label. Position and width live here; .ob-anim-indicator adds the
+   240ms travel. Script sets --ob-x (px) and --ob-w (a unitless px count). */
+.ob-utabs:not(.ob-utabs--fill) > .ob-utabs__indicator {
+  width: 1px;
+  transform-origin: 0 50%;
+  translate: var(--ob-x, 0px) 0;
+  scale: var(--ob-w, 0) 1;
+}
+/* Fill: equal columns. The indicator is 1 column wide and moves by whole columns. */
+.ob-utabs--fill { gap: 0; }
+.ob-utabs--fill .ob-utab { flex: 1 1 0; min-width: max-content; }
+.ob-utabs--fill .ob-utabs__indicator {
+  width: calc(100% / var(--ob-count, 4));
+  background-color: transparent;
+  translate: calc(var(--ob-index, 0) * 100%) 0;
+  transition: translate var(--ob-dur-moderate) var(--ob-ease-out);
+}
+.ob-utabs--fill .ob-utabs__indicator::after {
+  content: "";
+  position: absolute;
+  inset: 0 var(--ob-control-pad-sm);
+  background-color: var(--ob-text);
+}
+.ob-utabs--fill .ob-utabs__indicator.is-instant { transition: none; }
+/* Auto-advance: the selected tab carries its own track (3:1, visible at the start of each dwell)
+   and the fill that grows over it. */
+.ob-utab__bar {
+  position: absolute;
+  inset-inline: var(--ob-control-pad-sm);
+  bottom: 0;
+  height: var(--ob-border-focus);
+  overflow: hidden;
+  background-color: var(--ob-line-ui);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out);
+}
+.ob-utab__bar > i { display: block; height: 100%; background-color: var(--ob-text); }
+.ob-utab:is([aria-selected="true"], .is-selected) .ob-utab__bar { opacity: 1; }
+/* The row that holds an auto-advancing list and its Pause toggle. The rule moves to the row. */
+.ob-utabs-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-width: 0;
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+}
+.ob-utabs-row > .ob-utabs { flex: 1 1 auto; min-width: 0; box-shadow: none; }
+.ob-utabs-row > .ob-navbtn { flex: none; margin-inline-end: var(--ob-space-8); }
+/* Paused for good: the fill holds where it stopped and reads as a still bar. */
+.ob-utabs-row.is-paused .ob-anim-bar { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .ob-utabs--fill .ob-utabs__indicator { transition: none; }
+  .ob-utab__bar > i { scale: 1 1; }
+}
+
+
+/* =============================================================================================
+   BREADCRUMBS  .ob-crumbs
+   One line. Links in --ob-text-2, the current page in --ob-text and not a link. Middle items
+   fold into a 24px "more" button when space runs out; the current item truncates last.
+   ============================================================================================= */
+.ob-crumbs { min-width: 0; }
+.ob-crumbs__list {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+}
+.ob-crumbs__item { display: flex; align-items: center; flex: none; min-width: 0; }
+.ob-crumbs__item:last-child { flex: 0 1 auto; }
+.ob-crumbs__item + .ob-crumbs__item::before {
+  content: "/";
+  content: "/" / "";
+  flex: none;
+  padding-inline: var(--ob-space-4);
+  color: var(--ob-text-3);
+  font-weight: var(--ob-weight-regular);
+}
+.ob-crumbs__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  min-height: var(--ob-control-chip);
+  padding: 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-xs);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .ob-crumbs__link:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+.ob-crumbs__link.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-crumbs__link:is(:active, .is-active) { color: var(--ob-text); background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ob-crumbs__link:focus-visible,
+.ob-crumbs__link.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+@media (pointer: coarse) {
+  .ob-crumbs__link::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
+}
+.ob-crumbs__current {
+  display: block;
+  min-width: 0;
+  padding: 0 var(--ob-space-6);
+  overflow: hidden;
+  color: var(--ob-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ob-crumbs .ob-sig { --ob-sig-size: var(--ob-icon-sm); }
+
+
+/* =============================================================================================
+   PAGINATION  .ob-pager
+   32px pills with tabular figures. The current page is the inverse pill. Previous and Next stay
+   in place on the first and last page, in --ob-text-disabled and out of the Tab order. Below
+   480px of its own width only the current page shows between Previous and Next. Under a coarse
+   pointer pages are 44px wide and every hit area is 44px tall.
+   ============================================================================================= */
+.ob-pager {
+  container: ob-pager / inline-size;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12) var(--ob-space-16);
+}
+.ob-pager__summary {
+  margin: 0;
+  color: var(--ob-text-3);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  font-variant-numeric: tabular-nums;
+}
+.ob-pager__list { display: flex; align-items: center; gap: var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
+.ob-pager__page,
+.ob-pager__step {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ob-space-4);
+  min-width: var(--ob-control-sm);
+  height: var(--ob-control-sm);
+  margin: 0;
+  padding: 0 var(--ob-space-8);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: transparent;
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-pager__step { padding: 0 var(--ob-control-pad-sm) 0 var(--ob-space-8); }
+.ob-pager__step--next { padding: 0 var(--ob-space-8) 0 var(--ob-control-pad-sm); }
+.ob-pager__step--icon { padding: 0; }
+@media (pointer: coarse) {
+  .ob-pager__list { gap: 0; }
+  .ob-pager__page { min-width: var(--ob-target-touch); }
+  :is(.ob-pager__page, .ob-pager__step)::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
+}
+@media (hover: hover) and (pointer: fine) {
+  :is(.ob-pager__page, .ob-pager__step):hover:not([aria-current="page"], .is-selected, [aria-disabled="true"], .is-disabled) { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+:is(.ob-pager__page, .ob-pager__step).is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+:is(.ob-pager__page, .ob-pager__step):is(:active, .is-active):not([aria-current="page"], .is-selected, [aria-disabled="true"], .is-disabled) {
+  color: var(--ob-text);
+  background-color: var(--ob-state-pressed);
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-pager__page:is([aria-current="page"], .is-selected) { color: var(--ob-text-inverse); background-color: var(--ob-solid); cursor: default; }
+:is(.ob-pager__page, .ob-pager__step):focus-visible,
+:is(.ob-pager__page, .ob-pager__step).is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-pager__step:is([aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); cursor: default; }
+.ob-pager__gap {
+  display: inline-grid;
+  place-items: center;
+  width: var(--ob-control-sm);
+  height: var(--ob-control-sm);
+  color: var(--ob-text-3);
+  font: var(--ob-type-label);
+}
+.ob-pager__count {
+  padding-inline: var(--ob-space-8);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@container ob-pager (max-width: 480px) {
+  .ob-pager__page:not([aria-current="page"], .is-selected),
+  .ob-pager__gap { display: none; }
+  .ob-pager__summary { flex-basis: 100%; }
+}
+
+
+/* =============================================================================================
+   BADGE  .ob-badge
+   20px. A count or a short fact attached to something else: a tab, a nav link, a menu row.
+   Never a control. Mono, tabular. Status tones are for product data only.
+   ============================================================================================= */
+.ob-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-fill);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.ob-badge--solid   { background-color: var(--ob-solid);      box-shadow: none; color: var(--ob-text-inverse); }
+.ob-badge--success { background-color: var(--ob-success-bg); box-shadow: none; color: var(--ob-success); }
+.ob-badge--warning { background-color: var(--ob-warning-bg); box-shadow: none; color: var(--ob-warning); }
+.ob-badge--danger  { background-color: var(--ob-danger-bg);  box-shadow: none; color: var(--ob-danger); }
+/* The square as an unread marker. Ring it in the surface colour it sits on. */
+.ob-badge--dot {
+  min-width: 0;
+  width: var(--ob-sq-sm);
+  height: var(--ob-sq-sm);
+  padding: 0;
+  border-radius: 1px;
+  background-color: var(--ob-text);
+  box-shadow: 0 0 0 var(--ob-border-focus) var(--ob-badge-ring, var(--ob-bg));
+}
+/* A badge that appears while you watch grows in once from 96%, like a menu. No overshoot. */
+.ob-badge.is-new {
+  --ob-enter-x: 0px; --ob-enter-y: 0px; --ob-enter-scale: var(--ob-pop-scale);
+  animation: ob-enter var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+.ob-badge.is-new.is-replay { animation-name: ob-enter-r; }
+
+
+/* =============================================================================================
+   STATUS PILL  .ob-status
+   28px (md) or 24px (--sm). The ring mark plus a mono status word, then an optional detail.
+   The mark carries the motion; the word carries the meaning. 1 moving mark per view; every other
+   mark shows its still frame (brand.css .ob-sig.is-still).
+     Ready .is-ready     Working .is-spin     Waiting .is-wait     Needs you .is-needs (warning)
+     Paused .is-paused   Stopped .is-stopped  Done .is-lock        Landed .is-landed (success)
+   Still frames differ by shape for Needs you (hollow square), Working (the cut turned to the
+   bottom), Paused (the cut empty), Stopped (the ring closed and empty) and Landed (the ring closed,
+   the square in the centre). Ready, Waiting and Done share the drawn mark; the word tells them apart.
+   ============================================================================================= */
+.ob-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  max-width: 100%;
+  height: var(--ob-control-chip);
+  padding: 0 var(--ob-control-pad-sm) 0 var(--ob-space-8);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.ob-status .ob-sig { --ob-sig-size: var(--ob-icon-sm); color: var(--ob-text); }
+.ob-status .ob-navicon { width: var(--ob-icon-sm); height: var(--ob-icon-sm); color: var(--ob-text); }
+.ob-status__detail { min-width: 0; overflow: hidden; color: var(--ob-text-3); text-overflow: ellipsis; }
+.ob-status__detail::before { content: "\00B7"; content: "\00B7" / ""; margin-inline-end: var(--ob-space-8); }
+.ob-status--sm { gap: var(--ob-space-6); height: var(--ob-control-xs); padding: 0 var(--ob-space-8) 0 var(--ob-space-6); }
+.ob-status--sm .ob-sig { --ob-sig-size: 12px; }
+.ob-status--needs  { background-color: var(--ob-warning-bg); box-shadow: none; color: var(--ob-warning); }
+.ob-status--landed { background-color: var(--ob-success-bg); box-shadow: none; color: var(--ob-success); }
+/* Failed is for data that did not verify, such as a receipt hash. An agent never shows it. */
+.ob-status--failed { background-color: var(--ob-danger-bg); box-shadow: none; color: var(--ob-danger); }
+.ob-status:is(.ob-status--needs, .ob-status--landed, .ob-status--failed) :is(.ob-sig, .ob-navicon, .ob-status__detail) { color: currentColor; }
+/* Bare: the same mark and word inside a list row, with no pill. */
+.ob-status--bare,
+.ob-status--bare:is(.ob-status--needs, .ob-status--landed, .ob-status--failed) { height: auto; padding: 0; background: none; box-shadow: none; }
+
+/* Ring frames the status pill adds to the ring states in tokens.css and motion.css. */
+/* Working, still: the cut turned 135deg to the bottom right, the square upright in it. Also the
+   reduced-motion frame, so Working never reads as Ready. */
+.ob-sig.is-spin.is-still .ob-sig-rot { transform: rotate(135deg); }
+.ob-sig.is-spin.is-still .ob-sig-orb { transform: rotate(-135deg); }
+/* Paused: the cursor leaves the cut. Stopped: the cut closes with nothing in it. */
+.ob-sig:is(.is-paused, .is-stopped) .ob-sig-sq {
+  opacity: 0;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-in), transform var(--ob-sig-land) var(--ob-ease);
+}
+.ob-sig.is-stopped .ob-sig-gap { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .ob-sig.is-spin .ob-sig-rot { transform: rotate(135deg); }
+  .ob-sig.is-spin .ob-sig-orb { transform: rotate(-135deg); }
+}
+
+
+/* =============================================================================================
+   KIT CHIPS  .ob-kitbox / .ob-kit / .ob-kit__chip
+   What we set up for an agent: Agent ID, inbox, number, browser, test customers, card cap.
+     .is-pending   dashed --ob-line-strong edge, hollow square, --ob-text-3
+     .is-loading   setting up now: a solid --ob-line-ui edge (3:1) and a half-filled square
+     (done)        filled square with a check
+     .is-landing   the square snaps in (400ms, --ob-snap), then the check draws (160ms)
+   Chips land when the work lands, paced by real events. The header ring turns until the last one.
+   ============================================================================================= */
+.ob-kitbox {
+  position: relative;
+  display: grid;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-16) var(--ob-space-20);
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
+  color: var(--ob-text);
+}
+.ob-kitbox__head { display: flex; align-items: center; gap: var(--ob-space-12); min-width: 0; }
+.ob-kitbox__head .ob-sig { --ob-sig-size: 24px; }
+.ob-kitbox__title { display: grid; gap: var(--ob-space-2); min-width: 0; margin: 0; }
+.ob-kitbox__title b { font: var(--ob-type-small); font-weight: var(--ob-weight-semibold); letter-spacing: -.01em; }
+.ob-kitbox__title span { overflow: hidden; color: var(--ob-text-3); font: var(--ob-type-mono-sm); text-overflow: ellipsis; white-space: nowrap; }
+.ob-kitbox__runs { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; color: var(--ob-text-2); font: var(--ob-type-small); }
+.ob-kit { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; }
+.ob-kit__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-control-chip);
+  padding: 0 var(--ob-space-12) 0 var(--ob-space-8);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-fill-subtle);
+  color: var(--ob-text);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  white-space: nowrap;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-kit__chip.is-pending { border-style: dashed; border-color: var(--ob-line-strong); background-color: transparent; color: var(--ob-text-3); }
+.ob-kit__chip.is-loading { border-color: var(--ob-line-ui); background-color: transparent; color: var(--ob-text-2); }
+.ob-kit__tick {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+}
+.ob-kit__tick svg { display: block; width: 8px; height: 8px; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.ob-kit__chip.is-pending .ob-kit__tick { background-color: transparent; box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text-3); }
+/* Setting up: the square is half filled, the language of the hybrid swatch: part way there. */
+.ob-kit__chip.is-loading .ob-kit__tick {
+  background-color: transparent;
+  background-image: linear-gradient(90deg, var(--ob-text) 50%, transparent 50%);
+  box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text);
+}
+.ob-kit__chip:is(.is-pending, .is-loading) .ob-kit__tick svg { display: none; }
+/* Landing. --ob-anim-delay paces each chip to its real event (the demo uses 220ms steps). */
+.ob-kit__chip.is-landing { animation: ob-kit-chip var(--ob-dur-base) var(--ob-ease-out) var(--ob-anim-delay, 0ms) backwards; }
+.ob-kit__chip.is-landing .ob-kit__tick { animation: ob-square-in var(--ob-dur-slow) var(--ob-snap) var(--ob-anim-delay, 0ms) backwards; }
+.ob-kit__chip.is-landing .ob-kit__tick path {
+  stroke-dasharray: 1;
+  animation: ob-kit-check var(--ob-dur-base) var(--ob-ease-out) calc(var(--ob-anim-delay, 0ms) + var(--ob-dur-base) + var(--ob-stagger)) backwards;
+}
+.ob-kit.is-replay .ob-kit__chip.is-landing { animation-name: ob-kit-chip-r; }
+.ob-kit.is-replay .ob-kit__chip.is-landing .ob-kit__tick { animation-name: ob-square-in-r; }
+.ob-kit.is-replay .ob-kit__chip.is-landing .ob-kit__tick path { animation-name: ob-kit-check-r; }
+@keyframes ob-kit-chip    { from { border-color: var(--ob-line-ui); background-color: transparent; color: var(--ob-text-2); } }
+@keyframes ob-kit-chip-r  { from { border-color: var(--ob-line-ui); background-color: transparent; color: var(--ob-text-2); } }
+@keyframes ob-kit-check   { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes ob-kit-check-r { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+
+/* =============================================================================================
+   TAG  .ob-tag
+   A human label for a thing: a client, a store, a kind of work. 24px with a 6px radius, so it
+   never reads as a button or a badge.
+     --removable   a 16px remove button with a 24px hit area (44px on touch)
+     --filter      a 32px toggle button (aria-pressed); the square fills when it is on
+   ============================================================================================= */
+.ob-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  flex: none;
+  height: var(--ob-control-xs);
+  margin: 0;
+  padding: 0 var(--ob-space-8);
+  border: 0;
+  border-radius: var(--ob-radius-xs);
+  background-color: transparent;
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong);
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.ob-tag--removable { padding-inline-end: var(--ob-space-4); }
+.ob-tag__remove {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--ob-icon-md);
+  height: var(--ob-icon-md);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: transparent;
+  color: var(--ob-text-3);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-tag__remove::before { content: ""; position: absolute; inset: calc(var(--ob-space-4) * -1); }
+@media (pointer: coarse) { .ob-tag__remove::before { inset: calc((var(--ob-target-touch) - 100%) / -2); } }
+@media (hover: hover) and (pointer: fine) { .ob-tag__remove:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+.ob-tag__remove.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-tag__remove:is(:active, .is-active) { color: var(--ob-text); background-color: var(--ob-state-pressed); scale: var(--ob-press-scale-sm); transition-duration: var(--ob-dur-fast); }
+.ob-tag__remove:focus-visible,
+.ob-tag__remove.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: calc(var(--ob-focus-offset) / 2); }
+
+/* Filter tag: a toggle. The square fills when on; the edge turns --ob-line-ui (3:1). */
+.ob-tag--filter {
+  gap: var(--ob-space-8);
+  height: var(--ob-control-sm);
+  padding: 0 var(--ob-control-pad-sm) 0 var(--ob-space-12);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: color, background-color, box-shadow, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (pointer: coarse) {
+  .ob-tag--filter::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
+}
+.ob-tag__sq {
+  display: block;
+  flex: none;
+  width: var(--ob-sq-md);
+  height: var(--ob-sq-md);
+  border-radius: 1px;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text-3);
+  transition-property: background-color, box-shadow;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-tag--filter:hover:not(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+.ob-tag--filter.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+.ob-tag--filter:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) {
+  background-color: var(--ob-state-pressed);
+  scale: var(--ob-press-scale-sm);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-tag--filter:is([aria-pressed="true"], .is-selected) {
+  color: var(--ob-text);
+  background-color: var(--ob-state-selected);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-ui);
+}
+.ob-tag--filter:is([aria-pressed="true"], .is-selected) .ob-tag__sq { background-color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text); }
+.ob-tag--filter:focus-visible,
+.ob-tag--filter.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-tag--filter:is(:disabled, [aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); cursor: default; }
+.ob-tag--filter:is(:disabled, [aria-disabled="true"], .is-disabled) .ob-tag__sq { box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text-disabled); }
+/* Arrive and leave. A new tag pops from 96% in 160ms; a removed tag fades and shrinks in 100ms. */
+.ob-tag.is-new {
+  --ob-enter-x: 0px; --ob-enter-y: 0px; --ob-enter-scale: var(--ob-pop-scale);
+  animation: ob-enter var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+.ob-tag.is-new.is-replay:not(.is-leaving) { animation-name: ob-enter-r; }
+.ob-tag.is-leaving { --ob-exit-scale: var(--ob-pop-scale); animation: ob-exit var(--ob-dur-fast) var(--ob-ease-in) forwards; }
+
+
+/* =============================================================================================
+   KBD  .ob-kbd
+   A 20px key cap in mono. Combos are separate caps 4px apart inside .ob-kbds.
+   ============================================================================================= */
+.ob-kbds { display: inline-flex; align-items: center; gap: var(--ob-space-4); vertical-align: middle; }
+.ob-kbd {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  min-width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-fill);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-strong);
+  color: var(--ob-text-2);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+
+/* =============================================================================================
+   TOOLTIP  .ob-tip (anchor wrapper) / .ob-tooltip
+   A short label for a control, on the overlay surface with a strong hairline. No arrow.
+   8px from its anchor; data-side picks the side. The first one waits 500ms of pointer rest,
+   focus shows it at once, the next within 300ms shows instantly. It fades and steps 4px out.
+   ============================================================================================= */
+.ob-tip { position: relative; display: inline-flex; vertical-align: middle; }
+.ob-tooltip {
+  position: absolute;
+  z-index: var(--ob-z-tooltip);
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  width: max-content;
+  max-width: 240px;
+  min-height: var(--ob-control-chip);
+  margin: 0;
+  padding: var(--ob-space-4) var(--ob-space-8);
+  border-radius: var(--ob-radius-xs);
+  background-color: var(--ob-overlay);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong), var(--ob-shadow-2);
+  color: var(--ob-text);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  text-align: start;
+  text-wrap: pretty;
+  white-space: normal;
+}
+.ob-tooltip[hidden] { display: none; }
+/* Centre with transform; the entrance moves the separate translate property, so they compose. */
+.ob-tooltip[data-side="top"]    { bottom: calc(100% + var(--ob-space-8)); left: 50%; transform: translateX(-50%); }
+.ob-tooltip[data-side="bottom"] { top: calc(100% + var(--ob-space-8));    left: 50%; transform: translateX(-50%); }
+.ob-tooltip[data-side="right"]  { left: calc(100% + var(--ob-space-8));   top: 50%;  transform: translateY(-50%); }
+.ob-tooltip[data-side="left"]   { right: calc(100% + var(--ob-space-8));  top: 50%;  transform: translateY(-50%); }
+/* Hover bridge across the 8px gap, so the pointer can move onto the tooltip (WCAG 1.4.13). */
+.ob-tooltip::before { content: ""; position: absolute; inset: calc(var(--ob-space-8) * -1 - var(--ob-border-hair)); z-index: -1; }
+.ob-tooltip .ob-kbds { margin-inline-end: calc(var(--ob-space-4) * -1); }
+
+
+/* =============================================================================================
+   DROPDOWN MENU  .ob-menu-trigger / .ob-menu
+   Trigger: a 32px secondary pill with a chevron that turns 180deg while open (44px hit on touch).
+   Menu: the overlay surface, 14px radius, 4px padding, so rows take 10px (14 minus 4). It opens
+   6px below the trigger on --ob-z-popover, is 400px tall at most and scrolls inside itself.
+   Rows are 32px (44px under a coarse pointer) and highlight in the same frame.
+   Groups: <div role="group" aria-labelledby> around a label and its rows.
+   Submenu: 1 level. .ob-menu__sub (role="none") holds the parent row and its menu, which opens
+   to the side 4px clear of the parent, its first row level with the parent row.
+   ============================================================================================= */
+.ob-menu-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  height: var(--ob-control-sm);
+  margin: 0;
+  padding: 0 var(--ob-control-pad-sm) 0 var(--ob-space-16);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-btn-2-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-btn-2-edge);
+  color: var(--ob-btn-2-text);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: background-color, scale;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+}
+.ob-menu-trigger .ob-navicon { color: var(--ob-text-2); }
+@media (pointer: coarse) {
+  .ob-menu-trigger::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) 0; }
+}
+@media (hover: hover) and (pointer: fine) { .ob-menu-trigger:hover:not(:disabled, [aria-disabled="true"], .is-disabled) { background-color: var(--ob-btn-2-bg-hover); } }
+.ob-menu-trigger.is-hover { background-color: var(--ob-btn-2-bg-hover); }
+.ob-menu-trigger:is(:active, .is-active):not(:disabled, [aria-disabled="true"], .is-disabled) { background-color: var(--ob-btn-2-bg-pressed); scale: var(--ob-press-scale-sm); transition-duration: var(--ob-dur-fast); }
+.ob-menu-trigger:is([aria-expanded="true"], .is-selected) { background-color: var(--ob-btn-2-bg-pressed); }
+.ob-menu-trigger:focus-visible,
+.ob-menu-trigger.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-menu-trigger:is(:disabled, [aria-disabled="true"], .is-disabled),
+.ob-menu-trigger:is(:disabled, [aria-disabled="true"], .is-disabled) .ob-navicon { color: var(--ob-text-disabled); cursor: default; }
+.ob-menu-trigger.is-selected .ob-anim-turn { rotate: var(--ob-turn, 180deg); }
+
+.ob-menu {
+  display: grid;
+  align-content: start;
+  width: max-content;
+  min-width: 224px;
+  max-width: min(320px, calc(100vw - var(--ob-space-32)));
+  max-height: min(400px, calc(100dvh - var(--ob-space-32)));
+  margin: 0;
+  padding: var(--ob-space-4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-overlay);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight), var(--ob-shadow-4);
+  color: var(--ob-text);
+  list-style: none;
+}
+/* Placement: under the trigger, start-aligned. data-align="end" lines up the ends; data-side="top"
+   opens upward when there is no room below. */
+.ob-menu-anchor { position: relative; display: inline-flex; vertical-align: middle; }
+.ob-menu-anchor > .ob-menu {
+  position: absolute;
+  top: calc(100% + var(--ob-space-6));
+  inset-inline-start: 0;
+  z-index: var(--ob-z-popover);
+}
+.ob-menu-anchor > .ob-menu[data-align="end"] { inset-inline-start: auto; inset-inline-end: 0; }
+.ob-menu-anchor > .ob-menu[data-side="top"]  { top: auto; bottom: calc(100% + var(--ob-space-6)); }
+.ob-menu__group { display: grid; }
+.ob-menu__label {
+  margin: 0;
+  padding: var(--ob-space-8) var(--ob-space-8) var(--ob-space-4);
+  color: var(--ob-text-3);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+}
+.ob-menu__item {
+  display: grid;
+  grid-template-columns: var(--ob-icon-md) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--ob-space-12);
+  width: 100%;
+  min-height: var(--ob-control-sm);
+  margin: 0;
+  padding: 0 var(--ob-space-8);
+  border: 0;
+  border-radius: var(--ob-radius-sm);
+  background-color: transparent;
+  color: var(--ob-text);
+  font: var(--ob-weight-regular) var(--ob-type-label-size)/var(--ob-type-small-leading) var(--ob-font-sans);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: none;
+}
+@media (pointer: coarse) { .ob-menu__item { min-height: var(--ob-target-touch); } }
+.ob-menu__item > .ob-navicon,
+.ob-menu__icon { color: var(--ob-text-2); }
+.ob-menu__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ob-menu__hint { display: inline-flex; align-items: center; gap: var(--ob-space-4); color: var(--ob-text-3); font: var(--ob-type-mono-sm); }
+.ob-menu__check { visibility: hidden; color: var(--ob-text); }
+.ob-menu__item:is([aria-checked="true"], .is-selected) .ob-menu__check { visibility: visible; }
+@media (hover: hover) and (pointer: fine) {
+  .ob-menu__item:hover:not([aria-disabled="true"], :disabled, .is-disabled) { background-color: var(--ob-state-hover); }
+}
+.ob-menu__item:is(.is-hover, [data-highlighted]):not([aria-disabled="true"], .is-disabled) { background-color: var(--ob-state-hover); }
+.ob-menu__item:is(:active, .is-active):not([aria-disabled="true"], .is-disabled) { background-color: var(--ob-state-pressed); }
+.ob-menu__item:focus-visible,
+.ob-menu__item.is-focus { background-color: var(--ob-state-hover); outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+/* Disabled: the label and icon step down to the disabled ink; the hint keeps --ob-text-3, because
+   it says why the row is off. Disabled rows still take focus so people can read the reason. */
+.ob-menu__item:is([aria-disabled="true"], :disabled, .is-disabled),
+.ob-menu__item:is([aria-disabled="true"], :disabled, .is-disabled) > .ob-navicon { color: var(--ob-text-disabled); cursor: default; }
+.ob-menu__item:is([aria-disabled="true"], :disabled, .is-disabled) .ob-menu__hint { color: var(--ob-text-3); }
+.ob-menu__item--danger,
+.ob-menu__item--danger > .ob-navicon { color: var(--ob-danger); }
+@media (hover: hover) and (pointer: fine) { .ob-menu__item--danger:hover:not([aria-disabled="true"], .is-disabled) { background-color: var(--ob-danger-bg); } }
+.ob-menu__item--danger:is(.is-hover, [data-highlighted], :focus-visible, .is-focus) { background-color: var(--ob-danger-bg); }
+.ob-menu__sep { height: 0; margin: var(--ob-space-4) calc(var(--ob-space-4) * -1); border: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* Submenu. The parent row keeps its highlight while its menu is open. A menu that holds a submenu
+   never scrolls (keep it under 400px), so it cannot clip the submenu that opens beside it. */
+.ob-menu:has(> .ob-menu__sub, > .ob-menu__group > .ob-menu__sub) { max-height: none; overflow: visible; }
+.ob-menu__sub { position: relative; display: grid; }
+.ob-menu__sub > .ob-menu {
+  position: absolute;
+  top: calc(var(--ob-space-4) * -1);
+  inset-inline-start: calc(100% + var(--ob-space-8));
+  z-index: var(--ob-z-popover);
+}
+.ob-menu__sub > .ob-menu[data-side="left"] { inset-inline-start: auto; inset-inline-end: calc(100% + var(--ob-space-8)); }
+/* Hover bridge across the 4px gap between the menus. */
+.ob-menu__sub > .ob-menu::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: calc(var(--ob-space-8) * -1); width: var(--ob-space-8); }
+.ob-menu__item:is([aria-haspopup="menu"], [aria-haspopup="true"])[aria-expanded="true"] { background-color: var(--ob-state-hover); }
+.ob-menu__item > .ob-menu__hint > .ob-navicon { color: var(--ob-text-3); }
+
+
+/* =============================================================================================
+   COMMAND PALETTE  .ob-layer.ob-cmdk-layer > .ob-scrim + .ob-cmdk
+   The layer and scrim are surfaces.css .ob-layer and .ob-scrim; this places the panel 12vh from
+   the top (16px on touch, so the keyboard never covers the footer). Cmd K or Ctrl K anywhere.
+   Type an outcome to start a task, or jump to a client, an agent or a receipt. 640px wide, 22px
+   radius. Focus stays in the field; arrow keys move the active result (aria-activedescendant),
+   which carries the 2px ring when keys are in use.
+   ============================================================================================= */
+.ob-layer.ob-cmdk-layer {
+  z-index: var(--ob-z-dialog);
+  place-items: start center;
+  padding: 12vh var(--ob-space-16) var(--ob-space-16);
+}
+.ob-cmdk-layer.is-replay > .ob-anim-scrim:not(.is-leaving) { animation-name: ob-fade-in-r; }
+.ob-cmdk-layer.is-replay > .ob-cmdk:not(.is-leaving) { animation-name: ob-enter-r; }
+.ob-cmdk {
+  container: ob-cmdk / inline-size;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 640px);
+  max-height: min(560px, 100%);
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-overlay);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight), var(--ob-shadow-4);
+  color: var(--ob-text);
+}
+@media (pointer: coarse) {
+  .ob-layer.ob-cmdk-layer { padding-top: var(--ob-space-16); }
+  .ob-cmdk { max-height: min(560px, 100%, 70dvh); }
+}
+.ob-cmdk__field {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  flex: none;
+  height: 56px;
+  padding: 0 var(--ob-space-16) 0 var(--ob-space-20);
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+}
+/* The field holds focus while the palette is open. Its rule steps up to a 2px --ob-line-ui edge
+   (3:1); forced colours swap in a real outline below. */
+.ob-cmdk__field:has(.ob-cmdk__input:focus-visible),
+.ob-cmdk__field.is-focus { box-shadow: inset 0 calc(var(--ob-border-focus) * -1) 0 var(--ob-line-ui); }
+.ob-cmdk__prompt { flex: none; color: var(--ob-text-3); font: var(--ob-type-code); }
+.ob-cmdk__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ob-text);
+  font: var(--ob-type-body);
+  text-overflow: ellipsis;
+  caret-color: var(--ob-text);
+  outline: none;
+}
+.ob-cmdk__input::placeholder { color: var(--ob-placeholder); opacity: 1; text-overflow: ellipsis; }
+.ob-cmdk__busy {
+  display: none;
+  align-items: center;
+  gap: var(--ob-space-8);
+  flex: none;
+  color: var(--ob-text-3);
+  font: var(--ob-type-mono-sm);
+}
+.ob-cmdk__busy .ob-sig { --ob-sig-size: var(--ob-icon-sm); color: var(--ob-text); }
+.ob-cmdk.is-loading .ob-cmdk__busy { display: inline-flex; animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-delay-busy) backwards; }
+.ob-cmdk.is-replay.is-loading .ob-cmdk__busy,
+.ob-cmdk.is-loading .ob-cmdk__busy.is-replay { animation-name: ob-fade-in-r; }
+.ob-cmdk.is-loading .ob-cmdk__field > .ob-kbd { display: none; }
+.ob-cmdk__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--ob-space-8);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: var(--ob-space-8);
+}
+.ob-cmdk__options,
+.ob-cmdk__group { margin: 0; padding: 0; list-style: none; }
+.ob-cmdk__group + .ob-cmdk__group { margin-top: var(--ob-space-8); }
+.ob-cmdk__label {
+  margin: 0;
+  padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-6);
+  color: var(--ob-text-3);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+}
+.ob-cmdk__item {
+  display: grid;
+  grid-template-columns: var(--ob-icon-lg) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--ob-space-12);
+  min-height: var(--ob-control-md);
+  padding: var(--ob-space-6) var(--ob-space-12);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  font: var(--ob-type-small);
+  cursor: pointer;
+  scroll-margin-block: var(--ob-space-8);
+  transition: none;
+}
+@media (pointer: coarse) { .ob-cmdk__item { min-height: var(--ob-target-touch); } }
+.ob-cmdk__icon { display: grid; place-items: center; width: var(--ob-icon-lg); height: var(--ob-icon-lg); color: var(--ob-text-2); }
+.ob-cmdk__icon .ob-sig { --ob-sig-size: var(--ob-icon-md); color: var(--ob-text); }
+.ob-cmdk__title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ob-cmdk__meta { margin-inline-start: var(--ob-space-8); color: var(--ob-text-3); font: var(--ob-type-caption); }
+.ob-cmdk__end { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.ob-cmdk__item:is([aria-selected="true"], .is-hover) { background-color: var(--ob-state-hover); }
+@media (hover: hover) and (pointer: fine) { .ob-cmdk__item:hover:not([aria-disabled="true"], .is-disabled) { background-color: var(--ob-state-hover); } }
+.ob-cmdk__item:is(:active, .is-active):not([aria-disabled="true"], .is-disabled) { background-color: var(--ob-state-pressed); }
+/* Keys in use: script sets data-input="keyboard" on .ob-cmdk at keydown and clears it on pointer move. */
+.ob-cmdk[data-input="keyboard"] .ob-cmdk__item[aria-selected="true"],
+.ob-cmdk__item.is-focus { background-color: var(--ob-state-hover); outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+.ob-cmdk__item:is([aria-disabled="true"], .is-disabled) { color: var(--ob-text-disabled); cursor: default; }
+.ob-cmdk__item:is([aria-disabled="true"], .is-disabled) .ob-cmdk__icon { color: var(--ob-text-disabled); }
+/* Filtering: the unmatched part steps down to --ob-text-2; matched letters stay full ink at 600. */
+.ob-cmdk.is-filtering .ob-cmdk__title { color: var(--ob-text-2); }
+.ob-cmdk__title mark { background: none; color: var(--ob-text); font-weight: var(--ob-weight-semibold); }
+.ob-cmdk__empty { margin: 0; padding: var(--ob-space-16) var(--ob-space-12) var(--ob-space-8); color: var(--ob-text-2); font: var(--ob-type-small); }
+.ob-cmdk__error {
+  display: none;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: var(--ob-space-12) var(--ob-space-20);
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle);
+  color: var(--ob-danger);
+  font: var(--ob-type-small);
+}
+.ob-cmdk.is-error .ob-cmdk__error {
+  --ob-enter-x: 0px; --ob-enter-y: calc(var(--ob-shift-xs) * -1); --ob-enter-scale: 1;
+  display: flex;
+  animation: ob-enter var(--ob-dur-base) var(--ob-ease-out) backwards;
+}
+.ob-cmdk.is-replay.is-error .ob-cmdk__error,
+.ob-cmdk.is-error .ob-cmdk__error.is-replay { animation-name: ob-enter-r; }
+.ob-cmdk__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-16);
+  flex: none;
+  height: var(--ob-control-md);
+  padding: 0 var(--ob-space-16);
+  box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle);
+  color: var(--ob-text-3);
+  font: var(--ob-type-caption);
+}
+.ob-cmdk__foot > span { display: inline-flex; align-items: center; gap: var(--ob-space-8); min-width: 0; white-space: nowrap; }
+.ob-cmdk__foot-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ob-cmdk__foot .ob-sig { --ob-sig-size: var(--ob-icon-sm); color: var(--ob-text-2); }
+.ob-cmdk__hints { display: flex; align-items: center; gap: var(--ob-space-16); }
+.ob-cmdk__hints > span { display: inline-flex; align-items: center; gap: var(--ob-space-6); white-space: nowrap; }
+@container ob-cmdk (max-width: 520px) {
+  .ob-cmdk__field { height: 52px; padding-inline: var(--ob-space-16) var(--ob-space-12); }
+  /* A status needs its word, so on a narrow panel it moves under the title instead of squeezing it. */
+  .ob-cmdk__item:has(.ob-cmdk__end .ob-status) { grid-template-columns: var(--ob-icon-lg) minmax(0, 1fr); row-gap: var(--ob-space-4); }
+  .ob-cmdk__item:has(.ob-cmdk__end .ob-status) .ob-cmdk__end { grid-column: 2; }
+  .ob-cmdk__foot > .ob-cmdk__hints,
+  .ob-cmdk__meta,
+  .ob-cmdk__end .ob-status__detail { display: none; }
+}
+
+
+/* =============================================================================================
+   FORCED COLOURS: box-shadow edges and background fills vanish, so selection, edges and marks
+   fall back to system colours and real borders.
+   ============================================================================================= */
+@media (forced-colors: active) {
+  .ob-nav { border-bottom: 1px solid CanvasText; }
+  .ob-skip { border: 1px solid CanvasText; }
+  .ob-nav__link:is([aria-current="page"], .is-selected)::after,
+  .ob-utab:is([aria-selected="true"], .is-selected)::after,
+  .ob-mnav__link:is([aria-current="page"], .is-selected)::after,
+  .ob-badge--dot,
+  .ob-utabs__indicator,
+  .ob-utabs--fill .ob-utabs__indicator::after,
+  .ob-utab__bar > i,
+  .ob-navbtn__bars i { forced-color-adjust: none; background-color: CanvasText; }
+  .ob-utabs--fill .ob-utabs__indicator { background-color: transparent; }
+  .ob-utab__bar { forced-color-adjust: none; background-color: GrayText; }
+  .ob-look,
+  .ob-ptabs,
+  .ob-tag,
+  .ob-kbd,
+  .ob-badge:not(.ob-badge--dot),
+  .ob-status:not(.ob-status--bare),
+  .ob-tooltip,
+  .ob-menu,
+  .ob-menu-trigger,
+  .ob-cmdk,
+  .ob-kitbox { border: 1px solid CanvasText; }
+  .ob-look__thumb { border: 2px solid Highlight; }
+  .ob-look__sw { forced-color-adjust: none; color: CanvasText; }
+  .ob-ptab:is([aria-selected="true"], .is-selected),
+  .ob-pager__page:is([aria-current="page"], .is-selected),
+  .ob-tag--filter:is([aria-pressed="true"], .is-selected),
+  .ob-menu__item:is(:hover, .is-hover, [data-highlighted], :focus-visible),
+  .ob-cmdk__item[aria-selected="true"] { forced-color-adjust: none; background-color: Highlight; color: HighlightText; }
+  .ob-kit__tick,
+  .ob-tag__sq { forced-color-adjust: none; border: 1.5px solid CanvasText; }
+  .ob-kit__chip:not(.is-pending, .is-loading) .ob-kit__tick,
+  .ob-tag--filter:is([aria-pressed="true"], .is-selected) .ob-tag__sq { background-color: CanvasText; color: Canvas; }
+  .ob-kit__chip.is-loading .ob-kit__tick { background-image: linear-gradient(90deg, CanvasText 50%, transparent 50%); }
+  /* The palette field: a real rule, and a real outline on the field while it has focus. */
+  .ob-cmdk__field { border-bottom: 1px solid CanvasText; }
+  .ob-cmdk__input:focus-visible { outline: 2px solid Highlight; outline-offset: -2px; }
+  /* Disabled controls take the system's disabled ink. */
+  :is(.ob-ptab, .ob-utab, .ob-pager__step, .ob-tag--filter, .ob-menu-trigger, .ob-menu__item, .ob-cmdk__item, .ob-navbtn):is(:disabled, [aria-disabled="true"], .is-disabled) { color: GrayText; }
+}
+
+
+/* =============================================================================================
+   REDUCED MOTION. motion.css already turns travel into fades and stops loops. These stop the
+   moves that live in this file: the menu glyph, the check draw, the thumb and the doc slides.
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .ob-navbtn__bars i,
+  .ob-look__thumb { transition: none; }
+  .ob-kit__chip.is-landing,
+  .ob-kit__chip.is-landing .ob-kit__tick,
+  .ob-kit__chip.is-landing .ob-kit__tick path,
+  .ds-navigation-slide { animation: none; }
+  :is(.ob-nav__link, .ob-ptab, .ob-utab, .ob-pager__page, .ob-pager__step, .ob-tag--filter, .ob-tag__remove, .ob-navbtn, .ob-menu-trigger):is(:active, .is-active) { scale: 1; }
+}
+
+
+/* =============================================================================================
+   DOC LAYOUT  .ds-navigation-   (the guideline page only; never ship in product)
+   Zero-specificity resets, so no doc rule ever outranks a component.
+   ============================================================================================= */
+.ds-navigation {
+  --ds-nav-gap: clamp(56px, 8vw, 96px);
+  color: var(--ob-text);
+  font: var(--ob-type-body);
+}
+:where(.ds-navigation) :where(h2, h3, h4, p, ol, ul, dl, dd, figure) { margin: 0; }
+:where(.ds-navigation) :where(.ds-navigation-head, .ds-navigation-comp, .ds-navigation-comp-head, .ds-navigation-pair, .ds-navigation-stage, .ds-navigation-block) { grid-template-columns: minmax(0, 1fr); }
+.ds-navigation-head { display: grid; gap: var(--ob-space-16); max-width: 760px; }
+.ds-navigation-kicker,
+.ds-navigation-eyebrow,
+.ds-navigation-label,
+.ds-navigation-stage-tag,
+.ds-navigation-cap {
+  color: var(--ob-text-3);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+}
+.ds-navigation-title { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); text-wrap: balance; max-width: 20ch; }
+.ds-navigation-intro { color: var(--ob-text-2); font: var(--ob-type-body-lg); max-width: var(--ob-measure-lede); text-wrap: pretty; }
+.ds-navigation-toc { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin-top: var(--ob-space-8); padding: 0; list-style: none; }
+.ds-navigation-toc a {
+  display: inline-flex;
+  align-items: center;
+  height: var(--ob-control-chip);
+  padding: 0 var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  text-decoration: none;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .ds-navigation-toc a:hover { color: var(--ob-text); background-color: var(--ob-state-hover); } }
+
+.ds-navigation-comp {
+  display: grid;
+  gap: var(--ob-space-24);
+  margin-top: var(--ds-nav-gap);
+  padding-top: var(--ob-space-48);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: 80px;
+}
+.ds-navigation-comp-head { display: grid; gap: var(--ob-space-12); max-width: 760px; }
+.ds-navigation-comp-title { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); text-wrap: balance; max-width: 22ch; }
+.ds-navigation-comp-lede { color: var(--ob-text-2); font: var(--ob-type-body); max-width: var(--ob-measure); text-wrap: pretty; }
+.ds-navigation-label { margin-top: var(--ob-space-16); }
+
+.ds-navigation-pair { display: grid; gap: var(--ob-space-12); min-width: 0; }
+@media (min-width: 1080px) { .ds-navigation-pair--split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.ds-navigation-stage {
+  position: relative;
+  display: grid;
+  gap: var(--ob-space-24);
+  align-content: start;
+  min-width: 0;
+  padding: clamp(16px, 3vw, 32px);
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
+  color: var(--ob-text);
+}
+.ds-navigation-block { display: grid; gap: var(--ob-space-12); min-width: 0; }
+.ds-navigation-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-16); min-width: 0; }
+
+/* State matrix: cells wrap; each cell is a specimen over its caption. */
+.ds-navigation-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--ds-cell, 148px)), 1fr));
+  gap: var(--ob-space-8);
+  min-width: 0;
+}
+.ds-navigation-cell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
+}
+.ds-navigation-cell > :first-child { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8); min-width: 0; min-height: 48px; }
+.ds-navigation-cell--wide { grid-column: 1 / -1; }
+.ds-navigation-fill { width: 100%; min-width: 0; }
+.ds-navigation-cell > :first-child > .ob-crumbs__current { flex: none; }
+
+/* Frames that stand in for a viewport. isolation keeps the nav's and the layers' z-index inside
+   the frame, so nothing in a specimen ever paints over the guideline's own chrome. */
+.ds-navigation-viewport {
+  position: relative;
+  isolation: isolate;
+  height: 216px;
+  overflow: auto;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  scrollbar-width: thin;
+}
+.ds-navigation-viewport--tall { height: 320px; }
+.ds-navigation-viewport > .ob-nav { border-radius: var(--ob-radius-md) var(--ob-radius-md) 0 0; }
+.ds-navigation-page { display: grid; gap: var(--ob-space-12); padding: var(--ob-space-40) clamp(16px, 4cqi, 32px) var(--ob-space-120); }
+.ds-navigation-page--under { margin-top: -64px; padding-top: var(--ob-space-12); }
+.ds-navigation-page--object { padding-top: var(--ob-space-40); }
+.ds-navigation-page b { font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); max-width: 14ch; }
+.ds-navigation-page span { color: var(--ob-text-2); font: var(--ob-type-body); max-width: 40ch; }
+/* A phone frame keeps 375 CSS px inside and is drawn smaller when the column is narrower, so it
+   always shows the real 375px layout. */
+.ds-navigation-devices { container-type: inline-size; display: flex; flex-wrap: wrap; gap: var(--ob-space-16); align-items: flex-start; }
+.ds-navigation-devices > figure { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); min-width: 0; }
+.ds-navigation-device {
+  position: relative;
+  isolation: isolate;
+  width: 375px;
+  height: 560px;
+  overflow: hidden;
+  border-radius: var(--ob-radius-xl);
+  background-color: var(--ob-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  --ob-mnav-height: 504px;
+}
+.ds-navigation-device--short { height: 240px; }
+/* The frame's edge, drawn over its content so an open panel never hides it. */
+.ds-navigation-device::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: calc(var(--ob-z-nav) + 2);
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  pointer-events: none;
+}
+.ds-navigation-device > .ob-nav { position: relative; border-radius: var(--ob-radius-xl) var(--ob-radius-xl) 0 0; }
+@container (max-width: 374.98px) { .ds-navigation-device { zoom: .95; } }
+@container (max-width: 356.23px) { .ds-navigation-device { zoom: .9; } }
+@container (max-width: 337.48px) { .ds-navigation-device { zoom: .85; } }
+@container (max-width: 318.73px) { .ds-navigation-device { zoom: .8; } }
+@container (max-width: 299.98px) { .ds-navigation-device { zoom: .75; } }
+@container (max-width: 281.23px) { .ds-navigation-device { zoom: .7; } }
+@container (max-width: 262.48px) { .ds-navigation-device { zoom: .6; } }
+
+/* A dialog shown in place: the layer fills the frame instead of the viewport, and the frame takes
+   the dialog's height. */
+.ds-navigation-modal { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
+.ds-navigation-modal > .ob-layer.ob-cmdk-layer { position: relative; inset: auto; padding: var(--ob-space-40) var(--ob-space-16); }
+.ds-navigation-modal-page { position: absolute; inset: 0; display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-24); }
+.ds-navigation-modal-page i { display: block; height: 12px; border-radius: var(--ob-radius-xs); background-color: var(--ob-fill); }
+.ds-navigation-modal-page i:nth-child(1) { width: 40%; height: 20px; }
+.ds-navigation-modal-page i:nth-child(2) { width: 72%; }
+.ds-navigation-modal-page i:nth-child(3) { width: 64%; }
+
+/* The skip link shown in a frame: absolute to the frame instead of fixed to the viewport. */
+.ds-navigation-skipframe { height: 120px; }
+.ds-navigation-skipframe > .ob-skip { position: absolute; }
+
+/* Hybrid: a paper page with a glossy black product object scrolling under the bar. */
+.ds-navigation-object {
+  display: grid;
+  gap: var(--ob-space-16);
+  margin: 0 clamp(16px, 4cqi, 32px);
+  padding: var(--ob-space-16) var(--ob-space-20) var(--ob-space-24);
+  border-radius: var(--ob-radius-lg);
+}
+.ds-navigation-object-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-8) var(--ob-space-16); }
+.ds-navigation-object-bar b { color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
+.ds-navigation-object p { color: var(--ob-text-2); font: var(--ob-type-small); }
+.ds-navigation-viewport .ds-navigation-object { margin-bottom: var(--ob-space-120); }
+
+/* Popovers shown in flow, under or beside their anchor, with room for the ring. */
+.ds-navigation-pop { display: grid; justify-items: start; gap: var(--ob-space-6); min-width: 0; }
+.ds-navigation-tipcell > :first-child { justify-content: center; min-height: 112px; padding-block: var(--ob-space-40); }
+.ds-navigation-tipcell--side > :first-child { justify-content: flex-start; padding-inline: var(--ob-space-8); }
+.ds-navigation-tipcell--side-left > :first-child { justify-content: flex-end; }
+/* An open menu is absolute under its trigger, so its specimen reserves the room it opens into. */
+.ds-navigation-menuarea { position: relative; isolation: isolate; min-height: 420px; padding-top: var(--ob-space-12); }
+.ds-navigation-menuarea--sub { min-height: 168px; }
+.ds-navigation-menuarea .ds-navigation-pinned.ob-menu { overflow: visible; max-height: none; }
+/* A submenu needs 2 menus of room side by side; on a narrow column the specimen scrolls. */
+.ds-navigation-subwrap { min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+.ds-navigation-subwrap > .ds-navigation-menuarea { min-width: 500px; }
+
+/* Anatomy pins: numbered squares placed beside the part they name, never on it. */
+.ds-navigation-pinned { position: relative; }
+.ds-navigation-pin {
+  position: absolute;
+  top: var(--ds-y, -10px);
+  left: var(--ds-x, -10px);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-label-mono);
+  line-height: 1;
+  pointer-events: none;
+}
+.ds-navigation-pin--r { left: auto; right: var(--ds-x, -10px); }
+.ds-navigation-pin--b { top: auto; bottom: var(--ds-y, -10px); }
+.ds-navigation-anatomy { position: relative; display: inline-flex; justify-self: start; max-width: 100%; }
+/* Small parts are drawn 1.5 times larger for their anatomy; the pins stay at 1x. */
+.ds-navigation-zoom { zoom: 1.5; }
+.ds-navigation-zoom .ds-navigation-pin { zoom: .6667; }
+/* Anatomy: the track shows its pins; the wrapper scrolls instead when the track is too wide. */
+.ds-navigation-unclip { overflow-x: auto; padding: var(--ob-space-24) var(--ob-space-12) var(--ob-space-28); scrollbar-width: thin; }
+.ds-navigation-unclip :is(.ob-ptabs, .ob-utabs) { overflow: visible; }
+.ds-navigation-unclip .ob-ptabs { max-width: none; }
+.ds-navigation-cell > :first-child > .ob-mnav__link { flex: 1 1 auto; }
+.ds-navigation-card {
+  display: grid;
+  min-width: 0;
+  padding: var(--ob-space-4) var(--ob-space-12) 0;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.ds-navigation-card-body { display: grid; gap: var(--ob-space-2); padding: var(--ob-space-16) var(--ob-space-4) var(--ob-space-16); }
+.ds-navigation-card-body b { color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
+.ds-navigation-card-body span { color: var(--ob-text-3); font: var(--ob-type-mono-sm); }
+
+/* A list of agent rows on a card, to show statuses in place. */
+.ds-navigation-rows {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--ob-radius-md);
+  background-color: var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.ds-navigation-rows > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--ob-space-12);
+  min-height: 52px;
+  padding: var(--ob-space-8) var(--ob-space-16);
+}
+.ds-navigation-rows > div + div { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
+.ds-navigation-rows p { display: grid; gap: var(--ob-space-2); min-width: 0; }
+.ds-navigation-rows b { overflow: hidden; color: var(--ob-text); font: var(--ob-type-small); font-weight: var(--ob-weight-medium); text-overflow: ellipsis; white-space: nowrap; }
+.ds-navigation-rows span { overflow: hidden; color: var(--ob-text-3); font: var(--ob-type-mono-sm); text-overflow: ellipsis; white-space: nowrap; }
+.ds-navigation-prose { color: var(--ob-text-2); font: var(--ob-type-small); }
+.ds-navigation-narrow { width: 100%; max-width: 300px; min-width: 0; }
+.ds-navigation-legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: var(--ob-space-8) var(--ob-space-24); padding: 0; list-style: none; counter-reset: ds-nav-legend; }
+.ds-navigation-legend li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: var(--ob-space-12); align-items: start; color: var(--ob-text-2); font: var(--ob-type-small); }
+.ds-navigation-legend li::before {
+  counter-increment: ds-nav-legend;
+  content: counter(ds-nav-legend);
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border-radius: var(--ob-radius-glyph);
+  background-color: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-label-mono);
+  line-height: 1;
+}
+.ds-navigation-legend b { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+
+/* Spec and motion tables. */
+.ds-navigation-tablewrap { min-width: 0; overflow-x: auto; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
+.ds-navigation-table { width: 100%; min-width: 640px; border-collapse: collapse; font: var(--ob-type-small); }
+.ds-navigation-table th,
+.ds-navigation-table td { padding: var(--ob-space-12) var(--ob-space-16); text-align: start; vertical-align: top; }
+.ds-navigation-table thead th { color: var(--ob-text-3); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; white-space: nowrap; }
+.ds-navigation-table tbody tr { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
+.ds-navigation-table tbody th { color: var(--ob-text); font-weight: var(--ob-weight-medium); white-space: nowrap; }
+.ds-navigation-table td { color: var(--ob-text-2); }
+.ds-navigation code { color: var(--ob-text); font: var(--ob-type-mono-sm); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+.ds-navigation-table code { white-space: nowrap; }
+.ds-navigation :is(.ds-navigation-notes, .ds-navigation-rules, .ds-navigation-legend, .ds-navigation-comp-lede) code { overflow-wrap: anywhere; }
+
+/* Do and do not, accessibility notes. */
+.ds-navigation-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: var(--ob-space-12); }
+.ds-navigation-rules > div { display: grid; gap: var(--ob-space-12); align-content: start; padding: var(--ob-space-20); border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle); }
+.ds-navigation-rules ul,
+.ds-navigation-notes { display: grid; gap: var(--ob-space-8); padding: 0; list-style: none; }
+.ds-navigation-rules li,
+.ds-navigation-notes li { display: grid; grid-template-columns: 7px minmax(0, 1fr); gap: var(--ob-space-12); align-items: baseline; color: var(--ob-text-2); font: var(--ob-type-small); text-wrap: pretty; }
+.ds-navigation-rules li::before,
+.ds-navigation-notes li::before { content: ""; width: 7px; height: 7px; border-radius: 1px; background-color: var(--ob-text); translate: 0 -1px; }
+.ds-navigation-rules .ds-navigation-dont li::before { background-color: transparent; box-shadow: inset 0 0 0 var(--ob-border-strong) var(--ob-text-3); }
+.ds-navigation-notes b { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+
+/* Replay sits beside its specimen. The assembler toggles .is-replay on data-target; this
+   zero-specificity look matches the other chapters and gives way to the assembler's own. */
+.ds-navigation-replayrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12); }
+:where(.ds-navigation .ds-replay) {
+  height: var(--ob-control-xs);
+  padding: 0 var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-2);
+  font: var(--ob-weight-medium) 12px/1 var(--ob-font-sans);
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+:where(.ds-navigation .ds-replay):hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+:where(.ds-navigation .ds-replay):focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* Doc-only motion: a thumb or indicator arriving from its previous slot. --ds-from is the offset in
+   slots from where it rests, so the start is always inside its track. */
+.ds-navigation-slide { animation: ds-navigation-slide var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
+.ds-navigation-slide.is-replay { animation-name: ds-navigation-slide-r; }
+@keyframes ds-navigation-slide   { from { translate: calc((var(--ob-index, 0) + var(--ds-from, 0)) * 100%) 0; } }
+@keyframes ds-navigation-slide-r { from { translate: calc((var(--ob-index, 0) + var(--ds-from, 0)) * 100%) 0; } }
+/* Doc-only: the landed transition replayed as keyframes. */
+.ds-navigation-landed .ob-sig.is-landed .ob-sig-sq  { animation: ds-navigation-land var(--ob-sig-land) var(--ob-ease-out) var(--ob-sig-land-delay) backwards; }
+.ds-navigation-landed .ob-sig.is-landed .ob-sig-gap { animation: ob-fade-in var(--ob-dur-slow) var(--ob-ease-out) var(--ob-sig-land-delay) backwards; }
+.ds-navigation-landed.is-replay .ob-sig.is-landed .ob-sig-sq  { animation-name: ds-navigation-land-r; }
+.ds-navigation-landed.is-replay .ob-sig.is-landed .ob-sig-gap { animation-name: ob-fade-in-r; }
+@keyframes ds-navigation-land   { from { transform: none; } }
+@keyframes ds-navigation-land-r { from { transform: none; } }
+/* Doc-only: a still Working mark plays 2 turns on Replay and stops on its own still frame (135deg),
+   so the hand-off back to .is-still is seamless. Script swaps the classes. */
+.ds-navigation-play .ob-sig.is-spin :is(.ob-sig-rot, .ob-sig-orb) { animation-iteration-count: 2.375; animation-fill-mode: forwards; }
+/* Doc-only: a progress bar frozen part way, to show the auto-advance state. */
+.ds-navigation-bar-0  { scale: 0 1; }
+.ds-navigation-bar-40 { scale: .4 1; }
+.ds-navigation-bar-70 { scale: .7 1; }
+.ds-navigation-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-navigation-landed .ob-sig.is-landed :is(.ob-sig-sq, .ob-sig-gap) { animation: none; }
+}

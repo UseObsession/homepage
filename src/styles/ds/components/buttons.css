@@ -1,0 +1,1319 @@
+/* =============================================================================================
+   OBSESSION BUTTONS AND ACTIONS  v1.1  (2 Oct 2026)
+   Load after tokens.css and motion.css:
+     <link rel="stylesheet" href="tokens.css">
+     <link rel="stylesheet" href="motion.css">
+     <link rel="stylesheet" href="buttons.css">
+   Every colour is a --ob- token. Every duration and curve is a motion token, with a fallback so the
+   file still behaves if motion.css is missing. Tooltips on icon buttons compose navigation.css
+   (.ob-tip, .ob-tooltip); this file never restyles them.
+
+   Markup
+     <button class="ob-btn" type="button">
+       <span class="ob-btn-busy" aria-hidden="true">(ring mark)</span>   only when there is no leading slot
+       <span class="ob-btn-icon" aria-hidden="true">(glyph + ring, or the ring mark)</span>   optional
+       <span class="ob-btn-label">Get my free report</span>
+       <svg class="ob-btn-glyph ob-btn-arrow">  or  .ob-btn-chevron  or  <kbd class="ob-btn-kbd">   optional
+     </button>
+     <p class="ob-btn-note" id="..."></p>   optional, linked by aria-describedby; its line is reserved
+
+   Variants  .ob-btn (primary)  --secondary  --ghost  --link  --danger  --danger-quiet
+   Shapes    --icon (round)  --icon.--square
+   Sizes     --sm 36  (md 44 default)  --lg 50     --block for full width
+   States    :hover :active :focus-visible :disabled [aria-disabled] [aria-busy] [aria-pressed]
+             [aria-expanded] .is-done .is-copied
+   Mirrors   .is-hover .is-active .is-focus .is-disabled .is-loading .is-selected .is-expanded, and
+             .ob-btn-note.is-error for a failed action. Mirrors exist so the guideline can show
+             every state side by side. In product, use the real pseudo-classes and ARIA states.
+   Segmented controls are form controls: forms.css .ob-segmented is the only build.
+   ============================================================================================= */
+
+
+/* =============================================================================================
+   1. SIZE AND TIME TOKENS
+   Heights for this component. tokens.css snaps general controls to 24, 32, 40 and 48; buttons keep
+   36, 44 and 50 so md meets the 44 touch target and lg matches the waitlist's 50. The nav's call
+   to action is sm. 40 is not a button height.
+   ============================================================================================= */
+:where(:root) {
+  --ob-btn-height-sm:     36px;
+  --ob-btn-height-md:     44px;
+  --ob-btn-height-lg:     50px;
+  --ob-btn-kbd-sm:        18px;
+  --ob-btn-kbd-md:        20px;
+  /* Copied holds long enough to read, then the glyph returns. Proposed for motion.css. */
+  --ob-btn-copied-hold:   1600ms;
+}
+
+
+/* =============================================================================================
+   2. BASE. The primary pill is the default. Variants only change the --ob-btn-c-* roles.
+   ============================================================================================= */
+.ob-btn {
+  /* geometry */
+  --ob-btn-c-h:      var(--ob-btn-height-md);
+  --ob-btn-c-px:     var(--ob-space-20);
+  --ob-btn-c-gap:    var(--ob-space-8);
+  --ob-btn-c-icon:   var(--ob-icon-md);
+  --ob-btn-c-mark:   calc(var(--ob-btn-c-icon) + var(--ob-space-2));   /* the ring reads as the mark, not a refresh arrow */
+  --ob-btn-c-size:   var(--ob-type-button-size);
+  --ob-btn-c-weight: var(--ob-type-button-weight);                    /* 600: primary and solid red only */
+  --ob-btn-c-kbd:    var(--ob-btn-kbd-md);
+  --ob-btn-c-radius: var(--ob-radius-pill);
+  /* motion */
+  --ob-btn-c-press:  var(--ob-press-scale, .98);
+  --ob-btn-c-lift:   var(--ob-lift, -1px);
+  --ob-btn-c-nudge:  calc(var(--ob-shift-xs, 4px) / 2);
+  /* colour roles: primary */
+  --ob-btn-c-bg:           var(--ob-btn-bg);
+  --ob-btn-c-fg:           var(--ob-btn-text);
+  --ob-btn-c-shadow:       var(--ob-btn-shadow);
+  --ob-btn-c-glow:         0 16px 40px -8px var(--ob-btn-glow);   /* the hover glow, on its own layer */
+  --ob-btn-c-bg-hover:     var(--ob-btn-c-bg);
+  --ob-btn-c-fg-hover:     var(--ob-btn-c-fg);
+  --ob-btn-c-shadow-hover: var(--ob-btn-c-shadow);
+  --ob-btn-c-bg-press:     var(--ob-btn-c-bg-hover);
+  --ob-btn-c-shadow-press: var(--ob-btn-c-shadow);
+  --ob-btn-c-kbd-fg:       currentColor;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ob-btn-c-gap);
+  box-sizing: border-box;
+  height: var(--ob-btn-c-h);
+  min-width: var(--ob-btn-c-h);
+  max-width: 100%;
+  margin: 0;
+  padding: 0 var(--ob-btn-c-px);
+  border: 0;
+  border-radius: var(--ob-btn-c-radius);
+  background: var(--ob-btn-c-bg);
+  color: var(--ob-btn-c-fg);
+  box-shadow: var(--ob-btn-c-shadow);
+  font-family: var(--ob-font-sans);
+  font-size: var(--ob-btn-c-size);
+  font-weight: var(--ob-btn-c-weight);
+  line-height: var(--ob-type-button-leading);
+  letter-spacing: var(--ob-type-button-tracking);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  /* Feedback: state colour and 1px edges in 160ms, movement by translate and scale only. The
+     primary's resting shadow never changes; its hover glow fades in on ::after. */
+  transition-property: translate, scale, color, background-color, box-shadow;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out, var(--ob-ease));
+}
+.ob-btn--primary { /* the default; the class makes intent explicit in markup */ }
+
+/* Hover glow: a second, larger glow that only changes opacity. Variants without a glow set none. */
+.ob-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--ob-btn-c-glow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out, var(--ob-ease));
+}
+
+
+/* =============================================================================================
+   3. VARIANTS
+   ============================================================================================= */
+
+/* Secondary: a tinted pill. The label identifies it, so the edge is a hairline at rest and
+   firms to --ob-line-ui on hover. Medium weight: it steps down from the primary. */
+.ob-btn--secondary {
+  --ob-btn-c-weight:       var(--ob-weight-medium);
+  --ob-btn-c-bg:           var(--ob-btn-2-bg);
+  --ob-btn-c-fg:           var(--ob-btn-2-text);
+  --ob-btn-c-shadow:       0 0 0 var(--ob-border-hair) var(--ob-btn-2-edge) inset;
+  --ob-btn-c-glow:         none;
+  --ob-btn-c-bg-hover:     var(--ob-btn-2-bg-hover);
+  --ob-btn-c-shadow-hover: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset;
+  --ob-btn-c-bg-press:     var(--ob-btn-2-bg-pressed);
+  --ob-btn-c-shadow-press: var(--ob-btn-c-shadow-hover);
+  --ob-btn-c-lift:         0px;
+  --ob-btn-c-kbd-fg:       var(--ob-text-2);
+}
+
+/* Ghost: no fill until pointed at. A state layer sits behind the label. */
+.ob-btn--ghost {
+  --ob-btn-c-weight:       var(--ob-weight-medium);
+  --ob-btn-c-bg:           transparent;
+  --ob-btn-c-fg:           var(--ob-text-2);
+  --ob-btn-c-shadow:       none;
+  --ob-btn-c-glow:         none;
+  --ob-btn-c-bg-hover:     var(--ob-state-hover);
+  --ob-btn-c-fg-hover:     var(--ob-text);
+  --ob-btn-c-shadow-hover: none;
+  --ob-btn-c-bg-press:     var(--ob-state-pressed);
+  --ob-btn-c-shadow-press: none;
+  --ob-btn-c-lift:         0px;
+  --ob-btn-c-kbd-fg:       var(--ob-text-2);
+}
+
+/* Link: underlined text. <a href> when it goes somewhere, <button> when it acts in place.
+   It never loads and never disables. */
+.ob-btn--link {
+  --ob-btn-c-h:            auto;
+  --ob-btn-c-px:           0px;
+  --ob-btn-c-gap:          var(--ob-space-6);
+  --ob-btn-c-radius:       var(--ob-radius-glyph);
+  --ob-btn-c-weight:       var(--ob-weight-medium);
+  --ob-btn-c-bg:           transparent;
+  --ob-btn-c-fg:           var(--ob-text);
+  --ob-btn-c-shadow:       none;
+  --ob-btn-c-glow:         none;
+  --ob-btn-c-bg-hover:     transparent;
+  --ob-btn-c-shadow-hover: none;
+  --ob-btn-c-bg-press:     transparent;
+  --ob-btn-c-shadow-press: none;
+  --ob-btn-c-press:        1;
+  --ob-btn-c-lift:         0px;
+  min-width: 0;
+  min-height: var(--ob-target-min);
+  letter-spacing: var(--ob-type-label-tracking);
+}
+.ob-btn--link::after { content: none; }
+.ob-btn--link .ob-btn-label {
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-underline-offset: var(--ob-space-4);
+  text-decoration-color: var(--ob-link-underline);
+  transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out, var(--ob-ease)), opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+/* Inside a sentence: takes the sentence's type, wraps with it, and stays selectable. */
+.ob-btn--link.ob-btn--inline {
+  display: inline;
+  height: auto;
+  min-height: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: normal;
+  vertical-align: baseline;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.ob-btn--link.ob-btn--inline .ob-btn-label { display: inline; text-box: normal; }
+
+/* Destructive, solid: the confirm step only. Shares the primary's top highlight and weight; never lifts. */
+.ob-btn--danger {
+  --ob-btn-c-bg:           var(--ob-danger);
+  --ob-btn-c-fg:           var(--ob-text-inverse);
+  --ob-btn-c-shadow:       0 1px 0 var(--ob-btn-highlight) inset;
+  --ob-btn-c-glow:         none;
+  --ob-btn-c-bg-hover:     color-mix(in oklab, var(--ob-danger), var(--ob-text) 14%);
+  --ob-btn-c-shadow-hover: var(--ob-btn-c-shadow);
+  --ob-btn-c-bg-press:     color-mix(in oklab, var(--ob-danger), var(--ob-text) 24%);
+  --ob-btn-c-shadow-press: var(--ob-btn-c-shadow);
+  --ob-btn-c-lift:         0px;
+}
+
+/* Destructive, quiet: the first step toward stopping, revoking or deleting. */
+.ob-btn--danger-quiet {
+  --ob-btn-c-weight:       var(--ob-weight-medium);
+  --ob-btn-c-bg:           var(--ob-btn-2-bg);
+  --ob-btn-c-fg:           var(--ob-danger);
+  --ob-btn-c-shadow:       0 0 0 var(--ob-border-hair) var(--ob-btn-2-edge) inset;
+  --ob-btn-c-glow:         none;
+  --ob-btn-c-bg-hover:     var(--ob-danger-bg);
+  --ob-btn-c-shadow-hover: 0 0 0 var(--ob-border-hair) var(--ob-danger) inset;
+  --ob-btn-c-bg-press:     var(--ob-danger-bg);
+  --ob-btn-c-shadow-press: var(--ob-btn-c-shadow-hover);
+  --ob-btn-c-lift:         0px;
+}
+
+
+/* =============================================================================================
+   4. SIZES AND SHAPES
+   ============================================================================================= */
+.ob-btn--sm {
+  --ob-btn-c-h:     var(--ob-btn-height-sm);
+  --ob-btn-c-px:    var(--ob-space-16);
+  --ob-btn-c-gap:   var(--ob-space-6);
+  --ob-btn-c-icon:  var(--ob-icon-sm);
+  --ob-btn-c-size:  var(--ob-type-label-size);
+  --ob-btn-c-kbd:   var(--ob-btn-kbd-sm);
+  --ob-btn-c-press: var(--ob-press-scale-sm, .96);
+}
+.ob-btn--lg {
+  --ob-btn-c-h:  var(--ob-btn-height-lg);
+  --ob-btn-c-px: var(--ob-space-24);
+}
+/* Full width. A long label wraps instead of running out of the pill. */
+.ob-btn--block {
+  display: flex;
+  width: 100%;
+  height: auto;
+  min-height: var(--ob-btn-c-h);
+  padding-block: var(--ob-space-12);
+  line-height: var(--ob-type-label-leading);
+  white-space: normal;
+}
+
+/* Icon buttons: a circle by default, a rounded square for tools in a bar. */
+.ob-btn--icon {
+  --ob-btn-c-px:    0px;
+  --ob-btn-c-press: var(--ob-press-scale-sm, .96);
+  width: var(--ob-btn-c-h);
+}
+.ob-btn--icon.ob-btn--sm { --ob-btn-c-icon: var(--ob-icon-md); }
+.ob-btn--icon.ob-btn--lg { --ob-btn-c-icon: var(--ob-icon-lg); }
+.ob-btn--square { --ob-btn-c-radius: var(--ob-radius-md); }
+.ob-btn--square.ob-btn--sm { --ob-btn-c-radius: var(--ob-radius-sm); }
+
+
+/* =============================================================================================
+   5. PARTS
+   ============================================================================================= */
+.ob-btn-label {
+  display: block;
+  min-width: 0;
+  /* Centre on the cap height where supported, so the label sits optically in the middle. */
+  text-box: trim-both cap alphabetic;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+
+/* Leading slot: a glyph with the working ring stacked behind it, or the ring mark itself. */
+.ob-btn-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--ob-btn-c-icon);
+  height: var(--ob-btn-c-icon);
+}
+.ob-btn-icon:has(> .ob-btn-mark) { width: var(--ob-btn-c-mark); height: var(--ob-btn-c-mark); }
+.ob-btn-icon > * { grid-area: 1 / 1; }
+/* Every ring in a button, the mark and the working ring alike, is 2px larger than the icons. */
+.ob-btn .ob-sig { --ob-sig-size: var(--ob-btn-c-mark); }
+
+.ob-btn-glyph {
+  display: block;
+  flex: none;
+  width: var(--ob-btn-c-icon);
+  height: var(--ob-btn-c-icon);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+.ob-btn-glyph .is-fill { fill: currentColor; stroke: none; }
+
+/* Trailing arrow: nudges 2px toward where the button goes. */
+.ob-btn-arrow {
+  transition: translate var(--ob-dur-base) var(--ob-ease-out, var(--ob-ease)), opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+
+/* Trailing chevron: the button opens a menu. It turns 180 degrees while the menu is open. */
+.ob-btn-chevron {
+  transition: rotate var(--ob-dur-moderate) var(--ob-ease-out, var(--ob-ease)), opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+
+/* Key hint: label colour on the primary and solid red, --ob-text-2 elsewhere; fill and edge are
+   that ink at 8% and 22%. */
+.ob-btn-kbd {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  box-sizing: border-box;
+  min-width: var(--ob-btn-c-kbd);
+  height: var(--ob-btn-c-kbd);
+  padding: 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-xs);
+  color: var(--ob-btn-c-kbd-fg);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, currentColor 22%, transparent) inset;
+  font-family: var(--ob-font-mono);
+  font-size: var(--ob-type-mono-sm-size);
+  font-weight: var(--ob-weight-medium);
+  line-height: 1;
+  letter-spacing: 0;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+
+/* Toggle square: the brand square at control size. Hollow when off, filled when on. */
+.ob-btn-check {
+  flex: none;
+  width: var(--ob-sq-md);
+  height: var(--ob-sq-md);
+  border-radius: var(--ob-sq-radius);
+  box-shadow: 0 0 0 var(--ob-border-strong) currentColor inset;
+}
+
+/* Copy glyph: its front sheet fills while Copied holds. */
+.ob-btn-glyph .ob-btn-glyph-front {
+  fill: transparent;
+  transition: fill var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+.ob-btn.is-copied .ob-btn-glyph-front { fill: currentColor; }
+
+/* Optical padding: a slot at either end pulls toward the edge so the pill looks even.
+   Icon buttons and links have no padding to pull into, so they are left out. */
+.ob-btn:not(.ob-btn--icon, .ob-btn--link) > .ob-btn-icon:first-child  { margin-inline-start: calc(var(--ob-space-4) * -1); }
+.ob-btn:not(.ob-btn--icon, .ob-btn--link) > .ob-btn-check:first-child { margin-inline-start: calc(var(--ob-space-2) * -1); }
+.ob-btn:not(.ob-btn--icon, .ob-btn--link) > :is(.ob-btn-arrow, .ob-btn-chevron):last-child { margin-inline-end: calc(var(--ob-space-4) * -1); }
+.ob-btn:not(.ob-btn--icon, .ob-btn--link) > .ob-btn-kbd:last-child    { margin-inline-end: calc(var(--ob-space-6) * -1); }
+
+/* Busy overlay: the ring over the label, for buttons with no leading slot. Put it first. */
+.ob-btn-busy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+/* The working ring is 2px larger than the glyph it replaces, so it is centred on the slot rather
+   than placed in it; a grid track would grow to 18 and push both off centre by 1px. */
+.ob-btn-icon > .ob-btn-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: calc(var(--ob-btn-c-mark) / -2) 0 0 calc(var(--ob-btn-c-mark) / -2);
+  opacity: 0;
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease));
+}
+
+/* Hit area: touch screens get 44 or more. 8px gaps keep neighbours' areas from overlapping;
+   stacked standalone links need a 20px row gap on touch. */
+.ob-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+@media (pointer: coarse) {
+  .ob-btn--sm::before   { inset: calc((var(--ob-target-touch) - var(--ob-btn-height-sm)) / -2); }
+  .ob-btn--link::before { inset: calc((var(--ob-target-touch) - var(--ob-target-min)) / -2) calc(var(--ob-space-4) * -1); }
+  .ob-btn--link.ob-btn--inline::before { content: none; }
+  /* Key hints mean nothing without a keyboard. */
+  .ob-btn-kbd { display: none; }
+}
+
+
+/* =============================================================================================
+   6. STATES   rest, hover, pressed, focus, selected, expanded, disabled, busy, done, copied
+   Precedence: disabled, then busy, then pressed, then focus (stacks on anything), then hover,
+   then selected or expanded, then rest.
+   ============================================================================================= */
+
+/* Hover: pointer devices only. Colour and edge in 160ms; the primary lifts 1px and its glow layer fades in. */
+@media (hover: hover) and (pointer: fine) {
+  .ob-btn:hover:not(:disabled, [aria-disabled="true"], [aria-busy="true"], .is-loading, .is-done, .is-disabled) {
+    background: var(--ob-btn-c-bg-hover);
+    color: var(--ob-btn-c-fg-hover);
+    box-shadow: var(--ob-btn-c-shadow-hover);
+    translate: 0 var(--ob-btn-c-lift);
+  }
+  .ob-btn:hover:not(:disabled, [aria-disabled="true"], [aria-busy="true"], .is-loading, .is-done, .is-disabled)::after { opacity: 1; }
+  .ob-btn:hover:not(:disabled, [aria-disabled="true"], [aria-busy="true"], .is-loading, .is-done, .is-disabled) .ob-btn-arrow {
+    translate: var(--ob-btn-c-nudge) 0;
+  }
+  .ob-btn--link:hover:not(:disabled, [aria-disabled="true"]) .ob-btn-label {
+    text-decoration-color: var(--ob-text);
+  }
+}
+.ob-btn.is-hover {
+  background: var(--ob-btn-c-bg-hover);
+  color: var(--ob-btn-c-fg-hover);
+  box-shadow: var(--ob-btn-c-shadow-hover);
+  translate: 0 var(--ob-btn-c-lift);
+}
+.ob-btn.is-hover::after { opacity: 1; }
+.ob-btn.is-hover .ob-btn-arrow { translate: var(--ob-btn-c-nudge) 0; }
+.ob-btn--link.is-hover .ob-btn-label { text-decoration-color: var(--ob-text); }
+
+/* Pressed: scale in 100ms, release in 160ms. The lift drops and the glow layer goes out.
+   iOS Safari applies :active on a tap only when the page has a touchstart listener:
+   document.addEventListener('touchstart', () => {}, { passive: true }); */
+.ob-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"], .is-loading, .is-done, .is-disabled),
+.ob-btn.is-active {
+  background: var(--ob-btn-c-bg-press);
+  color: var(--ob-btn-c-fg-hover);
+  box-shadow: var(--ob-btn-c-shadow-press);
+  translate: 0 0;
+  scale: var(--ob-btn-c-press);
+  transition-duration: var(--ob-dur-fast);
+}
+.ob-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"], .is-loading, .is-done, .is-disabled)::after,
+.ob-btn.is-active::after { opacity: 0; transition-duration: var(--ob-dur-fast); }
+.ob-btn--link:active .ob-btn-label,
+.ob-btn--link.is-active .ob-btn-label { text-decoration-color: var(--ob-text); }
+
+/* Focus: a 2px ring at a 2px offset, in the same frame. The outline is never transitioned. */
+.ob-btn:focus-visible,
+.ob-btn.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ob-btn:focus:not(:focus-visible):not(.is-focus) { outline: none; }
+
+/* Toggle (aria-pressed) on a secondary or ghost button. Off: the label steps down to --ob-text-2 and
+   the square is hollow. On: the selected layer, a 3:1 edge, full ink, and the square fills in the
+   same frame. A toggle never takes the solid ink, so the primary stays the only paper pill. */
+.ob-btn[aria-pressed="false"] {
+  --ob-btn-c-fg:       var(--ob-text-2);
+  --ob-btn-c-fg-hover: var(--ob-text);
+}
+.ob-btn:is([aria-pressed="true"], .is-selected) {
+  --ob-btn-c-bg:           var(--ob-state-selected);
+  --ob-btn-c-fg:           var(--ob-text);
+  --ob-btn-c-fg-hover:     var(--ob-text);
+  --ob-btn-c-shadow:       0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset;
+  --ob-btn-c-bg-hover:     var(--ob-btn-2-bg-hover);
+  --ob-btn-c-shadow-hover: var(--ob-btn-c-shadow);
+  --ob-btn-c-bg-press:     var(--ob-btn-2-bg-pressed);
+  --ob-btn-c-shadow-press: var(--ob-btn-c-shadow);
+}
+.ob-btn:is([aria-pressed="true"], .is-selected) .ob-btn-check {
+  background: currentColor;
+  box-shadow: none;
+}
+
+/* Menu button (aria-haspopup, aria-expanded): while open it holds its pressed fill and the
+   chevron turns. Secondary or ghost only. */
+.ob-btn--secondary:is([aria-expanded="true"], .is-expanded) {
+  --ob-btn-c-bg:       var(--ob-btn-2-bg-pressed);
+  --ob-btn-c-bg-hover: var(--ob-btn-2-bg-pressed);
+  --ob-btn-c-shadow:   0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset;
+}
+.ob-btn--ghost:is([aria-expanded="true"], .is-expanded) {
+  --ob-btn-c-bg:       var(--ob-state-pressed);
+  --ob-btn-c-bg-hover: var(--ob-state-pressed);
+  --ob-btn-c-fg:       var(--ob-text);
+}
+.ob-btn:is([aria-expanded="true"], .is-expanded) .ob-btn-chevron { rotate: 180deg; }
+
+/* Disabled: flat and quiet in every variant, in the system's disabled ink. Prefer aria-disabled so
+   it stays focusable and can say why in a note or a tooltip. Exempt from contrast rules, and still
+   3:1 or more. */
+.ob-btn:is(:disabled, [aria-disabled="true"], .is-disabled) {
+  --ob-btn-c-bg:     var(--ob-fill-subtle);
+  --ob-btn-c-fg:     var(--ob-text-disabled);
+  --ob-btn-c-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+  --ob-btn-c-glow:   none;
+  --ob-btn-c-kbd-fg: var(--ob-btn-c-fg);
+  cursor: not-allowed;
+}
+.ob-btn:is(.ob-btn--ghost, .ob-btn--link):is(:disabled, [aria-disabled="true"], .is-disabled) {
+  --ob-btn-c-bg:     transparent;
+  --ob-btn-c-shadow: none;
+}
+/* Link buttons never disable. If one is, the underline stays, in the same dim ink. */
+.ob-btn--link:is(:disabled, [aria-disabled="true"], .is-disabled) .ob-btn-label { text-decoration-color: currentColor; }
+
+/* Busy (aria-busy="true"): nothing changes for 300ms. Then the ring fades in where the icon was,
+   or over the label when there is no slot, and makes 1 turn every 1.4s. The width never moves.
+   When the work ends, script lets the ring finish its turn before it clears aria-busy, so the
+   ring never jumps back. .is-loading is the still frame of the same state, for documentation. */
+.ob-btn:is([aria-busy="true"], .is-loading) { cursor: progress; }
+
+.ob-btn[aria-busy="true"] > .ob-btn-busy,
+.ob-btn[aria-busy="true"] .ob-btn-icon > .ob-btn-ring {
+  opacity: 1;
+  transition-delay: var(--ob-delay-busy, 300ms);
+}
+.ob-btn[aria-busy="true"] > .ob-btn-busy ~ *,
+.ob-btn[aria-busy="true"] .ob-btn-icon > .ob-btn-glyph {
+  opacity: 0;
+  transition-delay: var(--ob-delay-busy, 300ms);
+}
+.ob-btn[aria-busy="true"] .ob-sig .ob-sig-rot {
+  animation: ob-sig-spin var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ob-delay-busy, 300ms) infinite;
+}
+.ob-btn[aria-busy="true"] .ob-sig .ob-sig-orb {
+  animation: ob-sig-spin-rev var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ob-delay-busy, 300ms) infinite;
+}
+
+/* Still frame: the ring a quarter turn along, so the frame reads as moving work. */
+.ob-btn.is-loading > .ob-btn-busy,
+.ob-btn.is-loading .ob-btn-icon > .ob-btn-ring { opacity: 1; }
+.ob-btn.is-loading > .ob-btn-busy ~ *,
+.ob-btn.is-loading .ob-btn-icon > .ob-btn-glyph { opacity: 0; }
+.ob-btn.is-loading .ob-sig .ob-sig-rot { transform: rotate(90deg); }
+.ob-btn.is-loading .ob-sig .ob-sig-orb { transform: rotate(-90deg); }
+
+/* Done (.is-done, swapped in when the work lands): the square snaps home in --ob-sig-lock, holds
+   for --ob-success-hold, then script removes the class and the label returns in 100ms. */
+.ob-btn.is-done { cursor: default; }
+.ob-btn.is-done > .ob-btn-busy,
+.ob-btn.is-done .ob-btn-icon > .ob-btn-ring { opacity: 1; }
+.ob-btn.is-done > .ob-btn-busy ~ *,
+.ob-btn.is-done .ob-btn-icon > .ob-btn-glyph { opacity: 0; }
+.ob-btn.is-done .ob-sig .ob-sig-sq { animation: ob-sig-snap var(--ob-sig-lock) var(--ob-snap) both; }
+
+/* Note under a button: why it is unavailable (text-3), or why it failed (danger, hollow square).
+   A failed action never changes the button itself. The line is reserved, so nothing below jumps. */
+.ob-btn-note {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+  min-height: calc(var(--ob-type-caption-size) * var(--ob-type-caption-leading));
+  margin: var(--ob-space-8) 0 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  text-wrap: pretty;
+}
+.ob-btn-note.is-error {
+  color: var(--ob-danger);
+  animation: ob-btn-message var(--ob-dur-base) var(--ob-ease-out, var(--ob-ease)) backwards;
+}
+.ob-btn-note.is-error::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
+  translate: 0 calc(var(--ob-border-hair) * -1);
+  box-shadow: 0 0 0 var(--ob-border-strong) currentColor inset;
+}
+.ob-btn-note.is-error.is-replay { animation-name: ob-btn-message-r; }
+@keyframes ob-btn-message   { from { opacity: 0; translate: 0 calc(var(--ob-shift-xs, 4px) * -1); } }
+@keyframes ob-btn-message-r { from { opacity: 0; translate: 0 calc(var(--ob-shift-xs, 4px) * -1); } }
+
+/* Visually hidden text for the live region. navigation.css owns .ob-sr; this zero-specificity copy
+   keeps buttons.css working alone and never overrides it. */
+:where(.ob-sr) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =============================================================================================
+   7. GROUPS. Related actions sit 8px apart. DOM order is reading order at every width.
+   ============================================================================================= */
+.ob-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-8);
+}
+.ob-btn-group--end { justify-content: flex-end; }
+@media (max-width: 520px) {
+  .ob-btn-group--stack { flex-direction: column; align-items: stretch; }
+  .ob-btn-group--stack > .ob-btn:not(.ob-btn--link) { display: flex; width: 100%; }
+  .ob-btn-group--stack > .ob-btn--link { align-self: center; }
+}
+
+
+/* =============================================================================================
+   8. REDUCED MOTION. No lift, no press scale, no nudge, no turn, no chevron turn. Fades of 100
+   to 160ms stay. The working ring keeps 1 slow breath so a long job never looks frozen.
+   ============================================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  /* Zero the movement roles; [class] lifts this above every variant and size rule. */
+  .ob-btn[class] {
+    --ob-btn-c-press: 1;
+    --ob-btn-c-lift:  0px;
+    --ob-btn-c-nudge: 0px;
+  }
+  .ob-btn-chevron { transition: opacity var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)); }
+  .ob-btn-note.is-error { animation-name: ob-btn-fade; }
+  .ob-btn-note.is-error.is-replay { animation-name: ob-btn-fade-r; }
+  .ob-btn[aria-busy="true"] .ob-sig .ob-sig-sq {
+    animation: ob-btn-breathe var(--ob-sig-breathe, 2400ms) var(--ob-ease-in-out, ease-in-out) var(--ob-delay-busy, 300ms) infinite !important;
+  }
+}
+@keyframes ob-btn-fade    { from { opacity: 0; } }
+@keyframes ob-btn-fade-r  { from { opacity: 0; } }
+@keyframes ob-btn-breathe { 50% { opacity: .35; } }
+
+
+/* =============================================================================================
+   9. FORCED COLOURS. Box-shadow edges and the glow vanish, so every button gets a real border.
+   ============================================================================================= */
+@media (forced-colors: active) {
+  .ob-btn { border: 1px solid ButtonText; }
+  .ob-btn::after { content: none; }
+  .ob-btn:is(.ob-btn--link, .ob-btn--ghost) { border-color: transparent; }
+  .ob-btn--link .ob-btn-label { text-decoration-color: currentColor; }
+  .ob-btn:is([aria-pressed="true"], .is-selected, [aria-expanded="true"], .is-expanded) {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+  .ob-btn:is(:disabled, [aria-disabled="true"], .is-disabled) { color: GrayText; border-color: GrayText; }
+  .ob-btn-kbd, .ob-btn-check { border: 1px solid currentColor; }
+  .ob-btn-note.is-error::before { border: 1.5px solid currentColor; box-shadow: none; }
+}
+
+
+/* =============================================================================================
+   DOCUMENTATION LAYOUT  .ds-buttons-*
+   Only the guideline uses these. Components above never depend on them.
+   ============================================================================================= */
+.ds-buttons {
+  color: var(--ob-text);
+  font-family: var(--ob-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ds-buttons *,
+.ds-buttons *::before,
+.ds-buttons *::after { box-sizing: border-box; }
+
+/* Chapter head */
+.ds-buttons > .ds-buttons-head { display: grid; gap: var(--ob-space-16); max-width: 760px; }
+.ds-buttons .ds-buttons-eyebrow {
+  margin: 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-buttons .ds-buttons-title {
+  margin: 0;
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  text-wrap: balance;
+  max-width: 18ch;
+  color: var(--ob-text);
+}
+.ds-buttons .ds-buttons-lede {
+  margin: 0;
+  font: var(--ob-type-body-lg);
+  color: var(--ob-text-2);
+  max-width: var(--ob-measure-lede);
+  text-wrap: pretty;
+}
+.ds-buttons .ds-buttons-toc { margin-top: var(--ob-space-12); }
+.ds-buttons .ds-buttons-toc ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* On touch each link's hit area grows 10px up and down, so stacked rows need 20px between them. */
+@media (pointer: coarse) {
+  .ds-buttons .ds-buttons-toc ul { row-gap: var(--ob-space-20); }
+}
+
+/* Blocks */
+.ds-buttons > .ds-buttons-block {
+  margin-top: var(--ob-space-80);
+  padding-top: var(--ob-space-48);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: var(--ob-space-80);
+}
+.ds-buttons-block > .ds-buttons-h3 {
+  margin: 0;
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  text-wrap: balance;
+  max-width: 24ch;
+  color: var(--ob-text);
+}
+.ds-buttons-block > .ds-buttons-desc {
+  margin: var(--ob-space-16) 0 0;
+  font: var(--ob-type-body);
+  color: var(--ob-text-2);
+  max-width: var(--ob-measure);
+  text-wrap: pretty;
+}
+.ds-buttons .ds-buttons-kicker {
+  margin: var(--ob-space-40) 0 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+
+/* Stages: dark first, then paper, then hybrid. Pairs sit side by side on wide screens. */
+.ds-buttons .ds-buttons-stages {
+  display: grid;
+  gap: var(--ob-space-12);
+  margin-top: var(--ob-space-24);
+}
+@media (min-width: 1080px) {
+  .ds-buttons .ds-buttons-stages--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.ds-buttons .ds-buttons-stage {
+  container: ds-buttons-stage / inline-size;
+  min-width: 0;
+  padding: clamp(var(--ob-space-16), 3vw, var(--ob-space-32));
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-bg);
+  color: var(--ob-text);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-buttons .ds-buttons-stage-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0 0 var(--ob-space-20);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-buttons .ds-buttons-stage-tag::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: var(--ob-radius-glyph);
+  box-shadow: 0 0 0 var(--ob-border-strong) currentColor inset;
+}
+.ds-buttons .ob-theme-dark > .ds-buttons-stage-tag::before { background: currentColor; }
+.ds-buttons .ob-theme-hybrid > .ds-buttons-stage-tag::before { background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+
+/* State matrix: rows of frames on a grid, so columns line up and rows never leave 1 frame alone.
+   6 columns from a 900px stage, 3 from 440px, 2 below. Rows of 4 run 4 across from 720px. */
+.ds-buttons .ds-buttons-matrix { display: grid; gap: var(--ob-space-28); }
+.ds-buttons .ds-buttons-mrow { display: grid; gap: var(--ob-space-12); min-width: 0; }
+.ds-buttons .ds-buttons-mrow-label {
+  margin: 0;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text-2);
+}
+.ds-buttons .ds-buttons-cells {
+  --ds-buttons-cols: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--ds-buttons-cols), minmax(0, 1fr));
+  gap: var(--ob-space-16) var(--ob-space-12);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@container ds-buttons-stage (min-width: 440px) {
+  .ds-buttons .ds-buttons-cells { --ds-buttons-cols: 3; }
+  .ds-buttons .ds-buttons-cells--4 { --ds-buttons-cols: 2; }
+}
+@container ds-buttons-stage (min-width: 720px) {
+  .ds-buttons .ds-buttons-cells--4 { --ds-buttons-cols: 4; }
+}
+@container ds-buttons-stage (min-width: 900px) {
+  .ds-buttons .ds-buttons-cells:not(.ds-buttons-cells--4) { --ds-buttons-cols: 6; }
+}
+.ds-buttons .ds-buttons-cell {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--ob-space-8);
+  justify-items: start;
+  min-width: 0;
+}
+/* Frames sit at the top; captions line up along the bottom of each row. 4px leaves room for the ring. */
+.ds-buttons .ds-buttons-cell-spec {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  min-height: 52px;
+  max-width: 100%;
+  padding: var(--ob-space-4);
+}
+.ds-buttons .ds-buttons-cell-spec > .ob-btn-note { max-width: 26ch; }
+.ds-buttons .ds-buttons-cap {
+  margin: 0;
+  padding-inline: var(--ob-space-4);
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+}
+/* Tooltip frames: the button is centred so its open tooltip has room on both sides. */
+.ds-buttons .ds-buttons-cells--tip .ds-buttons-cell { justify-items: center; text-align: center; }
+.ds-buttons .ds-buttons-cells--tip .ds-buttons-cell-spec { justify-items: center; padding-top: var(--ob-space-48); }
+/* On a wide stage the tooltip frames sit under the matching columns of the rows above:
+   Rest, Hover, then Focus and Disabled. */
+@container ds-buttons-stage (min-width: 900px) {
+  .ds-buttons .ds-buttons-cells--tip { --ds-buttons-cols: 6; }
+  .ds-buttons .ds-buttons-cells--tip > :nth-child(3) { grid-column: 4; }
+  .ds-buttons .ds-buttons-cells--tip > :nth-child(4) { grid-column: 5; }
+  .ds-buttons .ds-buttons-cells--tip .ds-buttons-cell,
+  .ds-buttons .ds-buttons-cells--tip .ds-buttons-cell-spec { justify-items: start; text-align: start; }
+}
+/* Done still frame: the square caught halfway home. */
+.ds-buttons .ds-buttons-midsnap .ob-sig .ob-sig-sq {
+  animation: none;
+  transform: translate(12%, -12%) scale(.62);
+  opacity: .8;
+}
+
+/* Free rows of live specimens with a caption under each. */
+.ds-buttons .ds-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--ob-space-24) var(--ob-space-20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ds-buttons .ds-buttons-fig { display: grid; gap: var(--ob-space-12); justify-items: start; margin: 0; min-width: 0; }
+.ds-buttons .ds-buttons-fig > .ds-buttons-cap { padding-inline: 0; }
+.ds-buttons .ds-buttons-fig-spec { display: flex; align-items: center; min-height: 50px; }
+.ds-buttons .ds-buttons-fig-note { display: grid; justify-items: start; }
+
+/* Sizes */
+.ds-buttons .ds-buttons-sizes { display: grid; gap: var(--ob-space-28); }
+.ds-buttons .ds-buttons-size { display: grid; gap: var(--ob-space-12); min-width: 0; }
+.ds-buttons .ds-buttons-size-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12); }
+.ds-buttons .ds-buttons-hit { position: relative; display: inline-flex; }
+.ds-buttons .ds-buttons-hit::after {
+  content: "";
+  position: absolute;
+  inset: calc((var(--ob-target-touch) - var(--ob-btn-height-sm)) / -2);
+  border: var(--ob-border-hair) dashed var(--ob-line-ui);
+  border-radius: var(--ob-radius-pill);
+  pointer-events: none;
+}
+
+/* Anatomy: numbered pins on the real button. */
+.ds-buttons .ds-buttons-anatomy {
+  display: grid;
+  justify-items: center;
+  padding: 76px 0 72px;
+}
+.ds-buttons .ds-buttons-anatomy-art { position: relative; display: inline-flex; }
+.ds-buttons .ds-buttons-anatomy .ob-btn [data-ds-n] { position: relative; }
+.ds-buttons .ds-buttons-anatomy .ob-btn-label[data-ds-n] { --ds-buttons-part: var(--ob-btn-c-size); }
+@supports (text-box: trim-both cap alphabetic) {
+  .ds-buttons .ds-buttons-anatomy .ob-btn-label[data-ds-n] { --ds-buttons-part: 1cap; }
+}
+.ds-buttons .ds-buttons-anatomy .ob-btn-icon[data-ds-n]  { --ds-buttons-part: var(--ob-btn-c-mark); }
+.ds-buttons .ds-buttons-anatomy .ob-btn-kbd[data-ds-n]   { --ds-buttons-part: var(--ob-btn-c-kbd); }
+.ds-buttons .ds-buttons-anatomy :is(.ob-btn-label, .ob-btn-icon, .ob-btn-kbd)[data-ds-n]::before,
+.ds-buttons .ds-buttons-anatomy :is(.ob-btn-label, .ob-btn-icon, .ob-btn-kbd)[data-ds-n]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  pointer-events: none;
+}
+/* Leaders run from the pin down to 4px above the part, crossing the pill edge and the ring. */
+.ds-buttons .ds-buttons-anatomy :is(.ob-btn-label, .ob-btn-icon, .ob-btn-kbd)[data-ds-n]::before {
+  bottom: calc(100% + 4px);
+  width: 1px;
+  height: calc((var(--ob-btn-c-h) - var(--ds-buttons-part)) / 2 + 20px);
+  background: var(--ob-line-ui);
+}
+.ds-buttons .ds-buttons-anatomy :is(.ob-btn-label, .ob-btn-icon, .ob-btn-kbd)[data-ds-n]::after,
+.ds-buttons .ds-buttons-pin::after {
+  content: attr(data-ds-n);
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--ob-radius-xs);
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font-family: var(--ob-font-mono);
+  font-size: var(--ob-type-mono-sm-size);
+  font-weight: var(--ob-weight-medium);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.ds-buttons .ds-buttons-anatomy :is(.ob-btn-label, .ob-btn-icon, .ob-btn-kbd)[data-ds-n]::after {
+  bottom: calc(100% + (var(--ob-btn-c-h) - var(--ds-buttons-part)) / 2 + 24px);
+}
+.ds-buttons .ds-buttons-pin {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  pointer-events: none;
+}
+.ds-buttons .ds-buttons-pin::before {
+  content: "";
+  width: 1px;
+  background: var(--ob-line-ui);
+}
+/* 1 lands inside the pill, 8px above its bottom edge. 5 stops 2px under the focus ring. */
+.ds-buttons .ds-buttons-pin--container { left: 30px; top: calc(100% - 8px); }
+.ds-buttons .ds-buttons-pin--container::before { height: 32px; }
+.ds-buttons .ds-buttons-pin--focus { right: 30px; top: calc(100% + 6px); }
+.ds-buttons .ds-buttons-pin--focus::before { height: 18px; }
+@media (pointer: coarse) {
+  .ds-buttons .ds-buttons-anatomy .ob-btn-kbd { display: inline-grid; }
+}
+
+.ds-buttons .ds-buttons-legend {
+  display: grid;
+  gap: 0;
+  margin: var(--ob-space-24) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.ds-buttons .ds-buttons-legend li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-12) 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+.ds-buttons .ds-buttons-legend li:first-child { border-top: 0; }
+.ds-buttons .ds-buttons-legend b { font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+.ds-buttons .ds-buttons-n {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  translate: 0 5px;
+  border-radius: var(--ob-radius-xs);
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: var(--ob-type-mono-sm);
+  line-height: 1;
+}
+
+/* Tables */
+.ds-buttons .ds-buttons-tablewrap {
+  margin-top: var(--ob-space-24);
+  overflow-x: auto;
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  -webkit-overflow-scrolling: touch;
+}
+.ds-buttons .ds-buttons-tablewrap:focus-visible {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+.ds-buttons .ds-buttons-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font: var(--ob-type-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text-2);
+}
+.ds-buttons .ds-buttons-table caption {
+  caption-side: top;
+  padding: var(--ob-space-16) var(--ob-space-16) var(--ob-space-8);
+  text-align: left;
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+}
+.ds-buttons .ds-buttons-table th {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  text-align: left;
+  vertical-align: bottom;
+  white-space: nowrap;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+}
+.ds-buttons .ds-buttons-table td {
+  padding: var(--ob-space-12) var(--ob-space-16);
+  vertical-align: top;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  text-wrap: pretty;
+}
+.ds-buttons .ds-buttons-table tbody tr:first-child td { border-top: 0; }
+.ds-buttons .ds-buttons-table td:first-child { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+.ds-buttons .ds-buttons-code {
+  display: inline-block;
+  padding: 1px var(--ob-space-6);
+  border-radius: var(--ob-radius-xs);
+  background: var(--ob-fill);
+  color: var(--ob-text);
+  font: var(--ob-type-mono-sm);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.ds-buttons .ds-buttons-mono { font: var(--ob-type-mono-sm); color: var(--ob-text); white-space: nowrap; }
+
+/* Do and don't. The filled square is a rule to follow; the hollow square is one to avoid. */
+.ds-buttons .ds-buttons-rules {
+  display: grid;
+  gap: var(--ob-space-24);
+  margin-top: var(--ob-space-40);
+}
+@media (min-width: 860px) {
+  .ds-buttons .ds-buttons-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-40); }
+}
+.ds-buttons .ds-buttons-h4 {
+  margin: 0 0 var(--ob-space-8);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.ds-buttons .ds-buttons-list { margin: 0; padding: 0; list-style: none; }
+.ds-buttons .ds-buttons-list li {
+  display: grid;
+  grid-template-columns: var(--ob-sq-size) minmax(0, 1fr);
+  gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-12) 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.ds-buttons .ds-buttons-list li::before {
+  content: "";
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  translate: 0 calc(var(--ob-border-hair) * -1);
+  border-radius: var(--ob-sq-radius);
+  background: var(--ob-text-2);
+}
+.ds-buttons .ds-buttons-list--dont li::before { background: transparent; box-shadow: 0 0 0 var(--ob-border-strong) var(--ob-text-3) inset; }
+.ds-buttons .ds-buttons-list b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.ds-buttons .ds-buttons-access { margin-top: var(--ob-space-40); }
+
+/* Prose specimens */
+.ds-buttons .ds-buttons-prose {
+  margin: 0;
+  max-width: 46ch;
+  font: var(--ob-type-body);
+  color: var(--ob-text-2);
+}
+.ds-buttons .ds-buttons-prose .ob-btn--inline { color: var(--ob-text); }
+.ds-buttons .ds-buttons-link-line { margin: var(--ob-space-24) 0 0; font: var(--ob-type-body); color: var(--ob-text-2); max-width: var(--ob-measure); }
+
+/* A confirm card and a narrow phone frame, for the patterns. */
+.ds-buttons .ds-buttons-card {
+  display: grid;
+  gap: var(--ob-space-12);
+  width: 100%;
+  max-width: 440px;
+  padding: var(--ob-space-24);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-overlay);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-4);
+}
+.ds-buttons .ds-buttons-card-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.ds-buttons .ds-buttons-card-body { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.ds-buttons .ds-buttons-card .ob-btn-group { margin-top: var(--ob-space-8); }
+.ds-buttons .ds-buttons-phone {
+  display: grid;
+  gap: var(--ob-space-12);
+  width: 100%;
+  max-width: 340px;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-xl);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-buttons .ds-buttons-phone .ob-btn-group { flex-direction: column; align-items: stretch; }
+.ds-buttons .ds-buttons-phone .ob-btn--link { align-self: center; }
+.ds-buttons .ds-buttons-group-label { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.ds-buttons .ds-buttons-patterns { display: grid; gap: var(--ob-space-32); }
+.ds-buttons .ds-buttons-object {
+  display: grid;
+  gap: var(--ob-space-16);
+  justify-items: start;
+  padding: var(--ob-space-24);
+  border-radius: var(--ob-radius-lg);
+}
+
+/* Confirm opens: a quiet trigger under the scrim, the card settling over it. Replay restarts both. */
+.ds-buttons .ds-buttons-screen {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: var(--ob-space-24) var(--ob-space-16);
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-buttons .ds-buttons-screen-under {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-20);
+}
+.ds-buttons .ds-buttons-screen-scrim { position: absolute; inset: 0; background: var(--ob-scrim); }
+.ds-buttons .ds-buttons-screen > .ds-buttons-card { position: relative; }
+.ds-buttons .ds-buttons-screen.is-replay .ob-anim-dialog { animation-name: ob-enter-r; }
+.ds-buttons .ds-buttons-screen.is-replay .ob-anim-scrim  { animation-name: ob-fade-in-r; }
+
+.ds-buttons .ds-buttons-spaced { margin-top: var(--ob-space-32); }
+.ds-buttons .ds-buttons-fig--wide { justify-items: stretch; width: 100%; }
+
+/* Live presses: the real component and the press() script below. */
+.ds-buttons .ds-buttons-try {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--ob-space-24) var(--ob-space-32);
+}
+.ds-buttons .ds-buttons-try-item { display: grid; justify-items: start; min-width: 0; }
+
+/* Forced colours capture */
+.ds-buttons .ds-buttons-shot { margin: var(--ob-space-24) 0 0; display: grid; gap: var(--ob-space-12); }
+.ds-buttons .ds-buttons-shot img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-buttons .ds-buttons-shot figcaption { font: var(--ob-type-caption); color: var(--ob-text-3); max-width: var(--ob-measure); }
+
+/* Code */
+.ds-buttons .ds-buttons-pre {
+  margin: var(--ob-space-24) 0 0;
+  padding: var(--ob-space-20);
+  overflow-x: auto;
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  font: var(--ob-type-code);
+  color: var(--ob-text-2);
+  tab-size: 2;
+}
+.ds-buttons .ds-buttons-pre code { font: inherit; white-space: pre; }
+
+/* Lifecycle demos. Each runs once on load and again on Replay (.is-replay toggles twin keyframes).
+   Times come from the tokens: --ob-delay-busy, --ob-dur-fast, --ob-sig-spin, --ob-sig-lock,
+   --ob-success-hold and --ob-btn-copied-hold. The ring turns from the moment it starts to fade in,
+   as the component does, and the ring and the label crossfade on the same curve. */
+.ds-buttons .ds-buttons-life-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-12);
+}
+@container ds-buttons-stage (min-width: 820px) {
+  .ds-buttons .ds-buttons-life-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.ds-buttons .ds-buttons-life-cell {
+  display: grid;
+  gap: var(--ob-space-16);
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-20);
+  border-radius: var(--ob-radius-md);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.ds-buttons .ds-buttons-life-cell--solo { max-width: 420px; }
+.ds-buttons .ds-buttons-life-head { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-12); }
+.ds-buttons .ds-buttons-life-name { margin: 0; font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.ds-buttons .ds-buttons-life-time { margin: 0; font: var(--ob-type-mono-sm); color: var(--ob-text-3); text-wrap: balance; }
+.ds-buttons .ds-buttons-life {
+  --ds-buttons-t-busy:  var(--ob-delay-busy, 300ms);
+  --ds-buttons-t-lock:  calc(var(--ds-buttons-t-busy) + var(--ob-sig-spin));
+  --ds-buttons-t-back:  calc(var(--ds-buttons-t-lock) + var(--ob-sig-lock) + var(--ob-success-hold, 400ms));
+  --ds-buttons-t-press: calc(var(--ob-dur-fast) + var(--ob-dur-base));
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  min-height: 88px;
+}
+.ds-buttons .ds-buttons-life .ob-btn {
+  animation: ds-buttons-press var(--ds-buttons-t-press) var(--ob-ease-out, var(--ob-ease)) 0ms 1;
+}
+/* A: no slot. Label out, ring in, 1 turn, square home, hold, label back. */
+.ds-buttons .ds-buttons-life--ok .ob-btn-busy {
+  animation:
+    ds-buttons-in var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-busy) forwards,
+    ds-buttons-out var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-back) forwards;
+}
+.ds-buttons .ds-buttons-life--ok .ob-btn-label {
+  animation:
+    ds-buttons-out var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-busy) forwards,
+    ds-buttons-in var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-back) forwards;
+}
+.ds-buttons .ds-buttons-life--ok .ob-sig-rot { animation: ds-buttons-turn var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ds-buttons-t-busy) 1; }
+.ds-buttons .ds-buttons-life--ok .ob-sig-orb { animation: ds-buttons-turn-rev var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ds-buttons-t-busy) 1; }
+.ds-buttons .ds-buttons-life--ok .ob-sig-sq  { animation: ds-buttons-snap var(--ob-sig-lock) var(--ob-snap) var(--ds-buttons-t-lock) 1; }
+/* B: the ring mark leads. It turns in place; the label stays. */
+.ds-buttons .ds-buttons-life--mark .ob-sig-rot { animation: ds-buttons-turn var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ds-buttons-t-busy) 1; }
+.ds-buttons .ds-buttons-life--mark .ob-sig-orb { animation: ds-buttons-turn-rev var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ds-buttons-t-busy) 1; }
+.ds-buttons .ds-buttons-life--mark .ob-sig-sq  { animation: ds-buttons-snap var(--ob-sig-lock) var(--ob-snap) var(--ds-buttons-t-lock) 1; }
+/* C: failure. The turn finishes, the label returns, the reason drops in below. */
+.ds-buttons .ds-buttons-life--fail .ob-btn-busy {
+  animation:
+    ds-buttons-in var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-busy) forwards,
+    ds-buttons-out var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-lock) forwards;
+}
+.ds-buttons .ds-buttons-life--fail .ob-btn-label {
+  animation:
+    ds-buttons-out var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-busy) forwards,
+    ds-buttons-in var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) var(--ds-buttons-t-lock) forwards;
+}
+.ds-buttons .ds-buttons-life--fail .ob-sig-rot { animation: ds-buttons-turn var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ds-buttons-t-busy) 1; }
+.ds-buttons .ds-buttons-life--fail .ob-sig-orb { animation: ds-buttons-turn-rev var(--ob-sig-spin) var(--ob-ease-linear, linear) var(--ds-buttons-t-busy) 1; }
+.ds-buttons .ds-buttons-life--fail .ob-btn-note.is-error {
+  animation: ds-buttons-drop var(--ob-dur-base) var(--ob-ease-out, var(--ob-ease)) calc(var(--ds-buttons-t-lock) + var(--ob-dur-fast)) backwards;
+}
+/* D: copied. The front sheet fills and Copied shows at once, both hold, then both return. */
+.ds-buttons .ds-buttons-life--copy .ob-btn-glyph-front {
+  animation:
+    ds-buttons-fill var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) 0ms forwards,
+    ds-buttons-unfill var(--ob-dur-fast) var(--ob-ease-in, var(--ob-ease-exit)) var(--ob-btn-copied-hold) forwards;
+}
+.ds-buttons .ds-buttons-life--copy .ob-tooltip {
+  animation:
+    ds-buttons-tip var(--ob-dur-fast) var(--ob-ease-out, var(--ob-ease)) 0ms backwards,
+    ds-buttons-out var(--ob-dur-fast) var(--ob-ease-in, var(--ob-ease-exit)) var(--ob-btn-copied-hold) forwards;
+}
+.ds-buttons .ds-buttons-life--copy { padding-top: var(--ob-space-48); justify-items: center; }
+
+/* Replay: the same timeline on twin keyframes. */
+.ds-buttons .ds-buttons-life.is-replay .ob-btn { animation-name: ds-buttons-press-r; }
+.ds-buttons .ds-buttons-life.is-replay .ob-btn-busy { animation-name: ds-buttons-in-r, ds-buttons-out-r; }
+.ds-buttons .ds-buttons-life.is-replay .ob-btn-label { animation-name: ds-buttons-out-r, ds-buttons-in-r; }
+.ds-buttons .ds-buttons-life.is-replay .ob-sig-rot { animation-name: ds-buttons-turn-r; }
+.ds-buttons .ds-buttons-life.is-replay .ob-sig-orb { animation-name: ds-buttons-turn-rev-r; }
+.ds-buttons .ds-buttons-life.is-replay .ob-sig-sq  { animation-name: ds-buttons-snap-r; }
+.ds-buttons .ds-buttons-life--fail.is-replay .ob-btn-note.is-error { animation-name: ds-buttons-drop-r; }
+.ds-buttons .ds-buttons-life--copy.is-replay .ob-btn-glyph-front { animation-name: ds-buttons-fill-r, ds-buttons-unfill-r; }
+.ds-buttons .ds-buttons-life--copy.is-replay .ob-tooltip { animation-name: ds-buttons-tip-r, ds-buttons-out-r; }
+
+@keyframes ds-buttons-press      { 0%, 100% { scale: 1; } 38% { scale: var(--ob-press-scale, .98); } }
+@keyframes ds-buttons-press-r    { 0%, 100% { scale: 1; } 38% { scale: var(--ob-press-scale, .98); } }
+@keyframes ds-buttons-in         { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ds-buttons-in-r       { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ds-buttons-out        { from { opacity: 1; } to { opacity: 0; } }
+@keyframes ds-buttons-out-r      { from { opacity: 1; } to { opacity: 0; } }
+@keyframes ds-buttons-turn       { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes ds-buttons-turn-r     { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes ds-buttons-turn-rev   { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
+@keyframes ds-buttons-turn-rev-r { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
+@keyframes ds-buttons-snap       { from { transform: translate(28%, -28%) scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ds-buttons-snap-r     { from { transform: translate(28%, -28%) scale(.3); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ds-buttons-drop       { from { opacity: 0; translate: 0 calc(var(--ob-shift-xs, 4px) * -1); } }
+@keyframes ds-buttons-drop-r     { from { opacity: 0; translate: 0 calc(var(--ob-shift-xs, 4px) * -1); } }
+@keyframes ds-buttons-fill       { from { fill: transparent; } to { fill: currentColor; } }
+@keyframes ds-buttons-fill-r     { from { fill: transparent; } to { fill: currentColor; } }
+@keyframes ds-buttons-unfill     { from { fill: currentColor; } to { fill: transparent; } }
+@keyframes ds-buttons-unfill-r   { from { fill: currentColor; } to { fill: transparent; } }
+@keyframes ds-buttons-tip        { from { opacity: 0; translate: 0 var(--ob-shift-xs, 4px); } }
+@keyframes ds-buttons-tip-r      { from { opacity: 0; translate: 0 var(--ob-shift-xs, 4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-buttons .ds-buttons-life { --ob-shift-xs: 0px; }
+  .ds-buttons .ds-buttons-life .ob-btn { animation: none; }
+}
