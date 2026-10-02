@@ -331,7 +331,7 @@ export const page: Page = {
 
   recipes: {
     heading: 'From a rival’s first email to your own launch, a recipe is ready to run.',
-    ids: ['competitor', 'email-sms', 'ads', 'prices', 'delivery', 'listings', 'speed', 'trial', 'mystery', 'checkout', 'saves'],
+    ids: ['competitor', 'email-sms', 'ads', 'prices', 'delivery', 'listings', 'speed', 'trial', 'mystery', 'checkout', 'saves', 'adcheck', 'reviews', 'partners'],
   },
 
   proof: {

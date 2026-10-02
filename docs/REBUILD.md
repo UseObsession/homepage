@@ -10,7 +10,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - **Name:** the ready-made jobs are **Recipes** (James's word; Seun confirmed 2 Oct). A recipe comes with all its infrastructure already set up; a typed task has the system set it up for you. Never a count of them.
 - **Headlines:**
   - Home: **"The intelligence infrastructure for commercial teams"**.
-  - Every other page: an "AI agents that ..." headline. Agencies "AI agents that help your agency win and keep clients.", Founders "AI agents that help your business win and keep customers.", Sales "AI agents that help your team win and renew accounts.", Marketing in the same pattern.
+  - Every other page: an "AI agents that ..." headline. Agencies "AI agents that help your agency win and keep clients.", Founders "AI agents that help your business win and keep customers.", Sales "AI agents that help your team win and renew accounts.", Marketing "AI agents that help your marketing team win, convert and keep customers." (3 Oct: the page is organised by marketing function, with rivals as 1 strand).
   - Under every headline, the sub makes it literal what Obsession does, and why only Obsession: declared AI agents with their own identity, inboxes, phone numbers, cards and browsers that work with other companies for you (research prospects as their customer, test any journey, track rivals, answer and chase, buy and negotiate within the customer's limits, check the AI agents they run), continuously, at every company on your list, every step signed. Specific, novel, differentiated.
   - **The pill reads "Early access" on every page** (Seun, 3 Oct, reversing the earlier "no Early access pill" rule for the hero only).
 - **Calls to action:** Home "Join the waitlist" (plus the free mystery shop as the second path). Agencies and Marketing: waitlist, plus "mystery-shop a store free" (your own store, or a client's with their OK). Founders "Get early access". Sales "Get early access for my team". Developers "Get API access". Recipe pages: the free mystery shop on the Mystery shopper page, the waitlist (with the recipe preset as interest) elsewhere. Sample output: "Get one for your store".
@@ -101,11 +101,11 @@ App screens only (`components/AppScreen`, the screens in `src/screens`, built to
 | Page | Screens |
 |---|---|
 | Home | the hero tabs: `pack`, `shop`, `rivals`, `inbound`, `checkout`; how it works: `templates`, `kit`, `run`; type a task: `compose`. The reader picker has no screens: each reader's own page shows theirs |
-| Agencies | `pack`, `board`, `approve`, `report` (+ `shop` for the free mystery shop) |
+| Agencies | `pack`, `board`, `approve`, `upsells`, `report` (+ `shop` for the free mystery shop) |
 | Founders | `leads`, `switch`, `invoices`, `suppliers`, `ship`, `qa`, `listings`, `rivals` |
-| Sales | `brief`, `acctwatch`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |
-| Marketing | `inbox`, `ads`, `prices`, `campaign` (new), plus `listings` and `inbound` as they apply to marketing |
-| Recipes | each recipe's own screen: competitor `rivals`, prospect intelligence `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings` |
+| Sales | `brief`, `acctwatch`, `expansion`, `case`, `pilot`, `winback`, `battlecard`, `inbound`, `vendor` |
+| Marketing | `inbox`, `ads`, `prices`, `campaign` (new), plus `listings` and `inbound` as they apply to marketing; from 3 Oct also `adcheck`, `reviews` and `partners` |
+| Recipes | each recipe's own screen: competitor `rivals`, prospect intelligence `pack`, mystery `shop`, speed `inbound`, prices `prices`, ads `ads`, trial `battlecard`, email-sms `inbox`, audit `ship`, delivery `qa`, account-watch `acctwatch`, business-case `case`, get-paid `invoices`, supplier-quotes `suppliers`, listings `listings`, expansion offers `expansion`, client upsells `upsells`, review requests `reviews`, ad landing check `adcheck`, partner checks `partners` |
 | Developers | how it works: `compose`, `templates`, `kit`, `qa`; the code: `dev`; use cases: `ship`, `leads`, `rivals`, `shop`, `inbound`, `suppliers` |
 | Sample output | the real report captures (`public/report`) |
 
@@ -113,7 +113,7 @@ New screens to build: `shop` (the mystery shopper run on a store: basket, inboxe
 
 ## 7. Navigation
 
-- Desktop (3 Oct: at most 4 links plus the call to action): the lockup; **Solutions** (a menu: Agencies, Founders, Sales, Marketing, each with 1 line), **Recipes** (a menu grouped by job: Win customers, Keep customers, Watch rivals, Check your own journeys, Get paid and save, plus "All recipes"), **Resources** (a menu: Use cases with the worked examples and "All use cases"; Blog; Sample output; "All resources"), **Developers**; on the right the theme switch and the page's call to action. Sticky, quiet, keyboard and screen reader complete (`.ob-nav`, `.ob-menu`).
+- Desktop (3 Oct: at most 4 links plus the call to action): the lockup; **Solutions** (a menu: Agencies, Founders, Sales, Marketing, each with 1 line), **Recipes** (a menu grouped by job: Win customers, Keep and grow customers, Watch rivals, Check your own journeys, Get paid and save, plus "All recipes"), **Resources** (a menu: Use cases with the worked examples and "All use cases"; Blog; Sample output; "All resources"), **Developers**; on the right the theme switch and the page's call to action. Sticky, quiet, keyboard and screen reader complete (`.ob-nav`, `.ob-menu`).
 - Phone: a sheet (`.ob-mnav`, `.ob-anim-sheet`) with the same groups and the call to action.
 - Footer: a full site map (every page, recipe, use case, the blog and the sample output), the red lines in 1 line, the theme switch.
 - Breadcrumbs (`components/Crumbs`, `.ob-crumbs`): a calm line centred above the hero's pill on every page below Home, read from the page's `meta.breadcrumb`, which is also the `BreadcrumbList` JSON-LD, so the 2 always match. Trails: Home / Agencies; Home / Recipes / Mystery shopper; Home / Resources / Use cases / Prospect intelligence with Clay; Home / Resources / Sample output; Home / Blog / Post. On a phone a trail deeper than 2 drops the page's own name.

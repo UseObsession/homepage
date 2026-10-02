@@ -323,8 +323,8 @@ export const page: Page = {
     items: [
       {
         name: 'SaaS',
-        line: 'Every prospect’s trial checked for your gap, every release tested as a new customer, every rival price logged.',
-        recipes: ['prospect', 'audit', 'delivery', 'competitor'],
+        line: 'Every prospect’s trial checked for your gap, every release tested as a new customer, every customer near its limit offered more.',
+        recipes: ['prospect', 'audit', 'delivery', 'expansion', 'competitor'],
       },
       {
         name: 'Ecommerce and DTC',
@@ -375,8 +375,8 @@ export const page: Page = {
   },
 
   recipes: {
-    heading: 'Prospects, quotes, releases, rivals, listings, invoices and software bills each have a recipe ready to run.',
-    ids: ['prospect', 'quotes', 'audit', 'delivery', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'spend', 'mystery'],
+    heading: 'Prospects, quotes, upgrades, releases, rivals, listings, invoices and software bills each have a recipe ready to run.',
+    ids: ['prospect', 'quotes', 'expansion', 'audit', 'delivery', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'spend', 'mystery'],
   },
 
   proof: {
