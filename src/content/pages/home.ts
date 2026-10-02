@@ -46,10 +46,6 @@ export const page: Page = {
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
     consoleHeading,
-    /* The caret's hue on each phrase of the typed heading: Agencies' orchid on "What Obsession can do", the band's first
-       door, and the developers' cobalt on "What you can build with Obsession". It is the 1 point of colour above the
-       fold, and the band under the console names the hues. Reduced motion holds the first. */
-    consoleReaders: ['agencies', 'developers'],
     /* Category tabs, each a full app screen that plays its story when chosen. AI checkout test lands with its screen
        (src/screens/html/checkout.html); until then its tab is left out. Room for a 6th: the AI agent checks. */
     screens: [

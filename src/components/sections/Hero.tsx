@@ -24,13 +24,14 @@ import './Hero.css'
    proof facts. Above it all, on every page below Home, the breadcrumb (components/Crumbs), which never moves.
    `reader` (Agencies, Founders, Sales, Marketing, Developers) lands the reader in their own room: 1 soft glow of their
    hue behind the pill and the headline, and the typed heading's caret in that hue (Hero.css, styles/accents.css). Home
-   has no reader; its caret takes each phrase's reader from `hero.consoleReaders`. */
+   has no reader, so its caret stays the design system's: Home's colour is the persona band under the console, where
+   each reader picks their own door. */
 
 type Workspace = 'agency' | 'company'
 
 /* The words every hero has; the proof facts and the console are a story page's. */
 type HeroWords = Pick<HeroContent, 'pill' | 'headline' | 'sub' | 'capture' | 'secondary'> &
-  Partial<Pick<HeroContent, 'proof' | 'consoleHeading' | 'consoleReaders' | 'screens' | 'demos'>>
+  Partial<Pick<HeroContent, 'proof' | 'consoleHeading' | 'screens' | 'demos'>>
 
 function Arrow() {
   return (
@@ -114,12 +115,7 @@ export function Hero({
         ) : (
           hasConsole && (
             <div className="s-hero-console ob-anim-hero-object">
-              <TypedHeading
-                phrases={hero.consoleHeading ?? []}
-                readers={reader ? undefined : hero.consoleReaders}
-                id={`${id}-console`}
-                className="s-hero-console-h"
-              />
+              <TypedHeading phrases={hero.consoleHeading ?? []} id={`${id}-console`} className="s-hero-console-h" />
               {hero.screens?.length ? (
                 <ScreenTabs screens={hero.screens} labelledBy={`${id}-console`} workspace="company" />
               ) : (

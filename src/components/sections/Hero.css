@@ -146,12 +146,10 @@
   text-wrap: balance;
 }
 
-/* ---- Reader colour (styles/accents.css; _research/colour/COLOUR.md P2 and P3). The hue marks the reader, never a word,
-   the ring or the console: only the typed heading's caret (the brand square) and, on a reader's own page, 1 glow. ---- */
-
-/* Home: the caret takes the hue of the reader on each phrase (Typed.tsx sets data-reader on the line, and changes it
-   only while the line is faded out between phrases). */
-.s-hero-console-h .s-typed-line[data-reader] .s-typed-caret { color: var(--s-accent); }
+/* ---- Reader colour (styles/accents.css; _research/colour/COLOUR.md P3). The hue marks the reader, never a word, the
+   ring or the console, and only on a reader's own page: 1 glow, and the typed heading's caret (the brand square).
+   Home has no reader, so its caret stays the design system's: COLOUR.md's Home caret (P2) named the reader of each
+   typed task, and that task line left the hero on 3 Oct. Its 2 console phrases name no reader. ---- */
 
 /* A reader's own page: 1 soft glow of the reader's hue behind the pill and the headline, the hero's 1 glow. The ellipse
    fades to nothing at the hero's top edge, so there is no seam under the sticky nav, and before the form and the

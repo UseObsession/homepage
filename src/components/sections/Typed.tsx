@@ -67,21 +67,8 @@ type Mode = 'hold' | 'erase' | 'swap' | 'type' | 'rest'
      screen, it holds the first phrase and goes on from there, so nothing already read disappears.
    - It waits while off screen or in a hidden tab, and goes on where it stopped.
    - Every phrase sits in 1 grid cell, unseen, so the heading is always as tall as its tallest phrase and nothing
-     under it moves; a phone that wraps the longest phrase on 2 lines keeps both from the start.
-   - `readers` (Home) names the reader whose hue the caret takes on each phrase (data-reader on the line, styles/
-     accents.css). The phrase changes only while the line is faded out, so the hue never jumps mid word; reduced
-     motion and the prerendered page hold the first. */
-export function TypedHeading({
-  phrases,
-  readers,
-  id,
-  className = '',
-}: {
-  phrases: string[]
-  readers?: string[]
-  id: string
-  className?: string
-}) {
+     under it moves; a phone that wraps the longest phrase on 2 lines keeps both from the start. */
+export function TypedHeading({ phrases, id, className = '' }: { phrases: string[]; id: string; className?: string }) {
   const ref = useRef<HTMLHeadingElement>(null)
   const [i, setI] = useState(0)
   const [n, setN] = useState(phrases[0]?.length ?? 0)
@@ -166,7 +153,7 @@ export function TypedHeading({
           {p}
         </span>
       ))}
-      <span className={'s-typed-line' + (mode === 'swap' ? ' is-swap' : '')} data-reader={readers?.[i]} aria-hidden="true">
+      <span className={'s-typed-line' + (mode === 'swap' ? ' is-swap' : '')} aria-hidden="true">
         <TypedText text={phrase} n={n} caret typing={typing} />
       </span>
       <span className="ob-sr">{phrases[0]}</span>

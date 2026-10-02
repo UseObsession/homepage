@@ -67,9 +67,7 @@ export type HeroScreen = { tab: string; screen: ScreenName; recipe: RecipeId; li
 
 /* The hero (docs/REBUILD.md 1c). `consoleHeading` is the typed heading over the console: it types the first line,
    holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
-   screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers).
-   `consoleReaders` (Home only) is the reader whose hue the heading's caret takes on each phrase, the same length and
-   order as `consoleHeading`: the hue changes only while the line is faded out between phrases. */
+   screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
 export type Hero = {
   pill: string
   headline: string
@@ -78,7 +76,6 @@ export type Hero = {
   secondary?: Cta
   proof: { value: string; label: string }[]
   consoleHeading: string[]
-  consoleReaders?: ReaderId[]
   screens?: HeroScreen[]
   demos?: Demo[]
 }
