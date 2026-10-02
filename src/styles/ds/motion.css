@@ -76,6 +76,7 @@
 
   /* Scale. Reduced motion sets all of these to 1. */
   --ob-press-scale-sm: .96;   /* controls 32px tall or less: chips, icon buttons, small pills */
+  --ob-press-scale-wide: .99; /* full-width pills: .98 of 343px would shrink them 7px */
   --ob-switch-stretch: 1.12;  /* the switch thumb widens while pressed */
   --ob-pop-scale:      .96;   /* menus and popovers grow from their trigger */
   --ob-dialog-scale:   .97;
@@ -96,6 +97,7 @@
   --ob-delay-busy:     300ms;   /* a loading state shows only if work outlasts this */
   --ob-busy-min:       600ms;   /* once shown, a loading state stays at least this long */
   --ob-success-hold:   400ms;   /* the landed square holds before a button returns to its label */
+  --ob-btn-copied-hold: 1600ms; /* Copied holds long enough to read, then the copy glyph returns */
   --ob-toast-life:     5000ms;  /* info and success toasts; paused on hover, focus and hidden tab */
   --ob-autoplay-dwell: 7000ms;  /* auto-advancing tabs; set per instance inline if different */
   --ob-number-tween:   var(--ob-dur-slow);
@@ -127,6 +129,7 @@
     --ob-shift-md:       0px;
     --ob-enter-blur:     0px;
     --ob-press-scale-sm: 1;
+    --ob-press-scale-wide: 1;
     --ob-switch-stretch: 1;
     --ob-pop-scale:      1;
     --ob-dialog-scale:   1;

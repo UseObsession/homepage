@@ -1,5 +1,5 @@
 /* =============================================================================================
-   OBSESSION SURFACES, DATA AND FEEDBACK  v1.1  (2 Oct 2026)
+   OBSESSION SURFACES, DATA AND FEEDBACK  v1.2  (2 Oct 2026)
    Load order:
      <link rel="stylesheet" href="tokens.css">
      <link rel="stylesheet" href="motion.css">
@@ -12,9 +12,11 @@
      cards ................ .ob-card (--raised, --interactive, --compact)
      product window ....... .ob-window, -bar, -rail, -pane, .ob-prompt (--field), .ob-events
      findings ............. .ob-finding (--needs, --done, --skipped), .ob-finding-record
-     receipts ............. .ob-ledger, .ob-receipt (--latest, --flagged, --needs, --landed, --broken)
-     data ................. .ob-table (--compact, --fit), .ob-stat, .ob-stats, .ob-calc, .ob-range
-     disclosure ........... .ob-faq
+     receipts ............. .ob-ledger, .ob-receipt (--signing, --latest, --flagged, --needs, --landed,
+                            --broken)
+     data ................. .ob-table (--compact, --fit, --sticky-head), .ob-stat, .ob-stats, .ob-calc,
+                            .ob-range
+     disclosure ........... .ob-faq, .ob-disclose
      feedback ............. .ob-toasts, .ob-toast, .ob-alert (--banner), .ob-empty, .ob-skeleton,
                             .ob-loading, .ob-progress
      layers ............... .ob-layer, .ob-scrim, .ob-dialog, .ob-sheet
@@ -24,8 +26,9 @@
                 Cancel, Skip, View proof: .ob-btn--ghost or --secondary. Stop: .ob-btn--danger.
                 Close and Dismiss: .ob-btn--ghost.ob-btn--icon.ob-btn--sm. Text actions: .ob-btn--link.
                 This file only places them.
-     Status     .ob-status from navigation.css, in pills and, with .ob-status--bare, inside rows.
-                .ob-status--failed is added here (section 0) and belongs with .ob-status.
+     Status     .ob-status from navigation.css, in pills and, with .ob-status--bare, inside rows,
+                including .ob-status--failed. This file only sizes its own .ob-glyph inside a status.
+     Slider     .ob-range lives here (section 7). forms.css has no slider, so a form uses this one.
 
    Static state mirrors draw exactly what the pseudo-state draws, so a guideline can show every
    state side by side: .is-hover .is-active .is-focus .is-disabled .is-selected .is-error
@@ -43,7 +46,7 @@
 
 
 /* =============================================================================================
-   0. SHARED: hidden text, glyphs, the failed status
+   0. SHARED: hidden text, glyphs
    ============================================================================================= */
 
 /* Visually hidden, still read. navigation.css owns .ob-sr; this zero-specificity copy keeps the
@@ -74,12 +77,9 @@
   stroke-linejoin: round;
 }
 
-/* Failed: a status that stopped and needs a person. Same shape as --needs, in the danger pair.
-   It belongs in navigation.css beside the other .ob-status tones. */
-.ob-status--failed { background-color: var(--ob-danger-bg); box-shadow: none; color: var(--ob-danger); }
-.ob-status--failed :is(.ob-sig, .ob-glyph, .ob-status__detail) { color: currentColor; }
-.ob-status--failed.ob-status--bare { background: none; }
-.ob-status .ob-glyph { width: var(--ob-icon-sm); height: var(--ob-icon-sm); }
+/* navigation.css owns .ob-status and its tones, --failed included. This chapter's glyph takes
+   the status ring's 14px when it sits in a status, and inherits the tone's colour. */
+.ob-status > .ob-glyph { width: var(--ob-icon-sm); height: var(--ob-icon-sm); }
 
 /* =============================================================================================
    1. CARDS   flat, raised, interactive
@@ -224,6 +224,19 @@
   box-shadow: none;
 }
 .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected) .ob-card-check .ob-glyph { opacity: 1; }
+/* Selected and hovered: the edge steps up to text-2 and the layer to pressed, so the pointer still
+   answers and the card still reads as selected. Pressed while selected uses the same layer. */
+@media (hover: hover) and (pointer: fine) {
+  .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected):hover:not(:disabled, [aria-disabled="true"], .is-disabled) {
+    box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-2) inset, var(--ob-highlight), var(--ob-shadow-1);
+  }
+  .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected):hover:not(:disabled, [aria-disabled="true"], .is-disabled)::after { background-color: var(--ob-state-pressed); }
+}
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected):is(.is-hover, .is-active) {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-2) inset, var(--ob-highlight), var(--ob-shadow-1);
+}
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected):is(.is-hover, .is-active)::after,
+.ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected):active:not(:disabled, [aria-disabled="true"], .is-disabled)::after { background-color: var(--ob-state-pressed); }
 
 /* Disabled: the buttons-chapter recipe. A quiet tinted slab, a subtle edge, and every line of text
    in text-3 mixed 25% toward the page: 3.7:1 dark, 3.1:1 light. Never opacity. */
@@ -333,8 +346,28 @@
   height: var(--ob-control-sm);
   border-radius: var(--ob-radius-xs);
   color: var(--ob-text-3);
+  text-decoration: none;
+  transition-property: color, background-color;
+  transition-duration: var(--ob-dur-base);
+  transition-timing-function: var(--ob-ease-out);
+  -webkit-tap-highlight-color: transparent;
 }
-.ob-window-railitem.is-current { color: var(--ob-text); background-color: var(--ob-state-selected); }
+/* In the product each item is a link. Hover and press answer with a layer and full ink; the
+   current place keeps the selected layer and steps to pressed under the pointer. */
+@media (hover: hover) and (pointer: fine) {
+  a.ob-window-railitem:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+  a.ob-window-railitem:is(.is-current, [aria-current="page"]):hover { background-color: var(--ob-state-pressed); }
+}
+.ob-window-railitem.is-hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+a.ob-window-railitem:active,
+.ob-window-railitem.is-active { color: var(--ob-text); background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.ob-window-railitem:is(.is-current, [aria-current="page"]) { color: var(--ob-text); background-color: var(--ob-state-selected); }
+.ob-window-railitem:is(.is-current, [aria-current="page"]):is(.is-hover, .is-active) { background-color: var(--ob-state-pressed); }
+.ob-window-railitem:focus-visible,
+.ob-window-railitem.is-focus {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset-inset);
+}
 .ob-window-railitem > .ob-badge--dot {
   --ob-badge-ring: var(--ob-surface);
   position: absolute;
@@ -353,7 +386,7 @@
 /* Nested radius: the window's 22px minus the pane's padding, floored at 6px. */
 .ob-window-pane .ob-finding { border-radius: var(--ob-radius-xs); }
 @container (max-width: 720px) {
-  .ob-window-rail { display: none; }
+  .ob-window-body > .ob-window-rail { display: none; }
   .ob-window-body:has(> .ob-window-rail) { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
 }
 @container (max-width: 640px) {
@@ -444,7 +477,10 @@
   -webkit-text-fill-color: var(--ob-text-3);
   cursor: not-allowed;
 }
-.ob-prompt--field:is(.is-disabled, :has(> .ob-prompt-input:disabled)) .ob-prompt-input::placeholder { opacity: .7; }
+.ob-prompt--field:is(.is-disabled, :has(> .ob-prompt-input:disabled)) .ob-prompt-input::placeholder {
+  color: color-mix(in oklab, var(--ob-text-3), var(--ob-bg) 25%);
+  opacity: 1;
+}
 /* The run button is an .ob-btn--icon.ob-btn--sm; this only seats it in the corner. */
 .ob-prompt-send {
   flex: none;
@@ -601,7 +637,9 @@
   padding: var(--ob-receipt-pad) var(--ob-space-12);
   /* Nested radius: the ledger's 22px minus its 8px inset. */
   border-radius: var(--ob-radius-md);
-  transition: none; /* rows highlight in the same frame, like menu rows */
+  /* Rows highlight in the same frame as the pointer and the keys, like menu rows. */
+  transition-property: background-color;
+  transition-duration: var(--ob-dur-instant);
 }
 /* The rail: from this node's centre to the next node's centre. */
 .ob-receipt:not(:last-child)::before {
@@ -629,7 +667,7 @@
   height: var(--ob-receipt-node);
   color: var(--ob-text-3);
 }
-.ob-receipt-node .ob-sq { width: 8px; height: 8px; }
+.ob-receipt-node .ob-sq { width: var(--ob-sq-md); height: var(--ob-sq-md); }
 .ob-receipt-node .ob-sq.is-open { background-color: var(--ob-surface); }
 
 /* The action names what happened and opens the receipt. Its hit area stretches over the whole row;
@@ -652,7 +690,7 @@
   text-decoration-color: var(--ob-link-underline);
   text-underline-offset: 3px;
   cursor: pointer;
-  transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out);
+  transition: text-decoration-color var(--ob-dur-instant);
   -webkit-tap-highlight-color: transparent;
 }
 .ob-receipt-action::after {
@@ -714,8 +752,14 @@
   border-radius: var(--ob-radius-glyph);
   background-color: var(--ob-text);
 }
-/* Node states. Filled = signed. Outlined = flagged, held or broken. Colour only where a person,
-   money or a broken chain is involved. */
+/* Selected and hovered or pressed: the pressed layer, so the pointer still answers. The bar stays. */
+@media (hover: hover) and (pointer: fine) {
+  .ob-receipt:is([aria-current="true"], .is-selected, :has(> .ob-receipt-action[aria-current="true"])):hover { background-color: var(--ob-state-pressed); }
+}
+.ob-receipt:is([aria-current="true"], .is-selected, :has(> .ob-receipt-action[aria-current="true"])):is(.is-hover, .is-active, :has(> .ob-receipt-action:active)) { background-color: var(--ob-state-pressed); }
+/* Node states. Filled = signed. Outlined = signing, flagged, held or broken. Colour only where a
+   person, money or a broken chain is involved. */
+.ob-receipt--signing .ob-receipt-node { color: var(--ob-text-2); }
 .ob-receipt--latest .ob-receipt-node  { color: var(--ob-text); }
 .ob-receipt--flagged .ob-receipt-node { color: var(--ob-text-2); }
 .ob-receipt--needs .ob-receipt-node   { color: var(--ob-warning); }
@@ -723,25 +767,32 @@
 .ob-receipt--broken .ob-receipt-node,
 .ob-receipt--broken .ob-receipt-prev  { color: var(--ob-danger); }
 .ob-receipt--broken .ob-receipt-prev b { color: inherit; }
-
-
 /* =============================================================================================
    5. DATA TABLE
    Text left, numbers right in tabular figures. Rows are 48px (40px compact). The client link
    stretches over its row; the selected row (aria-current on that link) gets a fill and a 2px bar.
-   Narrower than 600px, the table scrolls inside its frame and the first column stays put.
+   Narrower than 600px, the table scrolls inside its frame, the first column stays put, and a
+   shade at the right edge says more columns sit past it.
    ============================================================================================= */
 
 .ob-table-wrap {
+  --ob-table-edge: var(--ob-line-subtle);   /* the sticky column's edge; script sets .is-scrolled */
   container-type: inline-size;
   min-width: 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   border-radius: var(--ob-radius-md);
-  background-color: var(--ob-surface);
+  /* The scroll cue, drawn with no motion. The shade stays at the frame's right edge; the cover
+     rides with the content and hides the shade once the frame reaches its end, or when nothing
+     scrolls. Body cells and the header are see-through, so the shade reads down the whole edge. */
+  background:
+    linear-gradient(to left, var(--ob-surface) var(--ob-space-12), transparent) right / var(--ob-space-32) 100% no-repeat local,
+    linear-gradient(to left, var(--ob-line-strong), transparent) right / var(--ob-space-12) 100% no-repeat scroll,
+    var(--ob-surface);
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1);
 }
 .ob-table-wrap:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.ob-table-wrap.is-scrolled { --ob-table-edge: var(--ob-line-strong); }
 .ob-table {
   width: 100%;
   min-width: 600px;
@@ -768,9 +819,16 @@
   text-transform: uppercase;
   color: var(--ob-text-3);
   white-space: nowrap;
-  /* Opaque, so a sticky header cell never shows the rows scrolling under it. */
-  background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface);
+  background-color: var(--ob-fill-subtle);
   border-block: var(--ob-border-hair) solid var(--ob-line);
+}
+/* Sticky header: give the frame a max-height and the rows scroll under the header. The header
+   turns opaque and sits above the rows and above the sticky first column. */
+.ob-table--sticky-head th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface);
 }
 .ob-table tbody tr {
   --ob-row-layer: transparent;
@@ -783,7 +841,9 @@
   white-space: nowrap;
   background-color: var(--ob-row-layer);
   border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
-  transition: none;
+  /* Rows change in the same frame as the pointer and the keys. */
+  transition-property: background-color;
+  transition-duration: var(--ob-dur-instant);
 }
 .ob-table tbody tr:last-child td { border-bottom: 0; }
 .ob-table td:first-child { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
@@ -798,7 +858,7 @@
   text-decoration-color: var(--ob-link-underline);
   text-underline-offset: 3px;
   border-radius: var(--ob-radius-glyph);
-  transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out);
+  transition: text-decoration-color var(--ob-dur-instant);
   -webkit-tap-highlight-color: transparent;
 }
 .ob-table-client::after { content: ""; position: absolute; inset: 0; }
@@ -826,9 +886,20 @@
 .ob-table tbody tr.is-hover .ob-table-client { text-decoration-color: var(--ob-text); }
 .ob-table tbody tr:is(.is-active, :has(.ob-table-client:active)) { --ob-row-layer: var(--ob-state-pressed); }
 .ob-table tbody tr:is(.is-active, :has(.ob-table-client:active)) .ob-table-client { text-decoration-color: var(--ob-text); }
+/* Selected: the selected layer and a 2px bar, drawn as a background so the focus ring keeps the
+   box-shadow. Selected and hovered or pressed steps to the pressed layer; the bar stays. */
 .ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) { --ob-row-layer: var(--ob-state-selected); }
 .ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td { color: var(--ob-text); }
-.ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child { box-shadow: 2px 0 0 var(--ob-text) inset; }
+.ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child {
+  background-image: linear-gradient(var(--ob-text), var(--ob-text));
+  background-position: left center;
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])):hover { --ob-row-layer: var(--ob-state-pressed); }
+}
+.ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])):is(.is-hover, .is-active, :has(.ob-table-client:active)) { --ob-row-layer: var(--ob-state-pressed); }
 
 /* Sortable header: a real button inside the th, with aria-sort on the th. At rest a neutral
    up-down glyph says the column sorts; once sorted, a chevron in full ink gives the direction. */
@@ -877,15 +948,25 @@
 .ob-table-message > * { position: sticky; left: 0; max-width: 100cqi; }
 .ob-table-status { margin: 0; padding: var(--ob-space-12) var(--ob-space-16); font: var(--ob-type-caption); color: var(--ob-text-2); }
 
+/* Narrow: the first column sticks. Its cells turn opaque, and their edge darkens once the frame
+   has scrolled. The link's hit area is measured from the sticky cell, so it spans the frame. */
 @container (max-width: 600px) {
   .ob-table:not(.ob-table--fit) :is(th, td):first-child:not(.ob-table-message) {
     position: sticky;
     left: 0;
     z-index: 1;
-    box-shadow: 1px 0 0 var(--ob-line-subtle);
+    box-shadow: 1px 0 0 var(--ob-table-edge);
   }
+  .ob-table:not(.ob-table--fit) th:first-child { background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface); }
+  .ob-table--sticky-head:not(.ob-table--fit) th:first-child { z-index: 3; }
   .ob-table:not(.ob-table--fit) td:first-child:not(.ob-table-message) { background: linear-gradient(var(--ob-row-layer), var(--ob-row-layer)), var(--ob-surface); }
-  .ob-table:not(.ob-table--fit) tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child { box-shadow: 2px 0 0 var(--ob-text) inset, 1px 0 0 var(--ob-line-subtle); }
+  .ob-table:not(.ob-table--fit) tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child:not(.ob-table-message) {
+    background: linear-gradient(var(--ob-text), var(--ob-text)) left center / 2px 100% no-repeat, linear-gradient(var(--ob-row-layer), var(--ob-row-layer)), var(--ob-surface);
+  }
+  .ob-table:not(.ob-table--fit) tbody tr:is(.is-focus, :has(.ob-table-client:focus-visible)) td:first-child:not(.ob-table-message) {
+    box-shadow: var(--ob-focus-width) 0 0 var(--ob-focus) inset, 0 var(--ob-focus-width) 0 var(--ob-focus) inset, 0 calc(var(--ob-focus-width) * -1) 0 var(--ob-focus) inset, 1px 0 0 var(--ob-table-edge);
+  }
+  .ob-table:not(.ob-table--fit) .ob-table-client::after { right: auto; width: 100cqi; }
 }
 
 
@@ -944,6 +1025,8 @@
   color: var(--ob-text-2);
 }
 .ob-stat-delta .ob-glyph { width: 12px; height: 12px; stroke-width: 1.75; }
+/* A delta is neutral: an arrow and words in text-2. Colour joins only for money that landed
+   (.is-good) or a figure that needs a person (.is-watch), the same rule as the rest of the chapter. */
 .ob-stat-delta.is-good { color: var(--ob-success); }
 .ob-stat-delta.is-watch { color: var(--ob-warning); }
 .ob-stat-source {
@@ -1011,6 +1094,8 @@
 .ob-calc-ticks span { position: absolute; top: 0; translate: -50% 0; white-space: nowrap; }
 .ob-calc-ticks span:first-child { translate: -10px 0; }
 .ob-calc-ticks span:last-child { translate: calc(-100% + 10px) 0; }
+/* Under 300px the minor ticks go, so the labels never collide; the ends and the key tick stay. */
+@container (max-width: 300px) { .ob-calc-ticks .is-minor { display: none; } }
 .ob-calc-outs { display: grid; margin: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .ob-calc-outs > div {
   display: flex;
@@ -1034,7 +1119,7 @@
 .ob-calc-note { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
 
 /* The range: a 4px track in --ob-track (3:1) filled with --ob-track-fill up to --ob-range-value,
-   and the brand square as the thumb. Script sets --ob-range-value as a percentage. The thumb and
+   and the brand square as the thumb, with the square's sharp 2px corner. Script sets --ob-range-value as a percentage. The thumb and
    fill track the hand and never animate. */
 .ob-range {
   --ob-range-value: 50%;
@@ -1065,7 +1150,7 @@
   height: 20px;
   margin-top: -8px;
   border: 0;
-  border-radius: var(--ob-radius-xs);
+  border-radius: var(--ob-radius-glyph);
   background-color: var(--ob-solid);
   box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 4px transparent;
   transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
@@ -1074,7 +1159,7 @@
   width: 20px;
   height: 20px;
   border: 0;
-  border-radius: var(--ob-radius-xs);
+  border-radius: var(--ob-radius-glyph);
   background-color: var(--ob-solid);
   box-shadow: 0 0 0 4px var(--ob-range-ring, var(--ob-surface)), 0 0 0 4px transparent;
   transition: box-shadow var(--ob-dur-base) var(--ob-ease-out);
@@ -1098,10 +1183,39 @@
 
 
 /* =============================================================================================
-   8. ACCORDION FAQ
-   The question is a real button inside a heading. The answer opens out of it through
-   .ob-anim-expand: grid rows 0fr to 1fr in 240ms, closing in 160ms. The plus turns into a minus.
+   8. ACCORDION FAQ AND DISCLOSURE
+   The question is a real button inside a heading. The answer sits in an .ob-disclose: its space
+   opens in 1 frame, and the words fade in over 160ms while they settle 4px down over 240ms.
+   Closing fades the words out in 100ms, then the space shuts in 1 frame. Nothing animates height
+   or grid rows. The plus turns into a minus.
    ============================================================================================= */
+
+.ob-disclose {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  /* Closing: the words fade first; then rows and visibility snap, after the fade. */
+  transition: grid-template-rows 0s linear var(--ob-dur-fast), visibility 0s linear var(--ob-dur-fast);
+}
+.ob-disclose > * {
+  min-height: 0;
+  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: var(--ob-space-4);   /* room for a 2px focus ring at its 2px offset */
+  opacity: 0;
+  translate: 0 calc(var(--ob-shift-xs, 4px) * -1);
+  transition: opacity var(--ob-dur-fast) var(--ob-ease-in), translate 0s linear var(--ob-dur-fast);
+}
+.ob-disclose:is(.is-open, [data-state="open"]) {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: none;
+}
+.ob-disclose:is(.is-open, [data-state="open"]) > * {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out), translate var(--ob-dur-moderate) var(--ob-ease-out);
+}
 
 .ob-faq { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .ob-faq-item { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
@@ -1119,7 +1233,7 @@
   border-radius: var(--ob-radius-sm);
   background: none;
   font: var(--ob-weight-medium) var(--ob-type-body-size)/1.4 var(--ob-font-sans);
-  letter-spacing: -.01em;
+  letter-spacing: var(--ob-type-button-tracking);
   color: var(--ob-text);
   text-align: left;
   cursor: pointer;
@@ -1194,6 +1308,8 @@
   list-style: none;
 }
 .ob-toasts > * { grid-area: 1 / 1; align-self: end; }
+/* While a modal dialog or sheet is open, new toasts wait and show when it closes, so nothing above
+   the scrim can take a click or focus. With <dialog>.showModal() the region is inert anyway. */
 /* Docked inside a panel or a page section instead of the viewport. */
 .ob-toasts--inline { position: relative; right: auto; bottom: auto; z-index: auto; width: 100%; max-width: 380px; }
 
@@ -1227,7 +1343,7 @@
 :is(.ob-toast-title, .ob-alert-title) {
   margin: 0;
   font: var(--ob-weight-semibold) var(--ob-type-small-size)/var(--ob-type-small-leading) var(--ob-font-sans);
-  letter-spacing: -.005em;
+  letter-spacing: var(--ob-type-label-tracking);
 }
 .ob-toast-icon { grid-area: icon; }
 .ob-toast-copy { grid-area: copy; display: grid; gap: var(--ob-space-2); min-width: 0; }
@@ -1255,8 +1371,8 @@
 .ob-toast--working .ob-toast-icon { color: var(--ob-text); }
 /* Collapsed stack: the toasts behind show only their edge, never a title cut through, and their
    buttons cannot be hit until the stack opens. Focus on the front toast opens it for keys. */
-.ob-anim-toasts .ob-anim-toast > * { transition: opacity var(--ob-dur-base) var(--ob-ease-in-out), visibility 0s; }
-.ob-anim-toasts:not(:hover, :focus-within, .is-hover) .ob-anim-toast:not(:last-child) > * {
+.ob-toasts.ob-anim-toasts > .ob-toast > * { transition: opacity var(--ob-dur-base) var(--ob-ease-in-out), visibility 0s; }
+.ob-toasts.ob-anim-toasts:not(:hover, :focus-within, .is-hover) > .ob-toast:not(:last-child) > * {
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--ob-dur-base) var(--ob-ease-in-out), visibility 0s linear var(--ob-dur-base);
@@ -1307,7 +1423,9 @@
 .ob-alert--success .ob-alert-icon { color: var(--ob-success); }
 .ob-alert--warning .ob-alert-icon { color: var(--ob-warning); }
 .ob-alert--danger  .ob-alert-icon { color: var(--ob-danger); }
-/* Banner: page-wide, square-cornered, a single line where it fits, centred; Dismiss sits at the far end. */
+/* Banner: page-wide, square-cornered, a single line where it fits, centred; Dismiss sits at the far
+   end. A banner takes no title: 1 sentence of news, then at most 1 action, an .ob-btn--link that
+   follows the sentence. Under 520px the action drops under the sentence. */
 .ob-alert--banner {
   grid-template-columns: minmax(0, 1fr) auto minmax(0, auto) minmax(var(--ob-btn-height-sm, 36px), 1fr);
   align-items: center;
@@ -1316,9 +1434,17 @@
   border-radius: 0;
   box-shadow: 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-alert-edge) inset;
 }
-.ob-alert--banner .ob-alert-icon { grid-column: 2; }
-.ob-alert--banner .ob-alert-body { grid-column: 3; color: var(--ob-text); font: var(--ob-type-caption); }
-.ob-alert--banner .ob-alert-close { grid-column: 4; grid-row: 1; justify-self: end; margin: 0; }
+.ob-alert--banner:has(> .ob-alert-actions) {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, auto) auto minmax(var(--ob-btn-height-sm, 36px), 1fr);
+}
+.ob-alert--banner .ob-alert-icon { grid-column: 2; grid-row: 1; }
+.ob-alert--banner .ob-alert-body { grid-column: 3; grid-row: 1; color: var(--ob-text); font: var(--ob-type-caption); }
+.ob-alert--banner .ob-alert-actions { grid-column: 4; grid-row: 1; margin: 0; }
+.ob-alert--banner .ob-alert-close { grid-column: -2; grid-row: 1; justify-self: end; margin: 0; }
+@media (max-width: 520px) {
+  .ob-alert--banner:has(> .ob-alert-actions) { grid-template-columns: minmax(0, 1fr) auto minmax(0, auto) minmax(var(--ob-btn-height-sm, 36px), 1fr); }
+  .ob-alert--banner .ob-alert-actions { grid-column: 3; grid-row: 2; margin-top: var(--ob-space-2); }
+}
 
 
 /* =============================================================================================
@@ -1373,7 +1499,7 @@
 }
 .ob-skeleton-line.is-title { height: 18px; }
 .ob-skeleton-line.is-figure { height: 40px; }
-.ob-skeleton-line.is-sq { width: 8px; height: 8px; border-radius: var(--ob-radius-glyph); }
+.ob-skeleton-line.is-sq { width: var(--ob-sq-md); height: var(--ob-sq-md); border-radius: var(--ob-radius-glyph); }
 .ob-skeleton-line.is-end { margin-left: auto; }
 .ob-skeleton-block {
   display: block;
@@ -1504,6 +1630,9 @@
 @container (max-width: 360px) {
   .ob-dialog-actions { flex-direction: column; }
   .ob-dialog-actions > * { width: 100%; }
+  /* The summary turns to term above value, both left, so no value wraps into a ragged stack. */
+  .ob-dialog-summary > div { display: grid; gap: var(--ob-space-2); }
+  .ob-dialog-summary dd { text-align: left; }
 }
 
 
@@ -1511,10 +1640,23 @@
    14. LAYERS: sheet
    Detail beside the list: a receipt, a client, an agent. Right on wide screens, bottom on phones.
    It floats 8px in from the edge and goes back there on close.
+   The side: leave it unset and CSS picks it, right above 520px and bottom below, with no script.
+   Script that drags sets .is-bottom on the layer and data-side="bottom" on the sheet, and adds the
+   grabber; .is-right holds a sheet on the right at any width.
    ============================================================================================= */
 
 .ob-layer--sheet { place-items: stretch end; padding: var(--ob-space-8); }
 .ob-layer--sheet.is-bottom { place-items: end stretch; padding: var(--ob-space-8) var(--ob-space-8) 0; }
+@media (max-width: 520px) {
+  .ob-layer--sheet:not(.is-right, .is-bottom) { place-items: end stretch; padding: var(--ob-space-8) var(--ob-space-8) 0; }
+  .ob-layer--sheet:not(.is-right, .is-bottom) > .ob-sheet {
+    width: 100%;
+    height: auto;
+    max-height: 85%;
+    border-radius: var(--ob-radius-lg) var(--ob-radius-lg) 0 0;
+  }
+  .ob-layer--sheet:not(.is-right, .is-bottom) .ob-sheet-foot { padding-bottom: calc(var(--ob-space-16) + env(safe-area-inset-bottom, 0px)); }
+}
 .ob-sheet {
   position: relative;
   display: grid;
@@ -1568,6 +1710,9 @@
 .ob-sheet-dl dt { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
 .ob-sheet-dl dd { margin: 0; min-width: 0; font: var(--ob-type-small); overflow-wrap: anywhere; }
 .ob-sheet-dl dd code { font: var(--ob-type-mono-sm); color: var(--ob-text); }
+/* Several links in 1 value: a list, 1 link a line, never a comma-joined run. */
+.ob-sheet-links { display: grid; justify-items: start; gap: var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
+.ob-sheet-links .ob-btn { text-align: start; }
 .ob-sheet-status { display: flex; flex-wrap: wrap; gap: var(--ob-space-8) var(--ob-space-16); margin: 0; }
 .ob-sheet-foot {
   display: flex;
@@ -1585,8 +1730,20 @@
 
 
 /* =============================================================================================
+   14b. A PRODUCT OBJECT THAT IS ITSELF A TARGET
+   Rarely, a whole object is a link: a demo window that opens the product, a calculator card that
+   opens the full model. Its ring sits outside it, on the page. In hybrid the object carries the
+   dark set, whose ring is near-white and would vanish on paper, so the ring there is ink.
+   ============================================================================================= */
+:is(a, button, [tabindex]).ob-object { text-decoration: none; -webkit-tap-highlight-color: transparent; }
+:is(a, button, [tabindex]).ob-object:focus-visible,
+.ob-object.is-focus { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+:is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object:is(:focus-visible, .is-focus) { outline-color: var(--ob-ink); }
+
+
+/* =============================================================================================
    15. TOUCH
-   On a coarse pointer every control in this chapter reaches 44px without changing its drawing.
+   On a coarse pointer every control in this file reaches 44px without changing its drawing.
    Buttons do this in buttons.css. These come last so they win over the base sizes above.
    ============================================================================================= */
 @media (pointer: coarse) {
@@ -1599,19 +1756,26 @@
   /* The header and compact rows grow to the target, so no hit area is clipped or overlaps a row. */
   .ob-table th,
   .ob-table--compact td { height: var(--ob-target-touch); }
-  /* Links set in a meta line or a short note get the full target too. Links inside running text,
-     such as the sheet's evidence list, keep the inline exception (WCAG 2.5.8). */
-  :is(.ob-finding-evidence, .ob-receipt-meta, .ob-stat-source, .ob-loading-note) .ob-btn--link.ob-btn--inline {
+  /* Links set in a meta line, a short note or a list of evidence get the full target too. No link
+     here leans on the inline exception of WCAG 2.5.8. */
+  :is(.ob-finding-evidence, .ob-receipt-meta, .ob-stat-source, .ob-loading-note, .ob-sheet-links) .ob-btn--link.ob-btn--inline {
     position: relative;
     display: inline-block;
   }
-  :is(.ob-finding-evidence, .ob-receipt-meta, .ob-stat-source, .ob-loading-note) .ob-btn--link.ob-btn--inline::before {
+  :is(.ob-finding-evidence, .ob-receipt-meta, .ob-stat-source, .ob-loading-note, .ob-sheet-links) .ob-btn--link.ob-btn--inline::before {
     content: "";
     inset: calc((var(--ob-target-touch) - 1lh) / -2) calc(var(--ob-space-4) * -1);
   }
+  /* Rows of links open their row gap so 2 grown targets never overlap when the row wraps:
+     a line plus the gap makes 44px. Alert actions are 24px links: 24 + 20 = 44. */
+  :is(.ob-finding-evidence, .ob-sheet-links) { row-gap: calc(var(--ob-target-touch) - 1lh); }
+  .ob-alert-actions { row-gap: var(--ob-space-20); }
   /* The actions sit clear of the evidence links above them. */
   .ob-finding-actions { margin-top: var(--ob-space-20); }
   .ob-range { height: var(--ob-target-touch); }
+  /* Rail links grow to 44px; the 52px rail holds them. The new-activity square follows the icon. */
+  a.ob-window-railitem { width: var(--ob-target-touch); height: var(--ob-target-touch); }
+  a.ob-window-railitem > .ob-badge--dot { top: var(--ob-space-12); right: var(--ob-space-12); }
 }
 
 
@@ -1632,7 +1796,7 @@
 
 /* =============================================================================================
    17. REDUCED MOTION
-   Travel is already a fade through the motion tokens. These stop what is left in this chapter.
+   Travel is already a fade through the motion tokens. These stop what is left in this file.
    Dragging stays: direct manipulation is the hand, not animation.
    ============================================================================================= */
 @media (prefers-reduced-motion: reduce) {
@@ -1640,6 +1804,8 @@
   .ob-range::-webkit-slider-thumb { transition: none; }
   .ob-range::-moz-range-thumb { transition: none; }
   .ob-faq-icon { scale: none; }
+  .ob-disclose > *,
+  .ob-disclose:is(.is-open, [data-state="open"]) > * { translate: none; }
   .ob-layer.is-leaving > .ob-anim-sheet { animation-name: ob-fade-out; }
   .ob-layer.is-replay:not(.is-leaving) > .ob-anim-sheet { animation-name: ob-fade-in-r; }
 }
@@ -1655,8 +1821,8 @@
     border: 1px solid CanvasText;
   }
   .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected),
-  .ob-receipt:is([aria-current="true"], .is-selected),
-  .ob-table tbody tr.is-selected td { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ob-receipt:is([aria-current="true"], .is-selected, :has(> .ob-receipt-action[aria-current="true"])) { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ob-table tbody tr:is(.is-selected, :has(.ob-table-client[aria-current="true"])) td:first-child { border-left: 3px solid Highlight; }
   .ob-card--interactive:is([aria-pressed="true"], [aria-current="true"], .is-selected) .ob-card-check { background-color: Highlight; }
   .ob-receipt:not(:last-child)::before,
   .ob-progress > i,
@@ -1665,9 +1831,11 @@
   .ob-sheet-grabber,
   .ob-window-ws { background-color: CanvasText; }
   .ob-receipt:has(+ .ob-receipt--broken)::before { background: none; border-left-color: CanvasText; }
-  .ob-window-railitem.is-current { outline: 1px solid CanvasText; }
+  .ob-window-railitem:is(.is-current, [aria-current="page"]) { outline: 1px solid CanvasText; outline-offset: -1px; }
   .ob-table-client:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
-  .ob-table tbody tr.is-focus td { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ob-table tbody tr:is(.is-focus, :has(.ob-table-client:focus-visible)) td { outline: 2px solid Highlight; outline-offset: -2px; }
+  .ob-window-railitem:is(:focus-visible, .is-focus) { outline: 2px solid Highlight; }
+  .ob-object:is(:focus-visible, .is-focus) { outline-color: Highlight; }
   .ob-progress { border: 1px solid CanvasText; }
   .ob-range::-webkit-slider-runnable-track { background: CanvasText; }
   .ob-range::-webkit-slider-thumb { background-color: Highlight; }
@@ -1796,7 +1964,7 @@
   border-width: 4px 0 4px 6px;
   border-color: transparent transparent transparent currentColor;
 }
-.ds-surfaces-replay.is-leave::before { border-width: 0; width: 7px; height: 7px; border-radius: 1px; background: currentColor; }
+.ds-surfaces-replay.is-leave::before { border-width: 0; width: var(--ob-sq-size); height: var(--ob-sq-size); border-radius: var(--ob-sq-radius); background: currentColor; }
 @media (hover: hover) and (pointer: fine) {
   .ds-surfaces-replay:hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
 }
@@ -1868,9 +2036,9 @@
 .ds-surfaces-flex1 { position: relative; display: flex; flex: 1; min-width: 0; }
 .ds-surfaces-swipe { translate: 38% 0; opacity: .5; }
 /* Replay of a swipe: the toast follows the finger to 38%, holds, then leaves along the swipe. */
-.ds-surfaces-swipe.is-playing { animation: ds-surfaces-swipe 1100ms both; }
+.ds-surfaces-swipe.is-playing { animation: ds-surfaces-swipe calc(var(--ob-dur-slow) * 2 + var(--ob-dur-moderate) + var(--ob-dur-fast)) both; }
 @keyframes ds-surfaces-swipe {
-  0%   { translate: 0 0; opacity: 1; animation-timing-function: linear; }
+  0%   { translate: 0 0; opacity: 1; animation-timing-function: var(--ob-ease-linear); }
   40%  { translate: 38% 0; opacity: .5; }
   75%  { translate: 38% 0; opacity: .5; animation-timing-function: var(--ob-ease-in); }
   100% { translate: 110% 0; opacity: 0; }
@@ -1895,8 +2063,17 @@
 }
 @container (max-width: 720px) { .ds-surfaces-anatomy { grid-template-columns: minmax(0, 1fr); } }
 .ds-surfaces-specimen { min-width: 0; padding: var(--ob-space-24) var(--ob-space-24) var(--ob-space-16); }
-.ds-surfaces-specimen.is-scroll { overflow-x: auto; }
+/* A wide anatomy keeps its full width on a phone and scrolls in its frame, so every numbered part
+   stays on screen and keeps its pin. Inside it the table fits, so its frame need not clip the pins. */
+.ds-surfaces-specimen.is-scroll { overflow-x: auto; overscroll-behavior-x: contain; border-radius: var(--ob-radius-md); }
+.ds-surfaces-specimen.is-scroll:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+.ds-surfaces-minw { min-width: var(--ds-minw, 0); }
+/* An open answer in an anatomy lets its pin sit outside the clip. */
+.ds-surfaces-specimen .ob-disclose.is-open > * { overflow: visible; }
 .ds-surfaces-specimen.is-scroll .ob-table-wrap { overflow: visible; }
+@container (max-width: 360px) {
+  .ob-dialog-actions > .ds-surfaces-atinline > .ob-btn { width: 100%; }
+}
 .ds-surfaces-at { position: relative; }
 .ds-surfaces-atblock { position: relative; display: block; }
 .ds-surfaces-atinline { position: relative; display: inline-flex; }
@@ -2007,9 +2184,9 @@
 }
 .ds-surfaces-list li::before {
   content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 1px;
+  width: var(--ob-sq-size);
+  height: var(--ob-sq-size);
+  border-radius: var(--ob-sq-radius);
   background-color: var(--ob-text);
   translate: 0 -1px;
 }
@@ -2052,3 +2229,31 @@
   align-items: start;
 }
 @container (max-width: 720px) { .ds-surfaces-split { grid-template-columns: minmax(0, 1fr); } }
+
+/* Rail states: 1 rail link per cell, on a scrap of window material (a real .ob-window would hide
+   its rail at this width). */
+.ds-surfaces-railcell {
+  display: inline-grid;
+  justify-self: start;
+  overflow: hidden;
+  border-radius: var(--ob-radius-sm);
+  color: var(--ob-text);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.ds-surfaces-railcell .ob-window-rail { border-right: 0; border-radius: inherit; padding: var(--ob-space-12); }
+
+/* A table frame cut short, so its rows scroll under a sticky header: the header, 3 rows and half
+   of the 4th, which shows there is more. */
+.ds-surfaces-tableclip { max-height: calc(var(--ob-control-md) + var(--ob-control-lg) * 3.5); }
+
+/* Still frames of an exit, halfway: the layer is half gone and the scrim half faded. */
+.ds-surfaces-midexit > .ob-scrim { opacity: .5; }
+.ds-surfaces-midexit > .ob-dialog { opacity: .5; scale: .99; }
+.ds-surfaces-midexit > .ob-sheet { translate: 0 45%; }
+.ds-surfaces-midexit.is-right > .ob-sheet { translate: 45% 0; }
+
+/* Widths and what changes at each, beside the narrow window. */
+.ds-surfaces-breaks { align-self: start; }
+.ds-surfaces-breaks .ds-surfaces-table { min-width: 0; }
+.ds-surfaces-breaks .ds-surfaces-table td:first-child { font-family: var(--ob-font-mono); font-size: var(--ob-type-mono-sm-size); }

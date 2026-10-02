@@ -8,6 +8,9 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+   Key hints set ⌘ (U+2318) and ↵ (U+21B5), which Geist Mono's default subsets leave out. This
+   request returns a subset with only those 2 glyphs:
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@500&text=%E2%8C%98%E2%86%B5&display=swap">
 
    Applying a theme
    - Brand pages: <html data-theme="dark"> (the default), "light" or "hybrid". Set it before paint.
@@ -71,7 +74,7 @@
   --ob-focus-width:        2px;
   --ob-focus-offset:       2px;
   --ob-focus-offset-inset: -2px;
-  /* Controls and targets. Heights snap to 24, 32, 40, 48. */
+  /* Controls and targets. Field and chip heights snap to 24, 32, 40, 48. Buttons have their own. */
   --ob-control-xs:     24px;
   --ob-control-sm:     32px;
   --ob-control-md:     40px;
@@ -85,6 +88,17 @@
   --ob-icon-lg:        20px;
   --ob-target-min:     24px;
   --ob-target-touch:   44px;
+  /* Buttons are 36, 44 and 50 tall, so md meets the 44 touch target and lg leads a hero. The 1
+     exception is the action inside the email pill, which forms.css sets at --ob-control-lg (48). */
+  --ob-btn-height-sm:  36px;
+  --ob-btn-height-md:  44px;
+  --ob-btn-height-lg:  50px;
+  --ob-btn-kbd-sm:     18px;   /* key hint chip in an sm button */
+  --ob-btn-kbd-md:     20px;   /* key hint chip in an md or lg button */
+  --ob-icon-stroke:    1.5;    /* every UI glyph: 1.5px, round caps and joins, currentColor */
+  /* Key hint chips take the ink of whatever holds them, so they are mixed from currentColor. */
+  --ob-kbd-fill:       color-mix(in srgb, currentColor 8%, transparent);
+  --ob-kbd-edge:       color-mix(in srgb, currentColor 22%, transparent);
   /* 28px is the one height off the 24-32-40-48 scale: status pills, kit chips, crumbs and tooltips. */
   --ob-control-chip:   28px;
   /* The brand square has 2 sizes in components: markers (current page, unread) and controls (filters). */
@@ -132,9 +146,14 @@
   --ob-ease-in:        var(--ob-ease-exit);   /* leaves */
   --ob-dur-instant:    0ms;                   /* focus rings, error edges */
   --ob-press-scale-sm: .96;                   /* controls 32px tall or less */
+  --ob-press-scale-wide: .99;                 /* full-width pills: .98 of 343px would shrink 7px */
   --ob-delay-tick:     40ms;                  /* a tick starts drawing once its box has filled */
   --ob-delay-label:    80ms;                  /* a segment label turns as the thumb arrives */
   --ob-switch-stretch: 1.12;                  /* the switch thumb widens while pressed */
+  --ob-ease-linear:     linear;               /* the ring's turn, time-based progress */
+  --ob-delay-busy:      300ms;                /* a loading state shows only if work outlasts this */
+  --ob-success-hold:    400ms;                /* the landed square holds before a control moves on */
+  --ob-expand-delay:    80ms;                 /* expanded content fades in once its rows have started to open */
   /* The brand square at text size: bullets, message marks, the error summary. */
   --ob-sq-size:   7px;
   --ob-sq-radius: 1px;
@@ -243,6 +262,9 @@
   /* Status. Colour is reserved for state, always paired with text or the square. Marketing pages use danger only. */
   --ob-danger:     #F5A39B;
   --ob-danger-bg:  #2E1817;
+  /* The solid red deepens as it is pressed: 10% and 14% toward --ob-bg in OKLab. */
+  --ob-danger-hover:   #DA918A;
+  --ob-danger-pressed: #CF8A83;
   --ob-success:    #94CF9F;
   --ob-success-bg: #152318;
   --ob-warning:    #EDC47D;
@@ -257,7 +279,9 @@
   --ob-state-drag:     rgb(var(--ob-tint-rgb) / .16);
   /* Fields. The edge does the identifying; the fill stays quiet. */
   --ob-field-bg:         rgb(var(--ob-tint-rgb) / .04);
-  --ob-field-bg-solid:   #111110;   /* the field fill flattened onto the page, for autofill */
+  --ob-field-bg-solid:   #111110;   /* the field fill flattened onto the page. Forms draw every fill with it, so a field
+                                       reads the same on the page and on any card, and autofill matches */
+  --ob-field-bg-disabled: transparent;   /* a disabled field drops its fill; the quieter edge keeps the shape */
   --ob-field-edge:       var(--ob-line-ui);
   --ob-field-edge-hover: var(--ob-text-3);
   --ob-track:            var(--ob-line-ui);
@@ -333,6 +357,9 @@
   /* Status. Colour is reserved for state, always paired with text or the square. Marketing pages use danger only. */
   --ob-danger:     #B42318;
   --ob-danger-bg:  #FEEBE9;
+  /* The solid red deepens as it is pressed: 14% and 24% toward --ob-text in OKLab. */
+  --ob-danger-hover:   #9B241A;
+  --ob-danger-pressed: #8A251A;
   --ob-success:    #2C6D3E;
   --ob-success-bg: #E7F4E9;
   --ob-warning:    #8A5410;
@@ -348,6 +375,7 @@
   /* Fields. The edge does the identifying; the fill stays quiet. */
   --ob-field-bg:         #FCFBF9;
   --ob-field-bg-solid:   #FCFBF9;
+  --ob-field-bg-disabled: rgb(var(--ob-tint-rgb) / .035);
   --ob-field-edge:       var(--ob-line-ui);
   --ob-field-edge-hover: var(--ob-text-3);
   --ob-track:            var(--ob-line-ui);
@@ -425,6 +453,8 @@
     /* Status. Colour is reserved for state, always paired with text or the square. Marketing pages use danger only. */
     --ob-danger:     #B42318;
     --ob-danger-bg:  #FEEBE9;
+    --ob-danger-hover:   #9B241A;
+    --ob-danger-pressed: #8A251A;
     --ob-success:    #2C6D3E;
     --ob-success-bg: #E7F4E9;
     --ob-warning:    #8A5410;
@@ -440,6 +470,7 @@
     /* Fields. The edge does the identifying; the fill stays quiet. */
     --ob-field-bg:         #FCFBF9;
     --ob-field-bg-solid:   #FCFBF9;
+    --ob-field-bg-disabled: rgb(var(--ob-tint-rgb) / .035);
     --ob-field-edge:       var(--ob-line-ui);
     --ob-field-edge-hover: var(--ob-text-3);
     --ob-track:            var(--ob-line-ui);
@@ -641,9 +672,9 @@
        <path class="ob-sig-draw" d="M66.5 21.42A33 33 0 1 0 78.58 33.5" fill="none" stroke="#fff" stroke-width="17" pathLength="100"/>
      </mask></defs>
      <g class="ob-sig-rot">
-       <path class="ob-sig-ring" mask="url(#ob-sig-m1)" d="M88.458 39A40 40 0 1 1 61 11.542V26.442A26 26 0 1 0 73.558 39Z"/>
-       <path class="ob-sig-gap" d="M61 11.542A40 40 0 0 1 88.458 39H73.558A26 26 0 0 0 61 26.442Z"/>
-       <g class="ob-sig-orb"><path class="ob-sig-sq" d="M66 14h20v20H66Z"/></g>
+       <path class="ob-sig-ring" mask="url(#ob-sig-m1)" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z"/>
+       <path class="ob-sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z"/>
+       <g class="ob-sig-orb"><path class="ob-sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z"/></g>
      </g>
    </svg>
    (The mask stroke is white because a mask reads luminance; it is not a colour.)
@@ -693,7 +724,7 @@
   animation: ob-sig-pulse var(--ob-sig-pulse) ease-in-out 2;
 }
 .ob-sig.is-landed .ob-sig-gap { opacity: 1; transition-delay: var(--ob-sig-land-delay); }
-.ob-sig.is-landed .ob-sig-sq  { transform: translate(-26px, 26px) scale(.8); }
+.ob-sig.is-landed .ob-sig-sq  { transform: translate(-24.7px, 24.7px) scale(.8); }
 .ob-sig.is-idle .ob-sig-rot { animation: ob-sig-idle var(--ob-sig-idle) var(--ob-ease) var(--ob-sig-idle-count); }
 .ob-sig.is-idle .ob-sig-orb { animation: ob-sig-idle-rev var(--ob-sig-idle) var(--ob-ease) var(--ob-sig-idle-count); }
 .ob-sig.is-idle .ob-sig-sq  { animation: ob-sig-idle-blink var(--ob-sig-idle) linear var(--ob-sig-idle-count); }
@@ -728,6 +759,7 @@
     --ob-lift: 0px;
     --ob-press-scale: 1;
     --ob-press-scale-sm: 1;
+    --ob-press-scale-wide: 1;
     --ob-delay-tick: 0ms;
     --ob-delay-label: 0ms;
     --ob-switch-stretch: 1;
