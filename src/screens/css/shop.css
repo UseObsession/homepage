@@ -1,0 +1,144 @@
+/* app-shop: Missions / Mystery shopper, the flagship. Any kind of business, walked like a customer:
+   3 declared test customers, 3 journeys side by side as lanes under 1 shared day ruler (Day 1 to 3).
+   1. Payroll SaaS, free trial: signs up as AI, 2 onboarding emails, asks the bot (never staff) about pricing,
+      a rep writes so the trial is closed with no reply.
+   2. Skincare store, basket: browses, adds a gift set (£40), stops before payment, watches the inbox 48 hours.
+   3. Dental group, booking: sends the web enquiry, times the first reply.
+   Each lane: its mark, small captures with 1-word captions, waits drawn dashed with their length, 1 finding.
+   Story: a playhead sweeps the 3 days; steps land as it passes, the store's stop-before-payment lands with
+   the snap tick while its mark waits on the inbox, findings land, each lane's mark closes, the toast.
+   Rest state (no .play) = the finished scene. Lane geometry (design px, inside a lane): header 10..30,
+   captures 37..65 (path at 51), captions 70..82. Days start at x 12, 180, 348 (separators at 174, 342). */
+@property --ms-wh{syntax:"<integer>";inherits:false;initial-value:48}
+
+.app-shop .ax-main{grid-template-rows:24px auto;padding:14px;gap:12px}
+
+/* ---------- header: the page, the count, the declared agent ---------- */
+.app-shop .ms-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-shop .ms-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-shop .ms-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-shop .ms-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-shop .ms-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-shop .ms-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the board: ruler + 3 lanes ---------- */
+.app-shop .ms-bd{position:relative;display:grid;grid-template-rows:24px repeat(3,90px);border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-shop .ms-ru{position:relative;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-shop .ms-ru b{position:absolute;left:var(--ms-x);top:7px;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+/* quarter-day ticks along the ruler's foot */
+.app-shop .ms-ru::after{content:"";position:absolute;left:48px;width:463px;bottom:0;height:3px;
+  background:repeating-linear-gradient(90deg,var(--line-3) 0 1px,transparent 1px 42px)}
+/* Day 2 is a quiet band, so the 3 days read as columns behind every lane */
+.app-shop .ms-band{position:absolute;left:174px;width:168px;top:0;bottom:0;background:rgb(var(--fg-rgb) / .035)}
+
+.app-shop .ms-ln{position:relative;min-width:0;box-shadow:0 -1px 0 var(--line) inset}
+.app-shop .ms-l3{box-shadow:none}
+
+/* lane header: mark, business, journey; the finding on the right */
+.app-shop .ms-lh{position:absolute;left:12px;right:12px;top:10px;height:20px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.app-shop .ms-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.ilwrap .app-shop .ms-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-shop .ms-lh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-shop .ms-lh em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-shop .ms-fd{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px 0 6px;border-radius:6px;
+  font:500 11px/1 var(--sans);color:var(--fg);background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-shop .ms-fd svg{width:12px;height:12px;color:var(--fg-2)}
+
+/* the journey: a path behind the captures; waits are dashed and carry their length */
+.app-shop .ms-pth{position:absolute;left:var(--ms-a);width:var(--ms-w);top:51px;height:1px;background:var(--line-3);transform-origin:0 50%}
+.app-shop .ms-wt{position:absolute;left:var(--ms-a);width:var(--ms-w);top:51px;height:1px;transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--fg-3) 0 3px,transparent 3px) 0 0/6px 1px repeat-x}
+.app-shop .ms-dur{position:absolute;left:var(--ms-x);top:37px;font:400 10.5px/12px var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-shop .ms-wh b{font-weight:400;counter-reset:ms-wh var(--ms-wh)}
+.app-shop .ms-wh b::before{content:counter(ms-wh)}
+
+/* captures: tiny dated pages the test customer saw */
+.app-shop .ms-c{position:absolute;left:var(--ms-x);top:37px;width:44px;height:28px;grid-template-rows:5px 1fr}
+.app-shop .ms-cap{position:absolute;left:var(--ms-x);top:70px;font:400 10.5px/12px var(--sans);color:var(--fg-2);white-space:nowrap}
+
+/* a red line held: a stop rule and its ticked label */
+.app-shop .ms-stop{position:absolute;left:var(--ms-x);top:35px;width:2px;height:49px;border-radius:1px;background:var(--fg);transform-origin:50% 0}
+.app-shop .ms-sp{position:absolute;left:var(--ms-x);top:68px;height:16px;display:inline-flex;align-items:center;gap:5px;padding:0 6px 0 2px;border-radius:5px;
+  font:500 10.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-shop .ms-sp .ax-tick{width:12px;height:12px}
+
+/* the mini pages inside captures (hex allowed only here) */
+.app-shop .ms-pg{position:relative;display:grid;align-content:center;gap:3px;padding:3px 5px;min-height:0}
+.app-shop .ms-pg b{font:600 10.5px/11px var(--sans);color:#1E1D1A;white-space:nowrap}
+.app-shop .ms-fl{height:5px;border-radius:1.5px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-shop .ms-bt{width:46%;height:4px;background:#3A3834}
+.app-shop .ms-mail .ms-fr{display:grid;grid-template-columns:5px minmax(0,1fr);align-items:center;gap:3px}
+.app-shop .ms-mail .ms-sq{height:5px;background:#8C887F}
+.app-shop .ms-mail .ms-av2{height:5px;border-radius:50%;background:#8C887F}
+.app-shop .ms-mail .ms-m1{height:3px;width:70%}
+.app-shop .ms-mail .ms-m2{height:3px;width:88%}
+.app-shop .ms-mail .ms-m3{height:3px;width:60%}
+.app-shop .ms-chat .ms-q{justify-self:end;width:56%;height:5px;border-radius:3px;background:#3A3834}
+.app-shop .ms-chat .ms-a{width:70%;height:5px;border-radius:3px}
+.app-shop .ms-chat .ms-a2{width:44%;height:5px;border-radius:3px}
+.app-shop .ms-shop{grid-template-columns:repeat(3,1fr);gap:3px}
+.app-shop .ms-shop i{height:13px;background:#D8C4B6}
+.app-shop .ms-shop i+i{background:#CFCBC3}
+.app-shop .ms-bask{grid-template-columns:12px auto;align-items:center;gap:5px}
+.app-shop .ms-bask .ms-pt{height:13px;background:#D8C4B6}
+.app-shop .ms-chk .ms-pay{height:5px;border-radius:1.5px;background:none;box-shadow:0 0 0 1px #3A3834 inset}
+.app-shop .ms-box{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:5px}
+.app-shop .ms-box i{height:0;border-radius:0;background:none;border-top:1px dashed #A8A398}
+.app-shop .ms-form .ms-ta{height:7px;border-radius:1.5px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
+.app-shop .ms-form .ms-bt{width:40%;height:3px}
+
+/* the playhead: hidden at rest, sweeps the 3 days during play */
+.app-shop .ms-ph{position:absolute;left:6px;top:17px;bottom:0;width:1px;background:rgb(var(--fg-rgb) / .55);opacity:0;pointer-events:none}
+.app-shop .ms-ph::before{content:"";position:absolute;left:-3px;top:0;width:7px;height:7px;border-radius:2px;background:var(--fg)}
+
+/* the red lines, shown */
+.app-shop .ms-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-shop .ms-note svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* toast: the report is ready */
+.app-shop .ms-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-shop .ms-toast p{display:flex;align-items:baseline;gap:5px;font-size:11.5px;white-space:nowrap}
+.app-shop .ms-toast b{font-weight:500;color:var(--fg)}
+.app-shop .ms-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes ms-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes ms-show{from{opacity:0}to{opacity:1}}
+@keyframes ms-grow{from{transform:scaleX(0)}to{transform:none}}
+@keyframes ms-rule{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:none}}
+@keyframes ms-tick{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes ms-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes ms-blink{0%{opacity:1}50%{opacity:0}}
+@keyframes ms-count{from{--ms-wh:0}to{--ms-wh:48}}
+@keyframes ms-sweep{from{transform:translateX(0)}to{transform:translateX(504px)}}
+@keyframes ms-hide{from{opacity:1}to{opacity:0}}
+@keyframes ms-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. time passes: the playhead sweeps Day 1 to Day 3 (a clock, so linear) */
+.appx-il.play.app-shop .ms-ph{animation:ms-sweep 4s linear .5s both,ms-show .2s var(--ease) .5s both,ms-hide .25s var(--ob-ease-in,cubic-bezier(.3,0,1,1)) 4.5s forwards}
+
+/* 2. steps land as the playhead reaches them; paths and waits draw with it */
+.appx-il.play.app-shop .ms-c{animation:ms-land .4s var(--ease) var(--ms-t) both}
+.appx-il.play.app-shop .ms-cap{animation:ms-show .4s var(--ease) var(--ms-t) both}
+.appx-il.play.app-shop .ms-pth,.appx-il.play.app-shop .ms-wt{animation:ms-grow var(--ms-u) linear var(--ms-t) both}
+.appx-il.play.app-shop .ms-dur{animation:ms-show .3s var(--ease) var(--ms-t) both}
+.appx-il.play.app-shop .ms-wh b{animation:ms-count 1.43s linear 1.82s both}
+
+/* 3. the red lines hold: stop rule, ticked label (the tick snaps) */
+.appx-il.play.app-shop .ms-stop{animation:ms-rule .3s var(--ease) var(--ms-t) both}
+.appx-il.play.app-shop .ms-sp{animation:ms-show .3s var(--ease) var(--ms-t) both}
+.appx-il.play.app-shop .ms-sp .ax-tick{animation:ms-tick .45s var(--snap) calc(var(--ms-t) + .05s) both}
+
+/* 4. findings land, then each lane's mark closes (the store's mark waits on the inbox first) */
+.appx-il.play.app-shop .ms-fd{animation:ms-land .45s var(--ease) var(--ms-t) both}
+.appx-il.play.app-shop .ms-l3 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 1.85s both}
+.appx-il.play.app-shop .ms-l3 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 2.02s both}
+.appx-il.play.app-shop .ms-l2 .ms-mk .sig-sq{animation:ms-blink .6s steps(1,end) 1.95s 2,ms-home .55s var(--snap) 3.65s both}
+.appx-il.play.app-shop .ms-l2 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 3.82s both}
+.appx-il.play.app-shop .ms-l1 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 4s both}
+.appx-il.play.app-shop .ms-l1 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 4.17s both}
+
+/* 5. the report is ready */
+.appx-il.play.app-shop .ms-toast{animation:ms-toast .45s var(--ease) 4.8s both}

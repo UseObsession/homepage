@@ -1,0 +1,207 @@
+/* app-campaign: Launches. Your own 08:00 launch, checked the way a customer gets it.
+   3 labelled test customers (phone UK, phone US, desktop UK) check 5 things: the launch email, the text, the
+   LAUNCH20 code, the landing page and unsubscribe. Each check has its mark, a mono time and 3 small squares, 1 per
+   test customer: filled = passed, hollow = failed (the needs-you square). A side card holds the drafted fixes.
+   Story: the run sweeps down the list and the checks tick in fast; the text to US numbers and the code fail and turn
+   needs-you; the fixes card slides in; the pointer approves; each fix is re-tested and its row closes; the toast.
+   Rest state (no .play) = the finished scene: all 5 closed, 2 fixed and re-tested, approved by AM. */
+
+.app-campaign{--cg-out:var(--ob-ease-in,cubic-bezier(.55,0,1,.45))}
+.app-campaign .ax-main{padding:14px;gap:12px}
+
+/* ---------- header: the launch, when it went, who checks it ---------- */
+.app-campaign .cg-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-campaign .cg-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-campaign .cg-time{font:400 11px/1 var(--mono);color:var(--fg-3);padding-top:2px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-campaign .cg-who{margin-left:auto;display:flex;align-items:center;gap:6px}
+.app-campaign .cg-who>span:first-child{margin-right:2px;font-size:11px;color:var(--fg-3);white-space:nowrap}
+.app-campaign .cg-who .ax-chip{gap:5px;padding:0 7px 0 6px;color:var(--fg-2)}
+.ilwrap .app-campaign .cg-who .ax-chip svg{width:11px;height:11px;color:var(--fg-3)}
+
+/* stacked states: only the last child shows at rest */
+.app-campaign .cg-stk,.app-campaign .cg-mk3,.app-campaign .cg-bn{display:inline-grid;vertical-align:top;align-items:center}
+.app-campaign .cg-stk>*,.app-campaign .cg-mk3>*,.app-campaign .cg-bn>*{grid-area:1/1}
+.app-campaign .cg-stk>:not(:last-child),.app-campaign .cg-mk3>:not(:last-child),.app-campaign .cg-bn>:not(:last-child){opacity:0}
+.app-campaign .cg-bn b{font-weight:inherit}
+.ilwrap .app-campaign .cg-hm .sig{width:16px;height:16px;color:var(--fg)}
+
+/* ---------- the checklist: 5 checks x 3 test customers ---------- */
+.app-campaign .cg-wrap{display:grid;grid-template-columns:300px minmax(0,1fr);gap:12px;align-items:stretch}
+.app-campaign .cg-tb{display:grid;grid-template-rows:28px auto 32px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-campaign .cg-rows{position:relative}
+.app-campaign .cg-r{position:relative;display:grid;grid-template-columns:12px minmax(0,1fr) 50px 32px;column-gap:10px;align-items:center;height:48px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-campaign .cg-r>*{min-width:0;white-space:nowrap}
+.app-campaign .cg-r.cg-r5{box-shadow:none}
+.app-campaign .cg-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-campaign .cg-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-campaign .cg-th>span:last-child{justify-self:end}
+.ilwrap .app-campaign .cg-th .cg-q svg{width:11px;height:11px;justify-self:center;color:var(--fg-3)}
+.ilwrap .app-campaign .cg-r>.sig,.ilwrap .app-campaign .cg-r .cg-mk3 .sig{width:12px;height:12px;color:var(--fg)}
+
+.app-campaign .cg-n{display:grid;gap:3px}
+.app-campaign .cg-n b{display:flex;align-items:center;gap:5px;font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-campaign .cg-cd{font:500 10.5px/1 var(--mono);letter-spacing:0;color:var(--fg)}
+.app-campaign .cg-s{font:400 10.5px/14px var(--sans);color:var(--fg-3);overflow:hidden;text-overflow:ellipsis}
+.app-campaign .cg-s .cg-m{font-family:var(--mono)}
+.app-campaign .cg-s.cg-stk{display:grid}
+.app-campaign .cg-s .cg-v0{color:var(--fg);font-weight:500}
+.app-campaign .cg-r.cg-x .cg-s .cg-v1{color:var(--fg-2)}
+.app-campaign .cg-t{justify-self:end;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-campaign .cg-t.cg-stk{justify-items:end}
+
+/* the 3 test customers' results: filled = passed, hollow = failed */
+.app-campaign .cg-q{display:grid;grid-template-columns:repeat(3,14px);gap:4px;align-items:center}
+.app-campaign .cg-q i{justify-self:center;width:8px;height:8px;border-radius:2px;background:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+
+/* the 2 checks that failed, now fixed: a quiet raised fill ties them to the fixes card */
+.app-campaign .cg-r.cg-x{background:rgb(var(--fg-rgb) / .045)}
+
+
+/* the red line, shown */
+.app-campaign .cg-foot{display:flex;align-items:center;gap:7px;padding:0 12px;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .02);box-shadow:0 1px 0 var(--line-2) inset}
+.ilwrap .app-campaign .cg-foot .sig{width:10px;height:10px;color:var(--fg-2)}
+
+/* ---------- the fixes, drafted for your OK ---------- */
+.app-campaign .cg-fx{display:flex;flex-direction:column;min-width:0;padding:12px;border-radius:10px;background:var(--panel-2);
+  box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-campaign .cg-k{display:grid;height:16px;margin-bottom:10px}
+.app-campaign .cg-k>span{display:flex;align-items:center;gap:6px;font:500 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-campaign .cg-k .sig{width:11px;height:11px;color:var(--fg)}
+.app-campaign .cg-fi{display:grid;gap:5px;padding:12px 0 14px;box-shadow:0 1px 0 var(--line) inset}
+.app-campaign .cg-fl{display:flex;align-items:center;gap:6px;height:14px;font:400 10.5px/14px var(--sans);color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-campaign .cg-fl svg{width:12px;height:12px;color:var(--fg-3)}
+.app-campaign .cg-ft{font:500 12px/16px var(--sans);color:var(--fg);text-wrap:balance}
+.app-campaign .cg-rt{display:grid;height:24px;margin-top:3px;padding:0 8px;border-radius:6px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line) inset}
+.app-campaign .cg-rt>span{display:flex;align-items:center;gap:6px;font:400 10.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-campaign .cg-rt .cg-v0{color:var(--fg-3)}
+.app-campaign .cg-rt .cg-m{font-family:var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.ilwrap .app-campaign .cg-rt .sig{width:11px;height:11px;color:var(--fg)}
+.ilwrap .app-campaign .cg-rt .cg-v0 .sig{color:var(--fg-3)}
+
+/* the decision: Approve, then the approval */
+.app-campaign .cg-pf{margin-top:auto;display:grid;height:24px}
+.app-campaign .cg-f1{display:flex;gap:6px}
+.app-campaign .cg-f1 .ax-btn{justify-content:center}
+.app-campaign .cg-f1 .ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-campaign .cg-ok{flex:1}
+.app-campaign .cg-f2{display:flex;align-items:center;gap:7px;height:24px;padding:0 9px;border-radius:7px;font-size:11px;color:var(--fg-2);white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-campaign .cg-f2 .sig{width:12px;height:12px;color:var(--fg)}
+.app-campaign .cg-f2 b{font-weight:500;color:var(--fg)}
+.app-campaign .cg-f2 .cg-m{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* toast */
+.app-campaign .cg-toast{gap:9px;padding:9px 14px 9px 12px}
+.app-campaign .cg-toast p{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.app-campaign .cg-toast b{font-weight:500;color:var(--fg)}
+.app-campaign .cg-toast span{color:var(--fg-3)}
+
+/* pointer: parked on Approve, hidden at rest (the base's ".appx svg{width:auto}" outranks .ax-ptr, so size it here) */
+.ilwrap .app-campaign .appx svg.cg-ptr{width:16px;height:16px}
+.app-campaign .cg-ptr{left:452px;top:322px;transform-origin:3px 1.5px}
+
+/* ---------- motion (only with .play) ---------- */
+/* when each check lands (--l) and, for the 2 that fail, when the fix re-tests it (--f) */
+.app-campaign .cg-r1{--cg-l:.55s}
+.app-campaign .cg-r2{--cg-l:.91s;--cg-f:4.62s}
+.app-campaign .cg-r3{--cg-l:1.27s;--cg-f:4.3s}
+.app-campaign .cg-r4{--cg-l:1.63s}
+.app-campaign .cg-r5{--cg-l:1.99s}
+.app-campaign .cg-q i:nth-child(2){--cg-n:.05s}
+.app-campaign .cg-q i:nth-child(3){--cg-n:.1s}
+
+@keyframes cg-show{from{opacity:0}to{opacity:1}}
+@keyframes cg-hide{from{opacity:1}to{opacity:0}}
+@keyframes cg-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes cg-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+@keyframes cg-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes cg-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes cg-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes cg-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+/* the run passing a row: a light and a 2px edge that come and go as it is checked */
+@keyframes cg-scan{
+  0%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 var(--fg) inset,0 -1px 0 var(--line) inset}
+  30%{background-color:rgb(var(--fg-rgb) / .06);box-shadow:2px 0 0 var(--fg) inset,0 -1px 0 var(--line) inset}
+  100%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 var(--fg) inset,0 -1px 0 var(--line) inset}}
+@keyframes cg-qon{
+  from{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line-3) inset}
+  to{background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes cg-qx{
+  from{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1px var(--line-3) inset}
+  to{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1.5px var(--fg) inset}}
+@keyframes cg-qfix{
+  from{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 1.5px var(--fg) inset}
+  to{background-color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}}
+@keyframes cg-scan5{
+  0%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 var(--fg) inset}
+  30%{background-color:rgb(var(--fg-rgb) / .06);box-shadow:2px 0 0 var(--fg) inset}
+  100%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 var(--fg) inset}}
+@keyframes cg-glow{
+  0%{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 var(--fg) inset,0 -1px 0 var(--line) inset}
+  14%{background-color:rgb(var(--fg-rgb) / .12);box-shadow:2px 0 0 var(--fg) inset,0 -1px 0 var(--line) inset}
+  100%{background-color:rgb(var(--fg-rgb) / .045);box-shadow:0 0 0 var(--fg) inset,0 -1px 0 var(--line) inset}}
+@keyframes cg-slide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes cg-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes cg-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* 2s from 2.8s: glides in from the lower right, presses Approve at 3.6s, eases off and fades by 4.8s */
+@keyframes cg-ptr{
+  0%{opacity:0;transform:translate(74px,70px)}
+  10%{opacity:1}
+  40%{transform:translate(0,0) scale(1)}
+  44%{transform:translate(0,0) scale(.9)}
+  51%{transform:translate(0,0) scale(1)}
+  74%{opacity:1;transform:translate(10px,16px)}
+  100%{opacity:0;transform:translate(14px,22px)}}
+
+/* 1. the run sweeps down the list; each check ticks in as the sweep passes it */
+.app-campaign.play .cg-r:not(.cg-x):not(.cg-th){animation:cg-scan .7s var(--ease) calc(var(--cg-l) - .14s) both}
+.app-campaign.play .cg-r.cg-r5:not(.cg-x){animation-name:cg-scan5}
+.app-campaign.play .cg-hm .cg-w0{animation:cg-show .01s linear both,cg-hide .2s var(--cg-out) 2.25s forwards}
+.app-campaign.play .cg-hm .cg-w0 .sig-rot{animation:cg-spin 2.1s linear .15s both}
+.app-campaign.play .cg-hm .cg-w0 .sig-orb{animation:cg-spinr 2.1s linear .15s both}
+
+.app-campaign.play .cg-r .cg-q i{animation:cg-qon .3s var(--ease) calc(var(--cg-l) + var(--cg-n,0s)) both}
+.app-campaign.play .cg-r>.cg-lv .sig-sq{animation:cg-home .55s var(--snap) calc(var(--cg-l) + .12s) both}
+.app-campaign.play .cg-r>.cg-lv .sig-gap{animation:cg-show .3s var(--ease) calc(var(--cg-l) + .3s) both}
+.app-campaign.play .cg-r:not(.cg-x) .cg-s,.app-campaign.play .cg-r:not(.cg-x) .cg-t{animation:cg-show .35s var(--ease) calc(var(--cg-l) + .08s) both}
+
+/* 2. the text to US numbers and the code fail: hollow squares, the mark turns needs-you, the row lights */
+.app-campaign.play .cg-r.cg-x .cg-q i.cg-x{animation:cg-qx .3s var(--ease) calc(var(--cg-l) + var(--cg-n,0s)) both,cg-qfix .35s var(--ease) calc(var(--cg-f) + var(--cg-n,0s)) forwards}
+.app-campaign.play .cg-r.cg-x .cg-w0{animation:cg-show .01s linear both,cg-hide .15s var(--cg-out) calc(var(--cg-l) + .1s) forwards}
+.app-campaign.play .cg-r.cg-x .cg-w1{animation:cg-pop .45s var(--snap) calc(var(--cg-l) + .1s) both,cg-hide .2s var(--cg-out) var(--cg-f) forwards}
+.app-campaign.play .cg-r.cg-x .cg-w2{animation:cg-show .2s var(--ease) var(--cg-f) both}
+.app-campaign.play .cg-r.cg-x .cg-w2 .sig-sq{animation:cg-home .55s var(--snap) calc(var(--cg-f) + .08s) both}
+.app-campaign.play .cg-r.cg-x .cg-w2 .sig-gap{animation:cg-show .3s var(--ease) calc(var(--cg-f) + .26s) both}
+.app-campaign.play .cg-r.cg-x{animation:cg-glow 1.5s var(--ease) calc(var(--cg-l) + .1s) both}
+.app-campaign.play .cg-r.cg-x .cg-v0{animation:cg-in .35s var(--ease) calc(var(--cg-l) + .08s) both,cg-out .25s var(--cg-out) var(--cg-f) forwards}
+.app-campaign.play .cg-r.cg-x .cg-v1{animation:cg-in .35s var(--ease) calc(var(--cg-f) + .12s) both}
+.app-campaign.play .cg-hm .cg-w1{animation:cg-pop .45s var(--snap) 2.25s both,cg-hide .2s var(--cg-out) 4.85s forwards}
+.app-campaign.play .cg-bn b:nth-child(1){animation:cg-show .01s linear both,cg-hide .2s var(--cg-out) 2.25s forwards}
+.app-campaign.play .cg-bn b:nth-child(2){animation:cg-in .3s var(--ease) 2.27s both,cg-hide .2s var(--cg-out) 4.75s forwards}
+.app-campaign.play .cg-bn b:nth-child(3){animation:cg-in .3s var(--ease) 4.77s both}
+
+/* 3. the fixes card slides in, each fix waiting on your OK */
+.app-campaign.play .cg-fx{animation:cg-slide .6s var(--ease) 2.3s both}
+.app-campaign.play .cg-k .cg-v0{animation:cg-show .01s linear both,cg-out .25s var(--cg-out) 3.9s forwards}
+.app-campaign.play .cg-k .cg-v1{animation:cg-in .35s var(--ease) 3.95s both}
+.app-campaign.play .cg-fi.cg-fi1{animation:cg-in .45s var(--ease) 2.42s both}
+.app-campaign.play .cg-fi.cg-fi2{animation:cg-in .45s var(--ease) 2.5s both}
+
+/* 4. the pointer approves: the buttons give way to the approval */
+.app-campaign.play .cg-ptr{animation:cg-ptr 2s var(--ease) 2.8s both}
+.app-campaign.play .cg-ok{animation:cg-press .22s var(--ease) 3.66s}
+.app-campaign.play .cg-f1{animation:cg-show .01s linear both,cg-hide .2s var(--cg-out) 3.86s forwards}
+.app-campaign.play .cg-f2{animation:cg-in .4s var(--ease) 3.92s both}
+
+/* 5. each fix is re-tested: its well closes, its row closes */
+.app-campaign.play .cg-fi1 .cg-rt .cg-v0{animation:cg-show .01s linear both,cg-out .25s var(--cg-out) 4.2s forwards}
+.app-campaign.play .cg-fi1 .cg-rt .cg-v1{animation:cg-in .35s var(--ease) 4.26s both}
+.app-campaign.play .cg-fi2 .cg-rt .cg-v0{animation:cg-show .01s linear both,cg-out .25s var(--cg-out) 4.52s forwards}
+.app-campaign.play .cg-fi2 .cg-rt .cg-v1{animation:cg-in .35s var(--ease) 4.58s both}
+
+/* 6. the launch closes; the toast */
+.app-campaign.play .cg-hm .cg-w2{animation:cg-show .2s var(--ease) 4.85s both}
+.app-campaign.play .cg-hm .cg-w2 .sig-sq{animation:cg-home .55s var(--snap) 4.9s both}
+.app-campaign.play .cg-hm .cg-w2 .sig-gap{animation:cg-show .3s var(--ease) 5.08s both}
+.app-campaign.play .cg-toast{animation:cg-toast .45s var(--ease) 5.25s both}

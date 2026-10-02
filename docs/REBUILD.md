@@ -59,6 +59,12 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - 1 primary button per view, 1 glow per section, the 1160px container, the 4px spacing grid, headings from the type scale (`.ob-type-*`), tabular numerals for figures.
 - Dark is the default, light is warm paper; both designed on purpose, contrast floors met (body 7:1, labels 4.5:1, controls 3:1).
 
+## 4b. Logo (final, 2 Oct 2026: `Brand/Logo/README.md`)
+
+- Use `components/Logo`: `Lockup` (the nav lockup `obsession-lockup-nav-*` at 16 to 24px tall, the full lockup `obsession-lockup-*` from 32px; white files on dark, black on paper, chosen by the section's theme), `Mark` (the ring in the text colour), `StatusMark` (the 4 animated agent states from `Brand/Logo/states`: working, waiting, needs-you, landed).
+- Files live in `public/logo/` and `src/assets/logo/states/`, synced by `scripts/sync-assets.mjs`. The favicon is `public/favicon.svg`, the touch icon `public/logo/obsession-app-icon-1024.png`.
+- Never retype the wordmark, recolour the ring or add an arrowhead. Every status mark inside the app screens is swapped to the final geometry at sync time.
+
 ## 5. Motion
 
 Every motion has 1 job (feedback, orientation, continuity or status). Anything without a job stays still.

@@ -2,6 +2,7 @@
    The sources live in the founders' workspace, next to this repo:
      ../Brand/Design System/   tokens.css, motion.css, components/*.css      ->  src/styles/ds/
      ../_research/illus/       app-base.css, app-NAME.html, app-NAME.css     ->  src/screens/
+     ../Brand/Logo/            the final logo (2 Oct 2026)                   ->  public/logo/, public/favicon.svg, src/assets/logo/states/
    Run it after either source changes: node scripts/sync-assets.mjs
    Override the paths with OBS_DS=... and OBS_SCREENS=... if the workspace lives elsewhere. */
 import { existsSync } from 'node:fs'
@@ -12,9 +13,10 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const DS = process.env.OBS_DS || resolve(root, '../Brand/Design System')
 const SCREENS = process.env.OBS_SCREENS || resolve(root, '../_research/illus')
+const LOGO = process.env.OBS_LOGO || resolve(root, '../Brand/Logo')
 
-if (!existsSync(DS) || !existsSync(SCREENS)) {
-  console.error(`Sources not found:\n  ${DS}\n  ${SCREENS}\nThe committed copies in src/ stay as they are.`)
+if (!existsSync(DS) || !existsSync(SCREENS) || !existsSync(LOGO)) {
+  console.error(`Sources not found:\n  ${DS}\n  ${SCREENS}\n  ${LOGO}\nThe committed copies in src/ stay as they are.`)
   process.exit(1)
 }
 
@@ -24,6 +26,21 @@ await mkdir(join(dsOut, 'components'), { recursive: true })
 for (const f of ['tokens.css', 'motion.css']) await copyFile(join(DS, f), join(dsOut, f))
 for (const f of (await readdir(join(DS, 'components'))).filter((f) => f.endsWith('.css')))
   await copyFile(join(DS, 'components', f), join(dsOut, 'components', f))
+
+/* the final logo: outlined SVGs only, never a retyped wordmark */
+/* lockups and marks are plain files at /logo/ (cached, same URL in the prerender and the browser); the 4 status marks are
+   inlined from src/assets/logo/states so they take the text colour and run their own motion */
+const logoPublic = join(root, 'public/logo')
+const statesOut = join(root, 'src/assets/logo/states')
+await rm(logoPublic, { recursive: true, force: true })
+await rm(join(root, 'src/assets/logo'), { recursive: true, force: true })
+await mkdir(logoPublic, { recursive: true })
+await mkdir(statesOut, { recursive: true })
+for (const f of (await readdir(LOGO)).filter((f) => f.endsWith('.svg') || f === 'obsession-app-icon-1024.png')) await copyFile(join(LOGO, f), join(logoPublic, f))
+for (const f of (await readdir(join(LOGO, 'states'))).filter((f) => f.endsWith('.svg'))) await copyFile(join(LOGO, 'states', f), join(statesOut, f))
+await copyFile(join(LOGO, 'favicon.svg'), join(root, 'public/favicon.svg'))
+await copyFile(join(LOGO, 'obsession-app-icon-1024.png'), join(root, 'public/obsession-app-icon-1024.png'))
+await copyFile(join(LOGO, 'obsession-app-icon.svg'), join(root, 'public/obsession-app-icon.svg'))
 
 /* app screens: only well formed ones, with 1 main landmark per page and no template count */
 const VOID = new Set(['br', 'img', 'input', 'meta', 'link', 'hr', 'path', 'rect', 'circle', 'line', 'polyline', 'polygon', 'stop', 'use', 'ellipse'])
@@ -54,6 +71,12 @@ for (const name of names) {
   let html = (await readFile(join(SCREENS, `app-${name}.html`), 'utf8')).trim()
   html = html.replace('<main class="ax-main">', '<div class="ax-main">').replace('</main>', '</div>')
   html = html.replace(/(Templates)<em>\d+<\/em>/g, '$1')
+  /* every status mark in a screen uses the final logo's geometry (Brand/Logo/states) */
+  html = html
+    .replaceAll('viewBox="6 6 88 88"', 'viewBox="2 2 96 96"')
+    .replaceAll('d="M88.458 39A40 40 0 1 1 61 11.542V26.442A26 26 0 1 0 73.558 39Z"', 'd="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z"')
+    .replaceAll('d="M61 11.542A40 40 0 0 1 88.458 39H73.558A26 26 0 0 0 61 26.442Z"', 'd="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z"')
+    .replaceAll('d="M66 14h20v20H66Z"', 'd="M65.404 16.011h18.585v18.585h-18.585Z"')
   if (!balanced(html)) {
     console.warn(`  skipped app-${name}: unbalanced markup`)
     continue
@@ -62,4 +85,4 @@ for (const name of names) {
   if (existsSync(join(SCREENS, `app-${name}.css`))) await copyFile(join(SCREENS, `app-${name}.css`), join(out, 'css', `${name}.css`))
   kept.push(name)
 }
-console.log(`Design system: ${DS}\nScreens (${kept.length}): ${kept.join(', ')}`)
+console.log(`Design system: ${DS}\nLogo: ${LOGO}\nScreens (${kept.length}): ${kept.join(', ')}`)
