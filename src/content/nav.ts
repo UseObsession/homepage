@@ -1,8 +1,7 @@
 /* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7. */
-import { recipes } from './registry'
+import { recipes, studies } from './registry'
 import { agentsPage } from './site'
 import type { Cta, RecipeGroup, RecipeId } from './types'
-import { useCasePages } from './useCases'
 
 export type NavPage = { label: string; to: string; line?: string }
 export type NavRecipe = { id: RecipeId; label: string; to: string }
@@ -37,15 +36,23 @@ export const nav = {
     /* The desktop menu lays the 5 jobs out in 3 columns, in reading order: 4, 5 and 6 recipes. */
     columns: [['Win customers', 'Keep customers'], ['Watch rivals'], ['Check your own journeys', 'Get paid and save']] satisfies RecipeGroup[][],
   },
-  /* The worked examples (content/useCases). Their links are sent to prospects, so they always stay reachable. */
-  useCases: {
-    label: 'Use cases',
-    items: useCasePages.map(({ label, path, line }) => ({ label, to: path, line })) satisfies NavPage[],
+  /* Resources: the worked examples (content/usecases, which James sends to prospects, so they always stay reachable),
+     then the blog and the 1 real run. */
+  resources: {
+    label: 'Resources',
+    useCases: {
+      label: 'Use cases',
+      all: { label: 'All use cases', to: '/use-cases' } satisfies NavPage,
+      items: studies.map(({ name, line, meta }) => ({ label: name, to: meta.path, line })) satisfies NavPage[],
+    },
+    items: [
+      { label: 'Blog', to: '/blog', line: 'Guides to the work agents do as a customer.' },
+      { label: 'Sample output', to: '/sample-output', line: 'A real store check, in every format it arrives in.' },
+    ] satisfies NavPage[],
+    all: { label: 'All resources', to: '/resources' } satisfies NavPage,
   },
-  links: [
-    { label: 'Developers', to: '/developers' },
-    { label: 'Sample output', to: '/sample-output' },
-  ] satisfies NavPage[],
+  /* At most 4 links in the bar: Solutions, Recipes and Resources open menus; Developers is a page. */
+  links: [{ label: 'Developers', to: '/developers' }] satisfies NavPage[],
   /* The page's call to action. Pages without their own use this one. */
   cta: { label: 'Join the waitlist', to: '#join' } satisfies Cta,
   menu: { open: 'Open menu', close: 'Close menu', sheet: 'Menu' },

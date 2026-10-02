@@ -4,9 +4,11 @@ import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { absolute, metaFor } from './content/meta'
 import { ctaFor, nav } from './content/nav'
-import { pages, recipeBySlug } from './content/registry'
+import { pages, postBySlug, recipeBySlug, studyByPath } from './content/registry'
 import { Agencies } from './pages/Agencies'
 import { Agents } from './pages/Agents'
+import { Blog } from './pages/Blog'
+import { BlogPost } from './pages/BlogPost'
 import { Developers } from './pages/Developers'
 import { Founders } from './pages/Founders'
 import { Home } from './pages/Home'
@@ -15,8 +17,11 @@ import { NotFound } from './pages/NotFound'
 import { Privacy } from './pages/Privacy'
 import { Recipe } from './pages/Recipe'
 import { Recipes } from './pages/Recipes'
+import { Resources } from './pages/Resources'
 import { Sales } from './pages/Sales'
 import { SampleOutput } from './pages/SampleOutput'
+import { UseCase } from './pages/UseCase'
+import { UseCases } from './pages/UseCases'
 
 const idOf = (hash: string) => {
   try {
@@ -130,7 +135,8 @@ function ctaAt(pathname: string) {
 
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
    view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
-const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes'])
+const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog'])
+const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !clean.startsWith('/blog/')
 
 function Layout() {
   const { pathname } = useLocation()
@@ -141,7 +147,7 @@ function Layout() {
       <a className="ob-skip s-skip" href="#main">
         {nav.skip}
       </a>
-      <Nav cta={ctaAt(pathname)} heroForm={!NO_HERO_FORM.has(clean)} />
+      <Nav cta={ctaAt(pathname)} heroForm={heroFormAt(clean)} />
       <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
@@ -154,6 +160,20 @@ function Layout() {
 function RecipeRoute() {
   const { slug = '' } = useParams()
   return recipeBySlug[slug] ? <Recipe key={slug} slug={slug} /> : <NotFound />
+}
+
+/* /use-cases/SLUG for every worked example in src/content/usecases (James sends these to prospects). */
+function UseCaseRoute() {
+  const { slug = '' } = useParams()
+  const study = studyByPath[`/use-cases/${slug}`]
+  return study ? <UseCase key={slug} study={study} /> : <NotFound />
+}
+
+/* /blog/SLUG for every post in src/content/blog. */
+function PostRoute() {
+  const { slug = '' } = useParams()
+  const post = postBySlug[slug]
+  return post ? <BlogPost key={slug} post={post} /> : <NotFound />
 }
 
 /* James's old /templates/SLUG links. The host answers these with a 301 (public/_redirects); this covers a link
@@ -178,6 +198,11 @@ export function AppRoutes() {
         <Route path="recipes" element={<Recipes />} />
         <Route path="recipes/prospect-research" element={<Navigate to="/recipes/prospect-intelligence" replace />} />
         <Route path="recipes/:slug" element={<RecipeRoute />} />
+        <Route path="resources" element={<Resources />} />
+        <Route path="use-cases" element={<UseCases />} />
+        <Route path="use-cases/:slug" element={<UseCaseRoute />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:slug" element={<PostRoute />} />
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="agents" element={<Agents />} />

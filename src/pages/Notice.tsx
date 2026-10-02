@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from 'react'
+import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import type { NoticeSection } from '../content/types'
 import './Notice.css'
@@ -25,7 +26,9 @@ export function NoticeHero({
 }) {
   return (
     <header className={`s-notice-hero s-notice-hero--${size}${end ? ' s-notice-hero--end' : ''}`}>
-      <div className="s-wrap s-notice-hero__in ob-anim-hero">
+      <div className="s-wrap s-notice-hero__wrap">
+      <Crumbs />
+      <div className="s-notice-hero__in ob-anim-hero">
         {pill && (
           <p className="ob-layout-eyebrow s-notice-hero__pill">
             <Mark size={16} />
@@ -35,6 +38,7 @@ export function NoticeHero({
         <h1 className="s-notice-hero__h">{headline}</h1>
         <p className="s-notice-hero__sub">{sub}</p>
         {children}
+      </div>
       </div>
     </header>
   )

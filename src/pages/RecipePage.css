@@ -4,38 +4,6 @@
 
 /* ---- Hero ------------------------------------------------------------------------------------------------------- */
 
-/* The pill is the way back: Recipes / this recipe. */
-.s-rp-crumbs { min-width: 0; }
-.s-rp-crumbs__list {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.s-rp-crumbs__list > li { display: flex; align-items: center; min-width: 0; }
-.s-rp-crumbs__list > li + li::before {
-  content: "/";
-  content: "/" / "";
-  padding-inline: var(--ob-space-6);
-  color: var(--ob-text-3);
-}
-.s-rp-crumbs__list [aria-current] { overflow: hidden; color: var(--ob-text); text-overflow: ellipsis; }
-.s-rp-crumbs__link {
-  position: relative;
-  border-radius: var(--ob-radius-xs);
-  color: var(--ob-text-2);
-  text-decoration: none;
-  transition: color var(--ob-dur-base) var(--ob-ease-out);
-  -webkit-tap-highlight-color: transparent;
-}
-.s-rp-crumbs__link::before { content: ""; position: absolute; inset: calc(var(--ob-space-8) * -1) calc(var(--ob-space-6) * -1); }
-@media (hover: hover) and (pointer: fine) {
-  .s-rp-crumbs__link:hover { color: var(--ob-text); }
-}
-.s-rp-crumbs__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
-
 /* No typed line on a recipe: the sub follows the headline at the hero's own step. */
 .s-hero-sub.s-rp-hero__sub { margin-top: var(--ob-space-24); }
 

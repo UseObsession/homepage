@@ -161,8 +161,8 @@ async function loadCards() {
       file: e.meta.ogImage.replace(/^\/og\//, ''),
       headline: e.headline,
       line: e.line,
-      /* Where the page sits, as its breadcrumb reads after Home: "Recipes / Mystery shopper". */
-      place: (e.meta.breadcrumb ?? []).filter((c) => c.path !== '/').map((c) => c.name).join(' / '),
+      /* Where the page sits: its own place (a post's "Blog / Mystery shopping"), else its breadcrumb after Home. */
+      place: e.place ?? (e.meta.breadcrumb ?? []).filter((c) => c.path !== '/').map((c) => c.name).join(' / '),
       alt: '',
     }))
   } finally {

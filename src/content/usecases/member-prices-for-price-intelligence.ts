@@ -14,6 +14,9 @@ import type { UseCaseStudy } from '../types'
    Screens: members (the collecting), memberfeed (what lands in the platform). The set up phase shows its chips. */
 
 export const study: UseCaseStudy = {
+  name: 'Member prices for price intelligence',
+  line: 'What retailers show only after sign up, fed to your platform.',
+
   meta: {
     path: '/use-cases/member-prices-for-price-intelligence',
     title: 'Member prices for price intelligence, as a feed with proof',
@@ -24,12 +27,14 @@ export const study: UseCaseStudy = {
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
+      { name: 'Resources', path: '/resources' },
+      { name: 'Use cases', path: '/use-cases' },
       { name: 'Member prices for price intelligence', path: '/use-cases/member-prices-for-price-intelligence' },
     ],
   },
 
   hero: {
-    pill: 'Use cases / Member prices for price intelligence',
+    pill: 'Early access',
     headline: 'The prices retailers only show after sign up',
     typed: [
       'Join 120 grocery retailers and read our coffee basket signed out and signed in',
@@ -233,7 +238,7 @@ export const study: UseCaseStudy = {
   more: {
     recipe: {
       label: 'The recipe',
-      title: 'Price and promotion watch',
+      title: 'Price watch',
       line: 'Prices, offers and terms as a customer sees them, on the schedule you set.',
       cta: { label: 'Learn more', to: '/recipes/price-watch' },
     },

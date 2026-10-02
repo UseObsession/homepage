@@ -1,0 +1,74 @@
+/* Rows of links under a name (sections/LinkGroups), at the Recipes index's scale (pages/Recipes.css): 1 hairline per
+   group, the name on the left (5 columns), the rows on the right (7), the rows bleeding 16px so their words line up
+   with the name while the hover layer has room. Design system tokens only; site classes start s-lg. */
+.s-lg { display: grid; padding-bottom: var(--ob-space-section); }
+.s-lg-group {
+  display: grid;
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-16) var(--s-split-gap);
+  padding-block: var(--ob-space-40);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: var(--ob-space-64);
+}
+.s-lg-group:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-lg-group__head { display: grid; align-content: start; gap: var(--ob-space-12); padding-top: var(--ob-space-12); }
+.s-lg-group__name { margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-lg-group__line { margin: 0; max-width: 36ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-lg-group__body { display: grid; align-content: start; gap: var(--ob-space-16); min-width: 0; }
+
+.s-lg-group__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin: 0 calc(var(--ob-space-16) * -1);
+  padding: 0;
+  list-style: none;
+}
+.s-lg-group__list.is-single { grid-template-columns: minmax(0, 1fr); }
+.s-lg-group__list > li { display: grid; }
+
+.s-lg-row {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-20);
+  border-radius: var(--ob-radius-sm);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-lg-row__kicker { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-lg-row__name { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); text-wrap: balance; }
+.s-lg-row__name > span { min-width: 0; }
+.s-lg-row__arrow {
+  flex: none;
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-lg-row__line { max-width: 60ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-lg-row__foot { font: var(--ob-type-caption); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+@media (hover: hover) and (pointer: fine) {
+  .s-lg-row:hover { background-color: var(--ob-state-hover); }
+  .s-lg-row:hover .s-lg-row__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+}
+.s-lg-row:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
+.s-lg-row:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+
+@media (max-width: 1079.98px) {
+  .s-lg-group__list { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 859.98px) {
+  .s-lg-group { grid-template-columns: minmax(0, 1fr); padding-block: var(--ob-space-32); }
+  .s-lg-group__head { padding-top: 0; }
+}
+
+/* Before the page's final call to action: the final section brings its own top space. */
+.s-lg.s-lg--then-final { padding-bottom: 0; }

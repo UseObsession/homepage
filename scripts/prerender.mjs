@@ -7,9 +7,10 @@
      (dist/agencies.html, dist/recipes/mystery-shopper.html), which Cloudflare's static assets serve at /agencies with
      a 200, sending /agencies/ to /agencies: the canonical, with no trailing slash. dist/index.html is Home.
    - 404.html (noindex), which the host serves for any other address.
-   - sitemap.xml (every page and recipe, each dated by the last commit to its words), robots.txt (search engines and AI
-     crawlers welcome), llms.txt (what Obsession is, and every page with its 1 line answer) and llms-full.txt (every
-     page's words as plain text, read from the HTML written here).
+   - sitemap.xml (every page, recipe, use case and post, each dated by the date a post states or else the last commit to
+     its words), robots.txt (search engines and AI crawlers welcome), llms.txt (what Obsession is, and every page with
+     its 1 line answer) and llms-full.txt (every page's words as plain text, read from the HTML written here).
+   - blog/rss.xml: every post, newest first (RSS 2.0), linked from every page's head once there is a post.
    Then it checks what it wrote: 1 h1 per page, unique titles and descriptions, every share image present, the JSON-LD
    parses, and every internal link lands on a page or a file. Broken promises fail the build; style notes only warn.
 
@@ -43,7 +44,11 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS } = await import(pathToFileURL(join(server, 'entry-server.js')).href)
+const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, postFileOf, blogUi, blogPage } = await import(
+  pathToFileURL(join(server, 'entry-server.js')).href
+)
+const postEntries = entries.filter((e) => e.kind === 'post')
+const FEED = `${SITE}/blog/rss.xml`
 const template = await readFile(join(dist, 'index.html'), 'utf8')
 
 /* Each app screen's own CSS, built as its own file (vite.config.ts: build.manifest). A page links the CSS of the screens
@@ -101,6 +106,7 @@ function head(e, { noindex = false } = {}) {
     `<meta name="twitter:image" content="${image}" />`,
     `<meta name="twitter:image:alt" content="${esc(alt)}" />`,
     `<script type="application/ld+json">${jsonLdScript(e)}</script>`,
+    postEntries.length ? `<link rel="alternate" type="application/rss+xml" title="${esc(blogUi.feedTitle)}" href="${FEED}" />` : '',
   ]
     .filter(Boolean)
     .join('\n    ')
@@ -162,7 +168,7 @@ await writeFile(
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ...entries.map((e) => {
-      const date = lastCommit(e.source)
+      const date = e.lastmod || lastCommit(e.source)
       return `  <url><loc>${absolute(e.meta.path)}</loc>${date ? `<lastmod>${date}</lastmod>` : ''}</url>`
     }),
     '</urlset>',
@@ -216,11 +222,19 @@ await writeFile(
     '',
     '## Pages',
     '',
-    ...ofKind('home', 'audience', 'developers', 'recipes', 'sample').map(link),
+    ...ofKind('home', 'audience', 'developers', 'recipes', 'sample', 'resources').map(link),
     '',
     '## Recipes',
     '',
     ...ofKind('recipe').map(link),
+    '',
+    '## Use cases',
+    '',
+    ...ofKind('use-cases', 'use-case').map(link),
+    '',
+    '## Blog',
+    '',
+    ...ofKind('blog', 'post').map(link),
     '',
     '## Trust',
     '',
@@ -229,6 +243,41 @@ await writeFile(
     '## Optional',
     '',
     `- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`,
+    '',
+  ].join('\n'),
+)
+
+/* ---- blog/rss.xml: every post, newest first. Written even with no posts, so the feed's address always answers. ---- */
+const xml = (s) => esc(s).replace(/'/g, '&apos;')
+const rfc822 = (iso) => new Date(`${iso}T09:00:00Z`).toUTCString()
+await mkdir(join(dist, 'blog'), { recursive: true })
+await writeFile(
+  join(dist, 'blog', 'rss.xml'),
+  [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
+    '  <channel>',
+    `    <title>${xml(blogUi.feedTitle)}</title>`,
+    `    <link>${absolute('/blog')}</link>`,
+    `    <description>${xml(blogPage.meta.description)}</description>`,
+    '    <language>en-gb</language>',
+    `    <atom:link href="${FEED}" rel="self" type="application/rss+xml" />`,
+    ...(postEntries[0] ? [`    <lastBuildDate>${rfc822(postEntries[0].article.updated)}</lastBuildDate>`] : []),
+    ...postEntries.map((e) =>
+      [
+        '    <item>',
+        `      <title>${xml(e.article.headline)}</title>`,
+        `      <link>${absolute(e.meta.path)}</link>`,
+        `      <guid isPermaLink="true">${absolute(e.meta.path)}</guid>`,
+        `      <pubDate>${rfc822(e.article.published)}</pubDate>`,
+        `      <description>${xml(e.line)}</description>`,
+        `      <category>${xml(e.article.section)}</category>`,
+        ...e.article.authors.map((a) => `      <dc:creator>${xml(a.name)}</dc:creator>`),
+        '    </item>',
+      ].join('\n'),
+    ),
+    '  </channel>',
+    '</rss>',
     '',
   ].join('\n'),
 )
@@ -369,6 +418,13 @@ for (const { e, app } of rendered) {
   }
 }
 
+/* A post's address is its slug, and its file is named for it (content/registry.ts). */
+for (const e of postEntries) {
+  const slug = e.meta.path.split('/').pop()
+  if (postFileOf[slug] !== slug) fail(`${e.meta.path}: the post's slug and its file's name differ (src/content/blog/${postFileOf[slug]}.ts).`)
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) fail(`${e.meta.path}: a post's slug is lower case words joined by single hyphens.`)
+}
+
 /* The browser never loads a screen to see whose workspace it shows, so components/workspace.ts lists the agency ones:
    every screen that says "Your agency" must be on it. */
 for (const f of readdirSync(join(root, 'src/screens/html')).filter((f) => f.endsWith('.html'))) {
@@ -412,5 +468,5 @@ if (problems.length) {
   throw new Error(`The prerender found ${problems.length} problem${problems.length > 1 ? 's' : ''}.`)
 }
 console.log(
-  `Prerendered ${rendered.length} pages and 404.html into ${relative(root, dist)}/, with sitemap.xml, robots.txt, llms.txt and llms-full.txt.`,
+  `Prerendered ${rendered.length} pages (${postEntries.length} posts) and 404.html into ${relative(root, dist)}/, with sitemap.xml, robots.txt, llms.txt, llms-full.txt and blog/rss.xml.`,
 )

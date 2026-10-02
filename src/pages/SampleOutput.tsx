@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { Mark, type Status } from '../components/Logo'
 import { StillMark } from '../components/StillMark'
+import { Crumbs } from '../components/Crumbs'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Outputs } from '../components/sections/Outputs'
@@ -65,6 +66,7 @@ function Hero() {
   return (
     <section className="s-hero s-so-hero" aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-hero-wrap">
+        <Crumbs />
         <div className="s-hero-head ob-anim-hero">
           <p className="ob-layout-eyebrow s-hero-pill">
             <Mark size={16} />

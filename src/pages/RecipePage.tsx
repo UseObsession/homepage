@@ -2,6 +2,7 @@ import { useId, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
 import { CaptureForm } from '../components/CaptureForm'
+import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Console } from '../components/sections/Console'
 import { Faq } from '../components/sections/Faq'
@@ -81,20 +82,12 @@ function Hero({ r, workspace }: { r: Recipe; workspace: Workspace }) {
   return (
     <section className="s-hero s-rp-hero" aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-hero-wrap">
+        <Crumbs />
         <div className="s-hero-head ob-anim-hero">
-          <nav className="ob-layout-eyebrow s-hero-pill s-rp-crumbs" aria-label={ui.crumbs.label}>
+          <p className="ob-layout-eyebrow s-hero-pill">
             <Mark size={16} />
-            <ol className="s-rp-crumbs__list">
-              <li>
-                <Link className="s-rp-crumbs__link" to={ui.crumbs.index.to}>
-                  {ui.crumbs.index.label}
-                </Link>
-              </li>
-              <li>
-                <span aria-current="page">{r.name}</span>
-              </li>
-            </ol>
-          </nav>
+            {ui.pill}
+          </p>
           <h1 className="s-hero-h" id={`${id}-h`}>
             {r.hero.headline}
           </h1>

@@ -1,0 +1,30 @@
+/* The breadcrumb (components/Crumbs) on navigation.css .ob-crumbs: centred on the hero's axis, in the caption size so it
+   reads as way finding, not as part of the page's words. Parents rest in the third ink and take the second on hover;
+   the page itself is in the second ink. */
+.s-crumbs {
+  justify-self: center;
+  max-width: 100%;
+  margin: 0 0 var(--ob-space-32);
+}
+.s-crumbs .ob-crumbs__list {
+  justify-content: center;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+}
+.s-crumbs .ob-crumbs__link { color: var(--ob-text-3); }
+@media (hover: hover) and (pointer: fine) {
+  .s-crumbs .ob-crumbs__link:hover { color: var(--ob-text); }
+}
+.s-crumbs .ob-crumbs__current { color: var(--ob-text-2); }
+/* A trail is wider than a crumb's 16ch cap allows when the names are long ("Member prices for price intelligence"):
+   parents keep their names whole, and only the page itself gives way. */
+.s-crumbs .ob-crumbs__item:not(:last-child) { max-width: none; flex-shrink: 0; }
+
+/* A page with a breadcrumb starts its hero closer to the bar: the crumb takes the air the pill had. */
+.s-hero:has(> .s-wrap > .s-crumbs),
+.s-hero:has(> .s-wrap > * > .s-crumbs) { padding-top: var(--ob-space-40); }
+
+@media (max-width: 519.98px) {
+  .s-crumbs { margin-bottom: var(--ob-space-24); }
+  .s-crumbs--deep .ob-crumbs__item:last-child { display: none; }
+}

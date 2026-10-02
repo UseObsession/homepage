@@ -14,6 +14,9 @@ import type { UseCaseStudy } from '../types'
    Screens: claycols (set up), brandwatch (the watching), proofmail (the proof and the opener). */
 
 export const study: UseCaseStudy = {
+  name: 'Prospect intelligence with Clay',
+  line: 'Proof of a real gap at each brand, back in Clay.',
+
   meta: {
     path: '/use-cases/prospect-intelligence-with-clay',
     title: 'Prospect intelligence with Clay: a proven gap at each brand',
@@ -24,12 +27,14 @@ export const study: UseCaseStudy = {
     ogImage: '/og/prospect-intelligence-with-clay.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
+      { name: 'Resources', path: '/resources' },
+      { name: 'Use cases', path: '/use-cases' },
       { name: 'Prospect intelligence with Clay', path: '/use-cases/prospect-intelligence-with-clay' },
     ],
   },
 
   hero: {
-    pill: 'Use cases / Prospect intelligence with Clay',
+    pill: 'Early access',
     headline: 'Proof of a real gap at every brand on your list',
     typed: [
       'Opt in to texts at every brand in our Clay view and flag the ones that never send one',

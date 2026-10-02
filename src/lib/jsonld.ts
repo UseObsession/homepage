@@ -3,7 +3,9 @@
    - Organization and WebSite on every page.
    - WebPage on every page; a FAQPage too wherever the page shows questions (the same words, so they match the page).
    - SoftwareApplication on Home.
-   - BreadcrumbList wherever the page's Meta has a breadcrumb (audience, recipe and site pages).
+   - BreadcrumbList wherever the page's Meta has a breadcrumb: every page below Home, matching the breadcrumb the page
+     shows (components/Crumbs reads the same list).
+   - BlogPosting on every post, with both founders as its authors (docs/REBUILD.md 9c), and Blog on /blog, listing them.
    No prices, ratings or offers: the site states none. */
 import { absolute, entries, SITE, type Entry } from '../content/meta'
 import { CONTACT_EMAIL, llms } from '../content/site'
@@ -32,6 +34,47 @@ const website: Node = {
   description: llms.summary,
   inLanguage: 'en-GB',
   publisher: { '@id': ORG },
+}
+
+const BLOG = `${SITE}/blog#blog`
+
+/* A founder, as the byline names them. */
+const person = (a: { name: string; role: string }): Node => ({ '@type': 'Person', name: a.name, jobTitle: a.role, worksFor: { '@id': ORG } })
+
+function posting(e: Entry): Node {
+  const a = e.article!
+  const url = absolute(e.meta.path)
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: a.headline,
+    description: a.description,
+    abstract: e.meta.answer,
+    url,
+    mainEntityOfPage: { '@id': `${url}#webpage` },
+    isPartOf: { '@id': BLOG },
+    datePublished: a.published,
+    dateModified: a.updated,
+    author: a.authors.map(person),
+    publisher: { '@id': ORG },
+    image: { '@type': 'ImageObject', url: absolute(e.meta.ogImage), width: 1200, height: 630 },
+    articleSection: a.section,
+    keywords: a.keywords.join(', '),
+    inLanguage: 'en-GB',
+  }
+}
+
+function blog(e: Entry): Node {
+  return {
+    '@type': 'Blog',
+    '@id': BLOG,
+    name: 'The Obsession blog',
+    url: absolute(e.meta.path),
+    description: e.meta.description,
+    inLanguage: 'en-GB',
+    publisher: { '@id': ORG },
+    blogPost: entries.filter((p) => p.kind === 'post').map((p) => ({ '@id': `${absolute(p.meta.path)}#article` })),
+  }
 }
 
 function software(e: Entry): Node {
@@ -79,6 +122,8 @@ export function jsonLd(e: Entry): Node {
 
   const graph: Node[] = [organization, website, page]
   if (e.kind === 'home') graph.push(software(e))
+  if (e.kind === 'blog') graph.push(blog(e))
+  if (e.kind === 'post' && e.article) graph.push(posting(e))
   if (crumbs?.length)
     graph.push({
       '@type': 'BreadcrumbList',

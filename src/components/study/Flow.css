@@ -1,0 +1,115 @@
+/* The use case's hero object (components/study/Flow): 1 product surface in 3 stops, the middle one raised. Tokens only;
+   site classes start s-flow. */
+.s-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--s-flow-n, 3), minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight);
+  text-align: left;
+}
+
+.s-flow__stop {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-32) var(--ob-space-32) var(--ob-space-28);
+}
+.s-flow__stop + .s-flow__stop { box-shadow: inset var(--ob-border-hair) 0 0 var(--ob-line-subtle); }
+/* Obsession: the raised panel, standing a little proud of the strip. */
+.s-flow__stop.is-obsession {
+  z-index: 1;
+  margin-block: calc(var(--ob-space-12) * -1);
+  padding-block: calc(var(--ob-space-32) + var(--ob-space-12)) calc(var(--ob-space-28) + var(--ob-space-12));
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+.s-flow__stop.is-obsession + .s-flow__stop { box-shadow: none; }
+
+/* The arrow sits on the line between 2 stops, in a small round well. */
+.s-flow__arrow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--ob-space-28);
+  height: var(--ob-space-28);
+  margin: calc(var(--ob-space-28) / -2) 0 0 calc(var(--ob-space-28) / -2);
+  border-radius: var(--ob-radius-pill);
+  background-color: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-ui);
+  color: var(--ob-text-2);
+}
+.s-flow__arrow svg {
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.s-flow__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: var(--ob-type-caption);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+.is-obsession .s-flow__label { color: var(--ob-text); }
+.s-flow__title {
+  margin: var(--ob-space-8) 0 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-flow__items {
+  display: grid;
+  align-content: start;
+  margin: var(--ob-space-20) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.s-flow__items > li {
+  padding-block: var(--ob-space-8);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.is-obsession .s-flow__items > li { color: var(--ob-text); border-top-color: var(--ob-line); }
+.s-flow__items > li.is-new { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-8); color: var(--ob-text); }
+.s-flow__foot {
+  margin: var(--ob-space-20) 0 0;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Phones and narrow tablets: the stops stack, and the arrows turn down onto the line between them. */
+@media (max-width: 859.98px) {
+  .s-flow { grid-template-columns: minmax(0, 1fr); }
+  .s-flow__stop { padding: var(--ob-space-28) var(--ob-space-24) var(--ob-space-24); }
+  .s-flow__stop + .s-flow__stop { box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
+  .s-flow__stop.is-obsession {
+    margin: 0 calc(var(--ob-space-8) * -1);
+    padding: var(--ob-space-28) calc(var(--ob-space-24) + var(--ob-space-8)) var(--ob-space-24);
+  }
+  .s-flow__arrow { top: 0; left: 50%; rotate: 90deg; }
+}

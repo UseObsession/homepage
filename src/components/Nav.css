@@ -1,6 +1,6 @@
 /* The site nav (components/Nav), composed from the design system: .ob-nav (bar), .ob-menu (surfaces), .ob-mnav (phone
    sheet), .ob-btn (call to action, menu button, theme switch). These rules only place things and add what the system
-   lacks: a grouped, multi-column menu (.s-menu--recipes), menus of 2-line rows (.s-menu--rich, .s-menu__item--rich), disclosure groups in
+   lacks: grouped, multi-column menus (.s-menu--recipes, .s-menu--resources), 2-line menu rows (.s-menu__item--rich), disclosure groups in
    the sheet (.s-mnav__toggle) and a sliding sheet (.ob-anim-sheet on .ob-mnav). Tokens only, no colour literals. */
 
 /* ---------------------------------------------------------------------------------------------
@@ -53,36 +53,16 @@
 @container ob-nav (max-width: 489.98px) {
   .s-nav--cta-l .ob-nav__end > .ob-nav__cta { display: none; }
 }
-/* The 3-column bar keeps its links centred while the links, 2 x the wider side, the 2 gaps (32px) and the gutters (64px)
-   fit. The 5 links (Solutions, Recipes and Use cases with their chevrons, Developers, Sample output) take about 526px
-   (each trigger is its label plus 38px; Geist 14px medium runs about 7.3px a letter, measured against the 418px of the
-   first 4). The wider side is the 158px lockup or the call to action, plus the 72px theme switch and its 12px gap from
-   1080px. So the bar goes compact (the menu button and the sheet take over) below 950px with a call to action of up to
-   17 letters (137px), below 990px with 18 to 22 (175px) and below 1080px with a longer one (224px). With the theme
-   switch the 175px one needs 1150px, and the 224px one would need 1174px of a bar that holds 1160px, so the switch
-   leaves the bar below 1150px for the first and always for the second (it stays in the footer). */
-@container ob-nav (max-width: 949.98px) {
-  .s-nav .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
-  .s-nav .ob-nav__links { display: none; }
-  .s-nav .ob-nav__end { gap: var(--ob-space-8); }
-  .s-nav .ob-nav__end > .ob-nav__menu { display: inline-flex; }
-}
-@container ob-nav (max-width: 989.98px) {
-  .s-nav--cta-m .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
-  .s-nav--cta-m .ob-nav__links { display: none; }
-  .s-nav--cta-m .ob-nav__end { gap: var(--ob-space-8); }
-  .s-nav--cta-m .ob-nav__end > .ob-nav__menu { display: inline-flex; }
-}
-@container ob-nav (max-width: 1079.98px) {
+/* The 3-column bar holds the lockup, the 4 links (Solutions, Recipes and Resources with their chevrons, then Developers:
+   about 400px, a little under the 418px the bar was measured with) and the call to action on equal sides. A long call
+   to action needs 920px for that, so its bar goes compact below 920px instead of 860px (the menu button and the sheet
+   take over). */
+@container ob-nav (max-width: 919.98px) {
   .s-nav--cta-l .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
   .s-nav--cta-l .ob-nav__links { display: none; }
   .s-nav--cta-l .ob-nav__end { gap: var(--ob-space-8); }
   .s-nav--cta-l .ob-nav__end > .ob-nav__menu { display: inline-flex; }
 }
-@container ob-nav (max-width: 1149.98px) {
-  .s-nav--cta-m .ob-nav__end > .s-nav__theme { display: none; }
-}
-.s-nav--cta-l .ob-nav__end > .s-nav__theme { display: none; }
 
 
 /* ---------------------------------------------------------------------------------------------
@@ -98,8 +78,9 @@
   transform: translateX(-50%);
 }
 .s-menu[hidden] { display: none; }
-.s-menu--rich { width: 360px; }
-.s-menu--recipes { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
+.s-menu--solutions { width: 360px; }
+.s-menu--recipes,
+.s-menu--resources { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
 
 .s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
 
@@ -138,7 +119,13 @@
   font-weight: var(--ob-weight-medium);
   color: var(--ob-text-3);
 }
-.s-menu--recipes .ob-menu__sep { margin: var(--ob-space-8) calc(var(--ob-space-8) * -1); }
+:is(.s-menu--recipes, .s-menu--resources) .ob-menu__sep { margin: var(--ob-space-8) calc(var(--ob-space-8) * -1); }
+
+/* Resources: the use cases under their name on the left; the blog and the sample output on the right, their first row
+   level with the first use case (the label's own height: its 8px and 4px of padding and 1 caption line). */
+.s-menu__cols--resources { grid-template-columns: 296px 272px; }
+.s-menu__col--more { padding-top: calc(var(--ob-space-12) + var(--ob-type-caption-size) * var(--ob-type-caption-leading)); }
+.s-menu__col .s-menu__all { margin-top: var(--ob-space-2); }
 .s-menu__all { grid-template-columns: auto auto; justify-content: start; gap: var(--ob-space-8); font-weight: var(--ob-weight-medium); }
 .s-menu__arrow { color: var(--ob-text-3); transition: translate var(--ob-dur-base) var(--ob-ease-out); }
 @media (hover: hover) and (pointer: fine) {
@@ -154,13 +141,10 @@
   .s-mnav.ob-anim-sheet { animation: ob-sheet-in var(--ob-dur-slow) var(--ob-ease-out) backwards; }
   .s-mnav.ob-anim-sheet.is-leaving { animation: ob-sheet-out var(--ob-dur-moderate) var(--ob-ease-in) forwards; }
 }
-@container ob-nav (min-width: 950px) {
-  .s-nav:not(.s-nav--cta-m, .s-nav--cta-l) .s-mnav { display: none; }
-}
-@container ob-nav (min-width: 990px) {
+@container ob-nav (min-width: 860px) {
   .s-nav:not(.s-nav--cta-l) .s-mnav { display: none; }
 }
-@container ob-nav (min-width: 1080px) {
+@container ob-nav (min-width: 920px) {
   .s-mnav { display: none; }
 }
 .s-mnav { gap: var(--ob-space-16); }
@@ -202,5 +186,6 @@
   margin-top: calc(var(--ob-sq-sm) / -2);
 }
 .s-mnav__all { gap: var(--ob-space-8); }
+.s-mnav__sub--more { margin-top: var(--ob-space-8); }
 .s-mnav__all[aria-current="page"]::after { content: none; }
 .s-mnav__all .s-menu__arrow { margin-inline-start: 0; }
