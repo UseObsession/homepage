@@ -146,6 +146,44 @@
   text-wrap: balance;
 }
 
+/* ---- Reader colour (styles/accents.css; _research/colour/COLOUR.md P3). The hue marks the reader, never a word, the
+   ring or the console, and only on a reader's own page: 1 glow, and the typed heading's caret (the brand square).
+   Home has no reader, so its caret stays the design system's: COLOUR.md's Home caret (P2) named the reader of each
+   typed task, and that task line left the hero on 3 Oct. Its 2 console phrases name no reader. ---- */
+
+/* A reader's own page: 1 soft glow of the reader's hue behind the pill and the headline, the hero's 1 glow. The ellipse
+   fades to nothing at the hero's top edge, so there is no seam under the sticky nav, and before the form and the
+   console. It eases out (smoothstep: 1, .84, .5, .16 and 0 of the hero alpha) instead of ramping straight down, so it
+   reads as light, with no hot spot and no oval rim, and never passes the token's alpha. The pill's ring stays
+   --ob-text: the glow lights the words, never the mark. */
+.s-hero[data-reader] {
+  position: relative;
+  isolation: isolate;
+}
+.s-hero[data-reader]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(100%, var(--ob-container, 1160px));
+  height: 480px;
+  translate: -50% 0;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent),
+    color-mix(in srgb, var(--s-accent-glow) calc(var(--s-accent-glow-hero) * .84), transparent) 25%,
+    color-mix(in srgb, var(--s-accent-glow) calc(var(--s-accent-glow-hero) * .5), transparent) 50%,
+    color-mix(in srgb, var(--s-accent-glow) calc(var(--s-accent-glow-hero) * .16), transparent) 75%,
+    transparent
+  );
+  pointer-events: none;
+}
+.s-hero[data-reader] .s-hero-console-h .s-typed-caret { color: var(--s-accent); }
+@media (forced-colors: active) {
+  .s-hero[data-reader]::before { display: none; }
+}
+
 /* Phones and narrow tablets: the facts stack, each still centred, with a short rule between them. */
 @media (max-width: 759.98px) {
   .s-hero { padding-top: var(--ob-space-48); }

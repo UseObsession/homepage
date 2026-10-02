@@ -4,6 +4,8 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 // The Obsession design system first (src/styles/ds, synced by scripts/sync-assets.mjs), then the site's own styles.
 import './styles/ds/tokens.css'
 import './styles/ds/motion.css'
+// The reader accents (site layer, --s-accent-*), until the design system absorbs them as --ob-reader-*: COLOUR.md.
+import './styles/accents.css'
 import './styles/ds/components/buttons.css'
 import './styles/ds/components/forms.css'
 import './styles/ds/components/navigation.css'

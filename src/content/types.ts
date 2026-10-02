@@ -18,6 +18,8 @@ export type RecipeId =
   | 'expansion' | 'upsells' | 'reviews' | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
+/* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
+export type ReaderId = AudienceId | 'developers'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
 
 /* SEO and answer engines: 1 unique title (55 to 60 characters) and description (140 to 155) per page. `answer` is
@@ -107,6 +109,10 @@ export type Kinds = { heading: string; label: string; items: { name: string; lin
    object is that app screen, under its Example tag (Home's short section on the AI agent checks). */
 export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
 export type Faq = { heading: string; items: { q: string; a: string }[] }
+/* The rules every run follows (James's "Built to behave.", docs/REBUILD.md 1d): the trust beat before the questions. A
+   claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
+   agent meets can read (/agents). Never "it follows robots.txt". */
+export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
 export type Final = { heading: string; sub: string; capture: Capture }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
@@ -138,6 +144,7 @@ export type Page = {
   developers?: Developers
   /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */
   verify?: Proof
+  rules?: Rules
   faq: Faq
   final: Final
 }

@@ -1,5 +1,7 @@
 /* Who it's for (components/sections/PersonaBand): James's persona band on the design system. Every reader sits on 1
-   band, cut on the diagonal; each panel is 1 link. Monochrome: --ob- surfaces, hairlines and ink only.
+   band, cut on the diagonal; each panel is 1 link. --ob- surfaces, hairlines and ink, plus 1 reader hue per panel
+   (styles/accents.css, _research/colour/COLOUR.md P1): the key square, a soft glow on the face, and the arrow when lit.
+   No word is ever set in a reader colour.
 
    1 object. The list is the band: the interactive card's surface (--ob-surface-raised, --ob-highlight, --ob-shadow-1),
    1 outer hairline in --ob-line with the 22px end corners. The hairline is the list's own fill showing round the
@@ -11,18 +13,25 @@
    link's own fill is the rim, which only shows as the 2px focus ring; its ::before is the face, inset by the rim, and
    its ::after the state layer. The same polygon serves all 3: inset by 2px its edges stay parallel to under a pixel.
 
-   A panel is a poster: the bare arrow (.ob-card-go) at the top right, the same inset on every panel, then at the foot
-   the name in h3, its line and the 2 picks. The panels share their rows through subgrid, so names, lines and picks
-   sit on common lines across the band.
+   A panel is a poster: the reader's key (the brand square in its hue) at the top left and the bare arrow (.ob-card-go)
+   at the top right, the same inset from the edge on every panel, then at the foot the name in h3, its line and the 2
+   picks. The panels share their rows through subgrid, so names, lines and picks sit on common lines across the band.
+   Each face carries a soft radial glow of its reader's hue, rising from the empty top edge, so no word sits on colour.
 
-   States are the design system's interactive card (surfaces.css): cards never move. Hover lays --ob-state-hover over
-   the face and the arrow turns --ob-text and slides 4px; press lays --ob-state-pressed; keyboard focus draws the 2px
-   ring inside the cut. Only colour and the arrow's translate change; reduced motion sets the slide to 0
-   (motion.css --ob-shift-xs).
+   States are the design system's interactive card (surfaces.css): cards never move. Lit (hover, keyboard focus,
+   press), the face's glow rises from --s-accent-glow-rest to --s-accent-glow-hover in place of --ob-state-hover (the 2
+   are never stacked), the arrow takes the reader's hue and slides 4px, and the picks lift to --ob-text-2; press also
+   lays --ob-state-pressed; keyboard focus draws the 2px ring inside the cut. Only colour and the arrow's translate
+   change; reduced motion sets the slide to 0 (motion.css --ob-shift-xs). With more contrast the glows go (accents.css)
+   and the neutral hover layer comes back.
 
    Below 1200px the panels stack as rows of the same band, cut by shallow slanted seams (James's mobile cut).
 
-   Site additions for the system to absorb: the diagonal band, and a rim drawn inside a clip-path as the focus ring. */
+   Site additions for the system to absorb: the diagonal band, a rim drawn inside a clip-path as the focus ring, and the
+   reader glow as the band's lit state (COLOUR.md, "For the design system chat"). */
+
+/* The face glow's strength, animated between the rest and lit alphas. */
+@property --s-pb-glow { syntax: '<percentage>'; inherits: true; initial-value: 0%; }
 
 .s-pb {
   --s-pb-slant: 32px;
@@ -99,7 +108,11 @@
   clip-path: var(--cut);
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+  --s-pb-glow: var(--s-accent-glow-rest);
+  --s-pb-glow-at: 90% 70% at 50% 0%;
+  transition:
+    background-color var(--ob-dur-base) var(--ob-ease-out),
+    --s-pb-glow var(--ob-dur-moderate) var(--ob-ease-out);
 }
 .s-pb__cell:first-child .s-pb__item { --l: 0; --tl: var(--s-pb-corner); --bl: var(--s-pb-corner); }
 .s-pb__cell:last-child .s-pb__item { --r: 0; --tr: var(--s-pb-corner); --br: var(--s-pb-corner); }
@@ -116,8 +129,21 @@
   clip-path: var(--cut);
   pointer-events: none;
 }
+/* The face: the raised surface under 1 soft glow of the reader's hue, rising from the top edge (never a flat tint).
+   The glow eases out (smoothstep: 1, .84, .5, .16 and 0 of --s-pb-glow) instead of ramping straight down, so it has
+   no hot spot and no rim, and never passes the token's alpha. --s-pb-glow-at is where it rises from: the top centre
+   here, the top left in stacked rows. */
 .s-pb__item::before {
-  background-color: var(--ob-surface-raised);
+  background:
+    radial-gradient(
+      var(--s-pb-glow-at),
+      color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-pb-glow), transparent),
+      color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-pb-glow) * .84), transparent) 18%,
+      color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-pb-glow) * .5), transparent) 36%,
+      color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-pb-glow) * .16), transparent) 54%,
+      transparent 72%
+    ),
+    var(--ob-surface-raised);
   box-shadow: var(--ob-highlight);
 }
 .s-pb__item::after {
@@ -133,6 +159,17 @@
   right: calc(var(--s-pb-pad) + var(--r) * var(--s-pb-slant) * .1);
 }
 .s-pb__go .ob-glyph { transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+
+/* The key: the brand square in the reader's colour, level with the arrow, its inset from the cut mirroring the arrow's
+   (on a cut panel, the edge at the key's height is 9 tenths of the slant in). */
+.s-pb__key.ob-sq {
+  position: absolute;
+  top: calc(var(--ob-space-24) + (var(--ob-icon-md) - var(--ob-sq-md)) / 2);
+  left: calc(var(--s-pb-pad) + var(--l) * var(--s-pb-slant) * .9);
+  width: var(--ob-sq-md);
+  height: var(--ob-sq-md);
+  color: var(--s-accent, currentColor);
+}
 
 .s-pb__name {
   grid-row: 2;
@@ -158,21 +195,34 @@
   font: var(--ob-type-mono-sm);
   letter-spacing: var(--ob-type-mono-sm-tracking);
   color: var(--ob-text-3);
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
 }
 .s-pb__pick { display: block; }
 
-/* ---- States: the interactive card's. Hover only for fine pointers; keyboard focus gets the ring and the arrow. Each
-   pseudo-state has a static twin (.is-hover, .is-focus, .is-active) so the states can be shown side by side, as in
-   the design system. ---- */
+/* ---- States: the interactive card's, lit by the reader's glow. Hover only for fine pointers; keyboard focus gets the
+   ring and the arrow. Each pseudo-state has a static twin (.is-hover, .is-focus, .is-active) so the states can be shown
+   side by side, as in the design system.
+   Lit, the glow rise is the hover layer: --ob-state-hover is never laid over a reader glow (COLOUR.md, Never 9). The
+   picks lift to --ob-text-2, which keeps them over 4.5:1 on the risen glow. ---- */
 
-.s-pb__item.is-hover::after { background-color: var(--ob-state-hover); }
-.s-pb__item:is(.is-hover, :focus-visible, .is-focus) .s-pb__go { color: var(--ob-text); }
+.s-pb__item:is(.is-hover, :focus-visible, .is-focus, :active, .is-active) { --s-pb-glow: var(--s-accent-glow-hover); }
+.s-pb__item:is(.is-hover, :focus-visible, .is-focus, :active, .is-active) .s-pb__go { color: var(--s-accent, var(--ob-text)); }
+.s-pb__item:is(.is-hover, :focus-visible, .is-focus, :active, .is-active) .s-pb__picks { color: var(--ob-text-2); }
 .s-pb__item:is(.is-hover, :focus-visible, .is-focus) .s-pb__go .ob-glyph { translate: var(--ob-shift-xs) 0; }
 
 @media (hover: hover) and (pointer: fine) {
-  .s-pb__item:hover::after { background-color: var(--ob-state-hover); }
-  .s-pb__item:hover .s-pb__go { color: var(--ob-text); }
+  .s-pb__item:hover { --s-pb-glow: var(--s-accent-glow-hover); }
+  .s-pb__item:hover .s-pb__go { color: var(--s-accent, var(--ob-text)); }
+  .s-pb__item:hover .s-pb__picks { color: var(--ob-text-2); }
   .s-pb__item:hover .s-pb__go .ob-glyph { translate: var(--ob-shift-xs) 0; }
+}
+
+/* More contrast: the glows are off (accents.css), so the design system's neutral hover layer marks the lit face again. */
+@media (prefers-contrast: more) {
+  .s-pb__item.is-hover::after { background-color: var(--ob-state-hover); }
+}
+@media (prefers-contrast: more) and (hover: hover) and (pointer: fine) {
+  .s-pb__item:hover::after { background-color: var(--ob-state-hover); }
 }
 
 .s-pb__item:is(:active, .is-active)::after {
@@ -232,7 +282,8 @@
     --s-pb-clear-b: var(--ob-space-20);
     grid-row: auto;
     grid-template-rows: none;
-    grid-template-columns: clamp(10rem, 16vw, 12rem) minmax(0, 1fr) 11rem auto;
+    /* The name column grows by the key and its gap. */
+    grid-template-columns: calc(clamp(10rem, 16vw, 12rem) + var(--ob-sq-md) + var(--ob-space-12)) minmax(0, 1fr) 11rem auto;
     grid-template-areas: "name line picks go";
     column-gap: var(--ob-space-24);
     padding: calc(var(--s-pb-clear-t) + var(--t) * var(--s-pb-rise)) var(--s-pb-pad)
@@ -249,13 +300,18 @@
   .s-pb__line { grid-area: line; align-self: center; margin-top: 0; max-width: 52ch; }
   .s-pb__picks { grid-area: picks; align-self: center; margin-top: 0; }
   .s-pb__go { grid-area: go; position: static; align-self: center; }
+
+  /* The key moves inline before the name, like a legend key, and the glow rises from the row's top left, where the
+     name is. */
+  .s-pb__key.ob-sq { position: static; display: inline-block; margin-right: var(--ob-space-12); vertical-align: .16em; }
+  .s-pb__item { --s-pb-glow-at: 70% 160% at 0% 0%; }
 }
 
 @media (max-width: 959.98px) {
   .s-pb__item,
   .s-pb__cell:first-child .s-pb__item,
   .s-pb__cell:last-child .s-pb__item {
-    grid-template-columns: 10rem minmax(0, 1fr) auto;
+    grid-template-columns: calc(10rem + var(--ob-sq-md) + var(--ob-space-12)) minmax(0, 1fr) auto;
     grid-template-areas: "name line go";
   }
   .s-pb__picks { display: none; }
@@ -296,5 +352,7 @@
   }
   .s-pb__item::before,
   .s-pb__item::after { display: none; }
+  /* The faces and their glows drop here; the key goes with them, as the name already says who the panel is for. */
+  .s-pb__key { display: none; }
   .s-pb__item:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
 }

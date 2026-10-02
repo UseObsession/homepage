@@ -9,6 +9,7 @@ import { Outputs } from '../components/sections/Outputs'
 import { PersonaBand } from '../components/sections/PersonaBand'
 import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
+import { Rules } from '../components/sections/Rules'
 import { pages } from '../content/registry'
 import './StoryPage.css'
 
@@ -16,7 +17,8 @@ import './StoryPage.css'
    hero > who it's for (the reader picker, right under the console: the fork for readers who know who they are) >
    how it works > the gap > the 4 jobs > the AI agent checks (the 4th way in: the claim beside its screen, linking
    /verify) > recipes > proof (the real September store check, in every output, with "Try your first shop free") >
-   developers > questions > the waitlist (#join, where the nav's call to action lands).
+   developers > the rules every run follows (the trust beat, docs/REBUILD.md 1d) > questions > the waitlist (#join,
+   where the nav's call to action lands).
    Home is drawn in the agency workspace, like Agencies. */
 const page = pages.home
 const workspace = 'agency'
@@ -33,6 +35,7 @@ export function Home() {
       {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" id="proof" />}
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="developers" />}
+      {page.rules && <Rules rules={page.rules} id="rules" />}
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

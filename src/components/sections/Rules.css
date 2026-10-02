@@ -1,0 +1,82 @@
+/* The rules every run follows (components/sections/Rules). Design system tokens and type only; site classes start
+   s-rules. Monochrome: the reader colours never reach here (COLOUR.md, Never 6).
+
+   From 1080px it sits on the page's split (--s-split, 5 columns to 7), like the questions under it: the claim, its line
+   and the link on the left; the rules on the right in 2 columns, the second starting where the recipes' second column
+   does (a 48px gap). Each rule hangs from its own hairline, its claim in the title type and its line in small type. */
+
+.s-rules__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--ob-space-block);
+}
+
+.s-rules__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  align-content: start;
+  gap: var(--ob-space-16);
+}
+.s-rules__h { max-width: var(--ob-measure-heading); margin: 0; }
+.s-rules__line {
+  max-width: 40ch;
+  margin: 0;
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+/* The link to /agents: the ring, then the words, then the arrow. 8px more air than the line's own gap. */
+.s-rules__link { margin-top: var(--ob-space-8); }
+.s-rules__link .s-mark { color: var(--ob-text); }
+@media (hover: hover) and (pointer: fine) {
+  .s-rules__link:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+
+.s-rules__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-40) var(--ob-space-48);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-rules__item {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-8);
+  min-width: 0;
+  padding-top: var(--ob-space-20);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-rules__title {
+  max-width: 26ch;
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-rules__text {
+  max-width: 40ch;
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+@media (min-width: 1080px) {
+  .s-rules__grid {
+    grid-template-columns: var(--s-split);
+    column-gap: var(--s-split-gap);
+    align-items: start;
+  }
+}
+
+/* Phones: 1 rule under the next. */
+@media (max-width: 639.98px) {
+  .s-rules__list {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--ob-space-32);
+  }
+}

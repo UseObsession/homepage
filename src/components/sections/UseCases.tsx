@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { Link } from 'react-router-dom'
-import type { Recipe, RecipeId, Uses } from '../../content/types'
+import type { ReaderId, Recipe, RecipeId, Uses } from '../../content/types'
 import { AppScreen, type Workspace } from '../AppScreen'
 import './UseCases.css'
 
@@ -160,19 +160,23 @@ export function TabRail({
    outcome as its heading, what the agents do, why only agents can, the recipe it runs on, and its own app screen,
    which plays its story when the tab is picked. Every panel is in the page's HTML. Side by side, the ones not chosen
    keep their place in the grid but stay hidden, so the section never changes height between tabs; stacked on a phone,
-   only the chosen one takes room. */
+   only the chosen one takes room.
+   On a reader's own page (`reader`), the bar under the chosen tab takes the page's hue, the room's colour coming back
+   once mid page (UseCases.css). The labels, fills, hover and focus stay the design system's. */
 export function UseCases({
   uses,
   workspace = 'company',
   initial = 0,
   id = 'uses',
   className = '',
+  reader,
 }: {
   uses: Uses
   workspace?: Workspace
   initial?: number
   id?: string
   className?: string
+  reader?: ReaderId
 }) {
   const base = useId().replace(/[^a-zA-Z0-9_-]/g, '') + id
   const [index, setIndex] = useState(initial)
@@ -183,7 +187,7 @@ export function UseCases({
   if (!uses.items.length) return null
 
   return (
-    <section className={`s-section s-uses ${className}`} id={id} aria-labelledby={`${base}-h`}>
+    <section className={`s-section s-uses ${className}`} id={id} data-reader={reader} aria-labelledby={`${base}-h`}>
       <div className="s-wrap">
         <div className="s-head s-head--wide">
           <h2 className="ob-type-h2" id={`${base}-h`}>

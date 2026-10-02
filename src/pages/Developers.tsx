@@ -15,18 +15,19 @@ import './StoryPage.css'
 /* /developers, composed from content/pages/developers.ts in the order of docs/REBUILD.md 2, with the code (the
    `developers` beat: the SDK call beside the `dev` screen) straight after How, as James had the code at the top:
    hero > how it works > the code > the gap > use cases > outcomes > every kind of product > recipes > proof >
-   questions > "Get API access" (#join). Drawn in the reader's own company. */
+   questions > "Get API access" (#join). Drawn in the reader's own company. The page's hue is the developers' (the
+   hero's glow and caret, the use case tabs' bar: styles/accents.css). */
 const page = pages.developers
 const workspace = 'company'
 
 export function Developers() {
   return (
     <>
-      <Hero hero={page.hero} workspace={workspace} />
+      <Hero hero={page.hero} workspace={workspace} reader="developers" />
       <How how={page.how} workspace={workspace} id="how" />
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="code" />}
       <Gap gap={page.gap} id="gap" />
-      <UseCases uses={page.uses} workspace={workspace} id="uses" />
+      <UseCases uses={page.uses} workspace={workspace} reader="developers" id="uses" />
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}
       {page.kinds && <Kinds kinds={page.kinds} id="kinds" />}
       {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}
