@@ -1,0 +1,184 @@
+/* app-partners: Missions / Partner checks, Your company. Every Monday a declared agent visits each partner and affiliate page
+   as a customer: the link lands, the code applies in the basket, the current offer and creative are shown. Never their prices.
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, no list; plain h2, sans meta, the declared-agent pill;
+   lock line bottom left and app-board's toast bottom right, level with each other.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; body 50..348 (adcheck's and reviews' bottom) = the partner
+   table (316: Partner 108, Link 40, Code 84, Offer 84 with a 12px right inset; 28 + 6 x 45) and the partner card (200), gap 12;
+   foot band 360..400: lock line left, toast right.
+   Passed checks are quiet strokes; the 1 failure is the solid chip (the shop's "the 1 that needs you is solid"), black and
+   white because it is the fail state. --pt-hi is the 1 accent touch: the open row's edge bar only, never text. It falls back
+   to --fg until the site's accent palette lands.
+   Story: the partners tick through top to bottom, each mark landing as its 3 checks pass; Deals site's code is rejected
+   (solid SUMMER20, stale 20% off) and its mark goes to needs you; its card slides in with what a customer saw; the note drafts
+   in JO's thread; the pointer sends it (the OK), the row goes to waiting for Monday's next check, the toast confirms.
+   Rest state (no .play) = the finished scene: all checked, note sent with your OK. */
+
+.app-partners{--pt-hi:var(--s-accent, var(--fg))}
+.app-partners .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: title, how and when, the declared agent ---------- */
+.app-partners .pt-h{height:24px;min-width:0}
+.app-partners .pt-h h2{white-space:nowrap}
+.app-partners .pt-h .ax-meta{padding-top:2px;white-space:nowrap}
+.app-partners .pt-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-partners .pt-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-partners .pt-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-partners .pt-bd{display:grid;grid-template-columns:316px 200px;gap:12px;height:298px;min-width:0}
+
+/* ---------- the partners ---------- */
+.app-partners .pt-tb{display:grid;grid-template-rows:28px repeat(6,45px);border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-partners .pt-row{display:grid;grid-template-columns:108px 40px 84px 84px;align-items:center;box-shadow:0 -1px 0 var(--line) inset}
+.app-partners .pt-row:last-child{box-shadow:none}
+.app-partners .pt-row>span{position:relative;display:flex;align-items:center;min-width:0;height:100%;padding:0 8px;white-space:nowrap}
+.app-partners .pt-row>span:first-child{padding-left:12px}
+.app-partners .pt-row>span:last-child{padding-right:12px}
+.app-partners .pt-th{box-shadow:0 -1px 0 var(--line-2) inset}
+.app-partners .pt-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* partner: the row's mark, name, kind */
+.app-partners .pt-row>.p{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;row-gap:2px;align-content:center}
+.app-partners .pt-mk{grid-row:1;align-self:center;display:grid;width:12px;height:12px}
+.app-partners .pt-mk>*{grid-area:1/1;display:grid}
+.ilwrap .app-partners .pt-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-partners .pt-row .p b{font:500 11.5px/15px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-partners .pt-row .p small{grid-column:2;font:400 10.5px/13px var(--sans);color:var(--fg-3)}
+
+/* a check: a quiet stroke and the value it found */
+.app-partners .pt-r{display:inline-flex;align-items:center;gap:6px}
+.ilwrap .app-partners svg.pt-ck{width:12px;height:12px;flex:none;color:var(--fg-2)}
+.app-partners .pt-cd{font:400 10.5px/1 var(--mono);color:var(--fg-2)}
+.app-partners .pt-of{font:400 10.5px/1 var(--mono);color:var(--fg-2)}
+/* a check not reached yet (only seen while the run plays) */
+.app-partners .pt-row>.k::before,.app-partners .pt-row>.c::before,.app-partners .pt-row>.o::before{content:"";position:absolute;left:8px;top:50%;width:10px;height:2px;margin-top:-1px;border-radius:1px;background:var(--line-3);opacity:0}
+
+/* the partner that failed, selected: its card is open on the right */
+.app-partners .pt-hot{background:rgb(var(--fg-rgb) / .055)}
+.app-partners .pt-hot .p::before{content:"";position:absolute;left:0;top:50%;width:2px;height:24px;margin-top:-12px;border-radius:0 2px 2px 0;background:var(--pt-hi)}
+.app-partners .pt-hot .w0,.app-partners .pt-hot .w1{opacity:0}
+
+/* ---------- the partner card ---------- */
+.app-partners .pt-card{display:flex;flex-direction:column;min-width:0;padding:12px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-partners .pt-chd{display:flex;align-items:baseline;gap:8px;height:18px}
+.app-partners .pt-chd h3{font:600 15px/18px var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-partners .pt-chd .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* what a customer saw on their page (a capture: hex allowed here only) */
+.app-partners .pt-shot{flex:none;margin-top:10px;height:60px;grid-template-rows:16px 1fr}
+.app-partners .pt-shot::before{display:none}
+.app-partners .pt-url{display:flex;align-items:center;padding:0 8px;background:#D6D3CC;font:400 10.5px/1 var(--mono);color:#5E5B54;white-space:nowrap}
+.app-partners .pt-pg{display:grid;align-content:center;gap:4px;padding:0 8px}
+.app-partners .pt-bn{display:flex;align-items:center;height:18px;padding:0 6px;border-radius:3px;background:#D9C4B2;font:600 10.5px/1 var(--sans);color:#3B2E24;white-space:nowrap}
+.app-partners .pt-cr{display:flex;align-items:center;gap:4px;height:14px}
+.app-partners .pt-cr b{height:14px;padding:0 4px;border-radius:3px;font:500 10.5px/14px var(--mono);color:#1E1D1A;background:#F6F5F1;box-shadow:0 0 0 1px #B4AFA5 inset}
+.app-partners .pt-cr em{height:14px;padding:0 5px;border-radius:3px;font:500 10.5px/14px var(--sans);font-style:normal;color:#F6F5F1;background:#3A3834}
+.app-partners .pt-cr i{flex:1;height:3px;margin-left:6px}
+
+/* what failed */
+.app-partners .pt-fd{display:grid;gap:4px;margin-top:10px}
+.app-partners .pt-fd li{display:flex;align-items:center;gap:7px;height:16px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-partners .pt-fd svg{width:12px;height:12px;flex:none;color:var(--fg-3)}
+.app-partners .pt-fd .pt-f1{color:var(--fg)}
+.ilwrap .app-partners .pt-fd .pt-f1 svg{color:var(--fg)}
+.app-partners .pt-f1 b{font:500 11px/1 var(--mono)}
+
+/* the note, in the rep's own thread with the partner */
+.app-partners .pt-nt{flex:1;display:flex;flex-direction:column;min-height:0;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.app-partners .pt-nh{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
+.ilwrap .app-partners .pt-nh svg{width:13px;height:13px;flex:none;color:var(--fg-2)}
+.app-partners .pt-nh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-partners .pt-nh span{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+/* the note itself: a message a person sends (reviews' quote box), only the codes in mono */
+.app-partners .pt-q{margin-top:8px;padding:6px 10px;border-radius:6px;font:400 11.5px/16px var(--sans);color:var(--fg);
+  background:rgb(var(--fg-rgb) / .04);box-shadow:2px 0 0 var(--line-3) inset}
+.app-partners .pt-q .m{font:400 10.5px/16px var(--mono);white-space:nowrap}
+.app-partners .pt-nf{display:grid;height:24px;margin-top:auto}
+.app-partners .pt-nf>*{grid-area:1/1}
+.app-partners .pt-fa{display:flex;gap:6px;opacity:0}
+.app-partners .pt-fa .ax-btn{justify-content:center}
+.app-partners .pt-fa .ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-partners .pt-send{flex:1}
+.app-partners .pt-fb{display:flex;align-items:center;gap:7px;height:24px;padding:0 9px;border-radius:7px;font-size:11px;color:var(--fg-2);white-space:nowrap;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-partners .pt-fb svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-partners .pt-fb b{font-weight:500;color:var(--fg)}
+.app-partners .pt-fb .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* ---------- foot: the red line, and the toast ---------- */
+.app-partners .pt-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-partners .pt-note svg{width:12px;height:12px;flex:none;color:var(--fg-3)}
+/* toast: app-board's pattern */
+.app-partners .pt-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-partners .pt-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-partners .pt-toast b{font-weight:500;color:var(--fg)}
+.app-partners .pt-toast p span{color:var(--fg-3)}
+
+/* pointer: parks on Send; hidden at rest */
+.app-partners .pt-ptr{left:463px;top:322px}
+.ilwrap .app-partners .appx svg.pt-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes pt-show{from{opacity:0}to{opacity:1}}
+@keyframes pt-hide{from{opacity:1}to{opacity:0}}
+@keyframes pt-on{from{opacity:1}to{opacity:1}}
+@keyframes pt-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes pt-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes pt-pend{from{opacity:1}to{opacity:0}}
+@keyframes pt-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes pt-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+@keyframes pt-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}20%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes pt-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes pt-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes pt-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pt-ptr{
+  0%{opacity:0;transform:translate(64px,72px)}
+  10%{opacity:1}
+  32%{transform:translate(0,0) scale(1)}
+  37%{transform:translate(0,0) scale(.9)}
+  43%{transform:translate(0,0) scale(1)}
+  75%{opacity:1;transform:translate(5px,9px)}
+  100%{opacity:0;transform:translate(8px,14px)}}
+
+/* 1. the partners tick through: Link, then Code, then Offer; the row's mark lands when all 3 pass */
+.appx-il.play.app-partners .pt-row>.k::before{animation:pt-pend .15s linear var(--t) both}
+.appx-il.play.app-partners .pt-row>.c::before{animation:pt-pend .15s linear calc(var(--t) + .1s) both}
+.appx-il.play.app-partners .pt-row>.o::before{animation:pt-pend .15s linear calc(var(--t) + .2s) both}
+.appx-il.play.app-partners .pt-row>.k .pt-r{animation:pt-show .25s var(--ease) var(--t) both}
+.appx-il.play.app-partners .pt-row>.c .pt-r{animation:pt-show .25s var(--ease) calc(var(--t) + .1s) both}
+.appx-il.play.app-partners .pt-row>.o .pt-r{animation:pt-show .25s var(--ease) calc(var(--t) + .2s) both}
+.appx-il.play.app-partners .pt-row>.k .pt-ck{animation:pt-pop .4s var(--snap) var(--t) both}
+.appx-il.play.app-partners .pt-row>.c .pt-ck{animation:pt-pop .4s var(--snap) calc(var(--t) + .1s) both}
+.appx-il.play.app-partners .pt-row>.o .pt-ck{animation:pt-pop .4s var(--snap) calc(var(--t) + .2s) both}
+.appx-il.play.app-partners .pt-mk>.sig .sig-sq{animation:pt-home .55s var(--snap) calc(var(--t) + .32s) both}
+.appx-il.play.app-partners .pt-mk>.sig .sig-gap{animation:pt-show .3s var(--ease) calc(var(--t) + .5s) both}
+
+/* 2. Deals site: the link lands, SUMMER20 is rejected, last season's offer; the row goes to needs you */
+.appx-il.play.app-partners .pt-hot{animation:ax-in .55s var(--ease) var(--d) both,pt-glow 2.2s var(--ease) 1.72s both}
+.appx-il.play.app-partners .pt-hot>.c .pt-r{animation:pt-in .4s var(--ease) 1.45s both}
+.appx-il.play.app-partners .pt-hot>.o .pt-r{animation:pt-in .4s var(--ease) 1.6s both}
+.appx-il.play.app-partners .pt-hot>.c::before{animation:pt-pend .15s linear 1.45s both}
+.appx-il.play.app-partners .pt-hot>.o::before{animation:pt-pend .15s linear 1.6s both}
+.appx-il.play.app-partners .pt-hot .p::before{animation:pt-bar .4s var(--ease) 1.74s both}
+.appx-il.play.app-partners .pt-hot .w0{animation:pt-on .01s linear both,pt-hide .2s var(--ease) 1.72s forwards}
+.appx-il.play.app-partners .pt-hot .w1{animation:pt-show .2s var(--ease) 1.72s both,pt-hide .2s var(--ease) 4.8s forwards}
+.appx-il.play.app-partners .pt-hot .w1 .sig-sq{animation:pt-sqin .45s var(--snap) 1.72s both}
+.appx-il.play.app-partners .pt-hot .w2{animation:pt-show .25s var(--ease) 4.82s both}
+
+/* 3. its card slides in: what a customer saw, what failed */
+.appx-il.play.app-partners .pt-card{animation:ax-slide .6s var(--ease) 1.9s both}
+.appx-il.play.app-partners .pt-chd{animation:pt-in .45s var(--ease) 1.98s both}
+.appx-il.play.app-partners .pt-shot{animation:pt-in .45s var(--ease) 2.06s both}
+.appx-il.play.app-partners .pt-f1{animation:pt-in .4s var(--ease) 2.22s both}
+.appx-il.play.app-partners .pt-f2{animation:pt-in .4s var(--ease) 2.32s both}
+
+/* 4. the note drafts in JO's thread */
+.appx-il.play.app-partners .pt-nt{animation:pt-show .4s var(--ease) 3.08s both}
+.appx-il.play.app-partners .pt-nh{animation:pt-in .4s var(--ease) 3.1s both}
+.appx-il.play.app-partners .pt-q{animation:pt-in .45s var(--ease) 3.24s both}
+
+/* 5. Send is the OK: the buttons give way to the sent line, the row waits for Monday, the toast */
+.appx-il.play.app-partners .pt-fa{animation:pt-show .3s var(--ease) 3.6s both,pt-hide .2s var(--ease) 4.68s forwards}
+.appx-il.play.app-partners .pt-send{animation:pt-press .22s ease-out 4.42s}
+.appx-il.play.app-partners .pt-fb{animation:pt-in .4s var(--ease) 4.72s both}
+.appx-il.play.app-partners .pt-ptr{animation:pt-ptr 2s var(--ease) 3.7s both}
+.appx-il.play.app-partners .pt-toast{animation:pt-toast .45s var(--ease) 5.05s both}

@@ -2,13 +2,13 @@ import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
 /* Agencies (/agencies), the main ICP. The story: what Obsession is for an agency > how it works > the gap (the
-   agency's problem: unpaid pitch work, proving value, rivals selling AI) > use cases (win, deliver, keep, sell,
+   agency's problem: unpaid pitch work, proving value, rivals selling AI) > use cases (win, deliver, keep, grow, sell,
    mystery shop) > outcomes (up to ceilings, each with its model in the line) > every kind of agency > recipes >
    proof (the real September store check) > questions (red lines) > the free report.
    Hero demos are examples (the console’s Example tag and every ledger say so). The one real run appears only in the third proof
    fact and the proof beat, stated as it happened. Demo clients avoid "skincare" so no example reads as the real run.
    Screens: How uses the flow screens (agencytask, templates, kit, run); each use case has its own (pack, board,
-   approve, report, shop). */
+   approve, upsells, report, shop). Deliver runs on Ad landing check, grow on Client upsells. */
 
 export const page: Page = {
   meta: {
@@ -211,9 +211,9 @@ export const page: Page = {
         tab: 'Deliver for every client',
         moment: 'Monday, 08:00. 15 clients, and any live ad could be landing on a sold out page.',
         outcome: 'Broken ads caught each morning, before the day’s spend, for every client at once.',
-        line: 'With each client’s OK, agents follow every live ad to its page, price and code each morning, and flag only what needs you.',
-        whyOnly: 'Agents open each ad on a phone, the way a customer does, so they see the sold out page your ad dashboard never shows.',
-        recipe: 'ads',
+        line: 'With each client’s OK, agents open the page behind every live ad each morning, check its offer, price and stock, and flag only what needs you.',
+        whyOnly: 'Agents open each ad’s page on a phone, the way a customer does, so they see the sold out page your ad dashboard never shows.',
+        recipe: 'adcheck',
         screen: 'board',
       },
       {
@@ -224,6 +224,15 @@ export const page: Page = {
         whyOnly: 'Every step is signed and dated, so the client can check the work without taking your word for it.',
         recipe: 'audit',
         screen: 'approve',
+      },
+      {
+        tab: 'Grow every client',
+        moment: 'The first of the month. Some clients need more from you, and nobody has the proof to hand.',
+        outcome: 'A proposal for the next service each client needs, with the proof from your own checks.',
+        line: 'Agents read the checks you already run for each client, match every gap to a service you sell, and draft the proposal with its price. It goes from your own thread after your OK.',
+        whyOnly: 'The proof is the client’s own customer journey, checked by an agent with its own inbox and phone, so the proposal opens on what their customers get.',
+        recipe: 'upsells',
+        screen: 'upsells',
       },
       {
         tab: 'Sell a new service',
@@ -261,8 +270,8 @@ export const page: Page = {
     items: [
       {
         name: 'Performance and paid media',
-        line: 'Every client’s live ads opened on a phone each morning, and every rival’s new ads and prices logged.',
-        recipes: ['ads', 'prices', 'competitor', 'audit'],
+        line: 'The page behind every client’s live ad opened on a phone each morning, and every rival’s new ads and prices logged.',
+        recipes: ['adcheck', 'ads', 'prices', 'competitor', 'audit'],
       },
       {
         name: 'Email, SMS and CRM',
@@ -271,8 +280,8 @@ export const page: Page = {
       },
       {
         name: 'SEO and AI search',
-        line: 'Wrong facts in each client’s AI answers corrected at the source, and every form and booking link tested, with their OK.',
-        recipes: ['listings', 'audit', 'prospect'],
+        line: 'Wrong facts in each client’s AI answers corrected at the source, every customer asked for a review, and every form and booking link tested, with their OK.',
+        recipes: ['listings', 'reviews', 'audit', 'prospect'],
       },
       {
         name: 'Web and CRO',
@@ -287,7 +296,7 @@ export const page: Page = {
       {
         name: 'Social and influencer',
         line: 'Every creator code and link in bio tested daily with the client’s OK, and the ads rivals run in public logged.',
-        recipes: ['delivery', 'ads', 'competitor'],
+        recipes: ['partners', 'delivery', 'ads', 'competitor'],
       },
       {
         name: 'Content and copy',
@@ -321,8 +330,8 @@ export const page: Page = {
       },
       {
         name: 'Full service',
-        line: 'Pitches, delivery, renewals and the reports you sell, for every client on 1 board.',
-        recipes: ['prospect', 'mystery', 'ads', 'competitor', 'email-sms', 'audit'],
+        line: 'Pitches, delivery, upsells, renewals and the reports you sell, for every client on 1 board.',
+        recipes: ['prospect', 'mystery', 'upsells', 'ads', 'competitor', 'email-sms', 'audit'],
       },
       {
         name: 'Any other agency',
@@ -334,7 +343,7 @@ export const page: Page = {
 
   recipes: {
     heading: 'Each recipe does the work of a whole tool, for every client.',
-    ids: ['mystery', 'prospect', 'handover', 'checkout', 'competitor', 'email-sms', 'ads', 'prices', 'audit', 'delivery', 'listings', 'speed'],
+    ids: ['mystery', 'prospect', 'handover', 'upsells', 'checkout', 'adcheck', 'competitor', 'email-sms', 'ads', 'prices', 'audit', 'delivery', 'listings', 'speed'],
   },
 
   proof: {

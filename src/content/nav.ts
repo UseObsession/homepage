@@ -13,7 +13,7 @@ export type NavRecipeGroup = { name: RecipeGroup; items: NavRecipe[]; more?: Nav
    (content/ways.ts), and its recipes are a job of their own. */
 export const JOBS: RecipeGroup[] = [
   'Win customers',
-  'Keep customers',
+  'Keep and grow customers',
   'Watch rivals',
   'Check your own journeys',
   'Get paid and save',
@@ -43,18 +43,19 @@ export const nav = {
       { label: 'Agencies', to: '/agencies', line: 'Every client checked. Every pitch proven.' },
       { label: 'Founders', to: '/founders', line: 'Leads with a proven gap. QA on every release.' },
       { label: 'Sales', to: '/sales', line: 'Know each account as its customers do.' },
-      { label: 'Marketing', to: '/marketing', line: 'Rival emails, ads and prices, seen as a customer.' },
+      { label: 'Marketing', to: '/marketing', line: 'Every ad, launch and rival, seen as a customer.' },
     ] satisfies NavPage[],
   },
   recipes: {
     label: 'Recipes',
     all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
-    /* The desktop menu lays the 6 jobs out in 3 columns of about the same height: winning, keeping and getting paid
-       (11 recipes); rivals and your own journeys (10); and the AI agent checks with their page (8 and the link). */
+    /* The desktop menu lays the 6 jobs out in 3 columns of about the same height, 2 jobs each in the jobs' own order:
+       winning and keeping customers (11 recipes); rivals and your own journeys (12); getting paid and the AI agent
+       checks (11, and the checks' own page). The phone sheet, the footer and the Recipes index list the jobs in order. */
     columns: [
-      ['Win customers', 'Keep customers', 'Get paid and save'],
+      ['Win customers', 'Keep and grow customers'],
       ['Watch rivals', 'Check your own journeys'],
-      ['Check your AI agents'],
+      ['Get paid and save', 'Check your AI agents'],
     ] satisfies RecipeGroup[][],
   },
   /* Resources: the worked examples (content/usecases, which James sends to prospects, so they always stay reachable),

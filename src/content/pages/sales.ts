@@ -3,7 +3,7 @@ import type { Capture, Page } from '../types'
 
 /* Sales (/sales): sales and customer success teams of any kind, SaaS first. Win and renew.
    The story: what Obsession is for a sales team > how it works > the gap (most tools read what a company publishes;
-   agents go through it as a customer) > use cases (brief, account watch, business case, pilot, win back, battlecards,
+   agents go through it as a customer) > use cases (brief, account watch, expansion, business case, pilot, win back, battlecards,
    lead leaks on your own funnel, the supplier portal) > outcomes (up to ceilings with the model in the line; deliverables
    flat) > every kind of team > recipes > proof (the real September store check, as it happened) > questions (red
    lines) > early access.
@@ -241,6 +241,15 @@ export const page: Page = {
         screen: 'acctwatch',
       },
       {
+        tab: 'Expansion offers',
+        moment: 'Monday 08:00. An account is using 113 of its 120 seats.',
+        outcome: 'Offer more the week an account needs it, on your price book.',
+        line: 'Agents read the usage and CRM you connect and each account’s public news, build the case from its own usage and draft the offer. Your rep sends it from their own thread.',
+        whyOnly: 'A usage dashboard shows the seats. Only an agent reads every account’s usage and public news each morning, builds the case and keeps each follow up drafted in your rep’s thread until the PO lands.',
+        recipe: 'expansion',
+        screen: 'expansion',
+      },
+      {
         tab: 'Business case',
         moment: 'Wednesday 11:00. 90 days to renewal, and budgets are cut.',
         outcome: 'Renew and expand on ROI their CFO can check.',
@@ -314,8 +323,8 @@ export const page: Page = {
     items: [
       {
         name: 'SaaS',
-        line: 'Brief every first call from their trial, see churn coming and renew on numbers their CFO can check.',
-        recipes: ['prospect', 'account-watch', 'business-case', 'trial'],
+        line: 'Brief every first call from their trial, see churn and growth coming, and renew on numbers their CFO can check.',
+        recipes: ['prospect', 'account-watch', 'expansion', 'business-case', 'trial'],
       },
       {
         name: 'Payments and fintech',
@@ -362,7 +371,7 @@ export const page: Page = {
 
   recipes: {
     heading: 'From the first call to the renewal, a recipe is ready to run.',
-    ids: ['prospect', 'quotes', 'account-watch', 'business-case', 'renewal', 'mystery', 'email-sms', 'trial', 'competitor', 'speed', 'get-paid'],
+    ids: ['prospect', 'quotes', 'account-watch', 'expansion', 'business-case', 'renewal', 'reviews', 'mystery', 'email-sms', 'trial', 'competitor', 'speed', 'get-paid'],
   },
 
   proof: {

@@ -2,19 +2,20 @@ import type { Capture, Recipe } from '../types'
 
 /* Ad tracking (/recipes/ad-tracking). Watch rivals. Screen: ads.
    Rewritten from James's "Ad tracking". Kept: following every ad to the page it lands on, the ad and the page side
-   by side, new and stopped ads with how long each ran, and his checks on your own (or a client's) ads: sold out,
-   offer mismatch, dead links and slow pages. Kept his line that nobody pays for a click.
+   by side, new and stopped ads with how long each ran. Kept his line that nobody pays for a click. His checks on your
+   own (or a client's) ads, sold out, offer mismatch, dead links and slow pages, moved to Ad landing check (3 Oct),
+   so this recipe is rivals only and the 2 never sell the same job.
    Fixed: no platform names and no claim of collecting from any ad platform ("the ads they run in public", review
    CL-10). The kit lists only what the run uses (review P2): the inbox is real, because where an ad offers a code for
    signing up, the declared agent signs up and records what arrives. No phone. At rivals: public ads, public pages
-   and public sign ups only. Never a basket, a checkout or a person. Your own ads, or a client's with their OK.
+   and public sign ups only. Never a basket, a checkout or a person.
    The run and the table tell the same story as the `ads` screen and the Marketing page's "Rival ads" use case
    (Friday 07:06: Rival A's 9 new ads overnight, a gift set at £56, £2 under your £58; Rival C's ad at 41 days). Example.
    Never £40 for a gift set here: that is the real September run's basket. */
 
 const roles: Capture['roles'] = {
   question: 'Whose ads should we follow first?',
-  options: ['Our rivals’', 'A client’s rivals’', 'Our own, or a client’s'],
+  options: ['Our rivals’', 'A client’s rivals’'],
 }
 
 const micro = 'We keep your email to tell you about Obsession, and nothing else.'
@@ -89,7 +90,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add the brands',
-      line: 'Your rivals, plus your own ads or a client’s, with their OK. Paste a list, upload a CSV, connect Clay or use the API.',
+      line: 'Your rivals, or a client’s rivals. Paste a list, upload a CSV, connect Clay or use the API.',
     },
     {
       title: 'An agent reads their ads',
@@ -121,14 +122,6 @@ export const recipe: Recipe = {
         { title: 'Sign up offers', line: 'Where an ad offers a code for signing up, the agent signs up and records what arrives, and when.' },
       ],
     },
-    {
-      group: 'Your own ads, or a client’s with their OK',
-      items: [
-        { title: 'Sold out or missing', line: 'The product in the ad, gone from the page it lands on.' },
-        { title: 'Offer mismatch', line: '20% off in the ad, 15% on the page.' },
-        { title: 'Dead links and slow pages', line: 'Pages that don’t load, or take too long on a phone.' },
-      ],
-    },
   ],
 
   outputs: {
@@ -142,22 +135,21 @@ export const recipe: Recipe = {
   },
 
   settings: [
-    { k: 'Brands', v: 'Any rival you name, plus your own ads to check' },
+    { k: 'Brands', v: 'Any rival you name, or a client’s rivals' },
     { k: 'Devices', v: 'Phone, desktop or both' },
     { k: 'How often', v: 'Every morning, or more often in a sale week' },
     { k: 'Alerts', v: 'New offers only, or every new ad' },
-    { k: 'Your own ads', v: 'Flag any that land on a sold out, wrong or broken page' },
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'Catch any client ad landing on a sold out page before the day’s spend, with their OK, and see what their rivals run.' },
+    { audience: 'agencies', line: 'See every ad each client’s rivals run in public, followed to its page, price and code.' },
     { audience: 'marketing', line: 'See the offer behind every rival ad the morning it starts.' },
     { audience: 'founders', line: 'See what your rivals are pushing this week, and the price behind it.' },
   ],
 
   table: {
     heading: 'Rival A started 9 ads overnight. Rival C’s free delivery ad has run 41 days.',
-    line: 'Example: the ads 3 rivals run in public, read on Friday at 07:00.',
+    line: 'Example: the ads 3 rivals were running in public on Friday at 07:00.',
     cols: ['Rival', 'Running', 'Lands on', 'Offer on the page'],
     rows: [
       { label: 'Free gift over £40', values: ['Rival A', '1 day', 'Offers page', 'GIFT40, gift set at £56'] },
@@ -185,7 +177,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can it check our own ads, or a client’s?',
-        a: 'Yes: yours, or a client’s with their OK. It flags any ad that lands on a sold out product, a different offer, a dead link or a slow page, with the ad and the page side by side.',
+        a: 'That’s Ad landing check: each morning it opens the page every live ad of yours points to, as a customer, and drafts the fix for your OK. Ad tracking follows the ads rivals run in public.',
       },
       {
         q: 'How many brands can it follow?',

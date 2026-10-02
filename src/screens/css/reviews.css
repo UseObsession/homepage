@@ -1,0 +1,180 @@
+/* app-reviews: Missions / Review requests (customer marketing), for Your company, list Customers.
+   Left: every existing customer, asked at the right moment (Delivered, Onboarded, Ticket solved), newest on top.
+   Response is 1 column: the mark (waiting while asked, landed when something came back) and what came back:
+   a review with its stars (a 3 star one too: everyone is asked, every review stands), a reference call, a case study approval.
+   Right: the month (Reviews 14, by stars) and the 1 ask everyone gets: who, the company's own inbox, AM's signed OK (the boxed
+   receipt row every signed state uses). Dental group's 5 star review is the anchored row: the 24px edge bar in --rq-hi, the
+   screen's 1 colour placement (--s-accent once the site's palette lands, --fg until then). Stars and bars stay --fg.
+   Red lines shown: the declared-agent pill; Who: Existing customers; From: the company's own inbox; Approved by AM;
+   the lock line "Everyone asked the same way".
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, list Customers.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; content 50..348 (table 320 = 28 + 6 x 45,
+   columns 104 | 100 | 116; side 196: month card 130, gap 12, the ask 156); foot row 360..400: lock line left, toast right.
+   Story (about 5 s): Coffee roaster's delivery is confirmed, its row lands on top and the request goes (the ask counts
+   41 to 42); Outdoor gear agrees a reference call; Dental group's 5 star review lands, its edge bar fades in with the stars
+   and Reviews ticks 13 to 14; the toast names that review.
+   No pointer: nobody clicks, the ask was approved once. Rest state (no .play) = the finished scene. */
+
+.app-reviews{--rq-hi:var(--s-accent, var(--fg))}
+.app-reviews .ax-main{grid-template-columns:minmax(0,1fr) 196px;grid-template-rows:24px minmax(0,1fr) 40px;align-content:stretch;gap:12px;padding:14px}
+
+/* sidebar: the list this page serves */
+.app-reviews .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-reviews .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked values: only the last child shows at rest */
+.app-reviews .rq-stk{display:inline-grid;vertical-align:top}
+.app-reviews .rq-stk>*{grid-area:1/1}
+.app-reviews .rq-stk>:not(:last-child){opacity:0}
+
+/* ---------- header: the page, the month, the declared agent ---------- */
+.app-reviews .rq-h{grid-column:1 / -1;display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-reviews .rq-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-reviews .rq-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-reviews .rq-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-reviews .rq-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-reviews .rq-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the table ---------- */
+.app-reviews .rq-tb{grid-column:1;grid-row:2;display:flex;flex-direction:column;min-height:0;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-reviews .rq-row{display:grid;grid-template-columns:104px 100px minmax(0,1fr);align-items:center;height:45px;flex:none;box-shadow:0 -1px 0 var(--line) inset}
+.app-reviews .rq-row>span{min-width:0;white-space:nowrap}
+.app-reviews .rq-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-reviews .rq-th>span{padding-left:8px;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-reviews .rq-th>span:first-child{padding-left:12px}
+.app-reviews .rq-old>.rq-row:last-child{box-shadow:none}
+/* the anchored row: the story's main beat (Dental group's 5 star review) */
+.app-reviews .rq-r2{position:relative;background:rgb(var(--fg-rgb) / .055)}
+.app-reviews .rq-r2::before{content:"";position:absolute;left:0;top:50%;width:2px;height:24px;margin-top:-12px;border-radius:0 2px 2px 0;background:var(--rq-hi)}
+
+/* customer: the account and the person asked */
+.app-reviews .rq-who{display:grid;row-gap:2px;padding-left:12px}
+.app-reviews .rq-who b{font:500 11.5px/15px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-reviews .rq-who em{font:400 10.5px/13px var(--sans);font-style:normal;color:var(--fg-3)}
+
+/* the moment that triggered the ask */
+.app-reviews .rq-mo{display:flex;align-items:center;gap:6px;padding-left:8px;font-size:11px;color:var(--fg-2)}
+.ilwrap .app-reviews .rq-mo svg.rq-ic{width:12px;height:12px;color:var(--fg-3)}
+
+/* the response: the mark, then what came back */
+.app-reviews .rq-re{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:8px;align-items:center;padding:0 12px 0 8px}
+.ilwrap .app-reviews .rq-re svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-reviews .rq-mk{display:grid;width:12px;height:12px}
+.app-reviews .rq-re>.rq-stk{display:grid}
+.app-reviews .rq-tx{display:grid;grid-template-rows:15px 13px;row-gap:2px;align-items:center;justify-items:start}
+.app-reviews .rq-tx b{font:500 11.5px/15px var(--sans);color:var(--fg)}
+.app-reviews .rq-tx small{font:400 10.5px/13px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-reviews .rq-tx small.w{font-family:var(--sans)}
+.app-reviews .rq-tx.q b{font-weight:400;color:var(--fg-2)}
+.ilwrap .app-reviews svg.rq-stars{width:53px;height:9px;overflow:visible}
+.app-reviews .rq-stars path{stroke-width:.7;stroke-linejoin:round}
+.app-reviews .rq-stars .on{fill:var(--fg);stroke:var(--fg)}
+.app-reviews .rq-stars .off{fill:rgb(var(--fg-rgb) / .16);stroke:transparent}
+
+/* ---------- the month ---------- */
+.app-reviews .rq-side{grid-column:2;grid-row:2;display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;min-width:0;min-height:0}
+.app-reviews .rq-sum,.app-reviews .rq-ask{border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;padding:12px}
+.app-reviews .rq-sum{display:grid;gap:6px}
+.app-reviews .rq-big{display:flex;align-items:baseline;gap:6px;height:26px;font:400 12px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-reviews .rq-big>b{font:600 26px/26px var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-reviews .rq-big .rq-stk{justify-items:start}
+/* by stars: every review counts, the low ones too */
+.app-reviews .rq-dist{display:grid;gap:2px}
+.app-reviews .rq-dist li{display:grid;grid-template-columns:18px minmax(0,1fr) 12px;align-items:center;column-gap:8px;height:12px}
+.app-reviews .rq-k{display:flex;align-items:center;gap:3px;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.ilwrap .app-reviews svg.rq-st1{width:7px;height:7px;fill:var(--fg-3)}
+.app-reviews .rq-bar{display:block;height:4px;border-radius:2px;background:rgb(var(--fg-rgb) / .1);overflow:hidden}
+.app-reviews .rq-bar i{display:block;width:var(--w);height:100%;border-radius:2px;background:var(--fg);transform-origin:0 50%}
+.app-reviews .rq-c{justify-self:end;font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-reviews .rq-stk.rq-c{justify-items:end}
+
+/* ---------- the ask: 1 message, the same for everyone ---------- */
+.app-reviews .rq-ask{display:flex;flex-direction:column;gap:6px;min-height:0}
+.app-reviews .rq-ah{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
+.ilwrap .app-reviews .rq-ah svg.rq-ic{width:13px;height:13px;color:var(--fg-2)}
+.app-reviews .rq-ah b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-reviews .rq-ah>.rq-stk{margin-left:auto;justify-items:end;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-reviews .rq-q{padding:5px 10px;border-radius:6px;font:400 11px/15px var(--sans);color:var(--fg);
+  background:rgb(var(--fg-rgb) / .04);box-shadow:2px 0 0 var(--line-3) inset}
+.app-reviews .rq-dl{display:grid;margin:0}
+.app-reviews .rq-dl div{display:flex;align-items:baseline;height:20px;box-shadow:0 1px 0 var(--line) inset;white-space:nowrap}
+.app-reviews .rq-dl dt{width:36px;flex:none;font:400 10.5px/20px var(--sans);color:var(--fg-3)}
+.app-reviews .rq-dl dd{margin:0;font:400 11px/20px var(--sans);color:var(--fg)}
+.app-reviews .rq-dl dd.m{font:400 10.5px/20px var(--mono)}
+/* AM's OK: the boxed receipt row every signed or sent state uses */
+.app-reviews .rq-ok{margin-top:auto;display:flex;align-items:center;gap:7px;flex:none;height:24px;padding:0 9px;border-radius:7px;font-size:11px;color:var(--fg-2);white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-reviews .rq-ok svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-reviews .rq-ok b{font-weight:500;color:var(--fg)}
+.app-reviews .rq-ok .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+
+/* ---------- the red line, and the toast ---------- */
+.app-reviews .rq-note{grid-column:1 / -1;grid-row:3;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-reviews .rq-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-reviews .rq-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-reviews .rq-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-reviews .rq-toast b{font-weight:500;color:var(--fg)}
+.app-reviews .rq-toast p span{color:var(--fg-3)}
+.ilwrap .app-reviews .rq-toast svg.rq-st1{display:inline-block;width:8px;height:8px;margin:0 1px;vertical-align:0;fill:var(--fg)}
+
+/* the request that just went (a grid expander: it opens with grid-template-rows, never height) */
+.app-reviews .rq-new{display:grid;grid-template-rows:1fr;flex:none}
+.app-reviews .rq-clip{min-height:0;overflow:hidden}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes rq-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes rq-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}16%{background-color:rgb(var(--fg-rgb) / .1)}100%{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes rq-hold{0%{background-color:rgb(var(--fg-rgb) / 0)}16%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes rq-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes rq-show{from{opacity:0}to{opacity:1}}
+@keyframes rq-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes rq-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes rq-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes rq-blink{0%{opacity:1}50%{opacity:0}}
+@keyframes rq-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes rq-star{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes rq-grow{from{transform:scaleX(.875)}to{transform:none}}
+@keyframes rq-flash{0%{background-color:rgb(var(--fg-rgb) / .04)}25%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .04)}}
+@keyframes rq-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. a delivery is confirmed: Coffee roaster lands on top, the moment first, then the request goes from the 1 ask */
+.appx-il.play.app-reviews .rq-new{animation:rq-open .6s var(--ease) .5s both}
+.appx-il.play.app-reviews .rq-r1{animation:rq-glow 2.4s var(--ease) .55s both}
+.appx-il.play.app-reviews .rq-r1 .rq-who{animation:rq-show .4s var(--ease) .68s both}
+.appx-il.play.app-reviews .rq-r1 .rq-mo{animation:rq-land .45s var(--ease) .86s both}
+.appx-il.play.app-reviews .rq-r1 .rq-re{animation:rq-land .45s var(--ease) 1.36s both}
+.appx-il.play.app-reviews .rq-q{animation:rq-flash 1.1s var(--ease) 1.3s both}
+.appx-il.play.app-reviews .rq-ah>.rq-stk>:first-child{animation:rq-out .3s var(--ease) 1.4s both}
+.appx-il.play.app-reviews .rq-ah>.rq-stk>:last-child{animation:rq-in .3s var(--ease) 1.43s both}
+
+/* 2. Outdoor gear agrees a reference call: the mark closes, the call is booked */
+.appx-il.play.app-reviews .rq-r3{animation:ax-in .55s var(--ease) .21s both,rq-glow 2.2s var(--ease) 2.25s both}
+.appx-il.play.app-reviews .rq-r3 .rq-mk .sig-sq{animation:rq-blink 1.06s steps(1,end) .22s 2,rq-home .6s var(--snap) 2.36s both}
+.appx-il.play.app-reviews .rq-r3 .rq-mk .sig-gap{animation:rq-show .35s var(--ease) 2.56s both}
+.appx-il.play.app-reviews .rq-r3 .v0{animation:rq-out .3s var(--ease) 2.3s both}
+.appx-il.play.app-reviews .rq-r3 .v1{animation:rq-in .35s var(--ease) 2.36s both}
+
+/* 3. the main beat, Dental group's review: the mark closes, 5 stars land with the edge bar, the row holds,
+   Reviews ticks 13 to 14, the 5 star bar grows */
+.appx-il.play.app-reviews .rq-r2{animation:ax-in .55s var(--ease) .16s both,rq-hold 2.2s var(--ease) 3.4s both}
+.appx-il.play.app-reviews .rq-r2::before{animation:rq-bar .45s var(--ease) 3.6s both}
+.appx-il.play.app-reviews .rq-r2 .rq-mk .sig-sq{animation:rq-blink 1.06s steps(1,end) .28s 3,rq-home .6s var(--snap) 3.52s both}
+.appx-il.play.app-reviews .rq-r2 .rq-mk .sig-gap{animation:rq-show .35s var(--ease) 3.72s both}
+.appx-il.play.app-reviews .rq-r2 .v0{animation:rq-out .3s var(--ease) 3.46s both}
+.appx-il.play.app-reviews .rq-r2 .v1{animation:rq-in .35s var(--ease) 3.52s both}
+.appx-il.play.app-reviews .rq-r2 .rq-stars path{transform-box:fill-box;transform-origin:center;animation:rq-star .35s var(--ease) both}
+.appx-il.play.app-reviews .rq-r2 .rq-stars path:nth-child(1){animation-delay:3.6s}
+.appx-il.play.app-reviews .rq-r2 .rq-stars path:nth-child(2){animation-delay:3.66s}
+.appx-il.play.app-reviews .rq-r2 .rq-stars path:nth-child(3){animation-delay:3.72s}
+.appx-il.play.app-reviews .rq-r2 .rq-stars path:nth-child(4){animation-delay:3.78s}
+.appx-il.play.app-reviews .rq-r2 .rq-stars path:nth-child(5){animation-delay:3.84s}
+.appx-il.play.app-reviews .rq-big>b.rq-stk>:first-child{animation:rq-out .3s var(--ease) 3.94s both}
+.appx-il.play.app-reviews .rq-big>b.rq-stk>:last-child{animation:rq-in .32s var(--ease) 3.97s both}
+.appx-il.play.app-reviews .rq-d5 .rq-stk>:first-child{animation:rq-out .3s var(--ease) 4.02s both}
+.appx-il.play.app-reviews .rq-d5 .rq-stk>:last-child{animation:rq-in .3s var(--ease) 4.05s both}
+.appx-il.play.app-reviews .rq-d5 .rq-bar i{animation:rq-grow .5s var(--ease) 4.02s both}
+
+/* 4. the toast names the review that just landed */
+.appx-il.play.app-reviews .rq-toast{animation:rq-toast .45s var(--ease) 4.5s both}

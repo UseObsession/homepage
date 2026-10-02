@@ -50,8 +50,8 @@ export const recipesPage: RecipesIndexPage = {
       line: 'Prove the gap before you pitch, quote every buyer in minutes, correct what AI says about you, and move a new client’s accounts into their name.',
     },
     {
-      group: 'Keep customers',
-      line: 'See churn and upsell coming, answer every renewal discount request with real usage, and offer a pause next to every cancel.',
+      group: 'Keep and grow customers',
+      line: 'See churn and growth coming, offer more after your OK, renew on real usage, offer a pause next to every cancel, and ask every customer for a review.',
     },
     {
       group: 'Watch rivals',
@@ -123,7 +123,7 @@ export const recipesPage: RecipesIndexPage = {
       micro: 'We keep your email to tell you about Obsession, and nothing else.',
       roles: {
         question: 'Which job should we set up first?',
-        options: ['Win customers', 'Keep customers', 'Watch rivals', 'Check our own journeys', 'Get paid and save', 'Check our AI agents', 'Something else'],
+        options: ['Win customers', 'Keep and grow customers', 'Watch rivals', 'Check our own journeys', 'Get paid and save', 'Check our AI agents', 'Something else'],
       },
       interest: 'any',
     },

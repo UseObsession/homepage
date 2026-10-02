@@ -1,0 +1,200 @@
+/* app-expansion: Accounts / Expansion, for sales and success teams. Existing customers only.
+   Left: the moments, newest on top. Each is an existing customer with an expansion moment found in connected usage
+   (Usage) or public signals (Public): usage at 94% of plan, 12 new seats this month, a US office, a Series B, sales hiring.
+   Right: the selected account's case, built from its own usage (seats used against the plan limit, 90 days), the offer
+   drafted on price-book terms (£9,000 a year for +25 seats, the money first as on every screen), sent from AM's own
+   thread after your OK (the shared receipt row once sent), then the steps to the signed order form and the PO.
+   Colour, the same rule on every screen: --xp-hi (the reader accent, --fg until the site sets data-reader) touches
+   only the selected row's edge bar. Never text, never the chip or the button.
+   Numbers agree: 120 seats at £360 a seat a year = £43,200; +25 seats = £9,000; 113/120 = 94%.
+   Story (about 5 s, done by 5 s): Freight broker's moment lands on top (needs you); the list makes room and the case builds:
+   the usage line draws up to the dashed plan limit while the share counts 71 to 94; the offer appears; the pointer clicks
+   Approve and send; the buttons give way to the steps, the thread line becomes the Sent receipt, the row's mark waits on the reply;
+   the toast. Red lines shown: the declared-agent pill; Customers list selected and the lock line (customers only, sends
+   after your OK); price book; AM's own thread.
+   Chrome (canonical, 2 Oct 2026): Your company, Accounts selected, list Customers.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; wrap 50..348 (list 248: 28 + 5 x 54 | 12 | panel 268);
+   foot row 360..400: lock line left, toast right.
+   Rest state (no .play) = the finished scene (list narrow, case open, offer sent). */
+@property --xp-n{syntax:"<integer>";inherits:false;initial-value:94}
+
+.app-expansion{--xp-tb:248px;--xp-pan:268px;--xp-hi:var(--s-accent, var(--fg))}
+.app-expansion .ax-main{padding:14px;gap:12px}
+
+/* sidebar: the list this page serves */
+.app-expansion .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-expansion .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- page head: title, count, the declared agent ---------- */
+.app-expansion .xp-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-expansion .xp-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-expansion .xp-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-expansion .xp-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-expansion .xp-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-expansion .xp-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the moments: fixed columns, so making room for the case only clips Offer and Next ---------- */
+.app-expansion .xp-wrap{position:relative;height:298px}
+.app-expansion .xp-tb{width:var(--xp-tb);height:100%;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-expansion .xp-row{display:grid;grid-template-columns:248px 132px 148px;align-items:center;height:54px;box-shadow:0 -1px 0 var(--line) inset}
+.app-expansion .xp-tb>.xp-row:last-child{box-shadow:none}
+.app-expansion .xp-row>span{min-width:0;padding:0 8px;overflow:hidden;white-space:nowrap}
+.app-expansion .xp-row>span:first-child{padding:0 12px}
+.app-expansion .xp-row>span:nth-child(n+2){opacity:0}
+.app-expansion .xp-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-expansion .xp-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-expansion .xp-thm{display:flex;justify-content:space-between}
+
+/* a moment: mark, account, source; the moment itself underneath */
+.app-expansion .xp-a{position:relative;display:grid;grid-template-columns:12px minmax(0,1fr) auto;column-gap:8px;row-gap:3px;align-content:center;align-self:stretch}
+.ilwrap .app-expansion .xp-a svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-expansion .xp-a>svg.sig,.app-expansion .xp-mk{align-self:center}
+.app-expansion .xp-a b{font:500 11.5px/18px var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-expansion .xp-a em{grid-column:2/-1;font:400 11px/14px var(--sans);font-style:normal;color:var(--fg-2);overflow:hidden;text-overflow:ellipsis}
+.app-expansion .xp-src{display:grid;place-items:center;height:18px;padding:0 6px;border-radius:5px;font:500 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3);
+  white-space:nowrap;box-shadow:0 0 0 1px var(--line-2) inset}
+.app-expansion .xp-o{font:400 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-expansion .xp-n{font-size:11px;color:var(--fg-2)}
+
+/* the moment that just landed, selected */
+.app-expansion .xp-new{display:grid;grid-template-rows:1fr}
+.app-expansion .xp-clip{min-height:0;overflow:hidden}
+.app-expansion .xp-hot{background:rgb(var(--fg-rgb) / .055)}
+.app-expansion .xp-hot .xp-a::before{content:"";position:absolute;left:0;top:50%;height:24px;margin-top:-12px;width:2px;border-radius:0 2px 2px 0;background:var(--xp-hi)}
+.app-expansion .xp-hot .xp-a em{color:var(--fg);font-weight:500}
+.app-expansion .xp-mk{display:grid;place-items:center;width:12px;height:12px}
+.app-expansion .xp-mk>svg{grid-area:1/1}
+.app-expansion .xp-mk .w0{opacity:0}
+
+/* ---------- the case, docked where Offer and Next were ---------- */
+.app-expansion .xp-pan{position:absolute;top:0;right:0;bottom:0;z-index:1;width:var(--xp-pan);display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:10px;
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-expansion .xp-ph{display:grid;gap:5px}
+.app-expansion .xp-pk{display:flex;align-items:center;gap:6px;height:14px;font:500 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-expansion .xp-pk .ax-mono{font-size:10.5px;color:var(--fg-2)}
+.ilwrap .app-expansion .xp-pk svg.xp-x{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
+.app-expansion .xp-ph h3{font:600 15px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+
+/* why: its own seats, climbing to the plan limit */
+.app-expansion .xp-use{display:grid;gap:6px;padding:9px 10px 8px;border-radius:8px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-expansion .xp-ur{display:flex;align-items:center;gap:8px;height:14px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-expansion .xp-ur b{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.ilwrap .app-expansion svg.xp-chart{width:224px;height:34px;overflow:visible}
+.app-expansion .xp-chart .lim{fill:none;stroke:var(--fg-3);stroke-width:1;stroke-dasharray:3 3}
+.app-expansion .xp-chart .ar{fill:rgb(var(--fg-rgb) / .07)}
+.app-expansion .xp-chart .ln{fill:none;stroke:var(--fg);stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.app-expansion .xp-chart .dt{fill:var(--fg)}
+.app-expansion .xp-ax{display:flex;align-items:center;justify-content:space-between;height:13px;margin-top:-2px;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-expansion .xp-pct{font:400 10.5px/1 var(--sans)}
+.app-expansion .xp-pct b{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-expansion .xp-cnt{counter-reset:xp-n var(--xp-n)}
+.app-expansion .xp-cnt::before{content:counter(xp-n)}
+
+/* the offer: the money first, price-book terms; AM's own thread, then the receipt (stacked: only v1 shows at rest) */
+.app-expansion .xp-off{display:grid;gap:6px}
+.app-expansion .xp-oh{display:flex;align-items:center;gap:7px;height:20px}
+.ilwrap .app-expansion .xp-oh svg.xp-ic{width:13px;height:13px;color:var(--fg-2)}
+.app-expansion .xp-oh b{font:600 12px/1 var(--sans);color:var(--fg)}
+.app-expansion .xp-oh .ax-chip{margin-left:auto}
+.app-expansion .xp-amt{display:flex;align-items:baseline;gap:5px;height:20px;white-space:nowrap}
+.app-expansion .xp-amt b{font:600 20px/1 var(--display);letter-spacing:-.025em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-expansion .xp-amt span{font:400 11.5px/1 var(--sans);color:var(--fg-3)}
+.app-expansion .xp-thr{display:grid;height:24px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-expansion .xp-thr>*{grid-area:1/1}
+.app-expansion .xp-thr .v0{display:flex;align-items:center;gap:7px;padding:0 3px;opacity:0}
+.app-expansion .xp-thr .v1{display:flex;align-items:center;gap:7px;height:24px;padding:0 9px;border-radius:7px;
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-expansion .xp-thr .v1 svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-expansion .xp-thr .v1 b{font-weight:500;color:var(--fg)}
+.app-expansion .xp-thr .v1 .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-expansion .xp-am{display:grid;place-items:center;width:18px;height:18px;border-radius:5px;flex:none;font:600 9px/1 var(--sans);color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* the decision: Approve and send, then the steps to the order form and the PO */
+.app-expansion .xp-pf{margin-top:auto;display:grid;height:40px;padding-top:10px;box-shadow:0 1px 0 var(--line) inset}
+.app-expansion .xp-pf>*{grid-area:1/1}
+.app-expansion .xp-f1{display:flex;align-items:center;gap:6px;opacity:0}
+.app-expansion .xp-f1 .ax-btn{justify-content:center}
+.app-expansion .xp-f1 .ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-expansion .xp-ok{flex:1}
+.app-expansion .xp-steps{display:flex;align-items:center}
+.app-expansion .xp-step{display:flex;align-items:center;gap:8px;flex:none}
+.app-expansion .xp-ln{flex:1;height:1px;margin:0 10px;background:var(--line-2)}
+.app-expansion .xp-pm{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.ilwrap .app-expansion .xp-pm svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-expansion .xp-pip{display:block;width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-expansion .xp-sl{display:grid;gap:1px;white-space:nowrap}
+.app-expansion .xp-sl b{font:500 11px/14px var(--sans);color:var(--fg-2)}
+.app-expansion .xp-sl em{font:400 10.5px/13px var(--sans);font-style:normal;color:var(--fg-3)}
+.app-expansion .xp-steps .s1 b,.app-expansion .xp-steps .s2 b{color:var(--fg)}
+
+/* the red lines, shown */
+.app-expansion .xp-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-expansion .xp-note svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* toast: the board's pattern, 1 line, 1 action */
+.app-expansion .xp-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-expansion .xp-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-expansion .xp-toast b{font-weight:500;color:var(--fg)}
+.app-expansion .xp-toast p span{color:var(--fg-3)}
+
+/* pointer: parked on Approve and send; hidden at rest */
+.app-expansion .xp-ptr{left:442px;top:318px}
+.ilwrap .app-expansion .appx svg.xp-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes xp-open{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+@keyframes xp-glow{from{background-color:rgb(var(--fg-rgb) / .13)}to{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes xp-show{from{opacity:0}to{opacity:1}}
+@keyframes xp-gone{from{opacity:1}to{opacity:0}}
+@keyframes xp-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes xp-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes xp-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes xp-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes xp-narrow{from{width:528px}to{width:var(--xp-tb)}}
+@keyframes xp-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes xp-count{from{--xp-n:71}to{--xp-n:94}}
+@keyframes xp-press{0%,100%{transform:none}45%{transform:scale(.94)}}
+@keyframes xp-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes xp-ptr{
+  0%{opacity:0;transform:translate(64px,70px)}
+  14%{opacity:1}
+  55%{transform:translate(0,0) scale(1)}
+  60%{transform:translate(0,0) scale(.9)}
+  66%{transform:translate(0,0) scale(1)}
+  80%{opacity:1;transform:translate(4px,7px)}
+  100%{opacity:0;transform:translate(8px,13px)}}
+
+/* 1. a new moment lands on top: Freight broker, usage at 94% of plan, needs you */
+.appx-il.play.app-expansion .xp-new{animation:xp-open .55s var(--ease) .6s both}
+.appx-il.play.app-expansion .xp-hot{animation:xp-glow 2s var(--ease) .65s both}
+.appx-il.play.app-expansion .xp-hot>span:first-child{animation:xp-show .4s var(--ease) .75s both}
+.appx-il.play.app-expansion .xp-mk .w0{animation:xp-mark .45s var(--snap) .8s both,xp-gone .2s var(--ease) 4.12s forwards}
+.appx-il.play.app-expansion .xp-mk .w1{animation:xp-mark .45s var(--snap) 4.15s both}
+
+/* 2. the list makes room; the case docks and builds */
+.appx-il.play.app-expansion .xp-row>span:nth-child(n+2){animation:xp-gone .25s var(--ease) 1.5s both}
+.appx-il.play.app-expansion .xp-tb{animation:xp-narrow .6s var(--ease) 1.6s both}
+.appx-il.play.app-expansion .xp-hot .xp-a::before{animation:xp-bar .4s var(--ease) 1.7s both}
+.appx-il.play.app-expansion .xp-ph{animation:xp-in .45s var(--ease) 1.8s both}
+.appx-il.play.app-expansion .xp-use{animation:xp-in .45s var(--ease) 1.9s both}
+.appx-il.play.app-expansion .xp-chart .ln{stroke-dasharray:1;animation:xp-draw 1s var(--ease) 2.05s both}
+.appx-il.play.app-expansion .xp-cnt{animation:xp-count 1s var(--ease) 2.05s both}
+.appx-il.play.app-expansion .xp-chart .ar{animation:xp-show .5s var(--ease) 2.65s both}
+.appx-il.play.app-expansion .xp-chart .dt{animation:xp-mark .4s var(--snap) 2.95s both}
+.appx-il.play.app-expansion .xp-oh{animation:xp-in .45s var(--ease) 2.4s both}
+.appx-il.play.app-expansion .xp-amt{animation:xp-in .45s var(--ease) 2.52s both}
+.appx-il.play.app-expansion .xp-thr{animation:xp-in .45s var(--ease) 2.64s both}
+.appx-il.play.app-expansion .xp-thr .v0{animation:xp-show .01s linear 2.64s both,xp-out .25s var(--ease) 4.1s forwards}
+.appx-il.play.app-expansion .xp-thr .v1{animation:xp-in .3s var(--ease) 4.16s both}
+
+/* 3. the pointer approves; the offer sends from AM's thread */
+.appx-il.play.app-expansion .xp-ptr{animation:xp-ptr 1.8s var(--ease) 2.9s both}
+.appx-il.play.app-expansion .xp-pf{animation:xp-show .4s var(--ease) 2.76s both}
+.appx-il.play.app-expansion .xp-f1{animation:xp-in .45s var(--ease) 2.76s both,xp-gone .2s var(--ease) 4.06s forwards}
+.appx-il.play.app-expansion .xp-ok{animation:xp-press .22s ease-out 3.9s}
+.appx-il.play.app-expansion .xp-steps{animation:xp-in .4s var(--ease) 4.14s both}
+.appx-il.play.app-expansion .xp-steps .s1 svg.sig{animation:xp-mark .45s var(--snap) 4.22s both}
+
+/* 4. the toast */
+.appx-il.play.app-expansion .xp-toast{animation:xp-toast .45s var(--ease) 4.5s both}

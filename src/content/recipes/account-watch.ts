@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Account watch (/recipes/account-watch). Keep customers. Screen: acctwatch (38 accounts; Inside, Outside, Lived;
+/* Account watch (/recipes/account-watch). Keep and grow customers. Screen: acctwatch (38 accounts; Inside, Outside, Lived;
    Snack brand at risk: usage down 38% in 14 days, 3 urgent tickets, its checkout broke twice; Payroll SaaS hiring 12
    sales roles; the save plan approved).
    Base: site_sales.json "Account watch" (approved copy and demo) and its cofounder flags: news and hiring are the
@@ -24,7 +24,7 @@ export const recipe: Recipe = {
   id: 'account-watch',
   slug: 'account-watch',
   name: 'Account watch',
-  group: 'Keep customers',
+  group: 'Keep and grow customers',
   line: 'Stays a declared customer of every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
   gets: 'Every morning: who’s at risk, who’s ready to grow, and the play for each.',
   kit: [

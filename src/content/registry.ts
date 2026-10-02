@@ -27,21 +27,38 @@ export const pages = Object.fromEntries(Object.entries(pageFiles).map(([file, p]
    Each recipe's job (group), name and address come from its own file, and content/nav builds its groups from this list,
    so every surface names and groups a recipe the same way. */
 const ORDER: RecipeId[] = [
+  /* Win customers */
   'prospect',
   'listings',
+  'handover',
+  'quotes',
+  /* Keep and grow customers: see it coming, grow it, prove it, renew it, save it, ask for the review */
   'account-watch',
+  'expansion',
+  'upsells',
   'business-case',
+  'renewal',
+  'saves',
+  'reviews',
+  /* Watch rivals */
   'competitor',
   'prices',
   'ads',
   'email-sms',
   'trial',
+  /* Check your own journeys */
   'mystery',
+  'checkout',
   'speed',
   'audit',
+  'adcheck',
+  'partners',
   'delivery',
+  /* Get paid and save */
   'get-paid',
   'supplier-quotes',
+  'spend',
+  /* Check your AI agents */
   'support-bot',
   'voice-agent',
   'outbound-agent',

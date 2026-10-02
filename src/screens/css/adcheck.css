@@ -1,0 +1,242 @@
+/* app-adcheck: Your company / Missions / Ad landing check (performance marketing).
+   Every morning at 07:00 the declared agent opens each live ad's landing page as a customer and runs 4 checks:
+   the page loads, the offer matches the ad, the price matches, the item is in stock. It never clicks the ads.
+   Left: the 6 live ads as a table: the row's mark, the creative (grey capture: a search ad is words, a social ad is a
+   picture), the 4 checks, the spend per day. Right, docked: the 1 ad that fails. Ad 4 sends clicks to a sold out lamp
+   at $410 a day, the same fact as app-board and app-approve (a homeware store: demo clients avoid skincare so no example
+   reads as the real September run): the evidence (ad, then its page with Sold out ringed), the drafted fix, and the pause,
+   which goes live only after your OK ("Paused by AM", signed).
+   Colour: --adc-hi (the site's accent once it lands, --fg until then) touches 1 thing only, the open row's edge bar.
+   The fail (solid Stock x, the ringed Sold out) and the row highlight stay black and white: the fail is a state, not a hue.
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, no list; plain h2, meta, the declared-agent pill;
+   lock line bottom left and app-board's toast bottom right, level with each other.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38; wrap 50..348 (table 304 + gap 12 + card 212;
+   table = title 32 + column heads 26 + 6 rows x 40); lock line and toast share the band 360..400.
+   Story (~5.5 s): the table is full width with each ad's landing page; checks tick in row by row and the count climbs;
+   Ad 4's stock check fails, its row lights and its mark turns to needs you; the table makes room and Ad 4 docks with
+   its evidence, the $410 a day and the drafted fix; the pointer clicks Pause ad 4: the row reads Paused, both marks
+   close, the approval is signed, the toast.
+   Rest state (no .play) = the finished scene. */
+@property --adc-n{syntax:"<integer>";inherits:false;initial-value:23}
+
+.app-adcheck{--adc-tb:304px;--adc-pan:212px;--adc-hi:var(--s-accent, var(--fg));
+  --adc-lamp:polygon(20.8% 0,79.2% 0,100% 35.3%,56.3% 35.3%,56.3% 88.2%,83.3% 88.2%,83.3% 100%,16.7% 100%,16.7% 88.2%,43.8% 88.2%,43.8% 35.3%,0 35.3%)}
+.app-adcheck .ax-main{grid-template-rows:24px 298px;gap:12px;padding:14px}
+
+/* ---------- header: the page, its ads, the declared agent ---------- */
+.app-adcheck .adc-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-adcheck .adc-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-adcheck .adc-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-adcheck .adc-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-adcheck .adc-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-adcheck .adc-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the table: fixed columns, so making room for the card only clips Landing page ---------- */
+.app-adcheck .adc-wrap{position:relative;min-height:0}
+.app-adcheck .adc-tb{width:var(--adc-tb);height:100%;border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-adcheck .adc-tt{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;height:32px;padding:0 12px;
+  box-shadow:0 -1px 0 var(--line) inset;font:400 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-adcheck .adc-sum{font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-adcheck .adc-sum b{font:500 10.5px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-adcheck .adc-cnt{counter-reset:adcn var(--adc-n)}
+.app-adcheck .adc-cnt::before{content:counter(adcn)}
+
+.app-adcheck .adc-row{position:relative;display:grid;grid-template-columns:122px repeat(4,33px) 50px 224px;width:528px;height:40px;align-items:center;
+  box-shadow:0 -1px 0 var(--line) inset}
+.app-adcheck .adc-row:last-child{box-shadow:none}
+.app-adcheck .adc-row>span{min-width:0;height:100%;display:flex;align-items:center;white-space:nowrap}
+.app-adcheck .adc-row>.a{gap:8px;padding-left:12px}
+.app-adcheck .adc-row>.k{justify-content:center}
+.app-adcheck .adc-row>.d{justify-content:flex-end;padding-right:12px;font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-adcheck .adc-row>.u{padding:0 12px 0 16px;font:400 10.5px/1 var(--mono);color:var(--fg-2);opacity:0}
+.app-adcheck .adc-row>.u i{margin-left:auto;font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-adcheck .adc-row.adc-th{height:26px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-adcheck .adc-row.adc-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* the ad: its mark, its creative, its name */
+.app-adcheck .adc-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.ilwrap .app-adcheck .adc-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-adcheck .adc-nm{display:grid;gap:2px;min-width:0}
+.app-adcheck .adc-nm b{font:500 11.5px/14px var(--sans);color:var(--fg)}
+.app-adcheck .adc-nm em{font:400 10.5px/13px var(--sans);font-style:normal;color:var(--fg-3)}
+
+/* creatives as tiny captures (hex allowed only inside captures) */
+.app-adcheck .adc-cr{width:30px;height:22px;flex:none;grid-template-rows:minmax(0,1fr);border-radius:4px}
+.app-adcheck .adc-cr::before,.app-adcheck .adc-ad::before{display:none}
+.app-adcheck .adc-tp{display:grid;align-content:center;gap:2px;min-height:0;padding:3px 4px}
+.app-adcheck .adc-ts .t1{width:40%;height:2px;background:#A8A398}
+.app-adcheck .adc-ts .t2{width:86%;height:3px;background:#3A3834}
+.app-adcheck .adc-ts .t3{width:100%;height:2px}
+.app-adcheck .adc-ts .t4{width:64%;height:2px}
+.app-adcheck .adc-to .adc-tp{padding:2px}
+.app-adcheck .adc-to .im{position:relative;height:13px;border-radius:2px;background:#D8C4B6}
+.app-adcheck .adc-to .im::after{content:"";position:absolute;left:50%;bottom:3px;width:6px;height:5px;margin-left:-3px;border-radius:1.5px;background:#A8A398}
+.app-adcheck .adc-to .im.p1::after{bottom:2px;width:7px;height:9px;margin-left:-3.5px;border-radius:0;background:#8C887F;clip-path:var(--adc-lamp)}
+.app-adcheck .adc-to .im.p2{background:#C9CCC4}
+.app-adcheck .adc-to .im.p3{background:#D6D3CC}
+.app-adcheck .adc-to .ft{display:flex;align-items:center;justify-content:space-between;height:3px;padding:0 1px}
+.app-adcheck .adc-to .ft i{width:44%;height:2px}
+.app-adcheck .adc-to .ft .cta{width:30%;height:3px;background:#3A3834}
+
+/* the checks: a pass is a quiet tick; the 1 that fails is solid */
+.ilwrap .app-adcheck svg.adc-ok{width:12px;height:12px}
+.app-adcheck .adc-ok path{fill:none;stroke:var(--fg-2);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.app-adcheck .adc-no{display:grid;place-items:center;width:14px;height:14px;border-radius:4px;background:var(--fg)}
+.ilwrap .app-adcheck .adc-no svg{width:10px;height:10px}
+.app-adcheck .adc-no path{fill:none;stroke:var(--bg);stroke-width:1.6;stroke-linecap:round}
+
+/* the ad that failed, open in the card */
+.app-adcheck .r-hot{background:rgb(var(--fg-rgb) / .055)}
+.app-adcheck .r-hot::before{content:"";position:absolute;left:0;top:50%;width:2px;height:24px;margin-top:-12px;border-radius:0 2px 2px 0;background:var(--adc-hi)}
+.app-adcheck .adc-stk{display:inline-grid;align-items:center}
+.app-adcheck .adc-stk>*{grid-area:1/1}
+.app-adcheck .adc-stk>:not(:last-child){opacity:0}
+.app-adcheck .adc-row>.d .adc-stk{justify-items:end}
+.app-adcheck .r-hot>.d b{font:500 10.5px/1 var(--mono);color:var(--fg)}
+.app-adcheck .r-hot>.d em{font:400 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+/* the check passing over a row, only during play */
+.app-adcheck .adc-row:not(.adc-th)::after{content:"";position:absolute;inset:0;background:rgb(var(--fg-rgb) / .045);opacity:0;pointer-events:none}
+
+/* ---------- the card: Ad 4, docked where Landing page was ---------- */
+.app-adcheck .adc-pan{position:absolute;top:0;right:0;bottom:0;z-index:1;width:var(--adc-pan);display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;
+  background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset,0 18px 36px -22px rgb(0 0 0 / calc(.7 * var(--sh-k,1)))}
+.app-adcheck .adc-ph{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
+.app-adcheck .adc-ph b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-adcheck .adc-ph em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-adcheck .adc-ph time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* the finding and what it costs: the point of the screen */
+.app-adcheck .adc-fd{display:grid;gap:5px}
+.app-adcheck .adc-fd h3{font:500 12.5px/16px var(--sans);letter-spacing:-.005em;color:var(--fg);white-space:nowrap}
+.app-adcheck .adc-cost{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.app-adcheck .adc-cost b{font:600 22px/1 var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-adcheck .adc-cost span{font-size:11.5px;color:var(--fg-3)}
+
+/* the evidence: the ad, then the page it sends people to */
+.app-adcheck .adc-ev{display:grid;grid-template-columns:80px minmax(0,1fr) 80px;grid-template-rows:54px 13px;row-gap:5px;align-items:center}
+.app-adcheck .adc-c{width:80px;height:54px}
+.ilwrap .app-adcheck svg.adc-ar{width:12px;height:10px;justify-self:center;color:var(--fg-3)}
+.app-adcheck .adc-cap{font:400 10.5px/13px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-adcheck .adc-cap.m{grid-column:3;font-family:var(--mono);color:var(--fg-2)}
+.app-adcheck .adc-cp{display:grid;min-height:0}
+.app-adcheck .adc-c .im{position:relative;border-radius:3px;background:#D8C4B6}
+.app-adcheck .adc-c .im::after{content:"";position:absolute;left:50%;bottom:4px;width:12px;height:17px;margin-left:-6px;background:#8C887F;clip-path:var(--adc-lamp)}
+/* the social ad: account, picture, caption and button */
+.app-adcheck .adc-ad{grid-template-rows:minmax(0,1fr)}
+.app-adcheck .adc-ad .adc-cp{grid-template-rows:5px 26px 6px;align-content:center;gap:4px;padding:4px 5px}
+.app-adcheck .adc-ad .hd{display:flex;align-items:center;gap:3px}
+.app-adcheck .adc-ad .av{width:5px;height:5px;border-radius:50%;background:#8C887F}
+.app-adcheck .adc-ad .nm{width:24px;height:3px}
+.app-adcheck .adc-ad .ft{display:flex;align-items:center;justify-content:space-between}
+.app-adcheck .adc-ad .ft i{width:40%;height:3px}
+.app-adcheck .adc-ad .ft .cta{width:24px;height:6px;background:#3A3834}
+/* the landing page: the same lamp, the same price, and the button that says Sold out, ringed */
+.app-adcheck .adc-pg{grid-template-rows:6px minmax(0,1fr)}
+.app-adcheck .adc-pg .adc-cp{grid-template-columns:22px minmax(0,1fr);grid-template-rows:22px 12px;gap:5px 6px;align-content:center;padding:3px 5px}
+.app-adcheck .adc-pg .im::after{bottom:3px;width:10px;height:14px;margin-left:-5px}
+.app-adcheck .adc-pg .ln{display:grid;align-content:center;gap:3px}
+.app-adcheck .adc-pg .l1{width:90%;height:3px;background:#8C887F}
+.app-adcheck .adc-pg .l2{width:62%;height:3px}
+.app-adcheck .adc-pg .l3{width:38%;height:3px;background:#3A3834}
+.app-adcheck .adc-pg .so{grid-column:1/-1;display:grid;place-items:center;height:12px;border-radius:3px;font:600 10.5px/12px var(--sans);letter-spacing:-.01em;
+  color:#3A3834;background:#CFCBC3;box-shadow:0 0 0 1.5px #1E1D1A}
+
+/* the drafted fix */
+.app-adcheck .adc-fx{display:grid;gap:4px;padding:8px 10px 9px;border-radius:8px;background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-adcheck .adc-fl{display:flex;align-items:center;gap:6px;height:14px;font:500 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-adcheck svg.adc-ic{width:12px;height:12px;color:var(--fg-3)}
+.app-adcheck .adc-ft{font:400 11.5px/15px var(--sans);color:var(--fg)}
+
+/* the decision: Pause, then the signed approval */
+.app-adcheck .adc-pf{display:grid;height:24px}
+.app-adcheck .adc-pf>*{grid-area:1/1}
+.app-adcheck .adc-f1{display:flex;gap:6px;opacity:0}
+.app-adcheck .adc-f1 .ax-btn{justify-content:center}
+.app-adcheck .adc-f1 .ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
+.app-adcheck .adc-go{flex:1}
+.app-adcheck .adc-f2{display:flex;align-items:center;gap:7px;height:24px;padding:0 9px;border-radius:7px;font-size:11px;color:var(--fg-2);white-space:nowrap;
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-adcheck .adc-f2 svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-adcheck .adc-f2 b{font-weight:500;color:var(--fg)}
+.app-adcheck .adc-f2 .ax-mono{margin-left:auto;font-size:10.5px;color:var(--fg-3)}
+
+/* ---------- foot: the red lines, and the toast ---------- */
+.app-adcheck .adc-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-adcheck .adc-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-adcheck .adc-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-adcheck .adc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-adcheck .adc-toast b{font-weight:500;color:var(--fg)}
+.app-adcheck .adc-toast p span{color:var(--fg-3)}
+
+/* pointer: parks on Pause ad 4; hidden at rest */
+.app-adcheck .adc-ptr{left:476px;top:322px}
+.ilwrap .app-adcheck .appx svg.adc-ptr{width:16px;height:16px}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes adc-show{from{opacity:0}to{opacity:1}}
+@keyframes adc-hide{from{opacity:1}to{opacity:0}}
+@keyframes adc-on{from{opacity:1}to{opacity:1}}
+@keyframes adc-tick{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:none}}
+@keyframes adc-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
+@keyframes adc-scan{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@keyframes adc-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}20%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .055)}}
+@keyframes adc-bar{from{opacity:0;transform:scaleY(.3)}to{opacity:1;transform:none}}
+@keyframes adc-narrow{from{width:528px}to{width:var(--adc-tb)}}
+@keyframes adc-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes adc-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes adc-mark{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes adc-press{0%,100%{transform:none}45%{transform:scale(.96)}}
+@keyframes adc-ring{from{box-shadow:0 0 0 1.5px rgb(30 29 26 / 0)}to{box-shadow:0 0 0 1.5px #1E1D1A}}
+@keyframes adc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes adc-count{0%{--adc-n:0} 11%{--adc-n:4} 28%{--adc-n:8} 46%{--adc-n:12} 60%{--adc-n:15} 81%{--adc-n:19} 100%{--adc-n:23}}
+@keyframes adc-ptr{
+  0%{opacity:0;transform:translate(64px,74px)}
+  10%{opacity:1}
+  45%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(0,0) scale(.9)}
+  56%{transform:translate(0,0) scale(1)}
+  80%{opacity:1;transform:translate(4px,8px)}
+  100%{opacity:0;transform:translate(6px,12px)}}
+
+/* 1. full width: each ad with its landing page; checks tick in row by row, the count climbs, each mark closes */
+.appx-il.play.app-adcheck .adc-tb{animation:ax-fade .5s var(--ease) .06s both,adc-narrow .62s var(--ease) 2.62s both}
+.appx-il.play.app-adcheck .adc-row>.u{animation:adc-on .01s linear both,adc-hide .28s var(--ease) 2.56s forwards}
+.appx-il.play.app-adcheck .adc-row:not(.adc-th)::after{animation:adc-scan .55s var(--ease) var(--t) both}
+.appx-il.play.app-adcheck .adc-ok{animation:adc-tick .32s var(--snap) calc(var(--t) + var(--k) * 60ms) both}
+.appx-il.play.app-adcheck .adc-cnt{animation:adc-count 1.7s steps(1,end) .62s both}
+.appx-il.play.app-adcheck .adc-cl .sig-sq{animation:adc-home .5s var(--snap) calc(var(--t) + .3s) both}
+.appx-il.play.app-adcheck .adc-cl .sig-gap{animation:adc-show .3s var(--ease) calc(var(--t) + .42s) both}
+
+/* 2. Ad 4: its stock check fails, the row lights, the mark turns to needs you */
+.appx-il.play.app-adcheck .adc-fail .adc-no{animation:adc-tick .42s var(--snap) 1.82s both}
+.appx-il.play.app-adcheck .r-hot{animation:adc-glow 2s var(--ease) 1.84s both}
+.appx-il.play.app-adcheck .r-hot::before{animation:adc-bar .4s var(--ease) 1.88s both}
+.appx-il.play.app-adcheck .r-hot .adc-mk .w0{animation:adc-on .01s linear both,adc-hide .2s var(--ease) 1.84s forwards}
+.appx-il.play.app-adcheck .r-hot .adc-mk .w1{animation:adc-mark .45s var(--snap) 1.86s both,adc-hide .2s var(--ease) 4.72s forwards}
+
+/* 3. the table makes room; Ad 4 docks with its evidence, the cost and the drafted fix */
+.appx-il.play.app-adcheck .adc-pan{animation:ax-slide .6s var(--ease) 2.66s both}
+.appx-il.play.app-adcheck .adc-ph{animation:adc-in .4s var(--ease) 2.86s both}
+.appx-il.play.app-adcheck .adc-fd h3{animation:adc-in .4s var(--ease) 2.94s both}
+.appx-il.play.app-adcheck .adc-cost{animation:adc-in .45s var(--ease) 3.02s both}
+.appx-il.play.app-adcheck .adc-ad{animation:adc-in .4s var(--ease) 3.1s both}
+.appx-il.play.app-adcheck svg.adc-ar,.appx-il.play.app-adcheck .adc-cap{animation:adc-show .35s var(--ease) 3.2s both}
+.appx-il.play.app-adcheck .adc-pg{animation:adc-in .4s var(--ease) 3.18s both}
+.appx-il.play.app-adcheck .adc-pg .so{animation:adc-ring .35s var(--ease) 3.5s both}
+.appx-il.play.app-adcheck .adc-fx{animation:adc-in .4s var(--ease) 3.42s both}
+.appx-il.play.app-adcheck .adc-ph .w1{animation:adc-on .01s linear both,adc-hide .2s var(--ease) 4.72s forwards}
+
+/* 4. the pointer pauses Ad 4: the buttons give way to the signed approval; the row reads Paused; both marks close */
+.appx-il.play.app-adcheck .adc-ptr{animation:adc-ptr 2s var(--ease) 3.55s both}
+.appx-il.play.app-adcheck .adc-f1{animation:adc-in .4s var(--ease) 3.56s both,adc-hide .2s var(--ease) 4.66s forwards}
+.appx-il.play.app-adcheck .adc-go{animation:adc-press .22s ease-out 4.46s}
+.appx-il.play.app-adcheck .adc-f2{animation:adc-in .4s var(--ease) 4.72s both}
+.appx-il.play.app-adcheck .r-hot .d .adc-stk>b{animation:adc-on .01s linear both,adc-out .3s var(--ease) 4.72s forwards}
+.appx-il.play.app-adcheck .r-hot .d .adc-stk>em{animation:adc-in .35s var(--ease) 4.78s both}
+.appx-il.play.app-adcheck .adc-mk .w2{animation:adc-show .2s var(--ease) 4.74s both}
+.appx-il.play.app-adcheck .adc-mk .w2 .sig-sq{animation:adc-home .5s var(--snap) 4.78s both}
+.appx-il.play.app-adcheck .adc-mk .w2 .sig-gap{animation:adc-show .3s var(--ease) 4.92s both}
+
+/* 5. the toast */
+.appx-il.play.app-adcheck .adc-toast{animation:adc-toast .45s var(--ease) 5.05s both}

@@ -6,7 +6,8 @@ export type ScreenName = string
    speed-to-lead, which redirects), price-watch, ad-tracking, trial-teardown, email-sms-tracking, website-audit,
    delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
    ('checkout'), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
-   account-handover ('handover'), software-renewals ('spend').
+   account-handover ('handover'), software-renewals ('spend'), expansion-offers ('expansion'), client-upsells
+   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners').
    Check your AI agents (3 Oct, _research/verify/VERIFY.md): support-bot-check ('support-bot'), voice-agent-check
    ('voice-agent'), outbound-agent-check ('outbound-agent'), sales-agent-check ('sales-agent'), vendor-agent-check
    ('vendor-agent'), resolution-check ('resolution'), ai-disclosure-check ('disclosure'), drift-watch ('drift'). */
@@ -14,6 +15,7 @@ export type RecipeId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
   | 'checkout' | 'quotes' | 'renewal' | 'saves' | 'handover' | 'spend'
+  | 'expansion' | 'upsells' | 'reviews' | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
@@ -144,7 +146,7 @@ export type Page = {
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
 export type RecipeGroup =
   | 'Win customers'
-  | 'Keep customers'
+  | 'Keep and grow customers'
   | 'Watch rivals'
   | 'Check your own journeys'
   | 'Get paid and save'

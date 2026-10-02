@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Renewal negotiation (/recipes/renewal-negotiation). Keep customers. Screen: renewal (a logistics customer, $48,000 a
+/* Renewal negotiation (/recipes/renewal-negotiation). Keep and grow customers. Screen: renewal (a logistics customer, $48,000 a
    year, renews 1 Dec; 4 Sep their procurement agent, declared as AI, asks for 22% off; 10 minutes later the real usage
    goes back with 6% for a 2 year term, from the approved limits; 12 Sep their agent says usage fell, the record shows
    it rose 14%; 1 Oct their agent accepts 6% for 2 years, you tap OK and sign; 29 Nov paid through their supplier portal).
@@ -27,7 +27,7 @@ export const recipe: Recipe = {
   id: 'renewal',
   slug: 'renewal-negotiation',
   name: 'Renewal negotiation',
-  group: 'Keep customers',
+  group: 'Keep and grow customers',
   line: 'Answers every discount request at renewal the same day, with real usage, inside the limits you set.',
   gets: 'Every renewal round answered the same day, and the deal taken to signature and payment.',
   kit: [

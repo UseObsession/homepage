@@ -12,7 +12,7 @@ const RECIPES = Object.fromEntries(Object.values(FILES).map((r) => [r.id, r])) a
 /* The 6 jobs, in the order every page shows them (content/nav JOBS). */
 const JOBS: RecipeGroup[] = [
   'Win customers',
-  'Keep customers',
+  'Keep and grow customers',
   'Watch rivals',
   'Check your own journeys',
   'Get paid and save',

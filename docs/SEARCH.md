@@ -127,7 +127,7 @@ The blog `category` field takes the hub name exactly as written here.
 | Price intelligence | `price-intelligence` | member price intelligence | Watch rivals | (wave 2) |
 | Prospect intelligence | `prospect-intelligence` | how to research a prospect before a sales call | Win customers | Post 2 |
 | Speed to lead | `speed-to-lead` | speed to lead | Win customers | Post 4 |
-| Account intelligence | `account-intelligence` | customer churn signals | Keep customers | (wave 2) |
+| Account intelligence | `account-intelligence` | customer churn signals | Keep and grow customers | (wave 2) |
 | AI answers | `ai-answers` | what does ChatGPT say about my business | Win customers | (wave 2) |
 
 Get paid and Supplier quotes stay on their recipe pages until there is demand evidence; a ninth hub ("Agents at work", how buyers' agents will judge sellers) waits for Gartner's 90% figure to show up in real queries.

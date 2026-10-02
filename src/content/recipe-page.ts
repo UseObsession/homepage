@@ -3,7 +3,7 @@ import type { Cta } from './types'
 /* The words every recipe page shares (pages/RecipePage), around each recipe's own content (src/content/recipes).
    A recipe file carries its hero, kit, run, steps, checks, outputs, settings, who it's for, table, questions and final
    call; these are the claims that head the sections a recipe file gives no heading for, and the chrome around them.
-   Copy rules: docs/REBUILD.md, "Copy". Headings make a claim and hold for all 15 recipes: never a recipe count, and
+   Copy rules: docs/REBUILD.md, "Copy". Headings make a claim and hold for every recipe: never a recipe count, and
    nothing that says a run was signed (the 1 real run, Mystery shopper's September store check, claims no signature). */
 
 export const recipePage = {

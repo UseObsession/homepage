@@ -323,13 +323,13 @@ export const page: Page = {
     items: [
       {
         name: 'SaaS',
-        line: 'Every prospect’s trial checked for your gap, every release tested as a new customer, every rival price logged.',
-        recipes: ['prospect', 'audit', 'delivery', 'competitor'],
+        line: 'Every prospect’s trial checked for your gap, every release tested as a new customer, every customer near its limit offered more.',
+        recipes: ['prospect', 'audit', 'delivery', 'expansion', 'competitor'],
       },
       {
         name: 'Ecommerce and DTC',
-        line: 'Your store shopped by 4 test customers after every change, and rivals’ public ads and prices logged daily.',
-        recipes: ['mystery', 'ads', 'prices', 'audit'],
+        line: 'Your store shopped by 4 test customers after every change, every ad’s page checked each morning, every customer asked for a review, and rivals’ prices logged daily.',
+        recipes: ['mystery', 'adcheck', 'reviews', 'prices', 'audit'],
       },
       {
         name: 'Marketplaces',
@@ -348,18 +348,18 @@ export const page: Page = {
       },
       {
         name: 'Services and consultancies',
-        line: 'Overdue invoices chased, your own enquiry form timed weekly, and every supplier rise met with quotes.',
-        recipes: ['get-paid', 'speed', 'supplier-quotes', 'prospect'],
+        line: 'Overdue invoices chased, your own enquiry form timed weekly, every client offered the next service it needs, and every supplier rise met with quotes.',
+        recipes: ['get-paid', 'speed', 'upsells', 'supplier-quotes', 'prospect'],
       },
       {
         name: 'Local business',
-        line: 'Hours, listings and booking links checked at every location, and every supplier rise pushed back.',
-        recipes: ['listings', 'mystery', 'audit', 'supplier-quotes'],
+        line: 'Hours, listings and booking links checked at every location, every customer asked for a review, and every supplier rise pushed back.',
+        recipes: ['listings', 'reviews', 'mystery', 'audit', 'supplier-quotes'],
       },
       {
         name: 'Consumer products',
-        line: 'Your promo codes tested at your own checkout daily, and every retailer’s price and stock for your range logged.',
-        recipes: ['audit', 'prices', 'competitor', 'email-sms'],
+        line: 'Your promo codes and every partner’s link tried at your own checkout, and every retailer’s price and stock for your range logged.',
+        recipes: ['audit', 'partners', 'prices', 'competitor', 'email-sms'],
       },
       {
         name: 'B2B and industrial',
@@ -375,8 +375,8 @@ export const page: Page = {
   },
 
   recipes: {
-    heading: 'Prospects, quotes, releases, rivals, listings, invoices and software bills each have a recipe ready to run.',
-    ids: ['prospect', 'quotes', 'audit', 'delivery', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'spend', 'mystery'],
+    heading: 'Prospects, quotes, upgrades, ads, reviews, rivals, invoices and software bills each have a recipe ready to run.',
+    ids: ['prospect', 'quotes', 'expansion', 'upsells', 'audit', 'delivery', 'adcheck', 'partners', 'reviews', 'competitor', 'trial', 'listings', 'get-paid', 'supplier-quotes', 'spend', 'mystery'],
   },
 
   proof: {

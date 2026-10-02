@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Business case (/recipes/business-case). Keep customers. Screen: case (a payroll software renewal on 29 Dec: up to
+/* Business case (/recipes/business-case). Keep and grow customers. Screen: case (a payroll software renewal on 29 Dec: up to
    $184,000 a year saved, 312 tickets a month x 12 x 50 minutes x $59 an hour, from the account's own data, with
    consent; every number sourced and signed; shared with their finance team).
    Base: site_sales.json "Business case" (approved copy and demo).
@@ -20,7 +20,7 @@ export const recipe: Recipe = {
   id: 'business-case',
   slug: 'business-case',
   name: 'Business case',
-  group: 'Keep customers',
+  group: 'Keep and grow customers',
   line: 'Builds each renewal case from the usage and tickets you connect, in the account’s own costs, with every number signed to its source.',
   gets: 'A renewal case finance can check without calling you, kept current until they sign.',
   kit: [
@@ -171,7 +171,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What if the numbers are weak?',
-        a: 'You see them first. The case shows what the data shows, so you know which accounts need a save plan, not a pitch.',
+        a: 'You see them first. The case shows the numbers as they stand, so you know which accounts need a save plan instead of an upsell.',
       },
       {
         q: 'When should we start it?',
