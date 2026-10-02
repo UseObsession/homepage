@@ -1,0 +1,175 @@
+/* app-vendorcheck: Missions / Vendor agent check, the 4th pillar's "before you sign" screen (VERIFY.md 6.5).
+   Your company is choosing Vendor A's replacement. With both vendors' OK, declared test customers ran the same 20 cases
+   from its real tickets on Vendor B's and Vendor C's AI agents over a 2 week run.
+   Left: only the 9 cases a vendor failed, each vendor's verdict side by side (pass = landed, fail = needs you), and
+   1 folded row for the 11 both passed. Right: the totals and the run, then 1 case open: the rule, the question as
+   Test customer 2 asked it, each vendor's reply and what happened next, signed.
+   Story (calm, about 4 s): the verdicts land row by row for both vendors while a quiet scan walks down the table and the
+   totals tick with every row; when H-01 lands its open case fills (B connects, C loops); the folded row lands and the
+   totals run up the last 11; the toast.
+   Chrome (canonical, 2 Oct 2026): Your company, Missions selected, list Suppliers; pill in the head; lock line + toast at
+   the shared foot (main gap 12, lock left 14 bottom 26, toast bottom 14, toast text gap 8).
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, body 50..348 (table 236: 36 + 26 + 10 x 22 = 282 + 16 air;
+   side 280: 86 + 12 + 200), lock line 372..388, toast 360..400.
+   Rest state (no .play) = the finished scene. */
+@property --vc-b{syntax:"<integer>";inherits:false;initial-value:17}
+@property --vc-c{syntax:"<integer>";inherits:false;initial-value:12}
+
+.app-vendorcheck .ax-main{grid-template-rows:24px auto;padding:14px;gap:12px}
+
+/* sidebar: the list this page belongs to */
+.app-vendorcheck .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-vendorcheck .ax-clients a.on i{background:var(--fg-2)}
+
+/* ---------- head: the page, the count, the declared agent ---------- */
+.app-vendorcheck .vc-h{display:flex;align-items:center;gap:10px;height:24px;min-width:0}
+.app-vendorcheck .vc-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-vendorcheck .vc-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-vendorcheck .vc-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+/* the shared avatar: the mark on a solid tile, used for the agent and for its test customer */
+.app-vendorcheck .vc-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-vendorcheck .vc-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+.app-vendorcheck .vc-bd{display:grid;grid-template-columns:236px minmax(0,1fr);gap:12px;height:298px;min-height:0}
+
+/* ---------- the cases a vendor failed ---------- */
+.app-vendorcheck .vc-tb{position:relative;display:grid;grid-template-rows:36px 26px auto;align-content:start;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-vendorcheck .vc-tt{display:flex;align-items:center;gap:8px;padding:0 12px;white-space:nowrap}
+.app-vendorcheck .vc-tt b{font:600 12.5px/1 var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.app-vendorcheck .vc-tt span{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-vendorcheck .vc-r{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr) 52px 52px;align-items:center;height:22px;padding-right:4px}
+.app-vendorcheck .vc-th{height:26px;box-shadow:0 1px 0 var(--line) inset,0 -1px 0 var(--line-2) inset}
+.app-vendorcheck .vc-th>span{font:500 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-vendorcheck .vc-th>.v{justify-self:center}
+.app-vendorcheck .vc-rows{position:relative}
+/* a hairline between rows, so each verdict pair reads on its own line */
+.app-vendorcheck .vc-rows .vc-r+.vc-r{box-shadow:0 1px 0 var(--line) inset}
+.app-vendorcheck .vc-r .id{padding-left:12px;font:400 10.5px/22px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-vendorcheck .vc-th .id{font:500 10.5px/1 var(--sans)}
+.app-vendorcheck .vc-r .nm{min-width:0;font-size:11px;line-height:22px;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-vendorcheck .vc-rows .v{display:grid;place-items:center;height:22px}
+.app-vendorcheck .vc-rows .v>*{grid-area:1/1}
+.ilwrap .app-vendorcheck .vc-rows .v svg.sig{width:13px;height:13px;color:var(--fg-2)}
+/* a pass is quiet, a fail is loud: the eye finds each vendor's misses */
+.ilwrap .app-vendorcheck .vc-rows .v svg.sig.st-needs{color:var(--fg)}
+.app-vendorcheck .vc-r .ph{display:block;width:4px;height:4px;border-radius:50%;background:var(--line-3);opacity:0}
+/* the case that is open on the right */
+.app-vendorcheck .vc-rows .vc-r.on{background-color:rgb(var(--fg-rgb) / .07)}
+.app-vendorcheck .vc-r.on::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-vendorcheck .vc-r.on .nm{color:var(--fg);font-weight:500}
+.app-vendorcheck .vc-r.on .id{color:var(--fg-2)}
+/* the 11 both passed, folded */
+.app-vendorcheck .vc-more{cursor:default}
+.app-vendorcheck .vc-more .id{display:flex;align-items:center;height:22px}
+.ilwrap .app-vendorcheck .vc-more .id svg{width:12px;height:12px;color:var(--fg-3)}
+.app-vendorcheck .vc-more .nm{grid-column:2 / -1;color:var(--fg-3)}
+/* the run walking down the table, only during play */
+.app-vendorcheck .vc-scan{position:absolute;left:0;right:0;top:0;height:22px;background:rgb(var(--fg-rgb) / .05);opacity:0;pointer-events:none}
+
+/* ---------- right: totals, the run, the open case ---------- */
+.app-vendorcheck .vc-side{display:grid;grid-template-rows:86px minmax(0,1fr);gap:12px;min-width:0;min-height:0}
+
+.app-vendorcheck .vc-sc{display:grid;grid-template-rows:minmax(0,1fr) 26px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden}
+.app-vendorcheck .vc-vs{display:grid;grid-template-columns:1fr 1fr}
+.app-vendorcheck .vc-v{display:grid;align-content:center;gap:2px;padding:0 12px}
+.app-vendorcheck .vc-v+.vc-v{box-shadow:1px 0 0 var(--line) inset}
+.app-vendorcheck .vc-vl{font:500 11px/14px var(--sans);color:var(--fg-2)}
+.app-vendorcheck .vc-n{display:flex;align-items:baseline;white-space:nowrap}
+.app-vendorcheck .vc-n b{width:2ch;text-align:right;font:600 22px/26px var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-vendorcheck .vc-n small{margin-left:1px;font:500 12px/1 var(--display);color:var(--fg-3)}
+.app-vendorcheck .vc-n span{margin-left:6px;font-size:11px;color:var(--fg-3)}
+.app-vendorcheck .vc-nb{counter-reset:vc-b var(--vc-b)}
+.app-vendorcheck .vc-nb::before{content:counter(vc-b)}
+.app-vendorcheck .vc-nc{counter-reset:vc-c var(--vc-c)}
+.app-vendorcheck .vc-nc::before{content:counter(vc-c)}
+.app-vendorcheck .vc-run{display:flex;align-items:center;gap:7px;padding:0 12px;box-shadow:0 1px 0 var(--line) inset;font-size:11px;color:var(--fg-3);white-space:nowrap}
+.app-vendorcheck .vc-run b{font-weight:500;color:var(--fg)}
+.app-vendorcheck .vc-run time{font:400 10.5px/1 var(--mono);color:var(--fg-2)}
+.ilwrap .app-vendorcheck .vc-run svg{width:12px;height:12px;color:var(--fg-2)}
+
+.app-vendorcheck .vc-cs{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:10px 12px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset;min-height:0}
+.app-vendorcheck .vc-ch{display:grid;gap:5px}
+.app-vendorcheck .vc-ct{display:flex;align-items:center;gap:8px;height:18px;white-space:nowrap}
+.app-vendorcheck .vc-ct .ax-chip{height:18px}
+.app-vendorcheck .vc-ct b{font:600 12.5px/1 var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.ilwrap .app-vendorcheck .vc-ct svg.vc-cv{width:14px;height:14px;margin-left:auto;color:var(--fg-3)}
+.app-vendorcheck .vc-rule{display:flex;align-items:center;gap:6px;height:14px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.ilwrap .app-vendorcheck .vc-rule svg{width:12px;height:12px;color:var(--fg-3)}
+
+/* the transcript: asked once by the declared test customer, answered side by side */
+.app-vendorcheck .vc-box{display:grid;grid-template-rows:auto minmax(0,1fr);border-radius:8px;background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset;overflow:hidden;min-height:0}
+.app-vendorcheck .vc-q{display:grid;gap:4px;padding:8px;box-shadow:0 -1px 0 var(--line) inset}
+.app-vendorcheck .vc-who{display:flex;align-items:center;gap:7px;height:16px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-vendorcheck .vc-ask{font:400 11px/14px var(--mono);color:var(--fg);white-space:nowrap}
+.app-vendorcheck .vc-cols{display:grid;grid-template-columns:1fr 1fr;min-height:0}
+.app-vendorcheck .vc-col{display:grid;align-content:center;gap:3px;padding:0 7px;min-width:0}
+.app-vendorcheck .vc-col+.vc-col{box-shadow:1px 0 0 var(--line) inset}
+.app-vendorcheck .vc-vh{display:flex;align-items:center;gap:6px;height:14px;white-space:nowrap}
+.app-vendorcheck .vc-vh b{font:500 11px/1 var(--sans);color:var(--fg)}
+.app-vendorcheck .vc-vh time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-vendorcheck .vc-mk{display:grid;width:11px;height:11px;flex:none}
+.app-vendorcheck .vc-mk>svg{grid-area:1/1}
+.app-vendorcheck .vc-mk .w0{opacity:0}
+.ilwrap .app-vendorcheck .vc-mk svg.sig{width:11px;height:11px;color:var(--fg)}
+.app-vendorcheck .vc-say,.app-vendorcheck .vc-res{display:grid;align-items:center;height:14px;min-width:0}
+.app-vendorcheck .vc-say>*,.app-vendorcheck .vc-res>*{grid-area:1/1}
+.app-vendorcheck .vc-say span{font:400 10.5px/14px var(--mono);color:var(--fg);white-space:nowrap}
+.app-vendorcheck .vc-say em{margin-left:5px;font-style:normal;color:var(--fg-3)}
+.app-vendorcheck .vc-res span{font-size:11px;line-height:14px;color:var(--fg-2);white-space:nowrap}
+.app-vendorcheck .vc-colc .vc-res span{color:var(--fg);font-weight:500}
+.app-vendorcheck .vc-sk{display:block;width:78%;height:6px;border-radius:3px;background:rgb(var(--fg-rgb) / .09);opacity:0}
+.app-vendorcheck .vc-res .vc-sk{width:58%}
+/* the signature line, in every sibling's order: Signed, then the key */
+.app-vendorcheck .vc-sig{display:flex;align-items:center;gap:6px;height:14px;white-space:nowrap}
+.app-vendorcheck .vc-sig span:first-child{font:400 10.5px/14px var(--sans);color:var(--fg-3)}
+.app-vendorcheck .vc-sig span+span{font:400 10.5px/14px var(--mono);color:var(--fg-2)}
+
+/* ---------- foot: the red line, level with the toast (the shared foot) ---------- */
+.app-vendorcheck .vc-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-vendorcheck .vc-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-vendorcheck .vc-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-vendorcheck .vc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-vendorcheck .vc-toast b{font-weight:500;color:var(--fg)}
+.app-vendorcheck .vc-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes vc-mk{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes vc-out{from{opacity:1}to{opacity:0}}
+@keyframes vc-show{from{opacity:0}to{opacity:1}}
+@keyframes vc-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes vc-glow{0%{background-color:rgb(var(--fg-rgb) / .07)}22%{background-color:rgb(var(--fg-rgb) / .16)}100%{background-color:rgb(var(--fg-rgb) / .07)}}
+@keyframes vc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. the verdicts land row by row: a quiet scan walks down, each row's B then C verdict lands on it */
+.appx-il.play.app-vendorcheck .vc-rows .v .sig{animation:vc-mk .42s var(--snap) var(--d) both}
+.appx-il.play.app-vendorcheck .vc-rows .v2 .sig{animation-delay:calc(var(--d) + var(--vc-off))}
+.appx-il.play.app-vendorcheck .vc-r .ph{animation:vc-out .15s linear var(--d) both}
+.appx-il.play.app-vendorcheck .vc-r .v2 .ph{animation-delay:calc(var(--d) + var(--vc-off))}
+.appx-il.play.app-vendorcheck .vc-rows .vc-r.on{animation:vc-glow 1.6s var(--ease) var(--d) both}
+.appx-il.play.app-vendorcheck .vc-more>*{animation:vc-in .35s var(--ease) var(--d) both}
+
+/* 2. H-01 lands: its open case fills, B connects to a person, C loops and never does */
+.appx-il.play.app-vendorcheck .vc-mk .w0{animation:vc-show .01s linear 0s both,vc-out .2s var(--ease) var(--t1) forwards}
+.appx-il.play.app-vendorcheck .vc-mk .w1{animation:vc-mk .45s var(--snap) var(--t1) both}
+.appx-il.play.app-vendorcheck .vc-sk{animation:vc-show .01s linear 0s both,vc-out .2s var(--ease) var(--t) forwards}
+.appx-il.play.app-vendorcheck .vc-say span,.appx-il.play.app-vendorcheck .vc-res span{animation:vc-in .35s var(--ease) var(--t) both}
+
+/* 3. every case signed: the report goes to procurement (timed in the generated block below) */
+
+/* generated by gen_vendorcheck.py: the totals tick as each verdict lands, the scan, the open case, the toast */
+@keyframes vc-b{0%{--vc-b:0} 2.06%{--vc-b:0} 11.11%{--vc-b:1} 20.16%{--vc-b:1} 29.22%{--vc-b:2} 38.27%{--vc-b:3} 47.33%{--vc-b:4} 56.38%{--vc-b:5} 65.43%{--vc-b:5} 74.49%{--vc-b:6} 83.54%{--vc-b:7} 85.19%{--vc-b:8} 86.83%{--vc-b:9} 88.48%{--vc-b:10} 90.12%{--vc-b:11} 91.77%{--vc-b:12} 93.42%{--vc-b:13} 95.06%{--vc-b:14} 96.71%{--vc-b:15} 98.35%{--vc-b:16} 100.00%{--vc-b:17}}
+@keyframes vc-c{0%{--vc-c:0} 2.06%{--vc-c:0} 11.11%{--vc-c:0} 20.16%{--vc-c:1} 29.22%{--vc-c:1} 38.27%{--vc-c:1} 47.33%{--vc-c:1} 56.38%{--vc-c:1} 65.43%{--vc-c:1} 74.49%{--vc-c:1} 83.54%{--vc-c:2} 85.19%{--vc-c:3} 86.83%{--vc-c:4} 88.48%{--vc-c:5} 90.12%{--vc-c:6} 91.77%{--vc-c:7} 93.42%{--vc-c:8} 95.06%{--vc-c:9} 96.71%{--vc-c:10} 98.35%{--vc-c:11} 100.00%{--vc-c:12}}
+.appx-il.play.app-vendorcheck .vc-nb{animation:vc-b 2.43s steps(1,end) 0.55s both}
+.appx-il.play.app-vendorcheck .vc-nc{animation:vc-c 2.43s steps(1,end) 0.63s both}
+@keyframes vc-scan{0%{opacity:0;top:-10.0px}6%{opacity:1}92%{opacity:1}100%{opacity:0;top:208.0px}}
+.appx-il.play.app-vendorcheck .vc-scan{animation:vc-scan 2.18s linear 0.50s both}
+.app-vendorcheck .vc-rows{--vc-off:0.08s}
+.app-vendorcheck .vc-colb{--t1:1.78s}
+.app-vendorcheck .vc-colb .vc-say{--t:1.58s}
+.app-vendorcheck .vc-colb .vc-res{--t:1.78s}
+.app-vendorcheck .vc-colc{--t1:1.96s}
+.app-vendorcheck .vc-colc .vc-say{--t:1.71s}
+.app-vendorcheck .vc-colc .vc-res{--t:1.96s}
+.appx-il.play.app-vendorcheck .vc-sig{animation:vc-in .4s var(--ease) 2.21s both}
+.appx-il.play.app-vendorcheck .vc-toast{animation:vc-toast .45s var(--ease) 3.56s both}

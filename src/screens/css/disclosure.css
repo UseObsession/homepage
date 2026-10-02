@@ -1,0 +1,185 @@
+/* app-disclosure: AI disclosure check, the 4th pillar (Check your AI agents), recipe ai-disclosure-check.
+   Every morning a declared test customer (Test customer 2 · AI · for Your company) opens the company's own AI agent
+   on chat, phone, email and text. Each channel leaves 1 dated proof: the first line (the AI notice, highlighted; on
+   the phone, the first spoken line of the recording), the answer to "Am I talking to a person?" and the time to reach
+   a person against its target. Each check names its rule in the column head (AI Act Art. 50, Utah 13-77-103,
+   Ley 10/2025); the day's proofs are signed in 1 line at the table foot. Above: a calendar strip of daily proofs.
+   Today the text channel fails: its first line holds an empty dashed slot, "no AI notice", where the notice should be.
+   Chrome is canonical (APP-SPEC, Product chrome, 2 Oct 2026): Your company, Missions selected, no list; the
+   declared-agent pill in the head; 1 lock line bottom left, level with the 1 toast bottom right.
+   Geometry (design px, main 556 x 414, padding 14, content 528 wide): head 14..38, strip 48..88,
+   proofs 98..350 (who 26, head 28, 4 rows x 36, verdict 28, signed 26; columns 64 216 152 96), lock 372..388,
+   toast 360..400.
+   Story (4.6 s): the 4 proofs run top to bottom (a quiet band walks the rows); each first line types in and its AI
+   notice lights; the answer and the time land; the mark closes; the year's count ticks 1,100 to 1,104; the text's
+   slot is drawn empty, then labelled; the text proof lands as needs you and its verdict opens; the day is signed;
+   today's day in the strip flips from working to needs you; Needs you ticks 2 to 3; the toast: Proof filed ·
+   1 channel to fix.
+   Rest state (no .play) = the finished scene. */
+@property --dsc-n{syntax:"<integer>";inherits:false;initial-value:104}
+
+.app-disclosure .ax-main{grid-template-rows:24px 40px 252px;padding:14px;gap:10px}
+
+/* ---------- head: title, meta, the declared agent ---------- */
+.app-disclosure .dsc-h{height:24px;gap:10px;min-width:0}
+.app-disclosure .dsc-h h2{white-space:nowrap}
+.app-disclosure .dsc-h .ax-meta{padding-top:2px;white-space:nowrap}
+.app-disclosure .dsc-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-disclosure .dsc-pa,.app-disclosure .dsc-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-disclosure .dsc-pa svg.sig,.ilwrap .app-disclosure .dsc-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: Needs you gains today's text proof */
+.app-disclosure .dsc-nb{display:inline-grid}
+.app-disclosure .dsc-nb b{grid-area:1/1;font-weight:inherit}
+.app-disclosure .dsc-nb b:first-child{opacity:0}
+
+/* ---------- the calendar strip: 1 mark a day, today on the right ---------- */
+.app-disclosure .dsc-cal{display:grid;grid-template-columns:92px minmax(0,1fr) 88px;align-items:center;gap:12px;height:40px;padding:0 12px;
+  border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-disclosure .dsc-cl,.app-disclosure .dsc-yr{display:grid;gap:3px;white-space:nowrap}
+.app-disclosure .dsc-cl b{font:500 11px/13px var(--sans);color:var(--fg)}
+.app-disclosure .dsc-cl>span,.app-disclosure .dsc-yr>span{font:400 10.5px/12px var(--sans);color:var(--fg-3)}
+.app-disclosure .dsc-yr{justify-items:end}
+.app-disclosure .dsc-yr b{font:400 11px/13px var(--sans);color:var(--fg-2)}
+.app-disclosure .dsc-yr .dsc-cn{font:500 11px/13px var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-disclosure .dsc-cnt{counter-reset:dscn var(--dsc-n)}
+.app-disclosure .dsc-cnt::before{content:counter(dscn)}
+
+.app-disclosure .dsc-days{display:flex;justify-content:space-between;align-items:center;height:32px;min-width:0}
+.app-disclosure .dsc-days li{display:grid;justify-items:center;align-content:center;gap:4px;width:20px;height:32px;border-radius:6px}
+.app-disclosure .dsc-days li>span:first-child{font:400 10.5px/11px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.ilwrap .app-disclosure .dsc-days svg.sig{width:10px;height:10px;color:var(--fg-2)}
+.app-disclosure .dsc-days .dsc-today{width:24px;background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-disclosure .dsc-today>span:first-child{color:var(--fg);font-weight:500}
+.app-disclosure .dsc-tm{display:grid;place-items:center}
+.app-disclosure .dsc-tm>svg{grid-area:1/1}
+.app-disclosure .dsc-tm .w0{opacity:0}
+.ilwrap .app-disclosure .dsc-days .dsc-tm svg.sig{color:var(--fg)}
+
+/* ---------- the proofs: 1 row per channel, 1 column per check ---------- */
+.app-disclosure .dsc-tb{position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:0;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-disclosure .dsc-who{display:flex;align-items:center;gap:7px;flex:none;height:26px;padding:0 12px;font-size:11px;color:var(--fg-2);white-space:nowrap;
+  box-shadow:0 -1px 0 var(--line) inset}
+.app-disclosure .dsc-who time{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+
+.app-disclosure .dsc-row{position:relative;display:grid;grid-template-columns:64px 216px 152px 96px;align-items:center;flex:none;height:36px;
+  box-shadow:0 -1px 0 var(--line) inset}
+.app-disclosure .dsc-row>*{min-width:0;padding-left:10px;white-space:nowrap}
+.app-disclosure .dsc-row>:first-child{padding-left:12px}
+
+/* column heads: the check, then its rule */
+.app-disclosure .dsc-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-disclosure .dsc-th>span{display:grid;align-content:center;gap:2px;height:100%}
+.app-disclosure .dsc-th b{font:500 10.5px/12px var(--sans);color:var(--fg-2);letter-spacing:-.005em}
+.app-disclosure .dsc-th i{font:400 10.5px/12px var(--mono);font-style:normal;color:var(--fg-3)}
+.app-disclosure .dsc-th>span:first-child{align-content:start;padding-top:1px}
+
+.app-disclosure .dsc-rows{position:relative;flex:none}
+/* the run walks the rows (only during play) */
+.app-disclosure .dsc-r::before{content:"";position:absolute;inset:0;z-index:-1;background:rgb(var(--fg-rgb) / .05);opacity:0;pointer-events:none}
+
+/* channel: the proof's mark, the channel, the time it ran */
+.app-disclosure .dsc-ch{display:grid;grid-template-columns:12px auto;column-gap:6px;row-gap:2px;align-items:center;justify-content:start}
+.app-disclosure .dsc-mk{position:relative;display:grid;place-items:center;width:12px;height:12px}
+.app-disclosure .dsc-mk>*{grid-area:1/1}
+.ilwrap .app-disclosure .dsc-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-disclosure .dsc-p{width:4px;height:4px;border-radius:50%;background:var(--line-3);opacity:0}
+.app-disclosure .dsc-ch b{font:500 11.5px/14px var(--sans);color:var(--fg)}
+.app-disclosure .dsc-ch time{grid-column:2;font:400 10.5px/12px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* excerpts: the agent's words, in mono, 2 lines */
+.app-disclosure .dsc-x{display:grid;align-content:center}
+.app-disclosure .dsc-x>span{display:block;font:400 10.5px/14px var(--mono);color:var(--fg-2)}
+.app-disclosure .dsc-x mark{border-radius:2px;color:var(--fg);font-weight:500;background:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 2px rgb(var(--fg-rgb) / .1)}
+/* the text's first line: an empty slot where the AI notice should be, the same size as the notices above it */
+.app-disclosure .dsc-x>.dsc-slot{justify-self:start;display:flex;align-items:center;width:124px;height:18px;margin:-2px 0 1px -2px;padding:0 7px;border-radius:4px;
+  border:1.25px dashed rgb(var(--fg-rgb) / .6);background:rgb(var(--fg-rgb) / .025)}
+.app-disclosure .dsc-slot b{font:500 11px/1 var(--sans);color:var(--fg);letter-spacing:-.005em}
+/* the phone's first spoken line, from the recording */
+.app-disclosure .dsc-ph>span{padding-left:11px}
+.app-disclosure .dsc-ph>span:first-child{position:relative}
+.ilwrap .app-disclosure svg.dsc-pl{position:absolute;left:0;top:3.5px;width:7px;height:7px}
+.app-disclosure .dsc-pl path{fill:var(--fg-3)}
+
+/* time to a person, against its target */
+.app-disclosure .dsc-t{display:grid;align-content:center;gap:2px}
+.app-disclosure .dsc-t b{font:500 10.5px/13px var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-disclosure .dsc-t span{font:400 10.5px/13px var(--sans);color:var(--fg-3)}
+
+
+/* the proof that needs you: the row and its verdict read as 1 block */
+.app-disclosure .dsc-fail,.app-disclosure .dsc-vd{background:rgb(var(--fg-rgb) / .045)}
+.app-disclosure .dsc-fail{box-shadow:none}
+.app-disclosure .dsc-fail .dsc-x:not(.dsc-q)>span{color:var(--fg)}
+.app-disclosure .dsc-vd{display:flex;align-items:center;gap:8px;flex:none;height:28px;padding:0 12px 0 30px;white-space:nowrap;
+}
+.app-disclosure .dsc-vd b{font:500 11.5px/14px var(--sans);color:var(--fg);letter-spacing:-.005em}
+.app-disclosure .dsc-vd span{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-2)}
+
+/* the table foot: the day's proofs, signed, on 1 line */
+.app-disclosure .dsc-sg{display:flex;align-items:center;gap:8px;flex:none;height:26px;padding:0 12px;white-space:nowrap;
+  font:400 11px/1 var(--mono);color:var(--fg-2);box-shadow:0 1px 0 var(--line) inset}
+.app-disclosure .dsc-sg span{font:400 11px/1 var(--sans);color:var(--fg-3)}
+
+/* ---------- the red line and the toast ---------- */
+.app-disclosure .dsc-note{position:absolute;left:14px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-disclosure .dsc-note svg{width:12px;height:12px;color:var(--fg-3)}
+.app-disclosure .dsc-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-disclosure .dsc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-disclosure .dsc-toast b{font-weight:500;color:var(--fg)}
+.app-disclosure .dsc-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes dsc-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes dsc-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes dsc-fade{from{opacity:0}to{opacity:1}}
+@keyframes dsc-gone{from{opacity:1}to{opacity:0}}
+@keyframes dsc-on{from{opacity:1}to{opacity:1}}
+@keyframes dsc-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes dsc-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+@keyframes dsc-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes dsc-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes dsc-type{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes dsc-walk{0%{opacity:0}25%{opacity:1}75%{opacity:1}100%{opacity:0}}
+@keyframes dsc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes dsc-hl{
+  from{background-color:rgb(var(--fg-rgb) / 0);box-shadow:0 0 0 2px rgb(var(--fg-rgb) / 0)}
+  to{background-color:rgb(var(--fg-rgb) / .13);box-shadow:0 0 0 2px rgb(var(--fg-rgb) / .13)}}
+@keyframes dsc-band{from{background-color:rgb(var(--fg-rgb) / 0)}to{background-color:rgb(var(--fg-rgb) / .045)}}
+/* 1 proof filed per channel: 1,100 to 1,104, just after each mark lands (1.15, 1.75, 2.35, 2.95 s) */
+@keyframes dsc-count{0%{--dsc-n:100} 25%{--dsc-n:101} 50%{--dsc-n:102} 75%{--dsc-n:103} 100%{--dsc-n:104}}
+
+/* 1. the run walks the rows; each proof's mark waits as a dot until it lands */
+.app-disclosure.play .dsc-r::before{animation:dsc-walk .9s var(--ease) var(--t) both}
+.app-disclosure.play .dsc-p{animation:dsc-on .01s linear both,dsc-gone .15s linear calc(var(--t) + .5s) forwards}
+.app-disclosure.play .dsc-mk svg.sig{animation:dsc-pop .42s var(--snap) calc(var(--t) + .5s) both}
+
+/* 2. the first line types in and its AI notice lights; the answer, the time and the signature land */
+.app-disclosure.play .dsc-r .dsc-x:not(.dsc-q)>span:first-child{animation:dsc-type .4s steps(22,end) var(--t) both}
+.app-disclosure.play .dsc-r .dsc-x:not(.dsc-q)>span:last-child{animation:dsc-type .4s steps(22,end) calc(var(--t) + .12s) both}
+.app-disclosure.play .dsc-r mark{animation:dsc-hl .45s var(--ease) calc(var(--t) + .38s) both}
+.app-disclosure.play .dsc-r .dsc-q>span:first-child{animation:dsc-fade .3s var(--ease) calc(var(--t) + .2s) both}
+.app-disclosure.play .dsc-r .dsc-q>span:last-child{animation:dsc-fade .3s var(--ease) calc(var(--t) + .28s) both}
+.app-disclosure.play .dsc-r .dsc-t{animation:dsc-in .35s var(--ease) calc(var(--t) + .34s) both}
+.app-disclosure.play .dsc-cnt{animation:dsc-count 2.4s steps(1,end) .55s both}
+
+/* 3. the text's slot is drawn empty, then labelled; the proof lands as needs you and its verdict opens; the day is signed */
+.app-disclosure.play .dsc-r .dsc-x.dsc-miss>span.dsc-slot:first-child{animation:dsc-fade .3s var(--ease) var(--t) both}
+.app-disclosure.play .dsc-slot b{animation:dsc-fade .35s var(--ease) calc(var(--t) + .5s) both}
+.app-disclosure.play .dsc-sg{animation:dsc-fade .4s var(--ease) 3.4s both}
+.app-disclosure.play .dsc-fail,.app-disclosure.play .dsc-vd{animation:dsc-band .4s var(--ease) 2.92s both}
+.app-disclosure.play .dsc-vd>*{animation:dsc-in .4s var(--ease) 3.1s both}
+
+/* 4. today in the strip: working while the run goes, then needs you */
+.app-disclosure.play .dsc-tm .w0{animation:dsc-on .01s linear both,dsc-gone .2s var(--ease) 3.2s forwards}
+.app-disclosure.play .dsc-tm .w0 .sig-rot{animation:dsc-spin 1.4s linear .4s 2}
+.app-disclosure.play .dsc-tm .w0 .sig-orb{animation:dsc-spinr 1.4s linear .4s 2}
+.app-disclosure.play .dsc-tm .w1{animation:dsc-fade .25s var(--ease) 3.22s both}
+.app-disclosure.play .dsc-tm .w1 .sig-sq{animation:dsc-sqin .45s var(--snap) 3.22s both}
+
+/* 5. Needs you ticks 2 to 3; the toast */
+.app-disclosure.play .dsc-nb b:first-child{animation:dsc-out .3s var(--ease) 3.7s both}
+.app-disclosure.play .dsc-nb b:last-child{animation:dsc-in .3s var(--ease) 3.7s both}
+.app-disclosure.play .dsc-toast{animation:dsc-toast .45s var(--ease) 4.1s both}
