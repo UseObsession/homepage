@@ -1,14 +1,14 @@
 /* app-checkout: Missions / AI checkout test, for a store owner (workspace Your company).
    Once a month a declared agent places 1 real order on every AI checkout path into the store's own shop, each on its
    own single-use card capped to that order (£48.20), inside a monthly budget, and refunds every one.
-   6 path tiles: 5 land with a receipt (amount, order, card ending, refunded). ChatGPT checkout ends with an empty cart
+   6 path tiles: 5 land with a receipt (amount, order, card ending, refunded). Assistant A checkout ends with an empty cart
    because sizes are hidden from agents (the store's feed, not the assistant): the needs-you mark, what the agent saw, a drafted fix.
-   The ChatGPT tile is the point: it spans 2 x 2 and carries a whole-tile fill, as app-board highlights its row.
+   The Assistant A tile is the point: it spans 2 x 2 and carries a whole-tile fill, as app-board highlights its row.
    Story: the paths run side by side (the ring circles), orders land one by one and the budget fills to £241.00;
-   ChatGPT's log reads "Cart: 0 items" and turns into the finding with the fix; the pointer clicks Approve fix,
+   Assistant A's log reads "Cart: 0 items" and turns into the finding with the fix; the pointer clicks Approve fix,
    the approval is signed by AM, the path waits for its re-test, the toast confirms.
    Geometry (design px, main 556 x 414, padding 14): head 14..38, rail 50..82, tiles 94..344 (3 rows of 78, gap 8),
-   lock line and toast 360..400. The ChatGPT tile spans 2 x 2 (349 x 164).
+   lock line and toast 360..400. The Assistant A tile spans 2 x 2 (349 x 164).
    Rest state (no .play) = the finished scene: 5 landed, fix approved, re-test booked. */
 @property --ck-p{syntax:"<integer>";inherits:false;initial-value:241}
 @property --ck-c{syntax:"<integer>";inherits:false;initial-value:0}
@@ -179,7 +179,7 @@
 .appx-il.play.app-checkout .ck-cnt{animation:ck-spend 2.8s steps(1,end) both}
 .appx-il.play.app-checkout .ck-mt i{animation:ck-fill 3s var(--ease) both}
 
-/* 3. ChatGPT checkout: the log reads an empty cart, then the finding lands and needs you */
+/* 3. Assistant A checkout: the log reads an empty cart, then the finding lands and needs you */
 .appx-il.play.app-checkout .ck-mk .w0{opacity:1;animation:ck-hide .2s var(--ob-ease-in) 3.1s forwards}
 .appx-il.play.app-checkout .ck-mk .w1{animation:ck-mark .45s var(--snap) 3.12s both,ck-hide .2s var(--ob-ease-in) 4.72s forwards}
 .appx-il.play.app-checkout .ck-mk .w2{animation:ck-mark .45s var(--snap) 4.74s both}
