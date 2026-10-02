@@ -1,18 +1,22 @@
 import type { Recipe } from '../types'
 
-/* Speed to lead (/recipes/speed-to-lead). Kept James's name (the one buyers use) and his reply checks (first reply,
-   channel, follow ups, callbacks logged as replies, automatic replies apart). Fixed the P0: it runs only on the
-   reader's own form, chat and phone, or a client's with their OK. It never sends an enquiry to a prospect or a rival.
-   A labelled test lead, declared as AI, times every first reply and checks who got it in the CRM the reader
-   connects. The run is an example, matches the `inbound` screen, and says so. */
+/* Lead leaks (/recipes/lead-leaks; /recipes/speed-to-lead redirects here for good, public/_redirects). Renamed from
+   Speed to lead on 3 Oct (Seun's pick, from the "leaky funnel"); the id stays 'speed', and the copy keeps "speed to
+   lead" in the title, description, answer and questions, because that is the term buyers search.
+   Kept James's reply checks (first reply, channel, follow ups, callbacks logged as replies, automatic replies apart).
+   Red lines held: it runs only on the reader's own form, chat and phone, or a client's with their OK, and never sends
+   an enquiry to a prospect or a rival. A labelled test lead, declared as AI, times every first reply and checks who
+   got it in the CRM the reader connects. The run is an example, matches the `inbound` screen, and says so.
+   Answering the leads themselves is Inbound quotes (content/recipes/inbound-quotes.ts); this recipe proves every
+   channel still lets them in. */
 
 export const recipe: Recipe = {
   id: 'speed',
-  slug: 'speed-to-lead',
-  name: 'Speed to lead',
+  slug: 'lead-leaks',
+  name: 'Lead leaks',
   group: 'Check your own journeys',
-  line: 'A labelled test lead uses your own form, chat and phone, or a client’s with their OK, and times every reply.',
-  gets: 'Time to first reply on every channel, who picked it up, and where leads get dropped.',
+  line: 'A labelled test lead uses your own form, chat and phone, or a client’s with their OK, and finds where leads leak.',
+  gets: 'Your speed to lead on every channel, who picked each lead up, and every lead that slipped through.',
   kit: [
     'A labelled test lead, declared as AI',
     'Its own inbox and phone number',
@@ -23,23 +27,23 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/speed-to-lead',
-    title: 'Speed to lead: time every reply to a new lead · Obsession',
+    path: '/recipes/lead-leaks',
+    title: 'Lead leaks: test your speed to lead every day · Obsession',
     description:
-      'A labelled test lead uses your own form, chat and phone, or a client’s with their OK, times every first reply and shows where new leads get dropped.',
+      'Speed to lead, tested: a declared AI test lead uses your own form, chat and phone, times every first reply and finds the leads your team never answered.',
     answer:
-      'Speed to lead is an Obsession recipe. A labelled test lead, declared as AI and with its own inbox and phone number, uses your own form, chat and phone, or a client’s with their OK, times every first reply and checks who picked it up. It never runs on a prospect’s or a rival’s channels.',
-    ogImage: '/og/speed-to-lead.png',
+      'Lead leaks is Obsession’s speed to lead recipe. A labelled test lead, declared as AI and with its own inbox and phone number, uses your own form, chat and phone, or a client’s with their OK, times every first reply and shows where leads leak: no reply, no owner, a call that rings out. It never runs on a prospect’s or a rival’s channels.',
+    ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Recipes', path: '/recipes' },
-      { name: 'Speed to lead', path: '/recipes/speed-to-lead' },
+      { name: 'Lead leaks', path: '/recipes/lead-leaks' },
     ],
   },
 
   hero: {
-    headline: 'See where your form, chat and phone drop new leads.',
-    sub: 'A declared AI test lead uses your own form, chat and phone, or a client’s with their OK. It times every first reply and checks who picked it up.',
+    headline: 'Find every lead your form, chat and phone let slip.',
+    sub: 'A declared AI test lead uses your own form, chat and phone, or a client’s with their OK. It times every first reply, checks who picked it up, and shows you each leak.',
     screen: 'inbound',
     capture: {
       kind: 'waitlist',
@@ -47,7 +51,7 @@ export const recipe: Recipe = {
       button: 'Join the waitlist',
       placeholder: 'Your work email',
       micro: 'We keep your email to tell you about Obsession, and nothing else.',
-      roles: { question: 'Whose leads should we time first?', options: ['Ours', 'A client’s, with their OK', 'Both'] },
+      roles: { question: 'Whose leads should we test first?', options: ['Ours', 'A client’s, with their OK', 'Both'] },
       interest: 'speed',
     },
   },
@@ -68,7 +72,7 @@ export const recipe: Recipe = {
       { time: '13:12', text: 'Demo form: first reply after 4 h 12 m. In your CRM with no owner.' },
       { time: '17:00', text: 'Routing fix approved. Tested again: first reply in 3 min 40 s.' },
     ],
-    finding: 'Form and phone leads land in your CRM with no owner. The demo form waited 4 h 12 m for a reply.',
+    finding: '2 leaks: form and phone leads land in your CRM with no owner, and the demo form waited 4 h 12 m for a reply.',
     fix: 'A routing rule drafted: form and phone leads go to the next free rep within 1 minute. Live after your OK.',
     ledger: 'Example run. Every test lead labelled, timed and signed.',
   },
@@ -87,8 +91,8 @@ export const recipe: Recipe = {
       line: 'From the second the enquiry lands to the first answer, on any channel, and who in your CRM picked it up.',
     },
     {
-      title: 'You see where leads drop',
-      line: 'Missed calls, forms with no owner and chats nobody answers, with the routing fix drafted for your OK.',
+      title: 'You see every leak',
+      line: 'Missed calls, forms with no owner and chats nobody answers, with the routing fix drafted for your OK and tested again.',
     },
   ],
 
@@ -105,21 +109,29 @@ export const recipe: Recipe = {
     {
       group: 'What it measures',
       items: [
-        { title: 'First reply', line: 'From the enquiry to the first answer, on any channel.' },
+        { title: 'Speed to lead', line: 'From the enquiry to the first answer, on any channel.' },
         { title: 'Channel', line: 'Whether your team replies the way it was asked, or calls instead.' },
         { title: 'Who got it', line: 'Whether the lead reached your CRM, and whether anyone owns it.' },
         { title: 'Follow ups', line: 'How many times your team chases, and for how long.' },
+      ],
+    },
+    {
+      group: 'Where leads leak',
+      items: [
+        { title: 'No reply', line: 'A form or an email that nobody answers inside the window you set.' },
+        { title: 'No owner', line: 'A lead that reaches your CRM and sits there with nobody on it.' },
+        { title: 'Missed calls', line: 'A line that rings out, a full voicemail, or a callback that never comes.' },
         { title: 'Out of hours', line: 'What happens to a lead that arrives at 21:00 on a Friday.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every channel timed. Every dropped lead named.',
+    heading: 'Every channel timed. Every leak named.',
     items: [
-      { format: 'Reply time per channel', line: 'Fastest, slowest and the median, by channel and by hour.' },
+      { format: 'Speed to lead per channel', line: 'Fastest, slowest and the median, by channel and by hour.' },
       { format: 'The replies themselves', line: 'Emails, texts, chat transcripts and call logs, as proof.' },
-      { format: 'Dropped leads', line: 'Every test with no owner, no reply or a missed call, and when it happened.' },
+      { format: 'Every leak', line: 'Each test with no owner, no reply or a missed call, and when it happened.' },
       { format: 'The routing fix', line: 'Drafted in the CRM you connect, and tested again after your OK.' },
       { format: 'Over time', line: 'Run it daily or weekly to see who got faster or slower.' },
       { format: 'A sheet', line: '1 row per test, ready for your CRM or Clay.' },
@@ -137,7 +149,7 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'sales', line: 'Find where your form, chat and phone drop leads, before a buyer does.' },
+    { audience: 'sales', line: 'Find where your form, chat and phone leak leads, before a buyer does.' },
     { audience: 'agencies', line: 'Show a client, with their OK, how long their leads wait for a reply.' },
     { audience: 'marketing', line: 'Know every lead you paid for gets an answer, and how fast.' },
     { audience: 'founders', line: 'Your own inbound checked every morning, while you’re heads down on the product.' },
@@ -158,8 +170,12 @@ export const recipe: Recipe = {
     heading: 'Every test lead declared. Every reply timed.',
     items: [
       {
+        q: 'Is this a speed to lead test?',
+        a: 'Yes. Speed to lead is the time from a new enquiry to the first reply. Lead leaks measures it on every channel you own, and finds the leads that never get a reply at all.',
+      },
+      {
         q: 'Can I time a rival’s or a prospect’s replies?',
-        a: 'No. Speed to lead runs only on your own form, chat and phone, or a client’s with their OK. At rivals, Competitor tracking asks the site’s chat bot instead, never staff.',
+        a: 'No. Lead leaks runs only on your own form, chat and phone, or a client’s with their OK. At rivals, Competitor tracking asks the site’s chat bot instead, never staff.',
       },
       {
         q: 'Does my team know it’s a test?',
@@ -172,19 +188,23 @@ export const recipe: Recipe = {
         q: 'Can it fix the routing?',
         a: 'It drafts the fix in the CRM you connect. Nothing changes until you approve it, then it tests again.',
       },
+      {
+        q: 'Can it answer our leads as well?',
+        a: 'Yes, with Inbound quotes: every request gets a quote from your price book in minutes, then a follow up. Lead leaks keeps checking that every channel still lets leads in.',
+      },
     ],
   },
 
   final: {
     heading: 'Find the leads your team never answered.',
-    sub: 'Join the waitlist. Speed to lead comes ready to run on your own form, chat and phone.',
+    sub: 'Join the waitlist. Lead leaks comes ready to run on your own form, chat and phone.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-speed-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
       micro: 'We keep your email to tell you about Obsession, and nothing else.',
-      roles: { question: 'Whose leads should we time first?', options: ['Ours', 'A client’s, with their OK', 'Both'] },
+      roles: { question: 'Whose leads should we test first?', options: ['Ours', 'A client’s, with their OK', 'Both'] },
       interest: 'speed',
     },
   },

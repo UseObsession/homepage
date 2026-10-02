@@ -3,7 +3,7 @@ import type { Capture, Page } from '../types'
 /* Sales (/sales): sales and customer success teams of any kind, SaaS first. Win and renew.
    The story: what Obsession is for a sales team > how it works > the gap (most tools read what a company publishes;
    agents go through it as a customer) > use cases (brief, account watch, business case, pilot, win back, battlecards,
-   speed to lead on your own funnel, vendor forms) > outcomes (up to ceilings with the model in the line; deliverables
+   lead leaks on your own funnel, vendor forms) > outcomes (up to ceilings with the model in the line; deliverables
    flat) > every kind of team > recipes > proof (the real September store check, as it happened) > questions (red
    lines) > early access.
    Base: _research/site_sales.json (approved), James's sales lines ("Pick an account. See what it does.").
@@ -266,7 +266,7 @@ export const page: Page = {
         screen: 'battlecard',
       },
       {
-        tab: 'Speed to lead',
+        tab: 'Lead leaks',
         moment: 'Thursday 09:00. Inbound is up, meetings booked are not.',
         outcome: 'Find where your form, chat and phone drop leads.',
         line: 'Every day, a labelled test lead uses your own form, chat and phone, times each reply and checks who got it.',

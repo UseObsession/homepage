@@ -3,7 +3,7 @@ import type { Page } from '../types'
 /* Marketing (/marketing). Marketing teams at brands of any kind, B2C and B2B.
    The story: what Obsession is for a marketing team (beat every rival) > how it works > the gap (James's
    line: most tools read what a company publishes, Obsession goes through it as a customer) > use cases (rival emails
-   and texts, rival ads, rival prices, your own launch, AI answers and listings, your own speed to lead) > outcomes >
+   and texts, rival ads, rival prices, your own launch, AI answers and listings, your own lead leaks) > outcomes >
    every kind of brand > recipes > the real September store check > questions (red lines) > the free store mystery
    shop (a store you run, or one with the owner’s OK).
    Every console run is an example (consoleLabel says so); the only real run is the September store check, stated as
@@ -11,7 +11,7 @@ import type { Page } from '../types'
    webinar launch, so they don't repeat the stories the use case screens tell.
    Red lines held here: at rivals, public self-serve paths only (sign ups, newsletters, text opt ins, public pages,
    the ads they run in public, the site's chat bot); never a person; rival trials need no card, never reply and close
-   the moment a rep writes or calls; launch checks and speed to lead only on your own journeys. */
+   the moment a rep writes or calls; launch checks and lead leaks only on your own journeys. */
 
 export const page: Page = {
   meta: {
@@ -237,7 +237,7 @@ export const page: Page = {
         screen: 'listings',
       },
       {
-        tab: 'Your speed to lead',
+        tab: 'Your lead leaks',
         moment: 'Friday, 13:00. A lead fills in your demo form and waits 4 hours, because the form routes to nobody.',
         outcome: 'Every form, chat and phone line timed from a new lead’s side, with the slow route fixed and tested again.',
         line: 'A declared test lead uses your own form, chat and phone each day and times every first reply, then checks who picked it up.',

@@ -5,7 +5,7 @@ import type { Page } from '../types'
    signed steps to your webhook) > how it works (the 4 step flow, from code) > the code (the `developers` beat: the SDK
    call and what the webhook receives, beside the `dev` screen; render it straight after How, as James had the code at
    the top) > the gap (James's "The hard parts, run for you") > use cases a developer builds (release tests in CI,
-   prospect intelligence in a product, rival monitoring as a feature, merchant checks, speed to lead for customers,
+   prospect intelligence in a product, rival monitoring as a feature, merchant checks, lead leaks for customers,
    quotes with proof) > outcomes > every kind of product > recipes > the real September store check > questions >
    "Get API access".
    1 thread runs through the page: the first console run (a typed task on every deploy), the second call in the code
@@ -304,7 +304,7 @@ await obs.missions.create({
         screen: 'shop',
       },
       {
-        tab: 'Speed to lead',
+        tab: 'Lead leaks',
         moment: 'Tuesday 13:00. A customer’s demo form has sent leads to nobody since Friday.',
         outcome: 'Show each customer how fast their own team really replies.',
         line: 'With each customer’s OK, a labelled test lead fills in their form, opens their chat and calls their sales line daily, then times every reply and who owned it in the CRM.',
