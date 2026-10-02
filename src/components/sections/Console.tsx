@@ -133,19 +133,30 @@ function Tick() {
 type Workspace = 'agency' | 'company'
 
 /* A run's panel. Memoised: while a run plays, only its own panel renders again; the others rest. */
-const Panel = memo(function Panel({ d, view, live, id, tabId, active }: { d: Demo; view: View; live: boolean; id: string; tabId: string; active: boolean }) {
+const Panel = memo(function Panel({
+  d,
+  view,
+  live,
+  id,
+  tabId,
+  active,
+  single,
+}: {
+  d: Demo
+  view: View
+  live: boolean
+  id: string
+  tabId: string
+  active: boolean
+  single: boolean
+}) {
   const isTask = d.recipe === 'task'
   const typing = isTask && !view.sent
   const enter = (on: boolean, slow = false) => (on ? ' is-in' + (live ? ' ob-anim-rise' + (slow ? ' is-slow' : '') : '') : '')
+  /* 1 run alone has no tabs: its panel is a plain part of the window, named by the label above it. */
+  const tabbed = single ? { role: 'group', 'aria-labelledby': tabId } : { role: 'tabpanel', 'aria-labelledby': tabId, tabIndex: active ? 0 : -1 }
   return (
-    <div
-      className={'s-console-panel' + (active ? ' is-active' : '')}
-      role="tabpanel"
-      id={id}
-      aria-labelledby={tabId}
-      tabIndex={active ? 0 : -1}
-      inert={!active}
-    >
+    <div className={'s-console-panel' + (active ? ' is-active' : '')} id={id} inert={!active} {...tabbed}>
       <div className="s-console-plan">
         <p className="s-console-name">{isTask ? UI.ownTask : (RECIPES[d.recipe] ?? d.tab)}</p>
         <div className={'ob-prompt s-console-prompt' + (typing ? ' ob-prompt--field is-typing' : '')}>
@@ -242,7 +253,10 @@ const Panel = memo(function Panel({ d, view, live, id, tabId, active }: { d: Dem
   )
 })
 
-export function Console({ label, demos, workspace = 'agency' }: { label: string; demos: Demo[]; workspace?: Workspace }) {
+/* `tag` replaces the bar's "Example" (the 1 real run says so). 1 demo is single-run mode (a recipe page): no tab row,
+   the label names the run, and it plays when the reader reaches it, then rests; Play runs it again. */
+export function Console({ label, demos, workspace = 'agency', tag = UI.example }: { label: string; demos: Demo[]; workspace?: Workspace; tag?: string }) {
+  const single = demos.length === 1
   const uid = useId()
   const rootRef = useRef<HTMLDivElement>(null)
   const winRef = useRef<HTMLDivElement>(null)
@@ -432,29 +446,31 @@ export function Console({ label, demos, workspace = 'agency' }: { label: string;
       onFocus={onFocus}
       onBlur={onBlur}
     >
-      <p className="s-console-label" id={`${uid}-label`}>
+      <p className="s-console-label" id={single ? `${uid}-tab-0` : `${uid}-label`}>
         {label}
       </p>
-      <div className={railClass} role="tablist" aria-labelledby={`${uid}-label`} ref={railRef} onKeyDown={onKey}>
-        {demos.map((demo, i) => (
-          <button
-            key={i}
-            ref={(el) => {
-              tabRefs.current[i] = el
-            }}
-            type="button"
-            role="tab"
-            id={`${uid}-tab-${i}`}
-            className="ob-ptab s-console-tab"
-            aria-selected={i === active}
-            aria-controls={`${uid}-panel-${i}`}
-            tabIndex={i === active ? 0 : -1}
-            onClick={() => open(i, true)}
-          >
-            {demo.tab}
-          </button>
-        ))}
-      </div>
+      {!single && (
+        <div className={railClass} role="tablist" aria-labelledby={`${uid}-label`} ref={railRef} onKeyDown={onKey}>
+          {demos.map((demo, i) => (
+            <button
+              key={i}
+              ref={(el) => {
+                tabRefs.current[i] = el
+              }}
+              type="button"
+              role="tab"
+              id={`${uid}-tab-${i}`}
+              className="ob-ptab s-console-tab"
+              aria-selected={i === active}
+              aria-controls={`${uid}-panel-${i}`}
+              tabIndex={i === active ? 0 : -1}
+              onClick={() => open(i, true)}
+            >
+              {demo.tab}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="ob-window ob-object s-console-win" ref={winRef}>
         <div className="ob-window-bar s-console-bar">
@@ -472,7 +488,7 @@ export function Console({ label, demos, workspace = 'agency' }: { label: string;
             </span>
             <span className="s-console-crumb-now">{name}</span>
           </p>
-          <span className="ob-tag s-console-example">{UI.example}</span>
+          <span className="ob-tag s-console-example">{tag}</span>
           <span className="s-console-end">
             {status && (
               <span className="ob-status s-console-status">
@@ -506,6 +522,7 @@ export function Console({ label, demos, workspace = 'agency' }: { label: string;
               id={`${uid}-panel-${i}`}
               tabId={`${uid}-tab-${i}`}
               active={i === active}
+              single={single}
             />
           ))}
         </div>
