@@ -1,14 +1,30 @@
 /* The site nav (components/Nav), composed from the design system: .ob-nav (bar), .ob-menu (surfaces), .ob-mnav (phone
    sheet), .ob-btn (call to action, menu button, theme switch). These rules only place things and add what the system
-   lacks: grouped, multi-column menus (.s-menu--recipes, .s-menu--resources), 2-line menu rows (.s-menu__item--rich), disclosure groups in
-   the sheet (.s-mnav__toggle) and a sliding sheet (.ob-anim-sheet on .ob-mnav). Tokens only, no colour literals. */
+   lacks: a split item (a page link plus its menu's chevron), the readers folding into 1 menu, a jobs menu with examples
+   and a featured card (.s-menu--recipes), proof cards (.s-card), and a sheet that asks who you are with its call to
+   action pinned (.s-mnav). Spec: _research/nav/NAV.md. Tokens only, no colour literals; the 1 colour is each reader's
+   key square (--s-accent, styles/accents.css), never text. */
 
 /* ---------------------------------------------------------------------------------------------
    Bar
+   Widths are the bar's own (container ob-nav). Measured in Geist 14px medium: the 5 readers 298px of words, Recipes
+   53, Resources 69; the lockup 158. The bar's call to action never says more than "Join the waitlist" (content/nav
+   barCta), so 1 set of widths serves every page.
+     1200 and up   roomy: 12px link padding, the theme switch
+     860 to 1199   tight: 8px link padding, no theme switch (it stays in the footer and the sheet). At 1024 the
+                   5 readers, Recipes, Resources and the button sit on 1 line with 45 to 56px of air (measured on
+                   every kind of page; the widest bar button is "Get early access", 141px)
+     the readers fold into "For" under 1012, on a mouse and on touch alike (33px of air left there at worst)
+     under 860     the design system's compact bar: the menu button opens the sheet
+   Every step keeps at least 12px of air between the last menu and the actions.
    --------------------------------------------------------------------------------------------- */
 
 /* Line the lockup up with the page's content edge (the 1160px container plus the gutter). */
 .s-nav .s-nav__in {
+  --s-link-px: var(--ob-space-12);
+  --s-link-gap: var(--ob-space-4);
+  --s-group-gap: var(--ob-space-20);
+  --s-brand-gap: var(--ob-space-24);
   max-width: calc(var(--ob-container) + 2 * var(--s-gutter, clamp(16px, 4vw, 32px)));
   padding-inline: var(--s-gutter, clamp(16px, 4vw, 32px));
 }
@@ -17,9 +33,46 @@
 .s-nav__brand { transition: scale var(--ob-dur-fast) var(--ob-ease-out); }
 .s-nav__brand:active { scale: var(--ob-press-scale); }
 
-.s-nav__item { position: relative; display: flex; }
+/* Wide bar: the links start after the lockup, so they never move between pages whose calls to action differ. */
+@container ob-nav (min-width: 860px) {
+  .s-nav .s-nav__in { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .s-nav .s-nav__links { justify-self: start; gap: var(--s-link-gap); margin-inline-start: var(--s-brand-gap); }
+}
+@container ob-nav (max-width: 1199.98px) {
+  .s-nav .s-nav__in { --s-link-px: var(--ob-space-8); --s-link-gap: var(--ob-space-2); --s-group-gap: var(--ob-space-12); --s-brand-gap: var(--ob-space-8); }
+  .ob-nav__end > .s-nav__theme { display: none; }
+}
 
-/* The menu triggers are buttons drawn as nav links, with a chevron that turns while open. */
+.s-nav__links .ob-nav__link { padding-inline: var(--s-link-px); }
+
+/* The readers' current page: the square under the name (or under "For") takes the reader's hue, the 1 colour in the
+   bar. */
+:is(.s-nav__reader .ob-nav__link[aria-current="page"], .s-nav__trigger.is-selected[data-reader])::after { background-color: var(--s-accent, currentColor); }
+
+/* Items that hold a menu. */
+.s-nav__item { position: relative; display: flex; align-items: center; }
+
+/* Readers fold into "For" where the bar is too narrow for all 5. */
+.s-nav__for { display: none; }
+@container ob-nav (max-width: 1011.98px) {
+  .s-nav .s-nav__reader { display: none; }
+  .s-nav .s-nav__for { display: flex; }
+}
+
+/* The readers and the work: a hairline between "who" and "what", inside the gap, never a target. */
+.s-nav__group { margin-inline-start: var(--s-group-gap); }
+.s-nav__group::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--s-group-gap) / -2 - var(--s-link-gap) / 2);
+  width: var(--ob-border-hair);
+  height: var(--ob-space-16);
+  translate: 0 -50%;
+  background-color: var(--ob-line);
+}
+
+/* The "For" trigger: a button drawn as a nav link, with a chevron that turns while open. */
 .s-nav__trigger {
   gap: var(--ob-space-4);
   margin: 0;
@@ -29,58 +82,86 @@
   cursor: pointer;
 }
 .s-nav__trigger[aria-expanded="true"] { color: var(--ob-text); background-color: var(--ob-state-pressed); }
-/* The current-page square sits under the word, not under the word and its chevron: shifted left by half of what the
-   chevron adds (its gap, its width, and the trimmed end padding), so it centres on the label as under a plain link. */
+/* The current-page square sits under the word, not under the word and its chevron. */
 .s-nav__trigger.is-selected::after {
-  margin-left: calc(var(--ob-sq-sm) / -2 - (var(--ob-space-4) + var(--ob-icon-sm) + var(--ob-space-8) - var(--ob-control-pad-sm)) / 2);
+  margin-left: calc(var(--ob-sq-sm) / -2 - (var(--ob-space-4) + var(--ob-icon-sm) + var(--ob-space-8) - var(--s-link-px)) / 2);
 }
 .s-nav__chev { color: var(--ob-text-3); }
-.s-nav__trigger:is(:hover, [aria-expanded="true"]) .s-nav__chev { color: currentColor; }
+:is(.s-nav__trigger, .s-nav__more):is(:hover, [aria-expanded="true"]) .s-nav__chev { color: currentColor; }
 
-/* Wide bar: the theme switch leaves under 1080px (it stays in the footer). Compact bar: the call to action leaves
-   when it no longer fits beside the 20px lockup (158px), the menu button (44px) and 8px of air; it stays in the sheet.
-   Measured labels: up to 17 letters ("Join the waitlist") 137px; 18 to 22 ("Get my free report", "Get one for your
-   store") up to 175px; longer ("Get early access for my team") 224px. */
-@container ob-nav (max-width: 1079.98px) {
+/* Split items (Recipes, Resources): the name is a link to the page; the chevron is the menu's own button. Together
+   they read as 1 pill: hovering either lights both, and an open menu presses both. */
+.s-nav__split { border-radius: var(--ob-radius-pill); transition: background-color var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .s-nav__split:hover { background-color: var(--ob-state-hover); }
+  .s-nav__split:hover > .ob-nav__link { color: var(--ob-text); }
+  .s-nav__split > .ob-nav__link:hover { background-color: transparent; }
+}
+.s-nav__split.is-open { background-color: var(--ob-state-pressed); }
+.s-nav__split.is-open > .ob-nav__link { color: var(--ob-text); }
+.s-nav__links .s-nav__main { padding-inline-end: var(--ob-space-2); }
+.s-nav__more {
+  justify-content: center;
+  width: calc(var(--ob-icon-sm) + var(--ob-space-8) + var(--s-link-px) / 2);
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+.s-nav__links .s-nav__more { padding: 0 calc(var(--s-link-px) / 2) 0 0; }
+/* The page link's current square centres on its word: half of the trimmed end padding to the left. */
+.s-nav__main:is([aria-current="page"], .is-selected)::after { margin-left: calc(var(--ob-sq-sm) / -2 + (var(--s-link-px) - var(--ob-space-2)) / 2); }
+/* While its menu is open the square steps aside, so it never floats in the gap against the panel's edge. */
+.s-nav__split.is-open > .s-nav__main::after { visibility: hidden; }
+
+/* Touch (an iPad on its side): each chevron grows from 26px to a 44px square target and the theme switch leaves the
+   bar: 36px more in all. Roomy from 1240. Under 1040 the links' sides tighten from 8 to 6px (24px back; the shortest,
+   Sales, is still a 46px target), so the readers keep their place down to the same 1012 as on a mouse: at 1024 the
+   widest bar button leaves 33px of air, at 1012 21px (the 44px chevron carries about 15px more of its own). */
+@media (pointer: coarse) {
+  .s-nav__links .s-nav__more { width: var(--ob-target-touch); padding: 0; }
   .ob-nav__end > .s-nav__theme { display: none; }
+  @container ob-nav (max-width: 1239.98px) {
+    .s-nav .s-nav__in { --s-link-px: var(--ob-space-8); --s-link-gap: var(--ob-space-2); --s-group-gap: var(--ob-space-12); --s-brand-gap: var(--ob-space-8); }
+  }
+  @container ob-nav (max-width: 1039.98px) {
+    .s-nav .s-nav__in { --s-link-px: var(--ob-space-6); }
+  }
 }
-@container ob-nav (max-width: 399.98px) {
-  .ob-nav__end > .ob-nav__cta { display: none; }
-}
+
+/* Compact bar: the call to action stays in the bar on phones, so it is always 1 tap away. Under 440 its sides tighten
+   (it keeps its 36px pill and 44px target); measured at 390, the widest bar button ("Get early access") keeps 15px of
+   air beside the 20px lockup, "Join the waitlist" 22px. It leaves only under 388, where less than 12px would be left
+   (360 and 375 phones), and waits in the sheet. */
 @container ob-nav (max-width: 439.98px) {
-  .s-nav--cta-m .ob-nav__end > .ob-nav__cta { display: none; }
+  .s-nav .ob-nav__end > .ob-nav__cta { --ob-btn-c-px: var(--ob-space-12); }
 }
-@container ob-nav (max-width: 489.98px) {
-  .s-nav--cta-l .ob-nav__end > .ob-nav__cta { display: none; }
-}
-/* The 3-column bar holds the lockup, the 4 links (Solutions, Recipes and Resources with their chevrons, then Developers:
-   about 400px, a little under the 418px the bar was measured with) and the call to action on equal sides. A long call
-   to action needs 920px for that, so its bar goes compact below 920px instead of 860px (the menu button and the sheet
-   take over). */
-@container ob-nav (max-width: 919.98px) {
-  .s-nav--cta-l .ob-nav__in { grid-template-columns: minmax(0, 1fr) auto; height: var(--ob-nav-h-compact); gap: var(--ob-space-8); }
-  .s-nav--cta-l .ob-nav__links { display: none; }
-  .s-nav--cta-l .ob-nav__end { gap: var(--ob-space-8); }
-  .s-nav--cta-l .ob-nav__end > .ob-nav__menu { display: inline-flex; }
+@container ob-nav (max-width: 387.98px) {
+  .ob-nav__end > .ob-nav__cta { display: none; }
 }
 
 
 /* ---------------------------------------------------------------------------------------------
-   Menus: .ob-menu surfaces under their trigger, centred on it, growing from it (.ob-anim-pop)
+   Menus: .ob-menu surfaces under their item, centred on it and kept 16px inside the window (Nav.tsx sets
+   --s-menu-x), growing from the top (.ob-anim-pop)
    --------------------------------------------------------------------------------------------- */
 .s-menu {
   --ob-origin: top center;
   position: absolute;
-  top: calc(100% + var(--ob-space-6));
-  left: 50%;
+  /* 4px under the bar's edge: the 32px item sits 16px above it. */
+  top: calc(100% + var(--ob-space-20));
+  left: var(--s-menu-x, 0);
   z-index: var(--ob-z-popover);
   max-width: calc(100vw - 2 * var(--ob-space-16));
-  transform: translateX(-50%);
+  max-height: none;
+  overflow: visible;
 }
 .s-menu[hidden] { display: none; }
-.s-menu--solutions { width: 360px; }
-.s-menu--recipes,
-.s-menu--resources { width: max-content; max-height: none; padding: var(--ob-space-8); overflow: visible; }
+/* The pointer crosses the 20px between the item and its menu without leaving the item. */
+.s-menu::before { content: ""; position: absolute; inset: calc(var(--ob-space-20) * -1) 0 auto; height: var(--ob-space-20); }
+.s-menu--for { width: 340px; }
+.s-menu--recipes { width: 904px; padding: var(--ob-space-8); }
+.s-menu--resources { width: 584px; padding: var(--ob-space-8); }
 
 .s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
 
@@ -92,12 +173,18 @@
   gap: var(--ob-space-2);
   padding: var(--ob-space-8) var(--ob-space-32) var(--ob-space-8) var(--ob-space-12);
 }
+.s-menu__text { display: grid; gap: var(--ob-space-2); min-width: 0; }
 .s-menu__name { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
 .s-menu__line { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
 
-/* The current page: a raised fill and the brand square at the row's end, never colour alone. */
-.s-menu__item[aria-current="page"] { background-color: var(--ob-state-selected); }
-.s-menu__item[aria-current="page"]::after {
+/* The current page: a raised fill and the square at the row's end, never colour alone. A reader's square takes its hue;
+   the proof cards' square is ink. */
+.s-menu__item[aria-current="page"],
+.s-rm__ex[aria-current="page"],
+.ob-menu__item.s-card[aria-current="page"] { background-color: var(--ob-state-selected); }
+.s-menu__item[aria-current="page"]::after,
+.s-rm__ex[aria-current="page"]::after,
+.ob-menu__item.s-card[aria-current="page"]::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -106,86 +193,266 @@
   height: var(--ob-sq-sm);
   margin-top: calc(var(--ob-sq-sm) / -2);
   border-radius: 1px;
-  background-color: currentColor;
+  background-color: var(--s-accent, currentColor);
 }
 
-/* Recipes: 3 columns of about the same height, each group under its own name (content/nav, recipes.columns). */
-.s-menu__cols { display: grid; grid-template-columns: repeat(3, 208px); gap: var(--ob-space-8); }
-.s-menu__group + .s-menu__group { margin-top: var(--ob-space-8); }
 .s-menu__label {
   margin: 0;
-  padding: var(--ob-space-8) var(--ob-space-8) var(--ob-space-4);
+  padding: var(--ob-space-12) var(--ob-space-12) var(--ob-space-4);
   font: var(--ob-type-caption);
   font-weight: var(--ob-weight-medium);
   color: var(--ob-text-3);
 }
 :is(.s-menu--recipes, .s-menu--resources) .ob-menu__sep { margin: var(--ob-space-8) calc(var(--ob-space-8) * -1); }
 
-/* Resources: the use cases under their name on the left; the blog and the sample output on the right, their first row
-   level with the first use case (the label's own height: its 8px and 4px of padding and 1 caption line). */
-.s-menu__cols--resources { grid-template-columns: 296px 272px; }
-.s-menu__col--more { padding-top: calc(var(--ob-space-12) + var(--ob-type-caption-size) * var(--ob-type-caption-leading)); }
-.s-menu__col .s-menu__all { margin-top: var(--ob-space-2); }
-.s-menu__all { grid-template-columns: auto auto; justify-content: start; gap: var(--ob-space-8); font-weight: var(--ob-weight-medium); }
+/* "Browse all", "Every resource", "See a real run": 1 quiet row with its arrow. */
+.s-menu__all {
+  grid-template-columns: auto auto;
+  justify-content: start;
+  gap: var(--ob-space-8);
+  padding-inline: var(--ob-space-12);
+  font-weight: var(--ob-weight-medium);
+}
 .s-menu__arrow { color: var(--ob-text-3); transition: translate var(--ob-dur-base) var(--ob-ease-out); }
 @media (hover: hover) and (pointer: fine) {
-  .s-menu__all:hover .s-menu__arrow { translate: var(--ob-space-2) 0; color: currentColor; }
+  :is(.s-menu__all, .s-mnav__all, .s-feature):hover .s-menu__arrow { translate: var(--ob-space-2) 0; color: currentColor; }
 }
 .s-menu__all[aria-current="page"]::after { content: none; }
 
+/* ---- Recipes: the 6 jobs, 3 to a row, each with its promise and 2 examples; the featured card on the side ---- */
+.s-rm { display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: var(--ob-space-8); }
+.s-rm__jobs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 var(--ob-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Each job is 2 rows of the menu's grid (its head, its examples), so in a row of 3 the examples line up even where a
+   promise takes 2 lines. */
+.s-rm__job { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+.s-rm__job:nth-child(-n + 3) { padding-bottom: var(--ob-space-12); }
+.s-menu__item--rich.s-rm__head { align-content: start; padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-6); }
+.s-rm__eg { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.s-rm__ex {
+  position: relative;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 30px;
+  padding-inline: var(--ob-space-12) var(--ob-space-24);
+  color: var(--ob-text-2);
+  font: var(--ob-type-caption);
+  font-size: var(--ob-type-label-size);
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-rm__ex:hover { color: var(--ob-text); }
+}
+.s-rm__ex:focus-visible { color: var(--ob-text); }
+/* On touch every row is a 44px target, as the design system's own menu rows are. */
+@media (pointer: coarse) {
+  .s-rm__ex, .s-rm__run { min-height: var(--ob-target-touch); }
+}
+
+.s-rm__side { display: grid; align-content: start; gap: var(--ob-space-4); }
+/* The featured card: the free first report. A recessed panel, the ring, the offer, and the page's own words for its
+   button, so the scent carries to the click. Never a second primary button. */
+.ob-menu__item.s-feature {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: var(--ob-space-6);
+  min-height: 0;
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ob-menu__item.s-feature:hover { background-color: var(--ob-state-hover); }
+}
+.s-feature__mark { display: flex; margin-bottom: var(--ob-space-8); color: var(--ob-text); }
+.s-feature__name { text-wrap: balance; }
+.s-feature__act {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  margin-top: var(--ob-space-6);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+}
+.s-rm__run { min-height: var(--ob-control-sm); color: var(--ob-text-2); }
+@media (hover: hover) and (pointer: fine) {
+  .s-rm__run:hover { color: var(--ob-text); }
+}
+
+/* ---- Resources: the real run first, the 2 worked examples, 1 quiet way to the hub ---- */
+.s-xm__cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
+.s-xm__cases > li { display: grid; }
+
+/* A proof card: what it is (or who it is for), its name, what happened. */
+.ob-menu__item.s-card {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: var(--ob-space-16);
+  min-height: 0;
+  padding: var(--ob-space-12);
+}
+.s-card__text { display: grid; gap: var(--ob-space-4); min-width: 0; }
+.s-card__kicker { font: var(--ob-type-caption); color: var(--ob-text-3); }
+/* A card's square sits level with its kicker, clear of the run card's page peek. */
+.ob-menu__item.s-card { position: relative; }
+.ob-menu__item.s-card[aria-current="page"]::after { top: var(--ob-space-16); margin-top: 0; background-color: currentColor; }
+/* The real run: a recessed panel with the report's first page peeking up from its foot. */
+.ob-menu__item.s-card--run {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  padding: var(--ob-space-16) var(--ob-space-24) 0 var(--ob-space-16);
+  overflow: hidden;
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-fill-subtle);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
+}
+.s-card--run .s-card__text { padding-bottom: var(--ob-space-16); max-width: 46ch; }
+@media (hover: hover) and (pointer: fine) {
+  .ob-menu__item.s-card--run:hover { background-color: var(--ob-state-hover); }
+  .s-card--run:hover .s-card__peek { translate: 0 calc(var(--ob-space-4) * -1); }
+}
+.s-card__peek {
+  align-self: end;
+  display: block;
+  width: 168px;
+  height: 96px;
+  margin-top: var(--ob-space-4);
+  overflow: hidden;
+  border-radius: var(--ob-radius-xs) var(--ob-radius-xs) 0 0;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-shadow-2);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-card__peek > img { display: block; width: 168px; height: 102px; }
+
 
 /* ---------------------------------------------------------------------------------------------
-   Phone sheet: .ob-mnav under the compact bar, sliding in from the right edge
+   Phone sheet: .ob-mnav under the compact bar, sliding in from the right edge. It asks who you are first, then the
+   jobs, then the proof; the call to action stays pinned at the foot while the rest scrolls.
    --------------------------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: no-preference) {
   .s-mnav.ob-anim-sheet { animation: ob-sheet-in var(--ob-dur-slow) var(--ob-ease-out) backwards; }
   .s-mnav.ob-anim-sheet.is-leaving { animation: ob-sheet-out var(--ob-dur-moderate) var(--ob-ease-in) forwards; }
 }
 @container ob-nav (min-width: 860px) {
-  .s-nav:not(.s-nav--cta-l) .s-mnav { display: none; }
-}
-@container ob-nav (min-width: 920px) {
   .s-mnav { display: none; }
 }
-.s-mnav { gap: var(--ob-space-16); }
-/* The theme row's label starts where the rows' labels do. */
-.s-mnav .ob-mnav__row { padding-inline-start: var(--ob-control-pad-sm); }
-
-.s-mnav__toggle {
-  justify-content: space-between;
-  width: 100%;
+.s-mnav { gap: var(--ob-space-8); padding-bottom: 0; }
+.s-mnav__sec { display: grid; }
+.s-mnav__sec + .s-mnav__sec { margin-top: var(--ob-space-8); }
+.s-mnav__head {
   margin: 0;
-  border: 0;
-  background-color: transparent;
-  text-align: start;
-  cursor: pointer;
-}
-.s-mnav__toggle .s-nav__chev { width: var(--ob-icon-md); height: var(--ob-icon-md); }
-
-.s-mnav__more > div { display: grid; gap: var(--ob-space-4); padding: 0 0 var(--ob-space-12) var(--ob-space-12); }
-.s-mnav__sub { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
-.s-mnav__group .s-menu__label { padding-inline: var(--ob-control-pad-sm); }
-.s-mnav__item {
-  position: relative;
-  min-height: var(--ob-target-touch);
-  font: var(--ob-type-small);
+  padding: var(--ob-space-16) var(--ob-control-pad-sm) var(--ob-space-8);
+  font: var(--ob-type-caption);
   font-weight: var(--ob-weight-medium);
+  color: var(--ob-text-3);
 }
-.s-mnav__item--rich {
-  flex-direction: column;
+/* The first thing in the sheet is the question, so it reads as one. */
+.s-mnav__ask { padding-top: var(--ob-space-8); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text-2); }
+
+/* The 5 readers: large rows, each with its key square beside its name. */
+.s-mnav__reader {
+  position: relative;
   align-items: flex-start;
-  justify-content: center;
-  gap: var(--ob-space-2);
-  padding-block: var(--ob-space-8);
+  gap: var(--ob-space-12);
+  min-height: 64px;
+  padding-block: var(--ob-space-12);
   padding-inline-end: var(--ob-space-32);
 }
-.s-mnav__item--rich[aria-current="page"]::after {
+.s-mnav__reader .s-menu__name { font: var(--ob-type-body); font-weight: var(--ob-weight-medium); letter-spacing: var(--ob-type-button-tracking); }
+.s-mnav__key {
+  flex: none;
+  width: var(--ob-sq-md);
+  height: var(--ob-sq-md);
+  /* Centred on the name's first line. */
+  margin-top: calc((var(--ob-type-body-size) * var(--ob-type-body-leading) - var(--ob-sq-md)) / 2);
+  border-radius: 1px;
+  background-color: var(--s-accent);
+}
+.s-mnav__reader[aria-current="page"] { background-color: var(--ob-state-selected); }
+.s-mnav__reader[aria-current="page"]::after {
   position: absolute;
   top: 50%;
   right: var(--ob-control-pad-sm);
   margin-top: calc(var(--ob-sq-sm) / -2);
+  background-color: var(--s-accent);
 }
-.s-mnav__all { gap: var(--ob-space-8); }
-.s-mnav__sub--more { margin-top: var(--ob-space-8); }
-.s-mnav__all[aria-current="page"]::after { content: none; }
+
+/* The 6 jobs: a name and its promise. */
+.s-mnav__row {
+  align-items: center;
+  min-height: 56px;
+  padding-block: var(--ob-space-8);
+}
+.s-mnav__row .s-menu__name { font: var(--ob-type-small); font-weight: var(--ob-weight-medium); }
+
+.s-mnav__all {
+  gap: var(--ob-space-8);
+  min-height: var(--ob-target-touch);
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-medium);
+}
 .s-mnav__all .s-menu__arrow { margin-inline-start: 0; }
+.s-mnav__all[aria-current="page"]::after { content: none; }
+
+/* The proof, as in the Resources menu. */
+.s-mnav__proof { gap: var(--ob-space-4); }
+.ob-menu__item.s-card--sheet { min-height: var(--ob-target-touch); border-radius: var(--ob-radius-md); }
+.ob-menu__item.s-card--sheet.s-card--run { gap: var(--ob-space-12); padding: var(--ob-space-16) var(--ob-space-12) 0 var(--ob-space-16); margin-bottom: var(--ob-space-4); }
+.s-card--sheet .s-card__peek { width: 96px; height: 56px; }
+.s-card--sheet .s-card__peek > img { width: 96px; height: 58px; }
+.s-card--case.s-card--sheet { padding: var(--ob-space-12) var(--ob-control-pad-sm); }
+
+.s-mnav .s-mnav__theme { margin-top: var(--ob-space-16); padding-inline-start: var(--ob-control-pad-sm); }
+
+/* The call to action stays at the foot while the rest scrolls behind it. */
+.s-mnav .s-mnav__foot {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  margin-top: auto;
+  padding: var(--ob-space-16) 0 calc(var(--ob-space-16) + env(safe-area-inset-bottom, 0px));
+  background-color: var(--ob-bg);
+}
+
+/* An iPad upright (600 to 859): the sheet uses its width. The readers 2 to a row under Agencies (the beachhead, the
+   full row), the 6 jobs 2 to a row, the 2 use cases side by side under the real run, and the pinned button at a
+   comfortable width from the start edge instead of a pill across the whole sheet. */
+@container ob-nav (min-width: 600px) {
+  .s-mnav :is(.s-mnav__readers, .s-mnav__jobs, .s-mnav__proof) { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--ob-space-4); }
+  .s-mnav__readers > li:first-child,
+  .s-mnav__jobs > li:last-child,
+  .s-mnav__proof > li:is(:first-child, :last-child) { grid-column: 1 / -1; }
+  .s-mnav__proof > li { display: grid; }
+  .s-mnav .s-mnav__foot > .ob-btn { justify-self: start; width: min(100%, 400px); }
+}
+
+
+/* ---------------------------------------------------------------------------------------------
+   Forced colours and more contrast: real edges for the panels the fills drew, and the key squares in the text colour.
+   --------------------------------------------------------------------------------------------- */
+@media (forced-colors: active) {
+  .ob-menu__item:is(.s-feature, .s-card--run) { border: 1px solid CanvasText; }
+  .s-card__peek { border: 1px solid CanvasText; }
+  .s-nav__group::before { forced-color-adjust: none; background-color: CanvasText; }
+  .s-mnav__key,
+  :is(.s-nav__reader .ob-nav__link[aria-current="page"], .s-nav__trigger.is-selected[data-reader])::after,
+  .s-menu__item[aria-current="page"]::after,
+  .s-rm__ex[aria-current="page"]::after,
+  .ob-menu__item.s-card[aria-current="page"]::after,
+  .s-mnav__reader[aria-current="page"]::after { forced-color-adjust: none; background-color: CanvasText; }
+  .s-nav__split.is-open { outline: 1px solid CanvasText; }
+}
+@media (prefers-contrast: more) {
+  .ob-menu__item:is(.s-feature, .s-card--run) { box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-card__peek, .s-menu__arrow { transition: none; }
+  .s-card--run:hover .s-card__peek,
+  :is(.s-menu__all, .s-mnav__all, .s-feature):hover .s-menu__arrow { translate: none; }
+}

@@ -62,6 +62,8 @@
   /* A jump lands with the job's rule clear of the sticky nav. */
   scroll-margin-top: var(--ob-space-64);
 }
+/* A job reached from the nav takes focus without a ring round the whole row, as #main does (site.css). */
+.s-ri-job:focus { outline: none; }
 .s-ri-job:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .s-ri-job__head {
   display: grid;

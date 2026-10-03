@@ -56,7 +56,8 @@ export type Capture = {
   orWaitlist?: boolean
 }
 
-export type Cta = { label: string; to: string }
+/* `bar`: the nav bar's shorter words for a call to action whose label is longer than "Join the waitlist" (content/nav). */
+export type Cta = { label: string; to: string; bar?: string }
 
 /* A run shown in the hero console: a recipe (or a typed task) running against real-looking targets. */
 export type Demo = {

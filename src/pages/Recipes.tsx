@@ -5,13 +5,13 @@ import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { jobAnchor as slug } from '../content/nav'
 import { recipePage } from '../content/recipe-page'
 import { recipes, recipesPage as page } from '../content/registry'
-import type { RecipeGroup } from '../content/types'
 import '../components/sections/Hero.css'
 import './Recipes.css'
 
-/* /recipes: every recipe, grouped by the 5 jobs (site.ts recipesPage). The centred hero, with the jobs as quiet jump
+/* /recipes: every recipe, grouped by the 6 jobs (site.ts recipesPage). The centred hero, with the jobs as quiet jump
    links and the product's Recipes picker under them (the page's 1 product object: glossy black on paper, lit on ink,
    like every other page's hero object); then 1 row per job, its name and line on the left and its recipes as link rows on the right (the same rows as
    every page's Recipes section); then where the companies come from and where the proof goes; questions; the final
@@ -20,7 +20,8 @@ import './Recipes.css'
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-const slug = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
+/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-rivals.
+   It takes focus when reached that way (App.tsx ScrollManager), so the keyboard carries on from the job. */
 
 /* The jump links' name, for screen readers. */
 const UI = { jobs: 'Recipes by job', inputs: 'Add companies from', outputs: 'Results go to' }
@@ -67,7 +68,7 @@ export function Recipes() {
 
       <div className="s-wrap s-ri-jobs">
         {groups.map((g) => (
-          <section className="s-ri-job" id={slug(g.group)} key={g.group} aria-labelledby={`${slug(g.group)}-h`}>
+          <section className="s-ri-job" id={slug(g.group)} key={g.group} aria-labelledby={`${slug(g.group)}-h`} tabIndex={-1}>
             <header className="s-ri-job__head">
               <h2 className="s-ri-job__name" id={`${slug(g.group)}-h`}>
                 {g.group}

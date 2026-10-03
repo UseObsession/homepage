@@ -17,9 +17,9 @@ import { blogPage, blogUi, formatDate } from '../content/resources'
 import '../components/sections/Hero.css'
 import './Blog.css'
 
-/* A page's 1 line where the nav gives it one (the Solutions and Resources menus), else its share image's line. */
+/* A page's 1 line where the nav gives it one (the readers and the Resources menu), else its share image's line. */
 const NAV_LINES = new Map<string, string>(
-  [...nav.solutions.items, ...nav.resources.items, ...nav.resources.useCases.items].flatMap((i) => (i.line ? [[i.to, i.line] as [string, string]] : [])),
+  [...nav.readers, nav.resources.run, ...nav.resources.useCases.items].map((i) => [i.to, i.line] as [string, string]),
 )
 
 /* What a post points to next: other posts (by slug), recipes ("recipe:SLUG") and pages ("/sample-output"). Anything
