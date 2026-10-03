@@ -34,13 +34,19 @@ const dist = [join(root, 'dist', 'client'), join(root, 'dist')].find((d) => exis
 if (!dist) throw new Error('No built index.html in dist/ or dist/client/. Run vite build first.')
 
 /* The server build renders every app screen into the page: components/screens.ts (the browser's, which fetches a screen
-   only on a client side move) is swapped for screens.server.ts, which has every screen at hand. */
+   only on a client side move) is swapped for screens.server.ts, which has every screen at hand. The partner marks'
+   drawings work the same way (components/partnerMarks.ts and partnerMarks.server.ts). */
 await build({
   configFile: false,
   root,
   logLevel: 'warn',
   plugins: [react()],
-  resolve: { alias: [{ find: /^\.\/screens$/, replacement: join(root, 'src/components/screens.server.ts') }] },
+  resolve: {
+    alias: [
+      { find: /^\.\/screens$/, replacement: join(root, 'src/components/screens.server.ts') },
+      { find: /^\.\/partnerMarks$/, replacement: join(root, 'src/components/partnerMarks.server.ts') },
+    ],
+  },
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 

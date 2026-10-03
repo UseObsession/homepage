@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { outputPartners } from '../../content/partners'
 import { outputFormats } from '../../content/sample'
 import type { Cta, ViewerFormat, ViewerFormatId, ViewerView } from '../../content/types'
 import { Mark, StatusMark } from '../Logo'
+import { PartnerRow } from '../PartnerMark'
+import { hasPartner } from '../partnerFiles'
 import { CodeLines, SectionHead } from './DevSection'
 import './Outputs.css'
 
@@ -18,6 +21,7 @@ const outputsUi = {
   report: 'Read the full report',
   from: 'From',
   to: 'To',
+  lands: 'Lands in',
 }
 
 export type OutputsUi = typeof outputsUi
@@ -365,8 +369,10 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
           hidden={n !== index}
           className="s-ov__panel"
         >
-          {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. */}
-          <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object`}>
+          {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. The tools
+              this format lands in sit in its top corner, as the app's own mark would (content/partners.ts). */}
+          <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object` + (outputPartners[f.id]?.some(hasPartner) ? ' has-dest' : '')}>
+            <PartnerRow ids={outputPartners[f.id]} label={`${ui.lands} ${f.label}`} className="s-ov__dest" />
             <div className={'s-ov__mock' + (picked ? ' ob-anim-rise' : '')}>
               <Mock format={f} ui={ui} />
             </div>

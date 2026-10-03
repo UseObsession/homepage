@@ -1,8 +1,10 @@
 import { useId } from 'react'
 import { Link } from 'react-router-dom'
+import type { PartnerId } from '../../content/partners'
 import type { StudyLink, UseCaseStudy } from '../../content/types'
 import { AppScreen, type Workspace } from '../AppScreen'
 import { Mark } from '../Logo'
+import { PartnerMark } from '../PartnerMark'
 import { Example, StepList } from './Phases'
 import { tie } from './tie'
 import './Study.css'
@@ -55,13 +57,19 @@ export function Problem({ problem, id = 'gap' }: { problem: UseCaseStudy['proble
   )
 }
 
-/* How it fits the reader's own tools: the claim and its line beside the 3 ways it fits. */
-export function Fit({ fit, id = 'fit' }: { fit: NonNullable<UseCaseStudy['fit']>; id?: string }) {
+/* How it fits the reader's own tools: the claim and its line beside the 3 ways it fits. An example built on 1 partner
+   opens the claim with that tool's mark, where the page says the facts come back into it. */
+export function Fit({ fit, partner, id = 'fit' }: { fit: NonNullable<UseCaseStudy['fit']>; partner?: PartnerId; id?: string }) {
   const uid = useId()
   return (
     <section className="s-section s-st-fit" id={id} aria-labelledby={`${uid}-h`}>
       <div className="s-wrap s-st-fit__in">
         <header className="s-st-fit__head">
+          {partner && (
+            <p className="s-st-fit__mark">
+              <PartnerMark id={partner} />
+            </p>
+          )}
           <h2 className="ob-type-h2" id={`${uid}-h`}>
             {tie(fit.heading)}
           </h2>

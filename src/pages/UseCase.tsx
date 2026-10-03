@@ -1,3 +1,4 @@
+import { PartnerLockup } from '../components/PartnerMark'
 import { drawnFor } from '../components/workspace'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -5,6 +6,7 @@ import { Hero } from '../components/sections/Hero'
 import { Flow } from '../components/study/Flow'
 import { Phases } from '../components/study/Phases'
 import { Fit, More, Problem, Split, StudyProof, Uses } from '../components/study/Study'
+import { studyPartners } from '../content/partners'
 import { recipeBySlug } from '../content/registry'
 import type { StudyLink, UseCaseStudy } from '../content/types'
 import './StoryPage.css'
@@ -16,7 +18,8 @@ import './StoryPage.css'
    screen > the problem > how it fits their tools, or who does what > what they do with it > the proof on its screen,
    and the first email written from it > the recipe and the 1 real run, with the small print > questions > the
    waitlist (#join). Each page's screens are its own (claycols, brandwatch, proofmail; members, memberfeed), drawn in
-   the workspace they were made for. */
+   the workspace they were made for. An example built on 1 partner (content/partners.ts) opens its object with the 2
+   lockups as equals, and marks the beat where the facts come back into that tool (how it fits). */
 /* A link to a recipe takes the recipe's own name, so it never drifts from the recipe's page and the nav. */
 const named = (l: StudyLink): StudyLink => {
   const r = l.cta.to.startsWith('/recipes/') ? recipeBySlug[l.cta.to.slice('/recipes/'.length)] : undefined
@@ -27,6 +30,8 @@ export function UseCase({ study }: { study: UseCaseStudy }) {
   const h = study.hero
   const screens = [...study.how.steps.map((s) => s.screen), study.proof.screen].filter((s): s is string => !!s)
   const workspace = drawnFor(screens[0] ?? '')
+  const partner = studyPartners[study.meta.path]
+  const flow = h.flow && h.flow.length > 0 ? <Flow nodes={h.flow} label={study.name} /> : undefined
   return (
     <>
       <Hero
@@ -44,11 +49,20 @@ export function UseCase({ study }: { study: UseCaseStudy }) {
             <p className="s-st-who__note">{h.example.note}</p>
           </div>
         }
-        object={h.flow && h.flow.length > 0 ? <Flow nodes={h.flow} label={study.name} /> : undefined}
+        object={
+          partner && flow ? (
+            <>
+              <PartnerLockup id={partner} className="s-st-lockup" />
+              {flow}
+            </>
+          ) : (
+            flow
+          )
+        }
       />
       <Phases how={study.how} workspace={workspace} id="how" />
       <Problem problem={study.problem} id="gap" />
-      {study.fit && <Fit fit={study.fit} id="fit" />}
+      {study.fit && <Fit fit={study.fit} partner={partner} id="fit" />}
       {study.split && <Split split={study.split} id="split" />}
       {study.outputs && <Uses outputs={study.outputs} id="uses" />}
       <StudyProof proof={study.proof} workspace={workspace} id="proof" />

@@ -350,3 +350,11 @@
   .s-st-more__list { grid-template-columns: minmax(0, 1fr); }
   .s-st-mail__meta, .s-st-mail__body, .s-st-mail__files { padding-inline: var(--ob-space-20); }
 }
+
+/* An example built on 1 partner (content/partners.ts): the 2 lockups as equals open the hero's object, centred on the
+   page's axis like the console's heading; and that tool's mark opens the claim where the facts come back into it. */
+.s-hero-console > .s-pm-lockup.s-st-lockup { justify-self: center; margin-bottom: var(--ob-space-40); }
+.s-st-fit__mark { display: flex; margin: 0 0 var(--ob-space-8); --s-pm-scale: 1.1; }
+@media (max-width: 759.98px) {
+  .s-hero-console > .s-pm-lockup.s-st-lockup { margin-bottom: var(--ob-space-32); }
+}

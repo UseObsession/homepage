@@ -1,0 +1,64 @@
+{
+  "marks": {
+    "clay": {
+      "file": "clay.svg",
+      "type": "svg",
+      "ratio": 1.8508
+    },
+    "gmail": {
+      "file": "gmail.png",
+      "type": "mask",
+      "ratio": 1.257
+    },
+    "google-sheets": {
+      "file": "google-sheets.png",
+      "type": "mask",
+      "ratio": 0.7244
+    },
+    "hubspot": {
+      "file": "hubspot.svg",
+      "type": "svg",
+      "ratio": 3.5243
+    },
+    "make": {
+      "file": "make.svg",
+      "type": "svg",
+      "ratio": 4.8482
+    },
+    "microsoft-teams": {
+      "file": "microsoft-teams.svg",
+      "type": "svg",
+      "ratio": 0.9471
+    },
+    "n8n": {
+      "file": "n8n.svg",
+      "type": "svg",
+      "ratio": 3.6942
+    },
+    "outlook": {
+      "file": "outlook.svg",
+      "type": "svg",
+      "ratio": 1.0561
+    },
+    "salesforce": {
+      "file": "salesforce.svg",
+      "type": "svg",
+      "ratio": 1.4292
+    },
+    "slack": {
+      "file": "slack.png",
+      "type": "mask",
+      "ratio": 3.9196
+    },
+    "slack-icon": {
+      "file": "slack-icon.png",
+      "type": "mask",
+      "ratio": 1.0008
+    },
+    "zapier": {
+      "file": "zapier.svg",
+      "type": "svg",
+      "ratio": 3.6865
+    }
+  }
+}

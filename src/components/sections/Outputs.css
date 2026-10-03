@@ -35,6 +35,20 @@
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
 }
 .s-ov__stage--pdf { padding: var(--ob-space-32); }
+/* The tools a format lands in: their marks in the stage's top corner, where an app shows its own, on the object's
+   inks (bone on the black glass in both themes), quiet until the reader points at them. The stage keeps a band for
+   them above the mock (--s-ov-band), so a tall mock never runs under them; every stage keeps its height, so moving
+   between tabs never shifts the page. */
+.s-ov__stage { --s-ov-inset: var(--ob-space-24); --s-ov-band: calc(var(--ob-space-24) * 2 + 22px); }
+.s-ov__stage.has-dest { padding-top: var(--s-ov-band); }
+.s-ov__dest {
+  position: absolute;
+  top: var(--s-ov-inset);
+  left: var(--s-ov-inset);
+  z-index: 1;
+  --s-pm-scale: 1.1;
+  --s-pm-gap: var(--ob-space-24);
+}
 .s-ov__mock {
   display: grid;
   place-items: center;
@@ -44,10 +58,13 @@
   min-height: 0;
 }
 @media (max-width: 859px) {
-  .s-ov__stage { height: 520px; padding: var(--ob-space-24); }
+  .s-ov__stage { height: 520px; padding: var(--ob-space-24); --s-ov-band: calc(var(--ob-space-24) + 22px + var(--ob-space-20)); }
+  .s-ov__stage.has-dest { padding-top: var(--s-ov-band); }
 }
 @media (max-width: 519px) {
-  .s-ov__stage { height: 488px; padding: var(--ob-space-16); }
+  .s-ov__stage { height: 536px; padding: var(--ob-space-16); --s-ov-inset: var(--ob-space-16); --s-ov-band: calc(var(--ob-space-16) + 18px + var(--ob-space-16)); }
+  .s-ov__stage.has-dest { padding-top: var(--s-ov-band); }
+  .s-ov__dest { --s-pm-scale: .9; --s-pm-gap: var(--ob-space-16); }
   .s-ov__stage--pdf { padding: var(--ob-space-16); }
 }
 
