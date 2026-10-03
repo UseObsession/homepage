@@ -6,15 +6,45 @@
    - BreadcrumbList wherever the page's Meta has a breadcrumb: every page below Home, matching the breadcrumb the page
      shows (components/Crumbs reads the same list).
    - BlogPosting on every post, with both founders as its authors (docs/REBUILD.md 9c), and Blog on /blog, listing them.
-   No prices, ratings or offers: the site states none. */
+   - On /agents, the WebPage is about what an Obsession agent is (2 DefinedTerms), and the Organization's contactPoint is
+     where any company writes about an agent it met, or to keep agents off its site.
+   No prices, ratings or offers: the site states none. Nothing here is invented: every fact is on the site or in
+   docs/REBUILD.md, and a profile link goes in only when a founder supplies it (SAME_AS below). */
 import { absolute, entries, SITE, type Entry } from '../content/meta'
-import { CONTACT_EMAIL, llms } from '../content/site'
+import { agentsPage, CONTACT_EMAIL, llms } from '../content/site'
 
 const ORG = `${SITE}/#organization`
 const WEBSITE = `${SITE}/#website`
 const APP = `${SITE}/#software`
 
 type Node = Record<string, unknown>
+
+/* Profiles that are the same company or person elsewhere (schema.org sameAs: LinkedIn, X, Crunchbase, GitHub, Product
+   Hunt). TODO (founders): add each real URL once it exists and you've confirmed it is yours. None is in the repo or the
+   workspace yet (_research/seo/AI-SEARCH-FOUNDERS.md lists what to send). An empty list writes no sameAs. */
+const SAME_AS: { organization: string[]; people: Record<string, string[]> } = {
+  organization: [],
+  people: { 'Seun Akinniranye': [], 'James Akinniranye': [] },
+}
+const sameAs = (urls: string[] | undefined) => (urls?.length ? { sameAs: urls } : {})
+
+/* A founder (docs/REBUILD.md 9c: both are Cofounders), with 1 @id wherever they appear: the Organization's founders
+   and a post's authors. */
+const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const person = (a: { name: string; role: string }): Node => ({
+  '@type': 'Person',
+  '@id': `${SITE}/#${slug(a.name)}`,
+  name: a.name,
+  jobTitle: a.role,
+  worksFor: { '@id': ORG },
+  ...sameAs(SAME_AS.people[a.name]),
+})
+const FOUNDERS = [
+  { name: 'Seun Akinniranye', role: 'Cofounder' },
+  { name: 'James Akinniranye', role: 'Cofounder' },
+]
+
+const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 
 const organization: Node = {
   '@type': 'Organization',
@@ -24,7 +54,34 @@ const organization: Node = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
   description: llms.summary,
   email: CONTACT_EMAIL,
+  founder: FOUNDERS.map(person),
+  /* /agents: any company an agent met writes here with a question, or to keep agents off its site. */
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Questions about an Obsession agent',
+    email: CONTACT_EMAIL,
+    url: `${SITE}/agents`,
+    availableLanguage: 'English',
+  },
+  ...sameAs(SAME_AS.organization),
 }
+
+/* What /agents is about: what an Obsession agent is, and what "declared" means (the term the page owns). */
+const agentTerms = (): Node[] => [
+  {
+    '@type': 'DefinedTerm',
+    '@id': `${SITE}/agents#obsession-agent`,
+    name: 'Obsession agent',
+    description: firstSentence(agentsPage.meta.answer),
+  },
+  {
+    '@type': 'DefinedTerm',
+    '@id': `${SITE}/agents#declared-ai-agent`,
+    name: 'declared AI agent',
+    /* The first line of the page's "declared" section, which defines the term. */
+    description: agentsPage.sections.find((x) => x.id === 'declared')?.lines[0] ?? '',
+  },
+]
 
 const website: Node = {
   '@type': 'WebSite',
@@ -37,9 +94,6 @@ const website: Node = {
 }
 
 const BLOG = `${SITE}/blog#blog`
-
-/* A founder, as the byline names them. */
-const person = (a: { name: string; role: string }): Node => ({ '@type': 'Person', name: a.name, jobTitle: a.role, worksFor: { '@id': ORG } })
 
 function posting(e: Entry): Node {
   const a = e.article!
@@ -108,6 +162,7 @@ export function jsonLd(e: Entry): Node {
     publisher: { '@id': ORG },
     primaryImageOfPage: { '@type': 'ImageObject', url: absolute(e.meta.ogImage), width: 1200, height: 630 },
     ...(e.kind === 'home' ? { about: { '@id': APP } } : {}),
+    ...(e.kind === 'agents' ? { about: agentTerms() } : {}),
     ...(crumbs?.length ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
     ...(questions.length
       ? {
