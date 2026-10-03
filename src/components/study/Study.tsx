@@ -58,7 +58,8 @@ export function Problem({ problem, id = 'gap' }: { problem: UseCaseStudy['proble
 }
 
 /* How it fits the reader's own tools: the claim and its line beside the 3 ways it fits. An example built on 1 partner
-   opens the claim with that tool's mark, where the page says the facts come back into it. */
+   opens the claim with that tool's mark, where the page says the facts come back into it. The heading names the tool,
+   so the mark is decorative (assistive tech hears the name once). */
 export function Fit({ fit, partner, id = 'fit' }: { fit: NonNullable<UseCaseStudy['fit']>; partner?: PartnerId; id?: string }) {
   const uid = useId()
   return (
@@ -66,8 +67,8 @@ export function Fit({ fit, partner, id = 'fit' }: { fit: NonNullable<UseCaseStud
       <div className="s-wrap s-st-fit__in">
         <header className="s-st-fit__head">
           {partner && (
-            <p className="s-st-fit__mark">
-              <PartnerMark id={partner} />
+            <p className="s-st-fit__mark" aria-hidden="true">
+              <PartnerMark id={partner} decorative />
             </p>
           )}
           <h2 className="ob-type-h2" id={`${uid}-h`}>

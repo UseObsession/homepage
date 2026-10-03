@@ -1,14 +1,16 @@
-/* Partner marks (components/PartnerMark). 1 colour, the text's own: the second ink at rest, full ink on hover.
-   The box comes from the mark's own numbers (--s-pm-h, its height where an icon is 20; --s-pm-r, width over height)
-   times the scale a placement sets (--s-pm-scale), so it is the same before and after any file loads. */
+/* Partner marks (components/PartnerMark). 1 colour, the text's full ink: ink on paper, bone on ink and on every
+   product object. The box comes from the mark's own numbers, so it is the same before and after any file loads:
+   - alone: --s-pm-h (its height where an icon is 20) times the scale a placement sets (--s-pm-scale);
+   - in a line of words: --s-pm-em (its height in em, so its x height is the text's), dropped by --s-pm-drop (its part
+     under the baseline) so it sits on the text's baseline.
+   --s-pm-r is its width over its height. */
 .s-pm {
   display: inline-block;
   flex: none;
   vertical-align: middle;
   height: calc(var(--s-pm-h) * var(--s-pm-scale, 1) * 1px);
   width: calc(var(--s-pm-h) * var(--s-pm-r) * var(--s-pm-scale, 1) * 1px);
-  color: var(--s-pm-ink, var(--ob-text-2));
-  transition: color var(--ob-dur-base) var(--ob-ease-out);
+  color: var(--ob-text);
 }
 .s-pm > svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .s-pm--mask {
@@ -16,24 +18,29 @@
   -webkit-mask: var(--s-pm-src) center / 100% 100% no-repeat;
   mask: var(--s-pm-src) center / 100% 100% no-repeat;
 }
-.s-pm--glyph > svg {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: var(--ob-icon-stroke, 1.5);
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.s-pm.s-pm--word {
+  height: calc(var(--s-pm-em) * 1em);
+  width: calc(var(--s-pm-em) * var(--s-pm-r) * 1em);
+  margin-inline: .06em;
+  vertical-align: calc(var(--s-pm-drop) * -1em);
 }
-@media (hover: hover) and (pointer: fine) {
-  .s-pm:hover { color: var(--s-pm-ink-hover, var(--ob-text)); }
-}
+/* Holds the baseline inside a flex parent (a chip, a kicker): 1 line of the parent's own type. */
+.s-pm-word { display: inline; }
 /* Forced colours: the marks keep their shape in the system's text colour. */
 @media (forced-colors: active) {
   .s-pm { color: CanvasText; }
   .s-pm--mask { forced-color-adjust: none; background-color: CanvasText; }
 }
 
-/* A quiet line of marks: 1 baseline axis, the same clear space between every mark. */
+/* A quiet line of marks over a thing: 1 axis, the same clear space between every mark, then its note. */
 .s-pm-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-8) var(--ob-space-16);
+  margin: 0;
+}
+.s-pm-row__marks {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -42,24 +49,10 @@
   padding: 0;
   list-style: none;
 }
-.s-pm-row > li { display: flex; align-items: center; }
-
-/* Obsession x a partner: 2 lockups as equals, on 1 axis, in 1 ink. The sign is the quiet third. */
-.s-pm-lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ob-space-20);
+.s-pm-row__marks > li { display: flex; align-items: center; }
+.s-pm-row__note {
   margin: 0;
-  --s-pm-ink: var(--ob-text);
-  --s-pm-ink-hover: var(--ob-text);
-}
-.s-pm-lockup__obs, .s-pm-lockup__partner { display: flex; align-items: center; }
-.s-pm-lockup__x { display: flex; color: var(--ob-text-3); }
-.s-pm-lockup__x svg {
-  width: var(--ob-space-16);
-  height: var(--ob-space-16);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.25;
-  stroke-linecap: round;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
 }

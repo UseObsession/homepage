@@ -1,8 +1,9 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore, type FocusEvent, type KeyboardEvent } from 'react'
-import type { PartnerId } from '../../content/partners'
+import { partners as partnerList, type PartnerId } from '../../content/partners'
 import type { How as HowContent } from '../../content/types'
 import { AppScreen, type Workspace } from '../AppScreen'
-import { PartnerRow } from '../PartnerMark'
+import { PartnerWord } from '../PartnerMark'
+import { hasWord } from '../partnerFiles'
 import './How.css'
 
 /* How it works: 1 flow in 4 steps (docs/REBUILD.md 1b and 2), every page's second beat.
@@ -14,8 +15,8 @@ import './How.css'
      Reduced motion never starts it. Arrows, Home and End move between steps.
    - Narrower: the steps stack, each with its own screen under it, every line and chip showing.
    Both layouts are in the markup and CSS shows 1, so the layout never waits for script.
-   `partners` (a reader's own tools, content/partners.ts) sit as 1 quiet line of marks under the last step, the one that
-   says where the results land; under 2 that can be drawn, the line is left out. */
+   `partners` (a reader's own tools, content/partners.ts): in the last step, the one that says where the results land, a
+   chip that names 1 of them shows the tool's mark in place of the word, in the same chip at the same height. */
 
 /* True once the page's script runs (false on the server and while hydrating) and the reader allows motion. */
 const REDUCE = '(prefers-reduced-motion: reduce)'
@@ -30,13 +31,15 @@ type Props = {
   how: HowContent
   /* Whose workspace the screens show (components/AppScreen): Home and Agencies keep 'agency'; the other pages pass 'company'. */
   workspace?: Workspace
-  /* The reader's tools, shown under the last step. */
+  /* The reader's tools: a last step chip that names 1 shows its mark. */
   partners?: PartnerId[]
   id?: string
 }
 
-/* The list's name for assistive tech; the step's own words already say where the results go. */
-const LANDS = 'Results land in'
+/* The tool a chip names, when it is 1 of the reader's and its mark can stand in for the word. */
+function chipTool(chip: string, tools?: PartnerId[]): PartnerId | undefined {
+  return tools?.find((id) => partnerList[id]?.name.toLowerCase() === chip.trim().toLowerCase() && hasWord(id))
+}
 
 const STEP_KEYS: Record<string, number> = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }
 
@@ -213,14 +216,16 @@ export function How({ how, workspace = 'agency', partners, id }: Props) {
                         </span>
                         {s.chips && s.chips.length > 0 && (
                           <span className="s-how-chips">
-                            {s.chips.map((c) => (
-                              <span key={c} className="ob-tag">
-                                {c}
-                              </span>
-                            ))}
+                            {s.chips.map((c) => {
+                              const tool = i === last ? chipTool(c, partners) : undefined
+                              return (
+                                <span key={c} className="ob-tag">
+                                  {tool ? <PartnerWord id={tool} /> : c}
+                                </span>
+                              )
+                            })}
                           </span>
                         )}
-                        {i === last && <PartnerRow ids={partners} label={LANDS} min={2} inline className="s-how-lands" />}
                       </span>
                     </span>
                   </button>
@@ -278,14 +283,16 @@ export function How({ how, workspace = 'agency', partners, id }: Props) {
                 <p className="s-how-line">{s.line}</p>
                 {s.chips && s.chips.length > 0 && (
                   <ul className="s-how-chips">
-                    {s.chips.map((c) => (
-                      <li key={c} className="ob-tag">
-                        {c}
-                      </li>
-                    ))}
+                    {s.chips.map((c) => {
+                      const tool = i === last ? chipTool(c, partners) : undefined
+                      return (
+                        <li key={c} className="ob-tag">
+                          {tool ? <PartnerWord id={tool} /> : c}
+                        </li>
+                      )
+                    })}
                   </ul>
                 )}
-                {i === last && <PartnerRow ids={partners} label={LANDS} min={2} className="s-how-lands" />}
               </div>
               <AppScreen name={s.screen} workspace={workspace} />
             </li>

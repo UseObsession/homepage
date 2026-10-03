@@ -1,14 +1,9 @@
 {
   "clay": "clay.svg",
-  "gmail": "gmail.png",
-  "google-sheets": "_from-pilotx/googlesheets.jpg",
   "hubspot": "hubspot.svg",
   "make": "make.svg",
-  "microsoft-teams": "microsoft-teams.svg",
   "n8n": "n8n.svg",
-  "outlook": "outlook.svg",
   "salesforce": "salesforce.svg",
   "slack": "_from-pilotx/Slack logo.png",
-  "slack-icon": "_from-pilotx/Slack_icon_2019.svg.webp",
   "zapier": "zapier.svg"
 }

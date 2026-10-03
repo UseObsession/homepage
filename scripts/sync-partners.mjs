@@ -9,7 +9,9 @@
      trimmed and scaled to 80px tall, which the site paints in the text colour with a CSS mask;
    into src/assets/partners/, with manifest.json (what exists and its shape, which the components read) and
    sources.json (where each came from). A placement shows a logo only when its file is here. Which logos go where is
-   src/content/partners.ts. Rasters other than PNG are read through macOS's sips. */
+   src/content/partners.ts, and only the tools listed there are synced: delete a tool's line there and the next run
+   takes its file off the site (a logo in the folder is not a licence to show it). Rasters other than PNG are read
+   through macOS's sips. */
 import { execFileSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises'
@@ -34,8 +36,9 @@ const TOOLS = [
   { id: 'salesforce', match: /salesforce/i, want: 'logo' },
   /* The lockup without the "from Salesforce" line the 2024 kit adds. */
   { id: 'slack', match: /slack/i, avoid: /icon/i, want: 'logo', prefer: [/(^|\/)Slack logo\.png$/] },
-  /* The long standing sheet icon (a page with a grid) reads as Google Sheets in 1 colour; the 2025 tiles do not. */
-  { id: 'google-sheets', match: /(google[\W_]*)?sheets?\b|googlesheets/i, want: 'symbol', prefer: [/(^|\/)googlesheets\.jpg$/] },
+  /* Google's and Microsoft's product icons: recognised, but held back while partners.ts leaves them out (their owners
+     forbid recolouring them). */
+  { id: 'google-sheets', match: /(google[\W_]*)?sheets?\b|googlesheets/i, want: 'symbol' },
   { id: 'gmail', match: /gmail/i, want: 'symbol' },
   { id: 'outlook', match: /outlook/i, want: 'symbol' },
   { id: 'microsoft-teams', match: /teams/i, want: 'symbol' },
@@ -47,9 +50,7 @@ const TOOLS = [
    is never pulled in: those need the founders' OK first. */
 const PILOTX = {
   'Slack logo.png': 'slack',
-  'Slack_icon_2019.svg.webp': 'slack-icon',
   'Salesforce.com_logo.svg.webp': 'salesforce',
-  'googlesheets.jpg': 'google-sheets',
 }
 const RASTER = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif'])
 /* A brand kit's banners and app icons (a logo on a coloured square) are never a mark. */
@@ -60,6 +61,17 @@ if (!existsSync(SRC)) {
   console.error(`Partner logos not found at ${SRC}. The committed marks in src/assets/partners stay as they are.`)
   process.exit(1)
 }
+
+/* The tools src/content/partners.ts lists (the keys of its `partners`): only these are synced. */
+const LISTED = await (async () => {
+  const text = await readFile(join(root, 'src/content/partners.ts'), 'utf8').catch(() => '')
+  const block = text.match(/export const partners\b[^=]*=\s*\{([\s\S]*?)\n\}/)
+  if (!block) {
+    console.error('Could not read the partners list in src/content/partners.ts. The committed marks stay as they are.')
+    process.exit(1)
+  }
+  return new Set([...block[1].matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]))
+})()
 
 /* ---- Finding the sources ------------------------------------------------------------------------------------------ */
 
@@ -628,7 +640,9 @@ await mkdir(OUT, { recursive: true })
 const tmp = await mkdtemp(join(tmpdir(), 'partners-'))
 const marks = {}
 const sources = {}
-const ids = [...new Set([...TOOLS.map((t) => t.id), ...Object.values(PILOTX)])]
+const known = [...new Set([...TOOLS.map((t) => t.id), ...Object.values(PILOTX)])]
+const ids = known.filter((id) => LISTED.has(id))
+const held = known.filter((id) => !LISTED.has(id) && candidates.has(id))
 
 /* 1 source, made into a mark. A file whose white parts sit beside its ink (a logo drawn for dark grounds) scores lower
    than its dark twin, since its white words would be cut out of nothing. */
@@ -680,11 +694,14 @@ await writeFile(
 )
 await writeFile(join(OUT, 'sources.json'), JSON.stringify(sorted(sources), null, 2) + '\n')
 
-const width = Math.max(...ids.map((i) => i.length))
+const width = Math.max(...known.map((i) => i.length))
 console.log(`Partner marks from ${SRC}:`)
 for (const id of ids) {
   const m = marks[id]
   console.log(`  ${id.padEnd(width)}  ${m ? `${m.type === 'svg' ? 'SVG ' : 'mask'}  ${m.ratio.toFixed(2)}:1  <- ${sources[id]}` : 'missing'}`)
 }
-const missing = TOOLS.map((t) => t.id).filter((id) => !marks[id])
+if (held.length) console.log(`Held back (in the folder, not in src/content/partners.ts): ${held.join(', ')}.`)
+const unknown = [...LISTED].filter((id) => !known.includes(id))
+if (unknown.length) console.log(`Listed in partners.ts but not recognised here (add it to TOOLS): ${unknown.join(', ')}.`)
+const missing = ids.filter((id) => !marks[id])
 if (missing.length) console.log(`Still missing: ${missing.join(', ')}. Add ${missing.map((m) => m + '.svg').join(', ')} to the folder and run npm run partners.`)

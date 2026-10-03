@@ -95,8 +95,6 @@
   text-wrap: pretty;
 }
 .s-how-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: var(--ob-space-16) 0 var(--ob-space-4); list-style: none; }
-/* The reader's own tools, under the last step's chips (content/partners.ts): 1 quiet line of marks. */
-.s-how-lands { padding-top: var(--ob-space-20); --s-pm-scale: .9; }
 
 /* Pause sits at the foot of the rail, its icon on the step numbers' column (the tabs' 24px inset, less the button's own
    padding). */

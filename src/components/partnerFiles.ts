@@ -15,10 +15,14 @@ export function markUrl(file: string): string | undefined {
   return URLS[`../assets/partners/${file}`]
 }
 
-/* Whether a tool can be drawn: listed in content/partners.ts, and its file synced (the webhook is the system's own
-   glyph). */
+/* Whether a tool can be drawn: listed in content/partners.ts, and its file synced. */
 export function hasPartner(id: PartnerId): boolean {
-  return Boolean(partners[id]) && (id === 'webhook' || Boolean(marks[id]))
+  return Boolean(partners[id]) && Boolean(marks[id])
+}
+
+/* Whether a tool's mark can also stand in for its name in a line of words (its `word` in content/partners.ts). */
+export function hasWord(id: PartnerId): boolean {
+  return hasPartner(id) && Boolean(partners[id]?.word)
 }
 
 /* A drawing made ready for the page: its own mask id (2 copies of a mark on 1 page must not share 1), hidden from

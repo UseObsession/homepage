@@ -35,20 +35,26 @@
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
 }
 .s-ov__stage--pdf { padding: var(--ob-space-32); }
-/* The tools a format lands in: their marks in the stage's top corner, where an app shows its own, on the object's
-   inks (bone on the black glass in both themes), quiet until the reader points at them. The stage keeps a band for
-   them above the mock (--s-ov-band), so a tall mock never runs under them; every stage keeps its height, so moving
-   between tabs never shifts the page. */
-.s-ov__stage { --s-ov-inset: var(--ob-space-24); --s-ov-band: calc(var(--ob-space-24) * 2 + 22px); }
-.s-ov__stage.has-dest { padding-top: var(--s-ov-band); }
-.s-ov__dest {
-  position: absolute;
-  top: var(--s-ov-inset);
-  left: var(--s-ov-inset);
-  z-index: 1;
-  --s-pm-scale: 1.1;
-  --s-pm-gap: var(--ob-space-24);
+/* A format whose tab names a tool: the tool's mark sits over its object, part of it and centred with it, in bone on the
+   black glass (both themes). It lines up with the object's own axis: the top left edge of a card or a table (16px
+   over it), the centre line of the workflow's tree (24px over it, the tree's own link), or its rail's left edge once
+   the tree folds into a rail. The object keeps its own width (--s-ov-w), so the mark meets its edge. */
+.s-ov__obj {
+  display: grid;
+  justify-items: start;
+  gap: var(--ob-space-16);
+  width: 100%;
+  max-width: var(--s-ov-w, 640px);
+  min-width: 0;
 }
+.s-ov__obj > :not(.s-ov__dest) { justify-self: stretch; }
+.s-ov__obj--slack { --s-ov-w: 520px; }
+.s-ov__obj--clay { --s-ov-w: 640px; }
+.s-ov__obj--workflow { --s-ov-w: 680px; container-type: inline-size; justify-items: center; gap: var(--ob-space-24); }
+@container (max-width: 559px) {
+  .s-ov__obj--workflow > .s-ov__dest { justify-self: start; }
+}
+.s-ov__dest { --s-pm-scale: 1.05; --s-pm-gap: var(--ob-space-24); }
 .s-ov__mock {
   display: grid;
   place-items: center;
@@ -58,13 +64,13 @@
   min-height: 0;
 }
 @media (max-width: 859px) {
-  .s-ov__stage { height: 520px; padding: var(--ob-space-24); --s-ov-band: calc(var(--ob-space-24) + 22px + var(--ob-space-20)); }
-  .s-ov__stage.has-dest { padding-top: var(--s-ov-band); }
+  .s-ov__stage { height: 520px; padding: var(--ob-space-24); }
 }
 @media (max-width: 519px) {
-  .s-ov__stage { height: 536px; padding: var(--ob-space-16); --s-ov-inset: var(--ob-space-16); --s-ov-band: calc(var(--ob-space-16) + 18px + var(--ob-space-16)); }
-  .s-ov__stage.has-dest { padding-top: var(--s-ov-band); }
-  .s-ov__dest { --s-pm-scale: .9; --s-pm-gap: var(--ob-space-16); }
+  /* As tall as the tablet's stage (488 before the marks), so the workflow keeps its mark line and its note. */
+  .s-ov__stage { height: 520px; padding: var(--ob-space-16); }
+  .s-ov__obj { gap: var(--ob-space-12); }
+  .s-ov__dest { --s-pm-scale: .9; --s-pm-gap: var(--ob-space-20); }
   .s-ov__stage--pdf { padding: var(--ob-space-16); }
 }
 
