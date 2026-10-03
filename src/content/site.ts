@@ -17,6 +17,11 @@ export const CONTACT_EMAIL = 'hello@useobsession.com'
    only the contact line (never a bracketed placeholder), and the prerender prints a note on every build. */
 export const CONTROLLER: string | null = null
 
+/* The 1 sentence (docs/SEARCH.md 2): what Obsession is, word for word wherever the site defines it (llms.summary below,
+   the footer, the Organization JSON-LD, Home's and Founders' "What is Obsession?" and /agents). */
+const SENTENCE =
+  'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.'
+
 const waitlistRoles = {
   question: 'What should we set up first for you?',
   options: ['Agency', 'Founder', 'Sales', 'Marketing', 'Developer', 'Something else'],
@@ -282,7 +287,7 @@ export const agentsPage: AgentsPage = {
       id: 'what',
       heading: 'It has its own identity, inbox, phone number and browser.',
       lines: [
-        'Obsession is the intelligence infrastructure for commercial teams. Companies send its AI agents to do business with other companies for them: sign up, shop, ask a site’s chat bot, chase, check and wait, then report back.',
+        `${SENTENCE} They sign up, shop, ask a site’s chat bot, chase, check and wait, then report back to the company that sent them.`,
         'Every step an agent takes is signed and dated, so nobody has to take its word for what happened.',
       ],
     },
@@ -405,8 +410,7 @@ export const notFoundPage: NotFoundPage = {
    Plain and complete for answer engines: what it is, how it works, the recipes, the red lines, the 1 real run. The intro
    names every recipe: the prerender fails the build when a recipe's name is missing from it. */
 export const llms: Llms = {
-  summary:
-    'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.',
+  summary: SENTENCE,
   intro: [
     'Obsession’s agents sign up, shop, ask the site’s chat bot, chase, check and wait at every company on your list, continuously, and every step they take is signed.',
     'You get the proof and your next move by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
