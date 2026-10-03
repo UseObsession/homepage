@@ -9,7 +9,9 @@ import '../screens/base.css'
    the workspace by scripts/sync-assets.mjs). Its rest state is the finished scene; adding .play runs its story.
    - The prerender writes each screen's HTML into the page, and React keeps it as it hydrates: the browser's bundle
      never carries the screens. A screen that mounts on a page reached client side fetches its HTML and CSS first.
-   - data-screen names the screen, so the prerender can link its CSS in the page's head. */
+   - data-screen names the screen, so the prerender can link its CSS in the page's head.
+   - data-nosnippet keeps a screen's example data ("Rival B: free delivery now from £35") out of Google's snippets, AI
+     Overviews and AI Mode, so it is never quoted as fact; the page's own words around it are. */
 
 export type { Workspace }
 export type ScreenName = string
@@ -95,6 +97,7 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
         ref={ref}
         className={'ilwrap' + (className ? ' ' + className : '')}
         data-screen={name}
+        data-nosnippet=""
         onClick={() => replay(ref.current?.querySelector('.il') ?? null)}
         dangerouslySetInnerHTML={html === undefined ? KEEP : { __html: html }}
         suppressHydrationWarning
