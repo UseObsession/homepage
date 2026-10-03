@@ -34,7 +34,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your agency win and keep clients.',
-    sub: 'Pitches stall, clients leave and new services go unsold for reasons your team never sees. Every client you win, keep and grow depends on what prospects, rivals and your clients’ own customers actually experience, and most of it happens behind sign ups, inboxes and checkouts no tool can see into. Obsession’s AI agents go through them as the customer, with real inboxes, phone numbers and browsers, at every prospect and rival and, with their OK, every client. You get signed proof to pitch, report, renew and sell your next service.',
+    sub: 'Pitches stall, clients leave and new services go unsold for reasons your team never sees. Obsession’s AI agents become the customer at every prospect, rival and, with their OK, every client, with real inboxes, phone numbers and browsers. You get signed proof to pitch, report, renew and sell your next service.',
     capture: {
       kind: 'waitlist',
       source: 'agencies-hero',

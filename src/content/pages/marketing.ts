@@ -39,7 +39,7 @@ export const page: Page = {
     description:
       'AI agents for marketing teams check every ad, partner link, launch and lead as a customer would, track every rival and draft each fix. Every step signed.',
     answer:
-      'Obsession gives marketing teams declared AI agents that check every ad, launch and rival as a customer would: your ad pages, partner codes and checkout, and every rival’s emails and prices. You hear of each break and each new offer the day it lands.',
+      'Obsession gives marketing teams declared AI agents that go through every ad, page, code, partner, review ask and AI answer as the customer, every day, and every rival’s emails, texts and prices. You get signed proof of each break and each new offer, and your next move.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,7 +50,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your marketing team win, convert and keep customers.',
-    sub: 'Obsession gives marketing teams declared AI agents that check every ad, launch and rival as a customer would: your ad pages, partner codes and checkout, and every rival’s emails and prices. You hear of each break and each new offer the day it lands.',
+    sub: 'Ads send clicks to sold out pages, codes fail at checkout and a rival’s offer lands first, and you find out a week later. Obsession’s AI agents check every ad, page, code, partner and AI answer as the customer each day, and every rival’s emails and prices. You see each break and each new offer the morning it happens.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -373,6 +373,10 @@ export const page: Page = {
   faq: {
     heading: 'Every agent declared. Nothing paused, sent or changed without your OK.',
     items: [
+      {
+        q: 'What does Obsession do for marketing teams?',
+        a: 'Obsession gives marketing teams declared AI agents that go through every ad, page, code, partner, review ask and AI answer as the customer, every day, and every rival’s emails, texts and prices. You get signed proof of each break and each new offer, and your next move.',
+      },
       {
         q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
         a: 'Obsession subscribes a declared AI agent with its own inbox and texting number to each rival. It never replies, and logs every welcome email, text, offer and code with its time.',

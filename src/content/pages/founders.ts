@@ -34,7 +34,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    sub: 'You built the product, the funnel and the AI agents that talk to your customers, and you can’t watch them all. A sign up breaks after a release, the support bot promises the wrong refund, a lead waits a day for a reply, and you hear it from a customer. Obsession’s AI agents meet your business the way your customers do, every day and after every release, and they work your prospects, rivals, invoices and renewals within your limits. You get signed proof of what works, what broke and your next move.',
+    sub: 'You built the product, the funnel and the AI agents your customers talk to, and you can’t watch them all. Obsession’s AI agents meet your business as a customer every day and after every release, then work your prospects, rivals and invoices within your limits. You hear what broke before a customer does.',
     capture: {
       kind: 'waitlist',
       source: 'founders-hero',
