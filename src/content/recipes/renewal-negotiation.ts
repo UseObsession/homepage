@@ -198,6 +198,10 @@ export const recipe: Recipe = {
     heading: 'Declared as AI on every round. Nothing signed without you.',
     items: [
       {
+        q: 'How do I answer a buyer’s AI agent that asks for a renewal discount?',
+        a: 'Renewal negotiation answers it the same day: your declared AI agent replies with the real usage and offers only what you approved, like 5% off for a 2 year term, and anything outside your limits waits for you.',
+      },
+      {
         q: 'What if the buyer isn’t using an AI agent?',
         a: 'Renewal negotiation works the same with a person: the same quote, the same limits and an answer the same day, by email or phone.',
       },

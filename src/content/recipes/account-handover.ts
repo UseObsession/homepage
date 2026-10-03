@@ -189,6 +189,10 @@ export const recipe: Recipe = {
     heading: 'Your client’s accounts, your client’s OK, and every step on record.',
     items: [
       {
+        q: 'How do I get my accounts back from my old agency?',
+        a: 'Account handover does the asking: once you sign a written OK and show you own the business, a declared AI agent asks the old agency and every platform at once to move each account into your name, and chases daily until each one is back with 2 of your own admins.',
+      },
+      {
         q: 'How is Account handover different from an access request tool?',
         a: 'Account handover gets the accounts back from whoever holds them: the old agency, a freelancer or the old developer. Access tools work only once your client already holds admin.',
       },

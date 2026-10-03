@@ -200,6 +200,10 @@ export const recipe: Recipe = {
     heading: 'Every customer asked the same way. Nothing sent without your OK.',
     items: [
       {
+        q: 'How do I ask every customer for a review at the right time?',
+        a: 'Review requests asks at each customer’s moment: the day their order lands, their ticket is solved or their onboarding ends, a declared AI agent sends the words you approved from your own address, the same ask for every customer, happy or not.',
+      },
+      {
         q: 'Does Review requests only ask happy customers?',
         a: 'No. Review requests gives every real customer the same ask and the same review link at their moment, whatever they might say. It never sorts customers by mood, score or past complaints.',
       },

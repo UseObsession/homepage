@@ -291,6 +291,10 @@ export const sample: SamplePage = {
     heading: 'Nothing was bought. The checkout stopped before payment.',
     items: [
       {
+        q: 'What does an abandoned cart test report show?',
+        a: 'An Obsession report shows each journey’s verdict and the proof behind it. In this one, the basket shopper left a £40 gift set at 02:57 and the checkout shopper left at 03:11, neither inbox got a reminder in 48 hours, and 15 screenshots were kept.',
+      },
+      {
         q: 'Is this a real store?',
         a: 'Yes. Obsession checked a skincare store in September 2026. We hide its name and show the rest as it happened.',
       },

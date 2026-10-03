@@ -181,6 +181,10 @@ export const recipe: Recipe = {
     heading: 'Your caps, your OK, and a declared agent at every vendor.',
     items: [
       {
+        q: 'What can I do when a software vendor raises its price at renewal?',
+        a: 'Software renewals holds the rise and negotiates: each vendor is paid from its own card capped at the price you agreed, so a higher charge waits for your decision, and a declared AI agent negotiates with your real usage and brings you the offers in writing.',
+      },
+      {
         q: 'How does a card stop a price rise?',
         a: 'Software renewals pays each vendor from its own card, capped at the price you agreed. A higher charge is held instead of paid, and the agent negotiates with the vendor before any money moves.',
       },

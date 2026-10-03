@@ -201,6 +201,10 @@ export const recipe: Recipe = {
     heading: 'Customers only. Nothing goes out without your rep’s OK.',
     items: [
       {
+        q: 'How do I know which customers are ready to buy more?',
+        a: 'Expansion offers tells you each morning: a declared AI agent reads the usage, billing and CRM you connect and each customer’s public news, and flags a plan nearly full, new users joining, a new office, a funding round or a hiring push, with the offer drafted for your rep.',
+      },
+      {
         q: 'Does Expansion offers contact prospects?',
         a: 'No. Expansion offers contacts only customers already on your books, and only the people already in your rep’s thread or your CRM.',
       },

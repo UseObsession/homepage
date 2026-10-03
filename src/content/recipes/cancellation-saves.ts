@@ -188,6 +188,10 @@ export const recipe: Recipe = {
     heading: 'Declared as your AI. Cancelling stays as easy as staying.',
     items: [
       {
+        q: 'How do I offer a pause when a subscriber asks to cancel?',
+        a: 'Cancellation saves offers it next to “Cancel now”, never in place of it: your declared AI agent answers every cancel request at once with 1 pause or offer you approved, and does what the subscriber picks the same minute.',
+      },
+      {
         q: 'Does Cancellation saves make cancelling harder?',
         a: 'No. Cancellation saves puts “Cancel now” next to every offer, “cancel, no offers” cancels at once, and every cancel is done the same minute, in the channel it was asked.',
       },

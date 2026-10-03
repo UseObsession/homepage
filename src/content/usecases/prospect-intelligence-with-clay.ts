@@ -279,6 +279,10 @@ export const study: UseCaseStudy = {
     heading: 'Every shopper says it’s AI. Only the site’s chat bot hears a question.',
     items: [
       {
+        q: 'What does a Clay prospect research workflow look like with Obsession?',
+        a: 'Obsession reads the brands in your Clay view, and a declared AI shopper becomes a customer of each one: it signs up, opts in to texts and asks the site’s chat bot, watches for 48 hours, then writes each gap, its date and its proof back to the same rows.',
+      },
+      {
         q: 'Does it contact anyone at the brand?',
         a: 'No. Declared as AI and from Obsession, it signs up, opts in to texts and asks the site’s chat bot 1 question. If a person picks up the chat, the step ends. It never writes to staff.',
       },

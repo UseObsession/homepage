@@ -207,6 +207,10 @@ export const recipe: Recipe = {
     heading: 'Your own ads only. Nothing paused or changed without your OK.',
     items: [
       {
+        q: 'How do I stop my ads sending clicks to a sold out page?',
+        a: 'Ad landing check finds it the same morning: at 07:00 a declared AI agent opens every live ad’s landing page as a customer, without clicking the ad, checks the product is in stock and the offer and price match, and drafts the pause or a new link for your OK.',
+      },
+      {
         q: 'Does Ad landing check click our ads?',
         a: 'No. Ad landing check opens each ad’s landing page directly, so no click is paid for and your ad numbers stay true.',
       },

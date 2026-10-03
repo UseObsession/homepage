@@ -204,6 +204,10 @@ export const recipe: Recipe = {
     heading: 'Links, codes and banners only. Nothing sent without your OK.',
     items: [
       {
+        q: 'How do I check my affiliates’ links and codes still work?',
+        a: 'Partner checks tries them every Monday: a declared AI agent follows each partner’s link to your store, applies their code to a basket on your own store, checks the discount and stops before payment, then drafts a note for your OK when a link, code or banner is out of date.',
+      },
+      {
         q: 'Does Partner checks look at our partners’ prices?',
         a: 'No. Partner checks covers only your links, codes and banners. It never reads, logs or compares what a partner charges.',
       },
