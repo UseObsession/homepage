@@ -99,13 +99,16 @@ export type Hero = {
    questions (trust and red lines) > final call to action. A page may skip a beat, never reorder it. */
 export type How = { heading: string; sub?: string; steps: { title: string; line: string; screen: ScreenName; chips?: string[] }[] }
 export type Gap = { heading: string; sub?: string; story?: GapStory; rows: { today: string; obsession: string }[] }
-/* The gap's picture (components/sections/GapStory): 1 invented company over 3 days, 2 lanes on 1 clock. Above, what a
-   tool that reads the outside sees: 1 look, at 1 moment (`outside`). Below, a declared AI test customer living it: each
-   step lands on its day, drops a signed receipt on the stack, and the last day holds the finding (`inside`).
-   Days run 0 to 3. Every step happens at `time` on its `day`; the clock shows each in turn. `label` tells the whole story
-   in 1 or 2 sentences for a screen reader (and llms-full.txt), and it opens with "Example". */
+/* The gap's picture (components/sections/GapStory): 1 invented company over 3 days, 2 lanes on 1 clock. The company is
+   hollin, the linen shop in content/hollin.ts, so the picture shows its real looking home page, email and chat. Above,
+   what a tool that reads the outside sees: 1 look, at 1 moment (`outside`), and the `tag` that look produced. Below, a
+   declared AI test customer living it: each step lands on its day, drops a signed receipt on the stack, and the last day
+   holds the finding (`inside`). Days run 0 to 3. Every step happens at `time` on its `day`; the clock shows each in turn.
+   `title` names a step and its receipt; a signup is 2 steps (the form, then `mailTitle`, the welcome email at `mailTime`
+   with the subject `mail`). `customer` is how the agent signs its chat messages. `label` tells the whole story in 1 or 2
+   sentences for a screen reader (and llms-full.txt), and it opens with "Example". */
 export type GapStoryStep =
-  | { kind: 'signup'; day: number; time: string; title: string; field: string; mail: string; mailTime: string }
+  | { kind: 'signup'; day: number; time: string; title: string; field: string; mailTitle: string; mail: string; mailTime: string }
   | { kind: 'chat'; day: number; time: string; title: string; ask: string; reply: string; promise: string }
   | { kind: 'basket'; day: number; time: string; title: string; item: string; price: string }
   | { kind: 'wait'; day: number; time: string; title: string; since: string }
@@ -120,13 +123,16 @@ export type GapStory = {
     /* page: the page's headline and the 1 line it publishes; dashboard: the row's name and what it counts. */
     title: string
     line: string
+    tag?: string
     tally: string
   }
   inside: {
     name: string
     agent: string
+    customer: string
     steps: GapStoryStep[]
-    finding: { day: number; time: string; title: string; meta: string }
+    /* `short` is the finding's receipt. */
+    finding: { day: number; time: string; title: string; short: string; meta: string }
     tally: string
     hash: string
   }

@@ -197,8 +197,8 @@ export const page: Page = {
     sub: 'Obsession’s AI agents are that customer, at every ad, link, launch and rival on your list.',
     story: {
       label:
-        'Example: your dashboard counts Fernleaf’s basket reminder as sent on Day 1. Obsession’s declared AI test customer signs up, gets the welcome email, leaves a basket and checks its inbox each day: on Day 3 the reminder has never arrived, and all 6 steps are signed.',
-      site: 'fernleaf.example',
+        'Example: your dashboard counts hollin’s basket reminder as sent on Day 1. Obsession’s declared AI test customer signs up on hollin.example, gets the welcome email with a 10% code, leaves a £48 pillowcase pair in its basket and checks its inbox each day: on Day 3 the reminder has never arrived, and all 6 steps are signed.',
+      site: 'hollin.example',
       outside: {
         name: 'Your dashboard',
         kind: 'dashboard',
@@ -211,6 +211,7 @@ export const page: Page = {
       inside: {
         name: 'Obsession',
         agent: 'Test customer 1 · AI · for Your company',
+        customer: 'Test customer 1 · AI',
         steps: [
           {
             kind: 'signup',
@@ -218,15 +219,22 @@ export const page: Page = {
             time: '09:14',
             title: 'Signed up',
             field: 'shopper1@test.useobsession.com',
-            mail: 'Welcome to Fernleaf',
+            mailTitle: 'Welcome email',
+            mail: 'Welcome to hollin. Here’s 10% off.',
             mailTime: '09:15',
           },
-          { kind: 'basket', day: 0, time: '09:31', title: 'Left a basket', item: 'Linen throw', price: '£48' },
+          { kind: 'basket', day: 0, time: '09:31', title: 'Left a basket', item: 'Pillowcase Pair', price: '£48' },
           { kind: 'wait', day: 1, time: '09:31', title: 'No reminder', since: '24 h' },
           { kind: 'wait', day: 2, time: '09:31', title: 'No reminder', since: '48 h' },
         ],
-        finding: { day: 3, time: '09:31', title: 'The basket reminder counted as sent never arrived', meta: '0 emails in 72 h' },
-        tally: '6 steps, all signed',
+        finding: {
+          day: 3,
+          time: '09:31',
+          title: 'The basket reminder counted as sent never arrived',
+          short: 'Never arrived',
+          meta: '0 emails in 72 h',
+        },
+        tally: '6 of 6 signed',
         hash: '9c41 e2b8 … 07fd',
       },
     },
