@@ -26,7 +26,7 @@ export const study: UseCaseStudy = {
     description:
       'An example: AI agents become a customer of every brand in a Clay view, watch for 48 hours, and write each gap and its proof back to the same rows.',
     answer:
-      'Prospect intelligence with Clay is a worked example of Obsession. Declared AI agents become a customer of every brand in a client’s Clay view: they sign up, opt in to texts and ask the site’s chat bot, watch for 48 hours, then write each gap, its date and its proof back to the same rows. The agency, brands and figures are made up.',
+      'Prospect intelligence with Clay is a worked example: a declared AI shopper becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table. The agency, brands and figures are made up.',
     ogImage: '/og/prospect-intelligence-with-clay.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -38,8 +38,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents prove a real gap at every brand on your list.',
-    sub: 'A declared AI shopper becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table.',
+    headline: 'AI agents check every brand in your client’s Clay view and write each gap back.',
+    sub: 'Prospect intelligence with Clay is a worked example: a declared AI shopper becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table.',
     example: {
       chips: ['Example: an outbound agency', 'Its client: an SMS app', '300 UK ecommerce brands'],
       note: 'The agency, its client, the brands, the people and the numbers on this page are made up.',
@@ -284,11 +284,11 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'How do you know a gap is real?',
-        a: 'Each check has a deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer. You can also turn on rechecks, as this agency did: a control text proves the phone gets texts, and every miss runs again from a fresh number before it counts.',
+        a: 'Each Obsession check has a deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer. You can also turn on rechecks, as this agency did: a control text proves the phone gets texts, and every miss runs again from a fresh number before it counts.',
       },
       {
-        q: 'Does it fill a basket or buy anything?',
-        a: 'Not at a prospect. Basket and checkout checks run only with the brand’s OK, and stop before payment.',
+        q: 'Does Obsession fill a basket or buy anything?',
+        a: 'Not at a prospect: Obsession runs basket and checkout checks only with the brand’s OK, and they stop before payment.',
       },
       {
         q: 'Who writes the email?',
@@ -296,15 +296,15 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Do new rows in the Clay view get checked?',
-        a: 'Yes, once you turn on new rows. Rows added to the view later get their own watch on their own clock. Rows that leave the view stop.',
+        a: 'Yes, once you turn on new rows in Obsession. Rows added to the view later get their own watch on their own clock. Rows that leave the view stop.',
       },
       {
         q: 'What happens after the 48 hours?',
-        a: 'It stops, or checks every week and tells you when a gap closes, so you know when to write and when to stop.',
+        a: 'Obsession stops, or checks every week and tells you when a gap closes, so you know when to write and when to stop.',
       },
       {
-        q: 'Does it need Clay?',
-        a: 'No. Clay is the easiest way in and out, but you can upload a CSV, call the API or paste a list for one offs, like 25 brands before a pitch.',
+        q: 'Does Obsession need Clay?',
+        a: 'No. Clay is the easiest way in and out of Obsession, but you can upload a CSV, call the API or paste a list for one offs, like 25 brands before a pitch.',
       },
     ],
   },

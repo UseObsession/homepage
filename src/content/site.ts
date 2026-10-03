@@ -27,11 +27,11 @@ const waitlistRoles = {
 export const recipesPage: RecipesIndexPage = {
   meta: {
     path: '/recipes',
-    title: 'Recipes: AI agents set up for the job you pick · Obsession',
+    title: 'AI agent recipes for commercial teams, set up for the job',
     description:
       'Pick a recipe and declared AI agents arrive set up for it: their own inbox, number and browser, every wait and every check. Or type any job.',
     answer:
-      'Obsession recipes are jobs ready to run for declared AI agents, from competitor tracking and prospect intelligence to mystery shopping and invoice chasing. Each comes with its agents, their inboxes, phone numbers and browsers, the schedule and the checks already set up, and you can type any other job in plain words.',
+      'Obsession recipes are jobs ready to run for commercial teams: each comes with its declared AI agents, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'AI agents that come set up for the job you pick.',
-    sub: 'Each recipe arrives with its agents’ inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
+    sub: 'Obsession recipes are jobs ready to run for commercial teams: each comes with its declared AI agents, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
   },
 
   groups: [
@@ -82,32 +82,32 @@ export const recipesPage: RecipesIndexPage = {
     heading: 'Every recipe runs on declared AI agents, and every step is signed.',
     items: [
       {
-        q: 'What’s a recipe?',
-        a: 'A job that comes ready to run: the agents, each with its own inbox, phone number and browser, plus the schedule, the waits and the checks. You add the companies and choose where the results go.',
+        q: 'What’s an Obsession recipe?',
+        a: 'An Obsession recipe is a job that comes ready to run: the agents, each with its own inbox, phone number and browser, plus the schedule, the waits and the checks. You add the companies and choose where the results go.',
       },
       {
         q: 'What if my job isn’t here?',
-        a: 'Type it in plain words, like “Tell me which of our prospects never send a welcome email”. The system sets up what the job needs, you approve the plan, and the agents get to work.',
+        a: 'Type it into Obsession in plain words, like “Tell me which of our prospects never send a welcome email”. The system sets up what the job needs, you approve the plan, and the agents get to work.',
       },
       {
         q: 'Can I build my own?',
-        a: 'Yes, on the API: the same agents, inboxes, phone numbers and browsers, from your own code.',
+        a: 'Yes, on the Obsession API: the same agents, inboxes, phone numbers and browsers, from your own code.',
       },
       {
         q: 'Can I change a recipe?',
-        a: 'Yes: the journeys, the schedule, the companies and where the results land. The rules every agent follows stay the same.',
+        a: 'Yes. You can change an Obsession recipe’s journeys, schedule, companies and where the results land. The rules every agent follows stay the same.',
       },
       {
         q: 'How many companies can 1 recipe cover?',
-        a: 'As many as you add. Every company gets its own agent, and they all run at once, continuously.',
+        a: 'An Obsession recipe covers as many as you add. Every company gets its own agent, and they all run at once, continuously.',
       },
       {
-        q: 'What do the agents do at a rival or a prospect?',
-        a: 'Only what any customer can: sign up, join the emails and texts, read public pages and the ads they run in public, ask the site’s chat bot, and start trials that need no card. They say they’re AI agents, link to useobsession.com/agents, never name you and never reply. If a person picks up the chat, or a rep writes or calls, the step ends.',
+        q: 'What do Obsession’s agents do at a rival or a prospect?',
+        a: 'An Obsession agent does only what any customer can: sign up, join the emails and texts, read public pages and the ads they run in public, ask the site’s chat bot, and start trials that need no card. They say they’re AI agents, link to useobsession.com/agents, never name you and never reply. If a person picks up the chat, or a rep writes or calls, the step ends.',
       },
       {
-        q: 'Can an agent spend money?',
-        a: 'Only on a card capped at a budget you set, for a job you approved: a test order on your own store that it refunds, a transfer fee, or a software bill at the price you agreed. Above the cap it stops and asks you. It never signs or accepts terms without your OK.',
+        q: 'Can an Obsession agent spend money?',
+        a: 'An Obsession agent spends only on a card capped at a budget you set, for a job you approved: a test order on your own store that it refunds, a transfer fee, or a software bill at the price you agreed. Above the cap it stops and asks you. It never signs or accepts terms without your OK.',
       },
     ],
   },
@@ -260,11 +260,11 @@ export const privacyPage: PrivacyPage = {
 export const agentsPage: AgentsPage = {
   meta: {
     path: '/agents',
-    title: 'Saw an Obsession agent? What it does and what it never does',
+    title: 'Saw an Obsession agent? What a declared AI agent does here',
     description:
       'An Obsession agent is a declared AI agent with its own inbox, number and browser. What it does at your company, what it never does, and how to opt out.',
     answer:
-      'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. When it keeps that customer private, it uses only the paths any customer can. It never pretends to be a person or pays on your store without your OK, and any company can write to hello@useobsession.com with a question or to keep agents off its site.',
+      'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. Write to us with any question about it, or to keep our agents off your site.',
     ogImage: '/og/agents.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -274,7 +274,7 @@ export const agentsPage: AgentsPage = {
 
   pill: 'Saw an Obsession agent?',
   headline: 'Every Obsession agent is an AI agent, and says so.',
-  sub: 'It works for an Obsession customer. Write to us with any question about it, or to keep our agents off your site.',
+  sub: 'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. Write to us with any question about it, or to keep our agents off your site.',
 
   sections: [
     {
@@ -289,6 +289,7 @@ export const agentsPage: AgentsPage = {
       id: 'declared',
       heading: 'It never pretends to be a person.',
       lines: [
+        'A declared AI agent says it’s an AI agent and who sent it, never uses a fake name, and keeps a signed record of every step.',
         'Every agent says it’s an AI agent. It never uses a fake name or a fake identity.',
         'If it’s working for you, or for someone with your OK, like your agency, it names who it works for. So does an agent that asks you for a quote, answers your request for one, negotiates a renewal, asks for a client’s accounts back or follows up an invoice.',
         'If it’s doing what any customer can, it says it’s from Obsession and links to this page, without naming its customer.',
@@ -336,6 +337,30 @@ export const agentsPage: AgentsPage = {
       ],
     },
   ],
+
+  /* The questions a company asks after an agent signs up (_research/seo/research-questions.md), answered only with what
+     this page already says. FAQPage JSON-LD follows them (meta.ts). */
+  faq: {
+    heading: 'An agent on your site always has a company behind it.',
+    items: [
+      {
+        q: 'Who sent the AI agent that signed up to my site?',
+        a: `An Obsession customer did. Every Obsession agent says it’s an AI agent and links to this page, and it never names its customer without their OK. Write to ${CONTACT_EMAIL} with the email address or number it used, and we tell you what it did and when.`,
+      },
+      {
+        q: 'Is there a real company behind an AI agent on my checkout?',
+        a: 'For an Obsession agent, yes: it works for an Obsession customer, and Obsession answers any question about it. When it keeps that customer private, it never fills a basket or starts a checkout.',
+      },
+      {
+        q: 'How do I keep Obsession’s AI agents off my site?',
+        a: `Write to ${CONTACT_EMAIL} with your web address and we stop every Obsession agent there and keep them off it. Unsubscribing its email address, or texting STOP to its number, works too.`,
+      },
+      {
+        q: 'Will an Obsession agent contact my staff?',
+        a: 'Not when an Obsession agent keeps its customer private: it only asks your site’s chat bot, and if a person picks it up, the step ends. It never sends your staff an enquiry or a contact form, and leaves a trial the moment a rep writes or calls.',
+      },
+    ],
+  },
 
   contact: {
     heading: 'Ask us anything about an agent you saw.',

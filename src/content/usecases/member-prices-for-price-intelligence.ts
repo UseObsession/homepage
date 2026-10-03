@@ -23,11 +23,11 @@ export const study: UseCaseStudy = {
 
   meta: {
     path: '/use-cases/member-prices-for-price-intelligence',
-    title: 'Member prices for price intelligence, as a feed with proof',
+    title: 'Member price intelligence: what retailers show only members',
     description:
       'An example: AI test members join each retailer, read member prices beside public ones and keep every coupon and offer, sent to your platform with proof.',
     answer:
-      'Member prices for price intelligence is a worked example of Obsession. Declared AI test members join each grocery retailer, read the basket signed out and signed in, keep every welcome coupon, email and text, and send each observation to the firm’s platform as a feed with its screenshot. The firm, retailers and prices are made up.',
+      'Member price intelligence tracks what retailers show only to members: member prices, welcome coupons and the offers that arrive days later. Declared AI members join each retailer and send every one to your platform with its proof. The firm, retailers and prices are made up.',
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -40,7 +40,7 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents bring back the prices retailers show only to members.',
-    sub: 'You already watch flyers, shelves, online prices and newsletters. Declared AI members add what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, each sent to your platform with its proof.',
+    sub: 'Member price intelligence tracks what retailers show only to members: member prices, welcome coupons and the offers that arrive days later. Declared AI members join each retailer and send every one to your platform with its proof.',
     example: {
       chips: ['Example: a price intelligence firm', 'Its client: a coffee brand', '120 Italian grocery retailers'],
       note: 'The firm, its client, the retailers, the products, the prices and the numbers on this page are made up.',
@@ -255,28 +255,32 @@ export const study: UseCaseStudy = {
     heading: 'Every member says it’s AI and never buys. Your team keeps the matching.',
     items: [
       {
+        q: 'What is member price intelligence?',
+        a: 'Member price intelligence tracks the prices, coupons and offers retailers show only to members, read by joining each retailer as a declared AI member. Flyers, shelves and public prices stay with the sources you already use.',
+      },
+      {
         q: 'Do you need access to our platform?',
-        a: 'No. We deliver a feed, by file, API or webhook, with the fields you choose. It loads into your platform like any other source.',
+        a: 'No. Obsession delivers a feed, by file, API or webhook, with the fields you choose. It loads into your platform like any other source.',
       },
       {
         q: 'Who matches products to our database?',
-        a: 'Your team, as it does today. We send the product as the retailer shows it, the EAN when the page carries one, and the screenshot, so your product specialists can link it.',
+        a: 'Your team, as it does today: Obsession sends the product as the retailer shows it, the EAN when the page carries one, and the screenshot, so your product specialists can link it.',
       },
       {
         q: 'What about loyalty cards that need a tax code or a card from the store?',
-        a: 'We don’t invent identity details. Where a programme needs a codice fiscale or an in store card, the member stops there and reports it, so you know exactly where the wall is.',
+        a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, the member stops there and reports it, so you know exactly where the wall is.',
       },
       {
         q: 'Do the test members buy anything?',
-        a: 'No. They join, choose a store and read what members see. Basket and delivery fees are read only with the retailer’s written OK, and stop before payment.',
+        a: 'No. Obsession’s test members join, choose a store and read what members see. Basket and delivery fees are read only with the retailer’s written OK, and stop before payment.',
       },
       {
-        q: 'How often does it run?',
-        a: 'Weekly to follow promotion cycles, daily around key dates such as Black Friday, or any rhythm you set per retailer.',
+        q: 'How often does Obsession run it?',
+        a: 'Obsession runs it weekly to follow promotion cycles, daily around key dates such as Black Friday, or any rhythm you set per retailer.',
       },
       {
         q: 'Will our clients see Obsession?',
-        a: 'Only if you want them to. The data comes to you, and you decide how it appears in your platform.',
+        a: 'Only if you want them to: Obsession’s data comes to you, and you decide how it appears in your platform.',
       },
     ],
   },

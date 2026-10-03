@@ -216,6 +216,7 @@ export const entries: Entry[] = [
     name: crumbName(agentsPage.meta, 'Obsession agents'),
     headline: agentsPage.headline,
     line: agentsPage.sub,
+    faq: agentsPage.faq,
     source: 'src/content/site.ts',
   },
   {

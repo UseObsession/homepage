@@ -128,11 +128,11 @@ export const outputFormats: ViewerFormat[] = [
 export const sample: SamplePage = {
   meta: {
     path: '/sample-output',
-    title: 'Sample output: a real store check with 0 basket reminders',
+    title: 'Mystery shopper report example: a real store, 0 reminders',
     description:
       'A real September 2026 check of a skincare store: 4 test customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders. As a PDF, email or Slack.',
     answer:
-      'Obsession’s sample output is a real September 2026 store check: 4 labelled test customers shopped a skincare store, name hidden, and in the 48 hours watched, 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. The same run is shown as a PDF report, an email, a Slack message, sheet or Clay columns, a webhook and a workflow.',
+      'Obsession’s sample output is a real mystery shopper report from September 2026: 4 labelled test customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours. 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder.',
     ogImage: '/og/sample-output.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -144,7 +144,7 @@ export const sample: SamplePage = {
   hero: {
     pill: 'Real run · September 2026 · name hidden',
     headline: '1 shopper left a basket, 1 stopped at checkout. Neither heard a thing in 48 hours.',
-    sub: 'Obsession’s agents shopped a UK skincare store as 4 labelled test customers, 1 inbox each, and watched every inbox for 48 hours.',
+    sub: 'Obsession’s sample output is a real mystery shopper report from September 2026: 4 labelled test customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours.',
     figures: [
       { value: '4', label: 'test customers, 1 inbox each' },
       { value: '5', label: 'messages, all on welcome and browse' },
@@ -292,23 +292,23 @@ export const sample: SamplePage = {
     items: [
       {
         q: 'Is this a real store?',
-        a: 'Yes. A skincare store, checked in September 2026. We hide its name and show the rest as it happened.',
+        a: 'Yes. Obsession checked a skincare store in September 2026. We hide its name and show the rest as it happened.',
       },
       {
         q: 'Why does silence count as a gap?',
-        a: 'Both journeys completed on the storefront, both shoppers had ticked the marketing box, and we watched each inbox for the full 48 hours. Nothing arrived.',
+        a: 'Because both journeys completed on the storefront, both shoppers had ticked the marketing box, and Obsession watched each inbox for the full 48 hours. Nothing arrived.',
       },
       {
         q: 'Did the test customers buy anything?',
-        a: 'No. The checkout shopper stopped before payment. On anyone else’s store, every checkout does.',
+        a: 'No. Obsession’s checkout shopper stopped before payment. On anyone else’s store, every checkout does.',
       },
       {
         q: 'What would a check of my store include?',
-        a: '4 test customers, each a declared AI agent with its own inbox, through welcome, browse, basket and checkout, watched for 48 hours, with every step signed and dated. You get each journey’s verdict, the proof, and a reminder drafted for every gap, within 4 days.',
+        a: 'An Obsession check of your store sends 4 test customers, each a declared AI agent with its own inbox, through welcome, browse, basket and checkout, watched for 48 hours, with every step signed and dated. You get each journey’s verdict, the proof, and a reminder drafted for every gap, within 4 days.',
       },
       {
         q: 'Can I check a client’s store?',
-        a: 'Yes, with their OK. Tell us it’s a client’s when you sign up, and we confirm their OK before anything runs.',
+        a: 'Yes, with their OK. Tell Obsession it’s a client’s when you sign up, and we confirm their OK before anything runs.',
       },
     ],
   },
