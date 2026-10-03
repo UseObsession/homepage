@@ -384,7 +384,7 @@
 .s-gs-bub--bot mark { padding: 0 1px; border-radius: 2px; background: rgb(18 18 17 / .1); color: var(--ob-ink, #121211); font-weight: 600; box-shadow: 0 1.5px 0 var(--ob-ink, #121211); }
 .s-gs-typing { position: absolute; left: 8px; top: 50%; translate: 0 -50%; display: flex; gap: 3px; padding: 6px 8px; border-radius: 9px 9px 9px 3px; background: var(--s-gs-flax); opacity: 0; }
 .s-gs-typing i { width: 4px; height: 4px; border-radius: 50%; background: var(--s-gs-peat-2); }
-.s-gs-chat__in { padding: 6px 8px; border-top: 1px solid var(--s-gs-hair); font: 400 8.5px/1.2 var(--ob-font-sans); color: rgb(42 38 34 / .45); }
+.s-gs-chat__in { padding: 6px 8px; border-top: 1px solid var(--s-gs-hair); font: 400 8.5px/1.2 var(--ob-font-sans); color: var(--s-gs-peat-2); }
 
 /* The bag on hollin.example, open over the item's page, the agent's 1 item left in it. Nothing is bought. */
 .s-gs-bag { padding-bottom: 8px; }
