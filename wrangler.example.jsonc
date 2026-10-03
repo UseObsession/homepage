@@ -1,3 +1,6 @@
+// NOT ACTIVE (3 Oct, go-live): the live site deploys through Cloudflare's own automatic setup, as James's build did.
+// To turn this on (real 404 status for unknown pages, clean trailing slashes): set "name" to the Worker useobsession.com
+// runs on (Cloudflare dashboard, Workers & Pages), rename this file to wrangler.jsonc, and push.
 // Cloudflare Workers static assets (free plan): the built site in dist/, served as files, nothing else.
 // - not_found_handling "404-page": any address without a page gets dist/404.html with a real 404 status, never Home
 //   with a 200 (docs/REBUILD.md 8b, "real 404s").
