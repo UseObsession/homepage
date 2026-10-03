@@ -12,7 +12,7 @@ import type { Page } from '../types'
    (outputs and the third proof fact): 4 test customers, 48 hours watched, 1 shopper left a basket and 1 stopped at
    checkout, 0 reminders.
    No AI agent check has run yet: the botcheck tab and the callcheck section are examples under their Example tags.
-   Screens, each once: the hero tabs (pack, shop, rivals, inbound, checkout, botcheck), how (templates, agencytask,
+   Screens, each once: the hero tabs (pack, shop, rivals, inbound, botcheck), how (templates, agencytask,
    kit, run: all in the agency workspace), the 4th job, a typed task (compose), the AI agent checks (callcheck, drawn
    for an agency and its client Dental group, as Home's workspace is; botcheck is in the hero, so it can't be here
    too), developers (qa). The picker has no screens: each reader's own page shows theirs.
@@ -54,9 +54,9 @@ export const page: Page = {
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
     consoleHeading,
-    /* Category tabs, each a full app screen that plays its story when chosen (REBUILD 1c): AI checkout test is the 5th,
-       and the 6th is a whole way in, not 1 recipe: Check your AI agents, linking /verify, named as the nav, the footer
-       and the breadcrumb name it. */
+    /* Category tabs, each a full app screen that plays its story when chosen (REBUILD 1c): Seun's 5, the 5th a whole way
+       in, not 1 recipe: Check your AI agents, linking /verify, named as the nav, the footer and the breadcrumb name it.
+       AI checkout test is a recipe (its page, the Recipes menu), not a Home tab. */
     screens: [
       {
         tab: 'Prospect intelligence',
@@ -81,12 +81,6 @@ export const page: Page = {
         screen: 'inbound',
         recipe: 'speed',
         line: 'A labelled test lead times your speed to lead on form, chat and phone.',
-      },
-      {
-        tab: 'AI checkout test',
-        screen: 'checkout',
-        recipe: 'checkout',
-        line: 'A real order through every AI checkout into your store, refunded each month.',
       },
       {
         tab: 'Check your AI agents',

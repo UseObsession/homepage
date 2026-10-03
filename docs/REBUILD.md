@@ -35,7 +35,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 **The console (Seun, 3 Oct):**
 - No typed task line under the headline any more.
 - Above the console's tabs, James's typed heading (`components/sections/Typed.tsx` TypedHeading, words in `content/console.ts`) types "What Obsession can do", holds, erases, then types "What you can build with Obsession" and rests there. Type scale h3, the design system's caret, 1 pass, waits off screen, still (on the first phrase) with reduced motion. It replaces the "Example runs" label.
-- **Home:** category tabs (`hero.screens`, `components/sections/ScreenTabs.tsx`), each a full app screen that plays its story when its tab is chosen, with the Example tag, 1 line and the recipe under it: Prospect intelligence (`pack`), Mystery shopper (`shop`), Competitor tracking (`rivals`), Lead leaks (`inbound`), AI checkout test (`checkout`), and the 6th, Check your AI agents (`botcheck`, linking /verify). The tabs advance by themselves, calmly and once, each staying for its screen's story plus time to read it (the design system's autoplay bar fills in the chosen tab); hover, keyboard focus or off screen hold them; a click, a key or the pause button stops them for good.
+- **Home:** category tabs (`hero.screens`, `components/sections/ScreenTabs.tsx`), each a full app screen that plays its story when its tab is chosen, with the Example tag, 1 line and the recipe under it: Prospect intelligence (`pack`), Mystery shopper (`shop`), Competitor tracking (`rivals`), Lead leaks (`inbound`) and Check your AI agents (`botcheck`, linking /verify): Seun's 5 (3 Oct). AI checkout test stays a recipe, on its own page and in the Recipes menu, not a Home tab. The tabs advance by themselves, calmly and once, each staying for its screen's story plus time to read it (the design system's autoplay bar fills in the chosen tab); hover, keyboard focus or off screen hold them; a click, a key or the pause button stops them for good.
 - **Every other page:** its example runs (`hero.demos`, `components/sections/Console.tsx`) under the same typed heading.
 
 ## 1d. James's trust sections, made ours (Seun, 3 Oct)
@@ -146,6 +146,8 @@ Every page, the use-case pages included, gets a dedicated narrative edit once it
 ## 9c. Blog bylines
 
 Every post is by both founders: Seun Akinniranye, Cofounder, and James Akinniranye, Cofounder (Seun, 3 Oct). The article's structured data lists both as authors.
+
+**Archived for now (Seun, 3 Oct):** the 5 posts sit in `src/content/blog/archive/` (its README says how to bring one back). With no live post the site shows no blog: no /blog pages, no Blog link in the nav, footer or Resources, nothing in the sitemap, llms.txt or a feed. Moving a post back restores all of it.
 
 ## 10. Quality gates (before Seun sees anything)
 

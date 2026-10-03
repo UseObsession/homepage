@@ -1,4 +1,4 @@
-import type { BlogPost } from './types'
+import type { BlogPost } from '../types'
 
 /* Post 3 (docs/SEARCH.md, section 5): the honest review of AI mystery shopping tools. Review rules hold: facts from
    each vendor's own pages, every price dated (all checked 3 Oct 2026), grouped by job and alphabetical inside each

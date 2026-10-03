@@ -2,7 +2,7 @@
    (content/types). The prerender (scripts/prerender.mjs) writes it into each page's head, with the JSON-LD from
    lib/jsonld; the share images (scripts/og.mjs), sitemap.xml and llms.txt are made from the same list. */
 import { nav } from './nav'
-import { agentsPage, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
+import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import type { Faq, Meta } from './types'
 
@@ -160,15 +160,20 @@ export const entries: Entry[] = [
     faq: sample.faq,
     source: 'src/content/sample.ts',
   },
-  {
-    kind: 'blog',
-    meta: ogFor(blogPage.meta),
-    name: crumbName(blogPage.meta, 'Blog'),
-    headline: blogPage.hero.headline,
-    line: blogPage.hero.sub,
-    source: 'src/content/resources.ts',
-    lastmod: posts[0]?.updated,
-  },
+  /* The blog index only while a post is live (content/blog/archive holds the rest). */
+  ...(blogLive
+    ? [
+        {
+          kind: 'blog',
+          meta: ogFor(blogPage.meta),
+          name: crumbName(blogPage.meta, 'Blog'),
+          headline: blogPage.hero.headline,
+          line: blogPage.hero.sub,
+          source: 'src/content/resources.ts',
+          lastmod: posts[0]?.updated,
+        } satisfies Entry,
+      ]
+    : []),
   ...posts.map((p): Entry => {
     const path = `/blog/${p.slug}`
     const faq = p.blocks.flatMap((b) => (b.kind === 'faq' ? b.items : []))

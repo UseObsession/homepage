@@ -1,4 +1,4 @@
-import type { BlogPost } from './types'
+import type { BlogPost } from '../types'
 
 /* Post 2 (docs/SEARCH.md section 5): the free audit that wins agency clients. Hub: Prospect intelligence.
    The one real run is the September 2026 store check on /sample-output, stated only as that page states it: a skincare

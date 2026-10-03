@@ -10,7 +10,7 @@
    - sitemap.xml (every page, recipe, use case and post, each dated by the date a post states or else the last commit to
      its words), robots.txt (search engines and AI crawlers welcome), llms.txt (what Obsession is, and every page with
      its 1 line answer) and llms-full.txt (every page's words as plain text, read from the HTML written here).
-   - blog/rss.xml: every post, newest first (RSS 2.0), linked from every page's head once there is a post.
+   - blog/rss.xml: every post, newest first (RSS 2.0), linked from every page's head, while the blog has a live post.
    Then it checks what it wrote: 1 h1 per page, unique titles and descriptions, every share image present, the JSON-LD
    parses, and every internal link lands on a page or a file. Broken promises fail the build; style notes only warn.
 
@@ -254,11 +254,12 @@ await writeFile(
   ].join('\n'),
 )
 
-/* ---- blog/rss.xml: every post, newest first. Written even with no posts, so the feed's address always answers. ---- */
+/* ---- blog/rss.xml: every post, newest first. Written only while the blog has a live post (content/blog/archive keeps
+   the rest), so an archived blog leaves no feed behind. ---- */
 const xml = (s) => esc(s).replace(/'/g, '&apos;')
 const rfc822 = (iso) => new Date(`${iso}T09:00:00Z`).toUTCString()
-await mkdir(join(dist, 'blog'), { recursive: true })
-await writeFile(
+if (postEntries.length) await mkdir(join(dist, 'blog'), { recursive: true })
+if (postEntries.length) await writeFile(
   join(dist, 'blog', 'rss.xml'),
   [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -475,5 +476,5 @@ if (problems.length) {
   throw new Error(`The prerender found ${problems.length} problem${problems.length > 1 ? 's' : ''}.`)
 }
 console.log(
-  `Prerendered ${rendered.length} pages (${postEntries.length} posts) and 404.html into ${relative(root, dist)}/, with sitemap.xml, robots.txt, llms.txt, llms-full.txt and blog/rss.xml.`,
+  `Prerendered ${rendered.length} pages (${postEntries.length} posts) and 404.html into ${relative(root, dist)}/, with sitemap.xml, robots.txt, llms.txt, llms-full.txt${postEntries.length ? ' and blog/rss.xml' : ' (blog archived: no feed)'}.`,
 )

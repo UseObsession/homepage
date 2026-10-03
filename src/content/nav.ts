@@ -1,5 +1,5 @@
 /* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7. */
-import { recipes, studies } from './registry'
+import { blogLive, recipes, studies } from './registry'
 import { agentsPage } from './site'
 import type { Cta, RecipeGroup, RecipeId } from './types'
 import { ways } from './ways'
@@ -68,7 +68,7 @@ export const nav = {
       items: studies.map(({ name, line, meta }) => ({ label: name, to: meta.path, line })) satisfies NavPage[],
     },
     items: [
-      { label: 'Blog', to: '/blog', line: 'Guides to the work agents do as a customer.' },
+      ...(blogLive ? [{ label: 'Blog', to: '/blog', line: 'Guides to the work agents do as a customer.' }] : []),
       { label: 'Sample output', to: '/sample-output', line: 'A real store check, in every format it arrives in.' },
     ] satisfies NavPage[],
     all: { label: 'All resources', to: '/resources' } satisfies NavPage,

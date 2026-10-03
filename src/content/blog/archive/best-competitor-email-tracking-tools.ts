@@ -1,4 +1,4 @@
-import type { BlogPost } from './types'
+import type { BlogPost } from '../types'
 
 /* Post 5 (docs/SEARCH.md section 5). A review: every vendor fact checked on the vendor's own pages on 3 Oct 2026, prices
    as listed that day, nothing tested hands on (the method section says so). Obsession appears in the disclosure, the

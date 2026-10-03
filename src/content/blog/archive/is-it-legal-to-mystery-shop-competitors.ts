@@ -1,4 +1,4 @@
-import type { BlogPost } from './types'
+import type { BlogPost } from '../types'
 
 /* Post 1 (docs/SEARCH.md section 5): the trust hub's owner page for "is it legal to mystery shop competitors".
    Thought leadership: no rival product is named or reviewed. Every statute, ruling, code and quote was read at its

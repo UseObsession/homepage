@@ -3,7 +3,8 @@
    - src/content/pages/NAME.ts exports `page` (a Page), served at its meta.path.
    - src/content/recipes/SLUG.ts exports `recipe` (a Recipe), served at /recipes/SLUG.
    - src/content/usecases/SLUG.ts exports `study` (a UseCaseStudy), served at its meta.path (/use-cases/SLUG).
-   - src/content/blog/SLUG.ts exports `post` (a BlogPost), served at /blog/SLUG. types.ts there is the contract.
+   - src/content/blog/SLUG.ts exports `post` (a BlogPost), served at /blog/SLUG. types.ts there is the contract;
+     content/blog/archive/ holds posts kept but not published.
    The site's own pages (Recipes index, Sample output, Privacy, Agents, 404, Resources, Use cases, Blog) live in
    site.ts, sample.ts and resources.ts. */
 import { sample } from './sample'
@@ -92,5 +93,8 @@ export const posts: BlogPost[] = Object.values(postFiles).sort((a, b) =>
 /* The file each post came from, for the prerender's checks and the sitemap. */
 export const postFileOf: Record<string, string> = Object.fromEntries(Object.entries(postFiles).map(([file, p]) => [p.slug, nameOf(file)]))
 export const postBySlug: Record<string, BlogPost | undefined> = Object.fromEntries(posts.map((p) => [p.slug, p]))
+/* The blog shows only while it has a live post. It is archived for now (content/blog/archive, Seun, 3 Oct 2026): no
+   /blog pages, nav or footer link, Resources group, sitemap lines or feed until a post moves back. */
+export const blogLive = posts.length > 0
 
 export { agentsPage, notFoundPage, privacyPage, recipesPage, sample }

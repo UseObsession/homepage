@@ -4,7 +4,7 @@ import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { absolute, metaFor } from './content/meta'
 import { ctaFor, nav } from './content/nav'
-import { pages, postBySlug, recipeBySlug, recipes, studyByPath } from './content/registry'
+import { blogLive, pages, postBySlug, recipeBySlug, recipes, studyByPath } from './content/registry'
 import { Agencies } from './pages/Agencies'
 import { Agents } from './pages/Agents'
 import { Blog } from './pages/Blog'
@@ -205,8 +205,8 @@ export function AppRoutes() {
         <Route path="resources" element={<Resources />} />
         <Route path="use-cases" element={<UseCases />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="blog/:slug" element={<PostRoute />} />
+        {blogLive && <Route path="blog" element={<Blog />} />}
+        {blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="agents" element={<Agents />} />

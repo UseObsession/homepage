@@ -1,4 +1,4 @@
-import type { BlogPost } from './types'
+import type { BlogPost } from '../types'
 
 /* Post 4 (docs/SEARCH.md section 5): a source-graded ledger of every speed to lead number in circulation, the 2026
    measurements read with their own caveats, and the own-funnel test (labelled, the owner's OK, never another company's
