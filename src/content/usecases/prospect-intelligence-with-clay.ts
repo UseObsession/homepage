@@ -3,7 +3,7 @@ import type { UseCaseStudy } from '../types'
 /* Prospect intelligence with Clay (/use-cases/prospect-intelligence-with-clay): James's worked example, moved into
    typed content in the rebuild's story order (types.ts, "Use case studies"). An outbound agency proves a gap at 300
    brands for 1 client, an SMS app, from a Clay view and back. Every name and figure is invented and the page says so.
-   Kept from James: the cast and numbers (Client A, Tidewren Swim, Halvard & Moss, Fennick Home, Larkbound, 300 and 296
+   Kept from James: the cast and numbers (SMS app prospects and UK Shopify brands, his 2 Oct naming; Tidewren Swim, Halvard & Moss, Fennick Home, Larkbound, 300 and 296
    brands, 61, 19, 74, Hannah and Sam, TIDE10), his 10 steps in 3 phases, the picks, the Clay columns, the opener email
    and mockup, the 4 ways to use the facts, the final offer. The control text and second run stay only as this
    example's recheck setting, which the agency turns on, never as how every gap is confirmed: the real September run had
@@ -47,7 +47,7 @@ export const study: UseCaseStudy = {
     flow: [
       {
         label: 'Clay in',
-        title: 'Client A, UK TAM',
+        title: 'UK Shopify brands',
         items: ['Tidewren Swim', 'Halvard & Moss', 'Fennick Home', 'Larkbound'],
         foot: 'View: SMS popup is yes · 300 rows',
       },
@@ -92,7 +92,7 @@ export const study: UseCaseStudy = {
           {
             title: 'Create a watch',
             line: 'A watch is 1 list of companies, the checks to run on them, and how long to keep watching.',
-            example: 'The agency starts a new watch for Client A, an SMS app.',
+            example: 'The agency starts a new watch on SMS app prospects.',
           },
           {
             title: 'Pick a recipe',
@@ -198,7 +198,7 @@ export const study: UseCaseStudy = {
             label: 'Something to sell',
             title: 'A monthly add on per client',
             line: 'Brand evidence for each SaaS client: brands checked, gaps open, gaps fixed, a proof link for each.',
-            example: 'Client A, October: 73 open gaps, 12 fixed.',
+            example: 'SMS app prospects, October: 73 open gaps, 12 fixed.',
           },
           {
             label: 'Winning clients',
@@ -226,14 +226,14 @@ export const study: UseCaseStudy = {
         title: 'The facts land back in Clay',
         line: '4 new columns on the same rows: the gap, the date it was seen, what happened in 1 plain sentence, and the proof link. Obsession reports what happened, and never writes to the brand.',
         example:
-          'In #signals_client_a: UK ecommerce TAM, the first 300 brands are done. 61 opted in for texts and never got one, and 19 never sent a welcome email. New rows report as they finish.',
+          'In #sms_app_prospects: UK Shopify brands, the first 300 are done. 61 opted in for texts and never got one, and 19 never sent a welcome email. New rows report as they finish.',
       },
     ],
     opener: {
       heading: 'Your first email carries our proof and your mockup.',
       line: 'The proof shows what’s happening at the brand today. Your mockup shows what it could look like with your client’s product.',
       mail: {
-        from: 'Sam, Client A',
+        from: 'Sam, SMS app',
         to: 'Hannah Price, Tidewren Swim',
         subject: 'Tidewren’s texts',
         body: [
