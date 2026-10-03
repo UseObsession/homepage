@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { outputPartners } from '../../content/partners'
 import { outputFormats } from '../../content/sample'
 import type { Cta, ViewerFormat, ViewerFormatId, ViewerView } from '../../content/types'
 import { Mark, StatusMark } from '../Logo'
+import { PartnerRow } from '../PartnerMark'
+import { hasPartner } from '../partnerFiles'
 import { CodeLines, SectionHead } from './DevSection'
 import './Outputs.css'
 
@@ -18,6 +21,7 @@ const outputsUi = {
   report: 'Read the full report',
   from: 'From',
   to: 'To',
+  lands: 'Lands in',
 }
 
 export type OutputsUi = typeof outputsUi
@@ -260,6 +264,12 @@ function Mock({ format, ui }: { format: ViewerFormat; ui: Ui }) {
 
 /* ---- The viewer --------------------------------------------------------------------------------------------------- */
 
+/* The tools a format's tab names, when at least 1 of them can be drawn. */
+const dest = (id: ViewerFormatId) => {
+  const d = outputPartners[id]
+  return d && d.ids.some(hasPartner) ? d : undefined
+}
+
 type ViewerProps = {
   /* The run, in each format (content/sample.ts). */
   views?: ViewerFormat[]
@@ -382,10 +392,19 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
           hidden={n !== index}
           className="s-ov__panel"
         >
-          {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. */}
+          {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. A format
+              whose tab names a tool carries that tool's mark over its object's top left edge, as part of the object
+              (content/partners.ts); the stage keeps its height, so moving between tabs never shifts the page. */}
           <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object`}>
             <div className={'s-ov__mock' + (picked ? ' ob-anim-rise' : '')}>
-              <Mock format={f} ui={ui} />
+              {dest(f.id) ? (
+                <div className={`s-ov__obj s-ov__obj--${f.view.kind}`}>
+                  <PartnerRow ids={dest(f.id)?.ids} label={`${ui.lands} ${f.label}`} note={dest(f.id)?.note} className="s-ov__dest" />
+                  <Mock format={f} ui={ui} />
+                </div>
+              ) : (
+                <Mock format={f} ui={ui} />
+              )}
             </div>
           </div>
           <div className={'s-ov__caption' + (picked ? ' ob-anim-fade' : '')}>

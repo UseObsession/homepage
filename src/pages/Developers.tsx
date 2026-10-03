@@ -10,6 +10,7 @@ import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { UseCases } from '../components/sections/UseCases'
 import { page } from '../content/pages/developers'
+import { readerPartners } from '../content/partners'
 import './StoryPage.css'
 
 /* /developers, composed from content/pages/developers.ts in the order of docs/REBUILD.md 2, with the code (the
@@ -23,7 +24,7 @@ export function Developers() {
   return (
     <>
       <Hero hero={page.hero} workspace={workspace} reader="developers" />
-      <How how={page.how} workspace={workspace} id="how" />
+      <How how={page.how} workspace={workspace} partners={readerPartners.developers} id="how" />
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="code" />}
       <Gap gap={page.gap} reader="developers" id="gap" />
       <UseCases uses={page.uses} workspace={workspace} reader="developers" id="uses" />

@@ -9,6 +9,7 @@ import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { UseCases } from '../components/sections/UseCases'
 import type { Workspace } from '../components/AppScreen'
+import { readerPartners } from '../content/partners'
 import type { Page, ReaderId } from '../content/types'
 import './StoryPage.css'
 
@@ -18,12 +19,13 @@ import './StoryPage.css'
    final call to action (#join, where the nav's call to action and the hero's second path land).
    `workspace` names whose workspace the app screens show: 'agency' on Agencies, 'company' everywhere else.
    `reader` is the page's reader, whose hue marks its room: the hero's glow and caret, the ink chapter's light (the gap)
-   and the use case tabs' bar (styles/accents.css, 1 hue per page). */
+   and the use case tabs' bar (styles/accents.css, 1 hue per page). How's last step, where the results land, carries
+   the reader's own tools as 1 quiet line of marks (content/partners.ts). */
 export function AudiencePage({ page, workspace, reader }: { page: Page; workspace: Workspace; reader: ReaderId }) {
   return (
     <>
       <Hero hero={page.hero} workspace={workspace} reader={reader} />
-      <How how={page.how} workspace={workspace} id="how" />
+      <How how={page.how} workspace={workspace} partners={readerPartners[reader]} id="how" />
       <Gap gap={page.gap} reader={reader} id="gap" />
       <UseCases uses={page.uses} workspace={workspace} reader={reader} id="uses" />
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}
