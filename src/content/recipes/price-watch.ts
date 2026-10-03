@@ -41,7 +41,7 @@ export const recipe: Recipe = {
     description:
       'Declared AI agents check every rival’s prices, offers and delivery each morning, and join their lists for subscriber codes. Every change arrives signed.',
     answer:
-      'Price watch is an Obsession recipe. Declared AI agents check every rival’s prices, offers, stock and delivery each morning as a shopper in your country, join each rival’s email list for the codes only subscribers get, and send every change with a signed before and after screenshot.',
+      'Price watch catches every rival price cut and the codes only subscribers get: declared AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     ogImage: '/og/price-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch every rival price cut, and the codes only subscribers get.',
-    sub: 'Declared AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives signed, with a before and after.',
+    sub: 'Price watch catches every rival price cut and the codes only subscribers get: declared AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     screen: 'prices',
     capture: {
       kind: 'waitlist',
@@ -173,28 +173,36 @@ export const recipe: Recipe = {
     heading: 'It sees what any shopper sees, and never touches a rival’s basket.',
     items: [
       {
-        q: 'How is it different from a price tracker?',
-        a: 'Most tools read what a company publishes. Obsession goes through it as a customer: the agent is on each rival’s email list too, so it sees the code a new customer is sent and the price they really pay.',
+        q: 'How do I track competitor prices without checking every day by hand?',
+        a: 'Obsession’s Price watch checks every rival’s prices, offers, stock and delivery each morning as a shopper in your country, and sends each change with a before and after screenshot beside your own price.',
       },
       {
-        q: 'Does it buy anything or use a rival’s basket?',
-        a: 'Never. At a rival it reads public pages and the emails it signed up for. It never adds to a basket or checks out.',
+        q: 'What’s it worth?',
+        a: 'Price watch gives your team up to 18 hours a month back, if it checks 3 rivals’ prices for 90 minutes a week each.',
       },
       {
-        q: 'Can it check that a code works?',
-        a: 'On your own store, or a client’s with their OK, it tries the code at checkout and stops before payment. At a rival it records every code on show or sent to subscribers.',
+        q: 'How is Price watch different from a price tracker?',
+        a: 'Price watch goes through each rival as a customer, where most tools read what it publishes: the agent is on each rival’s email list too, so it sees the code a new customer is sent and the price they really pay.',
+      },
+      {
+        q: 'Does Price watch buy anything or use a rival’s basket?',
+        a: 'Never. At a rival, Price watch reads public pages and the emails it signed up for. It never adds to a basket or checks out.',
+      },
+      {
+        q: 'Can Price watch check that a code works?',
+        a: 'Yes, on your own store, or a client’s with their OK: Price watch tries the code at checkout and stops before payment. At a rival it records every code on show or sent to subscribers.',
       },
       {
         q: 'Do rivals know it’s an AI agent?',
-        a: 'Yes. It signs up as an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you and never replies.',
+        a: 'Yes. Every Obsession agent signs up as an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you and never replies.',
       },
       {
-        q: 'Which countries can it check prices in?',
-        a: 'The ones you sell in. Each agent’s browser is set to that country, so it sees the prices, currency and delivery your customers see.',
+        q: 'Which countries can Price watch check prices in?',
+        a: 'Price watch checks the ones you sell in. Each agent’s browser is set to that country, so it sees the prices, currency and delivery your customers see.',
       },
       {
-        q: 'How many rivals can it watch?',
-        a: 'As many as you add. Each gets its own agent and inbox, and every change is kept with the morning it moved.',
+        q: 'How many rivals can Price watch cover?',
+        a: 'Price watch covers as many as you add. Each gets its own agent and inbox, and every change is kept with the morning it moved.',
       },
     ],
   },

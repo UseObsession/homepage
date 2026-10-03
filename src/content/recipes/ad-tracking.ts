@@ -42,7 +42,7 @@ export const recipe: Recipe = {
     description:
       'Declared AI agents read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer arrives signed.',
     answer:
-      'Ad tracking is an Obsession recipe. Declared AI agents read the ads your rivals run in public each morning, open the page each ad points to on phone and desktop, sign up where an ad offers a code, and send every new offer next to yours, with every step signed.',
+      'Ad tracking follows your rivals’ ads to the offer behind each one: declared AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, signed.',
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -53,7 +53,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that follow your rivals’ ads to the offer behind each one.',
-    sub: 'Declared AI agents read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer reaches you next to yours, signed.',
+    sub: 'Ad tracking follows your rivals’ ads to the offer behind each one: declared AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, signed.',
     screen: 'ads',
     capture: {
       kind: 'waitlist',
@@ -164,24 +164,32 @@ export const recipe: Recipe = {
     heading: 'Nobody pays for a click, and nobody at a rival is contacted.',
     items: [
       {
-        q: 'Does it click on paid ads?',
-        a: 'No. It opens each ad’s page directly, so nobody pays for a click.',
+        q: 'How do I see what happens after a competitor’s ad, not just the ad?',
+        a: 'Obsession’s Ad tracking opens the page each public ad points to on phone and desktop, signs up where the ad offers a code, and logs the offer behind every ad next to yours.',
       },
       {
-        q: 'Which ads does it read?',
-        a: 'The ads your rivals run in public, and the pages they point to. Nothing behind a login, and nothing bought.',
+        q: 'What’s it worth?',
+        a: 'Ad tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 rivals. The agents do the checking, and you read what changed.',
       },
       {
-        q: 'Does it sign up at rivals?',
-        a: 'Only where an ad offers a code for signing up. It says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you and never replies.',
+        q: 'Does Ad tracking click on paid ads?',
+        a: 'No. Ad tracking opens each ad’s page directly, so nobody pays for a click.',
       },
       {
-        q: 'Can it check our own ads, or a client’s?',
-        a: 'That’s Ad landing check: each morning it opens the page every live ad of yours points to, as a customer, and drafts the fix for your OK. Ad tracking follows the ads rivals run in public.',
+        q: 'Which ads does Ad tracking read?',
+        a: 'Ad tracking reads the ads your rivals run in public, and the pages they point to. Nothing behind a login, and nothing bought.',
       },
       {
-        q: 'How many brands can it follow?',
-        a: 'As many as you add. Name them or paste a list, and it reads their ads every morning, continuously.',
+        q: 'Does Ad tracking sign up at rivals?',
+        a: 'Ad tracking signs up only where an ad offers a code for signing up. It says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you and never replies.',
+      },
+      {
+        q: 'Can Ad tracking check our own ads, or a client’s?',
+        a: 'That’s Obsession’s Ad landing check: each morning it opens the page every live ad of yours points to, as a customer, and drafts the fix for your OK. Ad tracking follows the ads rivals run in public.',
+      },
+      {
+        q: 'How many brands can Ad tracking follow?',
+        a: 'Ad tracking follows as many as you add. Name them or paste a list, and it reads their ads every morning, continuously.',
       },
     ],
   },

@@ -48,7 +48,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent moves a new client’s ads, analytics, listings, social pages and domain out of the old agency and into the client’s name, chasing daily.',
     answer:
-      'Account handover is an Obsession recipe. From the day an agency signs a client, a declared AI agent starts every platform’s ownership request at once and chases the old agency or freelancer until each account, from ads and analytics to the domain, is in the client’s name. The client’s written OK comes first, and the client signs wherever a platform needs the owner.',
+      'Account handover gets a new client’s accounts out of the old agency: from the day you sign, a declared AI agent asks the old agency and every platform at once to move each account into your client’s name, and chases until each one is done.',
     ogImage: '/og/account-handover.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that get a new client’s accounts back from the old agency.',
-    sub: 'From the day you sign a client, a declared AI agent asks the old agency and every platform, all at once, to move each account into your client’s name, and chases until each one is done. Your client signs where a platform needs the owner.',
+    sub: 'Account handover gets a new client’s accounts out of the old agency: from the day you sign, a declared AI agent asks the old agency and every platform at once to move each account into your client’s name, and chases until each one is done.',
     screen: 'handover',
     capture: {
       kind: 'waitlist',
@@ -189,36 +189,36 @@ export const recipe: Recipe = {
     heading: 'Your client’s accounts, your client’s OK, and every step on record.',
     items: [
       {
-        q: 'How is this different from an access request tool?',
-        a: 'Access tools work once your client already holds admin. This gets the accounts back from whoever holds them: the old agency, a freelancer or the old developer.',
+        q: 'How is Account handover different from an access request tool?',
+        a: 'Account handover gets the accounts back from whoever holds them: the old agency, a freelancer or the old developer. Access tools work only once your client already holds admin.',
       },
       {
         q: 'How do you know the accounts are really our client’s?',
-        a: 'Nothing starts until your client signs a written OK and shows proof they own the business. The agent acts only for the owner.',
+        a: 'Account handover starts nothing until your client signs a written OK and shows proof they own the business. The agent acts only for the owner.',
       },
       {
         q: 'Who does it contact?',
-        a: 'Only whoever holds your client’s accounts, and each platform’s support. Every email and call says it’s an AI agent acting for your client, and every email copies your client. Calls go to office lines only.',
+        a: 'Account handover contacts only whoever holds your client’s accounts, and each platform’s support. Every email and call says it’s an AI agent acting for your client, and every email copies your client. Calls go to office lines only.',
       },
       {
-        q: 'Does it pretend to be our client?',
-        a: 'Never. Where a platform needs the owner to submit or sign, the agent prepares the pack and your client sends it.',
+        q: 'Does Account handover pretend to be our client?',
+        a: 'Never. Where a platform needs the owner to submit or sign, the Account handover agent prepares the pack and your client sends it.',
       },
       {
         q: 'What if the old agency won’t help?',
-        a: 'It chases on a set rhythm and stays factual. Each platform’s own ownership request runs at the same time, so the handover never waits on the old agency alone. A real dispute goes to your client’s lawyer with the full record.',
+        a: 'Account handover chases on a set rhythm and stays factual. Each platform’s own ownership request runs at the same time, so the handover never waits on the old agency alone. A real dispute goes to your client’s lawyer with the full record.',
       },
       {
-        q: 'Does it pay for anything?',
-        a: 'Only the fees a handover needs, like a domain transfer, inside a limit you set, each on a card capped to that fee. Anything above it waits for you.',
+        q: 'Does Account handover pay for anything?',
+        a: 'Account handover pays only the fees a handover needs, like a domain transfer, inside a limit you set, each on a card capped to that fee. Anything above it waits for you.',
       },
       {
         q: 'How much sooner can we start?',
-        a: 'Up to 3 weeks sooner per new client: a handover that should take under a week can take more than a month while clients chase the old holder, and starting everything on day 1 lets each platform’s clock set the pace. On a $5,000 a month retainer, that’s up to $3,460 of work billed sooner.',
+        a: 'Account handover gets you started up to 3 weeks sooner per new client: a handover that should take under a week can take more than a month while clients chase the old holder, and starting everything on day 1 lets each platform’s clock set the pace. On a $5,000 a month retainer, that’s up to $3,460 of work billed sooner.',
       },
       {
         q: 'What does our client keep?',
-        a: 'Every account in their own name, with 2 of their own admins, and a signed, dated record of every step to show a platform or a lawyer.',
+        a: 'With Account handover, your client keeps every account in their own name, with 2 of their own admins, and a signed, dated record of every step to show a platform or a lawyer.',
       },
     ],
   },

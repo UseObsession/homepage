@@ -53,7 +53,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent spots when a customer needs more, builds the case from its own usage and drafts the offer on your price book. Your rep sends it.',
     answer:
-      'Expansion offers is an Obsession recipe. A declared AI agent watches each existing customer’s usage and public news for the moment it needs more, builds the case from that customer’s own usage, drafts the offer on your price book in your rep’s own thread, and once your rep approves it, tracks it to a signed order form and a PO, drafting every reminder for their OK.',
+      'Expansion offers finds every customer ready to buy more: a declared AI agent watches each customer’s usage and public news, builds the case from that customer’s own usage and drafts the offer on your price book. Your rep approves and sends it.',
     ogImage: '/og/expansion-offers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that find every customer ready to buy more.',
-    sub: 'A declared AI agent watches each customer’s usage and public news for the moment it needs more. It builds the case from that customer’s own usage and drafts the offer on your price book in your rep’s own thread. It goes only after your rep approves it.',
+    sub: 'Expansion offers finds every customer ready to buy more: a declared AI agent watches each customer’s usage and public news, builds the case from that customer’s own usage and drafts the offer on your price book. Your rep approves and sends it.',
     screen: 'expansion',
     capture: {
       kind: 'waitlist',
@@ -201,40 +201,40 @@ export const recipe: Recipe = {
     heading: 'Customers only. Nothing goes out without your rep’s OK.',
     items: [
       {
-        q: 'Does it contact prospects?',
-        a: 'No. Only customers already on your books, and only the people already in your rep’s thread or your CRM.',
+        q: 'Does Expansion offers contact prospects?',
+        a: 'No. Expansion offers contacts only customers already on your books, and only the people already in your rep’s thread or your CRM.',
       },
       {
         q: 'Who sends the offer?',
-        a: 'Your rep. The agent drafts it in their own thread, and it goes in their name only after they approve the words. Every follow up waits for their OK too.',
+        a: 'Your rep. The Expansion offers agent drafts it in their own thread, and it goes in their name only after they approve the words. Every follow up waits for their OK too.',
       },
       {
-        q: 'Can it change our prices?',
-        a: 'No. It offers your list price or a discount you approved in advance. Anything else waits for you.',
+        q: 'Can Expansion offers change our prices?',
+        a: 'No. Expansion offers uses your list price or a discount you approved in advance. Anything else waits for you.',
       },
       {
         q: 'Where do the moments come from?',
-        a: 'The usage, billing and CRM you connect, read only, and each customer’s public news: funding, new offices and open roles. It never contacts their staff to find out.',
+        a: 'Expansion offers reads the usage, billing and CRM you connect, without changing them, and each customer’s public news: funding, new offices and open roles. It never contacts their staff to find out.',
       },
       {
         q: 'What if the customer says no?',
-        a: 'It stops for that account and logs why. It won’t draft another offer until a new moment and your rep’s OK.',
+        a: 'Expansion offers stops for that account and logs why. It won’t draft another offer until a new moment and your rep’s OK.',
       },
       {
         q: 'What if the account is unhappy?',
-        a: 'An open complaint or a falling health score holds the offer and flags the account to your team instead.',
+        a: 'Expansion offers holds the offer when an account has an open complaint or a falling health score, and flags the account to your team instead.',
       },
       {
-        q: 'Does it sign anything?',
-        a: 'Never. People sign. It sends the order form after your rep’s OK, tracks it to signature, and drafts each PO reminder for their OK.',
+        q: 'Does Expansion offers sign anything?',
+        a: 'Never. Expansion offers sends the order form after your rep’s OK, tracks it to signature, and drafts each PO reminder for their OK. People sign.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to £9,000 a year more from the account in the example: 25 more seats at the £360 a seat it already pays, 21% on its £43,200 (£9,000 ÷ £43,200).',
+        a: 'Expansion offers is worth up to £9,000 a year more from the account in the example: 25 more seats at the £360 a seat it already pays, 21% on its £43,200 (£9,000 ÷ £43,200).',
       },
       {
-        q: 'How is it different from Account watch?',
-        a: 'Account watch tells you every morning who’s at risk and who’s ready to grow. Expansion offers acts on the growth: it builds the case, drafts the offer for your rep and tracks it to a signed order form.',
+        q: 'How is Expansion offers different from Account watch?',
+        a: 'Expansion offers acts on the growth Account watch finds: it builds the case, drafts the offer for your rep and tracks it to a signed order form. Account watch tells you every morning who’s at risk and who’s ready to grow.',
       },
     ],
   },

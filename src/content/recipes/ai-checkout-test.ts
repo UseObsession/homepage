@@ -50,7 +50,7 @@ export const recipe: Recipe = {
     description:
       'Each month a declared AI agent buys from your store through every AI checkout on a capped card, refunds the order and drafts the fix for any that breaks.',
     answer:
-      'AI checkout test is an Obsession recipe. Each month a declared AI agent places a real order through each AI shopping checkout into your own store, or a client’s with their written OK, on a card capped to that order. It checks the order, refunds it through your normal process and drafts the fix for every path that breaks.',
+      'AI checkout test makes sure AI shoppers can buy from your store: every month a declared AI agent places a real order through each AI checkout on a card capped to that order, refunds it, and drafts the fix for any path that breaks.',
     ogImage: '/og/ai-checkout-test.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -61,7 +61,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that make sure AI shoppers can buy from your store.',
-    sub: 'Every month a declared AI agent places a real order through each AI checkout into your store, on a card capped to that order. It refunds every one and drafts the fix for any path that breaks.',
+    sub: 'AI checkout test makes sure AI shoppers can buy from your store: every month a declared AI agent places a real order through each AI checkout on a card capped to that order, refunds it, and drafts the fix for any path that breaks.',
     screen: 'checkout',
     capture: {
       kind: 'waitlist',
@@ -212,44 +212,48 @@ export const recipe: Recipe = {
     heading: 'Every order declared, capped and refunded. Never on a rival’s store.',
     items: [
       {
-        q: 'Does it really buy?',
-        a: 'Yes. A check that stops before payment can’t tell you whether the order goes through. It pays on a card capped to that order, then refunds it.',
+        q: 'Can AI shopping agents actually buy from my store?',
+        a: 'Obsession’s AI checkout test finds out each month: a declared AI agent places a real order through each AI checkout on a card capped to that order, refunds it, and drafts the fix for any path that breaks.',
       },
       {
-        q: 'Can it test a competitor’s checkout?',
-        a: 'No. Only your own store, or a client’s with their written OK.',
+        q: 'Does AI checkout test really buy?',
+        a: 'Yes. AI checkout test pays on a card capped to that order, then refunds it, because a check that stops before payment can’t tell you whether the order goes through.',
       },
       {
-        q: 'Does it pretend to be a person?',
-        a: 'No. It says it’s an AI agent buying for your store as a monthly check, in the order note and in every message.',
+        q: 'Can AI checkout test check a competitor’s checkout?',
+        a: 'No. AI checkout test runs only on your own store, or a client’s with their written OK.',
+      },
+      {
+        q: 'Does AI checkout test pretend to be a person?',
+        a: 'No. The AI checkout test agent says it’s an AI agent buying for your store as a monthly check, in the order note and in every message.',
       },
       {
         q: 'Who pays for the test orders?',
-        a: 'You do, inside a monthly budget you set. Each order is on its own card, locked to your store and capped to its total, and refunded through your normal process. Your payment provider may keep a small fee.',
+        a: 'You do, inside a monthly budget you set for AI checkout test. Each order is on its own card, locked to your store and capped to its total, and refunded through your normal process. Your payment provider may keep a small fee.',
       },
       {
         q: 'Will test orders skew our numbers?',
-        a: 'No. Each one is marked as an AI test in its order note and kept out of your ad conversions, reviews and email lists.',
+        a: 'No. Each AI checkout test order is marked as an AI test in its order note and kept out of your ad conversions, reviews and email lists.',
       },
       {
         q: 'What if our payment provider doesn’t allow real test orders?',
-        a: 'Then it uses the provider’s test mode, or makes a genuine purchase you keep or return as normal.',
+        a: 'Then AI checkout test uses the provider’s test mode, or makes a genuine purchase you keep or return as normal.',
       },
       {
         q: 'What happens at a CAPTCHA or a bot block?',
-        a: 'It stops and logs where. It never solves a CAPTCHA or hides that it’s AI. If the block turns away every AI shopper, that’s the finding, with the fix drafted.',
+        a: 'AI checkout test stops and logs where. It never solves a CAPTCHA or hides that it’s AI. If the block turns away every AI shopper, that’s the finding, with the fix drafted.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 40 more of every 100 AI shoppers reaching your basket or checkout: when AI agents tried to buy from real stores, 45 in 100 got there, and 40 of the 55 that didn’t were stopped by the store, not the AI. Those are the blocks it finds, with the fix drafted for each.',
+        a: 'AI checkout test is worth up to 40 more of every 100 AI shoppers reaching your basket or checkout: when AI agents tried to buy from real stores, 45 in 100 got there, and 40 of the 55 that didn’t were stopped by the store, not the AI. Those are the blocks it finds, with the fix drafted for each.',
       },
       {
-        q: 'How is it different from Mystery shopper?',
-        a: 'Mystery shopper goes through your store as a customer does and watches what follows. AI checkout test places real orders through the checkouts AI agents use, refunds them and drafts the fix for any that breaks.',
+        q: 'How is AI checkout test different from Mystery shopper?',
+        a: 'AI checkout test places real orders through the checkouts AI agents use, refunds them and drafts the fix for any that breaks. Mystery shopper goes through your store as a customer does and watches what follows.',
       },
       {
-        q: 'Does it work for software?',
-        a: 'Yes. It checks whether an AI agent can sign up, get an API key, start a trial and upgrade, using your payment provider’s test mode.',
+        q: 'Does AI checkout test work for software?',
+        a: 'Yes. AI checkout test checks whether an AI agent can sign up, get an API key, start a trial and upgrade, using your payment provider’s test mode.',
       },
     ],
   },

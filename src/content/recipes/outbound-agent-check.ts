@@ -45,7 +45,7 @@ export const recipe: Recipe = {
     description:
       'Declared test prospects join your AI SDR’s lists with your OK, read every email, text and call sent to them, and check each against your claims and limits.',
     answer:
-      'Outbound agent check is an Obsession recipe. With the sender’s OK, declared AI test prospects with their own inboxes and phone numbers join an AI SDR’s lists. They receive what real prospects receive, reply as prospects do, and check every claim, price, discount, send time and opt out against the company’s own rules, signing every message.',
+      'Outbound agent check shows you what your AI SDR sends prospects: with your OK, declared test prospects join its lists, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
     ogImage: '/og/outbound-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that check what your AI SDR sends prospects.',
-    sub: 'Declared test prospects join its lists with your OK, receive what your prospects receive and reply as they do. You see every claim, discount and send time that broke your rules, with the message as proof.',
+    sub: 'Outbound agent check shows you what your AI SDR sends prospects: with your OK, declared test prospects join its lists, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
     screen: 'outcheck',
     capture: {
       kind: 'verify',
@@ -197,48 +197,52 @@ export const recipe: Recipe = {
     heading: 'Every test prospect says it’s AI. It only receives.',
     items: [
       {
-        q: 'Does it contact anyone?',
-        a: 'No. Test prospects only receive what your AI SDR sends them, and reply. They never write first and never call anyone.',
+        q: 'Are AI SDRs worth it, or do they just send more spam?',
+        a: 'Outbound agent check shows you what yours sends: with your OK, declared test prospects join its lists and flag every claim, discount and send time that breaks your rules, with the message as proof.',
+      },
+      {
+        q: 'Does Outbound agent check contact anyone?',
+        a: 'No. Outbound agent check’s test prospects only receive what your AI SDR sends them, and reply. They never write first and never call anyone.',
       },
       {
         q: 'How do test prospects get on our lists?',
-        a: 'You add them, or your client does with their OK. Each has its own inbox and number.',
+        a: 'You add Outbound agent check’s test prospects, or your client does with their OK. Each has its own inbox and number.',
       },
       {
-        q: 'Does it say it’s AI?',
-        a: 'Yes. Every test prospect is named as an AI test prospect working for your company, so your team can see it’s a test.',
+        q: 'Does Outbound agent check say it’s AI?',
+        a: 'Yes. Every Outbound agent check test prospect is named as an AI test prospect working for your company, so your team can see it’s a test.',
       },
       {
-        q: 'Will it try to trick our AI SDR?',
-        a: 'No. It replies as an ordinary prospect does: yes, not now, no or STOP. No jailbreaks, prompt tricks or bait for a discount.',
+        q: 'Will Outbound agent check try to trick our AI SDR?',
+        a: 'No. Outbound agent check replies as an ordinary prospect does: yes, not now, no or STOP. No jailbreaks, prompt tricks or bait for a discount.',
       },
       {
-        q: 'What does it check against?',
-        a: 'Your approved claims, your price list and discount limit, your quiet hours and contact limits, and the rules where you sell: that it says it’s AI and who it acts for, and stops on STOP.',
+        q: 'What does Outbound agent check compare messages with?',
+        a: 'Outbound agent check compares them with your approved claims, your price list and discount limit, your quiet hours and contact limits, and the rules where you sell: that it says it’s AI and who it acts for, and stops on STOP.',
       },
       {
         q: 'Will test prospects skew our numbers?',
-        a: 'No. Each is marked as a test in your list, so it stays out of your reply rates and your pipeline.',
+        a: 'No. Each Outbound agent check test prospect is marked as a test in your list, so it stays out of your reply rates and your pipeline.',
       },
       {
-        q: 'Can it pause our AI SDR?',
-        a: 'Only if you set that rule. Then a flagged message pauses it until you’ve looked. Nothing else changes without your OK.',
+        q: 'Can Outbound agent check pause our AI SDR?',
+        a: 'Only if you set that rule: then Outbound agent check pauses it on a flagged message until you’ve looked. Nothing else changes without your OK.',
       },
       {
-        q: 'Which AI SDRs can it check?',
-        a: 'Any that sends email, texts or calls, from a vendor or built in house.',
+        q: 'Which AI SDRs can Outbound agent check cover?',
+        a: 'Outbound agent check covers any that sends email, texts or calls, from a vendor or built in house.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 1,040 hours a year back for 1 person who reads what your AI SDR sends 20 hours a week. You read only what was flagged, with the message and the fix beside it.',
+        a: 'Outbound agent check gives up to 1,040 hours a year back for 1 person who reads what your AI SDR sends 20 hours a week. You read only what was flagged, with the message and the fix beside it.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what your AI SDR sent to each test prospect.',
+        a: 'No. A passed Outbound agent check is dated evidence of what your AI SDR sent to each test prospect.',
       },
       {
         q: 'What’s in the free check?',
-        a: 'Name an AI SDR you run, or a client’s with their OK. 3 test prospects join its list on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is an Outbound agent check on an AI SDR you run, or a client’s with their OK: 3 test prospects join its list on 1 channel, and your report lands within 4 days.',
       },
     ],
   },

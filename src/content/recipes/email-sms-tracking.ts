@@ -41,7 +41,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent subscribes to each rival’s emails and texts, never replies, and logs every message, offer and code on 1 timeline, continuously.',
     answer:
-      'Email and SMS tracking is an Obsession recipe. A declared AI agent with its own inbox and texting number subscribes to each rival’s emails and texts, never replies, and logs every message, offer and code on 1 timeline, continuously, with every message signed.',
+      'Email and SMS tracking subscribes a declared AI agent to each rival’s emails and texts. It never replies, and logs every message, offer and code on 1 timeline, continuously.',
     ogImage: '/og/email-sms-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that join every rival’s emails and texts and log every offer.',
-    sub: 'A declared AI agent joins each rival’s emails and texts with its own inbox and number, never replies, and logs every message, offer and code, continuously. You get 1 timeline, signed.',
+    sub: 'Email and SMS tracking subscribes a declared AI agent to each rival’s emails and texts. It never replies, and logs every message, offer and code on 1 timeline, continuously.',
     screen: 'inbox',
     capture: {
       kind: 'waitlist',
@@ -175,24 +175,32 @@ export const recipe: Recipe = {
     heading: 'Every subscriber says it’s an AI agent, and never writes back.',
     items: [
       {
-        q: 'Do rivals know it’s an AI agent?',
-        a: 'Yes. It subscribes as an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you.',
+        q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
+        a: 'Email and SMS tracking subscribes a declared AI agent with its own inbox and texting number to each rival. It never replies, and logs every welcome email, text, offer and code with its time.',
       },
       {
-        q: 'Does it ever reply, buy or contact staff?',
-        a: 'Never. It reads what arrives and opens links to public pages. The only text it sends is STOP, when the watch ends.',
+        q: 'What’s it worth?',
+        a: 'Email and SMS tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 rivals. The agents do the checking, and you read what changed.',
+      },
+      {
+        q: 'Do rivals know it’s an AI agent?',
+        a: 'Yes. Every Obsession agent subscribes as an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you.',
+      },
+      {
+        q: 'Does Email and SMS tracking ever reply, buy or contact staff?',
+        a: 'Never. Email and SMS tracking reads what arrives and opens links to public pages. The only text it sends is STOP, when the watch ends.',
       },
       {
         q: 'Can you show what they sent before?',
-        a: 'The record starts the minute the agent subscribes, so every message is dated from a known sign up and the welcome series shows in order. Any brand you name, the same day.',
+        a: 'No. Email and SMS tracking’s record starts the minute the agent subscribes, so every message is dated from a known sign up and the welcome series shows in order. Any brand you name, the same day.',
       },
       {
-        q: 'Can it track our own emails and texts too?',
-        a: 'Yes, on your own list or a client’s with their OK, so your messages sit next to every rival’s.',
+        q: 'Can Email and SMS tracking follow our own emails and texts too?',
+        a: 'Yes. Email and SMS tracking joins your own list, or a client’s with their OK, so your messages sit next to every rival’s.',
       },
       {
-        q: 'How many brands can it follow?',
-        a: 'As many as you add. Each gets its own agent, inbox and number, continuously.',
+        q: 'How many brands can Email and SMS tracking follow?',
+        a: 'Email and SMS tracking follows as many as you add. Each gets its own agent, inbox and number, continuously.',
       },
     ],
   },

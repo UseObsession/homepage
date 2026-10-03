@@ -30,11 +30,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/mystery-shopper',
-    title: 'Mystery shopper: see what your customers get · Obsession',
+    title: 'AI mystery shopper: see what your customers get · Obsession',
     description:
       'Declared AI agents go through your store, trial, demo or booking, or a client’s with their OK, and time every email, text and reply that follows.',
     answer:
-      'Mystery shopper is an Obsession recipe. Declared AI test customers, each with its own inbox, phone number and browser, go through your store, software trial, demo or booking, or a client’s with their OK, and time every email, text and reply that follows. Each journey gets a verdict with the proof behind it.',
+      'Mystery shopper is AI mystery shopping for digital journeys: declared AI test customers sign up, shop, book and start trials at your business, or a client’s with their OK, and time every email, text and reply that follows.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,7 +45,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'See what a customer actually gets after they show up.',
-    sub: 'Declared AI agents sign up, shop, book and start trials at your business, or a client’s with their OK. They time every email, text and reply that follows.',
+    sub: 'Mystery shopper is AI mystery shopping for digital journeys: declared AI test customers sign up, shop, book and start trials at your business, or a client’s with their OK, and time every email, text and reply that follows.',
     screen: 'shop',
     capture: {
       kind: 'mystery',
@@ -197,38 +197,50 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. Nothing is bought without your OK.',
     items: [
       {
+        q: 'What is AI mystery shopping?',
+        a: 'AI mystery shopping for digital journeys means a declared AI test customer lives your online journey, from sign up to the last email, and every message that follows is timed. It never pretends to be a person.',
+      },
+      {
+        q: 'Can you do mystery shopping online?',
+        a: 'Yes. Obsession’s Mystery shopper runs your online journeys, a store’s basket and checkout, a software trial, a demo request or a booking, each lived by a declared AI test customer with its own inbox, number and browser.',
+      },
+      {
+        q: 'How do I test my abandoned cart and checkout emails without a dummy address?',
+        a: 'Obsession uses real inboxes. 4 declared AI test customers sign up, browse, leave a basket and stop at checkout before payment on your store, and every inbox is watched for 48 hours, so you see which reminders came and which never did.',
+      },
+      {
         q: 'Is the September run on this page real?',
-        a: 'Yes. In September 2026, 4 labelled test customers shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
+        a: 'Yes. In September 2026, Obsession’s 4 labelled test customers shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
       },
       {
         q: 'Do you need our logins?',
-        a: 'No. Agents use your business the way a customer does. Baskets, checkouts, bookings and demo requests need your OK, or your client’s.',
+        a: 'No. Mystery shopper’s agents use your business the way a customer does. Baskets, checkouts, bookings and demo requests need your OK, or your client’s.',
       },
       {
         q: 'Do you place real orders?',
-        a: 'On anyone else’s store, never: every checkout stops before payment. On your own store, only on a budget you set.',
+        a: 'Mystery shopper never pays on anyone else’s store: every checkout stops before payment. On your own store, only on a budget you set.',
       },
       {
-        q: 'Does it pretend to be a person?',
-        a: 'No. Every test customer is a declared AI agent and says who it works for, so your team can see it’s a test.',
+        q: 'Does Mystery shopper pretend to be a person?',
+        a: 'No. Every Obsession test customer is a declared AI agent and says who it works for, so your team can see it’s a test.',
       },
       {
-        q: 'Can it test a software trial or a booking?',
-        a: 'Yes. It starts your trial, requests a demo or books a slot like a new customer, then times every email, text and reply that follows.',
+        q: 'Can Mystery shopper test a software trial or a booking?',
+        a: 'Yes. Mystery shopper starts your trial, requests a demo or books a slot like a new customer, then times every email, text and reply that follows.',
       },
       {
-        q: 'How is this different from a site audit?',
-        a: 'An audit reads the page. A mystery shopper uses it, then waits days for what arrives afterwards: the emails, texts and replies.',
+        q: 'How is Mystery shopper different from a site audit?',
+        a: 'Mystery shopper uses the page, then waits days for what arrives afterwards: the emails, texts and replies. An audit only reads it.',
       },
-      { q: 'How long does it take?', a: 'Pages in minutes, messages within hours, and every verdict when the wait you set ends.' },
-      { q: 'What happens at a CAPTCHA?', a: 'It stops. If the CAPTCHA would block real customers too, that’s a finding.' },
+      { q: 'How long does Mystery shopper take?', a: 'Mystery shopper checks pages in minutes and messages within hours, and gives every verdict when the wait you set ends.' },
+      { q: 'What happens at a CAPTCHA?', a: 'Mystery shopper stops. If the CAPTCHA would block real customers too, that’s a finding.' },
       {
-        q: 'Can it run on a schedule?',
-        a: 'Yes: weekly, monthly or after every release. You hear when a journey breaks, and when it’s fixed.',
+        q: 'Can Mystery shopper run on a schedule?',
+        a: 'Yes. Mystery shopper runs weekly, monthly or after every release. You hear when a journey breaks, and when it’s fixed.',
       },
       {
         q: 'What’s in the free report?',
-        a: 'Name a store you run, or a client’s with their OK. 4 test customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
+        a: 'The free report is a Mystery shopper run on a store you run, or a client’s with their OK: 4 test customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
       },
     ],
   },

@@ -48,7 +48,7 @@ export const recipe: Recipe = {
     description:
       'When an AI assistant or a listing gets a fact about you wrong, a declared AI agent fixes it at the source and asks again until the answer changes.',
     answer:
-      'Listings and AI answers is an Obsession recipe. Every Monday, and after every price change, declared AI agents ask AI assistants what your buyers ask and check your listings. When a fact is wrong, they trace it to the page the answer cites, fix your own pages after your OK, ask the owner of any other page that’s wrong to correct it, and ask again until the answer changes.',
+      'Listings and AI answers fixes wrong facts about you at the source: every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     ogImage: '/og/listings-ai-answers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'When AI gets a fact about you wrong, fix the page it read.',
-    sub: 'Every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site. Each wrong fact is corrected where it comes from, then the question goes out again until the answer changes.',
+    sub: 'Listings and AI answers fixes wrong facts about you at the source: every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     screen: 'listings',
     capture: {
       kind: 'waitlist',
@@ -191,32 +191,36 @@ export const recipe: Recipe = {
     heading: 'Only facts about you, corrected through each site’s own form.',
     items: [
       {
-        q: 'Can it change what an AI assistant says?',
-        a: 'It fixes the pages the answer is built from, then asks again every Monday until the answer changes. A fact closes only when the answer is right.',
+        q: 'Why does an AI assistant quote a price we stopped charging?',
+        a: 'Because a page it reads still shows that price: Listings and AI answers traces each wrong answer to the page the assistant cites, fixes your own pages after your OK, asks the owner of any other page to correct it, and asks again until the answer changes.',
       },
       {
-        q: 'How many wrong answers can it fix?',
-        a: 'Up to 62% at the source: that’s the share of wrong AI answers that are out of date rather than made up, so fixing the old page fixes every answer that cites it.',
+        q: 'Can Listings and AI answers change what an AI assistant says?',
+        a: 'Listings and AI answers fixes the pages the answer is built from, then asks again every Monday until the answer changes. A fact closes only when the answer is right.',
       },
       {
-        q: 'Which AI assistants does it ask?',
-        a: 'The ones your buyers use, with the questions they ask, asked the official way and from a clean history, so yours doesn’t colour the answer.',
+        q: 'How many wrong answers can Listings and AI answers fix?',
+        a: 'Listings and AI answers can fix up to 62% at the source: that’s the share of wrong AI answers that are out of date rather than made up, so fixing the old page fixes every answer that cites it.',
+      },
+      {
+        q: 'Which AI assistants does Listings and AI answers ask?',
+        a: 'Listings and AI answers asks the ones your buyers use, with the questions they ask, asked the official way and from a clean history, so yours doesn’t colour the answer.',
       },
       {
         q: 'Who does it contact?',
-        a: 'Only the sites showing a wrong fact about you, through their own edit form, as your declared AI agent: 1 correction with the evidence, 2 polite chases at most. The first message to each new site goes after your OK.',
+        a: 'Listings and AI answers contacts only the sites showing a wrong fact about you, through their own edit form, as your declared AI agent: 1 correction with the evidence, 2 polite chases at most. The first message to each new site goes after your OK.',
       },
       {
-        q: 'How does it claim our listings?',
-        a: 'Through your own listed number or an address on your domain, so each site knows it’s really your business. It never lists its own number as yours.',
+        q: 'How does Listings and AI answers claim our listings?',
+        a: 'Listings and AI answers claims them through your own listed number or an address on your domain, so each site knows it’s really your business. It never lists its own number as yours.',
       },
       {
         q: 'Does it ask for a mention or post reviews?',
-        a: 'Never. It corrects facts and nothing else: no pitches for a mention or a link, and it doesn’t write, buy or answer reviews.',
+        a: 'Never. Listings and AI answers corrects facts and nothing else: no pitches for a mention or a link, and it doesn’t write, buy or answer reviews.',
       },
       {
-        q: 'What does it need from us?',
-        a: 'Your facts, approved once, your listed number or an address on your domain, and the logins for your own site and profiles if you want them fixed for you.',
+        q: 'What does Listings and AI answers need from us?',
+        a: 'Listings and AI answers needs your facts, approved once, your listed number or an address on your domain, and the logins for your own site and profiles if you want them fixed for you.',
       },
     ],
   },

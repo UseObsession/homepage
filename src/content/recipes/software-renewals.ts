@@ -45,7 +45,7 @@ export const recipe: Recipe = {
     description:
       'Each software vendor is paid from its own capped card, so a price rise at renewal starts a negotiation instead of a charge. You approve every new price.',
     answer:
-      'Software renewals is an Obsession recipe. Each software vendor is paid from its own card, capped at the price you agreed, so a higher charge at renewal is held instead of paid. A declared AI agent then negotiates with your real usage and checks the next invoice. Every new price, seat cut, notice and cancellation waits for your OK.',
+      'Software renewals turns every software price rise into a negotiation, not a charge: each vendor is paid from its own card, capped at the price you agreed, and a declared AI agent negotiates any higher renewal with your real usage. You approve every new price.',
     ogImage: '/og/software-renewals.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every software price rise starts a negotiation, not a charge.',
-    sub: 'Each vendor is paid from its own card, capped at the price you agreed. When a renewal comes in higher, the charge is held and a declared AI agent negotiates with your real usage. You approve every new price, and it checks the next invoice.',
+    sub: 'Software renewals turns every software price rise into a negotiation, not a charge: each vendor is paid from its own card, capped at the price you agreed, and a declared AI agent negotiates any higher renewal with your real usage. You approve every new price.',
     screen: 'spend',
     capture: {
       kind: 'waitlist',
@@ -182,31 +182,31 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How does a card stop a price rise?',
-        a: 'Each vendor is paid from its own card, capped at the price you agreed. A higher charge is held instead of paid, and the agent negotiates with the vendor before any money moves.',
+        a: 'Software renewals pays each vendor from its own card, capped at the price you agreed. A higher charge is held instead of paid, and the agent negotiates with the vendor before any money moves.',
       },
       {
         q: 'Will a tool we need get cut off?',
-        a: 'Not without your say. A held charge comes to you at once, inside the vendor’s grace period, and you decide whether to pay it.',
+        a: 'Not without your say: Software renewals brings a held charge to you at once, inside the vendor’s grace period, and you decide whether to pay it.',
       },
       {
-        q: 'Does it pretend to be us?',
-        a: 'No. It says it’s an AI agent for your company. Where a vendor needs the account holder, it comes to you with the thread.',
+        q: 'Does Software renewals pretend to be us?',
+        a: 'No. The Software renewals agent says it’s an AI agent for your company. Where a vendor needs the account holder, it comes to you with the thread.',
       },
       {
-        q: 'Does it bluff?',
-        a: 'Never. It uses your real usage, cites other tools only when you’d really switch, and never invents a deadline.',
+        q: 'Does Software renewals bluff?',
+        a: 'Never. Software renewals uses your real usage, cites other tools only when you’d really switch, and never invents a deadline.',
       },
       {
         q: 'Does holding a charge end the contract?',
-        a: 'No, so it tracks every notice window too, and brings you a plan 90 days before each one.',
+        a: 'No, so Software renewals tracks every notice window too, and brings you a plan 90 days before each one.',
       },
       {
-        q: 'Can it cancel a tool?',
-        a: 'Yes, after your OK. It sends notice to the address in the contract, keeps proof of delivery and gets the cancellation in writing.',
+        q: 'Can Software renewals cancel a tool?',
+        a: 'Yes, after your OK. Software renewals sends notice to the address in the contract, keeps proof of delivery and gets the cancellation in writing.',
       },
       {
-        q: 'How much can it save?',
-        a: 'Up to 16.4% held off your software bill each year: software inflation hit 16.4% in June 2026, and a cap at the agreed price stops a rise being charged unseen. Plus up to 36% of seats removed, the share of licences companies leave unused.',
+        q: 'How much can Software renewals save?',
+        a: 'Software renewals holds up to 16.4% off your software bill each year: software inflation hit 16.4% in June 2026, and a cap at the agreed price stops a rise being charged unseen. Plus up to 36% of seats removed, the share of licences companies leave unused.',
       },
     ],
   },

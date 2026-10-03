@@ -41,7 +41,7 @@ export const recipe: Recipe = {
     description:
       'Declared AI test customers ask your support bot what customers ask, on chat, email and your portal, every day, and check each answer against your policy.',
     answer:
-      'Support bot check is an Obsession recipe. With the owner’s OK, declared AI test customers ask a company’s support bot what its customers ask, on chat, email, the help centre and the portal, every day and after every update. They check each answer against the company’s policy pages, time every handoff to a person, wait for every email the bot promises, and sign every step.',
+      'Support bot check asks your support bot what customers ask, every morning: declared test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     ogImage: '/og/support-bot-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask your support bot what customers ask.',
-    sub: 'Every morning, declared test customers ask on chat, email and your portal in the same minute, and check each answer against your policy page. You see the wrong answer, the slow handoff and the email that never came, with the proof.',
+    sub: 'Support bot check asks your support bot what customers ask, every morning: declared test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     screen: 'botcheck',
     capture: {
       kind: 'verify',
@@ -195,48 +195,52 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. Your bot only, with your OK.',
     items: [
       {
+        q: 'How do we find out our chatbot is giving customers wrong answers?',
+        a: 'Before customers do: Support bot check asks your bot what customers ask every day and checks each answer against your policy pages, so a wrong answer shows up the morning it starts.',
+      },
+      {
         q: 'Do you need our logins or code?',
-        a: 'No. Test customers use your bot the way your customers do. A portal test account or a helpdesk export only if you give them.',
+        a: 'No. Support bot check’s test customers use your bot the way your customers do. A portal test account or a helpdesk export only if you give them.',
       },
       {
-        q: 'Will it try to trick our bot?',
-        a: 'No. It asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
+        q: 'Will Support bot check try to trick our bot?',
+        a: 'No. Support bot check asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
       },
       {
-        q: 'Does it say it’s AI?',
-        a: 'Yes. Every test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        q: 'Does Support bot check say it’s AI?',
+        a: 'Yes. Every Support bot check test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will our bot’s vendor bill us for the tests?',
-        a: 'Every test is tagged as a test, and we agree that with your vendor before the first one runs.',
+        a: 'Every Support bot check test is tagged as a test, and we agree that with your vendor before the first one runs.',
       },
       {
-        q: 'Which bots can it check?',
-        a: 'Any bot a customer can reach, from a vendor or built in house: site chat, a help centre, email, a portal, WhatsApp or text.',
+        q: 'Which bots can Support bot check cover?',
+        a: 'Support bot check covers any bot a customer can reach, from a vendor or built in house: site chat, a help centre, email, a portal, WhatsApp or text.',
       },
       {
-        q: 'What does it check against?',
-        a: 'Your own policy pages, captured the same minute, and the rules where you sell: that it says it’s AI, and that it gets a person when asked.',
+        q: 'What does Support bot check compare answers with?',
+        a: 'Support bot check compares them with your own policy pages, captured the same minute, and the rules where you sell: that it says it’s AI, and that it gets a person when asked.',
       },
       {
-        q: 'Can it check a client’s bot?',
-        a: 'Yes, with the client’s written OK. The record carries your agency’s name, and the client can check every step.',
+        q: 'Can Support bot check cover a client’s bot?',
+        a: 'Yes, with the client’s written OK: the Support bot check record carries your agency’s name, and the client can check every step.',
       },
       {
-        q: 'How often does it run?',
-        a: 'Every morning, and again after every update to your bot, its prompts or its knowledge base.',
+        q: 'How often does Support bot check run?',
+        a: 'Support bot check runs every morning, and again after every update to your bot, its prompts or its knowledge base.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 780 hours a year back for 1 person who reads bot transcripts 15 hours a week. You read only what failed, with the transcript and the fix beside it.',
+        a: 'Support bot check gives up to 780 hours a year back for 1 person who reads bot transcripts 15 hours a week. You read only what failed, with the transcript and the fix beside it.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what your bot said and did on each check.',
+        a: 'No. A passed Support bot check is dated evidence of what your bot said and did on each check.',
       },
       {
         q: 'What’s in the free check?',
-        a: 'Name a bot you run, or a client’s with their OK. 3 test customers use it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Support bot check on a bot you run, or a client’s with their OK: 3 test customers use it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },

@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     description:
       'Declared AI test customers ask your AI sales agent about prices, stock and delivery daily, check each answer against your store and stop before payment.',
     answer:
-      'Sales agent check is an Obsession recipe. With the owner’s OK, declared AI test customers ask a store’s AI sales or shopping agent about prices, bundles, codes, stock and delivery on chat and WhatsApp every day. They check every answer against the store’s own price list and pages, follow it to checkout and stop before payment unless the owner sets a budget.',
+      'Sales agent check asks your AI sales agent what it charges, every day: declared test customers ask on chat about prices, stock and delivery, check each answer against your price list and stop every checkout before payment.',
     ogImage: '/og/sales-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -57,7 +57,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask your AI sales agent what it charges.',
-    sub: 'Declared test customers ask on WhatsApp and site chat about prices, stock and delivery, and check each answer against your price list. Every checkout stops before payment. You hear about a wrong price the morning it appears.',
+    sub: 'Sales agent check asks your AI sales agent what it charges, every day: declared test customers ask on chat about prices, stock and delivery, check each answer against your price list and stop every checkout before payment.',
     screen: 'salescheck',
     capture: {
       kind: 'verify',
@@ -203,48 +203,52 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. Every checkout stops before payment.',
     items: [
       {
-        q: 'Does it buy anything?',
-        a: 'No. Every checkout stops before payment, unless it’s your own store and you’ve set a budget.',
+        q: 'How do we stop our AI sales agent quoting the wrong price?',
+        a: 'Catch it the morning it starts: Obsession’s Sales agent check asks your agent about prices, bundles and codes every day and checks each answer against your own price list, stopping every checkout before payment.',
       },
       {
-        q: 'Does it say it’s AI?',
-        a: 'Yes. Every test customer says it’s an AI test customer working for your store, so your team can see it’s a test.',
+        q: 'Does Sales agent check buy anything?',
+        a: 'No. Sales agent check stops every checkout before payment, unless it’s your own store and you’ve set a budget.',
       },
       {
-        q: 'Will it haggle or trick our agent?',
-        a: 'No. It asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
+        q: 'Does Sales agent check say it’s AI?',
+        a: 'Yes. Every Sales agent check test customer says it’s an AI test customer working for your store, so your team can see it’s a test.',
       },
       {
-        q: 'What does it check against?',
-        a: 'Your price list, stock feed, delivery and returns pages, captured the same minute, and the rules where you sell: that it says it’s AI, and that every fee shows before payment.',
+        q: 'Will Sales agent check haggle or trick our agent?',
+        a: 'No. Sales agent check asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
       },
       {
-        q: 'Which agents can it check?',
-        a: 'Any AI that sells for you, from a vendor or built in house: on site chat, WhatsApp, text or in your app.',
+        q: 'What does Sales agent check compare answers with?',
+        a: 'Sales agent check compares them with your price list, stock feed, delivery and returns pages, captured the same minute, and the rules where you sell: that it says it’s AI, and that every fee shows before payment.',
+      },
+      {
+        q: 'Which agents can Sales agent check cover?',
+        a: 'Sales agent check covers any AI that sells for you, from a vendor or built in house: on site chat, WhatsApp, text or in your app.',
       },
       {
         q: 'How do you know what’s at risk?',
-        a: 'From the chat history you connect. It counts how many chats asked about the same product, so you see how far a wrong price could have gone.',
+        a: 'Sales agent check reads it from the chat history you connect: it counts how many chats asked about the same product, so you see how far a wrong price could have gone.',
       },
       {
-        q: 'How is it different from AI checkout test?',
-        a: 'AI checkout test makes sure outside AI shoppers can buy from your store. Sales agent check makes sure your own AI agent tells customers the right price, stock and delivery.',
+        q: 'How is Sales agent check different from AI checkout test?',
+        a: 'Sales agent check makes sure your own AI agent tells customers the right price, stock and delivery. AI checkout test makes sure outside AI shoppers can buy from your store.',
       },
       {
-        q: 'Can it check a client’s agent?',
-        a: 'Yes, with the client’s written OK. The record carries your agency’s name, and the client can check every step.',
+        q: 'Can Sales agent check cover a client’s agent?',
+        a: 'Yes, with the client’s written OK: the Sales agent check record carries your agency’s name, and the client can check every step.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to €2,700 kept on 1 wrong price in a week, for a store whose agent quotes a €189 bundle at €89 in 27 chats a week, if every chat orders. A daily check finds it the morning it starts.',
+        a: 'Sales agent check keeps up to €2,700 on 1 wrong price in a week, for a store whose agent quotes a €189 bundle at €89 in 27 chats a week, if every chat orders. A daily check finds it the morning it starts.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what your sales agent said on each check.',
+        a: 'No. A passed Sales agent check is dated evidence of what your sales agent said on each check.',
       },
       {
         q: 'What’s in the free check?',
-        a: 'Name a sales agent you run, or a client’s with their OK. 3 test customers ask it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Sales agent check on a sales agent you run, or a client’s with their OK: 3 test customers ask it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },

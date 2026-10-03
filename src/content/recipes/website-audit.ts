@@ -39,7 +39,7 @@ export const recipe: Recipe = {
     description:
       'After every release, a labelled AI test customer signs up, enters each code, opens every email and link, and stops before payment. Breaks arrive signed.',
     answer:
-      'Website audit is an Obsession recipe. After every release, a labelled AI test customer with a fresh inbox and phone number signs up to your site or app, enters each login code, opens every email and link, tries your codes at checkout and stops before payment, then sends every break with a signed screenshot and a drafted fix.',
+      'Website audit signs up as a new customer after every release: a fresh AI test customer enters each code, opens every email and link and stops before payment. Every break reaches you with its screenshot and a drafted fix.',
     ogImage: '/og/website-audit.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,7 +50,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that sign up as new customers after every release.',
-    sub: 'After every release, a fresh AI test customer signs up, enters each code, opens every email and link, and stops before payment. Every break reaches you with its screenshot and a drafted fix, signed.',
+    sub: 'Website audit signs up as a new customer after every release: a fresh AI test customer enters each code, opens every email and link and stops before payment. Every break reaches you with its screenshot and a drafted fix.',
     screen: 'ship',
     capture: {
       kind: 'waitlist',
@@ -146,28 +146,36 @@ export const recipe: Recipe = {
     heading: 'Only your own site, or a client’s with their OK. Always stopped before payment.',
     items: [
       {
-        q: 'How is it different from our tests?',
-        a: 'Your tests check the code. The agent checks what a new customer gets: the text that arrives, the email, the link and the code, on its own inbox and number.',
+        q: 'How do I catch a broken sign up or checkout before customers report it?',
+        a: 'Obsession’s Website audit sends a fresh AI test customer through your site after every release: it signs up, enters each login code, opens every email and link and stops before payment, and every break reaches you with a screenshot.',
       },
       {
-        q: 'Does it need access to our code?',
-        a: 'No. It uses your site like a customer. A deploy hook starts each run, or it runs on a schedule.',
+        q: 'What’s it worth?',
+        a: 'Website audit gives you up to 2 hours a week back, if you spend 2 hours a week testing releases by hand.',
       },
       {
-        q: 'Does it place real orders?',
-        a: 'No. It goes through checkout and stops before payment.',
+        q: 'How is Website audit different from our tests?',
+        a: 'Website audit checks what a new customer gets: the text that arrives, the email, the link and the code, on its own inbox and number. Your tests check the code.',
+      },
+      {
+        q: 'Does Website audit need access to our code?',
+        a: 'No. Website audit uses your site like a customer. A deploy hook starts each run, or it runs on a schedule.',
+      },
+      {
+        q: 'Does Website audit place real orders?',
+        a: 'No. Website audit goes through checkout and stops before payment.',
       },
       {
         q: 'Will test customers clutter our data?',
-        a: 'Every test customer is labelled, so you can filter them out of your lists and reports.',
+        a: 'No. Every Website audit test customer is labelled, so you can filter them out of your lists and reports.',
       },
       {
-        q: 'What if it hits a CAPTCHA or a block?',
-        a: 'It stops, and the run names the step it couldn’t test.',
+        q: 'What if Website audit hits a CAPTCHA or a block?',
+        a: 'Website audit stops, and the run names the step it couldn’t test.',
       },
       {
-        q: 'Can an agency run it on client sites?',
-        a: 'Yes, with each client’s OK. Every client gets its own run, every morning or after each of their releases.',
+        q: 'Can an agency run Website audit on client sites?',
+        a: 'Yes, with each client’s OK: Website audit gives every client its own run, every morning or after each of their releases.',
       },
     ],
   },
