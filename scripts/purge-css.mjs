@@ -1,4 +1,5 @@
-/* Drops the rules the site never uses from its 1 render blocking stylesheet, after the prerender (scripts/prerender.mjs).
+/* Drops the rules the site never uses from its 1 stylesheet, after the prerender (scripts/prerender.mjs), which then cuts
+   each page's own copy from it with `purge` (the same rules, against the page's own HTML and code).
    The design system (src/styles/ds) ships every component and its guideline page's own .ds-* rules; the site uses part
    of it. src/styles/ds stays untouched: this trims the built copy only.
 

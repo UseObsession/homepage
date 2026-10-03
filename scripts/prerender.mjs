@@ -531,7 +531,7 @@ for (const { e, app } of [...rendered, { e: notFound, app: await render('/404') 
 
 await rm(server, { recursive: true, force: true })
 
-/* The stylesheet every page blocks on, without the rules no page uses (scripts/purge-css.mjs). */
+/* The site's whole stylesheet, without the rules no page uses (scripts/purge-css.mjs): each page's copy is cut from it. */
 const purged = await purgeCss(dist, siteSheet)
 if (purged) notes.push(`css: ${purged.to}, ${Math.round(purged.before / 1024)} KB to ${Math.round(purged.after / 1024)} KB (${purged.dropped} unused rules dropped).`)
 
