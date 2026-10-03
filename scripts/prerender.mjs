@@ -171,6 +171,14 @@ function lastCommit(file) {
     return ''
   }
 }
+/* A shallow clone (a CI build that fetched only the newest commit) has no older commits, so every page would be dated
+   the day of the build and the dates would stop meaning a change. Said, not failed: the build still ships. */
+try {
+  if (execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim() === 'true')
+    warn('sitemap.xml: this is a shallow git clone, so every lastmod is the newest commit\'s date. Build with full history (git fetch --unshallow, then npm run build).')
+} catch {
+  /* Not a git checkout: lastCommit gives no dates either. */
+}
 await writeFile(
   join(dist, 'sitemap.xml'),
   [
