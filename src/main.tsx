@@ -16,6 +16,8 @@ import './styles/site.css'
 import './styles/base.css'
 /* How the page renders, never how it looks (styles/perf.css). */
 import './styles/perf.css'
+/* The hero's words without the fade (styles/entrance.css): Seun's call, in a file of its own. */
+import './styles/entrance.css'
 import App, { preloadRoute } from './App'
 import { hydrated } from './lib/hydration'
 import { Hydrated } from './lib/Hydrated'
