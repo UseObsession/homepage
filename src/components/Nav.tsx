@@ -61,6 +61,49 @@ function onScroll(cb: () => void) {
 const atTop = () => window.scrollY < 8
 const filled = () => false
 
+/* The ground under the bar (styles/tones.css). Over a section that flips the page's theme (an ink chapter or the ink
+   footer on paper, the paper break on ink), the bar takes that section's scope, so it reads as that ground's own bar
+   and never as a grey band of frosted paper over ink, or of ink over paper. The bar's middle line decides. */
+type Ground = 'dark' | 'light' | null
+const FLIPPED = '#main [data-tone="ink"], #main [data-tone="paper"], .s-foot'
+function groundUnder(bar: HTMLElement): Ground {
+  const page: Ground = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+  const line = bar.getBoundingClientRect().top + bar.offsetHeight / 2
+  for (const el of document.querySelectorAll<HTMLElement>(FLIPPED)) {
+    const r = el.getBoundingClientRect()
+    if (r.top > line || r.bottom <= line) continue
+    const own: Ground = el.classList.contains('ob-theme-dark') ? 'dark' : 'light'
+    return own === page ? null : own
+  }
+  return null
+}
+function useGround(navRef: RefObject<HTMLElement | null>, path: string) {
+  const [ground, setGround] = useState<Ground>(null)
+  useEffect(() => {
+    let raf = 0
+    const check = () => {
+      raf = 0
+      if (navRef.current) setGround(groundUnder(navRef.current))
+    }
+    const queue = () => {
+      if (!raf) raf = requestAnimationFrame(check)
+    }
+    queue()
+    window.addEventListener('scroll', queue, { passive: true })
+    window.addEventListener('resize', queue)
+    /* The theme switch flips what counts as flipped. */
+    const mo = new MutationObserver(queue)
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => {
+      window.removeEventListener('scroll', queue)
+      window.removeEventListener('resize', queue)
+      mo.disconnect()
+      cancelAnimationFrame(raf)
+    }
+  }, [path, navRef])
+  return ground
+}
+
 function links(el: HTMLElement | null) {
   return el ? Array.from(el.querySelectorAll<HTMLElement>('a[href]')) : []
 }
@@ -208,6 +251,9 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const [group, setGroup] = useState<MenuId | null>(null)
   const top = useSyncExternalStore(onScroll, atTop, filled)
   const quiet = usePagePrimaryShown(path, heroForm, navRef)
+  /* The phone sheet keeps the page's own theme: it covers the page, whatever ground is under the bar. */
+  const ground = useGround(navRef, path)
+  const scope = ground && !sheet && !top ? (ground === 'dark' ? ' ob-theme-dark' : ' ob-theme-light') : ''
 
   const solutions = usePresence(menu === 'solutions', 160)
   const recipes = usePresence(menu === 'recipes', 160)
@@ -391,7 +437,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   return (
     <nav
       ref={navRef}
-      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${ctaSize ? ` s-nav--cta-${ctaSize}` : ''}`}
+      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${ctaSize ? ` s-nav--cta-${ctaSize}` : ''}${scope}`}
       aria-label={nav.label}
     >
       <div className="ob-nav__in s-nav__in">
