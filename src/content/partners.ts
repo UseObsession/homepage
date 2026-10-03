@@ -36,7 +36,7 @@ export const partners: Partial<Record<PartnerId, Partner>> = {
   outlook: { name: 'Outlook', size: 21 },
   'microsoft-teams': { name: 'Microsoft Teams', size: 19 },
   zapier: { name: 'Zapier', size: 16 },
-  make: { name: 'Make', size: 15 },
+  make: { name: 'Make', size: 14 },
   n8n: { name: 'n8n', size: 19 },
   /* Not a logo: the design system's own glyph for "any endpoint". */
   webhook: { name: 'Webhook', size: 20 },
