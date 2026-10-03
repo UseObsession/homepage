@@ -390,8 +390,15 @@ const full = [
   `The words on every page of ${SITE}, page by page. The short guide is ${SITE}/llms.txt.`,
   '',
 ]
+/* Every page's answer (meta.answer, the line llms.txt and the JSON-LD give for it) opens with words the page shows: its
+   first sentence must be in the page's own text, so an assistant that quotes it quotes the page. The privacy notice
+   opens with the notice instead. */
+const letters = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
+const firstSentence = (s) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 for (const { e, app } of rendered) {
   const text = textOf(app)
+  if (e.kind !== 'privacy' && !letters(text).includes(letters(firstSentence(e.meta.answer))))
+    fail(`${e.meta.path}: the first sentence of meta.answer isn't on the page (make the hero's sub open with it).`)
   const sections = text.split('\n').filter((l) => l.startsWith('## ')).length
   const h2s = visibleH2s(app)
   if (sections < h2s) fail(`${e.meta.path}: llms-full.txt carries ${sections} of the page's ${h2s} sections (textOf in scripts/prerender.mjs).`)
