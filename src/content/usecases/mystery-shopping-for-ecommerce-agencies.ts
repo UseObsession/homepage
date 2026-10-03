@@ -46,8 +46,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents mystery shop every client and prospect store at once, and report in your brand.',
-    sub: 'Clients can’t see what the retainer buys, pitches stall and renewals slip, because nobody has the hours to shop every store. Obsession’s declared AI agents become the customer at every client and prospect store, with real inboxes, phone numbers and browsers, and watch every email and text for 48 hours. You find out first, with each store’s findings and a drafted fix in your own format and brand.',
+    headline: 'AI agents that mystery shop every client store at once.',
+    sub: 'Clients can’t see what the retainer buys, and nobody has time to shop every store. Declared AI agents shop each one as a real customer. You get the findings and the fix, in your brand.',
     example: {
       chips: ['Example: an ecommerce agency', 'Its book: 15 clients and 5 prospects', 'Prospects, clients and renewals'],
       note: 'The agency, its clients, the prospects, the stores, the people and the numbers on this page are made up. The September report is the 1 real run.',
@@ -84,7 +84,7 @@ export const study: UseCaseStudy = {
       label: 'A client’s store web address',
       placeholder: 'Client store, e.g. store.example',
       micro:
-        'Free for 5 of your clients’ stores, in any format, back within 48 hours. Start with 1 and we’ll ask for the other 4, or leave it blank to join the waitlist. We keep your email and store address for this, and nothing else.',
+        '5 client stores audited free, back in 48 hours, in any format. Leave it blank to just join the waitlist.',
       orWaitlist: true,
       done: {
         title: 'Got it. We’ll start with {store}.',
@@ -390,7 +390,7 @@ export const study: UseCaseStudy = {
       label: 'A client’s store web address',
       placeholder: 'Client store, e.g. store.example',
       micro:
-        'Start with 1 store and we’ll ask for the other 4, or leave it blank to join the waitlist. We keep your email and store address for this, and nothing else.',
+        'Start with 1 store and we’ll ask for the other 4. Leave it blank to just join the waitlist.',
       orWaitlist: true,
       done: {
         title: 'Got it. We’ll start with {store}.',
