@@ -1,7 +1,6 @@
-import { useId, type CSSProperties } from 'react'
+import { useId, type CSSProperties, type ReactNode } from 'react'
 import type { Gap as GapContent, ReaderId } from '../../content/types'
 import { Mark } from '../Logo'
-import { GapStory } from './GapStory'
 import './Gap.css'
 
 /* The gap (docs/REBUILD.md 2, beat 3): today vs with Obsession, read as 1 claim, not a table of cards.
@@ -11,24 +10,27 @@ import './Gap.css'
    The 2 column names are the page's own words for the comparison ("today vs with Obsession").
    It is the page's ink chapter (Paper and Gloss, styles/tones.css): full bleed ink on paper, lit from above on ink. On a
    reader's page (`reader`) that light is the reader's hue.
-   A page whose gap has a `story` (Home, Marketing) shows it first, as the section's picture (sections/GapStory): the
-   difference felt in 1 look, then the rows say it in words. There the picture holds the chapter's 1 lit thing (its
-   receipts are the bone paper), so the rows drop the sheet and read as words on the ink, opened by the ink rule. */
+   A page whose gap has a `story` (Home, Marketing) passes the picture as `story`, and it shows first (sections/GapStory):
+   the difference felt in 1 look, then the rows say it in words. There the picture holds the chapter's 1 lit thing (its
+   receipts are the bone paper), so the rows drop the sheet and read as words on the ink, opened by the ink rule. The
+   page imports the picture, never this section, so only the pages that show it load its code (the app's chunks, App.tsx). */
 
 type Props = {
   gap: GapContent
   id?: string
   labels?: { today: string; obsession: string }
   reader?: ReaderId
+  /* The page's picture of the gap (sections/GapStory), drawn from `gap.story`. */
+  story?: ReactNode
 }
 
-export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obsession' }, reader }: Props) {
+export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obsession' }, reader, story }: Props) {
   const uid = useId()
   const headId = `${uid}-h`
 
   return (
     <section
-      className={'s-section s-gap ob-theme-dark' + (gap.story ? ' s-gap--story' : '')}
+      className={'s-section s-gap ob-theme-dark' + (story ? ' s-gap--story' : '')}
       data-tone="ink"
       data-reader={reader}
       id={id}
@@ -42,7 +44,7 @@ export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obses
           {gap.sub && <p className="ob-type-body-lg">{gap.sub}</p>}
         </header>
 
-        {gap.story && <GapStory story={gap.story} />}
+        {story}
 
         <div className="s-gap-cmp" style={{ '--s-gap-rows': gap.rows.length } as CSSProperties}>
           <div className="s-gap-panel" aria-hidden="true" />

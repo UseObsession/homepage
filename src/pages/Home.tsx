@@ -2,6 +2,7 @@ import { DevSection } from '../components/sections/DevSection'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Gap } from '../components/sections/Gap'
+import { GapStory } from '../components/sections/GapStory'
 import { Hero } from '../components/sections/Hero'
 import { How } from '../components/sections/How'
 import { Jobs } from '../components/sections/Jobs'
@@ -30,7 +31,7 @@ export function Home() {
       <Hero hero={page.hero} workspace={workspace} />
       {page.audiences && <PersonaBand audiences={page.audiences} id="for" />}
       <How how={page.how} workspace={workspace} id="how" />
-      <Gap gap={page.gap} id="gap" />
+      <Gap gap={page.gap} story={page.gap.story && <GapStory story={page.gap.story} />} id="gap" />
       {page.jobs && <Jobs jobs={page.jobs} workspace={workspace} id="jobs" />}
       {page.verify && <Proof proof={page.verify} workspace={workspace} tone="alt" id="verify" />}
       {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} tone="base" id="recipes" />}
