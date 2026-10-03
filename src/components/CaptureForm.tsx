@@ -1,9 +1,12 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEvent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
+import { recipeBySlug } from '../content/registry'
 import type { Capture } from '../content/types'
-import { ADDRESS_PATTERN, AGENT_PATTERN, WAITLIST_URL, hostOf, isAddress, isAgent, isEmail, submitSignup } from '../lib/waitlist'
+import { draft, readerOfPage, resume, snapshot, start, useSignup, type Context } from '../lib/signup'
+import { ADDRESS_PATTERN, AGENT_PATTERN, WAITLIST_URL, isAddress, isAgent, isEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
+import { SignupSteps } from './SignupSteps'
 import './CaptureForm.css'
 
 /* The 1 capture form (docs/REBUILD.md, section 9), on the design system's .ob-pill-form, .ob-field, .ob-chips and
@@ -15,8 +18,12 @@ import './CaptureForm.css'
      in the field clears its error.
    - Sending and success are announced through 1 live region that stays mounted; a second submit while sending does
      nothing.
-   - After a sign up, 1 tap answers the roles question. It is saved with the sign up: a 2nd post with the same email
-     and source, which the script folds into the same row. Arrowing through the chips sends only the last one.
+   - Once the email is saved, the form becomes the sign up card (components/SignupSteps) in the same spot: name and
+     company, who they are where the page doesn't say, 4 questions for that reader, a note, then 1 next step. Every
+     form on the page shows the same card (lib/signup holds 1 sign up per visit), and a reload reopens it.
+     Step 1 carries a sign up ID that ties every later step to the row it makes (waitlist/Code.js).
+   - The page's reader comes from its address (content/signup.ts, readers' `path`); a recipe page's own question
+     (Capture.roles) is asked in place of the first job, as is "Whose store/AI agent is it?" on a free shop or check.
    - Under every form, 1 privacy line links /privacy. When the page's own micro line already says what we keep, the link
      closes that line instead, so the promise is never said twice and the foot stays 1 line.
    - A mystery or verify form with `orWaitlist` takes a blank first field: the reader joins the waitlist instead (its
@@ -24,10 +31,9 @@ import './CaptureForm.css'
    - Before the script runs, the 2 step form's email row is hidden (:root.js), so its email field is only required once
      the page has hydrated: a native post in that moment never fails on a field the reader can't see. */
 
-type Step = 'start' | 'email' | 'done'
+type Step = 'start' | 'email'
 type Field = 'store' | 'email'
 type Problem = { field: Field | 'form'; text: string } | null
-type Saving = 'idle' | 'saving' | 'saved' | 'failed'
 
 /* False on the server and while hydrating, true once the page's script runs: the form checks its own fields from then on. */
 const never = () => () => {}
@@ -38,8 +44,6 @@ const saysWhatWeKeep = (micro?: string) => !!micro && /\bemail\b/i.test(micro)
 /* "https://" sits before the field only when the placeholder is a bare address ("your-store.example"), not a sentence. */
 const bareAddress = (placeholder: string) => !/\s/.test(placeholder)
 
-const ROLE_SETTLE_MS = 600
-
 export function CaptureForm({ capture, className = '' }: { capture: Capture; className?: string }) {
   const uid = useId()
   const { pathname } = useLocation()
@@ -48,7 +52,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const verify = capture.kind === 'verify'
   const mystery = capture.kind === 'mystery' || verify
   const first = verify ? copy.agent : copy.store
-  const roles = capture.roles ?? (verify ? copy.agent.roles : copy.roles)
   const storePlaceholder = capture.placeholder ?? first.placeholder
 
   const hydrated = useHydrated()
@@ -61,25 +64,22 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const [problem, setProblem] = useState<Problem>(null)
   const [busy, setBusy] = useState(false)
   const [live, setLive] = useState('')
-  const [preview, setPreview] = useState(false)
-  const [role, setRole] = useState('')
-  const [saving, setSaving] = useState<Saving>('idle')
+  const signup = useSignup()
 
   const sending = useRef(false)
+  /* A second try of the same email keeps its sign up ID, so a post that landed but timed out makes no second row. */
+  const tried = useRef<{ email: string; sid: string } | null>(null)
   const storeRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
-  const titleRef = useRef<HTMLParagraphElement>(null)
   const moved = useRef(false)
-  const roleTimer = useRef<number | undefined>(undefined)
 
-  /* Focus follows the step the reader just took: into the email once it opens, onto the thank-you once it lands. */
+  /* Focus follows the step the reader just took: into the email once it opens. The card moves it from then on. */
   useEffect(() => {
-    if (!moved.current) return
-    if (step === 'email') emailRef.current?.focus()
-    if (step === 'done') titleRef.current?.focus()
+    if (moved.current && step === 'email') emailRef.current?.focus()
   }, [step])
 
-  useEffect(() => () => window.clearTimeout(roleTimer.current), [])
+  /* A sign up from earlier in this visit (a reload, or another page) reopens its card. */
+  useEffect(() => resume(), [])
 
   const id = {
     store: `${uid}-store`,
@@ -87,8 +87,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     help: `${uid}-help`,
     error: `${uid}-error`,
     fail: `${uid}-fail`,
-    q: `${uid}-q`,
-    thanks: `${uid}-thanks`,
   }
 
   function flag(field: Field, text: string) {
@@ -125,15 +123,23 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     sending.current = true
     setBusy(true)
     setLive(copy.sending)
-    const res = await submitSignup({
-      email,
-      store: shop && !verify ? store : undefined,
-      agent: shop && verify ? store : undefined,
-      interest: capture.interest,
-      source: capture.source,
+    /* The page's reader, and on a recipe page its name and its own question. */
+    const slug = pathname.startsWith('/recipes/') ? pathname.slice('/recipes/'.length) : ''
+    const recipe = slug ? recipeBySlug[slug] : undefined
+    const ctx: Context = {
       page: pathname,
-      website: trap,
-    })
+      source: capture.source,
+      kind: capture.kind,
+      interest: capture.interest,
+      store: shop && !verify ? store.trim() : undefined,
+      agent: shop && verify ? store.trim() : undefined,
+      pageReader: readerOfPage(pathname),
+      recipe: recipe ? { name: recipe.name, question: capture.roles } : undefined,
+    }
+    const signupDraft = draft(email, ctx)
+    if (tried.current?.email === signupDraft.email) signupDraft.sid = tried.current.sid
+    tried.current = { email: signupDraft.email, sid: signupDraft.sid }
+    const res = await submitSignup({ ...snapshot(signupDraft), website: trap })
     sending.current = false
     setBusy(false)
 
@@ -144,31 +150,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       setLive(text)
       return
     }
-    setPreview(res.preview)
     setLive('')
-    moved.current = true
-    setStep('done')
-  }
-
-  /* The answer is saved once the reader settles on it, so arrowing through the chips sends 1 post, not 6. */
-  function pick(value: string) {
-    setRole(value)
-    setSaving('saving')
-    window.clearTimeout(roleTimer.current)
-    roleTimer.current = window.setTimeout(async () => {
-      const res = await submitSignup({
-        email,
-        role: value,
-        store: shop && !verify ? store : undefined,
-        agent: shop && verify ? store : undefined,
-        interest: capture.interest,
-        source: capture.source,
-        page: pathname,
-      })
-      setSaving(res.ok ? 'saved' : 'failed')
-      /* A chip that is still checked can't be picked again, so a failed save lets go of it. */
-      if (!res.ok) setRole('')
-    }, ROLE_SETTLE_MS)
+    start(signupDraft, uid, res.preview)
   }
 
   const errorOn = (field: Field) => problem?.field === field
@@ -194,47 +177,11 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     </p>
   )
 
-  if (step === 'done') {
-    const done = shop ? (verify ? copy.done.verify : copy.done.mystery) : copy.done.waitlist
-    /* The store, the AI agent and the email are set as values that never break at a hyphen ("your-" / "store.example"). */
-    const values: Record<string, string> = { '{store}': hostOf(store), '{agent}': hostOf(store), '{email}': email.trim() }
-    const fill = (t: string) =>
-      t.split(/(\{store\}|\{agent\}|\{email\})/).map((part, i) =>
-        values[part] ? (
-          <span className="s-capture__value" key={i}>
-            {values[part]}
-          </span>
-        ) : (
-          part
-        ),
-      )
+  /* Once the email is saved, every form on the page is the card. After the thank you, only on the page it ended on. */
+  if (signup && (!signup.done || signup.doneOn === pathname)) {
     return (
       <div className={`s-capture s-capture--done ${className}`}>
-        <div className="ob-confirm ob-anim-rise is-slow">
-          <p className="ob-confirm-title" ref={titleRef} tabIndex={-1}>
-            <span className="s-capture__mark" aria-hidden="true">
-              <StatusMark state="landed" size={22} />
-            </span>
-            <span>{fill(done.title)}</span>
-          </p>
-          <p className="ob-confirm-line">{fill(done.line)}</p>
-          <fieldset className="ob-chips s-capture__roles" aria-describedby={id.thanks}>
-            <legend className="s-capture__q" id={id.q}>
-              {roles.question}
-            </legend>
-            {roles.options.map((o) => (
-              <label className="ob-chip" key={o}>
-                <input className="ob-chip-input" type="radio" name={`${uid}-role`} value={o} checked={role === o} onChange={() => pick(o)} />
-                <span className="ob-chip-label">{o}</span>
-              </label>
-            ))}
-          </fieldset>
-          <p className="ob-confirm-thanks" id={id.thanks} role="status">
-            {saving === 'saved' ? copy.roles.thanks : saving === 'failed' ? copy.roles.failed : ''}
-          </p>
-          {preview && <p className="s-capture__preview">{copy.preview}</p>}
-        </div>
-        {privacy}
+        <SignupSteps owner={uid} />
         {status}
       </div>
     )

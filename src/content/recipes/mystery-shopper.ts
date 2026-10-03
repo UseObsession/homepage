@@ -53,10 +53,6 @@ export const recipe: Recipe = {
       button: 'Get my free report',
       placeholder: 'Store address, e.g. your-store.example',
       micro: 'Free for a store you run, or a client’s with their OK: 4 test customers, 48 hours watched, your report within 4 days.',
-      roles: {
-        question: 'What should we check first?',
-        options: ['Our store', 'A client’s store, with their OK', 'Our free trial', 'Our demo or booking form'],
-      },
       interest: 'mystery',
     },
   },
@@ -254,10 +250,6 @@ export const recipe: Recipe = {
       button: 'Get my free report',
       placeholder: 'Store address, e.g. your-store.example',
       micro: 'You join the waitlist too. We keep your store address and email to run the report and tell you about Obsession.',
-      roles: {
-        question: 'Whose store is it?',
-        options: ['Mine', 'A client’s, with their OK'],
-      },
       interest: 'mystery',
     },
   },

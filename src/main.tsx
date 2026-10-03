@@ -30,3 +30,7 @@ const app = (
    in development the root is empty, so render from scratch. */
 if (root.hasChildNodes()) hydrateRoot(root, app)
 else createRoot(root).render(app)
+
+/* A test build only (VITE_SIGNUP_TEST=1, never set for the site): drives the sign up card for screenshots and checks.
+   The condition is a constant, so the site's build drops it and the file with it. */
+if (import.meta.env.VITE_SIGNUP_TEST === '1') void import('./lib/signupTest').then((m) => m.run())

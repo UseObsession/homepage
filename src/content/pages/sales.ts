@@ -1,5 +1,5 @@
 import { consoleHeading } from '../console'
-import type { Capture, Page } from '../types'
+import type { Page } from '../types'
 
 /* Sales (/sales): sales and customer success teams of any kind, SaaS first. Win and renew.
    The story: what Obsession is for a sales team > how it works > the gap (your team hears what an account says; agents
@@ -18,12 +18,7 @@ import type { Capture, Page } from '../types'
    $48,000).
    Screens: How uses the flow screens (compose, templates, kit, run); each use case has its own (docs/REBUILD.md §6). */
 
-const roles: Capture['roles'] = {
-  question: 'What should your agents do first?',
-  options: ['Briefs before calls', 'Renewals at risk', 'Pilot proof', 'Win back', 'Battlecards', 'Something else'],
-}
-
-const micro = 'We keep your email to set up your team’s access, and nothing else.'
+const micro = 'We keep your email to set up your team’s access and tell you about Obsession.'
 
 export const page: Page = {
   meta: {
@@ -49,7 +44,6 @@ export const page: Page = {
       source: 'sales-hero',
       button: 'Get early access for my team',
       micro,
-      roles,
       interest: 'any',
     },
     secondary: { label: 'See the real report', to: '/sample-output' },
@@ -445,7 +439,6 @@ export const page: Page = {
       source: 'sales-final',
       button: 'Get early access for my team',
       micro,
-      roles,
       interest: 'any',
     },
   },

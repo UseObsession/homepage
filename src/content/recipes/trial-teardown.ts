@@ -50,7 +50,7 @@ export const recipe: Recipe = {
       source: 'recipe-trial-hero',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       roles: {
         question: 'Who will use the teardown?',
         options: ['Sales', 'Marketing', 'Product', 'Founders', 'Something else'],
@@ -211,7 +211,7 @@ export const recipe: Recipe = {
       source: 'recipe-trial-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       roles: {
         question: 'Who will use the teardown?',
         options: ['Sales', 'Marketing', 'Product', 'Founders', 'Something else'],

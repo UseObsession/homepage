@@ -49,7 +49,7 @@ export const recipe: Recipe = {
       source: 'recipe-prospect-hero',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       roles: {
         question: 'Who are your prospects?',
         options: ['Stores and consumer brands', 'Software companies', 'Clinics and local services', 'An agency’s pitch list', 'Something else'],
@@ -236,7 +236,7 @@ export const recipe: Recipe = {
       source: 'recipe-prospect-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       roles: {
         question: 'What gap does your product close?',
         options: ['Welcome emails', 'Texts', 'Chat and bots', 'Ads and landing pages', 'Bookings', 'Something else'],

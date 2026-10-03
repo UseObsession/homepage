@@ -38,7 +38,7 @@ export type Meta = {
 /* Every capture goes to the waitlist (waitlist/Code.js). `mystery` asks for the store first, then the email:
    the free mystery shop of a store the reader owns or has the owner's OK to test. `verify` asks for the AI agent
    first (its chat page or phone number), then the email: the free check of an AI agent the reader runs, or a
-   client's with their OK. It asks "Whose AI agent is it?" after the sign up unless the page sets its own roles. */
+   client's with their OK. After the email, the sign up card asks the rest (content/signup.ts). */
 export type Capture = {
   kind: 'waitlist' | 'mystery' | 'verify'
   source: string
@@ -48,7 +48,8 @@ export type Capture = {
      other than the shared label does (the AI SDR check asks for the company's website, not a chat page). */
   label?: string
   micro?: string
-  /* After a sign up: 1 tap tells us what to set up first. */
+  /* A recipe page's own question: the sign up card asks it in place of the first job, and keeps the answer as the
+     sign up's "Job detail" (content/signup.ts). Other pages leave it out: the card's question bank covers them. */
   roles?: { question: string; options: string[] }
   interest?: RecipeId | 'any'
   /* `mystery` and `verify` only: a blank first field (the store, or the AI agent) joins the waitlist instead of asking

@@ -1,6 +1,7 @@
 /* The capture form (components/CaptureForm), on forms.css .ob-pill-form, .ob-field, .ob-chips and .ob-confirm.
-   These rules add only what the site needs on top: the privacy line, the hidden bot field, the mystery shop's
-   email row (open without script, opened by the script after the store), and the roles question in sentence case. */
+   These rules add only what the site needs on top: the privacy line, the hidden bot field, and the mystery shop's
+   email row (open without script, opened by the script after the store). Once the email is saved the form becomes
+   the sign up card: components/SignupSteps.css. */
 
 .s-capture {
   /* The pill's typed text starts here: padding, edge, then the input's own padding (forms.css). */
@@ -74,29 +75,16 @@
   .s-capture__more .ob-pill-more-in { padding-inline: var(--ob-space-4); }
 }
 
-/* The ring in the busy button and the mark in the thank-you take the label's ink. */
+/* The ring in the busy button and the mark in the card's title take the label's ink. */
 .s-capture .ob-btn-busy .s-status { color: currentColor; }
 .s-capture__mark { display: inline-grid; place-items: center; flex: none; }
 /* A store or an email moves to the next line whole; only one longer than the line itself breaks. */
 .s-capture__value { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
 
-/* Thank-you: the roles question reads as a sentence, not a caps label. */
-.s-capture .s-capture__roles { margin-top: var(--ob-space-8); }
-.s-capture .s-capture__roles > legend.s-capture__q {
-  float: left;
-  width: 100%;
-  margin: 0 0 var(--ob-space-8);
-  padding: 0;
-  color: var(--ob-text);
-  font: var(--ob-type-label);
-  letter-spacing: var(--ob-type-label-tracking);
-}
 .s-capture__preview {
   margin: var(--ob-space-4) 0 0;
   color: var(--ob-text-3);
   font: var(--ob-type-mono-sm);
   letter-spacing: var(--ob-type-mono-sm-tracking);
 }
-.s-capture--done { gap: var(--ob-space-8); }
-/* Under the thank-you card the privacy line lines up with the card's text. */
-.s-capture--done .s-capture__privacy { padding-inline-start: var(--ob-space-24); }
+.s-capture--done { gap: 0; }
