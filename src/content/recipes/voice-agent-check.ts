@@ -4,8 +4,9 @@ import type { Recipe } from '../types'
 /* Voice agent check (/recipes/voice-agent-check). Check your AI agents. Screen: callcheck, drawn for an agency (Your
    agency, its client Dental group; "3 test calls · daily 08:00"; Call 1 check-up 4/4, Call 2 the aligner consult 3/4,
    Call 3 hygienist 4/4, so 11 of 12 checks passed; Call 2's transcript: 00:02 "Hi, Dental group. I'm an AI
-   assistant." (AI said at 2 s, inside the 10 s rule), 00:06 Test customer 2: "I'm an AI test patient, on a recorded
-   call." (Dental group's written OK), 00:21 a real slot booked for Tuesday 10:20 then cancelled, 00:41 the consult quoted free where
+   assistant." (AI said at 2 s, inside the 10 s rule), 00:06 Test customer 2: "AI test patient for Your agency.
+   Recorded." (AI, who it works for and the recording, kept short enough for the transcript column; Dental group's
+   written OK), 00:21 a real slot booked for Tuesday 10:20 then cancelled, 00:41 the consult quoted free where
    the price list says £50, 00:47 asks for a person and is transferred after 1 min 12 s on hold (limit 3 min); "With
    Dental group's OK · Their number only"; the toast "1 wrong price · Dental group report at 09:00").
    The screen and the copy both say "aligner", so no real product is named.
@@ -31,7 +32,7 @@ export const recipe: Recipe = {
   line: 'Calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer.',
   gets: 'A verdict on every call, the recording behind it, and the right answer drafted wherever it went wrong.',
   kit: [
-    'Declared AI test customers, named for your business',
+    'Declared AI test customers, working for your business',
     'Their own phone numbers',
     'Different voices and accents, used with consent',
     'Your price list, hours and services, captured each run',
@@ -56,7 +57,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that call your AI receptionist every morning.',
-    sub: 'Declared test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear the wrong answer before a real caller does.',
+    sub: 'Declared test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     screen: 'callcheck',
     capture: {
       kind: 'verify',
@@ -80,9 +81,9 @@ export const recipe: Recipe = {
     kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Their calendar, connected by them'],
     events: [
       { time: 'Mon 08:00', text: '3 test customers ring Dental group’s own number as new patients, with their written OK.' },
-      { time: 'Call 2, 00:02', text: '“Hi, Dental group. I’m an AI assistant.” At 00:06, Test customer 2 says it’s an AI test patient on a recorded call.' },
+      { time: 'Call 2, 00:02', text: '“Hi, Dental group. I’m an AI assistant.” At 00:06, Test customer 2 says it’s an AI test patient for your agency, on a recorded call.' },
       { time: 'Call 2, 00:21', text: '“You’re booked for Tuesday at 10:20.” A real slot, in their calendar, cancelled after the call.' },
-      { time: 'Call 2, 00:41', text: 'Asks about an aligner consult. “The consult is free.” Their price list says £50.' },
+      { time: 'Call 2, 00:41', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Their price list says £50.' },
       { time: 'Call 2, 00:47', text: 'Asks for a person. A person picks up after 1 minute 12 seconds on hold, inside the 3 minute limit.' },
     ],
     finding: 'Dental group’s receptionist tells new patients the aligner consult is free. Their price list says £50.',
@@ -185,7 +186,7 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'Nobody hears your receptionist’s calls. Test customers do, every morning.',
+    heading: 'Nobody on your team hears your receptionist’s calls. Test customers do, every morning.',
     line: 'Up to £36,000 a year of bookings kept, for a clinic that loses a £3,000 aligner case a month to a call that goes wrong: the morning check finds the wrong answer or the missed handoff the day it starts.',
     cols: ['Today', 'With a morning check'],
     rows: [

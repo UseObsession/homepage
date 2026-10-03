@@ -31,7 +31,7 @@ export const recipe: Recipe = {
   line: 'Runs the same real cases on every shortlisted vendor’s AI agent, with their OK, and compares them side by side before you sign.',
   gets: 'Every shortlisted agent on your own cases, side by side, with every answer and handoff signed.',
   kit: [
-    'Declared AI test customers, named for your company',
+    'Declared AI test customers, working for your company',
     'Their own inboxes and numbers on every agent',
     'Your hardest cases, each with its policy',
     'Each vendor’s written OK, on file',
@@ -81,7 +81,7 @@ export const recipe: Recipe = {
       { time: '19 Sep', text: 'Vendor B and Vendor C agree to the test in writing. Both agents are set up on your policies, and the same 20 cases go to each.' },
       { time: '22 Sep 10:40', text: 'Case H-01. Test customer 2 says it’s AI and asks Vendor B for a person. “Connecting you.” A person answers in 1 minute 50 seconds.' },
       { time: '22 Sep 10:52', text: 'The same case on Vendor C: “How can I help?” 3 times, and no person in 6 minutes. Your policy says 3.' },
-      { time: '29 Sep', text: 'Both fail a refund on day 35 and an expired code. Vendor B also fails an order edit. Vendor C fails 6 more, from an address change to deleting your data.' },
+      { time: '29 Sep', text: 'Both fail a refund on day 35 and an expired code. Vendor B also fails an order edit. Vendor C fails 6 more, from an address change to a data deletion request.' },
       { time: '3 Oct', text: 'Every case run on both. Vendor B passes 17 of 20, Vendor C 12.' },
     ],
     finding: 'Vendor B passed 17 of your 20 cases and Vendor C 12. Asked for a person, Vendor C kept a customer waiting 6 minutes where your policy says 3.',
@@ -122,7 +122,7 @@ export const recipe: Recipe = {
       group: 'Before you sign',
       items: [
         { title: 'The deck against the agent', line: 'The resolution rate, handoff time and languages in the sales deck, against what the agent did on your cases.' },
-        { title: 'Your hardest cases', line: 'A refund on day 35, an expired code, a request to delete your data: the cases a demo skips.' },
+        { title: 'Your hardest cases', line: 'A refund on day 35, an expired code, a customer asking you to delete their data: the cases a demo skips.' },
         { title: 'The channels you’ll run', line: 'Chat, email, phone or your portal, wherever the agent will meet your customers.' },
         { title: 'Your current agent', line: 'The agent you run today, or one you build in house, on the same cases, so every vendor has a bar to clear.' },
       ],

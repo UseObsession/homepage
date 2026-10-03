@@ -31,7 +31,7 @@ export const recipe: Recipe = {
   line: 'Checks your AI agents say they’re AI on every channel, every day, and files a dated proof of every check.',
   gets: 'A signed proof per channel, every day: the first line, the answer when asked, and the wait for a person.',
   kit: [
-    'A declared AI test customer, named for your company',
+    'A declared AI test customer, working for your company',
     'Its own inbox, phone number and test account',
     'Every channel your AI answers on',
     'The rules where you sell, as checks you approve',
@@ -55,7 +55,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that check your AI tells customers it’s AI.',
+    headline: 'AI agents that test whether your AI says it’s AI.',
     sub: 'Each morning a declared test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     screen: 'disclosure',
     capture: {
@@ -76,7 +76,7 @@ export const recipe: Recipe = {
     journey: ['Start a conversation', 'Keep the first line', 'Ask “Am I talking to a person?”', 'Time the wait for one'],
     schedule: 'Daily at 07:00',
     report: 'A signed proof per channel, every day',
-    kit: ['Agent ID, declared as AI', '1 inbox', '1 phone number', 'Calls only to numbers you own'],
+    kit: ['Agent ID, declared as AI', '1 inbox', '1 phone number', 'Calls only to numbers you own or authorise'],
     events: [
       { time: 'Sat 07:00', text: 'Chat: “I’m an AI assistant for Your company.” Asked if it’s a person: “No, I’m an AI.” A person in 1 minute 52 seconds.' },
       { time: 'Sat 07:02', text: 'Call: “I’m an AI assistant. This call is recorded.” A person in 2 minutes 40 seconds.' },
@@ -130,7 +130,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Your agents only', line: 'Your own, or a client’s with their written OK. Calls only to numbers you own.' },
+        { title: 'Your agents only', line: 'Your own, or a client’s with their written OK. Calls only to numbers you own or authorise.' },
         { title: 'No tricks', line: 'It asks what an ordinary customer asks. No jailbreaks or prompt tricks.' },
         { title: 'Your wait times', line: 'It runs at the volume of 1 customer, so it never skews the wait it measures.' },
         { title: 'Recordings', line: 'Kept as your proof, and never used to train anything.' },
@@ -162,7 +162,7 @@ export const recipe: Recipe = {
     { k: 'First lines', v: 'The AI notice you expect on each channel' },
     { k: 'Targets', v: 'For example: a person within 3 minutes on chat, phone and text, and within 1 day by email' },
     { k: 'Where you sell', v: 'The rules for each country and state you sell in, as checks you approve' },
-    { k: 'Calls', v: 'Only to numbers you own, with the AI and recording notice first' },
+    { k: 'Calls', v: 'Only to numbers you own or authorise, with the AI and recording notice first' },
     { k: 'How often', v: 'Daily at 07:00, and after every update to your agents' },
     { k: 'Alerts', v: 'Slack, email or a webhook the morning a channel fails' },
   ],
@@ -202,7 +202,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Do we have to say our AI is AI?',
-        a: 'In more and more places, yes: at first contact, and truthfully whenever a customer asks. The rules differ by country and state, so the checks follow the ones where you sell. They’re checks, not legal advice, and your lawyer decides what applies to you.',
+        a: 'Across the EU and in several US states, yes: at first contact, and truthfully whenever a customer asks. The rules differ by country and state, so the checks follow the ones where you sell. They’re checks, not legal advice, and your lawyer decides what applies to you.',
       },
       {
         q: 'What counts as saying it’s AI?',
@@ -218,7 +218,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. Test calls go only to numbers you own, and the test customer says at the start that it’s AI and that the call is recorded. No recording is used for training.',
+        a: 'Yes. Test calls go only to numbers you own or authorise, and the test customer says at the start that it’s AI and that the call is recorded. No recording is used for training.',
       },
       {
         q: 'Will it skew our wait times?',

@@ -173,7 +173,7 @@ export const page: Page = {
   /* The 4th way in, after the 4 jobs (VERIFY.md 10): its own short section, linking /verify. */
   verify: {
     heading: 'Your own AI agents meet declared test customers every day.',
-    line: 'They call, chat and book with your support bot, AI receptionist or sales agent, check each answer against your prices and policies, and sign what they find.',
+    line: 'Test customers call, chat and book with your AI receptionist, support bot or sales agent, check each answer against your prices and policies, and sign what they find.',
     screen: 'callcheck',
     cta: { label: 'See how it works', to: '/verify' },
   },

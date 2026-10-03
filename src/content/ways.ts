@@ -34,7 +34,7 @@ export const ways: Record<WayId, Way> = {
     id: 'verify',
     name: 'Check your AI agents',
     who: 'For teams running AI agents',
-    line: 'Give us the chat, phone number or inbox your AI answers on. Declared test customers use it as your customers do, every day, and sign what they find.',
+    line: 'Give us the chat page, phone number or inbox your AI answers on. Declared test customers use it as your customers do, every day, and sign what they find.',
     to: '/verify',
   },
 }

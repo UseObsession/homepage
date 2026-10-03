@@ -33,7 +33,7 @@ export const recipe: Recipe = {
   line: 'Replays your hardest cases on your AI agent every morning and after every update, and flags every answer that changed.',
   gets: 'Every answer that changed, found the day it changed, with the before and after signed.',
   kit: [
-    'A declared AI test customer, named for your company',
+    'A declared AI test customer, working for your company',
     'Its own inbox and test account',
     'Your hardest cases, each with its rule',
     'Your vendor’s updates, watched',
@@ -243,7 +243,7 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'Know which answers changed before your customers do.',
+    heading: 'Know which answers an update changed within the hour.',
     sub: 'Your first check is free: 3 test customers use your AI agent on 1 channel, and your report lands within 4 days. Your agent, or a client’s with their OK.',
     capture: {
       kind: 'verify',

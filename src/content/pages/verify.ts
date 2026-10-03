@@ -47,7 +47,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR the way your customers do, every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+    sub: 'Declared AI test customers, each with its own inbox, phone number and card, meet your support bot, AI receptionist and AI SDR the way your customers and prospects do, every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -78,7 +78,7 @@ export const page: Page = {
           { time: 'Mon 07:12', text: 'Email: a person replies in 12 minutes, and says 14 days.' },
           { time: 'Mon 13:04', text: '6 hours on, the confirmation email the portal promised hasn’t arrived.' },
         ],
-        finding: 'Chat gives a 30 day return window where your policy says 14, and the portal’s promised email never came.',
+        finding: 'Chat gives a 30 day refund window where your policy says 14, and the portal’s promised email never came.',
         fix: 'The return answer drafted for your bot’s settings, and the missing email flagged for your helpdesk. Live after your OK.',
         ledger: 'Example run. 20 checks, 18 passed, every answer and wait signed and dated.',
       },
@@ -92,9 +92,9 @@ export const page: Page = {
         report: 'A report by 09:00, with every recording',
         kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Your calendar, connected by you'],
         events: [
-          { time: 'Mon 08:00', text: '3 test customers ring as new patients, with your OK. Each says it’s an AI test customer and that the call is recorded.' },
+          { time: 'Mon 08:00', text: '3 test customers ring as new patients, with your OK. Each says it’s an AI test customer, who it works for and that the call is recorded.' },
           { time: 'Mon 08:00', text: 'Call 2: the receptionist says it’s AI in its first 2 seconds, and books Tuesday at 10:20.' },
-          { time: 'Mon 08:01', text: 'Asks about an aligner consult. “The consult is free.” Your price list says £50.' },
+          { time: 'Mon 08:01', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Your price list says £50.' },
           { time: 'Mon 08:01', text: 'Asks for a person. A person answers after 1 minute 12 seconds on hold.' },
           { time: 'Mon 08:03', text: 'Calls 1 and 3 pass every check, so 11 of 12 checks pass. Each test slot is cancelled.' },
         ],
@@ -206,12 +206,12 @@ export const page: Page = {
   },
 
   uses: {
-    heading: 'Catch what your AI agent gets wrong before a customer does.',
+    heading: 'Test customers find what your AI agent gets wrong on your real channels.',
     items: [
       {
         tab: 'Support bot',
         moment: 'Monday 07:00, before your team logs on.',
-        outcome: 'The wrong refund answer, found before the first customer asks.',
+        outcome: 'The wrong refund window, found at 07:02 with the transcript.',
         line: 'Test customers ask on chat, email and your portal in the same minute, and check each answer against your policy page.',
         whyOnly: 'Each has a real inbox and portal account, so it sees whether the email the bot promised ever came.',
         recipe: 'support-bot',
@@ -220,7 +220,7 @@ export const page: Page = {
       {
         tab: 'AI SDR',
         moment: 'Monday, as the week’s sequences go out.',
-        outcome: 'Every claim, discount and send time your AI SDR uses, checked against your rules.',
+        outcome: 'Every claim, discount and send time your test prospects receive, checked against your rules.',
         line: 'Test prospects on its lists, added with your OK, read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
         whyOnly: 'Real inboxes and numbers on the receiving end, so you see each message as a prospect does.',
         recipe: 'outbound-agent',
@@ -251,7 +251,7 @@ export const page: Page = {
     heading: 'Know the morning it breaks, not 11 days later.',
     items: [
       { value: 'Up to 10 days', label: 'sooner: a daily check catches a broken answer within 1 day, where 1 team took 11 days to notice' },
-      { value: 'Up to $22,572', label: 'a year of billed resolutions to challenge: 10,000 a month at $0.99, with 19 in 100 not real' },
+      { value: 'Up to $22,572', label: 'a year of billed resolutions to challenge: 10,000 a month at $0.99, if 19 in 100 aren’t real' },
       { value: 'Up to 780 hours', label: 'back a year: 15 hours a week of reading transcripts, turned into a list of what failed' },
     ],
   },
@@ -346,7 +346,7 @@ export const page: Page = {
       },
       {
         q: 'How is this different from our vendor’s own tests?',
-        a: 'Your vendor tests its agent inside its own tools, often with simulated customers. Customer-Side Assurance works from the outside: test customers use your real channels with real inboxes, numbers and accounts, and follow what happens next.',
+        a: 'Your vendor tests its agent inside its own tools, often with simulated customers. Obsession checks it from the outside, as your customer, which is why we call it Customer-Side Assurance: test customers use your real channels with real inboxes, numbers and accounts, and follow what happens next.',
       },
       {
         q: 'Is a passed check a guarantee?',

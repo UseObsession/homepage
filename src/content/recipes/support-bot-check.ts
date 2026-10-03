@@ -27,7 +27,7 @@ export const recipe: Recipe = {
   line: 'Asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
   gets: 'A verdict on every check, the transcript behind it, and the right answer drafted for every wrong one.',
   kit: [
-    'A declared AI test customer, named for your company',
+    'A declared AI test customer, working for your company',
     'Its own inboxes, phone number and test account',
     'Your policy pages, captured on every run',
     'Every channel your bot answers on',
@@ -81,7 +81,7 @@ export const recipe: Recipe = {
       { time: 'Mon 07:12', text: 'By email, a person replies in 12 minutes.' },
       { time: 'Mon 13:04', text: '6 hours on, the confirmation email the portal promised hasn’t arrived.' },
     ],
-    finding: 'Chat gives a 30 day return window where your policy says 14, and the email the portal promised never came.',
+    finding: 'Chat gives a 30 day refund window where your policy says 14, and the email the portal promised never came.',
     fix: '“No, returns close after 14 days” drafted for your bot’s settings, and the missing email flagged for your helpdesk. Live after your OK.',
     ledger: 'Example run. 20 checks, 18 passed, every answer and wait signed and dated.',
   },
