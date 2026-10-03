@@ -80,25 +80,26 @@ function groundUnder(bar: HTMLElement): Ground {
 function useGround(navRef: RefObject<HTMLElement | null>, path: string) {
   const [ground, setGround] = useState<Ground>(null)
   useEffect(() => {
-    let raf = 0
+    /* A handful of rectangles per scroll event: cheap enough to read straight away, so the bar changes with the
+       ground under it on the same frame. React skips the render when the answer is the same. */
     const check = () => {
-      raf = 0
       if (navRef.current) setGround(groundUnder(navRef.current))
     }
-    const queue = () => {
-      if (!raf) raf = requestAnimationFrame(check)
-    }
-    queue()
-    window.addEventListener('scroll', queue, { passive: true })
-    window.addEventListener('resize', queue)
-    /* The theme switch flips what counts as flipped. */
-    const mo = new MutationObserver(queue)
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    window.addEventListener('resize', check)
+    /* The theme switch flips what counts as flipped, and the page can move under a still bar as its screens and
+       images arrive. */
+    const mo = new MutationObserver(check)
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    const main = document.getElementById('main')
+    const ro = main && 'ResizeObserver' in window ? new ResizeObserver(check) : null
+    if (main) ro?.observe(main)
     return () => {
-      window.removeEventListener('scroll', queue)
-      window.removeEventListener('resize', queue)
+      window.removeEventListener('scroll', check)
+      window.removeEventListener('resize', check)
       mo.disconnect()
-      cancelAnimationFrame(raf)
+      ro?.disconnect()
     }
   }, [path, navRef])
   return ground
@@ -253,7 +254,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const quiet = usePagePrimaryShown(path, heroForm, navRef)
   /* The phone sheet keeps the page's own theme: it covers the page, whatever ground is under the bar. */
   const ground = useGround(navRef, path)
-  const scope = ground && !sheet && !top ? (ground === 'dark' ? ' ob-theme-dark' : ' ob-theme-light') : ''
+  const scope = ground && !sheet ? (ground === 'dark' ? ' ob-theme-dark' : ' ob-theme-light') : ''
 
   const solutions = usePresence(menu === 'solutions', 160)
   const recipes = usePresence(menu === 'recipes', 160)
