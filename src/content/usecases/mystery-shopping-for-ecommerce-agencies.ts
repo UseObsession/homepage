@@ -84,7 +84,7 @@ export const study: UseCaseStudy = {
       label: 'A client’s store web address',
       placeholder: 'Client store, e.g. store.example',
       micro:
-        'Free for 5 of your clients’ stores, in any format. Start with 1 and we’ll ask for the other 4, or leave it blank to join the waitlist. We keep your email and store address for this, and nothing else.',
+        'Free for 5 of your clients’ stores, in any format, back within 48 hours. Start with 1 and we’ll ask for the other 4, or leave it blank to join the waitlist. We keep your email and store address for this, and nothing else.',
       orWaitlist: true,
       done: {
         title: 'Got it. We’ll start with {store}.',
@@ -351,7 +351,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What do the 5 free audits cover?',
-        a: 'Send us 5 of your clients’ stores and we audit them free, in whatever format you want: a PDF, a branded client report, Slack, a sheet, Clay columns or an email. A store can be a prospect you’re pitching, a current client with their OK, or a client at renewal or at risk. Start with 1 store in the form, and we’ll ask for the other 4.',
+        a: 'Send us 5 of your clients’ stores and we audit them free within 48 hours, in whatever format you want: a PDF, a branded client report, Slack, a sheet, Clay columns or an email. A store can be a prospect you’re pitching, a current client with their OK, or a client at renewal or at risk. Start with 1 store in the form, and we’ll ask for the other 4.',
       },
       {
         q: 'Do our clients have to agree to it?',
@@ -381,7 +381,7 @@ export const study: UseCaseStudy = {
   },
 
   final: {
-    heading: 'Send us 5 of your clients’ stores. We audit them free.',
+    heading: 'Send us 5 of your clients’ stores. We audit them free in 48 hours.',
     sub: 'In whatever format you want. Current clients with their OK, prospects through public sign ups only, and every checkout stops before payment. No stores to name yet? Leave the address blank to join the waitlist.',
     capture: {
       kind: 'mystery',
