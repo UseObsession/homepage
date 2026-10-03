@@ -73,3 +73,18 @@
 
 /* The quiet "Example" tag under every app screen (components/AppScreen): sentence case, the caption type, never a badge. */
 .s-screen-note { margin: var(--ob-space-8, 8px) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; }
+
+/* Phones: an app screen shows its key region. The 720 x 450 window at a phone's width sets its 12px type at about 5px.
+   Under 520px the frame crops to the window's main panel (x 164 to 720; the sidebar is the app's own navigation), so the
+   same window reads 30% larger. The bar's way-finding moves into the crop and its search leaves. Nothing inside the
+   window moves, so every screen's story and pointer play where they were drawn. Browsers without the pure CSS scale
+   (tan(atan2())) keep the whole window. */
+@media (max-width: 519.98px) {
+  @supports (transform: scale(tan(atan2(1px, 1px)))) {
+    .appx-fit:has(.ax-side) { aspect-ratio: 556 / 450; overflow: hidden; border-radius: var(--ob-radius-sm); }
+    .appx-fit:has(.ax-side) .appx { transform: scale(tan(atan2(100cqw, 556px))) translateX(-164px); }
+    .appx-fit .ax-bar:has(+ .ax-body > .ax-side) { padding-left: 176px; }
+    .appx-fit .ax-bar:has(+ .ax-body > .ax-side) .ax-search { display: none; }
+    .appx-fit .ax-bar:has(+ .ax-body > .ax-side) .ax-team { margin-left: auto; }
+  }
+}
