@@ -317,15 +317,55 @@
   text-wrap: pretty;
 }
 .s-rp-table .ob-table tbody tr:last-child th { border-bottom: 0; }
+/* Each cell's column name, for the stacked phone table below; the column heads carry it everywhere else. */
+.s-rp-table__col { display: none; }
+
+/* A narrow frame (a phone): a sideways scroll with a sticky first column left only the row's name and the first column
+   on screen, and the payoff column (the last) off it. Each row stacks instead: its name, then every column under its
+   own small label, in reading ink. The column heads stay in the table for assistive tech, off screen for the eye
+   (Table() keeps the roles; the table is .ob-table--fit, so the system's sticky column never applies). */
 @container (max-width: 600px) {
-  .s-rp-table .ob-table :is(thead td, tbody th):first-child {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-    box-shadow: 1px 0 0 var(--ob-table-edge);
-    background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface);
+  .s-rp-table .ob-table,
+  .s-rp-table .ob-table :is(thead, tbody) { display: block; min-width: 0; }
+  .s-rp-table .ob-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
-  .s-rp-table .ob-table tbody th:first-child { background: var(--ob-surface); }
+  .s-rp-table .ob-table tbody tr {
+    display: grid;
+    gap: var(--ob-space-16);
+    padding: var(--ob-space-20) var(--ob-space-16);
+    border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+    background-color: var(--ob-row-layer);
+  }
+  .s-rp-table .ob-table tbody tr:last-child { border-bottom: 0; }
+  .s-rp-table .ob-table tbody :is(th, td) {
+    display: grid;
+    gap: var(--ob-space-4);
+    position: static;
+    height: auto;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: none;
+    white-space: normal;
+  }
+  .s-rp-table .ob-table tbody th {
+    font: var(--ob-type-body);
+    font-weight: var(--ob-weight-medium);
+    letter-spacing: var(--ob-type-body-tracking);
+    text-wrap: balance;
+  }
+  .s-rp-table__col {
+    display: block;
+    font: var(--ob-type-label);
+    letter-spacing: var(--ob-type-label-tracking);
+    color: var(--ob-text-3);
+  }
 }
 
 @media (forced-colors: active) {

@@ -72,7 +72,7 @@
 .ilwrap:empty { aspect-ratio: 16 / 10; }
 
 /* The quiet "Example" tag under every app screen (components/AppScreen): sentence case, the caption type, never a badge. */
-.s-screen-note { margin: var(--ob-space-8, 8px) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; }
+.s-screen-note { margin: var(--ob-space-8, 8px) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); text-align: center; }
 
 /* Phones: an app screen shows its key region. The 720 x 450 window at a phone's width sets its 12px type at about 5px.
    Under 520px the frame crops to the window's main panel (x 164 to 720; the sidebar is the app's own navigation), so the

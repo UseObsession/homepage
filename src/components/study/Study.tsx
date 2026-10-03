@@ -11,8 +11,10 @@ import './Study.css'
    (the gap), how it fits the reader's own tools or who does what, what the reader does with it, the proof on its
    screen (and the first email written from it), then the recipe and the 1 real run. Each is a claim heading and a few
    short lines on the design system; nothing moves but the screens.
-   Their grounds (styles/tones.css, F2): the problem is the page's ink chapter; how it fits and who does what stand on
-   the alternate ground; the proof is the paper break on ink (stone on paper), its screen and mail glossy black. */
+   Their grounds (styles/tones.css, F2 and D1): the problem is the page's ink chapter; how it fits and who does what
+   stand on the page's own ground, so the chapter never touches a second ground that reads as its twin on ink (the lit
+   chapter and the lifted ink measure 1.03:1); the proof is the paper break on ink (stone on paper), its screen and mail
+   glossy black. */
 
 function Arrow({ className }: { className: string }) {
   return (
@@ -57,7 +59,7 @@ export function Problem({ problem, id = 'gap' }: { problem: UseCaseStudy['proble
 export function Fit({ fit, id = 'fit' }: { fit: NonNullable<UseCaseStudy['fit']>; id?: string }) {
   const uid = useId()
   return (
-    <section className="s-section s-st-fit" data-tone="alt" id={id} aria-labelledby={`${uid}-h`}>
+    <section className="s-section s-st-fit" id={id} aria-labelledby={`${uid}-h`}>
       <div className="s-wrap s-st-fit__in">
         <header className="s-st-fit__head">
           <h2 className="ob-type-h2" id={`${uid}-h`}>
@@ -98,7 +100,7 @@ export function Split({ split, id = 'split' }: { split: NonNullable<UseCaseStudy
     </div>
   )
   return (
-    <section className="s-section s-st-split" data-tone="alt" id={id}>
+    <section className="s-section s-st-split" id={id}>
       <div className="s-wrap s-st-split__in">
         {side(split.yours, false, 0)}
         {side(split.ours, true, 1)}

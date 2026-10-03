@@ -69,11 +69,12 @@
 .s-ov__more { flex: none; }
 
 /* The footnote under a table or a flow, inside the stage. */
+/* The honesty line (which row is the real run): a sentence, so the second ink. */
 .s-ov-note {
   margin: 0;
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
   text-align: center;
   text-wrap: balance;
 }

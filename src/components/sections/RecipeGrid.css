@@ -99,6 +99,10 @@
 @media (max-width: 860px) {
   .s-recipes__job { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); padding-block: var(--ob-space-24); }
   .s-recipes__job-head { padding-top: 0; }
+  /* A phone lists each job's recipes by name, as doors: the full lines stay on wider screens and on /recipes, so the
+     section stops repeating the index (about 2,800px of small text on Home at 390). */
+  .s-recipes__line { display: none; }
+  .s-recipes__item { padding-block: var(--ob-space-12); }
 }
 
 .s-recipes .s-head { max-width: none; }

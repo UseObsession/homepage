@@ -19,11 +19,12 @@
    so the privacy line sits close under the pill and only moves for an error the reader just caused. */
 .s-capture .ob-pill-foot:not(:has(> :not([hidden]):not(:empty))) { display: none; }
 
-/* What we keep and why, under every form. */
+/* What we keep and why, under every form: a sentence people read before they give their email, so the second ink
+   (text-3 is never a sentence). */
 .s-capture__privacy {
   margin: 0;
   padding-inline-start: var(--s-capture-indent);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
 }

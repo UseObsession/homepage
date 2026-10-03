@@ -205,26 +205,39 @@ function ForWho({ items }: { items: Recipe['forWho'] }) {
   )
 }
 
+/* Under a 600px frame (RecipePage.css) each row stacks: its name, then every column under its own small label, so
+   the payoff column is never scrolled off screen; --fit drops the system's sideways scroll and sticky first column.
+   The labels are drawn for the eye only (the column heads still name each cell), and the roles keep the table's
+   meaning where a browser drops it for a table no longer laid out as one. */
 function Table({ table }: { table: NonNullable<Recipe['table']> }) {
   return (
     <div className="ob-table-wrap s-rp-table" tabIndex={0} role="region" aria-label={table.heading}>
-      <table className="ob-table">
-        <thead>
-          <tr>
+      <table className="ob-table ob-table--fit" role="table">
+        <thead role="rowgroup">
+          <tr role="row">
             <td aria-hidden="true" />
             {table.cols.map((c) => (
-              <th key={c} scope="col">
+              <th key={c} scope="col" role="columnheader">
                 {c}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody role="rowgroup">
           {table.rows.map((row) => (
-            <tr key={row.label}>
-              <th scope="row">{row.label}</th>
+            <tr key={row.label} role="row">
+              <th scope="row" role="rowheader">
+                {row.label}
+              </th>
               {row.values.map((v, i) => (
-                <td key={i}>{v}</td>
+                <td key={i} role="cell">
+                  {table.cols[i] && (
+                    <span className="s-rp-table__col" aria-hidden="true">
+                      {table.cols[i]}
+                    </span>
+                  )}
+                  {v}
+                </td>
               ))}
             </tr>
           ))}

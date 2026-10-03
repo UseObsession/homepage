@@ -166,9 +166,21 @@
    spread -40px, blur 100px) reached about 100px above the stage's top edge and cut a box into the spot round the
    heading: 1 level under the page at 1:1, a hard contour at 8x gain. On Home's ink hero the cast drops 120px instead,
    so it starts 80px under the stage's top edge and never reaches the light above it (measured: the page's own level,
-   or lighter, everywhere above the stage). Paper keeps its own warm cast. */
-:root:not(.ob-theme-hybrid) .s-hero:not([data-reader]) .s-hero-console > .s-stage.ob-object {
+   or lighter, everywhere above the stage). Paper keeps its own warm cast. Every hero object under the spot takes the same
+   cast (a recipe's screen, a use case's flow, the /recipes picker), not only Home's stage. */
+:root:not(.ob-theme-hybrid) .s-hero:not([data-reader]) .s-hero-console > .ob-object {
   --s-obj-cast: 0 0 0 1px rgb(0 0 0 / .6), 0 120px 100px -40px rgb(0 0 0 / .9), 0 0 100px -30px rgb(var(--ob-glow-rgb, 237 235 229) / .1);
+}
+
+/* D3. On paper a glossy black object that fades in over the hero's 800ms spends most of it as a grey slab. Here it is
+   solid by 30% of the entrance (240ms) and keeps rising, so it arrives black. On ink the same fade reads as light coming
+   up, so ink keeps the system's entrance. Replays keep the system's -r twin. */
+@keyframes s-object-in {
+  from { opacity: 0; translate: var(--ob-enter-x) var(--ob-enter-y); scale: var(--ob-enter-scale); }
+  30% { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root.ob-theme-hybrid .ob-anim-hero-object:not(.is-replay) { animation-name: s-object-in; }
 }
 
 /* ---- Grounds --------------------------------------------------------------------------------------------------------
@@ -202,6 +214,27 @@
   --s-chapter-light: color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent);
 }
 
+/* D1. On an ink page the ink chapter is a lit room, not a shade of the page. Mixed from the page's own ink (#080807) it
+   measured 1.02:1 and melted into the sections round it, so dark ran on 2 grounds. On ink it stands between a card's
+   face and the raised face (#151514, 1.10:1 on the page, a step above the alternate ground), and its top light comes
+   down to keep every floor at the light's peak: text 13.9, read 12.2, text-2 8.0, text-3 5.6, line-ui 3.05. The
+   reader's light (P5) takes 24% there, its ceiling on this ground (36% would drop line-ui to 2.85); worst of the 5 hues:
+   read 12.1, text-3 5.55, line-ui 3.04. The final call keeps its ring glow and no top light, so it reads as a lit room
+   above the darker footer. Paper does not change: there :root carries .ob-theme-hybrid. */
+:root:not(.ob-theme-hybrid) [data-tone="ink"] {
+  --s-ground-ink: color-mix(in oklab, var(--ob-surface) 50%, var(--ob-surface-raised));
+}
+:root:not(.ob-theme-hybrid) [data-tone="ink"]:not(.s-final, [data-reader]) { --s-chapter-light: rgb(var(--ob-glow-rgb) / .045); }
+:root:not(.ob-theme-hybrid) [data-tone="ink"][data-reader] {
+  --s-chapter-light: color-mix(in srgb, var(--s-accent-glow) 24%, transparent);
+}
+/* Anything drawn in --ob-surface inside the lifted chapter would sink below it, so it reads the hover face (#1F1F1C): a
+   use case's answer, the hub's pills and ring. Text 13.9, read 12.2, text-2 8.0, text-3 5.6; at the top of their sheen
+   12.2, 10.7, 7.1 and 4.9 (no control edge sits on them). */
+:root:not(.ob-theme-hybrid) [data-tone="ink"] :is(.s-st-answer, .s-ri-flow__pill, .s-ri-flow__mark) {
+  --ob-surface: var(--ob-surface-hover);
+}
+
 /* The paper break: on ink it is the page's 1 sheet of paper. On paper the same section stands on stone, so the beat
    that flips on ink (the money, the real run) still has its own ground. */
 [data-tone="paper"] { background-color: var(--ob-bg); }
@@ -232,6 +265,7 @@
 .s-notice__body,
 .s-out-label,
 .s-uses__moment,
+.s-uses__why,
 .s-foot__tagline,
 .s-blog-lead__dek,
 .s-art-dek,
@@ -312,8 +346,9 @@
 /* ---- G4. On ink, a card on the alternate ground steps up a surface (from th/lit) -----------------------------------
    On ink the alternate ground is --ob-surface itself, so a card drawn in it would sink. It reads the raised face
    instead: on #181816 text 14.9:1, read 13.1:1, text-2 8.7:1, text-3 6.0:1, line-ui 3.3:1. Any card drawn in
-   --ob-surface on an alternate ground joins this list. Paper keeps its white card on stone. */
-:root:not([data-theme="light"]) [data-tone="alt"] :is(.ob-table-wrap, .s-so-card, .s-st-side.is-ours) {
+   --ob-surface on an alternate ground joins this list. Paper keeps its white card on stone. (A use case's "With
+   Obsession" side left the list with D2: its Split now stands on the page's own ground.) */
+:root:not([data-theme="light"]) [data-tone="alt"] :is(.ob-table-wrap, .s-so-card) {
   --ob-surface: var(--ob-surface-raised);
 }
 
@@ -344,7 +379,11 @@
     --s-chapter-light: transparent;
     --s-spot: transparent;
   }
-  [data-tone="ink"][data-reader] { --s-chapter-light: transparent; }
+  [data-tone="ink"][data-reader],
+  :root:not(.ob-theme-hybrid) [data-tone="ink"]:not(.s-final, [data-reader]),
+  :root:not(.ob-theme-hybrid) [data-tone="ink"][data-reader] { --s-chapter-light: transparent; }
+  /* The final call's ring glow goes with the rest: every light goes. */
+  .s-final__mark::before { display: none; }
 }
 
 @media (forced-colors: active) {
@@ -356,4 +395,8 @@
   .s-hero::after { display: none; }
   .s-gap[data-tone="ink"] .s-gap-panel { background: Canvas; border: 1px solid CanvasText; }
   .s-gap[data-tone="ink"] :is(.s-gap-col--obs, .s-gap-obs, .s-gap-today, .s-gap-col--today) { color: CanvasText; }
+  /* An app screen is a picture of the product (role=img, named by its aria-label): forced colours would strip its
+     fills, ticks, chips and tracks and leave text on Canvas, so it keeps its own colours, inside the object's outline.
+     Site level, because src/screens is synced from the screens' owner. */
+  .ilwrap .appx { forced-color-adjust: none; }
 }

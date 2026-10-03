@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Link } from 'react-router-dom'
+import { AppScreen } from '../components/AppScreen'
 import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
@@ -11,7 +12,8 @@ import '../components/sections/Hero.css'
 import './Recipes.css'
 
 /* /recipes: every recipe, grouped by the 5 jobs (site.ts recipesPage). The centred hero, with the jobs as quiet jump
-   links; then 1 row per job, its name and line on the left and its recipes as link rows on the right (the same rows as
+   links and the product's Recipes picker under them (the page's 1 product object: glossy black on paper, lit on ink,
+   like every other page's hero object); then 1 row per job, its name and line on the left and its recipes as link rows on the right (the same rows as
    every page's Recipes section); then where the companies come from and where the proof goes; questions; the final
    call. Nothing moves but the hero's load sequence and the rows' hover. */
 
@@ -56,6 +58,9 @@ export function Recipes() {
                 ))}
               </ul>
             </nav>
+          </div>
+          <div className="s-hero-console s-hero-object s-ri-hero__screen ob-anim-hero-object">
+            <AppScreen name="templates" workspace="company" />
           </div>
         </div>
       </section>

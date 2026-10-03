@@ -277,7 +277,7 @@
   margin: 0;
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
 }
 
 /* The watch: 48 hours as a track with nothing on it. The fill sweeps across once, from the moment the shopper left. */
@@ -347,7 +347,6 @@
   color: var(--ob-text-2);
   text-wrap: pretty;
 }
-.s-so-nothing__why { color: var(--ob-text-3); }
 
 /* The reminder drafted from the evidence: behind a button, never sent. */
 .s-so-draft { display: grid; justify-items: start; gap: var(--ob-space-16); }
@@ -378,7 +377,7 @@
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
 }
 
 @media (max-width: 519.98px) {
