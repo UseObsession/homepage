@@ -46,7 +46,7 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents that mystery shop every client store at once.',
+    headline: 'AI agents that mystery shop every client and prospect store at once.',
     sub: 'Clients can’t see what the retainer buys, and nobody has time to shop every store. Declared AI agents shop each one as a real customer. You get the findings and the fix, in your brand.',
     example: {
       chips: ['Example: an ecommerce agency', 'Its book: 15 clients and 5 prospects', 'Prospects, clients and renewals'],
