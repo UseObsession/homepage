@@ -231,7 +231,7 @@ export const page: Page = {
       },
       {
         tab: 'Grow every client',
-        moment: 'The first of the month. Some clients need more from you, and nobody has the proof to hand.',
+        moment: '1 October, 09:00. Your checks show Homeware’s new text subscribers get 0 texts in their first 7 days, and nobody has turned that into a proposal.',
         outcome: 'A proposal for the next service each client needs, with the proof from your own checks.',
         line: 'Agents read the checks you already run for each client, match every gap to a service you sell, and draft the proposal with its price. It goes from your own thread after your OK.',
         whyOnly: 'The proof is the client’s own customer journey, checked by an agent with its own inbox and phone, so the proposal opens on what their customers get.',

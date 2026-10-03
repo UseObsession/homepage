@@ -6,8 +6,8 @@ import type { Capture, Recipe } from '../types'
    review; Outdoor gear, Ines P., onboarded, asked Mon, then a reference call on Tue 27 Oct; Pet food, Joel T.,
    delivered, a 3 star review; Candles, Hana W., onboarded, a case study approved; Garden centre, Kofi A., ticket
    solved, asked Mon. Reviews this month go from 13 to 14 (8 five star, 3 four, 2 three, 1 two, 0 one), the ask from 41
-   sent to 42. The ask: "How did we do? Leave us a review, good or bad.", to existing customers, from
-   hi@company.example, approved by AM. "Everyone asked the same way". The toast: a new 5 star review from Dental
+   sent to 42. The ask: "How did we do? Leave us a review, good or bad. Sent by our AI agent.", from
+   hi@company.example, approved by AM. "Every existing customer asked the same way". The toast: a new 5 star review from Dental
    group). Never a skincare customer here: the 1 real run is a skincare store, and on /marketing the 2 sit together.
    On the page AM is "you".
    The job (Seun, 3 Oct): every real customer asked the same way at the right moment, sent from the brand's own channel
@@ -87,7 +87,7 @@ export const recipe: Recipe = {
     report: 'Every ask and answer, with a weekly note',
     kit: ['Agent ID, declared as AI', 'Orders and tickets, read only', 'Your own address', 'The ask you approved'],
     events: [
-      { time: '1 Oct, 09:00', text: 'You approve the ask once: “How did we do? Leave us a review, good or bad.” The same link for every existing customer, from hi@company.example.' },
+      { time: '1 Oct, 09:00', text: 'You approve the ask once: “How did we do? Leave us a review, good or bad. Sent by our AI agent.” The same link for every existing customer, from hi@company.example.' },
       { time: 'Mon 10:05', text: 'Outdoor gear finishes onboarding and Garden centre’s ticket is solved. Ines and Kofi get the same ask.' },
       { time: 'Tue 16:20', text: 'Dental group’s ticket is solved. Ravi gets the same ask.' },
       { time: 'Wed 11:30', text: 'Ines replies that she’d happily talk to a buyer. The booking is drafted for your OK, and the call is set for Tue 27 Oct.' },

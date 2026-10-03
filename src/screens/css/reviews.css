@@ -98,6 +98,8 @@
 .app-reviews .rq-ah>.rq-stk{margin-left:auto;justify-items:end;font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
 .app-reviews .rq-q{padding:5px 10px;border-radius:6px;font:400 11px/15px var(--sans);color:var(--fg);
   background:rgb(var(--fg-rgb) / .04);box-shadow:2px 0 0 var(--line-3) inset}
+/* every ask says an AI agent sent it */
+.app-reviews .rq-sg{display:block;color:var(--fg-2)}
 .app-reviews .rq-dl{display:grid;margin:0}
 .app-reviews .rq-dl div{display:flex;align-items:baseline;height:20px;box-shadow:0 1px 0 var(--line) inset;white-space:nowrap}
 .app-reviews .rq-dl dt{width:36px;flex:none;font:400 10.5px/20px var(--sans);color:var(--fg-3)}

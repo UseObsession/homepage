@@ -61,7 +61,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that find the next service every client needs.',
-    sub: 'Each month a declared AI agent reads the checks you already run for every client and finds what each one is missing. It drafts the proposal with your price and the proof, and it goes from your own thread after your OK.',
+    sub: 'Each month a declared AI agent reads every check you run on your clients with their OK, from mystery shops to AI checkout tests, and finds what each one is missing. It drafts the proposal with your price and the signed proof, and it goes from your own thread after your OK.',
     screen: 'upsells',
     capture: {
       kind: 'waitlist',

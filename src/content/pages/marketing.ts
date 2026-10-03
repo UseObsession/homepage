@@ -9,9 +9,9 @@ import type { Page } from '../types'
    function in the order a
    customer meets them: win (Brand and AI search, Product marketing, Demand generation), convert (Performance,
    Partnerships, Ecommerce), keep (Lifecycle, Retention), each with its own screen and the recipe it runs on >
-   outcomes, 1 per stage plus the hours back > every team: the same 8 functions in the same order, each in its own
-   words with all its recipes > recipes > the real September store check, ending on "your free report comes back the
-   same way" > questions (red lines; the free report answer says what's in it, the final says how it runs) > the free
+   outcomes, 1 per stage plus the hours back > every team (which carries the recipes): the same 8 functions in the
+   same order, each in its own words with all its recipes, so the page never lists them twice > the real September
+   store check, ending on "your free report comes back the same way" > questions (red lines; the free report answer says what's in it, the final says how it runs) > the free
    store mystery shop (a store you run, or one with the owner's OK).
    Screens, none twice: how it works compose, templates, kit, run; use cases listings, inbox, inbound, adcheck,
    partners, checkout, campaign, reviews. The hero runs are words only (a B2B webinar, rival prices, your own cancel
@@ -24,7 +24,7 @@ import type { Page } from '../types'
    public pages, the ads they run in public, the site's chat bot), never a person; rival trials need no card, never
    reply and close the moment a rep writes or calls; your own ads are never clicked (an agent opens each ad's page,
    never the ad), and pausing, restarting or changing 1 waits for your OK; partner checks read links, codes and
-   creative only, never partner prices, and every note goes from your own team after your OK; every customer is asked
+   banners only, never partner prices, and every note goes from your own team after your OK; every customer is asked
    for a review the same way, with the same review link, good or bad, from your own address;
    launch checks, lead leaks and checkout tests run on your own journeys only.
    Up-to-50 rule: up to $2,870 a week saved is Ad landing check's example (Ad 4 at $410 a day, 7 × $410; "saved",
@@ -49,7 +49,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your marketing team win, convert and keep customers.',
-    sub: 'Declared AI agents, each with its own inbox, phone number and browser, go through your ads, partner links, launches and checkout as a customer would, and sign up to every rival on your list, continuously. Every step signed.',
+    sub: 'Declared AI agents, each with its own inbox, phone number and browser, go through your ads, partner links, launches and checkout as a customer would, ask every customer for a review, and sign up to every rival on your list, continuously. Every step signed.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -266,7 +266,7 @@ export const page: Page = {
         tab: 'Partnerships',
         moment: 'Monday, 07:12. A deals site still shows your summer sale. Its code, SUMMER20, ended on 31 Aug.',
         outcome: 'Every partner’s link, code and banner tried as a customer each week, with a note ready for any that’s out of date.',
-        line: 'An agent visits each partner’s page, follows your link to your store and tries their code in your basket, stopping before payment. Links, codes and creative only, never partner prices.',
+        line: 'An agent visits each partner’s page, follows your link to your store and tries their code in your basket, stopping before payment. Links, codes and banners only, never partner prices.',
         whyOnly: 'Partner reports show the sales that came through. Only a customer’s visit shows the code that turned the rest away.',
         recipe: 'partners',
         screen: 'partners',
@@ -293,7 +293,7 @@ export const page: Page = {
         tab: 'Retention',
         moment: 'Friday, 17:00. 42 customers got an order, finished onboarding or had a ticket solved this month, and nobody has asked them how it went.',
         outcome: 'Every customer asked the same way at their moment, with 1 review link for all, and every complaint passed to your team the same day.',
-        line: 'When an order is delivered, onboarding is done or a ticket is solved, an agent asks that customer “How did we do? Leave us a review, good or bad.” from your own address, in words your team approved.',
+        line: 'When an order is delivered, onboarding is done or a ticket is solved, an agent asks that customer “How did we do? Leave us a review, good or bad. Sent by our AI agent.” from your own address, in words your team approved.',
         whyOnly: 'Agents watch for each moment in the tools you connect, so every customer is asked, including the ones nobody would have remembered.',
         recipe: 'reviews',
         screen: 'reviews',
@@ -312,7 +312,7 @@ export const page: Page = {
   },
 
   kinds: {
-    heading: 'Each team in marketing gets agents for its own job.',
+    heading: 'From an AI answer to a review request, every team’s recipes are ready to run.',
     label: 'Your team',
     items: [
       {
@@ -363,27 +363,6 @@ export const page: Page = {
     ],
   },
 
-  recipes: {
-    heading: 'From an AI answer to a review request, a recipe is ready to run.',
-    ids: [
-      'listings',
-      'competitor',
-      'email-sms',
-      'trial',
-      'ads',
-      'prices',
-      'speed',
-      'adcheck',
-      'partners',
-      'checkout',
-      'mystery',
-      'audit',
-      'delivery',
-      'reviews',
-      'saves',
-    ],
-  },
-
   proof: {
     heading: 'On a real store, 1 test customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
     line: 'A skincare store in September 2026, name hidden: 4 test customers, every inbox watched for 48 hours, 15 screenshots. The £40 gift set was left in the basket at 02:57 and the £21 deodorant at checkout at 03:11. A free report on your own store comes back the same way.',
@@ -399,11 +378,7 @@ export const page: Page = {
       },
       {
         q: 'What will an agent never do at a rival?',
-        a: 'Buy, reply, book a call, or ask a person anything. It uses only what any customer can: sign ups, newsletters, text opt ins, public pages, the ads they run in public and the site’s chat bot. If a person picks up the chat, the step ends. Nothing behind a login it wasn’t given.',
-      },
-      {
-        q: 'Can it sign up to a rival’s free trial?',
-        a: 'Only when no card is needed. It says it’s AI, never replies, and closes the trial the moment a rep writes or calls.',
+        a: 'Buy, reply, book a call, or ask a person anything. It uses only what any customer can: sign ups, newsletters, text opt ins, public pages, the ads they run in public and the site’s chat bot. If a person picks up the chat, the step ends. Nothing behind a login it wasn’t given. It starts a rival’s free trial only when no card is needed, and closes it the moment a rep writes or calls.',
       },
       {
         q: 'Does it click our ads?',
@@ -416,10 +391,6 @@ export const page: Page = {
       {
         q: 'Does it only ask happy customers for reviews?',
         a: 'No. Every customer is asked the same way at the same kind of moment, good experience or bad, from your own address, with the same review link for everyone.',
-      },
-      {
-        q: 'Which rivals can we track?',
-        a: 'Any company you name, as many as you add. It doesn’t need to be in anyone’s library first, and every rival on your list runs at once, continuously.',
       },
       {
         q: 'Which channels does it cover?',
