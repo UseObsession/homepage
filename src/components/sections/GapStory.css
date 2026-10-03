@@ -1,0 +1,718 @@
+/* The gap's picture (sections/GapStory.tsx). Site classes start s-gs.
+   2 worlds on purpose. Obsession's is the ink chapter it sits in, in design system tokens only: the days are quiet tiles
+   of 1 calendar, the agent's steps lit product objects (.ob-object, styles/tones.css), status the ring, never a hue;
+   people read Geist, and the agent, times and signatures speak Geist Mono. hollin's is another company's: its own paper
+   (Flax), ink (Peat) and 1 blue (Flax flower), an old style serif for its display type and Geist for its interface
+   (content/hollin.ts). Its colours live only on its own surfaces (.s-gs-art, the snapshot), never on a tag or a mark of
+   ours, so its warm paper can never be read as an Obsession status. */
+
+.s-gs {
+  --s-gs-col: var(--ob-space-12);                      /* between days */
+  --s-gs-pad: 12px;                                    /* a day tile's inner edge */
+  --s-gs-ty: 18px;                                     /* the thread's height in its lane: the middle of a step's top line */
+  --s-gs-tile: rgb(var(--ob-sheen-rgb) / .018);
+  --s-gs-thread: rgb(var(--ob-sheen-rgb) / .5);
+  --s-gs-dashed: var(--ob-line-strong);
+  --s-gs-mono: 400 11px/1.4 var(--ob-font-mono);
+  /* hollin (BRAND.md 3): Flax the ground, Peat the ink, Flax flower the 1 accent. Contrast: Peat on Flax 12:1, Peat 68%
+     on Flax 4.75:1, Flax flower on Flax 5.6:1. */
+  --s-gs-flax: #ECE5D8;
+  --s-gs-flax-hi: #F7F5EF;
+  --s-gs-peat: #2A2622;
+  --s-gs-peat-2: #68635C;
+  --s-gs-blue: #3F5B7A;
+  --s-gs-hair: rgb(42 38 34 / .14);
+  --s-gs-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  position: relative;
+  margin: 0 0 var(--ob-space-block, 64px);
+  color: var(--ob-text);
+  font: 400 13.5px/1.45 var(--ob-font-sans);
+}
+:where(.s-gs) p { margin: 0; }
+:where(.s-gs) time { font: var(--s-gs-mono); font-variant-numeric: tabular-nums; color: var(--ob-text-3); white-space: nowrap; }
+.s-gs-ic { display: inline-grid; place-items: center; flex: none; width: 15px; height: 15px; color: var(--ob-text-2); }
+.s-gs-ic svg,
+.s-gs-shot__url svg,
+.s-gs-hp svg:not(.s-gs-wm),
+.s-gs-th--wait svg { fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.s-gs-ic svg { width: 15px; height: 15px; }
+
+/* ---- The grid: 4 days on 1 ruler. Day 0 is wide because it is busy; the 2 waiting days are narrow and empty. -------- */
+.s-gs-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.6fr) minmax(0, .5fr) minmax(0, .5fr) minmax(0, 1.04fr);
+  grid-template-rows: auto 2.75rem auto auto auto auto var(--s-gs-pad);
+  column-gap: var(--s-gs-col);
+}
+.s-gs-site { grid-column: 1 / 3; grid-row: 1; align-self: end; display: flex; align-items: center; gap: var(--ob-space-8); min-width: 0; margin-bottom: var(--ob-space-16); }
+.s-gs-site .ob-tag { flex: none; }
+.s-gs-site__n { font: 400 12.5px/1 var(--ob-font-mono); color: var(--ob-text-2); }
+
+/* The clock, over the last day: the day, big, and its time. Each moment of the story is 1 line; the last is the rest
+   state. */
+.s-gs-clock { grid-column: 3 / 5; grid-row: 1; justify-self: end; align-self: end; display: grid; margin-bottom: var(--ob-space-12); }
+.s-gs-clock__t { grid-area: 1 / 1; display: flex; align-items: baseline; justify-content: flex-end; gap: 10px; opacity: 0; }
+.s-gs-clock__t[data-last] { opacity: 1; }
+.s-gs-clock__t b { font: 600 32px/1 var(--ob-font-sans); letter-spacing: -.04em; color: var(--ob-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-gs-clock__t time { font-size: 12.5px; color: var(--ob-text-2); }
+
+/* The days: 4 tiles of 1 calendar, under both lanes. The day it is now is a shade lighter and carries the square. */
+.s-gs-days { grid-column: 1 / 5; grid-row: 2 / -1; display: grid; grid-template-columns: subgrid; pointer-events: none; }
+.s-gs-days > .s-gs-d0 { grid-column: 1; }
+.s-gs-days > .s-gs-d1 { grid-column: 2; }
+.s-gs-days > .s-gs-d2 { grid-column: 3; }
+.s-gs-days > .s-gs-d3 { grid-column: 4; }
+.s-gs-day {
+  position: relative;
+  grid-row: 1;
+  border-radius: var(--ob-radius-md);
+  background: var(--s-gs-tile);
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .035) inset;
+  color: var(--ob-text-3);
+}
+.s-gs-day::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgb(var(--ob-sheen-rgb) / .045), rgb(var(--ob-sheen-rgb) / .02));
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .08) inset;
+  opacity: 0;
+}
+.s-gs-day[data-last] { color: var(--ob-text); }
+.s-gs-day[data-last]::before { opacity: 1; }
+.s-gs-day__n {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px var(--s-gs-pad) 0;
+  font: 500 12px/1.2 var(--ob-font-mono);
+  white-space: nowrap;
+}
+.s-gs-now { flex: none; width: 7px; height: 7px; border-radius: 1.5px; background: var(--ob-text); opacity: 0; }
+.s-gs-day[data-last] .s-gs-now { opacity: 1; }
+/* A day's own name inside a lane: only the phone layout, where the ruler turns into the thread, shows it. */
+.s-gs-dl { display: none; }
+
+/* ---- The lanes ----------------------------------------------------------------------------------------------------- */
+.s-gs-lab {
+  grid-column: 1 / -1;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-8) var(--ob-space-12);
+  padding-inline: var(--s-gs-pad);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+}
+.s-gs-lab--out { grid-row: 3; margin: 2px 0 var(--ob-space-8); color: var(--ob-text-2); }
+.s-gs-lab--in { grid-row: 5; margin: var(--ob-space-24) 0 var(--ob-space-16); color: var(--ob-text); }
+.s-gs-lab__n { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.s-gs-lab__n .s-mark { flex: none; }
+.s-gs-agent { display: inline-flex; align-items: center; gap: 7px; font: var(--s-gs-mono); letter-spacing: 0; color: var(--ob-text-2); }
+/* The agent's avatar: its own mark on a bone square, as in the app screens. */
+.s-gs-av { display: inline-grid; place-items: center; flex: none; width: 16px; height: 16px; border-radius: 5px; background: var(--ob-text); color: var(--ob-bg); }
+.s-gs-av .s-gs-sig { width: 10px; height: 10px; }
+
+.s-gs-lane { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; position: relative; }
+.s-gs-lane--out { grid-row: 4; }
+.s-gs-lane--in { grid-row: 6; }
+.s-gs-lane > .s-gs-d0 { grid-column: 1; }
+.s-gs-lane > .s-gs-d1 { grid-column: 2; }
+.s-gs-lane > .s-gs-d2 { grid-column: 3; }
+.s-gs-lane > .s-gs-d3 { grid-column: 4; }
+.s-gs-cell { position: relative; min-width: 0; padding-inline: var(--s-gs-pad); }
+
+/* ---- The outside: 1 snapshot in a camera's crop marks, the 1 thing it logged, then a dashed line through every day it
+   never saw. Flat on purpose: the snapshot has no material and no light. --------------------------------------------- */
+.s-gs-lane--out .s-gs-cell { display: flex; align-items: center; }
+.s-gs-dashed {
+  flex: 1;
+  align-self: center;
+  min-width: 0;
+  height: 0;
+  margin-right: calc((var(--s-gs-pad) * 2 + var(--s-gs-col)) * -1);
+  border-top: var(--ob-border-hair) dashed var(--s-gs-dashed);
+  transform-origin: 0 50%;
+}
+.s-gs-lane--out .s-gs-d3 .s-gs-dashed { margin-right: 10px; }
+.s-gs-look { position: relative; flex: none; width: 44%; margin: 7px 0 7px 7px; }
+.s-gs-crop {
+  --c: var(--ob-text-3);
+  position: absolute;
+  z-index: 2;
+  inset: -7px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) left top / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) left top / 1px 10px no-repeat,
+    linear-gradient(var(--c), var(--c)) right top / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) right top / 1px 10px no-repeat,
+    linear-gradient(var(--c), var(--c)) left bottom / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) left bottom / 1px 10px no-repeat,
+    linear-gradient(var(--c), var(--c)) right bottom / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) right bottom / 1px 10px no-repeat;
+}
+/* The capture: the address it was taken at, then the page as an image. A hairline frame, a page a little greyed by being
+   a picture of a page, no shadow. */
+.s-gs-shot { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
+.s-gs-shot__url {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 17px;
+  padding: 0 8px;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+  font: 400 9px/1 var(--ob-font-mono);
+  color: var(--ob-text-3);
+}
+.s-gs-shot__url svg { width: 9px; height: 9px; flex: none; }
+.s-gs-look--page .s-gs-hp { filter: saturate(.8) brightness(.96); }
+
+/* What the outside logged: its 1 event, on its line. A tag of ours, in our ink. */
+.s-gs-logged { display: inline-flex; flex: none; align-items: center; gap: 7px; margin: 0 10px 0 16px; }
+.s-gs-logged__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+  font: 400 11.5px/1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+.s-gs-logged time { font-size: 10.5px; }
+
+.s-gs-tally { font: 400 14px/1.35 var(--ob-font-sans); text-wrap: balance; }
+.s-gs-tally--out { flex: none; align-self: center; color: var(--ob-text-2); }
+.s-gs-tally--in { color: var(--ob-text); font-weight: 500; }
+
+/* ---- hollin's home page, as published ---------------------------------------------------------------------------- */
+.s-gs-wm { display: block; height: 10px; width: auto; aspect-ratio: 2128 / 752; overflow: visible; }
+.s-gs-wm__l { fill: var(--s-gs-peat); }
+.s-gs-wm__dot { fill: var(--s-gs-blue); }
+.s-gs-mono { display: block; flex: none; width: 18px; height: 18px; }
+.s-gs-mono circle { fill: var(--s-gs-peat); }
+.s-gs-mono path { fill: var(--s-gs-flax); }
+.s-gs-ph { display: block; width: 100%; height: 100%; object-fit: cover; background: #DCD3C6; }
+
+.s-gs-hp { display: grid; background: var(--s-gs-flax); color: var(--s-gs-peat); font-family: var(--ob-font-sans); }
+.s-gs-hp__nav { display: flex; align-items: center; gap: 10px; height: 22px; padding: 0 9px; }
+.s-gs-hp__menu { display: none; }
+.s-gs-hp__nav .s-gs-wm { height: 9px; }
+.s-gs-hp__links { display: flex; gap: 8px; font: 500 5.5px/1 var(--ob-font-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--s-gs-peat); }
+.s-gs-hp__icons { display: flex; gap: 5px; margin-left: auto; color: var(--s-gs-peat); }
+.s-gs-hp__icons svg, .s-gs-hp__menu svg { display: block; width: 9px; height: 9px; stroke-width: 1.4; }
+.s-gs-hp__hero { position: relative; aspect-ratio: 8 / 3; overflow: hidden; }
+.s-gs-hp__hero picture { display: block; height: 100%; }
+.s-gs-hp__hero .s-gs-ph { object-position: 50% 60%; }
+.s-gs-hp__copy {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 4px;
+  width: 40%;
+  padding: 0 0 0 11px;
+}
+.s-gs-hp__copy b { font: 400 17px/1 var(--s-gs-serif); letter-spacing: -.01em; color: var(--s-gs-peat); }
+.s-gs-hp__copy i { display: none; }
+.s-gs-hp__btn { margin-top: 3px; padding: 3px 7px; border-radius: 99px; background: var(--s-gs-peat); color: var(--s-gs-flax); font: 500 5.5px/1 var(--ob-font-sans); }
+.s-gs-hp__strip { display: flex; justify-content: center; gap: 10px; padding: 5px 9px; border-bottom: 1px solid var(--s-gs-hair); font: 400 6.5px/1.2 var(--ob-font-sans); color: var(--s-gs-peat-2); white-space: nowrap; }
+.s-gs-hp__strip span:first-child { display: none; }
+.s-gs-hp__strip .is-read { color: var(--s-gs-peat); font-weight: 500; text-decoration: underline dashed var(--s-gs-peat-2); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.s-gs-hp__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 7px 9px 9px; list-style: none; }
+.s-gs-hp__grid li { display: grid; gap: 2px; min-width: 0; }
+.s-gs-hp__grid .s-gs-ph { aspect-ratio: 4 / 3; height: auto; margin-bottom: 2px; }
+.s-gs-hp__grid b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 7px/1.2 var(--s-gs-serif); color: var(--s-gs-peat); }
+.s-gs-hp__grid span { font: 400 6.5px/1.2 var(--ob-font-sans); color: var(--s-gs-peat-2); font-variant-numeric: tabular-nums; }
+
+/* A send dashboard, as your email tool draws it: hairlines, the flow, what it counted. It sits in its day's narrow
+   column, so it is drawn upright. */
+.s-gs-look--dashboard { width: calc(100% - 14px); margin-right: 7px; }
+.s-gs-look--dashboard ~ .s-gs-logged { display: none; }
+.s-gs-dash { display: grid; gap: 6px; padding: 8px 9px 10px; }
+.s-gs-dash__top { display: flex; justify-content: space-between; gap: 6px; padding-bottom: 6px; border-bottom: var(--ob-border-hair) solid var(--ob-line); font: 400 9.5px/1 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-gs-dash__top time { font-size: 9.5px; }
+.s-gs-dash__t { font: 400 12px/1.25 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-gs-dash__row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.s-gs-dash__row b { display: inline-flex; align-items: center; gap: 5px; font: 500 11.5px/1 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-gs-dash__row b i { width: 6px; height: 6px; border-radius: 50%; background: var(--ob-text-3); }
+.s-gs-dash__row span { font: 600 15px/1 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-gs-dash__bars { display: flex; align-items: end; gap: 4px; height: 26px; margin-top: 2px; }
+.s-gs-dash__bars i { flex: 1; height: 100%; border-radius: 2px 2px 0 0; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+.s-gs-dash__bars i:nth-child(1) { height: 40%; }
+.s-gs-dash__bars i:nth-child(2) { height: 62%; }
+.s-gs-dash__bars i:nth-child(3) { height: 54%; }
+.s-gs-dash__bars i:nth-child(4) { height: 80%; }
+
+/* ---- The inside: 1 solid thread through every day, the steps lit on it ------------------------------------------- */
+.s-gs-lane--in .s-gs-cell { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: start; gap: var(--ob-space-12); }
+.s-gs-thread {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: calc(var(--s-gs-col) * -1);
+  top: var(--s-gs-ty);
+  height: var(--ob-border-hair);
+  background: var(--s-gs-thread);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.s-gs-lane--in .s-gs-d3 .s-gs-thread { right: 0; }
+.s-gs-lane--in .s-gs-cell > :not(.s-gs-thread) { position: relative; z-index: 1; }
+/* A step is lit a shade above its day, in both themes (the chapter is ink in both). */
+.s-gs .ob-object { --s-obj-face: var(--ob-surface-hover); }
+
+/* Day 0, lived: the sign up, the welcome email, then the bot, in the order they happened. */
+.s-gs-day0 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr) minmax(0, 1fr); align-items: start; gap: 10px; width: 100%; }
+
+.s-gs-card { width: 100%; min-width: 0; padding: 9px 9px 9px; border-radius: var(--ob-radius-sm); }
+.s-gs-card__h { display: flex; align-items: center; gap: 7px; min-height: 18px; padding-inline: 2px; }
+.s-gs-card__h b { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 13px/18px var(--ob-font-sans); letter-spacing: -.01em; color: var(--ob-text); }
+.s-gs-card__h time { margin-left: auto; font-size: 10.5px; }
+.s-gs-card__h .s-gs-sig { width: 12px; height: 12px; flex: none; }
+
+/* What the agent saw: their surface, inside our object. */
+.s-gs-art { position: relative; margin-top: 9px; overflow: hidden; border-radius: 7px; background: var(--s-gs-flax); color: var(--s-gs-peat); box-shadow: 0 0 0 var(--ob-border-hair) rgb(0 0 0 / .35); }
+
+/* The sign up on hollin.example: the shop's own pop up over its home page, filled in with the agent's own address. */
+.s-gs-join { display: grid; }
+.s-gs-join > * { grid-area: 1 / 1; }
+.s-gs-join__page { position: relative; pointer-events: none; }
+.s-gs-join__page::after { content: ""; position: absolute; inset: 0; background: rgb(42 38 34 / .46); }
+.s-gs-join__page .s-gs-hp__hero { aspect-ratio: 5 / 4; }
+.s-gs-join__page .s-gs-hp__copy { width: 80%; }
+.s-gs-join__page .s-gs-hp__copy b { font-size: 12px; }
+.s-gs-join__page .s-gs-hp__links span:nth-child(n+3) { display: none; }
+.s-gs-join__page .s-gs-hp__strip span:not(:last-child) { display: none; }
+.s-gs-join__ph { display: none; }
+.s-gs-join__modal {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 92%;
+  padding: 13px 8px 10px;
+  border-radius: 6px;
+  background: var(--s-gs-flax-hi);
+  box-shadow: 0 0 0 1px var(--s-gs-hair), 0 16px 30px -12px rgb(20 16 12 / .6);
+  text-align: center;
+}
+.s-gs-join__x { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; background: linear-gradient(45deg, transparent 45%, var(--s-gs-peat-2) 45% 55%, transparent 55%), linear-gradient(-45deg, transparent 45%, var(--s-gs-peat-2) 45% 55%, transparent 55%); }
+.s-gs-join__modal .s-gs-wm { height: 9px; }
+.s-gs-join__t { font: 400 12.5px/1.2 var(--s-gs-serif); color: var(--s-gs-peat); text-wrap: balance; }
+.s-gs-join__f {
+  display: flex;
+  align-items: center;
+  justify-self: stretch;
+  height: 22px;
+  margin-top: 1px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: #FFFDF8;
+  box-shadow: 0 0 0 1px var(--s-gs-hair) inset;
+  overflow: hidden;
+}
+.s-gs-type { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 8.5px/1 var(--ob-font-sans); letter-spacing: -.01em; color: var(--s-gs-peat); }
+.s-gs-join__go { display: grid; justify-self: stretch; }
+.s-gs-join__go > span { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; gap: 5px; height: 22px; border-radius: 4px; font: 500 8.5px/1 var(--ob-font-sans); }
+.s-gs-join__btn { background: var(--s-gs-peat); color: var(--s-gs-flax); opacity: 0; }
+.s-gs-join__ok { color: var(--s-gs-peat-2); }
+.s-gs-join__ok i { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--s-gs-peat); }
+.s-gs-join__ok i::after { content: ""; position: absolute; left: 3.1px; top: 1.6px; width: 2px; height: 4px; border: solid var(--s-gs-flax); border-width: 0 1.2px 1.2px 0; rotate: 45deg; }
+
+/* The agent's pointer: our ink on their page, so it reads as the visitor, not the shop. */
+.s-gs-cursor { position: absolute; z-index: 3; right: 7%; bottom: -13px; display: flex; align-items: flex-start; gap: 1px; pointer-events: none; }
+.s-gs-cursor svg { width: 10px; height: 13px; flex: none; fill: var(--ob-ink, #121211); stroke: var(--ob-bone, #EDEBE5); stroke-width: 1; stroke-linejoin: round; filter: drop-shadow(0 1px 1.5px rgb(0 0 0 / .35)); }
+.s-gs-cursor .s-gs-av { width: 14px; height: 14px; margin-top: 9px; border-radius: 4px; background: var(--ob-ink, #121211); color: var(--ob-bone, #EDEBE5); box-shadow: 0 0 0 1px rgb(237 235 229 / .5), 0 2px 6px -2px rgb(0 0 0 / .45); }
+.s-gs-cursor .s-gs-av .s-gs-sig { width: 9px; height: 9px; }
+
+/* The welcome email, in the agent's own inbox: who sent it (our inbox's line), then their email. */
+.s-gs-from { display: flex; align-items: center; gap: 7px; margin: 10px 2px 0; }
+.s-gs-from .s-gs-mono { width: 20px; height: 20px; }
+.s-gs-from .s-gs-mono circle { fill: var(--s-gs-flax); }
+.s-gs-from .s-gs-mono path { fill: var(--s-gs-peat); }
+.s-gs-from__n { display: grid; min-width: 0; }
+.s-gs-from__n b { font: 500 12px/1.2 var(--ob-font-sans); color: var(--ob-text); }
+.s-gs-from__n span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 9.5px/1.3 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-gs-from__dot { width: 6px; height: 6px; margin-left: auto; border-radius: 50%; background: var(--ob-text); opacity: 0; }
+.s-gs-from__s { margin: 6px 2px 0; font: 400 12px/1.35 var(--ob-font-sans); color: var(--ob-text-2); text-wrap: pretty; }
+.s-gs-mail { display: grid; justify-items: center; gap: 7px; padding: 11px 10px 11px; text-align: center; }
+.s-gs-mail .s-gs-wm { height: 10px; margin-bottom: 1px; }
+.s-gs-mail__ph { aspect-ratio: 8 / 3; height: auto; border-radius: 2px; }
+.s-gs-mail__h { margin-top: 2px; font: 400 16px/1.1 var(--s-gs-serif); letter-spacing: -.01em; color: var(--s-gs-peat); }
+.s-gs-mail__b { max-width: 26ch; font: 400 8.5px/1.45 var(--ob-font-sans); color: var(--s-gs-peat-2); text-wrap: balance; }
+.s-gs-mail__go { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 1px; }
+.s-gs-code { padding: 4px 7px; border-radius: 4px; border: 1px dashed var(--s-gs-blue); color: var(--s-gs-blue); font: 500 8.5px/1 var(--ob-font-mono); letter-spacing: .04em; }
+.s-gs-mail__btn { padding: 5px 8px; border-radius: 4px; background: var(--s-gs-peat); color: var(--s-gs-flax); font: 500 8px/1 var(--ob-font-sans); white-space: nowrap; }
+
+/* The site's chat, open over the shirt's page: their bot, declared as one; the agent's question, signed as AI. The promise
+   is marked in our ink: it is the line the agent will hold them to. */
+.s-gs-chat { padding-bottom: 8px; }
+.s-gs-pdp { display: flex; align-items: center; gap: 8px; padding: 7px 8px 12px; }
+.s-gs-pdp .s-gs-ph { width: 30px; height: 30px; border-radius: 3px; }
+.s-gs-pdp > span { display: grid; gap: 1px; }
+.s-gs-pdp b { font: 400 11px/1.2 var(--s-gs-serif); color: var(--s-gs-peat); }
+.s-gs-pdp > span > span { font: 400 9px/1.2 var(--ob-font-sans); color: var(--s-gs-peat-2); font-variant-numeric: tabular-nums; }
+.s-gs-chat__panel {
+  margin: -5px 7px 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--s-gs-flax-hi);
+  box-shadow: 0 0 0 1px var(--s-gs-hair), 0 10px 22px -10px rgb(42 38 34 / .45);
+}
+.s-gs-chat__top { display: flex; align-items: center; gap: 7px; padding: 7px 8px; background: var(--s-gs-peat); color: var(--s-gs-flax); }
+.s-gs-chat__top .s-gs-mono circle { fill: var(--s-gs-flax); }
+.s-gs-chat__top .s-gs-mono path { fill: var(--s-gs-peat); }
+.s-gs-chat__top > span { display: grid; min-width: 0; }
+.s-gs-chat__top b { font: 500 10.5px/1.2 var(--ob-font-sans); }
+.s-gs-chat__top span span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 8px/1.3 var(--ob-font-sans); color: rgb(236 229 216 / .72); }
+.s-gs-chat__log { display: grid; gap: 7px; padding: 8px 8px 9px; }
+.s-gs-chat__me { display: grid; justify-items: end; gap: 3px; }
+.s-gs-chat__who { font: 400 7.5px/1 var(--ob-font-mono); color: var(--s-gs-peat-2); }
+.s-gs-bub { display: block; max-width: 92%; padding: 5px 8px 6px; font: 400 10.5px/1.38 var(--ob-font-sans); text-wrap: pretty; }
+.s-gs-bub--me { border-radius: 9px 9px 3px 9px; background: var(--s-gs-blue); color: var(--s-gs-flax); }
+.s-gs-chat__bot { position: relative; display: grid; justify-items: start; min-height: 22px; }
+.s-gs-bub--bot { border-radius: 9px 9px 9px 3px; background: var(--s-gs-flax); color: var(--s-gs-peat); }
+.s-gs-bub--bot mark { padding: 0 1px; border-radius: 2px; background: rgb(18 18 17 / .1); color: var(--ob-ink, #121211); font-weight: 600; box-shadow: 0 1.5px 0 var(--ob-ink, #121211); }
+.s-gs-typing { position: absolute; left: 8px; top: 50%; translate: 0 -50%; display: flex; gap: 3px; padding: 6px 8px; border-radius: 9px 9px 9px 3px; background: var(--s-gs-flax); opacity: 0; }
+.s-gs-typing i { width: 4px; height: 4px; border-radius: 50%; background: var(--s-gs-peat-2); }
+.s-gs-chat__in { padding: 6px 8px; border-top: 1px solid var(--s-gs-hair); font: 400 8.5px/1.2 var(--ob-font-sans); color: rgb(42 38 34 / .45); }
+
+/* The bag on hollin.example, open over the item's page, the agent's 1 item left in it. Nothing is bought. */
+.s-gs-bag { padding-bottom: 8px; }
+.s-gs-bag__panel { display: grid; gap: 8px; margin: -5px 7px 0; padding: 10px 10px 10px; border-radius: 8px; background: var(--s-gs-flax-hi); box-shadow: 0 0 0 1px var(--s-gs-hair), 0 10px 22px -10px rgb(42 38 34 / .45); }
+.s-gs-bag__h { display: flex; align-items: baseline; justify-content: space-between; font: 400 13px/1.2 var(--s-gs-serif); }
+.s-gs-bag__h span { font: 400 8.5px/1 var(--ob-font-sans); color: var(--s-gs-peat-2); }
+.s-gs-bag__item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-block: 1px solid var(--s-gs-hair); }
+.s-gs-bag__item .s-gs-ph { width: 38px; height: 38px; border-radius: 3px; }
+.s-gs-bag__item > span { display: grid; gap: 2px; min-width: 0; }
+.s-gs-bag__item b { font: 400 11px/1.2 var(--s-gs-serif); }
+.s-gs-bag__item span span { font: 400 8.5px/1 var(--ob-font-sans); color: var(--s-gs-peat-2); }
+.s-gs-bag__item > b, .s-gs-bag__sub b { margin-left: auto; font: 500 10px/1 var(--ob-font-sans); font-variant-numeric: tabular-nums; }
+.s-gs-bag__sub { display: flex; align-items: baseline; font: 400 9.5px/1 var(--ob-font-sans); color: var(--s-gs-peat); }
+.s-gs-bag__note { padding: 5px 7px; border-radius: 4px; background: var(--s-gs-flax); font: 400 8.5px/1.3 var(--ob-font-sans); color: var(--s-gs-peat-2); }
+.s-gs-bag__btn { display: grid; place-items: center; height: 24px; border-radius: 4px; background: var(--s-gs-peat); color: var(--s-gs-flax); font: 500 9px/1 var(--ob-font-sans); }
+
+/* A quiet day: the inbox checked, nothing in it. What never arrived is drawn as an outline, not an object. The tile
+   stands on its day's own ground, so the thread does not show through it. */
+.s-gs-wait {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 6px;
+  width: 100%;
+  padding: 12px 10px 11px;
+  border-radius: var(--ob-radius-sm);
+  background: linear-gradient(var(--s-gs-tile), var(--s-gs-tile)), var(--s-ground-ink, var(--ob-bg));
+  outline: var(--ob-border-hair) dashed var(--ob-line-ui);
+  outline-offset: -1px;
+}
+.s-gs-wait > .s-gs-sig { width: 13px; height: 13px; flex: none; }
+.s-gs-wait__t { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13px; line-height: 1.25; color: var(--ob-text-2); }
+.s-gs-wait__t .s-gs-ic { width: 13px; height: 13px; color: var(--ob-text-3); }
+.s-gs-wait__t .s-gs-ic svg { width: 13px; height: 13px; }
+
+/* The finding: the 1 step that needs you. A brighter rim, the hollow square. */
+.s-gs-find { width: 100%; min-width: 0; padding: 10px 12px 12px; border-radius: var(--ob-radius-sm); }
+.s-gs-find::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .34) inset; pointer-events: none; }
+.s-gs-find__h { display: flex; align-items: flex-start; gap: 9px; }
+.s-gs-find__h .s-gs-sig { width: 15px; height: 15px; flex: none; margin-top: 2px; }
+.s-gs-find__h b { font: 500 14.5px/1.35 var(--ob-font-sans); letter-spacing: -.012em; color: var(--ob-text); text-wrap: pretty; }
+.s-gs-find__m { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 10px; margin-top: 8px; padding-left: 24px; }
+.s-gs-find__m span { font-size: 12.5px; color: var(--ob-text-2); }
+
+/* ---- The receipts: each step drops 1 on the pile, with its evidence in miniature. The newest lies in front and shows
+   its signature; the older ones show their top edge: what, when, signed. --------------------------------------------- */
+.s-gs-end { display: grid; gap: 10px; width: 100%; min-width: 0; padding-top: 2px; }
+.s-gs-pile { --s-gs-strip: 24px; --s-gs-slip: 50px; position: relative; height: calc((var(--n, 6) - 1) * var(--s-gs-strip) + var(--s-gs-slip)); }
+/* Receipts are paper: the bone sheet's own inks (styles/tones.css G3), so the proof is the 1 lit thing in the picture. */
+.s-gs-slip {
+  position: absolute;
+  inset: calc(var(--i) * var(--s-gs-strip)) 0 auto;
+  z-index: var(--i);
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 11px;
+  grid-template-rows: var(--s-gs-strip) auto;
+  align-content: start;
+  align-items: center;
+  column-gap: 8px;
+  height: var(--s-gs-slip);
+  padding: 0 9px;
+  border-radius: 7px;
+  background: var(--s-sheet, var(--ob-bone));
+  color: var(--s-sheet-ink, var(--ob-ink));
+  box-shadow:
+    0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .2),
+    0 -1px 0 rgb(0 0 0 / .14) inset,
+    0 -6px 14px -8px rgb(0 0 0 / .55);
+}
+.s-gs-slip > .s-gs-th { grid-area: 1 / 1; }
+.s-gs-slip > .s-gs-slip__t { grid-area: 1 / 2; }
+.s-gs-slip > .s-gs-tick { grid-area: 1 / 3; }
+.s-gs-slip:not([data-top]) { background: color-mix(in oklab, var(--s-sheet, var(--ob-bone)) 93%, var(--ob-ink)); }
+.s-gs-slip__t { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-width: 0; }
+.s-gs-slip__t b { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 11.5px/1.2 var(--ob-font-sans); color: var(--s-sheet-ink, var(--ob-ink)); }
+.s-gs-slip__t time { font-size: 9.5px; color: var(--s-sheet-ink-2, var(--ob-ink)); }
+.s-gs-slip__k { grid-area: 2 / 1 / 3 / -1; display: flex; align-items: baseline; gap: 7px; padding-top: 5px; border-top: var(--ob-border-hair) solid var(--s-sheet-line, rgb(18 18 17 / .14)); white-space: nowrap; overflow: hidden; }
+.s-gs-slip__k b { font: 500 10.5px/1.3 var(--ob-font-sans); color: var(--s-sheet-ink, var(--ob-ink)); }
+.s-gs-slip__k span { overflow: hidden; text-overflow: ellipsis; font: 400 9px/1.4 var(--ob-font-mono); color: var(--s-sheet-ink-2, var(--ob-ink)); }
+.s-gs-slip .s-gs-tick { background: var(--s-sheet-ink, var(--ob-ink)); }
+.s-gs-slip .s-gs-tick::after { border-color: var(--s-sheet, var(--ob-bone)); }
+.s-gs-tick { position: relative; flex: none; width: 11px; height: 11px; border-radius: 3px; background: var(--ob-text); }
+.s-gs-tick::after { content: ""; position: absolute; left: 3.9px; top: 2px; width: 2.6px; height: 5.4px; border: solid var(--ob-bg); border-width: 0 1.4px 1.4px 0; rotate: 45deg; }
+/* The evidence, in miniature. */
+.s-gs-th { position: relative; display: grid; place-items: center; width: 16px; height: 16px; overflow: hidden; border-radius: 4px; background: var(--s-gs-flax); box-shadow: 0 0 0 var(--ob-border-hair) rgb(18 18 17 / .25); }
+.s-gs-th .s-gs-ph { position: absolute; inset: 0; }
+.s-gs-th--chat { align-content: center; gap: 2px; padding: 0 2px; }
+.s-gs-th--chat i { display: block; height: 4px; border-radius: 2px; }
+.s-gs-th--chat i:first-child { justify-self: end; width: 8px; background: var(--s-gs-blue); }
+.s-gs-th--chat i:last-child { justify-self: start; width: 10px; background: var(--s-gs-peat-2); }
+.s-gs-th--wait { background: transparent; box-shadow: none; outline: 1px dashed rgb(18 18 17 / .45); outline-offset: -1px; color: rgb(18 18 17 / .6); }
+.s-gs-th--wait svg { width: 10px; height: 10px; }
+.s-gs-th--find { background: var(--s-sheet-ink, var(--ob-ink)); box-shadow: none; color: var(--s-sheet, var(--ob-bone)); }
+.s-gs-th--find .s-gs-sig { width: 10px; height: 10px; }
+.s-gs-count {
+  position: absolute;
+  z-index: 9;
+  top: -13px;
+  right: -10px;
+  display: grid;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 7px;
+  background: var(--ob-surface-hover);
+  color: var(--ob-text);
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .22) inset, 0 0 0 3px var(--s-ground-ink, var(--ob-bg));
+  font: 500 11.5px/22px var(--ob-font-mono);
+  text-align: center;
+}
+.s-gs-count > span { grid-area: 1 / 1; opacity: 0; }
+.s-gs-count > span[data-last] { opacity: 1; }
+
+/* ---- The ring (the app screens' geometry): landed closes the cut and brings the square home; waiting holds the
+   square at its corner; needs you hollows it. It takes the colour of what holds it. ---------------------------------- */
+.s-gs-sig { display: block; overflow: visible; }
+.s-gs-sig path { fill: currentColor; }
+.s-gs-sig__sq { transform-box: fill-box; transform-origin: center; }
+.s-gs-sig__gap { opacity: 0; }
+.s-gs-sig.is-landed .s-gs-sig__gap { opacity: 1; }
+.s-gs-sig.is-landed .s-gs-sig__sq { transform: translate(-24.6965px, 24.6965px) scale(.8); }
+.s-gs-sig.is-needs .s-gs-sig__sq { fill: none; stroke: currentColor; stroke-width: 6.1px; transform: scale(.7525); }
+
+/* ---- Narrower than the 4 day ruler can hold (below 1200px): the ruler turns into a thread. The snapshot stands beside
+   its empty days; then the agent's days run down 1 thread, each day named on it. On a tablet, Day 0's 3 screens stand
+   side by side and the finding sits beside its receipts. ------------------------------------------------------------ */
+@media (max-width: 1199.98px) {
+  .s-gs-grid { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: none; column-gap: var(--ob-space-12); }
+  .s-gs-site { grid-column: 1; grid-row: 1; flex-wrap: wrap; margin-bottom: 0; }
+  .s-gs-clock { grid-column: 2; grid-row: 1; margin-bottom: 0; }
+  .s-gs-days { display: none; }
+
+  .s-gs-lab { grid-column: 1 / -1; padding: 0; }
+  .s-gs-lab--out { grid-row: 2; margin: var(--ob-space-24) 0 var(--ob-space-12); }
+  .s-gs-lab--in { grid-row: 4; gap: var(--ob-space-6) var(--ob-space-8); margin: var(--ob-space-32) 0 var(--ob-space-16); }
+
+  /* The outside: the snapshot on the left; on the right, each day in turn: the 1 it logged, the rest empty. */
+  .s-gs-lane { grid-column: 1 / -1; }
+  .s-gs-lane--out {
+    grid-row: 3;
+    grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto 1fr;
+    align-content: start;
+    column-gap: var(--ob-space-24);
+    row-gap: 0;
+    align-items: start;
+  }
+  .s-gs-lane--out .s-gs-cell[data-look] { display: contents; }
+  .s-gs-lane--out .s-gs-cell[data-look] > .s-gs-dashed { display: none; }
+  .s-gs-lane > :is(.s-gs-d0, .s-gs-d1, .s-gs-d2, .s-gs-d3) { grid-column: 2; }
+  .s-gs-look { grid-column: 1; grid-row: 1 / -1; width: auto; margin: 6px; }
+  .s-gs-look--dashboard { width: auto; max-width: 13rem; margin: 6px; }
+  .s-gs-crop { inset: -6px; }
+  .s-gs-lane--out .s-gs-cell[data-look] > :is(.s-gs-dl, .s-gs-logged) { grid-column: 2; align-self: center; }
+  .s-gs-logged { flex-wrap: wrap; row-gap: 4px; margin: 0 0 0 44px; }
+  .s-gs-look--dashboard ~ .s-gs-logged { display: inline-flex; }
+  .s-gs-lane--out .s-gs-d0, .s-gs-lane--out .s-gs-d0 > * { grid-row: 1; }
+  .s-gs-lane--out .s-gs-d1, .s-gs-lane--out .s-gs-d1 > * { grid-row: 2; }
+  .s-gs-lane--out .s-gs-d2, .s-gs-lane--out .s-gs-d2 > * { grid-row: 3; }
+  .s-gs-lane--out .s-gs-d3 { grid-row: 4; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 32px auto; align-items: center; }
+  .s-gs-lane--out .s-gs-d3 > * { grid-row: 1; }
+  .s-gs-lane--out .s-gs-d3 > .s-gs-tally { grid-row: 2; }
+  .s-gs-lane--out .s-gs-cell[data-look] > .s-gs-look { grid-row: 1 / -1; }
+  .s-gs-lane--out .s-gs-cell:not([data-look]) { column-gap: 10px; padding: 0; }
+  .s-gs-lane--out :is(.s-gs-d0, .s-gs-d1, .s-gs-d2):not([data-look]) { height: 32px; }
+  .s-gs-lane--out .s-gs-dl { display: block; flex: none; min-height: 32px; font: 400 11px/32px var(--ob-font-mono); color: var(--ob-text-3); }
+  .s-gs-lane--out .s-gs-cell .s-gs-dashed { margin: 0; }
+  .s-gs-tally--out { grid-column: 1 / -1; margin-top: var(--ob-space-8); font-size: 13px; }
+
+  /* The inside: 1 thread down the left, each day named on it, its steps beside it. */
+  .s-gs-lane--in { grid-row: 5; grid-template-columns: minmax(0, 1fr); }
+  .s-gs-lane--in > :is(.s-gs-d0, .s-gs-d1, .s-gs-d2, .s-gs-d3) { grid-column: 1; grid-row: auto; }
+  .s-gs-lane--in .s-gs-cell { justify-items: stretch; gap: var(--ob-space-12); padding: 0 0 var(--ob-space-24) 22px; }
+  .s-gs-lane--in .s-gs-d3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--ob-space-16); align-items: start; padding-bottom: var(--ob-space-8); }
+  .s-gs-lane--in .s-gs-d3 > .s-gs-dl { grid-column: 1 / -1; }
+  .s-gs-thread { left: 4px; right: auto; top: 0; bottom: 0; width: var(--ob-border-hair); height: auto; transform-origin: 50% 0; }
+  .s-gs-lane--in .s-gs-d0 .s-gs-thread { top: 8px; }
+  .s-gs-lane--in .s-gs-d3 .s-gs-thread { right: auto; bottom: auto; height: 8px; }
+  .s-gs-lane--in .s-gs-dl { display: flex; align-items: center; gap: 8px; height: 16px; font: 500 11.5px/1 var(--ob-font-mono); color: var(--ob-text-2); }
+  .s-gs-lane--in .s-gs-dl::before {
+    content: "";
+    position: absolute;
+    left: -22px;
+    top: 4.5px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ob-text-2);
+    box-shadow: 0 0 0 3px var(--s-ground-ink, var(--ob-bg));
+  }
+  .s-gs-lane--in .s-gs-dl .s-gs-now { display: none; }
+  .s-gs-lane--in .s-gs-d3 .s-gs-dl { color: var(--ob-text); }
+  .s-gs-lane--in .s-gs-d3 .s-gs-dl::before { border-radius: 1.5px; background: var(--ob-text); }
+
+  .s-gs-wait { display: inline-flex; align-items: center; gap: 9px; width: auto; justify-self: start; padding: 0 12px 0 10px; height: 36px; }
+  .s-gs-wait__t { margin: 0; }
+  .s-gs-tally--in { padding-bottom: 2px; font-size: 13px; }
+  .s-gs-join__page .s-gs-hp__hero { aspect-ratio: 16 / 10; }
+}
+
+/* ---- Phones: a phone layout. The snapshot is the phone home page; the sign up runs full width, then the email and the
+   chat side by side as the phone's own 2 up; the finding above its receipts. Type a thumb can read. ----------------- */
+@media (max-width: 859.98px) {
+  .s-gs { --s-gs-pad: 10px; --s-gs-mono: 400 11px/1.4 var(--ob-font-mono); font-size: 13px; }
+  .s-gs-clock__t { gap: 8px; }
+  .s-gs-clock__t b { font-size: 26px; }
+  .s-gs-lane--out { grid-template-columns: minmax(0, 45%) minmax(0, 1fr); column-gap: var(--ob-space-16); }
+  .s-gs-lane--in .s-gs-d3 { grid-template-columns: minmax(0, 1fr); }
+
+  /* The phone home page: the portrait photograph, the menu, 2 products. */
+  .s-gs-shot__url { height: 15px; padding: 0 6px; font-size: 8px; }
+  .s-gs-hp__nav { height: 20px; padding: 0 7px; gap: 0; justify-content: space-between; }
+  .s-gs-hp__menu { display: block; color: var(--s-gs-peat); }
+  .s-gs-hp__links { display: none; }
+  .s-gs-hp__icons { margin-left: 0; }
+  .s-gs-hp__nav .s-gs-wm { height: 8px; }
+  .s-gs-hp__hero { aspect-ratio: 5 / 6; }
+  .s-gs-hp__hero .s-gs-ph { object-position: 50% 62%; }
+  .s-gs-hp__copy { inset: 0 0 auto; width: auto; padding: 11px 8px 0; gap: 4px; align-content: start; }
+  .s-gs-hp__copy b { font-size: 14px; }
+  .s-gs-hp__btn { font-size: 6px; }
+  .s-gs-hp__strip { padding: 4px 6px; font-size: 6.5px; }
+  .s-gs-hp__strip span:not(.is-read) { display: none; }
+  .s-gs-hp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; padding: 6px 7px 8px; }
+  .s-gs-hp__grid li:nth-child(3) { display: none; }
+  .s-gs-hp__grid .s-gs-ph { aspect-ratio: 1; }
+
+  .s-gs-day0 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--ob-space-8); }
+  .s-gs-card--join { grid-column: 1 / -1; }
+  .s-gs-join { grid-template-columns: 34% minmax(0, 1fr); }
+  .s-gs-join > * { grid-area: auto; }
+  .s-gs-join__page { display: none; }
+  .s-gs-join__ph { display: block; height: 100%; }
+  .s-gs-join__modal { align-self: stretch; justify-self: stretch; justify-items: start; width: auto; padding: 11px 11px 11px; border-radius: 0; background: none; box-shadow: none; text-align: left; }
+  .s-gs-join__x { display: none; }
+  .s-gs-join__ok { justify-content: flex-start; padding-left: 1px; }
+  .s-gs-cursor { right: 10%; bottom: 2px; }
+  .s-gs-join__t { font-size: 14px; }
+  .s-gs-type { font-size: 10.5px; }
+  .s-gs-join__f, .s-gs-join__go > span { height: 26px; }
+  .s-gs-join__go > span { font-size: 10px; }
+
+  .s-gs-card { padding: 8px 8px 8px; }
+  .s-gs-card__h { gap: 6px; padding: 0; }
+  .s-gs-card__h b { font-size: 12.5px; }
+  .s-gs-card__h time { font-size: 10px; }
+  .s-gs-card:not(.s-gs-card--join) .s-gs-card__h .s-gs-ic { display: none; }
+  .s-gs-from { margin-top: 9px; gap: 6px; }
+  .s-gs-from .s-gs-mono { width: 18px; height: 18px; }
+  .s-gs-from__n span { display: none; }
+  .s-gs-from__s { font-size: 11.5px; }
+  .s-gs-mail { padding: 10px 8px; gap: 6px; }
+  .s-gs-mail__h { font-size: 15px; }
+  .s-gs-mail__b { display: none; }
+  .s-gs-mail__go { flex-direction: column; gap: 5px; }
+  .s-gs-mail__btn { font-size: 9px; padding: 6px 9px; }
+  .s-gs-code { font-size: 10px; padding: 5px 8px; }
+  .s-gs-pdp { padding: 7px 7px 11px; }
+  .s-gs-pdp b { font-size: 11.5px; }
+  .s-gs-chat__panel, .s-gs-bag__panel { margin-inline: 5px; }
+  .s-gs-chat__top span span { display: none; }
+  .s-gs-chat__top b { font-size: 11px; }
+  .s-gs-chat__log { padding: 7px 7px 8px; gap: 6px; }
+  .s-gs-chat__who { font-size: 8.5px; }
+  .s-gs-bub { max-width: 96%; padding: 5px 7px 6px; font-size: 11px; line-height: 1.35; }
+  .s-gs-chat__in { font-size: 9.5px; }
+}
+@media (max-width: 359.98px) {
+  .s-gs-day0 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---- The story, once, with .play (GapStory.tsx adds it in view). Every delay is the markup's --d; --u ends a moment.
+   Enters declare only "from", so each lands on its own rest style. -------------------------------------------------- */
+@keyframes s-gs-in { from { opacity: 0; translate: 0 var(--ob-shift-sm, 8px); } }
+@keyframes s-gs-on { from { opacity: 0; } to { opacity: 1; } }
+@keyframes s-gs-show { from, to { opacity: 1; } }
+@keyframes s-gs-lit { from, to { color: var(--ob-text); } }
+@keyframes s-gs-draw-x { from { scale: 0 1; } }
+@keyframes s-gs-draw-y { from { scale: 1 0; } }
+@keyframes s-gs-look { from { opacity: 0; scale: .97; } }
+@keyframes s-gs-flash { from { opacity: .85; } to { opacity: 0; } }
+@keyframes s-gs-drop { from { opacity: 0; translate: 0 -10px; } }
+@keyframes s-gs-type { from { clip-path: inset(0 100% 0 0); } }
+@keyframes s-gs-land { from { transform: none; } }
+@keyframes s-gs-gap { from { opacity: 0; } }
+@keyframes s-gs-blink { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes s-gs-pulse { 50% { opacity: .2; } }
+@keyframes s-gs-point { 0%, 50% { opacity: 1; translate: -18px -38px; } 82% { translate: 0 0; scale: 1; } 90% { scale: .84; } 100% { opacity: 1; scale: 1; } }
+@keyframes s-gs-mark { from { background-color: transparent; box-shadow: 0 1.5px 0 transparent; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .s-gs.play .s-gs-in { animation: s-gs-in var(--ob-dur-slow, 400ms) var(--ob-ease-out) var(--d) both; }
+  .s-gs.play :is(.s-gs-chat__me, .s-gs-bub--bot, .s-gs-logged) { animation-duration: var(--ob-dur-moderate, 240ms); }
+
+  /* Moments: the clock's lines, the pile's count, the typing dots, the day it is now, the unread dot. */
+  .s-gs.play :is(.s-gs-clock__t, .s-gs-count > span, .s-gs-typing, .s-gs-day .s-gs-now),
+  .s-gs.play .s-gs-day::before { animation: s-gs-show calc(var(--u) - var(--d)) linear var(--d); }
+  .s-gs.play .s-gs-day { animation: s-gs-lit calc(var(--u) - var(--d)) linear var(--d); }
+  .s-gs.play :is(.s-gs-clock__t, .s-gs-count > span)[data-last],
+  .s-gs.play .s-gs-day[data-last]::before,
+  .s-gs.play .s-gs-day[data-last] .s-gs-now { opacity: 0; animation: s-gs-on 1ms linear var(--d) forwards; }
+  .s-gs.play .s-gs-day[data-last] { color: var(--ob-text-3); animation: s-gs-lit 1ms linear var(--d) forwards; }
+  .s-gs.play .s-gs-from__dot { animation: s-gs-show 900ms linear var(--d); }
+  .s-gs.play .s-gs-count { opacity: 0; animation: s-gs-on 1ms linear var(--d) forwards; }
+
+  /* The outside's 1 look: the shutter, then it holds still for good. Its dashed line crosses the days with the clock. */
+  .s-gs.play .s-gs-look { animation: s-gs-look var(--ob-dur-slow, 400ms) var(--ob-ease-out) var(--d) both; }
+  .s-gs.play .s-gs-shot::after { content: ""; position: absolute; inset: 0; background: rgb(var(--ob-sheen-rgb) / 1); opacity: 0; animation: s-gs-flash 650ms var(--ob-ease-out) calc(var(--d, 0s) + 120ms) both; pointer-events: none; }
+  .s-gs.play .s-gs-dashed { animation: s-gs-draw-x var(--t, 600ms) linear var(--d) both; }
+
+  /* The form fills in, then is sent. */
+  .s-gs.play .s-gs-type { animation: s-gs-type 500ms steps(30, end) var(--d) both; }
+  .s-gs.play .s-gs-join__btn { animation: s-gs-show var(--d) linear; }
+  .s-gs.play .s-gs-cursor { opacity: 0; transform-origin: 0 0; animation: s-gs-point 850ms var(--ob-ease-in-out) var(--d) forwards; }
+
+  /* The thread crosses each day as the clock does. */
+  .s-gs.play .s-gs-thread { animation: s-gs-draw-x var(--t, 600ms) var(--ob-ease-in-out) var(--d) both; }
+
+  /* Receipts drop on the pile. */
+  .s-gs.play .s-gs-slip { animation: s-gs-drop var(--ob-dur-slow, 400ms) var(--ob-ease-out) var(--d) both; }
+
+  /* The ring lands each step; the waiting square blinks through its quiet day; needs you pulses once. */
+  .s-gs.play .s-gs-sig.is-landed .s-gs-sig__sq { animation: s-gs-land 500ms var(--ob-ease-out) var(--d) both; }
+  .s-gs.play .s-gs-sig.is-landed .s-gs-sig__gap { animation: s-gs-gap 300ms var(--ob-ease-out) calc(var(--d) + 250ms) both; }
+  .s-gs.play .s-gs-sig.is-wait .s-gs-sig__sq { animation: s-gs-blink 450ms steps(1, end) calc(var(--d) + 200ms) 2; }
+  .s-gs.play .s-gs-sig.is-needs .s-gs-sig__sq { animation: s-gs-pulse 1100ms ease-in-out var(--d) 1; }
+  .s-gs.play .s-gs-bub--bot mark { animation: s-gs-mark 300ms var(--ob-ease-out) var(--d) both; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 1199.98px) {
+  .s-gs.play .s-gs-lane--in .s-gs-thread { animation-name: s-gs-draw-y; }
+}

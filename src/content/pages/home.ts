@@ -123,6 +123,58 @@ export const page: Page = {
   gap: {
     heading: 'Most tools read what a company publishes. Obsession goes through it as a customer.',
     sub: 'It signs up, asks the bot, waits days for the follow up and keeps every receipt.',
+    story: {
+      label:
+        'Example: most tools read hollin.example’s home page once, on Day 0, where it says “We reply within a day”, and log that the page changed. Obsession’s declared AI test customer signs up, gets the welcome email with a 10% code, and asks the site’s bot about a shirt size; the bot promises an email within a day. It checks the inbox each day: on Day 3 the follow up promised in chat has never come, and all 6 steps are signed.',
+      site: 'hollin.example',
+      outside: {
+        name: 'Most tools',
+        kind: 'page',
+        day: 0,
+        time: '09:14',
+        title: 'Softer every wash.',
+        line: 'We reply within a day',
+        tag: 'Page changed',
+        tally: '1 page read',
+      },
+      inside: {
+        name: 'Obsession',
+        agent: 'Test customer 1 · AI · for Your company',
+        customer: 'Test customer 1 · AI',
+        steps: [
+          {
+            kind: 'signup',
+            day: 0,
+            time: '09:14',
+            title: 'Signed up',
+            field: 'shopper1@test.useobsession.com',
+            mailTitle: 'Welcome email',
+            mail: 'Welcome to hollin. Here’s 10% off.',
+            mailTime: '09:15',
+          },
+          {
+            kind: 'chat',
+            day: 0,
+            time: '09:21',
+            title: 'Asked the bot',
+            ask: 'Can you help me pick a size in the Weekend Shirt?',
+            reply: 'Of course. Our fit team will email you within a day.',
+            promise: 'within a day',
+          },
+          { kind: 'wait', day: 1, time: '09:21', title: 'No email', since: '24 h' },
+          { kind: 'wait', day: 2, time: '09:21', title: 'No email', since: '48 h' },
+        ],
+        finding: {
+          day: 3,
+          time: '09:21',
+          title: 'The follow up promised in chat never came',
+          short: 'No follow up',
+          meta: '0 emails in 72 h',
+        },
+        tally: '6 of 6 signed',
+        hash: '2b9e 04d7 … 5a10',
+      },
+    },
     rows: [
       { today: 'Lead lists sell everyone the same names', obsession: 'Each company comes with proof of what it actually does' },
       {
