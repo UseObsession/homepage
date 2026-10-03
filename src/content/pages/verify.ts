@@ -19,9 +19,9 @@ import type { Page } from '../types'
    signed record); use cases (botcheck, outcheck, vendorcheck, drift). The voice receptionist has its console run and
    How's 3rd step rather than a use case tab, so no screen shows twice and no other recipe's screen stands in. The
    proof shows the real report.
-   Outcomes, recomputed: 11 days to notice, cut to 1 by a daily check, is up to 10 days sooner; 10,000 billed
-   resolutions a month x $0.99 x 19 in 100 not real x 12 = $22,572 (19 in 100 is the resolution screen's own rate);
-   15 hours a week of transcript reading x 52 = 780 hours.
+   Outcomes, recomputed (3 Oct, no money up to): 11 days to notice, cut to 1 by a daily check, is up to 10 days sooner;
+   10,000 billed resolutions a month x 19 in 100 not real = up to 1,900 a month to dispute (19 in 100 is the resolution
+   screen's own rate); 15 hours a week of transcript reading x 52 = 780 hours.
    Narrative edit (3 Oct): the hero sub names the 3 agents the console opens on (support bot, AI receptionist, AI SDR);
    How's heading says what you give it, so its first step isn't said twice; the use cases cover more than answers
    (a discount over its limit, a vendor that keeps a customer waiting), so their claim does too; the kinds cover agents
@@ -251,7 +251,7 @@ export const page: Page = {
     heading: 'Know the morning it breaks, not 11 days later.',
     items: [
       { value: 'Up to 10 days', label: 'sooner: a daily check catches a broken answer within 1 day, where 1 team took 11 days to notice' },
-      { value: 'Up to $22,572', label: 'a year of billed resolutions to challenge: 10,000 a month at $0.99, if 19 in 100 aren’t real' },
+      { value: 'Up to 1,900', label: 'billed resolutions a month to challenge, each with its proof: 10,000 billed, if 19 in 100 aren’t real' },
       { value: 'Up to 780 hours', label: 'back a year: 15 hours a week of reading transcripts, turned into a list of what failed' },
     ],
   },

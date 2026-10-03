@@ -1,13 +1,15 @@
 import type { Capture, Recipe } from '../types'
 
-/* Business case (/recipes/business-case). Keep and grow customers. Screen: case (a payroll software renewal on 29 Dec: up to
-   $184,000 a year saved, 312 tickets a month x 12 x 50 minutes x $59 an hour, from the account's own data, with
-   consent; every number sourced and signed; shared with their finance team).
+/* Business case (/recipes/business-case). Keep and grow customers. Screen: case (a payroll software renewal on 29 Dec:
+   312 tickets a month x 12 x 50 minutes, priced at their $59 an hour, from the account's own data, with consent; every
+   number sourced and signed; shared with their finance team). As of 3 Oct the screen still counts up to $184,000 a
+   year saved; the copy states the same sum in hours.
    Base: site_sales.json "Business case" (approved copy and demo).
    Red lines held: inside data only through tools the customer connects, with the account's consent; the account's own
    costs, never a benchmark; follow ups go in the rep's existing thread from the agent's own declared address, after
-   your OK (it never writes as the rep, from the rep's inbox). Up-to-50 rule: the 1 money figure is an "up to" ceiling
-   with its sum in the same line. The run is an example and says so. */
+   your OK (it never writes as the rep, from the rep's inbox). Up-to-50 rule, no money up to (3 Oct): the case's figure
+   is up to 3,120 staff hours a year (312 x 12 x 50 minutes / 60), and the FAQ's is up to 260 hours a year back
+   (5 hours a week x 52), each with its sum in the same line. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'What’s your role?',
@@ -74,11 +76,11 @@ export const recipe: Recipe = {
     events: [
       { time: 'Day 1, 09:00', text: 'Usage, helpdesk and CRM read, with their consent. Usage up 41% in 6 months.' },
       { time: 'Day 1, 09:20', text: '312 tickets resolved a month. Their own figures: 50 minutes a ticket, $59 an hour.' },
-      { time: 'Day 1, 10:00', text: 'Case ready: up to $184,000 a year saved, from 312 × 12 × 50 minutes × $59 an hour.' },
+      { time: 'Day 1, 10:00', text: 'Case ready: up to 3,120 staff hours a year saved, from 312 × 12 × 50 minutes.' },
       { time: 'Day 3, 14:10', text: 'Your rep approves. The agent adds the case to the rep’s thread with their champion, from its own address.' },
       { time: 'Day 9, 11:30', text: 'Their finance team asks how tickets are counted. The helpdesk export goes back, after your OK.' },
     ],
-    finding: 'Up to $184,000 a year saved: 312 tickets a month × 12 × 50 minutes × $59 an hour, all from their own data.',
+    finding: 'Up to 3,120 staff hours a year saved: 312 tickets a month × 12 × 50 minutes, all from their own data.',
     fix: 'A short reply for the champion, drafted in your rep’s thread. Sent after your OK.',
     ledger: 'Example run. Every number signed back to its source.',
   },
@@ -150,7 +152,7 @@ export const recipe: Recipe = {
       { label: 'Tickets resolved', values: ['312 a month', 'Helpdesk'] },
       { label: 'Median reply', values: ['38 minutes', 'Helpdesk'] },
       { label: 'Teams using it', values: ['From 2 to 5', 'CRM'] },
-      { label: 'Staff time, in their costs', values: ['Up to $184,000 a year', '312 × 12 × 50 minutes × $59 an hour, their own rates'] },
+      { label: 'Staff time saved', values: ['Up to 3,120 hours a year', '312 × 12 × 50 minutes, priced at their $59 an hour'] },
     ],
   },
 
@@ -163,7 +165,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Business case keeps up to $48,000 a year, if 1 renewal worth $48,000 a year closes on a case their finance team could check.',
+        a: 'Business case gives up to 260 hours a year back for 1 account manager who spends 5 hours a week pulling usage and ticket exports and rebuilding renewal decks. In the Payroll SaaS example, the case was ready 1 hour after the data was read.',
       },
       {
         q: 'Whose data does Business case use?',

@@ -12,9 +12,10 @@ import type { Capture, Recipe } from '../types'
    where a vendor needs the account holder, or asks for a person, it comes to the customer; no bluffing: other tools
    are cited only when switching is really on the table, never as a fake buyer, and no invented deadlines; new prices,
    seat cuts, notices, switches and cancellations only after the customer's OK; a new plan is bought only on a card capped to it,
-   after OK. Up-to-50 rule: the modelled figures carry their model in the same line (up to 16.4% held off the software bill
-   each year, software inflation's June 2026 record; up to £19,680 a year on a £120,000 bill, 16.4% of it; up to 36% of seats,
-   the share of licences left unused). No sources on the page. The run is an example and says so. */
+   after OK. Up-to-50 rule (no money promises, 3 Oct): the 1 modelled figure (up to 156 hours a year) carries its model in
+   the same line: 1 person spending 3 hours a week on renewals by hand (the emails, charges, seats and notice dates),
+   3 x 52 = 156; up to 36% of seats, the share of licences left unused, stays as a count. The run ends on speed, not a sum: the rise held the morning it was charged (day 1), agreed in writing
+   2 days later (day 3). No sources on the page. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'What’s your role?',
@@ -76,7 +77,7 @@ export const recipe: Recipe = {
     targets: 'Every software vendor you pay, from your accounting tool and card feed',
     journey: ['Cap each vendor’s card', 'Hold any charge above it', 'Negotiate with real usage', 'Check the next invoice'],
     schedule: 'Every charge, and 90 days before each notice date',
-    report: 'A Slack note when a charge is held, and a monthly savings sheet',
+    report: 'A Slack note when a charge is held, and a monthly sheet of every vendor’s price',
     kit: ['Agent ID, declared as AI', 'A capped card per vendor', 'Billing inbox', 'Seat counts, read only'],
     events: [
       { time: 'Day 1, 06:12', text: 'The design tool renews 16% higher: £1,392 a month against its £1,200 cap. Held for your decision.' },
@@ -84,8 +85,8 @@ export const recipe: Recipe = {
       { time: 'Day 1, 09:10', text: 'After your OK, your declared AI agent asks the vendor to renew 31 seats at last year’s £30 a seat.' },
       { time: 'Day 3, 11:30', text: 'The vendor agrees in writing. 9 seats removed: £930 a month from here.' },
     ],
-    finding: 'A 16% rise held at the cap, last year’s price kept and 9 unused seats removed: £5,544 a year saved.',
-    fix: 'The cap lowered to £930 to match, ready for your OK. The next invoice is checked against it, and if the saving is missing, the case reopens.',
+    finding: 'A 16% rise held at the cap, last year’s price kept and 9 unused seats removed, all agreed in writing by day 3.',
+    fix: 'The cap lowered to £930 to match, ready for your OK. The next invoice is checked against it, and if it’s any higher, the case reopens.',
     ledger: 'Example run. Every charge, email, offer and OK dated and signed.',
   },
 
@@ -117,7 +118,7 @@ export const recipe: Recipe = {
         { title: 'Notice dates', line: '90 days before each one, 1 plan: renew, cut seats, ask for a better price or cancel.' },
         { title: 'Outage credits', line: 'Downtime checked against each vendor’s service promise, and the credit claimed inside its window.' },
         { title: 'Billing errors', line: 'Double charges and wrong plans disputed with the vendor, with the record attached.' },
-        { title: 'The next invoice', line: 'Checked against the agreed price. If the saving or credit is missing, the case reopens.' },
+        { title: 'The next invoice', line: 'Checked against the agreed price. If it’s higher or a credit is missing, the case reopens.' },
       ],
     },
     {
@@ -134,12 +135,12 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every saving in writing, and on the next invoice.',
+    heading: 'Every new price in writing, and on the next invoice.',
     items: [
       { format: 'Slack', line: 'When a charge is held, with the contract line and the next step.' },
-      { format: 'Email', line: 'A monthly note: held, negotiated, cancelled and saved.' },
+      { format: 'Email', line: 'A monthly note: every charge held, price agreed, tool cancelled and invoice checked.' },
       { format: 'Sheet', line: 'Every vendor’s price, seats, cap, renewal date and notice window.' },
-      { format: 'Your accounting tool', line: 'Each saving and credit, ready to post against its vendor.' },
+      { format: 'Your accounting tool', line: 'Each new price and credit, ready to post against its vendor.' },
       { format: 'Webhook', line: 'Every held charge and new price as it happens.' },
       { format: 'The record', line: 'Every charge, offer and OK, dated and signed, for your finance team or your accountant.' },
     ],
@@ -158,14 +159,14 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'founders', line: 'Catch every software price rise before it’s paid, without a finance hire.' },
-    { audience: 'agencies', line: 'Hold the price on your own tools, and your clients’ with their OK. Every saving goes on record for their review.' },
+    { audience: 'agencies', line: 'Hold the price on your own tools, and your clients’ with their OK. Every held price goes on record for their review.' },
     { audience: 'marketing', line: 'Catch a price rise on any marketing tool before it hits your budget.' },
     { audience: 'developers', line: 'Get every held charge by webhook, and approve new prices from your own app through the API.' },
   ],
 
   table: {
     heading: 'A higher charge is held at the cap, not paid on the renewal date.',
-    line: 'Example: a £120,000 a year software bill. Software inflation hit 16.4% in June 2026, so a cap at the agreed price holds up to £19,680 a year of rises off it.',
+    line: 'Up to 156 hours a year back for 1 person who spends 3 hours a week on renewals by hand: reading the emails, checking each charge, counting seats and tracking notice dates.',
     cols: ['Today', 'With a capped card'],
     rows: [
       { label: 'The renewal email', values: ['Lost in an inbox', 'Read the day it lands, contract checked'] },
@@ -209,8 +210,8 @@ export const recipe: Recipe = {
         a: 'Yes, after your OK. Software renewals sends notice to the address in the contract, keeps proof of delivery and gets the cancellation in writing.',
       },
       {
-        q: 'How much can Software renewals save?',
-        a: 'Software renewals holds up to 16.4% off your software bill each year: software inflation hit 16.4% in June 2026, and a cap at the agreed price stops a rise being charged unseen. Plus up to 36% of seats removed, the share of licences companies leave unused.',
+        q: 'What’s it worth?',
+        a: 'Software renewals gives up to 156 hours a year back for 1 person who spends 3 hours a week on renewals by hand, and removes up to 36% of seats after your OK, the share of licences companies leave unused. In the example, a 16% rise was held the morning it was charged, and the vendor agreed in writing 2 days later.',
       },
     ],
   },

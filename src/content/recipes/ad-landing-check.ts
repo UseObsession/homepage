@@ -18,11 +18,11 @@ import type { Capture, Recipe } from '../types'
    named, never implied); it never edits copy, budgets or bids, or launches an ad, so nothing is spent without the
    owner's OK; on the page the approver is "your ads lead", never "AM", which reads as a.m. next to a time; no
    platform names, and no claim about collecting any platform's ads beyond the reader's own accounts.
-   Up-to-50 rule: the 1 modelled figure is the example ad's ceiling, with its sum in the same line: up to $410 a day
-   saved (never "back", which reads as a refund or as "ago"), $2,870 a week (7 × $410), the whole of what Ad 4 spends
-   while every click lands on a sold out lamp; 38% of the $1,069 a day the 6 ads spend (120 + 85 + 240 + 410 + 64 +
-   150 = 1,069; 410 ÷ 1,069 = 38.4%). No sources, prices of Obsession or real names on the page. The run is an example
-   and says so. */
+   Up-to-50 rule (no money promises, 3 Oct): the 1 modelled figure (up to 182 hours a year) carries its model in the
+   same line: 1 person opening the 6 example ads' landing pages by hand every morning, 5 minutes each, 6 x 5 x 7 = 210
+   minutes = 3.5 hours a week, x 52 = 182, turned into the ads that fail. The run keeps Ad 4's $410 a day as a fact and
+   ends on speed: flagged at 07:04, paused at 07:40, 36 minutes later. No sources, prices of Obsession or real names on
+   the page. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'Whose ads should we check first?',
@@ -97,7 +97,7 @@ export const recipe: Recipe = {
         time: 'Mon 07:06',
         text: 'The other 5 pages pass all 4 checks. Each loads in 1.2 seconds or less, and the offer, price and stock match the ad.',
       },
-      { time: 'Mon 07:40', text: 'Your ads lead approves. Ad 4 is paused, saving $410 a day.' },
+      { time: 'Mon 07:40', text: 'Your ads lead approves. Ad 4 is paused, 36 minutes after it was flagged.' },
       { time: 'Tue 07:00', text: '5 live ads pass. The lamp is still sold out, so Ad 4 stays paused until you say otherwise.' },
     ],
     finding: 'Ad 4 spends $410 a day sending clicks to a table lamp that’s sold out.',
@@ -160,7 +160,7 @@ export const recipe: Recipe = {
       { format: 'The costliest first', line: 'Each break ranked by what its ad spends a day.' },
       { format: 'The fix, drafted', line: 'Pause the ad or change its link, waiting for your OK.' },
       { format: 'Alerts that matter', line: 'Slack or email when an ad fails. Nothing when every ad passes.' },
-      { format: 'A weekly note', line: 'Ads checked, breaks found, fixes made, and the daily spend each fix stopped.' },
+      { format: 'A weekly note', line: 'Ads checked, breaks found, fixes made, and the time from each flag to its fix.' },
       { format: 'A record to share', line: 'Every check and every OK signed and dated, for your team or your client.' },
     ],
   },
@@ -191,7 +191,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'The agent checks every ad you pay for, not the few someone remembers.',
-    line: 'Up to $410 a day saved, $2,870 a week, on the ad in the example: it spent all of it sending clicks to a sold out lamp, 38% of the $1,069 a day all 6 ads spend.',
+    line: 'Up to 182 hours a year back for 1 person who checks 6 ads’ landing pages by hand every morning, 5 minutes each: 3.5 hours a week. You read only the ads that fail.',
     cols: ['By hand', 'The agent'],
     rows: [
       { label: 'Which ads', values: ['The few someone opens when there’s time', 'Every live ad, every morning'] },
@@ -240,7 +240,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Ad landing check saves up to $410 a day, $2,870 a week (7 × $410), on the ad in the example: it spent all of it sending clicks to a sold out lamp. That was 38% of the $1,069 a day all 6 ads spend.',
+        a: 'Ad landing check gives up to 182 hours a year back for 1 person who checks 6 ads’ landing pages by hand every morning, 5 minutes each: 3.5 hours a week. You read only the ads that fail, with the screenshot and the fix beside it.',
       },
       {
         q: 'How is Ad landing check different from Mystery shopper?',

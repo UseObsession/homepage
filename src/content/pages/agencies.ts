@@ -7,9 +7,11 @@ import type { Page } from '../types'
    proof (the real September store check) > questions (red lines) > the free report.
    Hero demos are examples (the console’s Example tag and every ledger say so). The one real run appears only in the third proof
    fact and the proof beat, stated as it happened. Demo clients avoid "skincare" so no example reads as the real run.
+   Outcomes (3 Oct, no money up to): 15 x 6 x 12 = 1,080 hours; 10 a week x 52 = 520 hours; the heading is their sum,
+   1,600. The rival reports are 1 per client of 15, against the use case's own week by hand.
    Screens: How uses the flow screens (agencytask, templates, kit, run); each use case has its own (pack, board,
    approve, upsells, report, shop). Deliver runs on Ad landing check, grow on Client upsells.
-   Narrative edit (3 Oct): each heading hands off to the next (the unpaid hours > what they turn into > the money > every
+   Narrative edit (3 Oct): each heading hands off to the next (the unpaid hours > what they turn into > the hours back > every
    kind of agency > recipes > the real run > trust > the free report). Copy matches its screen: the pitch demo's
    welcome email lands in spam with its code inside (pack), Ad 4 sends $410 a day of clicks to a sold out lamp (board),
    and the AI checkout break is a size hidden from AI shoppers, fixed in the product feed (checkout). */
@@ -260,11 +262,11 @@ export const page: Page = {
   },
 
   outcomes: {
-    heading: 'Up to $276,000 more a year for an agency with 15 clients.',
+    heading: 'Up to 1,600 hours back a year for an agency with 15 clients.',
     items: [
       { value: 'Up to 1,080 hours', label: 'back a year: 15 clients, 6 hours of checks each a month' },
-      { value: 'Up to $216,000', label: 'a year from 1 more client kept and 2 more pitches won, on $6,000 monthly retainers' },
-      { value: 'Up to $60,000', label: 'a year from a $1,000 monthly rival report, sold to 5 of your 15 clients' },
+      { value: 'Up to 520 hours', label: 'back a year: 10 hours a week of unpaid pitch audits' },
+      { value: 'Up to 15 rival reports', label: 'a month to sell in your brand, 1 per client, where 1 by hand takes a week' },
     ],
   },
 

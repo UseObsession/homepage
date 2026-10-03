@@ -2,7 +2,9 @@ import type { Capture, Recipe } from '../types'
 
 /* Supplier quotes (/recipes/supplier-quotes). Get paid and save. Screen: suppliers (mailer boxes, +18% from 1 Nov:
    $400 to $472 per 1,000; 16 quotes in, the best 3 at $409, $416 and $421; pushback sent Mon 09:14 after your OK;
-   rise cut to 6%, $424: $5,760 a year on 120,000 boxes).
+   rise cut to 6%, $424, in writing by day 10).
+   No money up to (3 Oct): the run states the cut and how fast it came; the FAQ's figure is up to 104 hours a year,
+   2 hours a week of asking, chasing and comparing quotes x 52, the same 2 hours a week /founders gives getting quotes. As of 3 Oct the screen still shows $5,760 saved a year.
    Base: site_founders.json "Cut costs" / "Supplier quotes" (approved copy and demo). Suppliers are the 1 place an
    agent asks people for something, because it's a real order: they are vendors you'd buy from, never prospects or
    rivals.
@@ -80,7 +82,7 @@ export const recipe: Recipe = {
       { time: 'Day 8, 09:14', text: 'After your OK, the 3 best prices, without the suppliers’ names, go to your supplier with a request to review the rise.' },
       { time: 'Day 10, 11:00', text: 'Your supplier cuts the rise to 6%, in writing.' },
     ],
-    finding: 'Rise cut from 18% to 6%: $48 less per 1,000 on 120,000 boxes, $5,760 a year.',
+    finding: 'Rise cut from 18% to 6%, in writing by day 10, with 16 quotes in hand by day 5.',
     fix: 'Your acceptance, drafted for you to sign. Quotes run again 60 days before next year’s renewal.',
     ledger: 'Example run. Every quote, reply and chase dated and signed.',
   },
@@ -169,7 +171,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Supplier quotes keeps up to $46,080 a year on a $16,000 monthly order, if the 18% rise is dropped and you get 6% off.',
+        a: 'Supplier quotes gives up to 104 hours a year back for 1 person who spends 2 hours a week asking suppliers to quote, chasing replies and comparing quotes like for like. In the box supplier example, 16 quotes were in by day 5 and the new price was in writing by day 10.',
       },
       {
         q: 'Does Supplier quotes pretend to be us?',
