@@ -263,8 +263,9 @@ export const agentsPage: AgentsPage = {
     title: 'Saw an Obsession agent? What a declared AI agent does here',
     description:
       'An Obsession agent is a declared AI agent with its own inbox, number and browser. What it does at your company, what it never does, and how to opt out.',
-    answer:
-      'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. Write to us with any question about it, or to keep our agents off your site.',
+    /* The sub, then the contact in full: an assistant that quotes this answer away from the page still says where to
+       write. */
+    answer: `An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. Any company can write to ${CONTACT_EMAIL} with a question about an agent, or to keep Obsession’s agents off its site.`,
     ogImage: '/og/agents.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -289,8 +290,7 @@ export const agentsPage: AgentsPage = {
       id: 'declared',
       heading: 'It never pretends to be a person.',
       lines: [
-        'A declared AI agent says it’s an AI agent and who sent it, never uses a fake name, and keeps a signed record of every step.',
-        'Every agent says it’s an AI agent. It never uses a fake name or a fake identity.',
+        'A declared AI agent says it’s an AI agent and who sent it, never uses a fake name or a fake identity, and keeps a signed record of every step.',
         'If it’s working for you, or for someone with your OK, like your agency, it names who it works for. So does an agent that asks you for a quote, answers your request for one, negotiates a renewal, asks for a client’s accounts back or follows up an invoice.',
         'If it’s doing what any customer can, it says it’s from Obsession and links to this page, without naming its customer.',
       ],
