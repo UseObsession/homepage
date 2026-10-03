@@ -183,20 +183,26 @@ await writeFile(
   ].join('\n'),
 )
 
-/* ---- robots.txt: every search engine and AI crawler is welcome, by name for the ones that look for their own. ---- */
+/* ---- robots.txt: every search engine and AI crawler is welcome, by name for the ones that look for their own. Each
+   search and answer crawler has its own group, so a later change to * can't shut one out by accident; tokens are
+   spelled as each operator documents them (_research/seo/AI-SEARCH-RUBRIC.md A). Brave Search has no token: it
+   crawls what Googlebot may. The training crawlers are named too, allowed (docs/SEARCH.md 7: Training Allow). ---- */
 const CRAWLERS = [
+  /* Search and answer */
   'Googlebot',
-  'Bingbot',
-  'Google-Extended',
-  'GPTBot',
+  'bingbot',
   'OAI-SearchBot',
   'ChatGPT-User',
-  'ClaudeBot',
   'Claude-SearchBot',
   'Claude-User',
   'PerplexityBot',
   'Perplexity-User',
   'Applebot',
+  'DuckAssistBot',
+  /* Training */
+  'GPTBot',
+  'ClaudeBot',
+  'Google-Extended',
   'Applebot-Extended',
   'CCBot',
 ]
