@@ -1,6 +1,8 @@
 # Old addresses, sent for good to the pages that replaced them (Cloudflare static assets: free, run before any page).
 # A path with and without its trailing slash are 2 rules. Prerendered pages answer /PATH with a 200; the host would send
 # /PATH/ to /PATH with a temporary 307, so the slashed addresses the old site had indexed get a permanent 301 below.
+# Exact addresses come first and the patterns (":slug", "*") last, as Cloudflare asks: the first rule that matches wins,
+# and an exact rule placed after a pattern is matched as a slower pattern itself.
 
 /recipes/prospect-research    /recipes/prospect-intelligence  301
 /recipes/prospect-research/   /recipes/prospect-intelligence  301
@@ -14,7 +16,6 @@
 /templates/prospect-research/ /recipes/prospect-intelligence  301
 /templates/speed-to-lead      /recipes/lead-leaks             301
 /templates/speed-to-lead/     /recipes/lead-leaks             301
-/templates/*                  /recipes/:splat                 301
 
 # The old site's indexed addresses ended in a slash: every page's slashed address is sent for good to the canonical
 # address without it (a new page adds its line here).
@@ -30,5 +31,9 @@
 /verify/                      /verify                         301
 /resources/                   /resources                      301
 /use-cases/                   /use-cases                      301
+
+# Patterns. A slashed old template address goes straight to its recipe in 1 hop, never through /recipes/SLUG/.
+/templates/:slug/             /recipes/:slug                  301
+/templates/*                  /recipes/:splat                 301
 /recipes/:slug/               /recipes/:slug                  301
 /use-cases/:slug/             /use-cases/:slug                301
