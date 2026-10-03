@@ -1,4 +1,4 @@
-import { StrictMode, startTransition, useEffect } from 'react'
+import { StrictMode, startTransition } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 // Global styles load before any component styles, so components can override them.
 // The Obsession design system first (src/styles/ds, synced by scripts/sync-assets.mjs), then the site's own styles.
@@ -18,12 +18,7 @@ import './styles/base.css'
 import './styles/perf.css'
 import App, { preloadRoute } from './App'
 import { hydrated } from './lib/hydration'
-
-/* Renders nothing: its effect runs once the first render has committed, after every other component's. */
-function Hydrated() {
-  useEffect(hydrated, [])
-  return null
-}
+import { Hydrated } from './lib/Hydrated'
 
 const root = document.getElementById('root')!
 const app = (
@@ -33,8 +28,14 @@ const app = (
   </StrictMode>
 )
 
+/* A page's chunk that no longer exists (a deploy replaced it while the page was open) loads the page afresh instead. */
+window.addEventListener('vite:preloadError', (e) => {
+  e.preventDefault()
+  location.reload()
+})
+
 /* Pages are prerendered to HTML at build time (scripts/prerender.mjs), and the page's boot script (src/boot.ts) loads
-   this once the first frame is painted. The page's own code and words load first, so React draws exactly that HTML,
+   this once the hero's words have landed. The page's own code and words load first, so React draws exactly that HTML,
    then hydrates it in a transition, in short slices, so the page stays responsive while it does; the boot script hands
    the app screens' stories over as it starts (obs-hydrate). In development the root is empty: render from scratch. */
 if (root.hasChildNodes()) {

@@ -12,7 +12,7 @@ import { lazyPage, type LazyPage } from './lib/lazy'
 
 /* Each page's code (and its words) is its own chunk, loaded for the page that shows it (lib/lazy.ts): the app itself
    carries only the nav, the footer and the index of every page (content/catalog.ts, content/heads.ts). A page is named
-   by its file, which is also how the prerender finds the chunks a page loads (routeFiles). */
+   by its file, which is also how the prerender finds the chunks a page loads (routeFile). */
 const PAGE_FILES = import.meta.glob<Record<string, unknown>>('./pages/*.tsx')
 function page<P extends object = object>(file: string, name = file) {
   return lazyPage(() => PAGE_FILES[`./pages/${file}.tsx`]().then((m) => m[name] as ComponentType<P>), `src/pages/${file}.tsx`)

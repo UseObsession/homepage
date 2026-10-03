@@ -11,8 +11,8 @@
      shows without them.
    - The app itself (src/main.tsx, the built entry named by ENTRY) loads once the page's main words have landed: after
      its first frame, and after the hero's headline and sub have faded in (if they do) and been painted, so the app's
-     work never holds up the moment the page's main words show. React hydrates in short slices from there. A reader's first touch, click or key
-     loads it at once. */
+     work never holds up the moment the page's main words show. React hydrates in short slices from there. A reader's
+     first touch, click or key loads it at once. */
 declare const ENTRY: string
 declare const SHEETS: Record<string, string[]>
 
@@ -37,18 +37,32 @@ if (!matchMedia(RM).matches && 'IntersectionObserver' in window) {
   document.addEventListener('obs-hydrate', () => io.disconnect(), { once: true })
 }
 
+/* Nothing the boot script fetches may compete with the page's first contentful paint: it waits for it (the browser's
+   paint timing, else 2 frames). */
+const contentful = new Promise<void>((done) => {
+  const shown = () => performance.getEntriesByName('first-contentful-paint').length > 0
+  if (shown()) return done()
+  if ('PerformanceObserver' in window && PerformanceObserver.supportedEntryTypes?.includes('paint')) {
+    const po = new PerformanceObserver(() => shown() && (po.disconnect(), done()))
+    po.observe({ type: 'paint', buffered: true })
+  } else requestAnimationFrame(() => requestAnimationFrame(() => done()))
+})
+
 const sheets = new Map<string, Promise<unknown>>()
 const sheet = (href: string) => {
   if (!sheets.has(href))
     sheets.set(
       href,
-      new Promise((done) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = href
-        link.onload = link.onerror = done
-        document.head.append(link)
-      }),
+      contentful.then(
+        () =>
+          new Promise((done) => {
+            const link = document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = href
+            link.onload = link.onerror = done
+            document.head.append(link)
+          }),
+      ),
     )
   return sheets.get(href)
 }
@@ -82,8 +96,10 @@ let started = false
 const start = () => {
   if (started) return
   started = true
-  rest(Object.keys(SHEETS))
-  import(/* @vite-ignore */ ENTRY)
+  contentful.then(() => {
+    rest(Object.keys(SHEETS))
+    import(/* @vite-ignore */ ENTRY)
+  })
 }
 for (const type of ['pointerdown', 'keydown', 'touchstart']) addEventListener(type, start, { once: true, passive: true, capture: true })
 /* The words have landed once their entrance has run and the browser has painted the result: a largest contentful
