@@ -10,8 +10,8 @@
      a time while the browser is idle. Until then a screen is skipped by the browser (styles/perf.css), so it never
      shows without them.
    - The app itself (src/main.tsx, the built entry named by ENTRY) loads once the page's main words have landed: after
-     its first frame, and after the hero's words have faded in and been painted, so the app's work never holds up the
-     moment the page's main words show. React hydrates in short slices from there. A reader's first touch, click or key
+     its first frame, and after the hero's headline and sub have faded in (if they do) and been painted, so the app's
+     work never holds up the moment the page's main words show. React hydrates in short slices from there. A reader's first touch, click or key
      loads it at once. */
 declare const ENTRY: string
 declare const SHEETS: Record<string, string[]>
@@ -102,10 +102,10 @@ const painted = () =>
     po?.observe({ type: 'largest-contentful-paint', buffered: true })
     setTimeout(finish, po ? PAINT_MS : 100)
   })
-/* The hero's words (motion.css .ob-anim-hero): the pill, the headline, the sub, the form and the proof enter in turn,
-   and the largest of them is the page's main paint. */
+/* The hero's words (motion.css .ob-anim-hero) enter in turn; the headline or the sub, whichever is larger, is the
+   page's main paint. */
 requestAnimationFrame(() => {
-  const fades = [...document.querySelectorAll('.ob-anim-hero > *')]
+  const fades = [...document.querySelectorAll('.ob-anim-hero > :is(h1, p)')]
     .flatMap((el) => el.getAnimations?.() ?? [])
     .filter((a) => (a.effect as KeyframeEffect | null)?.getKeyframes().some((k) => 'opacity' in k))
   if (!fades.length) return setTimeout(start)
