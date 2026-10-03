@@ -21,7 +21,7 @@ export const page: Page = {
     description:
       'AI agents for agencies, each with its own inbox, phone number and browser, check every client, prospect and rival as a customer would. Every step signed.',
     answer:
-      'Obsession gives agencies declared AI agents that sign up at every prospect and rival and test every client’s store, trial or booking with their OK, continuously. You get signed proof to pitch, report and renew with.',
+      'Obsession gives agencies declared AI agents that sign up at every prospect and rival and, with each client’s OK, test every client’s store, trial or booking, continuously. You get signed proof to pitch, report, renew and sell your next service.',
     ogImage: '/og/agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -32,7 +32,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your agency win and keep clients.',
-    sub: 'Obsession gives agencies declared AI agents that sign up at every prospect and rival and test every client’s store, trial or booking with their OK, continuously. You get signed proof to pitch, report and renew with.',
+    sub: 'Pitches stall, clients leave and new services go unsold for reasons your team never sees. Every client you win, keep and grow depends on what prospects, rivals and your clients’ own customers actually experience, and most of it happens behind sign ups, inboxes and checkouts no tool can see into. Obsession’s AI agents go through them as the customer, with real inboxes, phone numbers and browsers, at every prospect and rival and, with their OK, every client. You get signed proof to pitch, report, renew and sell your next service.',
     capture: {
       kind: 'waitlist',
       source: 'agencies-hero',
@@ -359,6 +359,10 @@ export const page: Page = {
   faq: {
     heading: 'Nothing for clients to install. Every agent declared.',
     items: [
+      {
+        q: 'What does Obsession do for agencies?',
+        a: 'Obsession gives agencies declared AI agents that sign up at every prospect and rival and, with each client’s OK, test every client’s store, trial or booking, continuously. You get signed proof to pitch, report, renew and sell your next service.',
+      },
       {
         q: 'How do I show a client what they’re paying for when they don’t read the report?',
         a: 'Send proof, not a report: Obsession’s agents check each client’s store, trial or booking with their OK, continuously, and every gap found, fix approved and check passed is signed and dated in 1 link the client can open.',
