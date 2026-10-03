@@ -32,7 +32,7 @@ export const page: Page = {
     description:
       'Declared AI agents become a customer of every account and rival on your list, quote buyers and negotiate renewals inside your limits. Every step signed.',
     answer:
-      'Obsession gives sales teams declared AI agents that become a customer of every account and rival on your list, so you know each account as its customers do. They quote buyers and negotiate renewals inside your limits, with signed proof for every call.',
+      'Obsession gives sales teams declared AI agents that become a customer of every account and rival on your list, quote buyers and chase renewals within your limits, and check your own AI SDR. You get signed proof for every call and your next move.',
     ogImage: '/og/sales.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your team win and renew accounts.',
-    sub: 'Obsession gives sales teams declared AI agents that become a customer of every account and rival on your list, so you know each account as its customers do. They quote buyers and negotiate renewals inside your limits, with signed proof for every call.',
+    sub: 'Your reps walk into calls knowing what the CRM says, not what each account actually lives through. Deals stall on a rival’s offer nobody saw, renewals arrive as surprises and expansion goes unasked. Obsession’s AI agents become a customer of every account and rival on your list, quote buyers and chase renewals within your limits, and check your own AI SDR says what it should. You get signed proof for every call and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'sales-hero',
@@ -390,6 +390,10 @@ export const page: Page = {
   faq: {
     heading: 'Every agent says it’s AI. Every offer stays inside the limits you set.',
     items: [
+      {
+        q: 'What does Obsession do for sales teams?',
+        a: 'Obsession gives sales teams declared AI agents that become a customer of every account and rival on your list, quote buyers and chase renewals within your limits, and check your own AI SDR. You get signed proof for every call and your next move.',
+      },
       {
         q: 'How do I find a reason to reach out that 50 other reps don’t have?',
         a: 'Use a fact only a customer of theirs can see: Obsession’s Prospect intelligence signs up at every company on your list and records what it gets, so each first call opens on a dated gap with a proof link.',
