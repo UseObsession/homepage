@@ -285,7 +285,7 @@ export const page: Page = {
       },
       {
         tab: 'Expansion offers',
-        moment: 'Monday 09:00. An account is using 113 of its 120 seats.',
+        moment: 'Monday 08:00. Freight broker is using 113 of its 120 seats.',
         outcome: 'Offer more the week an account needs it, on your price book.',
         line: 'Agents read the usage and CRM you connect and each account’s public news, build the case from its own usage and draft the offer. Your rep sends it from their own thread.',
         whyOnly: 'A usage dashboard shows the seats. An agent turns them into a priced offer each morning, and keeps every follow up drafted in your rep’s thread until the PO lands.',

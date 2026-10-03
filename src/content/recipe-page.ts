@@ -20,7 +20,7 @@ export const recipePage = {
 
   /* The run, played in the console. Its line is the recipe's `gets`; its label the run's own name. */
   run: {
-    heading: 'It runs by itself, and keeps the proof.',
+    heading: 'It runs on your schedule, and keeps the proof.',
     /* The console's tag: every run is an example except the September store check. */
     tag: { example: 'Example', real: 'Real run' },
   },

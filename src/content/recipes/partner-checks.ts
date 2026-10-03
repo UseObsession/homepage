@@ -6,13 +6,15 @@ import type { Capture, Recipe } from '../types'
    GIFT15, Podcast (affiliate) POD15 and Newsletter (partner) NEWS15 all pass at 15% off. Deals site (affiliate),
    07:12: deals-site.example still shows "Summer sale, 20% off" with SUMMER20; SUMMER20 is rejected in the basket and
    last season's offer is shown. The note, drafted in JO's thread: "SUMMER20 ended 31 Aug. Please use DEALS15 instead.
-   New banner attached." Edit or Send; "Sent with your OK 09:14". The note on screen: "Links and codes only, never
+   New banner attached." Edit or Send; "Sent with your OK 09:14". On the page JO is always "your partnerships lead",
+   as AM is "your rep" on Expansion offers: nobody outside knows who JO is. The note on screen: "Links and codes only, never
    prices". The toast: "Note sent to 1 partner, check again Mon"). Partner names are categories, the site's style,
    never a business name: invented names kept landing on real ones. 07:12, not 07:04, so it never opens on the same
    minute as Ad landing check beside it on /marketing.
    Seun approved the recipe on 3 Oct. It is the partner side of Ad landing check: that recipe opens the pages the
    reader's own ads point to; this 1 follows the links other sites run for the reader.
-   Red lines held: links, codes and creative only, never a partner's prices (it never reads, logs or compares what a
+   Red lines held: links, codes and banners only (1 word for what is checked, on every line a reader sees), never a
+   partner's prices (it never reads, logs or compares what a
    partner charges); only the partners on the reader's own list, read through their public pages as any visitor
    would, as a declared AI agent; the code is tried in a basket on the reader's own store, which it leaves before
    payment, so nothing is bought and no partner earns a commission from a check; it never writes to a partner as
@@ -51,7 +53,7 @@ export const recipe: Recipe = {
     description:
       'Each week a declared AI agent follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
     answer:
-      'Partner checks is an Obsession recipe. Each week a declared AI agent visits every affiliate and partner on your list as a customer would, follows your link to your store, tries their code in your basket and checks the banner. When one is out of date, it drafts a note to that partner for your OK. Links, codes and creative only, never prices.',
+      'Partner checks is an Obsession recipe. Each week a declared AI agent visits every affiliate and partner on your list as a customer would, follows your link to your store, tries their code in your basket and checks the banner. When one is out of date, it drafts a note to that partner for your OK. Links, codes and banners only, never prices.',
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -94,12 +96,12 @@ export const recipe: Recipe = {
       { time: 'Mon 07:15', text: 'Gift guide, Podcast and Newsletter pass. 5 of 6 partners are current.' },
       {
         time: 'Mon 07:16',
-        text: 'A note drafted in the thread of JO, who runs your partners: SUMMER20 ended 31 Aug, please use DEALS15, new banner attached.',
+        text: 'A note drafted in your partnerships lead’s own thread: SUMMER20 ended 31 Aug, please use DEALS15, new banner attached.',
       },
       { time: 'Mon 09:14', text: 'Sent with your OK. Deals site is checked again next Monday.' },
     ],
     finding: 'Deals site still sends customers to SUMMER20, a code that ended on 31 Aug, under last season’s banner.',
-    fix: 'A note from JO’s thread with DEALS15 and the new banner, sent with your OK at 09:14. Checked again next Monday.',
+    fix: 'A note from your partnerships lead’s thread with DEALS15 and the new banner, sent with your OK at 09:14. Checked again next Monday.',
     ledger: 'Example run. Every visit, basket and OK signed and dated. No partner prices read.',
   },
 
@@ -128,7 +130,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Your link', line: 'It’s there, it works, and it points to the page you agreed.' },
         { title: 'Your code', line: 'The code they show is the code you gave them, and it’s still live.' },
-        { title: 'Your offer and banner', line: 'This season’s offer and creative, not last season’s.' },
+        { title: 'Your offer and banner', line: 'This season’s offer and banner, not last season’s.' },
       ],
     },
     {
@@ -142,7 +144,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Partner prices', line: 'Never. It doesn’t read, log or compare what a partner charges. Links, codes and creative only.' },
+        { title: 'Partner prices', line: 'Never. It doesn’t read, log or compare what a partner charges. Links, codes and banners only.' },
         { title: 'Before any note', line: 'Every note waits for your OK, then goes from your team’s own thread.' },
         { title: 'Anyone else’s partners', line: 'Never. Only the partners on your own list.' },
       ],
@@ -203,7 +205,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Does it check our partners’ prices?',
-        a: 'No. Only your links, codes and creative. It never reads, logs or compares what a partner charges.',
+        a: 'No. Only your links, codes and banners. It never reads, logs or compares what a partner charges.',
       },
       {
         q: 'Does it contact our partners?',

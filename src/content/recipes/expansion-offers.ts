@@ -6,7 +6,8 @@ import type { Capture, Recipe } from '../types'
    the price book, 25 more seats for £9,000 a year; approved by AM and sent from AM's own thread, Mon 14:02; offer sent,
    order form to sign, PO next; follow up Thu. The others: Dental group 12 new seats, Logistics app a US office, Outdoor
    gear a Series B and its order form signed, Payroll SaaS hiring 12 sales roles, the account Account watch hands over).
-   On the page AM is always "your rep": next to a time, "AM" reads as a.m., and nobody outside knows who AM is.
+   On the page AM is always "your rep": next to a time, "AM" reads as a.m., and nobody outside knows who AM is. The
+   rep is the approver on every line too: "your rep's OK", never "your OK".
    Seun approved the recipe on 3 Oct. It upgrades Account watch from a flag to a signed order: Account watch sees the
    growth coming; Expansion offers builds the case, drafts the offer and every reminder, and tracks it to a signed order
    form and a PO.
@@ -63,7 +64,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that find every customer ready to buy more.',
-    sub: 'A declared AI agent watches each customer’s usage and public news for the moment it needs more. It builds the case from that customer’s own usage, drafts the offer on your price book, and your rep sends it after their OK.',
+    sub: 'A declared AI agent watches each customer’s usage and public news for the moment it needs more. It builds the case from that customer’s own usage and drafts the offer on your price book in your rep’s own thread. It goes only after your rep approves it.',
     screen: 'expansion',
     capture: {
       kind: 'waitlist',
@@ -156,7 +157,7 @@ export const recipe: Recipe = {
       { format: 'The case', line: 'A page and a PDF from the customer’s own usage, ready for their buyer.' },
       { format: 'The offer, drafted', line: 'In your rep’s own thread, on your price book, waiting for their OK.' },
       { format: 'Your CRM, kept current', line: 'An expansion deal on the account, with seats, price, stage and next step.' },
-      { format: 'Order form and PO', line: 'Sent after your OK, tracked to signature, and matched to the PO.' },
+      { format: 'Order form and PO', line: 'Sent after your rep’s OK, tracked to signature, and matched to the PO.' },
       { format: 'A weekly note', line: 'Moments found, offers out, orders signed, and anything waiting on you.' },
     ],
   },
@@ -167,7 +168,7 @@ export const recipe: Recipe = {
     { k: 'Data', v: 'Usage, billing and CRM from the tools you connect, read only' },
     { k: 'Price', v: 'Your price book and the discounts you approve in advance' },
     { k: 'Sends from', v: 'Your rep’s own thread' },
-    { k: 'Needs your OK', v: 'Every offer, follow up, reminder and order form' },
+    { k: 'Needs your rep’s OK', v: 'Every offer, follow up, reminder and order form' },
     { k: 'Signing', v: 'Always a person' },
     { k: 'Stops', v: 'At a no, a not now, or an open complaint' },
   ],
@@ -240,7 +241,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Offer every customer more the week they need it.',
-    sub: 'Join the waitlist. Expansion offers comes ready with read only access to your usage, your price book and drafts in each rep’s own thread.',
+    sub: 'Join the waitlist. Expansion offers comes ready to read your usage, price each offer from your price book and draft it in each rep’s own thread.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-expansion-final',

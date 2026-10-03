@@ -1,10 +1,10 @@
 import type { Capture, Recipe } from '../types'
 
-/* AI checkout test (/recipes/ai-checkout-test). Check your own journeys. Screen: checkout (fernleaf.example, 3 Oct: 6
-   AI checkout paths, each placing a £48.20 order for a linen shirt on its own single-use card capped at £48.20, inside a
+/* AI checkout test (/recipes/ai-checkout-test). Check your own journeys. Screen: checkout (your-store.example, 3 Oct: 6
+   AI checkout paths, each placing a £48.20 order for a linen shirt on its own card, used once and capped at £48.20, inside a
    £300 monthly budget; 5 land and are refunded, £241.00 in all; Assistant A's path finds the shirt in M, adds it, then
-   reads "Cart: 0 items" because sizes are hidden from agents, and its card is never charged; the drafted fix, "Add
-   sizes to the product feed", approved, and a re-test booked for 14:00). The run matches it: £, the linen shirt, the
+   reads "Basket: 0 items" because sizes are hidden from agents, and its card is never charged; the drafted fix, "Add
+   sizes to the product feed", approved, and a retest booked for 14:00). The run matches it: £, the linen shirt, the
    store, the times and the 1 fix (3 Oct).
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 1 (research name retired; the plain name is Seun's, 3 Oct).
    It upgrades Mystery shopper from watching to buying: it pays, refunds and drafts the fix (live after the reader's OK).
@@ -78,7 +78,7 @@ export const recipe: Recipe = {
     tab: 'Example: your store, monthly',
     recipe: 'checkout',
     task: 'Every month, place a real order through each AI checkout into our store, each on its own capped card. Check them, refund them, and draft the fix for any path that breaks.',
-    targets: 'fernleaf.example, your own clothing store',
+    targets: 'your-store.example, your own clothing store',
     journey: ['Map every AI checkout', 'Buy on a capped card', 'Check it, then refund it', 'Draft the fix for each break'],
     schedule: 'Monthly, and after every checkout change',
     report: 'A report by path, with fixes ready to approve',
@@ -87,10 +87,10 @@ export const recipe: Recipe = {
       { time: '3 Oct, 09:00', text: '6 ways an AI shopper can buy from you, mapped. You’re not listed on 2 AI shopping channels.' },
       { time: '3 Oct, 09:10', text: 'You confirm the £48.20 total for a linen shirt on each path. Each order is paid on its own card, locked to your store and capped at £48.20.' },
       { time: '3 Oct, 09:15', text: '5 of 6 paths take a paid order, each with the right price, size, delivery and tax.' },
-      { time: '3 Oct, 09:16', text: 'Assistant A finds the shirt in size M and adds it, then the cart shows 0 items: sizes are hidden from agents. It stops, logs why, and its card is never charged.' },
+      { time: '3 Oct, 09:16', text: 'Assistant A finds the shirt in size M and adds it, then the basket shows 0 items: sizes are hidden from agents. It stops, logs why, and its card is never charged.' },
       { time: '3 Oct, 10:00', text: '5 orders refunded through your normal process, £241.00 back on their cards.' },
     ],
-    finding: '1 of 6 AI checkouts fails: Assistant A’s cart empties after add, because sizes are hidden from agents.',
+    finding: '1 of 6 AI checkouts fails: Assistant A’s basket empties after add, because sizes are hidden from agents.',
     fix: 'Sizes added to your product feed, drafted for your OK. Once it’s live, Assistant A’s path buys again at 14:00.',
     ledger: 'Example run. 5 orders placed and refunded, 1 blocked and never charged, every receipt signed.',
   },
