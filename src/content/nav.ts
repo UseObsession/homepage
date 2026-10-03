@@ -2,7 +2,7 @@
    and the spec in the workspace, _research/nav/NAV.md. */
 import { recipeById, recipes, studies } from './registry'
 import { agentsPage } from './site'
-import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
+import type { Capture, Cta, ReaderId, RecipeGroup, RecipeId } from './types'
 import { ways } from './ways'
 
 export type NavPage = { label: string; to: string; line?: string }
@@ -88,8 +88,9 @@ export const nav = {
     { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every ad, launch and rival, seen as a customer.' },
     { id: 'developers', label: 'Developers', to: '/developers', line: 'Build on the same agents in your own code.' },
   ] satisfies NavReader[],
-  /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question. */
-  readersMenu: { label: 'For', ask: 'Who are you?' },
+  /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
+     `name` is the folded button's name for screen readers; it holds the word it shows. */
+  readersMenu: { label: 'For', name: 'Who it’s for', ask: 'Who are you?' },
   recipes: {
     label: 'Recipes',
     to: '/recipes',
@@ -103,6 +104,8 @@ export const nav = {
       to: '/recipes/mystery-shopper',
     },
     run: { label: 'See a real run', to: '/sample-output' } satisfies NavPage,
+    /* Check your AI agents' own page: the bar marks Recipes as current there too. */
+    verify: ways.verify.to,
   },
   /* Resources: the proof. The 1 real run first, then the worked examples, then 1 quiet way to the hub. */
   resources: {
@@ -114,7 +117,9 @@ export const nav = {
       label: 'The September store check',
       to: '/sample-output',
       line: '4 test customers shopped a real store. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
-      image: { src: '/nav/report-peek.jpg', width: 144, height: 90 },
+      /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x
+         above its status tags, so it reads at a glance and brings no status colour into the nav. */
+      image: { src: '/nav/report-peek.jpg', width: 168, height: 102 },
     },
     useCases: {
       label: 'Use cases',
@@ -134,12 +139,29 @@ export const nav = {
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
+/* The bar's button is never much wider than "Join the waitlist" (135px; the widest, "Get early access", 141), so the
+   5 readers keep their place in the bar from 1012 up on every page and the button stays on a 384px phone (Nav.css,
+   measured). A page whose own button says more keeps its words in its hero, its final form and the phone sheet; the
+   bar says the same offer in fewer words. "Get my free report" measures 152px, so the bar says "Get free report". */
+const BAR_WORDS: Record<string, string> = {
+  'Get early access for my team': 'Get early access',
+  'Get one for your store': 'Get free report',
+  'Get my free report': 'Get free report',
+}
+/* The free check of an AI agent (/verify and its recipes: "Check my support bot free" and the rest). */
+const VERIFY_BAR = 'Check mine free'
+
+export function barCta(cta: Cta, kind?: Capture['kind']): Cta {
+  const bar = BAR_WORDS[cta.label] ?? (kind === 'verify' ? VERIFY_BAR : undefined)
+  return bar && bar !== cta.label ? { ...cta, bar } : cta
+}
+
 /* Each page's call to action in the nav (docs/REBUILD.md, "Calls to action"). Each goes to the page's own form.
    Home, the audience pages and Developers take theirs from their own hero capture (App.tsx), so only the others are here. */
 export const pageCtas: Record<string, Cta> = {
-  '/recipes/mystery-shopper': { label: 'Get my free report', to: '#join' },
+  '/recipes/mystery-shopper': barCta({ label: 'Get my free report', to: '#join' }),
   /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
-  '/sample-output': { label: 'Get one for your store', to: '#get-one' },
+  '/sample-output': barCta({ label: 'Get one for your store', to: '#get-one' }),
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
   '/agents': agentsPage.contact.cta,
 }

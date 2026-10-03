@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigat
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { absolute, metaFor } from './content/meta'
-import { ctaFor, nav } from './content/nav'
+import { barCta, ctaFor, nav } from './content/nav'
 import { blogLive, pages, postBySlug, recipeBySlug, recipes, studyByPath } from './content/registry'
 import { Agencies } from './pages/Agencies'
 import { Agents } from './pages/Agents'
@@ -114,16 +114,20 @@ function ScrollManager() {
     }
     if (target) target.scrollIntoView()
     else window.scrollTo(0, 0)
-    if (!hash) document.getElementById('main')?.focus({ preventScroll: true })
+    /* A target that can take focus takes it (a job on /recipes, reached from the nav's Recipes menu), so the next Tab
+       starts there and not back at the skip link. */
+    if (target?.hasAttribute('tabindex')) target.focus({ preventScroll: true })
+    else if (!hash) document.getElementById('main')?.focus({ preventScroll: true })
   }, [pathname, hash, key, how])
 
   return null
 }
 
 /* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers, Check your AI agents) and every recipe take
-   the nav's call to action from their own capture: the hero form's button, landing on the page's final form (#join). */
+   the nav's call to action from their own capture: the hero form's button, landing on the page's final form (#join). The
+   bar says a long button in fewer words (content/nav barCta); the phone sheet keeps the page's own. */
 const STORY_CTAS = new Map(
-  [...Object.values(pages), ...recipes].map((p) => [p.meta.path, { label: p.hero.capture.button, to: '#join' }]),
+  [...Object.values(pages), ...recipes].map((p) => [p.meta.path, barCta({ label: p.hero.capture.button, to: '#join' }, p.hero.capture.kind)]),
 )
 
 /* Pages without a form of their own send the nav's call to action to Home's waitlist. */

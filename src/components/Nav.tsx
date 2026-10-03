@@ -33,12 +33,16 @@ type Focus = 'first' | 'last' | null
 
 /* The sheet and the folded menu belong to these widths of the bar (Nav.css). */
 const COMPACT_BELOW = 860
-/* Hover opens a menu after this pause, and a menu opened by hover closes this long after the pointer leaves it. */
+/* Hover opens a menu after this pause, and a menu opened by hover closes this long after the pointer leaves it. From a
+   menu opened by hover, resting on another item switches to its menu after HOVER_SWITCH, so a pointer that only passes
+   over an item on its way into the open menu never switches it. */
 const HOVER_OPEN = 140
 const HOVER_CLOSE = 220
+const HOVER_SWITCH = 120
 
 const readerPaths = new Set<string>(nav.readers.map((r) => r.to))
-const isRecipe = (path: string) => path === nav.recipes.to || path.startsWith(`${nav.recipes.to}/`)
+/* The pages under Recipes: the index, every recipe, and /verify (the Recipes menu's "Check your AI agents" leads there). */
+const isRecipe = (path: string) => path === nav.recipes.to || path.startsWith(`${nav.recipes.to}/`) || path === nav.recipes.verify
 /* The pages under Resources: the hub, the use cases, the sample output, and the blog while it has posts. */
 const isResource = (path: string) =>
   path === nav.resources.to ||
@@ -199,8 +203,8 @@ function Arrow() {
 
 /* A call to action is an in-page anchor (#join) or a route. An anchor the page doesn't have falls back to the page's
    form, so the button always lands somewhere. From the keyboard it also puts focus in the form's first field. */
-function CtaLink({ cta, className, onClick, children }: { cta: Cta; className: string; onClick?: () => void; children?: ReactNode }) {
-  const inner = children ?? <span className="ob-btn-label">{cta.label}</span>
+function CtaLink({ cta, className, label, onClick }: { cta: Cta; className: string; label?: string; onClick?: () => void }) {
+  const inner = <span className="ob-btn-label">{label ?? cta.label}</span>
   /* An email or another site: a plain link. */
   if (/^(mailto:|https?:)/.test(cta.to))
     return (
@@ -251,9 +255,6 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   /* The prerendered pages can be served with a trailing slash (/agencies/). */
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
 
-  /* How much room the call to action needs (Nav.css): a longer label folds the readers sooner, and hides sooner on
-     phones. Measured in Geist at the button's size: up to 17 letters 138px, 18 to 22 up to 186px, longer up to 225px. */
-  const ctaSize = cta.label.length > 22 ? 'l' : cta.label.length > 17 ? 'm' : ''
   const [menuAt, setMenuAt] = useState<{ id: MenuId; at: string } | null>(null)
   const [sheetAt, setSheetAt] = useState<string | null>(null)
   const menu = menuAt && menuAt.at === here ? menuAt.id : null
@@ -416,19 +417,22 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     else open(id, 'press')
   }
 
+  /* A menu opened by a press changes only on a press, Escape or a press outside: the pointer crossing another item on
+     its way into the open panel (Recipes' featured card sits under Resources) never takes it away. */
   function onEnter(e: PointerEvent<HTMLLIElement>, id: MenuId) {
     if (e.pointerType !== 'mouse' || !fine.current) return
     window.clearTimeout(hoverTimer.current)
     if (menu === id) return
-    /* From an open menu to the next, the switch is immediate; from nothing, it waits for intent. */
-    if (menu) open(id, 'hover')
-    else hoverTimer.current = window.setTimeout(() => open(id, 'hover'), HOVER_OPEN)
+    if (menu && openedBy.current === 'press') return
+    hoverTimer.current = window.setTimeout(() => open(id, 'hover'), menu ? HOVER_SWITCH : HOVER_OPEN)
   }
-  function onLeave(e: PointerEvent<HTMLLIElement>, id: MenuId) {
+  /* Leaving any item starts the close of a menu that hover opened; coming back into it (or its panel) cancels it. */
+  function onLeave(e: PointerEvent<HTMLLIElement>) {
     if (e.pointerType !== 'mouse') return
     window.clearTimeout(hoverTimer.current)
-    if (menu !== id || openedBy.current !== 'hover') return
-    hoverTimer.current = window.setTimeout(() => setMenuAt((m) => (m && m.id === id ? null : m)), HOVER_CLOSE)
+    if (!menu || openedBy.current !== 'hover') return
+    const shut = menu
+    hoverTimer.current = window.setTimeout(() => setMenuAt((m) => (m && m.id === shut ? null : m)), HOVER_CLOSE)
   }
 
   function onTriggerKey(e: KeyboardEvent<HTMLButtonElement>, id: MenuId) {
@@ -491,7 +495,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
       className={`s-nav__item ${className}${menu === id ? ' is-open' : ''}`}
       onBlur={onItemBlur}
       onPointerEnter={(e) => onEnter(e, id)}
-      onPointerLeave={(e) => onLeave(e, id)}
+      onPointerLeave={onLeave}
     >
       {children}
     </li>
@@ -550,16 +554,17 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     </NavLink>
   )
 
-  /* A proof card: what it is or who it is for, its name, and what happened in 1 line. */
+  /* A proof card: what it is or who it is for, its name, and what happened in 1 line. On its own page it is marked
+     current, as the Recipes menu's examples are. */
   const card = (c: NavCard, className: string, image?: ReactNode) => (
-    <Link className={`ob-menu__item s-card ${className}`} to={c.to} onClick={close}>
+    <NavLink className={`ob-menu__item s-card ${className}`} to={c.to} end onClick={close}>
       <span className="s-card__text">
         <span className="s-card__kicker">{c.kicker}</span>
         <span className="s-menu__name">{c.label}</span>
         <span className="s-menu__line">{c.line}</span>
       </span>
       {image}
-    </Link>
+    </NavLink>
   )
 
   const run = nav.resources.run
@@ -572,7 +577,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   return (
     <nav
       ref={navRef}
-      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${ctaSize ? ` s-nav--cta-${ctaSize}` : ''}${scope}`}
+      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${scope}`}
       aria-label={nav.label}
     >
       <div className="ob-nav__in s-nav__in">
@@ -595,6 +600,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             <>
               {trigger('for', {
                 label: nav.readersMenu.label,
+                name: nav.readersMenu.name,
                 className: 's-nav__trigger',
                 current: readerPaths.has(path),
                 reader: nav.readers.find((r) => r.to === path)?.id,
@@ -719,7 +725,12 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
 
         <div className="ob-nav__end">
           <ThemeToggle className="s-nav__theme" />
-          <CtaLink cta={cta} className={`ob-btn ob-btn--sm ob-nav__cta${quiet ? ' ob-btn--secondary' : ''}`} onClick={close} />
+          <CtaLink
+            cta={cta}
+            label={cta.bar}
+            className={`ob-btn ob-btn--sm ob-nav__cta${quiet ? ' ob-btn--secondary' : ''}`}
+            onClick={close}
+          />
           <button
             ref={menuBtnRef}
             type="button"

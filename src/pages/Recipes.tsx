@@ -18,7 +18,8 @@ import './Recipes.css'
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-rivals. */
+/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-rivals.
+   It takes focus when reached that way (App.tsx ScrollManager), so the keyboard carries on from the job. */
 
 /* The jump links' name, for screen readers. */
 const UI = { jobs: 'Recipes by job', inputs: 'Add companies from', outputs: 'Results go to' }
@@ -62,7 +63,7 @@ export function Recipes() {
 
       <div className="s-wrap s-ri-jobs">
         {groups.map((g) => (
-          <section className="s-ri-job" id={slug(g.group)} key={g.group} aria-labelledby={`${slug(g.group)}-h`}>
+          <section className="s-ri-job" id={slug(g.group)} key={g.group} aria-labelledby={`${slug(g.group)}-h`} tabIndex={-1}>
             <header className="s-ri-job__head">
               <h2 className="s-ri-job__name" id={`${slug(g.group)}-h`}>
                 {g.group}

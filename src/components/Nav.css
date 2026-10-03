@@ -8,12 +8,15 @@
 /* ---------------------------------------------------------------------------------------------
    Bar
    Widths are the bar's own (container ob-nav). Measured in Geist 14px medium: the 5 readers 298px of words, Recipes
-   53, Resources 69; the lockup 158; the call to action 138 (up to 17 letters), up to 186 (18 to 22), up to 225 (longer).
-     1200 and up   roomy: 12px link padding, the theme switch (not beside the longest calls to action)
-     860 to 1199   tight: 8px link padding, no theme switch (it stays in the footer and the sheet)
-     the readers fold into "For" under 1012 (1056 for a medium call to action, 1096 for a long one)
+   53, Resources 69; the lockup 158. The bar's call to action never says more than "Join the waitlist" (content/nav
+   barCta), so 1 set of widths serves every page.
+     1200 and up   roomy: 12px link padding, the theme switch
+     860 to 1199   tight: 8px link padding, no theme switch (it stays in the footer and the sheet). At 1024 the
+                   5 readers, Recipes, Resources and the button sit on 1 line with 45 to 56px of air (measured on
+                   every kind of page; the widest bar button is "Get early access", 141px)
+     the readers fold into "For" under 1012, on a mouse and on touch alike (33px of air left there at worst)
      under 860     the design system's compact bar: the menu button opens the sheet
-   Every step keeps at least 20px of air between the last menu and the actions.
+   Every step keeps at least 12px of air between the last menu and the actions.
    --------------------------------------------------------------------------------------------- */
 
 /* Line the lockup up with the page's content edge (the 1160px container plus the gutter). */
@@ -39,8 +42,6 @@
   .s-nav .s-nav__in { --s-link-px: var(--ob-space-8); --s-link-gap: var(--ob-space-2); --s-group-gap: var(--ob-space-12); --s-brand-gap: var(--ob-space-8); }
   .ob-nav__end > .s-nav__theme { display: none; }
 }
-/* Beside the longest calls to action the theme switch never fits: it lives in the footer and the sheet. */
-.s-nav--cta-l .ob-nav__end > .s-nav__theme { display: none; }
 
 .s-nav__links .ob-nav__link { padding-inline: var(--s-link-px); }
 
@@ -56,14 +57,6 @@
 @container ob-nav (max-width: 1011.98px) {
   .s-nav .s-nav__reader { display: none; }
   .s-nav .s-nav__for { display: flex; }
-}
-@container ob-nav (max-width: 1055.98px) {
-  .s-nav--cta-m .s-nav__reader, .s-nav--cta-l .s-nav__reader { display: none; }
-  .s-nav--cta-m .s-nav__for, .s-nav--cta-l .s-nav__for { display: flex; }
-}
-@container ob-nav (max-width: 1095.98px) {
-  .s-nav--cta-l .s-nav__reader { display: none; }
-  .s-nav--cta-l .s-nav__for { display: flex; }
 }
 
 /* The readers and the work: a hairline between "who" and "what", inside the gap, never a target. */
@@ -118,39 +111,33 @@
 .s-nav__links .s-nav__more { padding: 0 calc(var(--s-link-px) / 2) 0 0; }
 /* The page link's current square centres on its word: half of the trimmed end padding to the left. */
 .s-nav__main:is([aria-current="page"], .is-selected)::after { margin-left: calc(var(--ob-sq-sm) / -2 + (var(--s-link-px) - var(--ob-space-2)) / 2); }
+/* While its menu is open the square steps aside, so it never floats in the gap against the panel's edge. */
+.s-nav__split.is-open > .s-nav__main::after { visibility: hidden; }
 
-/* Touch (an iPad on its side): the chevron grows to a 44px square target and the theme switch leaves the bar, so
-   every step needs 40px more: roomy from 1240, and the readers fold under 1052 (1096 medium, 1136 long). */
+/* Touch (an iPad on its side): each chevron grows from 26px to a 44px square target and the theme switch leaves the
+   bar: 36px more in all. Roomy from 1240. Under 1040 the links' sides tighten from 8 to 6px (24px back; the shortest,
+   Sales, is still a 46px target), so the readers keep their place down to the same 1012 as on a mouse: at 1024 the
+   widest bar button leaves 33px of air, at 1012 21px (the 44px chevron carries about 15px more of its own). */
 @media (pointer: coarse) {
   .s-nav__links .s-nav__more { width: var(--ob-target-touch); padding: 0; }
   .ob-nav__end > .s-nav__theme { display: none; }
   @container ob-nav (max-width: 1239.98px) {
     .s-nav .s-nav__in { --s-link-px: var(--ob-space-8); --s-link-gap: var(--ob-space-2); --s-group-gap: var(--ob-space-12); --s-brand-gap: var(--ob-space-8); }
   }
-  @container ob-nav (max-width: 1051.98px) {
-    .s-nav .s-nav__reader { display: none; }
-    .s-nav .s-nav__for { display: flex; }
-  }
-  @container ob-nav (max-width: 1095.98px) {
-    .s-nav--cta-m .s-nav__reader, .s-nav--cta-l .s-nav__reader { display: none; }
-    .s-nav--cta-m .s-nav__for, .s-nav--cta-l .s-nav__for { display: flex; }
-  }
-  @container ob-nav (max-width: 1135.98px) {
-    .s-nav--cta-l .s-nav__reader { display: none; }
-    .s-nav--cta-l .s-nav__for { display: flex; }
+  @container ob-nav (max-width: 1039.98px) {
+    .s-nav .s-nav__in { --s-link-px: var(--ob-space-6); }
   }
 }
 
-/* Compact bar: the call to action leaves when it no longer fits beside the 20px lockup (158px), the menu button (44px)
-   and 8px of air; it stays in the sheet. */
-@container ob-nav (max-width: 399.98px) {
-  .ob-nav__end > .ob-nav__cta { display: none; }
-}
+/* Compact bar: the call to action stays in the bar on phones, so it is always 1 tap away. Under 440 its sides tighten
+   (it keeps its 36px pill and 44px target); measured at 390, the widest bar button ("Get early access") keeps 15px of
+   air beside the 20px lockup, "Join the waitlist" 22px. It leaves only under 388, where less than 12px would be left
+   (360 and 375 phones), and waits in the sheet. */
 @container ob-nav (max-width: 439.98px) {
-  .s-nav--cta-m .ob-nav__end > .ob-nav__cta { display: none; }
+  .s-nav .ob-nav__end > .ob-nav__cta { --ob-btn-c-px: var(--ob-space-12); }
 }
-@container ob-nav (max-width: 489.98px) {
-  .s-nav--cta-l .ob-nav__end > .ob-nav__cta { display: none; }
+@container ob-nav (max-width: 387.98px) {
+  .ob-nav__end > .ob-nav__cta { display: none; }
 }
 
 
@@ -190,11 +177,14 @@
 .s-menu__name { font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
 .s-menu__line { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
 
-/* The current page: a raised fill and the square at the row's end, never colour alone. A reader's square takes its hue. */
+/* The current page: a raised fill and the square at the row's end, never colour alone. A reader's square takes its hue;
+   the proof cards' square is ink. */
 .s-menu__item[aria-current="page"],
-.s-rm__ex[aria-current="page"] { background-color: var(--ob-state-selected); }
+.s-rm__ex[aria-current="page"],
+.ob-menu__item.s-card[aria-current="page"] { background-color: var(--ob-state-selected); }
 .s-menu__item[aria-current="page"]::after,
-.s-rm__ex[aria-current="page"]::after {
+.s-rm__ex[aria-current="page"]::after,
+.ob-menu__item.s-card[aria-current="page"]::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -244,7 +234,6 @@
 .s-rm__job { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
 .s-rm__job:nth-child(-n + 3) { padding-bottom: var(--ob-space-12); }
 .s-menu__item--rich.s-rm__head { align-content: start; padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-6); }
-.s-rm__head .s-menu__line { color: var(--ob-text-3); }
 .s-rm__eg { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
 .s-rm__ex {
   position: relative;
@@ -310,6 +299,9 @@
 }
 .s-card__text { display: grid; gap: var(--ob-space-4); min-width: 0; }
 .s-card__kicker { font: var(--ob-type-caption); color: var(--ob-text-3); }
+/* A card's square sits level with its kicker, clear of the run card's page peek. */
+.ob-menu__item.s-card { position: relative; }
+.ob-menu__item.s-card[aria-current="page"]::after { top: var(--ob-space-16); margin-top: 0; background-color: currentColor; }
 /* The real run: a recessed panel with the report's first page peeking up from its foot. */
 .ob-menu__item.s-card--run {
   grid-template-columns: minmax(0, 1fr) auto;
@@ -328,15 +320,15 @@
 .s-card__peek {
   align-self: end;
   display: block;
-  width: 144px;
-  height: 84px;
+  width: 168px;
+  height: 96px;
   margin-top: var(--ob-space-4);
   overflow: hidden;
   border-radius: var(--ob-radius-xs) var(--ob-radius-xs) 0 0;
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-shadow-2);
   transition: translate var(--ob-dur-base) var(--ob-ease-out);
 }
-.s-card__peek > img { display: block; width: 144px; height: 90px; }
+.s-card__peek > img { display: block; width: 168px; height: 102px; }
 
 
 /* ---------------------------------------------------------------------------------------------
@@ -412,8 +404,8 @@
 .s-mnav__proof { gap: var(--ob-space-4); }
 .ob-menu__item.s-card--sheet { min-height: var(--ob-target-touch); border-radius: var(--ob-radius-md); }
 .ob-menu__item.s-card--sheet.s-card--run { gap: var(--ob-space-12); padding: var(--ob-space-16) var(--ob-space-12) 0 var(--ob-space-16); margin-bottom: var(--ob-space-4); }
-.s-card--sheet .s-card__peek { width: 80px; height: 52px; }
-.s-card--sheet .s-card__peek > img { width: 80px; height: 50px; }
+.s-card--sheet .s-card__peek { width: 96px; height: 56px; }
+.s-card--sheet .s-card__peek > img { width: 96px; height: 58px; }
 .s-card--case.s-card--sheet { padding: var(--ob-space-12) var(--ob-control-pad-sm); }
 
 .s-mnav .s-mnav__theme { margin-top: var(--ob-space-16); padding-inline-start: var(--ob-control-pad-sm); }
@@ -428,6 +420,18 @@
   background-color: var(--ob-bg);
 }
 
+/* An iPad upright (600 to 859): the sheet uses its width. The readers 2 to a row under Agencies (the beachhead, the
+   full row), the 6 jobs 2 to a row, the 2 use cases side by side under the real run, and the pinned button at a
+   comfortable width from the start edge instead of a pill across the whole sheet. */
+@container ob-nav (min-width: 600px) {
+  .s-mnav :is(.s-mnav__readers, .s-mnav__jobs, .s-mnav__proof) { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--ob-space-4); }
+  .s-mnav__readers > li:first-child,
+  .s-mnav__jobs > li:last-child,
+  .s-mnav__proof > li:is(:first-child, :last-child) { grid-column: 1 / -1; }
+  .s-mnav__proof > li { display: grid; }
+  .s-mnav .s-mnav__foot > .ob-btn { justify-self: start; width: min(100%, 400px); }
+}
+
 
 /* ---------------------------------------------------------------------------------------------
    Forced colours and more contrast: real edges for the panels the fills drew, and the key squares in the text colour.
@@ -440,14 +444,15 @@
   :is(.s-nav__reader .ob-nav__link[aria-current="page"], .s-nav__trigger.is-selected[data-reader])::after,
   .s-menu__item[aria-current="page"]::after,
   .s-rm__ex[aria-current="page"]::after,
+  .ob-menu__item.s-card[aria-current="page"]::after,
   .s-mnav__reader[aria-current="page"]::after { forced-color-adjust: none; background-color: CanvasText; }
   .s-nav__split.is-open { outline: 1px solid CanvasText; }
 }
 @media (prefers-contrast: more) {
   .ob-menu__item:is(.s-feature, .s-card--run) { box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
-  .s-rm__head .s-menu__line { color: var(--ob-text-2); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .s-card__peek { transition: none; }
-  .s-card--run:hover .s-card__peek { translate: none; }
+  .s-card__peek, .s-menu__arrow { transition: none; }
+  .s-card--run:hover .s-card__peek,
+  :is(.s-menu__all, .s-mnav__all, .s-feature):hover .s-menu__arrow { translate: none; }
 }
