@@ -23,8 +23,9 @@ import { Hydrated } from './lib/Hydrated'
 const root = document.getElementById('root')!
 const app = (
   <StrictMode>
-    <App />
-    <Hydrated />
+    <Hydrated>
+      <App />
+    </Hydrated>
   </StrictMode>
 )
 
