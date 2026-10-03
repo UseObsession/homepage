@@ -6,8 +6,8 @@
      not shown (inert: Home's other hero tabs, How's other steps) waits for its tab. data-boot marks a story started
      here, so AppScreen does not start it again as it takes over (src/main.tsx sends obs-hydrate when it does).
    - The screens' own styles: the page carries those of the screen its first view shows; the rest (SHEETS, by screen)
-     load as each screen comes within a screen's height of the view, and, once the page's main words have landed, 1 at
-     a time while the browser is idle. Until then a screen is skipped by the browser (styles/perf.css), so it never
+     load for a screen in view at once, and once the page's main words have landed, for a screen near the view, then 1
+     at a time while the browser is idle. Until then a screen is skipped by the browser (styles/perf.css), so it never
      shows without them.
    - The app itself (src/main.tsx, the built entry named by ENTRY) loads once the page's main words have landed: after
      its first frame, and after the hero's headline and sub have faded in (if they do) and been painted, so the app's
@@ -72,33 +72,46 @@ const idle = (next: () => void) => ('requestIdleCallback' in window ? requestIdl
 const rest = (names: string[]) => {
   if (names.length) idle(() => style(names[0]).then(() => rest(names.slice(1))))
 }
-/* A screen below the hero is skipped altogether until it comes within a view's height (data-far, styles/perf.css): the
-   browser would otherwise draw every screen ahead as soon as it is idle. */
-if ('IntersectionObserver' in window) {
-  const near = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (!e.isIntersecting) continue
-        near.unobserve(e.target)
-        e.target.firstElementChild?.removeAttribute('data-far')
-        style(e.target.getAttribute('data-screen'))
-      }
-    },
-    { rootMargin: '100% 0px' },
-  )
-  document.querySelectorAll('.ilwrap[data-screen]').forEach((s) => {
-    if (!s.closest('.s-hero')) s.firstElementChild?.setAttribute('data-far', '')
-    near.observe(s)
-  })
-}
-
 let started = false
+let land: () => void
+/* The page's main words have landed (see the end of this script): the app and every screen's styles may load. */
+const landed = new Promise<void>((done) => (land = done))
 const start = () => {
   if (started) return
   started = true
   contentful.then(() => {
+    land()
     rest(Object.keys(SHEETS))
     import(/* @vite-ignore */ ENTRY)
+  })
+}
+
+/* A screen below the hero is skipped altogether until it comes within a view's height (data-far, styles/perf.css): the
+   browser would otherwise draw every screen ahead as soon as it is idle. A screen near the view gets its styles once
+   the page's words have landed; a screen in view, at once. */
+if ('IntersectionObserver' in window) {
+  const watch = (margin: string, then: (s: Element, name: string | null) => void) => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue
+          io.unobserve(e.target)
+          then(e.target, e.target.getAttribute('data-screen'))
+        }
+      },
+      { rootMargin: margin },
+    )
+    return io
+  }
+  const near = watch('100% 0px', (s, name) => {
+    s.firstElementChild?.removeAttribute('data-far')
+    landed.then(() => style(name))
+  })
+  const seen = watch('0px', (s, name) => (s.closest('[inert]') ? landed.then(() => style(name)) : style(name)))
+  document.querySelectorAll('.ilwrap[data-screen]').forEach((s) => {
+    if (!s.closest('.s-hero')) s.firstElementChild?.setAttribute('data-far', '')
+    near.observe(s)
+    seen.observe(s)
   })
 }
 for (const type of ['pointerdown', 'keydown', 'touchstart']) addEventListener(type, start, { once: true, passive: true, capture: true })
