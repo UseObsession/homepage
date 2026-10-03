@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
-import type { Recipe, RecipeGroup, RecipeId } from '../../content/types'
+import { catalog, type CatalogRecipe } from '../../content/catalog'
+import type { RecipeGroup, RecipeId } from '../../content/types'
 import './RecipeGrid.css'
 
 /* A numeral never ends a line apart from its word ("0 reminders", "48 hours"). */
 const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
 
-/* Every recipe's own data, read from src/content/recipes/*.ts, so a name or a line is only ever written once. */
-const FILES = import.meta.glob('../../content/recipes/*.ts', { eager: true, import: 'recipe' }) as Record<string, Recipe>
-const RECIPES = Object.fromEntries(Object.values(FILES).map((r) => [r.id, r])) as Record<RecipeId, Recipe>
+/* Every recipe's own name, line and address, read from src/content/recipes/*.ts (content/catalog.ts), so a name or a
+   line is only ever written once. */
+const RECIPES = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 /* The 6 jobs, in the order every page shows them (content/nav JOBS). */
 const JOBS: RecipeGroup[] = [

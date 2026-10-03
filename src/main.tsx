@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, startTransition, useEffect } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 // Global styles load before any component styles, so components can override them.
 // The Obsession design system first (src/styles/ds, synced by scripts/sync-assets.mjs), then the site's own styles.
@@ -14,16 +14,37 @@ import './styles/ds/components/brand.css'
 import './styles/tokens.css'
 import './styles/site.css'
 import './styles/base.css'
-import App from './App'
+/* How the page renders, never how it looks (styles/perf.css). */
+import './styles/perf.css'
+import App, { preloadRoute } from './App'
+import { hydrated } from './lib/hydration'
+
+/* Renders nothing: its effect runs once the first render has committed, after every other component's. */
+function Hydrated() {
+  useEffect(hydrated, [])
+  return null
+}
 
 const root = document.getElementById('root')!
 const app = (
   <StrictMode>
     <App />
+    <Hydrated />
   </StrictMode>
 )
 
-/* Pages are prerendered to HTML at build time (scripts/prerender.mjs). Hydrate that HTML when it's there;
-   in development the root is empty, so render from scratch. */
-if (root.hasChildNodes()) hydrateRoot(root, app)
-else createRoot(root).render(app)
+/* Pages are prerendered to HTML at build time (scripts/prerender.mjs), and the page's boot script (src/boot.ts) loads
+   this once the first frame is painted. The page's own code and words load first, so React draws exactly that HTML,
+   then hydrates it in a transition, in short slices, so the page stays responsive while it does; the boot script hands
+   the app screens' stories over as it starts (obs-hydrate). In development the root is empty: render from scratch. */
+if (root.hasChildNodes()) {
+  void preloadRoute(location.pathname).then(() => {
+    document.dispatchEvent(new Event('obs-hydrate'))
+    startTransition(() => {
+      hydrateRoot(root, app)
+    })
+  })
+} else {
+  hydrated()
+  createRoot(root).render(app)
+}

@@ -27,7 +27,7 @@ import { existsSync, readdirSync } from 'node:fs'
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { build } from 'vite'
+import { build, minify, transformWithOxc } from 'vite'
 import { purgeCss } from './purge-css.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -65,7 +65,21 @@ const screenCss = new Map(
     .filter(([name, file]) => name && file),
 )
 await rm(join(dist, '.vite'), { recursive: true, force: true })
-const stylesheet = /<link rel="stylesheet"[^>]*href="\/assets\/index-[^"]+\.css"[^>]*>/
+/* The site's 1 stylesheet, the one Vite links in the template (vite.config.ts groups every style but the screens' into it). */
+const stylesheet = /<link rel="stylesheet"[^>]*href="\/assets\/([\w.-]+\.css)"[^>]*>/
+const siteSheet = template.match(stylesheet)?.[1]
+if (!siteSheet) throw new Error('dist/index.html links no stylesheet.')
+
+/* The app's script tag Vite writes in the head gives way to the page's boot script (src/boot.ts), written inline at the
+   end of the body: it plays the app screens in view and loads the app once the first frame is painted. */
+const appScript = template.match(/\s*<script type="module" crossorigin src="(\/assets\/[^"]+\.js)"><\/script>/)
+/* Vite's modulepreload links for the app's own chunks go too: the app loads after the first paint, and fetches them then. */
+const modulePreloads = /\s*<link rel="modulepreload"[^>]*>/g
+if (!appScript) throw new Error('dist/index.html has no app script tag for the boot script to load.')
+const bootSource = await readFile(join(root, 'src/boot.ts'), 'utf8')
+const bootJs = (await minify('boot.js', (await transformWithOxc(bootSource, 'boot.ts', { lang: 'ts' })).code, { compress: true, mangle: true })).code
+if (!/\bENTRY\b/.test(bootJs)) throw new Error('src/boot.ts no longer names ENTRY, the address of the app it loads.')
+const boot = `<script>(()=>{${bootJs.trim().replace(/\bENTRY\b/, () => JSON.stringify(appScript[1]))}})()</script>`
 if (!template.includes('<div id="root"></div>')) throw new Error('dist/index.html is already prerendered. Run vite build first.')
 
 const problems = []
@@ -75,13 +89,17 @@ const warn = (m) => notes.push(m)
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-/* The fonts the first view sets, preloaded so the first paint is already in Geist: the latin sans the words use, and
-   the latin mono the hero's typed task line uses (anything the agent is told is Geist Mono). */
+/* The fonts a page sets, preloaded so they are in hand before its first layout: a font that lands after it lays the
+   whole page out again. The latin sans the words use; the latin mono the app screens and the agent's words use; and, on
+   a page that shows one, the 3 symbols (the arrows and the return key) cut into fonts of their own. */
 const assets = existsSync(join(dist, 'assets')) ? readdirSync(join(dist, 'assets')) : []
 const mainFont = assets.find((f) => /^geist-latin-wght-normal-[\w-]+\.woff2$/.test(f))
 const monoFont = assets.find((f) => /^geist-mono-latin-wght-normal-[\w-]+\.woff2$/.test(f))
+const symbolFonts = assets.filter((f) => /^geist(-mono)?-symbols-wght-normal-[\w-]+\.woff2$/.test(f))
 if (!mainFont) fail('The Geist latin font is missing from the build (src/styles/fonts.css).')
 if (!monoFont) fail('The Geist Mono latin font is missing from the build (src/styles/fonts.css).')
+if (symbolFonts.length !== 2) fail('The 2 Geist symbol fonts are missing from the build, or written into the CSS (vite.config.ts assetsInlineLimit).')
+const SYMBOLS = /[\u2190\u2192\u21b5]|&#x(2190|2192|21b5);|&#(8592|8594|8629);|&(larr|rarr|crarr);/i
 
 function head(e, { noindex = false } = {}) {
   const m = e.meta
@@ -130,17 +148,21 @@ function page(e, rendered, opts) {
   ]
   for (const s of screens) if (!screenCss.has(s) && existsSync(join(root, `src/screens/css/${s}.css`))) fail(`${e.meta.path}: no built CSS for the ${s} screen.`)
   const screenLinks = screens.filter((s) => screenCss.has(s)).map((s) => `<link rel="stylesheet" crossorigin href="/${screenCss.get(s)}">`)
+  const fonts = [mainFont, monoFont, ...(SYMBOLS.test(appHtml) ? symbolFonts : [])]
   const preloads = [
-    ...[mainFont, monoFont].filter(Boolean).map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`),
+    ...fonts.filter(Boolean).map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`),
     ...(hints.match(/<link[^>]*\/>/g) ?? []),
   ].filter(Boolean)
   /* Replacements are functions, so a "$" in the copy is never read as a pattern. */
   const html = template
     .replace(/<title>[\s\S]*?<\/title>/, () => [...preloads, `<title>${esc(e.meta.title)}</title>`].join('\n    '))
     .replace(/<meta\s+name="description"[\s\S]*?\/>/, () => `<meta name="description" content="${esc(e.meta.description)}" />`)
+    .replace(appScript[0], '')
+    .replace(modulePreloads, '')
     .replace(stylesheet, (link) => [link, ...screenLinks].join('\n    '))
     .replace('</head>', () => `    ${head(e, opts)}\n  </head>`)
     .replace('<div id="root"></div>', () => `<div id="root">${appHtml}</div>`)
+    .replace('</body>', () => `  ${boot}\n  </body>`)
   if (html.includes('<div id="root"></div>')) throw new Error(`Nothing rendered for ${e.meta.path}`)
   return html
 }
@@ -156,13 +178,14 @@ async function write(path, html) {
 /* ---- Pages ---- */
 const rendered = []
 for (const e of entries) {
-  const app = render(e.meta.path)
+  const app = await render(e.meta.path)
+  if (/<!--\$[?!]/.test(app)) fail(`${e.meta.path}: part of the page did not draw (a page's code or words did not load before it).`)
   await write(e.meta.path, page(e, app))
   rendered.push({ e, app })
 }
 
 /* Hosts serve 404.html, with a 404 status, for any path without its own page. */
-await writeFile(join(dist, '404.html'), page(notFound, render('/404'), { noindex: true }))
+await writeFile(join(dist, '404.html'), page(notFound, await render('/404'), { noindex: true }))
 
 /* ---- screens/WORKSPACE/NAME.html: each app screen's HTML, fetched when a page is reached client side. ---- */
 for (const [key, html] of screenFiles()) {
@@ -471,14 +494,40 @@ for (const { e, app } of rendered) {
 /* The privacy notice names its controller: the founders supply the registered name and address before it ships. Until
    then the notice gives only its contact line. A bracketed placeholder on any page fails the build. */
 if (!CONTROLLER) warn('/privacy: no controller named yet (CONTROLLER in content/site.ts). The founders supply the registered name and address before the site ships.')
-for (const { e, app } of [...rendered, { e: notFound, app: render('/404') }])
+for (const { e, app } of [...rendered, { e: notFound, app: await render('/404') }])
   if (/\[(registered|company name|address|placeholder|todo)[^\]]*\]/i.test(app)) fail(`${e.meta.path}: a bracketed placeholder is on the page.`)
 
 await rm(server, { recursive: true, force: true })
 
 /* The stylesheet every page blocks on, without the rules no page uses (scripts/purge-css.mjs). */
-const purged = await purgeCss(dist)
+const purged = await purgeCss(dist, siteSheet)
 if (purged) notes.push(`css: ${purged.to}, ${Math.round(purged.before / 1024)} KB to ${Math.round(purged.after / 1024)} KB (${purged.dropped} unused rules dropped).`)
+
+/* Then each page carries its stylesheets in its own head, in the same order (the site's, then its screens'), so its
+   first paint waits for the page alone and never for another request. The site's file goes once every page has it; the
+   screens' stay, for a page reached client side (components/screens.ts). */
+const inlined = new Map()
+const sheet = async (href) => {
+  if (!inlined.has(href)) {
+    const css = await readFile(join(dist, href.slice(1)), 'utf8')
+    if (/<\/style/i.test(css)) fail(`${href} cannot be written inside a style element.`)
+    inlined.set(href, css)
+  }
+  return inlined.get(href)
+}
+const sheetLink = /\s*<link rel="stylesheet" crossorigin href="(\/assets\/[\w.-]+\.css)">/g
+/* A page's code that Vite loads names the site's sheet, by the name Vite gave it, as something to load first. It is
+   already in the page, so a disabled link (never fetched) under that name tells Vite's loader so. */
+const siteMark = `<link rel="stylesheet" href="/assets/${siteSheet}" disabled />`
+for (const f of [...entries.map((e) => fileFor(e.meta.path)), join(dist, '404.html')]) {
+  const html = await readFile(f, 'utf8')
+  const links = [...html.matchAll(sheetLink)]
+  if (!links.length) fail(`${relative(dist, f)}: no stylesheet to write into the page.`)
+  const css = (await Promise.all(links.map((m) => sheet(m[1])))).join('\n')
+  let first = true
+  await writeFile(f, html.replace(sheetLink, () => (first ? ((first = false), `\n    <style>${css}</style>\n    ${siteMark}`) : '')))
+}
+if (purged) await rm(join(dist, 'assets', purged.to))
 
 for (const n of [...new Set(notes)]) console.warn(`  note: ${n}`)
 if (problems.length) {

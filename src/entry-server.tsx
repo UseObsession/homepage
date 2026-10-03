@@ -2,10 +2,12 @@
 import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
-import { AppRoutes } from './App'
+import { AppRoutes, preloadRoute } from './App'
 
-/* Used only by scripts/prerender.mjs at build time: renders 1 route to HTML, and hands over what its head needs. */
-export function render(url: string) {
+/* Used only by scripts/prerender.mjs at build time: renders 1 route to HTML (its page's code and words loaded first, so
+   it draws whole), and hands over what its head needs. */
+export async function render(url: string) {
+  await preloadRoute(url)
   return renderToString(
     <StrictMode>
       <StaticRouter location={url}>

@@ -122,10 +122,9 @@ function files(dir, ext, out = []) {
   return out
 }
 
-export async function purgeCss(dist) {
+export async function purgeCss(dist, main) {
   const assets = join(dist, 'assets')
-  const main = readdirSync(assets).find((f) => /^index-[\w-]+\.css$/.test(f))
-  if (!main) return null
+  if (!main || !readdirSync(assets).includes(main)) return null
   const html = files(dist, '.html')
   const js = files(assets, '.js')
   const tokens = new Set()
@@ -160,7 +159,7 @@ export async function purgeCss(dist) {
 
   const before = await readFile(join(assets, main), 'utf8')
   const after = emit(trim(parse(before)))
-  const name = `index-${createHash('sha256').update(after).digest('base64url').slice(0, 8)}.css`
+  const name = `${main.replace(/-[\w-]+\.css$/, '')}-${createHash('sha256').update(after).digest('base64url').slice(0, 8)}.css`
   await writeFile(join(assets, name), after)
   if (name !== main) await rm(join(assets, main))
   for (const f of html) {

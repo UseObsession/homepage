@@ -1,28 +1,68 @@
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useRef } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigationType, useParams } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
-import { absolute, metaFor } from './content/meta'
+import { catalog } from './content/catalog'
+import { headFor } from './content/head'
+import { storyCtas } from './content/heads'
 import { ctaFor, nav } from './content/nav'
-import { blogLive, pages, postBySlug, recipeBySlug, recipes, studyByPath } from './content/registry'
-import { Agencies } from './pages/Agencies'
-import { Agents } from './pages/Agents'
-import { Blog } from './pages/Blog'
-import { BlogPost } from './pages/BlogPost'
-import { Developers } from './pages/Developers'
-import { Founders } from './pages/Founders'
-import { Home } from './pages/Home'
-import { Marketing } from './pages/Marketing'
-import { NotFound } from './pages/NotFound'
-import { Privacy } from './pages/Privacy'
-import { Recipe } from './pages/Recipe'
-import { Recipes } from './pages/Recipes'
-import { Resources } from './pages/Resources'
-import { Sales } from './pages/Sales'
-import { SampleOutput } from './pages/SampleOutput'
-import { UseCase } from './pages/UseCase'
-import { UseCases } from './pages/UseCases'
-import { Verify } from './pages/Verify'
+import { absolute, cleanPath } from './content/paths'
+import { recipeWords, studyWords } from './content/words'
+import { lazyPage } from './lib/lazy'
+
+/* Each page's code (and its words) is its own chunk, loaded for the page that shows it (lib/lazy.tsx): the app itself
+   carries only the nav, the footer and the index of every page (content/catalog.ts, content/heads.ts). */
+const Home = lazyPage(() => import('./pages/Home').then((m) => m.Home))
+const Agencies = lazyPage(() => import('./pages/Agencies').then((m) => m.Agencies))
+const Founders = lazyPage(() => import('./pages/Founders').then((m) => m.Founders))
+const Sales = lazyPage(() => import('./pages/Sales').then((m) => m.Sales))
+const Marketing = lazyPage(() => import('./pages/Marketing').then((m) => m.Marketing))
+const Developers = lazyPage(() => import('./pages/Developers').then((m) => m.Developers))
+const Verify = lazyPage(() => import('./pages/Verify').then((m) => m.Verify))
+const Recipes = lazyPage(() => import('./pages/Recipes').then((m) => m.Recipes))
+const Recipe = lazyPage(() => import('./pages/Recipe').then((m) => m.Recipe))
+const Resources = lazyPage(() => import('./pages/Resources').then((m) => m.Resources))
+const UseCases = lazyPage(() => import('./pages/UseCases').then((m) => m.UseCases))
+const UseCase = lazyPage(() => import('./pages/UseCase').then((m) => m.UseCaseAt))
+const Blog = lazyPage(() => import('./pages/Blog').then((m) => m.Blog))
+const BlogPost = lazyPage(() => import('./pages/BlogPost').then((m) => m.BlogPostAt))
+const SampleOutput = lazyPage(() => import('./pages/SampleOutput').then((m) => m.SampleOutput))
+const Privacy = lazyPage(() => import('./pages/Privacy').then((m) => m.Privacy))
+const Agents = lazyPage(() => import('./pages/Agents').then((m) => m.Agents))
+const NotFound = lazyPage(() => import('./pages/NotFound').then((m) => m.NotFound))
+
+const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
+const STUDIES = new Set(catalog.studies.map((s) => s.path))
+const POSTS = new Set(catalog.posts.map((p) => p.slug))
+const PAGES: Record<string, { preload: () => Promise<unknown> }> = {
+  '/': Home,
+  '/agencies': Agencies,
+  '/founders': Founders,
+  '/sales': Sales,
+  '/marketing': Marketing,
+  '/developers': Developers,
+  '/verify': Verify,
+  '/recipes': Recipes,
+  '/resources': Resources,
+  '/use-cases': UseCases,
+  '/sample-output': SampleOutput,
+  '/privacy': Privacy,
+  '/agents': Agents,
+  ...(catalog.blogLive ? { '/blog': Blog } : {}),
+}
+
+/* Loads the code and words of the page at a path, so it draws at once: the prerender awaits it before drawing a page
+   (entry-server.tsx) and the browser before hydrating it (main.tsx), as AppRoutes would find it. */
+// oxlint-disable-next-line react/only-export-components -- the routes' own loader, beside the routes it mirrors
+export function preloadRoute(path: string): Promise<unknown> {
+  const p = cleanPath(path)
+  const [, first, slug] = p.split('/')
+  if (PAGES[p]) return PAGES[p].preload()
+  if (first === 'recipes' && slug && RECIPES.has(slug)) return Promise.all([Recipe.preload(), recipeWords(slug).preload()])
+  if (first === 'use-cases' && STUDIES.has(p)) return Promise.all([UseCase.preload(), studyWords(p).preload()])
+  if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return BlogPost.preload()
+  return NotFound.preload()
+}
 
 const idOf = (hash: string) => {
   try {
@@ -35,10 +75,10 @@ const idOf = (hash: string) => {
 /* The head follows the page on every route change, so a tab, a bookmark or a share made after moving around the site
    names the page the reader is on. The prerender writes the full head for each page; this keeps the 3 that change. */
 function syncHead(pathname: string) {
-  const meta = metaFor(pathname)
-  document.title = meta.title
-  document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
-  document.querySelector('link[rel="canonical"]')?.setAttribute('href', absolute(meta.path))
+  const head = headFor(pathname)
+  document.title = head.title
+  document.querySelector('meta[name="description"]')?.setAttribute('content', head.description)
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', absolute(head.path))
 }
 
 const SCROLL_STORE = 'obs-scroll'
@@ -122,9 +162,7 @@ function ScrollManager() {
 
 /* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers, Check your AI agents) and every recipe take
    the nav's call to action from their own capture: the hero form's button, landing on the page's final form (#join). */
-const STORY_CTAS = new Map(
-  [...Object.values(pages), ...recipes].map((p) => [p.meta.path, { label: p.hero.capture.button, to: '#join' }]),
-)
+const STORY_CTAS = new Map(Object.entries(storyCtas).map(([path, label]) => [path, { label, to: '#join' }]))
 
 /* Pages without a form of their own send the nav's call to action to Home's waitlist. */
 const NO_FORM = new Set(['/privacy', '/agents'])
@@ -152,7 +190,9 @@ function Layout() {
       </a>
       <Nav cta={ctaAt(pathname)} heroForm={heroFormAt(clean)} />
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </>
@@ -162,21 +202,20 @@ function Layout() {
 /* /recipes/SLUG for every recipe in src/content/recipes; any other slug is the 404 page. */
 function RecipeRoute() {
   const { slug = '' } = useParams()
-  return recipeBySlug[slug] ? <Recipe key={slug} slug={slug} /> : <NotFound />
+  return RECIPES.has(slug) ? <Recipe key={slug} slug={slug} /> : <NotFound />
 }
 
 /* /use-cases/SLUG for every worked example in src/content/usecases (James sends these to prospects). */
 function UseCaseRoute() {
   const { slug = '' } = useParams()
-  const study = studyByPath[`/use-cases/${slug}`]
-  return study ? <UseCase key={slug} study={study} /> : <NotFound />
+  const path = `/use-cases/${slug}`
+  return STUDIES.has(path) ? <UseCase key={slug} path={path} /> : <NotFound />
 }
 
 /* /blog/SLUG for every post in src/content/blog. */
 function PostRoute() {
   const { slug = '' } = useParams()
-  const post = postBySlug[slug]
-  return post ? <BlogPost key={slug} post={post} /> : <NotFound />
+  return POSTS.has(slug) ? <BlogPost key={slug} slug={slug} /> : <NotFound />
 }
 
 /* James's old /templates/SLUG links. The host answers these with a 301 (public/_redirects); this covers a link
@@ -205,8 +244,8 @@ export function AppRoutes() {
         <Route path="resources" element={<Resources />} />
         <Route path="use-cases" element={<UseCases />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
-        {blogLive && <Route path="blog" element={<Blog />} />}
-        {blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
+        {catalog.blogLive && <Route path="blog" element={<Blog />} />}
+        {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="agents" element={<Agents />} />

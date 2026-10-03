@@ -1,6 +1,5 @@
 /* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7. */
-import { blogLive, recipes, studies } from './registry'
-import { agentsPage } from './site'
+import { catalog } from './catalog'
 import type { Cta, RecipeGroup, RecipeId } from './types'
 import { ways } from './ways'
 
@@ -29,7 +28,7 @@ const MORE: Partial<Record<RecipeGroup, NavPage>> = {
    in the registry's order, so the menu, the phone sheet, the footer, the Recipes index and every page agree. */
 export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
   name,
-  items: recipes.filter((r) => r.group === name).map((r) => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })),
+  items: catalog.recipes.filter((r) => r.group === name).map((r) => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })),
   ...(MORE[name] ? { more: MORE[name] } : {}),
 }))
 
@@ -65,10 +64,10 @@ export const nav = {
     useCases: {
       label: 'Use cases',
       all: { label: 'All use cases', to: '/use-cases' } satisfies NavPage,
-      items: studies.map(({ name, line, meta }) => ({ label: name, to: meta.path, line })) satisfies NavPage[],
+      items: catalog.studies.map(({ name, line, path }) => ({ label: name, to: path, line })) satisfies NavPage[],
     },
     items: [
-      ...(blogLive ? [{ label: 'Blog', to: '/blog', line: 'Guides to the work agents do as a customer.' }] : []),
+      ...(catalog.blogLive ? [{ label: 'Blog', to: '/blog', line: 'Guides to the work agents do as a customer.' }] : []),
       { label: 'Sample output', to: '/sample-output', line: 'A real store check, in every format it arrives in.' },
     ] satisfies NavPage[],
     all: { label: 'All resources', to: '/resources' } satisfies NavPage,
@@ -88,7 +87,7 @@ export const pageCtas: Record<string, Cta> = {
   /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
   '/sample-output': { label: 'Get one for your store', to: '#get-one' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
-  '/agents': agentsPage.contact.cta,
+  '/agents': catalog.agentsCta,
 }
 
 export function ctaFor(path: string): Cta {

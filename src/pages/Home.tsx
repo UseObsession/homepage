@@ -10,7 +10,7 @@ import { PersonaBand } from '../components/sections/PersonaBand'
 import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { Rules } from '../components/sections/Rules'
-import { pages } from '../content/registry'
+import { page } from '../content/pages/home'
 import './StoryPage.css'
 
 /* Home (/), composed from content/pages/home.ts in the order of docs/REBUILD.md 1b:
@@ -20,7 +20,6 @@ import './StoryPage.css'
    developers > the rules every run follows (the trust beat, docs/REBUILD.md 1d) > questions > the waitlist (#join,
    where the nav's call to action lands).
    Home is drawn in the agency workspace, like Agencies. */
-const page = pages.home
 const workspace = 'agency'
 
 export function Home() {

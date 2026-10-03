@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { hydrating } from '../lib/hydration'
 import { loadScreen, screenHtmlNow } from './screens'
 import type { Workspace } from './workspace'
 /* The shared kit and base load with every page; each screen's own CSS comes with the screen (components/screens.ts). */
@@ -19,11 +20,23 @@ export type ScreenName = string
    until a client side mount sets the real one. */
 const KEEP = { __html: '' }
 
+/* Plays the story: from the start again if it has played before (the reflow restarts its animations in the same
+   frame), straight away the first time, which needs no reflow. */
 function replay(el: Element | null) {
   if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  el.classList.remove('play')
-  void (el as HTMLElement).offsetWidth
+  if (el.classList.contains('play')) {
+    el.classList.remove('play')
+    void (el as HTMLElement).offsetWidth
+  }
   el.classList.add('play')
+}
+
+/* A story the page's boot script started (src/boot.ts) before the app was there: true once, the first time a tab or step
+   asks for it, so it isn't started over as the app takes over. */
+function bootPlayed(el: Element | null | undefined) {
+  if (!el?.hasAttribute('data-boot')) return false
+  el.removeAttribute('data-boot')
+  return true
 }
 
 type Props = {
@@ -43,8 +56,8 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
   const ref = useRef<HTMLDivElement>(null)
   /* On the server: the screen's HTML. In the browser: undefined, so the prerendered HTML stays as it is. */
   const [html, setHtml] = useState(() => screenHtmlNow(name, workspace))
-  /* The screen the page shows now, prerendered or fetched. */
-  const [shown, setShown] = useState<string | null>(null)
+  /* The screen the page shows now, prerendered or fetched: while hydrating, the prerendered one. */
+  const [shown, setShown] = useState<string | null>(() => (hydrating() ? name : null))
 
   /* A screen with nothing in it (a client side mount, or a new name) fetches its HTML and CSS. */
   useLayoutEffect(() => {
@@ -66,14 +79,14 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     }
   }, [name, workspace, html, shown])
 
-  /* The story plays once, when the screen first comes into view (once its HTML is in place). */
+  /* The story plays once, when the screen first comes into view (once its HTML is in place), unless it already has. */
   useEffect(() => {
     const il = ref.current?.querySelector('.il')
     if (!il || !('IntersectionObserver' in window)) return
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          replay(il)
+          if (!il.classList.contains('play')) replay(il)
           io.disconnect()
         }
       },
@@ -83,8 +96,15 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     return () => io.disconnect()
   }, [name, shown])
 
+  /* A new playKey plays the story again; the first one a screen mounts with is not a change, so it waits to be seen. */
+  const firstKey = useRef(true)
   useEffect(() => {
-    if (playKey !== undefined) replay(ref.current?.querySelector('.il') ?? null)
+    if (firstKey.current) {
+      firstKey.current = false
+      return
+    }
+    const il = ref.current?.querySelector('.il')
+    if (playKey !== undefined && !bootPlayed(il)) replay(il ?? null)
   }, [playKey])
 
   return (

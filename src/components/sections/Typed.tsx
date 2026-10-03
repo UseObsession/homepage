@@ -84,14 +84,8 @@ export function TypedHeading({ phrases, id, className = '' }: { phrases: string[
     const el = ref.current
     if (!el || phrases.length < 2) return
     const reduce = matchMedia('(prefers-reduced-motion: reduce)')
-    if (!reduce.matches) {
-      const r = el.getBoundingClientRect()
-      if (r.top >= innerHeight || r.bottom <= 0 || performance.now() < FRESH_MS) {
-        setN(0)
-        setMode('type')
-      }
-    }
     let seen = false
+    let first = true
     const update = () => {
       if (reduce.matches) {
         setI(0)
@@ -100,8 +94,15 @@ export function TypedHeading({ phrases, id, className = '' }: { phrases: string[
       }
       setOn(seen && !document.hidden && !reduce.matches)
     }
+    /* The observer's first report says whether the heading is on screen as the script starts, measured with the
+       browser's own layout rather than a layout of its own. */
     const io = new IntersectionObserver(([e]) => {
       seen = e.isIntersecting
+      if (first && !reduce.matches && (!seen || performance.now() < FRESH_MS)) {
+        setN(0)
+        setMode('type')
+      }
+      first = false
       update()
     })
     io.observe(el)

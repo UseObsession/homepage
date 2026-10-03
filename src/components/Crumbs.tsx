@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { entryFor } from '../content/meta'
+import { headFor } from '../content/head'
 import './Crumbs.css'
 
 /* The breadcrumb on every page below Home (navigation.css .ob-crumbs): 1 calm line, centred above the hero's pill so
@@ -11,7 +11,7 @@ export const CRUMBS_LABEL = 'Breadcrumb'
 
 export function Crumbs({ className = '' }: { className?: string }) {
   const { pathname } = useLocation()
-  const crumbs = entryFor(pathname).meta.breadcrumb ?? []
+  const crumbs = headFor(pathname).breadcrumb ?? []
   if (crumbs.length < 2) return null
   const last = crumbs.length - 1
   return (
