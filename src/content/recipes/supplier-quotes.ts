@@ -4,7 +4,8 @@ import type { Capture, Recipe } from '../types'
    $400 to $472 per 1,000; 16 quotes in, the best 3 at $409, $416 and $421; pushback sent Mon 09:14 after your OK;
    rise cut to 6%, $424, in writing by day 10).
    No money up to (3 Oct): the run states the cut and how fast it came; the FAQ's figure is up to 104 hours a year,
-   2 hours a week of asking, chasing and comparing quotes x 52, the same 2 hours a week /founders gives getting quotes. As of 3 Oct the screen still shows $5,760 saved a year.
+   2 hours a week of asking, chasing and comparing quotes x 52, the same 2 hours a week /founders gives getting quotes. The screen's outcome is
+   16 quotes in 5 days.
    Base: site_founders.json "Cut costs" / "Supplier quotes" (approved copy and demo). Suppliers are the 1 place an
    agent asks people for something, because it's a real order: they are vendors you'd buy from, never prospects or
    rivals.

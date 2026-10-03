@@ -2,8 +2,8 @@ import type { Capture, Recipe } from '../types'
 
 /* Business case (/recipes/business-case). Keep and grow customers. Screen: case (a payroll software renewal on 29 Dec:
    312 tickets a month x 12 x 50 minutes, priced at their $59 an hour, from the account's own data, with consent; every
-   number sourced and signed; shared with their finance team). As of 3 Oct the screen still counts up to $184,000 a
-   year saved; the copy states the same sum in hours.
+   number sourced and signed; shared with their finance team). The screen counts up to the same 3,120 staff hours a
+   year saved.
    Base: site_sales.json "Business case" (approved copy and demo).
    Red lines held: inside data only through tools the customer connects, with the account's consent; the account's own
    costs, never a benchmark; follow ups go in the rep's existing thread from the agent's own declared address, after

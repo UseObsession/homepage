@@ -176,12 +176,17 @@ function page(e, rendered, opts) {
   for (const s of screens) if (!screenCss.has(s) && existsSync(join(root, `src/screens/css/${s}.css`))) fail(`${e.meta.path}: no built CSS for the ${s} screen.`)
   const first = firstViewScreens(appHtml)
   const screenLinks = screens.filter((s) => screenCss.has(s) && first.has(s)).map((s) => `<link rel="stylesheet" crossorigin href="/${screenCss.get(s)}">`)
-  /* Each other screen's sheets, by the name on its frame (data-screen): its own and any other app-NAME on its root. */
+  /* Each other screen's sheets, by the name on its frame (data-screen): its own and any other app-NAME on its root. The
+     frame may carry other attributes after data-screen (data-nosnippet). */
   const later = {}
-  for (const [, name, cls] of appHtml.matchAll(/\sdata-screen="([\w-]+)"><div class="il appx-il ([^"]+)"/g)) {
+  for (const [, name, cls] of appHtml.matchAll(/\sdata-screen="([\w-]+)"[^>]*><div class="il appx-il ([^"]+)"/g)) {
     const own = [...cls.matchAll(/\bapp-([a-z]+)\b/g)].map((m) => m[1]).filter((s) => screenCss.has(s) && !first.has(s))
     if (own.length) later[name] = [...new Set([...(later[name] ?? []), ...own.map((s) => `/${screenCss.get(s)}`)])]
   }
+  /* Every screen's styles reach the page: written into it for its first view, or in the boot script's SHEETS. */
+  const brought = new Set(Object.values(later).flat())
+  for (const s of screens)
+    if (screenCss.has(s) && !first.has(s) && !brought.has(`/${screenCss.get(s)}`)) fail(`${e.meta.path}: the ${s} screen's styles are neither in the page nor in its boot script.`)
   const fonts = [mainFont, monoFont, ...(SYMBOLS.test(appHtml) ? symbolFonts : [])]
   const preloads = [
     ...fonts.filter(Boolean).map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`),
