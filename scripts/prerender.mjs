@@ -56,7 +56,7 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, blogUi, blogPage } = await import(
+const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, blogUi, blogPage, isJamesPath } = await import(
   pathToFileURL(join(server, 'entry-server.js')).href
 )
 const postEntries = entries.filter((e) => e.kind === 'post')
@@ -476,12 +476,13 @@ const full = [
 ]
 /* Every page's answer (meta.answer, the line llms.txt and the JSON-LD give for it) opens with words the page shows: its
    first sentence must be in the page's own text, so an assistant that quotes it quotes the page. The privacy notice
-   opens with the notice instead. */
+   opens with the notice instead. James's 2 use case pages (src/legacy/james) are his words as he wrote them, so the answer
+   the head gives for them (JSON-LD, llms.txt) is not a line of theirs. */
 const letters = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const firstSentence = (s) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 for (const { e, app } of rendered) {
   const text = textOf(app)
-  if (e.kind !== 'privacy' && !letters(text).includes(letters(firstSentence(e.meta.answer))))
+  if (e.kind !== 'privacy' && !isJamesPath(e.meta.path) && !letters(text).includes(letters(firstSentence(e.meta.answer))))
     fail(`${e.meta.path}: the first sentence of meta.answer isn't on the page (make the hero's sub open with it).`)
   const sections = text.split('\n').filter((l) => l.startsWith('## ')).length
   const h2s = visibleH2s(app)

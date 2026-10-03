@@ -129,6 +129,18 @@
   }
 }
 
+/* The bar's call to action steps down to secondary while the page's own primary button is in view (Nav.tsx quiet). Its
+   label is the scope's own ink, set on the button itself, and it does not fade there from the primary's dark label: the
+   primary's gradient cannot fade, so the pill empties at once, and a label still fading in from dark sits dark on the
+   dark bar until the fade ends (nearly invisible on /recipes at 390 when the step down lands just before a paint). */
+.s-nav .ob-nav__cta {
+  transition-property: translate, scale, background-color, box-shadow;
+}
+.s-nav .ob-nav__cta.ob-btn--secondary {
+  --ob-btn-c-fg: var(--ob-text);
+  color: var(--ob-text);
+}
+
 /* Compact bar: the call to action stays in the bar on phones, so it is always 1 tap away. Under 440 its sides tighten
    (it keeps its 36px pill and 44px target); measured at 390, the widest bar button ("Get early access") keeps 15px of
    air beside the 20px lockup, "Join the waitlist" 22px. It leaves only under 388, where less than 12px would be left

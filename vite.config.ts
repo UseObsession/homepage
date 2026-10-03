@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react'
 import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig, runnerImport, type Plugin } from 'vite'
+import { scopeJames } from './scripts/scope-css.mjs'
 
 const root = fileURLToPath(new URL('.', import.meta.url))
 
@@ -86,6 +87,9 @@ function screensInDev(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), screensInDev(), contentIndex(), pageStyles()],
+  /* James's 2 use case pages (src/legacy/james) keep their own stylesheets as he wrote them; this scopes them under the
+     wrapper class so they style only those pages (scripts/scope-css.mjs). */
+  css: { postcss: { plugins: [scopeJames()] } },
   build: {
     /* The prerender reads the manifest to link each page's own CSS (the screens' CSS, split per screen) in its head. */
     manifest: true,
