@@ -15,8 +15,11 @@ export function Example({ text, label = 'Example' }: { text: string; label?: str
   )
 }
 
-/* Numbered steps: the number, the step's title, its line, and the example. `start` continues the count across phases. */
-export function StepList({ steps, start = 1, className = '' }: { steps: StudyStep[]; start?: number; className?: string }) {
+/* Numbered steps: the number, the step's title, its line, and the example. `start` continues the count across phases.
+   `level` is the titles' heading level: 4 under a phase's h3, 3 where the steps sit straight under a section's h2
+   (StudyProof), so the outline never skips a level. */
+export function StepList({ steps, start = 1, className = '', level = 4 }: { steps: StudyStep[]; start?: number; className?: string; level?: 3 | 4 }) {
+  const Title = level === 3 ? 'h3' : 'h4'
   return (
     <ol className={`s-st-steps ${className}`} start={start}>
       {steps.map((s, i) => (
@@ -24,7 +27,7 @@ export function StepList({ steps, start = 1, className = '' }: { steps: StudySte
           <span className="s-st-step__n ob-num" aria-hidden="true">
             {start + i}
           </span>
-          <h4 className="s-st-step__title">{s.title}</h4>
+          <Title className="s-st-step__title">{s.title}</Title>
           <p className="s-st-step__line">{tie(s.line)}</p>
           {s.example && <Example text={s.example} />}
         </li>
