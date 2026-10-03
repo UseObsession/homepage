@@ -1,0 +1,473 @@
+/* The gap's picture (sections/GapStory.tsx). Design system tokens only; site classes start s-gs.
+   It sits in the Gap's ink chapter, so it reads the ink set in both themes. The days are 4 quiet tiles of 1 calendar;
+   the inside's steps are lit product objects (.ob-object, styles/tones.css) a step above them; the outside is hairlines
+   on the ground, and what never arrived is a dashed outline. Monochrome, like the app screens: status is the ring, never
+   a hue. People read Geist; the agent, times and signatures speak Geist Mono. */
+
+.s-gs {
+  --s-gs-col: var(--ob-space-12);                      /* between days */
+  --s-gs-pad: 12px;                                    /* a day tile's inner edge */
+  --s-gs-ty: 19px;                                     /* the thread's height in its lane: the middle of a step's top line */
+  --s-gs-tile: rgb(var(--ob-sheen-rgb) / .018);
+  --s-gs-thread: rgb(var(--ob-sheen-rgb) / .5);
+  --s-gs-dashed: var(--ob-line-strong);
+  --s-gs-mono: 400 11.5px/1.4 var(--ob-font-mono);
+  position: relative;
+  margin: 0 0 var(--ob-space-block, 64px);
+  color: var(--ob-text);
+  font: 400 13.5px/1.45 var(--ob-font-sans);
+}
+:where(.s-gs) p { margin: 0; }
+:where(.s-gs) time { font: var(--s-gs-mono); font-variant-numeric: tabular-nums; color: var(--ob-text-3); white-space: nowrap; }
+.s-gs-ic { display: inline-grid; place-items: center; flex: none; width: 15px; height: 15px; color: var(--ob-text-2); }
+.s-gs-ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---- The grid: 4 equal days. Each lane ends on the last, the day it is now. ------------------------------------ */
+.s-gs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto 2.75rem auto auto auto auto var(--s-gs-pad);
+  column-gap: var(--s-gs-col);
+}
+.s-gs-site { grid-column: 1 / 4; grid-row: 1; align-self: end; display: flex; align-items: center; gap: var(--ob-space-8); min-width: 0; margin-bottom: var(--ob-space-16); }
+.s-gs-site .ob-tag { flex: none; }
+.s-gs-site__n { font: 400 12.5px/1 var(--ob-font-mono); color: var(--ob-text-2); }
+
+/* The clock, over the last day: the day, big, and its time. Each moment of the story is 1 line; the last is the rest
+   state. */
+.s-gs-clock { grid-column: 4; grid-row: 1; justify-self: end; align-self: end; display: grid; margin-bottom: var(--ob-space-12); }
+.s-gs-clock__t { grid-area: 1 / 1; display: flex; align-items: baseline; justify-content: flex-end; gap: 10px; opacity: 0; }
+.s-gs-clock__t[data-last] { opacity: 1; }
+.s-gs-clock__t b { font: 600 32px/1 var(--ob-font-sans); letter-spacing: -.04em; color: var(--ob-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-gs-clock__t time { font-size: 12.5px; color: var(--ob-text-2); }
+
+/* The days: 4 tiles of 1 calendar, under both lanes. The day it is now is a shade lighter and carries the square. */
+.s-gs-days { grid-column: 1 / 5; grid-row: 2 / -1; display: grid; grid-template-columns: subgrid; pointer-events: none; }
+.s-gs-days > .s-gs-d0 { grid-column: 1; }
+.s-gs-days > .s-gs-d1 { grid-column: 2; }
+.s-gs-days > .s-gs-d2 { grid-column: 3; }
+.s-gs-days > .s-gs-d3 { grid-column: 4; }
+.s-gs-day {
+  position: relative;
+  grid-row: 1;
+  border-radius: var(--ob-radius-md);
+  background: var(--s-gs-tile);
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .035) inset;
+  color: var(--ob-text-3);
+}
+.s-gs-day::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgb(var(--ob-sheen-rgb) / .045), rgb(var(--ob-sheen-rgb) / .02));
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .08) inset;
+  opacity: 0;
+}
+.s-gs-day[data-last] { color: var(--ob-text); }
+.s-gs-day[data-last]::before { opacity: 1; }
+.s-gs-day__n {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px var(--s-gs-pad) 0;
+  font: 500 12px/1.2 var(--ob-font-mono);
+  white-space: nowrap;
+}
+.s-gs-now { flex: none; width: 7px; height: 7px; border-radius: 1.5px; background: var(--ob-text); opacity: 0; }
+.s-gs-day[data-last] .s-gs-now { opacity: 1; }
+
+/* ---- The lanes ----------------------------------------------------------------------------------------------------- */
+.s-gs-lab {
+  grid-column: 1 / -1;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-8) var(--ob-space-12);
+  padding-inline: var(--s-gs-pad);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+}
+.s-gs-lab--out { grid-row: 3; margin: 2px 0 var(--ob-space-12); color: var(--ob-text-2); }
+.s-gs-lab--in { grid-row: 5; margin: var(--ob-space-32) 0 var(--ob-space-16); color: var(--ob-text); }
+.s-gs-lab__n { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.s-gs-lab__n .s-mark { flex: none; }
+.s-gs-agent { display: inline-flex; align-items: center; gap: 7px; font: var(--s-gs-mono); letter-spacing: 0; color: var(--ob-text-2); }
+/* The agent's avatar: its own mark on a bone square, as in the app screens. */
+.s-gs-av { display: inline-grid; place-items: center; flex: none; width: 16px; height: 16px; border-radius: 5px; background: var(--ob-text); color: var(--ob-bg); }
+.s-gs-av .s-gs-sig { width: 10px; height: 10px; }
+
+.s-gs-lane { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; position: relative; }
+.s-gs-lane--out { grid-row: 4; }
+.s-gs-lane--in { grid-row: 6; }
+.s-gs-lane > .s-gs-d0 { grid-column: 1; }
+.s-gs-lane > .s-gs-d1 { grid-column: 2; }
+.s-gs-lane > .s-gs-d2 { grid-column: 3; }
+.s-gs-lane > .s-gs-d3 { grid-column: 4; }
+.s-gs-cell { position: relative; min-width: 0; padding-inline: var(--s-gs-pad); }
+
+/* The outside: 1 flat look in a camera's crop marks, then a dashed line through every day it never saw. */
+.s-gs-lane--out .s-gs-cell { display: flex; align-items: center; }
+.s-gs-dashed {
+  flex: 1;
+  align-self: center;
+  min-width: 0;
+  height: 0;
+  margin-right: calc((var(--s-gs-pad) * 2 + var(--s-gs-col)) * -1);
+  border-top: var(--ob-border-hair) dashed var(--s-gs-dashed);
+}
+.s-gs-lane--out .s-gs-d3 .s-gs-dashed { margin-right: 10px; }
+.s-gs-look { position: relative; flex: none; width: min(100%, 11rem); margin: 7px 18px 7px 7px; }
+.s-gs-crop {
+  --c: var(--ob-text-3);
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) left top / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) left top / 1px 10px no-repeat,
+    linear-gradient(var(--c), var(--c)) right top / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) right top / 1px 10px no-repeat,
+    linear-gradient(var(--c), var(--c)) left bottom / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) left bottom / 1px 10px no-repeat,
+    linear-gradient(var(--c), var(--c)) right bottom / 10px 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) right bottom / 1px 10px no-repeat;
+}
+.s-gs-look__t { position: absolute; right: 8px; bottom: 6px; font-size: 10px; }
+/* The page as published: a frame of hairlines, its headline and the 1 line it promises. No material: it is a picture of
+   the outside, not the product. */
+.s-gs-page,
+.s-gs-dash {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  aspect-ratio: 16 / 10.5;
+  padding: 0 11px 11px;
+  border-radius: 7px;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+  overflow: hidden;
+}
+.s-gs-page__bar {
+  margin: 0 -11px 2px;
+  padding: 5px 11px;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+  font: 400 9.5px/1.2 var(--ob-font-mono);
+  color: var(--ob-text-3);
+}
+.s-gs-page__hero { font: 600 14px/1.1 var(--ob-font-sans); letter-spacing: -.025em; color: var(--ob-text-2); }
+.s-gs-page__line { justify-self: start; font-size: 11.5px; line-height: 1.3; color: var(--ob-text-2); text-decoration: underline dashed var(--ob-text-3); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.s-gs-page__btn { width: 40%; height: 12px; margin-top: 2px; border-radius: var(--ob-radius-pill); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+/* A dashboard's row, as your tool shows it. */
+.s-gs-dash { padding-top: 11px; }
+.s-gs-dash__row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--ob-text-2); }
+.s-gs-dash__row b { font: 600 14px/1 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-gs-dash__bars { display: flex; align-items: end; gap: 6px; height: 38px; margin-top: 4px; }
+.s-gs-dash__bars i { flex: 1; height: 100%; border-radius: 2px 2px 0 0; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+.s-gs-dash__bars i:nth-child(1) { height: 40%; }
+.s-gs-dash__bars i:nth-child(2) { height: 62%; }
+.s-gs-dash__bars i:nth-child(3) { height: 54%; }
+.s-gs-dash__bars i:nth-child(4) { height: 80%; }
+
+.s-gs-tally { font: 400 14px/1.35 var(--ob-font-sans); text-wrap: balance; }
+.s-gs-tally--out { flex: none; align-self: center; color: var(--ob-text-2); }
+.s-gs-tally--in { color: var(--ob-text); font-weight: 500; }
+
+/* The inside: 1 solid thread through every day, the steps lit on it. */
+.s-gs-lane--in .s-gs-cell { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: start; gap: var(--ob-space-12); }
+.s-gs-thread {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: calc(var(--s-gs-col) * -1);
+  top: var(--s-gs-ty);
+  height: var(--ob-border-hair);
+  background: var(--s-gs-thread);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.s-gs-lane--in .s-gs-d3 .s-gs-thread { right: 0; }
+.s-gs-lane--in .s-gs-cell > :not(.s-gs-thread) { position: relative; z-index: 1; }
+/* A step is lit a shade above its day, in both themes (the chapter is ink in both). */
+.s-gs .ob-object { --s-obj-face: var(--ob-surface-hover); }
+
+.s-gs-card { width: 100%; min-width: 0; padding: 10px 13px 13px; border-radius: var(--ob-radius-sm); }
+.s-gs-card__h { display: flex; align-items: center; gap: 8px; min-height: 18px; }
+.s-gs-card__h b { min-width: 0; font: 500 14px/18px var(--ob-font-sans); letter-spacing: -.01em; color: var(--ob-text); }
+.s-gs-card__h time { margin-left: auto; }
+.s-gs-card__h .s-gs-sig { width: 13px; height: 13px; flex: none; }
+
+.s-gs-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  margin-top: 11px;
+  padding: 0 9px;
+  border-radius: 8px;
+  background: rgb(var(--ob-tint-rgb, 237 235 229) / .04);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+}
+.s-gs-field span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 10.5px/1 var(--ob-font-mono); letter-spacing: -.01em; color: var(--ob-text-2); }
+.s-gs-mail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-gs-mail__s { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; color: var(--ob-text); }
+.s-gs-mail time { margin-left: auto; padding-right: 21px; }
+
+.s-gs-ask { display: flex; align-items: flex-start; gap: 9px; margin-top: 11px; font: 400 12px/1.5 var(--ob-font-mono); color: var(--ob-text-2); }
+.s-gs-ask .s-gs-av { margin-top: 1px; }
+.s-gs-reply {
+  position: relative;
+  margin-top: 9px;
+  padding: 8px 11px 9px;
+  border-radius: 10px 10px 10px 3px;
+  background: rgb(var(--ob-tint-rgb, 237 235 229) / .05);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ob-text);
+}
+.s-gs-reply mark { border-radius: 2px; color: var(--ob-text); font-weight: 500; background: rgb(var(--ob-tint-rgb, 237 235 229) / .16); box-shadow: 0 0 0 2px rgb(var(--ob-tint-rgb, 237 235 229) / .16); }
+.s-gs-typing { position: absolute; left: 11px; top: 50%; translate: 0 -50%; display: flex; gap: 4px; opacity: 0; }
+.s-gs-typing i { width: 5px; height: 5px; border-radius: 50%; background: var(--ob-text-3); }
+
+.s-gs-item { display: flex; align-items: center; gap: 9px; margin-top: 11px; font-size: 13.5px; color: var(--ob-text); }
+.s-gs-item__ph { flex: none; width: 28px; height: 28px; border-radius: 7px; background: linear-gradient(140deg, rgb(var(--ob-sheen-rgb) / .16), rgb(var(--ob-sheen-rgb) / .05)); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+.s-gs-item b { margin-left: auto; font: 400 12px/1 var(--ob-font-mono); color: var(--ob-text-2); }
+
+/* A quiet day: the inbox checked, nothing in it. What never arrived is drawn as an outline, not an object. The chip
+   stands on its day's own ground, so the thread does not show through it. */
+.s-gs-wait {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 38px;
+  padding: 0 13px 0 11px;
+  border-radius: var(--ob-radius-sm);
+  background: linear-gradient(var(--s-gs-tile), var(--s-gs-tile)), var(--s-ground-ink, var(--ob-bg));
+  outline: var(--ob-border-hair) dashed var(--ob-line-ui);
+  outline-offset: -1px;
+  white-space: nowrap;
+}
+.s-gs-wait > .s-gs-sig { width: 14px; height: 14px; flex: none; }
+.s-gs-wait__t { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--ob-text-2); }
+.s-gs-wait__t .s-gs-ic { color: var(--ob-text-3); }
+
+/* The finding: the 1 step that needs you. A brighter rim, the hollow square. */
+.s-gs-find { width: 100%; min-width: 0; padding: 11px 13px 13px; border-radius: var(--ob-radius-sm); }
+.s-gs-find::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .34) inset; pointer-events: none; }
+.s-gs-find__h { display: flex; align-items: flex-start; gap: 10px; }
+.s-gs-find__h .s-gs-sig { width: 16px; height: 16px; flex: none; margin-top: 2px; }
+.s-gs-find__h b { font: 500 15px/1.35 var(--ob-font-sans); letter-spacing: -.012em; color: var(--ob-text); text-wrap: pretty; }
+.s-gs-find__m { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 10px; margin-top: 9px; padding-left: 26px; }
+.s-gs-find__m span { font-size: 13px; color: var(--ob-text-2); }
+.s-gs-find__s { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin-top: 10px; padding: 9px 0 0 26px; border-top: var(--ob-border-hair) solid var(--ob-line); font-size: 12px; color: var(--ob-text-2); }
+.s-gs-find__s span { font: 400 11px/1.4 var(--ob-font-mono); color: var(--ob-text-3); white-space: nowrap; }
+
+/* ---- The receipts: each step drops 1 on the pile; the newest lies on top, the older ones show their edges below ---- */
+/* The pile and its tally, under the finding, on the day it is now. */
+.s-gs-end { display: flex; align-items: flex-end; gap: var(--ob-space-16); width: 100%; min-width: 0; margin-top: var(--ob-space-8); padding-top: 9px; }
+.s-gs-stack { position: relative; flex: none; width: min(62%, 10rem); height: calc(70px + (var(--s-gs-n, 6) - 1) * 4px); }
+.s-gs-end .s-gs-tally--in { padding-bottom: 2px; }
+/* Receipts are paper: the bone sheet's own inks (styles/tones.css G3), so the proof is the 1 lit thing in the picture. */
+.s-gs-slip {
+  --k: calc(var(--n) - 1 - var(--i));
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: var(--i);
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  height: 70px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  translate: 0 calc(var(--k) * 4px);
+  scale: calc(1 - var(--k) * .04) 1;
+  background: var(--s-sheet, var(--ob-bone));
+  color: var(--s-sheet-ink, var(--ob-ink));
+  box-shadow:
+    0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .2),
+    0 -1px 0 rgb(0 0 0 / .18) inset,
+    0 12px 24px -12px rgb(0 0 0 / .8);
+  overflow: hidden;
+}
+.s-gs-slip:not([data-top]) > * { visibility: hidden; }
+.s-gs-slip:not([data-top]) { background: color-mix(in oklab, var(--s-sheet, var(--ob-bone)) 86%, var(--ob-ink)); }
+.s-gs-slip__h { display: flex; align-items: center; gap: 6px; font: 500 12.5px/1.2 var(--ob-font-sans); color: var(--s-sheet-ink, var(--ob-ink)); }
+.s-gs-slip time { font-size: 11px; color: var(--s-sheet-ink-2, var(--ob-ink)); }
+.s-gs-slip__k { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 10.5px/1.3 var(--ob-font-mono); color: var(--s-sheet-ink-2, var(--ob-ink)); }
+.s-gs-slip .s-gs-tick { background: var(--s-sheet-ink, var(--ob-ink)); }
+.s-gs-slip .s-gs-tick::after { border-color: var(--s-sheet, var(--ob-bone)); }
+.s-gs-tick { position: relative; flex: none; width: 12px; height: 12px; border-radius: 3px; background: var(--ob-text); }
+.s-gs-tick::after { content: ""; position: absolute; left: 4.25px; top: 2.25px; width: 3px; height: 6px; border: solid var(--ob-bg); border-width: 0 1.5px 1.5px 0; rotate: 45deg; }
+.s-gs-count {
+  position: absolute;
+  z-index: 9;
+  top: -9px;
+  right: -9px;
+  display: grid;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 7px;
+  background: var(--ob-surface-hover);
+  color: var(--ob-text);
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .22) inset, 0 0 0 3px var(--s-ground-ink, var(--ob-bg));
+  font: 500 11.5px/22px var(--ob-font-mono);
+  text-align: center;
+}
+.s-gs-count > span { grid-area: 1 / 1; opacity: 0; }
+.s-gs-count > span[data-last] { opacity: 1; }
+
+/* ---- The ring (the app screens' geometry): landed closes the cut and brings the square home; waiting holds the
+   square at its corner; needs you hollows it. It takes the colour of what holds it. ---------------------------------- */
+.s-gs-sig { display: block; overflow: visible; }
+.s-gs-sig path { fill: currentColor; }
+.s-gs-sig__sq { transform-box: fill-box; transform-origin: center; }
+.s-gs-sig__gap { opacity: 0; }
+.s-gs-sig.is-landed .s-gs-sig__gap { opacity: 1; }
+.s-gs-sig.is-landed .s-gs-sig__sq { transform: translate(-24.6965px, 24.6965px) scale(.8); }
+.s-gs-sig.is-needs .s-gs-sig__sq { fill: none; stroke: currentColor; stroke-width: 6.1px; transform: scale(.7525); }
+
+/* ---- Phones and narrow frames: the calendar turns. Each day is a band down the page; the 2 lanes stand side by side
+   in it, the outside narrow on the left. ------------------------------------------------------------------------------ */
+@media (max-width: 859.98px) {
+  .s-gs { --s-gs-col: var(--ob-space-8); --s-gs-pad: 10px; --s-gs-mono: 400 11px/1.4 var(--ob-font-mono); font-size: 13px; }
+  .s-gs-grid {
+    grid-template-columns: minmax(0, 4.75rem) minmax(0, 1fr);
+    grid-template-rows: auto auto repeat(4, auto) var(--ob-space-8);
+  }
+  .s-gs-site { grid-column: 1 / -1; grid-row: 1; flex-wrap: wrap; margin-bottom: var(--ob-space-12); padding-right: 7rem; }
+  .s-gs-clock { grid-column: 2; grid-row: 1; margin-bottom: var(--ob-space-12); }
+  .s-gs-clock__t { gap: 8px; }
+  .s-gs-clock__t b { font-size: 26px; }
+
+  .s-gs-days { grid-column: 1 / -1; grid-row: 3 / span 4; grid-template-columns: none; grid-template-rows: subgrid; }
+  .s-gs-days > :is(.s-gs-d0, .s-gs-d1, .s-gs-d2, .s-gs-d3) { grid-column: 1; }
+  .s-gs-days > .s-gs-d0 { grid-row: 1; }
+  .s-gs-days > .s-gs-d1 { grid-row: 2; }
+  .s-gs-days > .s-gs-d2 { grid-row: 3; }
+  .s-gs-days > .s-gs-d3 { grid-row: 4; }
+  .s-gs-day { grid-row: auto; margin-bottom: var(--ob-space-8); }
+  .s-gs-day__n { padding: 11px var(--s-gs-pad) 0; font-size: 11px; gap: 6px; }
+  .s-gs-now { width: 6px; height: 6px; }
+
+  .s-gs-lab { grid-row: 2; align-self: end; padding: 0; margin: var(--ob-space-24) 0 var(--ob-space-12); }
+  .s-gs-lab--out { grid-column: 1; padding-left: var(--s-gs-pad); font-size: 12.5px; line-height: 1.25; }
+  .s-gs-lab--in { grid-column: 2; gap: var(--ob-space-6) var(--ob-space-8); padding-left: 26px; }
+  .s-gs-agent { flex-basis: 100%; }
+
+  .s-gs-lane { grid-column: auto; grid-row: 3 / span 4; grid-template-columns: none; grid-template-rows: subgrid; }
+  .s-gs-lane--out { grid-column: 1; }
+  .s-gs-lane--in { grid-column: 2; }
+  .s-gs-lane > :is(.s-gs-d0, .s-gs-d1, .s-gs-d2, .s-gs-d3) { grid-column: 1; }
+  .s-gs-lane > .s-gs-d0 { grid-row: 1; }
+  .s-gs-lane > .s-gs-d1 { grid-row: 2; }
+  .s-gs-lane > .s-gs-d2 { grid-row: 3; }
+  .s-gs-lane > .s-gs-d3 { grid-row: 4; }
+
+  .s-gs-lane--out .s-gs-cell { flex-direction: column; align-items: center; padding: 32px var(--s-gs-pad) 18px; min-height: 92px; }
+  .s-gs-dashed { flex: 1; width: 0; height: auto; min-height: 16px; margin: 0 0 -26px; border-top: 0; border-left: var(--ob-border-hair) dashed var(--s-gs-dashed); }
+  .s-gs-lane--out .s-gs-d0 .s-gs-dashed { margin-top: 0; }
+  .s-gs-lane--out .s-gs-d3 .s-gs-dashed { margin: 0; }
+  .s-gs-look { width: 100%; margin: 4px 0 14px; }
+  .s-gs-crop { inset: -5px; }
+  .s-gs-page, .s-gs-dash { aspect-ratio: 3 / 4; padding: 0 6px 6px; gap: 5px; border-radius: 5px; }
+  .s-gs-page__bar { height: 9px; margin: 0 -6px 1px; padding: 0; font-size: 0; }
+  .s-gs-page__hero { font-size: 10px; letter-spacing: -.02em; }
+  .s-gs-page__line { font-size: 8.5px; text-underline-offset: 2px; }
+  .s-gs-page__btn { width: 70%; height: 8px; }
+  .s-gs-dash { padding-top: 6px; }
+  .s-gs-dash__row { flex-direction: column; align-items: flex-start; gap: 3px; font-size: 8.5px; }
+  .s-gs-dash__row b { font-size: 11px; }
+  .s-gs-dash__bars { height: 22px; gap: 3px; }
+  .s-gs-look__t { display: none; }
+  .s-gs-page__line { width: 86%; height: 4px; font-size: 0; border-radius: 2px; background: var(--ob-line-strong); text-decoration: none; }
+  .s-gs-tally { font-size: 13px; }
+  .s-gs-tally--out { align-self: center; margin-top: var(--ob-space-12); padding-inline: 2px; font-size: 12px; text-align: center; }
+
+  .s-gs-lane--in .s-gs-cell { padding: 11px var(--s-gs-pad) 20px 26px; justify-items: stretch; }
+  .s-gs-lane--in .s-gs-cell > .s-gs-wait { justify-self: start; }
+  .s-gs-thread { left: 12px; right: auto; top: 0; bottom: 0; width: var(--ob-border-hair); height: auto; transform-origin: 50% 0; }
+  .s-gs-lane--in .s-gs-d0 .s-gs-thread { top: 24px; }
+  .s-gs-lane--in .s-gs-d3 .s-gs-thread { right: auto; bottom: 20px; }
+  /* Each step is a stop on the thread. */
+  .s-gs-lane--in .s-gs-cell > :is(.ob-object, .s-gs-wait)::before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    top: 15px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ob-text);
+    box-shadow: 0 0 0 3px var(--s-ground-ink, var(--ob-bg));
+  }
+  .s-gs-lane--in .s-gs-cell > .s-gs-wait::before { background: var(--ob-text-3); }
+  .s-gs-end { flex-wrap: wrap; gap: var(--ob-space-12) var(--ob-space-16); padding-top: 9px; }
+  .s-gs-stack { width: min(100%, 10.5rem); }
+  .s-gs-card { padding: 10px 12px 12px; }
+  .s-gs-card__h b { font-size: 13.5px; }
+  .s-gs-mail__s, .s-gs-reply, .s-gs-item, .s-gs-wait__t { font-size: 13px; }
+  .s-gs-ask { font-size: 11.5px; }
+  .s-gs-find__h b { font-size: 14.5px; }
+  .s-gs-wait { height: 36px; }
+}
+
+/* ---- The story, once, with .play (GapStory.tsx adds it in view). Every delay is the markup's --d; --u ends a moment.
+   Enters declare only "from", so each lands on its own rest style. -------------------------------------------------- */
+@keyframes s-gs-in { from { opacity: 0; translate: 0 var(--ob-shift-sm, 8px); } }
+@keyframes s-gs-on { from { opacity: 0; } to { opacity: 1; } }
+@keyframes s-gs-show { from, to { opacity: 1; } }
+@keyframes s-gs-lit { from, to { color: var(--ob-text); } }
+@keyframes s-gs-draw-x { from { scale: 0 1; } }
+@keyframes s-gs-draw-y { from { scale: 1 0; } }
+@keyframes s-gs-look { from { opacity: 0; scale: .97; } }
+@keyframes s-gs-flash { from { background-color: rgb(var(--ob-sheen-rgb) / .2); } to { background-color: transparent; } }
+@keyframes s-gs-drop { from { opacity: 0; translate: 0 calc(var(--k) * 4px - 20px); } }
+@keyframes s-gs-land { from { transform: none; } }
+@keyframes s-gs-gap { from { opacity: 0; } }
+@keyframes s-gs-blink { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes s-gs-pulse { 50% { opacity: .2; } }
+@keyframes s-gs-mark { from { background-color: transparent; box-shadow: 0 0 0 2px transparent; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .s-gs.play .s-gs-in { animation: s-gs-in var(--ob-dur-slow, 400ms) var(--ob-ease-out) var(--d) both; }
+  .s-gs.play .s-gs-reply.s-gs-in { animation-duration: var(--ob-dur-moderate, 240ms); }
+
+  /* Moments: the clock's lines, the pile's count, the typing dots, the day it is now. */
+  .s-gs.play :is(.s-gs-clock__t, .s-gs-count > span, .s-gs-typing, .s-gs-day .s-gs-now),
+  .s-gs.play .s-gs-day::before { animation: s-gs-show calc(var(--u) - var(--d)) linear var(--d); }
+  .s-gs.play .s-gs-day { animation: s-gs-lit calc(var(--u) - var(--d)) linear var(--d); }
+  .s-gs.play :is(.s-gs-clock__t, .s-gs-count > span)[data-last],
+  .s-gs.play .s-gs-day[data-last]::before,
+  .s-gs.play .s-gs-day[data-last] .s-gs-now { opacity: 0; animation: s-gs-on 1ms linear var(--d) forwards; }
+  .s-gs.play .s-gs-day[data-last] { color: var(--ob-text-3); animation: s-gs-lit 1ms linear var(--d) forwards; }
+
+  /* The outside's 1 look: the shutter, then it holds still for good. */
+  .s-gs.play .s-gs-look { animation: s-gs-look var(--ob-dur-slow, 400ms) var(--ob-ease-out) var(--d) both; }
+  .s-gs.play .s-gs-look :is(.s-gs-page, .s-gs-dash) { animation: s-gs-flash 700ms var(--ob-ease-out) calc(var(--d) + 120ms) both; }
+
+  /* The thread crosses each day as the clock does. */
+  .s-gs.play .s-gs-thread { animation: s-gs-draw-x var(--t, 600ms) var(--ob-ease-in-out) var(--d) both; }
+
+  /* Receipts drop on the pile. */
+  .s-gs.play .s-gs-slip { animation: s-gs-drop var(--ob-dur-slow, 400ms) var(--ob-ease-out) var(--d) both; }
+
+  /* The ring lands each step; the waiting square blinks through its quiet day; needs you pulses once. */
+  .s-gs.play .s-gs-sig.is-landed .s-gs-sig__sq { animation: s-gs-land 500ms var(--ob-ease-out) var(--d) both; }
+  .s-gs.play .s-gs-sig.is-landed .s-gs-sig__gap { animation: s-gs-gap 300ms var(--ob-ease-out) calc(var(--d) + 250ms) both; }
+  .s-gs.play .s-gs-sig.is-wait .s-gs-sig__sq { animation: s-gs-blink 450ms steps(1, end) calc(var(--d) + 200ms) 2; }
+  .s-gs.play .s-gs-sig.is-needs .s-gs-sig__sq { animation: s-gs-pulse 1100ms ease-in-out var(--d) 1; }
+  .s-gs.play .s-gs-reply mark { animation: s-gs-mark 300ms var(--ob-ease-out) var(--d) both; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 859.98px) {
+  .s-gs.play .s-gs-thread { animation-name: s-gs-draw-y; }
+}

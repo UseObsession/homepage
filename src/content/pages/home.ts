@@ -122,6 +122,49 @@ export const page: Page = {
   gap: {
     heading: 'Most tools read what a company publishes. Obsession goes through it as a customer.',
     sub: 'It signs up, asks the bot, waits days for the follow up and keeps every receipt.',
+    story: {
+      label:
+        'Example: most tools read fernleaf.example’s home page once, on Day 0, where it says “We reply within a day”. Obsession’s declared AI test customer signs up, gets the welcome email, asks the site’s bot, which promises an email within a day, then checks its inbox each day: on Day 3 the follow up promised in chat has never come, and all 6 steps are signed.',
+      site: 'fernleaf.example',
+      outside: {
+        name: 'Most tools',
+        kind: 'page',
+        day: 0,
+        time: '09:14',
+        title: 'Linen that lasts',
+        line: 'We reply within a day',
+        tally: '1 page read',
+      },
+      inside: {
+        name: 'Obsession',
+        agent: 'Test customer 1 · AI · for Your company',
+        steps: [
+          {
+            kind: 'signup',
+            day: 0,
+            time: '09:14',
+            title: 'Signed up',
+            field: 'shopper1@test.useobsession.com',
+            mail: 'Welcome to Fernleaf',
+            mailTime: '09:15',
+          },
+          {
+            kind: 'chat',
+            day: 0,
+            time: '09:21',
+            title: 'Asked the bot',
+            ask: 'Can you help me pick a size?',
+            reply: 'Of course. Our team will email you within a day.',
+            promise: 'within a day',
+          },
+          { kind: 'wait', day: 1, time: '09:21', title: 'No email', since: '24 h' },
+          { kind: 'wait', day: 2, time: '09:21', title: 'No email', since: '48 h' },
+        ],
+        finding: { day: 3, time: '09:21', title: 'The follow up promised in chat never came', meta: '0 emails in 72 h' },
+        tally: '6 steps, all signed',
+        hash: '2b9e 04d7 … 5a10',
+      },
+    },
     rows: [
       { today: 'Lead lists sell everyone the same names', obsession: 'Each company comes with proof of what it actually does' },
       {

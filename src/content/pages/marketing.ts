@@ -195,6 +195,41 @@ export const page: Page = {
   gap: {
     heading: 'Your dashboards show what you sent, spent and published. Only a customer sees what arrived.',
     sub: 'Obsession’s AI agents are that customer, at every ad, link, launch and rival on your list.',
+    story: {
+      label:
+        'Example: your dashboard counts Fernleaf’s basket reminder as sent on Day 1. Obsession’s declared AI test customer signs up, gets the welcome email, leaves a basket and checks its inbox each day: on Day 3 the reminder has never arrived, and all 6 steps are signed.',
+      site: 'fernleaf.example',
+      outside: {
+        name: 'Your dashboard',
+        kind: 'dashboard',
+        day: 1,
+        time: '09:31',
+        title: 'Basket reminder',
+        line: 'Sent',
+        tally: '1 send counted',
+      },
+      inside: {
+        name: 'Obsession',
+        agent: 'Test customer 1 · AI · for Your company',
+        steps: [
+          {
+            kind: 'signup',
+            day: 0,
+            time: '09:14',
+            title: 'Signed up',
+            field: 'shopper1@test.useobsession.com',
+            mail: 'Welcome to Fernleaf',
+            mailTime: '09:15',
+          },
+          { kind: 'basket', day: 0, time: '09:31', title: 'Left a basket', item: 'Linen throw', price: '£48' },
+          { kind: 'wait', day: 1, time: '09:31', title: 'No reminder', since: '24 h' },
+          { kind: 'wait', day: 2, time: '09:31', title: 'No reminder', since: '48 h' },
+        ],
+        finding: { day: 3, time: '09:31', title: 'The basket reminder counted as sent never arrived', meta: '0 emails in 72 h' },
+        tally: '6 steps, all signed',
+        hash: '9c41 e2b8 … 07fd',
+      },
+    },
     rows: [
       {
         today: 'Your ad dashboard counts the click',
