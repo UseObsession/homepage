@@ -99,6 +99,11 @@ async function demo(spec: string) {
     }
   }
   ;(document.activeElement as HTMLElement | null)?.blur()
+  /* Let the last chip finish its colour change before the shot: read a style so the change starts, then wait. */
+  await sleep(100)
+  void getComputedStyle(document.body).color
+  requestAnimationFrame(() => undefined)
+  await sleep(800)
 }
 
 type Result = { name: string; pass: boolean; detail?: string }
