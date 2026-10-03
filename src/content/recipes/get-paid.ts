@@ -201,9 +201,9 @@ export const recipe: Recipe = {
         q: 'What’s it worth?',
         a: 'Get paid gives you up to 2 hours a week back, if you spend 2 hours a week chasing invoices.',
       },
-      { q: 'Who does Get paid chase?', a: 'Get paid chases only your real customers, from the invoices in your accounting tool.' },
+      { q: 'Who does the Get paid agent chase?', a: 'Get paid chases only your real customers, from the invoices in your accounting tool.' },
       {
-        q: 'Can Get paid set us up in a customer’s supplier portal?',
+        q: 'Can the Get paid agent set us up in a customer’s supplier portal?',
         a: 'Yes. Get paid works from the customer’s invite, with your company pack, as a named user where the portal allows it. Where only an employee can submit, it prepares everything and a person at your company clicks submit.',
       },
       {
@@ -211,17 +211,17 @@ export const recipe: Recipe = {
         a: 'Yes. Every Get paid email and call says it’s an AI agent for your company, from its own billing inbox and line.',
       },
       {
-        q: 'Will Get paid upset our customers?',
+        q: 'Will the Get paid agent upset our customers?',
         a: 'Get paid stays polite, uses your words and your rhythm, and stops the moment it’s asked. Every email and call is on record, so you see exactly what was said.',
       },
       {
         q: 'What if a customer disputes an invoice?',
         a: 'Get paid pauses the chase on that invoice, and the dispute comes to you with the history and a drafted reply.',
       },
-      { q: 'Does Get paid stop when they pay?', a: 'Yes, the same day: Get paid matches each payment to its invoice, and the chasing ends.' },
-      { q: 'Can Get paid get firmer?', a: 'Only after your OK. Get paid never sends a final notice, a late fee or a collections step on its own.' },
+      { q: 'Does the Get paid agent stop when they pay?', a: 'Yes, the same day: Get paid matches each payment to its invoice, and the chasing ends.' },
+      { q: 'Can the Get paid agent get firmer?', a: 'Only after your OK. Get paid never sends a final notice, a late fee or a collections step on its own.' },
       {
-        q: 'Does Get paid touch bank details or take payments?',
+        q: 'Does the Get paid agent touch bank details or take payments?',
         a: 'Never. With Get paid, your finance team enters bank details, and every new accounts contact gets a named person at your company to call back. The agent sends your own payment link and never asks for card or bank details.',
       },
     ],
