@@ -10,7 +10,9 @@ import './Study.css'
 /* The beats of a worked example (pages/UseCase), after its hero and its phases, in the story's order: the problem
    (the gap), how it fits the reader's own tools or who does what, what the reader does with it, the proof on its
    screen (and the first email written from it), then the recipe and the 1 real run. Each is a claim heading and a few
-   short lines on the design system; nothing moves but the screens. */
+   short lines on the design system; nothing moves but the screens.
+   Their grounds (styles/tones.css, F2): the problem is the page's ink chapter; how it fits and who does what stand on
+   the alternate ground; the proof is the paper break on ink (stone on paper), its screen and mail glossy black. */
 
 function Arrow({ className }: { className: string }) {
   return (
@@ -24,7 +26,7 @@ function Arrow({ className }: { className: string }) {
 export function Problem({ problem, id = 'gap' }: { problem: UseCaseStudy['problem']; id?: string }) {
   const uid = useId()
   return (
-    <section className="s-section s-st-problem" id={id} aria-labelledby={`${uid}-h`}>
+    <section className="s-section s-st-problem ob-theme-dark" data-tone="ink" id={id} aria-labelledby={`${uid}-h`}>
       <div className="s-wrap">
         <header className="s-head s-head--wide s-st-head">
           <h2 className="ob-type-h2" id={`${uid}-h`}>
@@ -55,7 +57,7 @@ export function Problem({ problem, id = 'gap' }: { problem: UseCaseStudy['proble
 export function Fit({ fit, id = 'fit' }: { fit: NonNullable<UseCaseStudy['fit']>; id?: string }) {
   const uid = useId()
   return (
-    <section className="s-section s-st-fit" id={id} aria-labelledby={`${uid}-h`}>
+    <section className="s-section s-st-fit" data-tone="alt" id={id} aria-labelledby={`${uid}-h`}>
       <div className="s-wrap s-st-fit__in">
         <header className="s-st-fit__head">
           <h2 className="ob-type-h2" id={`${uid}-h`}>
@@ -96,7 +98,7 @@ export function Split({ split, id = 'split' }: { split: NonNullable<UseCaseStudy
     </div>
   )
   return (
-    <section className="s-section s-st-split" id={id}>
+    <section className="s-section s-st-split" data-tone="alt" id={id}>
       <div className="s-wrap s-st-split__in">
         {side(split.yours, false, 0)}
         {side(split.ours, true, 1)}
@@ -129,7 +131,7 @@ export function Uses({ outputs, id = 'uses' }: { outputs: NonNullable<UseCaseStu
                   {g.line && <p className="s-st-group__line">{g.line}</p>}
                 </div>
               )}
-              <ul className="s-st-uselist" style={{ ['--s-st-cols' as string]: g.items.length % 3 === 0 ? 3 : 2 }}>
+              <ul className="s-st-uselist" data-cols={g.items.length % 3 === 0 ? 3 : 2} style={{ ['--s-st-cols' as string]: g.items.length % 3 === 0 ? 3 : 2 }}>
                 {g.items.map((u) => (
                   <li key={u.title} className="s-st-use">
                     {u.label && <p className="s-st-use__label">{u.label}</p>}
@@ -220,7 +222,7 @@ function Opener({ opener }: { opener: NonNullable<UseCaseStudy['proof']['opener'
 export function StudyProof({ proof, workspace, id = 'proof' }: { proof: UseCaseStudy['proof']; workspace: Workspace; id?: string }) {
   const uid = useId()
   return (
-    <section className="s-section s-st-proof" id={id} aria-labelledby={`${uid}-h`}>
+    <section className="s-section s-st-proof ob-theme-hybrid" data-tone="paper" id={id} aria-labelledby={`${uid}-h`}>
       <div className="s-wrap">
         <header className="s-head s-head--wide s-st-head">
           <h2 className="ob-type-h2" id={`${uid}-h`}>

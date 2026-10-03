@@ -86,7 +86,8 @@ export function Recipes() {
         ))}
       </div>
 
-      <section className="s-section s-ri-hub" aria-labelledby={`${id}-hub`}>
+      {/* The hub is the page's ink chapter (styles/tones.css, F1): full bleed ink on paper, lit ink on ink. */}
+      <section className="s-section s-ri-hub ob-theme-dark" data-tone="ink" aria-labelledby={`${id}-hub`}>
         <div className="s-wrap">
           <header className="s-head s-ri-hub__head">
             <h2 className="ob-type-h2" id={`${id}-hub`}>

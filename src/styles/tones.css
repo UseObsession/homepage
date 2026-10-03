@@ -41,6 +41,8 @@
   --s-read: color-mix(in oklab, var(--ob-text) 74%, var(--ob-text-2));
   /* The light that falls on Home's stage: ink only, paper has no glow (brand.css --ob-final-glow). */
   --s-spot: rgb(var(--ob-glow-rgb) / .085);
+  /* The ink rule that opens a list (graft G2): bone at 30% on ink, a little brighter than --ob-line-strong. */
+  --s-rule-mix: 30%;
 }
 
 .ob-theme-light,
@@ -53,6 +55,19 @@
   --s-chapter-light: transparent;
   --s-read: color-mix(in oklab, var(--ob-text) 74%, var(--ob-text-2));
   --s-spot: transparent;
+  /* The ink rule on paper is the full ink: the printed page's black accent that orders the reading. */
+  --s-rule-mix: 100%;
+}
+
+/* Mixed on every scope (and on every toned section), so each rule reads its own scope's ink and ground. */
+:root,
+[data-theme],
+.ob-theme-dark,
+.ob-theme-light,
+.ob-theme-hybrid,
+.ob-object,
+[data-tone] {
+  --s-rule: color-mix(in oklab, var(--ob-text) var(--s-rule-mix, 30%), var(--ob-bg));
 }
 
 /* ---- What an object takes from its ground ----------------------------------------------------------------------------
@@ -147,6 +162,14 @@
   background: radial-gradient(closest-side, var(--s-spot), transparent);
   pointer-events: none;
 }
+/* C1 (THEMES.md, fix): the light falls from above, so the stage throws no shadow up into it. Its cast (offset 40px,
+   spread -40px, blur 100px) reached about 100px above the stage's top edge and cut a box into the spot round the
+   heading: 1 level under the page at 1:1, a hard contour at 8x gain. On Home's ink hero the cast drops 120px instead,
+   so it starts 80px under the stage's top edge and never reaches the light above it (measured: the page's own level,
+   or lighter, everywhere above the stage). Paper keeps its own warm cast. */
+:root:not(.ob-theme-hybrid) .s-hero:not([data-reader]) .s-hero-console > .s-stage.ob-object {
+  --s-obj-cast: 0 0 0 1px rgb(0 0 0 / .6), 0 120px 100px -40px rgb(0 0 0 / .9), 0 0 100px -30px rgb(var(--ob-glow-rgb, 237 235 229) / .1);
+}
 
 /* ---- Grounds --------------------------------------------------------------------------------------------------------
    Each tone section takes its own top padding back (site.css lets a section follow another with none), as does the
@@ -184,10 +207,153 @@
 [data-tone="paper"] { background-color: var(--ob-bg); }
 :root.ob-theme-hybrid [data-tone="paper"] { background-color: var(--s-ground-alt); }
 
-/* ---- Reading ink: story copy reads in ink ------------------------------------------------------------------------- */
-.s-head > p { color: var(--s-read); }
+/* ---- Reading ink: story copy reads in ink -------------------------------------------------------------------------
+   Every sentence that carries the story reads in --s-read (12:1 or better on every ground). --ob-text-2 stays for words
+   that are secondary (meta, captions, the Gap's "Today", picks when lit); --ob-text-3 for labels, never a sentence.
+   The section components set their own lines in their CSS; the pages without a shared component are listed here. */
+.s-head > p,
+.s-st-lede,
+.s-st-phase__line,
+.s-st-step__line,
+.s-st-point__line,
+.s-st-row__line,
+.s-st-use__line,
+.s-st-opener__line,
+.s-st-link__line,
+.s-st-side__list > li,
+.s-so-line,
+.s-so-card__line,
+.s-so-record__line,
+.s-so-nothing__line,
+.s-ri-job__line,
+.s-ri-item__line,
+.s-ri-hub__line,
+.s-notice-hero__sub,
+.s-notice__body,
+.s-out-label,
+.s-uses__moment,
+.s-foot__tagline,
+.s-blog-lead__dek,
+.s-art-dek,
+.s-art-p,
+.s-art-list > li,
+.s-art-note__x,
+.s-rp-table .ob-table td { color: var(--s-read); }
+/* What the reader keeps (Split, "yours") stays quiet beside what Obsession runs, in full ink: the hierarchy holds. */
+.s-st-side:not(.is-ours) .s-st-side__list > li { color: var(--ob-text-2); }
+
+/* ---- G2. The ink rule that opens a list (from th/editorial) --------------------------------------------------------
+   Only a list's opening rule takes it, where the list already draws its top hairline: full ink on paper, bone at 30%
+   on ink. Inner dividers keep --ob-line; never inside an object, on a table or between sections. */
+.s-jobs-list,
+.s-recipes__job:first-child,
+.s-rp-group:first-child,
+.s-rp-settings,
+.s-kinds-result,
+.s-out-facts,
+.s-faq__list .ob-faq,
+.s-ri-job,
+.s-lg-group:first-child,
+.s-notice__row:first-child,
+.s-st-rows > .s-st-row:first-child { border-top-color: var(--s-rule); }
+/* Lists laid out in columns: their first row opens on the rule. */
+/* (Outcomes and a use case's uses say their columns in data-cols; a use case's problem points sit in 1 row.) */
+.s-out-list > .s-out-item:nth-child(-n + 3),
+.s-rules__item:nth-child(-n + 2),
+.s-rp-steps__item:nth-child(-n + 4),
+.s-rp-outs > li:nth-child(-n + 2),
+.s-st-points > .s-st-point,
+.s-st-uselist > .s-st-use:nth-child(-n + 3) { border-top-color: var(--s-rule); }
+.s-out-list[data-cols="2"] > .s-out-item:nth-child(3),
+.s-st-uselist[data-cols="2"] > .s-st-use:nth-child(3) { border-top-color: var(--ob-line); }
+@media (max-width: 1079.98px) {
+  .s-rp-steps__item:nth-child(n + 3),
+  .s-st-points > .s-st-point:nth-child(n + 3),
+  .s-st-uselist > .s-st-use:nth-child(n + 3) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 859.98px) {
+  .s-out-list > .s-out-item:nth-child(n + 2),
+  .s-st-points > .s-st-point:nth-child(n + 2),
+  .s-st-uselist > .s-st-use:nth-child(n + 2) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 639.98px) {
+  .s-rules__item:nth-child(n + 2) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 519.98px) {
+  .s-rp-steps__item:nth-child(n + 2) { border-top-color: var(--ob-line); }
+  .s-rp-outs > li:nth-child(n + 2) { border-top-color: var(--ob-line-subtle); }
+}
+
+/* ---- G3. The "With Obsession" bone sheet (from th/editorial) --------------------------------------------------------
+   In the thesis's ink chapter the promise is the 1 lit thing: a sheet of the paper the page is printed on, in the
+   paper's own inks (the brand constants, so it reads the same in both themes). "Today" stays on the ink in the second
+   ink. It is a document, not a product object and not a section: never hued, never the page's paper break, and only
+   here. Its cast ends inside the chapter's bottom padding. */
+.s-gap[data-tone="ink"] {
+  --s-sheet: var(--ob-bone);
+  --s-sheet-ink: var(--ob-ink);                                                    /* 15.7:1 on the sheet */
+  --s-sheet-ink-2: color-mix(in oklab, var(--ob-ink) 74%, var(--ob-bone));        /* 8.4:1 */
+  --s-sheet-line: color-mix(in srgb, var(--ob-ink) 14%, transparent);
+}
+.s-gap[data-tone="ink"] .s-gap-panel {
+  background: var(--s-sheet);
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .2), 0 30px 80px -30px rgb(0 0 0 / .7);
+}
+.s-gap[data-tone="ink"] :is(.s-gap-col--obs, .s-gap-obs),
+.s-gap[data-tone="ink"] .s-gap-col--obs .s-mark { color: var(--s-sheet-ink); }
+.s-gap[data-tone="ink"] .s-gap-row::after { border-top-color: var(--s-sheet-line); }
+.s-gap[data-tone="ink"] .s-gap-row::before { border-top-color: var(--ob-line); }
+/* Stacked, the sheet holds both sides: the key and "Today" take the sheet's second ink, and the rows its own line. */
+@media (max-width: 859.98px) {
+  .s-gap[data-tone="ink"] :is(.s-gap-today, .s-gap-col--today, .s-gap-arrow) { color: var(--s-sheet-ink-2); }
+  .s-gap[data-tone="ink"] .s-gap-row { border-top-color: var(--s-sheet-line); }
+}
+
+/* ---- G4. On ink, a card on the alternate ground steps up a surface (from th/lit) -----------------------------------
+   On ink the alternate ground is --ob-surface itself, so a card drawn in it would sink. It reads the raised face
+   instead: on #181816 text 14.9:1, read 13.1:1, text-2 8.7:1, text-3 6.0:1, line-ui 3.3:1. Any card drawn in
+   --ob-surface on an alternate ground joins this list. Paper keeps its white card on stone. */
+:root:not([data-theme="light"]) [data-tone="alt"] :is(.ob-table-wrap, .s-so-card, .s-st-side.is-ours) {
+  --ob-surface: var(--ob-surface-raised);
+}
+
+/* ---- F1. /recipes: the hub is the page's ink chapter -----------------------------------------------------------------
+   It is lit from its top edge like every ink chapter (on an ink page that light is what sets the chapter apart), so the
+   ring keeps its lifted pill but drops its own halo: 1 glow per section. */
+.s-ri-hub[data-tone="ink"] .s-ri-flow__mark::before { display: none; }
+
+/* A use case's flow (study/Flow) is 1 object in 3 stops, Obsession's stop raised. On the object's face the raised stop
+   reads a step above that face (it was drawn on the sunken strip), so it stands proud in both themes. */
+.s-flow.ob-object .s-flow__stop.is-obsession {
+  background: var(--ob-sheen), color-mix(in oklab, var(--s-obj-face, var(--ob-surface)), var(--ob-surface-hover) 60%);
+}
+
+/* ---- F3. /sample-output: the set up and what arrived is a product record, an object ----------------------------------- */
+.s-so-record.ob-object { border-radius: var(--ob-radius-lg); }
+
+/* More contrast on request: the grounds and the sheet stay (they carry the rhythm), every light goes. The chapter's top
+   light and Home's spot drop with the reader glows (accents.css), so each ink reads at its plain ground's figure. */
+@media (prefers-contrast: more) {
+  :root,
+  [data-theme],
+  .ob-theme-dark,
+  .ob-theme-light,
+  .ob-theme-hybrid,
+  .ob-object,
+  [data-tone] {
+    --s-chapter-light: transparent;
+    --s-spot: transparent;
+  }
+  [data-tone="ink"][data-reader] { --s-chapter-light: transparent; }
+}
 
 @media (forced-colors: active) {
   [data-tone] { background: Canvas; }
-  .s-hero-console::before { display: none; }
+  /* Shadows go in forced colours, so every product object keeps a real edge (an outline: nothing moves). */
+  .ob-object { outline: 1px solid CanvasText; outline-offset: -1px; }
+  .ob-object .ob-object { outline: 0; }
+  .s-hero-console::before,
+  .s-hero::after { display: none; }
+  .s-gap[data-tone="ink"] .s-gap-panel { background: Canvas; border: 1px solid CanvasText; }
+  .s-gap[data-tone="ink"] :is(.s-gap-col--obs, .s-gap-obs, .s-gap-today, .s-gap-col--today) { color: CanvasText; }
 }

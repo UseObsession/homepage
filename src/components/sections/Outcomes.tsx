@@ -129,7 +129,7 @@ export function Outcomes({ outcomes, id }: { outcomes: OutcomesContent; id?: str
           {outcomes.sub && <p className="ob-type-body-lg">{outcomes.sub}</p>}
         </header>
 
-        <ul ref={ref} className="s-out-list" style={{ ['--s-out-cols' as string]: cols }}>
+        <ul ref={ref} className="s-out-list" data-cols={cols} style={{ ['--s-out-cols' as string]: cols }}>
           {outcomes.items.map((it) => (
             <li key={it.value + it.label} className="s-out-item">
               <Value value={it.value} armed={motionOk} run={inView} />

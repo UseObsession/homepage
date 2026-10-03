@@ -15,7 +15,9 @@ import './SampleOutput.css'
    (the output viewer) > the report: the 4 journeys and their verdicts, the checkout capture, the set up and what
    arrived, and the report's own pages, each opening to full size > each gap: the inbox watched for 48 hours with
    nothing in it, what was left behind, the reminder drafted from the evidence > questions > the free mystery shop
-   (#get-one). A verdict is the ring mark and its word, never a colour. */
+   (#get-one). A verdict is the ring mark and its word, never a colour.
+   Its grounds (styles/tones.css, F3): the report stands on the alternate ground, its set up and what arrived a product
+   record (.ob-object); the formats are the page's paper break on ink (stone on paper). */
 
 const r = sample.report
 
@@ -152,7 +154,7 @@ function Pages() {
 function Report() {
   const id = 'report'
   return (
-    <section className="s-section s-so-report" id={id} aria-labelledby={`${id}-h`}>
+    <section className="s-section s-so-report" data-tone="alt" id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap">
         <header className="s-head s-so-head">
           <h2 className="ob-type-h2" id={`${id}-h`}>
@@ -193,7 +195,7 @@ function Report() {
             <Pages />
           </div>
 
-          <div className="s-so-record">
+          <div className="s-so-record ob-object">
             {[r.setup, r.observation].map((block) => (
               <div className="s-so-record__block" key={block.heading}>
                 <div className="s-so-record__head">
