@@ -4,13 +4,13 @@ import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { jobAnchor as slug } from '../content/nav'
 import { recipePage } from '../content/recipe-page'
 import { recipes, recipesPage as page } from '../content/registry'
-import type { RecipeGroup } from '../content/types'
 import '../components/sections/Hero.css'
 import './Recipes.css'
 
-/* /recipes: every recipe, grouped by the 5 jobs (site.ts recipesPage). The centred hero, with the jobs as quiet jump
+/* /recipes: every recipe, grouped by the 6 jobs (site.ts recipesPage). The centred hero, with the jobs as quiet jump
    links; then 1 row per job, its name and line on the left and its recipes as link rows on the right (the same rows as
    every page's Recipes section); then where the companies come from and where the proof goes; questions; the final
    call. Nothing moves but the hero's load sequence and the rows' hover. */
@@ -18,7 +18,7 @@ import './Recipes.css'
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-const slug = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
+/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-rivals. */
 
 /* The jump links' name, for screen readers. */
 const UI = { jobs: 'Recipes by job', inputs: 'Add companies from', outputs: 'Results go to' }

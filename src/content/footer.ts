@@ -1,26 +1,26 @@
 /* The footer's words (components/Footer): the full site map, the red lines in 1 line, and the trust links.
-   The recipes come from content/nav, so the menu, the phone sheet and the footer always list the same ones. */
+   The readers, the resources and the recipes come from content/nav, so the bar, the menus, the phone sheet and the footer
+   always list the same ones. */
 import { nav, type NavPage } from './nav'
 import { ways } from './ways'
 
 export const footer = {
   tagline: 'The intelligence infrastructure for commercial teams.',
   columns: [
-    { label: nav.solutions.label, links: nav.solutions.items.map(({ label, to }) => ({ label, to })) },
+    { label: 'Who it’s for', links: nav.readers.map(({ label, to }) => ({ label, to })) },
     {
       label: 'Product',
       links: [
-        { label: 'Recipes', to: '/recipes' },
+        { label: nav.recipes.label, to: nav.recipes.to },
         { label: ways.verify.name, to: ways.verify.to },
-        { label: 'Developers', to: '/developers' },
       ],
     },
     {
       label: nav.resources.label,
       links: [
-        { label: nav.resources.useCases.label, to: nav.resources.useCases.all.to },
+        { label: nav.resources.run.kicker, to: nav.resources.run.to },
+        { label: nav.resources.useCases.label, to: nav.resources.useCases.to },
         ...nav.resources.useCases.items.map(({ label, to }) => ({ label, to })),
-        ...nav.resources.items.map(({ label, to }) => ({ label, to })),
         { label: nav.resources.all.label, to: nav.resources.all.to },
       ],
     },

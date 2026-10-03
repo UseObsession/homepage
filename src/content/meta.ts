@@ -58,8 +58,8 @@ export type Entry = {
   article?: Article
 }
 
-/* The share image's line on an audience page: the line the Solutions menu gives it. */
-const solutionLine = (path: string) => nav.solutions.items.find((s) => s.to === path)?.line ?? ''
+/* The share image's line on an audience page: the line the nav gives its reader. */
+const solutionLine = (path: string) => nav.readers.find((s) => s.to === path)?.line ?? ''
 const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 
 const ogFor = (meta: Meta) => ({ ...meta, ogImage: meta.ogImage ?? `/og/${meta.path === '/' ? 'home' : meta.path.split('/').pop()}.png` })

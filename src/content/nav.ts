@@ -1,16 +1,22 @@
-/* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7. */
-import { blogLive, recipes, studies } from './registry'
+/* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7,
+   and the spec in the workspace, _research/nav/NAV.md. */
+import { recipeById, recipes, studies } from './registry'
 import { agentsPage } from './site'
-import type { Cta, RecipeGroup, RecipeId } from './types'
+import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
 import { ways } from './ways'
 
 export type NavPage = { label: string; to: string; line?: string }
+export type NavReader = NavPage & { id: ReaderId; line: string }
 export type NavRecipe = { id: RecipeId; label: string; to: string }
 /* `more` is the group's own page, listed after its recipes (Check your AI agents: /verify). */
 export type NavRecipeGroup = { name: RecipeGroup; items: NavRecipe[]; more?: NavPage }
+/* A job in the Recipes menu: its promise in 1 line, where it leads, and 2 recipes that show it best. */
+export type NavJob = { name: RecipeGroup; line: string; to: string; examples: NavRecipe[] }
+/* A card in the Resources menu: who it is for (or what it is), its name, and what happened in 1 line. */
+export type NavCard = NavPage & { line: string; kicker: string }
 
-/* The 6 jobs, in the order the menu, the phone sheet and the footer list them. Check your AI agents is the 4th way in
-   (content/ways.ts), and its recipes are a job of their own. */
+/* The 6 jobs, in the order the menu, the phone sheet, the footer and the Recipes index list them. Check your AI agents
+   is the 4th way in (content/ways.ts), and its recipes are a job of their own. */
 export const JOBS: RecipeGroup[] = [
   'Win customers',
   'Keep and grow customers',
@@ -20,61 +26,108 @@ export const JOBS: RecipeGroup[] = [
   'Check your AI agents',
 ]
 
+/* Each job's anchor on /recipes (pages/Recipes gives each job's section this id). */
+export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
+
 /* A job with a page of its own links to it after its recipes. */
 const MORE: Partial<Record<RecipeGroup, NavPage>> = {
   'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
 }
 
+const recipeLink = (r: { id: RecipeId; name: string; slug: string }): NavRecipe => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })
+
 /* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
-   in the registry's order, so the menu, the phone sheet, the footer, the Recipes index and every page agree. */
+   in the registry's order, so the footer, the Recipes index and every page agree. */
 export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
   name,
-  items: recipes.filter((r) => r.group === name).map((r) => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })),
+  items: recipes.filter((r) => r.group === name).map(recipeLink),
   ...(MORE[name] ? { more: MORE[name] } : {}),
 }))
+
+/* The Recipes menu never lists every recipe: each job gets its promise and the 2 recipes with the most pull (the agency
+   beachhead first: Prospect intelligence). Mystery shopper is the featured card, so its job shows 2 others. Check your
+   AI agents leads to its own page, /verify, which lists its recipes; the other 5 lead to their section of /recipes. */
+const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
+  'Win customers': { line: 'Prove the gap before you pitch.', examples: ['prospect', 'quotes'] },
+  'Keep and grow customers': { line: 'See churn and growth coming.', examples: ['account-watch', 'saves'] },
+  'Watch rivals': { line: 'Every rival move, as it lands.', examples: ['competitor', 'prices'] },
+  'Check your own journeys': { line: 'Catch every break before a customer does.', examples: ['speed', 'checkout'] },
+  'Get paid and save': { line: 'Get paid sooner and hold every price.', examples: ['get-paid', 'supplier-quotes'] },
+  'Check your AI agents': {
+    line: 'Declared test customers check the AI agents you run.',
+    examples: ['support-bot', 'voice-agent'],
+    to: ways.verify.to,
+  },
+}
+
+export const recipeJobs: NavJob[] = JOBS.map((name) => {
+  const j = JOB_MENU[name]
+  return {
+    name,
+    line: j.line,
+    to: j.to ?? `/recipes#${jobAnchor(name)}`,
+    examples: j.examples.map((id) => recipeLink(recipeById[id])),
+  }
+})
+
+/* Who each worked example is for (content/usecases). James sends these addresses to prospects: they always stay. */
+const STUDY_FOR: Record<string, string> = {
+  '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
+  '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
+}
 
 export const nav = {
   home: 'Obsession home',
   skip: 'Skip to content',
   label: 'Main',
-  solutions: {
-    label: 'Solutions',
-    items: [
-      { label: 'Agencies', to: '/agencies', line: 'Every client checked. Every pitch proven.' },
-      { label: 'Founders', to: '/founders', line: 'Leads with a proven gap. QA on every release.' },
-      { label: 'Sales', to: '/sales', line: 'Know each account as its customers do.' },
-      { label: 'Marketing', to: '/marketing', line: 'Every ad, launch and rival, seen as a customer.' },
-    ] satisfies NavPage[],
-  },
+  /* The readers, as plain links: who it is for comes first. Agencies are the beachhead. */
+  readers: [
+    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client checked. Every pitch proven.' },
+    { id: 'founders', label: 'Founders', to: '/founders', line: 'Leads with a proven gap. QA on every release.' },
+    { id: 'sales', label: 'Sales', to: '/sales', line: 'Know each account as its customers do.' },
+    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every ad, launch and rival, seen as a customer.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'Build on the same agents in your own code.' },
+  ] satisfies NavReader[],
+  /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question. */
+  readersMenu: { label: 'For', ask: 'Who are you?' },
   recipes: {
     label: 'Recipes',
-    all: { label: 'All recipes', to: '/recipes' } satisfies NavPage,
-    /* The desktop menu lays the 6 jobs out in 3 columns of about the same height, 2 jobs each in the jobs' own order:
-       winning and keeping customers (11 recipes); rivals and your own journeys (12); getting paid and the AI agent
-       checks (11, and the checks' own page). The phone sheet, the footer and the Recipes index list the jobs in order. */
-    columns: [
-      ['Win customers', 'Keep and grow customers'],
-      ['Watch rivals', 'Check your own journeys'],
-      ['Get paid and save', 'Check your AI agents'],
-    ] satisfies RecipeGroup[][],
+    to: '/recipes',
+    button: 'Recipes menu',
+    all: { label: 'Browse all recipes', to: '/recipes' } satisfies NavPage,
+    /* The featured card: the free first report, then the 1 real run. */
+    feature: {
+      label: 'Your first mystery shop is free',
+      line: 'Declared AI customers shop your store, or a client’s with their OK. The report comes within 4 days.',
+      action: 'Get my free report',
+      to: '/recipes/mystery-shopper',
+    },
+    run: { label: 'See a real run', to: '/sample-output' } satisfies NavPage,
   },
-  /* Resources: the worked examples (content/usecases, which James sends to prospects, so they always stay reachable),
-     then the blog and the 1 real run. */
+  /* Resources: the proof. The 1 real run first, then the worked examples, then 1 quiet way to the hub. */
   resources: {
     label: 'Resources',
+    to: '/resources',
+    button: 'Resources menu',
+    run: {
+      kicker: 'Sample output',
+      label: 'The September store check',
+      to: '/sample-output',
+      line: '4 test customers shopped a real store. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
+      image: { src: '/nav/report-peek.jpg', width: 144, height: 90 },
+    },
     useCases: {
       label: 'Use cases',
-      all: { label: 'All use cases', to: '/use-cases' } satisfies NavPage,
-      items: studies.map(({ name, line, meta }) => ({ label: name, to: meta.path, line })) satisfies NavPage[],
+      to: '/use-cases',
+      items: studies.map(({ name, line, meta }) => ({
+        kicker: STUDY_FOR[meta.path] ?? 'Use case',
+        label: name,
+        to: meta.path,
+        line,
+      })) satisfies NavCard[],
     },
-    items: [
-      ...(blogLive ? [{ label: 'Blog', to: '/blog', line: 'Guides to the work agents do as a customer.' }] : []),
-      { label: 'Sample output', to: '/sample-output', line: 'A real store check, in every format it arrives in.' },
-    ] satisfies NavPage[],
-    all: { label: 'All resources', to: '/resources' } satisfies NavPage,
+    all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
-  /* At most 4 links in the bar: Solutions, Recipes and Resources open menus; Developers is a page. */
-  links: [{ label: 'Developers', to: '/developers' }] satisfies NavPage[],
   /* The page's call to action. Pages without their own use this one. */
   cta: { label: 'Join the waitlist', to: '#join' } satisfies Cta,
   menu: { open: 'Open menu', close: 'Close menu', sheet: 'Menu' },

@@ -12,7 +12,7 @@ Read time: about 20 minutes.
 2. **Own the ground between them:** the trust questions (is it legal, should an agent say it's AI), the method questions (how to see what a customer actually gets) and 4 terms we can define: **declared AI agent**, **prospect intelligence** (become the prospect's customer), **member price intelligence**, the **outside-in audit**.
 3. **Every post carries new information:** a real run, a signed record, a dated price or a source-graded synthesis. That is what Google calls non-commodity content, what AI engines quote, and what earns the third-party mentions behind most commercial AI citations.
 4. **8 hubs** follow the recipe groups. **5 launch posts**, one per reader: 2 honest tool reviews and 3 thought-leadership pieces.
-5. **Navigation:** Solutions, Recipes, Resources (Sample output, Use cases, Blog), Developers, then the call to action. Breadcrumbs on every page below Home. The footer is the full site map.
+5. **Navigation** (superseded 3 Oct by `docs/REBUILD.md` section 7): the 5 readers as links, then Recipes and Resources menus, then the call to action. Breadcrumbs on every page below Home. The footer is the full site map.
 6. **Fix the live site first:** unknown URLs return the home page with a 200, `http://` doesn't redirect, `www` has no DNS record, no HSTS. All free on Cloudflare.
 
 | # | Post | Reader | Kind | Hub |
@@ -214,6 +214,8 @@ Lowercase, words joined with hyphens, no dates, no parameters, no trailing slash
 **The use cases index** (`/use-cases`) lists both worked examples with their 1 line, so the breadcrumb on each has somewhere to go.
 
 ### Navigation
+
+Superseded on 3 Oct: the bar now leads with the 5 readers as plain links, then Recipes and Resources (a link plus a menu each). The current design is `docs/REBUILD.md` section 7 and `_research/nav/NAV.md`; the plan below is kept as the record.
 
 The top bar holds 4 links plus the call to action (the design system's rule):
 

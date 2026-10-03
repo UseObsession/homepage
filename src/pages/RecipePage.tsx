@@ -27,7 +27,7 @@ const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
 /* Each audience's own page, named as the nav names it. */
 const AUDIENCE: Record<AudienceId | 'developers', { label: string; to: string }> = Object.fromEntries(
-  [...nav.solutions.items, ...nav.links].map((p) => [p.to.slice(1), { label: p.label, to: p.to }]),
+  nav.readers.map((p) => [p.id, { label: p.label, to: p.to }]),
 ) as Record<AudienceId | 'developers', { label: string; to: string }>
 
 /* Whose workspace the screen and the console show: the one the recipe's screen is drawn for (components/workspace.ts),
