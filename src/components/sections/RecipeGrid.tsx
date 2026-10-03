@@ -27,17 +27,20 @@ type Props = {
   lines?: Partial<Record<RecipeGroup, string>>
   id?: string
   className?: string
+  /* Its ground (styles/tones.css): the alternate ground by default; a page whose rhythm puts it between 2 alternate
+     grounds (Home) sets it on the page's own ground with "base". */
+  tone?: 'alt' | 'base'
 }
 
 /* Recipes (docs/REBUILD.md, story beat 7): grouped by the job they do. Each recipe is a quiet link row, its name and
    its 1 line, opening /recipes/SLUG. No boxes: the hover layer and the arrow say it's a link. */
-export function RecipeGrid({ heading, ids, lines, id = 'recipes', className = '' }: Props) {
+export function RecipeGrid({ heading, ids, lines, id = 'recipes', className = '', tone = 'alt' }: Props) {
   const groups = JOBS.map((job) => ({ job, items: ids.map((i) => RECIPES[i]).filter((r) => r && r.group === job) })).filter(
     (g) => g.items.length > 0,
   )
 
   return (
-    <section className={`s-section s-recipes ${className}`} id={id} aria-labelledby={`${id}-h`}>
+    <section className={`s-section s-recipes ${className}`} data-tone={tone === 'alt' ? 'alt' : undefined} id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap">
         <div className="s-head s-head--wide">
           <h2 className="ob-type-h2" id={`${id}-h`}>

@@ -1,0 +1,402 @@
+/* =============================================================================================
+   PAPER AND GLOSS (site layer, --s-*): the rhythm of light and dark on every page.
+
+   The idea. The product is the sharpest thing on the page, and each theme gets the other's light at its narrative beats.
+   - Paper (light) is the design system's hybrid page: warm paper, every product object glossy black on it (index.html
+     and ThemeToggle put .ob-theme-hybrid on <html> with data-theme="light"). The ink chapters (the gap, the closing call
+     and the footer, a recipe's steps) run full bleed in ink.
+   - Ink (dark) is the mirror: the page stays ink, the product objects are lit and lifted off it, the ink chapters are
+     lit from above, and 1 section per page is the paper break (the real run's proof), the system's own rule.
+   - Between them, a quieter alternate ground (stone on paper, lifted ink on ink) separates sections without hairlines.
+
+   Every section declares a tone with 2 hooks: data-tone (base by default, "alt", "ink" or "paper") and, for "ink" and
+   "paper", the design system's theme scope that carries it (.ob-theme-dark for ink, .ob-theme-hybrid for paper). A scope
+   re-declares the whole --ob- set, focus ring and field edges included, so nothing inside reads the wrong ink.
+
+   Product objects are the system's .ob-object (app screens, the hero stage, consoles, code, output cards). Their
+   material comes from the ground they sit on, through 4 variables each ground sets (--s-obj-*): glossy black with a warm
+   cast on paper, lit and lifted with a top light on ink. Whatever an object holds sits on ink (.ob-object > *).
+
+   Readability: --s-read is the reading ink for story copy (ledes, card lines). It sits a quarter of the way from
+   --ob-text to --ob-text-2, so it keeps the hierarchy under a heading but reads as ink, not grey: 14.7:1 on ink and
+   15:1 on paper. --ob-text-2 stays for genuinely secondary words; --ob-text-3 for labels.
+
+   Nothing here edits src/styles/ds. Requests for the design system are listed in docs (dsRequests): an inverse scope,
+   the alternate grounds, the lit object material and the reading ink.
+   ============================================================================================= */
+
+/* ---- Tokens per scope ------------------------------------------------------------------------------------------------
+   Declared on every theme scope, like styles/tokens.css, so a chapter that flips re-reads them from its own --ob- set.
+   The selector lists mirror ds/tokens.css, the hybrid page's glossy objects included (they read the ink set). */
+
+:root,
+.ob-theme-dark,
+[data-theme="dark"],
+:is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
+  /* The alternate ground: ink lifted to a card's face. 15.7:1 text, 9.1:1 text-2, 6.3:1 text-3, 3.5:1 line-ui. */
+  --s-ground-alt: var(--ob-surface);
+  /* An ink chapter on an ink page is lit from above: the ground a step up from the page, light falling on its top. */
+  --s-ground-ink: color-mix(in oklab, var(--ob-bg) 55%, var(--ob-surface));
+  --s-chapter-light: rgb(var(--ob-glow-rgb) / .075);
+  --s-read: color-mix(in oklab, var(--ob-text) 74%, var(--ob-text-2));
+  /* The light that falls on Home's stage: ink only, paper has no glow (brand.css --ob-final-glow). */
+  --s-spot: rgb(var(--ob-glow-rgb) / .085);
+  /* The ink rule that opens a list (graft G2): bone at 30% on ink, a little brighter than --ob-line-strong. */
+  --s-rule-mix: 30%;
+}
+
+.ob-theme-light,
+[data-theme="light"],
+.ob-theme-hybrid,
+[data-theme="hybrid"] {
+  /* Stone: the paper 30% of the way to a hairline. 15.2:1 text, 7.1:1 text-2, 4.8:1 text-3, 3.05:1 line-ui. */
+  --s-ground-alt: color-mix(in oklab, var(--ob-bg-sunken) 70%, var(--ob-line));
+  --s-ground-ink: var(--ob-bg);
+  --s-chapter-light: transparent;
+  --s-read: color-mix(in oklab, var(--ob-text) 74%, var(--ob-text-2));
+  --s-spot: transparent;
+  /* The ink rule on paper is the full ink: the printed page's black accent that orders the reading. */
+  --s-rule-mix: 100%;
+}
+
+/* Mixed on every scope (and on every toned section), so each rule reads its own scope's ink and ground. */
+:root,
+[data-theme],
+.ob-theme-dark,
+.ob-theme-light,
+.ob-theme-hybrid,
+.ob-object,
+[data-tone] {
+  --s-rule: color-mix(in oklab, var(--ob-text) var(--s-rule-mix, 30%), var(--ob-bg));
+}
+
+/* ---- What an object takes from its ground ----------------------------------------------------------------------------
+   --s-obj-lift   how far its face rises toward the raised ink (0 on paper, 1 on ink)
+   --s-obj-sheen  the top light across its face        --s-obj-rim   its inner edge
+   --s-obj-top    the 1px highlight on its top edge     --s-obj-cast  what it throws onto the ground
+   The cast is resolved on the ground, from the ground's own tokens, so a glossy object keeps the paper's warm shadow.
+   The rest are plain numbers the object mixes with its own (ink) tokens. The sheen is capped so a control edge
+   (--ob-line-ui) at the very top of a face still clears 3:1: .04 on a lifted face (3.05:1), .05 on paper gloss. */
+
+/* On ink: lit and lifted. A face a step above the page, a brighter rim, a crisp dark edge, and light spilling round it. */
+:root,
+[data-theme="dark"],
+[data-tone="ink"],
+.ob-object > * {
+  --s-obj-lift: 1;
+  --s-obj-sheen: .04;
+  --s-obj-rim: .12;
+  --s-obj-top: .2;
+  --s-obj-cast: 0 0 0 1px rgb(0 0 0 / .6), 0 40px 100px -40px rgb(0 0 0 / .9), 0 0 100px -30px rgb(var(--ob-glow-rgb, 237 235 229) / .1);
+}
+
+/* On paper: glossy black. The deepest face, a quieter rim, and a warm shadow that sets it down on the page. */
+:root.ob-theme-hybrid,
+[data-theme="light"],
+[data-tone="paper"] {
+  --s-obj-lift: 0;
+  --s-obj-sheen: .05;
+  --s-obj-rim: .07;
+  --s-obj-top: .14;
+  --s-obj-cast: 0 0 0 1px rgb(var(--ob-shadow-rgb) / .9), 0 2px 4px rgb(var(--ob-shadow-rgb) / .08), 0 24px 48px -24px rgb(var(--ob-shadow-rgb) / .34), 0 56px 96px -56px rgb(var(--ob-shadow-rgb) / .4);
+}
+/* An ink chapter, or anything inside an object, on a paper page is on ink again. */
+:root.ob-theme-hybrid :is([data-tone="ink"], .ob-object > *),
+[data-tone="paper"] :is([data-tone="ink"], .ob-object > *) {
+  --s-obj-lift: 1;
+  --s-obj-sheen: .04;
+  --s-obj-rim: .12;
+  --s-obj-top: .2;
+  --s-obj-cast: 0 0 0 1px rgb(0 0 0 / .6), 0 40px 100px -40px rgb(0 0 0 / .9), 0 0 100px -30px rgb(var(--ob-glow-rgb, 237 235 229) / .1);
+}
+
+/* ---- The product object material --------------------------------------------------------------------------------- */
+
+.ob-object {
+  --s-obj-face: color-mix(in oklab, var(--ob-surface), var(--ob-surface-raised) calc(var(--s-obj-lift, 0) * 60%));
+  background: linear-gradient(180deg, rgb(var(--ob-sheen-rgb) / var(--s-obj-sheen, .05)), rgb(var(--ob-sheen-rgb) / 0) 42%), var(--s-obj-face);
+  box-shadow:
+    0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / var(--s-obj-rim, .08)) inset,
+    0 1px 0 rgb(var(--ob-sheen-rgb) / var(--s-obj-top, .12)) inset,
+    var(--s-obj-cast, var(--ob-shadow-3));
+}
+/* The app screens' frame (components/AppScreen) and the stage are wells: a step deeper than a window, so the window
+   they hold lifts off them. On ink they rise to a card's face; on paper they are the deepest gloss. */
+.ilwrap.ob-object,
+.s-stage.ob-object {
+  --s-obj-face: color-mix(in oklab, var(--ob-bg-sunken), var(--ob-surface) calc(var(--s-obj-lift, 0) * 100%));
+}
+
+/* ---- The stage: the hero's product object (ScreenTabs, Console) -------------------------------------------------------
+   The tabs and the window share 1 glossy panel, so the product reads as 1 object, not pills floating on the page. It
+   hugs the screen it holds. The screen inside sits straight on the stage: its frame goes quiet. */
+.s-stage.ob-object {
+  justify-self: center;
+  width: 100%;
+  max-width: calc(var(--ob-container-md) + 2 * var(--ob-space-24) + 2 * var(--ob-space-12));
+  border-radius: var(--ob-radius-xl);
+  padding: var(--ob-space-12) var(--ob-space-12) var(--ob-space-4);
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgb(var(--ob-sheen-rgb) / var(--s-obj-sheen, .06)), transparent 70%),
+    var(--s-obj-face);
+}
+.s-hero-console > .s-stage { justify-self: center; }
+/* Under a section's claim (a recipe's run) the stage keeps the section's full measure, on its left edge. */
+.s-rp-run .s-stage.ob-object { max-width: none; }
+.s-stage .ilwrap.ob-object { background: transparent; box-shadow: none; }
+/* A run's name inside the stage (a recipe's run) keeps the window's inset, with a little air above it. */
+.s-stage > .s-console-label { padding: var(--ob-space-4) var(--ob-space-12) 0; }
+
+/* On ink the stage is lit: 1 soft light falls on it from above. It is Home's hero glow; a reader's page keeps its own
+   (the reader's hue behind the headline), so the light stays off there. Paper has no glow: --s-spot is transparent. */
+.s-hero:not([data-reader]) .s-hero-console { position: relative; isolation: isolate; }
+.s-hero:not([data-reader]) .s-hero-console::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--ob-space-40) * -1);
+  left: 50%;
+  width: min(100vw, 1400px);
+  height: 78%;
+  translate: -50% 0;
+  background: radial-gradient(closest-side, var(--s-spot), transparent);
+  pointer-events: none;
+}
+/* C1 (THEMES.md, fix): the light falls from above, so the stage throws no shadow up into it. Its cast (offset 40px,
+   spread -40px, blur 100px) reached about 100px above the stage's top edge and cut a box into the spot round the
+   heading: 1 level under the page at 1:1, a hard contour at 8x gain. On Home's ink hero the cast drops 120px instead,
+   so it starts 80px under the stage's top edge and never reaches the light above it (measured: the page's own level,
+   or lighter, everywhere above the stage). Paper keeps its own warm cast. Every hero object under the spot takes the same
+   cast (a recipe's screen, a use case's flow, the /recipes picker), not only Home's stage. */
+:root:not(.ob-theme-hybrid) .s-hero:not([data-reader]) .s-hero-console > .ob-object {
+  --s-obj-cast: 0 0 0 1px rgb(0 0 0 / .6), 0 120px 100px -40px rgb(0 0 0 / .9), 0 0 100px -30px rgb(var(--ob-glow-rgb, 237 235 229) / .1);
+}
+
+/* D3. On paper a glossy black object that fades in over the hero's 800ms spends most of it as a grey slab. Here it is
+   solid by 30% of the entrance (240ms) and keeps rising, so it arrives black. On ink the same fade reads as light coming
+   up, so ink keeps the system's entrance. Replays keep the system's -r twin. */
+@keyframes s-object-in {
+  from { opacity: 0; translate: var(--ob-enter-x) var(--ob-enter-y); scale: var(--ob-enter-scale); }
+  30% { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root.ob-theme-hybrid .ob-anim-hero-object:not(.is-replay) { animation-name: s-object-in; }
+}
+
+/* ---- Grounds --------------------------------------------------------------------------------------------------------
+   Each tone section takes its own top padding back (site.css lets a section follow another with none), as does the
+   section after it, so every ground has the same air at both ends. */
+
+.s-section:is([data-tone="alt"], [data-tone="ink"], [data-tone="paper"]),
+.s-section:is([data-tone="alt"], [data-tone="ink"], [data-tone="paper"]) + .s-section {
+  padding-top: var(--ob-space-section);
+}
+/* 2 grounds of the same tone side by side read as 1. */
+.s-section[data-tone="alt"] + .s-section[data-tone="alt"] { padding-top: 0; }
+
+[data-tone="alt"] { background-color: var(--s-ground-alt); }
+
+/* An ink chapter: full bleed ink. On paper it is the page's deepest ink; on ink it is a step up, lit from above. */
+[data-tone="ink"] {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(90% 55% at 50% 0%, var(--s-chapter-light), transparent 72%),
+    var(--s-ground-ink);
+  box-shadow: inset 0 var(--ob-border-hair) 0 rgb(var(--ob-sheen-rgb) / .06);
+}
+:root.ob-theme-hybrid [data-tone="ink"] { box-shadow: none; }
+/* The closing call already has its 1 glow, behind the ring (FinalCta.css), so its chapter takes no top light. */
+.s-final[data-tone="ink"] { --s-chapter-light: transparent; }
+/* On a reader's page the ink chapter's light is the reader's hue (the room's colour, back at full depth mid-page): the
+   ink scope reads the deep glow source, at the hero's alpha. Proposed extension of COLOUR.md P3 (styles/accents.css). */
+[data-tone="ink"][data-reader] {
+  --s-chapter-light: color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent);
+}
+
+/* D1. On an ink page the ink chapter is a lit room, not a shade of the page. Mixed from the page's own ink (#080807) it
+   measured 1.02:1 and melted into the sections round it, so dark ran on 2 grounds. On ink it stands between a card's
+   face and the raised face (#151514, 1.10:1 on the page, a step above the alternate ground), and its top light comes
+   down to keep every floor at the light's peak: text 13.9, read 12.2, text-2 8.0, text-3 5.6, line-ui 3.05. The
+   reader's light (P5) takes 24% there, its ceiling on this ground (36% would drop line-ui to 2.85); worst of the 5 hues:
+   read 12.1, text-3 5.55, line-ui 3.04. The final call keeps its ring glow and no top light, so it reads as a lit room
+   above the darker footer. Paper does not change: there :root carries .ob-theme-hybrid. */
+:root:not(.ob-theme-hybrid) [data-tone="ink"] {
+  --s-ground-ink: color-mix(in oklab, var(--ob-surface) 50%, var(--ob-surface-raised));
+}
+:root:not(.ob-theme-hybrid) [data-tone="ink"]:not(.s-final, [data-reader]) { --s-chapter-light: rgb(var(--ob-glow-rgb) / .045); }
+:root:not(.ob-theme-hybrid) [data-tone="ink"][data-reader] {
+  --s-chapter-light: color-mix(in srgb, var(--s-accent-glow) 24%, transparent);
+}
+/* Anything drawn in --ob-surface inside the lifted chapter would sink below it, so it reads the hover face (#1F1F1C): a
+   use case's answer, the hub's pills and ring. Text 13.9, read 12.2, text-2 8.0, text-3 5.6; at the top of their sheen
+   12.2, 10.7, 7.1 and 4.9 (no control edge sits on them). */
+:root:not(.ob-theme-hybrid) [data-tone="ink"] :is(.s-st-answer, .s-ri-flow__pill, .s-ri-flow__mark) {
+  --ob-surface: var(--ob-surface-hover);
+}
+
+/* The paper break: on ink it is the page's 1 sheet of paper. On paper the same section stands on stone, so the beat
+   that flips on ink (the money, the real run) still has its own ground. */
+[data-tone="paper"] { background-color: var(--ob-bg); }
+:root.ob-theme-hybrid [data-tone="paper"] { background-color: var(--s-ground-alt); }
+
+/* ---- Reading ink: story copy reads in ink -------------------------------------------------------------------------
+   Every sentence that carries the story reads in --s-read (12:1 or better on every ground). --ob-text-2 stays for words
+   that are secondary (meta, captions, the Gap's "Today", picks when lit); --ob-text-3 for labels, never a sentence.
+   The section components set their own lines in their CSS; the pages without a shared component are listed here. */
+.s-head > p,
+.s-st-lede,
+.s-st-phase__line,
+.s-st-step__line,
+.s-st-point__line,
+.s-st-row__line,
+.s-st-use__line,
+.s-st-opener__line,
+.s-st-link__line,
+.s-st-side__list > li,
+.s-so-line,
+.s-so-card__line,
+.s-so-record__line,
+.s-so-nothing__line,
+.s-ri-job__line,
+.s-ri-item__line,
+.s-ri-hub__line,
+.s-notice-hero__sub,
+.s-notice__body,
+.s-out-label,
+.s-uses__moment,
+.s-uses__why,
+.s-foot__tagline,
+.s-blog-lead__dek,
+.s-art-dek,
+.s-art-p,
+.s-art-list > li,
+.s-art-note__x,
+.s-rp-table .ob-table td { color: var(--s-read); }
+/* What the reader keeps (Split, "yours") stays quiet beside what Obsession runs, in full ink: the hierarchy holds. */
+.s-st-side:not(.is-ours) .s-st-side__list > li { color: var(--ob-text-2); }
+
+/* ---- G2. The ink rule that opens a list (from th/editorial) --------------------------------------------------------
+   Only a list's opening rule takes it, where the list already draws its top hairline: full ink on paper, bone at 30%
+   on ink. Inner dividers keep --ob-line; never inside an object, on a table or between sections. */
+.s-jobs-list,
+.s-recipes__job:first-child,
+.s-rp-group:first-child,
+.s-rp-settings,
+.s-kinds-result,
+.s-out-facts,
+.s-faq__list .ob-faq,
+.s-ri-job,
+.s-lg-group:first-child,
+.s-notice__row:first-child,
+.s-st-rows > .s-st-row:first-child { border-top-color: var(--s-rule); }
+/* Lists laid out in columns: their first row opens on the rule. */
+/* (Outcomes and a use case's uses say their columns in data-cols; a use case's problem points sit in 1 row.) */
+.s-out-list > .s-out-item:nth-child(-n + 3),
+.s-rules__item:nth-child(-n + 2),
+.s-rp-steps__item:nth-child(-n + 4),
+.s-rp-outs > li:nth-child(-n + 2),
+.s-st-points > .s-st-point,
+.s-st-uselist > .s-st-use:nth-child(-n + 3) { border-top-color: var(--s-rule); }
+.s-out-list[data-cols="2"] > .s-out-item:nth-child(3),
+.s-st-uselist[data-cols="2"] > .s-st-use:nth-child(3) { border-top-color: var(--ob-line); }
+@media (max-width: 1079.98px) {
+  .s-rp-steps__item:nth-child(n + 3),
+  .s-st-points > .s-st-point:nth-child(n + 3),
+  .s-st-uselist > .s-st-use:nth-child(n + 3) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 859.98px) {
+  .s-out-list > .s-out-item:nth-child(n + 2),
+  .s-st-points > .s-st-point:nth-child(n + 2),
+  .s-st-uselist > .s-st-use:nth-child(n + 2) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 639.98px) {
+  .s-rules__item:nth-child(n + 2) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 519.98px) {
+  .s-rp-steps__item:nth-child(n + 2) { border-top-color: var(--ob-line); }
+  .s-rp-outs > li:nth-child(n + 2) { border-top-color: var(--ob-line-subtle); }
+}
+
+/* ---- G3. The "With Obsession" bone sheet (from th/editorial) --------------------------------------------------------
+   In the thesis's ink chapter the promise is the 1 lit thing: a sheet of the paper the page is printed on, in the
+   paper's own inks (the brand constants, so it reads the same in both themes). "Today" stays on the ink in the second
+   ink. It is a document, not a product object and not a section: never hued, never the page's paper break, and only
+   here. Its cast ends inside the chapter's bottom padding. */
+.s-gap[data-tone="ink"] {
+  --s-sheet: var(--ob-bone);
+  --s-sheet-ink: var(--ob-ink);                                                    /* 15.7:1 on the sheet */
+  --s-sheet-ink-2: color-mix(in oklab, var(--ob-ink) 74%, var(--ob-bone));        /* 8.4:1 */
+  --s-sheet-line: color-mix(in srgb, var(--ob-ink) 14%, transparent);
+}
+.s-gap[data-tone="ink"] .s-gap-panel {
+  background: var(--s-sheet);
+  box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .2), 0 30px 80px -30px rgb(0 0 0 / .7);
+}
+.s-gap[data-tone="ink"] :is(.s-gap-col--obs, .s-gap-obs),
+.s-gap[data-tone="ink"] .s-gap-col--obs .s-mark { color: var(--s-sheet-ink); }
+.s-gap[data-tone="ink"] .s-gap-row::after { border-top-color: var(--s-sheet-line); }
+.s-gap[data-tone="ink"] .s-gap-row::before { border-top-color: var(--ob-line); }
+/* Stacked, the sheet holds both sides: the key and "Today" take the sheet's second ink, and the rows its own line. */
+@media (max-width: 859.98px) {
+  .s-gap[data-tone="ink"] :is(.s-gap-today, .s-gap-col--today, .s-gap-arrow) { color: var(--s-sheet-ink-2); }
+  .s-gap[data-tone="ink"] .s-gap-row { border-top-color: var(--s-sheet-line); }
+}
+
+/* ---- G4. On ink, a card on the alternate ground steps up a surface (from th/lit) -----------------------------------
+   On ink the alternate ground is --ob-surface itself, so a card drawn in it would sink. It reads the raised face
+   instead: on #181816 text 14.9:1, read 13.1:1, text-2 8.7:1, text-3 6.0:1, line-ui 3.3:1. Any card drawn in
+   --ob-surface on an alternate ground joins this list. Paper keeps its white card on stone. (A use case's "With
+   Obsession" side left the list with D2: its Split now stands on the page's own ground.) */
+:root:not([data-theme="light"]) [data-tone="alt"] :is(.ob-table-wrap, .s-so-card) {
+  --ob-surface: var(--ob-surface-raised);
+}
+
+/* ---- F1. /recipes: the hub is the page's ink chapter -----------------------------------------------------------------
+   It is lit from its top edge like every ink chapter (on an ink page that light is what sets the chapter apart), so the
+   ring keeps its lifted pill but drops its own halo: 1 glow per section. */
+.s-ri-hub[data-tone="ink"] .s-ri-flow__mark::before { display: none; }
+
+/* A use case's flow (study/Flow) is 1 object in 3 stops, Obsession's stop raised. On the object's face the raised stop
+   reads a step above that face (it was drawn on the sunken strip), so it stands proud in both themes. */
+.s-flow.ob-object .s-flow__stop.is-obsession {
+  background: var(--ob-sheen), color-mix(in oklab, var(--s-obj-face, var(--ob-surface)), var(--ob-surface-hover) 60%);
+}
+
+/* ---- F3. /sample-output: the set up and what arrived is a product record, an object ----------------------------------- */
+.s-so-record.ob-object { border-radius: var(--ob-radius-lg); }
+
+/* More contrast on request: the grounds and the sheet stay (they carry the rhythm), every light goes. The chapter's top
+   light and Home's spot drop with the reader glows (accents.css), so each ink reads at its plain ground's figure. */
+@media (prefers-contrast: more) {
+  :root,
+  [data-theme],
+  .ob-theme-dark,
+  .ob-theme-light,
+  .ob-theme-hybrid,
+  .ob-object,
+  [data-tone] {
+    --s-chapter-light: transparent;
+    --s-spot: transparent;
+  }
+  [data-tone="ink"][data-reader],
+  :root:not(.ob-theme-hybrid) [data-tone="ink"]:not(.s-final, [data-reader]),
+  :root:not(.ob-theme-hybrid) [data-tone="ink"][data-reader] { --s-chapter-light: transparent; }
+  /* The final call's ring glow goes with the rest: every light goes. */
+  .s-final__mark::before { display: none; }
+}
+
+@media (forced-colors: active) {
+  [data-tone] { background: Canvas; }
+  /* Shadows go in forced colours, so every product object keeps a real edge (an outline: nothing moves). */
+  .ob-object { outline: 1px solid CanvasText; outline-offset: -1px; }
+  .ob-object .ob-object { outline: 0; }
+  .s-hero-console::before,
+  .s-hero::after { display: none; }
+  .s-gap[data-tone="ink"] .s-gap-panel { background: Canvas; border: 1px solid CanvasText; }
+  .s-gap[data-tone="ink"] :is(.s-gap-col--obs, .s-gap-obs, .s-gap-today, .s-gap-col--today) { color: CanvasText; }
+  /* An app screen is a picture of the product (role=img, named by its aria-label): forced colours would strip its
+     fills, ticks, chips and tracks and leave text on Canvas, so it keeps its own colours, inside the object's outline.
+     Site level, because src/screens is synced from the screens' owner. */
+  .ilwrap .appx { forced-color-adjust: none; }
+}

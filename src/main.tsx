@@ -15,6 +15,9 @@ import './styles/tokens.css'
 import './styles/site.css'
 import './styles/base.css'
 import App from './App'
+// Paper and Gloss (the grounds, the product object material, the reading ink) loads after every component's styles, so
+// a section's tone and an object's material win over the component's own defaults.
+import './styles/tones.css'
 
 const root = document.getElementById('root')!
 const app = (

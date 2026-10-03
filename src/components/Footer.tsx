@@ -6,10 +6,12 @@ import { ThemeToggle } from './ThemeToggle'
 import './Footer.css'
 
 /* The full site map, the red lines in 1 line, and the trust links (docs/REBUILD.md, section 7).
-   The pages and the recipes share 1 column grid, so every column of links lines up from top to bottom. */
+   The pages and the recipes share 1 column grid, so every column of links lines up from top to bottom.
+   It is ink in both themes (.ob-theme-dark): on paper the page closes in ink, under the closing call's ink chapter
+   (Paper and Gloss, styles/tones.css). */
 export function Footer() {
   return (
-    <footer className="s-foot">
+    <footer className="s-foot ob-theme-dark">
       <div className="s-foot__in">
         <div className="s-foot__grid s-foot__top">
           <div className="s-foot__brand">

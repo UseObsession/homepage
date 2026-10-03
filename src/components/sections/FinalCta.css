@@ -36,7 +36,7 @@
   max-width: 56ch;
   font: var(--ob-type-body-lg);
   letter-spacing: var(--ob-type-body-lg-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: balance;
 }
 .s-final__form.s-capture {

@@ -152,7 +152,7 @@ export function Jobs({ jobs, workspace = 'agency', id }: Props) {
                     <h3 className="s-job-title">{j.title}</h3>
                     <p className="s-job-line">{tie(j.line)}</p>
                     {j.example && (
-                      <div className="ob-prompt s-job-prompt" ref={ref}>
+                      <div className="ob-prompt s-job-prompt ob-object" ref={ref}>
                         <span className="ob-prompt-gt" aria-hidden="true">
                           ›
                         </span>

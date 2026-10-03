@@ -311,7 +311,7 @@
 .s-st-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
 .s-st-fine {
   margin: var(--ob-space-40) 0 0;
-  max-width: 88ch;
+  max-width: 72ch;
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
   color: var(--ob-text-2);

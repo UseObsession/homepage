@@ -61,6 +61,50 @@ function onScroll(cb: () => void) {
 const atTop = () => window.scrollY < 8
 const filled = () => false
 
+/* The ground under the bar (styles/tones.css). Over a section that flips the page's theme (an ink chapter or the ink
+   footer on paper, the paper break on ink), the bar takes that section's scope, so it reads as that ground's own bar
+   and never as a grey band of frosted paper over ink, or of ink over paper. The bar's middle line decides. */
+type Ground = 'dark' | 'light' | null
+const FLIPPED = '#main [data-tone="ink"], #main [data-tone="paper"], .s-foot'
+function groundUnder(bar: HTMLElement): Ground {
+  const page: Ground = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+  const line = bar.getBoundingClientRect().top + bar.offsetHeight / 2
+  for (const el of document.querySelectorAll<HTMLElement>(FLIPPED)) {
+    const r = el.getBoundingClientRect()
+    if (r.top > line || r.bottom <= line) continue
+    const own: Ground = el.classList.contains('ob-theme-dark') ? 'dark' : 'light'
+    return own === page ? null : own
+  }
+  return null
+}
+function useGround(navRef: RefObject<HTMLElement | null>, path: string) {
+  const [ground, setGround] = useState<Ground>(null)
+  useEffect(() => {
+    /* A handful of rectangles per scroll event: cheap enough to read straight away, so the bar changes with the
+       ground under it on the same frame. React skips the render when the answer is the same. */
+    const check = () => {
+      if (navRef.current) setGround(groundUnder(navRef.current))
+    }
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    window.addEventListener('resize', check)
+    /* The theme switch flips what counts as flipped, and the page can move under a still bar as its screens and
+       images arrive. */
+    const mo = new MutationObserver(check)
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    const main = document.getElementById('main')
+    const ro = main && 'ResizeObserver' in window ? new ResizeObserver(check) : null
+    if (main) ro?.observe(main)
+    return () => {
+      window.removeEventListener('scroll', check)
+      window.removeEventListener('resize', check)
+      mo.disconnect()
+      ro?.disconnect()
+    }
+  }, [path, navRef])
+  return ground
+}
+
 function links(el: HTMLElement | null) {
   return el ? Array.from(el.querySelectorAll<HTMLElement>('a[href]')) : []
 }
@@ -208,6 +252,9 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const [group, setGroup] = useState<MenuId | null>(null)
   const top = useSyncExternalStore(onScroll, atTop, filled)
   const quiet = usePagePrimaryShown(path, heroForm, navRef)
+  /* The phone sheet keeps the page's own theme: it covers the page, whatever ground is under the bar. */
+  const ground = useGround(navRef, path)
+  const scope = ground && !sheet ? (ground === 'dark' ? ' ob-theme-dark' : ' ob-theme-light') : ''
 
   const solutions = usePresence(menu === 'solutions', 160)
   const recipes = usePresence(menu === 'recipes', 160)
@@ -391,7 +438,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   return (
     <nav
       ref={navRef}
-      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${ctaSize ? ` s-nav--cta-${ctaSize}` : ''}`}
+      className={`ob-nav s-nav${top && !sheet ? ' is-top' : ''}${ctaSize ? ` s-nav--cta-${ctaSize}` : ''}${scope}`}
       aria-label={nav.label}
     >
       <div className="ob-nav__in s-nav__in">

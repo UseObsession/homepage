@@ -109,7 +109,9 @@
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
   --s-pb-glow: var(--s-accent-glow-rest);
-  --s-pb-glow-at: 90% 70% at 50% 0%;
+  /* G1 (THEMES.md, from th/lit): the light fills the face from the top edge down to the name, so each panel reads lit
+     in its hue. */
+  --s-pb-glow-at: 130% 92% at 50% 0%;
   transition:
     background-color var(--ob-dur-base) var(--ob-ease-out),
     --s-pb-glow var(--ob-dur-moderate) var(--ob-ease-out);
@@ -184,7 +186,7 @@
   margin-top: var(--ob-space-8);
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 /* The 2 picks: 1 quiet line each, no borders. */
@@ -304,7 +306,7 @@
   /* The key moves inline before the name, like a legend key, and the glow rises from the row's top left, where the
      name is. */
   .s-pb__key.ob-sq { position: static; display: inline-block; margin-right: var(--ob-space-12); vertical-align: .16em; }
-  .s-pb__item { --s-pb-glow-at: 70% 160% at 0% 0%; }
+  .s-pb__item { --s-pb-glow-at: 100% 200% at 0% 0%; }
 }
 
 @media (max-width: 959.98px) {

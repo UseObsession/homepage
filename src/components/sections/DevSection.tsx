@@ -168,7 +168,7 @@ function CopyButton({ text, ui }: { text: string; ui: DevUi }) {
 /* A code sample in the design system's code well, with its copy button. */
 export function CodeWindow({ code, label, ui = devUi }: { code: string; label?: string; ui?: DevUi }) {
   return (
-    <figure className="s-code" aria-label={label}>
+    <figure className="s-code ob-object" aria-label={label}>
       <pre className="s-code__pre">
         <CodeLines code={code} />
       </pre>

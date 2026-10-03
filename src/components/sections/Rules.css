@@ -22,7 +22,7 @@
 .s-rules__line {
   max-width: 40ch;
   margin: 0;
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 /* The link to /agents: the ring, then the words, then the arrow. 8px more air than the line's own gap. */
@@ -61,7 +61,7 @@
   margin: 0;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 

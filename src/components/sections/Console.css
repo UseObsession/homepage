@@ -267,7 +267,8 @@
   margin: 0;
   font: var(--ob-type-mono-sm);
   letter-spacing: var(--ob-type-mono-sm-tracking);
-  color: var(--ob-text-3);
+  /* The agent's closing line is a sentence: the second ink. */
+  color: var(--ob-text-2);
   opacity: 0;
 }
 .s-console-ledger.is-in { opacity: 1; }

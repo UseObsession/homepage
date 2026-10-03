@@ -22,7 +22,7 @@ export function PersonaBand({ audiences, id = 'for', className }: { audiences: A
   if (!audiences.items.length) return null
 
   return (
-    <section className={['s-section', 's-pb', className].filter(Boolean).join(' ')} id={id} aria-labelledby={`${base}-h`}>
+    <section className={['s-section', 's-pb', className].filter(Boolean).join(' ')} data-tone="alt" id={id} aria-labelledby={`${base}-h`}>
       <div className="s-wrap">
         <div className="s-head s-head--wide">
           <h2 className="ob-type-h2" id={`${base}-h`}>

@@ -26,3 +26,7 @@
     top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32));
   }
 }
+
+/* An answer is the story, so it reads in the reading ink (styles/tones.css --s-read), not the supporting grey the
+   design system's .ob-faq-a sets. Listed for the system to absorb. */
+.s-faq__list .ob-faq-a { color: var(--s-read, var(--ob-text-2)); }

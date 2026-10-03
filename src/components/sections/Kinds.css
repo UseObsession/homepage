@@ -26,7 +26,7 @@
   max-width: 44ch;
   font: var(--ob-type-body);
   letter-spacing: var(--ob-type-body-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 

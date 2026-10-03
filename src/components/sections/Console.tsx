@@ -406,7 +406,7 @@ export function Console({
 
   return (
     <div
-      className="s-console"
+      className="s-console s-stage ob-object"
       ref={rootRef}
       style={{ '--s-console-count': demos.length } as CSSProperties}
       onPointerEnter={onPointerEnter}

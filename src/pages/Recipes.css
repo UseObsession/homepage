@@ -6,6 +6,9 @@
 
 .s-hero.s-ri-hero { padding-bottom: var(--ob-space-96); }
 .s-hero-sub.s-ri-hero__sub { margin-top: var(--ob-space-24); }
+/* The Recipes picker under the jump links: the page's product object, at a recipe page's hero measure. */
+.s-ri-hero__screen { max-width: 960px; }
+.s-ri-hero__screen .ilwrap { cursor: pointer; }
 
 /* The 5 jobs as jump links: quiet pills, centred on the axis, wrapping on phones. */
 .s-ri-jump { margin-top: var(--ob-space-40); }

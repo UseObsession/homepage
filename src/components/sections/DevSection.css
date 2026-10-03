@@ -11,7 +11,7 @@
 }
 .s-sechead__text { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); min-width: 0; }
 .s-sechead__h { max-width: 20ch; margin: 0; }
-.s-sechead__line { max-width: var(--ob-measure-lede); margin: 0; color: var(--ob-text-2); }
+.s-sechead__line { max-width: var(--ob-measure-lede); margin: 0; color: var(--s-read, var(--ob-text-2)); }
 .s-sechead__cta { text-decoration: none; }
 @media (min-width: 860px) {
   .s-sechead.has-cta {
@@ -87,8 +87,13 @@
   }
   .s-code-line { padding-inline-start: 0; text-indent: 0; white-space: pre; overflow-wrap: normal; }
 }
-/* The first line keeps clear of the copy button in the corner. */
+/* The first line keeps clear of the copy button in the corner. On a phone the code scrolls sideways, so that end
+   padding scrolls away with the line: the code starts under the button instead (8px inset + the 32px button + 8px). */
 .s-code__pre .s-code-line:first-child { padding-inline-end: var(--ob-space-40); }
+@media (max-width: 519px) {
+  .s-code__pre { padding-top: var(--ob-space-48); }
+  .s-code__pre .s-code-line:first-child { padding-inline-end: 0; }
+}
 
 /* Quiet colour from the 3 inks only. Mono stays 400. */
 .s-tok-key { color: var(--ob-text); }

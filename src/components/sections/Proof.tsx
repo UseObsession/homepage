@@ -19,20 +19,24 @@ const page = pdf?.kind === 'pdf' ? pdf.pages[0] : undefined
    and its line on 1 side; on the other, the top of the real report, cut off by its frame so it reads as a document
    to open, not a picture to read. Its tag says it's the real run, where every app screen says "Example".
    The same claim beside an app screen when `proof.screen` is set (Home's short section on the AI agent checks): the
-   screen plays its story when it comes into view and carries its Example tag, and `workspace` names whose it is. */
+   screen plays its story when it comes into view and carries its Example tag, and `workspace` names whose it is.
+   The report sits in a tray that is a glossy product object (styles/tones.css): black on paper, lit on ink. */
 export function Proof({
   proof,
   id = 'proof',
   className = '',
   workspace = 'company',
+  tone,
 }: {
   proof: ProofContent
   id?: string
   className?: string
   workspace?: Workspace
+  /* Its ground (styles/tones.css): the page's own by default; "alt" where the page's rhythm wants the alternate one. */
+  tone?: 'alt'
 }) {
   return (
-    <section className={`s-section s-proof ${className}`} id={id} aria-labelledby={`${id}-h`}>
+    <section className={`s-section s-proof ${className}`} data-tone={tone} id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-proof__in">
         <div className="s-proof__copy">
           <h2 className={'ob-type-h2 s-proof__h' + (proof.heading.length > LONG ? ' s-proof__h--long' : '')} id={`${id}-h`}>
@@ -53,7 +57,7 @@ export function Proof({
           </div>
         ) : page && (
           <figure className="s-proof__doc">
-            <div className="s-proof__tray">
+            <div className="s-proof__tray ob-object">
               <img className="s-proof__page" src={page.src} alt={page.alt} width={page.width} height={page.height} loading="lazy" decoding="async" />
             </div>
             <figcaption className="s-screen-note s-proof__tag">{sample.hero.pill}</figcaption>

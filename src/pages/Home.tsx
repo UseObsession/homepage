@@ -19,7 +19,9 @@ import './StoryPage.css'
    /verify) > recipes > proof (the real September store check, in every output, with "Try your first shop free") >
    developers > the rules every run follows (the trust beat, docs/REBUILD.md 1d) > questions > the waitlist (#join,
    where the nav's call to action lands).
-   Home is drawn in the agency workspace, like Agencies. */
+   Home is drawn in the agency workspace, like Agencies.
+   Its grounds (styles/tones.css) alternate down the page: paper and stone on paper, ink and lifted ink on ink, with the
+   gap and the closing call as ink chapters, and the real run (Outputs) as the paper break on ink. */
 const page = pages.home
 const workspace = 'agency'
 
@@ -31,8 +33,8 @@ export function Home() {
       <How how={page.how} workspace={workspace} id="how" />
       <Gap gap={page.gap} id="gap" />
       {page.jobs && <Jobs jobs={page.jobs} workspace={workspace} id="jobs" />}
-      {page.verify && <Proof proof={page.verify} workspace={workspace} id="verify" />}
-      {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}
+      {page.verify && <Proof proof={page.verify} workspace={workspace} tone="alt" id="verify" />}
+      {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} tone="base" id="recipes" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" id="proof" />}
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="developers" />}
       {page.rules && <Rules rules={page.rules} id="rules" />}

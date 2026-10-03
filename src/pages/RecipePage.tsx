@@ -42,6 +42,11 @@ function Arrow({ className = 'ob-btn-glyph ob-btn-arrow' }: { className?: string
   )
 }
 
+/* The ground each tone stands on (styles/tones.css): "ink" is a full bleed ink chapter (the steps), "paper" the paper
+   break on ink (the run), "alt" the quieter alternate ground. */
+type Tone = 'alt' | 'ink' | 'paper'
+const TONE_SCOPE: Record<Tone, string> = { alt: '', ink: 'ob-theme-dark ', paper: 'ob-theme-hybrid ' }
+
 /* A section with its claim. `split` sets the claim beside the content on wide screens. */
 function Section({
   id,
@@ -49,6 +54,7 @@ function Section({
   line,
   action,
   split = false,
+  tone,
   className = '',
   children,
 }: {
@@ -57,12 +63,18 @@ function Section({
   line?: string
   action?: ReactNode
   split?: boolean
+  tone?: Tone
   className?: string
   children: ReactNode
 }) {
   const h = `${id}-h`
   return (
-    <section className={`s-section s-rp ${split ? 's-rp--split ' : ''}${className}`} id={id} aria-labelledby={h}>
+    <section
+      className={`s-section s-rp ${split ? 's-rp--split ' : ''}${tone ? TONE_SCOPE[tone] : ''}${className}`}
+      data-tone={tone}
+      id={id}
+      aria-labelledby={h}
+    >
       <div className="s-wrap s-rp__in">
         <header className="s-head s-rp__head">
           <h2 className="ob-type-h2" id={h}>
@@ -168,6 +180,8 @@ function Settings({ settings }: { settings: NonNullable<Recipe['settings']> }) {
   )
 }
 
+/* Who it's for: the recipe's doors. Each row carries its reader's key, the brand square in the reader's hue, as Home's
+   band does where a reader picks themselves (styles/accents.css); the arrow takes the hue when the row is lit. */
 function ForWho({ items }: { items: Recipe['forWho'] }) {
   return (
     <ul className="s-rp-who">
@@ -176,8 +190,9 @@ function ForWho({ items }: { items: Recipe['forWho'] }) {
         if (!a) return null
         return (
           <li key={w.audience}>
-            <Link className="s-rp-who__link" to={a.to}>
+            <Link className="s-rp-who__link" data-reader={w.audience} to={a.to}>
               <span className="s-rp-who__name">
+                <span className="s-rp-who__key ob-sq" aria-hidden="true" />
                 {a.label}
                 <Arrow className="s-rp-who__arrow" />
               </span>
@@ -190,26 +205,39 @@ function ForWho({ items }: { items: Recipe['forWho'] }) {
   )
 }
 
+/* Under a 600px frame (RecipePage.css) each row stacks: its name, then every column under its own small label, so
+   the payoff column is never scrolled off screen; --fit drops the system's sideways scroll and sticky first column.
+   The labels are drawn for the eye only (the column heads still name each cell), and the roles keep the table's
+   meaning where a browser drops it for a table no longer laid out as one. */
 function Table({ table }: { table: NonNullable<Recipe['table']> }) {
   return (
     <div className="ob-table-wrap s-rp-table" tabIndex={0} role="region" aria-label={table.heading}>
-      <table className="ob-table">
-        <thead>
-          <tr>
+      <table className="ob-table ob-table--fit" role="table">
+        <thead role="rowgroup">
+          <tr role="row">
             <td aria-hidden="true" />
             {table.cols.map((c) => (
-              <th key={c} scope="col">
+              <th key={c} scope="col" role="columnheader">
                 {c}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody role="rowgroup">
           {table.rows.map((row) => (
-            <tr key={row.label}>
-              <th scope="row">{row.label}</th>
+            <tr key={row.label} role="row">
+              <th scope="row" role="rowheader">
+                {row.label}
+              </th>
               {row.values.map((v, i) => (
-                <td key={i}>{v}</td>
+                <td key={i} role="cell">
+                  {table.cols[i] && (
+                    <span className="s-rp-table__col" aria-hidden="true">
+                      {table.cols[i]}
+                    </span>
+                  )}
+                  {v}
+                </td>
               ))}
             </tr>
           ))}
@@ -231,11 +259,11 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         <RecipeKit name={r.name} items={r.kit} ui={ui.kit} />
       </Section>
 
-      <Section id="run" heading={ui.run.heading} line={r.gets} className="s-rp-run">
+      <Section id="run" heading={ui.run.heading} line={r.gets} tone="paper" className="s-rp-run">
         <Console label={r.run.tab} demos={[r.run]} workspace={workspace} tag={real ? ui.run.tag.real : ui.run.tag.example} />
       </Section>
 
-      <Section id="steps" heading={ui.steps.heading}>
+      <Section id="steps" heading={ui.steps.heading} tone="ink">
         <Steps steps={r.steps} />
       </Section>
 
@@ -247,6 +275,7 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         id="outputs"
         heading={r.outputs.heading}
         split
+        tone="alt"
         action={
           <Link className="ob-btn ob-btn--link s-rp__action" to={ui.outputs.cta.to}>
             <span className="ob-btn-label">{ui.outputs.cta.label}</span>
@@ -268,7 +297,7 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
       </Section>
 
       {r.table && (
-        <Section id="compare" heading={r.table.heading} line={r.table.line} className="s-rp-compare">
+        <Section id="compare" heading={r.table.heading} line={r.table.line} tone="alt" className="s-rp-compare">
           <Table table={r.table} />
         </Section>
       )}

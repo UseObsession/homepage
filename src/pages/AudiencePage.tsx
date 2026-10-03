@@ -17,14 +17,14 @@ import './StoryPage.css'
    hero > how it works > the gap > use cases > outcomes > every kind of reader > recipes > proof > questions > the
    final call to action (#join, where the nav's call to action and the hero's second path land).
    `workspace` names whose workspace the app screens show: 'agency' on Agencies, 'company' everywhere else.
-   `reader` is the page's reader, whose hue marks its room: the hero's glow and caret, and the use case tabs' bar
-   (styles/accents.css, 1 hue per page). */
+   `reader` is the page's reader, whose hue marks its room: the hero's glow and caret, the ink chapter's light (the gap)
+   and the use case tabs' bar (styles/accents.css, 1 hue per page). */
 export function AudiencePage({ page, workspace, reader }: { page: Page; workspace: Workspace; reader: ReaderId }) {
   return (
     <>
       <Hero hero={page.hero} workspace={workspace} reader={reader} />
       <How how={page.how} workspace={workspace} id="how" />
-      <Gap gap={page.gap} id="gap" />
+      <Gap gap={page.gap} reader={reader} id="gap" />
       <UseCases uses={page.uses} workspace={workspace} reader={reader} id="uses" />
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}
       {page.kinds && <Kinds kinds={page.kinds} id="kinds" />}
