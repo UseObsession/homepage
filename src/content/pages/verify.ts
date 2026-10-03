@@ -47,7 +47,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Obsession checks your AI agents as your customer: declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+    sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. Declared test customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with signed proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -312,6 +312,10 @@ export const page: Page = {
   faq: {
     heading: 'Every test customer says it’s AI. Nothing runs without the owner’s OK.',
     items: [
+      {
+        q: 'What does Obsession check in my AI agents?',
+        a: 'Obsession checks your AI agents as your customer: declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+      },
       {
         q: 'What is Customer-Side Assurance?',
         a: 'Customer-Side Assurance is checking an AI agent from the outside, as its customer: declared test customers use it on its real channels, check each answer against your policies and the law, and sign every step. Your vendor’s own tests run inside its tools, often with simulated customers.',

@@ -43,7 +43,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your team win and renew accounts.',
-    sub: 'Your reps walk into calls knowing what the CRM says, not what each account actually lives through. Deals stall on a rival’s offer nobody saw, renewals arrive as surprises and expansion goes unasked. Obsession’s AI agents become a customer of every account and rival on your list, quote buyers and chase renewals within your limits, and check your own AI SDR says what it should. You get signed proof for every call and your next move.',
+    sub: 'Your reps walk into calls knowing what the CRM says, not what each account actually lives through. Obsession’s AI agents become a customer of every account and rival, quote buyers, chase renewals and check your own AI SDR. You get signed proof for every call and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'sales-hero',

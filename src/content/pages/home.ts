@@ -36,7 +36,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
-    sub: 'Deals stall, prices slip and customers leave for reasons your team never sees. Every commercial decision rests on what prospects, competitors and your own business actually do, and most of it happens behind sign ups, inboxes and checkouts no tool can see into. Obsession’s AI agents go through them as the customer, with real inboxes, phone numbers and browsers, at every company on your list. You get signed proof and your next move.',
+    sub: 'Deals stall, prices slip and customers leave for reasons hidden behind sign ups, inboxes and checkouts no tool can see. Obsession’s AI agents go through them as the customer at any company, yours included, with real inboxes, phone numbers and browsers. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',

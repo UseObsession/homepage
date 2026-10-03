@@ -50,7 +50,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your marketing team win, convert and keep customers.',
-    sub: 'Ads send clicks to sold out pages, launch codes fail at checkout and a rival’s offer lands in your customers’ inboxes first, and you find out from the numbers a week later. Every campaign rests on what your customers and your rivals’ customers actually receive, and most of it happens behind sign ups, inboxes and checkouts no dashboard shows. Obsession’s AI agents go through them as the customer, every day: your ads, pages, codes, partners, review asks and AI answers, and every rival’s emails, texts and prices. You get signed proof of each break and each new offer, and your next move.',
+    sub: 'Ads send clicks to sold out pages, codes fail at checkout and a rival’s offer lands first, and you find out a week later. Obsession’s AI agents check every ad, page, code, partner and AI answer as the customer each day, and every rival’s emails and prices. You see each break and each new offer the morning it happens.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
