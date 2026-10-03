@@ -20,7 +20,7 @@ export const page: Page = {
     description:
       'Declared AI agents with their own inbox, phone and browser sign up at every prospect to find the gap you fix and test every release as a new customer.',
     answer:
-      'Obsession gives founders declared AI agents that test your sign up and checkout as a new customer after every release, sign up at your prospects and rivals, and quote, chase and negotiate within your limits. You get signed proof and your next move.',
+      'Obsession gives founders declared AI agents that meet your business as a customer every day and after every release, checking your sign up, checkout, support bot and follow ups, and that work your prospects, rivals, invoices and renewals within your limits. You get signed proof of what works, what broke and your next move.',
     ogImage: '/og/founders.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -31,7 +31,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    sub: 'Obsession gives founders declared AI agents that test your sign up and checkout as a new customer after every release, sign up at your prospects and rivals, and quote, chase and negotiate within your limits. You get signed proof and your next move.',
+    sub: 'You built the product, the funnel and the AI agents that talk to your customers, and you can’t watch them all. A sign up breaks after a release, the support bot promises the wrong refund, a lead waits a day for a reply, and you hear it from a customer. Obsession’s AI agents meet your business the way your customers do, every day and after every release, and they work your prospects, rivals, invoices and renewals within your limits. You get signed proof of what works, what broke and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'founders-hero',
@@ -392,6 +392,10 @@ export const page: Page = {
   faq: {
     heading: 'Every agent says it’s AI. Nothing runs without your OK.',
     items: [
+      {
+        q: 'What does Obsession do for founders?',
+        a: 'Obsession gives founders declared AI agents that meet your business as a customer every day and after every release, checking your sign up, checkout, support bot and follow ups, and that work your prospects, rivals, invoices and renewals within your limits. You get signed proof of what works, what broke and your next move.',
+      },
       {
         q: 'What is Obsession?',
         a: 'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you. They sign up, ask the chat bot, test, quote, chase and negotiate within your limits at every company on your list, continuously, and you get signed proof and your next move.',
