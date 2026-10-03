@@ -38,10 +38,12 @@ if (!matchMedia(RM).matches && 'IntersectionObserver' in window) {
 }
 
 /* Nothing the boot script fetches may compete with the page's first contentful paint: it waits for it (the browser's
-   paint timing, else 2 frames). */
+   paint timing, else 2 frames), or a second after the page's load event where no paint is reported (a renderer that
+   never paints, such as a crawler's). */
 const contentful = new Promise<void>((done) => {
   const shown = () => performance.getEntriesByName('first-contentful-paint').length > 0
   if (shown()) return done()
+  addEventListener('load', () => setTimeout(done, 1000), { once: true })
   if ('PerformanceObserver' in window && PerformanceObserver.supportedEntryTypes?.includes('paint')) {
     const po = new PerformanceObserver(() => shown() && (po.disconnect(), done()))
     po.observe({ type: 'paint', buffered: true })
