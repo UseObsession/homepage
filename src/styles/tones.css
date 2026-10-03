@@ -33,17 +33,14 @@
 .ob-theme-dark,
 [data-theme="dark"],
 :is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object {
-  /* The alternate ground: ink lifted most of the way to a card. 15.8:1 text, 9.2:1 text-2, 6.4:1 text-3, 3.5:1 line-ui. */
-  --s-ground-alt: color-mix(in oklab, var(--ob-bg) 15%, var(--ob-surface));
+  /* The alternate ground: ink lifted to a card's face. 15.7:1 text, 9.1:1 text-2, 6.3:1 text-3, 3.5:1 line-ui. */
+  --s-ground-alt: var(--ob-surface);
   /* An ink chapter on an ink page is lit from above: the ground a step up from the page, light falling on its top. */
   --s-ground-ink: color-mix(in oklab, var(--ob-bg) 55%, var(--ob-surface));
   --s-chapter-light: rgb(var(--ob-glow-rgb) / .075);
   --s-read: color-mix(in oklab, var(--ob-text) 74%, var(--ob-text-2));
   /* The light that falls on Home's stage: ink only, paper has no glow (brand.css --ob-final-glow). */
   --s-spot: rgb(var(--ob-glow-rgb) / .085);
-  /* Cards on a ground: a raised fill, a hairline and the top highlight. */
-  --s-card: var(--ob-surface);
-  --s-card-alt: var(--ob-surface-raised);
 }
 
 .ob-theme-light,
@@ -56,8 +53,6 @@
   --s-chapter-light: transparent;
   --s-read: color-mix(in oklab, var(--ob-text) 74%, var(--ob-text-2));
   --s-spot: transparent;
-  --s-card: var(--ob-surface);
-  --s-card-alt: var(--ob-surface);
 }
 
 /* ---- What an object takes from its ground ----------------------------------------------------------------------------
@@ -187,11 +182,7 @@
 /* The paper break: on ink it is the page's 1 sheet of paper. On paper the same section stands on stone, so the beat
    that flips on ink (the money, the real run) still has its own ground. */
 [data-tone="paper"] { background-color: var(--ob-bg); }
-:root.ob-theme-hybrid [data-tone="paper"] { background-color: var(--s-ground-alt); --s-card: var(--s-card-alt); }
-
-/* ---- Cards on grounds -----------------------------------------------------------------------------------------------
-   On stone a card takes the paper's raised fill, so it lifts off the ground; on lifted ink it takes the raised ink. */
-[data-tone="alt"] { --s-card: var(--s-card-alt); }
+:root.ob-theme-hybrid [data-tone="paper"] { background-color: var(--s-ground-alt); }
 
 /* ---- Reading ink: story copy reads in ink ------------------------------------------------------------------------- */
 .s-head > p { color: var(--s-read); }
