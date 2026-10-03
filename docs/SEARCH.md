@@ -76,7 +76,7 @@ Method: AI mystery shopper · SaaS and B2B mystery shopping · mystery shopper r
 
 ### One owner per query
 
-Two of our pages never target the same query. The non-owner links to the owner with the query as the anchor.
+Two of our pages never target the same query. The non-owner links to the owner with the query as the anchor. "AI mystery shopper" belongs to `/recipes/mystery-shopper` (not Support bot check, as VERIFY.md 12 had it); Support bot check owns "test my chatbot". The rows from `/verify` to `/recipes/partner-checks` came from `_research/seo/AI-SEARCH-RUBRIC.md` Appendix C (3 Oct): re-rank them on Search Console data in November.
 
 | Page | Owns |
 |---|---|
@@ -84,8 +84,9 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/agencies` | AI agents for agencies, prove agency value to clients |
 | `/founders` | test your own sign up and checkout as a customer, QA on every release |
 | `/sales` | account intelligence for sales teams, know each account as its customers do |
-| `/marketing` | see competitors' emails, ads and prices as a customer |
+| `/marketing` | check every ad, launch and rival as a customer; see competitors' emails, ads and prices as a customer |
 | `/developers` | AI agent API with its own inbox, phone number and browser; give an AI agent an email address and phone number |
+| `/verify` | check your AI agent as a customer; Customer-Side Assurance |
 | `/recipes` | AI agent recipes for commercial teams |
 | `/recipes/mystery-shopper` | AI mystery shopper |
 | `/recipes/competitor-tracking` | competitor tracking |
@@ -101,6 +102,25 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/recipes/business-case` | renewal business case |
 | `/recipes/listings-ai-answers` | what AI assistants say about your business |
 | `/recipes/get-paid`, `/recipes/supplier-quotes` | AI agent that chases invoices; AI agent for supplier quotes |
+| `/recipes/support-bot-check` | test my chatbot; chatbot giving wrong answers |
+| `/recipes/voice-agent-check` | test an AI receptionist before going live |
+| `/recipes/ai-disclosure-check` | how to test if a chatbot is AI; chatbot disclosure check |
+| `/recipes/vendor-agent-check` | how to evaluate an AI customer service agent |
+| `/recipes/outbound-agent-check` | do AI SDRs work; check what an AI SDR sends |
+| `/recipes/sales-agent-check` | AI sales agent quoting wrong prices |
+| `/recipes/resolution-check` | are AI support resolutions real |
+| `/recipes/drift-watch` | AI agent drift after an update |
+| `/recipes/ai-checkout-test` | can AI shopping agents buy from my store |
+| `/recipes/inbound-quotes` | answer every quote request in minutes |
+| `/recipes/renewal-negotiation` | renewal discount request from a buyer's AI agent |
+| `/recipes/cancellation-saves` | offer a pause before cancel |
+| `/recipes/account-handover` | get accounts back from the old agency |
+| `/recipes/software-renewals` | software price rise at renewal |
+| `/recipes/expansion-offers` | find customers ready to buy more |
+| `/recipes/client-upsells` | agency client upsells |
+| `/recipes/review-requests` | ask every customer for a review |
+| `/recipes/ad-landing-check` | ads sending clicks to a sold out page |
+| `/recipes/partner-checks` | affiliate code and link checks |
 | `/use-cases/prospect-intelligence-with-clay` | Clay prospect research workflow |
 | `/use-cases/member-prices-for-price-intelligence` | member price intelligence |
 | `/sample-output` | mystery shopper report example, abandoned cart test report |
@@ -638,9 +658,9 @@ Run a recurring **Obsession Field Report** from these: small, dated, signed runs
 - [ ] **Real 404s.** Unknown URLs return the home page with a 200 today (a soft 404). On Workers static assets set `assets.not_found_handling: "404-page"` (never `"single-page-application"`) so `dist/404.html` is served with a 404; on Pages, a root `404.html` does this once deployed. Check: `curl -I https://useobsession.com/nope` returns 404.
 - [ ] **Always Use HTTPS** on, so `http://` 301s to `https://`.
 - [ ] **www:** `www.useobsession.com` has no DNS record (NXDOMAIN). Add a proxied `www` record, then a Single Redirect (1 of the 10 free rules) from `www` to the apex, 301, keeping path and query.
-- [ ] **HSTS** once the 3 above are verified: start at 6 months, no preload yet.
+- [x] **HSTS**: 6 months (`max-age=15552000`) in `public/_headers` (3 Oct), sent only over HTTPS and without `includeSubDomains`, so it is safe before the 3 above. Add `includeSubDomains` and `preload` only once they are verified; never also turn it on in the dashboard.
 - [ ] **Cloudflare AI controls:** Search, Training and Agent all Allow; Block AI bots, AI Labyrinth and managed robots.txt off; check Bot Fight Mode lets verified bots through (curl as GPTBot and ClaudeBot returns 200).
-- [ ] **Crawler Hints** on (free IndexNow pings), plus an IndexNow key file and a ping of changed URLs from the deploy.
+- [ ] **Crawler Hints** on (free IndexNow pings). Done in code 3 Oct: the IndexNow key file (`public/`) and `npm run indexnow`, run after each deploy (README, Hosting). The founders' click paths: `_research/seo/AI-SEARCH-FOUNDERS.md`.
 
 ### B. Lighthouse SEO 100 on every template
 
@@ -673,7 +693,7 @@ Targets: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 (Google's thresholds are unc
 - [ ] `CollectionPage` with an `ItemList` on `/blog`, hub pages and `/use-cases`.
 - [ ] `BreadcrumbList` on every page below Home.
 - [ ] `ProfilePage` with `Person` on each author page.
-- [ ] `Organization`: add `sameAs` (LinkedIn and other profiles), `founder` (both `Person` ids) and `alternateName`.
+- [ ] `Organization`: add `sameAs` (LinkedIn and other profiles) and `alternateName`. Done 3 Oct: `founder` (both `Person` ids) and a `contactPoint` for questions about an agent; `sameAs` waits for the founders' profile URLs (`SAME_AS` in `src/lib/jsonld.ts`).
 - [ ] `FAQPage` only where questions are visible (as now). No `HowTo`.
 - [ ] Validate in the Rich Results Test and validator.schema.org; read any generated markup by hand.
 
