@@ -1,14 +1,15 @@
 /* The footer's words (components/Footer): the full site map, the red lines in 1 line, and the trust links.
    The readers, the resources and the recipes come from content/nav, so the bar, the menus, the phone sheet and the footer
    always list the same ones. */
+import { catalog } from './catalog'
 import { nav, type NavPage } from './nav'
-import { llms } from './site'
 import { ways } from './ways'
 
 export const footer = {
   /* The 1 sentence (docs/SEARCH.md 2), word for word, as in llms.txt and the Organization's JSON-LD: the footer is on
-     every page, so every page says what Obsession is the same way. */
-  tagline: llms.summary,
+     every page, so every page says what Obsession is the same way. It comes through the slim index (content/catalog.ts),
+     so the app on every page doesn't carry the rest of content/site.ts. */
+  tagline: catalog.summary,
   columns: [
     { label: 'Who it’s for', links: nav.readers.map(({ label, to }) => ({ label, to })) },
     {

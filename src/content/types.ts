@@ -1,5 +1,5 @@
 /* The content contract. Every page's words live in src/content as data of these types; components never hold copy.
-   Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/html/NAME.html (see components/AppScreen). */
+   Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/NAME.tsx (see components/AppScreen). */
 
 export type ScreenName = string
 /* Recipe slugs (/recipes/SLUG): competitor-tracking, prospect-intelligence, mystery-shopper, lead-leaks (id 'speed'; was
@@ -78,7 +78,7 @@ export type Demo = {
 /* A tab of Home's hero console: a kind of work, shown as its full app screen, which plays its story when its tab is
    chosen. `line` sits under the screen (1 short line); the tab links to the recipe it runs on, or to `link` when the
    tab is a whole way in rather than 1 recipe (the AI agent checks, /verify). A tab whose screen is not in
-   src/screens/html yet is left out, so nothing renders broken. */
+   src/screens yet is left out, so nothing renders broken. */
 export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ recipe: RecipeId; link?: never } | { recipe?: never; link: Cta })
 
 /* The hero (docs/REBUILD.md 1c). `consoleHeading` is the typed heading over the console: it types the first line,

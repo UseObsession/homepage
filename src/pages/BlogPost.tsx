@@ -46,6 +46,12 @@ function relatedOf(post: Post): { reads: LinkRow[]; recipes: LinkRow[] } {
    the dek, both founders, the date and the reading time) and the hero screen if it has one; then the text on its
    reading measure with its contents beside it on wide screens; the sources; what to read next and the recipes that do
    the job; the waitlist (#join). */
+/* /blog/SLUG: the post with that slug. */
+export function BlogPostAt({ slug }: { slug: string }) {
+  const post = postBySlug[slug]
+  return post ? <BlogPost post={post} /> : null
+}
+
 export function BlogPost({ post }: { post: Post }) {
   const id = useId()
   const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text }] : [])), [post])

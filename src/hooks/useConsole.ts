@@ -30,7 +30,7 @@ export function useTabRail(active: number) {
       const scroll = rail.scrollWidth > rail.clientWidth + 1
       setEdges({ scroll, start: rail.scrollLeft <= 1, end: rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 1 })
     }
-    measure()
+    /* The observer reports once as it starts, after the browser's own layout, so the first measure costs no extra one. */
     rail.addEventListener('scroll', measure, { passive: true })
     const ro = new ResizeObserver(measure)
     ro.observe(rail)
@@ -40,7 +40,11 @@ export function useTabRail(active: number) {
     }
   }, [])
 
+  /* The first tab is in view as the page opens, so only a change of tab needs a look. */
+  const opened = useRef(active)
   useEffect(() => {
+    if (opened.current === active) return
+    opened.current = -1
     const rail = railRef.current
     const tab = rail?.querySelectorAll<HTMLElement>('[role="tab"]')[active]
     if (!rail || !tab || rail.scrollWidth <= rail.clientWidth + 1) return

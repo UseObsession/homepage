@@ -5,8 +5,9 @@ import { Hero } from '../components/sections/Hero'
 import { Flow } from '../components/study/Flow'
 import { Phases } from '../components/study/Phases'
 import { Fit, More, Problem, Split, StudyProof, Uses } from '../components/study/Study'
-import { recipeBySlug } from '../content/registry'
+import { catalog } from '../content/catalog'
 import type { StudyLink, UseCaseStudy } from '../content/types'
+import { studyWords } from '../content/words'
 import './StoryPage.css'
 
 /* A worked example (/use-cases/SLUG), composed from content/usecases/SLUG.ts on the site's sections, in the story's
@@ -19,8 +20,13 @@ import './StoryPage.css'
    the workspace they were made for. */
 /* A link to a recipe takes the recipe's own name, so it never drifts from the recipe's page and the nav. */
 const named = (l: StudyLink): StudyLink => {
-  const r = l.cta.to.startsWith('/recipes/') ? recipeBySlug[l.cta.to.slice('/recipes/'.length)] : undefined
+  const r = l.cta.to.startsWith('/recipes/') ? catalog.recipes.find((x) => x.slug === l.cta.to.slice('/recipes/'.length)) : undefined
   return r ? { ...l, title: r.name } : l
+}
+
+/* /use-cases/SLUG: the worked example at that address, its words loaded with the page. */
+export function UseCaseAt({ path }: { path: string }) {
+  return <UseCase study={studyWords(path).read()} />
 }
 
 export function UseCase({ study }: { study: UseCaseStudy }) {

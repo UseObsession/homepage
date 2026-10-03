@@ -7,7 +7,7 @@ export type BlogBlock =
   | { kind: 'h3'; id: string; text: string }
   | { kind: 'list'; ordered?: boolean; items: string[] }
   | { kind: 'quote'; text: string; cite: string; href?: string }
-  /* An Obsession app screen (src/screens/html/NAME.html) placed beside the paragraph it proves. */
+  /* An Obsession app screen (src/screens/NAME.tsx) placed beside the paragraph it proves. */
   | { kind: 'screen'; screen: string; caption: string; workspace?: 'agency' | 'company' }
   /* A diagram or image in public/blog/SLUG/, drawn on the design system (SVG preferred). */
   | { kind: 'figure'; src: string; alt: string; caption: string; width: number; height: number }

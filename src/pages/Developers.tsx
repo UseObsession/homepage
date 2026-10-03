@@ -9,7 +9,7 @@ import { Outcomes } from '../components/sections/Outcomes'
 import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { UseCases } from '../components/sections/UseCases'
-import { pages } from '../content/registry'
+import { page } from '../content/pages/developers'
 import './StoryPage.css'
 
 /* /developers, composed from content/pages/developers.ts in the order of docs/REBUILD.md 2, with the code (the
@@ -17,7 +17,6 @@ import './StoryPage.css'
    hero > how it works > the code > the gap > use cases > outcomes > every kind of product > recipes > proof >
    questions > "Get API access" (#join). Drawn in the reader's own company. The page's hue is the developers' (the
    hero's glow and caret, the use case tabs' bar: styles/accents.css). */
-const page = pages.developers
 const workspace = 'company'
 
 export function Developers() {

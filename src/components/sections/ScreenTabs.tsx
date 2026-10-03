@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent, type PointerEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { recipeById } from '../../content/registry'
+import { catalog } from '../../content/catalog'
 import type { HeroScreen } from '../../content/types'
 import { RM, useReducedMotion, useTabRail } from '../../hooks/useConsole'
 import { AppScreen, type Workspace } from '../AppScreen'
@@ -194,7 +194,7 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
         <div className="s-shots-panels" ref={stageRef}>
           {tabs.map((t, i) => {
             const on = i === active
-            const recipe = t.recipe ? recipeById[t.recipe] : undefined
+            const recipe = t.recipe ? catalog.recipes.find((r) => r.id === t.recipe) : undefined
             /* Where the tab leads: its own page, else its recipe. The tab's name or the recipe's completes the label
                for screen readers. */
             const go = t.link

@@ -1,4 +1,5 @@
-/* Drops the rules the site never uses from its 1 render blocking stylesheet, after the prerender (scripts/prerender.mjs).
+/* Drops the rules the site never uses from its 1 stylesheet, after the prerender (scripts/prerender.mjs), which then cuts
+   each page's own copy from it with `purge` (the same rules, against the page's own HTML and code).
    The design system (src/styles/ds) ships every component and its guideline page's own .ds-* rules; the site uses part
    of it. src/styles/ds stays untouched: this trims the built copy only.
 
@@ -122,14 +123,14 @@ function files(dir, ext, out = []) {
   return out
 }
 
-export async function purgeCss(dist) {
-  const assets = join(dist, 'assets')
-  const main = readdirSync(assets).find((f) => /^index-[\w-]+\.css$/.test(f))
-  if (!main) return null
-  const html = files(dist, '.html')
-  const js = files(assets, '.js')
-  const tokens = new Set()
-  for (const f of [...html, ...js]) for (const [t] of (await readFile(f, 'utf8')).matchAll(/[A-Za-z_][\w-]*/g)) tokens.add(t)
+/* The class names a text could set: every word-like token in it. */
+export function tokensOf(text, into = new Set()) {
+  for (const [t] of text.matchAll(/[A-Za-z_][\w-]*/g)) into.add(t)
+  return into
+}
+
+/* A stylesheet without the rules whose class names none of `tokens` names (the rules above), and how many went. */
+export function purge(css, tokens) {
   const prefixes = [...tokens].filter((t) => t.endsWith('-') && t.length > 2)
   const used = (c) => tokens.has(c) || prefixes.some((p) => c.startsWith(p))
   const keep = (sel) => sel.includes('\\') || demanded(sel).every(used)
@@ -157,10 +158,20 @@ export async function purgeCss(dist) {
         n.t === 'rule' ? `${n.selector}{${n.body}}` : n.t === 'group' ? `${n.prelude}{${emit(n.children)}}` : n.t === 'block' ? `${n.prelude}{${n.body}}` : n.text,
       )
       .join('')
+  return { css: emit(trim(parse(css))), dropped }
+}
+
+export async function purgeCss(dist, main) {
+  const assets = join(dist, 'assets')
+  if (!main || !readdirSync(assets).includes(main)) return null
+  const html = files(dist, '.html')
+  const js = files(assets, '.js')
+  const tokens = new Set()
+  for (const f of [...html, ...js]) tokensOf(await readFile(f, 'utf8'), tokens)
 
   const before = await readFile(join(assets, main), 'utf8')
-  const after = emit(trim(parse(before)))
-  const name = `index-${createHash('sha256').update(after).digest('base64url').slice(0, 8)}.css`
+  const { css: after, dropped } = purge(before, tokens)
+  const name = `${main.replace(/-[\w-]+\.css$/, '')}-${createHash('sha256').update(after).digest('base64url').slice(0, 8)}.css`
   await writeFile(join(assets, name), after)
   if (name !== main) await rm(join(assets, main))
   for (const f of html) {

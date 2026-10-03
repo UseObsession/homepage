@@ -75,6 +75,8 @@ const rank = (id: RecipeId) => {
 }
 export const recipes: Recipe[] = Object.values(recipeFiles).sort((a, b) => rank(a.id) - rank(b.id))
 export const recipeBySlug: Record<string, Recipe | undefined> = Object.fromEntries(recipes.map((r) => [r.slug, r]))
+/* The file each recipe came from, by slug: the app loads 1 recipe's words for its page (content/catalog.ts). */
+export const recipeFileOf: Record<string, string> = Object.fromEntries(Object.entries(recipeFiles).map(([file, r]) => [r.slug, nameOf(file)]))
 export const recipeById = Object.fromEntries(recipes.map((r) => [r.id, r])) as Record<RecipeId, Recipe>
 
 /* The worked examples, in the order the Resources menu, the footer and the Use cases index list them. */
@@ -85,6 +87,8 @@ const studyRank = (path: string) => {
 }
 export const studies: UseCaseStudy[] = Object.values(studyFiles).sort((a, b) => studyRank(a.meta.path) - studyRank(b.meta.path))
 export const studyByPath: Record<string, UseCaseStudy | undefined> = Object.fromEntries(studies.map((s) => [s.meta.path, s]))
+/* The file each worked example came from, by its address. */
+export const studyFileOf: Record<string, string> = Object.fromEntries(Object.entries(studyFiles).map(([file, s]) => [s.meta.path, nameOf(file)]))
 
 /* Every post, newest first. A post's address is its slug, which must match its file's name (the prerender checks). */
 export const posts: BlogPost[] = Object.values(postFiles).sort((a, b) =>

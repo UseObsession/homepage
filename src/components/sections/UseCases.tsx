@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { Link } from 'react-router-dom'
-import type { ReaderId, Recipe, RecipeId, Uses } from '../../content/types'
+import { catalog, type CatalogRecipe } from '../../content/catalog'
+import type { ReaderId, RecipeId, Uses } from '../../content/types'
 import { AppScreen, type Workspace } from '../AppScreen'
 import './UseCases.css'
 
 /* A numeral never ends a line apart from its word ("0 reminders", "48 hours"). */
 const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
 
-/* Each use case links the recipe it runs on, read from its own file (src/content/recipes/*.ts). */
-const FILES = import.meta.glob('../../content/recipes/*.ts', { eager: true, import: 'recipe' }) as Record<string, Recipe>
-const RECIPES = Object.fromEntries(Object.values(FILES).map((r) => [r.id, r])) as Record<RecipeId, Recipe>
+/* Each use case links the recipe it runs on, named in its own file (src/content/recipes/*.ts, content/catalog.ts). */
+const RECIPES = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 /* The browser measures; the server never does. */
 const useMeasure = typeof window === 'undefined' ? useEffect : useLayoutEffect

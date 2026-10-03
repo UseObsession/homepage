@@ -1,7 +1,7 @@
 /* The navigation's words and structure (components/Nav). Copy rules: docs/REBUILD.md, "Copy". Structure: section 7,
-   and the spec in the workspace, _research/nav/NAV.md. */
-import { recipeById, recipes, studies } from './registry'
-import { agentsPage } from './site'
+   and the spec in the workspace, _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the
+   recipes and worked examples (content/catalog.ts), never their words. */
+import { catalog, type CatalogRecipe } from './catalog'
 import type { Capture, Cta, ReaderId, RecipeGroup, RecipeId } from './types'
 import { ways } from './ways'
 
@@ -34,13 +34,14 @@ const MORE: Partial<Record<RecipeGroup, NavPage>> = {
   'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
 }
 
-const recipeLink = (r: { id: RecipeId; name: string; slug: string }): NavRecipe => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })
+const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })
+const recipeById = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 /* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
    in the registry's order, so the footer, the Recipes index and every page agree. */
 export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
   name,
-  items: recipes.filter((r) => r.group === name).map(recipeLink),
+  items: catalog.recipes.filter((r) => r.group === name).map(recipeLink),
   ...(MORE[name] ? { more: MORE[name] } : {}),
 }))
 
@@ -124,10 +125,10 @@ export const nav = {
     useCases: {
       label: 'Use cases',
       to: '/use-cases',
-      items: studies.map(({ name, line, meta }) => ({
-        kicker: STUDY_FOR[meta.path] ?? 'Use case',
+      items: catalog.studies.map(({ name, line, path }) => ({
+        kicker: STUDY_FOR[path] ?? 'Use case',
         label: name,
-        to: meta.path,
+        to: path,
         line,
       })) satisfies NavCard[],
     },
@@ -163,7 +164,7 @@ export const pageCtas: Record<string, Cta> = {
   /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
   '/sample-output': barCta({ label: 'Get one for your store', to: '#get-one' }),
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
-  '/agents': agentsPage.contact.cta,
+  '/agents': catalog.agentsCta,
 }
 
 export function ctaFor(path: string): Cta {

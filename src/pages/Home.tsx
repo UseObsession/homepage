@@ -10,7 +10,7 @@ import { PersonaBand } from '../components/sections/PersonaBand'
 import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { Rules } from '../components/sections/Rules'
-import { pages } from '../content/registry'
+import { page } from '../content/pages/home'
 import './StoryPage.css'
 
 /* Home (/), composed from content/pages/home.ts in the order of docs/REBUILD.md 1b:
@@ -22,7 +22,6 @@ import './StoryPage.css'
    Home is drawn in the agency workspace, like Agencies.
    Its grounds (styles/tones.css) alternate down the page: paper and stone on paper, ink and lifted ink on ink, with the
    gap and the closing call as ink chapters, and the real run (Outputs) as the paper break on ink. */
-const page = pages.home
 const workspace = 'agency'
 
 export function Home() {
