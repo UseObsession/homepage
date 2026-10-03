@@ -106,6 +106,8 @@ function head(e, { noindex = false } = {}) {
     `<meta name="twitter:image" content="${image}" />`,
     `<meta name="twitter:image:alt" content="${esc(alt)}" />`,
     `<script type="application/ld+json">${jsonLdScript(e)}</script>`,
+    /* llms.txt, announced on every page: AI assistants fetch a file a page links to, and almost never one it doesn't. */
+    `<link rel="alternate" type="text/markdown" href="${SITE}/llms.txt" title="Obsession for AI assistants" />`,
     postEntries.length ? `<link rel="alternate" type="application/rss+xml" title="${esc(blogUi.feedTitle)}" href="${FEED}" />` : '',
   ]
     .filter(Boolean)
@@ -221,9 +223,21 @@ await writeFile(
   ].join('\n'),
 )
 
-/* ---- llms.txt (llmstxt.org): what Obsession is, then every page with the 1 or 2 sentences it answers. ---- */
+/* ---- llms.txt (llmstxt.org): what Obsession is, then every page with the 1 or 2 sentences it answers. A section with
+   no pages is left out (the blog's, while every post is archived), so the file never has an empty heading. ---- */
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
-const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind))
+const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
+const llmsSections = [
+  ['Pages', ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources')],
+  ['Recipes', ofKind('recipe')],
+  ['Use cases', ofKind('use-cases', 'use-case')],
+  ['Blog', ofKind('blog', 'post')],
+  ['Trust', ofKind('agents', 'privacy')],
+  ['Optional', [`- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`]],
+]
+/* The intro names every recipe, so it can't drift from the recipes the site has. */
+for (const e of entries.filter((x) => x.kind === 'recipe'))
+  if (!llms.intro.toLowerCase().includes(e.name.toLowerCase())) fail(`llms.txt: the intro (llms.intro in content/site.ts) doesn't name the recipe ${e.name}.`)
 await writeFile(
   join(dist, 'llms.txt'),
   [
@@ -233,30 +247,7 @@ await writeFile(
     '',
     llms.intro,
     '',
-    '## Pages',
-    '',
-    ...ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources').map(link),
-    '',
-    '## Recipes',
-    '',
-    ...ofKind('recipe').map(link),
-    '',
-    '## Use cases',
-    '',
-    ...ofKind('use-cases', 'use-case').map(link),
-    '',
-    '## Blog',
-    '',
-    ...ofKind('blog', 'post').map(link),
-    '',
-    '## Trust',
-    '',
-    ...ofKind('agents', 'privacy').map(link),
-    '',
-    '## Optional',
-    '',
-    `- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`,
-    '',
+    ...llmsSections.filter(([, links]) => links.length).flatMap(([heading, links]) => [`## ${heading}`, '', ...links, '']),
   ].join('\n'),
 )
 
