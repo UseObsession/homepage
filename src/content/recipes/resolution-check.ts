@@ -195,6 +195,10 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. No test is billed, and nothing goes out without your OK.',
     items: [
       {
+        q: 'Our deflection numbers look great. Are the resolutions real?',
+        a: 'Obsession’s Resolution check finds out: it matches each resolution your AI vendor bills against what happened in your payments and helpdesk, and every one that wasn’t real goes into a signed dispute pack.',
+      },
+      {
         q: 'What counts as not real?',
         a: 'Resolution check counts a refund the bot promised that was never made, a cancellation that never happened, a customer who went quiet or came back within 7 days, or a case a person finished. Your vendor’s own terms decide what it may bill.',
       },
