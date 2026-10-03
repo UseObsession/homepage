@@ -1,7 +1,10 @@
 # Response headers (Cloudflare static assets: free). A request takes the headers of every rule it matches.
 
-# Every response: no MIME sniffing, the origin only as the referrer to other sites, and no framing by other sites.
+# Every response: HTTPS only for 6 months (HSTS), no MIME sniffing, the origin only as the referrer to other sites, and no
+# framing by other sites. HSTS is set here and only here: never also in the Cloudflare dashboard. Add includeSubDomains
+# and preload only once http:// and www both answer 301 to https://useobsession.com (docs/SEARCH.md 8A).
 /*
+  Strict-Transport-Security: max-age=15552000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Content-Security-Policy: frame-ancestors 'self'
