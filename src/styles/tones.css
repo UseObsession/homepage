@@ -176,14 +176,18 @@
   box-shadow: inset 0 var(--ob-border-hair) 0 rgb(var(--ob-sheen-rgb) / .06);
 }
 :root.ob-theme-hybrid [data-tone="ink"] { box-shadow: none; }
+/* The closing call already has its 1 glow, behind the ring (FinalCta.css), so its chapter takes no top light. */
+.s-final[data-tone="ink"] { --s-chapter-light: transparent; }
 /* On a reader's page the ink chapter's light is the reader's hue (the room's colour, back at full depth mid-page): the
    ink scope reads the deep glow source, at the hero's alpha. Proposed extension of COLOUR.md P3 (styles/accents.css). */
 [data-tone="ink"][data-reader] {
   --s-chapter-light: color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent);
 }
 
-/* The paper break: on ink it is the page's 1 sheet of paper. On paper it is the page itself. */
+/* The paper break: on ink it is the page's 1 sheet of paper. On paper the same section stands on stone, so the beat
+   that flips on ink (the money, the real run) still has its own ground. */
 [data-tone="paper"] { background-color: var(--ob-bg); }
+:root.ob-theme-hybrid [data-tone="paper"] { background-color: var(--s-ground-alt); --s-card: var(--s-card-alt); }
 
 /* ---- Cards on grounds -----------------------------------------------------------------------------------------------
    On stone a card takes the paper's raised fill, so it lifts off the ground; on lifted ink it takes the raised ink. */

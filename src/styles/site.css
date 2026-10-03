@@ -59,10 +59,10 @@
 /* The logo: white files on dark grounds, black files on paper (components/Logo). */
 .s-lockup { display: inline-block; flex: none; }
 .s-on-paper { display: none; }
-:is([data-theme="light"], [data-theme="hybrid"], .ob-theme-light) .s-on-dark { display: none; }
-:is([data-theme="light"], [data-theme="hybrid"], .ob-theme-light) .s-on-paper { display: inline-block; }
-:is(.ob-theme-dark, [data-theme="hybrid"] .ob-object) .s-on-dark { display: inline-block; }
-:is(.ob-theme-dark, [data-theme="hybrid"] .ob-object) .s-on-paper { display: none; }
+:is([data-theme="light"], [data-theme="hybrid"], .ob-theme-light, .ob-theme-hybrid) .s-on-dark { display: none; }
+:is([data-theme="light"], [data-theme="hybrid"], .ob-theme-light, .ob-theme-hybrid) .s-on-paper { display: inline-block; }
+:is(.ob-theme-dark, :is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object) .s-on-dark { display: inline-block; }
+:is(.ob-theme-dark, :is([data-theme="hybrid"], .ob-theme-hybrid) .ob-object) .s-on-paper { display: none; }
 .s-mark { display: inline-block; flex: none; }
 .s-status { display: inline-grid; place-items: center; flex: none; color: currentColor; }
 .s-status svg { display: block; }

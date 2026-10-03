@@ -8,7 +8,9 @@ import './Outcomes.css'
    into view (motion.css .ob-anim-number: --ob-number-tween, ease-out, from the value on screen), so the eye lands on the
    numbers first. "Up to" stays on the figure's own line: every modelled number is a ceiling and says so.
    Words that are not a number ("Every release", "Day 0, 14 and 28") stand as they are. Screen readers get each value
-   whole; reduced motion shows the final figures. */
+   whole; reduced motion shows the final figures.
+   The money is the page's paper break (the design system's own example; styles/tones.css): a sheet of paper on ink,
+   and stone on paper. */
 
 const REDUCE = '(prefers-reduced-motion: reduce)'
 const onReduce = (cb: () => void) => {
@@ -118,7 +120,7 @@ export function Outcomes({ outcomes, id }: { outcomes: OutcomesContent; id?: str
   const cols = n === 4 ? 2 : Math.min(n, 3)
 
   return (
-    <section className="s-section s-out" id={id} aria-labelledby={headId}>
+    <section className="s-section s-out ob-theme-hybrid" data-tone="paper" id={id} aria-labelledby={headId}>
       <div className="s-wrap">
         <header className="s-head s-out-head">
           <h2 id={headId} className="ob-type-h2">
