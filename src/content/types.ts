@@ -54,6 +54,9 @@ export type Capture = {
   /* `mystery` and `verify` only: a blank first field (the store, or the AI agent) joins the waitlist instead of asking
      for one. The micro line says so. */
   orWaitlist?: boolean
+  /* `mystery` and `verify` only: the thank you after a sign up that named a store or an AI agent, for a page whose
+     offer is more than the 1 free report (the agencies' 5 stores). {store}, {agent} and {email} are filled in. */
+  done?: { title: string; line: string }
 }
 
 /* `bar`: the nav bar's shorter words for a call to action whose label is longer than "Join the waitlist" (content/nav). */
@@ -154,7 +157,8 @@ export type Faq = { heading: string; items: { q: string; a: string }[] }
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
    agent meets can read (/agents). Never "it follows robots.txt". */
 export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
-export type Final = { heading: string; sub: string; capture: Capture }
+/* `link` is the quiet second path under the form (the sample report, on a page whose offer is a free audit). */
+export type Final = { heading: string; sub: string; capture: Capture; link?: Cta }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
 export type Jobs = { heading: string; items: { title: string; line: string; example?: string; screen?: ScreenName }[] }
@@ -306,6 +310,9 @@ export type Llms = { summary: string; intro: string }
    1 kind of customer, with invented names and numbers. Appended 2 Oct; nothing above changes.
    The story, in order: hero > how (his set up and run phases) > problem (the gap) > split (who does what) > outputs
    (what the reader does with it) > recipe > proof (his last phase: what lands, on its screen) > questions > final.
+   An example about the real report itself (appended 3 Oct, mystery shopping for ecommerce agencies) adds, after its
+   proof: `real` (the September check, as the report it is), `outcomes` (hours back, each with its model) and `recipes`
+   (the other recipes that fit the reader's year); with those it leaves out `more`, the 2 link rows they replace.
    Every name and figure is an example; `hero.example.note` and `fine` say so on the page. ---- */
 
 /* 1 of James's numbered steps. `example` is what the customer in the example chose or got. */
@@ -313,6 +320,13 @@ export type StudyStep = { title: string; line: string; example?: string }
 /* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
 export type StudyNode = { label: string; title: string; items: string[]; foot: string }
 export type StudyLink = { label: string; title: string; line: string; cta: Cta }
+
+/* A recipe's name and address come from the recipe itself (content/catalog), so only the line is written here. */
+export type StudyRecipes = {
+  heading: string
+  sub?: string
+  groups: { id: string; name: string; line: string; items: { recipe: RecipeId; line: string }[] }[]
+}
 
 export type UseCaseStudy = {
   meta: Meta
@@ -327,6 +341,8 @@ export type UseCaseStudy = {
     example: { chips: string[]; note: string }
     flow?: StudyNode[]
     capture: Capture
+    /* The second path under the form (the real report, for an example whose offer is a free audit). */
+    secondary?: Cta
   }
   /* His phases in order. A phase plays its screen beside its numbered steps; a phase without a screen shows its chips. */
   how: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
@@ -350,8 +366,14 @@ export type UseCaseStudy = {
       mockup: { label: string; sender: string; channel: string; messages: { day: string; text: string }[] }
     }
   }
-  /* The recipe it runs and the 1 real run. */
-  more: { recipe: StudyLink; sample: StudyLink }
+  /* The 1 real run, as the report it is (the Proof section), for an example that points at the sample output itself. */
+  real?: Proof
+  /* What the reader can expect, in hours, speed or coverage, each with its model (the Outcomes section). Never money. */
+  outcomes?: Outcomes
+  /* The other recipes that fit the reader's year, grouped by the moment in it, each in 1 line and linked to its page. */
+  recipes?: StudyRecipes
+  /* The recipe it runs and the 1 real run, as 2 link rows. An example that carries `real` and `recipes` leaves it out. */
+  more?: { recipe: StudyLink; sample: StudyLink }
   fine: string
   faq: Faq
   final: Final

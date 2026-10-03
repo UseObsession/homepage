@@ -21,6 +21,8 @@ import './CaptureForm.css'
      closes that line instead, so the promise is never said twice and the foot stays 1 line.
    - A mystery or verify form with `orWaitlist` takes a blank first field: the reader joins the waitlist instead (its
      micro says so).
+   - A mystery or verify form may carry its own thank you (`done`) for an offer that is more than the 1 free report,
+     such as the agencies' 5 stores; without one it says the shared words (content/capture).
    - Before the script runs, the 2 step form's email row is hidden (:root.js), so its email field is only required once
      the page has hydrated: a native post in that moment never fails on a field the reader can't see. */
 
@@ -195,7 +197,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   )
 
   if (step === 'done') {
-    const done = shop ? (verify ? copy.done.verify : copy.done.mystery) : copy.done.waitlist
+    const done = shop ? (capture.done ?? (verify ? copy.done.verify : copy.done.mystery)) : copy.done.waitlist
     /* The store, the AI agent and the email are set as values that never break at a hyphen ("your-" / "store.example"). */
     const values: Record<string, string> = { '{store}': hostOf(store), '{agent}': hostOf(store), '{email}': email.trim() }
     const fill = (t: string) =>

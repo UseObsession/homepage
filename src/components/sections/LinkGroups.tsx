@@ -35,15 +35,27 @@ export function Row({ row }: { row: LinkRow }) {
   )
 }
 
-export function LinkGroups({ groups, single = false, className = '' }: { groups: LinkGroupRows[]; single?: boolean; className?: string }) {
+/* `as` is the groups' heading level: h2 where the groups are the page's sections, h3 under a section's own h2 (a worked
+   example's other recipes), so the outline never skips a level. */
+export function LinkGroups({
+  groups,
+  single = false,
+  className = '',
+  as: Name = 'h2',
+}: {
+  groups: LinkGroupRows[]
+  single?: boolean
+  className?: string
+  as?: 'h2' | 'h3'
+}) {
   return (
     <div className={`s-wrap s-lg ${className}`}>
       {groups.map((g) => (
         <section className="s-lg-group" id={g.id} key={g.id} aria-labelledby={`${g.id}-h`}>
           <header className="s-lg-group__head">
-            <h2 className="s-lg-group__name" id={`${g.id}-h`}>
+            <Name className="s-lg-group__name" id={`${g.id}-h`}>
               {g.name}
-            </h2>
+            </Name>
             {g.line && <p className="s-lg-group__line">{tie(g.line)}</p>}
           </header>
           <div className="s-lg-group__body">

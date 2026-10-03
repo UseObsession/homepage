@@ -1,10 +1,12 @@
 import { useId } from 'react'
 import { Link } from 'react-router-dom'
+import { catalog } from '../../content/catalog'
 import type { PartnerId } from '../../content/partners'
 import type { StudyLink, UseCaseStudy } from '../../content/types'
 import { AppScreen, type Workspace } from '../AppScreen'
 import { Mark } from '../Logo'
 import { PartnerMark } from '../PartnerMark'
+import { LinkGroups } from '../sections/LinkGroups'
 import { Example, StepList } from './Phases'
 import { tie } from './tie'
 import './Study.css'
@@ -255,26 +257,64 @@ export function StudyProof({ proof, workspace, id = 'proof' }: { proof: UseCaseS
   )
 }
 
+/* The other recipes that fit the reader's year: the claim, then each moment of it as a group of link rows (the Recipes
+   index's pattern, sections/LinkGroups), 1 line per recipe. A recipe's name and address come from the recipe itself, so
+   they never drift from its page and the nav; a line for a recipe the site doesn't have is left out. `fine` is the
+   example's small print when there are no link rows to hang it under (pages/UseCase). */
+export function Recipes({ recipes, fine, id = 'recipes' }: { recipes: NonNullable<UseCaseStudy['recipes']>; fine?: string; id?: string }) {
+  const uid = useId()
+  const groups = recipes.groups.map((g) => ({
+    id: `${id}-${g.id}`,
+    name: g.name,
+    line: g.line,
+    rows: g.items.flatMap(({ recipe, line }) => {
+      const r = catalog.recipes.find((x) => x.id === recipe)
+      return r ? [{ label: r.name, to: `/recipes/${r.slug}`, line }] : []
+    }),
+  }))
+  return (
+    <section className="s-section s-st-recipes" id={id} aria-labelledby={`${uid}-h`}>
+      <div className="s-wrap">
+        <header className="s-head s-head--wide s-st-head">
+          <h2 className="ob-type-h2" id={`${uid}-h`}>
+            {tie(recipes.heading)}
+          </h2>
+          {recipes.sub && <p className="ob-type-body-lg">{tie(recipes.sub)}</p>}
+        </header>
+      </div>
+      <LinkGroups groups={groups} as="h3" className="s-lg--then-final" />
+      {fine && (
+        <div className="s-wrap">
+          <p className="s-st-fine s-st-fine--after">{tie(fine)}</p>
+        </div>
+      )}
+    </section>
+  )
+}
+
 /* Where to go next: the recipe this example runs on and the 1 real run, as the quiet link rows every page uses. Then
-   the small print that says what is made up. */
+   the small print that says what is made up. An example that already shows both in its own sections passes no links,
+   and only the small print stays. */
 export function More({ links, fine, label }: { links: StudyLink[]; fine: string; label: string }) {
   return (
     <aside className="s-section s-st-more" aria-label={label}>
       <div className="s-wrap">
-        <ul className="s-st-more__list">
-          {links.map((l) => (
-            <li key={l.cta.to}>
-              <Link className="s-st-link" to={l.cta.to}>
-                <span className="s-st-link__label">{l.label}</span>
-                <span className="s-st-link__title">
-                  {l.title}
-                  <Arrow className="s-st-link__arrow" />
-                </span>
-                <span className="s-st-link__line">{tie(l.line)}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {links.length > 0 && (
+          <ul className="s-st-more__list">
+            {links.map((l) => (
+              <li key={l.cta.to}>
+                <Link className="s-st-link" to={l.cta.to}>
+                  <span className="s-st-link__label">{l.label}</span>
+                  <span className="s-st-link__title">
+                    {l.title}
+                    <Arrow className="s-st-link__arrow" />
+                  </span>
+                  <span className="s-st-link__line">{tie(l.line)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
         <p className="s-st-fine">{tie(fine)}</p>
       </div>
     </aside>

@@ -309,8 +309,9 @@
 }
 .s-st-link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
 .s-st-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+.s-st-more__list + .s-st-fine, .s-st-fine--after { margin-top: var(--ob-space-40); }
 .s-st-fine {
-  margin: var(--ob-space-40) 0 0;
+  margin: 0;
   max-width: 72ch;
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
