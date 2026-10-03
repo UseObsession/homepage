@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useLayoutEffect, useRef } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useRef, type ComponentType } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigationType, useParams } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
@@ -8,33 +8,38 @@ import { storyCtas } from './content/heads'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
 import { recipeWords, studyWords } from './content/words'
-import { lazyPage } from './lib/lazy'
+import { lazyPage, type LazyPage } from './lib/lazy'
 
-/* Each page's code (and its words) is its own chunk, loaded for the page that shows it (lib/lazy.tsx): the app itself
-   carries only the nav, the footer and the index of every page (content/catalog.ts, content/heads.ts). */
-const Home = lazyPage(() => import('./pages/Home').then((m) => m.Home))
-const Agencies = lazyPage(() => import('./pages/Agencies').then((m) => m.Agencies))
-const Founders = lazyPage(() => import('./pages/Founders').then((m) => m.Founders))
-const Sales = lazyPage(() => import('./pages/Sales').then((m) => m.Sales))
-const Marketing = lazyPage(() => import('./pages/Marketing').then((m) => m.Marketing))
-const Developers = lazyPage(() => import('./pages/Developers').then((m) => m.Developers))
-const Verify = lazyPage(() => import('./pages/Verify').then((m) => m.Verify))
-const Recipes = lazyPage(() => import('./pages/Recipes').then((m) => m.Recipes))
-const Recipe = lazyPage(() => import('./pages/Recipe').then((m) => m.Recipe))
-const Resources = lazyPage(() => import('./pages/Resources').then((m) => m.Resources))
-const UseCases = lazyPage(() => import('./pages/UseCases').then((m) => m.UseCases))
-const UseCase = lazyPage(() => import('./pages/UseCase').then((m) => m.UseCaseAt))
-const Blog = lazyPage(() => import('./pages/Blog').then((m) => m.Blog))
-const BlogPost = lazyPage(() => import('./pages/BlogPost').then((m) => m.BlogPostAt))
-const SampleOutput = lazyPage(() => import('./pages/SampleOutput').then((m) => m.SampleOutput))
-const Privacy = lazyPage(() => import('./pages/Privacy').then((m) => m.Privacy))
-const Agents = lazyPage(() => import('./pages/Agents').then((m) => m.Agents))
-const NotFound = lazyPage(() => import('./pages/NotFound').then((m) => m.NotFound))
+/* Each page's code (and its words) is its own chunk, loaded for the page that shows it (lib/lazy.ts): the app itself
+   carries only the nav, the footer and the index of every page (content/catalog.ts, content/heads.ts). A page is named
+   by its file, which is also how the prerender finds the chunks a page loads (routeFiles). */
+const PAGE_FILES = import.meta.glob<Record<string, unknown>>('./pages/*.tsx')
+function page<P extends object = object>(file: string, name = file) {
+  return lazyPage(() => PAGE_FILES[`./pages/${file}.tsx`]().then((m) => m[name] as ComponentType<P>), `src/pages/${file}.tsx`)
+}
+const Home = page('Home')
+const Agencies = page('Agencies')
+const Founders = page('Founders')
+const Sales = page('Sales')
+const Marketing = page('Marketing')
+const Developers = page('Developers')
+const Verify = page('Verify')
+const Recipes = page('Recipes')
+const Recipe = page<{ slug: string }>('Recipe')
+const Resources = page('Resources')
+const UseCases = page('UseCases')
+const UseCase = page<{ path: string }>('UseCase', 'UseCaseAt')
+const Blog = page('Blog')
+const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
+const SampleOutput = page('SampleOutput')
+const Privacy = page('Privacy')
+const Agents = page('Agents')
+const NotFound = page('NotFound')
 
 const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
 const STUDIES = new Set(catalog.studies.map((s) => s.path))
 const POSTS = new Set(catalog.posts.map((p) => p.slug))
-const PAGES: Record<string, { preload: () => Promise<unknown> }> = {
+const PAGES: Record<string, LazyPage> = {
   '/': Home,
   '/agencies': Agencies,
   '/founders': Founders,
@@ -51,17 +56,31 @@ const PAGES: Record<string, { preload: () => Promise<unknown> }> = {
   ...(catalog.blogLive ? { '/blog': Blog } : {}),
 }
 
-/* Loads the code and words of the page at a path, so it draws at once: the prerender awaits it before drawing a page
-   (entry-server.tsx) and the browser before hydrating it (main.tsx), as AppRoutes would find it. */
-// oxlint-disable-next-line react/only-export-components -- the routes' own loader, beside the routes it mirrors
-export function preloadRoute(path: string): Promise<unknown> {
+/* What the page at a path is made of, as AppRoutes finds it: its component, and the words it loads for itself (a
+   recipe's or a worked example's, content/words.ts). */
+function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promise<unknown> } } {
   const p = cleanPath(path)
   const [, first, slug] = p.split('/')
-  if (PAGES[p]) return PAGES[p].preload()
-  if (first === 'recipes' && slug && RECIPES.has(slug)) return Promise.all([Recipe.preload(), recipeWords(slug).preload()])
-  if (first === 'use-cases' && STUDIES.has(p)) return Promise.all([UseCase.preload(), studyWords(p).preload()])
-  if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return BlogPost.preload()
-  return NotFound.preload()
+  if (PAGES[p]) return { page: PAGES[p] }
+  if (first === 'recipes' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
+  if (first === 'use-cases' && STUDIES.has(p)) return { page: UseCase, words: studyWords(p) }
+  if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return { page: BlogPost }
+  return { page: NotFound }
+}
+
+/* Loads the code and words of the page at a path, so it draws at once: the prerender awaits it before drawing a page
+   (entry-server.tsx) and the browser before hydrating it (main.tsx). */
+// oxlint-disable-next-line react/only-export-components -- the routes' own loader, beside the routes it mirrors
+export function preloadRoute(path: string): Promise<unknown> {
+  const { page, words } = routeOf(path)
+  return Promise.all([page.preload(), words?.preload()])
+}
+
+/* The source file of the page component at a path: the prerender trims each page's styles to what its HTML names and
+   what the code it loads (this file's chunk and the chunks it imports) can set. A page's words set no classes. */
+// oxlint-disable-next-line react/only-export-components -- read by the prerender, beside the routes it mirrors
+export function routeFile(path: string): string {
+  return routeOf(path).page.file
 }
 
 const idOf = (hash: string) => {

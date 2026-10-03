@@ -1,4 +1,6 @@
 import { createElement, use, type ComponentType } from 'react'
+import { hydrating } from './hydration'
+import { siteStyles } from './siteStyles'
 
 /* Code and words the app loads only for the page that needs them (App.tsx). Once loaded they are there at once; a
    render that needs them before that waits (Suspense) until they land. The prerender and the browser's first render load
@@ -33,11 +35,14 @@ export function onceEach<T>(load: (key: string) => Promise<T>) {
   }
 }
 
-/* A page component whose code loads with it: `preload` fetches it ahead. */
-export function lazyPage<P extends object>(load: () => Promise<ComponentType<P>>) {
-  const page = once(load)
+/* A page component whose code loads with it: `preload` fetches it ahead; `file` names its source (src/pages/NAME.tsx).
+   A load after the first page's hydration brings the site's whole stylesheet with it (lib/siteStyles.ts). */
+export type LazyPage = { preload: () => Promise<unknown>; file: string }
+
+export function lazyPage<P extends object>(load: () => Promise<ComponentType<P>>, file: string) {
+  const page = once(() => Promise.all([load(), hydrating() ? undefined : siteStyles()]).then(([component]) => component))
   function LazyPage(props: P) {
     return createElement(page.read(), props)
   }
-  return Object.assign(LazyPage, { preload: page.preload })
+  return Object.assign(LazyPage, { preload: page.preload, file })
 }

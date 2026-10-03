@@ -4,6 +4,8 @@ import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { AppRoutes, preloadRoute } from './App'
 
+export { routeFile } from './App'
+
 /* Used only by scripts/prerender.mjs at build time: renders 1 route to HTML (its page's code and words loaded first, so
    it draws whole), and hands over what its head needs. */
 export async function render(url: string) {
