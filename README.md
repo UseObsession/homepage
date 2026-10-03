@@ -44,6 +44,8 @@ Code that runs while a component renders must not touch `window` or `document`; 
 
 Cloudflare Workers static assets on the free plan, configured by `wrangler.jsonc`: the build command is `npm run build`, the deploy uploads `dist/`. Unknown addresses get `404.html` with a real 404. Redirects live in `public/_redirects`, response headers in `public/_headers`. Nothing may need a paid feature.
 
+**After every deploy, ping IndexNow** (Bing and the engines that share its pings; Copilot and ChatGPT search read Bing): `npm run indexnow` sends every page in `dist/sitemap.xml`, `npm run indexnow -- /agencies /recipes/lead-leaks` only the pages that changed, `--dry-run` prints the request. It never runs on its own: run it after the deploy (for example `npx wrangler deploy && npm run indexnow`), because IndexNow checks the key file on the live site. The key is the 32 hex character file in `public/` (`scripts/indexnow.mjs` says how to replace it). The founders' side (Bing Webmaster Tools, Search Console, Cloudflare's crawler settings, Brave) is in `_research/seo/AI-SEARCH-FOUNDERS.md` in the workspace.
+
 ## Copy rules
 
 `docs/REBUILD.md`, "Copy": numerals, British spelling, contractions, no em or en dashes, no hyphenated compounds where a plain word works, headings that make a claim, no money promises, no guarantees, no sources on the page. Every example that isn't from a real run says "Example". Run `node ~/.claude/skills/no-meta-callouts/scan.mjs dist/llms-full.txt` on the words a reader sees.
