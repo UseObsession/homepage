@@ -16,11 +16,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/founders',
-    title: 'AI agents for founders: win and keep customers · Obsession',
+    title: 'Obsession for founders: test every release as a customer',
     description:
       'Declared AI agents with their own inbox, phone and browser sign up at every prospect to find the gap you fix and test every release as a new customer.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. For founders, declared AI agents with their own inbox, phone number and browser sign up at every company the founder wants to win, test every release as a new customer, and chase invoices and supplier quotes, continuously, signing every step.',
+      'Obsession gives founders declared AI agents that test your sign up and checkout as a new customer after every release, sign up at your prospects and rivals, and quote, chase and negotiate within your limits. You get signed proof and your next move.',
     ogImage: '/og/founders.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -31,7 +31,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    sub: 'Declared AI agents with their own inbox, phone, card and browser sign up at your prospects and rivals, test every release as a new customer, and quote, chase and negotiate within your limits. Every step signed.',
+    sub: 'Obsession gives founders declared AI agents that test your sign up and checkout as a new customer after every release, sign up at your prospects and rivals, and quote, chase and negotiate within your limits. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'founders-hero',
@@ -394,39 +394,51 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'The intelligence infrastructure for commercial teams. Declared AI agents, each with its own ID, inbox, phone number, card and browser, do business with other companies for you: they sign up, ask the chat bot, test, quote, chase and negotiate within your limits at every company on your list, continuously. Every step is signed, and you get the proof and your next move.',
+        a: 'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you. They sign up, ask the chat bot, test, quote, chase and negotiate within your limits at every company on your list, continuously, and you get signed proof and your next move.',
       },
       {
-        q: 'Is it a lead list?',
-        a: 'No. Contact tools find names. Obsession’s agents become each company’s customer and show you which ones have the gap your product fixes, with proof. Contacts come from your own tool, and you send every message yourself.',
+        q: 'How do I find out a competitor changed its pricing before a customer tells me?',
+        a: 'Add the rival, and an Obsession agent signs up as a customer and logs every price change, offer and email the day it lands, with a dated screenshot, so you hear it first, not on a cancellation call.',
+      },
+      {
+        q: 'How do I know when my checkout, sign up or welcome email has quietly broken?',
+        a: 'An Obsession test customer signs up after every release, opens every email and link and tries your codes at checkout, stopping before payment. Every break reaches you with its screenshot and a drafted fix.',
+      },
+      {
+        q: 'Is my store showing up when people ask AI assistants for my category, and is it quoting the right price?',
+        a: 'Obsession’s Listings and AI answers asks AI assistants what your buyers ask every Monday and checks what they say about you, prices included. A wrong fact is traced to the page it came from and corrected at the source.',
+      },
+      {
+        q: 'Is Obsession a lead list?',
+        a: 'No. Obsession’s agents become each company’s customer and show you which ones have the gap your product fixes, with proof. Contact tools find names: contacts come from your own tool, and you send every message yourself.',
       },
       {
         q: 'What do agents do at a prospect or rival?',
-        a: 'Only what any customer can do alone: sign up, join the newsletter, start a free trial with no card, read public pages and ask the site’s chat bot. Each says it’s an AI agent from Obsession, links to useobsession.com/agents, never names you and never replies. If a person picks up the chat, or a rep writes or calls, it stops.',
+        a: 'An Obsession agent does only what any customer can do alone: sign up, join the newsletter, start a free trial with no card, read public pages and ask the site’s chat bot. Each says it’s an AI agent from Obsession, links to useobsession.com/agents, never names you and never replies. If a person picks up the chat, or a rep writes or calls, it stops.',
       },
       {
-        q: 'How is it different from our own tests?',
-        a: 'Your tests check the code in seconds. Agents check what a new customer actually gets: the login code on a real phone number and the email in a real inbox, on day 1 and on day 13.',
+        q: 'How is Obsession different from our own tests?',
+        a: 'Obsession’s agents check what a new customer actually gets: the login code on a real phone number and the email in a real inbox, on day 1 and on day 13. Your tests check the code in seconds.',
       },
       {
         q: 'Will test customers skew my numbers?',
-        a: 'Each one is labelled and has its own inbox, so you can filter it out of your sign ups and reports.',
+        a: 'No. Each Obsession test customer is labelled and has its own inbox, so you can filter it out of your sign ups and reports.',
       },
       {
-        q: 'Does it work for what I sell?',
-        a: 'If your product fixes something a customer sees, like sign up, onboarding, emails or texts, agents check every prospect for that gap. If it fixes something inside a company, start by testing your own product after every release.',
+        q: 'Does Obsession work for what I sell?',
+        a: 'Yes, if your product fixes something a customer sees, like sign up, onboarding, emails or texts: Obsession’s agents check every prospect for that gap. If it fixes something inside a company, start by testing your own product after every release.',
       },
       {
         q: 'Do I need to write code?',
-        a: 'No. Pick a recipe or type the task in plain words. The API is there if you’d rather build your own.',
+        a: 'No. Pick an Obsession recipe or type the task in plain words. The API is there if you’d rather build your own.',
       },
       {
-        q: 'Can agents spend our money?',
-        a: 'Only on a card capped at a budget you set, for a job you approved, like a software bill at the price you agreed or a test order on your own store that it refunds. Above the cap it stops and asks you, and it never signs anything for you.',
+        q: 'Can Obsession’s agents spend our money?',
+        a: 'An Obsession agent spends only on a card capped at a budget you set, for a job you approved, like a software bill at the price you agreed or a test order on your own store that it refunds. Above the cap it stops and asks you, and it never signs anything for you.',
       },
       {
         q: 'How do I start?',
-        a: 'Get early access and tell us what to set up first. Nothing runs until you approve the plan. If you run a store, your first mystery shop is free, with the report within 4 days.',
+        a: 'Get early access to Obsession and tell us what to set up first. Nothing runs until you approve the plan. If you run a store, your first mystery shop is free, with the report within 4 days.',
       },
     ],
   },

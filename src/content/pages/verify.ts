@@ -36,7 +36,7 @@ export const page: Page = {
     description:
       'Declared AI test customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
     answer:
-      'Obsession checks AI agents from the customer’s side. Declared AI test customers, each with its own inbox, phone number, account and card, use a company’s support bot, voice agent, AI SDR or sales agent on its real channels every day, with the owner’s OK, check it against the company’s policies and the law, and sign every step.',
+      'Obsession checks your AI agents as your customer: declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     ogImage: '/og/verify.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -47,7 +47,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Declared AI test customers, each with its own inbox, phone number and card, meet your support bot, AI receptionist and AI SDR the way your customers and prospects do, every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+    sub: 'Obsession checks your AI agents as your customer: declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -313,44 +313,52 @@ export const page: Page = {
     heading: 'Every test customer says it’s AI. Nothing runs without the owner’s OK.',
     items: [
       {
-        q: 'Do you need our logins or code?',
-        a: 'No. Test customers use your AI agent the way your customers do. A test account on your portal, or a helpdesk export, only if you give them.',
+        q: 'What is Customer-Side Assurance?',
+        a: 'Customer-Side Assurance is checking an AI agent from the outside, as its customer: declared test customers use it on its real channels, check each answer against your policies and the law, and sign every step. Your vendor’s own tests run inside its tools, often with simulated customers.',
       },
       {
-        q: 'Will it try to break or trick our bot?',
-        a: 'No. It asks what an ordinary customer asks. No jailbreaks, no prompt tricks and no flattery to win a discount.',
+        q: 'How do we find out our chatbot is giving customers wrong answers?',
+        a: 'Before customers do: Obsession’s declared test customers ask your bot what customers ask every day and check each answer against your policy pages, so a wrong answer shows up the morning it starts.',
+      },
+      {
+        q: 'Our deflection numbers look great. Are the resolutions real?',
+        a: 'Obsession’s Resolution check finds out: it matches each resolution your AI vendor bills against what happened in your payments and helpdesk, and every one that wasn’t real goes into a signed dispute pack.',
+      },
+      {
+        q: 'Do you need our logins or code?',
+        a: 'No. Obsession’s test customers use your AI agent the way your customers do. A test account on your portal, or a helpdesk export, only if you give them.',
+      },
+      {
+        q: 'Will Obsession try to break or trick our bot?',
+        a: 'No. Obsession asks what an ordinary customer asks. No jailbreaks, no prompt tricks and no flattery to win a discount.',
       },
       {
         q: 'Will our vendor bill us for the tests?',
-        a: 'Every test is tagged as a test, and we agree that with your vendor before the first one runs.',
+        a: 'Every Obsession test is tagged as a test, and we agree that with your vendor before the first one runs.',
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. Test customers call only numbers you own or authorise, and each says at the start that it’s AI and that the call is recorded. No recording is ever used for training.',
+        a: 'Yes. Obsession’s test customers call only numbers you own or authorise, and each says at the start that it’s AI and that the call is recorded. No recording is ever used for training.',
       },
       {
         q: 'Can we check a vendor’s agent before we sign?',
-        a: 'Yes, with the vendor’s agreement, on the same cases for every vendor on your shortlist.',
+        a: 'Yes, with the vendor’s agreement: Obsession’s Vendor agent check runs the same cases on every vendor on your shortlist.',
       },
       {
         q: 'Can you check a rival’s bot?',
-        a: 'Not as a check. A check runs only with the owner’s written OK. Competitor tracking asks a rival’s bot only what any customer can ask in public, and we never score, rank or publish anyone’s agent.',
+        a: 'Not as an Obsession check: a check runs only with the owner’s written OK. Competitor tracking asks a rival’s bot only what any customer can ask in public, and we never score, rank or publish anyone’s agent.',
       },
       {
-        q: 'Does it pay or place orders?',
-        a: 'Every checkout stops before payment, unless it’s your own store and you’ve set a budget.',
+        q: 'Does Obsession pay or place orders?',
+        a: 'Obsession stops every checkout before payment, unless it’s your own store and you’ve set a budget.',
       },
       {
         q: 'What do we get back?',
-        a: 'A verdict on every check, with the transcript or recording, the policy it broke, what happened next and the fix drafted. Every step is signed.',
-      },
-      {
-        q: 'How is this different from our vendor’s own tests?',
-        a: 'Your vendor tests its agent inside its own tools, often with simulated customers. Obsession checks it from the outside, as your customer, which is why we call it Customer-Side Assurance: test customers use your real channels with real inboxes, numbers and accounts, and follow what happens next.',
+        a: 'Obsession sends a verdict on every check, with the transcript or recording, the policy it broke, what happened next and the fix drafted. Every step is signed.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what happened on each check.',
+        a: 'No. A passed Obsession check is dated evidence of what happened on each check.',
       },
     ],
   },

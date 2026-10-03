@@ -34,11 +34,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/marketing',
-    title: 'Obsession for marketing: AI agents to win and keep customers',
+    title: 'Obsession for marketing: check every ad, launch and rival',
     description:
       'AI agents for marketing teams check every ad, partner link, launch and lead as a customer would, track every rival and draft each fix. Every step signed.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. For marketing teams, it runs declared AI agents, each with its own inbox, phone number and browser, that go through your ad landing pages, partner links, launches, forms and checkout as a customer would, sign up to every rival on your list and correct what AI assistants say about you, continuously, with every step signed.',
+      'Obsession gives marketing teams declared AI agents that check every ad, launch and rival as a customer would: your ad pages, partner codes and checkout, and every rival’s emails and prices. You hear of each break and each new offer the day it lands.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +49,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your marketing team win, convert and keep customers.',
-    sub: 'Declared AI agents, each with its own inbox, phone number and browser, go through your ads, partner links, launches and checkout as a customer would, ask every customer for a review, and sign up to every rival on your list, continuously. Every step signed.',
+    sub: 'Obsession gives marketing teams declared AI agents that check every ad, launch and rival as a customer would: your ad pages, partner codes and checkout, and every rival’s emails and prices. You hear of each break and each new offer the day it lands.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -373,36 +373,48 @@ export const page: Page = {
     heading: 'Every agent declared. Nothing paused, sent or changed without your OK.',
     items: [
       {
+        q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
+        a: 'Obsession subscribes a declared AI agent with its own inbox and texting number to each rival. It never replies, and logs every welcome email, text, offer and code with its time.',
+      },
+      {
+        q: 'Can Obsession get a rival’s pricing from behind a demo form?',
+        a: 'No. A demo form reaches a rival’s staff, so Obsession’s agents never fill one. They read the public pricing page, join the emails and texts, and start trials that need no card, so you see every price and offer any customer can.',
+      },
+      {
+        q: 'How do I test every link and discount code before customers hit them?',
+        a: 'With each send, an Obsession test customer on a real inbox and number opens every email and text, follows each link and tries each code at checkout, stopping before payment. A broken one is flagged within minutes, with the fix drafted.',
+      },
+      {
         q: 'Do rivals know it’s an AI agent?',
-        a: 'Yes. Every agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you.',
+        a: 'Yes. Every Obsession agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you.',
       },
       {
-        q: 'What will an agent never do at a rival?',
-        a: 'Buy, reply, book a call, or ask a person anything. It uses only what any customer can: sign ups, newsletters, text opt ins, public pages, the ads they run in public and the site’s chat bot. If a person picks up the chat, the step ends. Nothing behind a login it wasn’t given. It starts a rival’s free trial only when no card is needed, and closes it the moment a rep writes or calls.',
+        q: 'What will an Obsession agent never do at a rival?',
+        a: 'An Obsession agent never buys, replies, books a call or asks a person anything. It uses only what any customer can: sign ups, newsletters, text opt ins, public pages, the ads they run in public and the site’s chat bot. If a person picks up the chat, the step ends. Nothing behind a login it wasn’t given. It starts a rival’s free trial only when no card is needed, and closes it the moment a rep writes or calls.',
       },
       {
-        q: 'Does it click our ads?',
-        a: 'No. It opens each ad’s landing page directly, so no click is paid for. Pausing an ad, turning it back on or changing its link waits for your OK.',
+        q: 'Does Obsession click our ads?',
+        a: 'No. Obsession opens each ad’s landing page directly, so no click is paid for. Pausing an ad, turning it back on or changing its link waits for your OK.',
       },
       {
-        q: 'Does it check our partners’ prices?',
-        a: 'No. Only your links, codes and banners. Every note to a partner is drafted in your team’s own thread and goes after your OK.',
+        q: 'Does Obsession check our partners’ prices?',
+        a: 'No. Obsession checks only your links, codes and banners. Every note to a partner is drafted in your team’s own thread and goes after your OK.',
       },
       {
-        q: 'Does it only ask happy customers for reviews?',
-        a: 'No. Every customer is asked the same way at the same kind of moment, good experience or bad, from your own address, with the same review link for everyone.',
+        q: 'Does Obsession only ask happy customers for reviews?',
+        a: 'No. Obsession asks every customer the same way at the same kind of moment, good experience or bad, from your own address, with the same review link for everyone.',
       },
       {
-        q: 'Which channels does it cover?',
-        a: 'At rivals: emails, texts, the ads they run in public, prices, offers and pages. On your own: ads and landing pages, partner links and codes, launches, forms, chat, phone, listings, AI checkouts, review requests, cancel requests and what AI assistants say about you.',
+        q: 'Which channels does Obsession cover?',
+        a: 'At rivals, Obsession covers emails, texts, the ads they run in public, prices, offers and pages. On your own: ads and landing pages, partner links and codes, launches, forms, chat, phone, listings, AI checkouts, review requests, cancel requests and what AI assistants say about you.',
       },
       {
-        q: 'Does it need access to our own tools?',
-        a: 'Only for jobs on your own side. To check your ads it reads your ad accounts, and to time each review request it reads your orders and tickets. To act, it needs the tool it changes: pausing an ad, a fix, a test order’s refund, or a pause or cancel in your billing. Everything at rivals runs from outside, the way any customer sees them. You connect each tool and can disconnect it at any time, and every change waits for your OK.',
+        q: 'Does Obsession need access to our own tools?',
+        a: 'Obsession needs access only for jobs on your own side. To check your ads it reads your ad accounts, and to time each review request it reads your orders and tickets. To act, it needs the tool it changes: pausing an ad, a fix, a test order’s refund, or a pause or cancel in your billing. Everything at rivals runs from outside, the way any customer sees them. You connect each tool and can disconnect it at any time, and every change waits for your OK.',
       },
       {
         q: 'What’s in the free report?',
-        a: 'Whether a store you run sends a new customer the welcome, the browse and basket reminders and the checkout follow up. Every gap comes with its screenshots and a follow up drafted for you to send. Nothing is bought.',
+        a: 'Obsession’s free report shows whether a store you run sends a new customer the welcome, the browse and basket reminders and the checkout follow up. Every gap comes with its screenshots and a follow up drafted for you to send. Nothing is bought.',
       },
     ],
   },

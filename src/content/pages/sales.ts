@@ -28,11 +28,11 @@ const micro = 'We keep your email to set up your team’s access, and nothing el
 export const page: Page = {
   meta: {
     path: '/sales',
-    title: 'Obsession for sales: AI agents that win and renew accounts',
+    title: 'Obsession for sales: know each account as its customers do',
     description:
       'Declared AI agents become a customer of every account and rival on your list, quote buyers and negotiate renewals inside your limits. Every step signed.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. For sales and customer success, it runs declared AI agents, each with its own inbox, phone number and browser, that become a customer of every account and rival on your list, continuously, quote buyers and negotiate renewals inside your limits, and send back signed proof and the next move for every call, pilot and renewal.',
+      'Obsession gives sales teams declared AI agents that become a customer of every account and rival on your list, so you know each account as its customers do. They quote buyers and negotiate renewals inside your limits, with signed proof for every call.',
     ogImage: '/og/sales.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your team win and renew accounts.',
-    sub: 'Declared AI agents, each with its own inbox, phone number and browser, become a customer of every account and rival on your list, continuously. They quote buyers and negotiate renewals inside your limits, with every step signed.',
+    sub: 'Obsession gives sales teams declared AI agents that become a customer of every account and rival on your list, so you know each account as its customers do. They quote buyers and negotiate renewals inside your limits, with signed proof for every call.',
     capture: {
       kind: 'waitlist',
       source: 'sales-hero',
@@ -391,32 +391,48 @@ export const page: Page = {
     heading: 'Every agent says it’s AI. Every offer stays inside the limits you set.',
     items: [
       {
+        q: 'How do I find a reason to reach out that 50 other reps don’t have?',
+        a: 'Use a fact only a customer of theirs can see: Obsession’s Prospect intelligence signs up at every company on your list and records what it gets, so each first call opens on a dated gap with a proof link.',
+      },
+      {
+        q: 'How do I stop reps getting blindsided on calls by a competitor’s new price or feature?',
+        a: 'Obsession’s Trial teardown and Competitor tracking sign up to every rival as a declared customer and log each price change, offer and trial email the day it lands, so the battlecard is current before the call.',
+      },
+      {
+        q: 'How fast do we actually answer a lead, including after 5pm and at weekends?',
+        a: 'Obsession’s Lead leaks finds out: a declared test lead arrives on your form, chat and phone at the times you pick, evenings and weekends included, and every first reply is timed, with who picked it up.',
+      },
+      {
+        q: 'Are AI SDRs worth it, or do they just send more spam?',
+        a: 'Obsession’s Outbound agent check shows you what yours sends: with your OK, declared test prospects join its lists and flag every claim, discount and send time that breaks your rules, with the message as proof.',
+      },
+      {
         q: 'Will our accounts know it’s an AI agent?',
-        a: 'Yes. Every agent says it’s an AI agent and never pretends to be a person. When it deals with an account for you, on a quote, a renewal or an invoice, or on a journey the account has agreed to, it says it works for you. Everywhere else, it links to useobsession.com/agents and keeps your name out.',
+        a: 'Yes. Every Obsession agent says it’s an AI agent and never pretends to be a person. When it deals with an account for you, on a quote, a renewal or an invoice, or on a journey the account has agreed to, it says it works for you. Everywhere else, it links to useobsession.com/agents and keeps your name out.',
       },
       {
-        q: 'Does it contact anyone at a prospect or rival?',
-        a: 'No. It only uses what works without a person: signing up, newsletters, opting in to texts, public pages, the ads they run in public and the site’s chat bot. If a person picks up the chat, the step ends. Trials need no card, get no reply and close the moment a rep writes or calls.',
+        q: 'Does Obsession contact anyone at a prospect or rival?',
+        a: 'No. Obsession’s agents only use what works without a person: signing up, newsletters, opting in to texts, public pages, the ads they run in public and the site’s chat bot. If a person picks up the chat, the step ends. Trials need no card, get no reply and close the moment a rep writes or calls.',
       },
       {
-        q: 'Does it find contacts and emails?',
-        a: 'No. It finds out what an account does: what its customers get, what its bot says and what changes. Bring your accounts from your CRM or Clay, and each one gets its own agent.',
+        q: 'Does Obsession find contacts and emails?',
+        a: 'No. Obsession finds out what an account does: what its customers get, what its bot says and what changes. Bring your accounts from your CRM or Clay, and each one gets its own agent.',
       },
       {
-        q: 'What can it see inside an account?',
-        a: 'Only what you connect, with consent: your CRM, help desk, call notes and product usage. An account’s own systems and journeys only with its OK, and nothing behind a login it wasn’t given.',
+        q: 'What can Obsession see inside an account?',
+        a: 'Obsession sees only what you connect, with consent: your CRM, help desk, call notes and product usage. An account’s own systems and journeys only with its OK, and nothing behind a login it wasn’t given.',
       },
       {
         q: 'What does signed mean?',
-        a: 'Every step is saved with its screenshot, the raw message and the time, then signed. Share it with a buyer or a CFO, and they can check nothing was changed.',
+        a: 'Every step an Obsession agent takes is saved with its screenshot, the raw message and the time, then signed. Share it with a buyer or a CFO, and they can check nothing was changed.',
       },
       {
-        q: 'Will it message a buyer without our OK?',
-        a: 'Only inside rules you approve once: quotes from your price book and counters inside your limits. Anything outside them, any change to terms and every signature wait for you, and your finance team enters bank details. On anyone else’s store, every checkout stops before payment.',
+        q: 'Will Obsession message a buyer without our OK?',
+        a: 'Only inside rules you approve once: an Obsession agent sends quotes from your price book and counters inside your limits. Anything outside them, any change to terms and every signature wait for you, and your finance team enters bank details. On anyone else’s store, every checkout stops before payment.',
       },
       {
-        q: 'How many accounts can it cover?',
-        a: 'As many as you add. Paste a list, upload a CSV, connect Clay or use the API. Results land in your CRM, Slack, email, a sheet, a PDF or a webhook.',
+        q: 'How many accounts can Obsession cover?',
+        a: 'Obsession covers as many as you add. Paste a list, upload a CSV, connect Clay or use the API. Results land in your CRM, Slack, email, a sheet, a PDF or a webhook.',
       },
     ],
   },

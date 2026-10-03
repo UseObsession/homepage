@@ -1,10 +1,13 @@
 /* The footer's words (components/Footer): the full site map, the red lines in 1 line, and the trust links.
    The recipes come from content/nav, so the menu, the phone sheet and the footer always list the same ones. */
 import { nav, type NavPage } from './nav'
+import { llms } from './site'
 import { ways } from './ways'
 
 export const footer = {
-  tagline: 'The intelligence infrastructure for commercial teams.',
+  /* The 1 sentence (docs/SEARCH.md 2), word for word, as in llms.txt and the Organization's JSON-LD: the footer is on
+     every page, so every page says what Obsession is the same way. */
+  tagline: llms.summary,
   columns: [
     { label: nav.solutions.label, links: nav.solutions.items.map(({ label, to }) => ({ label, to })) },
     {

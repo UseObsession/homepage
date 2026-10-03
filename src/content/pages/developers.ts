@@ -38,7 +38,7 @@ export const page: Page = {
     description:
       '1 API call starts declared AI agents with their own inbox, phone number and browser. They sign up and shop at every company you pass in and sign each step.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. Its API gives developers declared AI agents from 1 API call, each with its own ID, inbox, phone number and browser. They sign up, shop, ask the chat bot and wait at every company the code passes in, continuously, and post each signed step to a webhook.',
+      'The Obsession API starts declared AI agents from 1 call, each with its own inbox, phone number and browser. They sign up, shop and ask the chat bot at every company your code passes in, and post each signed step to your webhook.',
     ogImage: '/og/developers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +49,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your product win and keep users.',
-    sub: 'Declared AI agents, each with its own inbox, phone number and browser, sign up, shop and ask the chat bot at every company you name, continuously, and post what they find to your webhook.',
+    sub: 'The Obsession API starts declared AI agents from 1 call, each with its own inbox, phone number and browser. They sign up, shop and ask the chat bot at every company your code passes in, and post each signed step to your webhook.',
     capture: {
       kind: 'waitlist',
       source: 'developers-hero',
@@ -400,15 +400,27 @@ await obs.missions.create({
     items: [
       {
         q: 'What is the Obsession API?',
-        a: 'The infrastructure behind every recipe, from your own code. 1 API call starts declared AI agents, each with its own ID, inbox, phone number and browser. They sign up, shop, ask the chat bot, chase, check and wait at every company you pass in, continuously, and post each signed step to your webhook.',
+        a: 'The Obsession API is the infrastructure behind every recipe, from your own code. 1 API call starts declared AI agents, each with its own ID, inbox, phone number and browser. They sign up, shop, ask the chat bot, chase, check and wait at every company you pass in, continuously, and post each signed step to your webhook.',
+      },
+      {
+        q: 'How do I give an AI agent its own email address and phone number?',
+        a: 'Call the Obsession API. Each agent it starts comes with its own inbox, phone number and browser, kept working by Obsession, so it can sign up, receive login codes and wait for replies at any company your code passes in.',
+      },
+      {
+        q: 'What happens when my agent hits email codes or a CAPTCHA?',
+        a: 'Codes by email and text arrive in the Obsession agent’s own inbox and number, so sign ups that need them go through. At a CAPTCHA or a block it stops and reports it, and it never goes past one.',
+      },
+      {
+        q: 'Can I see exactly which agent did what?',
+        a: 'Yes. Every step an Obsession agent takes is kept with its agent ID, its time and the screenshot or raw message, then signed, and anyone can verify the signature against our public key.',
       },
       {
         q: 'Which languages can I use?',
-        a: 'A TypeScript SDK, @useobsession/sdk, on a plain HTTP API, so any language can call it.',
+        a: 'Obsession has a TypeScript SDK, @useobsession/sdk, on a plain HTTP API, so any language can call it.',
       },
       {
-        q: 'How is it different from a scraper or a browser agent?',
-        a: 'Most tools read what a company publishes. Obsession goes through it as a customer. A browser agent acts as you, from your own accounts. Obsession’s agents have their own declared ID, inbox and number, go through every company you pass in at once, and keep every message raw, with its headers, a screenshot and a signature.',
+        q: 'How is Obsession different from a scraper or a browser agent?',
+        a: 'Obsession goes through each company as a customer, where most tools read what it publishes. A browser agent acts as you, from your own accounts. Obsession’s agents have their own declared ID, inbox and number, go through every company you pass in at once, and keep every message raw, with its headers, a screenshot and a signature.',
       },
       {
         q: 'Can I run a job that isn’t a recipe?',
@@ -416,23 +428,23 @@ await obs.missions.create({
       },
       {
         q: 'How do my users check a result?',
-        a: 'Every step comes with a receipt: the screenshot, the raw message, the time and a signature anyone can verify against our public key.',
+        a: 'Every step an Obsession agent takes comes with a receipt: the screenshot, the raw message, the time and a signature anyone can verify against our public key.',
       },
       {
         q: 'Do companies know it’s an AI agent?',
-        a: 'Yes. Every agent says it’s AI. On your own journeys, or a customer’s with their OK, it says who it works for. At rivals and prospects it says it’s from Obsession, links to useobsession.com/agents, uses only public sign ups, pages and the site’s chat bot, and never names you or your customer.',
+        a: 'Yes. Every Obsession agent says it’s AI. On your own journeys, or a customer’s with their OK, it says who it works for. At rivals and prospects it says it’s from Obsession, links to useobsession.com/agents, uses only public sign ups, pages and the site’s chat bot, and never names you or your customer.',
       },
       {
-        q: 'What stops an agent doing something it shouldn’t?',
-        a: 'The rules are in the engine, not a setting. An agent never pretends to be a person, sends cold spam or asks staff at a prospect or rival anything: if a person picks up the chat, the step ends. It starts only trials that need no card, never replies in them, and closes them the moment a rep writes or calls. It spends only on a card capped at the budget you set, never pays on anyone else’s store, never signs or accepts terms for you, and never goes behind a login it wasn’t given or gets round a CAPTCHA.',
+        q: 'What stops an Obsession agent doing something it shouldn’t?',
+        a: 'Obsession’s rules are in the engine, not a setting. An agent never pretends to be a person, sends cold spam or asks staff at a prospect or rival anything: if a person picks up the chat, the step ends. It starts only trials that need no card, never replies in them, and closes them the moment a rep writes or calls. It spends only on a card capped at the budget you set, never pays on anyone else’s store, never signs or accepts terms for you, and never goes behind a login it wasn’t given or gets round a CAPTCHA.',
       },
       {
-        q: 'Can my customers use it inside my product?',
-        a: 'Yes. Give each customer its own agents and show every result in your own product. Agents touch a customer’s own store, forms or logins only with that customer’s OK.',
+        q: 'Can my customers use Obsession inside my product?',
+        a: 'Yes. Give each customer its own Obsession agents and show every result in your own product. Agents touch a customer’s own store, forms or logins only with that customer’s OK.',
       },
       {
         q: 'How do I get started?',
-        a: 'Ask for API access and tell us what you’ll build. We set up your keys and your first mission with you.',
+        a: 'Ask for Obsession API access and tell us what you’ll build. We set up your keys and your first mission with you.',
       },
     ],
   },
