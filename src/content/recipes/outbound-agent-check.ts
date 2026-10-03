@@ -29,7 +29,7 @@ export const recipe: Recipe = {
   name: 'Outbound agent check',
   group: 'Check your AI agents',
   line: 'Puts declared test prospects on your AI SDR’s lists, with your OK, and checks every email, text and call it sends them.',
-  gets: 'Every message your AI SDR sends, checked against your rules, with the ones that broke them flagged.',
+  gets: 'Every message your AI SDR sends your test prospects, checked against your rules, with the ones that broke them flagged.',
   kit: [
     'Declared AI test prospects, added by you',
     'Their own inboxes and phone numbers',
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
     path: '/recipes/outbound-agent-check',
     title: 'Outbound agent check: see what your AI SDR sends · Obsession',
     description:
-      'Declared test prospects join your AI SDR’s lists with your OK, read every email, text and call it sends, and check each against your claims and limits.',
+      'Declared test prospects join your AI SDR’s lists with your OK, read every email, text and call sent to them, and check each against your claims and limits.',
     answer:
       'Outbound agent check is an Obsession recipe. With the sender’s OK, declared AI test prospects with their own inboxes and phone numbers join an AI SDR’s lists. They receive what real prospects receive, reply as prospects do, and check every claim, price, discount, send time and opt out against the company’s own rules, signing every message.',
     ogImage: '/og/outbound-agent-check.png',
@@ -55,7 +55,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that read every message your AI SDR sends.',
+    headline: 'AI agents that check what your AI SDR sends prospects.',
     sub: 'Declared test prospects join its lists with your OK, receive what your prospects receive and reply as they do. You see every claim, discount and send time that broke your rules, with the message as proof.',
     screen: 'outcheck',
     capture: {
@@ -180,7 +180,7 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'Your AI SDR sends more than anyone can read. Test prospects read all of it.',
+    heading: 'Your AI SDR sends more than anyone can read. Test prospects read every message it sends them.',
     line: 'Up to 1,040 hours a year back for 1 person who reads what your AI SDR sends 20 hours a week: you read only the flagged messages.',
     cols: ['Today', 'With test prospects'],
     rows: [

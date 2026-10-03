@@ -31,7 +31,7 @@ export const recipe: Recipe = {
   line: 'Checks every resolution your AI support vendor bills you for against what the customer actually got.',
   gets: 'Every billed resolution checked against the real outcome, and a signed dispute pack for the ones that weren’t real.',
   kit: [
-    'A declared AI test customer, named for your company',
+    'A declared AI test customer, working for your company',
     'Its own inbox, test account and test budget',
     'Your helpdesk and payments, connected by you',
     'Your vendor’s billing terms, rule by rule',
@@ -82,7 +82,7 @@ export const recipe: Recipe = {
       { time: '1 Oct 09:00', text: '100 of the resolutions Vendor A billed in September, $0.99 each, taken from the helpdesk export you connected.' },
       { time: '1 Oct 09:06', text: 'H-4471, a broken mug. On 24 Sep at 10:03 the bot told the customer: “Done. $24 is on its way.” Vendor A billed it as resolved.' },
       { time: '1 Oct 09:07', text: 'Your payments, connected with consent: 7 days on, no refund has been issued.' },
-      { time: '2 Oct 10:00', text: 'Test customer 2 says it’s AI and makes the same ask on a test order, from a $40 test budget. No refund is issued.' },
+      { time: '2 Oct 10:00', text: 'Test customer 2 says it’s AI and asks for the same refund on a test order, paid from a $40 test budget on your store. 24 hours on, no refund.' },
       { time: '3 Oct 10:10', text: '19 of the 100 weren’t real: refunds never made and customers who came back. $18.81 of the $99 billed.' },
     ],
     finding: '19 of the 100 resolutions Vendor A billed in September weren’t real: $18.81 of $99, where its own terms bill only what’s solved.',

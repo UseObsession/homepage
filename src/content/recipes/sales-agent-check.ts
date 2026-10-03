@@ -5,7 +5,7 @@ import type { Recipe } from '../types'
    check: a store's own AI sales or shopping agent quoting wrong prices, followed to checkout and stopped before
    payment. Outside AI shoppers buying from the store are AI checkout test's job, and the FAQ says so.
    Screen: salescheck (Your company; "WhatsApp · Site chat · daily"; Mon 07:01; Test customer 2, AI, for Your company:
-   "AI test customer here. How much is the Duo bundle?"; the agent: "I'm the AI assistant. The Duo bundle is €89, in
+   "AI test customer for Your company. Duo bundle price?"; the agent: "I'm the AI assistant. The Duo bundle is €89, in
    stock and arrives in 2 to 3 working days."; "Can I order now?"; checkout €89.00, stopped before payment, budget €0;
    4 checks, 3 pass and 1 needs you: the bundle price at 07:01, said €89 where the price list at 07:00 says €189, "Up to
    27 orders at risk · 27 bundle chats last week"; says it's AI, stock against the stock feed at 07:00 and delivery
@@ -32,7 +32,7 @@ export const recipe: Recipe = {
   line: 'Asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and stops before payment.',
   gets: 'Every price, stock and delivery answer checked against your store, and the right answer drafted wherever it went wrong.',
   kit: [
-    'A declared AI test customer, named for your store',
+    'A declared AI test customer, working for your store',
     'Its own inbox and WhatsApp number',
     'Your price list, stock feed and delivery page, captured each run',
     'Every channel your agent sells on',
@@ -81,7 +81,7 @@ export const recipe: Recipe = {
     kit: ['Agent ID, declared as AI', 'Its own WhatsApp number', 'Your price list and stock feed', 'Budget €0, stops before payment'],
     events: [
       { time: 'Mon 07:00', text: 'Your price list, stock feed and delivery page, captured.' },
-      { time: 'Mon 07:01', text: 'Test customer 2 says it’s an AI test customer and asks on WhatsApp what the Duo bundle costs.' },
+      { time: 'Mon 07:01', text: 'Test customer 2 says it’s an AI test customer for your store and asks on WhatsApp what the Duo bundle costs.' },
       { time: 'Mon 07:01', text: '“I’m the AI assistant. The Duo bundle is €89, in stock and arrives in 2 to 3 working days.”' },
       { time: 'Mon 07:01', text: 'Stock and delivery match your feed and your delivery page. The price doesn’t: your price list says €189.' },
       { time: 'Mon 07:02', text: 'Checkout shows €89.00. Your budget is €0, so it stops before payment.' },
@@ -187,7 +187,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'A wrong price in chat keeps selling at that price until someone notices.',
-    line: 'Up to €2,700 kept on 1 wrong price in a week: 27 chats asked about the Duo bundle, each quoted €100 under your price list, if every chat became an order. A daily check finds it the morning it starts.',
+    line: 'Up to €2,700 kept on 1 wrong price in a week: your agent quotes the €189 Duo bundle at €89, and 27 chats a week ask about it. If every chat orders, each order is €100 short. A daily check finds it the morning it starts.',
     cols: ['Today', 'With a daily check'],
     rows: [
       { label: 'A wrong price', values: ['Found when orders arrive at €89', 'Found the same morning, with the chat'] },
