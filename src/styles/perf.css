@@ -11,3 +11,10 @@
 .s-shots-panel:not(.is-active) .appx {
   content-visibility: hidden;
 }
+
+/* Below the hero, the page's boot script (src/boot.ts) marks every prerendered screen data-far until it comes within a
+   view's height of the reader, and the browser skips it altogether until then, rather than drawing every screen ahead
+   as soon as it is idle (which content-visibility: auto allows). Without the boot script nothing is marked. */
+.il[data-far] .appx {
+  content-visibility: hidden;
+}

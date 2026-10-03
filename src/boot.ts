@@ -10,7 +10,7 @@
      a time while the browser is idle. Until then a screen is skipped by the browser (styles/perf.css), so it never
      shows without them.
    - The app itself (src/main.tsx, the built entry named by ENTRY) loads once the page's main words have landed: after
-     its first frame, and after the hero's entrance has faded in and been painted, so the app's work never holds up the
+     its first frame, and after the hero's words have faded in and been painted, so the app's work never holds up the
      moment the page's main words show. React hydrates in short slices from there. A reader's first touch, click or key
      loads it at once. */
 declare const ENTRY: string
@@ -58,18 +58,24 @@ const idle = (next: () => void) => ('requestIdleCallback' in window ? requestIdl
 const rest = (names: string[]) => {
   if (names.length) idle(() => style(names[0]).then(() => rest(names.slice(1))))
 }
+/* A screen below the hero is skipped altogether until it comes within a view's height (data-far, styles/perf.css): the
+   browser would otherwise draw every screen ahead as soon as it is idle. */
 if ('IntersectionObserver' in window) {
   const near = new IntersectionObserver(
     (entries) => {
       for (const e of entries) {
         if (!e.isIntersecting) continue
         near.unobserve(e.target)
+        e.target.firstElementChild?.removeAttribute('data-far')
         style(e.target.getAttribute('data-screen'))
       }
     },
     { rootMargin: '100% 0px' },
   )
-  document.querySelectorAll('.ilwrap[data-screen]').forEach((s) => near.observe(s))
+  document.querySelectorAll('.ilwrap[data-screen]').forEach((s) => {
+    if (!s.closest('.s-hero')) s.firstElementChild?.setAttribute('data-far', '')
+    near.observe(s)
+  })
 }
 
 let started = false
@@ -96,10 +102,10 @@ const painted = () =>
     po?.observe({ type: 'largest-contentful-paint', buffered: true })
     setTimeout(finish, po ? PAINT_MS : 100)
   })
-/* The hero's entrance (motion.css .ob-anim-hero, .ob-anim-hero-object): the headline, the sub, the form, the proof and
-   the console fade in in turn, and the largest of them is the page's main paint. */
+/* The hero's words (motion.css .ob-anim-hero): the pill, the headline, the sub, the form and the proof enter in turn,
+   and the largest of them is the page's main paint. */
 requestAnimationFrame(() => {
-  const fades = [...document.querySelectorAll('.ob-anim-hero > *, .ob-anim-hero-object')]
+  const fades = [...document.querySelectorAll('.ob-anim-hero > *')]
     .flatMap((el) => el.getAnimations?.() ?? [])
     .filter((a) => (a.effect as KeyframeEffect | null)?.getKeyframes().some((k) => 'opacity' in k))
   if (!fades.length) return setTimeout(start)
