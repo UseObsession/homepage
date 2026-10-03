@@ -131,6 +131,11 @@ function blog(e: Entry): Node {
   }
 }
 
+/* Says what Obsession is as a product, for meaning only. Google's Software App rich result also needs offers.price and a
+   rating or review; the site states no prices and has no reviews, so Search Console lists this item as "invalid" with
+   "Missing field offers". That is expected and only means no rich result (Google's Software App guide, updated 8 Sep
+   2026): never add a price, a free offer, a rating or a review to clear it (docs/REBUILD.md 3: no Obsession prices,
+   nothing invented). */
 function software(e: Entry): Node {
   return {
     '@type': 'SoftwareApplication',
