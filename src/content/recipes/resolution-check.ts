@@ -45,7 +45,7 @@ export const recipe: Recipe = {
     description:
       'Check each resolution your AI support vendor bills against what the customer really got: the refund, the cancellation, the order change. Then challenge it.',
     answer:
-      'Resolution check is an Obsession recipe. With a company’s OK and its vendor’s agreement to the test tags, it checks each resolution an AI support vendor bills against what actually happened, in the helpdesk and payment tools the company connects, while declared AI test customers make the same asks on the live channels. Every resolution that wasn’t real goes into a signed dispute pack.',
+      'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while declared test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     ogImage: '/og/resolution-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that check every resolution your AI vendor bills.',
-    sub: 'Each billed resolution is checked against your payments and helpdesk, and declared test customers make the same asks on your live channels. You see the refunds the bot promised and never made, with the proof to challenge the bill.',
+    sub: 'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while declared test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     screen: 'resolution',
     capture: {
       kind: 'verify',
@@ -195,48 +195,52 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. No test is billed, and nothing goes out without your OK.',
     items: [
       {
+        q: 'Our deflection numbers look great. Are the resolutions real?',
+        a: 'Obsession’s Resolution check finds out: it matches each resolution your AI vendor bills against what happened in your payments and helpdesk, and every one that wasn’t real goes into a signed dispute pack.',
+      },
+      {
         q: 'What counts as not real?',
-        a: 'A refund the bot promised that was never made, a cancellation that never happened, a customer who went quiet or came back within 7 days, or a case a person finished. Your vendor’s own terms decide what it may bill.',
+        a: 'Resolution check counts a refund the bot promised that was never made, a cancellation that never happened, a customer who went quiet or came back within 7 days, or a case a person finished. Your vendor’s own terms decide what it may bill.',
       },
       {
         q: 'Do you need our logins?',
-        a: 'No. Your helpdesk export and payments tool only if you connect them, with your consent. Test customers use your live channels the way your customers do.',
+        a: 'No. Resolution check reads your helpdesk export and payments tool only if you connect them, with your consent. Test customers use your live channels the way your customers do.',
       },
       {
         q: 'Will our vendor bill us for the tests?',
-        a: 'Every test is tagged, and we agree the tags with your vendor before the first one runs, so no test is billed as a resolution.',
+        a: 'Every Resolution check test is tagged, and we agree the tags with your vendor before the first one runs, so no test is billed as a resolution.',
       },
       {
-        q: 'Does it say it’s AI?',
-        a: 'Yes. Every test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        q: 'Does Resolution check say it’s AI?',
+        a: 'Yes. Every Resolution check test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
       },
       {
-        q: 'Will it try to trick our bot?',
-        a: 'No. It makes the asks an ordinary customer makes. No jailbreaks or prompt tricks.',
+        q: 'Will Resolution check try to trick our bot?',
+        a: 'No. Resolution check makes the asks an ordinary customer makes. No jailbreaks or prompt tricks.',
       },
       {
-        q: 'Does it spend our money?',
-        a: 'Only on your own store, inside a test budget you set, so a test customer can ask for a refund on a real order.',
+        q: 'Does Resolution check spend our money?',
+        a: 'Resolution check spends only on your own store, inside a test budget you set, so a test customer can ask for a refund on a real order.',
       },
       {
         q: 'Will our vendor credit what we challenge?',
-        a: 'That’s up to your contract. You get the signed evidence and a dispute pack under your vendor’s own terms, and you decide whether to send it.',
+        a: 'Resolution check gives you the signed evidence and a dispute pack under your vendor’s own terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
       },
       {
-        q: 'Can it check a client’s bot?',
-        a: 'Yes, with the client’s written OK and their vendor’s agreement to the test tags. The record carries your agency’s name.',
+        q: 'Can Resolution check cover a client’s bot?',
+        a: 'Yes, with the client’s written OK and their vendor’s agreement to the test tags: the Resolution check record carries your agency’s name.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to $22,572 a year to challenge on 10,000 billed resolutions a month at $0.99, if 19 in 100 aren’t real, as in this example. It moves with your volume, your price and your real rate.',
+        a: 'Resolution check finds up to $22,572 a year to challenge on 10,000 billed resolutions a month at $0.99, if 19 in 100 aren’t real, as in this example. It moves with your volume, your price and your real rate.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what happened on each case.',
+        a: 'No. A passed Resolution check is dated evidence of what happened on each case.',
       },
       {
         q: 'What’s in the free check?',
-        a: '3 test customers make the asks your bot most often marks as resolved, on 1 channel, tagged so none is billed, and see what really happens. Your report lands within 4 days.',
+        a: 'The free Resolution check has 3 test customers make the asks your bot most often marks as resolved, on 1 channel, tagged so none is billed, and see what really happens. Your report lands within 4 days.',
       },
     ],
   },

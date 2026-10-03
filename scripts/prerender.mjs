@@ -106,6 +106,8 @@ function head(e, { noindex = false } = {}) {
     `<meta name="twitter:image" content="${image}" />`,
     `<meta name="twitter:image:alt" content="${esc(alt)}" />`,
     `<script type="application/ld+json">${jsonLdScript(e)}</script>`,
+    /* llms.txt, announced on every page: AI assistants fetch a file a page links to, and almost never one it doesn't. */
+    `<link rel="alternate" type="text/markdown" href="${SITE}/llms.txt" title="Obsession for AI assistants" />`,
     postEntries.length ? `<link rel="alternate" type="application/rss+xml" title="${esc(blogUi.feedTitle)}" href="${FEED}" />` : '',
   ]
     .filter(Boolean)
@@ -169,6 +171,14 @@ function lastCommit(file) {
     return ''
   }
 }
+/* A shallow clone (a CI build that fetched only the newest commit) has no older commits, so every page would be dated
+   the day of the build and the dates would stop meaning a change. Said, not failed: the build still ships. */
+try {
+  if (execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim() === 'true')
+    warn('sitemap.xml: this is a shallow git clone, so every lastmod is the newest commit\'s date. Build with full history (git fetch --unshallow, then npm run build).')
+} catch {
+  /* Not a git checkout: lastCommit gives no dates either. */
+}
 await writeFile(
   join(dist, 'sitemap.xml'),
   [
@@ -183,20 +193,26 @@ await writeFile(
   ].join('\n'),
 )
 
-/* ---- robots.txt: every search engine and AI crawler is welcome, by name for the ones that look for their own. ---- */
+/* ---- robots.txt: every search engine and AI crawler is welcome, by name for the ones that look for their own. Each
+   search and answer crawler has its own group, so a later change to * can't shut one out by accident; tokens are
+   spelled as each operator documents them (_research/seo/AI-SEARCH-RUBRIC.md A). Brave Search has no token: it
+   crawls what Googlebot may. The training crawlers are named too, allowed (docs/SEARCH.md 7: Training Allow). ---- */
 const CRAWLERS = [
+  /* Search and answer */
   'Googlebot',
-  'Bingbot',
-  'Google-Extended',
-  'GPTBot',
+  'bingbot',
   'OAI-SearchBot',
   'ChatGPT-User',
-  'ClaudeBot',
   'Claude-SearchBot',
   'Claude-User',
   'PerplexityBot',
   'Perplexity-User',
   'Applebot',
+  'DuckAssistBot',
+  /* Training */
+  'GPTBot',
+  'ClaudeBot',
+  'Google-Extended',
   'Applebot-Extended',
   'CCBot',
 ]
@@ -215,9 +231,21 @@ await writeFile(
   ].join('\n'),
 )
 
-/* ---- llms.txt (llmstxt.org): what Obsession is, then every page with the 1 or 2 sentences it answers. ---- */
+/* ---- llms.txt (llmstxt.org): what Obsession is, then every page with the 1 or 2 sentences it answers. A section with
+   no pages is left out (the blog's, while every post is archived), so the file never has an empty heading. ---- */
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
-const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind))
+const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
+const llmsSections = [
+  ['Pages', ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources')],
+  ['Recipes', ofKind('recipe')],
+  ['Use cases', ofKind('use-cases', 'use-case')],
+  ['Blog', ofKind('blog', 'post')],
+  ['Trust', ofKind('agents', 'privacy')],
+  ['Optional', [`- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`]],
+]
+/* The intro names every recipe, so it can't drift from the recipes the site has. */
+for (const e of entries.filter((x) => x.kind === 'recipe'))
+  if (!llms.intro.toLowerCase().includes(e.name.toLowerCase())) fail(`llms.txt: the intro (llms.intro in content/site.ts) doesn't name the recipe ${e.name}.`)
 await writeFile(
   join(dist, 'llms.txt'),
   [
@@ -227,30 +255,7 @@ await writeFile(
     '',
     llms.intro,
     '',
-    '## Pages',
-    '',
-    ...ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources').map(link),
-    '',
-    '## Recipes',
-    '',
-    ...ofKind('recipe').map(link),
-    '',
-    '## Use cases',
-    '',
-    ...ofKind('use-cases', 'use-case').map(link),
-    '',
-    '## Blog',
-    '',
-    ...ofKind('blog', 'post').map(link),
-    '',
-    '## Trust',
-    '',
-    ...ofKind('agents', 'privacy').map(link),
-    '',
-    '## Optional',
-    '',
-    `- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`,
-    '',
+    ...llmsSections.filter(([, links]) => links.length).flatMap(([heading, links]) => [`## ${heading}`, '', ...links, '']),
   ].join('\n'),
 )
 
@@ -393,8 +398,15 @@ const full = [
   `The words on every page of ${SITE}, page by page. The short guide is ${SITE}/llms.txt.`,
   '',
 ]
+/* Every page's answer (meta.answer, the line llms.txt and the JSON-LD give for it) opens with words the page shows: its
+   first sentence must be in the page's own text, so an assistant that quotes it quotes the page. The privacy notice
+   opens with the notice instead. */
+const letters = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
+const firstSentence = (s) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 for (const { e, app } of rendered) {
   const text = textOf(app)
+  if (e.kind !== 'privacy' && !letters(text).includes(letters(firstSentence(e.meta.answer))))
+    fail(`${e.meta.path}: the first sentence of meta.answer isn't on the page (make the hero's sub open with it).`)
   const sections = text.split('\n').filter((l) => l.startsWith('## ')).length
   const h2s = visibleH2s(app)
   if (sections < h2s) fail(`${e.meta.path}: llms-full.txt carries ${sections} of the page's ${h2s} sections (textOf in scripts/prerender.mjs).`)

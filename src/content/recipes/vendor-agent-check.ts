@@ -41,11 +41,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/vendor-agent-check',
-    title: 'Vendor agent check: test AI vendors side by side · Obsession',
+    title: 'Vendor agent check: compare AI agents on your own cases',
     description:
       'Before you sign, declared AI test customers run your real cases on each shortlisted vendor’s AI agent, with their OK, and compare the answers side by side.',
     answer:
-      'Vendor agent check is an Obsession recipe. Before a company signs, and with each vendor’s written agreement, declared AI test customers run the same cases from the company’s own tickets on every shortlisted vendor’s AI agent, set up on its policies and on the channels it will run. They score every answer, time every handoff and sign a side by side report.',
+      'Vendor agent check compares AI agents on your own cases before you sign: with each vendor’s OK, declared test customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose on signed evidence, not a demo.',
     ogImage: '/og/vendor-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that test AI vendors on your cases before you sign.',
-    sub: 'With each vendor’s OK, declared test customers run your hardest real cases on every shortlisted agent, set up on your policies, and time every handoff. You choose on signed evidence from your own cases, not a demo.',
+    sub: 'Vendor agent check compares AI agents on your own cases before you sign: with each vendor’s OK, declared test customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose on signed evidence, not a demo.',
     screen: 'vendorcheck',
     capture: {
       kind: 'verify',
@@ -198,48 +198,52 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. Every vendor agrees first.',
     items: [
       {
+        q: 'How do we evaluate an AI customer service agent before we sign?',
+        a: 'Run your own cases on it: with each vendor’s OK, Obsession’s Vendor agent check puts your hardest real cases to every shortlisted agent, set up on your policies, and scores every answer side by side.',
+      },
+      {
         q: 'Do the vendors have to agree?',
-        a: 'Yes, in writing, before a single case runs. No agreement, no test.',
+        a: 'Yes. Vendor agent check needs each vendor’s agreement in writing before a single case runs. No agreement, no test.',
       },
       {
         q: 'Where do the cases come from?',
-        a: 'Your own tickets: the questions your customers really ask, your hardest included, each with the policy that decides it. Each test customer asks a case as its own question, so no real customer’s details reach a vendor.',
+        a: 'Vendor agent check takes them from your own tickets: the questions your customers really ask, your hardest included, each with the policy that decides it. Each test customer asks a case as its own question, so no real customer’s details reach a vendor.',
       },
       {
-        q: 'Does it say it’s AI?',
-        a: 'Yes. Every test customer says it’s an AI test customer working for your company, so every vendor can see it’s a test.',
+        q: 'Does Vendor agent check say it’s AI?',
+        a: 'Yes. Every Vendor agent check test customer says it’s an AI test customer working for your company, so every vendor can see it’s a test.',
       },
       {
-        q: 'Will it try to trick the agents?',
-        a: 'No. It asks what an ordinary customer asks. No jailbreaks, prompt tricks or load tests.',
+        q: 'Will Vendor agent check try to trick the agents?',
+        a: 'No. Vendor agent check asks what an ordinary customer asks. No jailbreaks, prompt tricks or load tests.',
       },
       {
         q: 'Will a vendor bill us for the tests?',
-        a: 'Every test is tagged on every vendor, and we agree that with each one before the first case runs.',
+        a: 'Every Vendor agent check test is tagged on every vendor, and we agree that with each one before the first case runs.',
       },
       {
         q: 'Will a vendor see how the others did?',
-        a: 'No. The report is for your team alone, and we never publish or rank anyone’s agent in public.',
+        a: 'No. The Vendor agent check report is for your team alone, and we never publish or rank anyone’s agent in public.',
       },
       {
         q: 'Can we include the agent we run today?',
-        a: 'Yes. The agent you run today, or one you build in house, runs the same cases, so every vendor has a bar to clear.',
+        a: 'Yes. In Vendor agent check, the agent you run today, or one you build in house, runs the same cases, so every vendor has a bar to clear.',
       },
       {
         q: 'What happens after we sign?',
-        a: 'The same cases run monthly on the agent you chose, and you hear which ones broke or recovered.',
+        a: 'Vendor agent check runs the same cases monthly on the agent you chose, and you hear which ones broke or recovered.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 76 days sooner to a decision: 2 weeks of side by side checks on your own cases, in place of a 90 day pilot on live customers. And none of your customers meets an agent you then turn down.',
+        a: 'Vendor agent check gets you to a decision up to 76 days sooner: 2 weeks of side by side checks on your own cases, in place of a 90 day pilot on live customers. And none of your customers meets an agent you then turn down.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what each agent did on each case.',
+        a: 'No. A passed Vendor agent check is dated evidence of what each agent did on each case.',
       },
       {
         q: 'What’s in the free check?',
-        a: 'Start with the AI agent you run today, or a vendor’s you’re trialling with their OK. 3 test customers use it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Vendor agent check on the AI agent you run today, or a vendor’s you’re trialling with their OK: 3 test customers use it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },

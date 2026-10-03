@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     description:
       'Declared AI test customers ring your AI receptionist daily, book a real slot, ask a price and a person, and check each answer against your price list.',
     answer:
-      'Voice agent check is an Obsession recipe. With the owner’s written OK, declared AI test customers ring a business’s AI receptionist on its own number every morning, book and cancel a real slot, ask prices and ask for a person, and check every answer against the business’s own price list and hours. Each says at the start that it’s AI and that the call is recorded, and every call is signed.',
+      'Voice agent check calls your AI receptionist every morning: declared test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     ogImage: '/og/voice-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -57,7 +57,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that call your AI receptionist every morning.',
-    sub: 'Declared test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
+    sub: 'Voice agent check calls your AI receptionist every morning: declared test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     screen: 'callcheck',
     capture: {
       kind: 'verify',
@@ -203,52 +203,56 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI. Only numbers you own or authorise.',
     items: [
       {
+        q: 'How do we test an AI receptionist before it goes live?',
+        a: 'Obsession’s Voice agent check rings its number: declared test customers book and cancel a real slot, ask a price and ask for a person, and check every answer against your price list and hours.',
+      },
+      {
         q: 'Does the test customer say it’s AI?',
-        a: 'Yes. At the start of every call it says it’s an AI test customer, who it works for and that the call is recorded.',
+        a: 'Yes. At the start of every call, the Voice agent check test customer says it’s an AI test customer, who it works for and that the call is recorded.',
       },
       {
-        q: 'Which numbers does it call?',
-        a: 'Only your own number, or a client’s with their written OK. It never calls anyone else.',
+        q: 'Which numbers does Voice agent check call?',
+        a: 'Voice agent check calls only your own number, or a client’s with their written OK. It never calls anyone else.',
       },
       {
-        q: 'Does it book real appointments?',
-        a: 'Yes, 1 real slot per call, so you know a booking lands in your calendar. It’s cancelled after the call, your usual way.',
+        q: 'Does Voice agent check book real appointments?',
+        a: 'Yes. Voice agent check books 1 real slot per call, so you know a booking lands in your calendar. It’s cancelled after the call, your usual way.',
       },
       {
-        q: 'Will it try to trick our receptionist?',
-        a: 'No. It asks what a new customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
+        q: 'Will Voice agent check try to trick our receptionist?',
+        a: 'No. Voice agent check asks what a new customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
       },
       {
         q: 'Are the calls recorded?',
-        a: 'Yes, and each test customer says so at the start. Recordings are kept as your evidence and never used for training.',
+        a: 'Yes, and each Voice agent check test customer says so at the start. Recordings are kept as your evidence and never used for training.',
       },
       {
         q: 'Whose voices do the test customers use?',
-        a: 'Different voices and accents, each used with consent, so you hear whether your receptionist understands every caller.',
+        a: 'Voice agent check uses different voices and accents, each used with consent, so you hear whether your receptionist understands every caller.',
       },
       {
         q: 'Will test calls get in the way of real callers?',
-        a: 'No. 3 calls a morning, about what a few new customers make. Never a load test.',
+        a: 'No. Voice agent check makes 3 calls a morning, about what a few new customers make. Never a load test.',
       },
       {
-        q: 'Which receptionists can it check?',
-        a: 'Any AI that answers your phone, from a vendor or built in house: dental practices, clinics, salons, trades and restaurants taking orders.',
+        q: 'Which receptionists can Voice agent check cover?',
+        a: 'Voice agent check covers any AI that answers your phone, from a vendor or built in house: dental practices, clinics, salons, trades and restaurants taking orders.',
       },
       {
-        q: 'Can an agency run it for clients?',
-        a: 'Yes, with each client’s written OK. The report carries your agency’s name and lands by 09:00, so your client sees what their receptionist did that morning.',
+        q: 'Can an agency run Voice agent check for clients?',
+        a: 'Yes, with each client’s written OK: the Voice agent check report carries your agency’s name and lands by 09:00, so your client sees what their receptionist did that morning.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to £36,000 a year of bookings kept, for a clinic that loses a £3,000 case a month to a call that goes wrong. The morning check finds the cause the day it starts.',
+        a: 'Voice agent check keeps up to £36,000 a year of bookings, for a clinic that loses a £3,000 case a month to a call that goes wrong. The morning check finds the cause the day it starts.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what your receptionist said and did on each call.',
+        a: 'No. A passed Voice agent check is dated evidence of what your receptionist said and did on each call.',
       },
       {
         q: 'What’s in the free check?',
-        a: 'Name a receptionist you run, or a client’s with their OK. 3 test customers ring 1 number, and your report lands within 4 days.',
+        a: 'The free check is a Voice agent check on a receptionist you run, or a client’s with their OK: 3 test customers ring 1 number, and your report lands within 4 days.',
       },
     ],
   },

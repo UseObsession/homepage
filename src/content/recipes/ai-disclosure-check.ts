@@ -45,7 +45,7 @@ export const recipe: Recipe = {
     description:
       'Every morning a declared test customer checks your AI says it’s AI on chat, phone, email and text, and gets a person when asked. A signed proof, every day.',
     answer:
-      'AI disclosure check is an Obsession recipe. With the owner’s OK, a declared AI test customer contacts a company’s AI agents on chat, phone, email and text every day, checks each one says it’s AI in its first message, answers “Am I talking to a person?” truthfully and reaches a person when asked, and files a signed, dated proof of every check.',
+      'AI disclosure check tests whether your AI says it’s AI: each morning a declared test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     ogImage: '/og/ai-disclosure-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that test whether your AI says it’s AI.',
-    sub: 'Each morning a declared test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
+    sub: 'AI disclosure check tests whether your AI says it’s AI: each morning a declared test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     screen: 'disclosure',
     capture: {
       kind: 'verify',
@@ -201,44 +201,48 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI, and checks that yours does too.',
     items: [
       {
+        q: 'How do we test whether our chatbot says it’s AI?',
+        a: 'Obsession’s AI disclosure check asks it: each morning a declared test customer starts a conversation on chat, phone, email and text, checks the first message says it’s AI, asks “Am I talking to a person?” and times the wait for one.',
+      },
+      {
         q: 'Do we have to say our AI is AI?',
-        a: 'Across the EU and in several US states, yes: at first contact, and truthfully whenever a customer asks. The rules differ by country and state, so the checks follow the ones where you sell. They’re checks, not legal advice, and your lawyer decides what applies to you.',
+        a: 'Across the EU and in several US states, yes: at first contact, and truthfully whenever a customer asks, which is what AI disclosure check tests. The rules differ by country and state, so its checks follow the ones where you sell. They’re checks, not legal advice, and your lawyer decides what applies to you.',
       },
       {
         q: 'What counts as saying it’s AI?',
-        a: 'A plain notice in the first message, like “I’m an AI assistant for Your company”, and a truthful “No, I’m an AI” whenever a customer asks. On calls, said at the start and again on long calls.',
+        a: 'AI disclosure check looks for a plain notice in the first message, like “I’m an AI assistant for Your company”, and a truthful “No, I’m an AI” whenever a customer asks. On calls, said at the start and again on long calls.',
       },
       {
-        q: 'Which channels can it check?',
-        a: 'Site chat, phone, email, text and your portal: wherever your AI agents talk to customers.',
+        q: 'Which channels can AI disclosure check cover?',
+        a: 'AI disclosure check covers site chat, phone, email, text and your portal: wherever your AI agents talk to customers.',
       },
       {
         q: 'Does the test customer say it’s AI?',
-        a: 'Yes. It says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. The AI disclosure check test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. Test calls go only to numbers you own or authorise, and the test customer says at the start that it’s AI and that the call is recorded. No recording is used for training.',
+        a: 'Yes. AI disclosure check calls only numbers you own or authorise, and the test customer says at the start that it’s AI and that the call is recorded. No recording is used for training.',
       },
       {
-        q: 'Will it skew our wait times?',
-        a: 'No. It runs at the volume of 1 customer, so the wait it measures is the wait your customers get.',
+        q: 'Will AI disclosure check skew our wait times?',
+        a: 'No. AI disclosure check runs at the volume of 1 customer, so the wait it measures is the wait your customers get.',
       },
       {
-        q: 'Can it check a client’s agents?',
-        a: 'Yes, with the client’s written OK. The record carries your agency’s name, and the client can check every proof.',
+        q: 'Can AI disclosure check cover a client’s agents?',
+        a: 'Yes, with the client’s written OK: the AI disclosure check record carries your agency’s name, and the client can check every proof.',
       },
       {
         q: 'What’s it worth?',
-        a: '4 channels checked every morning is 1,460 signed proofs a year, each with the first line, the answer when asked and the wait for a person. When legal, a client or your insurer asks about any day, its proof is already filed.',
+        a: 'AI disclosure check on 4 channels every morning is 1,460 signed proofs a year, each with the first line, the answer when asked and the wait for a person. When legal, a client or your insurer asks about any day, its proof is already filed.',
       },
       {
         q: 'Is a passed check a guarantee?',
-        a: 'No. It’s dated evidence of what your AI said on each check.',
+        a: 'No. A passed AI disclosure check is dated evidence of what your AI said on each check.',
       },
       {
         q: 'What’s in the free check?',
-        a: '3 test customers use 1 channel of your AI agent, or a client’s with their OK, ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
+        a: 'The free AI disclosure check sends 3 test customers to 1 channel of your AI agent, or a client’s with their OK, to ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
       },
     ],
   },

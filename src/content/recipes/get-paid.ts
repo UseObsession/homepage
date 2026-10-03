@@ -49,7 +49,7 @@ export const recipe: Recipe = {
     description:
       'The day a customer signs, a declared AI agent sets you up in their supplier portal, then chases every overdue invoice by email and phone until it’s paid.',
     answer:
-      'Get paid is an Obsession recipe. On the day a customer signs, a declared AI agent registers you in their supplier portal, gets the vendor ID and PO, and submits the first invoice. It chases every overdue invoice from its own billing inbox and phone line until it’s paid. Portal terms and anything firmer wait for your OK, and your finance team enters bank details.',
+      'Get paid chases every invoice from signed contract to cash: the day a customer signs, a declared AI agent sets you up in their supplier portal, then chases every invoice by email and phone until it’s paid.',
     ogImage: '/og/get-paid.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -60,7 +60,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that chase every invoice, from signed contract to cash.',
-    sub: 'The day a customer signs, a declared AI agent sets you up in their supplier portal. Then it chases every invoice by email and phone until it’s paid.',
+    sub: 'Get paid chases every invoice from signed contract to cash: the day a customer signs, a declared AI agent sets you up in their supplier portal, then chases every invoice by email and phone until it’s paid.',
     screen: 'invoices',
     capture: {
       kind: 'waitlist',
@@ -193,28 +193,36 @@ export const recipe: Recipe = {
   faq: {
     heading: 'Every chase polite, declared, and stopped the day you’re paid.',
     items: [
-      { q: 'Who does it chase?', a: 'Only your real customers, from the invoices in your accounting tool.' },
       {
-        q: 'Can it get us set up in a customer’s supplier portal?',
-        a: 'Yes. From the customer’s invite, with your company pack, as a named user where the portal allows it. Where only an employee can submit, it prepares everything and a person at your company clicks submit.',
+        q: 'How do I get customers to pay overdue invoices without chasing them myself?',
+        a: 'Obsession’s Get paid chases for you: a declared AI agent emails and calls about every overdue invoice from its own billing inbox and phone line until it’s paid, and stops the day the money arrives.',
+      },
+      {
+        q: 'What’s it worth?',
+        a: 'Get paid gives you up to 2 hours a week back, if you spend 2 hours a week chasing invoices.',
+      },
+      { q: 'Who does the Get paid agent chase?', a: 'Get paid chases only your real customers, from the invoices in your accounting tool.' },
+      {
+        q: 'Can the Get paid agent set us up in a customer’s supplier portal?',
+        a: 'Yes. Get paid works from the customer’s invite, with your company pack, as a named user where the portal allows it. Where only an employee can submit, it prepares everything and a person at your company clicks submit.',
       },
       {
         q: 'Will our customers know it’s AI?',
-        a: 'Yes. Every email and call says it’s an AI agent for your company, from its own billing inbox and line.',
+        a: 'Yes. Every Get paid email and call says it’s an AI agent for your company, from its own billing inbox and line.',
       },
       {
-        q: 'Will it upset our customers?',
-        a: 'It stays polite, uses your words and your rhythm, and stops the moment it’s asked. Every email and call is on record, so you see exactly what was said.',
+        q: 'Will the Get paid agent upset our customers?',
+        a: 'Get paid stays polite, uses your words and your rhythm, and stops the moment it’s asked. Every email and call is on record, so you see exactly what was said.',
       },
       {
         q: 'What if a customer disputes an invoice?',
-        a: 'The chase on that invoice pauses, and the dispute comes to you with the history and a drafted reply.',
+        a: 'Get paid pauses the chase on that invoice, and the dispute comes to you with the history and a drafted reply.',
       },
-      { q: 'Does it stop when they pay?', a: 'The same day. Each payment is matched to its invoice, and the chasing ends.' },
-      { q: 'Can it get firmer?', a: 'Only after your OK. Final notices, late fees and collections never go out on their own.' },
+      { q: 'Does the Get paid agent stop when they pay?', a: 'Yes, the same day: Get paid matches each payment to its invoice, and the chasing ends.' },
+      { q: 'Can the Get paid agent get firmer?', a: 'Only after your OK. Get paid never sends a final notice, a late fee or a collections step on its own.' },
       {
-        q: 'Does it touch bank details or take payments?',
-        a: 'Never. Your finance team enters bank details, and every new accounts contact gets a named person at your company to call back. The agent sends your own payment link and never asks for card or bank details.',
+        q: 'Does the Get paid agent touch bank details or take payments?',
+        a: 'Never. With Get paid, your finance team enters bank details, and every new accounts contact gets a named person at your company to call back. The agent sends your own payment link and never asks for card or bank details.',
       },
     ],
   },

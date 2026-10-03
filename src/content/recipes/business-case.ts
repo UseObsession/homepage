@@ -38,7 +38,7 @@ export const recipe: Recipe = {
     description:
       'AI agents build each renewal case from the usage and tickets you connect, in the account’s own costs, and sign every number back to the record behind it.',
     answer:
-      'Business case is an Obsession recipe. Declared AI agents build a renewal case from the usage and tickets an account shares through tools you connect, price it in the account’s own costs and sign every number back to its source. After your OK, they follow up in your rep’s thread from their own address.',
+      'Business case proves your value before every renewal: AI agents build each case from the usage and tickets you connect, in the account’s own costs, with every number signed to its source. After your OK, they answer finance as declared AI agents.',
     ogImage: '/og/business-case.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +49,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that prove your value before every renewal.',
-    sub: 'They build each case from the usage and tickets you connect, in the account’s own costs, with every number signed to its source. After your OK, they answer finance as declared AI agents.',
+    sub: 'Business case proves your value before every renewal: AI agents build each case from the usage and tickets you connect, in the account’s own costs, with every number signed to its source. After your OK, they answer finance as declared AI agents.',
     screen: 'case',
     capture: {
       kind: 'waitlist',
@@ -158,26 +158,34 @@ export const recipe: Recipe = {
     heading: 'Their numbers, their consent, and a source behind every figure.',
     items: [
       {
-        q: 'Whose data does it use?',
-        a: 'Only what the account shares through the tools you connect, with their consent, priced in their own costs.',
+        q: 'How do I prove the value we delivered before a renewal?',
+        a: 'Obsession’s Business case builds it from the usage and tickets the account shares through tools you connect, prices it in the account’s own costs, and links every number to the record it came from, so their finance team can check it.',
+      },
+      {
+        q: 'What’s it worth?',
+        a: 'Business case keeps up to $48,000 a year, if 1 renewal worth $48,000 a year closes on a case their finance team could check.',
+      },
+      {
+        q: 'Whose data does Business case use?',
+        a: 'Business case uses only what the account shares through the tools you connect, with their consent, priced in their own costs.',
       },
       {
         q: 'Can their finance team check it?',
-        a: 'Yes. Every number links to the record it came from and is signed, so they can check it without asking your rep.',
+        a: 'Yes. Every number in a Business case links to the record it came from and is signed, so they can check it without asking your rep.',
       },
       {
-        q: 'Does it email our customer?',
-        a: 'Only in your rep’s own thread, from its own address, as a declared AI agent, after your OK. It never writes as your rep.',
+        q: 'Does Business case email our customer?',
+        a: 'Business case emails only in your rep’s own thread, from its own address, as a declared AI agent, after your OK. It never writes as your rep.',
       },
       {
         q: 'What if the numbers are weak?',
-        a: 'You see them first. The case shows the numbers as they stand, so you know which accounts need a save plan instead of an upsell.',
+        a: 'You see them first: Business case shows the numbers as they stand, so you know which accounts need a save plan instead of an upsell.',
       },
       {
-        q: 'When should we start it?',
-        a: 'At kickoff, so the case builds week by week until renewal. 90 days out works too.',
+        q: 'When should we start a Business case?',
+        a: 'Start Business case at kickoff, so the case builds week by week until renewal. 90 days out works too.',
       },
-      { q: 'How many renewals can it cover?', a: 'As many as you add. Each case refreshes every Monday until it renews.' },
+      { q: 'How many renewals can Business case cover?', a: 'Business case covers as many as you add. Each case refreshes every Monday until it renews.' },
     ],
   },
 

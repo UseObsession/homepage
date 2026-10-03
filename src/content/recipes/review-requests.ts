@@ -53,7 +53,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent asks every real customer for a review at the right moment, with the same words for everyone, from your own address after your OK.',
     answer:
-      'Review requests is an Obsession recipe. A declared AI agent asks every real customer for a review at the right moment, such as a delivery, a solved ticket or the end of onboarding. Everyone gets the same words, from your own address, once you approve the ask, and every answer is kept as the customer gave it.',
+      'Review requests asks every customer for a review the same way: a declared AI agent writes to each real customer the day their order lands, their ticket is solved or their onboarding ends, with the words you approved, from your own address.',
     ogImage: '/og/review-requests.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask every customer for a review, the same way.',
-    sub: 'A declared AI agent asks every real customer the day their order lands, their ticket is solved or their onboarding ends. Everyone gets the words you approved, from your own address, whatever they might say.',
+    sub: 'Review requests asks every customer for a review the same way: a declared AI agent writes to each real customer the day their order lands, their ticket is solved or their onboarding ends, with the words you approved, from your own address.',
     screen: 'reviews',
     capture: {
       kind: 'waitlist',
@@ -200,40 +200,44 @@ export const recipe: Recipe = {
     heading: 'Every customer asked the same way. Nothing sent without your OK.',
     items: [
       {
-        q: 'Does it only ask happy customers?',
-        a: 'No. Every real customer gets the same ask and the same review link at their moment, whatever they might say. It never sorts customers by mood, score or past complaints.',
+        q: 'How do I ask every customer for a review at the right time?',
+        a: 'Review requests asks at each customer’s moment: the day their order lands, their ticket is solved or their onboarding ends, a declared AI agent sends the words you approved from your own address, the same ask for every customer, happy or not.',
+      },
+      {
+        q: 'Does Review requests only ask happy customers?',
+        a: 'No. Review requests gives every real customer the same ask and the same review link at their moment, whatever they might say. It never sorts customers by mood, score or past complaints.',
       },
       {
         q: 'What happens with a bad review?',
-        a: 'It stands as the customer wrote it, and their reply reaches your team the same day. The agent never asks anyone to change or remove a review.',
+        a: 'Review requests leaves it as the customer wrote it, and their reply reaches your team the same day. The agent never asks anyone to change or remove a review.',
       },
       {
-        q: 'Does it write or post reviews?',
-        a: 'Never. Reviews come from real customers, in their own words. It doesn’t suggest what to say or post for anyone.',
+        q: 'Does Review requests write or post reviews?',
+        a: 'Never. Review requests only asks: reviews come from real customers, in their own words. It doesn’t suggest what to say or post for anyone.',
       },
       {
-        q: 'Can it offer a discount for a review?',
-        a: 'No. Nothing is offered for a review, and the ask never hints at a reward.',
+        q: 'Can Review requests offer a discount for a review?',
+        a: 'No. Review requests offers nothing for a review, and the ask never hints at a reward.',
       },
       {
         q: 'Who do customers hear from?',
-        a: 'Your company, from your own address. Each ask says your AI agent sent it, and any reply that needs a person reaches your team.',
+        a: 'Your company, from your own address: each Review requests ask says your AI agent sent it, and any reply that needs a person reaches your team.',
       },
       {
-        q: 'Does it send without asking us?',
-        a: 'You approve the ask once: the words, the review link, who gets them and the address. Any change to it, and every reply to a customer, waits for your OK.',
+        q: 'Does Review requests send without asking us?',
+        a: 'No. You approve the Review requests ask once: the words, the review link, who gets them and the address. Any change to it, and every reply to a customer, waits for your OK.',
       },
       {
         q: 'How often is a customer asked?',
-        a: 'Once for each moment, and never twice in 90 days unless you set another gap. Anyone who says stop is never asked again.',
+        a: 'Review requests asks once for each moment, and never twice in 90 days unless you set another gap. Anyone who says stop is never asked again.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 1 review for every 3 customers asked: in the example, 14 of the 42 customers asked in October left one (14 ÷ 42), from 2 stars to 5.',
+        a: 'Review requests is worth up to 1 review for every 3 customers asked: in the example, 14 of the 42 customers asked in October left one (14 ÷ 42), from 2 stars to 5.',
       },
       {
         q: 'Where do reference calls and case studies come from?',
-        a: 'From customers who offer them in a reply. The agent drafts the booking, or the story in their own words, for your OK, and a case study is used only once the customer approves it.',
+        a: 'From customers who offer them in a reply to Review requests. The agent drafts the booking, or the story in their own words, for your OK, and a case study is used only once the customer approves it.',
       },
     ],
   },

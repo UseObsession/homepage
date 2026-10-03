@@ -67,9 +67,11 @@ type Mode = 'hold' | 'erase' | 'swap' | 'type' | 'rest'
      screen, it holds the first phrase and goes on from there, so nothing already read disappears.
    - It waits while off screen or in a hidden tab, and goes on where it stopped.
    - Every phrase sits in 1 grid cell, unseen, so the heading is always as tall as its tallest phrase and nothing
-     under it moves; a phone that wraps the longest phrase on 2 lines keeps both from the start. */
+     under it moves; a phone that wraps the longest phrase on 2 lines keeps both from the start.
+   - The h2 holds only the first phrase (visually hidden); the sizers and the typed line are aria-hidden siblings
+     beside it, so a crawler that reads the HTML without ARIA sees 1 heading saying it once, not 4 copies. */
 export function TypedHeading({ phrases, id, className = '' }: { phrases: string[]; id: string; className?: string }) {
-  const ref = useRef<HTMLHeadingElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const [i, setI] = useState(0)
   const [n, setN] = useState(phrases[0]?.length ?? 0)
   const [mode, setMode] = useState<Mode>(phrases.length > 1 ? 'hold' : 'rest')
@@ -146,7 +148,7 @@ export function TypedHeading({ phrases, id, className = '' }: { phrases: string[
   const typing = on && (mode === 'type' || mode === 'erase') && n > 0
 
   return (
-    <h2 className={'s-typed-h ' + className} id={id} ref={ref}>
+    <div className={'s-typed-h ' + className} ref={ref}>
       {/* Every phrase, unseen, in the same cell: the heading is as tall as the tallest one. */}
       {phrases.map((p, k) => (
         <span className="s-typed-size" aria-hidden="true" key={k}>
@@ -156,7 +158,9 @@ export function TypedHeading({ phrases, id, className = '' }: { phrases: string[
       <span className={'s-typed-line' + (mode === 'swap' ? ' is-swap' : '')} aria-hidden="true">
         <TypedText text={phrase} n={n} caret typing={typing} />
       </span>
-      <span className="ob-sr">{phrases[0]}</span>
-    </h2>
+      <h2 className="ob-sr" id={id}>
+        {phrases[0]}
+      </h2>
+    </div>
   )
 }

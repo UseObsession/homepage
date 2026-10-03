@@ -50,7 +50,7 @@ export const recipe: Recipe = {
     description:
       'Each month a declared AI agent finds the next service each client needs in your own checks, and drafts the proposal with its price and proof for your OK.',
     answer:
-      'Client upsells is an Obsession recipe for agencies. Each month a declared AI agent reads the checks you run for every client, with their OK, finds the next service each one needs and drafts the proposal with your price and the signed proof. It goes from your own thread after your OK, and so does every follow up.',
+      'Client upsells finds the next service each agency client needs: each month a declared AI agent reads the checks you run on every client with their OK, finds what each one is missing, and drafts the proposal with your price and the signed proof for your OK.',
     ogImage: '/og/client-upsells.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -61,7 +61,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that find the next service every client needs.',
-    sub: 'Each month a declared AI agent reads every check you run on your clients with their OK, from mystery shops to AI checkout tests, and finds what each one is missing. It drafts the proposal with your price and the signed proof, and it goes from your own thread after your OK.',
+    sub: 'Client upsells finds the next service each agency client needs: each month a declared AI agent reads the checks you run on every client with their OK, finds what each one is missing, and drafts the proposal with your price and the signed proof for your OK.',
     screen: 'upsells',
     capture: {
       kind: 'waitlist',
@@ -196,40 +196,44 @@ export const recipe: Recipe = {
     heading: 'Your clients only. Nothing goes out without your OK.',
     items: [
       {
-        q: 'Which clients does it look at?',
-        a: 'Only your own clients, and only through the checks each one agreed to. It never contacts anyone at a client to find a gap.',
+        q: 'How do I find upsells for my agency clients without manual audits?',
+        a: 'Obsession’s Client upsells reads the checks you already run on each client with their OK, matches every gap to a service you sell, and drafts the proposal with your price and the signed proof for your OK.',
+      },
+      {
+        q: 'Which clients does Client upsells look at?',
+        a: 'Client upsells looks only at your own clients, and only through the checks each one agreed to. It never contacts anyone at a client to find a gap.',
       },
       {
         q: 'Where does the proof come from?',
-        a: 'The checks you already run for each client: mystery shops, AI checkout tests, AI answer checks and your own audits. Every screenshot is signed and dated, so the client can check it.',
+        a: 'Client upsells takes it from the checks you already run for each client: mystery shops, AI checkout tests, AI answer checks and your own audits. Every screenshot is signed and dated, so the client can check it.',
       },
       {
         q: 'Does the agent write to my clients?',
-        a: 'Never as itself or as you. It drafts the proposal in your own thread, and it goes only after you approve the words. Every follow up waits for your OK too.',
+        a: 'Never as itself or as you: the Client upsells agent drafts the proposal in your own thread, and it goes only after you approve the words. Every follow up waits for your OK too.',
       },
       {
-        q: 'Can it change our prices?',
-        a: 'No. It uses your service list and your prices. Anything else waits for you.',
+        q: 'Can Client upsells change our prices?',
+        a: 'No. Client upsells uses your service list and your prices. Anything else waits for you.',
       },
       {
         q: 'Does a proposal promise results?',
-        a: 'No. It shows the gap, the proof and the service that fixes it. Never a guarantee.',
+        a: 'No. A Client upsells proposal shows the gap, the proof and the service that fixes it. Never a guarantee.',
       },
       {
         q: 'What if a client says no?',
-        a: 'It stops for that client and logs why. Nothing more until a new gap and your OK.',
+        a: 'Client upsells stops for that client and logs why. Nothing more until a new gap and your OK.',
       },
       {
         q: 'What if nothing is wrong?',
-        a: 'Then there’s no proposal. In the example, 2 of the 5 clients had no gap and got nothing that month.',
+        a: 'Then Client upsells sends no proposal. In the example, 2 of the 5 clients had no gap and got nothing that month.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to £27,600 over 12 months from the 3 proposals in the example, if every client says yes: £1,200 and £900 a month for 12 months, plus £2,400 once (£2,100 × 12 + £2,400).',
+        a: 'Client upsells is worth up to £27,600 over 12 months from the 3 proposals in the example, if every client says yes: £1,200 and £900 a month for 12 months, plus £2,400 once (£2,100 × 12 + £2,400).',
       },
       {
-        q: 'How is it different from Mystery shopper?',
-        a: 'Mystery shopper goes through a client’s business as a customer does and shows what breaks. Client upsells turns what your checks find into the next service, with the proposal ready for your OK.',
+        q: 'How is Client upsells different from Mystery shopper?',
+        a: 'Client upsells turns what your checks find into the next service, with the proposal ready for your OK. Mystery shopper goes through a client’s business as a customer does and shows what breaks.',
       },
     ],
   },

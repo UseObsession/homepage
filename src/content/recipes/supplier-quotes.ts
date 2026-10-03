@@ -40,7 +40,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent gets quotes for your real order, pushes back on every price rise and chases until the new price is in writing. It never pays. You sign.',
     answer:
-      'Supplier quotes is an Obsession recipe. A declared AI agent with its own buying inbox and phone line asks the suppliers on your list to quote an order you will really place, compares them like for like, and after your OK pushes back on your supplier’s price rise until the new price is in writing. It never pays and never signs.',
+      'Supplier quotes answers every price rise with written quotes: your declared AI buyer asks every supplier on your list to quote your real order, then pushes back until the new price is in writing. It never pays. You sign.',
     ogImage: '/og/supplier-quotes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -51,7 +51,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that answer every price rise with written quotes.',
-    sub: 'Your declared AI buyer asks every supplier on your list to quote your real order, then pushes back until the new price is in writing. It never pays. You sign.',
+    sub: 'Supplier quotes answers every price rise with written quotes: your declared AI buyer asks every supplier on your list to quote your real order, then pushes back until the new price is in writing. It never pays. You sign.',
     screen: 'suppliers',
     capture: {
       kind: 'waitlist',
@@ -164,21 +164,29 @@ export const recipe: Recipe = {
     heading: 'Your declared AI buyer, on your real order. You sign. It never pays.',
     items: [
       {
-        q: 'Does it pretend to be us?',
-        a: 'No. It says it’s an AI agent buying for your company, from its own inbox and line.',
+        q: 'What do I do when a supplier raises prices?',
+        a: 'Get written quotes for the same order: Obsession’s Supplier quotes asks every supplier on your list to quote an order you’ll really place, compares them like for like, and after your OK pushes back on the rise until the new price is in writing.',
       },
-      { q: 'Can it place the order?', a: 'No. It never pays and never signs. You do both.' },
+      {
+        q: 'What’s it worth?',
+        a: 'Supplier quotes keeps up to $46,080 a year on a $16,000 monthly order, if the 18% rise is dropped and you get 6% off.',
+      },
+      {
+        q: 'Does Supplier quotes pretend to be us?',
+        a: 'No. The Supplier quotes agent says it’s an AI agent buying for your company, from its own inbox and line.',
+      },
+      { q: 'Can Supplier quotes place the order?', a: 'No. Supplier quotes never pays and never signs. You do both.' },
       {
         q: 'What if a supplier wants a person?',
-        a: 'It comes to you, with the quote and the thread so far.',
+        a: 'Supplier quotes passes it to you, with the quote and the thread so far.',
       },
       {
         q: 'Do you ask for quotes we won’t use?',
-        a: 'No. Every quote is for an order you’ll really place, on the same spec, so any supplier on your list can win it.',
+        a: 'No. Every Supplier quotes request is for an order you’ll really place, on the same spec, so any supplier on your list can win it.',
       },
       {
-        q: 'When should it run?',
-        a: 'The day a rise lands, or 60 days before each renewal, so you always have time to switch.',
+        q: 'When should Supplier quotes run?',
+        a: 'Run Supplier quotes the day a rise lands, or 60 days before each renewal, so you always have time to switch.',
       },
     ],
   },

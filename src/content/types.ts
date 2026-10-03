@@ -23,7 +23,9 @@ export type ReaderId = AudienceId | 'developers'
 export type RoleId = 'agency' | 'founder' | 'sales' | 'marketing' | 'developer' | 'other'
 
 /* SEO and answer engines: 1 unique title (55 to 60 characters) and description (140 to 155) per page. `answer` is
-   the 1 or 2 plain sentences an AI assistant should quote when asked what this page's subject is. */
+   the 1 or 2 plain sentences an AI assistant should quote when asked what this page's subject is. It opens with the
+   page's hero sub, word for word, so the answer is on the page where a reader and a crawler see it first, and the sub
+   opens with its subject's name (_research/seo/AI-SEARCH-RUBRIC.md C7 and G1). */
 export type Meta = {
   path: string
   title: string
@@ -254,6 +256,8 @@ export type AgentsPage = {
   headline: string
   sub: string
   sections: NoticeSection[]
+  /* The questions a company asks after an agent signs up, shown before the contact (and as FAQPage JSON-LD). */
+  faq?: Faq
   contact: { heading: string; line: string; email: string; cta: Cta; secondary: Cta }
 }
 export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }

@@ -32,7 +32,7 @@ export const recipe: Recipe = {
     description:
       'Speed to lead, tested: a declared AI test lead uses your own form, chat and phone, times every first reply and finds the leads your team never answered.',
     answer:
-      'Lead leaks is Obsession’s speed to lead recipe. A labelled test lead, declared as AI and with its own inbox and phone number, uses your own form, chat and phone, or a client’s with their OK, times every first reply and shows where leads leak: no reply, no owner, a call that rings out. It never runs on a prospect’s or a rival’s channels.',
+      'Lead leaks is a speed to lead test for your own funnel: a declared AI test lead uses your form, chat and phone, or a client’s with their OK, times every first reply and shows you each lead your team never answered. It never runs on a prospect’s or a rival’s channels.',
     ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Find every lead your form, chat and phone let slip.',
-    sub: 'A declared AI test lead uses your own form, chat and phone, or a client’s with their OK. It times every first reply, checks who picked it up, and shows you each leak.',
+    sub: 'Lead leaks is a speed to lead test for your own funnel: a declared AI test lead uses your form, chat and phone, or a client’s with their OK, times every first reply and shows you each lead your team never answered.',
     screen: 'inbound',
     capture: {
       kind: 'waitlist',
@@ -171,7 +171,15 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Is this a speed to lead test?',
-        a: 'Yes. Speed to lead is the time from a new enquiry to the first reply. Lead leaks measures it on every channel you own, and finds the leads that never get a reply at all.',
+        a: 'Yes. Lead leaks measures speed to lead, the time from a new enquiry to the first reply, on every channel you own, and finds the leads that never get a reply at all.',
+      },
+      {
+        q: 'How fast do we actually answer a lead, including after 5pm and at weekends?',
+        a: 'Lead leaks finds out: a declared test lead arrives on your form, chat and phone at the times you pick, evenings and weekends included, and every first reply is timed, with who picked it up.',
+      },
+      {
+        q: 'Why test speed to lead?',
+        a: 'Because most leads wait, and Lead leaks shows whether yours do, channel by channel: when 6,346 real demo and contact forms were filled in, 68 in 100 got no reply.',
       },
       {
         q: 'Can I time a rival’s or a prospect’s replies?',
@@ -179,18 +187,18 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does my team know it’s a test?',
-        a: 'Yes. Every test lead is declared as AI and labelled as a test from you, so it’s never mistaken for a real buyer.',
+        a: 'Yes. Every Lead leaks test lead is declared as AI and labelled as a test from you, so it’s never mistaken for a real buyer.',
       },
-      { q: 'Do callbacks count?', a: 'Yes. Each test lead has its own number, so callbacks and texts are logged as replies.' },
-      { q: 'What counts as a reply?', a: 'The first answer on any channel. Automatic replies are logged separately.' },
-      { q: 'Does it need our CRM?', a: 'No. Connect it if you want to see who got each lead and whether anyone owns it.' },
+      { q: 'Do callbacks count?', a: 'Yes. Each Lead leaks test lead has its own number, so callbacks and texts are logged as replies.' },
+      { q: 'What counts as a reply?', a: 'Lead leaks counts the first answer on any channel. Automatic replies are logged separately.' },
+      { q: 'Does Lead leaks need our CRM?', a: 'No. Connect it to Lead leaks if you want to see who got each lead and whether anyone owns it.' },
       {
-        q: 'Can it fix the routing?',
-        a: 'It drafts the fix in the CRM you connect. Nothing changes until you approve it, then it tests again.',
+        q: 'Can Lead leaks fix the routing?',
+        a: 'Lead leaks drafts the fix in the CRM you connect. Nothing changes until you approve it, then it tests again.',
       },
       {
-        q: 'Can it answer our leads as well?',
-        a: 'Yes, with Inbound quotes: every request gets a quote from your price book in minutes, then a follow up. Lead leaks keeps checking that every channel still lets leads in.',
+        q: 'Can Obsession answer our leads as well?',
+        a: 'Yes, with Obsession’s Inbound quotes: every request gets a quote from your price book in minutes, then a follow up. Lead leaks keeps checking that every channel still lets leads in.',
       },
     ],
   },

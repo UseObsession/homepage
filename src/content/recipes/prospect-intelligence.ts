@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent becomes a customer of every company on your list. It signs up, opts in and asks the bot, then shows the gap you fix, with signed proof.',
     answer:
-      'Prospect intelligence is an Obsession recipe. A declared AI agent becomes a customer of every company on your list: it signs up, opts in to texts, reads their pages and ads and asks the site’s chat bot, then proves the gap your product closes with dated, signed proof. It doesn’t find contacts and never contacts staff.',
+      'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. A declared AI agent signs up, opts in and asks the bot at every company on your list, then hands you a signed fact to open each pitch with.',
     ogImage: '/og/prospect-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Prove a real gap at every company on your list.',
-    sub: 'A declared AI agent becomes a customer of every prospect you add. It signs up, opts in and asks the bot, then hands you a signed fact to open each pitch with.',
+    sub: 'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. A declared AI agent signs up, opts in and asks the bot at every company on your list, then hands you a signed fact to open each pitch with.',
     screen: 'pack',
     capture: {
       kind: 'waitlist',
@@ -181,34 +181,50 @@ export const recipe: Recipe = {
     heading: 'Every gap stands up on its own, with proof the prospect can open.',
     items: [
       {
-        q: 'Does it find contacts or email addresses?',
-        a: 'No. Your list already has the names. Obsession becomes each company’s customer and proves what its customers actually get, so your first line is a fact they can check.',
+        q: 'What is prospect intelligence?',
+        a: 'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one of them. It isn’t contact data: Obsession finds the gap, and your own tools find the people.',
       },
       {
-        q: 'Does it contact their staff?',
-        a: 'Never. It signs up, opts in, reads their pages and asks the site’s chat bot. If a person picks up the chat, the step ends. It never sends a form, an email or a call to a person.',
+        q: 'How do I find a reason to reach out that 50 other reps don’t have?',
+        a: 'Use a fact only a customer of theirs can see: Prospect intelligence signs up at every company on your list and records what it gets, so each first call opens on a dated gap with a proof link.',
+      },
+      {
+        q: 'How do I research prospects without spending 30 minutes on each one?',
+        a: 'Add the list to Prospect intelligence once: a declared Obsession agent per prospect signs up, opts in to texts and asks the site’s chat bot at every company at once, and you get back the companies with the gap you fix.',
+      },
+      {
+        q: 'What’s it worth?',
+        a: 'Prospect intelligence gives each rep up to 5 hours a week back, on 10 first calls at 30 minutes of research each.',
+      },
+      {
+        q: 'Does Prospect intelligence find contacts or email addresses?',
+        a: 'No. Obsession becomes each company’s customer and proves what its customers actually get, so your first line is a fact they can check. Your list already has the names.',
+      },
+      {
+        q: 'Does Prospect intelligence contact their staff?',
+        a: 'Never. Prospect intelligence only signs up, opts in, reads their pages and asks the site’s chat bot. If a person picks up the chat, the step ends. It never sends a form, an email or a call to a person.',
       },
       {
         q: 'Will the prospect know?',
-        a: 'Every agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out.',
+        a: 'Every Obsession agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out.',
       },
       {
         q: 'How do I know a gap is real?',
-        a: 'A gap only counts once the sign up is confirmed, the spam folder is checked and the full window has been watched. Anything less is No verdict, never a gap.',
+        a: 'Prospect intelligence counts a gap only once the sign up is confirmed, the spam folder is checked and the full window has been watched. Anything less is No verdict, never a gap.',
       },
       {
-        q: 'Does it go through their basket or checkout?',
-        a: 'Not at a prospect. Baskets and checkouts need the company’s OK, so they belong to Mystery shopper, on your own store or a client’s.',
+        q: 'Does Prospect intelligence go through their basket or checkout?',
+        a: 'Not at a prospect: baskets and checkouts need the company’s OK, so they belong to Obsession’s Mystery shopper, on your own store or a client’s.',
       },
       {
         q: 'Do you write the email?',
-        a: 'No. You get the fact and the proof link. Your team writes the first line and sends it from its own tools.',
+        a: 'No. Prospect intelligence gives you the fact and the proof link. Your team writes the first line and sends it from its own tools.',
       },
       {
         q: 'What happens when the window ends?',
-        a: 'It stops, or checks again on a schedule. If a gap closes you hear about it, so you know to stop writing.',
+        a: 'Prospect intelligence stops, or checks again on a schedule. If a gap closes you hear about it, so you know to stop writing.',
       },
-      { q: 'How many prospects can it check?', a: 'Every company on your list, at once.' },
+      { q: 'How many prospects can Prospect intelligence check?', a: 'Prospect intelligence checks every company on your list, at once.' },
     ],
   },
 

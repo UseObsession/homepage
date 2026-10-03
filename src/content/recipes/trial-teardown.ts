@@ -5,7 +5,10 @@ import type { Recipe } from '../types'
    No sales calls are logged or sold, no card is ever entered, and trials that need a card or a sales call are
    skipped. Kept from James: the day by day sequence, what's asked at sign up, the end offer, rivals side by side and
    the "signs in daily or goes quiet" setting. The run and the comparison are examples, say so, and match the
-   `battlecard` screen (Rival A 20% off on day 13, Rival B closed on day 6 when a rep wrote, Rival C 30% off). */
+   `battlecard` screen (Rival A 20% off on day 13, Rival B closed on day 6 when a rep wrote, Rival C 30% off).
+   AI search (3 Oct): every answer names the recipe, because an assistant may quote 1 answer alone, without the page or
+   the question around it, and whoever reads it there still has to know which recipe it describes and whose it is.
+   Keep it that way. */
 
 export const recipe: Recipe = {
   id: 'trial',
@@ -29,7 +32,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent starts each rival’s free trial with no card and logs every email and offer. It never replies, and closes it if a rep writes or calls.',
     answer:
-      'Trial teardown is an Obsession recipe. A declared AI agent with its own inbox starts each rival’s free trial that needs no card and logs every onboarding email, in app prompt and offer, day by day. It never replies, and it closes the trial the moment a rep writes or calls.',
+      'Trial teardown logs every email, prompt and offer in a rival’s free trial: a declared AI agent starts each trial that needs no card, never replies, and closes it the moment a rep writes or calls.',
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -40,7 +43,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that log every email, prompt and offer in a rival’s free trial.',
-    sub: 'A declared AI agent starts each rival’s free trial, with no card, and logs everything until it ends. It never replies, and closes the trial the moment a rep writes or calls.',
+    sub: 'Trial teardown logs every email, prompt and offer in a rival’s free trial: a declared AI agent starts each trial that needs no card, never replies, and closes it the moment a rep writes or calls.',
     screen: 'battlecard',
     capture: {
       kind: 'waitlist',
@@ -169,25 +172,33 @@ export const recipe: Recipe = {
     heading: 'It never replies, and it leaves the moment a rep gets in touch.',
     items: [
       {
-        q: 'Will it talk to a sales rep?',
-        a: 'No. It never replies. If a rep writes or calls, the trial closes that moment and the record says when.',
+        q: 'Is it ethical to sign up for a competitor’s free trial to compare onboarding?',
+        a: 'Obsession’s Trial teardown does it openly: the agent says it’s AI, starts only trials that need no card, never replies, and closes the trial the moment a rep writes or calls.',
       },
-      { q: 'What about trials that need a card?', a: 'They’re skipped. So are trials that need a sales call to start.' },
+      {
+        q: 'What’s it worth?',
+        a: 'Trial teardown gives your team up to 18 hours a month back, if it walks 3 rivals’ trials for 90 minutes a week each.',
+      },
+      {
+        q: 'Will Trial teardown talk to a sales rep?',
+        a: 'No. Trial teardown never replies. If a rep writes or calls, the trial closes that moment and the record says when.',
+      },
+      { q: 'What about trials that need a card?', a: 'Trial teardown skips them, and every trial that needs a sales call to start.' },
       {
         q: 'Will the rival know?',
-        a: 'Every agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out.',
+        a: 'Every Obsession agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out.',
       },
       {
-        q: 'Does it use the product?',
-        a: 'Yes, like a new user: it signs in, follows the setup steps and screenshots every prompt.',
+        q: 'Does Trial teardown use the product?',
+        a: 'Yes. Trial teardown uses it like a new user: it signs in, follows the setup steps and screenshots every prompt.',
       },
       {
-        q: 'Can I run it on my own trial?',
-        a: 'Yes. Point it at your own product to see your onboarding the way a new user does, after every release.',
+        q: 'Can I run Trial teardown on my own trial?',
+        a: 'Yes. Point Trial teardown at your own product to see your onboarding the way a new user does, after every release.',
       },
       {
-        q: 'How long does it take?',
-        a: 'As long as the trial. The first emails land in minutes, and the teardown is ready the day the trial ends, or the day a rep gets in touch.',
+        q: 'How long does Trial teardown take?',
+        a: 'Trial teardown takes as long as the trial. Its first emails land in minutes, and the teardown is ready the day the trial ends, or the day a rep gets in touch.',
       },
     ],
   },

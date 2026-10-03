@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "indexnow": "node scripts/indexnow.mjs",
     "build": "tsc -b && oxlint && node scripts/og.mjs && vite build && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",

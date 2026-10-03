@@ -53,7 +53,7 @@ export const recipe: Recipe = {
     description:
       'Each morning a declared AI agent opens every live ad’s landing page as a customer, checks the offer, price and stock, and drafts the fix for your OK.',
     answer:
-      'Ad landing check is an Obsession recipe. Each morning a declared AI agent opens the landing page of every live ad in the accounts you connect, as a customer would and without clicking the ad. It checks the page loads, the offer and price match the ad and the product is in stock, then drafts the fix. Nothing is paused or changed without your OK.',
+      'Ad landing check opens every live ad’s landing page as a customer each morning, without clicking the ad. A declared AI agent checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
     ogImage: '/og/ad-landing-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch every ad sending clicks to a broken or sold out page.',
-    sub: 'Each morning a declared AI agent opens the landing page of every live ad as a customer would, without clicking the ad. It checks the page loads, the offer and price match, and the product is in stock, then drafts the fix for your OK.',
+    sub: 'Ad landing check opens every live ad’s landing page as a customer each morning, without clicking the ad. A declared AI agent checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
     screen: 'adcheck',
     capture: {
       kind: 'waitlist',
@@ -207,40 +207,44 @@ export const recipe: Recipe = {
     heading: 'Your own ads only. Nothing paused or changed without your OK.',
     items: [
       {
-        q: 'Does it click our ads?',
-        a: 'No. It opens each ad’s landing page directly, so no click is paid for and your ad numbers stay true.',
+        q: 'How do I stop my ads sending clicks to a sold out page?',
+        a: 'Ad landing check finds it the same morning: at 07:00 a declared AI agent opens every live ad’s landing page as a customer, without clicking the ad, checks the product is in stock and the offer and price match, and drafts the pause or a new link for your OK.',
       },
       {
-        q: 'Can it change our ads?',
-        a: 'Only 3 things, each after your OK: pause an ad, turn a paused ad back on, or change its link. It never edits an ad, changes a budget or a bid, or launches a new one.',
+        q: 'Does Ad landing check click our ads?',
+        a: 'No. Ad landing check opens each ad’s landing page directly, so no click is paid for and your ad numbers stay true.',
       },
       {
-        q: 'Which ads does it check?',
-        a: 'Every live search and social ad in the ad accounts you connect, or the campaigns you pick. Your own ads, or a client’s with their OK.',
+        q: 'Can Ad landing check change our ads?',
+        a: 'Ad landing check changes only 3 things, each after your OK: pause an ad, turn a paused ad back on, or change its link. It never edits an ad, changes a budget or a bid, or launches a new one.',
       },
       {
-        q: 'Does it buy anything?',
-        a: 'No. It reads the page as a customer would and stops there. Nothing goes in a basket and nothing is paid for.',
+        q: 'Which ads does Ad landing check open?',
+        a: 'Ad landing check opens every live search and social ad in the ad accounts you connect, or the campaigns you pick. Your own ads, or a client’s with their OK.',
       },
       {
-        q: 'How soon does it find a break?',
-        a: 'At the next check: every morning at 07:00, or more often in a sale. In the example, Ad 4 was flagged at 07:04.',
+        q: 'Does Ad landing check buy anything?',
+        a: 'No. Ad landing check reads the page as a customer would and stops there. Nothing goes in a basket and nothing is paid for.',
+      },
+      {
+        q: 'How soon does Ad landing check find a break?',
+        a: 'Ad landing check finds it at the next check: every morning at 07:00, or more often in a sale. In the example, Ad 4 was flagged at 07:04.',
       },
       {
         q: 'What happens after a pause?',
-        a: 'It keeps checking the page. The morning the product is back in stock, it tells you, and the ad goes live again after your OK.',
+        a: 'Ad landing check keeps checking the page. The morning the product is back in stock, it tells you, and the ad goes live again after your OK.',
       },
       {
-        q: 'Can it check a rival’s ads?',
-        a: 'Not this recipe. Ad tracking reads the ads your rivals run in public and follows each one to its page, price and code.',
+        q: 'Can Ad landing check follow a rival’s ads?',
+        a: 'No. Ad landing check covers only your own ads, or a client’s: Obsession’s Ad tracking reads the ads your rivals run in public and follows each one to its page, price and code.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to $410 a day saved, $2,870 a week (7 × $410), on the ad in the example: it spent all of it sending clicks to a sold out lamp. That was 38% of the $1,069 a day all 6 ads spend.',
+        a: 'Ad landing check saves up to $410 a day, $2,870 a week (7 × $410), on the ad in the example: it spent all of it sending clicks to a sold out lamp. That was 38% of the $1,069 a day all 6 ads spend.',
       },
       {
-        q: 'How is it different from Mystery shopper?',
-        a: 'Mystery shopper goes through your whole journey as a customer and watches what follows. Ad landing check opens the exact page each live ad points to, every morning, and drafts the fix for any that fails.',
+        q: 'How is Ad landing check different from Mystery shopper?',
+        a: 'Ad landing check opens the exact page each live ad points to, every morning, and drafts the fix for any that fails. Mystery shopper goes through your whole journey as a customer and watches what follows.',
       },
     ],
   },

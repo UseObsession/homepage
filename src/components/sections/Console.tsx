@@ -442,7 +442,8 @@ export function Console({
         </div>
       )}
 
-      <div className="ob-window ob-object s-console-win" ref={winRef}>
+      {/* data-nosnippet: the runs are examples, so Google never quotes their data as fact (AppScreen does the same). */}
+      <div className="ob-window ob-object s-console-win" ref={winRef} data-nosnippet="">
         <div className="ob-window-bar s-console-bar">
           <span className="ob-window-dots" aria-hidden="true">
             <i />

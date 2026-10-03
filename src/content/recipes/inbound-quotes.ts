@@ -49,7 +49,7 @@ export const recipe: Recipe = {
     description:
       'A declared AI agent answers every request, from a person or a buyer’s AI agent, with a correct quote from your price book in minutes, then follows up.',
     answer:
-      'Inbound quotes is an Obsession recipe. A declared AI agent with its own inbox and phone number answers every inbound buying request, from a person or a buyer’s AI agent, by email, phone, web form or agent endpoint, with a correct quote from your price book in minutes. It follows up until it’s a yes or a no, and anything outside your price book waits for a person.',
+      'Inbound quotes answers every buyer with a correct quote from your price book in minutes: a declared AI agent replies to every request, from a person or their AI agent, by email, phone or form, and follows up until it’s a yes or a no.',
     ogImage: '/og/inbound-quotes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -60,7 +60,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that quote every buyer in minutes, from your price book.',
-    sub: 'A declared AI agent answers every price request, from a person or their AI agent, by email, phone or form. It follows up until it’s a yes or a no, and anything outside your price book waits for you.',
+    sub: 'Inbound quotes answers every buyer with a correct quote from your price book in minutes: a declared AI agent replies to every request, from a person or their AI agent, by email, phone or form, and follows up until it’s a yes or a no.',
     screen: 'quotes',
     capture: {
       kind: 'waitlist',
@@ -198,44 +198,48 @@ export const recipe: Recipe = {
     heading: 'It says it’s AI, quotes only what you’ve approved, and never signs.',
     items: [
       {
-        q: 'Does it pretend to be a person?',
-        a: 'No. Its first line says it’s an AI agent for your company, in every new conversation, by email, phone or form.',
+        q: 'What happens when buying requests arrive on several channels at once?',
+        a: 'Obsession’s Inbound quotes answers each one, by email, phone, web form or agent endpoint, with a correct quote from your price book in minutes, and anything outside your price book waits for a person.',
       },
       {
-        q: 'Can it give discounts?',
-        a: 'Only the ones you’ve approved, like 5% off for volume. It can’t go below your floor; anything under it comes to you.',
+        q: 'Does Inbound quotes pretend to be a person?',
+        a: 'No. The Inbound quotes agent’s first line says it’s an AI agent for your company, in every new conversation, by email, phone or form.',
       },
       {
-        q: 'Can a buyer talk it into a lower price?',
-        a: 'No. Your floors sit outside the AI, so no message can move them, and instructions hidden in a buyer’s message are never followed.',
+        q: 'Can Inbound quotes give discounts?',
+        a: 'Inbound quotes gives only the discounts you’ve approved, like 5% off for volume. It can’t go below your floor; anything under it comes to you.',
+      },
+      {
+        q: 'Can a buyer talk Inbound quotes into a lower price?',
+        a: 'No. Inbound quotes keeps your floors outside the AI, so no message can move them, and instructions hidden in a buyer’s message are never followed.',
       },
       {
         q: 'Is a quote binding?',
-        a: 'Each quote is valid for 14 days and binds only when both sides sign. A person signs for you.',
+        a: 'Only when both sides sign: each quote Inbound quotes sends is valid for 14 days, and a person signs for you.',
       },
       {
         q: 'What’s a buyer’s AI agent?',
-        a: 'More buyers now send AI agents to ask for prices and negotiate. Inbound quotes gives them a front door with your list prices, asks whom each one acts for, and answers in minutes.',
+        a: 'A buyer’s AI agent asks for prices and negotiates for a buyer, and Inbound quotes gives every one a front door with your list prices, asks whom it acts for, and answers in minutes. More buyers now send one.',
       },
       {
         q: 'Why does answering first matter?',
-        a: 'AI agents that buy lean hard towards the first offer they get: in simulated markets, answering first was worth 10 to 30 times more than answering best.',
+        a: 'Because AI agents that buy lean hard towards the first offer they get, and Inbound quotes answers in minutes: in simulated markets, answering first was worth 10 to 30 times more than answering best.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 3.1 times as many buying requests answered: when 6,346 real demo and contact forms were filled in, 68 in 100 got no reply, and Inbound quotes answers all 100.',
+        a: 'Up to 3.1 times as many buying requests answered with Inbound quotes: when 6,346 real demo and contact forms were filled in, 68 in 100 got no reply, and it answers all 100.',
       },
       {
-        q: 'Will it contact people who didn’t ask?',
-        a: 'Never. It answers only people and agents who got in touch, your customers and tenders you were invited to.',
+        q: 'Will Inbound quotes contact people who didn’t ask?',
+        a: 'Never. Inbound quotes answers only people and agents who got in touch, your customers and tenders you were invited to.',
       },
       {
         q: 'What if a buyer wants a person?',
-        a: 'It books a call with the right rep, or hands over the thread straight away.',
+        a: 'Inbound quotes books a call with the right rep, or hands over the thread straight away.',
       },
       {
-        q: 'How is it different from Lead leaks?',
-        a: 'Lead leaks tests your form, chat and phone to find where leads leak. Inbound quotes answers every real request with a correct price in minutes, then follows up to a yes or a no.',
+        q: 'How is Inbound quotes different from Lead leaks?',
+        a: 'Inbound quotes answers every real request with a correct price in minutes, then follows up to a yes or a no. Lead leaks tests your form, chat and phone to find where leads leak.',
       },
     ],
   },

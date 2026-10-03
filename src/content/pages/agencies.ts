@@ -21,7 +21,7 @@ export const page: Page = {
     description:
       'AI agents for agencies, each with its own inbox, phone number and browser, check every client, prospect and rival as a customer would. Every step signed.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams. For agencies, it runs declared AI agents, each with its own inbox, phone number and browser, that sign up at every prospect and rival and go through every client’s journeys with their OK, continuously, then send back signed proof and the next move.',
+      'Obsession gives agencies declared AI agents that sign up at every prospect and rival and test every client’s store, trial or booking with their OK, continuously. You get signed proof to pitch, report and renew with.',
     ogImage: '/og/agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -32,7 +32,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your agency win and keep clients.',
-    sub: 'Declared AI agents with their own inbox, phone, card and browser sign up at every prospect and rival, and test every client’s store, trial or booking with their OK, continuously. Every step signed.',
+    sub: 'Obsession gives agencies declared AI agents that sign up at every prospect and rival and test every client’s store, trial or booking with their OK, continuously. You get signed proof to pitch, report and renew with.',
     capture: {
       kind: 'waitlist',
       source: 'agencies-hero',
@@ -360,32 +360,44 @@ export const page: Page = {
     heading: 'Nothing for clients to install. Every agent declared.',
     items: [
       {
-        q: 'Do clients need to install anything?',
-        a: 'No. Agents arrive from outside, the way a customer does. For anything inside, like an email tool or an ad account, the client connects it and can disconnect it at any time.',
+        q: 'How do I show a client what they’re paying for when they don’t read the report?',
+        a: 'Send proof, not a report: Obsession’s agents check each client’s store, trial or booking with their OK, continuously, and every gap found, fix approved and check passed is signed and dated in 1 link the client can open.',
       },
       {
-        q: 'Can we run it on prospects and rivals?',
-        a: 'Yes, through the paths any customer can use in public: sign ups, newsletters, texts, public pages and ads, and the site’s chat bot. Never a person: no enquiries or contact forms, and if staff pick up the chat, the step ends. Baskets and checkouts need the owner’s OK.',
+        q: 'How do I track my clients’ competitors’ ads, emails, offers and prices without doing it by hand?',
+        a: 'Add each client’s rivals to Obsession once. Its declared AI agents join every rival’s emails and texts, read the ads they run in public and check their prices each morning, and you get 1 timeline per client, in your brand.',
+      },
+      {
+        q: 'What can I send a prospect that isn’t another templated cold email?',
+        a: 'A fact about their own business, found by Obsession’s Prospect intelligence: it signs up at the prospect as a customer and proves a gap, like a welcome email that landed in spam, with a dated screenshot they can open in a minute.',
+      },
+      {
+        q: 'Do clients need to install anything?',
+        a: 'No. Obsession’s agents arrive from outside, the way a customer does. For anything inside, like an email tool or an ad account, the client connects it and can disconnect it at any time.',
+      },
+      {
+        q: 'Can we run Obsession on prospects and rivals?',
+        a: 'Yes. Obsession’s agents use only the paths any customer can use in public: sign ups, newsletters, texts, public pages and ads, and the site’s chat bot. Never a person: no enquiries or contact forms, and if staff pick up the chat, the step ends. Baskets and checkouts need the owner’s OK.',
       },
       {
         q: 'How many clients can we cover?',
-        a: 'As many as you add. Every client runs at the same time, once or on a schedule.',
+        a: 'Obsession covers as many clients as you add. Every client runs at the same time, once or on a schedule.',
       },
       {
         q: 'Can the reports carry our name?',
-        a: 'Yes. Reports go out under your name and logo, as a PDF, a link, an email or into Slack, with every step signed so clients can check it themselves.',
+        a: 'Yes. Obsession’s reports go out under your name and logo, as a PDF, a link, an email or into Slack, with every step signed so clients can check it themselves.',
       },
       {
-        q: 'Does it replace our team?',
-        a: 'No. Agents do the legwork: the sign ups, the waiting and the checks. Your team keeps the strategy, every approval and the client, and your clients see the work under your name.',
+        q: 'Will AI agents replace my agency’s work?',
+        a: 'No. Obsession’s agents do the legwork: the sign ups, the waiting and the checks. Your team keeps the strategy, every approval and the client, and your clients see the work under your name.',
       },
       {
-        q: 'What do the agents never do?',
-        a: 'Pretend to be a person, use a fake identity or send cold spam. Message staff at a prospect or rival, start a rival’s trial that needs a card, reply inside a trial, or stay in one once a rep writes or calls. Pay on anyone else’s store, spend past the budget you set, sign anything for you, or go behind a login they weren’t given. At rivals and prospects they say they’re AI agents from Obsession and link to useobsession.com/agents, without naming your client.',
+        q: 'What do Obsession’s agents never do?',
+        a: 'An Obsession agent never pretends to be a person, uses a fake identity or sends cold spam. It never messages staff at a prospect or rival, starts a rival’s trial that needs a card, replies inside a trial, or stays in one once a rep writes or calls. It never pays on anyone else’s store, spends past the budget you set, signs anything for you, or goes behind a login it wasn’t given. At rivals and prospects it says it’s an AI agent from Obsession and links to useobsession.com/agents, without naming your client.',
       },
       {
         q: 'What’s in the free report?',
-        a: 'Name a store you run, or a client’s with their OK. 4 test customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t, and a fix drafted for each gap.',
+        a: 'Obsession’s free report is a mystery shop of a store you run, or a client’s with their OK: 4 test customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t, and a fix drafted for each gap.',
       },
     ],
   },

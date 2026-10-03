@@ -27,11 +27,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/competitor-tracking',
-    title: 'Competitor tracking: every rival email and offer · Obsession',
+    title: 'Competitor tracking: see every rival as its customers do',
     description:
       'A declared AI agent signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously.',
     answer:
-      'Competitor tracking is an Obsession recipe. A declared AI agent with its own inbox, phone number and browser signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with every entry dated and signed.',
+      'Competitor tracking signs a declared AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     ogImage: '/og/competitor-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email, text, ad and offer your rivals send, on 1 timeline.',
-    sub: 'A declared AI agent joins each rival’s emails and texts the day you add it, with its own inbox and number. It logs every offer, price change and public ad, continuously.',
+    sub: 'Competitor tracking signs a declared AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     screen: 'rivals',
     capture: {
       kind: 'waitlist',
@@ -203,34 +203,42 @@ export const recipe: Recipe = {
     heading: 'Every agent says it’s AI. Your name stays out.',
     items: [
       {
-        q: 'How is this different from a monitoring tool?',
-        a: 'Most tools read what a company publishes. Obsession goes through it as a customer: it signs up, gets the emails and texts, and sees the offers a new customer sees.',
+        q: 'How do I keep track of competitors without checking 10 tabs a day?',
+        a: 'Add each rival to Competitor tracking once: it logs what changed on 1 timeline each day, emails, texts, offers, prices and public ads, so nobody has to open the tabs.',
+      },
+      {
+        q: 'What’s it worth?',
+        a: 'Competitor tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 rivals. The agents do the checking, and you read what changed.',
+      },
+      {
+        q: 'How is Competitor tracking different from a monitoring tool?',
+        a: 'Competitor tracking goes through each rival as a customer, where most tools read what it publishes: it signs up, gets the emails and texts, and sees the offers a new customer sees.',
       },
       {
         q: 'Can you show their past emails?',
-        a: 'The record starts the day the agent signs up, so every message is dated from a known sign up. That’s what an archive can’t give you: any company you name, the same day.',
+        a: 'No. Competitor tracking’s record starts the day the agent signs up, so every message is dated from a known sign up. That’s what an archive can’t give you: any company you name, the same day.',
       },
       {
         q: 'Will the rival know?',
-        a: 'Every agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out. If that changes what a rival sends, the record shows it.',
+        a: 'Every Obsession agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out. If that changes what a rival sends, the record shows it.',
       },
       {
-        q: 'Does it talk to their staff?',
-        a: 'Never. It asks the site’s chat bot 1 question. If a person picks it up, the step ends.',
+        q: 'Does Competitor tracking talk to their staff?',
+        a: 'Never. Competitor tracking asks the site’s chat bot 1 question. If a person picks it up, the step ends.',
       },
       {
         q: 'Do you trigger their basket emails?',
-        a: 'Not at rivals. Baskets and checkouts need the owner’s OK, so they belong to Mystery shopper, on your own store or a client’s.',
+        a: 'Not at rivals: baskets and checkouts need the owner’s OK, so they belong to Obsession’s Mystery shopper, on your own store or a client’s.',
       },
       {
-        q: 'How many rivals can it track?',
-        a: 'As many as you add. Each gets its own agent, inbox and number, and you can add one at any time.',
+        q: 'How many rivals can Competitor tracking follow?',
+        a: 'Competitor tracking follows as many as you add. Each gets its own agent, inbox and number, and you can add one at any time.',
       },
       {
-        q: 'How fast is it?',
-        a: 'Pages, prices and ads in minutes. The first email the same day. The welcome series over the days that follow, then everything new, continuously.',
+        q: 'How fast is Competitor tracking?',
+        a: 'Competitor tracking reads pages, prices and ads in minutes. The first email the same day. The welcome series over the days that follow, then everything new, continuously.',
       },
-      { q: 'What if they block it or show a CAPTCHA?', a: 'It stops, and the record says it couldn’t test that step.' },
+      { q: 'What if they block it or show a CAPTCHA?', a: 'Competitor tracking stops, and the record says it couldn’t test that step.' },
     ],
   },
 

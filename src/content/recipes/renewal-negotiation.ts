@@ -48,7 +48,7 @@ export const recipe: Recipe = {
     description:
       'When a customer or its AI agent asks for a discount at renewal, your declared AI agent answers the same day with real usage, inside your limits. You sign.',
     answer:
-      'Renewal negotiation is an Obsession recipe. When a customer, or the AI agent negotiating for it, asks for a discount at renewal, a declared AI agent answers each round the same day with the customer’s real usage, offers only what you approved in advance, and takes the deal to signature, PO and payment. People sign.',
+      'Renewal negotiation holds your price at renewal: when a customer, or the AI agent negotiating for it, asks for a discount, your declared AI agent answers the same day with real usage and offers only what you approved. People sign.',
     ogImage: '/og/renewal-negotiation.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that hold your price at renewal.',
-    sub: 'When a customer, or the AI agent negotiating for it, asks for a discount, your declared AI agent answers the same day with the customer’s real usage. It offers only what you approved and takes the deal to signature and payment. You sign.',
+    sub: 'Renewal negotiation holds your price at renewal: when a customer, or the AI agent negotiating for it, asks for a discount, your declared AI agent answers the same day with real usage and offers only what you approved. People sign.',
     screen: 'renewal',
     capture: {
       kind: 'waitlist',
@@ -198,36 +198,40 @@ export const recipe: Recipe = {
     heading: 'Declared as AI on every round. Nothing signed without you.',
     items: [
       {
+        q: 'How do I answer a buyer’s AI agent that asks for a renewal discount?',
+        a: 'Renewal negotiation answers it the same day: your declared AI agent replies with the real usage and offers only what you approved, like 5% off for a 2 year term, and anything outside your limits waits for you.',
+      },
+      {
         q: 'What if the buyer isn’t using an AI agent?',
-        a: 'It works the same with a person: the same quote, the same limits and an answer the same day, by email or phone.',
+        a: 'Renewal negotiation works the same with a person: the same quote, the same limits and an answer the same day, by email or phone.',
       },
       {
-        q: 'Can it give away too much?',
-        a: 'No. Your limits are enforced outside the agent, so it can’t raise them or work around them. Anything outside them waits for you.',
+        q: 'Can Renewal negotiation give away too much?',
+        a: 'No. Renewal negotiation enforces your limits outside the agent, so it can’t raise them or work around them. Anything outside them waits for you.',
       },
       {
-        q: 'Does it sign contracts?',
-        a: 'Never. People sign. It sends the agreed order form and chases their signer, and it never accepts their own contract or changes terms without your OK.',
+        q: 'Does Renewal negotiation sign contracts?',
+        a: 'Never. Renewal negotiation sends the agreed order form and chases their signer, and it never accepts their own contract or changes terms without your OK. People sign.',
       },
       {
         q: 'Does it pretend to be our account manager?',
-        a: 'No. It says it’s an AI agent working for your company, and asks the buyer’s agent to say whom it works for too.',
+        a: 'No. The Renewal negotiation agent says it’s an AI agent working for your company, and asks the buyer’s agent to say whom it works for too.',
       },
       {
-        q: 'Will it bluff to close?',
-        a: 'No. No invented deadlines or rival offers, and no threats of a price rise. It answers with the real usage, and a person checks that export before it’s first sent.',
+        q: 'Will Renewal negotiation bluff to close?',
+        a: 'No. Renewal negotiation answers with the real usage, and a person checks that export before it’s first sent. No invented deadlines or rival offers, and no threats of a price rise.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 18% of each renewal a buyer’s AI agent negotiates, the average discount those agents win: up to $8,640 a year kept on $48,000 (18% × $48,000).',
+        a: 'Renewal negotiation keeps up to 18% of each renewal a buyer’s AI agent negotiates, the average discount those agents win: up to $8,640 a year kept on $48,000 (18% × $48,000).',
       },
       {
-        q: 'How is it different from Business case?',
-        a: 'Business case proves your value before the renewal. Renewal negotiation puts that proof to work: it answers every round, then gets the signature, the PO and the payment.',
+        q: 'How is Renewal negotiation different from Business case?',
+        a: 'Renewal negotiation puts the proof Business case builds to work: it answers every round, then gets the signature, the PO and the payment. Business case proves your value before the renewal.',
       },
       {
-        q: 'How does it chase payment?',
-        a: 'By email, and by phone to the billing contact and number they gave you, in business hours, in your company’s name. Calls say they’re AI and recorded. It sends your payment link, never takes card details, and stops when asked.',
+        q: 'How does Renewal negotiation chase payment?',
+        a: 'Renewal negotiation chases by email, and by phone to the billing contact and number they gave you, in business hours, in your company’s name. Calls say they’re AI and recorded. It sends your payment link, never takes card details, and stops when asked.',
       },
     ],
   },

@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     description:
       'A declared test customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
     answer:
-      'Drift watch is an Obsession recipe. With the owner’s OK, a declared AI test customer replays a company’s hardest support cases on its live AI agent every morning, and again within the hour of any vendor release, model update or prompt change. Each run is compared with the baseline, and every answer that changed is flagged with its before and after, signed.',
+      'Drift watch catches what each update breaks in your AI agent: a declared test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, signed.',
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -58,7 +58,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch what each update breaks in your AI agent.',
-    sub: 'A declared test customer replays your hardest cases every morning, and again within the hour of any update, and compares every answer with your baseline. You see which answers broke, before and after, signed.',
+    sub: 'Drift watch catches what each update breaks in your AI agent: a declared test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, signed.',
     screen: 'drift',
     capture: {
       kind: 'verify',
@@ -201,43 +201,47 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'What is drift in an AI agent?',
-        a: 'Your AI agent answering the same question differently from day to day, most often after a vendor release, a model update or a prompt change.',
+        a: 'Drift is your AI agent answering the same question differently from day to day, most often after a vendor release, a model update or a prompt change: the change Drift watch catches.',
       },
       {
-        q: 'How does it know about an update?',
-        a: 'From your vendor’s release notes or a webhook, or from your own team’s prompt and knowledge base changes. It replays your cases within the hour.',
+        q: 'Why did our AI agent start giving wrong answers after an update?',
+        a: 'A vendor release, a model update or a prompt change can change its answers with nothing else changed on your side, and Obsession’s Drift watch replays your hardest cases within the hour of any update and flags every answer that changed, before and after.',
+      },
+      {
+        q: 'How does Drift watch know about an update?',
+        a: 'Drift watch reads your vendor’s release notes or a webhook, or your own team’s prompt and knowledge base changes. It replays your cases within the hour.',
       },
       {
         q: 'Which cases should we use?',
-        a: 'The questions your bot must always get right, often the ones that already went wrong once. Each gets the rule that decides it.',
+        a: 'Give Drift watch the questions your bot must always get right, often the ones that already went wrong once. Each gets the rule that decides it.',
       },
       {
-        q: 'Does it say it’s AI?',
-        a: 'Yes. Every test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        q: 'Does Drift watch say it’s AI?',
+        a: 'Yes. Every Drift watch test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will our vendor bill us for the replays?',
-        a: 'Every replay is tagged as a test, and we agree that with your vendor before the first one runs.',
+        a: 'Every Drift watch replay is tagged as a test, and we agree that with your vendor before the first one runs.',
       },
       {
-        q: 'Will it try to trick our bot?',
-        a: 'No. It asks what an ordinary customer asks. No jailbreaks or prompt tricks.',
+        q: 'Will Drift watch try to trick our bot?',
+        a: 'No. Drift watch asks what an ordinary customer asks. No jailbreaks or prompt tricks.',
       },
       {
-        q: 'Can it watch a client’s agents?',
-        a: 'Yes, with the client’s written OK and their vendor’s agreement. The record carries your agency’s name.',
+        q: 'Can Drift watch cover a client’s agents?',
+        a: 'Yes, with the client’s written OK and their vendor’s agreement: the Drift watch record carries your agency’s name.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 10 days sooner: 1 team found a drop in its agent 11 days after the change that caused it, and a replay every morning finds it within 1. A replay after every update finds it within the hour.',
+        a: 'Drift watch finds a drop up to 10 days sooner: 1 team found a drop in its agent 11 days after the change that caused it, and a replay every morning finds it within 1. A replay after every update finds it within the hour.',
       },
       {
         q: 'Is a passed replay a guarantee?',
-        a: 'No. It’s dated evidence of what your agent said on each case that day.',
+        a: 'No. A passed Drift watch replay is dated evidence of what your agent said on each case that day.',
       },
       {
         q: 'What’s in the free check?',
-        a: '3 test customers use your AI agent on 1 channel, and your report lands within 4 days. It’s the first point on your baseline.',
+        a: 'The free check is a Drift watch run: 3 test customers use your AI agent on 1 channel, and your report lands within 4 days. It’s the first point on your baseline.',
       },
     ],
   },

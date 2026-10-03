@@ -96,6 +96,9 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
         ref={ref}
         className={'ilwrap ob-object' + (className ? ' ' + className : '')}
         data-screen={name}
+        /* Keeps a screen's example data ("Rival B: free delivery now from £35") out of Google's snippets, AI Overviews
+           and AI Mode, so it is never quoted as fact; the page's own words around it are. */
+        data-nosnippet=""
         onClick={() => replay(ref.current?.querySelector('.il') ?? null)}
         dangerouslySetInnerHTML={html === undefined ? KEEP : { __html: html }}
         suppressHydrationWarning

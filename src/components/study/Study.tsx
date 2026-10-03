@@ -233,7 +233,7 @@ export function StudyProof({ proof, workspace, id = 'proof' }: { proof: UseCaseS
           <p className="ob-type-body-lg">{tie(proof.line)}</p>
         </header>
         <div className="s-st-phase">
-          <div className="s-st-phase__copy">{proof.steps && <StepList steps={proof.steps} />}</div>
+          <div className="s-st-phase__copy">{proof.steps && <StepList steps={proof.steps} level={3} />}</div>
           <div className="s-st-phase__screen">
             <div className="s-st-sticky">
               <AppScreen name={proof.screen} workspace={workspace} />

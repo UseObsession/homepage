@@ -45,7 +45,7 @@ export const recipe: Recipe = {
     description:
       'When a subscriber or their AI assistant asks to cancel, your declared AI agent offers 1 pause you approved next to “Cancel now”, then does what they pick.',
     answer:
-      'Cancellation saves is an Obsession recipe. When a subscriber, or their AI assistant, asks to cancel by email, chat or phone, a declared AI agent puts 1 pause or offer you approved next to “Cancel now”, and does what they pick at once. Cancelling stays as easy as staying.',
+      'Cancellation saves keeps the subscribers who’d rather pause: when a subscriber, or their AI assistant, asks to cancel, your declared AI agent puts 1 pause or offer you approved next to “Cancel now”, and does what they pick at once.',
     ogImage: '/og/cancellation-saves.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Keep the subscribers who’d rather pause than cancel.',
-    sub: 'When a subscriber, or their AI assistant, asks to cancel, your declared AI agent puts 1 pause or offer you approved right next to “Cancel now”, and does what they pick at once. Cancelling stays as easy as staying.',
+    sub: 'Cancellation saves keeps the subscribers who’d rather pause: when a subscriber, or their AI assistant, asks to cancel, your declared AI agent puts 1 pause or offer you approved next to “Cancel now”, and does what they pick at once.',
     screen: 'saves',
     capture: {
       kind: 'waitlist',
@@ -188,36 +188,40 @@ export const recipe: Recipe = {
     heading: 'Declared as your AI. Cancelling stays as easy as staying.',
     items: [
       {
-        q: 'Does it make cancelling harder?',
-        a: 'No. “Cancel now” sits next to every offer, “cancel, no offers” cancels at once, and every cancel is done the same minute, in the channel it was asked.',
+        q: 'How do I offer a pause when a subscriber asks to cancel?',
+        a: 'Cancellation saves offers it next to “Cancel now”, never in place of it: your declared AI agent answers every cancel request at once with 1 pause or offer you approved, and does what the subscriber picks the same minute.',
+      },
+      {
+        q: 'Does Cancellation saves make cancelling harder?',
+        a: 'No. Cancellation saves puts “Cancel now” next to every offer, “cancel, no offers” cancels at once, and every cancel is done the same minute, in the channel it was asked.',
       },
       {
         q: 'What if an AI assistant asks to cancel?',
-        a: 'It says it’s your brand’s AI, asks whom the assistant acts for, and checks with the subscriber the way you already do. It never cancels on an assistant’s word alone.',
+        a: 'Cancellation saves says it’s your brand’s AI, asks whom the assistant acts for, and checks with the subscriber the way you already do. It never cancels on an assistant’s word alone.',
       },
       {
         q: 'How many offers does a subscriber see?',
-        a: '1, from a menu you approve, inside a discount budget you set. If they say no, it cancels.',
+        a: 'Cancellation saves shows 1, from a menu you approve, inside a discount budget you set. If they say no, it cancels.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Up to 28% of subscribers who ask to cancel stay: 38% would rather pause than cancel, and 3 in 4 who pause come back (0.38 × 0.75).',
+        a: 'With Cancellation saves, up to 28% of subscribers who ask to cancel stay: 38% would rather pause than cancel, and 3 in 4 who pause come back (0.38 × 0.75).',
       },
       {
-        q: 'Does it follow click to cancel rules?',
-        a: 'It’s built to them. Every offer sits beside “Cancel now”, callers first hear they can say “cancel” at any time, and a cancel is done in the channel it was asked.',
+        q: 'Does Cancellation saves follow click to cancel rules?',
+        a: 'Cancellation saves is built to them. Every offer sits beside “Cancel now”, callers first hear they can say “cancel” at any time, and a cancel is done in the channel it was asked.',
       },
       {
         q: 'What about a refund or a price match?',
-        a: 'Anything not on your menu goes to a person. The subscriber is told when to expect an answer, and the agent follows up.',
+        a: 'Cancellation saves sends anything not on your menu to a person. The subscriber is told when to expect an answer, and the agent follows up.',
       },
       {
-        q: 'Does it pretend to be a person?',
-        a: 'No. It says it’s an AI agent for your brand at the start of every chat, email and call, and that calls are recorded.',
+        q: 'Does Cancellation saves pretend to be a person?',
+        a: 'No. The Cancellation saves agent says it’s an AI agent for your brand at the start of every chat, email and call, and that calls are recorded.',
       },
       {
-        q: 'What does it need from us?',
-        a: 'Your billing tool, connected with the access a cancel, pause or plan change needs, your offer menu and your budget. Nothing more.',
+        q: 'What does Cancellation saves need from us?',
+        a: 'Cancellation saves needs your billing tool, connected with the access a cancel, pause or plan change needs, your offer menu and your budget. Nothing more.',
       },
     ],
   },

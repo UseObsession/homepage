@@ -26,16 +26,16 @@ export const page: Page = {
     path: '/',
     title: 'Obsession · Intelligence infrastructure for commercial teams',
     description:
-      'Declared AI agents with their own inbox, phone and card research prospects, test journeys, track rivals, negotiate and check the AI agents you run.',
+      'Obsession is the intelligence infrastructure for commercial teams: declared AI agents that do business with other companies for you, every step signed.',
     answer:
-      'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number, card and browser, that work with other companies for you. They research prospects as their customer, test any journey, track rivals, answer and chase, buy and negotiate within the limits you set, and check the AI agents you run, at every company on your list, continuously, with every step signed.',
+      'Obsession sends declared AI agents to research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. You get signed proof and your next move.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
-    sub: 'Declared AI agents research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. Every step signed.',
+    sub: 'Obsession sends declared AI agents to research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
@@ -50,7 +50,7 @@ export const page: Page = {
     },
     proof: [
       { value: 'Every company', label: 'on your list, at once' },
-      { value: 'Continuously', label: 'and again after every fix' },
+      { value: 'Every step signed', label: 'and dated, so anyone can check it' },
       { value: '0 basket reminders', label: 'in 48 hours, found on a real store' },
     ],
     consoleHeading,
@@ -327,7 +327,7 @@ await obs.missions.create({
         line: 'Each one is dated and kept with its screenshot or message, so anyone can check what happened without taking our word for it.',
       },
     ],
-    link: { label: 'The page our agents link to', to: '/agents' },
+    link: { label: 'What a declared AI agent does', to: '/agents' },
   },
 
   /* The questions under James's claim: what a reader wants to know before naming the first company. */
@@ -336,39 +336,43 @@ await obs.missions.create({
     items: [
       {
         q: 'What is Obsession?',
-        a: 'The intelligence infrastructure for commercial teams. Declared AI agents, each with its own ID, inbox, phone number, card and browser, do business with other companies for you: they sign up, shop, ask the bot and chase at every company on your list, continuously, buy and negotiate within your limits, and check the AI agents you run. You get signed proof and your next move.',
+        a: 'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you. They sign up, shop, ask the bot and chase at every company on your list, continuously, buy and negotiate within your limits, and check the AI agents you run, and you get signed proof and your next move.',
       },
       {
-        q: 'How is it different from an AI assistant or a data tool?',
-        a: 'An assistant acts as you, from your own inbox and logins, 1 company at a time. A data tool reads what a company publishes. Obsession’s agents have their own declared identity, go through every company on your list as a customer, and come back after every fix.',
+        q: 'Are there real examples of AI agents doing work?',
+        a: 'Yes. In September 2026, Obsession’s agents shopped a UK store as 4 labelled test customers and watched every inbox for 48 hours: 1 left a basket and 1 stopped at checkout, and nobody wrote to either. The full report is in the sample output.',
+      },
+      {
+        q: 'How is Obsession different from an AI assistant or a data tool?',
+        a: 'Obsession’s agents have their own declared identity, go through every company on your list as a customer, and come back after every fix. An assistant acts as you, from your own inbox and logins, 1 company at a time, and a data tool reads what a company publishes.',
       },
       {
         q: 'Do companies know it’s an AI agent?',
-        a: 'Yes. Every agent says it’s an AI agent. On your own journeys, or a client’s or account’s with their OK, it also says who it works for. At rivals and prospects it uses only what any customer can: sign ups, newsletters, text opt ins, public pages and the site’s chat bot. There it links to useobsession.com/agents and never names you.',
+        a: 'Yes. Every Obsession agent says it’s an AI agent. On your own journeys, or a client’s or account’s with their OK, it also says who it works for. At rivals and prospects it uses only what any customer can: sign ups, newsletters, text opt ins, public pages and the site’s chat bot. There it links to useobsession.com/agents and never names you.',
       },
       {
-        q: 'What will the agents never do?',
-        a: 'Pretend to be a person, use a fake identity or send cold spam. Contact a person at a prospect or rival: no forms, no emails, and if a person picks up the chat, the step ends. Start a rival’s trial that asks for a card, reply in one, or stay once a rep writes or calls. Pay on anyone else’s store, or go behind a login it wasn’t given.',
+        q: 'What will Obsession’s agents never do?',
+        a: 'An Obsession agent never pretends to be a person, uses a fake identity or sends cold spam. It never contacts a person at a prospect or rival: no forms, no emails, and if a person picks up the chat, the step ends. It never starts a rival’s trial that asks for a card, replies in one, or stays once a rep writes or calls, and it never pays on anyone else’s store or goes behind a login it wasn’t given.',
       },
       {
         q: 'What do I get back?',
-        a: 'What happened, the proof and your next move. Every step is signed and dated, with the screenshots and the messages themselves, by email, PDF, Slack, a sheet, Clay, your CRM or a webhook. Next moves come drafted, and nothing goes out without your OK.',
+        a: 'Obsession sends back what happened, the proof and your next move. Every step is signed and dated, with the screenshots and the messages themselves, by email, PDF, Slack, a sheet, Clay, your CRM or a webhook. Next moves come drafted, and nothing goes out without your OK.',
       },
       {
-        q: 'Can it check our own AI agents?',
-        a: 'Yes. Give us the chat page, phone number or inbox your AI agent answers on, or a client’s with their OK, and the policies it should follow. Obsession writes the checks, and once you approve them, declared test customers use it as your customers do, every day, and sign what they find.',
+        q: 'Can Obsession check our own AI agents?',
+        a: 'Yes. Give Obsession the chat page, phone number or inbox your AI agent answers on, or a client’s with their OK, and the policies it should follow. Obsession writes the checks, and once you approve them, declared test customers use it as your customers do, every day, and sign what they find.',
       },
       {
-        q: 'How many companies can it cover?',
-        a: 'As many as you add. Every company on your list runs at once, continuously, from a pasted list, a CSV, Clay or the API.',
+        q: 'How many companies can Obsession cover?',
+        a: 'Obsession covers as many as you add. Every company on your list runs at once, continuously, from a pasted list, a CSV, Clay or the API.',
       },
       {
         q: 'Do I need to write code?',
-        a: 'No. Pick a recipe or type the task in plain words. The API is there for developers who want to build on it.',
+        a: 'No. Pick an Obsession recipe or type the task in plain words. The API is there for developers who want to build on it.',
       },
       {
         q: 'How do I start?',
-        a: 'Join the waitlist and tell us what to set up first. Your first mystery shop is free for a store you run, or a client’s with their OK, and so is your first check of an AI agent you run. Each report comes within 4 days.',
+        a: 'Join the Obsession waitlist and tell us what to set up first. Your first mystery shop is free for a store you run, or a client’s with their OK, and so is your first check of an AI agent you run. Each report comes within 4 days.',
       },
     ],
   },

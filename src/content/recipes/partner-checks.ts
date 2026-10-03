@@ -53,7 +53,7 @@ export const recipe: Recipe = {
     description:
       'Each week a declared AI agent follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
     answer:
-      'Partner checks is an Obsession recipe. Each week a declared AI agent visits every affiliate and partner on your list as a customer would, follows your link to your store, tries their code in your basket and checks the banner. When one is out of date, it drafts a note to that partner for your OK. Links, codes and banners only, never prices.',
+      'Partner checks catches every partner still sharing an expired code or an old banner: each Monday a declared AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch every partner still sharing an expired code or an old banner.',
-    sub: 'Each Monday a declared AI agent visits every partner’s page as a customer, follows your link to your store and tries their code in your basket. When a link, code or banner is out of date, it drafts the note to that partner for your OK.',
+    sub: 'Partner checks catches every partner still sharing an expired code or an old banner: each Monday a declared AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     screen: 'partners',
     capture: {
       kind: 'waitlist',
@@ -204,36 +204,40 @@ export const recipe: Recipe = {
     heading: 'Links, codes and banners only. Nothing sent without your OK.',
     items: [
       {
-        q: 'Does it check our partners’ prices?',
-        a: 'No. Only your links, codes and banners. It never reads, logs or compares what a partner charges.',
+        q: 'How do I check my affiliates’ links and codes still work?',
+        a: 'Partner checks tries them every Monday: a declared AI agent follows each partner’s link to your store, applies their code to a basket on your own store, checks the discount and stops before payment, then drafts a note for your OK when a link, code or banner is out of date.',
       },
       {
-        q: 'Does it contact our partners?',
-        a: 'Only through your team. It drafts each note in your team’s own thread, and the note goes only after your OK.',
+        q: 'Does Partner checks look at our partners’ prices?',
+        a: 'No. Partner checks covers only your links, codes and banners. It never reads, logs or compares what a partner charges.',
       },
       {
-        q: 'Does it buy anything?',
-        a: 'No. It tries the code in a basket on your own store and leaves before payment. Nothing is bought, so no partner earns a commission from a check.',
+        q: 'Does Partner checks contact our partners?',
+        a: 'Only through your team: Partner checks drafts each note in your team’s own thread, and the note goes only after your OK.',
       },
       {
-        q: 'Which partners can it check?',
-        a: 'Any partner with a public page that links to you: affiliates, creators, newsletters, podcasts, review sites and gift guides, from the list you give it.',
+        q: 'Does Partner checks buy anything?',
+        a: 'No. Partner checks tries the code in a basket on your own store and leaves before payment. Nothing is bought, so no partner earns a commission from a check.',
       },
       {
-        q: 'How does it know what’s current?',
-        a: 'From the codes, offers and banners you give it. Change an offer, and the next check makes sure every partner shows the new one.',
+        q: 'Which partners can Partner checks cover?',
+        a: 'Partner checks covers any partner with a public page that links to you: affiliates, creators, newsletters, podcasts, review sites and gift guides, from the list you give it.',
       },
       {
-        q: 'Does it say it’s AI?',
+        q: 'How does Partner checks know what’s current?',
+        a: 'Partner checks reads it from the codes, offers and banners you give it. Change an offer, and the next check makes sure every partner shows the new one.',
+      },
+      {
+        q: 'Does Partner checks say it’s AI?',
         a: 'Yes. It’s a declared Obsession agent, and on a partner’s page it only reads what any visitor can see.',
       },
       {
         q: 'What’s it worth?',
-        a: 'A dead code, link or banner is found within 7 days, not when a customer complains or the month’s numbers dip. Check daily in a sale, and it’s found within a day.',
+        a: 'With Partner checks, a dead code, link or banner is found within 7 days, not when a customer complains or the month’s numbers dip. Check daily in a sale, and it’s found within a day.',
       },
       {
-        q: 'How is it different from Ad landing check?',
-        a: 'Ad landing check opens the pages your own ads point to. Partner checks follows the links other sites run for you, and drafts the note when one is out of date.',
+        q: 'How is Partner checks different from Ad landing check?',
+        a: 'Partner checks follows the links other sites run for you, and drafts the note when one is out of date. Ad landing check opens the pages your own ads point to.',
       },
     ],
   },

@@ -30,11 +30,11 @@ const final = (source: string): Final => ({
 export const resourcesPage: ResourcesPage = {
   meta: {
     path: '/resources',
-    title: 'Resources: worked examples, a real store check and the blog',
+    title: 'Obsession resources: worked examples and a real store check',
     description:
-      'Obsession at work: worked examples from set up to proof, the real September store check in every format it arrives in, and the blog on agents at work.',
+      'Obsession at work: worked examples of declared AI agents from set up to proof, and the real September store check in every format it arrives in.',
     answer:
-      'The Obsession resources are worked examples of declared AI agents doing 1 job from start to finish, the real September 2026 store check shown in every format it can arrive in, and the blog.',
+      'Obsession’s resources show the work before you join: worked examples that follow 1 job from set up to proof, and the 1 real store check in every format it arrives in.',
     ogImage: '/og/resources.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ export const resourcesPage: ResourcesPage = {
   },
   hero: {
     headline: 'See the work before you join.',
-    sub: 'Follow 1 job from set up to proof, open the 1 real store check in every format it arrives in, and read the founders’ guides.',
+    sub: 'Obsession’s resources show the work before you join: worked examples that follow 1 job from set up to proof, and the 1 real store check in every format it arrives in.',
   },
   groups: {
     useCases: {
@@ -76,7 +76,7 @@ export const useCasesPage: UseCasesIndexPage = {
     description:
       'Worked examples of Obsession: declared AI agents run 1 job for 1 kind of customer, from set up to the proof in their own tools. The names are made up.',
     answer:
-      'Obsession use cases are worked examples: declared AI agents run 1 job for 1 kind of customer, from set up to the proof that lands in the tools they already use. The companies, people and figures in them are made up.',
+      'Obsession use cases are worked examples: declared AI agents run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
     ogImage: '/og/use-cases.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -86,7 +86,7 @@ export const useCasesPage: UseCasesIndexPage = {
   },
   hero: {
     headline: 'See 1 job run from a list to proof in the tools you already use.',
-    sub: 'Each example follows declared AI agents through 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
+    sub: 'Obsession use cases are worked examples: declared AI agents run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
   },
   group: {
     id: 'examples',

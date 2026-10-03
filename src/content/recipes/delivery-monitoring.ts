@@ -39,7 +39,7 @@ export const recipe: Recipe = {
     description:
       'Labelled AI test customers live your first 14 days on real inboxes and numbers in each country, and flag any email, text or code that never arrives.',
     answer:
-      'Delivery monitoring is an Obsession recipe. Labelled AI test customers with real inboxes and phone numbers in each country you sell in live your first 14 days, a new one after every release and every week, time every email, text and login code, and flag anything that never arrives with a signed screenshot.',
+      'Delivery monitoring proves every email, text and login code arrives: after every release, labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,7 +50,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that prove every email, text and login code arrives.',
-    sub: 'After every release, labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never arrives.',
+    sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     screen: 'qa',
     capture: {
       kind: 'waitlist',
@@ -159,24 +159,28 @@ export const recipe: Recipe = {
     heading: 'Every test customer says it’s AI, and lives only your own journeys.',
     items: [
       {
+        q: 'How do I know our welcome emails and login codes actually arrive?',
+        a: 'Obsession’s Delivery monitoring has labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flags any email, text or code that never arrives.',
+      },
+      {
         q: 'Why 14 days?',
-        a: 'Day 1 is the part everyone tests. The login code on day 6 and the trial reminder on day 13 aren’t. 14 days runs a 14 day trial to its last reminder, and you can set any window.',
+        a: 'Because Delivery monitoring checks what day 1 tests miss: the login code on day 6 and the trial reminder on day 13. 14 days runs a 14 day trial to its last reminder, and you can set any window.',
       },
       {
         q: 'Are the inboxes and numbers real?',
-        a: 'Yes. Each test customer has its own inbox and a real number in the country you pick, so a text a network blocks never reaches it either.',
+        a: 'Yes. Each Delivery monitoring test customer has its own inbox and a real number in the country you pick, so a text a network blocks never reaches it either.',
       },
       {
-        q: 'Can it check our launch emails and texts?',
-        a: 'Yes. Test customers on your list get every send, open every link and try every code, stopping before payment.',
+        q: 'Can Delivery monitoring check our launch emails and texts?',
+        a: 'Yes. Delivery monitoring’s test customers on your list get every send, open every link and try every code, stopping before payment.',
       },
       {
-        q: 'Does it see our real customers’ data?',
-        a: 'No. It only sees what its own test customers receive.',
+        q: 'Does Delivery monitoring see our real customers’ data?',
+        a: 'No. Delivery monitoring only sees what its own test customers receive.',
       },
       {
-        q: 'Can agencies run it for clients?',
-        a: 'Yes, with each client’s OK. Every client gets its own test customers and its own log to forward.',
+        q: 'Can agencies run Delivery monitoring for clients?',
+        a: 'Yes, with each client’s OK: Delivery monitoring gives every client its own test customers and its own log to forward.',
       },
     ],
   },
