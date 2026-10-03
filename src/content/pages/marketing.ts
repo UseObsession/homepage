@@ -27,9 +27,10 @@ import type { Page } from '../types'
    banners only, never partner prices, and every note goes from your own team after your OK; every customer is asked
    for a review the same way, with the same review link, good or bad, from your own address;
    launch checks, lead leaks and checkout tests run on your own journeys only.
-   Up-to-50 rule: up to $2,870 a week saved is Ad landing check's example (Ad 4 at $410 a day, 7 × $410; "saved",
-   never "back", which reads as "ago"); up to 18 hours a
-   month is 90 minutes a week on each of 3 rivals for 4 weeks (1.5 × 3 × 4). */
+   Up-to-50 rule, no money promises (James and Seun, 3 Oct): up to 6 days sooner is Ad landing check's example (Ad 4
+   sending clicks to a sold out page: a check each morning finds it within 1 day, a weekly review within 7, so
+   7 minus 1 = 6), split value and label the way /verify's "Up to 10 days" is; up to 18 hours a month saved ("saved", never
+   "back", which reads as "ago") is 90 minutes a week on each of 3 rivals for 4 weeks (1.5 × 3 × 4). Ad 4's $410 a day stays as a fact of its story, never as a sum saved. */
 
 export const page: Page = {
   meta: {
@@ -305,7 +306,7 @@ export const page: Page = {
     heading: 'Your team stops checking by hand and starts fixing what customers see.',
     items: [
       { value: 'Every Monday', label: 'AI assistants asked what they tell your buyers, and every wrong fact corrected at its source' },
-      { value: 'Up to $2,870', label: 'a week saved on 1 ad that sent clicks to a sold out page, at $410 a day' },
+      { value: 'Up to 6 days', label: 'sooner: a check each morning finds an ad sending clicks to a sold out page within 1 day, where a weekly review can take 7' },
       { value: 'Within minutes', label: 'of every send, a broken link, code or text flagged as a customer sees it, with the fix drafted' },
       { value: 'Up to 18 hours', label: 'a month saved, if your team spends 90 minutes a week on each of 3 rivals' },
     ],

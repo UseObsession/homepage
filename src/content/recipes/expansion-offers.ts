@@ -19,10 +19,11 @@ import type { Capture, Recipe } from '../types'
    advance, and anything off it waits for a person; people sign, and the agent never accepts terms; a "no" or a "not
    now" stops it for that account until a new moment and the rep's OK; an open complaint or a falling health score
    holds the offer and flags the account instead.
-   Up-to-50 rule: the 1 modelled figure is the example account's ceiling, with its sum in the same line: up to £9,000 a
-   year more from 1 account, 25 seats at the £360 a seat it already pays (£43,200 ÷ 120 = £360; 25 × £360 = £9,000),
-   21% on its £43,200 (9,000 ÷ 43,200 = 20.8%). No sources, prices of Obsession or real names on the page. The run is
-   an example and says so. */
+   Up-to-50 rule, no money promises (James and Seun, 3 Oct): the 1 modelled figure is hours, with its sum in the same
+   line: up to 520 hours a year saved for a rep who builds the run's 5 moments a week into cases and offers by hand at
+   2 hours each (5 × 2 = 10 hours a week; 10 × 52 = 520). The run's offer, 25 more seats for £9,000 a year at the £360
+   a seat it already pays, stays as a fact of the example, never as a sum gained. No sources, prices of Obsession or
+   real names on the page. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'What’s your role?',
@@ -184,7 +185,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'The agent drafts. Your rep sends. People sign.',
-    line: 'Up to £9,000 a year more from the account in the example: 25 more seats at the £360 a seat it already pays, 21% on its £43,200.',
+    line: 'Up to 520 hours a year saved, if your rep spends 10 hours a week building cases and offers by hand: 5 a week, 2 hours each. The agent builds each one from the customer’s own usage, and your rep checks it.',
     cols: ['The agent', 'Your rep'],
     rows: [
       { label: 'A moment on an account', values: ['Finds it in usage or public news', 'Sees it the same morning'] },
@@ -234,7 +235,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Expansion offers is worth up to £9,000 a year more from the account in the example: 25 more seats at the £360 a seat it already pays, 21% on its £43,200 (£9,000 ÷ £43,200).',
+        a: 'Expansion offers saves your rep up to 520 hours a year, if they spend 10 hours a week building cases and offers by hand: 5 a week, 2 hours each (10 × 52 = 520). The agent builds each case from the customer’s own usage and drafts the offer on your price book. Your rep checks it and approves the words.',
       },
       {
         q: 'How is Expansion offers different from Account watch?',

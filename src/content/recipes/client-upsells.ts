@@ -16,10 +16,11 @@ import type { Capture, Recipe } from '../types'
    own thread and goes only after the agency approves the words; prices come from the agency's service list, and
    anything off it waits for a person; no guaranteed results in any proposal; people sign; a "no" or a "not now" stops
    it for that client until a new gap and the agency's OK.
-   Up-to-50 rule: the 1 modelled figure is the example's ceiling, with its sum in the same line: up to £27,600 over 12
-   months from the 3 proposals if every client says yes (£1,200 + £900 = £2,100 a month; £2,100 × 12 = £25,200;
-   £25,200 + £2,400 once = £27,600). No sources, prices of Obsession or real names on the page. The run is an example
-   and says so. */
+   Up-to-50 rule (no money promises, 3 Oct): the 1 modelled figure is hours back, with its sum in the same line: up to
+   132 hours a year if every month is like October in the example (1 hour to read each of 5 clients' checks = 5 hours,
+   2 hours to draft each of 3 proposals with its proof = 6 hours, so 11 hours a month; 11 × 12 = 132). The proposal
+   prices in the run stay as facts of the example. No sources, prices of Obsession or real names on the page. The run
+   is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'What’s your role?',
@@ -179,7 +180,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'The agent drafts. You approve. Your client decides.',
-    line: 'Up to £27,600 over 12 months from the 3 proposals in the example, if every client says yes: £1,200 and £900 a month, plus £2,400 once.',
+    line: 'Up to 132 hours a year back, if every month is like October in the example: 1 hour to read each of 5 clients’ checks and 2 hours to draft each of 3 proposals with its proof, so 11 hours a month.',
     cols: ['The agent', 'You'],
     rows: [
       { label: 'Your checks of each client', values: ['Reads every one, each month', 'Agree them with the client'] },
@@ -229,7 +230,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Client upsells is worth up to £27,600 over 12 months from the 3 proposals in the example, if every client says yes: £1,200 and £900 a month for 12 months, plus £2,400 once (£2,100 × 12 + £2,400).',
+        a: 'Client upsells gives up to 132 hours a year back, if every month is like October in the example: 1 hour to read each of 5 clients’ checks and 2 hours to draft each of 3 proposals with its proof, so 11 hours a month.',
       },
       {
         q: 'How is Client upsells different from Mystery shopper?',

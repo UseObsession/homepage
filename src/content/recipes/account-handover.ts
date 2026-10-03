@@ -15,9 +15,10 @@ import type { Capture, Recipe } from '../types'
    sign (social platforms bar automated access), the agent prepares the pack and the client sends it; fees are paid only
    inside a limit the customer sets, each on a card capped to that fee; removing users and changing billing wait for the client's OK; factual tone, no
    threats, real disputes go to the client's lawyer; no recovery services or rented accounts. Platforms are named by
-   category, never by brand. Up-to-50 rule: the 1 modelled figure (up to 3 weeks sooner; up to $3,460 billed sooner on
-   a $5,000 a month retainer, 3 weeks x $5,000 x 12 / 52) carries its model in the same line. The run is an example and
-   says so. */
+   category, never by brand. Up-to-50 rule (no money promises, 3 Oct): the modelled figures carry their model in the same
+   line: up to 3 weeks sooner (a handover that should take under a week can take more than a month; in the example,
+   full access is 6 days away on day 3, not 31); up to 10 hours of chasing back per new client (30 minutes a working
+   day x 5 days x 4 weeks = 600 minutes = 10 hours). The run is an example and says so. */
 
 const roles: Capture['roles'] = {
   question: 'What’s your role?',
@@ -218,7 +219,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How much sooner can we start?',
-        a: 'Account handover gets you started up to 3 weeks sooner per new client: a handover that should take under a week can take more than a month while clients chase the old holder, and starting everything on day 1 lets each platform’s clock set the pace. On a $5,000 a month retainer, that’s up to $3,460 of work billed sooner.',
+        a: 'Account handover gets you started up to 3 weeks sooner per new client: a handover that should take under a week can take more than a month while clients chase the old holder, and starting everything on day 1 lets each platform’s clock set the pace. The agent does the chasing too: up to 10 hours back per new client, at 30 minutes a working day for 4 weeks.',
       },
       {
         q: 'What does our client keep?',

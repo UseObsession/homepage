@@ -13,9 +13,9 @@ import type { Capture, Page } from '../types'
    The console runs that tell a use case's story use its screen's figures (Account brief: 12 sales roles, a new VP of
    Support, 2 of 5 bot answers wrong, trial emails stop after day 2; Account watch: 38 renewals, Snack brand at risk,
    Payroll SaaS ready to grow), so the page never tells 1 story with 2 sets of numbers. The console ends on the renewal.
-   Up-to-50 rule: up to $96,000 a year is 2 accounts at $48,000 a year each, 1 renewal saved and 1 deal won; up to 5
-   hours a week is 10 first calls at 30 minutes each; the renewal run keeps $7,680 a year (22% asked less 6% given, of
-   $48,000).
+   Up-to-50 rule (no money promises, 3 Oct): up to 494 hours a year is 1 account manager checking 38 renewals by hand at
+   15 minutes each a week (38 x 15 = 570 minutes = 9.5 hours a week, x 52 = 494); up to 5 hours a week is 10 first calls
+   at 30 minutes each; the renewal run ends on its dates (agreed 61 days out, paid 2 days before renewal), not a sum.
    Screens: How uses the flow screens (compose, templates, kit, run); each use case has its own (docs/REBUILD.md §6). */
 
 const roles: Capture['roles'] = {
@@ -176,7 +176,7 @@ export const page: Page = {
           { time: '61 days out', text: 'Agreed. Your account manager signs, and the agent chases their signer.' },
           { time: '2 days out', text: 'PO in, invoice accepted in their portal, paid.' },
         ],
-        finding: 'Asked for 22% off, renewed at 6% for 2 years: $7,680 a year kept on $48,000.',
+        finding: 'Asked for 22% off, renewed at 6% for 2 years. Agreed 61 days out, paid 2 days before renewal.',
         fix: 'Anything outside your limits comes to you. Next year’s renewal starts 120 days out.',
         ledger: 'Every round, usage file and signature dated and signed.',
       },
@@ -314,8 +314,8 @@ export const page: Page = {
   },
 
   outcomes: {
-    heading: 'Up to $96,000 a year from 1 renewal saved and 1 deal won on a signed pilot.',
-    sub: 'If each account is worth $48,000 a year: 1 saved on an early churn flag, and 1 won on a before and after their CFO could check.',
+    heading: 'Up to 494 hours a year back for 1 account manager with 38 renewals.',
+    sub: 'If each renewal takes 15 minutes a week to check by hand, 38 take 9.5 hours a week, 52 weeks a year. Agents do the checking, and your account manager reads only the flags.',
     items: [
       { value: 'Up to 5 hours', label: 'a week saved per rep, on 10 first calls at 30 minutes of research each' },
       { value: 'Day 0, 14 and 28', label: 'of every pilot, each answer timed and signed' },

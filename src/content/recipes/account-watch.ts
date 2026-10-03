@@ -11,7 +11,10 @@ import type { Capture, Recipe } from '../types'
    Red lines held: inside data only through tools the customer connects, with consent; news, hiring and team pages in
    public; at each account the agent joins the public emails and texts as a declared AI agent working for you; any
    deeper journey (sign up flow, basket, booking) only with the account's OK, stopping before payment; the agent never
-   writes to an account: every play is drafted for your team to send. The run is an example and says so. */
+   writes to an account: every play is drafted for your team to send. The run is an example and says so.
+   Up-to-50 rule, no money promises (James and Seun, 3 Oct): the 1 modelled figure is hours, with its sum in the same
+   line, the same model as /sales: 1 account manager checking the run's 38 accounts by hand at 15 minutes each a week (38 × 15 = 570 minutes, 9.5 hours a week;
+   9.5 × 52 = 494 hours a year), against every account checked every morning. */
 
 const roles: Capture['roles'] = {
   question: 'What’s your role?',
@@ -185,7 +188,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Account watch keeps up to $48,000 a year, if 1 account worth $48,000 a year is saved on an early churn flag.',
+        a: 'Account watch gives up to 494 hours a year back for 1 account manager who checks 38 accounts by hand, 15 minutes each a week: 9.5 hours a week (9.5 × 52 = 494). Its agents check every one every morning, and you read only the accounts that need you.',
       },
       {
         q: 'Does Account watch read our customers’ data?',

@@ -17,9 +17,9 @@ import type { Recipe } from '../types'
    customer asks, never a jailbreak or a prompt trick; it spends only on the reader's own store, inside a test budget
    the reader sets; the dispute pack goes to the vendor only after the reader's OK. "Challenge", never "recover":
    whether a vendor credits a disputed resolution is up to its contract. No vendor or product names: Vendor A.
-   Up-to-50 rule: the 1 modelled figure (up to $22,572 a year to challenge) carries its model in the same line:
-   10,000 billed resolutions a month x $0.99 = $9,900, x 19 in 100 not real (the example's own rate, $18.81 of $99)
-   = $1,881 a month, x 12 = $22,572. /verify states the same model. */
+   Up-to-50 rule (no money promises, 3 Oct): the modelled figures carry their model in the same line: 10,000 billed
+   resolutions a month x 19 in 100 not real (the example's own rate, 19 of 100) = up to 1,900 a month to challenge,
+   the count /verify states; checking all 10,000 by hand at 3 minutes each = 30,000 minutes = 500 hours a month. */
 
 const roles = form.agent.roles
 
@@ -145,7 +145,7 @@ export const recipe: Recipe = {
       { format: 'A verdict per resolution', line: 'Real or not, with the evidence beside it: the payment, the ticket or the order.' },
       { format: 'The bot’s own words', line: 'What it told the customer, timed, beside what really happened.' },
       { format: 'The test customer’s result', line: 'The same ask, made on your live channel, and what came of it.' },
-      { format: 'What it’s worth', line: 'The amount billed each month for resolutions that weren’t real.' },
+      { format: 'The monthly count', line: 'How many billed resolutions weren’t real, by reason: a refund never made, a customer gone quiet or back, a case a person finished.' },
       { format: 'The dispute pack', line: 'Every case under your vendor’s own terms, signed. Sent only after your OK.' },
       {
         format: 'A record to share',
@@ -179,7 +179,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'A resolution counts when the customer gets what the bot promised.',
-    line: 'Up to $22,572 a year to challenge: 10,000 resolutions billed a month at $0.99 is $9,900, and if 19 in 100 aren’t real, as in this example, $1,881 of it each month.',
+    line: 'Up to 1,900 billed resolutions a month to challenge, each with its proof: 10,000 billed, if 19 in 100 aren’t real, as in this example. Checking all 10,000 by hand, at 3 minutes each, would take 500 hours a month.',
     cols: ['Today', 'With a resolution check'],
     rows: [
       { label: 'What gets billed', values: ['Your vendor’s own count', 'Each resolution checked against the real outcome'] },
@@ -232,7 +232,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Resolution check finds up to $22,572 a year to challenge on 10,000 billed resolutions a month at $0.99, if 19 in 100 aren’t real, as in this example. It moves with your volume, your price and your real rate.',
+        a: 'Resolution check finds up to 1,900 billed resolutions a month to challenge, each with its proof, on 10,000 billed, if 19 in 100 aren’t real, as in this example. Checking all 10,000 by hand, at 3 minutes each, would take 500 hours a month.',
       },
       {
         q: 'Is a passed check a guarantee?',

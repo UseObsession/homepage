@@ -6,7 +6,7 @@ import type { Capture, Recipe } from '../types'
    14% in 90 days, and offers 5% for a 2 year term from the grid AM approved (1 year 0% or 2% paid up front, 2 years 5%
    or 7%, 3 years 8% or 10%; cap 10% off, floor $43,200); round 2, Tue 10:05, they accept; held at $45,600, 95% of list,
    against $39,360 asked; signature requested, then PO, then paid on 30 days). The run tells that story (3 Oct): round 1
-   on Mon 7 Sep, 120 days out is 24 Jul and 90 days out 23 Aug; $45,600 - $39,360 = $6,240 a year kept.
+   on Mon 7 Sep, 120 days out is 24 Jul and 90 days out 23 Aug; asked 09:12, answered 14:40, 5 hours 28 minutes.
    Base: _research/recipes/ACTIVE-RECIPES.md, recipe 3 (research name retired; the plain name is Renewal negotiation).
    It upgrades Business case from a renewal document to a closed renewal.
    Red lines held: declared as AI for the seller, and it asks the other side's agent to say it's AI and whom it acts for;
@@ -15,8 +15,8 @@ import type { Capture, Recipe } from '../types'
    a person checks the usage export before it is first sent; no bluffs, invented deadlines, rival offers or threatened price rises;
    data only from the tools the customer connects, read only; payment chased in the customer's name, to the billing
    contact and number the buyer gave, with a payment link, never taking card details; stops when asked.
-   Up-to-50 rule: the 1 modelled figure (up to 18% of each renewal a buyer's agent negotiates, the average discount
-   those agents win; up to $8,640 a year kept on $48,000, 18% × $48,000) carries its sum in the same line. No sources or real names on the
+   Up-to-50 rule, no money up to (3 Oct): the 1 modelled figure (up to 520 hours a year back, 10 hours a week of renewal
+   rounds, usage exports and chasing x 52) carries its sum in the same line. No sources or real names on the
    page. The run is an example and says so. */
 
 const roles: Capture['roles'] = {
@@ -89,7 +89,7 @@ export const recipe: Recipe = {
       { time: '8 Sep, 10:05', text: 'Their agent accepts 5% for 2 years. The order form goes out for signature after your OK, and the agent chases their signer.' },
       { time: '19 Nov, 09:40', text: 'Invoice accepted in their supplier portal. Paid 2 days before renewal.' },
     ],
-    finding: 'Their agent asked for 18% off. They renewed at 5% for 2 years: $45,600 a year, $6,240 more than they asked to pay.',
+    finding: 'Their agent asked for 18% off and had an answer the same day. They renewed at 5% for 2 years, $45,600 a year, and paid 2 days before renewal.',
     fix: 'The next renewal opens 120 days out, with 2 years of usage. Its first quote waits for your OK.',
     ledger: 'Example run. Every ask, answer, offer and approval signed and dated.',
   },
@@ -223,7 +223,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Renewal negotiation keeps up to 18% of each renewal a buyer’s AI agent negotiates, the average discount those agents win: up to $8,640 a year kept on $48,000 (18% × $48,000).',
+        a: 'Renewal negotiation gives up to 520 hours a year back for 1 account manager who spends 10 hours a week on renewal rounds, usage exports and chasing signatures and payments. In the Dental group example, the buyer’s agent had its answer 5 hours 28 minutes after it asked.',
       },
       {
         q: 'How is Renewal negotiation different from Business case?',
