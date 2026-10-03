@@ -3,7 +3,8 @@
 
    Writes, into the built site:
    - 1 HTML file per page with its own head: title, description, canonical, robots, Open Graph and Twitter large image
-     tags, the JSON-LD @graph (src/lib/jsonld.ts) and the preload for the main font. Pages are written as PATH.html
+     tags, the JSON-LD @graph (src/lib/jsonld.ts), the preloads for the fonts it sets and its styles written into it,
+     and at its end the page's boot script (src/boot.ts) in place of the app's script tag. Pages are written as PATH.html
      (dist/agencies.html, dist/recipes/mystery-shopper.html), which Cloudflare's static assets serve at /agencies with
      a 200, sending /agencies/ to /agencies: the canonical, with no trailing slash. dist/index.html is Home.
    - 404.html (noindex), which the host serves for any other address.
@@ -20,7 +21,8 @@
    It builds its own server bundle with a fixed config instead of reading vite.config.ts. Without wrangler.jsonc,
    Cloudflare's own deploy set up added its Vite plugin at build time, which moved the client build to dist/client and
    would break a second `vite build --ssr`; wrangler.jsonc now names dist/ itself, and dist/client is still read if
-   it is ever there. Then it trims the shared stylesheet (scripts/purge-css.mjs). */
+   it is ever there. Then it trims the shared stylesheet (scripts/purge-css.mjs) and writes each page's own copy of it,
+   trimmed again, into the page. */
 import react from '@vitejs/plugin-react'
 import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync } from 'node:fs'
