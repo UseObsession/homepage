@@ -31,8 +31,16 @@ export function Proof({
   className?: string
   workspace?: Workspace
 }) {
+  /* The real report is the page's paper break: paper on ink (Paper and Gloss, styles/tones.css), its tray a glossy
+     object either way. A proof drawn as an app screen keeps the page's own ground. */
+  const paper = !proof.screen
   return (
-    <section className={`s-section s-proof ${className}`} id={id} aria-labelledby={`${id}-h`}>
+    <section
+      className={`s-section s-proof ${paper ? 'ob-theme-hybrid ' : ''}${className}`}
+      data-tone={paper ? 'paper' : undefined}
+      id={id}
+      aria-labelledby={`${id}-h`}
+    >
       <div className="s-wrap s-proof__in">
         <div className="s-proof__copy">
           <h2 className={'ob-type-h2 s-proof__h' + (proof.heading.length > LONG ? ' s-proof__h--long' : '')} id={`${id}-h`}>
@@ -53,7 +61,7 @@ export function Proof({
           </div>
         ) : page && (
           <figure className="s-proof__doc">
-            <div className="s-proof__tray">
+            <div className="s-proof__tray ob-object">
               <img className="s-proof__page" src={page.src} alt={page.alt} width={page.width} height={page.height} loading="lazy" decoding="async" />
             </div>
             <figcaption className="s-screen-note s-proof__tag">{sample.hero.pill}</figcaption>

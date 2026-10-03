@@ -11,7 +11,7 @@
 }
 .s-sechead__text { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); min-width: 0; }
 .s-sechead__h { max-width: 20ch; margin: 0; }
-.s-sechead__line { max-width: var(--ob-measure-lede); margin: 0; color: var(--ob-text-2); }
+.s-sechead__line { max-width: var(--ob-measure-lede); margin: 0; color: var(--s-read, var(--ob-text-2)); }
 .s-sechead__cta { text-decoration: none; }
 @media (min-width: 860px) {
   .s-sechead.has-cta {

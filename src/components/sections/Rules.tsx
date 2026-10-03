@@ -17,7 +17,7 @@ export function Rules({ rules, id, className }: { rules: RulesContent; id?: stri
   if (!rules.items.length) return null
 
   return (
-    <section id={id} className={'s-section s-rules' + (className ? ' ' + className : '')} aria-labelledby={`${base}-h`}>
+    <section id={id} className={'s-section s-rules' + (className ? ' ' + className : '')} data-tone="alt" aria-labelledby={`${base}-h`}>
       <div className="s-wrap s-rules__grid">
         <div className="s-rules__head">
           <h2 id={`${base}-h`} className="ob-type-h2 s-rules__h">

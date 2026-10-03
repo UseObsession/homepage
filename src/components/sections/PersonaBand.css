@@ -184,7 +184,7 @@
   margin-top: var(--ob-space-8);
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 /* The 2 picks: 1 quiet line each, no borders. */

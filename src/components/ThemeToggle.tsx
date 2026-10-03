@@ -22,6 +22,8 @@ function setTheme(next: Theme) {
   const root = document.documentElement
   const apply = () => {
     root.dataset.theme = next
+    /* Paper is the design system's hybrid page: product objects (.ob-object) stay glossy black on it. */
+    root.classList.toggle('ob-theme-hybrid', next === 'light')
   }
   try {
     localStorage.setItem('obs-theme', next)

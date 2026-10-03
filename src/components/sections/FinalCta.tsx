@@ -11,7 +11,7 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
    lands. The section carries the page's 1 glow, behind the ring. */
 export function FinalCta({ final, id = 'join', className = '' }: { final: Final; id?: string; className?: string }) {
   return (
-    <section className={`s-section s-final ${className}`} id={id} aria-labelledby={`${id}-h`}>
+    <section className={`s-section s-final ob-theme-dark ${className}`} data-tone="ink" id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-final__in">
         <div className="s-final__mark">
           <Mark size={64} />

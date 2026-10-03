@@ -20,7 +20,7 @@
   max-width: var(--ob-measure-lede);
   font: var(--ob-type-body-lg);
   letter-spacing: var(--ob-type-body-lg-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 .s-rp__action { justify-self: start; margin-top: var(--ob-space-4); }
@@ -87,7 +87,7 @@
   margin: 0;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 @media (max-width: 1079.98px) {
@@ -135,7 +135,7 @@
   margin: 0;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 @media (max-width: 1079.98px) {
@@ -176,7 +176,7 @@
   margin: 0;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 @media (max-width: 519.98px) {
@@ -254,15 +254,23 @@
   color: var(--ob-text-3);
   transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
 }
+/* The reader's key (COLOUR.md P1b, carried to a recipe's doors): the brand square, never text, 5 to 6.3:1 on paper and
+   8.4:1 or more on ink. */
+.s-rp-who__key.ob-sq {
+  width: var(--ob-sq-md);
+  height: var(--ob-sq-md);
+  margin-right: var(--ob-space-4);
+  color: var(--s-accent, currentColor);
+}
 .s-rp-who__line {
   font: var(--ob-type-body);
   letter-spacing: var(--ob-type-body-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 @media (hover: hover) and (pointer: fine) {
   .s-rp-who__link:hover { background-color: var(--ob-state-hover); }
-  .s-rp-who__link:hover .s-rp-who__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+  .s-rp-who__link:hover .s-rp-who__arrow { color: var(--s-accent, var(--ob-text)); translate: var(--ob-space-2) 0; }
 }
 .s-rp-who__link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
 .s-rp-who__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
@@ -318,4 +326,8 @@
     background: linear-gradient(var(--ob-fill-subtle), var(--ob-fill-subtle)), var(--ob-surface);
   }
   .s-rp-table .ob-table tbody th:first-child { background: var(--ob-surface); }
+}
+
+@media (forced-colors: active) {
+  .s-rp-who__key { display: none; }
 }

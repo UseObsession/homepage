@@ -37,7 +37,7 @@ export function RecipeGrid({ heading, ids, lines, id = 'recipes', className = ''
   )
 
   return (
-    <section className={`s-section s-recipes ${className}`} id={id} aria-labelledby={`${id}-h`}>
+    <section className={`s-section s-recipes ${className}`} data-tone="alt" id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap">
         <div className="s-head s-head--wide">
           <h2 className="ob-type-h2" id={`${id}-h`}>

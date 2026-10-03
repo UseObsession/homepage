@@ -13,7 +13,8 @@
     <script>
       /* Before paint:
          - a flag that the page's script will run (forms open their steps with it);
-         - the reader's theme, and the browser's own bar in the same ink or paper, following every switch;
+         - the reader's theme, and the browser's own bar in the same ink or paper, following every switch (paper is the
+           design system's hybrid theme: .ob-theme-hybrid keeps every product object glossy black on it);
          - a host that serves /page.html directly: the router knows that page as /page. */
       ;(function () {
         var root = document.documentElement
@@ -22,6 +23,8 @@
           var t = localStorage.getItem('obs-theme')
           if (t === 'light' || t === 'dark') root.dataset.theme = t
         } catch (e) {}
+        /* Paper is the design system's hybrid page: every product object stays glossy black on it. */
+        root.classList.toggle('ob-theme-hybrid', root.dataset.theme === 'light')
         var bar = document.querySelector('meta[name="theme-color"]')
         var paint = function () {
           if (bar) bar.setAttribute('content', root.dataset.theme === 'light' ? '#F5F4F0' : '#080807')

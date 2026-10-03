@@ -13,7 +13,7 @@
 .s-lg-group:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .s-lg-group__head { display: grid; align-content: start; gap: var(--ob-space-12); padding-top: var(--ob-space-12); }
 .s-lg-group__name { margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
-.s-lg-group__line { margin: 0; max-width: 36ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-lg-group__line { margin: 0; max-width: 36ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
 .s-lg-group__body { display: grid; align-content: start; gap: var(--ob-space-16); min-width: 0; }
 
 .s-lg-group__list {
@@ -55,7 +55,7 @@
   color: var(--ob-text-3);
   transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
 }
-.s-lg-row__line { max-width: 60ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-lg-row__line { max-width: 60ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
 .s-lg-row__foot { font: var(--ob-type-caption); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
 @media (hover: hover) and (pointer: fine) {
   .s-lg-row:hover { background-color: var(--ob-state-hover); }

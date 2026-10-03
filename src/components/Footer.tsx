@@ -9,7 +9,7 @@ import './Footer.css'
    The pages and the recipes share 1 column grid, so every column of links lines up from top to bottom. */
 export function Footer() {
   return (
-    <footer className="s-foot">
+    <footer className="s-foot ob-theme-dark" data-tone="ink">
       <div className="s-foot__in">
         <div className="s-foot__grid s-foot__top">
           <div className="s-foot__brand">

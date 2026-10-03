@@ -20,7 +20,7 @@
   max-width: 46ch;
   font: var(--ob-type-body-lg);
   letter-spacing: var(--ob-type-body-lg-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 .s-proof__cta { margin-top: var(--ob-space-32); }
@@ -41,6 +41,21 @@
   /* A mask, not a colour: the page and its tray thin out together over the last quarter. */
   -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent);
   mask-image: linear-gradient(to bottom, black 72%, transparent);
+}
+/* The tray is a glossy product object (styles/tones.css): black on paper, lit on ink. The report runs off its foot
+   into the tray's own face instead of fading the tray away, so the black never smears into the page. */
+.s-proof__tray.ob-object {
+  position: relative;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.s-proof__tray.ob-object::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 26%;
+  background: linear-gradient(to bottom, transparent, var(--s-obj-face, var(--ob-surface)) 96%);
+  pointer-events: none;
 }
 .s-proof__page {
   display: block;

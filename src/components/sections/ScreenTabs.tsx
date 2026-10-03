@@ -150,7 +150,7 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
 
   return (
     <div
-      className="s-shots"
+      className="s-shots s-stage ob-object"
       ref={rootRef}
       style={{ '--s-console-count': tabs.length } as CSSProperties}
       onPointerEnter={onPointerEnter}

@@ -366,7 +366,7 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
           className="s-ov__panel"
         >
           {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. */}
-          <div className={`s-ov__stage s-ov__stage--${f.view.kind}`}>
+          <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object`}>
             <div className={'s-ov__mock' + (picked ? ' ob-anim-rise' : '')}>
               <Mock format={f} ui={ui} />
             </div>
@@ -402,7 +402,7 @@ type Props = ViewerProps & {
 export function Outputs({ heading, line, cta, facts, formats, views, lines, initial, ui, id, className }: Props) {
   const headingId = useId()
   return (
-    <section id={id} className={'s-section s-out' + (className ? ' ' + className : '')} aria-labelledby={headingId}>
+    <section id={id} className={'s-section s-out ob-theme-hybrid' + (className ? ' ' + className : '')} data-tone="paper" aria-labelledby={headingId}>
       <div className="s-wrap">
         <SectionHead id={headingId} heading={heading} line={line} cta={cta} />
         {facts && facts.length > 0 && (

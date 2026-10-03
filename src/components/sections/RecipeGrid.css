@@ -32,7 +32,7 @@
   max-width: 36ch;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 
@@ -81,7 +81,7 @@
 .s-recipes__line {
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
 
