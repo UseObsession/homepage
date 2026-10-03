@@ -20,6 +20,10 @@
 /report/*
   Cache-Control: public, max-age=86400
 
+# Each app screen's HTML, fetched by a page reached client side (components/screens.ts): parts of pages, never pages.
+/screens/*
+  X-Robots-Tag: noindex
+
 # The plain text guides for AI assistants, read as UTF-8 (their copy uses curly quotes).
 /llms.txt
   Content-Type: text/plain; charset=utf-8

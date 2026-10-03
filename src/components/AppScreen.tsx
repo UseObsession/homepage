@@ -1,14 +1,15 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { loadScreen, screenHtmlNow } from './screens'
-import { forWorkspace, type Workspace } from './workspace'
+import type { Workspace } from './workspace'
 /* The shared kit and base load with every page; each screen's own CSS comes with the screen (components/screens.ts). */
 import '../screens/kit.css'
 import '../screens/base.css'
 
-/* Every app screen: one 720 x 450 window of the Obsession product, drawn in HTML and CSS (src/screens, synced from
-   the workspace by scripts/sync-assets.mjs). Its rest state is the finished scene; adding .play runs its story.
-   - The prerender writes each screen's HTML into the page, and React keeps it as it hydrates: the browser's bundle
-     never carries the screens. A screen that mounts on a page reached client side fetches its HTML and CSS first.
+/* Every app screen: one 720 x 450 window of the Obsession product, a React component and its CSS (src/screens/NAME.tsx,
+   src/screens/css/NAME.css). Its rest state is the finished scene; adding .play runs its story.
+   - The prerender draws each screen's component into the page as static HTML, and React keeps that HTML as it
+     hydrates: the browser's bundle never carries the screens. A screen that mounts on a page reached client side
+     fetches its HTML (drawn at build time, components/screens.ts) and CSS first.
    - data-screen names the screen, so the prerender can link its CSS in the page's head. */
 
 export type { Workspace }
@@ -41,10 +42,7 @@ type Props = {
 export function AppScreen({ name, playKey, className, workspace = 'agency', note = 'Example' }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   /* On the server: the screen's HTML. In the browser: undefined, so the prerendered HTML stays as it is. */
-  const [html, setHtml] = useState(() => {
-    const raw = screenHtmlNow(name)
-    return raw && forWorkspace(raw, workspace)
-  })
+  const [html, setHtml] = useState(() => screenHtmlNow(name, workspace))
   /* The screen the page shows now, prerendered or fetched. */
   const [shown, setShown] = useState<string | null>(null)
 
@@ -58,9 +56,9 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     }
     if (shown === name && (html !== undefined || el.firstElementChild)) return
     let live = true
-    loadScreen(name).then((raw) => {
-      if (!live || raw === undefined) return
-      setHtml(forWorkspace(raw, workspace))
+    loadScreen(name, workspace).then((h) => {
+      if (!live || h === undefined) return
+      setHtml(h)
       setShown(name)
     })
     return () => {

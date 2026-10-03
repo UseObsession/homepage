@@ -37,9 +37,3 @@ export const wordsFor = (workspace: Workspace) => WORDS[workspace]
 
 /* What an app screen's component takes (src/screens/registry.ts). Only the screens drawn for an agency read it. */
 export type ScreenProps = { workspace?: Workspace }
-
-/* The same words, rewritten in a screen's HTML string (components/AppScreen, until it draws the components). */
-export function forWorkspace(html: string, workspace: Workspace) {
-  if (workspace === 'agency') return html
-  return html.replaceAll('Your agency', 'Your company').replaceAll('Clients', 'Lists').replaceAll('your-agency.example', 'your-company.example')
-}

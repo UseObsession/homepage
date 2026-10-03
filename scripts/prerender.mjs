@@ -11,6 +11,9 @@
      its words), robots.txt (search engines and AI crawlers welcome), llms.txt (what Obsession is, and every page with
      its 1 line answer) and llms-full.txt (every page's words as plain text, read from the HTML written here).
    - blog/rss.xml: every post, newest first (RSS 2.0), linked from every page's head, while the blog has a live post.
+   - screens/WORKSPACE/NAME.html: every app screen's HTML in both workspaces, drawn from its component, for a page
+     reached client side to fetch (components/screens.ts). Parts of pages, never pages: public/_headers keeps them
+     out of search.
    Then it checks what it wrote: 1 h1 per page, unique titles and descriptions, every share image present, the JSON-LD
    parses, and every internal link lands on a page or a file. Broken promises fail the build; style notes only warn.
 
@@ -34,7 +37,7 @@ const dist = [join(root, 'dist', 'client'), join(root, 'dist')].find((d) => exis
 if (!dist) throw new Error('No built index.html in dist/ or dist/client/. Run vite build first.')
 
 /* The server build renders every app screen into the page: components/screens.ts (the browser's, which fetches a screen
-   only on a client side move) is swapped for screens.server.ts, which has every screen at hand. */
+   only on a client side move) is swapped for screens.server.ts, which draws every screen from its component. */
 await build({
   configFile: false,
   root,
@@ -44,7 +47,7 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, postFileOf, blogUi, blogPage } = await import(
+const { render, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, blogUi, blogPage } = await import(
   pathToFileURL(join(server, 'entry-server.js')).href
 )
 const postEntries = entries.filter((e) => e.kind === 'post')
@@ -160,6 +163,13 @@ for (const e of entries) {
 
 /* Hosts serve 404.html, with a 404 status, for any path without its own page. */
 await writeFile(join(dist, '404.html'), page(notFound, render('/404'), { noindex: true }))
+
+/* ---- screens/WORKSPACE/NAME.html: each app screen's HTML, fetched when a page is reached client side. ---- */
+for (const [key, html] of screenFiles()) {
+  const f = join(dist, 'screens', `${key}.html`)
+  await mkdir(dirname(f), { recursive: true })
+  await writeFile(f, html)
+}
 
 /* ---- sitemap.xml: every page and recipe, dated by the last commit that changed its words. ---- */
 function lastCommit(file) {
@@ -435,9 +445,9 @@ for (const e of postEntries) {
 
 /* The browser never loads a screen to see whose workspace it shows, so components/workspace.ts lists the agency ones:
    every screen that says "Your agency" must be on it. */
-for (const f of readdirSync(join(root, 'src/screens/html')).filter((f) => f.endsWith('.html'))) {
-  const name = f.slice(0, -5)
-  if ((await readFile(join(root, 'src/screens/html', f), 'utf8')).includes('Your agency') && !AGENCY_SCREENS.has(name))
+for (const [key, html] of screenFiles()) {
+  const [workspace, name] = key.split('/')
+  if (workspace === 'agency' && html.includes('Your agency') && !AGENCY_SCREENS.has(name))
     fail(`The ${name} screen is drawn for an agency: add it to AGENCY_SCREENS in src/components/workspace.ts.`)
 }
 
