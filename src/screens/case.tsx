@@ -3,7 +3,7 @@
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function CaseScreen() {
   return (
-    <div className="il appx-il app-case"><div className="appx-fit"><div className="appx" role="img" aria-label="A 1 page renewal case for Payroll SaaS, built from its own numbers shared with consent: usage up 41%, 312 tickets resolved a month, a 38 minute median reply and 2 teams added, each with its source and trend line, adding up to as much as $184,000 a year saved. The numbers fill, the saving counts up, the case is signed, and the rep shares it with their finance team, who can verify every number; it updates weekly to renewal.">
+    <div className="il appx-il app-case"><div className="appx-fit"><div className="appx" role="img" aria-label="A 1 page renewal case for Payroll SaaS, built from its own numbers shared with consent: usage up 41%, 312 tickets resolved a month, a 38 minute median reply and 2 teams added, each with its source and trend line, adding up to as much as 3,120 staff hours a year saved. The numbers fill, the hours count up, the case is signed, and the rep shares it with their finance team, who can verify every number; it updates weekly to renewal.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Accounts<span>/</span>Renewal case</span>
@@ -47,8 +47,8 @@ export function CaseScreen() {
               </header>
               <div className="cs-roi">
                 <span className="cs-sk" aria-hidden="true"><i /><i /></span>
-                <p className="cs-hl"><span>Up to</span><b className="cs-k" style={{ '--case-k': '184' }} /><span>a year saved</span></p>
-                <p className="cs-md"><span>From their own data, with consent</span><span className="ax-mono">312 tickets × 12 × 50 min × $59/h</span></p>
+                <p className="cs-hl"><span>Up to</span><b className="cs-k" style={{ '--case-k': '3', '--case-r': '120' }} /><span>staff hours a year saved</span></p>
+                <p className="cs-md"><span>From their own data, with consent</span><span className="ax-mono">312 tickets × 12 × 50 min</span></p>
               </div>
               <div className="cs-g">
                 <div className="cs-tl" style={{ '--i': '0' }}>

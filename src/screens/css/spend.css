@@ -2,7 +2,7 @@
    Each row: the mark, the tool and its next renewal, its card with the monthly cap, seats used against seats paid.
    Brindle's renewal arrives 16% higher (£1,200 to £1,392 a month). The card holds the charge at the £1,200 cap and
    never pays over it; the agent opens a thread to keep last year's £30 a seat and removes 9 seats unused for 60 days
-   (JO's OK), so Brindle drops from 40 paid seats to 31: £5,544 a year off the asked price.
+   (JO's OK), so Brindle drops from 40 paid seats to 31.
    Red lines shown: the declared-agent pill; every cap on its card, and the cap holding; JO's OK on the seat rule;
    the lock line (never paid over a cap).
    Chrome (canonical, 2 Oct 2026): Your company, Missions selected, list Suppliers.
@@ -10,11 +10,9 @@
    lock line and toast 360..400.
    Story (about 5.5 s): the renewal lands in the open panel; spend fills to the cap and the rise pushes past it; the cap holds (the overflow
    is refused, the asked price struck, the card goes solid); the thread opens; seats drop 40 to 31 in the panel and the row;
-   Brindle's mark closes; the saving counts up; the toast.
+   Brindle's mark closes; the seats removed count up; the toast.
    Rest state (no .play) = the finished scene. */
-@property --spd-k{syntax:"<integer>";inherits:false;initial-value:5}
-@property --spd-r{syntax:"<integer>";inherits:false;initial-value:544}
-@counter-style spd-pad3{system:extends decimal;pad:3 "0"}
+@property --spd-k{syntax:"<integer>";inherits:false;initial-value:9}
 
 .app-spend .ax-main{padding:14px;gap:12px}
 
@@ -123,12 +121,12 @@
 .app-spend .spd-m9{margin-left:auto;height:18px;font-weight:500}
 .app-spend .spd-rule{padding-left:18px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
 
-/* the saving */
+/* the seats removed */
 .app-spend .spd-sv{margin-top:auto;display:flex;align-items:baseline;gap:8px;padding:10px 2px 0;box-shadow:0 1px 0 var(--line) inset;white-space:nowrap}
 .app-spend .spd-sv span{font-size:11px;color:var(--fg-2)}
 .app-spend .spd-cnt{margin-left:auto;font:600 17px/1 var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums;
-  counter-reset:spd-k var(--spd-k) spd-r var(--spd-r)}
-.app-spend .spd-cnt::before{content:"£" counter(spd-k) "," counter(spd-r,spd-pad3)}
+  counter-reset:spd-k var(--spd-k)}
+.app-spend .spd-cnt::before{content:counter(spd-k)}
 
 /* ---------- the red line, and the toast ---------- */
 .app-spend .spd-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
@@ -158,8 +156,7 @@
 @keyframes spd-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
 @keyframes spd-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes spd-count{
-  0%{--spd-k:1;--spd-r:48} 10%{--spd-k:1;--spd-r:512} 20%{--spd-k:1;--spd-r:986} 30%{--spd-k:2;--spd-r:431} 40%{--spd-k:2;--spd-r:907}
-  50%{--spd-k:3;--spd-r:368} 60%{--spd-k:3;--spd-r:820} 70%{--spd-k:4;--spd-r:277} 80%{--spd-k:4;--spd-r:709} 90%{--spd-k:5;--spd-r:136} 100%{--spd-k:5;--spd-r:544}}
+  0%{--spd-k:1} 12.5%{--spd-k:2} 25%{--spd-k:3} 37.5%{--spd-k:4} 50%{--spd-k:5} 62.5%{--spd-k:6} 75%{--spd-k:7} 87.5%{--spd-k:8} 100%{--spd-k:9}}
 
 /* 1. the renewal lands on Brindle */
 .appx-il.play.app-spend .spd-hot{animation:spd-in .55s var(--ease) .16s both,spd-glow 2.2s var(--ease) .6s both}
@@ -196,7 +193,7 @@
 .appx-il.play.app-spend .spd-gm .sig-sq{animation:spd-home .7s var(--snap) 3.95s both}
 .appx-il.play.app-spend .spd-gm .sig-gap{animation:spd-show .4s var(--ease) 4.2s both}
 
-/* 7. the saving counts up; the toast */
+/* 7. the seats removed count up; the toast */
 .appx-il.play.app-spend .spd-sv{animation:spd-show .35s var(--ease) 4.2s both}
 .appx-il.play.app-spend .spd-cnt{animation:spd-count .8s steps(1,end) 4.25s both}
 .appx-il.play.app-spend .spd-toast{animation:spd-toast .45s var(--ease) 5.05s both}

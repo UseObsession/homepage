@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function ProofmailScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-proofmail"><div className="appx-fit"><div className="appx" role="img" aria-label="Prospect intelligence, the opener: a 1:1 email from Sam at Client A to Hannah Price at Tidewren Swim. The proof attaches (texts opted in on 15 Sep, 3 emails but 0 texts by 17 Sep), then the agency’s mockup of Tidewren’s first text, and a 3 line opener types in. AM approves it, it sends, and the proof link is logged in Clay.">
+    <div className="il appx-il app-proofmail"><div className="appx-fit"><div className="appx" role="img" aria-label="Prospect intelligence, the opener: a 1:1 email from Sam at the SMS app to Hannah Price at Tidewren Swim. The proof attaches (texts opted in on 15 Sep, 3 emails but 0 texts by 17 Sep), then the agency’s mockup of Tidewren’s first text, and a 3 line opener types in. AM approves it, it sends, and the proof link is logged in Clay.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Missions<span>/</span>Prospect intelligence</span>
@@ -37,7 +37,7 @@ export function ProofmailScreen({ workspace = 'agency' }: ScreenProps) {
           {/* the drafted 1:1 from the client's sender: who (and who approves), the 3 line opener, the proof and the mockup, the OK */}
           <section className="ax-card pfm-mail ax-in" style={{ '--d': '.06s' }}>
             <div className="pfm-fields">
-              <p className="pfm-fr"><span className="pfm-k">From</span><span className="pfm-v"><span className="pfm-pp">S</span><b>Sam, Client A</b><span className="pfm-ad">sam@client-a.example</span></span><span className="pfm-rv">Approver<span className="pfm-pp">AM</span></span></p>
+              <p className="pfm-fr"><span className="pfm-k">From</span><span className="pfm-v"><span className="pfm-pp">S</span><b>Sam, SMS app</b><span className="pfm-ad">sam@smsapp.example</span></span><span className="pfm-rv">Approver<span className="pfm-pp">AM</span></span></p>
               <p className="pfm-fr"><span className="pfm-k">To</span><span className="pfm-v"><span className="pfm-pp">HP</span><b>Hannah Price, Tidewren Swim</b><span className="pfm-ad">hannah@tidewren.example</span></span></p>
               <p className="pfm-fr"><span className="pfm-k">Subject</span><span className="pfm-v"><b>Tidewren’s texts</b></span></p>
             </div>

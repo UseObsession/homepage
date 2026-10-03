@@ -52,7 +52,7 @@
 .app-suppliers .sp-pg .l3{width:88%}.app-suppliers .sp-pg .l4{width:62%}
 .app-suppliers .sp-pg .hl{justify-self:start;margin:1px 0;padding:3px 4px;border-radius:3px;background:#D3CFC7;font:500 10.5px/1 var(--sans);color:#1E1D1A;white-space:nowrap}
 
-/* the price and the volume behind the saving */
+/* the price and the volume */
 .app-suppliers .sp-kv{margin:12px 0 0;display:grid;gap:6px}
 .app-suppliers .sp-kv div{display:grid;gap:3px}
 .app-suppliers .sp-kv dt{font-size:10.5px;line-height:13px;color:var(--fg-3)}
@@ -213,7 +213,7 @@
 .appx-il.play.app-suppliers .sp-s2{animation:sp-show .35s var(--ease) 5.08s both}
 .appx-il.play.app-suppliers .sp-n b:first-child{animation:sp-hide .25s var(--ease) 5s both}
 .appx-il.play.app-suppliers .sp-n b:last-child{animation:sp-show .25s var(--ease) 5.08s both}
-/* 5. the supplier replies: rise cut to 6%, its line rises to 4th, the saving lands */
+/* 5. the supplier replies: rise cut to 6%, its line rises to 4th, the quotes it took land */
 .appx-il.play.app-suppliers .sp-toast{animation:sp-toast .45s var(--ease) 5.65s both}
 .appx-il.play.app-suppliers .sp-q{animation:sp-rerank .8s var(--ease) 5.8s both}
 .appx-il.play.app-suppliers .cur .pr>:first-child{animation:sp-out .3s var(--ease) 5.85s both}

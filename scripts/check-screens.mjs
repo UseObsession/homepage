@@ -11,7 +11,8 @@
    browser renders nothing for it there (scripts/screens-css.mjs: inside an SVG drawing or a flex or grid container,
    beside a block, at the start or end of one); those are counted by why.
    It also checks that src/screens/names.ts, src/screens/registry.ts and the NAME.tsx files name the same screens, and
-   that every screen's root is the .il element AppScreen plays. Exits 1 on any difference. */
+   that every screen's root is the .il element AppScreen plays. The words changed on purpose since the conversion are
+   applied to the originals first (EDITS below). Exits 1 on any difference. */
 import { parseFragment } from 'parse5'
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -127,10 +128,55 @@ const lists = { 'src/screens/names.ts': [...SCREEN_NAMES].sort(), 'src/screens/r
 for (const [what, names] of Object.entries(lists))
   if (JSON.stringify(names) !== JSON.stringify(files)) diffs.push(`${what} names ${names.length} screens, the .tsx files ${files.length}: ${names.filter((n) => !files.includes(n)).concat(files.filter((n) => !names.includes(n))).join(', ')}`)
 
+/* Words a screen changed on purpose since the conversion, each as [what the original said, what it says now]: James's
+   2 Oct naming in the Clay use case (prospects, not clients: UK Shopify brands, Sam at the SMS app), and no money gains
+   (3 Oct): each screen states what its recipe's copy now does (a count, hours or the time to the fix), keeping its
+   prices and example facts. Each must be in the original exactly once, so an edit that no longer applies is a
+   difference, not a silent pass. */
+const EDITS = {
+  proofmail: [
+    ['from Sam at Client A to', 'from Sam at the SMS app to'],
+    ['<b>Sam, Client A</b>', '<b>Sam, SMS app</b>'],
+    ['sam@client-a.example', 'sam@smsapp.example'],
+  ],
+  claycols: [
+    ['Clay table, its UK ecommerce TAM in the SMS popup view', 'Clay table of UK Shopify brands, in the SMS popup view'],
+    ['<i>/</i>UK ecommerce TAM<i>', '<i>/</i>UK Shopify brands<i>'],
+  ],
+  adcheck: [
+    ['paused, saving $410 a day.', 'paused, 36 minutes after it was flagged.'],
+    ['<span>$410 a day saved</span>', '<span>36 min after the flag</span>'],
+  ],
+  suppliers: [
+    ['replies cutting the rise to 6%, saving $5,760 a year;', 'replies in writing, cutting the rise to 6%: $424 per 1,000 boxes instead of $472;'],
+    ['<b>$5,760</b><span>saved a year</span>', '<b>16 quotes</b><span>in 5 days</span>'],
+  ],
+  spend: [
+    ['OK, saving £5,544 a year.', 'OK.'],
+    ['<span>Saved a year</span>', '<span>Unused seats removed</span>'],
+  ],
+  case: [
+    ['$184,000 a year saved. The numbers fill, the saving counts up,', '3,120 staff hours a year saved. The numbers fill, the hours count up,'],
+    ['style="--case-k:184"', 'style="--case-k:3;--case-r:120"'],
+    ['<span>a year saved</span>', '<span>staff hours a year saved</span>'],
+    ['312 tickets × 12 × 50 min × $59/h', '312 tickets × 12 × 50 min'],
+  ],
+}
+function edited(name, html) {
+  if (html === undefined) return html
+  for (const [was, now] of EDITS[name] ?? []) {
+    const n = html.split(was).length - 1
+    if (n !== 1) diffs.push(`${name}: the intended edit from ${JSON.stringify(was)} is in the original ${n} times, not once`)
+    else html = html.replace(was, () => now)
+  }
+  return html
+}
+for (const name of Object.keys(EDITS)) if (!originals.has(name)) diffs.push(`EDITS names ${name}, which is not a screen`)
+
 for (const name of files) {
   const before = diffs.length
+  const original = edited(name, originals.get(name))
   for (const workspace of ['agency', 'company']) {
-    const original = originals.get(name)
     const drawn = renderScreen(name, workspace)
     if (original === undefined || drawn === undefined) continue
     tally.compared++

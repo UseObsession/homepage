@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function SuppliersScreen() {
   return (
-    <div className="il appx-il app-suppliers"><div className="appx-fit"><div className="appx" role="img" aria-label="A founder's Spend page, run by a declared Obsession agent: the packaging supplier is raising prices 18% from 1 Nov, so the agent asked 16 suppliers for quotes as your declared AI buyer, buying nothing. The quotes land and sort by price, the best 3 are cited in a drafted push back, you click Send, and the supplier replies cutting the rise to 6%, saving $5,760 a year; beside it, 6 unused software plans worth $1,140 a month are being cancelled.">
+    <div className="il appx-il app-suppliers"><div className="appx-fit"><div className="appx" role="img" aria-label="A founder's Spend page, run by a declared Obsession agent: the packaging supplier is raising prices 18% from 1 Nov, so the agent asked 16 suppliers for quotes as your declared AI buyer, buying nothing. The quotes land and sort by price, the best 3 are cited in a drafted push back, you click Send, and the supplier replies in writing, cutting the rise to 6%: $424 per 1,000 boxes instead of $472; beside it, 6 unused software plans worth $1,140 a month are being cancelled.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Spend</span>
@@ -53,7 +53,7 @@ export function SuppliersScreen() {
               <div><dt>Per 1,000</dt><dd><span className="sp-stk"><span>$400 → $472</span><span>$400 → $424</span></span></dd></div>
               <div><dt>A year</dt><dd>120,000 boxes</dd></div>
             </dl>
-            <div className="sp-save"><svg className="sig st-landed" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><p><b>$5,760</b><span>saved a year</span></p></div>
+            <div className="sp-save"><svg className="sig st-landed" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><p><b>16 quotes</b><span>in 5 days</span></p></div>
           </section>
           {/* the quotes */}
           <section className="sp-c">

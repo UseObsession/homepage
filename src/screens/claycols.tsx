@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function ClaycolsScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-claycols"><div className="appx-fit"><div className="appx" role="img" aria-label="An agency’s Clay table, its UK ecommerce TAM in the SMS popup view with new rows on: Obsession’s 4 columns attach, Gap, Seen, What happened and Proof. The facts land row by row for Tidewren Swim, Halvard &amp; Moss, Fennick Home and Larkbound, the count reaches 296 of 300 brands done, and the facts are back in Clay.">
+    <div className="il appx-il app-claycols"><div className="appx-fit"><div className="appx" role="img" aria-label="An agency’s Clay table of UK Shopify brands, in the SMS popup view with new rows on: Obsession’s 4 columns attach, Gap, Seen, What happened and Proof. The facts land row by row for Tidewren Swim, Halvard &amp; Moss, Fennick Home and Larkbound, the count reaches 296 of 300 brands done, and the facts are back in Clay.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Missions<span>/</span>Prospect intelligence</span>
@@ -36,7 +36,7 @@ export function ClaycolsScreen({ workspace = 'agency' }: ScreenProps) {
           </header>
           <section className="ccl-tb ax-fade" style={{ '--d': '.06s' }}>
             <div className="ccl-bar">
-              <span className="ccl-src"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><rect x="2.25" y="2.75" width="11.5" height="10.5" rx="1.75" /><path d="M2.25 6.25h11.5M6.25 6.25v7" /></svg><b>Clay</b><i>/</i>UK ecommerce TAM<i>·</i>SMS popup</span>
+              <span className="ccl-src"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><rect x="2.25" y="2.75" width="11.5" height="10.5" rx="1.75" /><path d="M2.25 6.25h11.5M6.25 6.25v7" /></svg><b>Clay</b><i>/</i>UK Shopify brands<i>·</i>SMS popup</span>
               <span className="ccl-new"><span className="ax-toggle" />New rows</span>
               <span className="ccl-cnt"><span className="ccl-num"><span>292</span><span>293</span><span>294</span><span>295</span><span>296</span></span>of 300 done</span>
             </div>

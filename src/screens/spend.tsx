@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function SpendScreen() {
   return (
-    <div className="il appx-il app-spend"><div className="appx-fit"><div className="appx" role="img" aria-label="Software renewals for a company, each tool paid by its own capped card with its next renewal date and seats used against seats paid. Brindle asks a 16% rise, from £1,200 to £1,392 a month; its card holds the charge at the £1,200 cap, never paying over it, the agent opens a thread to keep last year’s price and removes 9 seats unused for 60 days under JO’s OK, saving £5,544 a year.">
+    <div className="il appx-il app-spend"><div className="appx-fit"><div className="appx" role="img" aria-label="Software renewals for a company, each tool paid by its own capped card with its next renewal date and seats used against seats paid. Brindle asks a 16% rise, from £1,200 to £1,392 a month; its card holds the charge at the £1,200 cap, never paying over it, the agent opens a thread to keep last year’s price and removes 9 seats unused for 60 days under JO’s OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Software renewals</span>
@@ -58,7 +58,7 @@ export function SpendScreen() {
                 <p className="spd-sl"><svg className="spd-ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="6" cy="5.75" r="2.25" /><path d="M2.25 13c.4-2.2 1.9-3.5 3.75-3.5S9.35 10.8 9.75 13" /><path d="M10.5 3.75a2.1 2.1 0 0 1 0 4M12 9.75c.9.5 1.5 1.6 1.75 3.25" /></svg><span>Seats</span><b>40 → 31</b><i className="ax-chip spd-m9">−9</i></p>
                 <p className="spd-rule">Unused 60 days · JO’s OK</p>
               </div>
-              <div className="spd-sv"><span>Saved a year</span><b className="spd-cnt" aria-hidden="true" /></div>
+              <div className="spd-sv"><span>Unused seats removed</span><b className="spd-cnt" aria-hidden="true" /></div>
             </aside>
           </div>
           <p className="spd-note ax-fade" style={{ '--d': '.16s' }}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg>Never paid over a cap</p>
