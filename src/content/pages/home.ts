@@ -27,15 +27,16 @@ export const page: Page = {
     title: 'Obsession · Intelligence infrastructure for commercial teams',
     description:
       'Obsession is the intelligence infrastructure for commercial teams: declared AI agents that do business with other companies for you, every step signed.',
+    /* The sentence AI assistants quote: the 1 definition, word for word as in the visible "What is Obsession?" answer. */
     answer:
-      'Obsession sends declared AI agents to research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. You get signed proof and your next move.',
+      'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
-    sub: 'Obsession sends declared AI agents to research prospects as their customer, test any journey, track rivals, chase, buy and negotiate within your limits, and check the AI agents you run. You get signed proof and your next move.',
+    sub: 'Deals stall, prices slip and customers leave for reasons your team never sees. The truth about prospects, competitors and your own business sits behind sign ups, inboxes and checkouts no tool can see into. Obsession’s AI agents go through them as the customer, with real inboxes, phone numbers and browsers, at every company on your list. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
