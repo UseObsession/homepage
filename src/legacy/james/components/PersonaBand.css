@@ -1,0 +1,259 @@
+/* James's persona band, with 6 panels in 2 rows of 3 (the rows are decided by measurement, see the README: 6 in 1 row
+   leave a 119px text column at 1440 and 1280, and "Developers" and "Marketing" break mid word at his type size).
+   His layout language and motion are kept as he wrote them: the slanted panels cut with a clip path, the 5px seam, the
+   panel that grows on hover or focus, the glow that rises, the circled arrow that fills and turns, and the stack with
+   overlapping slants on a phone. What changed is colour, and only colour:
+
+   - His 4 colours (orange, green, purple, blue) are the site's reader palette (styles/accents.css, set by data-reader):
+     Agencies Orchid, Founders Indigo, Sales Tide, Marketing Violet, Developers Cobalt. A panel's colour is the glow that
+     rises from its foot and the circled arrow, never a flat fill, a tint on the face, or the colour of a word
+     (_research/colour/COLOUR.md). The glow reads the 3 solved alphas (rest and lit) and goes with more contrast.
+   - His numeral, line and chips take the inks, not the hue: the name at --text, the line at the site's reading ink, the
+     numeral at --text-2, the chips a neutral tint of the panel's own ink. At the glow's peak the worst of them is 6.2:1
+     (the numeral, lit, on Tide), the line 9.4:1 and the chips 8.5:1, in both themes, against floors of 4.5 and 7.
+   - The 6th panel, Check your AI agents, is the product's own, so it carries no hue: bone on ink, ink on paper, with its
+     own inks flipped on the panel (--text, --text-2, --bg are set again on it, so every rule below reads the right ink). */
+
+@property --pband-glow {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.pband {
+  --slant: 56px;
+  --seam: 5px;
+  /* The product's panel is the page's ink turned over: bone on the dark page, ink on the paper. */
+  --field-inv: var(--text);
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--seam);
+}
+
+.pband-item {
+  --accent: var(--s-accent, var(--text-2));
+  --pband-glow: var(--s-accent-glow-rest, 0%);
+  position: relative;
+  /* Basis 0 with a minimum of a third: 3 panels fit a row and a 4th does not, so the rows break after 3 and each row
+     still shares its width by grow, as his single row did. */
+  flex: 1 1 0;
+  min-width: 31%;
+  min-height: clamp(300px, 23vw, 330px);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  align-content: start;
+  gap: 14px;
+  padding: 32px calc(var(--slant) + 14px) 32px calc(var(--slant) * .55 + 16px);
+  margin-left: calc(-1 * var(--slant) + var(--seam));
+  color: var(--text);
+  text-decoration: none;
+  background:
+    radial-gradient(135% 105% at 50% 100%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--pband-glow), transparent), transparent 75%),
+    var(--surface);
+  /* A hairline along each panel's top and foot (the slanted sides are cut by the clip, so the seam is their edge): on
+     paper the panel and the page are 1.05:1, so the hairline is what draws the panel. */
+  box-shadow: 0 0 0 1px var(--line-subtle) inset;
+  clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+  transition: flex-grow 600ms var(--ease), --pband-glow 400ms var(--ease);
+}
+
+/* The panel that starts a row is flat on its left, the one that ends it flat on its right. */
+.pband-item:nth-child(3n + 1) {
+  margin-left: 0;
+  padding-left: 32px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.pband-item:nth-child(3n) {
+  padding-right: 32px;
+  clip-path: polygon(var(--slant) 0, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.pband-item:hover,
+.pband-item:focus-visible {
+  flex-grow: 1.7;
+  --pband-glow: var(--s-accent-glow-hover, 0%);
+}
+
+.pband-item:focus-visible {
+  outline: none;
+}
+
+/* The product's panel: no hue, no glow. Lit, a little shade rises from its foot where the glow does on the others. */
+.pband-item[data-reader="verify"] {
+  --text: var(--text-inverse);
+  --text-2: color-mix(in srgb, var(--text-inverse) 78%, var(--field-inv));
+  --s-read: var(--text-2);
+  --bg: var(--field-inv);
+  --accent: var(--text-inverse);
+  --pband-glow: 0%;
+  box-shadow: none;
+  background:
+    radial-gradient(135% 105% at 50% 100%, color-mix(in srgb, var(--text-inverse) var(--pband-glow), transparent), transparent 75%),
+    var(--field-inv);
+}
+
+.pband-item[data-reader="verify"]:hover,
+.pband-item[data-reader="verify"]:focus-visible {
+  --pband-glow: 9%;
+}
+
+.pband-n {
+  font: 500 13px/1 var(--font-mono);
+  color: var(--text-2);
+}
+
+.pband-item:not(:nth-child(3n + 1)) .pband-n {
+  margin-left: calc(var(--slant) * .45);
+}
+
+.pband-name {
+  align-self: end;
+  font-size: clamp(24px, 2.8vw, 40px);
+  overflow-wrap: break-word;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+.pband-line {
+  max-width: 34ch;
+  font-size: 15px;
+  line-height: 1.45;
+  /* 2 lines tall, so a row's names and chips sit level whether a line wraps once or twice. */
+  min-height: 2.9em;
+  text-wrap: pretty;
+  color: var(--s-read, var(--text-2));
+}
+
+.pband-ways {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pband-ways span {
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font: 500 12px/26px var(--font-sans);
+  color: var(--text);
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text) 26%, transparent) inset;
+}
+
+.pband-go {
+  position: absolute;
+  top: 26px;
+  right: calc(var(--slant) + 18px);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 85%, transparent) inset;
+  transition: transform 500ms var(--ease), background 300ms var(--ease), color 300ms var(--ease);
+}
+
+.pband-item:nth-child(3n) .pband-go {
+  right: 26px;
+}
+
+.pband-item:hover .pband-go,
+.pband-item:focus-visible .pband-go {
+  color: var(--bg);
+  background: var(--accent);
+  box-shadow: none;
+  transform: rotate(-45deg);
+}
+
+/* Keyboard focus: the lit state above, and a ring on the arrow (an outline on the panel would be cut by its slant). */
+.pband-item:focus-visible .pband-go {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Narrower than his full width, the panels in a row are tighter: the one under the pointer grows less, so its
+   neighbours keep room for "Developers". */
+@media (max-width: 1100px) {
+  .pband-item {
+    min-width: 32%;
+  }
+
+  .pband-item:hover,
+  .pband-item:focus-visible {
+    flex-grow: 1.25;
+  }
+}
+
+/* A phone: the panels stack, each slanted into the one above, as in his. Each takes the height its words need (his
+   fixed minimum cut a panel off from its own chips once a line wrapped), and the arrow moves to the top right, beside
+   the numeral, where nothing is written, so it never lands on a line. */
+@media (max-width: 860px) {
+  .pband {
+    --slant: 28px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    row-gap: 0;
+  }
+
+  .pband-item:not(:nth-child(3n + 1)) .pband-n {
+    margin-left: 0;
+  }
+
+  .pband-item,
+  .pband-item:nth-child(n),
+  .pband-item:first-child,
+  .pband-item:last-child {
+    flex: none;
+    margin-left: 0;
+    margin-top: calc(-1 * var(--slant) + var(--seam));
+    padding: calc(var(--slant) + 12px) 24px calc(var(--slant) + 12px);
+    min-width: 0;
+    min-height: 216px;
+    border-radius: 0;
+    clip-path: polygon(0 var(--slant), 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+  }
+
+  .pband-name {
+    font-size: 28px;
+  }
+
+  .pband-line {
+    min-height: 0;
+  }
+
+  .pband-item:first-child {
+    margin-top: 0;
+    padding-top: 26px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .pband-item:last-child {
+    padding-bottom: 26px;
+    clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  }
+
+  .pband-go,
+  .pband-item:nth-child(3n) .pband-go,
+  .pband-item:last-child .pband-go {
+    top: 28px;
+    right: 20px;
+  }
+
+  .pband-item:first-child .pband-go {
+    top: 14px;
+  }
+
+  .pband-item:hover,
+  .pband-item:focus-visible {
+    flex-grow: 0;
+  }
+}
