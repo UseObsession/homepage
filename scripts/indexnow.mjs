@@ -8,7 +8,8 @@
 
    The key is public/KEY.txt (32 hex characters, the file holding only its own name), served at
    https://useobsession.com/KEY.txt. It is not a secret: anyone can read it, and it only proves we own the host.
-   A new key is `openssl rand -hex 16` saved the same way, with the old file deleted.
+   A new key is `openssl rand -hex 16` saved the same way, with the old file deleted and its rule in public/_headers
+   renamed.
    Protocol: indexnow.org/documentation. 200 or 202 means received; 403 means the key file isn't live yet; 422 means a
    URL isn't on useobsession.com; 429 means too many pings (wait and send only what changed). */
 import { readFileSync, readdirSync } from 'node:fs'
