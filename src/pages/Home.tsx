@@ -1,7 +1,7 @@
+import { Difference } from '../components/sections/Difference'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Gap } from '../components/sections/Gap'
-import { GapStory } from '../components/sections/GapStory'
 import { Hero } from '../components/sections/Hero'
 import { HowRail } from '../components/sections/HowRail'
 import { Outputs } from '../components/sections/Outputs'
@@ -16,7 +16,8 @@ import './StoryPage.css'
      div.james, exactly as he built it >
    3 how it works: the 4 steps on 1 rail, each over a small slice of the app doing its 1 thing (sections/HowRail; #how,
      where "Type a task" links) >
-   4 the difference, shown: the gap's claim and its picture >
+   4 the difference, shown: the gap's claim and the difference block (sections/Difference), 5 reader stories on 1 stage
+     and the points row, with no comparison rows >
    5 recipes: what a recipe is, then the 6 jobs as doors on 1 grid of hairlines, 2 examples each, and the link to every
      recipe (sections/RecipeJobs; #recipes). It sits right after whatever renders the gap >
    6 proof: the 1 real run, compact (its story in 1 line beside the output viewer, the link to the full report, and how
@@ -40,7 +41,7 @@ export function Home() {
         <PersonaSection id="for" />
       </div>
       {page.howRail && <HowRail rail={page.howRail} id="how" />}
-      <Gap gap={page.gap} story={page.gap.story && <GapStory story={page.gap.story} />} id="gap" />
+      <Gap gap={page.gap} story={page.gap.difference && <Difference d={page.gap.difference} />} id="gap" className="s-gap--diff" />
       {page.recipeJobs && <RecipeJobs {...page.recipeJobs} id="recipes" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" compact id="proof" />}
       <Faq faq={page.faq} id="questions" />

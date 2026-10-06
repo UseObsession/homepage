@@ -21,17 +21,19 @@ type Props = {
   id?: string
   labels?: { today: string; obsession: string }
   reader?: ReaderId
-  /* The page's picture of the gap (sections/GapStory), drawn from `gap.story`. */
+  /* The page's picture of the gap (sections/GapStory, or Home's sections/Difference), drawn from its content. */
   story?: ReactNode
+  /* A page's own variant of the chapter (Home's difference block: "s-gap--diff"). */
+  className?: string
 }
 
-export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obsession' }, reader, story }: Props) {
+export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obsession' }, reader, story, className }: Props) {
   const uid = useId()
   const headId = `${uid}-h`
 
   return (
     <section
-      className={'s-section s-gap ob-theme-dark' + (story ? ' s-gap--story' : '') + (gap.rows.length ? '' : ' s-gap--bare')}
+      className={'s-section s-gap ob-theme-dark' + (story ? ' s-gap--story' : '') + (gap.rows.length ? '' : ' s-gap--bare') + (className ? ' ' + className : '')}
       data-tone="ink"
       data-reader={reader}
       id={id}
