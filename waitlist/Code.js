@@ -161,11 +161,12 @@ function authorize() {
   console.log('Sheet: ' + withLock(() => book_()).getUrl())
 }
 
-/* Opening the web app link once, signed in as the owner, authorises the script and creates the sheet. */
+/* Opening the web app link once, signed in as the owner, authorises the script and creates the sheet. It also adds any
+   missing column, and says the version that is live, so a redeploy can be checked without sending a sign up. */
 // oxlint-disable-next-line no-unused-vars
 function doGet() {
   withLock(() => columns(signUps(book_())))
-  return json({ ok: true, service: 'obsession-waitlist' })
+  return json({ ok: true, service: 'obsession-waitlist', v: VERSION })
 }
 
 function isFormPost(e) {

@@ -19,6 +19,14 @@ t('new sheet gets every header in reading order', () => {
   assert.equal(g.mail[0].to, 'a@useobsession.com,b@useobsession.com')
 })
 
+t('opening the web app link says the live version and adds the new columns, with no row', () => {
+  const old = ['Received', 'Email', 'Company', 'Source', 'Page', 'Role', 'Interest', 'Store', 'Agent']
+  const g = makeGas(CODE, { headers: old, rows: [[new Date('2026-10-01'), 'old@x.com', '', 'home-hero', '/', 'Founder', 'any', '', '']] })
+  assert.deepEqual(g.get(), { ok: true, service: 'obsession-waitlist', v: 2 })
+  assert.equal(g.headers().length, 38); assert.deepEqual(g.headers().slice(0, 9), old)
+  assert.equal(g.table().length, 1); assert.equal(g.mail.length, 0)
+})
+
 t('old sheet keeps its rows; new headers go at the end', () => {
   const old = ['Received', 'Email', 'Company', 'Source', 'Page', 'Role', 'Interest', 'Store', 'Agent']
   const g = makeGas(CODE, { headers: old, rows: [[new Date('2026-10-01'), 'old@x.com', '', 'home-hero', '/', 'Founder', 'any', '', '']] })
