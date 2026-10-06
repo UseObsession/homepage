@@ -6,7 +6,8 @@ import type { Page } from '../types'
    1 what it is (the hero, its form, and the 5 tabs of app screens, with 1 quiet line to every other recipe) >
    2 who it's for (James's persona band, as he built it) >
    3 the difference, shown (to know what customers get, you have to be one: 5 reader stories on 1 stage, each the old
-     way's scattered stack against 1 declared agent's signed journey, then every company at once, and the points row) >
+     way's scattered stack beside 1 declared agent's signed journey, then the same panel at other companies, and the
+     points row) >
    4 proof (the 1 real run: its story in 1 line, the output in every format, and how the agents behave) >
    5 the reader's questions before joining, closed until opened >
    6 start (the waitlist, and the agencies' free audits).
@@ -84,13 +85,15 @@ export const page: Page = {
     },
   },
 
-  /* The difference (_research/illus/DIFFERENCE.md, 7 Oct): to know what customers get, you have to be one. 5 stories on
-     1 stage (components/sections/Difference), each chosen by a reader chip: the old way's scattered stack on the left,
-     1 declared agent's signed journey on the right, then every company at once. Every company is invented, at a
-     .example domain, and the Today scraps are drawn generic. No story repeats the September run. */
+  /* The difference (_research/illus/DIFFERENCE.md, 7 Oct, reviewed the same day): to know what customers get, you have
+     to be one. 5 stories on 1 stage (components/sections/Difference), each chosen by a reader chip: the old way's
+     scattered stack on the left, while on the right 1 declared agent signs its whole journey; it ends on the finding,
+     the 1 click next move and the same panel at other companies behind it. Every company is invented, at a .example
+     domain, and the Today scraps are drawn generic. No story repeats the September run, and no "Signed" line carries a
+     signature on Home (a made up hash reads as a prop). */
   gap: {
     heading: 'To know what customers get, you have to be one.',
-    sub: 'Today that takes a stack of tools, a spare phone and weeks of screenshots. Obsession’s AI agents become the customer at every company at once, and sign every step.',
+    sub: 'Today that takes a stack of tools, a spare phone and weeks of screenshots. Obsession’s AI agents become the customer everywhere at once, with signed proof of every step.',
     difference: {
       labels: {
         today: 'Today',
@@ -98,6 +101,7 @@ export const page: Page = {
         you: 'You',
         agent: 'Agent',
         signed: 'Signed',
+        needs: 'Needs you',
         finding: 'Finding',
         next: 'Next move',
         example: 'Example',
@@ -108,9 +112,9 @@ export const page: Page = {
           reader: 'agencies',
           chip: 'Agencies',
           label:
-            'Agencies. Today: alerts, a shared inbox, a spare phone, screenshots and question marks. With Obsession: a declared AI test customer shops hollin.example, a client store, with its written OK, over 2 days. The basket email’s code is refused at checkout. A client report is drafted, and the check runs at 21 stores at once.',
+            'Agencies. Today: alerts, a shared inbox, a spare phone, screenshots and question marks. With Obsession: a declared AI test customer shops hollin.example, a client store, with its OK. Over 2 days, the basket email’s code is refused at checkout. A client report is drafted, and the same check runs at 21 stores at once.',
           scraps: [
-            { slot: 1, kind: 'alert', title: 'Page changed', lines: ['hollin.example · Home page', '2 words changed · Mon 09:14'], tap: 1 },
+            { slot: 1, kind: 'alert', title: 'Page changed', lines: ['hollin.example · Home page', '2 words changed · Mon 09:14'], tap: 1, phone: '2 words changed' },
             { slot: 2, kind: 'company', title: 'hollin', lines: ['Homeware · Leeds', '11 to 50 staff · Founded 2019'] },
             {
               slot: 3,
@@ -120,16 +124,17 @@ export const page: Page = {
               rows: [
                 ['audits+hollin', 'Welcome to hollin. Here’s 10% off.'],
                 ['audits+fennick', 'Confirm your email'],
-                ['audits+tidewren', 'You left something behind'],
+                ['audits+tidewren', 'New in: Summer Swim'],
               ],
               tap: 2,
+              phone: 'audits+hollin · 10% off',
             },
             { slot: 4, kind: 'phone', title: 'Tue 21:40', lines: ['Your code is 418 220', 'Reply Y for 15% off'], tap: 3 },
             { slot: 5, kind: 'folder', title: 'hollin audit', meta: '23 items', lines: ['Screenshot 09.14', 'Screenshot 09.21', 'Screenshot 09.26'] },
             {
               slot: 6,
               kind: 'grid',
-              title: 'Client checks',
+              title: 'Store checks',
               heads: ['Store', 'Signed up', 'Heard back?'],
               rows: [
                 ['hollin', 'Yes', '?'],
@@ -143,17 +148,12 @@ export const page: Page = {
           crumb: ['Your agency', 'Missions', 'Client audit'],
           title: 'Client audit',
           meta: 'hollin.example · Client · OK on file',
-          pill: 'Obsession agent for Your agency',
           agent: { name: 'Test customer 1 · AI · for Your agency', inbox: 'shopper1@test.useobsession.com', phone: '+44 7700 900418', browser: 'Browser · Leeds' },
-          ruler: [
-            { label: 'Day 0', from: 0, to: 3 },
-            { label: 'Day 1', gap: 3 },
-            { label: 'Day 2', from: 4, to: 5 },
-          ],
+          gaps: [{ after: 3, label: 'Day 1' }],
           tally: '6 of 6 signed',
           steps: [
-            { ch: 'web', when: 'Day 0 · 09:14', title: 'Signed up', lines: ['shopper1@test.useobsession.com'], at: 4.5 },
-            { ch: 'email', when: 'Day 0 · 09:15', title: 'Welcome email', lines: ['10% off your first order: SOFTER10'], photo: 'email', at: 5 },
+            { ch: 'web', when: 'Day 0 · 09:14', title: 'Signed up', lines: ['shopper1@test.useobsession.com'] },
+            { ch: 'email', when: 'Day 0 · 09:15', title: 'Welcome email', lines: ['10% off your first order: SOFTER10'], photo: 'email' },
             {
               ch: 'chat',
               when: 'Day 0 · 09:21',
@@ -161,35 +161,28 @@ export const page: Page = {
               ask: 'Does the Weekend Shirt run large?',
               reply: 'It’s a relaxed fit. Size down if unsure.',
               who: 'Bot',
-              at: 5.5,
             },
-            { ch: 'web', when: 'Day 0 · 09:26', title: 'Left a basket', lines: ['Weekend Shirt · £68', 'Stopped before payment'], photo: 'shirt', at: 6 },
-            { ch: 'email', when: 'Day 2 · 09:26', title: 'Basket email', lines: ['Still yours. Take 10% off with SOFTER10.'], at: 6.5 },
-            { ch: 'web', when: 'Day 2 · 09:31', title: 'Tried the code', lines: ['SOFTER10', 'This code has expired.'], short: 'This code has expired.', needs: true, at: 7 },
+            { ch: 'web', when: 'Day 0 · 09:26', title: 'Left a basket', lines: ['Weekend Shirt · £68', 'Stopped before payment'], photo: 'shirt' },
+            { ch: 'email', when: 'Day 2 · 09:26', title: 'Basket email', lines: ['Still yours. Take 10% off with SOFTER10.'] },
+            { ch: 'web', when: 'Day 2 · 09:31', title: 'Tried the code', lines: ['SOFTER10', 'This code has expired.'], short: 'This code has expired.', needs: true },
           ],
-          finding: { text: 'The basket email’s code is refused at checkout.', meta: 'Day 2 · 09:31 · ed25519 · 6d2f a417 … 08bc' },
+          finding: { text: 'The basket email’s code is refused at checkout.', meta: 'Signed · Day 2 · 09:31' },
           next: { text: 'Client report in your brand, with every signed step.', button: 'Approve', done: 'Approved' },
-          dots: ['Sign up', 'Email', 'Bot', 'Basket', 'Email', 'Code'],
-          /* hollin and the other clients run with their written OK; at a prospect the agent only signs up, reads the
-             emails and asks the bot, never a basket. */
-          lanes: [
-            { label: 'Client · hollin.example', end: 'needs', note: 'Code refused' },
-            { label: 'Client · Skincare', end: 'ring' },
-            { label: 'Prospect · fennick.example', end: 'ring', only: [0, 1, 2, 4] },
-            { label: 'Client · Tea merchant', end: 'needs' },
-            { label: 'Client · Kitchenware', end: 'ring' },
-            { label: 'Prospect · tidewren.example', end: 'ring', only: [0, 1, 2, 4] },
+          /* At a prospect the agent only signs up, reads the emails and asks the bot (4 steps), never a basket.
+             19 clients run all 6 steps and 2 prospects run 4: 122 steps. */
+          ghosts: [
+            { label: 'Prospect · fennick.example', note: '4 of 4 signed' },
+            { label: 'Client · marlowe.example', note: 'Code refused', needs: true },
           ],
-          more: '+15 more',
-          count: '21 stores at once · 126 steps signed · 3 need you',
+          count: '21 stores at once · 122 steps signed · 3 need you',
         },
         {
           reader: 'founders',
           chip: 'Founders',
           label:
-            'Founders. Today: an all clear status page, test inboxes, 1 working phone and a team asking. With Obsession: a declared AI test customer signs up after release v2.14. Its login code never arrives. Every UK number fails and every US number works. A bug ticket is drafted.',
+            'Founders. Today: an all clear status page, test inboxes, 1 working phone and a team asking. With Obsession: a declared AI test customer signs up with a UK number after v2.14. Its login code never arrives. Every UK number fails and every US number works. A bug ticket is drafted.',
           scraps: [
-            { slot: 1, kind: 'status', title: 'All systems normal', lines: ['Uptime 99.98% · 90 days'], tap: 1 },
+            { slot: 1, kind: 'status', title: 'All systems normal', lines: ['Uptime 99.98% · 90 days'], tap: 1, phone: 'Uptime 99.98%' },
             { slot: 2, kind: 'release', title: 'v2.14 shipped', lines: ['Tue 14:00 · 12 changes'] },
             {
               slot: 3,
@@ -202,8 +195,9 @@ export const page: Page = {
                 ['me+test15', 'Confirm your email'],
               ],
               tap: 2,
+              phone: 'me+test15 · Confirm',
             },
-            { slot: 4, kind: 'phone', title: 'Tue 14:06', lines: ['Your login code is 482 913'], tap: 3 },
+            { slot: 4, kind: 'phone', title: 'Tue 14:06', lines: ['Your code is 482 913'], tap: 3 },
             { slot: 5, kind: 'reminder', title: 'Test the sign up flow', lines: ['Fri 09:00 · every week'] },
             {
               slot: 6,
@@ -213,68 +207,51 @@ export const page: Page = {
               lines: ['AM: Why are sign ups down since yesterday?', 'JO: Not sure. Works on my phone.'],
               tap: 4,
               q: 0,
+              phone: 'Why are sign ups down?',
             },
           ],
           crumb: ['Your company', 'Missions', 'Release check'],
           title: 'Release check',
-          meta: 'yourcompany.example · v2.14',
-          pill: 'Obsession agent for Your company',
+          meta: 'v2.14 · Sign up · UK number',
           agent: { name: 'Test customer 1 · AI · for Your company', inbox: 'new1@test.useobsession.com', phone: '+44 7700 900266', browser: 'Browser · London' },
-          ruler: [
-            { label: 'v2.14 shipped · Tue 14:00', flag: true },
-            { label: '14:10', from: 3, to: 4 },
-            { label: '14:15', gap: 4 },
-            { label: '14:20', from: 5, to: 5 },
-          ],
           tally: '6 of 6 signed',
           steps: [
-            { ch: 'web', when: '14:05', title: 'Signed up', lines: ['new1@test.useobsession.com'], at: 4.5 },
-            { ch: 'email', when: '14:05', title: 'Confirm your email', lines: ['Arrived in 9 s'], at: 5 },
-            { ch: 'web', when: '14:06', title: 'Asked for a login code', lines: ['Sent to +44 7700 900266'], at: 5.5 },
-            { ch: 'text', when: '14:11', title: 'Waited 5 minutes', lines: ['No text'], empty: true, needs: true, at: 6 },
-            { ch: 'web', when: '14:12', title: 'Asked again', lines: ['Resend code'], at: 6.5 },
-            { ch: 'text', when: '14:22', title: 'Waited 10 minutes', lines: ['Still no text'], empty: true, needs: true, at: 7 },
+            { ch: 'web', when: 'Tue 14:05', title: 'Signed up', lines: ['new1@test.useobsession.com'] },
+            { ch: 'email', when: '14:05', title: 'Confirm your email', lines: ['Arrived in 9 s'] },
+            { ch: 'web', when: '14:06', title: 'Asked for a login code', lines: ['Sent to +44 7700 900266'] },
+            { ch: 'text', when: '14:11', title: 'Waited 5 minutes', lines: ['No text'], empty: true, needs: true },
+            { ch: 'web', when: '14:12', title: 'Asked again', lines: ['Resend code'] },
+            { ch: 'text', when: '14:22', title: 'Waited 10 minutes', lines: ['Still no text'], empty: true, needs: true },
           ],
-          finding: { text: 'New users on UK numbers can’t log in since Tuesday’s release.', meta: 'No code in 16 min · ed25519 · 5c81 2e07 … 9b3d' },
+          finding: { text: 'New users on UK numbers can’t log in since Tuesday’s release.', meta: 'Signed · No code in 16 min' },
           next: { text: 'Bug ticket drafted with all 6 signed steps.', button: 'Approve', done: 'Filed' },
-          dots: ['Sign up', 'Email', 'Code', 'Wait', 'Resend', 'Wait'],
-          lanes: [
-            { label: 'Yours · Sign up, UK number', end: 'needs', note: 'No login code' },
-            { label: 'Yours · Sign up, US number', end: 'ring' },
-            { label: 'Yours · Phone app, UK number', end: 'needs' },
-            { label: 'Yours · Phone app, US number', end: 'ring' },
-            { label: 'Yours · Password reset, UK number', end: 'needs' },
-            { label: 'Yours · Upgrade, stops before payment', end: 'ring' },
+          ghosts: [
+            { label: 'Sign up · US number', note: '6 of 6 signed' },
+            { label: 'Password reset · UK number', note: 'No code', needs: true },
           ],
-          count: '6 journeys after every release · 36 steps signed · 3 need you',
+          count: '6 journeys after every release · UK numbers fail, US numbers work',
         },
         {
           reader: 'sales',
           chip: 'Sales',
           label:
-            'Sales. Today: a data card, a page alert, open tabs and empty call notes. Nobody has tried the trial. With Obsession: a declared AI test customer starts rookwell.example’s trial with no card. It hears nothing for 4 days. A call brief lands, and every call this week gets one.',
+            'Sales. Today: a data card, a page alert, open tabs and empty call notes. Nobody has tried the trial. With Obsession: a declared AI test customer starts rookwell.example’s trial with no card. It hears nothing for 4 days. A call brief is ready, and every call this week gets one.',
           scraps: [
-            { slot: 1, kind: 'company', title: 'Rookwell', lines: ['Clinic software · Bristol', '51 to 200 staff · Series A'], tap: 1 },
+            { slot: 1, kind: 'company', title: 'Rookwell', lines: ['Clinic software · Bristol', '51 to 200 staff · Series A'], tap: 1, phone: 'Clinic software' },
             { slot: 2, kind: 'alert', title: 'Page changed', lines: ['rookwell.example/pricing', '1 price changed · Mon 08:12'] },
             { slot: 3, kind: 'tabs', title: '9 tabs', lines: ['Rookwell · Home', 'Rookwell · About us', 'Rookwell · Careers', 'Rookwell reviews · 4.1'], tap: 2 },
             { slot: 4, kind: 'phone', title: 'Thu 09:50', lines: ['Rookwell call in 10 min'] },
-            { slot: 5, kind: 'note', title: 'Rookwell · Call Thu 10:00', lines: ['Notes:'], tap: 3 },
-            { slot: 6, kind: 'chat', title: '#deals', lines: ['Anyone tried Rookwell’s trial before Thursday?'], tap: 4, q: 0 },
+            { slot: 5, kind: 'note', title: 'Rookwell call notes', lines: ['Thu 10:00 · Notes:'], tap: 3 },
+            { slot: 6, kind: 'chat', title: '#deals', lines: ['Anyone tried Rookwell’s trial before Thursday?'], tap: 4, q: 0, phone: 'Anyone tried their trial?' },
           ],
           crumb: ['Your company', 'Accounts', 'Rookwell'],
           title: 'Call brief',
           meta: 'rookwell.example · Prospect · call Thu 10:00',
-          pill: 'Obsession agent for Your company',
           agent: { name: 'Test customer 1 · AI · for Your company', inbox: 'trial1@test.useobsession.com', phone: '+44 7700 900731', browser: 'Browser · Bristol' },
-          ruler: [
-            { label: 'Day 0', from: 0, to: 3 },
-            { label: 'Day 1 to 4', from: 4, to: 4 },
-            { label: 'Day 5', from: 5, to: 5 },
-          ],
           tally: '9 of 9 signed',
           steps: [
-            { ch: 'web', when: 'Day 0 · 10:02', title: 'Started a free trial', lines: ['No card needed'], at: 4.5 },
-            { ch: 'email', when: 'Day 0 · 10:03', title: 'Welcome email', lines: ['Welcome to Rookwell. Let’s get you set up.'], at: 5 },
+            { ch: 'web', when: 'Day 0 · 10:02', title: 'Started a free trial', lines: ['No card needed'] },
+            { ch: 'email', when: 'Day 0 · 10:03', title: 'Welcome email', lines: ['Welcome to Rookwell. Let’s get you set up.'] },
             {
               ch: 'chat',
               when: 'Day 0 · 10:15',
@@ -282,30 +259,24 @@ export const page: Page = {
               ask: 'Can I import my patient list?',
               reply: 'Yes, on Pro. Upload it in Settings.',
               who: 'Bot',
-              at: 5.5,
             },
-            { ch: 'web', when: 'Day 0 · 10:21', title: 'Pricing page', lines: ['Import on Pro only · £89 a month'], at: 6 },
-            { ch: 'email', when: 'Day 1 to 4 · 09:00', title: 'Inbox checked', lines: ['No email'], quiet: ['Day 1', 'Day 2', 'Day 3', 'Day 4'], at: 6.5 },
-            { ch: 'email', when: 'Day 5 · 08:00', title: 'Trial email', lines: ['Your trial ends in 2 days.'], at: 7 },
+            { ch: 'web', when: 'Day 0 · 10:21', title: 'Pricing page', lines: ['Import on Pro only · £89 a month'] },
+            { ch: 'email', when: 'Day 1 to 4 · 09:00', title: 'Inbox checked', lines: ['No email'], short: 'No email for 4 days', quiet: ['Day 1', 'Day 2', 'Day 3', 'Day 4'] },
+            { ch: 'email', when: 'Day 5 · 08:00', title: 'Trial email', lines: ['Your trial ends in 2 days.'] },
           ],
-          finding: { text: 'Rookwell’s trial users hear nothing for 4 days.', meta: 'Day 1 to 4 · 0 emails · ed25519 · a39e 70c4 … 1f62' },
-          next: { text: 'Call brief sent: lead with their 4 quiet days.', button: 'Open', done: 'Opened' },
-          dots: ['Trial', 'Email', 'Bot', 'Pricing', 'Days 1 to 4', 'Day 5'],
-          lanes: [
-            { label: 'Prospect · rookwell.example · Thu 10:00', end: 'ring', note: '4 quiet days' },
-            { label: 'Prospect · harbrook.example · Thu 14:00', end: 'ring' },
-            { label: 'Prospect · pinemead.example · Fri 09:30', end: 'ring' },
-            { label: 'Prospect · corran.example · Fri 11:00', end: 'ring' },
-            { label: 'Prospect · talwyn.example · Fri 15:00', end: 'ring' },
+          finding: { text: 'Rookwell’s trial users hear nothing for 4 days.', meta: 'Signed · 0 emails from Day 1 to 4' },
+          next: { text: 'Call brief ready: lead with their 4 quiet days.', button: 'Approve', done: 'Sent' },
+          ghosts: [
+            { label: 'Prospect · harbrook.example · Thu 14:00', note: 'Brief ready' },
+            { label: 'Prospect · pinemead.example · Fri 09:30', note: 'Brief ready' },
           ],
-          more: '+4 more',
           count: '9 calls this week · 9 briefs ready · 81 steps signed',
         },
         {
           reader: 'marketing',
           chip: 'Marketing',
           label:
-            'Marketing. Today: rival inboxes, a spare phone, screenshots and a tracker of question marks. With Obsession: a declared AI test customer joins Rival A’s list and opts in to texts. Rival A sends 5 messages in its first 3 days; you send 1. A 3 day welcome flow is drafted for your OK.',
+            'Marketing. Today: rival inboxes, a spare phone, screenshots and a tracker of question marks. With Obsession: a declared AI test customer joins Rival A’s list and texts. Rival A follows up 3 times in 3 days, by text and email. You never do. A 3 day follow up is drafted for your OK.',
           scraps: [
             { slot: 1, kind: 'reminder', title: 'Check rival inboxes', lines: ['Mon 09:00 · every week'] },
             { slot: 2, kind: 'chat', title: '#marketing', lines: ['What does Kettlewick send in week 1?'] },
@@ -320,14 +291,15 @@ export const page: Page = {
                 ['+grindhaven', 'New: Autumn Blend'],
               ],
               tap: 1,
+              phone: '+brewlark · 20% off',
             },
-            { slot: 4, kind: 'phone', title: 'Wed 19:02', lines: ['Brewlark: Free delivery today only.', 'Kettlewick: Reply Y to join.'], tap: 2 },
+            { slot: 4, kind: 'phone', title: 'Wed 19:02', lines: ['Brewlark: Free delivery today only.', 'Kettlewick: Reply Y to join.'], tap: 2, phone: 'Brewlark: Free delivery' },
             { slot: 5, kind: 'folder', title: 'Rival emails', meta: '61 items', tap: 3 },
             {
               slot: 6,
               kind: 'grid',
               title: 'Rival flows',
-              heads: ['Rival', 'Welcome', 'First 3 days'],
+              heads: ['Rival', 'Welcome', 'Follow ups'],
               rows: [
                 ['Brewlark', '1 min', '?'],
                 ['Kettlewick', '?', '?'],
@@ -339,40 +311,24 @@ export const page: Page = {
           ],
           crumb: ['Your company', 'Rivals', 'Rival flows'],
           title: 'Rival flows',
-          meta: 'brewlark.example · Rival A',
-          pill: 'Obsession agent for Your company',
+          meta: 'brewlark.example · Rival A · first 3 days',
           agent: { name: 'Test customer 1 · AI · for Your company', inbox: 'sub1@test.useobsession.com', phone: '+44 7700 900582', browser: 'Browser · Leeds' },
-          ruler: [
-            { label: 'Day 0', from: 0, to: 3 },
-            { label: 'Day 1', from: 4, to: 4 },
-            { label: 'Day 2', gap: 4 },
-            { label: 'Day 3', from: 5, to: 5 },
-          ],
+          gaps: [{ after: 4, label: 'Day 2' }],
           tally: '6 of 6 signed',
           steps: [
-            { ch: 'web', when: 'Day 0 · 08:00', title: 'Joined the list', lines: ['sub1@test.useobsession.com'], at: 4.5 },
-            { ch: 'email', when: 'Day 0 · 08:01', title: 'Welcome email', lines: ['Welcome. 20% off your first bag.'], at: 5 },
-            { ch: 'text', when: 'Day 0 · 08:02', title: 'Opted in to texts', lines: ['You’re in. Reply STOP to opt out.'], at: 5.5 },
-            { ch: 'text', when: 'Day 0 · 18:00', title: 'First offer text', lines: ['Free delivery on your first bag, today only.'], at: 6 },
-            { ch: 'email', when: 'Day 1 · 08:00', title: 'Reminder email', lines: ['Your 20% ends tonight.'], at: 6.5 },
-            { ch: 'email', when: 'Day 3 · 08:00', title: 'Best seller email', lines: ['Still deciding? Meet House Blend.'], at: 7 },
+            { ch: 'web', when: 'Day 0 · 08:00', title: 'Joined the list', lines: ['sub1@test.useobsession.com'] },
+            { ch: 'email', when: 'Day 0 · 08:01', title: 'Welcome email', lines: ['Welcome. 20% off your first bag.'] },
+            { ch: 'text', when: 'Day 0 · 08:02', title: 'Opted in to texts', lines: ['You’re in. Reply STOP to opt out.'] },
+            { ch: 'text', when: 'Day 0 · 18:00', title: 'Follow up 1', lines: ['Free delivery on your first bag, today only.'] },
+            { ch: 'email', when: 'Day 1 · 08:00', title: 'Follow up 2', lines: ['Your 20% ends tonight.'] },
+            { ch: 'email', when: 'Day 3 · 08:00', title: 'Follow up 3', lines: ['Still deciding? Meet House Blend.'] },
           ],
-          finding: { text: 'Rival A sends 5 messages in 3 days. You send 1.', meta: 'First 3 days · ed25519 · 0e7b c925 … 4da1' },
-          next: { text: 'A 3 day welcome flow drafted for your OK.', button: 'Approve', done: 'Approved' },
-          dots: ['Join', 'Email', 'Text', 'Text', 'Email', 'Email'],
-          /* Every message in the first 3 days, where it lands on 1 shared clock: the gap reads as distance. Your own
-             lane runs on your own store. No basket at any rival. */
-          axis: [
-            { at: 0, label: 'Day 0' },
-            { at: 1 / 3, label: 'Day 1' },
-            { at: 2 / 3, label: 'Day 2' },
-            { at: 1, label: 'Day 3' },
-          ],
-          lanes: [
-            { label: 'Rival A · brewlark.example', end: 'ring', marks: [0, 0.03, 0.14, 0.33, 1], tick: '5 messages' },
-            { label: 'Rival B · kettlewick.example', end: 'ring', marks: [0, 0.33, 0.67], tick: '3 messages' },
-            { label: 'Rival C · grindhaven.example', end: 'ring', marks: [0.01, 0.5], tick: '2 messages' },
-            { label: 'Yours · yourcompany.example', end: 'needs', marks: [0], tick: '1 message' },
+          finding: { text: 'Rival A follows up 3 times in 3 days, by text and email. You never do.', meta: 'Signed · First 3 days' },
+          next: { text: 'A 3 day follow up drafted for your OK.', button: 'Approve', done: 'Approved' },
+          /* Your own lane runs on your own store. No basket at any rival. */
+          ghosts: [
+            { label: 'Rival B · kettlewick.example', note: '2 follow ups' },
+            { label: 'Yours · yourcompany.example', note: '0 follow ups', needs: true },
           ],
           count: '3 rivals and yours, side by side · 24 steps signed',
         },
@@ -395,24 +351,27 @@ export const page: Page = {
                 ['Can I pause my plan?', '?'],
               ],
             },
-            { slot: 4, kind: 'phone', title: 'Recents', lines: ['Your support line · 3 min 12 s', 'Your support line · 1 min 48 s'], tap: 3 },
+            { slot: 4, kind: 'phone', title: 'Recents', lines: ['Your support line · 3 min 12 s', 'Your support line · 1 min 48 s'], tap: 3, phone: 'Support line · 3 min 12 s' },
             { slot: 5, kind: 'doc', title: 'Retention offers', lines: ['Up to 1 month free', 'Updated 2 Sep'] },
-            { slot: 6, kind: 'chat', title: '#support', lines: ['A customer says the voice agent gave them 3 months free?'], tap: 4, q: 0 },
+            {
+              slot: 6,
+              kind: 'chat',
+              title: '#support',
+              lines: ['A customer says the voice agent gave them 3 months free?'],
+              tap: 4,
+              q: 0,
+              phone: '3 months free by phone?',
+            },
           ],
           crumb: ['Your company', 'Missions', 'AI agent check'],
           title: 'AI agent check',
-          meta: 'Chat, email, text and voice · every day 06:30',
-          pill: 'Obsession agent for Your company',
+          meta: '4 channels · every day 06:30',
           agent: { name: 'Test customer 1 · AI · for Your company', inbox: 'check1@test.useobsession.com', phone: '+44 7700 900905', browser: 'Browser · London' },
-          ruler: [
-            { label: 'Today · 06:30', from: 0, to: 4 },
-            { label: 'Tomorrow · 06:30', from: 5, to: 5, dashed: true },
-          ],
           tally: '5 of 5 signed',
           steps: [
-            { ch: 'chat', when: '06:30', title: 'Said it’s AI, asked the bot', ask: 'I’d like to cancel.', reply: 'Before you go: 1 month free?', who: 'Bot', at: 4.5 },
-            { ch: 'email', when: '06:31', title: 'Asked by email', lines: ['Before you go, here’s 1 month free.'], at: 5 },
-            { ch: 'text', when: '06:32', title: 'Asked by text', lines: ['Stay and get 1 month free.'], at: 5.5 },
+            { ch: 'chat', when: '06:30', title: 'Said it’s AI, asked the bot', ask: 'I’d like to cancel.', reply: 'Before you go: 1 month free?', who: 'Bot' },
+            { ch: 'email', when: '06:31', title: 'Asked by email', lines: ['Before you go, here’s 1 month free.'] },
+            { ch: 'text', when: '06:32', title: 'Asked by text', lines: ['Stay and get 1 month free.'] },
             {
               ch: 'phone',
               when: '06:34',
@@ -420,29 +379,21 @@ export const page: Page = {
               ask: 'I’m an AI test customer. I’d like to cancel.',
               reply: 'I can give you 3 months free.',
               who: 'Voice agent',
-              lines: ['1 min 52 s · recorded'],
               short: 'I can give you 3 months free.',
-              at: 6,
             },
-            { ch: 'policy', when: '06:36', title: 'Checked the policy', lines: ['Retention offers: up to 1 month free'], needs: true, at: 7 },
-            { ch: 'chat', when: 'Tomorrow · 06:30', title: 'Check again', next: true, at: 8.5 },
+            { ch: 'policy', when: '06:36', title: 'Checked the policy', lines: ['Retention offers: up to 1 month free'], needs: true },
+            { ch: 'chat', when: 'Tomorrow · 06:30', title: 'Check again', next: true },
           ],
-          finding: { text: 'Your voice agent offered 3 months free. Policy allows 1 month.', meta: '06:34 · call recorded and signed · ed25519 · 91fd 3b68 … e2a7' },
+          finding: { text: 'Your voice agent offered 3 months free. Policy allows 1 month.', meta: 'Signed · 06:34 · call recorded' },
           next: { text: 'Fix drafted. Checked again tomorrow at 06:30.', button: 'Approve', done: 'Approved' },
-          dots: ['Chat', 'Email', 'Text', 'Call', 'Policy'],
-          lanes: [
-            { label: 'Yours · Cancel', end: 'needs', note: '3 months on the phone' },
-            { label: 'Yours · Refund', end: 'ring' },
-            { label: 'Yours · Pause my plan', end: 'ring' },
-            { label: 'Yours · Delete my data', end: 'ring' },
-            { label: 'Client · Order status, with their OK', end: 'ring' },
+          ghosts: [
+            { label: 'Yours · Refund last month', note: '4 of 4 signed' },
+            { label: 'Client · Order status, with their OK', note: '4 of 4 signed' },
           ],
-          more: '+35 more',
           count: '160 answers signed today · 40 hard questions on 4 channels',
         },
       ],
-      /* Under the stage: each old flaw against what changes, 6 words or fewer a side. The stage's 2 labels name the
-         columns, so the row carries no labels of its own on a wide screen. */
+      /* Under the stage: each old flaw against what changes, 6 words or fewer a side, under the 2 column heads. */
       points: [
         { today: '1 page', obsession: 'The whole journey' },
         { today: '1 moment', obsession: 'Days of follow up' },

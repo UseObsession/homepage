@@ -118,8 +118,9 @@ export type Gap = { heading: string; sub?: string; story?: GapStory; difference?
 /* Home's difference block (components/sections/Difference, _research/illus/DIFFERENCE.md): 5 stories on 1 stage, each
    chosen by a reader chip. Left, "Today": that job's scattered stack, 6 scraps on 6 fixed slots, which the "You" cursor
    clicks 4 times (`tap`), the 4th on a "?" (`q`, the row or line that holds it). Right, "With Obsession": 1 declared
-   agent, 1 thread of signed steps landing on the story clock (`at`, seconds), the finding and the next move, then the
-   pull back to every company at once (`lanes`). `label` tells the whole story to a screen reader and llms-full.txt.
+   agent, 1 thread of signed steps (they land 0.8s apart on the shared story clock, differenceCamera.ts), the finding
+   and the next move, then the pull back: the same panel at other companies (`ghosts`) and the `count`. `label` tells
+   the whole story to a screen reader and llms-full.txt.
    Words are drawn at real size (12px words, 13px titles, 11px mono), so every string here is short on purpose. */
 export type DiffReader = AudienceId | 'agents'
 export type DiffScrapKind =
@@ -151,6 +152,8 @@ export type DiffScrap = {
   rows?: string[][]
   tap?: 1 | 2 | 3 | 4
   q?: number
+  /* The 1 short line a tapped scrap shows on a phone, in place of its others (the last tap's ends on its "?"). */
+  phone?: string
 }
 export type DiffChannel = 'web' | 'email' | 'text' | 'chat' | 'phone' | 'policy'
 export type DiffStep = {
@@ -175,19 +178,9 @@ export type DiffStep = {
   quiet?: string[]
   /* The next run, still to come: a dashed outline with no ring until the next move is approved. */
   next?: boolean
-  at: number
 }
-export type DiffLane = {
-  label: string
-  end: 'ring' | 'needs'
-  /* Lane 1's short finding beside its end mark. */
-  note?: string
-  /* The steps (dot indexes) this lane runs, when not all of them: at a prospect, only the public ones. */
-  only?: number[]
-  /* A chart lane (Marketing): every message, where it lands on the shared clock (0 to 1), and how many. */
-  marks?: number[]
-  tick?: string
-}
+/* The same panel at another company, peeking from behind the main one in the pull back: its name and how it ended. */
+export type DiffGhost = { label: string; note: string; needs?: boolean }
 export type DiffStory = {
   reader: DiffReader
   chip: string
@@ -196,24 +189,29 @@ export type DiffStory = {
   crumb: string[]
   title: string
   meta: string
-  pill: string
   agent: { name: string; inbox: string; phone: string; browser: string }
-  /* The ruler over the thread: each label over the steps it spans (`from` to `to`, step indexes), or in the empty gap
-     after step `gap`; `flag` starts the thread (the release). `dashed` marks a time still to come. */
-  ruler: { label: string; from?: number; to?: number; gap?: number; flag?: boolean; dashed?: boolean }[]
+  /* An empty stretch of time on the thread (a day nothing came), drawn dashed after step `after` with its label. */
+  gaps?: { after: number; label: string }[]
   tally: string
   steps: DiffStep[]
   finding: { text: string; meta: string }
   next: { text: string; button: string; done: string }
-  /* Lane 1's dot words, 1 per step; a chart story (Marketing) has its clock's labels instead (`axis`). */
-  dots: string[]
-  axis?: { at: number; label: string }[]
-  lanes: DiffLane[]
-  more?: string
+  /* 2 more companies behind the panel, the nearer first. */
+  ghosts: [DiffGhost, DiffGhost]
   count: string
 }
 export type Difference = {
-  labels: { today: string; obsession: string; you: string; agent: string; signed: string; finding: string; next: string; example: string }
+  labels: {
+    today: string
+    obsession: string
+    you: string
+    agent: string
+    signed: string
+    needs: string
+    finding: string
+    next: string
+    example: string
+  }
   chips: { label: string; pause: string; play: string }
   stories: DiffStory[]
   points: { today: string; obsession: string }[]

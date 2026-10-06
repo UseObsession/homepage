@@ -1,39 +1,35 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent, type PointerEvent, type ReactNode } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type FocusEvent, type KeyboardEvent, type PointerEvent, type ReactNode } from 'react'
 import type { Difference as Content, DiffChannel, DiffScrap, DiffStep, DiffStory } from '../../content/types'
 import { hollin, type HollinPhoto } from '../../content/hollin'
 import { RM, useReducedMotion } from '../../hooks/useConsole'
 import { Mark } from '../Logo'
-import { film } from './differenceCamera'
+import { CLOCK, clockVars, film, stepAt } from './differenceCamera'
 import './Difference.css'
 
-/* Home's difference block (_research/illus/DIFFERENCE.md, 7 Oct): to know what customers get, you have to be one.
+/* Home's difference block (_research/illus/DIFFERENCE.md, 7 Oct, reviewed the same day): to know what customers get,
+   you have to be one.
    - 5 stories on 1 stage, each chosen by a reader chip (Agencies, Founders, Sales, Marketing, AI agents). Left, "Today":
      that job's stack as 6 flat, muted scraps on a desk, tilted and overlapping, which the "You" cursor clicks 4 times and
-     gets nowhere (the last click lands on a "?"). Right, "With Obsession": 1 lit app panel, 1 declared agent and 1
-     continuous thread of signed steps, the finding and the next move, which the same cursor approves with 1 click; then
-     the pull back: the same journey at every company at once, and the count. Scattered against continuous, in 2 seconds.
-   - Drawn at build time, like the app screens: the prerendered HTML is the Agencies story's end frame, and that end frame
-     is the rest state of every story (reduced motion, print, no script, a story the reader picked with motion off).
-   - Played on 1 12 second clock with 3 beats: Today (1.5s), With Obsession (4.0s), the pull back (9.0s), then the end
-     frame held 2 seconds. Every timed element carries its time as --d, so CSS runs the story once .is-play is on; the
-     camera (./differenceCamera) adds the lean, the spotlight, the cursor and its clicks, and the agent's square on the
-     thread, as Web Animations on transform and opacity, measured once per play. Nothing runs off screen.
-   - The stories play in turn while the stage is at least half in view; leaving view or hiding the tab pauses them, and
-     so does hovering or focusing the block while they advance by themselves. Picking a chip, or clicking the stage to
-     replay the current story, plays it and stops the turns for good. The pause button (icon only) stops all motion.
+     gets nowhere (the last click lands on a "?"). Right, "With Obsession", at the same time: 1 lit app panel, 1 declared
+     agent and 1 thread of signed steps, the finding and the next move, which the same cursor approves with 1 click. Then
+     the pull back: the same panel at 2 more companies slides up from behind it, and the count.
+   - The end frame keeps the evidence: the whole signed journey, the finding and the approved move. It is drawn at build
+     time, like the app screens, and is the rest state of every story (the prerender, reduced motion, print, no script).
+   - Played on 1 16 second clock (differenceCamera.ts CLOCK, written into CSS as custom properties). Every timed element
+     carries its time as --d, so CSS runs the story once its stage has .is-play; the camera adds the cursor and its
+     clicks, and the agent's square on the thread, as Web Animations on transform and opacity. Nothing runs off screen.
+   - The stories play in turn once the stage is a fifth in view; leaving view, hiding the tab or the pause button
+     freezes every animation together. Hovering or focusing the block never freezes a story: it only holds the end frame
+     instead of turning to the next. Picking a chip plays that story and stops the turns for good; a picked story that
+     has ended replays on a click. A new story crossfades over the last frame (0.3s), so nothing blinks to black.
    - The stage is fixed in size and scaled to its column in CSS (as the app screens are), so nothing moves the page.
      Under 760px of column it becomes a phone layout, not a squeeze: the 4 scraps the cursor clicks, then the panel with
      its journey running down 1 thread.
    - A tablist of chips; the stage is the tabpanel, 1 image to a screen reader with the story's label. Everything drawn
-     is aria-hidden; the points row under the stage is real text. */
+     is aria-hidden and inert (a picture, not a control); the points row under the stage is real text. */
 
-/* Where the cursor clicks on the left (the 4 taps), and when it approves the next move. */
-const TAPS = [2, 2.5, 3, 3.5]
-const APPROVE = 8.5
-/* The desktop journey: 3 cards above the thread and 3 below, in 3 columns, so every node sits evenly 115px apart. */
-const COL = [0, 230, 460]
 const NODE = [50, 165, 280, 395, 510, 625]
-const ZONE = 676
+const LEAD = 20
 const PHOTOS = '/illus/gap/'
 
 const tilts: Record<number, number> = { 1: -3, 2: 2, 3: 1, 4: -2, 5: 3, 6: -1.5 }
@@ -43,8 +39,8 @@ const d = (at: number, extra?: Record<string, string | number | undefined>) => (
 /* ---- Marks and glyphs ------------------------------------------------------------------------------------------------ */
 
 /* The brand ring in the app screens' geometry (src/screens/kit.css): `landed` closes it round its square (the signed
-   tick), `needs` leaves the square hollow, `open` is a step still to come. */
-function Sig({ state, className = '', style }: { state: 'landed' | 'needs' | 'open'; className?: string; style?: CSSProperties }) {
+   tick), `open` is a step still to come. */
+function Sig({ state, className = '', style }: { state: 'landed' | 'open'; className?: string; style?: CSSProperties }) {
   return (
     <svg className={`s-df-sig is-${state} ${className}`} viewBox="2 2 96 96" style={style} aria-hidden="true">
       <path className="s-df-sig__ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" />
@@ -52,6 +48,12 @@ function Sig({ state, className = '', style }: { state: 'landed' | 'needs' | 'op
       <path className="s-df-sig__sq" d="M65.404 16.011h18.585v18.585h-18.585Z" />
     </svg>
   )
+}
+
+/* "Needs you": the hollow square alone, 1 shape everywhere (a step, the finding, a company behind the panel). The ring
+   stays the signed tick and the logo stays the brand. */
+function Needs({ className = '' }: { className?: string }) {
+  return <i className={'s-df-needs ' + className} aria-hidden="true" />
 }
 
 const G: Record<string, ReactNode> = {
@@ -137,7 +139,6 @@ const G: Record<string, ReactNode> = {
       <path d="M2.25 8h11.5M8 2.25c-2 2.2-2 9.3 0 11.5M8 2.25c2 2.2 2 9.3 0 11.5" />
     </>
   ),
-  flag: <path d="M3.75 13.75V2.75M3.75 3.25h7.5l-1.5 2.5 1.5 2.5h-7.5" />,
 }
 
 function Glyph({ name, className = 's-df-g' }: { name: string; className?: string }) {
@@ -419,19 +420,35 @@ function ScrapBody({ c }: { c: DiffScrap }) {
   }
 }
 
+/* A tapped scrap's 1 line on a phone: short enough to read whole, and the last tap's ends on its "?". */
+function PhoneLine({ c }: { c: DiffScrap }) {
+  if (!c.phone) return null
+  const m = said(c.phone)
+  const q = c.tap === 4 && c.phone.endsWith('?')
+  return (
+    <p className={'s-df-sc__p' + (q ? ' is-q' : '')}>
+      {m.who && <b>{m.who}</b>}
+      {m.text}
+    </p>
+  )
+}
+
 function Scrap({ c, at }: { c: DiffScrap; at: number }) {
   const tilt = tilts[c.slot]
   return (
     <div
-      className={`s-df-scrap s-df-l${c.slot} s-df-k-${c.kind}` + (c.tap === 4 ? ' is-last' : '')}
+      className={`s-df-scrap s-df-l${c.slot} s-df-k-${c.kind}` + (c.tap === 4 ? ' is-last' : '') + (c.phone ? ' has-p' : '')}
       data-tap={c.tap}
       data-tilt={tilt}
-      style={{ '--d': s(at), '--t': c.tap ? s(TAPS[c.tap - 1]) : undefined, '--tilt': `${tilt}deg` } as CSSProperties}
+      style={{ '--d': s(at), '--t': c.tap ? s(CLOCK.taps[c.tap - 1]) : undefined, '--tilt': `${tilt}deg` } as CSSProperties}
     >
-      <div className="s-df-sheet">
-        <ScrapBody c={c} />
+      <div className="s-df-mute">
+        <div className="s-df-sheet">
+          <ScrapBody c={c} />
+          <PhoneLine c={c} />
+        </div>
+        <i className="s-df-rim" />
       </div>
-      <i className="s-df-rim" />
     </div>
   )
 }
@@ -457,7 +474,7 @@ function Photo({ p, sizes }: { p: HollinPhoto; sizes: string }) {
   )
 }
 
-function StepBody({ st, who }: { st: DiffStep; who: string }) {
+function StepBody({ st, at, who }: { st: DiffStep; at: number; who: string }) {
   if (st.next) return null
   if (st.quiet)
     return (
@@ -465,8 +482,8 @@ function StepBody({ st, who }: { st: DiffStep; who: string }) {
         <p className="s-df-quote">{st.lines?.[0]}</p>
         <p className="s-df-quiet">
           {st.quiet.map((q, i) => (
-            <span key={q} className="s-df-qd" style={d(st.at + i * 0.1)}>
-              <Sig state="landed" className="s-df-in-sig" style={d(st.at + i * 0.1)} />
+            <span key={q} className="s-df-qd" style={d(at + i * 0.12)}>
+              <Sig state="landed" className="s-df-in-sig" />
               <span className="s-df-mono">{q}</span>
             </span>
           ))}
@@ -480,15 +497,10 @@ function StepBody({ st, who }: { st: DiffStep; who: string }) {
           <span className="s-df-who">{who}</span>
           {st.ask}
         </p>
-        <p className="s-df-them s-df-late" style={d(st.at + (st.ch === 'phone' ? 0.5 : 0.25))}>
+        <p className="s-df-them s-df-late" style={d(at + (st.ch === 'phone' ? 0.45 : 0.25))}>
           <span className="s-df-who">{st.who}</span>
           {st.reply}
         </p>
-        {st.lines?.map((l) => (
-          <p key={l} className="s-df-note s-df-mono s-df-late" style={d(st.at + 0.6)}>
-            {l}
-          </p>
-        ))}
       </div>
     )
   const photo = st.photo === 'email' ? hollin.email.photo : st.photo === 'shirt' ? hollin.products[0].photo : undefined
@@ -506,17 +518,18 @@ function StepBody({ st, who }: { st: DiffStep; who: string }) {
   )
 }
 
-function Step({ st, i, labels, who }: { st: DiffStep; i: number; labels: Content['labels']; who: string }) {
+/* 1 step: its card (above the thread for even steps, below for odd, in 3 columns), its tie and its node. Laid out in the
+   journey's grid, so the thread sits as close under the tallest card above as the cards allow. */
+function Step({ st, i, labels, who, teach }: { st: DiffStep; i: number; labels: Content['labels']; who: string; teach: boolean }) {
   const above = i % 2 === 0
-  const x = NODE[i]
-  const col = COL[Math.floor(i / 2)]
-  const ring = st.next ? 8.9 : st.at + 0.3
+  const at = stepAt(i)
+  const ring = st.next ? CLOCK.approve + 0.4 : at + 0.3
   return (
     <div
-      className={'s-df-step ' + (above ? 'is-up' : 'is-down') + (st.next ? ' is-next' : '') + (st.needs ? ' is-needs' : '')}
-      style={d(st.at, { '--x': `${x}px`, '--cx': `${col}px`, '--r': s(ring), '--i': i })}
+      className={'s-df-step ' + (above ? 'is-up' : 'is-down') + (st.next ? ' is-next' : '') + (st.needs ? ' is-needs' : '') + (st.ask ? ' has-talk' : '')}
+      style={d(at, { '--x': `${NODE[i]}px`, '--col': Math.floor(i / 2) + 1, '--row': i + 1, '--r': s(ring), '--i': i })}
     >
-      <i className="s-df-node" data-at={st.next ? undefined : st.at}>
+      <i className="s-df-node" data-i={st.next ? undefined : i}>
         <i />
       </i>
       <i className="s-df-tie" />
@@ -524,117 +537,67 @@ function Step({ st, i, labels, who }: { st: DiffStep; i: number; labels: Content
         <p className="s-df-card__h">
           <Glyph name={channelGlyph[st.ch]} />
           <time className="s-df-mono">{st.when}</time>
-          {i === 0 && <span className="s-df-signed">{labels.signed}</span>}
-          {st.needs && <i className="s-df-hollow" />}
+          {i === 0 && <span className="s-df-word">{labels.signed}</span>}
+          {teach && <span className="s-df-word">{labels.needs}</span>}
+          {st.needs && <Needs className="s-df-card__needs" />}
           <Sig state={st.next ? 'open' : 'landed'} className="s-df-card__sig" />
         </p>
         <p className="s-df-card__t">{st.title}</p>
         <p className="s-df-short">{st.next ? st.when : (st.short ?? st.lines?.[0] ?? st.reply)}</p>
-        <StepBody st={st} who={who} />
+        <StepBody st={st} at={at} who={who} />
       </div>
     </div>
   )
 }
 
-/* The tally counts up as each step is signed (a quiet day counts as 1 step each). */
-function Tally({ story }: { story: DiffStory }) {
+/* The thread: 1 stroke from the lead in to the last node, drawn as the stretches between nodes so an empty stretch of
+   time (a day nothing came) is dashed and named on the line itself, and the run still to come is dashed too. */
+function Thread({ story }: { story: DiffStory }) {
+  const n = story.steps.length
+  const gap = (k: number) => story.gaps?.find((g) => g.after === k)
+  const runs = [{ a: LEAD, b: NODE[0], dash: false, label: '' }]
+  for (let k = 1; k < n; k++) {
+    const g = gap(k - 1)
+    runs.push({ a: NODE[k - 1], b: NODE[k], dash: !!g || !!story.steps[k].next, label: g?.label ?? '' })
+  }
+  return (
+    <span className="s-df-thread">
+      {runs.map((r, k) => (
+        <i key={k} className={'s-df-run' + (r.dash ? ' is-dash' : '')} style={{ '--a': `${r.a}px`, '--b': `${r.b}px` } as CSSProperties}>
+          {r.label && <span className="s-df-gaplab s-df-mono">{r.label}</span>}
+        </i>
+      ))}
+    </span>
+  )
+}
+
+/* The tally counts up as each step is signed (a quiet day counts as 1 step each); at the pull back the count takes its
+   place. At rest only the count shows, so the tally is drawn only for a play. */
+function Sum({ story, live }: { story: DiffStory; live: boolean }) {
   const total = Number(/of (\d+)/.exec(story.tally)?.[1] ?? 0)
   const marks: { n: number; at: number }[] = [{ n: 0, at: 0 }]
   let n = 0
-  for (const st of story.steps) {
-    if (st.next) continue
-    if (st.quiet) st.quiet.forEach((_, i) => marks.push({ n: ++n, at: st.at + i * 0.1 + 0.3 }))
-    else marks.push({ n: ++n, at: st.at + 0.3 })
-  }
+  story.steps.forEach((st, i) => {
+    if (st.next) return
+    const at = stepAt(i)
+    if (st.quiet) st.quiet.forEach((_, j) => marks.push({ n: ++n, at: at + j * 0.12 + 0.3 }))
+    else marks.push({ n: ++n, at: at + 0.3 })
+  })
   return (
-    <p className="s-df-tally">
-      <Sig state="landed" />
-      <span className="s-df-tally__n">
-        {marks.map((m, i) => (
-          <span key={i} className="s-df-tw" data-last={i === marks.length - 1 || undefined} style={d(m.at, { '--u': marks[i + 1] ? s(marks[i + 1].at) : undefined })}>
-            {story.tally.replace(/^\d+/, String(m.n)).replace(/of \d+/, `of ${total}`)}
-          </span>
-        ))}
-      </span>
-    </p>
-  )
-}
-
-function Ruler({ story }: { story: DiffStory }) {
-  return (
-    <div className="s-df-ruler">
-      {story.ruler.map((r) => {
-        let x: number
-        if (r.flag) x = 0
-        else if (r.gap !== undefined) x = (NODE[r.gap] + NODE[r.gap + 1]) / 2
-        else x = NODE[r.from ?? 0] - 22
-        const kind = r.flag ? ' is-flag' : r.gap !== undefined ? ' is-gap' : ''
-        /* A label that would run past the thread's end is set against the end instead (11px mono: 6.6px a letter). */
-        const end = !r.flag && r.gap === undefined && x + 8 + r.label.length * 6.6 > ZONE
-        return (
-          <span
-            key={r.label}
-            className={'s-df-tick s-df-mono' + kind + (r.dashed ? ' is-dashed' : '') + (end ? ' is-end' : '')}
-            style={{ '--x': `${x}px` } as CSSProperties}
-          >
-            {r.flag && <Glyph name="flag" />}
-            {r.label}
-          </span>
-        )
-      })}
-    </div>
-  )
-}
-
-function Lanes({ story }: { story: DiffStory }) {
-  const chart = !!story.axis
-  return (
-    <div className={'s-df-lanes' + (chart ? ' is-chart' : '')}>
-      <p className="s-df-words s-df-mono">
-        {chart
-          ? story.axis!.map((a) => (
-              <span key={a.label} style={{ '--p': a.at } as CSSProperties}>
-                {a.label}
-              </span>
-            ))
-          : story.dots.map((w, i) => (
-              <span key={i} style={{ '--p': i / Math.max(1, story.dots.length - 1) } as CSSProperties}>
-                {w}
+    <div className="s-df-sum">
+      {live && (
+        <p className="s-df-tally">
+          <Sig state="landed" />
+          <span className="s-df-tally__n">
+            {marks.map((m, i) => (
+              <span key={i} className="s-df-tw" data-last={i === marks.length - 1 || undefined} style={d(m.at, { '--u': marks[i + 1] ? s(marks[i + 1].at) : undefined })}>
+                {story.tally.replace(/^\d+/, String(m.n)).replace(/of \d+/, `of ${total}`)}
               </span>
             ))}
-      </p>
-      {story.lanes.map((l, i) => {
-        const at = (j: number) => j / Math.max(1, story.dots.length - 1)
-        /* Where the lane's square stops: its last message on the clock, or the last step it runs. */
-        const reach = chart ? 1 : at(Math.max(...(l.only ?? story.dots.map((_, j) => j))))
-        return (
-          <div
-            key={l.label}
-            className={'s-df-lane' + (i === 0 ? ' is-lit' : '') + (l.end === 'needs' ? ' is-needs' : '')}
-            style={d(i === 0 ? 9.0 : 9.3 + (i - 1) * 0.08, { '--e': s(9.9 + i * 0.06), '--p': reach })}
-          >
-            <span className="s-df-lane__l">{l.label}</span>
-            <span className="s-df-track">
-              {chart
-                ? (l.marks ?? []).map((m, j) => <i key={j} className="s-df-pip" style={{ '--p': m } as CSSProperties} />)
-                : story.dots.map((_, j) =>
-                    !l.only || l.only.includes(j) ? <i key={j} className="s-df-pip" style={{ '--p': at(j) } as CSSProperties} /> : null,
-                  )}
-              <i className="s-df-run" />
-            </span>
-            <span className="s-df-lane__end">
-              <Sig state={l.end === 'needs' ? 'needs' : 'landed'} />
-              {(l.note ?? l.tick) && <span>{l.note ?? l.tick}</span>}
-            </span>
-          </div>
-        )
-      })}
-      {story.more && (
-        <p className="s-df-more" style={d(9.7)}>
-          {story.more}
+          </span>
         </p>
       )}
-      <p className="s-df-count" style={d(10)}>
+      <p className="s-df-count">
         <Sig state="landed" />
         {story.count}
       </p>
@@ -642,10 +605,11 @@ function Lanes({ story }: { story: DiffStory }) {
   )
 }
 
-/* `live`: the story is playing, so the journey is drawn under the lanes; a frame at rest (the prerender, reduced motion)
-   is the end frame and needs only the lanes. */
 function Panel({ story, labels, live }: { story: DiffStory; labels: Content['labels']; live: boolean }) {
   const who = labels.agent
+  const teach = story.steps.findIndex((x) => x.needs)
+  /* The finding needs you when a step or a company behind does; an insight for a call (Sales) keeps the ring. */
+  const needs = teach >= 0 || story.ghosts.some((g) => g.needs)
   return (
     <div className="s-df-app ob-object">
       <div className="s-df-win">
@@ -667,12 +631,6 @@ function Panel({ story, labels, live }: { story: DiffStory; labels: Content['lab
         <header className="s-df-head">
           <p className="s-df-title">{story.title}</p>
           <span className="s-df-meta">{story.meta}</span>
-          <span className="s-df-pill">
-            <span className="s-df-pa">
-              <Sig state="landed" />
-            </span>
-            {story.pill}
-          </span>
         </header>
         <div className="s-df-agent">
           <p className="s-df-agent__n">
@@ -696,25 +654,17 @@ function Panel({ story, labels, live }: { story: DiffStory; labels: Content['lab
             </span>
           </p>
         </div>
-        <div className="s-df-zone">
-          {live && (
-          <div className="s-df-journey">
-            <Ruler story={story} />
-            <i className={'s-df-thread' + (story.steps.some((x) => x.next) ? ' has-next' : '')} />
-            <i className="s-df-sq" />
-            <div className="s-df-steps">
-              {story.steps.map((st, i) => (
-                <Step key={i} st={st} i={i} labels={labels} who={who} />
-              ))}
-            </div>
-            <Tally story={story} />
-          </div>
-          )}
-          <Lanes story={story} />
+        <div className="s-df-journey">
+          <Thread story={story} />
+          {story.steps.map((st, i) => (
+            <Step key={i} st={st} i={i} labels={labels} who={who} teach={i === teach} />
+          ))}
+          <i className="s-df-sq" />
         </div>
-        <div className="s-df-find" style={d(7.5)}>
+        <Sum story={story} live={live} />
+        <div className="s-df-find">
           <p className="s-df-k">
-            <Sig state="needs" />
+            {needs ? <Needs /> : <Sig state="landed" />}
             {labels.finding}
           </p>
           <div>
@@ -722,13 +672,13 @@ function Panel({ story, labels, live }: { story: DiffStory; labels: Content['lab
             <p className="s-df-find__m s-df-mono">{story.finding.meta}</p>
           </div>
         </div>
-        <div className="s-df-next" style={d(8)}>
+        <div className="s-df-next">
           <p className="s-df-k">
             <Glyph name="check" />
             {labels.next}
           </p>
           <p className="s-df-next__t">{story.next.text}</p>
-          <span className="s-df-btn" style={d(APPROVE)}>
+          <span className="s-df-btn">
             <span className="s-df-btn__a">{story.next.button}</span>
             <span className="s-df-btn__b">{story.next.done}</span>
             <span className="s-df-you">
@@ -737,6 +687,32 @@ function Panel({ story, labels, live }: { story: DiffStory; labels: Content['lab
           </span>
         </div>
       </div>
+    </div>
+  )
+}
+
+/* The same panel at 2 more companies, behind the main one: only their window bars show, each with the company and how
+   its run ended. The nearer 1 is drawn last, so it sits over the farther. */
+function Ghosts({ story }: { story: DiffStory }) {
+  return (
+    <div className="s-df-ghosts">
+      {[1, 0].map((i) => {
+        const g = story.ghosts[i]
+        return (
+          <div key={i} className={`s-df-ghost is-${i + 1}`}>
+            <span className="s-df-dots">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="s-df-ghost__l">{g.label}</span>
+            <span className="s-df-ghost__n">
+              {g.note}
+              {g.needs ? <Needs /> : <Sig state="landed" />}
+            </span>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -757,7 +733,7 @@ function Stage({ story, labels, live }: { story: DiffStory; labels: Content['lab
   /* The scraps drop in like paper on a desk, 0.08s apart, in the order of their slots. */
   const order = [...story.scraps].sort((a, b) => a.slot - b.slot)
   return (
-    <div className="s-df-rig" aria-hidden="true">
+    <div className="s-df-rig" aria-hidden="true" inert>
       <div className="s-df-today">
         <p className="s-df-lab">{labels.today}</p>
         <div className="s-df-desk">
@@ -772,6 +748,7 @@ function Stage({ story, labels, live }: { story: DiffStory; labels: Content['lab
           {labels.obsession}
           <span className="ob-tag s-df-ex">{labels.example}</span>
         </p>
+        <Ghosts story={story} />
         <Panel story={story} labels={labels} live={live} />
       </div>
       {live && (
@@ -779,7 +756,7 @@ function Stage({ story, labels, live }: { story: DiffStory; labels: Content['lab
           <span className="s-df-ptr">
             <Pointer label={labels.you} />
           </span>
-          {[...TAPS, APPROVE].map((t) => (
+          {[...CLOCK.taps, CLOCK.approve].map((t) => (
             <i key={t} className="s-df-click" />
           ))}
         </>
@@ -790,6 +767,11 @@ function Stage({ story, labels, live }: { story: DiffStory; labels: Content['lab
 
 /* ---- The block ------------------------------------------------------------------------------------------------------- */
 
+type Shown = { i: number; key: number; on: boolean }
+const noop = () => () => {}
+const yes = () => true
+const no = () => false
+
 export function Difference({ d: content }: { d: Content }) {
   const { stories, labels, chips, points } = content
   const uid = useId().replace(/[^a-zA-Z0-9_-]/g, '')
@@ -798,41 +780,64 @@ export function Difference({ d: content }: { d: Content }) {
   const stageRef = useRef<HTMLDivElement>(null)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const paused = useRef(new WeakSet<Animation>())
+  /* Each play's camera, by its key, so the frame fading out keeps its cursor until it is gone. */
+  const films = useRef(new Map<number, Animation[]>())
 
-  const [active, setActive] = useState(0)
-  /* Each play bumps the key, so the story's drawing is new and its CSS story starts from 0. Key 0 is the rest frame. */
-  const [play, setPlay] = useState({ key: 0, on: false })
+  /* What the stage shows: story `i`, drawn new for each play (`key`; key 0 is the prerendered rest frame), played or at
+     rest (`on`). `prev` is the frame it replaced, fading out over it. */
+  const [shown, setShown] = useState<Shown>({ i: 0, key: 0, on: false })
+  const [prev, setPrev] = useState<Shown | null>(null)
   const [auto, setAuto] = useState(true)
   const [stopped, setStopped] = useState(false)
   /* A story the reader picked has played to its end frame: nothing moves, so the button offers to play again. */
   const [done, setDone] = useState(false)
+  /* The stories turn by themselves, but the reader is over the block: the end frame holds until they leave it. */
+  const [waiting, setWaiting] = useState(false)
   const [seen, setSeen] = useState(false)
   const [away, setAway] = useState(false)
   const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
   const [focus, setFocus] = useState(0)
+  /* False in the prerender and while hydrating, then true: what only works with the script is drawn after. */
+  const mounted = useSyncExternalStore(noop, yes, no)
   const reduced = useReducedMotion()
-  const story = stories[active]
-  const playing = play.on && !reduced
+  const active = shown.i
+  const playing = shown.on && !reduced
 
+  /* The frame on the stage now, for the callbacks that outlive a render (the observer). */
+  const shownRef = useRef(shown)
+  useLayoutEffect(() => {
+    shownRef.current = shown
+  })
+
+  /* Play story i, drawn new. The last frame stays under it for its 0.3s fade (none with motion off: the switch is
+     instant). */
   function start(i: number) {
-    setActive(i)
+    const on = !matchMedia(RM).matches
+    const cur = shownRef.current
     setFocus(i)
     setDone(false)
-    setPlay((p) => ({ key: p.key + 1, on: !matchMedia(RM).matches }))
+    setWaiting(false)
+    setPrev(on ? cur : null)
+    setShown({ i, key: cur.key + 1, on })
   }
 
-  /* The block waits off screen and in a hidden tab. The first time the stage is half in view, the first story plays. */
+  /* The block waits off screen and in a hidden tab. The first time a fifth of the stage is in view, the first story
+     plays (once), so the rest frame turns into the story while the block is still coming up the screen; the
+     prerendered frame (key 0) fades out over it. */
   useEffect(() => {
     const el = fitRef.current
     if (!el) return
     const io = new IntersectionObserver(
       ([e]) => {
-        const on = e.isIntersecting && e.intersectionRatio >= 0.5
+        const on = e.isIntersecting && e.intersectionRatio >= 0.2
         setSeen(on)
-        if (on && !matchMedia(RM).matches) setPlay((p) => (p.key ? p : { key: 1, on: true }))
+        const cur = shownRef.current
+        if (!on || cur.key || matchMedia(RM).matches) return
+        setPrev(cur)
+        setShown({ i: cur.i, key: 1, on: true })
       },
-      { threshold: [0, 0.5] },
+      { threshold: [0, 0.2] },
     )
     io.observe(el)
     const vis = () => setAway(document.hidden)
@@ -843,19 +848,30 @@ export function Difference({ d: content }: { d: Content }) {
     }
   }, [])
 
-  /* The camera films each play once the story's drawing is in the page (the same frame its CSS story starts). */
+  /* The camera films each play once its drawing is in the page (the same frame its CSS story starts). */
   useLayoutEffect(() => {
     const stage = stageRef.current
-    if (!playing || !stage) return
-    const anims = film(stage, { above: rootRef.current?.querySelector('.s-df-bar'), below: rootRef.current?.querySelector('.s-df-points') })
-    return () => {
+    if (!playing || !stage || films.current.has(shown.key)) return
+    films.current.set(shown.key, film(stage))
+  }, [playing, shown.key])
+  /* A play's camera stops once its frame is gone from the page (or motion is turned off). */
+  useEffect(() => {
+    for (const [k, anims] of films.current) {
+      if (playing && (k === shown.key || k === prev?.key)) continue
       for (const a of anims) a.cancel()
+      films.current.delete(k)
     }
-  }, [playing, play.key, active])
+  }, [playing, shown.key, prev])
+  useEffect(() => {
+    const all = films.current
+    return () => {
+      for (const anims of all.values()) for (const a of anims) a.cancel()
+    }
+  }, [])
 
-  /* Held: off screen, a hidden tab, the pause button, or the reader hovering or focusing the block while the stories
-     advance by themselves. Every animation in the block stops where it is (CSS and camera alike) and resumes together. */
-  const held = playing && (!seen || away || stopped || (auto && (hovered || focused)))
+  /* Held: off screen, a hidden tab or the pause button. Every animation in the block stops where it is (CSS and camera
+     alike) and resumes together. */
+  const held = playing && (!seen || away || stopped)
   const moving = playing && !stopped && !done
   useEffect(() => {
     const root = rootRef.current
@@ -871,15 +887,24 @@ export function Difference({ d: content }: { d: Content }) {
         a.play()
       }
     }
-  }, [held, play.key, active])
+  }, [held, shown.key, prev])
 
-  /* The bar under the playing chip fills over the story's 12 seconds; when it ends, the next story plays. */
+  /* The bar under the playing chip fills over the story's clock; when it ends, the next story plays, unless the reader
+     is over the block, who keeps the end frame until they leave it. */
+  const next = () => start((active + 1) % stories.length)
   function ended() {
-    if (auto && !stopped) start((active + 1) % stories.length)
-    else setDone(true)
+    if (!auto || stopped) return setDone(true)
+    if (hovered || focused) return setWaiting(true)
+    next()
+  }
+  /* The reader leaves the block (pointer and focus both gone): a held end frame turns to the next story. */
+  function release(h: boolean, f: boolean) {
+    setHovered(h)
+    setFocused(f)
+    if (waiting && !h && !f && auto && !stopped) next()
   }
 
-  /* Picking a chip, or clicking the stage to replay its story, is the reader's choice: the turns stop for good. */
+  /* Picking a chip is the reader's choice: the turns stop for good. */
   function pick(i: number) {
     setAuto(false)
     setStopped(false)
@@ -900,30 +925,46 @@ export function Difference({ d: content }: { d: Content }) {
     tabRefs.current[i]?.focus()
   }
 
-  /* Pause freezes whatever moves, where it is. Play starts the stories in turn again, from the current one. */
+  /* Pause freezes whatever moves, where it is. Play resumes it, and the stories turn again; at an end frame it plays the
+     story again from the start. */
   function togglePause() {
     if (moving) return setStopped(true)
     setStopped(false)
     setAuto(true)
-    start(active)
+    if (done || !playing) start(active)
   }
 
   const onPointerEnter = (e: PointerEvent) => e.pointerType === 'mouse' && setHovered(true)
-  const onPointerLeave = () => setHovered(false)
+  const onPointerLeave = () => release(false, focused)
   const onFocus = (e: FocusEvent) => {
     const t = e.target as HTMLElement
-    setFocused(t.matches(':focus-visible') && !t.closest('.s-df-pause'))
+    if (t.matches(':focus-visible') && !t.closest('.s-df-pause')) setFocused(true)
+    else release(hovered, false)
   }
   const onBlur = (e: FocusEvent) => {
-    if (!rootRef.current?.contains(e.relatedTarget as Node | null)) setFocused(false)
+    if (!rootRef.current?.contains(e.relatedTarget as Node | null)) release(hovered, false)
   }
 
   const reader = (r: string) => (r === 'agents' ? undefined : r)
+  const frame = (f: Shown, out: boolean) => (
+    <div
+      key={f.key}
+      ref={out ? undefined : stageRef}
+      className={'s-df-stage' + (f.on && !reduced ? ' is-play' : '') + (out ? ' is-out' : '')}
+      role={out ? undefined : 'img'}
+      aria-label={out ? undefined : stories[f.i].label}
+      aria-hidden={out || undefined}
+      onAnimationEnd={out ? (e) => e.target === e.currentTarget && setPrev(null) : undefined}
+    >
+      <Stage story={stories[f.i]} labels={labels} live={f.on && !reduced} />
+    </div>
+  )
 
   return (
     <div
       ref={rootRef}
-      className={'s-df' + (playing ? ' is-play' : '')}
+      className="s-df"
+      style={clockVars as CSSProperties}
       onPointerEnter={onPointerEnter}
       onPointerLeave={onPointerLeave}
       onFocus={onFocus}
@@ -949,13 +990,12 @@ export function Difference({ d: content }: { d: Content }) {
             >
               <span className="ob-sq s-df-key" aria-hidden="true" />
               {st.chip}
-              {i === active && playing && (
-                <i key={play.key} className="s-df-prog" onAnimationEnd={ended} aria-hidden="true" />
-              )}
+              {i === active && playing && <i key={shown.key} className="s-df-prog" onAnimationEnd={ended} aria-hidden="true" />}
             </button>
           ))}
         </div>
-        {!reduced && (
+        {/* Drawn once the script runs: with no script there is nothing to pause. */}
+        {mounted && !reduced && (
           <button type="button" className="ob-navbtn s-df-pause" aria-label={moving ? chips.pause : chips.play} onClick={togglePause}>
             <svg className="ob-navicon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               {moving ? <path d="M6 4v8M10 4v8" /> : <path d="M5.5 3.75v8.5L12.25 8Z" strokeLinejoin="round" />}
@@ -965,10 +1005,10 @@ export function Difference({ d: content }: { d: Content }) {
       </div>
 
       <div className="s-df-tp" role="tabpanel" id={`${uid}-panel`} aria-labelledby={`${uid}-tab-${active}`}>
-        <div className="s-df-fit" ref={fitRef} onClick={() => !reduced && pick(active)}>
-          <div key={`${active}-${play.key}`} ref={stageRef} className="s-df-stage" role="img" aria-label={story.label}>
-            <Stage story={story} labels={labels} live={playing} />
-          </div>
+        {/* A picked story that has ended replays on a click; while a story plays, a click on it does nothing. */}
+        <div className={'s-df-fit' + (done && !reduced ? ' is-done' : '')} ref={fitRef} onClick={() => done && !reduced && pick(active)}>
+          {prev && frame(prev, true)}
+          {frame(shown, false)}
         </div>
       </div>
 

@@ -2,16 +2,18 @@
    (data-tone="ink", .ob-theme-dark), so it reads the ink set in Paper and Gloss alike: on paper the chapter is the
    page's deepest ink, on ink it is lit from above. Only transform and opacity ever move.
    The stage is drawn at 1 fixed size and scaled to its column in CSS, as the app screens are (screens/kit.css): 1160 x
-   640 on a wide screen, and under 760px of column a phone layout, 358 x 670, scaled up to 1.5 on a tablet. */
+   680 on a wide screen, and under 760px of column a phone layout, 358 x 696, scaled up to 1.5 on a tablet.
+   The story's times come from the block's clock (differenceCamera.ts CLOCK), set on .s-df as --s-df-clock, -dim, -find,
+   -next, -approve, -pull and -count; a step's own time is its --d. */
 
 .s-df {
   /* The ground the scraps lie on, and their flat face: a step of ink above it, no light, no gloss, no shadow. */
   --s-df-ground: var(--s-ground-ink);
   --s-df-face: color-mix(in oklab, var(--s-ground-ink), var(--ob-text) 7%);
   --s-df-chip: color-mix(in oklab, var(--s-ground-ink), var(--ob-text) 9%);
-  /* How a still frame's thread draws in (desktop across, phone down) and how far a lane's square runs. */
+  /* How the thread draws in (desktop across, phone down). */
   --s-df-draw: 0 1;
-  --s-df-track: 268px;
+  --s-df-clock: 16s;
   position: relative;
   container-type: inline-size;
 }
@@ -25,6 +27,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--ob-space-16);
+  min-height: 38px;
   margin-bottom: var(--ob-space-28);
 }
 .s-df-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); }
@@ -59,7 +62,7 @@
 .s-df-chip:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 /* The reader's key, the 1 place the block takes a reader's hue (COLOUR.md, placement P5 proposed); AI agents stays bone. */
 .s-df-key { width: var(--ob-sq-md); height: var(--ob-sq-md); color: var(--s-accent, var(--ob-text)); }
-/* The playing story's bar, in the reader's hue, filling over the story's 12 seconds. */
+/* The playing story's bar, in the reader's hue, filling over the story's clock. */
 .s-df-prog {
   position: absolute;
   inset: auto var(--ob-space-16) 5px;
@@ -68,7 +71,7 @@
   background: var(--s-accent, var(--ob-text));
   transform-origin: 0 50%;
   scale: 0 1;
-  animation: s-df-prog 12s linear both;
+  animation: s-df-prog var(--s-df-clock) linear both;
   pointer-events: none;
 }
 .s-df-pause { color: var(--ob-text-2); }
@@ -79,27 +82,28 @@
 .s-df-tp { position: relative; }
 .s-df-fit {
   position: relative;
-  height: 640px;
-  height: min(640px, calc(100cqw * 640 / 1160));
-  cursor: pointer;
+  height: 680px;
+  height: min(680px, calc(100cqw * 680 / 1160));
   -webkit-tap-highlight-color: transparent;
 }
+.s-df-fit.is-done { cursor: pointer; }
 .s-df-stage {
   position: absolute;
   left: 0;
   top: 0;
   width: 1160px;
-  height: 640px;
+  height: 680px;
   transform-origin: 0 0;
   transform: scale(.82);
 }
 @supports (transform: scale(tan(atan2(1px, 1px)))) {
   .s-df-stage { transform: scale(min(1, tan(atan2(100cqw, 1160px)))); }
 }
+/* The last frame, fading out over the new story (a 0.3s crossfade, so a new story never blinks up from black). */
+.s-df-stage.is-out { z-index: 1; pointer-events: none; animation: s-df-out .3s var(--ob-ease-in-out) both; }
 .s-df-rig {
   position: absolute;
   inset: 0;
-  transform-origin: 50% 50%;
   color: var(--ob-text);
   font: 400 12px/16px var(--ob-font-sans);
   letter-spacing: 0;
@@ -110,8 +114,8 @@
 .s-df-g { display: block; flex: none; width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 /* The 2 halves and their names. */
-.s-df-today { position: absolute; left: 0; top: 0; width: 420px; height: 640px; }
-.s-df-obs { position: absolute; left: 452px; top: 0; width: 708px; height: 640px; }
+.s-df-today { position: absolute; left: 0; top: 0; width: 420px; height: 680px; }
+.s-df-obs { position: absolute; left: 452px; top: 0; width: 708px; height: 680px; }
 .s-df-lab {
   position: absolute;
   left: 0;
@@ -128,7 +132,7 @@
 .s-df-lab--obs .s-mark { color: var(--ob-text); }
 .s-df-ex { margin-left: auto; }
 
-/* ---- The ring ---------------------------------------------------------------------------------------------------------- */
+/* ---- The marks: the ring is signed, the hollow square needs you ------------------------------------------------------ */
 
 .s-df-sig { display: block; flex: none; width: 13px; height: 13px; color: var(--ob-text); overflow: visible; }
 .s-df-sig path { fill: currentColor; }
@@ -136,12 +140,12 @@
 .s-df-sig__sq { transform-box: fill-box; transform-origin: center; }
 .s-df-sig.is-landed .s-df-sig__gap { opacity: 1; }
 .s-df-sig.is-landed .s-df-sig__sq { transform: translate(-24.6965px, 24.6965px) scale(.8); }
-.s-df-sig.is-needs .s-df-sig__sq { fill: none; stroke: currentColor; stroke-width: 6.1px; transform: scale(.7525); }
 .s-df-sig.is-open { color: var(--ob-text-3); }
+.s-df-needs { display: block; flex: none; width: 10px; height: 10px; border-radius: 2px; box-shadow: 0 0 0 1.5px var(--ob-text) inset; }
 
 /* ---- Today: scraps on a desk ------------------------------------------------------------------------------------------ */
 
-.s-df-desk { position: absolute; left: 0; top: 40px; width: 420px; height: 600px; }
+.s-df-desk { position: absolute; left: 0; top: 40px; width: 420px; height: 640px; }
 .s-df-scrap {
   position: absolute;
   left: var(--sx);
@@ -158,6 +162,10 @@
 .s-df-l4 { --sx: 280px; --sy: 132px; --sw: 136px; z-index: 2; }
 .s-df-l5 { --sx: 22px; --sy: 352px; --sw: 204px; z-index: 4; }
 .s-df-l6 { --sx: 166px; --sy: 404px; --sw: 250px; z-index: 5; }
+/* Every scrap but the last 1 clicked mutes once the clicks are done, so the eye goes to the "?" and to the panel. The
+   stage is a picture (inert, 1 image to a screen reader), so its muted words are part of the drawing. */
+.s-df-mute { position: relative; border-radius: inherit; }
+.s-df-scrap:not(.is-last) .s-df-mute { opacity: .62; }
 .s-df-sheet {
   position: relative;
   overflow: hidden;
@@ -168,8 +176,7 @@
   color: var(--ob-text-2);
   opacity: .8;
 }
-/* Muted, never faint: every word keeps 4.5:1 on its face (text-2 at .8, so no text-3 inside a scrap). The last thing
-   clicked stays lit: full ink and a rim. Nothing on this side ever closes, ticks or lands. */
+/* The last thing clicked stays lit: full ink and a rim. Nothing on this side ever closes, ticks or lands. */
 .s-df-scrap.is-last .s-df-sheet { opacity: 1; }
 .s-df-rim {
   position: absolute;
@@ -180,6 +187,8 @@
   box-shadow: 0 0 0 var(--ob-border-hair) rgb(var(--ob-tint-rgb) / .3) inset, 0 16px 32px -16px rgb(0 0 0 / .8);
 }
 .s-df-scrap.is-last .s-df-rim { opacity: 1; }
+/* A tapped scrap's own short line is the phone's; a wide screen shows its full lines. */
+.s-df-sc__p { display: none; }
 
 .s-df-sc__h { display: flex; align-items: center; gap: 7px; min-width: 0; height: 20px; color: var(--ob-text); font-weight: var(--ob-weight-semibold); font-size: 12.5px; }
 .s-df-sc__h > b, .s-df-sc__h > span:not([class]) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: inherit; }
@@ -286,9 +295,9 @@
 .s-df-tablist i { flex: none; width: 10px; height: 10px; border-radius: 3px; background: rgb(var(--ob-tint-rgb) / .2); }
 .s-df-k-status .s-df-sc__h .s-df-g, .s-df-k-release .s-df-sc__h .s-df-g, .s-df-k-reminder .s-df-sc__h .s-df-g { color: var(--ob-text-2); }
 
-/* ---- With Obsession: 1 lit app panel ------------------------------------------------------------------------------- */
+/* ---- With Obsession: 1 lit app panel, and the same panel at 2 more companies behind it --------------------------- */
 
-.s-df-app { position: absolute; left: 0; top: 40px; width: 708px; height: 600px; border-radius: 14px; }
+.s-df-app { position: absolute; left: 0; top: 72px; z-index: 1; width: 708px; border-radius: 14px; }
 .s-df-win {
   display: flex;
   align-items: center;
@@ -299,37 +308,42 @@
   border-radius: 14px 14px 0 0;
   background: rgb(var(--ob-tint-rgb) / .02);
 }
-.s-df-dots { display: flex; gap: 6px; }
+.s-df-dots { display: flex; flex: none; gap: 6px; }
 .s-df-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--ob-line-strong); }
 .s-df-crumb { display: flex; gap: 6px; color: var(--ob-text-3); }
 .s-df-crumb > span { display: flex; gap: 6px; }
 .s-df-crumb i { font-style: normal; }
 .s-df-crumb b { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
-.s-df-body {
-  display: grid;
-  grid-template-rows: 28px 62px 308px auto auto;
-  gap: 12px;
-  padding: 14px 16px;
-}
-.s-df-head { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.s-df-title { flex: none; font: 600 16px/1.2 var(--ob-font-sans); letter-spacing: -.02em; color: var(--ob-text); }
-.s-df-meta { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ob-text-3); }
-.s-df-pill {
-  display: inline-flex;
+
+/* The companies behind: each a window's top edge, set back and inset, showing who it is and how its run ended. */
+.s-df-ghosts { position: absolute; left: 0; top: 72px; width: 708px; }
+.s-df-ghost {
+  position: absolute;
+  top: 0;
+  display: flex;
   align-items: center;
-  gap: 7px;
-  flex: none;
-  height: 24px;
-  margin-left: auto;
-  padding: 0 10px 0 4px;
-  border-radius: 7px;
-  background: rgb(var(--ob-tint-rgb) / .05);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
-  font-weight: var(--ob-weight-medium);
+  gap: 12px;
+  height: 64px;
+  padding: 0 14px 42px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+  color: var(--ob-text-2);
   white-space: nowrap;
 }
-.s-df-pa, .s-df-av { display: grid; place-items: center; flex: none; width: 16px; height: 16px; border-radius: 5px; background: var(--ob-text); }
-.s-df-pa .s-df-sig, .s-df-av .s-df-sig { width: 10px; height: 10px; color: var(--ob-text-inverse); }
+.s-df-ghost.is-1 { left: 12px; right: 12px; transform: translateY(-22px); background: color-mix(in oklab, var(--ob-surface-raised) 72%, var(--s-df-ground)); }
+.s-df-ghost.is-2 { left: 26px; right: 26px; transform: translateY(-44px); background: color-mix(in oklab, var(--ob-surface-raised) 40%, var(--s-df-ground)); color: var(--ob-text-3); }
+.s-df-ghost .s-df-dots i { width: 7px; height: 7px; }
+.s-df-ghost__l { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-weight: var(--ob-weight-medium); }
+.s-df-ghost__n { display: flex; align-items: center; gap: 7px; margin-left: auto; font: 400 11px/1 var(--ob-font-mono); }
+.s-df-ghost .s-df-sig { width: 12px; height: 12px; color: currentColor; }
+.s-df-ghost .s-df-needs { width: 9px; height: 9px; box-shadow: 0 0 0 1.5px currentColor inset; }
+
+.s-df-body { display: grid; gap: 12px; padding: 14px 16px 16px; }
+.s-df-head { display: flex; align-items: baseline; gap: 10px; min-width: 0; height: 20px; }
+.s-df-title { flex: none; font: 600 16px/20px var(--ob-font-sans); letter-spacing: -.02em; color: var(--ob-text); }
+.s-df-meta { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ob-text-3); }
+.s-df-av { display: grid; place-items: center; flex: none; width: 18px; height: 18px; border-radius: 5px; background: var(--ob-text); }
+.s-df-av .s-df-sig { width: 10px; height: 10px; color: var(--ob-text-inverse); }
 .s-df-agent {
   display: grid;
   align-content: center;
@@ -340,7 +354,6 @@
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
 }
 .s-df-agent__n { display: flex; align-items: center; gap: 8px; font-weight: var(--ob-weight-medium); font-size: 12.5px; color: var(--ob-text); }
-.s-df-av { width: 18px; height: 18px; }
 .s-df-ids { display: flex; flex-wrap: wrap; gap: 6px; }
 .s-df-id {
   display: inline-flex;
@@ -357,43 +370,33 @@
 }
 .s-df-id .s-df-g { color: var(--ob-text-3); }
 
-/* The journey and its pull back share 1 zone, stacked: the rest frame shows the lanes. */
-.s-df-zone { position: relative; }
-.s-df-journey, .s-df-lanes { position: absolute; inset: 0; }
-.s-df-journey { opacity: 0; transform-origin: 50% 166px; }
-
-.s-df-ruler { position: absolute; left: 0; right: 0; top: 0; height: 16px; }
-.s-df-tick { position: absolute; left: var(--x); top: 0; display: flex; align-items: center; gap: 5px; padding-left: 8px; color: var(--ob-text-3); white-space: nowrap; line-height: 16px; }
-.s-df-tick::before { content: ""; position: absolute; left: 0; top: 3px; width: 1px; height: 10px; background: var(--ob-line-strong); }
-.s-df-tick.is-gap { translate: -50% 0; padding: 0 6px; border-radius: 4px; outline: var(--ob-border-hair) dashed var(--ob-line-strong); outline-offset: -1px; }
-.s-df-tick.is-gap::before, .s-df-tick.is-flag::before { display: none; }
-.s-df-tick.is-flag { padding-left: 0; color: var(--ob-text-2); }
-.s-df-tick.is-flag .s-df-g { color: var(--ob-text-2); }
-.s-df-tick.is-dashed { color: var(--ob-text-3); }
-.s-df-tick.is-end { left: auto; right: 0; }
-.s-df-tick.is-dashed::before { background: none; border-left: var(--ob-border-hair) dashed var(--ob-line-strong); }
-
-.s-df-thread {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  top: 166px;
-  height: 1px;
-  background: var(--ob-line-ui);
-  transform-origin: 0 50%;
+/* The journey: 3 cards above the thread and 3 below, in 3 columns, every node evenly 115px apart on the thread. The
+   thread's row sits right under the tallest card above, so no story carries empty space. */
+.s-df-journey {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 216px);
+  grid-template-rows: auto 28px auto;
+  column-gap: 14px;
 }
-.s-df-thread.has-next { right: 166px; }
+.s-df-step { display: contents; }
+.s-df-thread { grid-row: 2; grid-column: 1 / -1; align-self: center; position: relative; height: 1px; transform-origin: 0 50%; }
+.s-df-run { position: absolute; left: var(--a); top: 0; width: calc(var(--b) - var(--a)); height: 1px; background: var(--ob-line-ui); }
+.s-df-run.is-dash { background: repeating-linear-gradient(90deg, var(--ob-line-ui) 0 4px, transparent 4px 8px); }
+/* An empty stretch of time, named on the line itself. */
+.s-df-gaplab { position: absolute; left: 50%; top: 0; translate: -50% -50%; padding: 0 7px; background: var(--s-obj-face, var(--ob-surface)); color: var(--ob-text-3); line-height: 14px; white-space: nowrap; }
 .s-df-sq { position: absolute; left: 0; top: 0; z-index: 3; width: 8px; height: 8px; border-radius: var(--ob-sq-radius); background: var(--ob-text); opacity: 0; box-shadow: 0 0 10px rgb(var(--ob-glow-rgb) / .35); }
-.s-df-steps { position: absolute; inset: 0; }
-.s-df-step { position: absolute; inset: 0; pointer-events: none; }
 .s-df-node {
-  position: absolute;
+  grid-row: 2;
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: start;
+  position: relative;
   left: var(--x);
-  top: 166px;
   z-index: 2;
   width: 11px;
   height: 11px;
-  margin: -5px 0 0 -5px;
+  margin-left: -5.5px;
   border-radius: 50%;
   background: var(--s-obj-face, var(--ob-surface-raised));
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset;
@@ -401,30 +404,26 @@
 .s-df-node > i { position: absolute; inset: 3px; border-radius: 50%; background: var(--ob-text); }
 .s-df-step.is-next .s-df-node { box-shadow: none; outline: var(--ob-border-hair) dashed var(--ob-line-ui); outline-offset: -1px; }
 .s-df-step.is-next .s-df-node > i { display: none; }
-/* The run still to come: a dashed thread to tomorrow. */
-.s-df-step.is-next::before { content: ""; position: absolute; left: 510px; width: 115px; top: 166px; border-top: var(--ob-border-hair) dashed var(--ob-line-ui); }
-.s-df-tie { position: absolute; left: var(--x); width: 1px; background: var(--ob-line-strong); }
-.s-df-step.is-up .s-df-tie { top: 152px; height: 9px; }
-.s-df-step.is-down .s-df-tie { top: 172px; height: 8px; }
+.s-df-tie { grid-row: 2; grid-column: 1 / -1; justify-self: start; position: relative; left: var(--x); width: 1px; height: 9px; background: var(--ob-line-strong); }
+.s-df-step.is-up .s-df-tie { align-self: start; }
+.s-df-step.is-down .s-df-tie { align-self: end; }
 .s-df-card {
-  position: absolute;
-  left: var(--cx);
-  width: 216px;
+  grid-column: var(--col);
   display: grid;
   gap: 4px;
+  min-width: 0;
   padding: 9px 10px 10px;
   border-radius: 10px;
   background: rgb(var(--ob-tint-rgb) / .04);
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
   color: var(--ob-text-2);
 }
-.s-df-step.is-up .s-df-card { bottom: 156px; transform-origin: 50% 100%; }
-.s-df-step.is-down .s-df-card { top: 180px; transform-origin: 50% 0; }
+.s-df-step.is-up .s-df-card { grid-row: 1; align-self: end; transform-origin: 50% 100%; }
+.s-df-step.is-down .s-df-card { grid-row: 3; align-self: start; transform-origin: 50% 0; }
 .s-df-step.is-next .s-df-card { background: none; box-shadow: none; outline: var(--ob-border-hair) dashed var(--ob-line-ui); outline-offset: -1px; }
 .s-df-card__h { display: flex; align-items: center; gap: 6px; height: 14px; color: var(--ob-text-3); }
 .s-df-card__h time { margin-right: auto; white-space: nowrap; }
-.s-df-signed { font: 500 11px/1 var(--ob-font-sans); color: var(--ob-text-2); }
-.s-df-hollow { width: 9px; height: 9px; border-radius: 1px; box-shadow: 0 0 0 1.5px var(--ob-text) inset; }
+.s-df-word { font: 500 11px/1 var(--ob-font-sans); color: var(--ob-text-2); white-space: nowrap; }
 .s-df-card__t { font: 600 13px/16px var(--ob-font-sans); letter-spacing: -.005em; color: var(--ob-text); }
 .s-df-short { display: none; }
 .s-df-quote { color: var(--ob-text-2); }
@@ -437,7 +436,6 @@
 .s-df-me { color: var(--ob-text-2); }
 .s-df-them { color: var(--ob-text); }
 .s-df-who { margin-right: 6px; font: 500 11px/1 var(--ob-font-mono); color: var(--ob-text-3); }
-.s-df-note { color: var(--ob-text-3); }
 .s-df-quiet { display: flex; gap: 4px; margin-top: 2px; }
 .s-df-qd {
   display: flex;
@@ -455,52 +453,14 @@
 }
 .s-df-qd .s-df-sig { width: 11px; height: 11px; }
 
-.s-df-tally { position: absolute; right: 0; bottom: 4px; display: flex; align-items: center; gap: 6px; font: 400 11px/14px var(--ob-font-mono); color: var(--ob-text-2); }
+/* The tally counts the steps signed; at the pull back the count takes its place (at rest, the count alone). */
+.s-df-sum { display: grid; padding-top: 12px; border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-df-tally, .s-df-count { grid-area: 1 / 1; display: flex; align-items: center; min-width: 0; }
+.s-df-tally { gap: 8px; opacity: 0; font: 400 11px/20px var(--ob-font-mono); color: var(--ob-text-2); }
 .s-df-tally__n { display: grid; }
-.s-df-tw { grid-area: 1 / 1; opacity: 0; white-space: nowrap; text-align: right; }
+.s-df-tw { grid-area: 1 / 1; opacity: 0; white-space: nowrap; }
 .s-df-tw[data-last] { opacity: 1; }
-
-/* The pull back: the same journey at every company at once. */
-.s-df-lanes { padding-top: 4px; }
-.s-df-words { position: relative; height: 16px; width: var(--s-df-track); margin-left: 242px; font: 400 12px/16px var(--ob-font-sans); color: var(--ob-text-3); }
-.s-df-words > span { position: absolute; left: calc(var(--p) * 100%); top: 0; translate: -50% 0; white-space: nowrap; line-height: 16px; }
-.s-df-lanes.is-chart .s-df-words > span:first-child { translate: 0 0; }
-.s-df-lanes.is-chart .s-df-words > span:last-child { translate: -100% 0; }
-.s-df-lane {
-  display: grid;
-  grid-template-columns: 230px var(--s-df-track) minmax(0, 1fr);
-  column-gap: 12px;
-  align-items: center;
-  height: 34px;
-}
-.s-df-lane__l { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ob-text-2); }
-.s-df-lane.is-lit .s-df-lane__l { font-weight: var(--ob-weight-medium); color: var(--ob-text); }
-.s-df-track { position: relative; height: 14px; }
-.s-df-track::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: var(--ob-line-strong); }
-.s-df-pip { position: absolute; left: calc(var(--p) * 100%); top: 7px; width: 7px; height: 7px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--ob-line-ui); }
-.s-df-lane.is-lit .s-df-pip { background: var(--ob-text); }
-.s-df-run { position: absolute; left: 0; top: 7px; z-index: 1; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: var(--ob-sq-radius); background: var(--ob-text); opacity: 0; }
-.s-df-lane__end { display: flex; align-items: center; gap: 8px; min-width: 0; color: var(--ob-text); white-space: nowrap; }
-.s-df-lane__end .s-df-sig { width: 14px; height: 14px; }
-.s-df-lane:not(.is-lit) .s-df-lane__end .s-df-sig.is-landed { color: var(--ob-text-2); }
-/* A chart lane: every message in the first 3 days, where it lands on 1 shared clock; the gap reads as distance. */
-.s-df-lanes.is-chart .s-df-lane { height: 48px; }
-.s-df-lanes.is-chart .s-df-lane__end .s-df-sig.is-needs + span { color: var(--ob-text); }
-.s-df-more { margin-top: 4px; color: var(--ob-text-3); }
-.s-df-count {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-top: 12px;
-  border-top: var(--ob-border-hair) solid var(--ob-line);
-  font: 600 15px/20px var(--ob-font-sans);
-  letter-spacing: -.01em;
-  color: var(--ob-text);
-}
+.s-df-count { gap: 10px; font: 600 15px/20px var(--ob-font-sans); letter-spacing: -.01em; color: var(--ob-text); }
 .s-df-count .s-df-sig { width: 16px; height: 16px; }
 
 /* The finding and the next move. */
@@ -549,86 +509,86 @@
 }
 .s-df-click { position: absolute; left: 0; top: 0; z-index: 5; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; opacity: 0; pointer-events: none; box-shadow: 0 0 0 1.5px var(--ob-text) inset; }
 
-/* ---- The points: each old flaw against what changes --------------------------------------------------------------- */
+/* ---- The points: each old flaw against what changes, under the 2 column heads ------------------------------------ */
 
-.s-df-points { margin-top: var(--ob-space-40); }
-.s-df-pt-heads { display: none; }
-.s-df-pts {
+.s-df-points {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: var(--ob-space-24);
+  grid-template-columns: 112px minmax(0, 1fr);
+  column-gap: var(--ob-space-24);
+  margin-top: var(--ob-space-40);
   padding-top: var(--ob-space-20);
   border-top: var(--ob-border-hair) solid var(--s-rule, var(--ob-line-strong));
 }
+.s-df-pt-heads { display: grid; align-content: start; gap: var(--ob-space-6); font: 500 13px/20px var(--ob-font-sans); color: var(--ob-text-3); }
+.s-df-pt-heads > span:last-child { line-height: 21px; color: var(--ob-text-2); }
+.s-df-pts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--ob-space-20); }
 .s-df-pts li { display: grid; align-content: start; gap: var(--ob-space-6); margin: 0; }
-.s-df-pt__a { font: var(--ob-type-caption); font-size: 14px; color: var(--ob-text-2); }
-.s-df-pt__b { display: flex; align-items: baseline; gap: var(--ob-space-8); font: 600 16px/1.3 var(--ob-font-sans); letter-spacing: -.01em; color: var(--ob-text); }
-.s-df-pt__b > .ob-sq { width: 6px; height: 6px; translate: 0 -2px; }
+.s-df-pt__a { font: var(--ob-type-caption); font-size: 14px; line-height: 20px; color: var(--ob-text-2); }
+.s-df-pt__b { display: flex; align-items: baseline; gap: var(--ob-space-8); font: 600 15px/21px var(--ob-font-sans); letter-spacing: -.01em; color: var(--ob-text); }
+.s-df-pt__b > .ob-sq { flex: none; width: 6px; height: 6px; translate: 0 -2px; }
 
-/* ---- The story, played (.is-play): every time is the story clock's --d --------------------------------------------- */
+/* ---- The story, played (.s-df-stage.is-play): times from the clock, a step's own as --d ----------------------------- */
 
 @keyframes s-df-prog { from { scale: 0 1; } to { scale: 1 1; } }
-@keyframes s-df-fade { from { opacity: 0; } }
+@keyframes s-df-out { to { opacity: 0; } }
 @keyframes s-df-drop { from { opacity: 0; translate: 0 -12px; rotate: calc(var(--tilt) * 2); } }
 @keyframes s-df-lift { 0% { opacity: .8; scale: 1; } 14%, 60% { opacity: 1; scale: 1.025; } 100% { opacity: .8; scale: 1; } }
 @keyframes s-df-lit { 0% { opacity: .8; scale: 1; } 40% { opacity: 1; scale: 1.025; } 100% { opacity: 1; scale: 1; } }
 @keyframes s-df-rimlift { 0% { opacity: 0; } 14%, 60% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes s-df-mute { from { opacity: 1; } }
 @keyframes s-df-on { from { opacity: 0; } to { opacity: 1; } }
 @keyframes s-df-off { from { opacity: 1; } to { opacity: 0; } }
 @keyframes s-df-show { from { opacity: 0; } }
 @keyframes s-df-up { from { opacity: 0; translate: 0 6px; } }
 @keyframes s-df-open { from { opacity: 0; scale: .96; } }
-@keyframes s-df-flat { to { opacity: 0; scale: 1 .5; } }
 @keyframes s-df-draw { from { scale: var(--s-df-draw); } }
 @keyframes s-df-home { from { transform: none; } }
-@keyframes s-df-fold { 0% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: .985; } }
-@keyframes s-df-run { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 1; translate: 0 0; } 85% { opacity: 1; translate: calc(var(--p) * var(--s-df-track)) 0; } 100% { opacity: 0; translate: calc(var(--p) * var(--s-df-track)) 0; } }
-@keyframes s-df-pop { from { opacity: 0; scale: .5; } }
+@keyframes s-df-rise { from { opacity: 0; transform: none; } }
 @keyframes s-df-press { 0%, 100% { scale: 1; } 40% { scale: .94; } }
 @keyframes s-df-blink { 50% { opacity: 0; } }
 
-.s-df.is-play .s-df-rig { animation: s-df-fade .35s var(--ob-ease) both; }
-.s-df.is-play .s-df-scrap { animation: s-df-drop .55s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-scrap[data-tap] .s-df-sheet { animation: s-df-lift .95s linear var(--t) both; }
-.s-df.is-play .s-df-scrap[data-tap] .s-df-rim { animation: s-df-rimlift .95s linear var(--t) both; }
-.s-df.is-play .s-df-scrap.is-last .s-df-sheet { animation: s-df-lit .5s var(--ob-ease) var(--t) both; }
-.s-df.is-play .s-df-scrap.is-last .s-df-rim { animation: s-df-on .4s var(--ob-ease) var(--t) both; }
-.s-df.is-play .s-df-k-note .s-df-caret { animation: s-df-blink 1.06s steps(1, end) var(--t) 6; }
+/* Today: the scraps drop in, 4 lift as they are clicked, the last stays lit, then the rest of the desk mutes. */
+.s-df-stage.is-play .s-df-scrap { animation: s-df-drop .55s var(--ob-ease) var(--d) both; }
+.s-df-stage.is-play .s-df-scrap[data-tap] .s-df-sheet { animation: s-df-lift .95s linear var(--t) both; }
+.s-df-stage.is-play .s-df-scrap[data-tap] .s-df-rim { animation: s-df-rimlift .95s linear var(--t) both; }
+.s-df-stage.is-play .s-df-scrap.is-last .s-df-sheet { animation: s-df-lit .5s var(--ob-ease) var(--t) both; }
+.s-df-stage.is-play .s-df-scrap.is-last .s-df-rim { animation: s-df-on .4s var(--ob-ease) var(--t) both; }
+.s-df-stage.is-play .s-df-scrap:not(.is-last) .s-df-mute { animation: s-df-mute .6s var(--ob-ease) var(--s-df-dim) both; }
+.s-df-stage.is-play .s-df-k-note .s-df-caret { animation: s-df-blink 1.06s steps(1, end) var(--t) 6; }
 
-.s-df.is-play .s-df-agent { animation: s-df-up .6s var(--ob-ease) .15s both; }
-.s-df.is-play .s-df-ruler { animation: s-df-show .5s var(--ob-ease) .45s both; }
-.s-df.is-play .s-df-thread { animation: s-df-draw .9s var(--ob-ease-draw) .1s both; }
-.s-df.is-play .s-df-node { animation: s-df-show .3s var(--ob-ease) calc(.2s + var(--i) * .12s) both; }
-.s-df.is-play .s-df-node > i { animation: s-df-show .2s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-step.is-next::before { animation: s-df-show .4s var(--ob-ease) .8s both; }
-.s-df.is-play .s-df-tie { animation: s-df-show .25s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-card { animation: s-df-open .35s var(--ob-ease) var(--d) both, s-df-flat .45s var(--ob-ease-in) 9s forwards; }
-.s-df.is-play .s-df-step.is-next .s-df-card { animation-delay: .9s, 9s; }
-.s-df.is-play .s-df-card__sig .s-df-sig__sq { animation: s-df-home .5s var(--ob-ease) var(--r) both; }
-.s-df.is-play .s-df-card__sig .s-df-sig__gap { animation: s-df-show .35s var(--ob-ease) calc(var(--r) + .15s) both; }
-.s-df.is-play .s-df-step.is-next .s-df-card__sig { animation: s-df-show .3s var(--ob-ease) var(--r) both; }
-.s-df.is-play :is(.s-df-signed, .s-df-hollow) { animation: s-df-show .3s var(--ob-ease) calc(var(--r) + .2s) both; }
-.s-df.is-play .s-df-late { animation: s-df-show .3s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-qd { animation: s-df-show .25s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-qd .s-df-sig__sq { animation: s-df-home .4s var(--ob-ease) calc(var(--d) + .1s) both; }
-.s-df.is-play .s-df-qd .s-df-sig__gap { animation: s-df-show .3s var(--ob-ease) calc(var(--d) + .2s) both; }
-.s-df.is-play .s-df-tw { animation: s-df-on .01s linear var(--d) both, s-df-off .01s linear var(--u, 999s) forwards; }
-.s-df.is-play .s-df-tw[data-last] { animation: s-df-on .01s linear var(--d) both; }
+/* With Obsession, at the same time: the agent card, the thread in 1 stroke with its empty nodes, then a step every 0.8s. */
+.s-df-stage.is-play .s-df-agent { animation: s-df-up .6s var(--ob-ease) .15s both; }
+.s-df-stage.is-play .s-df-thread { animation: s-df-draw .9s var(--ob-ease-draw) .1s both; }
+.s-df-stage.is-play .s-df-node { animation: s-df-show .3s var(--ob-ease) calc(.2s + var(--i) * .1s) both; }
+.s-df-stage.is-play .s-df-node > i { animation: s-df-show .2s var(--ob-ease) var(--d) both; }
+.s-df-stage.is-play .s-df-gaplab { animation: s-df-show .4s var(--ob-ease) .8s both; }
+.s-df-stage.is-play .s-df-tie { animation: s-df-show .25s var(--ob-ease) var(--d) both; }
+.s-df-stage.is-play .s-df-card { animation: s-df-open .35s var(--ob-ease) var(--d) both; }
+.s-df-stage.is-play .s-df-step.is-next .s-df-card { animation-delay: .9s; }
+.s-df-stage.is-play .s-df-card__sig .s-df-sig__sq { animation: s-df-home .5s var(--ob-snap) var(--r) both; }
+.s-df-stage.is-play .s-df-card__sig .s-df-sig__gap { animation: s-df-show .35s var(--ob-ease) calc(var(--r) + .15s) both; }
+.s-df-stage.is-play .s-df-step.is-next .s-df-card__sig { animation: s-df-show .3s var(--ob-ease) var(--r) both; }
+.s-df-stage.is-play :is(.s-df-word, .s-df-card__needs) { animation: s-df-show .3s var(--ob-ease) calc(var(--r) + .2s) both; }
+.s-df-stage.is-play .s-df-late { animation: s-df-show .3s var(--ob-ease) var(--d) both; }
+.s-df-stage.is-play .s-df-qd { animation: s-df-show .25s var(--ob-ease) var(--d) both; }
+.s-df-stage.is-play .s-df-qd .s-df-sig__sq { animation: s-df-home .4s var(--ob-snap) calc(var(--d) + .1s) both; }
+.s-df-stage.is-play .s-df-qd .s-df-sig__gap { animation: s-df-show .3s var(--ob-ease) calc(var(--d) + .2s) both; }
+.s-df-stage.is-play .s-df-tally { animation: s-df-on .3s var(--ob-ease) .6s both, s-df-off .25s var(--ob-ease) var(--s-df-count) forwards; }
+.s-df-stage.is-play .s-df-tw { animation: s-df-on .01s linear var(--d) both, s-df-off .01s linear var(--u, 999s) forwards; }
+.s-df-stage.is-play .s-df-tw[data-last] { animation: s-df-on .01s linear var(--d) both; }
 
-.s-df.is-play .s-df-find { animation: s-df-up .45s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-next { animation: s-df-up .45s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-btn { animation: s-df-press .25s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-btn__a { animation: s-df-off .2s var(--ob-ease) 8.7s both; }
-.s-df.is-play .s-df-btn__b { animation: s-df-on .2s var(--ob-ease) 8.7s both; }
-.s-df.is-play .s-df-you { visibility: hidden; }
+/* The finding, then the next move: the cursor clicks it once and its label turns. */
+.s-df-stage.is-play .s-df-find { animation: s-df-up .45s var(--ob-ease) var(--s-df-find) both; }
+.s-df-stage.is-play .s-df-next { animation: s-df-up .45s var(--ob-ease) var(--s-df-next) both; }
+.s-df-stage.is-play .s-df-btn { animation: s-df-press .25s var(--ob-ease) var(--s-df-approve) both; }
+.s-df-stage.is-play .s-df-btn__a { animation: s-df-off .2s var(--ob-ease) calc(var(--s-df-approve) + .2s) both; }
+.s-df-stage.is-play .s-df-btn__b { animation: s-df-on .2s var(--ob-ease) calc(var(--s-df-approve) + .2s) both; }
+.s-df-stage.is-play .s-df-you { visibility: hidden; }
 
-.s-df.is-play .s-df-journey { animation: s-df-fold .5s var(--ob-ease) 9s both; }
-.s-df.is-play .s-df-words { animation: s-df-show .3s var(--ob-ease) 9.1s both; }
-.s-df.is-play .s-df-lane { animation: s-df-up .4s var(--ob-ease) var(--d) both; }
-.s-df.is-play .s-df-run { animation: s-df-run .55s var(--ob-ease-draw) 9.4s both; }
-.s-df.is-play .s-df-lane__end .s-df-sig { animation: s-df-pop .35s var(--ob-snap) var(--e) both; }
-.s-df.is-play .s-df-lane__end > span { animation: s-df-show .3s var(--ob-ease) calc(var(--e) + .1s) both; }
-.s-df.is-play :is(.s-df-more, .s-df-count) { animation: s-df-up .45s var(--ob-ease) var(--d) both; }
+/* The pull back: the same panel at 2 more companies rises from behind it, then the count. */
+.s-df-stage.is-play .s-df-ghost.is-1 { animation: s-df-rise .6s var(--ob-ease) var(--s-df-pull) both; }
+.s-df-stage.is-play .s-df-ghost.is-2 { animation: s-df-rise .6s var(--ob-ease) calc(var(--s-df-pull) + .14s) both; }
+.s-df-stage.is-play .s-df-count { animation: s-df-up .45s var(--ob-ease) var(--s-df-count) both; }
 
 /* ---- Phone: the 4 scraps the cursor clicks, then the panel, its journey down 1 thread ------------------------------ */
 
@@ -636,7 +596,6 @@
   /* Set on the block's parts, not the block: a container query never styles its own container. */
   .s-df-tp {
     --s-df-draw: 1 0;
-    --s-df-track: 296px;
     --s-df-k: .9;
   }
   @supports (transform: scale(tan(atan2(1px, 1px)))) {
@@ -657,27 +616,33 @@
   .s-df-pause { position: absolute; right: -6px; top: 58px; z-index: 2; }
   .s-df-pause .ob-navicon { width: 20px; height: 20px; }
 
-  .s-df-fit { height: calc(670px * var(--s-df-k)); }
-  .s-df-stage { left: 50%; width: 358px; height: 670px; translate: -50% 0; transform-origin: 50% 0; transform: scale(var(--s-df-k)); }
+  .s-df-fit { height: calc(696px * var(--s-df-k)); }
+  .s-df-stage { left: 50%; width: 358px; height: 696px; translate: -50% 0; transform-origin: 50% 0; transform: scale(var(--s-df-k)); }
 
-  .s-df-today { width: 358px; height: 152px; }
-  .s-df-desk { top: 24px; width: 358px; height: 128px; }
+  .s-df-today { width: 358px; height: 148px; }
+  .s-df-lab { height: 20px; }
+  .s-df-desk { top: 22px; width: 358px; height: 126px; }
   .s-df-scrap:not([data-tap]) { display: none; }
   .s-df-scrap[data-tap="1"] { --sx: 2px; --sy: 4px; --sw: 172px; z-index: 1; }
   .s-df-scrap[data-tap="2"] { --sx: 182px; --sy: 0px; --sw: 174px; z-index: 2; }
-  .s-df-scrap[data-tap="3"] { --sx: 8px; --sy: 66px; --sw: 170px; z-index: 3; }
-  .s-df-scrap[data-tap="4"] { --sx: 184px; --sy: 62px; --sw: 172px; z-index: 4; }
-  .s-df-sheet { height: 60px; padding: 8px 10px; }
+  .s-df-scrap[data-tap="3"] { --sx: 8px; --sy: 64px; --sw: 170px; z-index: 3; }
+  .s-df-scrap[data-tap="4"] { --sx: 184px; --sy: 60px; --sw: 172px; z-index: 4; }
+  .s-df-sheet { height: 56px; padding: 8px 10px; }
   .s-df-sc__h { height: 18px; font-size: 12px; }
-  /* Each scrap keeps its first line: the second and later lines stay off a phone. */
+  /* Each scrap keeps its first line, or its own short line: the rest stay off a phone. */
   .s-df-sheet :is(.s-df-sc__x, .s-df-mails li + li, .s-df-files li + li, .s-df-tablist li + li) { display: none; }
+  .s-df-scrap.has-p .s-df-sheet > :not(.s-df-sc__h, .s-df-sc__p, .s-df-ph) { display: none; }
+  .s-df-scrap.has-p .s-df-ph__notes { display: none; }
+  .s-df-sc__p { display: block; margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 16px; }
+  .s-df-sc__p b { margin-right: 5px; font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+  .s-df-sc__p.is-q { color: var(--ob-text); }
   .s-df-mails, .s-df-files, .s-df-tablist, .s-df-msgs { margin-top: 3px; }
   .s-df-mails li { padding: 3px 0 0; border: 0; grid-template-columns: 6px auto minmax(0, 1fr); }
   .s-df-mails .s-df-dot { grid-row: auto; margin-top: 4px; }
   .s-df-files li, .s-df-tablist li { padding: 3px 0 0; border: 0; }
   .s-df-msgs li { grid-template-columns: 18px minmax(0, 1fr); gap: 6px; }
   .s-df-msgs .s-df-mono-av { width: 18px; height: 18px; }
-  .s-df-said { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding-top: 1px; }
+  .s-df-said { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-top: 1px; }
   .s-df-grid { margin-top: 2px; }
   .s-df-grid thead { display: none; }
   .s-df-grid td { padding: 2px 4px; border: 0; }
@@ -687,86 +652,76 @@
   .s-df-big { margin-top: 4px; font-size: 18px; }
   .s-df-field { height: 18px; margin-top: 2px; padding: 2px 8px; }
   .s-df-caret { height: 12px; }
+  .s-df-k-note .s-df-sc__l { display: none; }
+  .s-df-k-note .s-df-field { margin-top: 5px; }
   .s-df-file { height: 100%; }
   .s-df-csv { width: 26px; height: 32px; }
-  /* The spare phone lies flat: its notification and the time it came. */
+  /* The spare phone lies flat: the time its text came, and the text. */
   .s-df-k-phone { border-radius: 12px; }
-  .s-df-k-phone .s-df-sheet { height: 60px; padding: 8px 10px; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
-  .s-df-ph { display: flex; flex-direction: column; gap: 3px; padding: 0; }
+  .s-df-k-phone .s-df-sheet { height: 56px; padding: 8px 10px; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+  .s-df-ph { display: flex; flex-direction: column; gap: 3px; height: auto; padding: 0; }
   .s-df-ph__isl, .s-df-ph__clock, .s-df-ph__rh { display: none; }
   .s-df-ph__notes { margin-top: 0; }
   .s-df-ph__notes li { padding: 0; background: none; border-radius: 0; }
   .s-df-ph__notes.is-calls { margin-top: 0; }
   .s-df-ph__notes.is-calls li { padding: 0; border: 0; }
   .s-df-ph__when { display: block; order: -1; line-height: 18px; color: var(--ob-text-2); }
+  .s-df-k-phone .s-df-sc__p { margin-top: 3px; }
 
-  .s-df-obs { left: 0; top: 156px; width: 358px; height: 514px; }
-  .s-df-app { top: 24px; width: 358px; height: 490px; border-radius: 12px; }
-  .s-df-win { height: 24px; padding: 0 10px; }
-  .s-df-dots i { width: 7px; height: 7px; }
+  .s-df-obs { left: 0; top: 152px; width: 358px; height: 544px; }
+  .s-df-ex { margin-left: 4px; }
+  .s-df-app { top: 38px; width: 358px; border-radius: 12px; }
+  .s-df-ghosts { top: 38px; width: 358px; }
+  .s-df-ghost { height: 30px; padding: 0; gap: 0; }
+  .s-df-ghost > * { display: none; }
+  .s-df-ghost.is-1 { left: 10px; right: 10px; transform: translateY(-8px); }
+  .s-df-ghost.is-2 { left: 20px; right: 20px; transform: translateY(-16px); }
+  .s-df-win { height: 18px; padding: 0 10px; }
+  .s-df-dots i { width: 6px; height: 6px; }
   .s-df-crumb { display: none; }
-  .s-df-body { grid-template-rows: 36px 62px 212px auto auto; gap: 8px; padding: 10px 12px 12px; }
-  .s-df-head { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "t p" "m m"; align-content: center; row-gap: 1px; column-gap: 8px; }
-  .s-df-title { grid-area: t; font-size: 15px; }
-  .s-df-pill { grid-area: p; justify-self: end; height: 20px; padding: 0 7px 0 3px; gap: 5px; border-radius: 6px; font-size: 11.5px; }
-  .s-df-pill .s-df-pa { width: 14px; height: 14px; border-radius: 4px; }
-  .s-df-meta { grid-area: m; font-size: 12px; line-height: 15px; }
-  .s-df-agent { gap: 6px; padding: 0; background: none; box-shadow: none; }
-  .s-df-ids { gap: 4px 5px; }
-  .s-df-id { height: 20px; padding: 0 6px; gap: 5px; }
+  .s-df-body { gap: 7px; padding: 9px 12px 12px; }
+  .s-df-title { font-size: 15px; }
+  .s-df-meta { font-size: 12px; }
+  .s-df-agent { gap: 5px; padding: 0; background: none; box-shadow: none; }
+  .s-df-ids { gap: 5px; flex-wrap: nowrap; }
+  .s-df-id { height: 20px; padding: 0 6px; }
+  .s-df-id .s-df-g, .s-df-id:last-child { display: none; }
 
-  /* The journey runs down 1 thread: 1 row a step. */
-  .s-df-ruler, .s-df-tie, .s-df-tally, .s-df-step.is-next::before { display: none; }
-  .s-df-thread { left: 6px; right: auto; top: 17px; width: 1px; height: 170px; transform-origin: 50% 0; }
-  .s-df-thread.has-next { right: auto; height: 136px; }
-  .s-df-steps { display: grid; grid-auto-rows: 34px; }
-  .s-df-step { position: relative; inset: auto; }
-  .s-df-node { left: 6px; top: 17px; }
+  /* The journey runs down 1 thread: 1 row a step, a chat or a call 1 line taller for its question and answer. */
+  .s-df-journey { grid-template-columns: 14px minmax(0, 1fr); grid-template-rows: none; column-gap: 8px; row-gap: 2px; }
+  .s-df-tie, .s-df-run, .s-df-gaplab { display: none; }
+  .s-df-thread { grid-row: 1 / span 6; grid-column: 1; align-self: stretch; justify-self: start; width: 1px; height: auto; margin: 7.5px 0 22.5px 6.5px; background: var(--ob-line-ui); transform-origin: 50% 0; }
+  .s-df-node { grid-row: var(--row); grid-column: 1; align-self: start; left: 0; margin: 2px 0 0 1.5px; }
   .s-df-step.is-up .s-df-card, .s-df-step.is-down .s-df-card, .s-df-card {
-    left: 22px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: auto;
+    grid-row: var(--row);
+    grid-column: 2;
+    align-self: start;
     grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: 16px 16px;
     grid-template-areas: "t h" "s s";
-    align-content: center;
-    gap: 1px 8px;
+    align-content: start;
+    gap: 0 8px;
     padding: 0;
     background: none;
     box-shadow: none;
     transform-origin: 0 50%;
   }
   .s-df-step.is-next .s-df-card { outline: 0; }
-  .s-df-card__t { grid-area: t; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .s-df-card__h { grid-area: h; height: 16px; }
-  .s-df-card__h > .s-df-g, .s-df-signed { display: none; }
+  .s-df-card__t { grid-area: t; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 15px; }
+  .s-df-card__h { grid-area: h; height: 15px; }
+  .s-df-card__h > .s-df-g { display: none; }
   .s-df-card__h time { margin-right: 2px; }
-  .s-df-short { grid-area: s; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ob-text-2); }
+  .s-df-step.is-next .s-df-card__h time { display: none; }
+  .s-df-short { grid-area: s; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 15px; color: var(--ob-text-2); }
   .s-df-step.is-needs .s-df-short, .s-df-step.is-next .s-df-short { color: var(--ob-text-3); }
-  .s-df-card > :is(.s-df-saw, .s-df-talk, .s-df-quote), .s-df-quiet { display: none; }
-  .s-df-journey { transform-origin: 6px 50%; }
+  .s-df-card > :is(.s-df-saw, .s-df-quote), .s-df-quiet { display: none; }
+  .s-df-step.has-talk .s-df-short { display: none; }
+  .s-df-talk { grid-area: s; gap: 0; }
+  .s-df-talk p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 15px; }
 
-  /* The lanes: each a label over its dots. */
-  .s-df-lanes { padding-top: 0; }
-  .s-df-words, .s-df-more { display: none; }
-  .s-df-lane {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas: "l e" "t t";
-    row-gap: 2px;
-    height: 28px;
-  }
-  .s-df-lanes.is-chart .s-df-lane { height: 34px; }
-  .s-df-lane__l { grid-area: l; }
-  .s-df-lane__end { grid-area: e; gap: 6px; }
-  .s-df-lane__end .s-df-sig { width: 12px; height: 12px; }
-  .s-df-track { grid-area: t; width: var(--s-df-track); height: 8px; }
-  .s-df-track::before { top: 4px; }
-  .s-df-pip { top: 4px; width: 5px; height: 5px; margin: -2px 0 0 -2px; }
-  .s-df-run { top: 4px; width: 6px; height: 6px; margin: -3px 0 0 -3px; }
-  .s-df-count { padding-top: 8px; gap: 8px; font-size: 13px; line-height: 17px; text-wrap: balance; }
-  .s-df-count .s-df-sig { width: 13px; height: 13px; }
+  .s-df-sum { padding-top: 8px; }
+  .s-df-tally { line-height: 17px; }
+  .s-df-count { align-items: start; gap: 8px; font-size: 12.5px; line-height: 16px; text-wrap: balance; }
+  .s-df-count .s-df-sig { width: 13px; height: 13px; margin-top: 1.5px; }
 
   .s-df-find, .s-df-next { grid-template-columns: 18px minmax(0, 1fr); column-gap: 6px; padding-top: 8px; }
   .s-df-next { grid-template-columns: 18px minmax(0, 1fr) auto; column-gap: 6px; }
@@ -776,22 +731,21 @@
   .s-df-next__t { font-size: 12.5px; line-height: 16px; }
   .s-df-btn { height: 26px; padding: 0 11px; line-height: 26px; }
 
-  .s-df-points { margin-top: var(--ob-space-28); }
+  .s-df-points { display: block; margin-top: var(--ob-space-20); padding-top: 0; border-top: 0; }
   .s-df-pt-heads {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--ob-space-16);
     padding-bottom: var(--ob-space-8);
+    border-bottom: var(--ob-border-hair) solid var(--s-rule, var(--ob-line-strong));
     font: 500 12px/16px var(--ob-font-sans);
-    color: var(--ob-text-3);
   }
-  .s-df-pts { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 0; }
-  .s-df-pts li { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-16); align-items: center; align-content: center; min-height: 40px; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+  .s-df-pt-heads > span:last-child { line-height: 16px; color: var(--ob-text-3); }
+  .s-df-pts { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .s-df-pts li { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-16); align-items: center; align-content: center; min-height: 36px; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
   .s-df-pt__a, .s-df-pt__b { font-size: 14px; line-height: 18px; }
   .s-df-pt__b > .ob-sq { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .s-df *, .s-df *::before, .s-df *::after { animation: none !important; }
-  .s-df-fit { cursor: default; }
 }
