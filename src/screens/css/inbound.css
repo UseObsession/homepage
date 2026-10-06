@@ -1,14 +1,17 @@
-/* app-inbound: Inbound, for sales (Lead leaks). Your own funnel, tested with your OK by a labelled test lead
+/* app-inbound: Lead leaks, for sales. Your own funnel, tested with your OK by a test lead declared as AI
    at 09:00, 13:00 and 17:00 every day: the demo form, the site chat and the sales line.
    The hero is one chart: 3 lanes on a shared time scale (log-like: 0, 1 m, 5 min, 1 h, 4 h) crossed by the
    dashed 5 minute target line. Within target is quiet, past the line is solid. Each lane ends in a large readout
-   and the routing check under it (did the lead reach the CRM, and who owns it).
-   Story: the 3 test leads go out, the timers run with the bars; chat lands at 38 s, the phone rings out (Missed)
-   and waits for a callback while the form runs past the line to 4 h 12 m and lands with no owner; the phone's wait
-   ends with no owner either and the lane turns needs you; the routing fix is drafted, the pointer clicks Approve,
-   the phone item closes and the toast reports the 17:00 re-test: 3 min 40 s. Bars share 1 clock, so their edges move together.
-   Chrome (canonical): Missions selected, the declared-agent pill in the page head, 1 lock footnote at the foot (left),
-   the toast in app-board's 1-line pattern with 1 action (right), both on 1 line.
+   and the routing check under it: the lead in HubSpot (its mark stands in for its name), and its owner, an avatar or
+   a dashed empty one, Unassigned.
+   Story: the 3 test leads go out, the timers run with the bars; chat lands at 38 s, the phone rings 23 s and rings out
+   (Missed, no voicemail) while the form runs past the line to 4 h 12 m and lands unassigned; the phone's lead lands
+   unassigned too and the lane turns needs you. Once that finding has had its moment, the routing fix slides in, the
+   pointer clicks Approve (the owner's OK, live only after it), the phone item closes, and the toast reports the 17:00
+   retest: the form's first reply in 3m 40s. Bars share 1 clock, so their edges move together.
+   Chrome (canonical): Missions selected, the declared AI agent pill in the page head, the lock line beside the OK it
+   explains (in the fix), the toast in app-board's 1-line pattern with 1 action. The foot's left is left clear (the
+   camera's notes sit there on Home).
    Geometry (design px, main 556 x 414, padding 14 16): header 14..38, chart 50..256, fix 268..344, foot 360..400.
    Chart lanes 92 | 234 | 150 (gaps 12); the plot overlay sits over the 234 track column (left 116).
    Rest state (no .play) = the finished scene. */
@@ -56,7 +59,11 @@
 .app-inbound .ib-b0{left:0;width:20.4%;border-radius:4px;background:rgb(var(--fg-rgb) / .3)}
 .app-inbound .ib-b1{left:0;width:44.7%;border-radius:4px 0 0 4px;background:rgb(var(--fg-rgb) / .3)}
 .app-inbound .ib-b2{left:44.7%;width:50.7%;border-radius:0 4px 4px 0;background:var(--fg)}
-.app-inbound .ib-dash{left:0;width:100%;top:23px;height:0;border-top:2px dashed rgb(var(--fg-rgb) / .38)}
+.app-inbound .ib-dash{left:15.55%;width:84.45%;top:23px;height:0;border-top:2px dashed rgb(var(--fg-rgb) / .38)}
+/* the phone rang 23 s (the scale's 15.55%), then rang out: an x where it ended, and no callback after it */
+.app-inbound .ib-b3{left:0;width:15.55%;border-radius:4px 0 0 4px;background:rgb(var(--fg-rgb) / .3)}
+.app-inbound .ib-x{left:calc(15.55% - 3px);top:21px;width:6px;height:6px;
+  background:linear-gradient(45deg,transparent calc(50% - .75px),var(--fg-2) calc(50% - .75px) calc(50% + .75px),transparent calc(50% + .75px)),linear-gradient(-45deg,transparent calc(50% - .75px),var(--fg-2) calc(50% - .75px) calc(50% + .75px),transparent calc(50% + .75px))}
 
 /* readout + routing check */
 .app-inbound .ib-rd{display:grid;gap:4px;white-space:nowrap}
@@ -64,9 +71,14 @@
 .app-inbound .ib-v>span{grid-area:1/1}
 .app-inbound .ib-v>span:not(.last){opacity:0}
 .app-inbound .ib-v i{margin:0 0 0 2px;font:500 12px/1 var(--sans);font-style:normal;letter-spacing:0;color:var(--fg-3)}
-.app-inbound .ib-rt{font:400 10.5px/13px var(--mono);color:var(--fg-3)}
+/* where the lead landed: HubSpot, and its owner (an avatar, or a dashed empty one) */
+.app-inbound .ib-rt{display:flex;align-items:center;gap:5px;height:14px;font:400 11px/14px var(--sans);color:var(--fg-2)}
 .app-inbound .ib-rt b{font-weight:500;color:var(--fg)}
+.app-inbound .ib-dt{font-style:normal;color:var(--fg-3)}
+.app-inbound .ib-un{flex:none;width:12px;height:12px;border-radius:50%;border:1px dashed var(--fg-3)}
+.app-inbound .ib-jo{display:grid;place-items:center;flex:none;width:16px;height:14px;border-radius:4px;font:600 8px/1 var(--sans);font-style:normal;color:var(--fg-2);background:var(--panel-3)}
 .app-inbound .ib-rts{display:grid}
+.app-inbound .ib-rts>span{display:flex;align-items:center;gap:5px}
 .app-inbound .ib-rts>span{grid-area:1/1}
 .app-inbound .ib-rts .w{opacity:0}
 
@@ -77,30 +89,31 @@
 .app-inbound .ib-ax:first-of-type{transform:none}
 .app-inbound .ib-ax.t{color:var(--fg);font-weight:500}
 
-/* ---------- the routing fix ---------- */
-.app-inbound .ib-fix{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:16px;padding:12px 14px}
-.app-inbound .ib-fx{display:grid;gap:10px;min-width:0}
-.app-inbound .ib-fh{display:flex;align-items:center;gap:7px;height:16px;white-space:nowrap}
+/* ---------- the routing fix: 2 rows, the rule and its OK ---------- */
+.app-inbound .ib-fix{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;column-gap:16px;padding:12px 14px}
+.app-inbound .ib-fx{display:grid;grid-template-rows:24px 22px;row-gap:6px;min-width:0}
+.app-inbound .ib-fh{display:flex;align-items:center;gap:7px;height:24px;white-space:nowrap}
 .ilwrap .app-inbound .ib-fh .ib-ic{width:14px;height:14px;color:var(--fg-2)}
 .app-inbound .ib-fh b{font:600 12px/1 var(--sans);color:var(--fg)}
 .app-inbound .ib-fh span{font-size:11px;color:var(--fg-3)}
 .app-inbound .ib-rule{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .app-inbound .ib-rule>span{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font:400 10.5px/1 var(--mono)}
-.app-inbound .ib-old{color:var(--fg-3);text-decoration:line-through;text-decoration-color:rgb(var(--fg-rgb) / .45);background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-inbound .ib-old{color:var(--fg-2);text-decoration:line-through;text-decoration-color:rgb(var(--fg-rgb) / .6);background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line-2) inset}
 .app-inbound .ib-new{color:var(--fg);font-weight:500;background:rgb(var(--fg-rgb) / .07);box-shadow:0 0 0 1px var(--line-ui) inset}
 .ilwrap .app-inbound .ib-rule .ib-arw{width:14px;height:14px;color:var(--fg-3)}
 
-.app-inbound .ib-act{position:relative;width:118px;height:24px}
+.app-inbound .ib-act{position:relative;width:170px;height:52px}
 .app-inbound .ib-edit{position:absolute;right:70px;top:0;opacity:0;box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-inbound .ib-ok{position:absolute;right:0;top:0;width:64px;justify-content:center;opacity:0}
 .app-inbound .ib-done{position:absolute;right:0;top:0;display:flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:7px;white-space:nowrap;
   font:500 11.5px/1 var(--sans);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
 .ilwrap .app-inbound .ib-done .sig{width:12px;height:12px;color:var(--fg)}
-.ilwrap .app-inbound .appx .ib-ptr{left:83px;top:10px;width:16px;height:16px}
-
-/* ---------- foot: the red line (1 lock footnote), the toast (app-board's pattern) on its line ---------- */
-.app-inbound .ib-lock{align-self:end;display:flex;align-items:center;gap:7px;height:40px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-inbound .appx .ib-ptr{left:135px;top:10px;width:16px;height:16px}
+/* the red line, under the OK it explains */
+.app-inbound .ib-lock{position:absolute;right:0;top:30px;display:flex;align-items:center;gap:6px;height:22px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
 .ilwrap .app-inbound .ib-lock svg{width:12px;height:12px}
+
+/* ---------- foot: the toast (app-board's pattern) ---------- */
 .app-inbound .ib-toast{right:14px;bottom:14px;gap:10px;padding:8px 8px 8px 12px}
 .app-inbound .ib-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
 .app-inbound .ib-toast b{font-weight:500;color:var(--fg)}
@@ -128,7 +141,7 @@
 
 .app-inbound .l-form{--wk:3.2s;--land:3.2s}
 .app-inbound .l-chat{--wk:1.3s;--land:1.3s}
-.app-inbound .l-phone{--wk:1.2s;--land:5.2s}
+.app-inbound .l-phone{--wk:1.2s;--land:7.8s}
 
 /* 1. the 3 test leads go out: marks work, bars and timers run together */
 .appx-il.play.app-inbound .v-work{animation:ib-show .01s linear 0s both,ib-hide .12s linear var(--wk) forwards}
@@ -138,7 +151,9 @@
 .appx-il.play.app-inbound .ib-b0{animation:ib-grow .53s linear .7s both}
 .appx-il.play.app-inbound .ib-b1{animation:ib-grow 1.16s linear .7s both}
 .appx-il.play.app-inbound .ib-b2{animation:ib-grow 1.32s linear 1.86s both}
-.appx-il.play.app-inbound .ib-dash{animation:ib-grow 2.6s linear .7s both}
+.appx-il.play.app-inbound .ib-b3{animation:ib-grow .4s linear .7s both}
+.appx-il.play.app-inbound .ib-x{animation:ib-show .15s linear 1.12s both}
+.appx-il.play.app-inbound .ib-dash{animation:ib-grow 2.19s linear 1.12s both}
 .appx-il.play.app-inbound .ib-v>span:not(.last){animation:ib-show .01s linear var(--t) both,ib-hide .01s linear calc(var(--t) + var(--s,.25s)) forwards}
 .appx-il.play.app-inbound .ib-v>span.last{animation:ib-show .2s var(--ease) var(--t) both}
 .appx-il.play.app-inbound .ib-v>span.ib-word{animation-duration:.4s}
@@ -149,23 +164,23 @@
 .appx-il.play.app-inbound .v-land .sig-sq{animation:ib-home .6s var(--snap) var(--land) both}
 .appx-il.play.app-inbound .v-land .sig-gap{animation:ib-show .35s var(--ease) calc(var(--land) + .2s) both}
 
-/* the phone rings out, waits for a callback, then needs you */
+/* the phone rings 23 s and rings out, lands unassigned, then needs you */
 .appx-il.play.app-inbound .l-phone .v-wait{animation:ib-show .01s linear 1.2s both,ib-hide .01s linear 3.45s forwards}
 .appx-il.play.app-inbound .l-phone .v-wait .sig-sq{animation:ib-blink 1.06s linear 1.2s infinite}
-.appx-il.play.app-inbound .l-phone .v-need{animation:ib-show .15s linear 3.45s both,ib-hide .15s linear 5.2s forwards}
+.appx-il.play.app-inbound .l-phone .v-need{animation:ib-show .15s linear 3.45s both,ib-hide .15s linear 7.8s forwards}
 .appx-il.play.app-inbound .l-phone .v-need .sig-sq{animation:ib-pulse 1.3s ease-in-out 3.45s infinite}
 .appx-il.play.app-inbound .ib-rts .w{animation:ib-show .3s var(--ease) 1.25s both,ib-hide .2s var(--ease) 3.45s forwards}
 .appx-il.play.app-inbound .ib-rts .n{animation:ib-show .35s var(--ease) 3.5s both}
-.appx-il.play.app-inbound .l-phone{animation:ib-glow 2.2s var(--ease) 3.45s forwards}
+.appx-il.play.app-inbound .l-phone{animation:ib-glow 4.35s var(--ease) 3.45s forwards}
 
-/* 3. the fix is drafted, AM approves it */
-.appx-il.play.app-inbound .ib-fix{animation:ax-in .55s var(--ease) 3.7s both}
-.appx-il.play.app-inbound .ib-edit{animation:ib-show .01s linear 0s both,ib-hide .2s var(--ease) 4.95s forwards}
-.appx-il.play.app-inbound .ib-ok{animation:ib-show .01s linear 0s both,ib-press .2s ease-out 4.8s,ib-hide .14s linear 4.96s forwards}
-.appx-il.play.app-inbound .ib-done{animation:ib-show .35s var(--ease) 4.98s both}
-.appx-il.play.app-inbound .ib-done .sig-sq{animation:ib-home .6s var(--snap) 5.05s both}
-.appx-il.play.app-inbound .ib-done .sig-gap{animation:ib-show .35s var(--ease) 5.25s both}
-.appx-il.play.app-inbound .ib-ptr{animation:ib-ptr 1.5s var(--ease) 4.05s both}
+/* 3. once the finding has had its moment, the fix is drafted and AM approves it */
+.appx-il.play.app-inbound .ib-fix{animation:ax-in .55s var(--ease) 5.6s both}
+.appx-il.play.app-inbound .ib-edit{animation:ib-show .01s linear 0s both,ib-hide .2s var(--ease) 7.55s forwards}
+.appx-il.play.app-inbound .ib-ok{animation:ib-show .01s linear 0s both,ib-press .2s ease-out 7.4s,ib-hide .14s linear 7.56s forwards}
+.appx-il.play.app-inbound .ib-done{animation:ib-show .35s var(--ease) 7.58s both}
+.appx-il.play.app-inbound .ib-done .sig-sq{animation:ib-home .6s var(--snap) 7.65s both}
+.appx-il.play.app-inbound .ib-done .sig-gap{animation:ib-show .35s var(--ease) 7.85s both}
+.appx-il.play.app-inbound .ib-ptr{animation:ib-ptr 1.5s var(--ease) 6.62s both}
 
-/* 4. the re-test */
-.appx-il.play.app-inbound .ib-toast{animation:ax-in .55s var(--ease) 5.5s both}
+/* 4. the same day's retest */
+.appx-il.play.app-inbound .ib-toast{animation:ax-in .55s var(--ease) 8.4s both}

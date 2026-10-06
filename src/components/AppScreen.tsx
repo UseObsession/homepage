@@ -24,17 +24,19 @@ const KEEP = { __html: '' }
 const RM = '(prefers-reduced-motion: reduce)'
 
 /* The camera (components/camera): on a page that asks for it (Home's hero tabs, ScreenTabs), a screen with a shot list
-   (src/screens/cam.ts) is filmed as its story plays, panning and zooming to what happens. Its module loads with the
-   first screen it films, never with the page, and never with reduced motion. Everywhere else a screen plays as drawn. */
+   (src/screens/cam.ts) is filmed as its story plays, leaning in to each beat and noting its point. Its module loads with
+   the first screen it films, never with the page. With reduced motion nothing moves: it loads only to draw the screen's
+   last note at rest, where that reads cleanly without the camera. Everywhere else a screen plays as drawn. */
 let lens: Promise<typeof import('./camera')> | undefined
 function film(el: Element | null, shoot: string | undefined) {
-  if (!shoot || !(el instanceof HTMLElement) || matchMedia(RM).matches) return
+  if (!shoot || !(el instanceof HTMLElement)) return
+  const still = matchMedia(RM).matches
   lens ??= import('./camera').catch((e) => {
     lens = undefined
     throw e
   })
   /* Without it the screen plays as drawn. */
-  lens.then((c) => c.film(el, shoot)).catch(() => {})
+  lens.then((c) => (still ? c.still(el, shoot) : c.film(el, shoot))).catch(() => {})
 }
 /* Back to the screen as drawn, when its tab is left. */
 function unfilm(el: Element | null) {
@@ -51,7 +53,9 @@ const fresh = (el: Element | null) => !!el && performance.now() - (started.get(e
 /* Plays the story: from the start again if it has played before (the reflow restarts its animations in the same
    frame), straight away the first time, which needs no reflow. */
 function replay(el: Element | null, shoot?: string) {
-  if (!el || matchMedia(RM).matches) return
+  if (!el) return
+  /* Reduced motion: the finished screen, with its last note if the camera has one (film). */
+  if (matchMedia(RM).matches) return film(el, shoot)
   if (el.classList.contains('play')) {
     el.classList.remove('play')
     void (el as HTMLElement).offsetWidth

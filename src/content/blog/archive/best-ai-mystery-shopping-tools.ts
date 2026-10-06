@@ -196,7 +196,7 @@ export const post: BlogPost = {
       screen: 'shop',
       workspace: 'company',
       caption:
-        'Obsession, example: 6 declared test customers across a software trial, a homeware store and a dental booking, each with the owner’s OK. The trial closes when a rep writes, and nothing is bought.',
+        'Obsession, example: 3 declared AI test customers across a payroll trial, a linen store and a dental booking, each with the owner’s OK. The shopper stops when a rep writes, and nothing is bought.',
     },
     {
       kind: 'p',

@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    no organic posts and no named ad platforms ("the ads they run in public"); rivals see a declared AI agent that
    links to useobsession.com/agents and never names the client; rival trials are no-card only and close the moment a
    rep writes or calls. The run is an example and says so. Its rival is a skincare store, so it never collides with
-   the SaaS Rival A, B and C on the `rivals` screen in the hero. */
+   the SaaS rivals Tallyhop, Notewell and Pinecrate on the `rivals` screen in the hero. */
 
 export const recipe: Recipe = {
   id: 'competitor',
