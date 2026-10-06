@@ -260,15 +260,12 @@ button.s-signup__sq:focus-visible { outline: var(--ob-focus-width) solid var(--o
   gap: var(--ob-space-8);
   margin-top: var(--ob-space-20);
 }
-.s-signup__back { margin-inline-start: calc(var(--ob-space-12) * -1); }
-/* A single choice with nothing picked: Next keeps its space, unseen and out of the tab order, until a pick. */
+/* The first ghost button (Back, or Skip on the first step) lines its label up with the question above. */
+.s-signup__actions > .ob-btn--ghost:first-child { margin-inline-start: calc(var(--ob-space-12) * -1); }
+/* Next sits alone on the right. On a single choice with nothing picked it keeps its space, unseen and out of the tab
+   order, until a pick, so nothing else moves and no gap opens beside Skip. */
+.s-signup__next { margin-inline-start: auto; }
 .s-signup__next.is-idle { visibility: hidden; }
-.s-signup__end {
-  display: flex;
-  align-items: center;
-  gap: var(--ob-space-8);
-  margin-inline-start: auto;
-}
 
 .s-signup__foot {
   margin: var(--ob-space-16) 0 0;

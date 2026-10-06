@@ -46,7 +46,7 @@ const currentStep = () => card()?.querySelector<HTMLElement>('.s-signup__step.is
 const currentId = () => (card()?.querySelector('.s-signup__card--thanks') ? 'thanks' : (currentStep()?.dataset.step ?? ''))
 const nextBtn = () => card()?.querySelector<HTMLButtonElement>('.s-signup__next')
 const nextShown = () => !!nextBtn() && getComputedStyle(nextBtn()!).visibility !== 'hidden'
-const skipBtn = () => card()?.querySelectorAll<HTMLButtonElement>('.s-signup__end .ob-btn')[0]
+const skipBtn = () => card()?.querySelector<HTMLButtonElement>('.s-signup__skip')
 
 async function moved(from: string) {
   return until(() => currentId() !== from && currentId())

@@ -36,7 +36,7 @@ import { StatusMark } from './Logo'
    - Single choice: a tap or click picks and moves on 250ms later, once the chip has filled. A pick made from the keys
      (arrows, or 1 to 9) never moves on: Enter does, wherever the focus is in the step. "Something else" opens a short
      field and waits for Next.
-   - Back, Skip and Next sit in the same place on every step. On a single choice, Next appears once something is
+   - Back, Skip and Next sit in the same place on every step: Back and Skip on the left, Next on the right. On a single choice, Next appears once something is
      picked (for the keys, and for a step they came back to), and keeps its space until then, so a tap on the strongest
      button never skips a question unseen. On a multi select or a typed step, Next with nothing in it counts as Skip.
    - Focus moves to each new step's question (its legend), which reads "Question 4 of 7." first; on the thank you, to
@@ -301,21 +301,19 @@ function Card({ s, owner }: { s: SignupState; owner: string }) {
               <span className="ob-btn-label">{copy.card.back}</span>
             </button>
           )}
-          <div className="s-signup__end">
-            <button
-              type="button"
-              className="ob-btn ob-btn--ghost ob-btn--sm"
-              onClick={() => {
-                stop()
-                complete(step.id, true, owner)
-              }}
-            >
-              <span className="ob-btn-label">{last ? copy.card.skipFinish : copy.card.skip}</span>
-            </button>
-            <button type="submit" className={`ob-btn ob-btn--sm s-signup__next${idle ? ' is-idle' : ''}`}>
-              <span className="ob-btn-label">{last ? copy.card.finish : copy.card.next}</span>
-            </button>
-          </div>
+          <button
+            type="button"
+            className="ob-btn ob-btn--ghost ob-btn--sm s-signup__skip"
+            onClick={() => {
+              stop()
+              complete(step.id, true, owner)
+            }}
+          >
+            <span className="ob-btn-label">{last ? copy.card.skipFinish : copy.card.skip}</span>
+          </button>
+          <button type="submit" className={`ob-btn ob-btn--sm s-signup__next${idle ? ' is-idle' : ''}`}>
+            <span className="ob-btn-label">{last ? copy.card.finish : copy.card.next}</span>
+          </button>
         </div>
       </form>
 
