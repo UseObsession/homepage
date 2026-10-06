@@ -141,40 +141,43 @@ export const study: UseCaseStudy = {
   /* What real audits found, right before the questions and the ask (Seun, 7 Oct). The 2 shares are of the stores
      shopped end to end and of the gaps they had; the capacity is the agents', not the offer's. The 4 findings are the
      ones already chosen, retold at invented shops (content/shops.ts). Only email was watched: "no email", never "no
-     message". */
+     message". "end to end" is joined by non breaking spaces, so the heading never breaks inside it. */
   found: {
-    heading: '93% of stores we shopped end to end had a gap.',
+    heading: '93% of stores we shopped end\u00a0to\u00a0end had a gap.',
     line: '77% of the gaps were total silence. Our agents can shop up to 1,000 stores in 48 hours.',
     items: [
       {
         label: 'Fashion store · Basket left',
         verdict: 'Wrong email',
-        finding: 'A buyer got a browser’s email 2 hours later, with no basket in it.',
+        finding: 'A buyer left a basket, and 2 hours later got a browse email instead.',
         shop: 'pellam',
       },
       {
         label: 'Cosmetics store · Basket left',
         verdict: 'Broken email',
-        finding: '2 cart emails came, both with an empty table, no product and a blank total.',
+        finding: '2 cart emails came, both with no product name and a blank total.',
         shop: 'celandre',
       },
       {
         label: 'Drinks store · New subscriber',
         verdict: 'Broken links',
-        finding: 'The welcome email came, but every link and button opened a closed development store.',
+        finding: 'The welcome email came, but every product link and button opened a closed development store.',
         shop: 'quinnet',
       },
       {
         label: 'Natural beauty store · Basket left',
-        verdict: 'Silent',
-        finding: 'The store had their email: the welcome came. Then no cart email in 48 hours.',
+        verdict: 'Cart silent',
+        finding: 'A subscriber got the welcome, then left a basket. No cart email in 48 hours.',
         shop: 'ferula',
       },
     ],
     cta: { label: 'See a full report', to: '/sample-output' },
   },
 
-  fine: 'The agency, its clients and prospects, and their stores and figures are made up. The 4 examples come from real audits, with every store, brand and product changed. Baskets and checkouts run only with the owner’s OK and stop before payment. Clay is a trademark of its owner, named to show where results can land.',
+  /* The small print sits right under the 4 real findings (components/study/Found), so it names only the example as
+     made up, never "figures" (the 2 shares above it are real), and it leaves the basket rule to questions 3 to 5: under
+     3 real "Basket left" audits it would read as if those baskets had the owners' OK. */
+  fine: 'The example agency, its clients and prospects, and their stores are made up. The 4 examples come from real audits, with every store, brand and product changed. Clay is a trademark of its owner, named to show where results can land.',
 
   /* 6 questions, closed. The first answer is meta.answer, word for word. */
   faq: {
@@ -186,7 +189,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What do the 5 free audits cover?',
-        a: '5 stores you serve or pitch, shopped by declared AI test customers. The report comes within 4 days, in any format.',
+        a: '5 stores you serve or pitch, shopped by declared AI test customers. Each is watched for 48 hours. The report comes within 4 days, in any format.',
       },
       {
         q: 'Do our clients have to agree to the audit?',

@@ -62,7 +62,8 @@ export const shops = {
     closed: { url: 'dev.quinnet.example', head: 'This store is closed.', line: 'Only its owner can enter.' },
   },
   /* Natural beauty, basket left: the shopper was already a subscriber and got the welcome email, then no cart email in
-     48 hours. The store had their address, so there was someone to write to. */
+     48 hours. The store had their address, so there was someone to write to. The bar is calendula: a rosemary bar sat
+     too close to a well known natural brand's own line. */
   ferula: {
     name: 'ferula',
     from: 'hello@ferula.example',
@@ -72,7 +73,7 @@ export const shops = {
       head: 'Welcome, friend.',
       body: 'Bars for hair and body, made with what grows.',
     },
-    basket: { label: 'Left in the basket', item: 'Rosemary Shampoo Bar', time: 'Day 0 · 09:40' },
+    basket: { label: 'Left in the basket', item: 'Calendula Body Bar', time: 'Day 0 · 09:40' },
     watch: { ticks: ['0 h', '12 h', '24 h', '36 h', '48 h'], none: 'No cart email' },
   },
 } as const

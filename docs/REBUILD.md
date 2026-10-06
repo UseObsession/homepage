@@ -62,6 +62,13 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - **Fine print:** says what is made up, and "The 4 examples come from real audits, with every store, brand and product changed."
 - **Build:** `how`, `problem`, `proof`, `hero.example.note` and a use's `line` are optional (`content/types.ts`), so the 2 other use cases draw as before.
 - **Home (1 change):** the real run's heading is "93% of stores we shopped end to end had a gap." and its line "Here is 1 of them. A basket and a checkout left, and no email in 48 hours."
+- **Review (7 Oct), the 4 findings:** pellam "A buyer left a basket, and 2 hours later got a browse email instead."; Celandre "2 cart emails came, both with no product name and a blank total."; quinnet keeps "product" ("every product link and button"), as the audit said; ferula "A subscriber got the welcome, then left a basket. No cart email in 48 hours." with the verdict "Cart silent".
+- **Review, "end to end":** joined by non breaking spaces in both headings (`\u00a0` in the content), so Home's narrow column never breaks it as "end to / end".
+- **Review, fine print:** "The example agency, its clients and prospects, and their stores are made up." (no "figures" under the real 93% and 77%); the basket sentence is dropped there, since under 3 real "Basket left" audits it read as if those had the owners' OK (questions 3 to 5 keep the rule).
+- **Review, question 2:** adds "Each is watched for 48 hours.", so the 4 day report sits beside the 48 hour watch and the 1,000 store capacity.
+- **Review, ferula's product:** "Calendula Body Bar" (a rosemary bar sat too close to a real natural brand's line), with a calendula bloom on the soap drawing.
+- **Review, Celandre's blanks:** only the ink line, with no grey wash, so the empty name, quantity and total read as empty, never redacted or loading.
+- **Review, the windows:** each is as tall as its moment (no shared row height); pellam's wait stretches to the email's height, and ferula's basket panel is centred beside the welcome.
 
 ## 2. The story every page tells
 

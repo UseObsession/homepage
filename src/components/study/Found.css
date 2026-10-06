@@ -53,7 +53,9 @@
 
 /* ---- The report window --------------------------------------------------------------------------------------------- */
 
+/* Each window is as tall as its moment, never stretched to its neighbour's: a shared row height left dark patches. */
 .s-fd-win {
+  align-self: start;
   display: grid;
   grid-template-rows: auto 1fr;
   min-width: 0;
@@ -171,7 +173,8 @@
 }
 .s-fd-body--pellam { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); column-gap: var(--ob-space-24); }
 
-.s-fd-trail { position: relative; align-self: start; display: grid; align-content: start; margin: 0; padding: 0; list-style: none; }
+/* The trail runs the email's full height: the wait takes what is left, so the silence is the longest step. */
+.s-fd-trail { position: relative; align-self: stretch; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; margin: 0; padding: 0; list-style: none; }
 /* The thread through the steps, solid while the shopper acts, dashed while the store says nothing. */
 .s-fd-trail::before { content: ""; position: absolute; top: 18px; bottom: 18px; left: 7px; width: 1px; background: var(--ob-line-strong); }
 .s-fd-step {
@@ -188,6 +191,8 @@
 .s-fd-step.is-in .s-fd-ic { color: var(--ob-text); }
 .s-fd-wait {
   position: relative;
+  display: flex;
+  align-items: center;
   padding: 10px 0 10px 25px;
   font: 400 11px/1.4 var(--ob-font-mono);
   color: var(--ob-text-2);
@@ -264,14 +269,13 @@
 .s-fd-table__img { width: 46px; height: 46px; border: 1px dashed rgb(31 26 26 / .3); }
 .s-fd-table__cells { display: grid; gap: 10px; color: var(--s-fd-ink); }
 .s-fd-table__total { display: flex; justify-content: flex-end; align-items: baseline; gap: 3px; font: 600 12px/1.3 var(--ob-font-sans); color: var(--s-fd-ink); }
-/* A blank where a word should be, marked in our ink. */
+/* A blank where a word should be, marked in our ink: only the line it should sit on, with no wash, so it reads as
+   nothing there, never as hidden or still loading. */
 .s-fd-blank {
   display: inline-block;
   width: 3em;
   height: 1.1em;
   vertical-align: -.25em;
-  border-radius: 2px;
-  background: rgb(18 18 17 / .07);
   box-shadow: 0 1.5px 0 var(--ob-ink, #121211);
 }
 .s-fd-blank.is-wide { display: block; width: 70%; height: 12px; }
@@ -368,8 +372,10 @@
 .s-fd-prod--soap .s-fd-prod__press { fill: none; stroke: #C2BCA3; stroke-width: 1.2; }
 .s-fd-prod--soap .s-fd-prod__stem { fill: none; stroke: #50653F; stroke-width: 1.4; stroke-linecap: round; }
 .s-fd-prod--soap .s-fd-prod__leaf { fill: #6E8558; }
+.s-fd-prod--soap .s-fd-prod__bloom { fill: #E29A2E; }
+.s-fd-prod--soap .s-fd-prod__eye { fill: #9A5A1E; }
 
-.s-fd-after { align-self: start; display: grid; align-content: start; gap: var(--ob-space-12); min-width: 0; padding: var(--ob-space-16); border-radius: 8px; box-shadow: inset 0 0 0 1px var(--ob-line); }
+.s-fd-after { align-self: center; display: grid; align-content: start; gap: var(--ob-space-12); min-width: 0; padding: var(--ob-space-16); border-radius: 8px; box-shadow: inset 0 0 0 1px var(--ob-line); }
 .s-fd-after__k { font: var(--ob-type-caption); color: var(--ob-text-2); }
 .s-fd-after__item { display: grid; grid-template-columns: 38px minmax(0, 1fr); grid-template-areas: "ph name" "ph time"; align-items: center; column-gap: 10px; }
 .s-fd-after__ph { grid-area: ph; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 6px; background: var(--s-fd-tile); }

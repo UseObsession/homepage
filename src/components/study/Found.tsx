@@ -13,7 +13,7 @@ import './Found.css'
    colours, its product, its email). The 4 are 4 different moments on purpose, never 4 copies of 1 card: a trail and the
    wrong email, an inbox of 2 broken emails, a welcome whose button opens a closed store, a welcome and then 48 hours of
    nothing. On a wide screen they sit on 1 staggered grid (7 and 5 columns, then 5 and 7), each finding over its window
-   on 1 shared line (subgrid); on a phone they stack.
+   on 1 shared line (subgrid), each window only as tall as its moment; on a phone they stack.
    Still on purpose: nothing here has a job to move. Each picture is decorative (aria-hidden): the bar, the verdict and
    the finding say it in words. The shops' colours live only on their own surfaces (Found.css), never on a tag or a
    mark of ours. */
@@ -103,7 +103,8 @@ function Soap({ small = false }: { small?: boolean }) {
       <ellipse className="s-fd-prod__leaf" cx="44" cy="38" rx="4.5" ry="1.6" transform="rotate(-40 44 38)" />
       <ellipse className="s-fd-prod__leaf" cx="52" cy="36" rx="4.5" ry="1.6" transform="rotate(30 52 36)" />
       <ellipse className="s-fd-prod__leaf" cx="57" cy="31" rx="4.5" ry="1.6" transform="rotate(-50 57 31)" />
-      <ellipse className="s-fd-prod__leaf" cx="64" cy="30" rx="4.5" ry="1.6" transform="rotate(20 64 30)" />
+      <circle className="s-fd-prod__bloom" cx="67" cy="28" r="4.2" />
+      <circle className="s-fd-prod__eye" cx="67" cy="28" r="1.6" />
     </svg>
   )
 }
@@ -128,7 +129,8 @@ const Blank = ({ wide = false }: { wide?: boolean }) => <span className={'s-fd-b
 
 /* ---- The 4 moments ---------------------------------------------------------------------------------------------- */
 
-/* Fashion, basket left: the shopper's trail beside the email that came 2 hours later, a browser's email. */
+/* Fashion, basket left: the shopper's trail beside the email that came 2 hours later, a browse email. The wait
+   stretches to the email's height, so the 2 hours of nothing is the longest part of the trail. */
 function Pellam() {
   const s = shops.pellam
   const [added, left, mail] = s.trail
@@ -272,7 +274,7 @@ function Quinnet() {
 }
 
 /* Natural beauty, basket left: the welcome email that proves the store had the address, then the basket and 48 hours
-   with nothing on them. */
+   with nothing on them, centred beside the welcome. */
 function Ferula() {
   const s = shops.ferula
   return (
