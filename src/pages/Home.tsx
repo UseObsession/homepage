@@ -4,24 +4,27 @@ import { Gap } from '../components/sections/Gap'
 import { GapStory } from '../components/sections/GapStory'
 import { Hero } from '../components/sections/Hero'
 import { Outputs } from '../components/sections/Outputs'
+import { RecipeJobs } from '../components/sections/RecipeJobs'
 import { PersonaSection } from '../legacy/james/components/PersonaBand'
 import { page } from '../content/pages/home'
 import './StoryPage.css'
 
-/* Home (/), composed from content/pages/home.ts: 6 blocks, each with 1 job.
-   1 what it is: the hero (the form, then the 5 tabs of app screens and 1 quiet line to every other recipe) >
+/* Home (/), composed from content/pages/home.ts: 7 blocks, each with 1 job.
+   1 what it is: the hero (the form, then the 5 tabs of app screens) >
    2 who it's for: James's persona band, restored in src/legacy/james with 6 panels and the reader palette, inside a
      div.james, exactly as he built it >
    3 the difference, shown: the gap's claim and hollin's picture, with no comparison rows >
-   4 proof: the 1 real run, compact (its story in 1 line beside the output viewer, the link to the full report, and how
+   4 recipes: what a recipe is, then the 6 jobs as doors on 1 grid of hairlines, 2 examples each, and the link to every
+     recipe (sections/RecipeJobs; #recipes). It sits right after whatever renders the gap >
+   5 proof: the 1 real run, compact (its story in 1 line beside the output viewer, the link to the full report, and how
      the agents behave in 1 row) >
-   5 questions: 6, closed until opened, under a hairline: the run and the questions share the page's ground, so the rule
+   6 questions: 6, closed until opened, under a hairline: the run and the questions share the page's ground, so the rule
      marks where 1 block ends, with the same section space on each side as an edge between 2 grounds has >
-   6 start: the waitlist (#join, where the nav's call to action lands) and the agencies' free audits.
-   Grounds (Paper and Gloss, styles/tones.css): the gap and the closing call are the ink chapters. The real run stands on
-   the page's own ground, not the paper break: right under the gap, the break would touch an ink chapter
-   (_research/colour/THEMES.md 12, Never 3), so on ink its viewer is the lit product object and on paper the glossy one.
-   Home is drawn in the agency workspace, like Agencies. */
+   7 start: the waitlist (#join, where the nav's call to action lands) and the agencies' free audits.
+   Grounds (Paper and Gloss, styles/tones.css): the gap and the closing call are the ink chapters. The recipes stand on
+   the page's own ground right under the gap (an ink chapter never touches an alt ground, _research/colour/THEMES.md 12,
+   Never 3), and so does the real run under them: on ink its viewer is the lit product object and on paper the glossy
+   one. Home is drawn in the agency workspace, like Agencies. */
 const workspace = 'agency'
 
 export function Home() {
@@ -32,6 +35,7 @@ export function Home() {
         <PersonaSection id="for" />
       </div>
       <Gap gap={page.gap} story={page.gap.story && <GapStory story={page.gap.story} />} id="gap" />
+      {page.recipeJobs && <RecipeJobs {...page.recipeJobs} id="recipes" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" tone="base" compact id="proof" />}
       <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={page.final} id="join" />

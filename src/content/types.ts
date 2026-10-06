@@ -103,8 +103,6 @@ export type Hero = {
   consoleHeading: string[]
   screens?: HeroScreen[]
   demos?: Demo[]
-  /* Home: 1 quiet line under the tabs, for every recipe the tabs don't show, and its link. */
-  more?: { line: string; link: Cta }
 }
 
 /* The story every page tells, in this order:
@@ -201,6 +199,10 @@ export type Page = {
   outcomes?: Outcomes
   kinds?: Kinds
   recipes?: { heading: string; ids: RecipeId[] }
+  /* Home only: the recipes as the 6 jobs they do (sections/RecipeJobs), after the gap. Only the claim, its line and the
+     link to every recipe are the page's; the jobs come from content/nav.ts recipeJobs. {n} in the link's label is the
+     number of recipes in the catalog. */
+  recipeJobs?: { heading: string; line: string; all: Cta }
   proof?: Proof
   jobs?: Jobs
   audiences?: Audiences

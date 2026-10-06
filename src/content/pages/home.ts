@@ -1,15 +1,17 @@
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
-/* Home (/): 6 blocks, each with 1 job, 1 headline, at most 1 short line and 1 visual, and nothing said twice (Seun's
-   approved Home, 6 Oct):
-   1 what it is (the hero, its form, and the 5 tabs of app screens, with 1 quiet line to every other recipe) >
+/* Home (/): 7 blocks, each with 1 job, 1 headline, at most 1 short line and 1 visual, and nothing said twice (Seun's
+   approved Home, 6 Oct; the recipes block added 7 Oct):
+   1 what it is (the hero, its form, and the 5 tabs of app screens) >
    2 who it's for (James's persona band, as he built it) >
    3 the difference, shown (the gap: hollin's picture, Obsession as the customer next to a tool that reads the page) >
-   4 proof (the 1 real run: its story in 1 line, the output in every format, and how the agents behave) >
-   5 questions (6, closed until opened) >
-   6 start (the waitlist, and the agencies' free audits).
-   The jobs, your own AI agents, the recipe list, how it works, the API and the full rules each live on their own page.
+   4 recipes (what a recipe is in 1 claim and 1 line, then the 6 jobs as doors, each with 2 examples, and the link to
+     every recipe; the jobs are the Recipes menu's own, content/nav.ts recipeJobs) >
+   5 proof (the 1 real run: its story in 1 line, the output in every format, and how the agents behave) >
+   6 questions a reader asks before joining (6, closed until opened) >
+   7 start (the waitlist, and the agencies' free audits).
+   Every recipe, your own AI agents, how it works, the API and the full rules each live on their own page.
    The only real run is the September store check: 4 test customers, 48 hours watched, 1 shopper left a basket and 1
    stopped at checkout, 0 reminders. Every hero screen is an example and says so (its Example tag). */
 
@@ -76,10 +78,6 @@ export const page: Page = {
         link: { label: 'See how it works', to: '/verify' },
       },
     ],
-    more: {
-      line: 'Plus recipes for renewals, invoices, reviews and more.',
-      link: { label: 'Browse all recipes', to: '/recipes' },
-    },
   },
 
   gap: {
@@ -139,6 +137,15 @@ export const page: Page = {
     },
     /* The picture says it: no comparison rows on Home. */
     rows: [],
+  },
+
+  /* Seun's words, 7 Oct, word for word. The 6 jobs under them, each job's line and its 2 examples are the Recipes menu's
+     (content/nav.ts recipeJobs, the names from each recipe's own file), so this block and the menu never drift. The
+     link counts the recipes in the catalog: {n} is filled in when the page renders, never typed. */
+  recipeJobs: {
+    heading: 'Start from a recipe. The setup is already done.',
+    line: 'Each comes with its agents, inboxes, numbers, schedule and report.',
+    all: { label: 'See all {n} recipes', to: '/recipes' },
   },
 
   /* Home has no use case tabs: the hero's tabs carry that beat. */
