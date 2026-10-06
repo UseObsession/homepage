@@ -53,6 +53,7 @@ export const recipe: Recipe = {
       roles: {
         question: 'Who are your prospects?',
         options: ['Stores and consumer brands', 'Software companies', 'Clinics and local services', 'An agency’s pitch list', 'Something else'],
+        multi: true,
       },
       interest: 'prospect',
     },
@@ -240,6 +241,7 @@ export const recipe: Recipe = {
       roles: {
         question: 'What gap does your product close?',
         options: ['Welcome emails', 'Texts', 'Chat and bots', 'Ads and landing pages', 'Bookings', 'Something else'],
+        multi: true,
       },
       interest: 'prospect',
     },

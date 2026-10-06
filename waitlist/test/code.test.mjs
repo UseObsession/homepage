@@ -217,6 +217,77 @@ t('formula guard and cell limits', () => {
   assert.equal(r.Company, "'@evil")
 })
 
+t('a multi select’s picks, joined, are kept whole; the 1 pick columns keep their old length', () => {
+  const g = makeGas(CODE)
+  const jobs = 'Pitch packs on prospects, Checks on every client, Account handovers, Upsells for each client, Rival reports to sell, Something else (' + 'x'.repeat(120) + ')'
+  const sells = 'Software to businesses, Software or apps to consumers, Products from our store, Services to businesses, Local services, Something else (' + 'y'.repeat(120) + ')'
+  assert.ok(jobs.length > 200 && sells.length > 200)
+  g.post({ email: 'm@n.co', sid: SID, step: '1', source: 's' })
+  g.post({ email: 'm@n.co', sid: SID, step: '5', at: '1000000000', first_job: jobs, founder_sells: sells, results: 'Email, Slack, Google Sheets, Our CRM, Our issue tracker, Webhook or API', agency_clients: 'z'.repeat(300) })
+  const r = g.table()[0]
+  assert.equal(r['First job'], jobs); assert.equal(r['Founder: sells'], sells)
+  assert.equal(r['Results to'], 'Email, Slack, Google Sheets, Our CRM, Our issue tracker, Webhook or API')
+  assert.equal(r['Agency: clients'].length, 200)
+  // every column that takes any number keeps 400
+  const caps = Object.fromEntries(g.FIELDS.map((f) => [f[0], f[2]]))
+  for (const h of ['First job', 'Job detail', 'Results to', 'Founder: sells', 'Founder: did last week', 'Marketing: markets', 'Developer: builds for', 'Other: did last week']) assert.equal(caps[h], 400, h)
+  // the alert lists every pick
+  g.post({ email: 'm@n.co', sid: SID, step: '9', at: '1000000001', first_job: jobs, founder_sells: sells, reader: 'Founder' })
+  assert.match(g.mail.at(-1).body, /First job: Pitch packs on prospects, Checks on every client, Account handovers/)
+  // the subject names the first pick and how many more
+  assert.equal(g.mail.at(-1).subject, 'Answers: m@n.co. Founder: Pitch packs on prospects and 5 more')
+})
+
+t('the finished alert still goes with every job ticked, 120 typed characters, and the longest name and company', () => {
+  const g = makeGas(CODE)
+  const typed = 'Audits, monthly, for 3 clients (the big ones), ' + 'z'.repeat(73)
+  assert.equal(typed.length, 120)
+  const jobs = `Something else (${typed.replace(/\(/g, '[').replace(/\)/g, ']')}), Pitch packs on prospects, Checks on every client, Account handovers, Upsells for each client, Rival reports to sell`
+  const base = { email: 'm@n.co', sid: SID, source: 's', reader: 'Agency' }
+  g.post({ ...base, step: '1' })
+  g.post({ ...base, step: '9', at: '1000000001', first_job: jobs })
+  assert.equal(g.mail.length, 2)
+  assert.equal(g.mail[1].subject, `Answers: m@n.co. Agency: Something else (${typed.replace(/\(/g, '[').replace(/\)/g, ']')}) and 5 more`)
+  assert.match(g.mail[1].body, /First job: Something else \(Audits, monthly, for 3 clients \[the big ones\]/)
+  // a name of 100 and a company of 200: the subject is cut to 240, and the alert still goes
+  const h = makeGas(CODE)
+  h.post({ ...base, step: '1' })
+  h.post({ ...base, step: '9', at: '1000000001', first_job: jobs, name: 'N'.repeat(100), company: 'C'.repeat(200) })
+  assert.equal(h.mail.length, 2)
+  assert.equal(h.mail[1].subject.length, 240); assert.ok(h.mail[1].subject.startsWith('Answers: NNN')); assert.ok(h.mail[1].subject.endsWith('…'))
+  assert.equal(h.table()[0].Finished instanceof Date, true)
+})
+
+t('the new sign up alert still goes with the longest email and store', () => {
+  const g = makeGas(CODE)
+  const email = 'a'.repeat(180) + '@example.co.uk'
+  const r = g.post({ email, sid: SID, step: '1', source: 's', store: 'shop-' + 's'.repeat(190) + '.example' })
+  assert.deepEqual(r, { ok: true, v: 2 })
+  assert.equal(g.mail.length, 1); assert.ok(g.mail[0].subject.length <= 240); assert.ok(g.mail[0].subject.startsWith('New Obsession sign up: aaa'))
+})
+
+t('the subject reads 1 job without "more", and "no first job yet" when skipped', () => {
+  const g = makeGas(CODE)
+  const base = { email: 'm@n.co', sid: SID, source: 's', reader: 'Founder', name: 'Maya' }
+  g.post({ ...base, step: '1' })
+  g.post({ ...base, step: '9', at: '1000000001', first_job: 'Something else (Audits, monthly)' })
+  assert.equal(g.mail[1].subject, 'Answers: Maya. Founder: Something else (Audits, monthly)')
+  const h = makeGas(CODE)
+  h.post({ ...base, step: '1' })
+  h.post({ ...base, step: '9', at: '1000000001', first_job: 'Skipped' })
+  assert.equal(h.mail[1].subject, 'Answers: Maya. Founder: no first job yet')
+})
+
+t('the formula guard holds on a joined value, and the limit counts the apostrophe it adds after the cut', () => {
+  const g = makeGas(CODE)
+  const v = '=HYPERLINK("x"), Slack, ' + 'a'.repeat(500)
+  g.post({ email: 'm@n.co', sid: SID, step: '5', results: v, first_job: '+1, Email' })
+  const r = g.table()[0]
+  assert.ok(r['Results to'].startsWith("'=HYPERLINK")); assert.equal(r['Results to'].length, 401)
+  assert.equal(r['First job'], "'+1, Email")
+  assert.deepEqual(g.post({ email: 'm@n.co', sid: SID, step: '5' }), { ok: true, v: 2 })
+})
+
 t('an ID that is not an ID is ignored (old rule)', () => {
   const g = makeGas(CODE)
   g.post({ email: 'm@n.co', sid: 'short', step: '1', source: 's' })

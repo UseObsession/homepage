@@ -20,12 +20,19 @@ import type { RoleId } from './types'
      skipped, so the column sorts as a funnel.
    - `{company}` is the company: filled in from the email's domain, or what they typed. Without one the question reads
      `questionNoCompany`.
-   - `multi: true` lets them pick any number, with a Next button; otherwise 1 tap picks and moves on.
-   - `other: true` ("Something else") opens a short field and never moves on by itself. `none: true` ("None of these")
-     clears every other choice in a multi select.
-   - On a first job option: `for` names it under "Where should results land first?" ("For pitch packs."), and
-     `run` is the first run the founders set up by hand (the sheet's "Suggested first run").
-   - `offer` picks the thank you's next step: 'verify' (the free AI agent check) or 'mystery' (the free mystery shop).
+   - `multi: true` lets them pick any number, with a Next button; otherwise 1 tap picks and moves on. Multi wherever
+     more than 1 answer can be true; 1 pick for "Which of these is you?" (it sets the questions), the sizes, and the
+     questions about 1 past event ("Your last ..."). A multi select says so in its helper ("Pick any.").
+   - The picks keep the order they were ticked in. The first pick leads: it sets the Suggested first run, the AI agent
+     check on the thank you and "For pitch packs." under the results. The sheet and the thank you list every pick,
+     joined with ", ", so a label in a multi select never holds a comma.
+   - `other: true` ("Something else") opens a short field and never moves on by itself; the answer reads "Something
+     else (what they typed)". `none: true` ("None of these",
+     "Just exploring") clears every other choice in a multi select.
+   - On a first job option: `for` names it under "Where should results land?" ("For pitch packs."), and `run` is the
+     first run the founders set up by hand (the sheet's "Suggested first run"). Both come from the first pick.
+   - `offer` picks the thank you's next step: 'verify' (the free AI agent check), when it is the first pick, or
+     'mystery' (the free mystery shop), when any pick carries it.
    Copy rules: docs/REBUILD.md, "Copy". Ask about real, recent behaviour, never "would you", never money. */
 
 export type SignupOption = {
@@ -51,9 +58,10 @@ export type SignupQuestion = {
   options: SignupOption[]
 }
 
-/* A Call first rule: every condition must hold. `in` lists option ids; `atLeast` counts the ticks in a multi select
-   ("None of these" never counts). `reason` fills {key} with the answer, first letter lower case, and {count} with the
-   ticks; `open` is the question that opens the call (it turns the tapped answer into an interview). */
+/* A Call first rule: every condition must hold. `in` lists option ids, and holds when any pick is in it; `atLeast`
+   counts the ticks in a multi select ("None of these" never counts). `reason` fills {key} with the picks in the list,
+   first letter lower case, and {count} with the ticks; `open` is the question that opens the call (it turns the tapped
+   answer into an interview). */
 export type CallFirstRule = {
   when: ({ key: string; in: string[] } | { key: string; atLeast: number })[]
   reason: string
@@ -72,15 +80,28 @@ export type SignupReader = {
   callFirst?: CallFirstRule
 }
 
-/* 1 pick, the first place: forced choice is truer than "pick any", and the top pick sets which tool we connect first. */
+/* Any number: most teams read results in more than 1 place, and every pick is a tool to connect. Its helper names the
+   first job, then says "Pick any." (card.results, below). */
 const results = (id: string, options: string[]): SignupQuestion => ({
   id,
   step: 5,
   key: 'results',
   short: 'Results',
-  question: 'Where should results land first?',
+  question: 'Where should results land?',
+  multi: true,
   options: options.map((label) => ({ id: label.toLowerCase().replace(/[^a-z]+/g, '-'), label })),
 })
+
+/* The first job, for every reader: any number, the first pick first. It is what the founders set up first, and it
+   sets the next step's AI agent check and the results' helper. */
+const firstJob = {
+  step: 3,
+  key: 'first_job',
+  short: 'Jobs',
+  question: 'What should your agents do?',
+  helper: 'Pick any. We start with your first pick.',
+  multi: true,
+} as const
 
 const somethingElse: SignupOption = { id: 'other', label: 'Something else', other: true }
 
@@ -93,10 +114,7 @@ const agency: SignupReader = {
   questions: [
     {
       id: 'A1',
-      step: 3,
-      key: 'first_job',
-      short: 'First job',
-      question: 'What should your agents do first?',
+      ...firstJob,
       options: [
         { id: 'pitch', label: 'Pitch packs on prospects', for: 'pitch packs', run: 'Prospect intelligence and Competitor tracking on their next pitch: the prospect and its 3 rivals, a pitch pack before the meeting' },
         { id: 'checks', label: 'Checks on every client', for: 'client checks', run: '1 client, with written OK: Ad landing check, Delivery monitoring, Lead leaks or Mystery shopper, picked from their site' },
@@ -155,10 +173,7 @@ const founder: SignupReader = {
   questions: [
     {
       id: 'F1',
-      step: 3,
-      key: 'first_job',
-      short: 'First job',
-      question: 'What should your agents do first?',
+      ...firstJob,
       options: [
         { id: 'find', label: 'Find customers with proof', for: 'finding customers', run: 'Prospect intelligence on 5 prospects from their own list' },
         { id: 'release', label: 'Test every release', for: 'release tests', run: 'Website audit and Delivery monitoring on their sign up after the next release, and its first 14 days (Mystery shopper for a store)' },
@@ -175,10 +190,12 @@ const founder: SignupReader = {
       short: 'Sells',
       question: 'What does {company} sell?',
       questionNoCompany: 'What do you sell?',
+      helper: 'Pick any.',
+      multi: true,
       options: [
         { id: 'saas', label: 'Software to businesses' },
         { id: 'apps', label: 'Software or apps to consumers' },
-        { id: 'store', label: 'Products, from our store', offer: 'mystery' },
+        { id: 'store', label: 'Products from our store', offer: 'mystery' },
         { id: 'services', label: 'Services to businesses' },
         { id: 'local', label: 'Local services' },
         somethingElse,
@@ -217,10 +234,7 @@ const sales: SignupReader = {
   questions: [
     {
       id: 'S1',
-      step: 3,
-      key: 'first_job',
-      short: 'First job',
-      question: 'What should your agents do first?',
+      ...firstJob,
       options: [
         { id: 'briefs', label: 'Briefs before calls', for: 'call briefs', run: 'Prospect intelligence: a brief on the account they name, 7 days before the call' },
         { id: 'renewals', label: 'Renewals at risk', for: 'renewals at risk', run: 'Account watch on next quarter’s renewals, then Renewal negotiation' },
@@ -277,10 +291,7 @@ const marketing: SignupReader = {
   questions: [
     {
       id: 'M1',
-      step: 3,
-      key: 'first_job',
-      short: 'First job',
-      question: 'What should your agents do first?',
+      ...firstJob,
       options: [
         { id: 'ai', label: 'Fix what AI says about us', for: 'what AI says about you', run: 'Listings and AI answers on their own brand, across the main AI assistants' },
         { id: 'prices', label: 'Track rivals’ offers and prices', for: 'rivals’ offers and prices', run: 'Price watch and Email and SMS tracking on the rival they name' },
@@ -297,6 +308,8 @@ const marketing: SignupReader = {
       short: 'Markets',
       question: 'What does {company} market?',
       questionNoCompany: 'What does your team market?',
+      helper: 'Pick any.',
+      multi: true,
       options: [
         { id: 'store', label: 'An online store', offer: 'mystery' },
         { id: 'software', label: 'Software' },
@@ -336,10 +349,7 @@ const developer: SignupReader = {
   questions: [
     {
       id: 'D1',
-      step: 3,
-      key: 'first_job',
-      short: 'First job',
-      question: 'What will you build first?',
+      ...firstJob,
       options: [
         { id: 'ci', label: 'Release tests in CI', for: 'release tests', run: 'Website audit through the API: a typed task on every deploy, with the webhook into CI' },
         { id: 'prospect', label: 'Prospect intelligence', for: 'prospect intelligence', run: 'Prospect intelligence through the API, inside their product, for a handful of their users' },
@@ -355,12 +365,14 @@ const developer: SignupReader = {
       key: 'developer_for',
       short: 'Builds for',
       question: 'Who’s it for?',
+      helper: 'Pick any.',
+      multi: true,
       options: [
         { id: 'own', label: 'Our own product' },
-        { id: 'customers', label: 'Our customers, in our product' },
+        { id: 'customers', label: 'A feature for our customers' },
         { id: 'team', label: 'Our sales or marketing team' },
-        { id: 'clients', label: 'Clients, as an agency' },
-        { id: 'exploring', label: 'Just exploring' },
+        { id: 'clients', label: 'Clients of our agency' },
+        { id: 'exploring', label: 'Just exploring', none: true },
       ],
     },
     results('D3', ['Webhook', 'Polling the API', 'Our CI', 'MCP or another agent', 'Slack', 'Email']),
@@ -394,10 +406,7 @@ const other: SignupReader = {
   questions: [
     {
       id: 'G1',
-      step: 3,
-      key: 'first_job',
-      short: 'First job',
-      question: 'Which job should we set up first?',
+      ...firstJob,
       options: [
         { id: 'win', label: 'Win and keep customers', for: 'winning and keeping customers', run: 'Prospect intelligence or Account watch, agreed on the set up email' },
         { id: 'rivals', label: 'Watch rivals', for: 'watching rivals', run: 'Competitor tracking, agreed on the set up email' },
@@ -458,10 +467,11 @@ export const signup = {
     skipFinish: 'Skip and finish',
     /* The field under "Something else". */
     other: 'Tell us in a few words',
-    /* Under "Where should results land first?": {job} is the first job's `for`. Without one, `resultsPlain` (empty: no
-       helper). */
-    results: 'For {job}.',
-    resultsPlain: '',
+    /* Under "Where should results land?": {job} is the first pick's `for`. Without one, `resultsPlain`. */
+    results: 'For {job}. Pick any.',
+    resultsPlain: 'Pick any.',
+    /* A page's own question that takes any number, without a helper of its own. */
+    pickAny: 'Pick any.',
     skipped: 'Skipped',
     footer: 'Every answer is optional. We use them to set up your first run and decide what we build.',
     /* Shown only when VITE_WAITLIST_URL is unset (local builds): nothing leaves the browser. */
@@ -499,9 +509,9 @@ export const signup = {
   /* In place of the first job: the page's own question (Capture.roles, on a recipe page the recipe's), whose answer
      goes in "Job detail"; else, for a free mystery shop or AI agent check with its store or agent, whose it is. A page
      question that `replaces: 'results'` (the agencies' audit format) is asked in place of the results instead, and its
-     answer goes in "Results to". A free shop or check left blank is a waitlist sign up: it asks the reader's own first
-     job, never the page's question. A page question in `skipOwn` is never asked: "Which of these is you?" already
-     covers it. */
+     answer goes in "Results to". A page question with `multi: true` takes any number, its helper `card.pickAny`. A
+     free shop or check left blank is a waitlist sign up: it asks the reader's own first job, never the page's
+     question. A page question in `skipOwn` is never asked: "Which of these is you?" already covers it. */
   page: {
     mystery: {
       firstJob: 'Free mystery shop',
@@ -557,8 +567,8 @@ export const signup = {
   },
 
   /* The 1 next step on the thank you. Only 1 shows; the first that fits wins (lib/signup.ts, nextStepFor):
-     1 a free shop or check from step 1: `report`; 2 a first job that offers the AI agent check: `verify`;
-     3 an agency: `agencyShop`; 4 an answer that offers the mystery shop (an online store): `shop`;
+     1 a free shop or check from step 1: `report`; 2 a first pick of the jobs that offers the AI agent check: `verify`;
+     3 an agency: `agencyShop`; 4 any pick that offers the mystery shop (an online store): `shop`;
      5 a developer: `developer`; 6 sales: `account`; 7 marketing: `rival`; 8 anyone else: `company`.
      `sheet` is what the "Next step" column says once they've done it. */
   next: {

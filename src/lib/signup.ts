@@ -22,7 +22,8 @@ export const readerLabel = (id?: RoleId) => (id ? readerNames[id] : '')
 
 /* The page's own question (Capture.roles) as a bank question: its options get ids by position. On a recipe page it is
    the recipe's; on the agencies use case it is the format the audits come in. A free shop or check asks it only once
-   a store or an AI agent is named: left blank, the form is a waitlist sign up, and the reader's own questions follow. */
+   a store or an AI agent is named: left blank, the form is a waitlist sign up, and the reader's own questions follow.
+   One that takes any number (`multi`) says "Pick any." unless it has a helper of its own. */
 function ownQuestion(ctx: Context): SignupQuestion | undefined {
   const q = ctx.question
   if (!q || copy.page.skipOwn.includes(q.question)) return undefined
@@ -33,6 +34,8 @@ function ownQuestion(ctx: Context): SignupQuestion | undefined {
     key: 'job_detail',
     short: q.short ?? ctx.recipe?.name ?? copy.page.own.short,
     question: q.question,
+    helper: q.helper ?? (q.multi ? copy.card.pickAny : undefined),
+    multi: q.multi,
     options: q.options.map((label, i) => (/^something else$/i.test(label) ? { id: 'other', label, other: true } : { id: `o${i + 1}`, label })),
   }
 }
@@ -74,6 +77,16 @@ export function flowOf(s: SignupState): Step[] {
 
 export const optionOf = (q: SignupQuestion, id: string) => q.options.find((o) => o.id === id)
 
+/* A tap or a number key on an option. A single choice holds just it. A multi select ticks or unticks it, and the picks
+   keep the order they were ticked in, so the first pick stays first; "None of these" (`none`) clears every other pick,
+   and any other pick clears it. */
+export function toggle(options: SignupOption[], picked: string[], o: SignupOption, multi: boolean): string[] {
+  if (!multi) return [o.id]
+  if (picked.includes(o.id)) return picked.filter((x) => x !== o.id)
+  if (o.none) return [o.id]
+  return [...picked.filter((x) => !options.find((p) => p.id === x)?.none), o.id]
+}
+
 /* "AI agent checks" keeps its capitals; "Pitch packs" becomes "pitch packs". */
 export const lower = (t: string) => (t.length > 1 && t[1] === t[1].toUpperCase() && /[A-Z]/.test(t[1]) ? t : t.charAt(0).toLowerCase() + t.slice(1))
 
@@ -84,27 +97,33 @@ export function questionText(q: SignupQuestion, company: string) {
   return c || !q.questionNoCompany ? fill(q.question, { company: c }) : q.questionNoCompany
 }
 
-/* What an answer says in the sheet and on the thank you: the labels, "Something else: what they typed". */
+/* What they typed for "Something else", in brackets: its own brackets turn square, so a comma in it never reads as
+   another pick (waitlist/Code.js splits a joined answer at ", " outside brackets). */
+const typed = (t: string) => `(${t.replace(/\(/g, '[').replace(/\)/g, ']')})`
+
+/* What an answer says in the sheet and on the thank you: the labels, joined with ", " in the order ticked, and
+   "Something else (what they typed)". */
 export function answerText(q: SignupQuestion, a?: Answer) {
   if (!a) return ''
   return a.picked
     .map((id) => {
       const o = optionOf(q, id)
       if (!o) return ''
-      return o.other && a.other?.trim() ? `${o.label}: ${a.other.trim()}` : o.label
+      return o.other && a.other?.trim() ? `${o.label} ${typed(a.other.trim())}` : o.label
     })
     .filter(Boolean)
     .join(', ')
 }
 
-/* The first job's option, when the reader's own first job question was answered. */
+/* The first job's option, when the reader's own first job question was answered: the first pick, in the order they
+   ticked. It alone sets the Suggested first run, the AI agent check on the thank you and the results' helper. */
 function firstJobOption(s: SignupState): SignupOption | undefined {
   const q = questionsOf(s).find((x) => x.key === 'first_job')
   const a = q && s.marks[q.id] === 'answered' ? s.answers[q.id] : undefined
   return q && a?.picked[0] ? optionOf(q, a.picked[0]) : undefined
 }
 
-/* Every option picked so far in this flow. */
+/* Every option picked so far in this flow: the mystery shop on the thank you needs only 1 of them to offer it. */
 function pickedOptions(s: SignupState): SignupOption[] {
   const out: SignupOption[] = []
   for (const q of questionsOf(s)) {
@@ -117,7 +136,7 @@ function pickedOptions(s: SignupState): SignupOption[] {
   return out
 }
 
-/* "For pitch packs." under "Where should results land first?". */
+/* "For pitch packs. Pick any." under "Where should results land?", from the first job's first pick. */
 export function resultsHelper(s: SignupState) {
   const job = s.ctx.store ? copy.page.mystery.for : s.ctx.agent ? copy.page.verify.for : s.ctx.recipe ? lower(s.ctx.recipe.name) : firstJobOption(s)?.for
   return job ? fill(copy.card.results, { job }) : copy.card.resultsPlain
@@ -140,8 +159,10 @@ function ruleHolds(s: SignupState, rule: CallFirstRule): Record<string, string> 
     const a = q && s.marks[q.id] === 'answered' ? s.answers[q.id] : undefined
     if (!q || !a) return null
     if ('in' in c) {
-      if (!a.picked.some((id) => c.in.includes(id))) return null
-      values[c.key] = lower(answerText(q, a))
+      /* Any pick in the list holds it, and the reason names only those picks, each with its first letter lower case. */
+      const hits = a.picked.filter((id) => c.in.includes(id))
+      if (!hits.length) return null
+      values[c.key] = hits.map((id) => lower(answerText(q, { ...a, picked: [id] }))).join(', ')
     } else {
       const n = a.picked.filter((id) => !optionOf(q, id)?.none).length
       if (n < c.atLeast) return null
@@ -296,11 +317,19 @@ export function draft(email: string, ctx: Context, sid = newId(), t = Date.now()
   return s
 }
 
+/* Every snapshot goes through here, so leaving a step can tell whether it changed what the row holds. */
+let lastSent = ''
+function send(s: SignupState) {
+  const body = snapshot(s)
+  lastSent = JSON.stringify(body)
+  queueSnapshot(body)
+}
+
 /* The card opens. Where the page already named the first job (a free shop or check, a recipe), the row gets it now,
    with its Call first, so a sign up that stops here still sorts. */
 function opened(s: SignupState) {
   watchLeaving()
-  if (s.ctx.store || s.ctx.agent || s.ctx.recipe) queueSnapshot(snapshot(s))
+  if (s.ctx.store || s.ctx.agent || s.ctx.recipe) send(s)
 }
 
 export function start(s: SignupState, owner: string, preview: boolean) {
@@ -343,14 +372,16 @@ export function flushOnLeave() {
   if (s && (hasUnsent() || s.dirty) && beaconSnapshot(snapshot(s, true))) set({ ...s, dirty: false })
 }
 
-function update(patch: Partial<SignupState>, opts: { send?: boolean; move?: boolean } = {}) {
+/* `send: 'changed'` sends only when the row would change. */
+function update(patch: Partial<SignupState>, opts: { send?: boolean | 'changed'; move?: boolean } = {}) {
   const state = getSignup()
   if (!state) return
   const next = { ...state, ...patch }
   if (opts.move) next.seq = state.seq + 1
-  next.dirty = opts.send ? false : (patch.name !== undefined || patch.company !== undefined || patch.note !== undefined) || state.dirty
+  const sending = opts.send === true || (opts.send === 'changed' && JSON.stringify(snapshot(next)) !== lastSent)
+  next.dirty = sending ? false : (patch.name !== undefined || patch.company !== undefined || patch.note !== undefined) || state.dirty
   set(next)
-  if (opts.send) queueSnapshot(snapshot(next))
+  if (sending) send(next)
 }
 
 /* Typing: kept, sent with the step. */
@@ -362,6 +393,17 @@ export function setAnswer(id: string, a: Answer) {
   const state = getSignup()
   if (!state) return
   update({ answers: { ...state.answers, [id]: a } })
+}
+
+/* A tap or a number key on an option (toggle, above), read against the state as it is now, never as the card last
+   drew it, so 2 quick taps both land. Returns the picks. */
+export function pickOption(id: string, options: SignupOption[], o: SignupOption, multi: boolean) {
+  const state = getSignup()
+  if (!state) return []
+  const a = state.answers[id] ?? { picked: [] }
+  const picked = toggle(options, a.picked, o, multi)
+  update({ answers: { ...state.answers, [id]: { ...a, picked } } })
+  return picked
 }
 
 /* Where to go after a step: back to the thank you if they came from it, else the first step after this one that has
@@ -435,19 +477,43 @@ export function complete(id: string, skip: boolean, owner: string) {
   )
 }
 
+/* Leaving a step they had already answered or skipped, by Back, a square or Change, settles it as Next would: nothing
+   ticked or typed reads skipped, anything answered, and the row is sent if that changed it. So a step they came back
+   to and emptied never stays answered with nothing in it. A step they hadn't answered or skipped keeps its ticks for
+   when they return, and stays unanswered. */
+function settle(s: SignupState): Partial<SignupState> {
+  const id = s.current
+  if (!s.marks[id]) return {}
+  let mark: Mark
+  let answers = s.answers
+  if (id === 'name') {
+    /* Skip keeps the name and company in their fields, so only an emptied step changes. */
+    mark = s.name.trim() || s.company.trim() ? s.marks.name : 'skipped'
+  } else if (id === 'note') {
+    mark = s.note.trim() ? 'answered' : 'skipped'
+  } else {
+    if (!flowOf(s).find((x) => x.id === id)?.q) return {}
+    const picked = s.answers[id]?.picked ?? []
+    mark = picked.length ? 'answered' : 'skipped'
+    if (!picked.length) answers = { ...s.answers, [id]: { picked: [] } }
+  }
+  return { marks: { ...s.marks, [id]: mark }, answers }
+}
+
 /* Back, a square, or Change on the thank you. */
 export function go(id: string, owner: string, fromThanks = false) {
   const state = getSignup()
   if (!state) return
-  update({ current: id, owner, returnTo: fromThanks ? 'thanks' : state.returnTo }, { move: true })
+  update({ ...settle(state), current: id, owner, returnTo: fromThanks ? 'thanks' : state.returnTo }, { move: true, send: 'changed' })
 }
 
 /* "Change" beside "For agencies.": the reader question joins the flow, first, right after the email. */
 export function changeReader(owner: string, fromThanks = false) {
   const state = getSignup()
   if (!state) return
-  const answers = { ...state.answers, reader: { picked: state.reader ? [state.reader] : [] } }
-  update({ askReader: true, answers, current: 'reader', owner, returnTo: fromThanks ? 'thanks' : undefined }, { move: true })
+  const left = settle(state)
+  const answers = { ...(left.answers ?? state.answers), reader: { picked: state.reader ? [state.reader] : [] } }
+  update({ ...left, askReader: true, answers, current: 'reader', owner, returnTo: fromThanks ? 'thanks' : undefined }, { move: true, send: 'changed' })
 }
 
 export function saveNext(next: { kind: string; sheet: string; value: string }) {
@@ -457,5 +523,5 @@ export function saveNext(next: { kind: string; sheet: string; value: string }) {
 /* The page's own "Try again" for unsent answers. */
 export function resend() {
   const state = getSignup()
-  if (state) queueSnapshot(snapshot(state))
+  if (state) send(state)
 }

@@ -53,14 +53,15 @@ export function makeGas(codePath, { headers = null, rows = [], quota = 100 } = {
     PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => props[k] ?? null, setProperty: (k, v) => { props[k] = v } }) },
     LockService: { getScriptLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) },
     CacheService: { getScriptCache: () => ({ get: (k) => cache.get(k) ?? null, put: (k, v) => cache.set(k, v) }) },
-    MailApp: { sendEmail: (to, subject, body) => { left.quota -= to.split(',').length; mail.push({ to, subject, body }) }, getRemainingDailyQuota: () => left.quota },
+    // Apps Script refuses a subject over 250 characters
+    MailApp: { sendEmail: (to, subject, body) => { if (String(subject).length > 250) throw new Error('Argument too large: subject'); left.quota -= to.split(',').length; mail.push({ to, subject, body }) }, getRemainingDailyQuota: () => left.quota },
     Session: { getEffectiveUser: () => ({ getEmail: () => 'owner@example.com' }) },
     Utilities: { formatDate: (d) => d.toISOString().slice(0, 16).replace('T', ' ') },
     ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (s) => ({ body: s, setMimeType() { return this } }) },
     HtmlService: { createHtmlOutput: (h) => ({ html: h, setTitle() { return this }, addMetaTag() { return this } }) },
   }
   vm.createContext(ctx)
-  vm.runInContext(readFileSync(codePath, 'utf8') + '\n;globalThis.__doPost = doPost; globalThis.__doGet = doGet; globalThis.__HEADERS = HEADERS;', ctx)
+  vm.runInContext(readFileSync(codePath, 'utf8') + '\n;globalThis.__doPost = doPost; globalThis.__doGet = doGet; globalThis.__HEADERS = HEADERS; globalThis.__FIELDS = FIELDS;', ctx)
   // Date inside the context must be the fake one: Code.js uses `new Date()` and `Date.now()`.
   const post = (body, type = 'text/plain;charset=utf-8') => {
     const e = type.startsWith('application/x-www-form-urlencoded')
@@ -71,5 +72,5 @@ export function makeGas(codePath, { headers = null, rows = [], quota = 100 } = {
   }
   const table = () => { const [h, ...rs] = data; return rs.map((r) => Object.fromEntries(h.map((k, i) => [k, r[i]]))) }
   const get = () => JSON.parse(ctx.__doGet().body)
-  return { post, get, data, table, mail, cache, props, tick: (ms) => { clock += ms }, headers: () => data[0], HEADERS: ctx.__HEADERS }
+  return { post, get, data, table, mail, cache, props, tick: (ms) => { clock += ms }, headers: () => data[0], HEADERS: ctx.__HEADERS, FIELDS: ctx.__FIELDS }
 }

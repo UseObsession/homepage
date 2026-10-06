@@ -51,7 +51,9 @@ const BOOK_TITLE = 'Obsession waitlist'
 const VERSION = 2
 const SHEET_NAME = 'Sign ups'
 /* Header, JSON key, longest value kept. In reading order: the order of a new sheet's columns. Received, Updated and
-   Finished are the script's own times. */
+   Finished are the script's own times. A question that takes any number sends every pick, joined with ", " in the
+   order they were ticked, "Something else (what they typed)": its column keeps 400 characters, enough for every
+   option at once (waitlist/test/signup.test.mjs checks the longest the site can send). */
 const FIELDS = [
   ['Received', '', 0],
   ['Step reached', 'step', 20],
@@ -59,23 +61,23 @@ const FIELDS = [
   ['Name', 'name', 100],
   ['Company', 'company', 200],
   ['Reader', 'reader', 200],
-  ['First job', 'first_job', 200],
+  ['First job', 'first_job', 400],
   ['Call first', 'call_first', 200],
   ['Suggested first run', 'suggested', 200],
-  ['Job detail', 'job_detail', 200],
+  ['Job detail', 'job_detail', 400],
   ['Agency: clients', 'agency_clients', 200],
   ['Agency: last check took', 'agency_last_check', 200],
-  ['Founder: sells', 'founder_sells', 200],
-  ['Founder: did last week', 'founder_last_week', 200],
+  ['Founder: sells', 'founder_sells', 400],
+  ['Founder: did last week', 'founder_last_week', 400],
   ['Sales: team size', 'sales_team', 200],
   ['Sales: last slip seen', 'sales_last_slip', 200],
-  ['Marketing: markets', 'marketing_markets', 200],
+  ['Marketing: markets', 'marketing_markets', 400],
   ['Marketing: last break found by', 'marketing_last_break', 200],
-  ['Developer: builds for', 'developer_for', 200],
+  ['Developer: builds for', 'developer_for', 400],
   ['Developer: last used', 'developer_last_used', 200],
   ['Other: role', 'other_role', 200],
-  ['Other: did last week', 'other_last_week', 200],
-  ['Results to', 'results', 200],
+  ['Other: did last week', 'other_last_week', 400],
+  ['Results to', 'results', 400],
   ['Anything else', 'note', 1000],
   ['Next step', 'next_step', 200],
   ['Start with', 'start_with', 200],
@@ -371,15 +373,42 @@ function recipients() {
   return owner ? [owner] : []
 }
 
+/* Apps Script refuses a subject over 250 characters ("Argument too large: subject"), and a long name, company, email
+   or store can pass that: a subject is cut to SUBJECT_MAX on 1 line, so the alert still goes. */
+const SUBJECT_MAX = 240
+
 function send(subject, lines) {
   const to = recipients()
   if (!to.length) return
+  const line = String(subject).replace(/\s+/g, ' ').trim()
+  const short = line.length > SUBJECT_MAX ? line.slice(0, SUBJECT_MAX - 1) + '…' : line
   /* The day's mail quota is spent: skip the alert (the row is already saved) and say so in the script's log. */
   if (MailApp.getRemainingDailyQuota() < to.length) {
-    console.warn('mail quota spent, alert skipped: ' + subject)
+    console.warn('mail quota spent, alert skipped: ' + short)
     return
   }
-  MailApp.sendEmail(to.join(','), subject, lines.join('\n'))
+  MailApp.sendEmail(to.join(','), short, lines.join('\n'))
+}
+
+/* A joined answer's picks: the site joins them with ", " and puts what they typed for "Something else" in brackets
+   (src/lib/signup.ts, answerText), so it splits at ", " outside brackets. */
+function picks(value) {
+  const s = String(value == null ? '' : value)
+  const out = []
+  let depth = 0
+  let cur = ''
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i]
+    if (c === '(') depth++
+    else if (c === ')') depth = Math.max(0, depth - 1)
+    if (!depth && c === ',' && s[i + 1] === ' ') {
+      out.push(cur)
+      cur = ''
+      i++
+    } else cur += c
+  }
+  if (cur) out.push(cur)
+  return out
 }
 
 function given(value) {
@@ -411,10 +440,12 @@ function notifyNew(entry, repeat, url) {
   send(`New Obsession sign up: ${entry.Email}${what}${repeat ? ' (repeat)' : ''}`, lines)
 }
 
-/* 2. They finished: every answer, the suggested first run and Call first. */
+/* 2. They finished: every answer, the suggested first run and Call first. The subject names the first job they ticked
+   and how many more ("Pitch packs on prospects and 2 more"); the body lists them all. */
 function notifyAnswers(entry, url) {
   const who = [entry.Name, entry.Company].filter((v) => v && v !== 'Skipped').join(', ') || entry.Email
-  const job = entry['First job'] && entry['First job'] !== 'Skipped' ? entry['First job'] : 'no first job yet'
+  const jobs = entry['First job'] && entry['First job'] !== 'Skipped' ? picks(entry['First job']) : []
+  const job = jobs.length ? jobs[0] + (jobs.length > 1 ? ` and ${jobs.length - 1} more` : '') : 'no first job yet'
   const skip = ['Received', 'Updated', 'Finished', 'Step reached', 'Sign up ID', 'Sent at', 'Role', 'Call first', 'Suggested first run']
   const answers = HEADERS.filter((h) => skip.indexOf(h) === -1 && entry[h] !== '' && entry[h] != null).map((h) => `${h}: ${entry[h]}`)
   send(`Answers: ${who}. ${given(entry.Reader)}: ${job}`, [
