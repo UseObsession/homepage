@@ -1,0 +1,263 @@
+/* Home's recipes (sections/RecipeJobs): the claim and its line, the link to every recipe, then the 6 jobs on 1 grid of
+   hairlines. Design system tokens only; site classes start s-rj. It stands on the page's own ground, right under the
+   gap's ink chapter (an ink chapter never touches an alt ground, THEMES.md 12 Never 3), so it takes no tone. */
+
+/* The claim spans the block; the line and the link share the next row, the link level with the line's last baseline;
+   the jobs take the full width under them. */
+.s-rj__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "h h"
+    "line all"
+    "jobs jobs";
+  column-gap: var(--ob-space-48);
+}
+
+.s-rj__h {
+  grid-area: h;
+  margin: 0;
+  color: var(--ob-text);
+}
+/* Each sentence keeps together, so a claim too long for 1 line breaks between its sentences, never inside one. */
+.s-rj__s { display: inline-block; }
+
+.s-rj__line {
+  grid-area: line;
+  max-width: var(--ob-measure-lede);
+  margin: var(--ob-space-16) 0 0;
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+
+.s-rj__all {
+  grid-area: all;
+  align-self: last baseline;
+  justify-self: end;
+}
+
+/* ---- The 6 jobs ------------------------------------------------------------------------------------------------------
+   Each job hangs from its own rule, with the column gap between them and no lines down the sides, as the agents' rules
+   do under the real run. The first row opens on the ink rule; the second row's rules are hairlines. */
+.s-rj__jobs {
+  grid-area: jobs;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ob-space-32) var(--ob-space-24);
+  margin: var(--ob-space-40) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.s-rj__job {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ob-space-6);
+  min-width: 0;
+  padding-top: var(--ob-space-16);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-rj__job:nth-child(-n + 3) { border-top-color: var(--s-rule); }
+
+/* The rule in full ink, drawn over the cell's own rule from its start when the cell is hovered or focused. */
+.s-rj__job::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--ob-border-hair) * -1);
+  inset-inline: 0;
+  height: var(--ob-border-focus);
+  background: var(--ob-text);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.s-rj__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+
+/* The name's link covers the whole cell: its ::after is the cell's 1 target (and its focus ring). */
+.s-rj__go {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-underline-offset: var(--ob-space-4);
+  text-decoration-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+.s-rj__go::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ob-radius-xs);
+}
+.s-rj__go:focus-visible { outline: none; }
+.s-rj__go:focus-visible::after {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-space-8);
+}
+
+/* The arrow follows the name's last word, on whichever line that lands. The chevron is the phone row's. */
+.s-rj__arrow,
+.s-rj__chev {
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--ob-icon-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+}
+.s-rj__arrow {
+  display: inline-block;
+  margin-left: var(--ob-space-8);
+  vertical-align: -.1em;
+}
+.s-rj__chev { display: none; }
+
+.s-rj__promise {
+  margin: 0;
+  max-width: 40ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+
+/* The 2 examples: quiet links on the cell's foot, so every row's examples share 1 line. They sit above the cell's
+   target; the dot between them belongs to the cell. They never wrap as a pair, so no line can start on the dot: the
+   first keeps its width, and a second too long for the cell wraps inside itself, beside the dot. */
+.s-rj__eg {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-8);
+  margin: auto 0 0;
+  padding: var(--ob-space-12) 0 0;
+  list-style: none;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+}
+.s-rj__eg > li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ob-space-8);
+  min-width: 0;
+}
+.s-rj__eg > li:first-child { flex-shrink: 0; }
+.s-rj__dot { color: var(--ob-text-3); }
+.s-rj__ex {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  line-height: var(--ob-control-xs);
+  border-radius: var(--ob-radius-glyph);
+  color: var(--ob-text-2);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-underline-offset: var(--ob-space-4);
+  text-decoration-color: transparent;
+}
+.s-rj__ex:focus-visible {
+  outline: var(--ob-focus-width) solid var(--ob-focus);
+  outline-offset: var(--ob-focus-offset);
+}
+
+/* ---- States ----------------------------------------------------------------------------------------------------------
+   The cell: its rule draws in full ink, its name takes the link's underline and its arrow wakes (on paper the first
+   row's rule is already ink, so the underline is what shows there). An example: full ink and its underline. Keyboard
+   focus shows the cell's state too. With reduced motion the rule is simply there, and the arrow keeps its place. */
+.s-rj__job:has(.s-rj__go:focus-visible)::before { transform: none; }
+.s-rj__go:focus-visible { text-decoration-color: var(--ob-link-underline); }
+.s-rj__job:has(.s-rj__go:focus-visible) .s-rj__arrow { color: var(--ob-text); }
+.s-rj__ex:focus-visible { color: var(--ob-text); text-decoration-color: var(--ob-link-underline); }
+@media (hover: hover) and (pointer: fine) {
+  .s-rj__job:has(.s-rj__go:hover)::before { transform: none; }
+  .s-rj__go:hover { text-decoration-color: var(--ob-link-underline); }
+  .s-rj__job:has(.s-rj__go:hover) .s-rj__arrow { color: var(--ob-text); }
+  .s-rj__ex:hover { color: var(--ob-text); text-decoration-color: var(--ob-link-underline); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .s-rj__job::before { transition: transform var(--ob-dur-moderate) var(--ob-ease-out); }
+  .s-rj__go { transition: text-decoration-color var(--ob-dur-base) var(--ob-ease-out); }
+  .s-rj__arrow { transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out); }
+  .s-rj__ex { transition: color var(--ob-dur-base) var(--ob-ease-out), text-decoration-color var(--ob-dur-base) var(--ob-ease-out); }
+  .s-rj__job:has(.s-rj__go:focus-visible) .s-rj__arrow { translate: var(--ob-space-2) 0; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .s-rj__job:has(.s-rj__go:hover) .s-rj__arrow { translate: var(--ob-space-2) 0; }
+}
+
+/* ---- Narrower ------------------------------------------------------------------------------------------------------- */
+
+/* 2 by 3: the first 2 cells open on the ink rule. */
+@media (max-width: 1079.98px) {
+  .s-rj__jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-rj__job:nth-child(3) { border-top-color: var(--ob-line); }
+}
+
+/* The line takes the row: the link to every recipe closes the block under the jobs, a clear step below the last row's
+   examples so it never reads as a third. */
+@media (max-width: 859.98px) {
+  .s-rj__body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "h"
+      "line"
+      "jobs"
+      "all";
+  }
+  .s-rj__jobs { margin-top: var(--ob-space-40); }
+  .s-rj__all { justify-self: start; margin-top: var(--ob-space-40); }
+}
+
+/* A phone: 6 slim rows, 64px each, the name over its line with a chevron at the right, each row 1 link. The examples
+   wait on the job's page. A press lights the whole row, edge to edge. */
+@media (max-width: 639.98px) {
+  .s-rj__jobs { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: var(--ob-space-28); }
+  .s-rj__job {
+    gap: var(--ob-space-2);
+    justify-content: center;
+    min-height: var(--ob-space-64);
+    padding: var(--ob-space-8) var(--ob-space-32) var(--ob-space-8) 0;
+  }
+  .s-rj__job:nth-child(n + 2) { border-top-color: var(--ob-line); }
+  .s-rj__name {
+    font: var(--ob-type-body);
+    font-weight: var(--ob-weight-semibold);
+    letter-spacing: -.01em;
+    line-height: 1.35;
+  }
+  /* A line that needs 2 lines splits evenly, so its last words never trail. */
+  .s-rj__promise { text-wrap: balance; }
+  .s-rj__arrow,
+  .s-rj__eg { display: none; }
+  .s-rj__chev {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: var(--ob-icon-md);
+    height: var(--ob-icon-md);
+    translate: 0 -50%;
+  }
+  .s-rj__go::after {
+    inset: 0 calc(var(--s-gutter) * -1);
+    border-radius: 0;
+    transition: background-color var(--ob-dur-fast) var(--ob-ease-out);
+  }
+  .s-rj__go:active::after { background-color: var(--ob-state-pressed); }
+  .s-rj__go:focus-visible::after { outline-offset: var(--ob-focus-offset-inset); }
+  .s-rj__all { margin-top: var(--ob-space-16); }
+}
+
+@media (forced-colors: active) {
+  .s-rj__job::before { background: CanvasText; }
+  .s-rj__go:focus-visible::after { outline-color: Highlight; }
+}
