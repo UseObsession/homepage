@@ -64,6 +64,21 @@
 
 .s-hw-note { padding-left: calc(var(--ob-space-24) + var(--ob-space-12)); }
 
+/* ---- Tablet (720px to 1199px): each slice beside its words, the rail still down the numbers -----------------------
+   The words take 5 parts and the slice 6, so the width is used and the 4 keep their order down the rail. The note sits
+   under the slices' column: the number's column and 2 gaps, the words' 5 of 11 parts, then the slice's margin. */
+@media (min-width: 720px) and (max-width: 1199.98px) {
+  .s-hw-steps { gap: var(--ob-space-24); }
+  .s-hw-step { grid-template-columns: var(--ob-space-24) minmax(0, 5fr) minmax(0, 6fr); grid-template-rows: auto auto 1fr; }
+  .s-hw-step:not(:last-child)::before { bottom: calc(4px - var(--ob-space-24)); }
+  .s-hw-slice { grid-column: 3; grid-row: 1 / span 3; max-width: none; margin: 0 0 0 var(--ob-space-24); }
+  .s-hw-note {
+    padding-left: calc(
+      var(--ob-space-24) * 2 + var(--ob-space-12) * 2 + (100% - var(--ob-space-24) - var(--ob-space-12) * 2) * 5 / 11
+    );
+  }
+}
+
 /* ---- The slice: a few of the app's parts, on ink ------------------------------------------------------------------ */
 .s-hw-slice {
   display: grid;
@@ -224,7 +239,11 @@
 }
 
 /* 4 Where findings go, and the picked format's own setting. */
-.s-hw-slice--formats { gap: var(--ob-space-8); }
+.s-hw-slice--formats { container-type: inline-size; gap: var(--ob-space-8); }
+/* Where the 5 formats can't keep to 1 line they break 3 and 2, in 2 tidy columns, never 4 and CRM alone. */
+@container (max-width: 289.98px) {
+  .s-hw-slice--formats .s-hw-chips { display: grid; grid-template-columns: repeat(3, max-content); justify-items: start; }
+}
 .s-hw-k { font: 500 12px/1.2 var(--ob-font-sans); color: var(--ob-text-3); }
 .s-hw-dest {
   display: flex;
@@ -241,9 +260,10 @@
 .s-hw-mono { font: 400 12px/1 var(--ob-font-mono); color: var(--ob-text); }
 
 /* ---- Wide: 4 in a row on 1 panel, the rail along the numbers ------------------------------------------------------
-   The steps share the body's 4 columns and 2 rows (subgrid), so every number, title and slice lines up across, and the
-   panel fills the slices' row behind them. Without subgrid the stacked layout stays. */
-@media (min-width: 1080px) {
+   From 1200px, where James's band above also turns to a row. The steps share the body's 4 columns and 2 rows (subgrid),
+   so every number, title and slice lines up across, and the panel fills the slices' row behind them. Without subgrid
+   the stacked layout stays. */
+@media (min-width: 1200px) {
   @supports (grid-template-rows: subgrid) {
     .s-hw-body { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; }
     .s-hw-panel { display: block; grid-column: 1 / -1; grid-row: 2; border-radius: var(--ob-radius-lg); }
@@ -262,7 +282,16 @@
       background-color: var(--s-rule, var(--ob-line-strong));
     }
     .s-hw-step:last-child .s-hw-num::after { margin-right: calc(var(--ob-space-32) * -1); }
-    .s-hw-slice { grid-column: auto; grid-row: auto; gap: 12px; max-width: none; margin: 0; padding: 18px 20px 20px; border-radius: 0; }
+    /* The sides narrow a little under about 1430px, so the typed line keeps its whole placeholder down to 1200. */
+    .s-hw-slice {
+      grid-column: auto;
+      grid-row: auto;
+      gap: 12px;
+      max-width: none;
+      margin: 0;
+      padding: 18px clamp(16px, 1.4vw, 20px) 20px;
+      border-radius: 0;
+    }
     .s-hw-slice.ob-object { background: transparent; box-shadow: none; }
     .s-hw-step + .s-hw-step .s-hw-slice { box-shadow: var(--ob-border-hair) 0 0 var(--ob-line) inset; }
     .s-hw-note { grid-column: 1 / -1; grid-row: 3; margin-top: var(--ob-space-12); padding-left: 0; }
