@@ -35,6 +35,26 @@
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
 }
 .s-ov__stage--pdf { padding: var(--ob-space-32); }
+/* A format whose tab names a tool: the tool's mark sits over its object, part of it and centred with it, in bone on the
+   black glass (both themes). It lines up with the object's own axis: the top left edge of a card or a table (16px
+   over it), the centre line of the workflow's tree (24px over it, the tree's own link), or its rail's left edge once
+   the tree folds into a rail. The object keeps its own width (--s-ov-w), so the mark meets its edge. */
+.s-ov__obj {
+  display: grid;
+  justify-items: start;
+  gap: var(--ob-space-16);
+  width: 100%;
+  max-width: var(--s-ov-w, 640px);
+  min-width: 0;
+}
+.s-ov__obj > :not(.s-ov__dest) { justify-self: stretch; }
+.s-ov__obj--slack { --s-ov-w: 520px; }
+.s-ov__obj--clay { --s-ov-w: 640px; }
+.s-ov__obj--workflow { --s-ov-w: 680px; container-type: inline-size; justify-items: center; gap: var(--ob-space-24); }
+@container (max-width: 559px) {
+  .s-ov__obj--workflow > .s-ov__dest { justify-self: start; }
+}
+.s-ov__dest { --s-pm-scale: 1.05; --s-pm-gap: var(--ob-space-24); }
 .s-ov__mock {
   display: grid;
   place-items: center;
@@ -47,7 +67,10 @@
   .s-ov__stage { height: 520px; padding: var(--ob-space-24); }
 }
 @media (max-width: 519px) {
-  .s-ov__stage { height: 488px; padding: var(--ob-space-16); }
+  /* As tall as the tablet's stage (488 before the marks), so the workflow keeps its mark line and its note. */
+  .s-ov__stage { height: 520px; padding: var(--ob-space-16); }
+  .s-ov__obj { gap: var(--ob-space-12); }
+  .s-ov__dest { --s-pm-scale: .9; --s-pm-gap: var(--ob-space-20); }
   .s-ov__stage--pdf { padding: var(--ob-space-16); }
 }
 

@@ -139,7 +139,7 @@ Free Cloudflare plan (Workers static assets). Everything is static and made at b
 ## 9. Capture
 
 - 1 form component (`.ob-pill-form`), 2 kinds: `waitlist` (email) and `mystery` (store address first, then email). Clear errors (message, danger edge, `aria-invalid`, `aria-describedby`), busy and done states, a hidden bot field, no double submit, works without JavaScript as a plain POST fallback where possible.
-- After a sign up the form becomes the sign up card (3 Oct, `_research/onboarding/SIGNUP.md` in the workspace): name and company, who they are where the page doesn't say, 4 tap questions for that reader, an optional note, then 1 next step. Every step skippable; the questions live in `src/content/signup.ts`.
+- After a sign up the form becomes the sign up card (3 Oct, `_research/onboarding/SIGNUP.md` in the workspace): name and company, who they are where the page doesn't say, 4 tap questions for that reader, an optional note, then 1 next step. Every step skippable; the questions live in `src/content/signup.ts`. The card loads on demand, never with the page (README, "Waitlist").
 - `waitlist/Code.js` keeps 1 row per sign up (found by its sign up ID, never by email alone), every answer in its own column found by header (old rows unaffected). James redeploys it before the site change ships.
 - A short privacy line under every form: what we keep and why.
 

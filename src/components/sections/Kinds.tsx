@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
-import type { Kinds as KindsContent, Recipe, RecipeId } from '../../content/types'
+import { catalog, type CatalogRecipe } from '../../content/catalog'
+import type { Kinds as KindsContent, RecipeId } from '../../content/types'
 import './Kinds.css'
 
 /* Every kind of reader it fits (docs/REBUILD.md 2, beat 6): 1 chip per kind (forms.css option chips, single choice, so
@@ -8,8 +9,7 @@ import './Kinds.css'
    The open kind swaps in with the system's panel entrance (.ob-anim-rise) and is announced politely. Every kind's
    result is in the page (the others hidden), so crawlers and llms-full.txt read every kind and its recipe links. */
 
-const RECIPES = import.meta.glob('../../content/recipes/*.ts', { eager: true, import: 'recipe' }) as Record<string, Recipe>
-const byId = new Map<RecipeId, Recipe>(Object.values(RECIPES).map((r) => [r.id, r]))
+const byId = new Map<RecipeId, CatalogRecipe>(catalog.recipes.map((r) => [r.id, r]))
 
 export function Kinds({ kinds, id }: { kinds: KindsContent; id?: string }) {
   const uid = useId()
@@ -17,7 +17,7 @@ export function Kinds({ kinds, id }: { kinds: KindsContent; id?: string }) {
   /* The panel only moves once the reader picks: nothing animates on load. */
   const [picked, setPicked] = useState(false)
   const kind = kinds.items[sel] ?? kinds.items[0]
-  const recipesOf = (ids: RecipeId[]) => ids.map((r) => byId.get(r)).filter((r): r is Recipe => !!r)
+  const recipesOf = (ids: RecipeId[]) => ids.map((r) => byId.get(r)).filter((r): r is CatalogRecipe => !!r)
   const headId = `${uid}-h`
 
   return (

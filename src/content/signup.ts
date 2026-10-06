@@ -1,3 +1,4 @@
+import { keepArrivedFrom } from './signupFlags'
 import type { RoleId } from './types'
 
 /* The sign up card's words and the question bank (components/SignupSteps, _research/onboarding/SIGNUP.md in the
@@ -498,9 +499,10 @@ export const signup = {
     other: { label: 'What do you do?', placeholder: 'e.g. Operations lead' },
   },
 
-  /* In place of the first job: a free mystery shop or AI agent check with its store or agent, and a recipe page's own
-     question (Capture.roles), whose answer goes in "Job detail". A recipe question in `skipRecipe` is never asked:
-     "Which of these is you?" already covers it. */
+  /* In place of the first job: the page's own question (Capture.roles; on a recipe page the recipe's, on the agencies
+     use case the format of the audits), whose answer goes in "Job detail"; else, for a free mystery shop or AI agent
+     check with its store or agent, whose it is. A page question in `skipOwn` is never asked: "Which of these is you?"
+     already covers it. */
   page: {
     mystery: {
       firstJob: 'Free mystery shop',
@@ -521,8 +523,12 @@ export const signup = {
         options: [{ id: 'ours', label: 'Ours' }, { id: 'client', label: 'A client’s, with their OK' }, { id: 'vendor', label: 'A vendor’s we’re trialling, with their OK' }],
       } as SignupQuestion,
     },
-    recipe: { short: 'Recipe question', run: '{recipe}, planned on the set up email' },
-    skipRecipe: ['What’s your role?'],
+    recipe: { run: '{recipe}, planned on the set up email' },
+    /* A page's own question names itself in the squares and on the thank you (Capture.roles `short`); without one: */
+    own: { short: 'Question' },
+    skipOwn: ['What’s your role?'],
+    /* Pages that are not a reader's own but know their reader (the reader's own page is `readers`, `path`). */
+    readerOf: { '/use-cases/mystery-shopping-for-ecommerce-agencies': 'agency' } as Record<string, RoleId>,
   },
 
   /* Step 8. The placeholder is the reader's own (readers above). */
@@ -638,8 +644,6 @@ export const signup = {
     no: 'No',
   },
 
-  /* The referring site's host (or utm_source) in the sheet's "Arrived from" column. Off until the founders decide
-     (SIGNUP.md, decisions for 5 Oct): switching it on also adds "the site that sent you there" to the privacy notice
-     (content/site.ts reads this flag), so the notice stays true. */
-  keepArrivedFrom: false,
+  /* The "Arrived from" column's switch, kept in content/signupFlags.ts. */
+  keepArrivedFrom,
 }

@@ -1,0 +1,16 @@
+/* The hero's words are on the page from its first frame (a motion change for Seun to confirm: docs/REBUILD.md 5).
+   They still enter in the design system's hero stagger, rising into place and sharpening (motion.css ob-hero), but
+   without fading in from nothing: a headline that fades in only counts as shown once the fade ends, which on a phone is
+   about a second after the page has painted. The console still fades in last (.ob-anim-hero-object). Deleting this
+   file brings the fade back, nothing else. */
+@keyframes s-hero-words {
+  from {
+    translate: 0 var(--ob-shift-md);
+    filter: blur(var(--ob-enter-blur));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ob-anim-hero > * {
+    animation-name: s-hero-words;
+  }
+}

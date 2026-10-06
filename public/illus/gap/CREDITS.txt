@@ -1,0 +1,156 @@
+The gap story's photographs (components/sections/GapStory, content/hollin.ts)
+==========================================================================
+
+The files in this folder, cut from the finals below with the same grade (crops differ, so the store reads at the size
+it is drawn). Every photograph is from Pexels under the Pexels licence: free for commercial use, no attribution
+required, no people, no logos, no readable text. The store, hollin, is invented and lives at hollin.example.
+
+  hollin-hero-300/600.webp           Pexels 31145680  Letícia Alvares  8:3, the home page hero
+  hollin-hero-tall-160/320.webp      Pexels 31145679  Letícia Alvares  4:5, the phone home page and the sign up
+  hollin-shirt-120/240.webp          Pexels 22441291  dayong tien      1:1, the Weekend Shirt
+  hollin-pillowcases-120/240.webp    Pexels 31145678  Letícia Alvares  1:1, the Pillowcase Pair
+  hollin-mug-120/240.webp            Pexels 31145673  Letícia Alvares  1:1, the Stoneware Mug
+  hollin-email-240/480.webp          Pexels 31145662  Letícia Alvares  8:3, the welcome email header (the book in the
+                                                                       source stays cropped out)
+
+The photo edit that chose them follows, as written.
+
+--------------------------------------------------------------------------
+
+# Gap story store photography: credits, choices, cut
+
+Photo edit for the invented linen store in `GapStory` (homepage hero, product grid, welcome email).
+Every final is from Pexels under the Pexels licence. Nothing in any final shows a person, a logo or readable text.
+
+## 0. The brand name: Fernleaf collides, rename it
+
+"Fernleaf" is a real brand name already in use:
+
+- **Wayfair UK sells home goods under its own "Fernleaf" brand**: throws, cushions, duvet covers, rugs, furniture, priced in £. That is our exact category in our exact market.
+  https://www.wayfair.co.uk/brand/bnd/fernleaf-b59565.html
+- **Fonterra's Fernleaf** is a major dairy brand in Southeast Asia.
+  https://www.fonterra.com/sea/en/our-stories/media/Fernleaf-Proteinmilk-powder.html
+
+**Suggested replacement: Hollin, at `hollin.example`.** Hollin is the Northern English dialect word for holly. A search found no apparel, homeware or linen brand by that name. The only notable use is a small UK behavioural consultancy (hollin.co.uk) in an unrelated field.
+
+Two other names were checked and rejected:
+- **Teasel**: "Teasel Home" already sells blankets and cushion covers.
+- **Heddle**: too close to Heddels, a menswear site.
+
+The final name belongs to whoever owns the brand slot. `fernleaf.example` currently appears in `src/content/pages/home.ts` and `marketing.ts`.
+
+## 1. Briefs (written before searching)
+
+| Slot | What the photograph has to do that the copy cannot |
+|---|---|
+| (a) Homepage hero, 16:9 desktop and 4:5 phone | In one glance the store has to read as a real brand with taste: linen lived in, morning light, warm. The other tools only see this window as a frozen snapshot. The image must still read at about 300px wide inside the dark scene, so it needs one subject and big tonal shapes. |
+| (b) Product grid, 4:5, three or four tiles | The range as a buyer meets it: a shirt, the bedding, an object for the home, all in one light, one palette and one grade. It should look like a catalogue a merchandiser signed off, not four separate searches. Each object needs a silhouette that reads at about 130px. |
+| (c) Welcome email header, 2:1 | A close, tactile detail from the hero's world, so the email in the agent's inbox reads as the same brand's own send. It needs to be warm enough that the silence after it lands. |
+
+## 2. Pool
+
+The pool had **190 labelled candidates** across Pexels and Burst by Shopify. Some candidates count towards more than one slot:
+
+| Slot | Candidates | Pexels | Burst |
+|---|---|---|---|
+| Hero | 84 | 64 | 20 |
+| Products | 67 | 49 | 18 |
+| Email | 39 | 26 | 13 |
+
+On top of that pool, **350 neighbouring Pexels frames** were checked to find complete shoots. Pexels gives a batch upload consecutive IDs, so the IDs around a strong frame often show the rest of that session.
+
+How the pool was found:
+- Pexels pages came from Exa and web search.
+- Burst came from its search and category pages: linen shirt, bedroom, shirt, pillow and home.
+
+Contact sheets, all in `sheets/`:
+- One sheet per slot: `slot_hero.jpg`, `slot_prod.jpg`, `slot_email.jpg`.
+- Round sheets: `r1_all.jpg` to `r4_all.jpg` and `rb_all.jpg`.
+- Shoot probes: `probe_*.jpg`.
+- Final comparisons: `look_*.jpg`.
+- Checks: `crop_preview.jpg`, `scene_check.jpg` (graded finals at display size on a dark ground), `grade_before_after.jpg` and `finals.jpg`.
+
+## 3. The cut, and why
+
+- **Posed or eye contact.** Most of the people shots went for this. Burst's white-shirt-by-the-water series smiles to the lens (24978, 24979, 24986). So do px 29963935, px 7445142 (sleep-mask smile) and Burst woman-waking-up.
+- **Dated.** px 821649 (2018 flat lay). Burst bedroom-in-neutral-tones has a 2015-style room with a ceiling fan. Burst headphones-and-laptop-on-bed and px 4050387 show a laptop.
+- **Another brand, or readable text.** These were cut:
+  - px 4050387: a VOGUE print on the wall.
+  - px 5637630: a "Restaurant" awning.
+  - px 37704838–51: a white tee with a visible patch label.
+  - px 1112378: a slogan shirt.
+  - px 32795039–61: a children's brand's product shoot.
+  - px 27399621: a throw-blanket seller's ad.
+- **Wrong story.** px 9462626 shows hotel housekeeping. px 28576616–36 is a cleaning and ironing series. Neither belongs on a linen brand's homepage.
+- **Incoherent grade or light.**
+  - Burst's house style is cool, high-key white, and its backdrops are loud: orange tee 17873, pink wall 10754, peach mug.
+  - px 4045542 and px 33312399 are beautiful, but too cold, or too orange with a dark wood headboard.
+  - px 7445114–45 (Katrin Bolovtsova) is coherent, but white and cool, and it reads stock.
+- **Unreadable at 130px.** Texture-only frames went: px 7794365, 8774406, 6630897, 19743612, 8793483. So did the e-reader frames from the chosen shoot (31145665–70), which also show a device.
+- **Near misses kept on record:**
+  - Burst `unmade-dusty-pink-bedding` (19548) is the closest Burst frame and a good alternate for the bedding tile.
+  - Burst `woman-resting-her-feet-by-the-window` (10286) is a lovely candid frame, but it is knitwear in green light, not this world.
+  - px 15764810–13 (cream blouse holding folded linen) is warm, but blouse-specific.
+- **Two shoots win, so the grid is coherent:**
+  - **Letícia Alvares, 14 Mar 2025.** A blush-plaster bedroom with an iron bed, a hard morning sun slash, a grey stoneware mug and an oak board. One session gives the hero, the phone hero, two product tiles and the email.
+  - **dayong tien.** Linen shirts on a wooden hanger hung from a branch, against a warm plaster wall. Collars were checked at full resolution and carry no labels. The photographer is an individual (also on Unsplash as tian dayong), not a brand.
+  - The two walls already share a hue, 18–24°. The grade closes the remaining gap in exposure. The grid reads the way real brands shoot: apparel in the studio, homeware in the room.
+
+**No people in any final.** The agent is the only visitor in this story. An empty, sunlit, slept-in bed says "lived in" without making the hero about a model. It also avoids any identifiable person, so the casting question does not arise.
+
+## 4. Finals (`final/`, WebP, sizes in KB)
+
+| File (400 / 800) | Pexels ID | Source page | Photographer | Crop | Why it lives |
+|---|---|---|---|---|---|
+| `hero-16x9-400.webp` 8.7 / `-800` 19.3 | 31145680 | https://www.pexels.com/photo/31145680/ | Letícia Alvares | full width, 16:9, centred | The sun slash and iron bed make the store look like a real brand with an eye in one glance. The plain wall at upper left takes a headline. |
+| `hero-4x5-400.webp` 14.5 / `-800` 35.2 | 31145679 | https://www.pexels.com/photo/cozy-minimalist-bedroom-with-soft-morning-light-31145679/ | Letícia Alvares | 4:5 from 2:3, centre y 0.55 | The same scene shot natively in portrait, so the phone layout keeps the same picture rather than a squeezed crop. |
+| `product-linen-shirt-400.webp` 15.6 / `-800` 72.5 | 22441291 | https://www.pexels.com/photo/shirt-on-hanger-on-branch-22441291/ | dayong tien | 4:5, 76% width, sand base cropped out | Real linen slub is visible and the silhouette reads at 130px. This is the shirt the app screens already sell. |
+| `product-pillowcases-400.webp` 11.6 / `-800` 27.0 | 31145678 | https://www.pexels.com/photo/31145678/ | Letícia Alvares | 4:5, 64% width, tight on the pillow | The bedding from the hero, cropped tight so it reads as "the pillowcase" rather than a copy of the hero. |
+| `product-stoneware-mug-400.webp` 14.8 / `-800` 44.0 | 31145673 | https://www.pexels.com/photo/31145673/ | Letícia Alvares | 4:5, 86% width, door frame cropped out | A hand-thrown object on the same linen and oak. It makes the store a homeware brand as well as an apparel brand. |
+| `product-short-sleeve-shirt-400.webp` 12.3 / `-800` 48.2 | 22441292 | https://www.pexels.com/photo/22441292/ | dayong tien (same session) | 4:5, 76% width | A second apparel piece that gives the range breadth. Use it only for a 4-up grid. |
+| `email-header-400.webp` 12.4 / `-800` 29.1 | 31145662 | https://www.pexels.com/photo/31145662/ | Letícia Alvares | 2:1, top band only. The open book (a Bible) is cropped out. | A top-down cup on the oak board on the same sheets: tactile, warm and new to the viewer, yet plainly the same brand. It reads at 300px. |
+| `email-header-alt-400.webp` 13.7 / `-800` 31.5 | 31145677 | https://www.pexels.com/photo/31145677/ | Letícia Alvares | 2:1, centre y 0.74 | Alternate: the stoneware mug on the hero bed. This is the more literal product shot, but it repeats the bed a third time. |
+
+Every file is well under the size budget: the largest 400px file is 15.6 KB against 60 KB, and the largest 800px file is 72.5 KB against 120 KB. WebP was saved at quality 90 and method 6, so the plaster gradients do not band.
+
+**Attribution:**
+- Confirmed on the photo pages: 31145679, 31145659, 31145660 and 31145675 (Letícia Alvares), and 22441291 and 22441297 (dayong tien).
+- The other IDs are consecutive frames from the same upload sessions.
+- The bare `pexels.com/photo/<ID>/` URLs redirect to each photo's page. Check the credit there if a credit line is ever printed.
+
+**Chosen IDs:** Pexels 31145680, 31145679, 31145678, 31145673, 31145662, 31145677, 22441291 and 22441292.
+
+**Recommended set for the illustration:**
+- **Hero:** 16:9 for desktop, 4:5 for phone.
+- **Grid:** 3-up of shirt, pillowcases and mug. Three larger tiles read better than four at this scale. For a 4-up grid, add the short-sleeve shirt last.
+- **Email:** `email-header`.
+- **Receipt thumbnails:** the 400px files work for these.
+
+## 5. Grade (`work/grade.py`, applied at full resolution before resizing)
+
+1. **Pre-balance per shoot.**
+   - **Studio shirts:** RGB gain ×(1.00, 0.978, 0.945) and gamma 1.10. This warms and slightly darkens the studio wall towards the bedroom's blush.
+   - **Bedroom:** shadow lift of 0.05 and gamma 0.94, so the tiles read inside the dark Obsession scene.
+   - **Email still life:** shot cooler than the rest, so it gets a warm gain of ×(1.02, 1.00, 0.962).
+2. **Shared family look.**
+   - A matte tone curve: black point 9, white point 247, and a gentle S of 0.08.
+   - A light split tone: about +3R/−2.5B in the shadows and +2R/−2B in the highlights.
+   - Saturation ×0.93.
+   - After resizing, a light sharpen (unsharp mask, radius 0.7, 55%).
+
+The grade is meant to go unnoticed: `grade_before_after.jpg` shows how small the change is. It is not a filter.
+
+Rebuild everything with `cd work && python3 build.py`. Crops live in `work/crops.py`.
+
+## 6. Licence
+
+**Pexels licence** (https://www.pexels.com/license/):
+- Free for commercial use.
+- Modifying (cropping and grading) is allowed.
+- No attribution is required.
+- Do not sell unaltered copies, and do not imply endorsement by the photographer.
+- No identifiable people appear in any final.
+
+**Burst** (Shopify's free licence) was in the pool, but no Burst image made the finals.
+
+The store is invented and lives at a `.example` domain. No real company, product photography from a real brand, person or readable logo appears anywhere.

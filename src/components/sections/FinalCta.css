@@ -44,6 +44,9 @@
   justify-self: center;
 }
 
+/* The quiet second path under the form (final.link). */
+.s-final__link { margin-top: var(--ob-space-16); }
+
 /* In a centred column the form's micro line and privacy line centre under the pill too. */
 .s-final__form .ob-pill-foot,
 .s-final__form .s-capture__privacy { padding-inline: 0; text-align: center; }

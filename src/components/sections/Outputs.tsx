@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { outputPartners } from '../../content/partners'
 import { outputFormats } from '../../content/sample'
 import type { Cta, ViewerFormat, ViewerFormatId, ViewerView } from '../../content/types'
 import { Mark, StatusMark } from '../Logo'
+import { PartnerRow } from '../PartnerMark'
+import { hasPartner } from '../partnerFiles'
 import { CodeLines, SectionHead } from './DevSection'
 import './Outputs.css'
 
@@ -18,6 +21,7 @@ const outputsUi = {
   report: 'Read the full report',
   from: 'From',
   to: 'To',
+  lands: 'Lands in',
 }
 
 export type OutputsUi = typeof outputsUi
@@ -260,6 +264,12 @@ function Mock({ format, ui }: { format: ViewerFormat; ui: Ui }) {
 
 /* ---- The viewer --------------------------------------------------------------------------------------------------- */
 
+/* The tools a format's tab names, when at least 1 of them can be drawn. */
+const dest = (id: ViewerFormatId) => {
+  const d = outputPartners[id]
+  return d && d.ids.some(hasPartner) ? d : undefined
+}
+
 type ViewerProps = {
   /* The run, in each format (content/sample.ts). */
   views?: ViewerFormat[]
@@ -307,31 +317,48 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
     el.classList.toggle('is-scroll-end', el.scrollLeft + el.clientWidth >= el.scrollWidth - 1)
   }, [])
 
+  /* Keeps tab i in view along the rail, clear of the 24px edge fade. Smooth only for a reader's pick, and never with
+     reduced motion. */
+  const reveal = useCallback((i: number, smooth: boolean) => {
+    const el = rail.current
+    const tab = tabs.current[i]
+    if (!el || !tab || el.scrollWidth <= el.clientWidth) return
+    const pad = 24
+    const left = tab.getBoundingClientRect().left - el.getBoundingClientRect().left + el.scrollLeft
+    const behavior = smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto'
+    if (left < el.scrollLeft + pad) el.scrollTo({ left: left - pad, behavior })
+    else if (left + tab.offsetWidth > el.scrollLeft + el.clientWidth - pad)
+      el.scrollTo({ left: left + tab.offsetWidth - el.clientWidth + pad, behavior })
+  }, [])
+
+  /* The observer reports once as it starts, after the browser's own layout: that first report brings the tab the viewer
+     opens on into view and measures the rail, so neither costs a layout of its own while the page hydrates. */
+  const opened = useRef(index)
   useEffect(() => {
     const el = rail.current
     if (!el) return
-    measure()
+    let first = true
+    const resized = () => {
+      if (first) reveal(opened.current, false)
+      first = false
+      measure()
+    }
     el.addEventListener('scroll', measure, { passive: true })
-    const ro = 'ResizeObserver' in window ? new ResizeObserver(measure) : null
-    ro?.observe(el)
+    const ro = 'ResizeObserver' in window ? new ResizeObserver(resized) : null
+    if (ro) ro.observe(el)
+    else resized()
     return () => {
       el.removeEventListener('scroll', measure)
       ro?.disconnect()
     }
-  }, [measure])
+  }, [measure, reveal])
 
+  /* After that, each new tab comes into view as it opens. */
   useLayoutEffect(() => {
-    const el = rail.current
-    const tab = tabs.current[index]
-    if (!el || !tab || el.scrollWidth <= el.clientWidth) return
-    /* Clear of the 24px edge fade. Smooth only for a reader's pick, and never with reduced motion. */
-    const pad = 24
-    const left = tab.getBoundingClientRect().left - el.getBoundingClientRect().left + el.scrollLeft
-    const behavior = picked && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto'
-    if (left < el.scrollLeft + pad) el.scrollTo({ left: left - pad, behavior })
-    else if (left + tab.offsetWidth > el.scrollLeft + el.clientWidth - pad)
-      el.scrollTo({ left: left + tab.offsetWidth - el.clientWidth + pad, behavior })
-  }, [index, picked])
+    if (opened.current === index) return
+    opened.current = -1
+    reveal(index, picked)
+  }, [index, picked, reveal])
 
   return (
     <div className="s-ov">
@@ -365,10 +392,19 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
           hidden={n !== index}
           className="s-ov__panel"
         >
-          {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. */}
+          {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. A format
+              whose tab names a tool carries that tool's mark over its object's top left edge, as part of the object
+              (content/partners.ts); the stage keeps its height, so moving between tabs never shifts the page. */}
           <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object`}>
             <div className={'s-ov__mock' + (picked ? ' ob-anim-rise' : '')}>
-              <Mock format={f} ui={ui} />
+              {dest(f.id) ? (
+                <div className={`s-ov__obj s-ov__obj--${f.view.kind}`}>
+                  <PartnerRow ids={dest(f.id)?.ids} label={`${ui.lands} ${f.label}`} note={dest(f.id)?.note} className="s-ov__dest" />
+                  <Mock format={f} ui={ui} />
+                </div>
+              ) : (
+                <Mock format={f} ui={ui} />
+              )}
             </div>
           </div>
           <div className={'s-ov__caption' + (picked ? ' ob-anim-fade' : '')}>

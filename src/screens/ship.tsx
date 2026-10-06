@@ -1,0 +1,96 @@
+/* The ship app screen: 1 720 x 450 window of the product, at rest on its finished scene; AppScreen adds .play to its
+   root to run the story. Its look and story: css/ship.css, loaded by the page, never imported here. Converted from
+   its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
+export function ShipScreen() {
+  return (
+    <div className="il appx-il app-ship"><div className="appx-fit"><div className="appx" role="img" aria-label="Launch morning for release v2.15, live at 06:02 with the launch email due at 08:00: a labelled test customer on a fresh UK number and inbox runs the release checklist, and the first order code LAUNCH20 is rejected at checkout. You click Hold the 08:00 send, and the email waits while a fix is drafted for your OK.">
+      <div className="ax-bar">
+        <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
+        <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Release v2.15</span>
+        <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
+        <span className="ax-team" aria-hidden="true"><span>AM</span><span>JO</span></span>
+      </div>
+      <div className="ax-body">
+        <aside className="ax-side">
+          <div className="ax-ws"><i>Y</i>Your company</div>
+          <nav className="ax-nav">
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
+            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Missions<em>24</em></a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 13.25h10.5M4.25 13.25V2.75h5.5v10.5M9.75 6.25h2v7" /><path d="M6.25 5.5h1.5M6.25 8h1.5M6.25 10.5h1.5" strokeLinecap="round" /></svg>Accounts</a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M1.75 8S4 3.75 8 3.75 14.25 8 14.25 8 12 12.25 8 12.25 1.75 8 1.75 8Z" /><circle cx="8" cy="8" r="1.9" /></svg>Rivals</a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.5 9.5h3l1 2h3l1-2h3M2.5 9.5 4 3.5h8l1.5 6v3.25h-11Z" /></svg>Needs you<span className="ax-badge"><span className="sh-n"><b>2</b><b>3</b></span></span></a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Records</a>
+          </nav>
+          <div className="ax-clients">
+            <p className="ax-side-h">Lists</p>
+            <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Rivals</a><a role="none"><i />Suppliers</a>
+          </div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
+        </aside>
+        <div className="ax-main">
+          <header className="ax-h sh-h ax-fade">
+            <h2>Release v2.15</h2>
+            <span className="ax-meta sh-meta sh-stk"><span className="m0">Launch email in<b>1 h <span className="sh-mm" /> m</b></span><span className="m1"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M6 4.75v6.5M10 4.75v6.5" /></svg>Launch email<b>held</b></span></span>
+            <span className="sh-id"><span className="sh-idav"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession agent for Your company</span>
+          </header>
+          <section className="ax-card sh-card ax-fade" style={{ '--d': '.08s' }}>
+            <header className="sh-ch">
+              <span className="sh-av"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="8" cy="5.75" r="2.5" /><path d="M3.5 13.25c.6-2.5 2.4-3.85 4.5-3.85s3.9 1.35 4.5 3.85" /></svg></span>
+              <div className="sh-who"><b>Test customer</b><span>Fresh number and inbox</span></div>
+              <span className="ax-chip sh-cp"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="4.5" y="1.75" width="7" height="12.5" rx="1.75" /><path d="M7 11.75h2" strokeLinecap="round" /></svg>+44 ···· 418</span>
+              <span className="ax-chip sh-cp"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="2.25" y="3.5" width="11.5" height="9" rx="1.5" /><path d="m2.75 4.5 5.25 4 5.25-4" /></svg>t1@useobsession.com</span>
+            </header>
+            <ol className="sh-ls">
+              <li className="sh-r" style={{ '--a': '.45s', '--b': '.85s' }}>
+                <span className="sh-s"><i className="p" /><svg className="sig st-working w" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span className="ax-tick f" /></span>
+                <svg className="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="6.5" cy="5.5" r="2.5" /><path d="M2 13.25c.55-2.4 2.25-3.75 4.5-3.75s3.95 1.35 4.5 3.75M12.75 4.5v4M10.75 6.5h4" /></svg>
+                <span className="l">Sign up</span><time>06:04</time><span className="du">14 s</span>
+              </li>
+              <li className="sh-r" style={{ '--a': '.85s', '--b': '1.2s' }}>
+                <span className="sh-s"><i className="p" /><svg className="sig st-working w" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span className="ax-tick f" /></span>
+                <svg className="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><path d="M3.25 3.25h9.5a1 1 0 0 1 1 1v5.5a1 1 0 0 1-1 1H7.5l-3 2.25v-2.25H3.25a1 1 0 0 1-1-1v-5.5a1 1 0 0 1 1-1Z" /></svg>
+                <span className="l">Login code by SMS</span><time>06:05</time><span className="du">8 s</span>
+              </li>
+              <li className="sh-r" style={{ '--a': '1.2s', '--b': '1.65s' }}>
+                <span className="sh-s"><i className="p" /><svg className="sig st-working w" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span className="ax-tick f" /></span>
+                <svg className="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="2.25" y="3.5" width="11.5" height="9" rx="1.5" /><path d="m2.75 4.5 5.25 4 5.25-4" /></svg>
+                <span className="l">Welcome email</span><time>06:07</time><span className="du">2 min</span>
+              </li>
+              <li className="sh-fail" style={{ '--a': '1.65s', '--b': '2.25s' }}>
+                <div className="sh-r">
+                  <span className="sh-s"><i className="p" /><svg className="sig st-working w" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><svg className="sig st-needs moving f" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>
+                  <svg className="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><path d="M2.75 3.5v4.1l5.6 5.65 4.9-4.9L7.6 2.75H3.5a.75.75 0 0 0-.75.75Z" /><circle cx="5.6" cy="5.6" r=".95" /></svg>
+                  <span className="l">First order code</span><time>06:09</time><span className="du">Rejected</span>
+                </div>
+                <div className="sh-x"><div className="sh-xi"><div className="sh-dc">
+                  <div className="ax-shot sh-cap"><div className="sh-pg">
+                    <div className="sh-it"><i className="tl" /><span className="sh-bars"><i /><i /></span></div>
+                    <div className="sh-fd"><span className="in">LAUNCH20</span><i className="ap" /></div>
+                    <p className="sh-er"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.6" stroke="currentColor" strokeWidth="1.2" /><path d="M6 3.6v2.9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /><circle cx="6" cy="8.35" r=".75" fill="currentColor" /></svg>Code not valid</p>
+                    <i className="py" />
+                  </div></div>
+                  <div className="sh-tx">
+                    <h3>Code <span className="cd">LAUNCH20</span> rejected at checkout</h3>
+                    <p>Your 08:00 email promises this code.</p>
+                    <div className="sh-acts">
+                      <div className="a1"><span className="ax-btn ghost">Ship anyway</span><span className="ax-btn sh-hold"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M6 4.75v6.5M10 4.75v6.5" /></svg>Hold the 08:00 send</span></div>
+                      <div className="a2"><span className="ax-tick" /><span className="hb">Held by you</span><span className="ht">06:11</span><span className="ax-btn ghost">Review fix</span></div>
+                    </div>
+                  </div>
+                </div></div></div>
+              </li>
+              <li className="sh-r sh-r5" style={{ '--a': '2.3s', '--b': '3s' }}>
+                <span className="sh-s"><i className="p" /><svg className="sig st-working w" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span className="ax-tick f" /></span>
+                <svg className="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1.75" y="3.5" width="12.5" height="9" rx="1.5" /><path d="M1.75 6.5h12.5M4.25 9.75h2.5" /></svg>
+                <span className="l">Stop before payment</span><time>06:10</time><span className="du">31 s</span>
+              </li>
+            </ol>
+          </section>
+          <p className="sh-note ax-fade" style={{ '--d': '.2s' }}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg>Fixes go live after your OK</p>
+          <svg className="ax-ptr sh-ptr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v12.2l3.1-3 2.1 4.6 2-.9-2.1-4.5h4.3Z" /></svg>
+        </div>
+      </div>
+    </div></div></div>
+  )
+}

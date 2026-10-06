@@ -18,18 +18,19 @@ import {
   saveNext,
   setAnswer,
   setText,
-  useSignup,
   type NextKey,
   type SignupState,
   type Step,
 } from '../lib/signup'
+import { useSignup } from '../lib/signupStore'
 import { hostOf, isAddress, isAgent, saveStatus } from '../lib/waitlist'
 import { StatusMark } from './Logo'
-import './SignupSteps.css'
 
 /* The sign up card (SIGNUP.md in the workspace, content/signup.ts for every word). The thank you after the email
    becomes this card in the same spot: 1 question at a time, a row of squares for progress (each answered or skipped
    square is a way back), Back and Skip on every step, then a thank you with 1 next step.
+   - It is its own chunk, loaded on demand (lib/signupStore.ts, loadCard), never with the page. CaptureForm imports its
+     styles, so they keep their place in the site's 1 sheet, and the prerender writes them into every page with a form.
    - Every step sits in 1 grid cell, the hidden ones inert and invisible, so on a wide card the card keeps the height
      of its tallest step and the page never jumps; on a phone each step takes its own height (SignupSteps.css).
    - Single choice: a tap or click picks and moves on 250ms later, once the chip has filled. A pick made from the keys
@@ -75,6 +76,12 @@ function withValues(t: string, values: Record<string, string>): ReactNode[] {
     )
   })
 }
+
+/* The words a free shop or check says: the page's own (Capture.done), else the shared ones. */
+const doneOf = (s: SignupState) => s.ctx.done ?? (s.ctx.agent ? captureCopy.done.verify : captureCopy.done.mystery)
+
+/* The store or AI agent is set without its https://, as 1 piece. */
+const shopValues = (s: SignupState) => ({ store: hostOf(s.ctx.store ?? ''), agent: hostOf(s.ctx.agent ?? ''), email: s.email })
 
 export function SignupSteps({ owner }: { owner: string }) {
   const s = useSignup()
@@ -210,15 +217,7 @@ function Card({ s, owner }: { s: SignupState; owner: string }) {
 
   return (
     <div className="ob-confirm s-signup__card">
-      <Title
-        text={
-          s.ctx.store
-            ? withValues(captureCopy.done.mystery.title, { store: hostOf(s.ctx.store) })
-            : s.ctx.agent
-              ? withValues(captureCopy.done.verify.title, { agent: hostOf(s.ctx.agent) })
-              : copy.card.title
-        }
-      />
+      <Title text={s.ctx.store || s.ctx.agent ? withValues(doneOf(s).title, shopValues(s)) : copy.card.title} />
       <p className="ob-confirm-line s-signup__line">{copy.card.line}</p>
 
       <div className="s-signup__bar">
@@ -496,7 +495,9 @@ function Thanks({ s, owner }: { s: SignupState; owner: string }) {
   const save = useSyncExternalStore(saveStatus.subscribe, saveStatus.get, () => 'idle' as const)
   const first = s.marks.name === 'answered' ? s.name.trim().split(/\s+/)[0] : ''
   const reply = copy.thanks.replyTime ? ` ${copy.thanks.replyTime}` : ''
-  const line = s.ctx.store || s.ctx.agent ? copy.thanks.report : s.reader === 'developer' ? copy.thanks.developer : copy.thanks.line
+  const shop = !!(s.ctx.store || s.ctx.agent)
+  const done = s.ctx.done
+  const line = shop ? (done?.line ?? copy.thanks.report) : s.reader === 'developer' ? copy.thanks.developer : copy.thanks.line
   const next = nextStepFor(s)
   const flow = flowOf(s).filter((x) => x.id !== 'email')
 
@@ -517,8 +518,8 @@ function Thanks({ s, owner }: { s: SignupState; owner: string }) {
 
   return (
     <div className="ob-confirm s-signup__card s-signup__card--thanks ob-anim-rise is-slow">
-      <Title text={first ? fill(copy.thanks.title, { name: first }) : copy.thanks.titlePlain} />
-      <p className="ob-confirm-line s-signup__line">{withValues(line, { email: s.email, reply })}</p>
+      <Title text={shop && done ? withValues(done.title, shopValues(s)) : first ? fill(copy.thanks.title, { name: first }) : copy.thanks.titlePlain} />
+      <p className="ob-confirm-line s-signup__line">{withValues(line, { ...shopValues(s), reply })}</p>
       {save === 'failed' && (
         <p className="s-signup__unsaved" role="alert">
           {copy.thanks.unsaved}{' '}

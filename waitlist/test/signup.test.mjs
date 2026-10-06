@@ -143,17 +143,61 @@ await t('free check on /sample-output-like page: no next step link to itself', (
 })
 
 await t('recipe page: its own question replaces the first job; "What’s your role?" is never asked', () => {
-  startWith('r@r.example', ctx({ page: '/recipes/prospect-intelligence', recipe: { name: 'Prospect intelligence', question: { question: 'Who are your prospects?', options: ['Stores and consumer brands', 'Software companies', 'Something else'] } } }))
+  startWith('r@r.example', ctx({ page: '/recipes/prospect-intelligence', recipe: { name: 'Prospect intelligence' }, question: { question: 'Who are your prospects?', options: ['Stores and consumer brands', 'Software companies', 'Something else'] } }))
   L.complete('name', true, 'me'); pickFirst('reader', 'sales')
-  let g = L.getSignup(); assert.deepEqual(L.flowOf(g).map((x) => x.id), ['email', 'name', 'reader', 'recipe', 'S2', 'S3', 'S4', 'note'])
-  pickFirst('recipe', 'o2')
+  let g = L.getSignup(); assert.deepEqual(L.flowOf(g).map((x) => x.id), ['email', 'name', 'reader', 'page', 'S2', 'S3', 'S4', 'note'])
+  pickFirst('page', 'o2')
   g = L.getSignup(); const snap = L.snapshot(g)
   assert.equal(snap.first_job, 'Prospect intelligence'); assert.equal(snap.job_detail, 'Who are your prospects? Software companies')
   assert.equal(L.nextStepFor(g), 'account')
-  startWith('r@r.example', ctx({ page: '/recipes/get-paid', recipe: { name: 'Get paid', question: { question: 'What’s your role?', options: ['Founder or owner', 'Finance'] } } }))
+  startWith('r@r.example', ctx({ page: '/recipes/get-paid', recipe: { name: 'Get paid' }, question: { question: 'What’s your role?', options: ['Founder or owner', 'Finance'] } }))
   L.complete('name', true, 'me'); pickFirst('reader', 'founder')
   assert.deepEqual(L.flowOf(L.getSignup()).map((x) => x.id), ['email', 'name', 'reader', 'F2', 'F3', 'F4', 'note'])
   assert.equal(L.snapshot(L.getSignup()).first_job, 'Get paid')
+})
+
+await t('which pages know their reader: the 5 reader pages and the agencies use case; /verify and the rest ask', () => {
+  for (const [path, reader] of [['/agencies', 'agency'], ['/founders', 'founder'], ['/sales', 'sales'], ['/marketing', 'marketing'], ['/developers', 'developer'], ['/use-cases/mystery-shopping-for-ecommerce-agencies', 'agency']])
+    assert.equal(L.readerOfPage(path), reader, path)
+  for (const path of ['/', '/verify', '/recipes', '/recipes/lead-leaks', '/resources', '/sample-output', '/privacy', '/use-cases/prospect-intelligence-with-clay', '/nope'])
+    assert.equal(L.readerOfPage(path), undefined, path)
+})
+
+await t('agencies use case with a store: its own format question replaces the first job; its thank you words ride in the state', () => {
+  const done = { title: 'Got it. We’ll start with {store}.', line: 'We’ll email {email} to confirm it’s a client’s store with their OK, and to ask for the other 4.' }
+  const question = { short: 'Format', question: 'Which format should we send the audits in?', options: ['A PDF', 'A branded client report', 'Slack', 'A sheet', 'Clay columns', 'Email'] }
+  const page = '/use-cases/mystery-shopping-for-ecommerce-agencies'
+  const s = startWith('a@agency.example', ctx({ page, source: 'usecase-ecom-agencies-hero', kind: 'mystery', interest: 'mystery', store: 'client.example', pageReader: L.readerOfPage(page), question, done }))
+  assert.equal(s.reader, 'agency'); assert.equal(s.readerFrom, 'Page'); assert.deepEqual(s.ctx.done, done)
+  assert.deepEqual(L.flowOf(s).map((x) => x.id), ['email', 'name', 'page', 'A2', 'A3', 'A4', 'note'])
+  L.complete('name', true, 'me'); pickFirst('page', 'o5')
+  const g = L.getSignup(); const snap = L.snapshot(g)
+  assert.equal(snap.job_detail, 'Which format should we send the audits in? Clay columns'); assert.equal(snap.first_job, 'Free mystery shop')
+  assert.equal(snap.store, 'client.example'); assert.equal(snap.reader, 'Agency'); assert.equal(snap.reader_from, 'Page')
+  assert.equal(snap.call_first, 'Yes: a free mystery shop is ready to start'); assert.equal(L.questionsOf(g)[0].short, 'Format')
+  assert.equal(L.nextStepFor(g), 'report')
+})
+
+await t('agencies use case with the store left blank: a waitlist sign up that still asks the format, and the agency questions follow', () => {
+  const question = { short: 'Format', question: 'Which format should we send the audits in?', options: ['A PDF', 'Slack', 'Email'] }
+  const s = startWith('a@agency.example', ctx({ page: '/use-cases/mystery-shopping-for-ecommerce-agencies', kind: 'mystery', interest: 'mystery', pageReader: 'agency', question, done: undefined }))
+  assert.deepEqual(L.flowOf(s).map((x) => x.id), ['email', 'name', 'page', 'A2', 'A3', 'A4', 'note'])
+  const snap = L.snapshot(s)
+  assert.equal(snap.store, ''); assert.equal(snap.first_job, ''); assert.equal(snap.call_first, 'No')
+  assert.equal(L.nextStepFor(s), 'agencyShop')
+})
+
+await t('a page question never named by a recipe falls back to the shared short name', () => {
+  const s = startWith('q@q.example', ctx({ question: { question: 'Which?', options: ['A', 'B'] } }))
+  assert.equal(L.questionsOf(s)[0].short, 'Question')
+})
+
+await t('/verify with an agent: whose AI agent replaces the first job; blank agent: the reader is asked first', () => {
+  const s = startWith('v@v.example', ctx({ page: '/verify', source: 'verify-hero', kind: 'verify', interest: 'any', agent: 'help.shop.example/chat' }))
+  assert.equal(s.askReader, true); assert.deepEqual(L.flowOf(s).slice(0, 4).map((x) => x.id), ['email', 'name', 'reader', 'verify'])
+  assert.equal(L.snapshot(s).first_job, 'Free AI agent check'); assert.equal(L.snapshot(s).agent, 'help.shop.example/chat')
+  const b = startWith('v@v.example', ctx({ page: '/verify', source: 'verify-hero', kind: 'verify' }))
+  assert.equal(b.askReader, true); assert.equal(L.snapshot(b).agent, ''); assert.ok(!L.flowOf(b).some((x) => x.id === 'verify'))
 })
 
 await t('next step rules: AI agent check first job, a store founder, developer, marketing', () => {

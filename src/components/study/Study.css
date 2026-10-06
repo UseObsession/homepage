@@ -309,8 +309,9 @@
 }
 .s-st-link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
 .s-st-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
+.s-st-more__list + .s-st-fine, .s-st-fine--after { margin-top: var(--ob-space-40); }
 .s-st-fine {
-  margin: var(--ob-space-40) 0 0;
+  margin: 0;
   max-width: 72ch;
   font: var(--ob-type-caption);
   letter-spacing: var(--ob-type-caption-tracking);
@@ -350,3 +351,7 @@
   .s-st-more__list { grid-template-columns: minmax(0, 1fr); }
   .s-st-mail__meta, .s-st-mail__body, .s-st-mail__files { padding-inline: var(--ob-space-20); }
 }
+
+/* An example built on 1 partner (content/partners.ts): that tool's mark opens the claim where the facts come back
+   into it, as an eyebrow over the heading that names it. */
+.s-st-fit__mark { display: flex; margin: 0 0 var(--ob-space-12); --s-pm-scale: 1.1; }

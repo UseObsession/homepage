@@ -1,13 +1,33 @@
+import { partners, type PartnerId } from '../../content/partners'
 import type { StudyNode } from '../../content/types'
 import { StatusMark } from '../Logo'
+import { PartnerWord } from '../PartnerMark'
+import { hasWord } from '../partnerFiles'
 import './Flow.css'
 
 /* The use case's hero object: the way from the reader's own list to their own tools, as 1 strip in 3 stops (James's
    hero diagram). The middle stop is raised, as James had it; when it is Obsession it carries the 1 mark in view that
    moves (working). Each stop is its label, its title, what it holds, and a foot in the agent's mono. A source the
    reader gains ("After sign up, new") is marked New, as James marked it. Stacked on a phone, the arrows turn down.
-   Read as a list, in order, by a screen reader. */
+   Read as a list, in order, by a screen reader.
+   An example built on 1 partner (content/partners.ts) sets that tool's mark in place of its name where a stop's label
+   says it ("Clay in", "Back in Clay"), as the middle stop carries Obsession's: the list starts and ends in that tool. */
 const NEW = ', new'
+
+/* A stop's label, with the partner's name set as its mark when the label says it. */
+function Label({ text, partner }: { text: string; partner?: PartnerId }) {
+  const id = partner && hasWord(partner) ? partner : undefined
+  const name = id ? partners[id]?.name : undefined
+  const at = name ? text.indexOf(name) : -1
+  if (!id || !name || at < 0) return <>{text}</>
+  return (
+    <span>
+      {text.slice(0, at)}
+      <PartnerWord id={id} />
+      {text.slice(at + name.length)}
+    </span>
+  )
+}
 
 function Arrow() {
   return (
@@ -19,7 +39,7 @@ function Arrow() {
   )
 }
 
-export function Flow({ nodes, label }: { nodes: StudyNode[]; label: string }) {
+export function Flow({ nodes, label, partner }: { nodes: StudyNode[]; label: string; partner?: PartnerId }) {
   const mid = Math.floor(nodes.length / 2)
   return (
     <ol className="s-flow ob-object" aria-label={label} style={{ ['--s-flow-n' as string]: nodes.length }}>
@@ -28,7 +48,7 @@ export function Flow({ nodes, label }: { nodes: StudyNode[]; label: string }) {
           {i > 0 && <Arrow />}
           <p className="s-flow__label">
             {i === mid && n.label === 'Obsession' && <StatusMark state="working" size={14} />}
-            {n.label}
+            <Label text={n.label} partner={i === mid ? undefined : partner} />
           </p>
           <p className="s-flow__title">{n.title}</p>
           <ul className="s-flow__items">

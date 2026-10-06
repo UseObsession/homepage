@@ -18,9 +18,11 @@ import type { Recipe } from '../types'
    payment unless it's the reader's own store with a budget set; the chat history is read only through a connection the
    reader sets up; every test chat tagged, agreed with the vendor; nothing changes in the agent without the reader's
    OK. No vendor or product names: "your sales agent".
-   Up-to-50 rule: the 1 modelled figure (up to €2,700) carries its model in the same line: 27 Duo bundle chats a week,
-   each quoted €189 less €89 = €100 under the price list, if every chat became an order: 27 x €100 = €2,700 on 1 wrong
-   price in 1 week, which a daily check finds the morning it starts. */
+   Up-to-50 rule, no money promises (James and Seun, 3 Oct): the 1 modelled figure (up to 27 orders a week kept at the
+   right price) carries its model in the same line: 27 Duo bundle chats a week, each quoted €89 where the price list
+   says €189; if every chat became an order, 27 x 1 = 27 orders a week at €89, which a daily check finds the morning
+   it starts. It matches the screen's "Up to 27 orders at risk" and the final's "not 27 orders later". The €189 and
+   €89 stay as facts of the example, never as a sum kept. */
 
 const roles = form.agent.roles
 
@@ -187,7 +189,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'A wrong price in chat keeps selling at that price until someone notices.',
-    line: 'Up to €2,700 kept on 1 wrong price in a week: your agent quotes the €189 Duo bundle at €89, and 27 chats a week ask about it. If every chat orders, each order is €100 short. A daily check finds it the morning it starts.',
+    line: 'Up to 27 orders a week kept at the right price: your agent quotes the €189 Duo bundle at €89, and 27 chats a week ask about it. If every chat orders, that’s 27 orders a week at €89. A daily check finds it the morning it starts.',
     cols: ['Today', 'With a daily check'],
     rows: [
       { label: 'A wrong price', values: ['Found when orders arrive at €89', 'Found the same morning, with the chat'] },
@@ -240,7 +242,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Sales agent check keeps up to €2,700 on 1 wrong price in a week, for a store whose agent quotes a €189 bundle at €89 in 27 chats a week, if every chat orders. A daily check finds it the morning it starts.',
+        a: 'Sales agent check keeps up to 27 orders a week at the right price, for a store whose agent quotes a €189 bundle at €89 in 27 chats a week, if every chat orders. A daily check finds the wrong price the morning it starts.',
       },
       {
         q: 'Is a passed check a guarantee?',

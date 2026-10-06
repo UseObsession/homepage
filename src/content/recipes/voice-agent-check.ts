@@ -18,9 +18,9 @@ import type { Recipe } from '../types'
    slot booked and cancelled through the business's own process, the calendar read only through a connection the owner
    sets up; 3 calls a morning, a volume real callers make, never a load test; nothing changes in the receptionist
    without the owner's OK. No vendor or product names: "your receptionist".
-   Up-to-50 rule: the 1 modelled figure (up to £36,000 a year) carries its model in the same line: a £3,000 aligner
-   case a month lost to a call that goes wrong (a wrong answer, a caller not understood, a handoff nobody picks up),
-   found by the next morning's check instead, x 12 = £36,000. */
+   Up-to-50 rule (no money promises, 3 Oct): the 1 modelled figure (up to 12 aligner bookings a year kept) carries its
+   model in the same line: 1 aligner booking a month lost to a call that goes wrong (a wrong answer, a caller not
+   understood, a handoff nobody picks up), found by the next morning's check instead, x 12 = 12. */
 
 const roles = form.agent.roles
 
@@ -187,7 +187,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Nobody on your team hears your receptionist’s calls. Test customers do, every morning.',
-    line: 'Up to £36,000 a year of bookings kept, for a clinic that loses a £3,000 aligner case a month to a call that goes wrong: the morning check finds the wrong answer or the missed handoff the day it starts.',
+    line: 'Up to 12 aligner bookings a year kept, for a clinic that loses 1 a month to a call that goes wrong: the morning check finds the wrong answer or the missed handoff the day it starts.',
     cols: ['Today', 'With a morning check'],
     rows: [
       { label: 'A wrong price', values: ['Heard when a caller disputes the bill', 'Heard the same morning, with the recording'] },
@@ -244,7 +244,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Voice agent check keeps up to £36,000 a year of bookings, for a clinic that loses a £3,000 case a month to a call that goes wrong. The morning check finds the cause the day it starts.',
+        a: 'Voice agent check keeps up to 12 aligner bookings a year, for a clinic that loses 1 a month to a call that goes wrong. The morning check finds the cause the day it starts.',
       },
       {
         q: 'Is a passed check a guarantee?',

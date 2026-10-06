@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Faq } from '../components/sections/Faq'
 import { Gap } from '../components/sections/Gap'
@@ -9,6 +10,7 @@ import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { UseCases } from '../components/sections/UseCases'
 import type { Workspace } from '../components/AppScreen'
+import { readerPartners } from '../content/partners'
 import type { Page, ReaderId } from '../content/types'
 import './StoryPage.css'
 
@@ -18,13 +20,26 @@ import './StoryPage.css'
    final call to action (#join, where the nav's call to action and the hero's second path land).
    `workspace` names whose workspace the app screens show: 'agency' on Agencies, 'company' everywhere else.
    `reader` is the page's reader, whose hue marks its room: the hero's glow and caret, the ink chapter's light (the gap)
-   and the use case tabs' bar (styles/accents.css, 1 hue per page). */
-export function AudiencePage({ page, workspace, reader }: { page: Page; workspace: Workspace; reader: ReaderId }) {
+   and the use case tabs' bar (styles/accents.css, 1 hue per page). How's last step, where the results land, carries
+   the reader's own tools as 1 quiet line of marks (content/partners.ts).
+   `gapStory` is the gap's picture where the page has one (Marketing's, sections/GapStory): the page that shows it
+   imports it, so the pages without one never load its code. */
+export function AudiencePage({
+  page,
+  workspace,
+  reader,
+  gapStory,
+}: {
+  page: Page
+  workspace: Workspace
+  reader: ReaderId
+  gapStory?: ReactNode
+}) {
   return (
     <>
       <Hero hero={page.hero} workspace={workspace} reader={reader} />
-      <How how={page.how} workspace={workspace} id="how" />
-      <Gap gap={page.gap} reader={reader} id="gap" />
+      <How how={page.how} workspace={workspace} partners={readerPartners[reader]} id="how" />
+      <Gap gap={page.gap} reader={reader} story={gapStory} id="gap" />
       <UseCases uses={page.uses} workspace={workspace} reader={reader} id="uses" />
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}
       {page.kinds && <Kinds kinds={page.kinds} id="kinds" />}

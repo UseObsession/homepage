@@ -6,8 +6,13 @@
      the first 2 of each multi select). `reader` picks the reader on a page that asks; `other` then taps "Something
      else" on step N. ?sd=thanks ends on the thank you.
    - ?sd=e2e  runs the checks below and posts the results to the stub's /__report.
+   - ?sd=flow.NAME  runs 1 page's flow and posts its results the same way: agencies (the agencies use case with a store:
+     its own thank you and its format question), agenciesblank (the same form left blank: a waitlist sign up),
+     verify (/verify with an AI agent), verifyblank, recipe (/recipes/prospect-intelligence: its name and its question).
    Keys can't be pressed for real from a script: a pick from the keys is a click with no detail, exactly what the
    arrow keys and Space produce. */
+
+import { hydrating } from './hydration'
 
 const STUB = new URL((import.meta.env.VITE_WAITLIST_URL as string) || 'http://127.0.0.1:1/').origin
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -43,13 +48,17 @@ async function moved(from: string) {
   return until(() => currentId() !== from && currentId())
 }
 
-async function signUp(email = 'maya@northwind-labs.co.uk') {
+/* `first` is what a free shop or check's first field gets: the default store or AI agent, or null to leave it blank. */
+async function signUp(email = 'maya@northwind-labs.co.uk', first: string | null | undefined = undefined) {
   const form = await until(() => $<HTMLFormElement>('.s-hero .s-capture form') ?? $<HTMLFormElement>('.s-capture form'))
   await sleep(200)
   /* A free shop or check asks for the store or the AI agent first, then opens the email under it. */
-  const first = form.querySelector<HTMLInputElement>('input[name="store"], input[name="agent"]')
-  if (first) {
-    type(first, first.name === 'store' ? 'client-store.example' : 'help.client-store.example/chat')
+  const field = form.querySelector<HTMLInputElement>('input[name="store"], input[name="agent"]')
+  if (field && first !== null) {
+    type(field, first ?? (field.name === 'store' ? 'client-store.example' : 'help.client-store.example/chat'))
+    form.requestSubmit()
+    await sleep(200)
+  } else if (field) {
     form.requestSubmit()
     await sleep(200)
   }
@@ -201,7 +210,7 @@ async function e2e() {
     }
 
     results.push(...(JSON.parse(sessionStorage.getItem('obs-e2e-results') ?? '[]') as Result[]))
-    await until(() => card(), 4000)
+    await until(() => card(), 8000)
     check('a reload reopens the card at the first unanswered step', currentId() === 'F4', currentId())
     check('a reload keeps the answers', !!card()!.querySelector('.s-signup__sq.is-skipped'))
     const opts = $$<HTMLInputElement>('.ob-chip-input', currentStep()!)
@@ -260,8 +269,75 @@ async function e2e() {
   await fetch(`${STUB}/__report`, { method: 'POST', body: JSON.stringify({ page: location.pathname, results }) })
 }
 
+const titleText = () => card()?.querySelector('.ob-confirm-title > span:last-child')?.textContent ?? ''
+const lineText = () => card()?.querySelector('.s-signup__line')?.textContent ?? ''
+const legendText = () => currentStep()?.querySelector('.s-signup__q')?.textContent?.replace(/^Question \d+ of \d+\.\s*/, '') ?? ''
+const stepIds = () => $$('.s-signup__step', card()!).map((x) => x.dataset.step)
+
+/* One page's flow: sign up from its hero, then check what the card knew from the page. */
+async function flow(name: string) {
+  const results: Result[] = []
+  const check = (n: string, pass: boolean, detail = '') => results.push({ name: n, pass, detail })
+  const done = async () => {
+    while (currentId() !== 'thanks') await answer('founder')
+  }
+  try {
+    if (name === 'agencies') {
+      await signUp('maya@northwind-labs.co.uk', 'client-store.example')
+      check('the card says the page’s own words', titleText() === 'Got it. We’ll start with client-store.example.', titleText())
+      check('the reader is known: For agencies, no reader step', card()!.querySelector('.s-signup__for')?.textContent?.startsWith('For agencies.') === true && !stepIds().includes('reader'), stepIds().join(','))
+      check('the format question stands in for the first job', stepIds().join(',') === 'name,page,A2,A3,A4,note', stepIds().join(','))
+      await answer()
+      check('it asks the format, with its 6 options', legendText() === 'Which format should we send the audits in?' && $$('.ob-chip-input', currentStep()!).length === 6, legendText())
+      await done()
+      check('the thank you is the page’s own', titleText() === 'Got it. We’ll start with client-store.example.', titleText())
+      check('its line says what happens next', lineText() === 'We’ll email maya@northwind-labs.co.uk to confirm it’s a client’s store with their OK, and to ask for the other 4.', lineText())
+      card()!.querySelector<HTMLButtonElement>('.s-signup__disclose')!.click()
+      await sleep(50)
+      check('the answers list names the format', $$('.s-signup__row dt', card()!).some((d) => d.textContent === 'Format'), $$('.s-signup__row dt', card()!).map((d) => d.textContent).join(','))
+      check('next: See a real report', card()!.querySelector('.s-signup__next-h')?.textContent === 'See a real report.', card()!.querySelector('.s-signup__next-h')?.textContent ?? '')
+    } else if (name === 'agenciesblank') {
+      await signUp('maya@northwind-labs.co.uk', null)
+      check('a blank store is a waitlist sign up', titleText() === 'You’re on the list.', titleText())
+      check('the reader is still known', card()!.querySelector('.s-signup__for')?.textContent?.startsWith('For agencies.') === true && !stepIds().includes('reader'))
+      check('the format is still asked, in place of the first job', stepIds().join(',') === 'name,page,A2,A3,A4,note', stepIds().join(','))
+      await done()
+      check('the thank you is the shared one', /^Thanks, ?\S*/.test(titleText()) || titleText() === 'Thanks. That’s everything.', titleText())
+      check('next: the free report, inline', card()!.querySelector('.s-signup__next-h')?.textContent === 'Pick a client. See what their customers get.', card()!.querySelector('.s-signup__next-h')?.textContent ?? '')
+    } else if (name === 'verify' || name === 'verifyblank') {
+      await signUp('maya@northwind-labs.co.uk', name === 'verify' ? 'help.client-store.example/chat' : null)
+      if (name === 'verify') {
+        check('the card says the shared check words', titleText() === 'Got it. We’ll check help.client-store.example.', titleText())
+        check('the page does not name a reader: asked first', stepIds().join(',').startsWith('name,reader,verify'), stepIds().join(','))
+        await answer('founder')
+        await answer('founder')
+        check('whose AI agent it is stands in for the first job', legendText() === 'Whose AI agent is it?', legendText())
+        await done()
+        check('the thank you is the shared report one', lineText().startsWith('Your report comes to maya@northwind-labs.co.uk.'), lineText())
+      } else {
+        check('a blank AI agent is a waitlist sign up', titleText() === 'You’re on the list.', titleText())
+        check('the reader is asked, and there is no ownership step', stepIds().includes('reader') && !stepIds().includes('verify'), stepIds().join(','))
+      }
+    } else if (name === 'recipe') {
+      await signUp('maya@northwind-labs.co.uk')
+      check('a waitlist sign up', titleText() === 'You’re on the list.', titleText())
+      await answer()
+      await answer('sales')
+      check('the recipe’s own question stands in for the first job', legendText() === 'Who are your prospects?', legendText())
+      check('its square is named for the recipe', !!card()!.querySelector('[data-step="page"]'))
+    }
+  } catch (err) {
+    check('no crash', false, String(err))
+  }
+  await sleep(500)
+  await fetch(`${STUB}/__report`, { method: 'POST', body: JSON.stringify({ page: `${location.pathname} (${name})`, results }) })
+}
+
 export function run() {
   const spec = new URLSearchParams(location.search).get('sd')
   if (!spec) return
-  setTimeout(() => void (spec === 'e2e' ? e2e() : demo(spec)), 300)
+  /* The page's forms are real forms until it has hydrated, and submitting one before then leaves the page: wait for it. */
+  void until(() => !hydrating(), 30000)
+    .then(() => sleep(300))
+    .then(() => (spec === 'e2e' ? e2e() : spec.startsWith('flow.') ? flow(spec.slice(5)) : demo(spec)))
 }

@@ -1,0 +1,20 @@
+/* How the page renders, never how it looks: the browser skips work it doesn't need to show the page.
+
+   Every app screen is one 720 x 450 window (screens/base.css .appx: absolutely placed in its frame, a fixed size,
+   overflow hidden), so its size never depends on what is inside it. The browser lays out and paints a screen's insides
+   only while it is near the view; the rest of the page sees the same box either way. A hero tab that is not chosen
+   (ScreenTabs: hidden until its tab is picked, with no fade out) is skipped altogether until it is. */
+.appx {
+  content-visibility: auto;
+  contain-intrinsic-size: 720px 450px;
+}
+.s-shots-panel:not(.is-active) .appx {
+  content-visibility: hidden;
+}
+
+/* Below the hero, the page's boot script (src/boot.ts) marks every prerendered screen data-far until it comes within a
+   view's height of the reader, and the browser skips it altogether until then, rather than drawing every screen ahead
+   as soon as it is idle (which content-visibility: auto allows). Without the boot script nothing is marked. */
+.il[data-far] .appx {
+  content-visibility: hidden;
+}

@@ -1,5 +1,5 @@
 /* The content contract. Every page's words live in src/content as data of these types; components never hold copy.
-   Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/html/NAME.html (see components/AppScreen). */
+   Copy rules: docs/REBUILD.md, "Copy". Screens are names of src/screens/NAME.tsx (see components/AppScreen). */
 
 export type ScreenName = string
 /* Recipe slugs (/recipes/SLUG): competitor-tracking, prospect-intelligence, mystery-shopper, lead-leaks (id 'speed'; was
@@ -48,13 +48,18 @@ export type Capture = {
      other than the shared label does (the AI SDR check asks for the company's website, not a chat page). */
   label?: string
   micro?: string
-  /* A recipe page's own question: the sign up card asks it in place of the first job, and keeps the answer as the
-     sign up's "Job detail" (content/signup.ts). Other pages leave it out: the card's question bank covers them. */
-  roles?: { question: string; options: string[] }
+  /* A page's own question (a recipe's, or the format of the agencies' audits): the sign up card asks it in place of the
+     first job, and keeps the answer as the sign up's "Job detail" (content/signup.ts). `short` names it in the card's
+     squares and on the thank you's list of answers. Other pages leave it out: the card's question bank covers them. */
+  roles?: { question: string; options: string[]; short?: string }
   interest?: RecipeId | 'any'
   /* `mystery` and `verify` only: a blank first field (the store, or the AI agent) joins the waitlist instead of asking
      for one. The micro line says so. */
   orWaitlist?: boolean
+  /* `mystery` and `verify` only: the card's title and its thank you line after a sign up that named a store or an AI
+     agent, for a page whose offer is more than the 1 free report (the agencies' 5 stores). {store}, {agent} and {email}
+     are filled in; without it the card says the shared words (content/capture, content/signup). */
+  done?: { title: string; line: string }
 }
 
 /* `bar`: the nav bar's shorter words for a call to action whose label is longer than "Join the waitlist" (content/nav). */
@@ -79,7 +84,7 @@ export type Demo = {
 /* A tab of Home's hero console: a kind of work, shown as its full app screen, which plays its story when its tab is
    chosen. `line` sits under the screen (1 short line); the tab links to the recipe it runs on, or to `link` when the
    tab is a whole way in rather than 1 recipe (the AI agent checks, /verify). A tab whose screen is not in
-   src/screens/html yet is left out, so nothing renders broken. */
+   src/screens yet is left out, so nothing renders broken. */
 export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ recipe: RecipeId; link?: never } | { recipe?: never; link: Cta })
 
 /* The hero (docs/REBUILD.md 1c). `consoleHeading` is the typed heading over the console: it types the first line,
@@ -102,7 +107,45 @@ export type Hero = {
    use cases (each with its own screen) > outcomes > kinds (every kind of reader it fits) > recipes > proof >
    questions (trust and red lines) > final call to action. A page may skip a beat, never reorder it. */
 export type How = { heading: string; sub?: string; steps: { title: string; line: string; screen: ScreenName; chips?: string[] }[] }
-export type Gap = { heading: string; sub?: string; rows: { today: string; obsession: string }[] }
+export type Gap = { heading: string; sub?: string; story?: GapStory; rows: { today: string; obsession: string }[] }
+/* The gap's picture (components/sections/GapStory): 1 invented company over 3 days, 2 lanes on 1 clock. The company is
+   hollin, the linen shop in content/hollin.ts, so the picture shows its real looking home page, email and chat. Above,
+   what a tool that reads the outside sees: 1 look, at 1 moment (`outside`), and the `tag` that look produced. Below, a
+   declared AI test customer living it: each step lands on its day, drops a signed receipt on the stack, and the last day
+   holds the finding (`inside`). Days run 0 to 3. Every step happens at `time` on its `day`; the clock shows each in turn.
+   `title` names a step and its receipt; a signup is 2 steps (the form, then `mailTitle`, the welcome email at `mailTime`
+   with the subject `mail`). `customer` is how the agent signs its chat messages. `label` tells the whole story in 1 or 2
+   sentences for a screen reader (and llms-full.txt), and it opens with "Example". */
+export type GapStoryStep =
+  | { kind: 'signup'; day: number; time: string; title: string; field: string; mailTitle: string; mail: string; mailTime: string }
+  | { kind: 'chat'; day: number; time: string; title: string; ask: string; reply: string; promise: string }
+  | { kind: 'basket'; day: number; time: string; title: string; item: string; price: string }
+  | { kind: 'wait'; day: number; time: string; title: string; since: string }
+export type GapStory = {
+  label: string
+  site: string
+  outside: {
+    name: string
+    kind: 'page' | 'dashboard'
+    day: number
+    time: string
+    /* page: the page's headline and the 1 line it publishes; dashboard: the row's name and what it counts. */
+    title: string
+    line: string
+    tag?: string
+    tally: string
+  }
+  inside: {
+    name: string
+    agent: string
+    customer: string
+    steps: GapStoryStep[]
+    /* `short` is the finding's receipt. */
+    finding: { day: number; time: string; title: string; short: string; meta: string }
+    tally: string
+    hash: string
+  }
+}
 /* Every use case screen shows example data: the Uses render puts a quiet "Example" tag on each screen, matching the
    hero console's Example tag. No copy field needed. */
 export type UseCase = { tab: string; moment: string; outcome: string; line: string; whyOnly: string; recipe: RecipeId | 'task'; screen: ScreenName }
@@ -117,7 +160,8 @@ export type Faq = { heading: string; items: { q: string; a: string }[] }
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
    agent meets can read (/agents). Never "it follows robots.txt". */
 export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
-export type Final = { heading: string; sub: string; capture: Capture }
+/* `link` is the quiet second path under the form (the sample report, on a page whose offer is a free audit). */
+export type Final = { heading: string; sub: string; capture: Capture; link?: Cta }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
 export type Jobs = { heading: string; items: { title: string; line: string; example?: string; screen?: ScreenName }[] }
@@ -269,6 +313,9 @@ export type Llms = { summary: string; intro: string }
    1 kind of customer, with invented names and numbers. Appended 2 Oct; nothing above changes.
    The story, in order: hero > how (his set up and run phases) > problem (the gap) > split (who does what) > outputs
    (what the reader does with it) > recipe > proof (his last phase: what lands, on its screen) > questions > final.
+   An example about the real report itself (appended 3 Oct, mystery shopping for ecommerce agencies) adds, after its
+   proof: `real` (the September check, as the report it is), `outcomes` (hours back, each with its model) and `recipes`
+   (the other recipes that fit the reader's year); with those it leaves out `more`, the 2 link rows they replace.
    Every name and figure is an example; `hero.example.note` and `fine` say so on the page. ---- */
 
 /* 1 of James's numbered steps. `example` is what the customer in the example chose or got. */
@@ -276,6 +323,13 @@ export type StudyStep = { title: string; line: string; example?: string }
 /* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
 export type StudyNode = { label: string; title: string; items: string[]; foot: string }
 export type StudyLink = { label: string; title: string; line: string; cta: Cta }
+
+/* A recipe's name and address come from the recipe itself (content/catalog), so only the line is written here. */
+export type StudyRecipes = {
+  heading: string
+  sub?: string
+  groups: { id: string; name: string; line: string; items: { recipe: RecipeId; line: string }[] }[]
+}
 
 export type UseCaseStudy = {
   meta: Meta
@@ -290,6 +344,8 @@ export type UseCaseStudy = {
     example: { chips: string[]; note: string }
     flow?: StudyNode[]
     capture: Capture
+    /* The second path under the form (the real report, for an example whose offer is a free audit). */
+    secondary?: Cta
   }
   /* His phases in order. A phase plays its screen beside its numbered steps; a phase without a screen shows its chips. */
   how: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
@@ -313,8 +369,14 @@ export type UseCaseStudy = {
       mockup: { label: string; sender: string; channel: string; messages: { day: string; text: string }[] }
     }
   }
-  /* The recipe it runs and the 1 real run. */
-  more: { recipe: StudyLink; sample: StudyLink }
+  /* The 1 real run, as the report it is (the Proof section), for an example that points at the sample output itself. */
+  real?: Proof
+  /* What the reader can expect, in hours, speed or coverage, each with its model (the Outcomes section). Never money. */
+  outcomes?: Outcomes
+  /* The other recipes that fit the reader's year, grouped by the moment in it, each in 1 line and linked to its page. */
+  recipes?: StudyRecipes
+  /* The recipe it runs and the 1 real run, as 2 link rows. An example that carries `real` and `recipes` leaves it out. */
+  more?: { recipe: StudyLink; sample: StudyLink }
   fine: string
   faq: Faq
   final: Final

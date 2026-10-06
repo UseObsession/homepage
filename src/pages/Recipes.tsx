@@ -5,9 +5,10 @@ import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { catalog } from '../content/catalog'
 import { jobAnchor as slug } from '../content/nav'
 import { recipePage } from '../content/recipe-page'
-import { recipes, recipesPage as page } from '../content/registry'
+import { recipesPage as page } from '../content/site'
 import '../components/sections/Hero.css'
 import './Recipes.css'
 
@@ -36,7 +37,7 @@ function Arrow({ className }: { className: string }) {
 
 export function Recipes() {
   const id = useId()
-  const groups = page.groups.map((g) => ({ ...g, items: recipes.filter((r) => r.group === g.group) })).filter((g) => g.items.length)
+  const groups = page.groups.map((g) => ({ ...g, items: catalog.recipes.filter((r) => r.group === g.group) })).filter((g) => g.items.length)
 
   return (
     <>

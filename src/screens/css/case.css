@@ -4,15 +4,17 @@
    (what it is, the declared agent, Share with finance), then a sunken canvas holding 1 page.
    Chrome (canonical, 2 Oct 2026): Your company, Accounts selected, list Customers; a plain h2 and the declared-agent pill;
    the toast is app-board's (1 line, 1 action) and says the case updates weekly to renewal.
-   The page reads answer first: the 2 companies and the renewal date, the saving and its model, the 4 numbers that prove it
+   The page reads answer first: the 2 companies and the renewal date, the staff hours saved and their model, the 4 numbers that prove it
    (each with its source chip and a 6-month trend line), and the signature.
-   Story: the page settles (the saving holds a quiet placeholder), the 4 numbers rise in and their trend lines draw,
-   each source chip attaches, the model lands and the saving counts up to $184,000, the footer mark stops working
+   Story: the page settles (the hours hold a quiet placeholder), the 4 numbers rise in and their trend lines draw,
+   each source chip attaches, the model lands and the hours count up to 3,120, the footer mark stops working
    and closes, and only then does the page say it is signed;
    the pointer clicks Share with finance, the toast lands bottom right, under the page.
    Geometry (design px, main 556 x 414): bar 0..44, canvas 44..414, page 456 wide centred (x 50..506) from y 58,
-   head 38, saving 72, numbers 2 x 66, foot 34; toast bottom right, 14 in. Rest state (no .play) = the finished, shared scene. */
+   head 38, hours 72, numbers 2 x 66, foot 34; toast bottom right, 14 in. Rest state (no .play) = the finished, shared scene. */
 @property --case-k{syntax:"<integer>";inherits:false;initial-value:0}
+@property --case-r{syntax:"<integer>";inherits:false;initial-value:0}
+@counter-style cs-pad3{system:extends decimal;pad:3 "0"}
 
 .app-case .ax-main{grid-template-rows:44px minmax(0,1fr);align-content:stretch;gap:0;padding:0}
 .app-case .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
@@ -43,16 +45,16 @@
 .app-case .cs-x{margin:0 3px;font-weight:400;color:var(--fg-3)}
 .app-case .cs-rn{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
 
-/* the saving: the point of the page */
+/* the staff hours saved: the point of the page */
 .app-case .cs-roi{position:relative;display:grid;gap:7px;padding:14px 16px 13px}
-/* while the refresh runs, the saving holds its place */
+/* while the refresh runs, the hours hold their place */
 .app-case .cs-sk{position:absolute;left:16px;top:18px;display:grid;gap:14px;opacity:0;pointer-events:none}
 .app-case .cs-sk i{display:block;width:236px;height:20px;border-radius:5px;background:rgb(var(--fg-rgb) / .06)}
 .app-case .cs-sk i+i{width:340px;height:8px;border-radius:4px}
 .app-case .cs-hl{display:flex;align-items:baseline;gap:7px;height:28px;white-space:nowrap}
 .app-case .cs-hl span{font:500 14px/1 var(--sans);color:var(--fg-2)}
-.app-case .cs-k{font:600 28px/1 var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums;counter-reset:cs-k var(--case-k)}
-.app-case .cs-k::before{content:"$" counter(cs-k) ",000"}
+.app-case .cs-k{font:600 28px/1 var(--display);letter-spacing:-.03em;color:var(--fg);font-variant-numeric:tabular-nums;counter-reset:cs-k var(--case-k) cs-r var(--case-r)}
+.app-case .cs-k::before{content:counter(cs-k) "," counter(cs-r,cs-pad3)}
 .app-case .cs-md{display:flex;align-items:baseline;gap:10px;font-size:11px;line-height:14px;color:var(--fg-2);white-space:nowrap}
 .app-case .cs-md .ax-mono{font-size:10.5px;color:var(--fg-3)}
 
@@ -87,7 +89,9 @@
 @keyframes cs-out{from{opacity:1}to{opacity:0}}
 @keyframes cs-dot{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
 @keyframes cs-chip{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:none}}
-@keyframes cs-count{from{--case-k:0}}
+@keyframes cs-count{
+  0%{--case-k:1;--case-r:248} 16.7%{--case-k:1;--case-r:560} 33.3%{--case-k:1;--case-r:872} 50%{--case-k:2;--case-r:184}
+  66.7%{--case-k:2;--case-r:496} 83.3%{--case-k:2;--case-r:808} 100%{--case-k:3;--case-r:120}}
 @keyframes cs-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes cs-spinr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 @keyframes cs-home{from{transform:none}to{transform:translate(-26px,26px) scale(.8)}}
@@ -110,11 +114,11 @@
 .appx-il.play.app-case .cs-sp .dt{animation:cs-dot .4s var(--ease) calc(1.1s + var(--i) * .12s) both}
 .appx-il.play.app-case .cs-src{animation:cs-chip .4s var(--ease) calc(1s + var(--i) * .12s) both}
 
-/* 2. the model lands, the saving counts up */
+/* 2. the model lands, the hours count up */
 .appx-il.play.app-case .cs-sk{animation:cs-out .35s var(--ease) 1.45s both}
 .appx-il.play.app-case .cs-md{animation:cs-fade .5s var(--ease) 1.5s both}
 .appx-il.play.app-case .cs-hl{animation:ax-in .5s var(--ease) 1.56s both}
-.appx-il.play.app-case .cs-k{animation:cs-count 1.15s var(--ease) 1.62s both}
+.appx-il.play.app-case .cs-k{animation:cs-count 1.15s steps(1,end) 1.62s both}
 
 /* 3. the case is signed: the mark stops working, the square comes home, the ring closes */
 .appx-il.play.app-case .cs-mk .sig-rot{animation:cs-spin 2.6s linear .3s both}

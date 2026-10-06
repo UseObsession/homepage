@@ -1,0 +1,6 @@
+/* Without script nothing reveals his text as it scrolls into view (his Reveal sets .in), so it is simply there: he had the
+   same rule in a noscript tag. The page's head script sets .js on <html> before paint, so with script this never applies. */
+:root:not(.js) .james .reveal {
+  opacity: 1;
+  transform: none;
+}

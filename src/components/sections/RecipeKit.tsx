@@ -50,21 +50,26 @@ export function RecipeKit({ name, items, ui, className = '' }: Props) {
   const [live, setLive] = useState(false)
   const reduced = useReducedMotion()
 
-  /* Below the fold at load: set it back to the start and play it once the reader gets to it. */
+  /* Below the fold at load: set it back to the start and play it once the reader gets to it. The observer's first report
+     says where it is as the script starts, measured with the browser's own layout rather than a layout of its own. */
   useEffect(() => {
     const el = ref.current
     if (!el || matchMedia(RM).matches || !('IntersectionObserver' in window)) return
-    const r = el.getBoundingClientRect()
-    if (r.top < innerHeight && r.bottom > 0) return
-    setLanded(0)
+    let first = true
     const io = new IntersectionObserver(
       ([e]) => {
-        if (!e.isIntersecting) return
+        if (first) {
+          first = false
+          if (e.isIntersecting) io.disconnect()
+          else setLanded(0)
+          return
+        }
+        if (!e.isIntersecting || e.intersectionRatio < 0.5) return
         setLive(true)
         setPlaying(true)
         io.disconnect()
       },
-      { threshold: 0.5 },
+      { threshold: [0, 0.5] },
     )
     io.observe(el)
     return () => io.disconnect()

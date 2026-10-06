@@ -1,113 +1,51 @@
-import { useSyncExternalStore } from 'react'
 import { readers, signup as copy, type CallFirstRule, type SignupOption, type SignupQuestion } from '../content/signup'
 import type { RoleId } from '../content/types'
+import { getSignup, saved, set, type Answer, type Context, type Mark, type SignupState } from './signupStore'
 import { beaconSnapshot, hasUnsent, hostOf, queueSnapshot } from './waitlist'
 
-/* The sign up card's state and rules (components/SignupSteps, content/signup.ts, SIGNUP.md in the workspace).
-   - 1 sign up per visit: every capture form on the page reads this 1 store, so once the email is saved every form shows
-     the same card. It lives in sessionStorage for 24 hours (every read and write in try/catch), so a reload reopens the
-     card at the first unanswered step; without storage it simply starts again at step 2, and the row already holds the
-     email.
+/* The sign up card's rules (components/SignupSteps, content/signup.ts, SIGNUP.md in the workspace). This is the heavy half:
+   the question bank and everything that reads it. It loads on demand (lib/signupStore.ts), never with the page, and
+   every form on the page shares the 1 state kept in the store.
    - Each step that's answered or skipped sends the whole sign up so far (snapshot) through lib/waitlist's queue, keyed
      by the sign up ID made at step 1. The script finds the row by that ID and the email, never by the email alone.
-   - Nothing here touches window or document while a component renders: the store starts empty on the server and while
-     hydrating, and resume() runs from an effect. */
+   - Nothing here touches window or document while a component renders: resume() runs from an effect. */
 
-export type Kind = 'waitlist' | 'mystery' | 'verify'
-
-/* Where the sign up started: the page, its form, and what the page already told us. */
-export type Context = {
-  page: string
-  source: string
-  kind: Kind
-  interest?: string
-  /* A free mystery shop or AI agent check: the store or agent given with the email. */
-  store?: string
-  agent?: string
-  /* The reader the page knows (a reader's own page). */
-  pageReader?: RoleId
-  /* A recipe page: its name, and its own question (Capture.roles), asked in place of the first job. */
-  recipe?: { name: string; question?: { question: string; options: string[] } }
-  arrivedFrom?: string
-}
-
-type Answer = { picked: string[]; other?: string }
-type Mark = 'answered' | 'skipped'
-
-export type SignupState = {
-  v: 1
-  sid: string
-  email: string
-  ctx: Context
-  /* When step 1 was saved (ms): resume only within 24 hours. */
-  t: number
-  /* The reader: from the page, or picked. Unset before it's asked, or when it was skipped. */
-  reader?: RoleId
-  /* "Which of these is you?" is in the flow: on a page that doesn't know its reader, or after "Change". */
-  askReader: boolean
-  readerFrom: '' | 'Page' | 'Asked' | 'Changed'
-  readerOther: string
-  name: string
-  company: string
-  /* The company was filled in from the email's domain and hasn't been edited. */
-  companyFilled: boolean
-  note: string
-  answers: Record<string, Answer>
-  marks: Record<string, Mark>
-  /* The step on screen: a step id, or 'thanks'. */
-  current: string
-  /* Changing an answer from the thank you returns there. */
-  returnTo?: 'thanks'
-  /* The furthest step answered or skipped (the sheet's "Step reached"): 1 to 9. */
-  reached: number
-  done: boolean
-  /* The page the thank you was reached on: the only page whose forms keep showing it. */
-  doneOn?: string
-  /* The thank you's next step, once done. */
-  next?: { kind: string; sheet: string; value: string }
-  preview: boolean
-  /* Moves focus: the form instance that acted, and a counter that ticks on every move. */
-  owner: string
-  seq: number
-  /* Typed but not yet sent with a step (sent by beacon if the page closes). */
-  dirty?: boolean
-}
+export { getSignup } from './signupStore'
+export type { Context, Kind, SignupState } from './signupStore'
 
 export type Step = { id: string; step: number; q?: SignupQuestion }
 
-const STORE_KEY = 'obs-signup'
-const RESUME_MS = 24 * 60 * 60 * 1000
-
 /* ---- Reading the bank ---- */
 
-/* The reader a page knows from its address (a reader's own page), else undefined. */
-export const readerOfPage = (path: string) => Object.values(readers).find((r) => r.path === path)?.id
+/* The reader a page knows from its address (a reader's own page, or a page that names its reader), else undefined. */
+export const readerOfPage = (path: string) => Object.values(readers).find((r) => r.path === path)?.id ?? copy.page.readerOf[path]
 
 export const readerLabel = (id?: RoleId) => copy.reader.options.find((o) => o.id === id)?.label ?? ''
 
-/* A recipe page's own question, as a bank question (its options get ids by position). */
-function recipeQuestion(ctx: Context): SignupQuestion | null | undefined {
-  const r = ctx.recipe
-  if (!r) return undefined
-  if (!r.question || copy.page.skipRecipe.includes(r.question.question)) return null
+/* The page's own question (Capture.roles) as a bank question: its options get ids by position. On a recipe page it is
+   the recipe's; on the agencies use case it is the format the audits come in. */
+function ownQuestion(ctx: Context): SignupQuestion | undefined {
+  const q = ctx.question
+  if (!q || copy.page.skipOwn.includes(q.question)) return undefined
   return {
-    id: 'recipe',
+    id: 'page',
     step: 4,
     key: 'job_detail',
-    short: r.name,
-    question: r.question.question,
-    options: r.question.options.map((label, i) =>
-      /^something else$/i.test(label) ? { id: 'other', label, other: true } : { id: `o${i + 1}`, label },
-    ),
+    short: q.short ?? ctx.recipe?.name ?? copy.page.own.short,
+    question: q.question,
+    options: q.options.map((label, i) => (/^something else$/i.test(label) ? { id: 'other', label, other: true } : { id: `o${i + 1}`, label })),
   }
 }
 
-/* The question in the first job's place: undefined keeps the reader's own first job, null drops it (the page already
-   says what the job is), a question replaces it. */
+/* The question in the first job's place: undefined keeps the reader's own first job, null drops it (a recipe page
+   already says what the job is), a question replaces it. The page's own question comes first; a free shop or check asks
+   whose it is where the page asks nothing of its own. */
 function firstJobQuestion(ctx: Context): SignupQuestion | null | undefined {
+  const own = ownQuestion(ctx)
+  if (own) return own
   if (ctx.store) return copy.page.mystery.question
   if (ctx.agent) return copy.page.verify.question
-  return recipeQuestion(ctx)
+  return ctx.recipe ? null : undefined
 }
 
 /* Before "Which of these is you?" is answered, the squares count a reader's 4 questions; skipped, it's "Something
@@ -300,40 +238,7 @@ export function companyFromEmail(email: string) {
     .join(' ')
 }
 
-/* ---- The store ---- */
-
-let state: SignupState | null = null
-const listeners = new Set<() => void>()
-
-function set(next: SignupState | null, save = true) {
-  state = next
-  if (save) persist()
-  listeners.forEach((l) => l())
-}
-
-function persist() {
-  try {
-    if (state) sessionStorage.setItem(STORE_KEY, JSON.stringify(state))
-    else sessionStorage.removeItem(STORE_KEY)
-  } catch {
-    /* storage blocked: the card lasts as long as the page */
-  }
-}
-
-const subscribe = (l: () => void) => {
-  listeners.add(l)
-  return () => listeners.delete(l)
-}
-
-export function useSignup() {
-  return useSyncExternalStore(
-    subscribe,
-    () => state,
-    () => null,
-  )
-}
-
-export const getSignup = () => state
+/* ---- The store: lib/signupStore.ts holds the state; these change it ---- */
 
 function newId() {
   try {
@@ -388,41 +293,39 @@ export function draft(email: string, ctx: Context): SignupState {
 }
 
 export function start(s: SignupState, owner: string, preview: boolean) {
+  watchLeaving()
   set({ ...s, owner, preview, seq: 1 })
 }
 
-/* A reload: the card opens again at the first unanswered step, within 24 hours of the email. It also sets up the
-   beacon for a page that closes with something unsent (once). */
+/* The beacon for a page that closes with something unsent: set up once, as soon as there is a sign up to lose. */
 let leaving = false
+function watchLeaving() {
+  if (leaving || typeof window === 'undefined') return
+  leaving = true
+  window.addEventListener('pagehide', flushOnLeave)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flushOnLeave()
+  })
+}
+
+/* A reload: the card opens again at the first unanswered step, within 24 hours of the email (CaptureForm asks once it
+   has seen a sign up in storage, so a page without one never loads this). */
 export function resume() {
-  if (!leaving) {
-    leaving = true
-    window.addEventListener('pagehide', flushOnLeave)
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') flushOnLeave()
-    })
-  }
-  if (state) return
-  let saved: SignupState | null = null
-  try {
-    saved = JSON.parse(sessionStorage.getItem(STORE_KEY) ?? 'null') as SignupState | null
-  } catch {
-    saved = null
-  }
-  if (!saved || saved.v !== 1 || !saved.sid || Date.now() - saved.t > RESUME_MS || saved.done) return
-  const first = flowOf(saved).find((x) => !saved!.marks[x.id])
-  set({ ...saved, current: first?.id ?? 'note', returnTo: undefined, owner: '', seq: saved.seq + 1 }, false)
+  watchLeaving()
+  const found = getSignup() ? null : saved()
+  if (!found) return
+  const first = flowOf(found).find((x) => !found.marks[x.id])
+  set({ ...found, current: first?.id ?? 'note', returnTo: undefined, owner: '', seq: found.seq + 1 }, false)
 }
 
 /* The page is closing: anything not yet sent leaves as a beacon, typed drafts included. */
 export function flushOnLeave() {
-  if (state && (hasUnsent() || state.dirty) && beaconSnapshot(snapshot(state, true))) {
-    state = { ...state, dirty: false }
-    persist()
-  }
+  const s = getSignup()
+  if (s && (hasUnsent() || s.dirty) && beaconSnapshot(snapshot(s, true))) set({ ...s, dirty: false })
 }
 
 function update(patch: Partial<SignupState>, opts: { send?: boolean; move?: boolean } = {}) {
+  const state = getSignup()
   if (!state) return
   const next = { ...state, ...patch }
   if (opts.move) next.seq = state.seq + 1
@@ -437,6 +340,7 @@ export function setText(field: 'name' | 'company' | 'note' | 'readerOther', valu
 }
 
 export function setAnswer(id: string, a: Answer) {
+  const state = getSignup()
   if (!state) return
   update({ answers: { ...state.answers, [id]: a } })
 }
@@ -455,8 +359,8 @@ function after(s: SignupState, id: string) {
 
 /* Next, Skip and the 1 tap that moves on. */
 export function complete(id: string, skip: boolean, owner: string) {
-  if (!state) return
-  const s = state
+  const s = getSignup()
+  if (!s) return
   const flow = flowOf(s)
   const step = flow.find((x) => x.id === id)
   const answer = s.answers[id]
@@ -514,12 +418,14 @@ export function complete(id: string, skip: boolean, owner: string) {
 
 /* Back, a square, or Change on the thank you. */
 export function go(id: string, owner: string, fromThanks = false) {
+  const state = getSignup()
   if (!state) return
   update({ current: id, owner, returnTo: fromThanks ? 'thanks' : state.returnTo }, { move: true })
 }
 
 /* "Change" beside "For agencies.": the reader question joins the flow, right after name and company. */
 export function changeReader(owner: string, fromThanks = false) {
+  const state = getSignup()
   if (!state) return
   const answers = { ...state.answers, reader: { picked: state.reader ? [state.reader] : [] } }
   update({ askReader: true, answers, current: 'reader', owner, returnTo: fromThanks ? 'thanks' : undefined }, { move: true })
@@ -531,5 +437,6 @@ export function saveNext(next: { kind: string; sheet: string; value: string }) {
 
 /* The page's own "Try again" for unsent answers. */
 export function resend() {
+  const state = getSignup()
   if (state) queueSnapshot(snapshot(state))
 }

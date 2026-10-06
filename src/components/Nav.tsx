@@ -150,28 +150,34 @@ function usePagePrimaryShown(path: string, atTop: boolean, navRef: RefObject<HTM
     const main = document.getElementById('main')
     if (!main || !('IntersectionObserver' in window)) return
     const seen = new Set<Element>()
-    const top = navRef.current?.offsetHeight ?? 0
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) seen.add(e.target)
-          else seen.delete(e.target)
-        }
-        setState({ path, shown: seen.size > 0 })
-      },
-      { rootMargin: `${-top}px 0px 0px 0px` },
-    )
+    let io: IntersectionObserver | undefined
     /* A page that arrives later (a new route) brings its own buttons: watch them as they mount. */
     const watch = () => {
+      if (!io) return
       io.disconnect()
       seen.clear()
-      document.querySelectorAll(PRIMARY).forEach((b) => io.observe(b))
+      document.querySelectorAll(PRIMARY).forEach((b) => io?.observe(b))
     }
-    watch()
     const mo = new MutationObserver(watch)
-    mo.observe(main, { childList: true })
+    /* The bar's height is read in the next frame, with the browser's own layout, not a layout of its own. */
+    const frame = requestAnimationFrame(() => {
+      const top = navRef.current?.offsetHeight ?? 0
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) seen.add(e.target)
+            else seen.delete(e.target)
+          }
+          setState({ path, shown: seen.size > 0 })
+        },
+        { rootMargin: `${-top}px 0px 0px 0px` },
+      )
+      watch()
+      mo.observe(main, { childList: true })
+    })
     return () => {
-      io.disconnect()
+      cancelAnimationFrame(frame)
+      io?.disconnect()
       mo.disconnect()
     }
   }, [path, navRef])

@@ -8,7 +8,7 @@ import { Outcomes } from '../components/sections/Outcomes'
 import { Proof } from '../components/sections/Proof'
 import { RecipeGrid } from '../components/sections/RecipeGrid'
 import { UseCases } from '../components/sections/UseCases'
-import { pages } from '../content/registry'
+import { page } from '../content/pages/verify'
 import './StoryPage.css'
 
 /* /verify, Check your AI agents (the 4th way in, content/ways.ts), composed from content/pages/verify.ts in the story
@@ -17,7 +17,6 @@ import './StoryPage.css'
    run is claimed until a real one lands) > questions > the free AI agent check (#join).
    The console is drawn in the reader's own company. How and the use cases show every screen as it was drawn ('agency'
    leaves a screen as it is), so the voice agent check in How keeps its agency and its client, Dental group. */
-const page = pages.verify
 
 export function Verify() {
   return (

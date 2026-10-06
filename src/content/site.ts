@@ -1,4 +1,4 @@
-import { signup } from './signup'
+import { keepArrivedFrom } from './signupFlags'
 import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } from './types'
 import { WAYS } from './ways'
 
@@ -171,7 +171,7 @@ export const privacyPage: PrivacyPage = {
         'Your store’s web address, if you ask for a mystery shop',
         'Your AI agent’s chat page or phone number, if you ask for an AI agent check',
         'The first company you name, if you name one',
-        signup.keepArrivedFrom
+        keepArrivedFrom
           ? 'The page and form you used, the site that sent you there, how far you got, and when'
           : 'The page and form you used, how far you got, and when',
       ],

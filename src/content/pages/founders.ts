@@ -10,8 +10,11 @@ import type { Page } from '../types'
    Each use case line matches what its screen shows (leads, switch, ship, qa, rivals, listings, invoices, suppliers).
    Software renewals matches the spend screen: 6 tools on £4,950 of caps; the design tool asks 16% more, £1,200 to
    £1,392 a month, held at the £1,200 cap; last year's £30 a seat kept for 31 seats, 9 unused for 60 days removed
-   after your OK, so £930 a month; (£1,392 - £930) x 12 = £5,544 a year. The supplier outcome is the hero run's model:
-   $16,000 a month x (18% + 6%) x 12 = $46,080. */
+   after your OK, so £930 a month, all agreed in writing by day 16, 2 days after the day 14 charge was held. Supplier quotes: the
+   lowest of 3 quotes matched for 12 months on day 5, in writing on day 9.
+   No money promises (James and Seun, 3 Oct): every outcome is time, count or coverage, each with its model. The 4th
+   outcome is Inbound quotes' model: of 6,346 demo and contact forms filled in, 68 in 100 got no reply, so answering
+   all 100 is 100 / 32 = 3.1 times as many buyers answered. The 3rd: 3 jobs x 2 hours a week = 6 hours. */
 
 export const page: Page = {
   meta: {
@@ -20,7 +23,7 @@ export const page: Page = {
     description:
       'Declared AI agents with their own inbox, phone and browser sign up at every prospect to find the gap you fix and test every release as a new customer.',
     answer:
-      'Obsession gives founders declared AI agents that test your sign up and checkout as a new customer after every release, sign up at your prospects and rivals, and quote, chase and negotiate within your limits. You get signed proof and your next move.',
+      'Obsession gives founders declared AI agents that meet your business as a customer every day and after every release, checking your sign up, checkout, support bot and follow ups, and that work your prospects, rivals, invoices and renewals within your limits. You get signed proof of what works, what broke and your next move.',
     ogImage: '/og/founders.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -31,7 +34,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your business win and keep customers.',
-    sub: 'Obsession gives founders declared AI agents that test your sign up and checkout as a new customer after every release, sign up at your prospects and rivals, and quote, chase and negotiate within your limits. You get signed proof and your next move.',
+    sub: 'You built the product, the funnel and the AI agents your customers talk to, and you can’t watch them all. Obsession’s AI agents meet your business as a customer every day and after every release, then work your prospects, rivals and invoices within your limits. You hear what broke before a customer does.',
     capture: {
       kind: 'waitlist',
       source: 'founders-hero',
@@ -144,7 +147,7 @@ export const page: Page = {
           { time: 'Day 5', text: 'Pushback sent after your OK. Your supplier matches the lowest quote for 12 months.' },
           { time: 'Day 9', text: 'New price confirmed in writing after 2 chases.' },
         ],
-        finding: 'The 18% rise dropped and 6% off, held for 12 months: $46,080 kept this year.',
+        finding: 'The 18% rise dropped and the lowest of 3 quotes matched for 12 months, all in writing by day 9.',
         fix: 'Acceptance drafted, sent after your OK. Quotes run again in month 11.',
         ledger: 'Example run. Every quote, reply and chase dated and signed.',
       },
@@ -155,7 +158,7 @@ export const page: Page = {
         targets: '6 software tools, from your books',
         journey: ['1 capped card per tool', 'Hold any charge over the cap', 'Ask to keep last year’s price', 'Remove unused seats after your OK'],
         schedule: 'Every charge, and 90 days before each renewal',
-        report: 'A Slack note per renewal, a monthly savings sheet',
+        report: 'A Slack note per renewal, a monthly sheet of every vendor’s price',
         kit: ['Agent ID, names your company', '6 capped cards', 'Seat use, connected by you', 'Billing inbox'],
         events: [
           { time: 'Day 1', text: 'Your caps approved. 6 tools on their own cards, £4,950 a month in all.' },
@@ -164,7 +167,7 @@ export const page: Page = {
           { time: 'Day 14, 09:10', text: 'After your OK, the vendor is asked to renew 31 seats at last year’s £30 a seat.' },
           { time: 'Day 16', text: 'The vendor agrees in writing. 9 seats removed: £930 a month from here.' },
         ],
-        finding: 'A 16% rise held at the cap, last year’s price kept and 9 unused seats removed: £5,544 a year saved.',
+        finding: 'A 16% rise held at the cap, last year’s price kept and 9 unused seats removed, all agreed in writing by day 16.',
         fix: 'The cap lowered to £930 to match, ready for your OK. The next invoice gets checked against it.',
         ledger: 'Example run. Every held charge, reply and invoice signed.',
       },
@@ -230,7 +233,7 @@ export const page: Page = {
   },
 
   uses: {
-    heading: 'While you build, agents find, protect and collect your revenue.',
+    heading: 'While you build, agents find customers, test every release and chase every invoice.',
     items: [
       {
         tab: 'Leads with proof',
@@ -313,7 +316,7 @@ export const page: Page = {
       { value: 'Every prospect', label: 'checked for the gap you fix, with signed proof you can send' },
       { value: 'Every release', label: 'tested by a fresh test customer as soon as it ships' },
       { value: 'Up to 6 hours', label: 'back a week: 2 hours each on chasing invoices, getting quotes and testing releases' },
-      { value: 'Up to $46,080', label: 'a year kept on a $16,000 monthly order, if the 18% rise is dropped and you get 6% off' },
+      { value: 'Up to 3.1 times', label: 'as many buyers answered: of 6,346 demo and contact forms filled in, 68 in 100 got no reply, and agents answer all 100' },
     ],
   },
 
@@ -388,6 +391,10 @@ export const page: Page = {
   faq: {
     heading: 'Every agent says it’s AI. Nothing runs without your OK.',
     items: [
+      {
+        q: 'What does Obsession do for founders?',
+        a: 'Obsession gives founders declared AI agents that meet your business as a customer every day and after every release, checking your sign up, checkout, support bot and follow ups, and that work your prospects, rivals, invoices and renewals within your limits. You get signed proof of what works, what broke and your next move.',
+      },
       {
         q: 'What is Obsession?',
         a: 'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you. They sign up, ask the chat bot, test, quote, chase and negotiate within your limits at every company on your list, continuously, and you get signed proof and your next move.',

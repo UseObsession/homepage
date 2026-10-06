@@ -32,7 +32,8 @@ type Figure = {
   words: string
 }
 
-/* "Up to 1,080 hours" > Up to | 1,080 | hours. "Up to $216,000" > Up to | $ 216,000. "Every prospect" > words. */
+/* "Up to 1,080 hours" > Up to | 1,080 | hours. "Up to 3.1 times" > Up to | 3.1 | times. "Every prospect" > words.
+   A leading $, £ or € still parses, though no outcome carries money (James and Seun, 3 Oct). */
 function parse(value: string): Figure {
   const q = value.match(/^(up to)\s+/i)
   const qualifier = q ? q[1] : ''

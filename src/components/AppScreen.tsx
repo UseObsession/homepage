@@ -1,14 +1,16 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { hydrating } from '../lib/hydration'
 import { loadScreen, screenHtmlNow } from './screens'
-import { forWorkspace, type Workspace } from './workspace'
+import type { Workspace } from './workspace'
 /* The shared kit and base load with every page; each screen's own CSS comes with the screen (components/screens.ts). */
 import '../screens/kit.css'
 import '../screens/base.css'
 
-/* Every app screen: one 720 x 450 window of the Obsession product, drawn in HTML and CSS (src/screens, synced from
-   the workspace by scripts/sync-assets.mjs). Its rest state is the finished scene; adding .play runs its story.
-   - The prerender writes each screen's HTML into the page, and React keeps it as it hydrates: the browser's bundle
-     never carries the screens. A screen that mounts on a page reached client side fetches its HTML and CSS first.
+/* Every app screen: one 720 x 450 window of the Obsession product, a React component and its CSS (src/screens/NAME.tsx,
+   src/screens/css/NAME.css). Its rest state is the finished scene; adding .play runs its story.
+   - The prerender draws each screen's component into the page as static HTML, and React keeps that HTML as it
+     hydrates: the browser's bundle never carries the screens. A screen that mounts on a page reached client side
+     fetches its HTML (drawn at build time, components/screens.ts) and CSS first.
    - data-screen names the screen, so the prerender can link its CSS in the page's head.
    - The frame is a product object (.ob-object): glossy black on paper, lit on ink (styles/tones.css). */
 
@@ -19,11 +21,23 @@ export type ScreenName = string
    until a client side mount sets the real one. */
 const KEEP = { __html: '' }
 
+/* Plays the story: from the start again if it has played before (the reflow restarts its animations in the same
+   frame), straight away the first time, which needs no reflow. */
 function replay(el: Element | null) {
   if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  el.classList.remove('play')
-  void (el as HTMLElement).offsetWidth
+  if (el.classList.contains('play')) {
+    el.classList.remove('play')
+    void (el as HTMLElement).offsetWidth
+  }
   el.classList.add('play')
+}
+
+/* A story the page's boot script started (src/boot.ts) before the app was there: true once, the first time a tab or step
+   asks for it, so it isn't started over as the app takes over. */
+function bootPlayed(el: Element | null | undefined) {
+  if (!el?.hasAttribute('data-boot')) return false
+  el.removeAttribute('data-boot')
+  return true
 }
 
 type Props = {
@@ -42,12 +56,9 @@ type Props = {
 export function AppScreen({ name, playKey, className, workspace = 'agency', note = 'Example' }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   /* On the server: the screen's HTML. In the browser: undefined, so the prerendered HTML stays as it is. */
-  const [html, setHtml] = useState(() => {
-    const raw = screenHtmlNow(name)
-    return raw && forWorkspace(raw, workspace)
-  })
-  /* The screen the page shows now, prerendered or fetched. */
-  const [shown, setShown] = useState<string | null>(null)
+  const [html, setHtml] = useState(() => screenHtmlNow(name, workspace))
+  /* The screen the page shows now, prerendered or fetched: while hydrating, the prerendered one. */
+  const [shown, setShown] = useState<string | null>(() => (hydrating() ? name : null))
 
   /* A screen with nothing in it (a client side mount, or a new name) fetches its HTML and CSS. */
   useLayoutEffect(() => {
@@ -59,9 +70,9 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     }
     if (shown === name && (html !== undefined || el.firstElementChild)) return
     let live = true
-    loadScreen(name).then((raw) => {
-      if (!live || raw === undefined) return
-      setHtml(forWorkspace(raw, workspace))
+    loadScreen(name, workspace).then((h) => {
+      if (!live || h === undefined) return
+      setHtml(h)
       setShown(name)
     })
     return () => {
@@ -69,14 +80,14 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     }
   }, [name, workspace, html, shown])
 
-  /* The story plays once, when the screen first comes into view (once its HTML is in place). */
+  /* The story plays once, when the screen first comes into view (once its HTML is in place), unless it already has. */
   useEffect(() => {
     const il = ref.current?.querySelector('.il')
     if (!il || !('IntersectionObserver' in window)) return
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          replay(il)
+          if (!il.classList.contains('play')) replay(il)
           io.disconnect()
         }
       },
@@ -86,8 +97,15 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     return () => io.disconnect()
   }, [name, shown])
 
+  /* A new playKey plays the story again; the first one a screen mounts with is not a change, so it waits to be seen. */
+  const firstKey = useRef(true)
   useEffect(() => {
-    if (playKey !== undefined) replay(ref.current?.querySelector('.il') ?? null)
+    if (firstKey.current) {
+      firstKey.current = false
+      return
+    }
+    const il = ref.current?.querySelector('.il')
+    if (playKey !== undefined && !bootPlayed(il)) replay(il ?? null)
   }, [playKey])
 
   return (

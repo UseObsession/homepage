@@ -49,7 +49,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your product win and keep users.',
-    sub: 'The Obsession API starts declared AI agents from 1 call, each with its own inbox, phone number and browser. They sign up, shop and ask the chat bot at every company your code passes in, and post each signed step to your webhook.',
+    sub: 'Your agent can reason, but it can’t receive a code, answer a call or keep a receipt. The Obsession API gives it declared AI agents with real inboxes, phone numbers, browsers and cards in 1 call, at any company you pass in. Each signed step lands on your webhook, and you skip weeks of plumbing.',
     capture: {
       kind: 'waitlist',
       source: 'developers-hero',
@@ -394,6 +394,10 @@ await obs.missions.create({
   faq: {
     heading: 'Every agent says it’s AI. Every step comes back signed.',
     items: [
+      {
+        q: 'What does the Obsession API do?',
+        a: 'The Obsession API starts declared AI agents from 1 call, each with its own inbox, phone number and browser. They sign up, shop and ask the chat bot at every company your code passes in, and post each signed step to your webhook.',
+      },
       {
         q: 'What is the Obsession API?',
         a: 'The Obsession API is the infrastructure behind every recipe, from your own code. 1 API call starts declared AI agents, each with its own ID, inbox, phone number and browser. They sign up, shop, ask the chat bot, chase, check and wait at every company you pass in, continuously, and post each signed step to your webhook.',

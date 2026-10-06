@@ -1,13 +1,15 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEvent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
-import { recipeBySlug } from '../content/registry'
+import { catalog } from '../content/catalog'
 import type { Capture } from '../content/types'
-import { draft, readerOfPage, resume, snapshot, start, useSignup, type Context } from '../lib/signup'
+import { SignupCard, getSignup, loadCard, loadSignup, saved, useCardReady, useSignup, warmSignup, type Context } from '../lib/signupStore'
 import { ADDRESS_PATTERN, AGENT_PATTERN, WAITLIST_URL, isAddress, isAgent, isEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
-import { SignupSteps } from './SignupSteps'
 import './CaptureForm.css'
+/* The card's styles, here and not in the card, so they keep their place in the site's 1 sheet (the card's code is a
+   chunk of its own that loads on demand, and a style a lazy chunk imports would land after tones.css). */
+import './SignupSteps.css'
 
 /* The 1 capture form (docs/REBUILD.md, section 9), on the design system's .ob-pill-form, .ob-field, .ob-chips and
    .ob-confirm. kind "waitlist" asks for an email; kind "mystery" asks for the store first, then opens the email under it;
@@ -20,14 +22,21 @@ import './CaptureForm.css'
      nothing.
    - Once the email is saved, the form becomes the sign up card (components/SignupSteps) in the same spot: name and
      company, who they are where the page doesn't say, 4 questions for that reader, a note, then 1 next step. Every
-     form on the page shows the same card (lib/signup holds 1 sign up per visit), and a reload reopens it.
+     form on the page shows the same card (lib/signupStore holds 1 sign up per visit), and a reload reopens it.
      Step 1 carries a sign up ID that ties every later step to the row it makes (waitlist/Code.js).
-   - The page's reader comes from its address (content/signup.ts, readers' `path`); a recipe page's own question
-     (Capture.roles) is asked in place of the first job, as is "Whose store/AI agent is it?" on a free shop or check.
+   - The card, its rules and the question bank are 1 chunk that loads on demand (lib/signupStore): it is fetched the
+     moment a reader touches a form, and the email is never sent before it has arrived, so a page nobody signs up on
+     carries none of it. The form itself holds only what the 1st step needs.
+   - The page's reader comes from its address (content/signup.ts: a reader's own page, or a page that names its reader,
+     like the agencies' use case); a page's own question (Capture.roles) is asked in place of the first job, as is
+     "Whose store/AI agent is it?" on a free shop or check that sets none.
    - Under every form, 1 privacy line links /privacy. When the page's own micro line already says what we keep, the link
      closes that line instead, so the promise is never said twice and the foot stays 1 line.
    - A mystery or verify form with `orWaitlist` takes a blank first field: the reader joins the waitlist instead (its
      micro says so).
+   - A mystery or verify form may carry its own thank you (`done`) for an offer that is more than the 1 free report,
+     such as the agencies' 5 stores: the card's title and its thank you say it, once a store or an AI agent is named;
+     without one they say the shared words (content/capture).
    - Before the script runs, the 2 step form's email row is hidden (:root.js), so its email field is only required once
      the page has hydrated: a native post in that moment never fails on a field the reader can't see. */
 
@@ -65,6 +74,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const [busy, setBusy] = useState(false)
   const [live, setLive] = useState('')
   const signup = useSignup()
+  const cardReady = useCardReady()
 
   const sending = useRef(false)
   /* A second try of the same email keeps its sign up ID, so a post that landed but timed out makes no second row. */
@@ -78,8 +88,13 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     if (moved.current && step === 'email') emailRef.current?.focus()
   }, [step])
 
-  /* A sign up from earlier in this visit (a reload, or another page) reopens its card. */
-  useEffect(() => resume(), [])
+  /* A sign up from earlier in this visit (a reload) reopens its card. A page without one never loads the card's code. */
+  useEffect(() => {
+    if (getSignup() || !saved()) return
+    void Promise.all([loadSignup(), loadCard()])
+      .then(([m]) => m.resume())
+      .catch(() => undefined)
+  }, [])
 
   const id = {
     store: `${uid}-store`,
@@ -123,9 +138,19 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     sending.current = true
     setBusy(true)
     setLive(copy.sending)
-    /* The page's reader, and on a recipe page its name and its own question. */
+    /* The sign up's code has been loading since the form was touched; the email waits for it, never the other way. */
+    const loaded = await Promise.all([loadSignup(), loadCard()]).catch(() => null)
+    if (!loaded || !loaded[1]) {
+      sending.current = false
+      setBusy(false)
+      setProblem({ field: 'form', text: copy.errors.server })
+      setLive(copy.errors.server)
+      return
+    }
+    const [signupCode] = loaded
+    /* The page's reader and its own question, and on a recipe page the recipe's name. */
     const slug = pathname.startsWith('/recipes/') ? pathname.slice('/recipes/'.length) : ''
-    const recipe = slug ? recipeBySlug[slug] : undefined
+    const recipe = slug ? catalog.recipes.find((r) => r.slug === slug) : undefined
     const ctx: Context = {
       page: pathname,
       source: capture.source,
@@ -133,13 +158,15 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       interest: capture.interest,
       store: shop && !verify ? store.trim() : undefined,
       agent: shop && verify ? store.trim() : undefined,
-      pageReader: readerOfPage(pathname),
-      recipe: recipe ? { name: recipe.name, question: capture.roles } : undefined,
+      pageReader: signupCode.readerOfPage(pathname),
+      question: capture.roles,
+      recipe: recipe ? { name: recipe.name } : undefined,
+      done: shop ? capture.done : undefined,
     }
-    const signupDraft = draft(email, ctx)
+    const signupDraft = signupCode.draft(email, ctx)
     if (tried.current?.email === signupDraft.email) signupDraft.sid = tried.current.sid
     tried.current = { email: signupDraft.email, sid: signupDraft.sid }
-    const res = await submitSignup({ ...snapshot(signupDraft), website: trap })
+    const res = await submitSignup({ ...signupCode.snapshot(signupDraft), website: trap })
     sending.current = false
     setBusy(false)
 
@@ -151,7 +178,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       return
     }
     setLive('')
-    start(signupDraft, uid, res.preview)
+    signupCode.start(signupDraft, uid, res.preview)
   }
 
   const errorOn = (field: Field) => problem?.field === field
@@ -178,10 +205,10 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   )
 
   /* Once the email is saved, every form on the page is the card. After the thank you, only on the page it ended on. */
-  if (signup && (!signup.done || signup.doneOn === pathname)) {
+  if (signup && cardReady && (!signup.done || signup.doneOn === pathname)) {
     return (
       <div className={`s-capture s-capture--done ${className}`}>
-        <SignupSteps owner={uid} />
+        <SignupCard owner={uid} />
         {status}
       </div>
     )
@@ -197,6 +224,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
         action={WAITLIST_URL}
         noValidate={hydrated}
         onSubmit={submit}
+        onFocusCapture={warmSignup}
         aria-busy={busy || undefined}
       >
         <div className="ob-pill-field">

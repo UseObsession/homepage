@@ -130,3 +130,22 @@
   .s-gap-obs { margin: 0; font: var(--ob-type-body); font-weight: var(--ob-weight-medium); }
   .s-gap-row:last-child > .s-gap-obs { padding-bottom: 0; }
 }
+
+/* Under the gap's picture (GapStory): the picture holds the chapter's light, its receipts in the bone paper, so the
+   comparison reads as words on the ink. No sheet: "With Obsession" in full ink, "Today" quiet, the list opened by the
+   ink rule (THEMES.md G2), and the picture and the rows never compete for the eye. */
+.s-gap--story .s-gap-cmp { --s-gap-pad: 0px; }
+.s-gap.s-gap--story[data-tone="ink"] .s-gap-panel { display: none; }
+.s-gap.s-gap--story[data-tone="ink"] :is(.s-gap-col--obs, .s-gap-obs),
+.s-gap.s-gap--story[data-tone="ink"] .s-gap-col--obs .s-mark { color: var(--ob-text); }
+.s-gap.s-gap--story[data-tone="ink"] .s-gap-row::after { border-top-color: var(--ob-line); }
+.s-gap.s-gap--story[data-tone="ink"] .s-gap-row:first-child::before,
+.s-gap.s-gap--story[data-tone="ink"] .s-gap-row:first-child::after { border-top-color: var(--s-rule); }
+.s-gap--story .s-gap-row:last-child > .s-gap-obs { padding-bottom: var(--ob-space-24); }
+@media (max-width: 859.98px) {
+  .s-gap--story .s-gap-cols { padding-inline: 0; }
+  .s-gap--story .s-gap-rows { padding-inline: 0; }
+  .s-gap.s-gap--story[data-tone="ink"] :is(.s-gap-today, .s-gap-col--today, .s-gap-arrow) { color: var(--ob-text-2); }
+  .s-gap.s-gap--story[data-tone="ink"] .s-gap-row { border-top-color: var(--ob-line); }
+  .s-gap.s-gap--story[data-tone="ink"] .s-gap-row:first-child { border-top-color: var(--s-rule); }
+}

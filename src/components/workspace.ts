@@ -26,8 +26,14 @@ export const drawnFor = (screen: string): Workspace => (AGENCY_SCREENS.has(scree
 
 /* The shared How screens (templates, kit, run) are drawn for an agency. 'company' shows the same screen as the reader's
    own company. Founders, Sales, Marketing and Developers pass 'company' on their How steps; Home and Agencies keep the
-   default. */
-export function forWorkspace(html: string, workspace: Workspace) {
-  if (workspace === 'agency') return html
-  return html.replaceAll('Your agency', 'Your company').replaceAll('Clients', 'Lists').replaceAll('your-agency.example', 'your-company.example')
-}
+   default. A screen drawn for an agency says these words, and a company's workspace says the others
+   (src/screens/NAME.tsx: ws.org, ws.lists, ws.domain). */
+const WORDS = {
+  agency: { org: 'Your agency', lists: 'Clients', domain: 'your-agency.example' },
+  company: { org: 'Your company', lists: 'Lists', domain: 'your-company.example' },
+} as const
+
+export const wordsFor = (workspace: Workspace) => WORDS[workspace]
+
+/* What an app screen's component takes (src/screens/registry.ts). Only the screens drawn for an agency read it. */
+export type ScreenProps = { workspace?: Workspace }

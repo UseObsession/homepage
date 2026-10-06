@@ -4,9 +4,10 @@
 import { nav } from './nav'
 import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
+import { SITE, absolute, cleanPath } from './paths'
 import type { Faq, Meta } from './types'
 
-export const SITE = 'https://useobsession.com'
+export { SITE, absolute, cleanPath }
 
 export type PageKind =
   | 'home'
@@ -238,15 +239,6 @@ export const notFound: Entry = {
   line: notFoundPage.sub,
   source: 'src/content/site.ts',
 }
-
-/* A path as the router sees it, without a trailing slash or a .html ending (except the root). */
-export const cleanPath = (path: string) => {
-  const p = path.split(/[?#]/)[0].replace(/(\/index)?\.html$/, '').replace(/\/+$/, '')
-  return p === '' ? '/' : p
-}
-
-/* Absolute URLs: the canonical has no trailing slash, except the root. */
-export const absolute = (path: string) => SITE + (path === '/' ? '/' : path)
 
 const byPath = new Map(entries.map((e) => [e.meta.path, e]))
 

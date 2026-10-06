@@ -27,9 +27,10 @@ import type { Page } from '../types'
    banners only, never partner prices, and every note goes from your own team after your OK; every customer is asked
    for a review the same way, with the same review link, good or bad, from your own address;
    launch checks, lead leaks and checkout tests run on your own journeys only.
-   Up-to-50 rule: up to $2,870 a week saved is Ad landing check's example (Ad 4 at $410 a day, 7 × $410; "saved",
-   never "back", which reads as "ago"); up to 18 hours a
-   month is 90 minutes a week on each of 3 rivals for 4 weeks (1.5 × 3 × 4). */
+   Up-to-50 rule, no money promises (James and Seun, 3 Oct): up to 6 days sooner is Ad landing check's example (Ad 4
+   sending clicks to a sold out page: a check each morning finds it within 1 day, a weekly review within 7, so
+   7 minus 1 = 6), split value and label the way /verify's "Up to 10 days" is; up to 18 hours a month saved ("saved", never
+   "back", which reads as "ago") is 90 minutes a week on each of 3 rivals for 4 weeks (1.5 × 3 × 4). Ad 4's $410 a day stays as a fact of its story, never as a sum saved. */
 
 export const page: Page = {
   meta: {
@@ -38,7 +39,7 @@ export const page: Page = {
     description:
       'AI agents for marketing teams check every ad, partner link, launch and lead as a customer would, track every rival and draft each fix. Every step signed.',
     answer:
-      'Obsession gives marketing teams declared AI agents that check every ad, launch and rival as a customer would: your ad pages, partner codes and checkout, and every rival’s emails and prices. You hear of each break and each new offer the day it lands.',
+      'Obsession gives marketing teams declared AI agents that go through every ad, page, code, partner, review ask and AI answer as the customer, every day, and every rival’s emails, texts and prices. You get signed proof of each break and each new offer, and your next move.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +50,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that help your marketing team win, convert and keep customers.',
-    sub: 'Obsession gives marketing teams declared AI agents that check every ad, launch and rival as a customer would: your ad pages, partner codes and checkout, and every rival’s emails and prices. You hear of each break and each new offer the day it lands.',
+    sub: 'Ads send clicks to sold out pages, codes fail at checkout and a rival’s offer lands first, and you find out a week later. Obsession’s AI agents check every ad, page, code, partner and AI answer as the customer each day, and every rival’s emails and prices. You see each break and each new offer the morning it happens.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -183,6 +184,49 @@ export const page: Page = {
   gap: {
     heading: 'Your dashboards show what you sent, spent and published. Only a customer sees what arrived.',
     sub: 'Obsession’s AI agents are that customer, at every ad, link, launch and rival on your list.',
+    story: {
+      label:
+        'Example: your dashboard counts hollin’s basket reminder as sent on Day 1. Obsession’s declared AI test customer signs up on hollin.example, gets the welcome email with a 10% code, leaves a £48 pillowcase pair in its basket and checks its inbox each day: on Day 3 the reminder has never arrived, and all 6 steps are signed.',
+      site: 'hollin.example',
+      outside: {
+        name: 'Your dashboard',
+        kind: 'dashboard',
+        day: 1,
+        time: '09:31',
+        title: 'Basket reminder',
+        line: 'Sent',
+        tally: '1 send counted',
+      },
+      inside: {
+        name: 'Obsession',
+        agent: 'Test customer 1 · AI · for Your company',
+        customer: 'Test customer 1 · AI',
+        steps: [
+          {
+            kind: 'signup',
+            day: 0,
+            time: '09:14',
+            title: 'Signed up',
+            field: 'shopper1@test.useobsession.com',
+            mailTitle: 'Welcome email',
+            mail: 'Welcome to hollin. Here’s 10% off.',
+            mailTime: '09:15',
+          },
+          { kind: 'basket', day: 0, time: '09:31', title: 'Left a basket', item: 'Pillowcase Pair', price: '£48' },
+          { kind: 'wait', day: 1, time: '09:31', title: 'No reminder', since: '24 h' },
+          { kind: 'wait', day: 2, time: '09:31', title: 'No reminder', since: '48 h' },
+        ],
+        finding: {
+          day: 3,
+          time: '09:31',
+          title: 'The basket reminder counted as sent never arrived',
+          short: 'Never arrived',
+          meta: '0 emails in 72 h',
+        },
+        tally: '6 of 6 signed',
+        hash: '9c41 e2b8 … 07fd',
+      },
+    },
     rows: [
       {
         today: 'Your ad dashboard counts the click',
@@ -293,7 +337,7 @@ export const page: Page = {
     heading: 'Your team stops checking by hand and starts fixing what customers see.',
     items: [
       { value: 'Every Monday', label: 'AI assistants asked what they tell your buyers, and every wrong fact corrected at its source' },
-      { value: 'Up to $2,870', label: 'a week saved on 1 ad that sent clicks to a sold out page, at $410 a day' },
+      { value: 'Up to 6 days', label: 'sooner: a check each morning finds an ad sending clicks to a sold out page within 1 day, where a weekly review can take 7' },
       { value: 'Within minutes', label: 'of every send, a broken link, code or text flagged as a customer sees it, with the fix drafted' },
       { value: 'Up to 18 hours', label: 'a month saved, if your team spends 90 minutes a week on each of 3 rivals' },
     ],
@@ -360,6 +404,10 @@ export const page: Page = {
   faq: {
     heading: 'Every agent declared. Nothing paused, sent or changed without your OK.',
     items: [
+      {
+        q: 'What does Obsession do for marketing teams?',
+        a: 'Obsession gives marketing teams declared AI agents that go through every ad, page, code, partner, review ask and AI answer as the customer, every day, and every rival’s emails, texts and prices. You get signed proof of each break and each new offer, and your next move.',
+      },
       {
         q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
         a: 'Obsession subscribes a declared AI agent with its own inbox and texting number to each rival. It never replies, and logs every welcome email, text, offer and code with its time.',
