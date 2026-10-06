@@ -17,6 +17,7 @@ import './ScreenTabs.css'
      .ob-anim-bar: it advances on the bar's animationend, so pausing the bar pauses the timer). Hover, keyboard focus,
      off screen or a hidden tab hold it; a click, a key or the pause button stops it for good.
    - A tab whose screen has not landed in src/screens/html yet is left out on the server and in the browser alike.
+   - The camera films each screen's story (components/camera.ts): it pans and zooms to each beat, here only.
    - Every screen is in the page at once, stacked in 1 cell (only the chosen one shown and playing), so the console is
      as tall as its tallest panel and nothing below it moves when the tab changes. The prerendered HTML is the first
      screen, finished. Reduced motion keeps every screen finished and never advances. */
@@ -209,7 +210,7 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
                 aria-labelledby={tabs.length > 1 ? `${uid}-tab-${i}` : labelledBy}
                 inert={!on}
               >
-                <AppScreen name={t.screen} workspace={workspace} note="" playKey={play?.i === i ? play.key : undefined} className="s-shots-screen" />
+                <AppScreen name={t.screen} workspace={workspace} note="" playKey={play?.i === i ? play.key : undefined} className="s-shots-screen" camera />
                 <div className="s-shots-foot">
                   <p className="s-shots-line">
                     <span className="ob-tag s-shots-tag">{UI.example}</span>
