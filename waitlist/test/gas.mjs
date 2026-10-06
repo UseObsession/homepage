@@ -53,7 +53,8 @@ export function makeGas(codePath, { headers = null, rows = [], quota = 100 } = {
     PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => props[k] ?? null, setProperty: (k, v) => { props[k] = v } }) },
     LockService: { getScriptLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) },
     CacheService: { getScriptCache: () => ({ get: (k) => cache.get(k) ?? null, put: (k, v) => cache.set(k, v) }) },
-    MailApp: { sendEmail: (to, subject, body) => { left.quota -= to.split(',').length; mail.push({ to, subject, body }) }, getRemainingDailyQuota: () => left.quota },
+    // Apps Script refuses a subject over 250 characters
+    MailApp: { sendEmail: (to, subject, body) => { if (String(subject).length > 250) throw new Error('Argument too large: subject'); left.quota -= to.split(',').length; mail.push({ to, subject, body }) }, getRemainingDailyQuota: () => left.quota },
     Session: { getEffectiveUser: () => ({ getEmail: () => 'owner@example.com' }) },
     Utilities: { formatDate: (d) => d.toISOString().slice(0, 16).replace('T', ' ') },
     ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (s) => ({ body: s, setMimeType() { return this } }) },

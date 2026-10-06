@@ -7,8 +7,8 @@
      the reader on a page that asks; `other` then taps "Something else" on step N, and `back` goes back to the step
      before it, its answer showing. ?sd=thanks ends on the thank you.
    - ?sd=e2e  runs the checks below and posts the results to the stub's /__report: the single choice and the multi
-     select by tap, Space, number keys and Enter, how each looks at the frame's width, and the joined answers on the
-     thank you and in the stub's sheet (GET /__sheet).
+     select by tap, Space, number keys and Enter, how each looks at the frame's width, the joined answers on the
+     thank you and in the stub's sheet (GET /__sheet), and a step emptied then left by Back reading skipped.
    - ?sd=flow.NAME  runs 1 page's flow and posts its results the same way: agencies (the agencies use case with a store:
      its own thank you, whose store, and its format in place of the results), agenciesblank (the same form left blank:
      a waitlist sign up with the agency's own questions), verify (/verify with an AI agent), verifyblank, recipe
@@ -323,7 +323,7 @@ async function e2e() {
     check('every answer is listed', rows.length === 7, rows.map((r) => r.textContent).join(' | '))
     check('the answers read in the order asked', rows[0].querySelector('dt')?.textContent === 'Who you are' && rows[1].querySelector('dt')?.textContent === 'Jobs' && rows[5].querySelector('dt')?.textContent === 'Name and company', rows.map((r) => r.querySelector('dt')?.textContent).join(','))
     check('every job ticked, in the order ticked', value(1) === 'Find customers with proof, Check our AI agents, Test every release', value(1))
-    check('every pick of what they sell, with what they typed', value(2) === 'Software to businesses, Products from our store, Something else: Training courses', value(2))
+    check('every pick of what they sell, with what they typed', value(2) === 'Software to businesses, Products from our store, Something else (Training courses)', value(2))
     check('every pick of last week', value(4) === 'Checked a rival, Researched a prospect, Chased an unpaid invoice', value(4))
 
     rows[3].querySelector('button')!.click()
@@ -371,9 +371,28 @@ async function e2e() {
       row = sheet.rows.filter((r) => r['Sign up ID'] === sid).at(-1)
     }
     check('the sheet holds every job, joined, first pick first', row?.['First job'] === 'Check our AI agents, Test every release', row?.['First job'])
-    check('and every pick of the rest', row?.['Founder: sells'] === 'Software to businesses, Products from our store, Something else: Training courses' && row?.['Results to'] === 'Slack, Email' && row?.['Founder: did last week'] === 'Checked a rival, Researched a prospect, Chased an unpaid invoice', JSON.stringify(row))
+    check('and every pick of the rest', row?.['Founder: sells'] === 'Software to businesses, Products from our store, Something else (Training courses)' && row?.['Results to'] === 'Slack, Email' && row?.['Founder: did last week'] === 'Checked a rival, Researched a prospect, Chased an unpaid invoice', JSON.stringify(row))
     check('the first pick sets the run and Call first', /^The free AI agent check/.test(row?.['Suggested first run'] ?? '') && row?.['Call first'] === 'Yes: their first job is an AI agent check', `${row?.['Suggested first run']} | ${row?.['Call first']}`)
     check('the next step is the AI agent check', row?.['Next step'] === 'Free AI agent check' && row?.Agent === 'help.rival-co.example/chat', `${row?.['Next step']} | ${row?.Agent}`)
+
+    /* Back to the results from the thank you, every tick taken off, then Back: the step reads skipped, on the card and
+       in the sheet, never answered with nothing in it. */
+    card()!.querySelector<HTMLButtonElement>('.s-signup__disclose')!.click()
+    await sleep(50)
+    $$('.s-signup__row', card()!)[3].querySelector('button')!.click()
+    await until(() => currentId() === 'F3')
+    for (const box of $$<HTMLInputElement>('.ob-chip-input:checked', currentStep()!)) tap(box)
+    await sleep(60)
+    check('the results, emptied', picksOf('F3').length === 0 && ticked().length === 0, picksOf('F3').join())
+    ;(card()!.querySelector('.s-signup__back') as HTMLButtonElement).click()
+    await moved('F3')
+    check('then left by Back, read skipped', currentId() === 'F2' && $$('.s-signup__sq', card()!)[4].classList.contains('is-skipped'), currentId())
+    for (let i = 0; i < 40 && row?.['Results to'] !== 'Skipped'; i++) {
+      await sleep(250)
+      const sheet = (await (await fetch(`${STUB}/__sheet`)).json()) as { rows: Record<string, string>[] }
+      row = sheet.rows.filter((r) => r['Sign up ID'] === sid).at(-1)
+    }
+    check('and the sheet says Skipped at once', row?.['Results to'] === 'Skipped', row?.['Results to'])
     await sleep(800)
   } catch (err) {
     check('no crash', false, String(err))

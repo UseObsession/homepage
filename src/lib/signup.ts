@@ -97,14 +97,19 @@ export function questionText(q: SignupQuestion, company: string) {
   return c || !q.questionNoCompany ? fill(q.question, { company: c }) : q.questionNoCompany
 }
 
-/* What an answer says in the sheet and on the thank you: the labels, "Something else: what they typed". */
+/* What they typed for "Something else", in brackets: its own brackets turn square, so a comma in it never reads as
+   another pick (waitlist/Code.js splits a joined answer at ", " outside brackets). */
+const typed = (t: string) => `(${t.replace(/\(/g, '[').replace(/\)/g, ']')})`
+
+/* What an answer says in the sheet and on the thank you: the labels, joined with ", " in the order ticked, and
+   "Something else (what they typed)". */
 export function answerText(q: SignupQuestion, a?: Answer) {
   if (!a) return ''
   return a.picked
     .map((id) => {
       const o = optionOf(q, id)
       if (!o) return ''
-      return o.other && a.other?.trim() ? `${o.label}: ${a.other.trim()}` : o.label
+      return o.other && a.other?.trim() ? `${o.label} ${typed(a.other.trim())}` : o.label
     })
     .filter(Boolean)
     .join(', ')
@@ -312,11 +317,19 @@ export function draft(email: string, ctx: Context, sid = newId(), t = Date.now()
   return s
 }
 
+/* Every snapshot goes through here, so leaving a step can tell whether it changed what the row holds. */
+let lastSent = ''
+function send(s: SignupState) {
+  const body = snapshot(s)
+  lastSent = JSON.stringify(body)
+  queueSnapshot(body)
+}
+
 /* The card opens. Where the page already named the first job (a free shop or check, a recipe), the row gets it now,
    with its Call first, so a sign up that stops here still sorts. */
 function opened(s: SignupState) {
   watchLeaving()
-  if (s.ctx.store || s.ctx.agent || s.ctx.recipe) queueSnapshot(snapshot(s))
+  if (s.ctx.store || s.ctx.agent || s.ctx.recipe) send(s)
 }
 
 export function start(s: SignupState, owner: string, preview: boolean) {
@@ -359,14 +372,16 @@ export function flushOnLeave() {
   if (s && (hasUnsent() || s.dirty) && beaconSnapshot(snapshot(s, true))) set({ ...s, dirty: false })
 }
 
-function update(patch: Partial<SignupState>, opts: { send?: boolean; move?: boolean } = {}) {
+/* `send: 'changed'` sends only when the row would change. */
+function update(patch: Partial<SignupState>, opts: { send?: boolean | 'changed'; move?: boolean } = {}) {
   const state = getSignup()
   if (!state) return
   const next = { ...state, ...patch }
   if (opts.move) next.seq = state.seq + 1
-  next.dirty = opts.send ? false : (patch.name !== undefined || patch.company !== undefined || patch.note !== undefined) || state.dirty
+  const sending = opts.send === true || (opts.send === 'changed' && JSON.stringify(snapshot(next)) !== lastSent)
+  next.dirty = sending ? false : (patch.name !== undefined || patch.company !== undefined || patch.note !== undefined) || state.dirty
   set(next)
-  if (opts.send) queueSnapshot(snapshot(next))
+  if (sending) send(next)
 }
 
 /* Typing: kept, sent with the step. */
@@ -462,19 +477,43 @@ export function complete(id: string, skip: boolean, owner: string) {
   )
 }
 
+/* Leaving a step they had already answered or skipped, by Back, a square or Change, settles it as Next would: nothing
+   ticked or typed reads skipped, anything answered, and the row is sent if that changed it. So a step they came back
+   to and emptied never stays answered with nothing in it. A step they hadn't answered or skipped keeps its ticks for
+   when they return, and stays unanswered. */
+function settle(s: SignupState): Partial<SignupState> {
+  const id = s.current
+  if (!s.marks[id]) return {}
+  let mark: Mark
+  let answers = s.answers
+  if (id === 'name') {
+    /* Skip keeps the name and company in their fields, so only an emptied step changes. */
+    mark = s.name.trim() || s.company.trim() ? s.marks.name : 'skipped'
+  } else if (id === 'note') {
+    mark = s.note.trim() ? 'answered' : 'skipped'
+  } else {
+    if (!flowOf(s).find((x) => x.id === id)?.q) return {}
+    const picked = s.answers[id]?.picked ?? []
+    mark = picked.length ? 'answered' : 'skipped'
+    if (!picked.length) answers = { ...s.answers, [id]: { picked: [] } }
+  }
+  return { marks: { ...s.marks, [id]: mark }, answers }
+}
+
 /* Back, a square, or Change on the thank you. */
 export function go(id: string, owner: string, fromThanks = false) {
   const state = getSignup()
   if (!state) return
-  update({ current: id, owner, returnTo: fromThanks ? 'thanks' : state.returnTo }, { move: true })
+  update({ ...settle(state), current: id, owner, returnTo: fromThanks ? 'thanks' : state.returnTo }, { move: true, send: 'changed' })
 }
 
 /* "Change" beside "For agencies.": the reader question joins the flow, first, right after the email. */
 export function changeReader(owner: string, fromThanks = false) {
   const state = getSignup()
   if (!state) return
-  const answers = { ...state.answers, reader: { picked: state.reader ? [state.reader] : [] } }
-  update({ askReader: true, answers, current: 'reader', owner, returnTo: fromThanks ? 'thanks' : undefined }, { move: true })
+  const left = settle(state)
+  const answers = { ...(left.answers ?? state.answers), reader: { picked: state.reader ? [state.reader] : [] } }
+  update({ ...left, askReader: true, answers, current: 'reader', owner, returnTo: fromThanks ? 'thanks' : undefined }, { move: true, send: 'changed' })
 }
 
 export function saveNext(next: { kind: string; sheet: string; value: string }) {
@@ -484,5 +523,5 @@ export function saveNext(next: { kind: string; sheet: string; value: string }) {
 /* The page's own "Try again" for unsent answers. */
 export function resend() {
   const state = getSignup()
-  if (state) queueSnapshot(snapshot(state))
+  if (state) send(state)
 }

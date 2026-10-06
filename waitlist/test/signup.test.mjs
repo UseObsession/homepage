@@ -84,7 +84,7 @@ await t('which questions take any number: the jobs, the results, what they sell 
       } else assert.doesNotMatch(helper, /Pick any/, q.id)
     }
     const job = r.questions.find((q) => q.key === 'first_job')
-    assert.equal(job.question, r.id === 'developer' ? 'What will you build?' : 'What should your agents do?')
+    assert.equal(job.question, 'What should your agents do?', r.id)
     assert.equal(job.helper, 'Pick any. We start with your first pick.')
     assert.equal(r.questions.find((q) => q.key === 'results').question, 'Where should results land?')
   }
@@ -139,7 +139,7 @@ await t('3 jobs ticked: every pick in the sheet and on the thank you, in order; 
   // "Something else" first: no suggested run, the helper says only "Pick any."
   L.go('A1', 'me'); L.setAnswer('A1', { picked: ['other', 'pitch'], other: 'Supplier audits' }); L.complete('A1', false, 'me')
   g = L.getSignup()
-  assert.equal(L.snapshot(g).first_job, 'Something else: Supplier audits, Pitch packs on prospects')
+  assert.equal(L.snapshot(g).first_job, 'Something else (Supplier audits), Pitch packs on prospects')
   assert.equal(L.snapshot(g).suggested, ''); assert.equal(L.resultsHelper(g), 'Pick any.')
   // Next with nothing ticked counts as Skip
   L.go('A3', 'me'); tick('A3', 'slack', 'email', 'a-pdf-or-link-for-clients'); L.complete('A3', false, 'me')
@@ -209,7 +209,7 @@ await t('a page question that takes any number: its picks joined, "Pick any." un
   tickAll('page', 'o2', 'o1', 'other')
   L.go('page', 'me'); L.setAnswer('page', { ...L.getSignup().answers.page, other: 'Clinics abroad' }); L.complete('page', false, 'me')
   const snap = L.snapshot(L.getSignup())
-  assert.equal(snap.job_detail, 'Who are your prospects? Software companies, Stores and consumer brands, Something else: Clinics abroad')
+  assert.equal(snap.job_detail, 'Who are your prospects? Software companies, Stores and consumer brands, Something else (Clinics abroad)')
   assert.equal(snap.first_job, 'Prospect intelligence')
   // a page question of 1 pick stays 1 pick, without the helper
   startWith('r@r.example', ctx({ question: { question: 'Whose rivals should we track first?', options: ['Ours', 'A client’s', 'Both'] } }))
@@ -220,10 +220,72 @@ await t('a page question that takes any number: its picks joined, "Pick any." un
   assert.equal(L.questionsOf(L.getSignup())[0].helper, 'Pick any. Last month only.')
 })
 
+await t('what they typed for "Something else" sits in brackets, its own brackets square, so a comma never reads as a pick', () => {
+  startWith('a@agency.example', ctx({ page: '/agencies', pageReader: 'agency' }))
+  tick('A1', 'other', 'pitch'); L.setAnswer('A1', { ...L.getSignup().answers.A1, other: ' Audits, monthly (for 3 clients) ' }); L.complete('A1', false, 'me')
+  const snap = L.snapshot(L.getSignup())
+  assert.equal(snap.first_job, 'Something else (Audits, monthly [for 3 clients]), Pitch packs on prospects')
+  // a 1 pick question reads the same way
+  startWith('d@d.example', ctx({ page: '/developers', pageReader: 'developer' }))
+  L.setAnswer('D4', { picked: ['other'], other: 'Cypress, Selenium' }); L.complete('D4', false, 'me')
+  assert.equal(L.snapshot(L.getSignup()).developer_last_used, 'Something else (Cypress, Selenium)')
+  // the script reads the joined jobs back as 2 picks: the first in the alert's subject, then how many more
+  const g = makeGas(new URL('../Code.js', import.meta.url).pathname)
+  const base = { email: 'a@agency.example', sid: '3f6c0a1e-1234-4abc-9def-0123456789ab', source: 's', reader: 'Agency' }
+  g.post({ ...base, step: '1' }); g.post({ ...base, step: '9', at: '1', first_job: snap.first_job })
+  assert.equal(g.mail[1].subject, 'Answers: a@agency.example. Agency: Something else (Audits, monthly [for 3 clients]) and 1 more')
+})
+
+await t('leaving a step they came back to settles it as Next would; a step not yet answered keeps its ticks for later', async () => {
+  startWith('f@f.example', ctx({ page: '/founders', pageReader: 'founder' }))
+  tickAll('F1', 'find', 'agents'); tickAll('F2', 'saas', 'store')
+  await wait(50); posts.length = 0
+  // back to what they sell, both ticks taken off, then Back: skipped, not answered with nothing, and sent
+  L.go('F2', 'me'); tick('F2', 'saas', 'store'); L.go('F1', 'me')
+  let g = L.getSignup()
+  assert.equal(g.current, 'F1'); assert.equal(g.marks.F2, 'skipped'); assert.deepEqual(g.answers.F2.picked, [])
+  assert.equal(L.snapshot(g).founder_sells, 'Skipped'); assert.equal(L.nextStepFor(g), 'company')
+  await wait(50)
+  assert.equal(posts.length, 1); assert.equal(posts[0].founder_sells, 'Skipped')
+  // a step left as it was sends nothing
+  posts.length = 0
+  L.go('F2', 'me'); L.go('F1', 'me')
+  await wait(50); assert.equal(posts.length, 0)
+  // ticked again and left by a square: answered, sent
+  L.go('F2', 'me'); tick('F2', 'local'); L.go('F1', 'me')
+  g = L.getSignup(); assert.equal(g.marks.F2, 'answered')
+  await wait(50); assert.equal(posts.at(-1).founder_sells, 'Local services')
+  // a step not yet answered or skipped: its ticks wait for them, unsent, and Next still lands there
+  posts.length = 0
+  L.go('F3', 'me'); tick('F3', 'slack'); L.go('F2', 'me')
+  g = L.getSignup(); assert.equal(g.marks.F3, undefined); assert.deepEqual(g.answers.F3.picked, ['slack']); assert.equal(L.snapshot(g).results, '')
+  await wait(50); assert.equal(posts.length, 0)
+  L.complete('F2', false, 'me'); assert.equal(L.getSignup().current, 'F3')
+  // a skipped step ticked and left: answered
+  L.complete('F3', true, 'me'); L.go('F3', 'me'); tick('F3', 'email'); L.go('F2', 'me')
+  assert.equal(L.getSignup().marks.F3, 'answered'); assert.equal(L.snapshot(L.getSignup()).results, 'Email')
+  // Change beside "For founders." settles the step on screen too
+  L.go('F1', 'me'); tick('F1', 'find', 'agents'); L.changeReader('me')
+  g = L.getSignup(); assert.equal(g.current, 'reader'); assert.equal(g.marks.F1, 'skipped'); assert.equal(L.snapshot(g).first_job, 'Skipped')
+  await wait(50); assert.equal(posts.at(-1).first_job, 'Skipped')
+  // the name step: emptied and left, it reads skipped; a skipped one they only looked at stays skipped
+  startWith('maya@northwind-labs.co.uk', ctx({ page: '/agencies', pageReader: 'agency' }))
+  L.setText('name', 'Maya'); L.complete('name', false, 'me')
+  assert.equal(L.snapshot(L.getSignup()).name, 'Maya')
+  L.go('name', 'me'); L.setText('name', ''); L.setText('company', ''); L.go('A1', 'me')
+  g = L.getSignup(); assert.equal(g.marks.name, 'skipped'); assert.equal(L.snapshot(g).name, 'Skipped')
+  startWith('maya@northwind-labs.co.uk', ctx({ page: '/agencies', pageReader: 'agency' }))
+  L.complete('name', true, 'me'); L.go('name', 'me'); L.go('A1', 'me')
+  assert.equal(L.getSignup().marks.name, 'skipped', 'the company from the email never turns a skip into an answer')
+  // the note: typed into after a skip, then left by Back, it reads what they typed
+  L.complete('note', true, 'me'); L.go('note', 'me'); L.setText('note', 'Pitch on the 14th'); L.go('name', 'me')
+  g = L.getSignup(); assert.equal(g.marks.note, 'answered'); assert.equal(L.snapshot(g).note, 'Pitch on the 14th')
+})
+
 await t('every column keeps the longest answer the site can send: every option at once, "Something else" typed in full', () => {
   const caps = Object.fromEntries(makeGas(new URL('../Code.js', import.meta.url).pathname).FIELDS.filter((f) => f[1]).map((f) => [f[1], f[2]]))
   // The "Something else" field takes 120 characters (components/SignupSteps.tsx, maxLength)
-  const label = (o) => (o.other ? `${o.label}: ${'x'.repeat(120)}` : o.label)
+  const label = (o) => (o.other ? `${o.label} (${'x'.repeat(120)})` : o.label)
   const longest = (options, multi) => (multi ? options.filter((o) => !o.none).map(label).join(', ').length : Math.max(...options.map((o) => label(o).length)))
   const need = {}
   const add = (key, n, what) => { if (n > (need[key]?.n ?? 0)) need[key] = { n, what } }
@@ -298,7 +360,7 @@ await t('Something else reader: 3 questions, role kept, None of these', () => {
   L.complete('name', false, 'me')
   g = L.getSignup()
   const snap = L.snapshot(g)
-  assert.equal(snap.other_role, 'Operations lead'); assert.equal(snap.first_job, 'Something else: Supplier audits'); assert.equal(snap.results, 'Skipped')
+  assert.equal(snap.other_role, 'Operations lead'); assert.equal(snap.first_job, 'Something else (Supplier audits)'); assert.equal(snap.results, 'Skipped')
   assert.equal(snap.other_last_week, 'Researched a company, Checked a rival, Chased a payment or supplier')
   assert.equal(snap.call_first, 'Yes: 3 of these by hand last week')
   assert.equal(L.nextStepFor(g), 'company')

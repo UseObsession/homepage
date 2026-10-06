@@ -26,7 +26,8 @@ import type { RoleId } from './types'
    - The picks keep the order they were ticked in. The first pick leads: it sets the Suggested first run, the AI agent
      check on the thank you and "For pitch packs." under the results. The sheet and the thank you list every pick,
      joined with ", ", so a label in a multi select never holds a comma.
-   - `other: true` ("Something else") opens a short field and never moves on by itself. `none: true` ("None of these",
+   - `other: true` ("Something else") opens a short field and never moves on by itself; the answer reads "Something
+     else (what they typed)". `none: true` ("None of these",
      "Just exploring") clears every other choice in a multi select.
    - On a first job option: `for` names it under "Where should results land?" ("For pitch packs."), and `run` is the
      first run the founders set up by hand (the sheet's "Suggested first run"). Both come from the first pick.
@@ -349,7 +350,6 @@ const developer: SignupReader = {
     {
       id: 'D1',
       ...firstJob,
-      question: 'What will you build?',
       options: [
         { id: 'ci', label: 'Release tests in CI', for: 'release tests', run: 'Website audit through the API: a typed task on every deploy, with the webhook into CI' },
         { id: 'prospect', label: 'Prospect intelligence', for: 'prospect intelligence', run: 'Prospect intelligence through the API, inside their product, for a handful of their users' },
