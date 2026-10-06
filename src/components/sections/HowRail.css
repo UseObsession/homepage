@@ -1,0 +1,330 @@
+/* How it works, compact (sections/HowRail.tsx). Design system tokens; site classes start s-hw.
+   The slices are drawn in the app screens' own look (src/screens/base.css: the typed line, chips, rows, switch and
+   button), at the page's size rather than a screen's scale. Each slice is an .ob-object, so it reads the ink set in both
+   themes: glossy black on paper, lit on ink (Paper and Gloss, styles/tones.css). On a wide screen the 4 sit on 1 panel,
+   the object, and go quiet on it, as a screen does on the hero's stage. */
+
+/* The claim breaks between its 2 sentences: each keeps to 1 line where it fits, and balances where it can't. */
+.s-hw-head { max-width: none; margin-bottom: clamp(24px, 5vw, 64px); }
+.s-hw-say { display: inline-block; text-wrap: balance; }
+
+/* ---- Narrow: the steps stack down the rail ------------------------------------------------------------------------ */
+.s-hw-body { display: grid; min-width: 0; }
+.s-hw-panel { display: none; }
+.s-hw-steps { display: grid; gap: 18px; }
+
+/* A step: its number on the rail, its words and its slice beside it. */
+.s-hw-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--ob-space-24) minmax(0, 1fr);
+  column-gap: var(--ob-space-12);
+  min-width: 0;
+}
+.s-hw-copy { display: contents; }
+.s-hw-num {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: baseline;
+  justify-self: center;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text);
+}
+.s-hw-title {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: baseline;
+  font: 600 18px/1.3 var(--ob-font-sans);
+  letter-spacing: -.015em;
+  color: var(--ob-text);
+}
+.s-hw-line {
+  grid-column: 2;
+  grid-row: 2;
+  max-width: 38ch;
+  padding-top: var(--ob-space-2);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+.s-hw-slice { grid-column: 2; grid-row: 3; max-width: 520px; margin-top: 10px; }
+
+/* The rail: 1 line from under each number down to the next, the ink rule that opens a list (tones.css --s-rule). */
+.s-hw-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  bottom: -14px;
+  left: calc(var(--ob-space-24) / 2);
+  width: var(--ob-border-hair);
+  background-color: var(--s-rule, var(--ob-line-strong));
+}
+
+.s-hw-note { padding-left: calc(var(--ob-space-24) + var(--ob-space-12)); }
+
+/* ---- Tablet (720px to 1199px): each slice beside its words, the rail still down the numbers -----------------------
+   The words take 5 parts and the slice 6, so the width is used and the 4 keep their order down the rail. The note sits
+   under the slices' column: the number's column and 2 gaps, the words' 5 of 11 parts, then the slice's margin. */
+@media (min-width: 720px) and (max-width: 1199.98px) {
+  .s-hw-steps { gap: var(--ob-space-24); }
+  .s-hw-step { grid-template-columns: var(--ob-space-24) minmax(0, 5fr) minmax(0, 6fr); grid-template-rows: auto auto 1fr; }
+  .s-hw-step:not(:last-child)::before { bottom: calc(4px - var(--ob-space-24)); }
+  .s-hw-slice { grid-column: 3; grid-row: 1 / span 3; max-width: none; margin: 0 0 0 var(--ob-space-24); }
+  .s-hw-note {
+    padding-left: calc(
+      var(--ob-space-24) * 2 + var(--ob-space-12) * 2 + (100% - var(--ob-space-24) - var(--ob-space-12) * 2) * 5 / 11
+    );
+  }
+}
+
+/* ---- The slice: a few of the app's parts, on ink ------------------------------------------------------------------ */
+.s-hw-slice {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  justify-items: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px;
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  font: 400 13px/1.35 var(--ob-font-sans);
+  letter-spacing: -.003em;
+  /* A picture of the product: it keeps its own colours in forced colours, as the app screens do (tones.css A8). */
+  forced-color-adjust: none;
+}
+.s-hw-i { display: block; flex: none; width: 14px; height: 14px; }
+
+/* Chips: a choice, quiet until picked; a picked chip is filled (base.css .ax-chip.solid). */
+.s-hw-chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); }
+.s-hw-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 7px;
+  background-color: rgb(var(--ob-tint-rgb) / .05);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  color: var(--ob-text-2);
+  font: 500 12.5px/1 var(--ob-font-sans);
+  white-space: nowrap;
+}
+.s-hw-fill {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  background-color: var(--ob-text);
+  color: var(--ob-bg);
+}
+.s-hw-fill .s-pm { color: var(--ob-bg); }
+.s-hw-src .s-hw-chip { color: var(--ob-text); }
+
+/* 1 The typed line (screens/css/templates.css .tp-field). */
+.s-hw-field {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: var(--ob-radius-sm);
+  background-color: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset;
+  color: var(--ob-text-3);
+  font: 400 12px/1 var(--ob-font-mono);
+}
+.s-hw-gt { font-size: 14px; font-weight: 500; }
+.s-hw-ph { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 2 The list: where it comes from, then its rows. */
+.s-hw-rows { display: grid; width: 100%; }
+.s-hw-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-width: 0;
+  height: 28px;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-hw-row > i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background-color: rgb(var(--ob-tint-rgb) / .08);
+  color: var(--ob-text-2);
+  font: 600 10px/1 var(--ob-font-mono);
+  font-style: normal;
+  text-transform: uppercase;
+}
+.s-hw-site { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 12px/1 var(--ob-font-mono); }
+.s-hw-tag {
+  flex: none;
+  margin-left: auto;
+  padding: 4px 7px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  color: var(--ob-text-2);
+  font: 500 11.5px/1 var(--ob-font-sans);
+}
+.s-hw-more { height: 22px; color: var(--ob-text-3); font-size: 12px; }
+
+/* 3 The run, its switch and the button (base.css .ax-toggle, .ax-btn). At rest it is approved. */
+.s-hw-run { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.s-hw-ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: var(--ob-text);
+  color: var(--ob-bg);
+}
+.s-hw-run__t { display: grid; gap: 4px; min-width: 0; }
+.s-hw-run__t b { font: 600 13.5px/1.2 var(--ob-font-sans); letter-spacing: -.01em; }
+.s-hw-run__t small { font: 400 11.5px/1.2 var(--ob-font-mono); color: var(--ob-text-2); }
+.s-hw-go { display: grid; gap: 10px; width: 100%; }
+.s-hw-tog {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: 38px;
+  border-block: var(--ob-border-hair) solid var(--ob-line-subtle);
+  color: var(--ob-text-2);
+}
+.s-hw-switch { position: relative; flex: none; width: 30px; height: 18px; border-radius: 9px; background-color: var(--ob-text); }
+.s-hw-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--ob-bg);
+}
+.s-hw-btn { display: grid; height: 34px; }
+.s-hw-btn > span {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  border-radius: 9px;
+  font: 600 13px/1 var(--ob-font-sans);
+}
+.s-hw-btn__go { background-color: var(--ob-text); color: var(--ob-bg); opacity: 0; }
+.s-hw-btn__done { background-color: rgb(var(--ob-tint-rgb) / .05); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.s-hw-slice--approve { container-type: inline-size; }
+@container (min-width: 270px) {
+  .s-hw-go {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding-top: 10px;
+    border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  }
+  .s-hw-tog { justify-content: start; height: auto; border-block: 0; }
+}
+
+/* 4 Where findings go, and the picked format's own setting. */
+.s-hw-slice--formats { container-type: inline-size; gap: var(--ob-space-8); }
+/* Where the 5 formats can't keep to 1 line they break 3 and 2, in 2 tidy columns, never 4 and CRM alone. */
+@container (max-width: 289.98px) {
+  .s-hw-slice--formats .s-hw-chips { display: grid; grid-template-columns: repeat(3, max-content); justify-items: start; }
+}
+.s-hw-k { font: 500 12px/1.2 var(--ob-font-sans); color: var(--ob-text-3); }
+.s-hw-dest {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  width: 100%;
+  height: 32px;
+  margin-top: var(--ob-space-4);
+  padding: 0 10px;
+  border-radius: 8px;
+  background-color: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset;
+}
+.s-hw-mono { font: 400 12px/1 var(--ob-font-mono); color: var(--ob-text); }
+
+/* ---- Wide: 4 in a row on 1 panel, the rail along the numbers ------------------------------------------------------
+   From 1200px, where James's band above also turns to a row. The steps share the body's 4 columns and 2 rows (subgrid),
+   so every number, title and slice lines up across, and the panel fills the slices' row behind them. Without subgrid
+   the stacked layout stays. */
+@media (min-width: 1200px) {
+  @supports (grid-template-rows: subgrid) {
+    .s-hw-body { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; }
+    .s-hw-panel { display: block; grid-column: 1 / -1; grid-row: 2; border-radius: var(--ob-radius-lg); }
+    .s-hw-steps { grid-column: 1 / -1; grid-row: 1 / 3; grid-template-columns: subgrid; grid-template-rows: subgrid; gap: 0; }
+    .s-hw-step { grid-row: 1 / 3; grid-template-columns: none; grid-template-rows: subgrid; column-gap: 0; }
+    .s-hw-step:not(:last-child)::before { content: none; }
+    .s-hw-copy { display: grid; align-content: start; padding: 0 var(--ob-space-32) var(--ob-space-24) 0; }
+    .s-hw-num, .s-hw-title, .s-hw-line { grid-column: auto; grid-row: auto; align-self: auto; justify-self: stretch; }
+    /* The rail: each number opens a hairline that runs on to the next; the 4th's runs to the panel's edge. */
+    .s-hw-num { display: flex; align-items: center; gap: var(--ob-space-12); margin-bottom: var(--ob-space-16); }
+    .s-hw-num::after {
+      content: "";
+      flex: 1;
+      height: var(--ob-border-hair);
+      margin-right: calc(var(--ob-space-12) - var(--ob-space-32));
+      background-color: var(--s-rule, var(--ob-line-strong));
+    }
+    .s-hw-step:last-child .s-hw-num::after { margin-right: calc(var(--ob-space-32) * -1); }
+    /* The sides narrow a little under about 1430px, so the typed line keeps its whole placeholder down to 1200. */
+    .s-hw-slice {
+      grid-column: auto;
+      grid-row: auto;
+      gap: 12px;
+      max-width: none;
+      margin: 0;
+      padding: 18px clamp(16px, 1.4vw, 20px) 20px;
+      border-radius: 0;
+    }
+    .s-hw-slice.ob-object { background: transparent; box-shadow: none; }
+    .s-hw-step + .s-hw-step .s-hw-slice { box-shadow: var(--ob-border-hair) 0 0 var(--ob-line) inset; }
+    .s-hw-note { grid-column: 1 / -1; grid-row: 3; margin-top: var(--ob-space-12); padding-left: 0; }
+    @media (forced-colors: active) {
+      .s-hw-panel { forced-color-adjust: none; }
+      .s-hw-slice.ob-object { outline: 0; }
+    }
+  }
+}
+
+/* ---- Motion: each slice's 1 action, once (HowRail.tsx sets .is-armed, then .play and --s-hw-d) ------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .s-hw-slice.is-armed .s-hw-fill { opacity: 0; transform: scale(.92); }
+  .s-hw-slice.is-armed .s-hw-row { opacity: 0; transform: translateY(8px); }
+  .s-hw-slice.is-armed .s-hw-btn__go { opacity: 1; }
+  .s-hw-slice.is-armed .s-hw-btn__done { opacity: 0; }
+  .s-hw-slice.is-armed .s-hw-dest { opacity: 0; transform: translateY(6px); }
+
+  /* 1 and 4: a chip is picked. */
+  .s-hw-slice.is-armed.play .s-hw-fill { animation: s-hw-pick 360ms var(--ob-ease) var(--s-hw-d, 0ms) both; }
+  /* 2: the rows land, 60ms apart. */
+  .s-hw-slice.is-armed.play .s-hw-row {
+    animation: s-hw-land 360ms var(--ob-ease) calc(var(--s-hw-d, 0ms) + var(--s-hw-i, 0) * 60ms) both;
+  }
+  /* 3: Approve is pressed and gives way to Approved. */
+  .s-hw-slice.is-armed.play .s-hw-btn { animation: s-hw-press 280ms var(--ob-ease) var(--s-hw-d, 0ms) both; }
+  .s-hw-slice.is-armed.play .s-hw-btn__go { animation: s-hw-out 180ms var(--ob-ease-in) calc(var(--s-hw-d, 0ms) + 200ms) both; }
+  .s-hw-slice.is-armed.play .s-hw-btn__done { animation: s-hw-in 240ms var(--ob-ease) calc(var(--s-hw-d, 0ms) + 220ms) both; }
+  /* 4: the picked format's setting comes with it. */
+  .s-hw-slice.is-armed.play .s-hw-dest { animation: s-hw-land 320ms var(--ob-ease) calc(var(--s-hw-d, 0ms) + 140ms) both; }
+}
+@keyframes s-hw-pick { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes s-hw-land { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes s-hw-press { 45% { transform: scale(.95); } }
+@keyframes s-hw-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes s-hw-in { from { opacity: 0; } to { opacity: 1; } }

@@ -5,3 +5,6 @@
 /* Home: James's persona band follows the hero. The hero's 1 section space is the gap between them, so his section takes
    none of its own above it (the band itself is as he built it). */
 .s-hero + .james > .section:first-child { padding-top: 0; }
+/* Home: how it works follows James's band, whose own section space below it is the gap between them, so it takes none
+   above it. */
+.james + .s-section { padding-top: 0; }
