@@ -1,12 +1,24 @@
 import { wordsFor, type ScreenProps } from '../components/workspace'
+import { cam, type Shot } from './cam'
 
 /* The pack app screen: 1 720 x 450 window of the product, at rest on its finished scene; AppScreen adds .play to its
    root to run the story. Its look and story: css/pack.css, loaded by the page, never imported here. Converted from
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
+
+/* The camera (src/screens/cam.ts): the wide window, the prospects landing 1 by 1 with their gaps, the Coffee pitch
+   building, the click on Copy link, then it holds on the pitch's 3 findings. */
+const SHOTS: Shot[] = [
+  { at: 0 },
+  { at: 1.1, on: '.pk-lh, .pk-r1, .pk-r2, .pk-r3' },
+  { at: 2.6, on: '.pk-page', phone: '.pk-page h3, .pk-finds' },
+  { at: 3.9, on: '.pk-bar, .pk-page h3', click: '.pk-copy', tap: 4.24 },
+  { at: 5.1, on: '.pk-page h3, .pk-finds' },
+]
+
 export function PackScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence mission for 12 prospects from Clay, run by a declared Obsession agent through public sign ups only: rows land 1 by 1 with each prospect’s proven gap; when the Coffee prospect lands, its pitch pack builds 3 findings with captures, and a click on Copy link copies the pack’s link.">
+    <div className="il appx-il app-pack" data-cam={cam(SHOTS)}><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence mission for 12 prospects from Clay, run by a declared Obsession agent through public sign ups only: rows land 1 by 1 with each prospect’s proven gap; when the Coffee prospect lands, its pitch pack builds 3 findings with captures, and a click on Copy link copies the pack’s link.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Missions<span>/</span>Prospect intelligence</span>

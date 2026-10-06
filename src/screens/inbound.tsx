@@ -1,9 +1,23 @@
+import { cam, type Shot } from './cam'
+
 /* The inbound app screen: 1 720 x 450 window of the product, at rest on its finished scene; AppScreen adds .play to
    its root to run the story. Its look and story: css/inbound.css, loaded by the page, never imported here. Converted
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
+
+/* The camera (src/screens/cam.ts): the wide window, the 3 test leads' timers against the 5 minute line, the form and
+   phone landing with nobody to own them, the routing fix and the click on Approve, then it holds on the approval
+   and the re-test's first reply. */
+const SHOTS: Shot[] = [
+  { at: 0 },
+  { at: 1.1, on: '.ib-tr, .ib-rd', phone: '.ib-rd' },
+  { at: 2.9, on: '.l-form .ib-rd, .l-phone .ib-rd', only: 'desk' },
+  { at: 4.3, on: '.ib-rule, .ib-act', phone: '.ib-act', click: '.ib-ok', tap: 4.8 },
+  { at: 5.7, on: '.ib-act, .ib-toast' },
+]
+
 export function InboundScreen() {
   return (
-    <div className="il appx-il app-inbound"><div className="appx-fit"><div className="appx" role="img" aria-label="The Inbound page: with your OK, a labelled test lead uses your demo form, site chat and sales line every day at 09:00, 13:00 and 17:00, each reply timed against a 5 minute target. At 09:00 chat replies in 38 s, the form takes 4 h 12 m and lands in the CRM with no owner, and the phone is missed; a routing fix is drafted, AM approves it, and when tested again at 17:00 the first reply comes in 3 min 40 s.">
+    <div className="il appx-il app-inbound" data-cam={cam(SHOTS)}><div className="appx-fit"><div className="appx" role="img" aria-label="The Inbound page: with your OK, a labelled test lead uses your demo form, site chat and sales line every day at 09:00, 13:00 and 17:00, each reply timed against a 5 minute target. At 09:00 chat replies in 38 s, the form takes 4 h 12 m and lands in the CRM with no owner, and the phone is missed; a routing fix is drafted, AM approves it, and when tested again at 17:00 the first reply comes in 3 min 40 s.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Inbound</span>

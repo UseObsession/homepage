@@ -1,9 +1,21 @@
+import { cam, type Shot } from './cam'
+
 /* The shop app screen: 1 720 x 450 window of the product, at rest on its finished scene; AppScreen adds .play to its
    root to run the story. Its look and story: css/shop.css, loaded by the page, never imported here. Converted from
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
+
+/* The camera (src/screens/cam.ts): the wide board, Day 1 (the store stops before payment, the dental reply lands), the
+   SaaS trial closing on its rep, then it holds on the store's finding: 0 basket emails in 48 hours. */
+const SHOTS: Shot[] = [
+  { at: 0 },
+  { at: 1.1, on: '.ms-l2 .ms-lh b, .ms-l2 .ms-sp, .ms-l3 .ms-lh b, .ms-l3 .ms-done', phone: '.ms-l3 .ms-lh b, .ms-l3 .ms-done, .ms-l3 .ms-tm' },
+  { at: 3.15, on: '.ms-l1 .ms-wide, .ms-l1 .ms-sp, .ms-l1 .ms-fd', phone: '.ms-l1 .ms-fd' },
+  { at: 4.15, on: '.ms-l2 .ms-box, .ms-l2 .ms-tm, .ms-l2 .ms-fd', move: 0.55 },
+]
+
 export function ShopScreen() {
   return (
-    <div className="il appx-il app-shop"><div className="appx-fit"><div className="appx" role="img" aria-label="A mystery shopper mission, run with each owner’s OK: 6 declared test customers walk a payroll SaaS free trial, 2 baskets at a homeware store and a dental group booking side by side over 3 days. Steps land as the days pass, the store stops before payment and its basket inboxes get 0 emails in 48 hours, the finding that needs you; the bot can’t answer pricing, the trial closes when a rep writes, the dental reply is slow, and the report is ready.">
+    <div className="il appx-il app-shop" data-cam={cam(SHOTS)}><div className="appx-fit"><div className="appx" role="img" aria-label="A mystery shopper mission, run with each owner’s OK: 6 declared test customers walk a payroll SaaS free trial, 2 baskets at a homeware store and a dental group booking side by side over 3 days. Steps land as the days pass, the store stops before payment and its basket inboxes get 0 emails in 48 hours, the finding that needs you; the bot can’t answer pricing, the trial closes when a rep writes, the dental reply is slow, and the report is ready.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Mystery shopper</span>

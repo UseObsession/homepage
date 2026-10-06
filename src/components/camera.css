@@ -1,0 +1,48 @@
+/* The camera on the app screens (components/camera.ts): the rig's origin, the spotlight, the pointer and its click
+   ring. It loads with the camera, never with the page, and only transform and opacity ever move. */
+
+/* The rig scales from its top left corner; the frame (.ilwrap) clips it. */
+.cam-on .appx-fit { transform-origin: 0 0; }
+
+/* The camera's pointer stands in for the screen's own drawn one while it films. */
+.cam-on .ax-ptr { visibility: hidden; }
+
+/* The spotlight: a shot's region stays lit, the rest of the window falls to a trace of itself. */
+.appx .cam-spot {
+  position: absolute;
+  z-index: 6;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgb(var(--fg-rgb) / .14), 0 0 0 760px color-mix(in srgb, var(--panel) 88%, transparent);
+}
+
+/* The pointer a person moves (screens/base.css .ax-ptr), sized with a selector that beats ".appx svg{width:auto}". */
+.ilwrap .appx-il .appx svg.cam-ptr {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 8;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 3px 1.5px;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / .35));
+}
+.cam-ptr path { fill: var(--fg); stroke: var(--bg); stroke-width: 1.2; stroke-linejoin: round; }
+
+/* The click: a ring spreads from where the pointer pressed and fades. */
+.appx .cam-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 7;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 0 1.5px var(--fg) inset;
+}

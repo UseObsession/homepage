@@ -21,15 +21,36 @@ export type ScreenName = string
    until a client side mount sets the real one. */
 const KEEP = { __html: '' }
 
+const RM = '(prefers-reduced-motion: reduce)'
+
+/* The camera (components/camera): a screen with a shot list on its root (data-cam, src/screens/cam.ts) is filmed as its
+   story plays, panning and zooming to what happens. Its module loads with the first such screen, never with the page,
+   and never with reduced motion. */
+let camera: Promise<typeof import('./camera')> | undefined
+function film(el: Element | null) {
+  if (!(el instanceof HTMLElement) || !el.hasAttribute('data-cam') || matchMedia(RM).matches) return
+  camera ??= import('./camera').catch((e) => {
+    camera = undefined
+    throw e
+  })
+  /* Without it the screen plays as drawn. */
+  camera.then((c) => c.film(el)).catch(() => {})
+}
+/* Back to the screen as drawn, when its tab is left. */
+function unfilm(el: Element | null) {
+  if (el instanceof HTMLElement && camera) camera.then((c) => c.cut(el)).catch(() => {})
+}
+
 /* Plays the story: from the start again if it has played before (the reflow restarts its animations in the same
    frame), straight away the first time, which needs no reflow. */
 function replay(el: Element | null) {
-  if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (!el || matchMedia(RM).matches) return
   if (el.classList.contains('play')) {
     el.classList.remove('play')
     void (el as HTMLElement).offsetWidth
   }
   el.classList.add('play')
+  film(el)
 }
 
 /* A story the page's boot script started (src/boot.ts) before the app was there: true once, the first time a tab or step
@@ -87,7 +108,9 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          /* A story the boot script started is joined by the camera where it is. */
           if (!il.classList.contains('play')) replay(il)
+          else film(il)
           io.disconnect()
         }
       },
@@ -97,15 +120,18 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     return () => io.disconnect()
   }, [name, shown])
 
-  /* A new playKey plays the story again; the first one a screen mounts with is not a change, so it waits to be seen. */
+  /* A new playKey plays the story again; the first one a screen mounts with is not a change, so it waits to be seen.
+     No playKey any more (another tab plays) stops the camera. */
   const firstKey = useRef(true)
   useEffect(() => {
     if (firstKey.current) {
       firstKey.current = false
       return
     }
-    const il = ref.current?.querySelector('.il')
-    if (playKey !== undefined && !bootPlayed(il)) replay(il ?? null)
+    const il = ref.current?.querySelector('.il') ?? null
+    if (playKey === undefined) unfilm(il)
+    else if (!bootPlayed(il)) replay(il)
+    else film(il)
   }, [playKey])
 
   return (

@@ -1,9 +1,21 @@
+import { cam, type Shot } from './cam'
+
 /* The botcheck app screen: 1 720 x 450 window of the product, at rest on its finished scene; AppScreen adds .play to
    its root to run the story. Its look and story: css/botcheck.css, loaded by the page, never imported here.
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
+
+/* The camera (src/screens/cam.ts): the wide window, the checks ticking in by channel, the refund failure's evidence
+   (the bot said 30 days), then it holds on the transcript and the drafted fix (14 days). */
+const SHOTS: Shot[] = [
+  { at: 0 },
+  { at: 1, on: '.bk-th, .bk-rows', phone: '.bk-th, .bk-fail' },
+  { at: 2.1, on: '.bk-v1 .bk-vh, .bk-v1 .bk-vm, .bk-v1 .bk-x', phone: '.bk-v1 .bk-vh, .bk-v1 .bk-x' },
+  { at: 3.6, on: '.bk-v1 .bk-x, .bk-v1 .bk-fx' },
+]
+
 export function BotcheckScreen() {
   return (
-    <div className="il appx-il app-botcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="The Support bot check for Your company: at 07:00 Test customer 2, declared as AI, asks the support bot the same questions on chat, email and the portal, and 20 checks tick in channel by channel. 18 pass and 2 need you, each with its policy, transcript, time and signature: on chat the bot says 30 days when the refund policy says 14, and on the portal the confirmation email it promised never arrives in 6 hours. A fix for the refund answer is drafted for your OK.">
+    <div className="il appx-il app-botcheck" data-cam={cam(SHOTS)}><div className="appx-fit"><div className="appx" role="img" aria-label="The Support bot check for Your company: at 07:00 Test customer 2, declared as AI, asks the support bot the same questions on chat, email and the portal, and 20 checks tick in channel by channel. 18 pass and 2 need you, each with its policy, transcript, time and signature: on chat the bot says 30 days when the refund policy says 14, and on the portal the confirmation email it promised never arrives in 6 hours. A fix for the refund answer is drafted for your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Support bot check</span>
