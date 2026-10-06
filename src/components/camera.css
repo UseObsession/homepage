@@ -7,14 +7,15 @@
 /* The camera's pointer stands in for the screen's own drawn one while it films. */
 .cam-on .ax-ptr { visibility: hidden; }
 
-/* The spotlight: a shot's region stays lit, the rest of the window falls to a trace of itself. */
+/* The spotlight: a shot's region stays lit and the rest of the window dims but stays readable, so the whole screen is
+   always in view (Seun, 7 Oct). */
 .appx .cam-spot {
   position: absolute;
   z-index: 6;
   border-radius: 10px;
   opacity: 0;
   pointer-events: none;
-  box-shadow: 0 0 0 1px rgb(var(--fg-rgb) / .14), 0 0 0 760px color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow: 0 0 0 1px rgb(var(--fg-rgb) / .14), 0 0 0 760px color-mix(in srgb, var(--panel) 62%, transparent);
 }
 
 /* The pointer a person moves (screens/base.css .ax-ptr), sized with a selector that beats ".appx svg{width:auto}". */

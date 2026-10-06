@@ -27,11 +27,11 @@ import css from './camera.css?inline'
 
 /* Where the frame crops to the window's main panel (styles/site.css): the card is a third as wide, so shots go tighter. */
 const PHONE = '(max-width: 519.98px)'
-/* How close a shot comes, in screen px per app px (the window is 720 app px wide): the floor sets the app's 11px type at
-   about 22px on a desktop card and 13px on a phone's; the ceiling keeps a small target in its context. A shot too big
-   to fit at the floor comes out wider, down to the last value, so nothing in it is cut (11px type at about 18px on a
-   desktop card, 12px on a phone's). */
-const ZOOM = { desk: [2, 3.1, 1.6], phone: [1.2, 1.7, 1.05] } as const
+/* How far the camera leans in, as a share of the wide view (Seun, 7 Oct: "way too zoomed in... you lose sight of the
+   whole illustration"). It pushes in gently and never dives: the whole screen stays in frame on a desktop card, and the
+   main panel on a phone's, while the spotlight does the focusing. A shot that fits the frame leans in to this ceiling;
+   a bigger one stays wide. */
+const PUSH = { desk: 1.06, phone: 1.1 } as const
 const MOVE = 0.8
 /* A hold's zoom grows this much a second. */
 const DRIFT = 0.018
@@ -186,7 +186,7 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
     return
   }
   const phone = matchMedia(PHONE).matches
-  const [zl, zh, zf] = phone ? ZOOM.phone : ZOOM.desk
+  const push = phone ? PUSH.phone : PUSH.desk
   /* The frame's centre in the rig's own px (its origin is the fit box's top left corner). */
   const cx = F.left - R.left + F.width / 2
   const cy = F.top - R.top + F.height / 2
@@ -269,11 +269,7 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
     const w = (b.r - b.l + 2 * PAD) * k
     const h = (b.b - b.t + 2 * PAD) * k
     const fits = Math.min(F.width / w, F.height / h)
-    /* The floor, lowered for a shot that asks (min); a shot that still doesn't fit goes wider, to the last floor. */
-    const floor = Math.min(zl, sh.min ?? zl) / k
-    const lo = Math.max(1, Math.min(floor, Math.max(fits, zf / k)))
-    const hi = Math.max(lo, zh / k)
-    const s = clamp(fits, lo, hi)
+    const s = clamp(fits, 1, push)
     /* A click shot wider or taller than its view centres on what is clicked, so the click stays in frame. */
     const x = ox + (c && w * s > F.width ? (c.l + c.r) / 2 : (b.l + b.r) / 2) * k
     const y = oy + (c && h * s > F.height ? (c.t + c.b) / 2 : (b.t + b.b) / 2) * k
@@ -300,7 +296,7 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
     const go = Math.max(at, sh.at - (sh.move ?? MOVE))
     if (cur.lit && go - at < READ) warn(name, `the shot at ${cur.sh.at}s holds ${(go - at).toFixed(2)}s, under ${READ}s`)
     /* A hold drifts in, never past where its shot still fits; a click's hold stays still for the pointer. */
-    const held = cur.tap ? v : place({ ...v, s: Math.min(v.s * Math.exp(DRIFT * (go - at)), Math.max(v.s, cur.fits ?? Infinity)) })
+    const held = cur.tap ? v : place({ ...v, s: Math.min(v.s * Math.exp(DRIFT * (go - at)), Math.max(v.s, Math.min(push, cur.fits ?? push))) })
     if (go > at) segs.push({ t0: at, t1: go, a: v, b: held, move: false })
     stay.push({ from: at, to: go })
     const end = Math.max(go + 0.3, sh.at)

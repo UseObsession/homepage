@@ -19,8 +19,6 @@ export type Shot = {
   only?: 'phone' | 'desk'
   /* The move into it, in seconds (.8 by default). */
   move?: number
-  /* A lower zoom floor for this shot, in screen px per app px, so a wide region keeps its labels in frame. */
-  min?: number
   /* The pointer clicks this element at `tap` seconds (it is framed and still by then). */
   click?: string
   tap?: number
@@ -58,7 +56,7 @@ export const SHOTS: Record<string, Shot[]> = {
      missed; the routing fix and the click on Approve; then the approval and the re-test's first reply. */
   inbound: [
     { at: 0 },
-    { at: 1.3, move: 0.8, on: '.ib-lanes', min: 1.8, phone: '.ib-rd' },
+    { at: 1.3, move: 0.8, on: '.ib-lanes', phone: '.ib-rd' },
     { at: 4.05, move: 0.6, on: '.ib-new, .ib-act', phone: '.ib-act', click: '.ib-ok', tap: 4.8 },
     { at: 6, move: 0.7, on: '.ib-new, .ib-done, .ib-toast', phone: '.ib-toast p' },
   ],
