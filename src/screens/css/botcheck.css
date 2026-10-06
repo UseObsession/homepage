@@ -1,15 +1,19 @@
 /* app-botcheck: Support bot check, the 4th pillar (Check your AI agents) as it runs.
    A declared test customer (Test customer 2 · AI · for Your company) asks the company's own support bot the same
    questions on chat, email and the portal every morning at 07:00. Left: the grid of checks by channel and the totals.
-   Right: the 2 checks that need you, read as evidence: the policy or rule, the transcript excerpt (mono), the time,
-   the signature line. The refund verdict carries a drafted fix that goes live only after your OK.
+   Right: the 2 checks that need you, read as evidence: the finding, the policy or promise, the transcript excerpt
+   (mono), the time, the signature line. The refund finding carries a suggested fix with its Approve, which waits for
+   your OK (nothing clicks it for you), and says where it was sent (Slack, its mark in place of its name).
+   A failing cell is an ink chip (its mark and value), so the 1 wrong answer shows without colour, in both themes.
    Chrome is canonical (APP-SPEC, Product chrome, 2 Oct 2026): Your company, Missions selected, no list; a 1-line
-   head (title, meta, declared-agent pill) as on app-board; 1 lock line bottom left, level with the 1 toast bottom right.
-   Geometry (design px, main 556 x 414, padding 14): head 14..38, wrap 50..339 (grid 248 = 114 + 3 x 42 + 8:
+   head (title, meta, declared AI agent pill) as on app-board; the next run bottom left, level with the 1 toast.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38, wrap 50..339 (grid 248 = 112 + 3 x 42 + 10:
    who 32, head 28, 7 rows x 28, totals 32; gap 12; evidence 268), lock line 372..388, toast 360..400.
-   Story (5.2 s): the grid settles; a scan band walks Chat, Email, Portal and each column's checks tick in, the
-   passed count climbing; Chat's refund cell and Portal's promise cell land as needs you; each failure slides in
-   with its excerpt; the fix is typed into the draft; Needs you ticks 2 to 3; the toast.
+   Story (7.75 s, timed to the camera's beats, screens/cam.ts): the grid settles; a scan band walks Chat, Email, Portal
+   and each column's checks tick in, the passed count climbing; Chat's refund cell and Portal's promise cell land as
+   needs you, while the evidence column stays empty (the camera's first note stands there on Home); the evidence slides
+   in as the camera turns to it (4.35 s), the refund's excerpt marked; once it is in view, the fix is typed into the
+   draft; Needs you ticks 2 to 3; once the camera's last note has landed, the toast.
    Rest state (no .play) = the finished scene. */
 @property --bk-n{syntax:"<integer>";inherits:false;initial-value:18}
 
@@ -40,7 +44,7 @@
   background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
 .app-botcheck .bk-who{display:flex;align-items:center;gap:7px;flex:none;height:32px;padding:0 12px;font-size:11px;color:var(--fg-2);white-space:nowrap;
   box-shadow:0 -1px 0 var(--line) inset}
-.app-botcheck .bk-row{display:grid;grid-template-columns:114px repeat(3,42px);align-items:center;flex:none;height:28px;padding-right:8px;box-shadow:0 -1px 0 var(--line) inset}
+.app-botcheck .bk-row{display:grid;grid-template-columns:112px repeat(3,42px);align-items:center;flex:none;height:28px;padding-right:10px;box-shadow:0 -1px 0 var(--line) inset}
 .app-botcheck .bk-rows .bk-row:last-child{box-shadow:none}
 .app-botcheck .bk-n{min-width:0;padding-left:12px;font-size:11px;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .app-botcheck .bk-th{height:28px;box-shadow:0 -1px 0 var(--line-2) inset}
@@ -55,11 +59,14 @@
 .app-botcheck .bk-r{display:flex;align-items:center;gap:4px}
 .ilwrap .app-botcheck .bk-c svg.sig{width:11px;height:11px;color:var(--fg)}
 .app-botcheck .bk-c em{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
-.app-botcheck .bk-c.f em{color:var(--fg);font-weight:500}
+.app-botcheck .bk-c.f em{color:var(--bg);font-weight:500}
+/* a failing cell: an ink chip around its mark and value */
+.app-botcheck .bk-c.f .bk-r{margin-left:-4px;height:16px;padding:0 4px;gap:3px;border-radius:4px;background:var(--fg)}
+.ilwrap .app-botcheck .bk-c.f svg.sig{color:var(--bg)}
 .app-botcheck .bk-p{position:absolute;left:13.5px;top:50%;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:var(--line-3);opacity:0}
 
 /* the channel being checked (only during play); it walks by left, on the main thread, so every capture paints it in step */
-.app-botcheck .bk-scan{position:absolute;z-index:-1;left:114px;top:-28px;bottom:0;width:42px;background:rgb(var(--fg-rgb) / .05);
+.app-botcheck .bk-scan{position:absolute;z-index:-1;left:112px;top:-28px;bottom:0;width:42px;background:rgb(var(--fg-rgb) / .05);
   box-shadow:1px 0 0 var(--line) inset,-1px 0 0 var(--line) inset;opacity:0;pointer-events:none}
 
 /* totals */
@@ -99,13 +106,16 @@
 .app-botcheck .bk-v mark{border-radius:2px;color:var(--fg);font-weight:500;background:rgb(var(--fg-rgb) / .14);box-shadow:0 0 0 2px rgb(var(--fg-rgb) / .14)}
 .app-botcheck .bk-x time{margin-left:auto;padding-left:8px;color:var(--fg-3);font-variant-numeric:tabular-nums}
 
-/* the drafted fix: a dashed draft, labelled on its edge, with room above the label */
+/* the suggested fix: a dashed draft, labelled on its edge, its Approve on the other end (the owner's to press) */
 .app-botcheck .bk-fx{position:relative;margin-top:12px;padding:7px 5px 5px;border:1px dashed var(--line-3);border-radius:7px}
 .app-botcheck .bk-lg{position:absolute;left:7px;top:-7px;height:13px;padding:0 4px;font:500 10.5px/13px var(--sans);color:var(--fg-2);white-space:nowrap;background:var(--panel-2)}
+.app-botcheck .bk-ap{position:absolute;right:7px;top:-8px;display:grid;place-items:center;height:16px;padding:0 6px;border-radius:5px;
+  font:600 10.5px/1 var(--sans);color:var(--bg);background:var(--fg);box-shadow:0 0 0 2px var(--panel-2)}
 .app-botcheck .bk-ft{color:var(--fg)}
 
-/* signature line */
+/* signature line: when it was signed, and where it went or its hash */
 .app-botcheck .bk-sg{display:flex;align-items:center;gap:6px;margin-top:6px;height:14px;font-size:10.5px;line-height:14px;color:var(--fg-2);white-space:nowrap}
+.app-botcheck .bk-sg .s-pm-word{margin:0 -3px}
 .app-botcheck .bk-sg span{font:400 10.5px/14px var(--mono);color:var(--fg-3)}
 
 /* ---------- the red line and the toast ---------- */
@@ -130,14 +140,14 @@
   to{background-color:rgb(var(--fg-rgb) / .14);box-shadow:0 0 0 2px rgb(var(--fg-rgb) / .14)}}
 @keyframes bk-band{from{background-color:rgb(var(--fg-rgb) / 0)}to{background-color:rgb(var(--fg-rgb) / .045)}}
 @keyframes bk-scan{
-  0%{opacity:0;left:114px}
-  5%{opacity:1;left:114px}
-  30%{left:114px}
-  35%{left:156px}
-  60%{left:156px}
-  65%{opacity:1;left:198px}
-  92%{opacity:1;left:198px}
-  100%{opacity:0;left:198px}}
+  0%{opacity:0;left:112px}
+  5%{opacity:1;left:112px}
+  30%{left:112px}
+  35%{left:154px}
+  60%{left:154px}
+  65%{opacity:1;left:196px}
+  92%{opacity:1;left:196px}
+  100%{opacity:0;left:196px}}
 @keyframes bk-count{0%{--bk-n:0} 6.4%{--bk-n:1} 14.4%{--bk-n:2} 18.4%{--bk-n:3} 22.4%{--bk-n:4} 26.4%{--bk-n:5} 30.4%{--bk-n:6} 38.4%{--bk-n:7}
   42.4%{--bk-n:8} 46.4%{--bk-n:9} 50.4%{--bk-n:10} 54.4%{--bk-n:11} 58.4%{--bk-n:12} 62.4%{--bk-n:13} 70.4%{--bk-n:14} 74.4%{--bk-n:15}
   78.4%{--bk-n:16} 90.4%{--bk-n:17} 94.4%{--bk-n:18} 100%{--bk-n:18}}
@@ -155,16 +165,16 @@
 .app-botcheck.play .bk-fail:nth-child(3){animation-delay:.72s}
 .app-botcheck.play .bk-fail:nth-child(5){animation-delay:2.52s}
 
-/* 2. each failure arrives with its evidence */
-.app-botcheck.play .bk-v1{animation:bk-slide .6s var(--ease) 1.35s both}
-.app-botcheck.play .bk-v1 .bk-x mark{animation:bk-hl .5s var(--ease) 1.95s both}
-.app-botcheck.play .bk-v2{animation:bk-slide .6s var(--ease) 3s both}
+/* 2. the evidence arrives as the camera turns to it: both failures, the refund's first */
+.app-botcheck.play .bk-v1{animation:bk-slide .6s var(--ease) 4.35s both}
+.app-botcheck.play .bk-v1 .bk-x mark{animation:bk-hl .5s var(--ease) 4.95s both}
+.app-botcheck.play .bk-v2{animation:bk-slide .6s var(--ease) 4.5s both}
 
-/* 3. the fix is drafted, for your OK */
-.app-botcheck.play .bk-fx{animation:bk-fade .35s var(--ease) 3.6s both}
-.app-botcheck.play .bk-ft{animation:bk-type .64s steps(32,end) 3.85s both}
+/* 3. the fix is suggested, for your OK, once the evidence is in view */
+.app-botcheck.play .bk-fx{animation:bk-fade .35s var(--ease) 5.6s both}
+.app-botcheck.play .bk-ft{animation:bk-type .64s steps(32,end) 5.8s both}
 
 /* 4. Needs you ticks 2 to 3; the toast */
-.app-botcheck.play .bk-nb b:first-child{animation:bk-out .3s var(--ease) 4.3s both}
-.app-botcheck.play .bk-nb b:last-child{animation:bk-in .3s var(--ease) 4.3s both}
-.app-botcheck.play .bk-toast{animation:bk-toast .45s var(--ease) 4.7s both}
+.app-botcheck.play .bk-nb b:first-child{animation:bk-out .3s var(--ease) 6.05s both}
+.app-botcheck.play .bk-nb b:last-child{animation:bk-in .3s var(--ease) 6.05s both}
+.app-botcheck.play .bk-toast{animation:bk-toast .45s var(--ease) 7.3s both}

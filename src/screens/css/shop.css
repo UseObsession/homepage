@@ -1,15 +1,22 @@
-/* app-shop: Missions / Mystery shopper, the flagship. Any kind of business, walked like a customer:
-   declared test customers walk 3 journeys side by side as lanes under 1 shared day ruler (Day 1 to 3).
-   1. Payroll SaaS, free trial: signs up as AI, 2 onboarding emails, asks the bot (never staff) about pricing and gets
-      "Ask sales"; a rep writes, the trial closes without a reply. Red line: Never took staff time.
-   2. Skincare store, 2 full baskets (£40, £21): stops before payment, 4 inboxes watched 48 hours, 0 emails.
-      The 1 finding that needs you: solid finding, needs-you mark, a lane bar, the sidebar count goes to 3.
-   3. Dental group, booking: sends the web enquiry, the first reply is timed (4 h 12 m), done on Day 1.
+/* app-shop: Missions / Mystery shopper, the flagship. Any kind of business, walked like a customer, with each owner's OK:
+   3 declared AI test customers walk 3 journeys side by side as lanes under 1 shared day ruler (Day 1 to 3). Each
+   business is invented, at its own .example domain, with its own favicon.
+   1. Paywren (paywren.example), payroll software, free trial: signs up as AI, gets its welcome and setup emails, asks
+      the bot (never staff) for the price and gets "Ask sales"; a rep emails, and the shopper stops without a reply.
+   2. hollin (hollin.example, the gap story's linen store and its photographs), a first order: its welcome email's 10%
+      code (SOFTER10) is rejected at checkout at 09:15; the shopper stops before payment, retests after 48 hours, and
+      the Day 3 checkout rejects it again. The 1 finding that needs you: solid finding, needs-you mark, a lane bar, the
+      sidebar count goes to 3.
+   3. Molenna Dental (molenna.example), a booking enquiry: sent at 10:40, the first reply at 15:27 (4h 47m), ended
+      on Day 1. Its finding sits on its caption row, by the reply it times, so the lane's header is clear under hollin's
+      lane (the camera's last note stands there on Home, screens/cam.ts).
    The scale is honest: 7px an hour, 168px a day. Days run 6..174, 174..342, 342..510 (Day 2 is the quiet band).
-   The store's wait is 336px (48 h, late Day 1 to late Day 3); the dental wait is 30px (4 h 12 m).
+   The store's wait is 336px (48h, late Day 1 to late Day 3); the dental wait is 34px (4h 47m).
    Lane geometry (design px, inside a lane): header 10..30, captures 37..65 (path at 51), captions 70..82.
-   Story: a progress fill runs along the ruler's foot; steps land as it reaches them; the red lines land with the snap
-   tick; findings land and each lane's mark closes, the store's last, as needs you; the toast.
+   Story: a progress fill runs along the ruler's foot in 5.6 s; steps land as it reaches them; the red lines land with
+   the snap tick; findings land and each lane's mark closes, the store's last, as needs you; the report posted in
+   Slack. Its clock is the camera's (screens/cam.ts): hollin's Day 1 lands as the camera arrives at 1.1 s, and the
+   Day 3 retest as it opens to the whole lane at 5.6 s.
    The fill, paths and waits scale with a registered --ms-p (animated on the main thread, so it paints in any capture).
    Rest state (no .play) = the finished scene. */
 @property --ms-p{syntax:"<number>";inherits:false;initial-value:1}
@@ -48,13 +55,18 @@
 /* the lane that needs you */
 .app-shop .ms-l2::before{content:"";position:absolute;left:0;top:10px;width:2px;height:20px;border-radius:0 2px 2px 0;background:var(--fg);transform-origin:0 50%}
 
-/* lane header: mark, business, journey; the finding on the right */
+/* lane header: mark, the business (its favicon and name), the journey; the finding on the right */
 .app-shop .ms-lh{position:absolute;left:12px;right:12px;top:10px;height:20px;display:flex;align-items:center;gap:8px;white-space:nowrap}
 .app-shop .ms-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
 .app-shop .ms-mk>svg{grid-area:1/1}
 .app-shop .ms-mk .w0{opacity:0}
 .ilwrap .app-shop .ms-mk svg.sig{width:12px;height:12px;color:var(--fg)}
 .app-shop .ms-lh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-shop .ms-fav{display:inline-grid;place-items:center;flex:none;width:14px;height:14px;border-radius:4px;margin-right:-2px;
+  font:600 9px/1 var(--sans);font-style:normal;box-shadow:0 0 0 1px rgb(0 0 0 / .16) inset}
+.app-shop .fv-pw{color:#FFFFFF;background:#2E5E4E}
+.app-shop .fv-hl{padding-bottom:1px;font:400 12px/1 "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;color:#2A2622;background:#ECE5D8}
+.app-shop .fv-md{color:#23415E;background:#D9E6EE}
 .app-shop .ms-lh em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
 /* findings are quiet; the 1 that needs you is solid */
 .app-shop .ms-fd{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px 0 6px;border-radius:6px;
@@ -62,6 +74,8 @@
 .ilwrap .app-shop .ms-fd svg{width:12px;height:12px;color:var(--fg-3)}
 .app-shop .ms-fd.ms-hot{font-weight:500;color:var(--bg);background:var(--fg);box-shadow:none}
 .ilwrap .app-shop .ms-fd.ms-hot svg{color:var(--bg)}
+/* a finding on the caption row, beside the reply it times */
+.app-shop .ms-fd.ms-fc{position:absolute;left:var(--ms-x);top:66px;margin:0}
 
 /* the journey: a path behind the captures; waits are dashed, to scale */
 .app-shop .ms-pth{position:absolute;left:var(--ms-a);width:var(--ms-w);top:51px;height:1px;background:var(--line-3);transform-origin:0 50%;transform:scaleX(var(--ms-p))}
@@ -70,16 +84,20 @@
 .app-shop .ms-wl{position:absolute;left:var(--ms-a);width:var(--ms-w);top:37px;text-align:center;font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap}
 /* a journey that ended early: a dot on the path and the day it ended */
 .app-shop .ms-end{position:absolute;left:var(--ms-x);top:49px;width:5px;height:5px;border-radius:50%;background:var(--fg-3)}
-.app-shop .ms-done{position:absolute;left:var(--ms-x);top:45px;font:400 10.5px/12px var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-shop .ms-done{position:absolute;left:var(--ms-x);top:45px;font:400 10.5px/12px var(--sans);color:var(--fg-3);white-space:nowrap}
 
 /* captures: tiny pages the test customer saw, captioned underneath; a wait's length captions the capture that ends it */
 .app-shop .ms-c{position:absolute;left:var(--ms-x);top:37px;width:44px;height:28px;grid-template-rows:5px 1fr}
 .app-shop .ms-c.ms-wide{width:62px}
-.app-shop .ms-cap{position:absolute;left:var(--ms-x);top:70px;font:400 10.5px/12px var(--sans);color:var(--fg-2);white-space:nowrap}
-.app-shop .ms-cap.ms-tm{font-family:var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-shop .ms-cap{position:absolute;left:var(--ms-x);top:70px;font:400 10.5px/12px var(--sans);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* the retest's result, under its capture and ending with it */
+.app-shop .ms-cap.ms-rj{left:auto;right:26px;color:var(--fg)}
 
-/* a red line held: the quiet stop rule, and ticked labels */
-.app-shop .ms-stop{position:absolute;left:var(--ms-x);top:37px;width:1px;height:28px;background:var(--fg-3);transform-origin:50% 0}
+/* a red line held: the stop rule (an I beam, so it reads as a stop, not a seam), and ticked labels */
+.app-shop .ms-stop{position:absolute;left:var(--ms-x);top:37px;width:1.5px;height:28px;background:var(--fg-2);transform-origin:50% 0}
+.app-shop .ms-stop::before,.app-shop .ms-stop::after{content:"";position:absolute;left:-2px;width:5.5px;height:1.5px;border-radius:1px;background:var(--fg-2)}
+.app-shop .ms-stop::before{top:0}
+.app-shop .ms-stop::after{bottom:0}
 .app-shop .ms-sp{position:absolute;left:var(--ms-x);top:68px;height:16px;display:inline-flex;align-items:center;gap:5px;
   font:500 10.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
 .app-shop .ms-sp .ax-tick{width:12px;height:12px}
@@ -101,24 +119,28 @@
 .app-shop .ms-chat{gap:2px;padding:2px 4px}
 .app-shop .ms-chat .ms-q{justify-self:end;width:46%;height:5px;border-radius:3px;background:#3A3834}
 .app-shop .ms-chat .ms-a{justify-self:start;padding:0 3px;border-radius:4px;font:500 10.5px/12px var(--sans);letter-spacing:-.01em;color:#1E1D1A;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
-/* a full basket: the product, its lines, the checkout button */
-.app-shop .ms-bask{grid-template-columns:11px minmax(0,1fr);grid-template-rows:11px 3px;column-gap:4px;row-gap:3px;padding:2px 5px}
-.app-shop .ms-bask .ms-pt{height:11px;background:#D8C4B6}
-.app-shop .ms-bask .ms-p2{background:#C9CCC4}
-.app-shop .ms-bask .ms-ls{display:grid;align-content:center;gap:3px}
-.app-shop .ms-bask .ms-ls i{height:3px}
-.app-shop .ms-bask .ms-ls i+i{width:60%}
-.app-shop .ms-bask .ms-bn{grid-column:1/-1;height:3px;background:#3A3834}
-.app-shop .ms-box{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:5px}
-.app-shop .ms-box i{height:0;border-radius:0;background:none;border-top:1px dashed #A8A398}
+/* hollin's own pages, in its Flax and Peat: the welcome email (its header photograph, the bold 10%), and checkout (the
+   Pillowcase Pair at £48, the code field underlined in hollin's own rust, its ×) */
+.app-shop .ms-wel{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:10px minmax(0,1fr);align-items:center;gap:0 3px;padding:0 4px 0 0;background:#ECE5D8}
+.app-shop .ms-wel .ms-ph{grid-column:1/-1;display:block;width:44px;height:10px;object-fit:cover}
+.app-shop .ms-wel .ms-hd{margin-left:4px;height:3px;width:16px;border-radius:1px;background:#2A2622}
+.app-shop .ms-wel b{font:700 10.5px/11px var(--sans);letter-spacing:-.03em;color:#2A2622}
+.app-shop .ms-co{grid-template-columns:11px minmax(0,1fr);grid-template-rows:11px 7px;align-content:start;align-items:center;column-gap:4px;row-gap:2px;padding:3px 4px;background:#F4F0E8}
+.app-shop .ms-co .ms-th{display:block;width:11px;height:11px;border-radius:1.5px;object-fit:cover}
+.app-shop .ms-co .ms-pr{height:3px;width:72%;border-radius:1px;background:#2A2622}
+.app-shop .ms-co .ms-cf{grid-column:1/-1;display:flex;align-items:center;gap:2px;height:7px}
+.app-shop .ms-co .ms-cf i{flex:1;height:6px;border-radius:1px 1px 0 0;background:#FFFFFF;box-shadow:0 -1px 0 #A4472F inset}
+.app-shop .ms-co .ms-cf b{font:600 10.5px/7px var(--sans);color:#A4472F}
+/* Paywren's and Molenna's own colours on their pages */
+.app-shop .ms-l1 .ms-sign .ms-bt,.app-shop .ms-l1 .ms-sq{background:#2E5E4E}
 .app-shop .ms-form .ms-ta{height:7px;border-radius:1.5px;background:#F6F5F1;box-shadow:0 0 0 1px #CFCBC3 inset}
-.app-shop .ms-form .ms-bt{width:40%;height:3px}
+.app-shop .ms-form .ms-bt{width:40%;height:3px;background:#23415E}
 
 /* the red lines, shown */
 .app-shop .ms-note{position:absolute;left:14px;bottom:14px;height:40px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
 .ilwrap .app-shop .ms-note svg{width:12px;height:12px;color:var(--fg-3)}
 
-/* toast: the report is ready (the board's pattern: 1 line, 1 action) */
+/* toast: the report, posted in Slack (the board's pattern: 1 line, 1 action) */
 .app-shop .ms-toast{gap:10px;padding:8px 8px 8px 12px}
 .app-shop .ms-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
 .app-shop .ms-toast b{font-weight:500;color:var(--fg)}
@@ -142,8 +164,8 @@
 @keyframes ms-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 @keyframes ms-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-/* 1. time passes: the fill runs Day 1 to Day 3 in 4 s (a clock, so linear), then leaves */
-.appx-il.play.app-shop .ms-fill{animation:ms-p 4s linear .5s both,ms-show .2s var(--ease) .5s both,ms-hide .25s var(--ob-ease-in) 4.5s forwards}
+/* 1. time passes: the fill runs Day 1 to Day 3 in 5.6 s (a clock, so linear), then leaves */
+.appx-il.play.app-shop .ms-fill{animation:ms-p 5.6s linear .5s both,ms-show .2s var(--ease) .5s both,ms-hide .25s var(--ob-ease-in) 6.1s forwards}
 
 /* 2. steps land as the fill reaches them; paths and waits draw with it */
 .appx-il.play.app-shop .ms-c{animation:ms-land .4s var(--ease) var(--ms-t) both}
@@ -158,17 +180,17 @@
 
 /* 4. findings land, each lane's mark closes; the store waits on its inboxes (blinks), then needs you */
 .appx-il.play.app-shop .ms-fd{animation:ms-land .45s var(--ease) var(--ms-t) both}
-.appx-il.play.app-shop .ms-l3 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 1.66s both}
-.appx-il.play.app-shop .ms-l3 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 1.83s both}
-.appx-il.play.app-shop .ms-l1 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 3.46s both}
-.appx-il.play.app-shop .ms-l1 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 3.63s both}
-.appx-il.play.app-shop .ms-l2 .w0{animation:ms-on .01s linear both,ms-hide .2s var(--ob-ease-in) 4.3s forwards}
-.appx-il.play.app-shop .ms-l2 .w0 .sig-sq{animation:ms-blink 1.3s steps(1,end) 1.45s 2}
-.appx-il.play.app-shop .ms-l2 .w1{animation:ms-show .25s var(--ease) 4.32s both}
-.appx-il.play.app-shop .ms-l2 .w1 .sig-sq{animation:ms-sqin .45s var(--snap) 4.32s both,ms-pulse 2.6s ease-in-out 4.8s infinite}
-.appx-il.play.app-shop .ms-l2::before{animation:ms-bar .4s var(--ease) 4.36s both}
-.appx-il.play.app-shop .ms-nb b:first-child{animation:ms-out .25s var(--ob-ease-in) 4.4s both}
-.appx-il.play.app-shop .ms-nb b:last-child{animation:ms-in .3s var(--ease) 4.44s both}
+.appx-il.play.app-shop .ms-l3 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 2.12s both}
+.appx-il.play.app-shop .ms-l3 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 2.36s both}
+.appx-il.play.app-shop .ms-l1 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 4.64s both}
+.appx-il.play.app-shop .ms-l1 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 4.88s both}
+.appx-il.play.app-shop .ms-l2 .w0{animation:ms-on .01s linear both,ms-hide .2s var(--ob-ease-in) 5.82s forwards}
+.appx-il.play.app-shop .ms-l2 .w0 .sig-sq{animation:ms-blink 1.3s steps(1,end) 1.83s 2}
+.appx-il.play.app-shop .ms-l2 .w1{animation:ms-show .25s var(--ease) 5.85s both}
+.appx-il.play.app-shop .ms-l2 .w1 .sig-sq{animation:ms-sqin .45s var(--snap) 5.85s both,ms-pulse 2.6s ease-in-out 6.5s infinite}
+.appx-il.play.app-shop .ms-l2::before{animation:ms-bar .4s var(--ease) 5.9s both}
+.appx-il.play.app-shop .ms-nb b:first-child{animation:ms-out .25s var(--ob-ease-in) 5.96s both}
+.appx-il.play.app-shop .ms-nb b:last-child{animation:ms-in .3s var(--ease) 6.02s both}
 
-/* 5. the report is ready */
-.appx-il.play.app-shop .ms-toast{animation:ms-toast .45s var(--ease) 4.9s both}
+/* 5. the report is posted, once the finding has landed and been noted */
+.appx-il.play.app-shop .ms-toast{animation:ms-toast .45s var(--ease) 7.3s both}

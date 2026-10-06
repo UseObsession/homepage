@@ -1,7 +1,12 @@
-/* app-pack: Missions / Prospect research. 12 prospects from Clay resolve 1 by 1 with their proven gap;
-   when the selected Coffee prospect lands, its pitch pack builds (findings 1, 2, 3 with captures), a click on Copy link, toast.
-   Chrome is canonical (APP-SPEC, Product chrome): head = title, source, declared-agent pill; the progress heads the list;
-   the foot band holds the lock line (left) and the toast (right), clear of both columns. */
+/* app-pack: Missions / Prospect intelligence. 12 prospects from Clay (its mark stands in for its name) resolve 1 by 1,
+   each with its proven gap, each with its own favicon at its .example domain: Tidewren Swim, Fennick Home, Hobstone
+   Coffee, Larkbound, Halvard & Moss (the other 7 are further down the list). When the selected Hobstone Coffee lands,
+   its pitch fills (findings 1, 2, 3 with captures, signed), a click on Copy link copies its proof link, and the agent's
+   ring lands on the evidence: the test inbox's Spam folder, Hobstone's welcome email in it with its 10% off.
+   Chrome is canonical (APP-SPEC, Product chrome): head = title, source, declared AI agent pill; the progress heads the
+   list and the red line is its foot. The main panel's foot is left empty: the camera's notes dock there (Home's hero).
+   Story times follow the camera's beats (screens/cam.ts): the list at 1 s, the pitch at 5.35 s (it fills as the camera
+   arrives, then the click at 6.1 s), the findings at 9.8 s (the ring lands as the camera does). */
 
 .app-pack .ax-main{grid-template-rows:auto minmax(0,1fr);align-content:stretch;padding:14px 14px 66px}
 .app-pack .ax-btn.ghost{box-shadow:0 0 0 1px var(--line-ui) inset}
@@ -14,7 +19,7 @@
 .app-pack .pk-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
 .ilwrap .app-pack .pk-av svg.sig{width:10px;height:10px;color:var(--bg)}
 
-/* the list's own header: how many gaps are proven */
+/* the list's own header: how many of the 12 have a gap */
 .app-pack .pk-lh{display:flex;align-items:center;justify-content:space-between;gap:10px;height:28px;padding:0 9px 2px;margin-bottom:2px;box-shadow:0 1px 0 var(--line)}
 .app-pack .pk-count{display:flex;align-items:baseline;gap:4px;font-size:11.5px;color:var(--fg-2);white-space:nowrap}
 .app-pack .pk-num{display:inline-grid;justify-items:end;font:600 11.5px/1 var(--sans);color:var(--fg);font-variant-numeric:tabular-nums}
@@ -28,10 +33,13 @@
 /* columns */
 .app-pack .pk-cols{display:grid;grid-template-columns:232px minmax(0,1fr);gap:12px;min-height:0}
 
-/* the list, in Clay's order */
-.app-pack .pk-list{display:grid;align-content:start;gap:2px;padding:4px;min-height:0}
-.app-pack .pk-row{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:10px;align-items:start;padding:5px 9px;border-radius:7px}
+/* the list, in Clay's order: favicon, name and gap, status (proven gap: landed; no gap: a ticked ring) */
+.app-pack .pk-list{display:flex;flex-direction:column;gap:2px;padding:4px;min-height:0}
+.app-pack .pk-lh{flex:none}
+.app-pack .pk-row{flex:none;display:grid;grid-template-columns:14px minmax(0,1fr) 12px;column-gap:10px;align-items:start;padding:5px 9px;border-radius:7px}
 .ilwrap .app-pack .pk-row .sig{width:12px;height:12px;margin-top:2px;color:var(--fg)}
+.ilwrap .app-pack .pk-row .pk-ok{width:12px;height:12px;margin-top:2px;color:var(--fg-3)}
+.app-pack .pk-row .pk-fv{margin-top:1px}
 .app-pack .pk-row > div{min-width:0}
 .app-pack .pk-nm{font:500 11.5px/16px var(--sans);color:var(--fg)}
 .app-pack .pk-gp{display:grid;font:400 10.5px/15px var(--mono);color:var(--fg-2)}
@@ -39,7 +47,21 @@
 .app-pack .pk-gp .w{opacity:0;color:var(--fg-3)}
 .app-pack .pk-row.on{background:rgb(var(--fg-rgb) / .08);box-shadow:0 0 0 1px var(--line-ui) inset}
 .app-pack .pk-row.dim .pk-gp{color:var(--fg-3)}
-.ilwrap .app-pack .pk-row.dim .sig{color:var(--fg-3)}
+
+/* the prospects' own favicons, in their own colours (as their captures are): a tile, a letter or a glyph */
+.app-pack .pk-fv{display:inline-grid;place-items:center;width:14px;height:14px;border-radius:4px;flex:none;
+  font:600 8.5px/1 var(--sans);font-style:normal;letter-spacing:0;color:#F1EBDD;box-shadow:0 0 0 1px rgb(0 0 0 / .18) inset}
+.ilwrap .app-pack .pk-fv svg{width:12px;height:12px}
+.app-pack .fv-tw{background:#34525A;color:#FFFFFF}
+.app-pack .fv-fn{background:#707A62}
+.app-pack .fv-hb{background:#6B4630}
+.app-pack .fv-lb{background:#2C3442;color:#FFFFFF}
+.app-pack .fv-hm{background:#55603F}
+
+/* the red line, at the list's foot */
+.app-pack .pk-lf{flex:none;margin-top:auto;display:flex;align-items:center;gap:7px;height:30px;padding:2px 9px 0;font-size:10.5px;color:var(--fg-3);white-space:nowrap;
+  box-shadow:0 -1px 0 var(--line)}
+.ilwrap .app-pack .pk-lf svg{width:12px;height:12px;color:var(--fg-3)}
 
 /* the pack, previewed on a quiet canvas */
 .app-pack .pk-pane{position:relative;display:grid;align-content:start;gap:8px;padding:10px;border-radius:10px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line) inset;min-height:0}
@@ -53,9 +75,10 @@
 .app-pack .pk-brand{display:flex;align-items:center;gap:7px;font:600 11px/1 var(--sans);color:var(--fg)}
 .app-pack .pk-brand i{width:16px;height:16px;border-radius:4px;display:grid;place-items:center;font:600 9.5px/1 var(--sans);font-style:normal;color:var(--bg);background:var(--fg)}
 .app-pack .pk-date{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
-.app-pack .pk-page h3{margin-top:10px;font:600 15px/1.2 var(--sans);letter-spacing:-.02em;color:var(--fg)}
+.app-pack .pk-page h3{margin-top:10px;font:600 15px/1.2 var(--sans);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-pack .pk-page h3 .pk-fv{margin:0 5px 0 1px;vertical-align:-1.5px}
 .app-pack .pk-finds{margin-top:8px;border-top:1px solid var(--line-2)}
-.app-pack .pk-f{display:grid;grid-template-columns:16px minmax(0,1fr) 58px;column-gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2)}
+.app-pack .pk-f{display:grid;grid-template-columns:16px minmax(0,1fr) 56px;column-gap:9px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2)}
 .app-pack .pk-f > *{grid-row:1}
 .app-pack .pk-n,.app-pack .pk-sk.k1{grid-column:1}
 .app-pack .pk-ft,.app-pack .pk-sk.k2{grid-column:2}
@@ -73,24 +96,25 @@
 .app-pack .pk-sk.k2{display:grid;gap:5px;align-content:center;background:none}
 .app-pack .pk-sk.k2 i{display:block;height:7px;width:72%;border-radius:2px;background:rgb(var(--fg-rgb) / .07)}
 .app-pack .pk-sk.k2 i+i{height:6px;width:48%}
-.app-pack .pk-sk.k3{width:58px;height:36px;border-radius:5px}
+.app-pack .pk-sk.k3{width:56px;height:36px;border-radius:5px}
 
 /* captures: the prospect's own pages, in its own colours */
-.app-pack .pk-shot{display:block;position:relative;width:58px;height:36px;border-radius:5px}
+.app-pack .pk-shot{display:block;position:relative;width:56px;height:36px;border-radius:5px}
 .app-pack .pk-shot::before{position:absolute;left:0;top:0;right:0;height:7px}
 .app-pack .pk-shot i{position:absolute;border-radius:1.5px}
+/* 1: the test inbox, its Spam folder open (its name legible up close): Hobstone's welcome email on top, in its own
+   brown, its 10% off on it; the agent's ring lands on the folder's name. Type is 7px at least, so it reads at the
+   camera's push. */
 .app-pack .pk-s1::before{background:#D6D3CC}
-.app-pack .pk-s1 .r{left:0;top:7px;bottom:0;width:13px;border-radius:0;background:#DCD8D0}
-.app-pack .pk-s1 .r1{left:3px;top:11px;width:7px;height:2px;background:#BAB5AB}
-.app-pack .pk-s1 .r2{left:2px;top:16px;width:9px;height:5px;border-radius:1px;background:#8C867B}
-.app-pack .pk-s1 .r3{left:3px;top:25px;width:7px;height:2px;background:#BAB5AB}
-.app-pack .pk-s1 .a1{left:17px;top:11px;width:5px;height:5px;border-radius:1px;background:#7A4E32}
-.app-pack .pk-s1 .l1{left:25px;top:12.5px;width:19px;height:2px;background:#5E5A53}
-.app-pack .pk-s1 .t1{left:47px;top:11px;width:8px;height:5px;border-radius:1px;background:#E3A08A}
-.app-pack .pk-s1 .a2{left:17px;top:20px;width:5px;height:5px;border-radius:1px;background:#BDB8AE}
-.app-pack .pk-s1 .l2{left:25px;top:21.5px;width:22px;height:2px;background:#C4BFB5}
-.app-pack .pk-s1 .a3{left:17px;top:29px;width:5px;height:5px;border-radius:1px;background:#BDB8AE}
-.app-pack .pk-s1 .l3{left:25px;top:30.5px;width:15px;height:2px;background:#C4BFB5}
+.app-pack .pk-s1 b{position:absolute;font:600 7px/7px var(--sans);letter-spacing:0;white-space:nowrap}
+.app-pack .pk-s1 .sp{left:4px;top:10px;color:#1E1D1A}
+.app-pack .pk-s1 .pk-mk{left:1.5px;top:8px;width:24px;height:11px;border-radius:2.5px;background:none;box-shadow:0 0 0 1px #1E1D1A}
+.app-pack .pk-s1 .dv{left:3px;right:3px;top:20px;height:1px;border-radius:0;background:#D3CFC7}
+.app-pack .pk-s1 .a1{left:4px;top:23px;width:6px;height:6px;border-radius:1.5px;background:#6B4630}
+.app-pack .pk-s1 .l1{left:13px;top:25px;width:8px;height:2px;background:#5E5A53}
+.app-pack .pk-s1 .t1{left:24px;top:22.5px;padding:0 2px;border-radius:2px;color:#F4EEE4;background:#6B4630}
+.app-pack .pk-s1 .a2{left:4px;top:31.5px;width:6px;height:3px;border-radius:1px 1px 0 0;background:#BDB8AE}
+.app-pack .pk-s1 .l2{left:13px;top:32.5px;width:22px;height:2px;background:#C4BFB5}
 
 /* 2: the texts opt in, filled and sent; the finding beside it says nothing followed */
 .app-pack .pk-s2::before{background:#6B4630}
@@ -101,23 +125,18 @@
 .app-pack .pk-s2 .er{left:6px;top:26px;width:24px;height:2px;background:#C4BFB5}
 .app-pack .pk-s2 .tl{left:6px;top:31px;width:46px;height:1px;border-radius:0;background:#D3CFC7}
 
-/* 3: the site's chat: the agent's question to the bot, the bot's non answer, then a person picks it up and the step ends */
+/* 3: the site's chat: the agent asks the bot for a delivery date, twice; the bot answers without one */
 .app-pack .pk-s3::before{background:#6B4630}
-.app-pack .pk-s3 .p1{left:30px;top:10px;width:22px;height:6px;border-radius:3px;background:#2B2A27}
-.app-pack .pk-s3 .n1{left:6px;top:18.5px;width:26px;height:6px;border-radius:3px;background:#E3DFD7}
-.app-pack .pk-s3 .q1{left:9px;top:20.5px;width:15px;height:2px;background:#9E998F}
-.app-pack .pk-s3 .p2{left:6px;top:27.5px;width:5px;height:5px;border-radius:50%;background:#9C7458}
-.app-pack .pk-s3 .n2{left:13px;top:27px;width:20px;height:6px;border-radius:3px;background:#E3DFD7}
-.app-pack .pk-s3 .q2{left:16px;top:29px;width:11px;height:2px;background:#9E998F}
-.app-pack .pk-s3 .bt{left:39px;top:29px;width:13px;height:1px;border-radius:0;background:#BDB8AE}
+.app-pack .pk-s3 .p1{left:30px;top:9.5px;width:22px;height:5px;border-radius:2.5px;background:#2B2A27}
+.app-pack .pk-s3 .n1{left:5px;top:16px;width:26px;height:5px;border-radius:2.5px;background:#E3DFD7}
+.app-pack .pk-s3 .q1{left:8px;top:17.5px;width:15px;height:2px;background:#9E998F}
+.app-pack .pk-s3 .p2{left:34px;top:22.5px;width:18px;height:5px;border-radius:2.5px;background:#2B2A27}
+.app-pack .pk-s3 .n2{left:5px;top:29px;width:22px;height:5px;border-radius:2.5px;background:#E3DFD7}
+.app-pack .pk-s3 .q2{left:8px;top:30.5px;width:12px;height:2px;background:#9E998F}
 
-/* the foot: the red line on the left, level with the toast on the right (app-board's pattern) */
-.app-pack .pk-note{position:absolute;left:18px;bottom:26px;display:flex;align-items:center;gap:7px;height:16px;font-size:10.5px;color:var(--fg-3);white-space:nowrap}
-.ilwrap .app-pack .pk-note svg{width:12px;height:12px;color:var(--fg-3)}
-.app-pack .pk-toast{right:14px;bottom:14px;gap:10px;padding:8px 8px 8px 12px}
-.app-pack .pk-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
-.app-pack .pk-toast b{font-weight:500;color:var(--fg)}
-.app-pack .pk-toast p span{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+/* a partner's mark in a button stands in for its name at the text's own metrics (components/PartnerMark), not at the
+   button's 12px icon size */
+.ilwrap .app-pack .ax-btn .s-pm > svg{width:100%;height:100%}
 
 /* pointer: sized with a selector that beats the base ".appx svg{width:auto}" */
 .ilwrap .app-pack .appx svg.pk-ptr{width:16px;height:16px}
@@ -131,7 +150,7 @@
 @keyframes pk-show{from{opacity:0}to{opacity:1}}
 @keyframes pk-seg{from{background-color:var(--line-3)}}
 @keyframes pk-press{0%,100%{transform:none}45%{transform:scale(.92)}}
-@keyframes pk-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pk-ring{from{opacity:0;transform:scale(1.6)}to{opacity:1;transform:none}}
 @keyframes pk-ptr{
   0%{opacity:0;transform:translate(410px,300px)}
   12%{opacity:1}
@@ -159,15 +178,18 @@
 .app-pack.appx-il.play .pk-seg .s9{animation:pk-seg .35s var(--ease) 1.25s backwards}
 .app-pack.appx-il.play .pk-seg .s10{animation:pk-seg .35s var(--ease) 1.8s backwards}
 
-/* Coffee lands, its pack builds: skeletons give way to findings, then the signature */
+/* Hobstone landed; its pitch fills as the camera reaches it (Home's hero): skeletons give way to findings, then the
+   signature, before the pointer sets off */
 .app-pack.appx-il.play .pk-sk{animation:pk-out .4s var(--ease) var(--d) backwards}
 .app-pack.appx-il.play .pk-f > :not(.pk-sk){animation:pk-in .45s var(--ease) var(--d) backwards}
-.app-pack.appx-il.play .pk-sign{animation:ax-fade .4s var(--ease) 3.2s backwards}
+.app-pack.appx-il.play .pk-sign{animation:ax-fade .4s var(--ease) 5.2s backwards}
 
-/* the click */
+/* the click: the proof link is copied (the button says so; no toast) */
 .app-pack .pk-ptr{--px:480px;--py:70px}
-.app-pack.appx-il.play .pk-ptr{animation:pk-ptr 2s var(--ease) 3.45s both}
-.app-pack.appx-il.play .pk-copy{animation:pk-press .26s ease-out 4.24s}
-.app-pack.appx-il.play .pk-a{animation:pk-out .16s ease-out 4.36s backwards}
-.app-pack.appx-il.play .pk-b{animation:pk-in .3s var(--ease) 4.4s backwards}
-.app-pack.appx-il.play .pk-toast{animation:pk-toast .5s var(--ease) 4.5s backwards}
+.app-pack.appx-il.play .pk-ptr{animation:pk-ptr 2s var(--ease) 5.24s both}
+.app-pack.appx-il.play .pk-copy{animation:pk-press .26s ease-out 6.1s}
+.app-pack.appx-il.play .pk-a{animation:pk-out .16s ease-out 6.22s backwards}
+.app-pack.appx-il.play .pk-b{animation:pk-in .3s var(--ease) 6.26s backwards}
+
+/* the finding, marked: the agent's ring lands on the folder the welcome email landed in */
+.app-pack.appx-il.play .pk-s1 .pk-mk{animation:pk-ring .35s var(--ease) 9.9s backwards}

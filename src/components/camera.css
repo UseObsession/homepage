@@ -1,20 +1,26 @@
 /* The camera on the app screens (components/camera.ts): the rig's origin, the spotlight, the pointer and its click
-   ring. It loads with the camera, never with the page, and only transform and opacity ever move. */
+   ring, and the notes. It loads with the camera, never with the page, and only transform and opacity ever move. */
 
-/* The rig scales from its top left corner; the frame (.ilwrap) clips it. */
+/* The rig scales from its top left corner; the frame (.ilwrap) clips it. The notes are drawn over it, in the frame's
+   own px. */
 .cam-on .appx-fit { transform-origin: 0 0; }
+.il.cam-on { position: relative; }
 
 /* The camera's pointer stands in for the screen's own drawn one while it films. */
 .cam-on .ax-ptr { visibility: hidden; }
 
 /* The spotlight: a shot's region stays lit and the rest of the window dims but stays readable, so the whole screen is
-   always in view (Seun, 7 Oct). */
+   always in view (Seun, 7 Oct). A region padded out from its content carries a faint edge of its own; 1 that sits on
+   its card's own edge has none, so the card is outlined once. */
 .appx .cam-spot {
   position: absolute;
   z-index: 6;
   border-radius: 10px;
   opacity: 0;
   pointer-events: none;
+  box-shadow: 0 0 0 760px color-mix(in srgb, var(--panel) 62%, transparent);
+}
+.appx .cam-spot.cam-edge {
   box-shadow: 0 0 0 1px rgb(var(--fg-rgb) / .14), 0 0 0 760px color-mix(in srgb, var(--panel) 62%, transparent);
 }
 
@@ -46,4 +52,78 @@
   opacity: 0;
   pointer-events: none;
   box-shadow: 0 0 0 1.5px var(--fg) inset;
+}
+
+/* ---------- the notes: a beat's point, a hairline from the lit region to a small label ----------
+   Outside the rig, so their type is the frame's own and never scales. The page's own paper and ink are read off the
+   root (a scope's tokens resolve where they are declared), since every screen is a glossy black object on either
+   theme: on ink the label is lit glass over the dimmed window, clearly brighter than any of the app's own surfaces
+   (its toasts and chips), so the narrator never reads as product UI; on paper it is the page's own paper, in its ink.
+   Its type stands level with the app's: a desktop card shows 11px app text at about 15.5px, so the point is set at
+   15px, in a heavier weight on a brighter surface (13px on a smaller card, 12px on a phone, where the frame is the main
+   panel). */
+:root {
+  --cam-paper: var(--ob-surface);
+  --cam-ink: var(--ob-text);
+  --cam-cast: var(--ob-shadow-rgb);
+}
+.cam-notes {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  --cam-line: rgb(250 249 246 / .66);
+  --cam-dot: #FAF9F6;
+}
+.cam-dot,
+.cam-line,
+.cam-note { position: absolute; display: block; margin: 0; opacity: 0; }
+.cam-still :is(.cam-dot, .cam-line, .cam-note) { opacity: 1; }
+.cam-dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--cam-dot);
+  box-shadow: 0 0 0 2px rgb(8 8 7 / .55);
+}
+.cam-line { background: var(--cam-line); }
+.cam-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  border-radius: 9px;
+  font: 500 15px/20px var(--ob-font-sans, var(--sans));
+  letter-spacing: -.008em;
+  white-space: pre;
+  text-align: center;
+  color: #FAF9F6;
+  background: linear-gradient(180deg, rgb(255 255 255 / .19), rgb(255 255 255 / .15)), rgb(30 30 28 / .66);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .3) inset, 0 1px 0 rgb(255 255 255 / .22) inset, 0 12px 28px -10px rgb(0 0 0 / .75);
+}
+@media (max-width: 1023.98px) {
+  .cam-note { padding: 5px 10px; border-radius: 8px; font-size: 13px; line-height: 18px; }
+}
+@media (max-width: 519.98px) {
+  .cam-note { padding: 4px 9px; border-radius: 7px; font-size: 12px; line-height: 16px; }
+}
+/* Paper: the page's own paper and ink over the black window, and the line in paper. */
+:root:is([data-theme="light"], .ob-theme-hybrid) .cam-notes {
+  --cam-line: color-mix(in srgb, var(--cam-paper) 82%, transparent);
+  --cam-dot: var(--cam-paper);
+}
+:root:is([data-theme="light"], .ob-theme-hybrid) .cam-note {
+  color: var(--cam-ink);
+  background: var(--cam-paper);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 0 0 1px rgb(var(--cam-cast) / .18) inset, 0 12px 28px -12px rgb(0 0 0 / .65);
+}
+@media (forced-colors: active) {
+  .cam-note { forced-color-adjust: none; color: CanvasText; background: Canvas; box-shadow: 0 0 0 1px CanvasText; }
+  .cam-line, .cam-dot { forced-color-adjust: none; background: CanvasText; }
 }
