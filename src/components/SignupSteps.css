@@ -261,6 +261,8 @@ button.s-signup__sq:focus-visible { outline: var(--ob-focus-width) solid var(--o
   margin-top: var(--ob-space-20);
 }
 .s-signup__back { margin-inline-start: calc(var(--ob-space-12) * -1); }
+/* A single choice with nothing picked: Next keeps its space, unseen and out of the tab order, until a pick. */
+.s-signup__next.is-idle { visibility: hidden; }
 .s-signup__end {
   display: flex;
   align-items: center;

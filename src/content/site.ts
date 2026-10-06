@@ -147,7 +147,7 @@ export const privacyPage: PrivacyPage = {
 
   headline: 'We keep what you type into our forms, and never sell it.',
   sub: 'This notice covers the waitlist, the free mystery shop and the free AI agent check on useobsession.com, under UK data protection law.',
-  updated: '3 October 2026',
+  updated: '6 October 2026',
 
   sections: [
     {
@@ -193,6 +193,7 @@ export const privacyPage: PrivacyPage = {
       list: [
         'Tell you about Obsession',
         'Set up what you asked for first',
+        'Decide who we call first, from your answers',
         'Run the free mystery shop or AI agent check you asked for, and send you the report',
         'Decide what we build next, from what people tell us they need',
         'Keep our forms safe from bots and abuse',

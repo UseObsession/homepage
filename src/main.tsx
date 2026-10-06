@@ -36,8 +36,17 @@ const app = (
   </StrictMode>
 )
 
-/* A page's chunk that no longer exists (a deploy replaced it while the page was open) loads the page afresh instead. */
+/* A page's chunk that no longer exists (a deploy replaced it while the page was open) loads the page afresh instead.
+   Once in 10 seconds at most: a chunk that fails again straight after the reload is missing for another reason, and
+   reloading again would never end (the sign up card's code is fetched on load while a sign up is open). The import
+   then fails as usual, and the form says the email is saved (CaptureForm). */
 window.addEventListener('vite:preloadError', (e) => {
+  try {
+    if (Date.now() - Number(sessionStorage.getItem('obs-reloaded') ?? 0) < 10000) return
+    sessionStorage.setItem('obs-reloaded', String(Date.now()))
+  } catch {
+    /* no storage: reload, as before */
+  }
   e.preventDefault()
   location.reload()
 })

@@ -1,10 +1,13 @@
 import { keepArrivedFrom } from './signupFlags'
+import { readerNames } from './signupReaders'
 import type { RoleId } from './types'
 
 /* The sign up card's words and the question bank (components/SignupSteps, _research/onboarding/SIGNUP.md in the
-   workspace). The page asks for the email only and saves it at once; then the thank you becomes this card: name and
-   company, "Which of these is you?" where the page doesn't know, 4 questions for the reader (3 for "Something else"),
-   an optional note, then 1 next step. Every step can be skipped.
+   workspace). The page asks for the email only and saves it at once; then the thank you becomes this card: "Which of
+   these is you?" where the page doesn't know, 4 questions for the reader (3 for "Something else"), name and company,
+   an optional note, then 1 next step. The 1 tap questions come first and the typing last. Every step can be skipped.
+   The readers' names and the pages that know their reader are in content/signupReaders.ts (step 1 needs them before
+   this bank loads).
 
    Edit questions and options here; no component holds any of these words.
    - An option's `label` is what the reader taps and what the sheet shows: 32 characters or fewer, so a chip fits a
@@ -12,13 +15,15 @@ import type { RoleId } from './types'
      be reworded without breaking them. Keep ids unique within their question.
    - `key` is the JSON key the page sends; waitlist/Code.js writes it in the column of the same name (its FIELDS list).
      A new key needs a new column there too.
-   - `step` is the number in the sheet's "Step reached" column (1 Email, 2 Name, 3 Reader, 4 First job, 5 Scale,
-     6 Results, 7 Last time, 8 Note, 9 Done). It stays fixed when a step is skipped, so the column sorts as a funnel.
-   - `{company}` is what they typed for their company. Without one the question reads `questionNoCompany`.
+   - `step` is the number in the sheet's "Step reached" column (1 Email, 2 Reader, 3 First job, 4 Scale, 5 Results,
+     6 Last time, 7 Name, 8 Note, 9 Done; waitlist/Code.js, STEPS, says the same). It stays fixed when a step is
+     skipped, so the column sorts as a funnel.
+   - `{company}` is the company: filled in from the email's domain, or what they typed. Without one the question reads
+     `questionNoCompany`.
    - `multi: true` lets them pick any number, with a Next button; otherwise 1 tap picks and moves on.
    - `other: true` ("Something else") opens a short field and never moves on by itself. `none: true` ("None of these")
      clears every other choice in a multi select.
-   - On a first job option: `for` names it under "Where should results land?" ("For pitch packs. Pick any."), and
+   - On a first job option: `for` names it under "Where should results land first?" ("For pitch packs."), and
      `run` is the first run the founders set up by hand (the sheet's "Suggested first run").
    - `offer` picks the thank you's next step: 'verify' (the free AI agent check) or 'mystery' (the free mystery shop).
    Copy rules: docs/REBUILD.md, "Copy". Ask about real, recent behaviour, never "would you", never money. */
@@ -35,7 +40,7 @@ export type SignupOption = {
 
 export type SignupQuestion = {
   id: string
-  step: 4 | 5 | 6 | 7
+  step: 3 | 4 | 5 | 6
   key: string
   /* The square's name and the answer's name on the thank you ("Your answers"). */
   short: string
@@ -57,9 +62,8 @@ export type CallFirstRule = {
 
 export type SignupReader = {
   id: RoleId
-  /* The reader's own page, where the page says who they are. */
-  path?: string
-  /* "For agencies." under the card's title on that page, with Change beside it. */
+  /* "For agencies." under the card's title on a page that knows its reader (content/signupReaders.ts), with Change
+     beside it. */
   line?: string
   /* The company field's label for this reader. */
   companyLabel?: string
@@ -68,13 +72,13 @@ export type SignupReader = {
   callFirst?: CallFirstRule
 }
 
+/* 1 pick, the first place: forced choice is truer than "pick any", and the top pick sets which tool we connect first. */
 const results = (id: string, options: string[]): SignupQuestion => ({
   id,
-  step: 6,
+  step: 5,
   key: 'results',
   short: 'Results',
-  question: 'Where should results land?',
-  multi: true,
+  question: 'Where should results land first?',
   options: options.map((label) => ({ id: label.toLowerCase().replace(/[^a-z]+/g, '-'), label })),
 })
 
@@ -84,13 +88,12 @@ const somethingElse: SignupOption = { id: 'other', label: 'Something else', othe
 
 const agency: SignupReader = {
   id: 'agency',
-  path: '/agencies',
   line: 'For agencies.',
   companyLabel: 'Agency',
   questions: [
     {
       id: 'A1',
-      step: 4,
+      step: 3,
       key: 'first_job',
       short: 'First job',
       question: 'What should your agents do first?',
@@ -105,7 +108,7 @@ const agency: SignupReader = {
     },
     {
       id: 'A2',
-      step: 5,
+      step: 4,
       key: 'agency_clients',
       short: 'Clients',
       question: 'How many clients does {company} look after?',
@@ -121,7 +124,7 @@ const agency: SignupReader = {
     results('A3', ['Email', 'Slack', 'A PDF or link for clients', 'Google Sheets', 'Clay', 'Our CRM']),
     {
       id: 'A4',
-      step: 7,
+      step: 6,
       key: 'agency_last_check',
       short: 'Last check',
       question: 'Your last pitch audit or client check by hand: how long did it take?',
@@ -148,12 +151,11 @@ const agency: SignupReader = {
 
 const founder: SignupReader = {
   id: 'founder',
-  path: '/founders',
   line: 'For founders.',
   questions: [
     {
       id: 'F1',
-      step: 4,
+      step: 3,
       key: 'first_job',
       short: 'First job',
       question: 'What should your agents do first?',
@@ -168,7 +170,7 @@ const founder: SignupReader = {
     },
     {
       id: 'F2',
-      step: 5,
+      step: 4,
       key: 'founder_sells',
       short: 'Sells',
       question: 'What does {company} sell?',
@@ -185,7 +187,7 @@ const founder: SignupReader = {
     results('F3', ['Email', 'Slack', 'Google Sheets', 'Our CRM', 'Our issue tracker', 'Webhook or API']),
     {
       id: 'F4',
-      step: 7,
+      step: 6,
       key: 'founder_last_week',
       short: 'Last week',
       question: 'Last week, which of these did you do yourself?',
@@ -211,12 +213,11 @@ const founder: SignupReader = {
 
 const sales: SignupReader = {
   id: 'sales',
-  path: '/sales',
   line: 'For sales and success teams.',
   questions: [
     {
       id: 'S1',
-      step: 4,
+      step: 3,
       key: 'first_job',
       short: 'First job',
       question: 'What should your agents do first?',
@@ -231,7 +232,7 @@ const sales: SignupReader = {
     },
     {
       id: 'S2',
-      step: 5,
+      step: 4,
       key: 'sales_team',
       short: 'Team size',
       question: 'How big is your sales and success team?',
@@ -246,7 +247,7 @@ const sales: SignupReader = {
     results('S3', ['Salesforce', 'HubSpot', 'Another CRM', 'Slack', 'Email', 'Clay']),
     {
       id: 'S4',
-      step: 7,
+      step: 6,
       key: 'sales_last_slip',
       short: 'Last slip',
       question: 'Your last renewal or deal that slipped: when did you first see it coming?',
@@ -272,12 +273,11 @@ const sales: SignupReader = {
 
 const marketing: SignupReader = {
   id: 'marketing',
-  path: '/marketing',
   line: 'For marketing teams.',
   questions: [
     {
       id: 'M1',
-      step: 4,
+      step: 3,
       key: 'first_job',
       short: 'First job',
       question: 'What should your agents do first?',
@@ -292,7 +292,7 @@ const marketing: SignupReader = {
     },
     {
       id: 'M2',
-      step: 5,
+      step: 4,
       key: 'marketing_markets',
       short: 'Markets',
       question: 'What does {company} market?',
@@ -309,7 +309,7 @@ const marketing: SignupReader = {
     results('M3', ['Email', 'Slack', 'Google Sheets', 'Our CRM', 'A PDF to share', 'Zapier or Make']),
     {
       id: 'M4',
-      step: 7,
+      step: 6,
       key: 'marketing_last_break',
       short: 'Last break',
       question: 'The last time an ad, link, code or email broke, who found it?',
@@ -332,12 +332,11 @@ const marketing: SignupReader = {
 
 const developer: SignupReader = {
   id: 'developer',
-  path: '/developers',
   line: 'For developers.',
   questions: [
     {
       id: 'D1',
-      step: 4,
+      step: 3,
       key: 'first_job',
       short: 'First job',
       question: 'What will you build first?',
@@ -352,7 +351,7 @@ const developer: SignupReader = {
     },
     {
       id: 'D2',
-      step: 5,
+      step: 4,
       key: 'developer_for',
       short: 'Builds for',
       question: 'Who’s it for?',
@@ -367,7 +366,7 @@ const developer: SignupReader = {
     results('D3', ['Webhook', 'Polling the API', 'Our CI', 'MCP or another agent', 'Slack', 'Email']),
     {
       id: 'D4',
-      step: 7,
+      step: 6,
       key: 'developer_last_used',
       short: 'Last used',
       question: 'Last time you needed test inboxes, phone numbers or browsers, what did you use?',
@@ -395,7 +394,7 @@ const other: SignupReader = {
   questions: [
     {
       id: 'G1',
-      step: 4,
+      step: 3,
       key: 'first_job',
       short: 'First job',
       question: 'Which job should we set up first?',
@@ -411,7 +410,7 @@ const other: SignupReader = {
     results('G2', ['Email', 'Slack', 'Google Sheets', 'Our CRM', 'A PDF to share', 'Webhook or API']),
     {
       id: 'G3',
-      step: 7,
+      step: 6,
       key: 'other_last_week',
       short: 'Last week',
       question: 'Last week, which of these did you do by hand?',
@@ -442,7 +441,8 @@ export const readers: Record<RoleId, SignupReader> = { agency, founder, sales, m
 export const signup = {
   card: {
     title: 'You’re on the list.',
-    line: 'A few taps and we’ll set up the right first run. Skip any.',
+    /* {email} is the address they gave, as 1 piece, so a typo shows before the questions. */
+    line: 'We’ll write to {email}. A few taps and we’ll set up the right first run. Skip any.',
     change: 'Change',
     /* "3 of 7": the square they're on, of every square. The email is square 1, filled when the card opens. */
     progress: '{n} of {total}',
@@ -458,16 +458,17 @@ export const signup = {
     skipFinish: 'Skip and finish',
     /* The field under "Something else". */
     other: 'Tell us in a few words',
-    /* Under "Where should results land?": {job} is the first job's `for`. Without one, `resultsPlain`. */
-    results: 'For {job}. Pick any.',
-    resultsPlain: 'Pick any.',
+    /* Under "Where should results land first?": {job} is the first job's `for`. Without one, `resultsPlain` (empty: no
+       helper). */
+    results: 'For {job}.',
+    resultsPlain: '',
     skipped: 'Skipped',
     footer: 'Every answer is optional. We use them to set up your first run and decide what we build.',
     /* Shown only when VITE_WAITLIST_URL is unset (local builds): nothing leaves the browser. */
     preview: 'Preview: nothing was sent.',
   },
 
-  /* Step 2. The company is filled in from the email's domain, unless it's a free mail address. */
+  /* Step 7, after the questions. The company is filled in from the email's domain, unless it's a free mail address. */
   name: {
     question: 'Who should we ask for?',
     short: 'Name and company',
@@ -482,33 +483,31 @@ export const signup = {
     ],
   },
 
-  /* Step 3, on pages that don't know their reader; "Change" on a reader's own page opens it too. */
+  /* Step 2, on pages that don't know their reader; "Change" on a reader's own page opens it too. The labels are the
+     readers' names (content/signupReaders.ts). */
   reader: {
     question: 'Which of these is you?',
     short: 'Who you are',
     helper: 'Your next questions depend on it.',
-    options: [
-      { id: 'agency', label: 'Agency' },
-      { id: 'founder', label: 'Founder' },
-      { id: 'sales', label: 'Sales or success' },
-      { id: 'marketing', label: 'Marketing' },
-      { id: 'developer', label: 'Developer' },
-      { id: 'other', label: 'Something else', other: true },
-    ] as SignupOption[],
+    options: (['agency', 'founder', 'sales', 'marketing', 'developer', 'other'] as RoleId[]).map(
+      (id): SignupOption => (id === 'other' ? { id, label: readerNames[id], other: true } : { id, label: readerNames[id] }),
+    ),
     /* The field under "Something else" here (the sheet's "Other: role"). */
     other: { label: 'What do you do?', placeholder: 'e.g. Operations lead' },
   },
 
-  /* In place of the first job: the page's own question (Capture.roles; on a recipe page the recipe's, on the agencies
-     use case the format of the audits), whose answer goes in "Job detail"; else, for a free mystery shop or AI agent
-     check with its store or agent, whose it is. A page question in `skipOwn` is never asked: "Which of these is you?"
-     already covers it. */
+  /* In place of the first job: the page's own question (Capture.roles, on a recipe page the recipe's), whose answer
+     goes in "Job detail"; else, for a free mystery shop or AI agent check with its store or agent, whose it is. A page
+     question that `replaces: 'results'` (the agencies' audit format) is asked in place of the results instead, and its
+     answer goes in "Results to". A free shop or check left blank is a waitlist sign up: it asks the reader's own first
+     job, never the page's question. A page question in `skipOwn` is never asked: "Which of these is you?" already
+     covers it. */
   page: {
     mystery: {
       firstJob: 'Free mystery shop',
       for: 'your free mystery shop',
       run: 'Mystery shopper on {store}, once it’s confirmed theirs or the owner’s OK is in',
-      question: { id: 'mystery', step: 4, key: 'job_detail', short: 'Whose store', question: 'Whose store is it?', options: [{ id: 'mine', label: 'Mine' }, { id: 'client', label: 'A client’s, with their OK' }] } as SignupQuestion,
+      question: { id: 'mystery', step: 3, key: 'job_detail', short: 'Whose store', question: 'Whose store is it?', options: [{ id: 'mine', label: 'Mine' }, { id: 'client', label: 'A client’s, with their OK' }] } as SignupQuestion,
     },
     verify: {
       firstJob: 'Free AI agent check',
@@ -516,7 +515,7 @@ export const signup = {
       run: 'The free AI agent check on {agent}, once it’s confirmed theirs or the owner’s OK is in',
       question: {
         id: 'verify',
-        step: 4,
+        step: 3,
         key: 'job_detail',
         short: 'Whose AI agent',
         question: 'Whose AI agent is it?',
@@ -527,8 +526,6 @@ export const signup = {
     /* A page's own question names itself in the squares and on the thank you (Capture.roles `short`); without one: */
     own: { short: 'Question' },
     skipOwn: ['What’s your role?'],
-    /* Pages that are not a reader's own but know their reader (the reader's own page is `readers`, `path`). */
-    readerOf: { '/use-cases/mystery-shopping-for-ecommerce-agencies': 'agency' } as Record<string, RoleId>,
   },
 
   /* Step 8. The placeholder is the reader's own (readers above). */
@@ -545,8 +542,8 @@ export const signup = {
 
   /* The thank you. {name} is the first word of their name; {email} the address they gave. */
   thanks: {
-    title: 'Thanks, {name}. That’s everything.',
-    titlePlain: 'Thanks. That’s everything.',
+    title: 'Thanks, {name}. You’re all set.',
+    titlePlain: 'Thanks. You’re all set.',
     line: 'A founder reads every answer and emails {email}{reply} to plan your first run. Nothing runs until you approve it.',
     developer: 'A founder reads every answer and emails {email}{reply} to set up your API access. Nothing runs until you approve it.',
     /* A free mystery shop or AI agent check from step 1. */

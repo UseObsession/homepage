@@ -3,8 +3,9 @@
 import { readFileSync } from 'node:fs'
 import vm from 'node:vm'
 
-export function makeGas(codePath, { headers = null, rows = [] } = {}) {
+export function makeGas(codePath, { headers = null, rows = [], quota = 100 } = {}) {
   const mail = []
+  const left = { quota }
   const props = { SHEET_ID: 'book1', NOTIFY_TO: 'a@useobsession.com, b@useobsession.com' }
   const cache = new Map()
   let clock = Date.parse('2026-10-03T13:00:00Z')
@@ -52,7 +53,7 @@ export function makeGas(codePath, { headers = null, rows = [] } = {}) {
     PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => props[k] ?? null, setProperty: (k, v) => { props[k] = v } }) },
     LockService: { getScriptLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) },
     CacheService: { getScriptCache: () => ({ get: (k) => cache.get(k) ?? null, put: (k, v) => cache.set(k, v) }) },
-    MailApp: { sendEmail: (to, subject, body) => mail.push({ to, subject, body }), getRemainingDailyQuota: () => 100 },
+    MailApp: { sendEmail: (to, subject, body) => { left.quota -= to.split(',').length; mail.push({ to, subject, body }) }, getRemainingDailyQuota: () => left.quota },
     Session: { getEffectiveUser: () => ({ getEmail: () => 'owner@example.com' }) },
     Utilities: { formatDate: (d) => d.toISOString().slice(0, 16).replace('T', ' ') },
     ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (s) => ({ body: s, setMimeType() { return this } }) },

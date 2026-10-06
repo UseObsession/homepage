@@ -6,7 +6,10 @@
    Step 1 (the email) is sent and awaited: the reader sees an error if it fails. Every later step of the sign up card
    (components/SignupSteps) goes through queueSnapshot: the whole sign up so far, keyed by its sign up ID (`sid`), sent
    in the background while the reader moves on. 1 post is in flight at a time and the newest snapshot wins, so a lost
-   post is healed by the next one. When the page closes, an unsent snapshot leaves by navigator.sendBeacon. */
+   post is healed by the next one. When the page closes, an unsent snapshot leaves by navigator.sendBeacon. Every
+   snapshot carries the time it was made (`at`), so a slow older post that lands after a newer one is ignored by the
+   script. The script says which version it is (`v`): 2 and up keeps the card's answers. An older script (1, no `v`)
+   keeps the email only, so the form then shows the plain thank you instead of the card (CaptureForm). */
 
 export const WAITLIST_URL = (import.meta.env.VITE_WAITLIST_URL as string | undefined) || undefined
 const TIMEOUT_MS = 15000
@@ -32,7 +35,7 @@ export type Signup = {
 }
 
 export type SignupResult =
-  | { ok: true; preview: boolean }
+  | { ok: true; preview: boolean; v?: number }
   | { ok: false; error: 'bad_email' | 'rate_limited' | 'failed' }
 
 async function post(body: Record<string, string>): Promise<SignupResult> {
@@ -50,8 +53,8 @@ async function post(body: Record<string, string>): Promise<SignupResult> {
       body: JSON.stringify(body),
       signal: stop.signal,
     })
-    const data = (await res.json()) as { ok?: boolean; error?: string }
-    if (res.ok && data.ok) return { ok: true, preview: false }
+    const data = (await res.json()) as { ok?: boolean; error?: string; v?: number }
+    if (res.ok && data.ok) return { ok: true, preview: false, v: typeof data.v === 'number' ? data.v : 1 }
     if (data.error === 'bad_email' || data.error === 'rate_limited') return { ok: false, error: data.error }
     return { ok: false, error: 'failed' }
   } catch {
@@ -95,7 +98,7 @@ export const saveStatus = {
 /* Every key is sent, empty ones included: an empty value clears a column the reader has moved away from (a question
    from another reader after "Change"). */
 export function queueSnapshot(snapshot: Record<string, string>) {
-  latest = snapshot
+  latest = { ...snapshot, at: String(Date.now()) }
   tries = 0
   clearTimeout(retryTimer)
   void pump()
@@ -141,7 +144,8 @@ export function hasUnsent() {
 export function beaconSnapshot(snapshot: Record<string, string>) {
   if (!WAITLIST_URL || typeof navigator === 'undefined' || !navigator.sendBeacon) return false
   try {
-    const sent = navigator.sendBeacon(WAITLIST_URL, new Blob([JSON.stringify(snapshot)], { type: 'text/plain;charset=utf-8' }))
+    const body = JSON.stringify({ ...snapshot, at: String(Date.now()) })
+    const sent = navigator.sendBeacon(WAITLIST_URL, new Blob([body], { type: 'text/plain;charset=utf-8' }))
     if (sent) latest = null
     return sent
   } catch {

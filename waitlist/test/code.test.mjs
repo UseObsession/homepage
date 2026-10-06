@@ -9,9 +9,9 @@ const SID = '3f6c0a1e-1234-4abc-9def-0123456789ab'
 t('new sheet gets every header in reading order', () => {
   const g = makeGas(CODE)
   const r = g.post({ email: 'maya@northwind-labs.co.uk', sid: SID, step: '1', source: 'agencies-hero', page: '/agencies', reader: 'Agency', reader_from: 'Page' })
-  assert.deepEqual(r, { ok: true })
+  assert.deepEqual(r, { ok: true, v: 2 })
   assert.deepEqual([...g.headers()], [...g.HEADERS])
-  assert.equal(g.HEADERS.length, 37)
+  assert.equal(g.HEADERS.length, 38)
   const [row] = g.table()
   assert.equal(row.Email, 'maya@northwind-labs.co.uk'); assert.equal(row['Step reached'], '1 Email'); assert.equal(row.Reader, 'Agency')
   assert.equal(row['Sign up ID'], SID); assert.ok(row.Received instanceof Date); assert.ok(row.Updated instanceof Date); assert.equal(row.Finished, '')
@@ -25,25 +25,28 @@ t('old sheet keeps its rows; new headers go at the end', () => {
   g.post({ email: 'maya@northwind-labs.co.uk', sid: SID, step: '1', source: 'home-hero', page: '/' })
   const h = g.headers()
   assert.deepEqual(h.slice(0, 9), old)
-  assert.equal(h.length, 37)
+  assert.equal(h.length, 38)
   const rows = g.table()
   assert.equal(rows[0].Email, 'old@x.com'); assert.equal(rows[0].Role, 'Founder'); assert.equal(rows[0].Name, '')
   assert.equal(rows[1].Email, 'maya@northwind-labs.co.uk')
 })
 
-t('the whole card: 9 posts, 1 row, step only forward, finished alert', () => {
+t('the whole card: 1 row, step only forward, finished alert', () => {
   const g = makeGas(CODE)
-  const base = { email: 'maya@northwind-labs.co.uk', sid: SID, source: 'agencies-hero', page: '/agencies', interest: 'any', reader: 'Agency', reader_from: 'Page' }
+  const base = { email: 'maya@northwind-labs.co.uk', sid: SID, source: 'agencies-hero', page: '/agencies', interest: 'any', reader: 'Agency', reader_from: 'Page', company: 'Northwind Labs' }
+  let at = Date.parse('2026-10-03T13:00:00Z')
+  const step = (body) => { g.tick(5000); at += 5000; return g.post({ ...base, at: String(at), ...body }) }
   g.post({ ...base, step: '1' })
-  g.tick(5000); g.post({ ...base, step: '2', name: 'Maya Okafor', company: 'Northwind Labs' })
-  g.tick(5000); g.post({ ...base, step: '4', name: 'Maya Okafor', company: 'Northwind Labs', first_job: 'Pitch packs on prospects', suggested: 'Prospect intelligence', call_first: 'No' })
-  g.tick(5000); g.post({ ...base, step: '5', name: 'Maya Okafor', company: 'Northwind Labs', first_job: 'Pitch packs on prospects', agency_clients: '16 to 40' })
-  g.tick(5000); g.post({ ...base, step: '6', name: 'Maya Okafor', company: 'Northwind Labs', first_job: 'Pitch packs on prospects', agency_clients: '16 to 40', results: 'Slack, A PDF or link for clients' })
-  // Back to step 4: the step sent is lower, but Step reached stays at 6
-  g.tick(5000); g.post({ ...base, step: '4', name: 'Maya Okafor', company: 'Northwind Labs', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack, A PDF or link for clients' })
-  assert.equal(g.table()[0]['Step reached'], '6 Results')
-  g.tick(5000); g.post({ ...base, step: '7', name: 'Maya Okafor', company: 'Northwind Labs', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack, A PDF or link for clients', agency_last_check: 'A day or more', call_first: 'Yes: 16 to 40 clients, a day or more for the last check' })
-  g.tick(5000); g.post({ ...base, step: '9', name: 'Maya Okafor', company: 'Northwind Labs', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack, A PDF or link for clients', agency_last_check: 'A day or more', note: 'Skipped', call_first: 'Yes: 16 to 40 clients, a day or more for the last check' })
+  step({ step: '3', first_job: 'Pitch packs on prospects', suggested: 'Prospect intelligence', call_first: '' })
+  step({ step: '4', first_job: 'Pitch packs on prospects', agency_clients: '16 to 40' })
+  step({ step: '5', first_job: 'Pitch packs on prospects', agency_clients: '16 to 40', results: 'Slack' })
+  // Back to step 3: the step sent is lower, but Step reached stays at 5
+  step({ step: '3', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack' })
+  assert.equal(g.table()[0]['Step reached'], '5 Results')
+  step({ step: '6', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack', agency_last_check: 'A day or more', call_first: 'Yes: 16 to 40 clients, a day or more for the last check' })
+  step({ step: '7', name: 'Maya Okafor', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack', agency_last_check: 'A day or more', call_first: 'Yes: 16 to 40 clients, a day or more for the last check' })
+  assert.equal(g.table()[0]['Step reached'], '7 Name')
+  step({ step: '9', name: 'Maya Okafor', first_job: 'Checks on every client', agency_clients: '16 to 40', results: 'Slack', agency_last_check: 'A day or more', note: 'Skipped', call_first: 'Yes: 16 to 40 clients, a day or more for the last check' })
   const rows = g.table()
   assert.equal(rows.length, 1)
   const r = rows[0]
@@ -53,10 +56,52 @@ t('the whole card: 9 posts, 1 row, step only forward, finished alert', () => {
   assert.equal(g.mail.length, 2)
   assert.match(g.mail[1].subject, /^Answers: Maya Okafor, Northwind Labs\. Agency: Checks on every client$/)
   assert.match(g.mail[1].body, /Call first: Yes: 16 to 40 clients/)
-  assert.match(g.mail[1].body, /Results to: Slack, A PDF or link for clients/)
+  assert.match(g.mail[1].body, /Results to: Slack/)
+  assert.doesNotMatch(g.mail[1].body, /Sent at/)
   // a change after finishing: no second answers alert
-  g.tick(5000); g.post({ ...base, step: '9', name: 'Maya O', company: 'Northwind Labs' })
+  step({ step: '9', name: 'Maya O' })
   assert.equal(g.mail.length, 2); assert.equal(g.table()[0].Name, 'Maya O')
+})
+
+t('a slow older post that lands after a newer one is ignored', () => {
+  const g = makeGas(CODE)
+  const base = { email: 'maya@northwind-labs.co.uk', sid: SID, source: 'home-hero', page: '/' }
+  g.post({ ...base, step: '1' })
+  // the page closes on step 8: the beacon carries the note, made at t+2000
+  g.post({ ...base, step: '8', at: '1000002000', name: 'Maya', note: 'Pitch on the 14th' })
+  // the step 7 post, made at t+1000, was still in flight and lands last
+  const r = g.post({ ...base, step: '7', at: '1000001000', name: 'Maya', note: '' })
+  assert.deepEqual(r, { ok: true, v: 2 })
+  const row = g.table()[0]
+  assert.equal(row['Anything else'], 'Pitch on the 14th'); assert.equal(row['Step reached'], '8 Note')
+  // the same time again (a retry) still writes; a post without a time (an older page) always writes
+  g.post({ ...base, step: '8', at: '1000002000', name: 'Maya Okafor', note: 'Pitch on the 14th' })
+  assert.equal(g.table()[0].Name, 'Maya Okafor')
+  g.post({ ...base, step: '8', name: 'Maya O' })
+  assert.equal(g.table()[0].Name, 'Maya O')
+})
+
+t('alerts stop when the day\'s mail quota is spent; the rows still save', () => {
+  const g = makeGas(CODE, { quota: 3 })
+  g.post({ email: 'a@n.co', sid: SID, step: '1', source: 's' })
+  assert.equal(g.mail.length, 1) // 2 recipients: 1 left
+  g.post({ email: 'b@n.co', sid: SID.replace('3f', '4a'), step: '1', source: 's' })
+  assert.equal(g.mail.length, 1)
+  assert.equal(g.table().length, 2)
+})
+
+t('a phone number and a date-like note stay text as typed', () => {
+  const g = makeGas(CODE)
+  g.post({ email: 'm@n.co', sid: SID, step: '1', source: 's', agent: '02079460000' })
+  g.post({ email: 'm@n.co', sid: SID, step: '8', at: '1000000000', note: '12/10' })
+  const r = g.table()[0]
+  assert.equal(r.Agent, "'02079460000"); assert.equal(r['Anything else'], "'12/10")
+  assert.equal(r['Sent at'], "'1000000000")
+  // the alert reads it as typed
+  assert.match(g.mail[0].body, /AI agent: 02079460000\n/)
+  // words are left alone
+  g.post({ email: 'm@n.co', sid: SID, step: '8', at: '1000000001', note: '16 to 40 clients' })
+  assert.equal(g.table()[0]['Anything else'], '16 to 40 clients')
 })
 
 t('next step from the thank you alerts once', () => {
@@ -101,9 +146,9 @@ t('a post with a known email but no ID never touches the card row (old rule: sam
 
 t('a lost first post: an unknown ID makes the row with the whole snapshot', () => {
   const g = makeGas(CODE)
-  g.post({ email: 'maya@northwind-labs.co.uk', sid: SID, step: '4', name: 'Maya', first_job: 'Rival reports to sell', source: 'agencies-hero', page: '/agencies' })
+  g.post({ email: 'maya@northwind-labs.co.uk', sid: SID, step: '3', name: 'Maya', first_job: 'Rival reports to sell', source: 'agencies-hero', page: '/agencies' })
   const r = g.table()[0]
-  assert.equal(r['Step reached'], '4 First job'); assert.equal(r.Name, 'Maya'); assert.equal(g.mail.length, 1)
+  assert.equal(r['Step reached'], '3 First job'); assert.equal(r.Name, 'Maya'); assert.equal(g.mail.length, 1)
 })
 
 t('a day later the same ID starts a fresh row, and later steps follow it', () => {
@@ -119,14 +164,14 @@ t('a day later the same ID starts a fresh row, and later steps follow it', () =>
 
 t('rate limits: 8 new rows per email an hour, 40 updates per sign up an hour', () => {
   const g = makeGas(CODE)
-  for (let i = 0; i < 8; i++) assert.deepEqual(g.post({ email: 'x@y.co', sid: SID.slice(0, -2) + String(i).padStart(2, '0'), step: '1', source: 's' + i }), { ok: true })
+  for (let i = 0; i < 8; i++) assert.deepEqual(g.post({ email: 'x@y.co', sid: SID.slice(0, -2) + String(i).padStart(2, '0'), step: '1', source: 's' + i }), { ok: true, v: 2 })
   assert.deepEqual(g.post({ email: 'x@y.co', sid: SID.slice(0, -2) + '99', step: '1', source: 's9' }), { ok: false, error: 'rate_limited' })
   const h = makeGas(CODE)
   h.post({ email: 'm@n.co', sid: SID, step: '1' })
-  for (let i = 0; i < 40; i++) assert.deepEqual(h.post({ email: 'm@n.co', sid: SID, step: '2', name: 'n' + i }), { ok: true })
+  for (let i = 0; i < 40; i++) assert.deepEqual(h.post({ email: 'm@n.co', sid: SID, step: '2', name: 'n' + i }), { ok: true, v: 2 })
   assert.deepEqual(h.post({ email: 'm@n.co', sid: SID, step: '2', name: 'late' }), { ok: false, error: 'rate_limited' })
   h.tick(3601 * 1000)
-  assert.deepEqual(h.post({ email: 'm@n.co', sid: SID, step: '2', name: 'later' }), { ok: true })
+  assert.deepEqual(h.post({ email: 'm@n.co', sid: SID, step: '2', name: 'later' }), { ok: true, v: 2 })
 })
 
 t('today\'s single post still works: JSON, then the 1 tap role within 10 minutes, same row', () => {
@@ -148,7 +193,7 @@ t('a plain form post gets the page and a row', () => {
 
 t('honeypot, bad email, bad json', () => {
   const g = makeGas(CODE)
-  assert.deepEqual(g.post({ email: 'bot@x.co', website: 'spam' }), { ok: true })
+  assert.deepEqual(g.post({ email: 'bot@x.co', website: 'spam' }), { ok: true, v: 2 })
   assert.equal(g.data.length, 0)
   assert.deepEqual(g.post({ email: 'nope', sid: SID }), { ok: false, error: 'bad_email' })
   assert.deepEqual(g.post('{bad'), { ok: false, error: 'bad_json' })

@@ -3,7 +3,22 @@ import { Link, useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
 import { catalog } from '../content/catalog'
 import type { Capture } from '../content/types'
-import { SignupCard, getSignup, loadCard, loadSignup, saved, useCardReady, useSignup, warmSignup, type Context } from '../lib/signupStore'
+import {
+  SignupCard,
+  arrivedFrom,
+  getSignup,
+  loadCard,
+  loadSignup,
+  newId,
+  readerOfPage,
+  savePending,
+  saved,
+  stepOne,
+  useCardReady,
+  useSignup,
+  warmSignup,
+  type Context,
+} from '../lib/signupStore'
 import { ADDRESS_PATTERN, AGENT_PATTERN, WAITLIST_URL, isAddress, isAgent, isEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import './CaptureForm.css'
@@ -20,13 +35,17 @@ import './SignupSteps.css'
      in the field clears its error.
    - Sending and success are announced through 1 live region that stays mounted; a second submit while sending does
      nothing.
-   - Once the email is saved, the form becomes the sign up card (components/SignupSteps) in the same spot: name and
-     company, who they are where the page doesn't say, 4 questions for that reader, a note, then 1 next step. Every
-     form on the page shows the same card (lib/signupStore holds 1 sign up per visit), and a reload reopens it.
-     Step 1 carries a sign up ID that ties every later step to the row it makes (waitlist/Code.js).
-   - The card, its rules and the question bank are 1 chunk that loads on demand (lib/signupStore): it is fetched the
-     moment a reader touches a form, and the email is never sent before it has arrived, so a page nobody signs up on
-     carries none of it. The form itself holds only what the 1st step needs.
+   - Once the email is saved, the form becomes the sign up card (components/SignupSteps) in the same spot: who they are
+     where the page doesn't say, 4 questions for that reader, name and company, a note, then 1 next step. Every waitlist
+     form shows the same card (lib/signupStore holds 1 sign up per visit), and a reload reopens it. A free shop or check
+     form on another page stays itself while a plain sign up is open, so its offer is never out of reach; after the
+     thank you, only the page it ended on keeps showing it. Step 1 carries a sign up ID that ties every later step to
+     the row it makes (waitlist/Code.js).
+   - The email never waits for the card. Step 1 is built by lib/signupStore (stepOne) and sent first; once it has
+     saved, the sign up is kept as pending and only then is the card's code asked for (a chunk fetched on demand, warmed
+     the moment a reader touches a form, so a page nobody signs up on carries none of it). If that code can't load, the
+     form says "You're on the list." and a reload opens the card. An older waitlist script (version 1) keeps the email
+     only: the form then says the same plain thank you and never opens the card.
    - The page's reader comes from its address (content/signup.ts: a reader's own page, or a page that names its reader,
      like the agencies' use case); a page's own question (Capture.roles) is asked in place of the first job, as is
      "Whose store/AI agent is it?" on a free shop or check that sets none.
@@ -75,6 +94,11 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
   const [live, setLive] = useState('')
   const signup = useSignup()
   const cardReady = useCardReady()
+  /* The email is saved but the card can't open: this form's own sign up (its code didn't load, or the script keeps the
+     email only), or a sign up from earlier in this visit whose card can't load (`stuck`, its context). */
+  const [joined, setJoined] = useState(false)
+  const [stuck, setStuck] = useState<Context | null>(null)
+  const joinedRef = useRef<HTMLParagraphElement>(null)
 
   const sending = useRef(false)
   /* A second try of the same email keeps its sign up ID, so a post that landed but timed out makes no second row. */
@@ -88,13 +112,28 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     if (moved.current && step === 'email') emailRef.current?.focus()
   }, [step])
 
-  /* A sign up from earlier in this visit (a reload) reopens its card. A page without one never loads the card's code. */
+  /* Whether this form becomes the card for a sign up: every waitlist form, and a free shop or check form on the page
+     the sign up started on, or once a store or AI agent is in it. Another page's shop or check form stays itself, so
+     its offer is never out of reach (sending it starts a new sign up). */
+  const cardHere = (ctx: Context) => capture.kind === 'waitlist' || ctx.page === pathname || !!ctx.store || !!ctx.agent
+
+  /* A sign up from earlier in this visit (a reload) reopens its card. A page without one never loads the card's code.
+     If the code can't load, the email is still saved: the plain thank you says so where the card would be. */
   useEffect(() => {
-    if (getSignup() || !saved()) return
+    const found = getSignup() ? null : saved()
+    if (!found) return
     void Promise.all([loadSignup(), loadCard()])
-      .then(([m]) => m.resume())
-      .catch(() => undefined)
+      .then(([m, ready]) => {
+        if (!m || !ready) throw new Error('card')
+        m.resume()
+      })
+      .catch(() => setStuck(found.ctx))
   }, [])
+
+  /* The plain thank you takes the focus when this form showed it. */
+  useEffect(() => {
+    if (joined && moved.current) joinedRef.current?.focus()
+  }, [joined])
 
   const id = {
     store: `${uid}-store`,
@@ -138,16 +177,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     sending.current = true
     setBusy(true)
     setLive(copy.sending)
-    /* The sign up's code has been loading since the form was touched; the email waits for it, never the other way. */
-    const loaded = await Promise.all([loadSignup(), loadCard()]).catch(() => null)
-    if (!loaded || !loaded[1]) {
-      sending.current = false
-      setBusy(false)
-      setProblem({ field: 'form', text: copy.errors.server })
-      setLive(copy.errors.server)
-      return
-    }
-    const [signupCode] = loaded
     /* The page's reader and its own question, and on a recipe page the recipe's name. */
     const slug = pathname.startsWith('/recipes/') ? pathname.slice('/recipes/'.length) : ''
     const recipe = slug ? catalog.recipes.find((r) => r.slug === slug) : undefined
@@ -158,27 +187,49 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       interest: capture.interest,
       store: shop && !verify ? store.trim() : undefined,
       agent: shop && verify ? store.trim() : undefined,
-      pageReader: signupCode.readerOfPage(pathname),
+      pageReader: readerOfPage(pathname),
       question: capture.roles,
       recipe: recipe ? { name: recipe.name } : undefined,
       done: shop ? capture.done : undefined,
+      arrivedFrom: arrivedFrom(),
     }
-    const signupDraft = signupCode.draft(email, ctx)
-    if (tried.current?.email === signupDraft.email) signupDraft.sid = tried.current.sid
-    tried.current = { email: signupDraft.email, sid: signupDraft.sid }
-    const res = await submitSignup({ ...signupCode.snapshot(signupDraft), website: trap })
-    sending.current = false
-    setBusy(false)
+    const address = email.trim()
+    const sid = tried.current?.email === address ? tried.current.sid : newId()
+    tried.current = { email: address, sid }
+    const res = await submitSignup({ ...stepOne(address, ctx, sid), website: trap })
 
     if (!res.ok) {
+      sending.current = false
+      setBusy(false)
       if (res.error === 'bad_email') return flag('email', copy.errors.emailBad)
       const text = res.error === 'rate_limited' ? copy.errors.limited : copy.errors.server
       setProblem({ field: 'form', text })
       setLive(text)
       return
     }
+    moved.current = true
+    /* An older script keeps the email and nothing after it: no card. */
+    if (!res.preview && (res.v ?? 1) < 2) {
+      sending.current = false
+      setBusy(false)
+      setLive(copy.joined.title)
+      setJoined(true)
+      return
+    }
+    /* Saved: kept as pending before the card's code is asked for, so a reload in that moment reopens the card. */
+    const t = Date.now()
+    savePending({ v: 1, sid, email: address, ctx, t, preview: res.preview, pending: true })
+    const loaded = await Promise.all([loadSignup(), loadCard()]).catch(() => null)
+    sending.current = false
+    setBusy(false)
+    if (!loaded || !loaded[0] || !loaded[1]) {
+      setLive(copy.joined.title)
+      setJoined(true)
+      return
+    }
     setLive('')
-    signupCode.start(signupDraft, uid, res.preview)
+    const signupCode = loaded[0]
+    signupCode.start(signupCode.draft(address, ctx, sid, t), uid, res.preview)
   }
 
   const errorOn = (field: Field) => problem?.field === field
@@ -204,11 +255,29 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     </p>
   )
 
-  /* Once the email is saved, every form on the page is the card. After the thank you, only on the page it ended on. */
-  if (signup && cardReady && (!signup.done || signup.doneOn === pathname)) {
+  /* Once the email is saved, the forms that fit are the card (cardHere). After the thank you, only on the page it ended
+     on. */
+  if (signup && cardReady && (signup.done ? signup.doneOn === pathname : cardHere(signup.ctx))) {
     return (
       <div className={`s-capture s-capture--done ${className}`}>
         <SignupCard owner={uid} />
+        {status}
+      </div>
+    )
+  }
+
+  if (joined || (stuck && cardHere(stuck))) {
+    return (
+      <div className={`s-capture s-capture--done ${className}`}>
+        <div className="ob-confirm">
+          <p className="ob-confirm-title" tabIndex={-1} ref={joinedRef}>
+            <span className="s-capture__mark" aria-hidden="true">
+              <StatusMark state="landed" size={22} />
+            </span>
+            <span>{copy.joined.title}</span>
+          </p>
+          <p className="ob-confirm-line">{copy.joined.line}</p>
+        </div>
         {status}
       </div>
     )

@@ -1,6 +1,7 @@
 import { readers, signup as copy, type CallFirstRule, type SignupOption, type SignupQuestion } from '../content/signup'
+import { readerNames } from '../content/signupReaders'
 import type { RoleId } from '../content/types'
-import { getSignup, saved, set, type Answer, type Context, type Mark, type SignupState } from './signupStore'
+import { getSignup, newId, saved, set, type Answer, type Context, type Mark, type SignupState } from './signupStore'
 import { beaconSnapshot, hasUnsent, hostOf, queueSnapshot } from './waitlist'
 
 /* The sign up card's rules (components/SignupSteps, content/signup.ts, SIGNUP.md in the workspace). This is the heavy half:
@@ -10,26 +11,25 @@ import { beaconSnapshot, hasUnsent, hostOf, queueSnapshot } from './waitlist'
      by the sign up ID made at step 1. The script finds the row by that ID and the email, never by the email alone.
    - Nothing here touches window or document while a component renders: resume() runs from an effect. */
 
-export { getSignup } from './signupStore'
+export { getSignup, readerOfPage } from './signupStore'
 export type { Context, Kind, SignupState } from './signupStore'
 
 export type Step = { id: string; step: number; q?: SignupQuestion }
 
 /* ---- Reading the bank ---- */
 
-/* The reader a page knows from its address (a reader's own page, or a page that names its reader), else undefined. */
-export const readerOfPage = (path: string) => Object.values(readers).find((r) => r.path === path)?.id ?? copy.page.readerOf[path]
-
-export const readerLabel = (id?: RoleId) => copy.reader.options.find((o) => o.id === id)?.label ?? ''
+export const readerLabel = (id?: RoleId) => (id ? readerNames[id] : '')
 
 /* The page's own question (Capture.roles) as a bank question: its options get ids by position. On a recipe page it is
-   the recipe's; on the agencies use case it is the format the audits come in. */
+   the recipe's; on the agencies use case it is the format the audits come in. A free shop or check asks it only once
+   a store or an AI agent is named: left blank, the form is a waitlist sign up, and the reader's own questions follow. */
 function ownQuestion(ctx: Context): SignupQuestion | undefined {
   const q = ctx.question
   if (!q || copy.page.skipOwn.includes(q.question)) return undefined
+  if (ctx.kind !== 'waitlist' && !ctx.store && !ctx.agent) return undefined
   return {
     id: 'page',
-    step: 4,
+    step: 3,
     key: 'job_detail',
     short: q.short ?? ctx.recipe?.name ?? copy.page.own.short,
     question: q.question,
@@ -38,10 +38,10 @@ function ownQuestion(ctx: Context): SignupQuestion | undefined {
 }
 
 /* The question in the first job's place: undefined keeps the reader's own first job, null drops it (a recipe page
-   already says what the job is), a question replaces it. The page's own question comes first; a free shop or check asks
-   whose it is where the page asks nothing of its own. */
+   already says what the job is), a question replaces it. The page's own question comes first, unless it takes the
+   results' place; a free shop or check asks whose it is where the page asks nothing of its own there. */
 function firstJobQuestion(ctx: Context): SignupQuestion | null | undefined {
-  const own = ownQuestion(ctx)
+  const own = ctx.question?.replaces ? undefined : ownQuestion(ctx)
   if (own) return own
   if (ctx.store) return copy.page.mystery.question
   if (ctx.agent) return copy.page.verify.question
@@ -49,24 +49,26 @@ function firstJobQuestion(ctx: Context): SignupQuestion | null | undefined {
 }
 
 /* Before "Which of these is you?" is answered, the squares count a reader's 4 questions; skipped, it's "Something
-   else"'s 3. */
+   else"'s 3. A page question that `replaces` the results (the agencies' audit format) is asked in their place, and its
+   answer goes in "Results to". */
 export function questionsOf(s: Pick<SignupState, 'reader' | 'ctx' | 'askReader' | 'marks'>): SignupQuestion[] {
   const pending = !s.reader && s.askReader && s.marks.reader !== 'skipped'
-  const qs = readers[s.reader ?? (pending ? 'agency' : 'other')].questions
+  let qs = readers[s.reader ?? (pending ? 'agency' : 'other')].questions
+  const own = s.ctx.question?.replaces === 'results' ? ownQuestion(s.ctx) : undefined
+  if (own) qs = qs.map((q) => (q.key === 'results' ? { ...own, step: q.step, key: 'results' } : q))
   const first = firstJobQuestion(s.ctx)
   if (first === undefined) return qs
   const rest = qs.filter((q) => q.key !== 'first_job')
   return first ? [first, ...rest] : rest
 }
 
+/* The order: the 1 tap questions first, the typing last. Name and company come after the questions (the company is
+   filled in from the email, so a question can still say it), then the note. */
 export function flowOf(s: SignupState): Step[] {
-  const steps: Step[] = [
-    { id: 'email', step: 1 },
-    { id: 'name', step: 2 },
-  ]
-  if (s.askReader) steps.push({ id: 'reader', step: 3 })
+  const steps: Step[] = [{ id: 'email', step: 1 }]
+  if (s.askReader) steps.push({ id: 'reader', step: 2 })
   for (const q of questionsOf(s)) steps.push({ id: q.id, step: q.step, q })
-  steps.push({ id: 'note', step: 8 })
+  steps.push({ id: 'name', step: 7 }, { id: 'note', step: 8 })
   return steps
 }
 
@@ -115,7 +117,7 @@ function pickedOptions(s: SignupState): SignupOption[] {
   return out
 }
 
-/* "For pitch packs. Pick any." under "Where should results land?". */
+/* "For pitch packs." under "Where should results land first?". */
 export function resultsHelper(s: SignupState) {
   const job = s.ctx.store ? copy.page.mystery.for : s.ctx.agent ? copy.page.verify.for : s.ctx.recipe ? lower(s.ctx.recipe.name) : firstJobOption(s)?.for
   return job ? fill(copy.card.results, { job }) : copy.card.resultsPlain
@@ -158,6 +160,27 @@ export function callFirst(s: SignupState): { reason: string; open: string } | nu
   return rule && values ? { reason: fill(rule.reason, values), open: rule.open } : null
 }
 
+/* Whether "No" is true: the reader's rule was checked against answers, never against a blank. True when every
+   question the rule reads was answered, or an answered one already fails it. A skipped or unreached question leaves
+   Call first blank, so an agency of 100 clients that skipped the last question never reads "No". */
+function decided(s: SignupState) {
+  const rule = readers[s.reader ?? 'other'].callFirst
+  if (!rule) return true
+  const qs = questionsOf(s)
+  let open = false
+  for (const c of rule.when) {
+    const q = qs.find((x) => x.key === c.key)
+    const a = q && s.marks[q.id] === 'answered' ? s.answers[q.id] : undefined
+    if (!q || !a) {
+      open = true
+      continue
+    }
+    const holds = 'in' in c ? a.picked.some((id) => c.in.includes(id)) : a.picked.filter((id) => !optionOf(q, id)?.none).length >= c.atLeast
+    if (!holds) return true
+  }
+  return !open
+}
+
 /* The thank you's 1 next step (content/signup.ts, `next`, says the order). */
 export type NextKey = keyof Omit<typeof copy.next, 'errors'>
 export function nextStepFor(s: SignupState): NextKey | null {
@@ -194,7 +217,8 @@ export function snapshot(s: SignupState, drafts = false): Snapshot {
 
   const nameMark = s.marks.name
   body.name = nameMark === 'skipped' ? skipped : nameMark || drafts ? s.name.trim() : ''
-  body.company = nameMark === 'skipped' ? skipped : nameMark || drafts ? s.company.trim() : ''
+  /* The company from the email is a fact we already have: it's sent from the start, and a skip never blanks it. */
+  body.company = s.companyFilled ? s.company.trim() : nameMark === 'skipped' ? skipped : nameMark || drafts ? s.company.trim() : ''
 
   const readerMark = s.marks.reader
   body.reader = s.reader ? readerLabel(s.reader) : readerMark === 'skipped' ? skipped : ''
@@ -212,7 +236,8 @@ export function snapshot(s: SignupState, drafts = false): Snapshot {
   else if (s.ctx.recipe) body.first_job = s.ctx.recipe.name
 
   body.suggested = suggested(s)
-  body.call_first = callFirst(s)?.reason ?? copy.ready.no
+  const cf = callFirst(s)
+  body.call_first = cf ? cf.reason : decided(s) ? copy.ready.no : ''
   body.note = s.marks.note === 'skipped' ? skipped : s.marks.note || drafts ? s.note.trim() : ''
   body.next_step = s.next?.sheet ?? ''
   body.start_with = s.next?.kind === 'company' ? s.next.value : ''
@@ -240,39 +265,16 @@ export function companyFromEmail(email: string) {
 
 /* ---- The store: lib/signupStore.ts holds the state; these change it ---- */
 
-function newId() {
-  try {
-    if (crypto.randomUUID) return crypto.randomUUID()
-  } catch {
-    /* falls through */
-  }
-  const b = new Uint8Array(16)
-  crypto.getRandomValues(b)
-  return Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('')
-}
-
-/* The referring site's host, or utm_source: never a full address. Only when the founders switch it on. */
-function arrivedFrom() {
-  if (!copy.keepArrivedFrom) return undefined
-  try {
-    const utm = new URLSearchParams(location.search).get('utm_source')
-    if (utm) return utm.slice(0, 60)
-    const ref = document.referrer ? new URL(document.referrer).host : ''
-    return ref && ref !== location.host ? ref : undefined
-  } catch {
-    return undefined
-  }
-}
-
-/* Step 1, before it's sent: the sign up the email starts. Published by start() once the post succeeds. */
-export function draft(email: string, ctx: Context): SignupState {
+/* The sign up the email starts, once step 1 has saved (CaptureForm sends it with lib/signupStore's stepOne, under the
+   same sign up ID). It opens on the first step after the email. */
+export function draft(email: string, ctx: Context, sid = newId(), t = Date.now()): SignupState {
   const company = companyFromEmail(email)
-  return {
+  const s: SignupState = {
     v: 1,
-    sid: newId(),
+    sid,
     email: email.trim(),
-    ctx: { ...ctx, arrivedFrom: arrivedFrom() },
-    t: Date.now(),
+    ctx,
+    t,
     reader: ctx.pageReader,
     askReader: !ctx.pageReader,
     readerFrom: ctx.pageReader ? 'Page' : '',
@@ -283,18 +285,28 @@ export function draft(email: string, ctx: Context): SignupState {
     note: '',
     answers: {},
     marks: { email: 'answered' },
-    current: 'name',
+    current: '',
     reached: 1,
     done: false,
     preview: false,
     owner: '',
     seq: 0,
   }
+  s.current = flowOf(s)[1].id
+  return s
+}
+
+/* The card opens. Where the page already named the first job (a free shop or check, a recipe), the row gets it now,
+   with its Call first, so a sign up that stops here still sorts. */
+function opened(s: SignupState) {
+  watchLeaving()
+  if (s.ctx.store || s.ctx.agent || s.ctx.recipe) queueSnapshot(snapshot(s))
 }
 
 export function start(s: SignupState, owner: string, preview: boolean) {
-  watchLeaving()
-  set({ ...s, owner, preview, seq: 1 })
+  const next = { ...s, owner, preview, seq: 1 }
+  set(next)
+  opened(next)
 }
 
 /* The beacon for a page that closes with something unsent: set up once, as soon as there is a sign up to lose. */
@@ -309,11 +321,18 @@ function watchLeaving() {
 }
 
 /* A reload: the card opens again at the first unanswered step, within 24 hours of the email (CaptureForm asks once it
-   has seen a sign up in storage, so a page without one never loads this). */
+   has seen a sign up in storage, so a page without one never loads this). A pending sign up (the page reloaded while
+   the card's code loaded) becomes a full one here, under the sign up ID its email was saved with. */
 export function resume() {
   watchLeaving()
   const found = getSignup() ? null : saved()
   if (!found) return
+  if ('pending' in found) {
+    const s = { ...draft(found.email, found.ctx, found.sid, found.t), preview: found.preview, seq: 1 }
+    set(s)
+    opened(s)
+    return
+  }
   const first = flowOf(found).find((x) => !found.marks[x.id])
   set({ ...found, current: first?.id ?? 'note', returnTo: undefined, owner: '', seq: found.seq + 1 }, false)
 }
@@ -423,7 +442,7 @@ export function go(id: string, owner: string, fromThanks = false) {
   update({ current: id, owner, returnTo: fromThanks ? 'thanks' : state.returnTo }, { move: true })
 }
 
-/* "Change" beside "For agencies.": the reader question joins the flow, right after name and company. */
+/* "Change" beside "For agencies.": the reader question joins the flow, first, right after the email. */
 export function changeReader(owner: string, fromThanks = false) {
   const state = getSignup()
   if (!state) return

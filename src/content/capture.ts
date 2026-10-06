@@ -48,6 +48,9 @@ export const capture = {
     link: 'Privacy notice',
     to: '/privacy',
   },
+  /* The plain thank you: the email is saved, but the sign up card can't open (its code didn't load, or the waitlist
+     script is an older one that keeps the email only). The same words as the script's own page after a plain form post. */
+  joined: { title: 'You’re on the list.', line: 'We’ll email you to set up your first run.' },
   /* The sign up card's title after a free mystery shop or AI agent check (components/SignupSteps). */
   done: {
     /* {store} is the address without https:// */

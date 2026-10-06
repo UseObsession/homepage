@@ -34,9 +34,11 @@ import { StatusMark } from './Logo'
    - Every step sits in 1 grid cell, the hidden ones inert and invisible, so on a wide card the card keeps the height
      of its tallest step and the page never jumps; on a phone each step takes its own height (SignupSteps.css).
    - Single choice: a tap or click picks and moves on 250ms later, once the chip has filled. A pick made from the keys
-     (arrows, or 1 to 9) never moves on: Enter does. "Something else" opens a short field and waits for Next.
-   - Back, Skip and Next sit in the same place on every step. Next is there on a single choice too, for the keys and
-     for a step they came back to; with nothing picked it counts as Skip.
+     (arrows, or 1 to 9) never moves on: Enter does, wherever the focus is in the step. "Something else" opens a short
+     field and waits for Next.
+   - Back, Skip and Next sit in the same place on every step. On a single choice, Next appears once something is
+     picked (for the keys, and for a step they came back to), and keeps its space until then, so a tap on the strongest
+     button never skips a question unseen. On a multi select or a typed step, Next with nothing in it counts as Skip.
    - Focus moves to each new step's question (its legend), which reads "Question 4 of 7." first; on the thank you, to
      its title. Only the form the reader is using moves focus (`owner`); the page's other forms just follow along.
    - Saving never makes anyone wait: each step is sent in the background (lib/signup, lib/waitlist). */
@@ -197,13 +199,18 @@ function Card({ s, owner }: { s: SignupState; owner: string }) {
     else stop()
   }
 
+  /* A single choice with nothing picked yet: Next waits, and Enter does nothing (Skip is the way past it). */
+  const single = step.id === 'reader' || (!!step.q && !step.q.multi)
+  const idle = single && !s.answers[step.id]?.picked.length
+
   function onKeyDown(e: KeyboardEvent<HTMLFormElement>) {
     const t = e.target as HTMLElement
     const typing = t instanceof HTMLTextAreaElement || (t instanceof HTMLInputElement && (t.type === 'text' || t.type === 'email'))
     if (typing || e.altKey || e.ctrlKey || e.metaKey) return
-    if (e.key === 'Enter' && t instanceof HTMLInputElement) {
+    /* Enter moves on from anywhere in the step (the question, a chip) but a button or a link, which do their own. */
+    if (e.key === 'Enter' && !(t instanceof HTMLButtonElement) && !(t instanceof HTMLAnchorElement)) {
       e.preventDefault()
-      next()
+      if (!idle) next()
       return
     }
     const n = Number(e.key)
@@ -218,7 +225,7 @@ function Card({ s, owner }: { s: SignupState; owner: string }) {
   return (
     <div className="ob-confirm s-signup__card">
       <Title text={s.ctx.store || s.ctx.agent ? withValues(doneOf(s).title, shopValues(s)) : copy.card.title} />
-      <p className="ob-confirm-line s-signup__line">{copy.card.line}</p>
+      <p className="ob-confirm-line s-signup__line">{withValues(copy.card.line, { email: s.email })}</p>
 
       <div className="s-signup__bar">
         <div className="s-signup__progress">
@@ -305,7 +312,7 @@ function Card({ s, owner }: { s: SignupState; owner: string }) {
             >
               <span className="ob-btn-label">{last ? copy.card.skipFinish : copy.card.skip}</span>
             </button>
-            <button type="submit" className="ob-btn ob-btn--sm s-signup__next">
+            <button type="submit" className={`ob-btn ob-btn--sm s-signup__next${idle ? ' is-idle' : ''}`}>
               <span className="ob-btn-label">{last ? copy.card.finish : copy.card.next}</span>
             </button>
           </div>
@@ -423,7 +430,8 @@ function StepPanel({ s, step, uid, current, n, total, onPick, otherRef }: PanelP
   const options = isReader ? copy.reader.options : (q?.options ?? [])
   const multi = !!q?.multi
   const text = isReader ? copy.reader.question : q ? questionText(q, s.company) : ''
-  const helper = isReader ? copy.reader.helper : q?.key === 'results' ? resultsHelper(s) : q?.helper
+  /* The bank's results question names the first job; a page's own question in its place says nothing extra. */
+  const helper = isReader ? copy.reader.helper : q?.key === 'results' && q.id !== 'page' ? resultsHelper(s) : q?.helper
   const a = s.answers[step.id]
   const other = options.find((o) => o.other && a?.picked.includes(o.id))
   const otherLabel = isReader ? copy.reader.other.label : copy.card.other
@@ -502,6 +510,8 @@ function Thanks({ s, owner }: { s: SignupState; owner: string }) {
   const flow = flowOf(s).filter((x) => x.id !== 'email')
 
   const rows: { key: string; short: string; value: string; change: () => void }[] = []
+  /* On a reader's page the reader is a fact the page gave: it reads first, with its own Change. */
+  if (!s.askReader && s.reader) rows.push({ key: 'reader', short: copy.reader.short, value: readerLabel(s.reader), change: () => changeReader(owner, true) })
   for (const x of flow) {
     const mark = s.marks[x.id]
     let value = ''
@@ -511,9 +521,6 @@ function Thanks({ s, owner }: { s: SignupState; owner: string }) {
     else if (x.id === 'reader') value = s.reader === 'other' && s.readerOther.trim() ? `${readerLabel('other')}: ${s.readerOther.trim()}` : readerLabel(s.reader)
     else if (x.q) value = answerText(x.q, s.answers[x.id])
     rows.push({ key: x.id, short: shortOf(x), value: value || copy.card.skipped, change: () => go(x.id, owner, true) })
-    /* On a reader's page the reader is a fact the page gave: it reads here, with its own Change. */
-    if (x.id === 'name' && !s.askReader && s.reader)
-      rows.push({ key: 'reader', short: copy.reader.short, value: readerLabel(s.reader), change: () => changeReader(owner, true) })
   }
 
   return (
@@ -521,7 +528,7 @@ function Thanks({ s, owner }: { s: SignupState; owner: string }) {
       <Title text={shop && done ? withValues(done.title, shopValues(s)) : first ? fill(copy.thanks.title, { name: first }) : copy.thanks.titlePlain} />
       <p className="ob-confirm-line s-signup__line">{withValues(line, { ...shopValues(s), reply })}</p>
       {save === 'failed' && (
-        <p className="s-signup__unsaved" role="alert">
+        <p className="s-signup__unsaved ob-field-error" role="alert">
           {copy.thanks.unsaved}{' '}
           <button type="button" className="s-signup__change" onClick={resend}>
             {copy.thanks.retry}

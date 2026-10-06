@@ -16,27 +16,39 @@
        so nobody can overwrite someone else's answers. An unknown ID with a valid email makes the row, so a lost first
        post still lands.
      - "Step reached" only moves forward. Received is written once, Updated on every post, Finished when the step
-       reaches 9 (Done).
+       reaches 9 (Done). The steps: 1 Email, 2 Reader, 3 First job, 4 Scale, 5 Results, 6 Last time, 7 Name, 8 Note.
+     - Every later step carries the time the page made it (`at`, kept in "Sent at"). A post older than the one the row
+       already holds is ignored, so a slow post that lands after a newer one never blanks a newer answer.
+     - Every JSON reply says the script's version (`v`, VERSION below). The site opens the sign up card only for 2 and
+       up, so a site that ships before this script is redeployed still works: it says "You're on the list" instead.
      - Posts without a sign up ID work as before: the same email and source within 10 minutes updates that row (the old
        1 tap roles answer), filling in only what the new post carries; otherwise a new row.
      - Rate limits: new rows, at most RATE_LIMIT per email an hour; updates, at most UPDATE_LIMIT per sign up an hour.
        Over either, the post is refused (error "rate_limited").
-     - Alerts to every address in the script property NOTIFY_TO (comma separated), or to the owner:
+     - Alerts to every address in the script property NOTIFY_TO (comma separated), or to the owner. Each address counts
+       against the account's daily mail quota (100 recipients a day on a personal Google account, 1,500 on Workspace),
+       so 1 group address for both founders is best. When the quota is spent, the alert is skipped (the row is saved):
          1. a new sign up (marked when the email has signed up before);
          2. "Answers: ..." once they finish, with the suggested first run, Call first and every answer;
          3. "Next step: ..." when they ask for a free shop or check, or name a company, from the thank you.
        A failed alert never loses a sign up: the row is saved first.
      - Columns are found by their header, so old sheets keep their rows. Missing headers are added at the end of row 1
        the first time they're needed (drag them into place once; the script follows the headers wherever they are).
+     - A cell that would run as a formula (= + - @), or that Sheets would turn into a number or a date (a phone number
+       typed 02079460000, a note that reads 12/10), is kept as text.
 
    Redeploy after changing this file (the URL stays the same, so the site needs no change):
      1. Paste this file into the Apps Script editor and save.
      2. Deploy, Manage deployments, the pencil on the live deployment, Version: New version, Deploy.
-     3. Optional: Project Settings, Script properties, add NOTIFY_TO, e.g. "a@useobsession.com, b@useobsession.com".
+     3. Optional: Project Settings, Script properties, add NOTIFY_TO, e.g. "founders@useobsession.com" (1 group address
+        counts as 1 recipient), or "a@useobsession.com, b@useobsession.com".
+   Step by step, with the test: _research/onboarding/JAMES-REDEPLOY.md in the workspace.
    This version needs no new permission (CacheService and HtmlService need none). If the editor ever asks, run
    authorize() once and tick every box. See README.md, "Waitlist". */
 
 const BOOK_TITLE = 'Obsession waitlist'
+/* Sent with every JSON reply. 2: the sign up card (a sign up ID, a row updated step by step). */
+const VERSION = 2
 const SHEET_NAME = 'Sign ups'
 /* Header, JSON key, longest value kept. In reading order: the order of a new sheet's columns. Received, Updated and
    Finished are the script's own times. */
@@ -78,10 +90,11 @@ const FIELDS = [
   ['Finished', '', 0],
   ['Role', 'role', 60],
   ['Sign up ID', 'sid', 64],
+  ['Sent at', 'at', 20],
 ]
 const HEADERS = FIELDS.map((f) => f[0])
 /* Step reached, as the sheet shows it. */
-const STEPS = ['', '1 Email', '2 Name', '3 Reader', '4 First job', '5 Scale', '6 Results', '7 Last time', '8 Note', '9 Done']
+const STEPS = ['', '1 Email', '2 Reader', '3 First job', '4 Scale', '5 Results', '6 Last time', '7 Name', '8 Note', '9 Done']
 const DONE = 9
 /* The origin of a sign up: written on its first post, and later only when a post carries a value. */
 const ORIGIN = ['source', 'page', 'interest', 'arrived_from']
@@ -106,7 +119,7 @@ function doPost(e) {
   }
   if (!data || typeof data !== 'object') data = {}
 
-  if (data.website) return reply(form, { ok: true }, data)
+  if (data.website) return reply(form, { ok: true, v: VERSION }, data)
 
   const email = clean(data.email, 200)
   if (!EMAIL.test(email)) return reply(form, { ok: false, error: 'bad_email' }, data)
@@ -124,10 +137,11 @@ function doPost(e) {
   /* A failed alert email must never lose a sign up. The row is already saved. */
   if (NOTIFY) {
     const url = result.book.getUrl()
+    const entry = asTyped(result.entry)
     const alerts = []
-    if (result.created) alerts.push(() => notifyNew(result.entry, result.repeat, url))
-    if (result.finished) alerts.push(() => notifyAnswers(result.entry, url))
-    if (result.nextStep) alerts.push(() => notifyNext(result.entry, url))
+    if (result.created) alerts.push(() => notifyNew(entry, result.repeat, url))
+    if (result.finished) alerts.push(() => notifyAnswers(entry, url))
+    if (result.nextStep) alerts.push(() => notifyNext(entry, url))
     alerts.forEach((send) => {
       try {
         send()
@@ -136,7 +150,7 @@ function doPost(e) {
       }
     })
   }
-  return reply(form, { ok: true }, data)
+  return reply(form, { ok: true, v: VERSION }, data)
 }
 
 /* Run this once from the editor. It asks for every permission the script uses and creates the sheet. */
@@ -215,6 +229,18 @@ function entryOf(cols, row) {
   return entry
 }
 
+/* "Sent at" as a number (ms), from a post or from the cell (which may read as text, with the apostrophe safe() adds). */
+function sentAt(value) {
+  return parseInt(String(value == null ? '' : value).replace(/^'/, ''), 10) || 0
+}
+
+/* The row as the founders read it in an alert: without the apostrophe safe() puts before a value Sheets would change. */
+function asTyped(entry) {
+  const out = {}
+  Object.keys(entry).forEach((h) => (out[h] = typeof entry[h] === 'string' ? entry[h].replace(/^'/, '') : entry[h]))
+  return out
+}
+
 function stepNumber(value) {
   const n = parseInt(String(value == null ? '' : value), 10)
   return n >= 1 && n <= DONE ? n : 0
@@ -239,6 +265,8 @@ function saveStep(sheet, cols, data, email, sid, now) {
     const fresh = when instanceof Date && now.getTime() - when.getTime() < UPDATE_WINDOW_MS
     if (sameEmail && fresh) {
       if (limited('sid:' + sid, UPDATE_LIMIT)) return { limited: 'rate_limited' }
+      /* Older than what the row holds: a slow post that a newer one overtook. Nothing is written. */
+      if (sentAt(data.at) && sentAt(data.at) < sentAt(before['Sent at'])) return { entry: before }
       FIELDS.forEach((f) => {
         const h = f[0]
         const key = f[1]
@@ -345,6 +373,11 @@ function recipients() {
 function send(subject, lines) {
   const to = recipients()
   if (!to.length) return
+  /* The day's mail quota is spent: skip the alert (the row is already saved) and say so in the script's log. */
+  if (MailApp.getRemainingDailyQuota() < to.length) {
+    console.warn('mail quota spent, alert skipped: ' + subject)
+    return
+  }
   MailApp.sendEmail(to.join(','), subject, lines.join('\n'))
 }
 
@@ -381,7 +414,7 @@ function notifyNew(entry, repeat, url) {
 function notifyAnswers(entry, url) {
   const who = [entry.Name, entry.Company].filter((v) => v && v !== 'Skipped').join(', ') || entry.Email
   const job = entry['First job'] && entry['First job'] !== 'Skipped' ? entry['First job'] : 'no first job yet'
-  const skip = ['Received', 'Updated', 'Finished', 'Step reached', 'Sign up ID', 'Role', 'Call first', 'Suggested first run']
+  const skip = ['Received', 'Updated', 'Finished', 'Step reached', 'Sign up ID', 'Sent at', 'Role', 'Call first', 'Suggested first run']
   const answers = HEADERS.filter((h) => skip.indexOf(h) === -1 && entry[h] !== '' && entry[h] != null).map((h) => `${h}: ${entry[h]}`)
   send(`Answers: ${who}. ${given(entry.Reader)}: ${job}`, [
     `Suggested first run: ${given(entry['Suggested first run'])}`,
@@ -415,9 +448,10 @@ function clean(value, max) {
   return String(value == null ? '' : value).trim().slice(0, max || 200)
 }
 
-/* A cell starting with = + - or @ would run as a formula. Prefix it so it stays text. */
+/* A cell starting with = + - or @ would run as a formula, and one made only of digits and number marks would turn into a
+   number or a date (02079460000 loses its 0, 12/10 becomes a date). Prefix both so they stay text as typed. */
 function safe(value) {
-  return typeof value === 'string' && /^[=+\-@]/.test(value) ? `'${value}` : value
+  return typeof value === 'string' && (/^[=+\-@]/.test(value) || /^(?=.*\d)[\d\s().,/:-]+$/.test(value)) ? `'${value}` : value
 }
 
 function json(body) {
