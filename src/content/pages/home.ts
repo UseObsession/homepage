@@ -212,8 +212,9 @@ export const page: Page = {
   outputs: {
     /* The claim is what real audits found (Seun, 7 Oct, the same claim as the agencies use case); the line hands it to
        the 1 store the viewer below shows. Only the strength shows: the share with a gap, never how many were tried.
-       "end to end" is joined by non breaking spaces: Home's narrow column broke it as "end to / end". */
-    heading: '93% of stores we shopped end\u00a0to\u00a0end had a gap.',
+       "on every journey" says the stores were shopped in full without hinting at a limit (the 50 rule); "every journey"
+       is joined by a non breaking space so it never breaks inside it. */
+    heading: '93% of stores we shopped on every\u00a0journey had a gap.',
     line: 'Here is 1 of them. A basket and a checkout left, and no email in 48 hours.',
     /* No numbers row on Home: the line above already says what the run found. /sample-output has every figure. */
     facts: [],

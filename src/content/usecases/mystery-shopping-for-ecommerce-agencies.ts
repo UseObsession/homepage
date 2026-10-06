@@ -38,7 +38,7 @@ export const study: UseCaseStudy = {
     description:
       'An example: declared AI agents mystery shop every client and prospect store of an ecommerce agency at once, then report in its own brand and format.',
     answer:
-      'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They watch every email and text for 48 hours, at every store at once, and the agency gets a report in its own format and brand.',
+      'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
     ogImage: '/og/mystery-shopping-for-ecommerce-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -143,8 +143,8 @@ export const study: UseCaseStudy = {
      ones already chosen, retold at invented shops (content/shops.ts). Only email was watched: "no email", never "no
      message". "end to end" is joined by non breaking spaces, so the heading never breaks inside it. */
   found: {
-    heading: '93% of stores we shopped end\u00a0to\u00a0end had a gap.',
-    line: '77% of the gaps were total silence. Our agents can shop up to 1,000 stores in 48 hours.',
+    heading: '93% of stores we shopped on every\u00a0journey had a gap.',
+    line: '1,500 stores shopped so far. 77% of the gaps were total silence.',
     items: [
       {
         label: 'Fashion store · Basket left',
@@ -185,7 +185,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for ecommerce agencies?',
-        a: 'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They watch every email and text for 48 hours, at every store at once, and the agency gets a report in its own format and brand.',
+        a: 'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
       },
       {
         q: 'What do the 5 free audits cover?',
