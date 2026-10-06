@@ -13,11 +13,7 @@ const waitlist = (source: string): Capture => ({
   source,
   button: 'Join the waitlist',
   placeholder: 'Your work email',
-  micro: 'We keep your email to tell you about Obsession, and nothing else.',
-  roles: {
-    question: 'What should we set up first for you?',
-    options: ['Agency', 'Founder', 'Sales', 'Marketing', 'Developer', 'Something else'],
-  },
+  micro: 'We keep your email to set up your first run and tell you about Obsession.',
   interest: 'any',
 })
 

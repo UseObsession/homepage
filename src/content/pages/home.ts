@@ -35,11 +35,7 @@ export const page: Page = {
       source: 'home-hero',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
-      roles: {
-        question: 'What should we set up first for you?',
-        options: ['Agency', 'Founder', 'Sales', 'Marketing', 'Developer', 'Something else'],
-      },
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       interest: 'any',
     },
     /* The facts row left the hero: the real run's own numbers are in the proof block. */
@@ -208,11 +204,7 @@ export const page: Page = {
       source: 'home-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
-      roles: {
-        question: 'What should we set up first for you?',
-        options: ['Agency', 'Founder', 'Sales', 'Marketing', 'Developer', 'Something else'],
-      },
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       interest: 'any',
     },
     link: { label: 'Agency? Get 5 client stores audited free in 48 hours', to: '/use-cases/mystery-shopping-for-ecommerce-agencies' },

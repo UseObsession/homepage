@@ -1,0 +1,387 @@
+/* The sign up card (components/SignupSteps), on the design system's .ob-confirm, .ob-chips, .ob-field, .ob-textarea
+   and .ob-btn. New here, for the design system to absorb (list them in the PR):
+   - the progress squares (.s-signup__sq): 1 brand square per step. Outlined is still to come, filled is answered, an
+     outline with a short bar was skipped, the ring with a dot is the step on screen. Answered and skipped squares are
+     buttons back to their step;
+   - the stacked steps (.s-signup__steps): every step in 1 grid cell, so on a wide card the card keeps its tallest
+     step's height and Back, Skip and Next never move (on a phone each step takes its own height);
+   - chips as checklist rows on a narrow card (under 440px of card): full width rows 44px tall, a square that fills
+     for a single choice, the plus that becomes a tick for many.
+   Every colour is an --ob- token, so the card follows its ground: paper, ink, or the ink final call in light. */
+
+.s-signup {
+  width: 100%;
+  container: s-signup / inline-size;
+}
+
+.s-signup__card.ob-confirm {
+  gap: 0;
+  padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-20);
+}
+@container s-signup (max-width: 440px) {
+  .s-signup__card.ob-confirm { padding: var(--ob-space-20) var(--ob-space-20) var(--ob-space-16); }
+}
+.s-signup__line { margin-top: var(--ob-space-4); }
+
+/* ---- Progress: the squares, "3 of 7", and the page's reader ---- */
+
+.s-signup__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-4) var(--ob-space-16);
+  margin-top: var(--ob-space-12);
+}
+.s-signup__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-width: 0;
+}
+/* Each square sits in its own 24px target (44px tall on touch), so the visible squares stay small and close. */
+.s-signup__squares {
+  display: flex;
+  align-items: center;
+  margin-inline-start: calc(var(--ob-space-8) * -1);
+}
+.s-signup__sq {
+  --s-sq: 9px;
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  box-sizing: border-box;
+  width: calc(var(--ob-target-min) + var(--ob-touch) * var(--ob-space-8));
+  height: calc(var(--ob-target-min) + var(--ob-touch) * (var(--ob-target-touch) - var(--ob-target-min)));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-xs, 6px);
+  background: transparent;
+  color: var(--ob-text);
+  -webkit-tap-highlight-color: transparent;
+}
+button.s-signup__sq { cursor: pointer; transition: background-color var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  button.s-signup__sq:hover { background-color: var(--ob-state-hover); }
+}
+button.s-signup__sq:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: -2px; }
+.s-signup__sqm {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--s-sq);
+  height: var(--s-sq);
+  border: 1.5px solid var(--ob-line-ui);
+  border-radius: var(--ob-sq-radius);
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), border-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-signup__sq.is-done .s-signup__sqm {
+  border-color: var(--ob-text);
+  background-color: var(--ob-text);
+}
+/* Skipped: the outline keeps a short bar. */
+.s-signup__sq.is-skipped .s-signup__sqm::after {
+  content: "";
+  position: absolute;
+  inset: calc(50% - .75px) 1.5px auto;
+  height: 1.5px;
+  background: var(--ob-text-2);
+}
+/* The step on screen: the focus ink as a ring with a dot, on top of whatever the square was. */
+.s-signup__sq.is-current .s-signup__sqm {
+  border-color: var(--ob-focus);
+  background-color: transparent;
+}
+.s-signup__sq.is-current .s-signup__sqm::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  height: auto;
+  border-radius: 0.5px;
+  background: var(--ob-focus);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .s-signup__sq.is-done .s-signup__sqm { animation: ob-square-in var(--ob-dur-base) var(--ob-snap, var(--ob-ease-out)) backwards; }
+}
+
+.s-signup__count {
+  color: var(--ob-text-3);
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.s-signup__for {
+  margin: 0;
+  color: var(--ob-text-2);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+}
+
+/* Change, Try again: words that act, underlined like the privacy link. On touch they grow a 44px tall target. */
+.s-signup__change {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-glyph);
+  background: none;
+  color: var(--ob-text);
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-decoration-color: var(--ob-link-underline);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-signup__change:hover { text-decoration-color: currentColor; }
+}
+.s-signup__change:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+@media (pointer: coarse) {
+  .s-signup__change::before { content: ""; position: absolute; inset: calc((var(--ob-target-touch) - 100%) / -2) calc(var(--ob-space-8) * -1); }
+}
+
+/* ---- The steps ---- */
+
+.s-signup__form {
+  margin-top: var(--ob-space-12);
+  padding-top: var(--ob-space-20);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-signup__steps { display: grid; }
+.s-signup__step {
+  grid-area: 1 / 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.s-signup__step:not(.is-current) { visibility: hidden; }
+/* On a phone the tallest step (6 rows) is much taller than the rest, so each step takes its own height instead of
+   leaving a hole under the name fields: the card's top and its question never move, only what's under the card. */
+@container s-signup (max-width: 440px) {
+  .s-signup__step:not(.is-current) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-signup__step.ob-anim-rise { animation: none; }
+}
+
+.s-signup__q {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--ob-text);
+  font: var(--ob-weight-medium) var(--ob-type-body-size) / 1.35 var(--ob-font-sans);
+  letter-spacing: -.01em;
+  text-wrap: pretty;
+}
+.s-signup__q:focus { outline: none; }
+.s-signup__q .ob-field-optional { margin-inline-start: var(--ob-space-4); font-weight: 400; }
+.s-signup__q ~ * { clear: both; }
+.s-signup__help {
+  margin: 0;
+  padding-top: var(--ob-space-4);
+  color: var(--ob-text-2);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+}
+.s-signup__chips,
+.s-signup__pair,
+.s-signup__step > .ob-field { padding-top: var(--ob-space-16); }
+
+/* Name and company side by side on a wide card. */
+.s-signup__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--ob-space-12) var(--ob-space-16);
+}
+.s-signup__pair > .ob-field:not(:has(.ob-field-foot)) { padding-bottom: 0; }
+.s-signup .ob-field-foot { min-height: 0; }
+
+/* The note: 3 lines at rest (the system's 4 makes every step of the card taller), growing as they type. */
+.s-signup__note.ob-textarea { min-height: calc(var(--ob-field-font-size) * 1.5 * 3 + var(--ob-space-12) * 2 + 2 * var(--ob-border-hair)); }
+
+/* "Something else": its short field opens under the chips. */
+.s-signup__other {
+  max-width: 360px;
+  padding-top: var(--ob-space-16);
+}
+
+/* ---- Chips as checklist rows on a narrow card ---- */
+
+@container s-signup (max-width: 440px) {
+  .s-signup__pair { grid-template-columns: minmax(0, 1fr); }
+  .s-signup__chips.ob-chips {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: var(--ob-space-8);
+  }
+  .s-signup__chips .ob-chip { display: flex; }
+  .s-signup__chips .ob-chip-input { inset: 0; }
+  .s-signup__chips .ob-chip-label {
+    flex: 1;
+    justify-content: flex-start;
+    gap: var(--ob-space-12);
+    height: auto;
+    min-height: max(var(--ob-control-md), calc(var(--ob-touch) * var(--ob-target-touch)));
+    padding: var(--ob-space-8) var(--ob-space-16) var(--ob-space-8) var(--ob-space-12);
+    border-radius: var(--ob-radius-sm);
+    white-space: normal;
+    text-align: start;
+  }
+  /* A single choice row leads with the brand square, which fills when chosen. */
+  .s-signup__chips:not(.is-multi) .ob-chip-label::before {
+    content: "";
+    flex: none;
+    box-sizing: border-box;
+    width: var(--ob-chip-glyph);
+    height: var(--ob-chip-glyph);
+    border: 1.5px solid currentColor;
+    border-radius: var(--ob-radius-glyph);
+    opacity: .7;
+    transition: background-color var(--ob-dur-base) var(--ob-ease-out), opacity var(--ob-dur-base) var(--ob-ease-out);
+  }
+  .s-signup__chips:not(.is-multi) .ob-chip-input:checked + .ob-chip-label::before {
+    background-color: currentColor;
+    opacity: 1;
+  }
+}
+
+/* ---- Back, Skip, Next: they never move ---- */
+
+.s-signup__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-20);
+}
+.s-signup__back { margin-inline-start: calc(var(--ob-space-12) * -1); }
+/* A single choice with nothing picked: Next keeps its space, unseen and out of the tab order, until a pick. */
+.s-signup__next.is-idle { visibility: hidden; }
+.s-signup__end {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin-inline-start: auto;
+}
+
+.s-signup__foot {
+  margin: var(--ob-space-16) 0 0;
+  padding-top: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+  color: var(--ob-text-2);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  text-wrap: pretty;
+}
+.s-signup .s-capture__preview { margin-top: var(--ob-space-8); }
+
+/* ---- The thank you ---- */
+
+.s-signup__unsaved.ob-field-error { margin-top: var(--ob-space-8); }
+
+.s-signup__next-step {
+  margin-top: var(--ob-space-16);
+  padding-top: var(--ob-space-16);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-signup__next-h {
+  margin: 0;
+  color: var(--ob-text);
+  font: var(--ob-weight-medium) var(--ob-type-body-size) / 1.35 var(--ob-font-sans);
+  letter-spacing: -.01em;
+}
+.s-signup__next-line {
+  margin: var(--ob-space-4) 0 0;
+  color: var(--s-read, var(--ob-text-2));
+  font: var(--ob-type-small);
+  text-wrap: pretty;
+}
+.s-signup__next-row {
+  display: flex;
+  gap: var(--ob-space-8);
+  margin-top: var(--ob-space-12);
+}
+.s-signup__next-row > .ob-input { flex: 1; }
+.s-signup__next-row > .ob-btn { flex: none; height: var(--ob-control-md); min-height: max(var(--ob-control-md), calc(var(--ob-touch) * var(--ob-target-touch))); }
+.s-signup__next-step .ob-field-foot { margin-top: var(--ob-space-6, 6px); }
+.s-signup__next-link { margin-top: var(--ob-space-4); }
+@container s-signup (max-width: 440px) {
+  .s-signup__next-row { flex-direction: column; }
+  .s-signup__next-row > .ob-input { flex: none; }
+  .s-signup__next-row > .ob-btn { width: 100%; }
+}
+
+.s-signup__answers { margin-top: var(--ob-space-16); }
+.s-signup__disclose {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6, 6px);
+  min-height: max(var(--ob-target-min), calc(var(--ob-touch) * var(--ob-target-touch)));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ob-text-2);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-signup__disclose:hover { color: var(--ob-text); }
+}
+.s-signup__disclose:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-glyph); }
+.s-signup__chev {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  transition: rotate var(--ob-dur-moderate) var(--ob-ease-out);
+}
+.s-signup__disclose[aria-expanded="true"] .s-signup__chev { rotate: 180deg; }
+
+.s-signup__list {
+  display: grid;
+  margin: var(--ob-space-8) 0 0;
+}
+.s-signup__list[hidden] { display: none; }
+.s-signup__row {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--ob-space-4) var(--ob-space-16);
+  padding: var(--ob-space-8) 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-signup__row dt {
+  color: var(--ob-text-3);
+  font: var(--ob-type-caption);
+}
+.s-signup__row dd {
+  margin: 0;
+  min-width: 0;
+  color: var(--ob-text);
+  font: var(--ob-type-small);
+  overflow-wrap: anywhere;
+}
+.s-signup__row dd.is-skipped { color: var(--ob-text-2); }
+.s-signup__rowact { font: var(--ob-type-caption) !important; }
+@container s-signup (max-width: 440px) {
+  .s-signup__row { grid-template-columns: minmax(0, 1fr) auto; }
+  .s-signup__row dt { grid-column: 1 / -1; }
+}
+
+@media (forced-colors: active) {
+  .s-signup__sq.is-done .s-signup__sqm,
+  .s-signup__sq.is-current .s-signup__sqm::after,
+  .s-signup__sq.is-skipped .s-signup__sqm::after { background: CanvasText; }
+  .s-signup__sqm { border-color: CanvasText; }
+}

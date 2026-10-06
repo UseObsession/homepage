@@ -86,6 +86,8 @@
 .s-hero .s-hero-form .ob-pill-foot > * { text-wrap: balance; }
 /* The second path is a separate way in, not more fine print: 8px more air than the form's own lines. */
 .s-hero-secondary { margin-top: var(--ob-space-8); }
+/* Once the email is saved the page's own form further down is the same sign up card, so a link to it goes. */
+.s-hero-act:has(.s-signup) .s-hero-secondary[href^="#"] { display: none; }
 
 /* The 3 proof facts: 1 centred row, divided by hairlines. */
 .s-hero-proof {

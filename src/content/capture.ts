@@ -1,5 +1,6 @@
 /* The capture form's own words (components/CaptureForm). Each page's Capture (content/types) sets its button, source,
-   placeholder, micro line and roles question; everything here is shared by every form. */
+   placeholder, micro line and, on a recipe page, its own question; everything here is shared by every form. The sign up
+   card that follows the email has its own words and the question bank: content/signup.ts. */
 
 export const capture = {
   email: { label: 'Work email', placeholder: 'Your work email' },
@@ -22,7 +23,8 @@ export const capture = {
     /* The same, on a form whose blank first field joins the waitlist (Capture.orWaitlist). */
     microOrWaitlist:
       'Free for an AI agent you run, or a client’s with their OK: 3 test customers, 1 channel, your report within 4 days. Leave it blank to join the waitlist.',
-    /* After a sign up, unless the page asks its own question. */
+    /* A recipe page's own question on the AI agent checks (asked in place of the first job when the agent is left
+       blank; with an agent, the card asks content/signup.ts page.verify, the same words). */
     roles: {
       question: 'Whose AI agent is it?',
       options: ['Ours', 'A client’s, with their OK', 'A vendor’s we’re trialling, with their OK'],
@@ -40,32 +42,20 @@ export const capture = {
   },
   sending: 'Sending',
   privacy: {
-    waitlist: 'We keep your email to tell you about Obsession, and nothing else.',
-    mystery: 'We keep your email and store address to run your shop and tell you about Obsession, and nothing else.',
-    verify: 'We keep your email and your AI agent’s address to run your check and tell you about Obsession, and nothing else.',
+    waitlist: 'We keep your email to set up your first run and tell you about Obsession.',
+    mystery: 'We keep your email and store address to run your shop and tell you about Obsession.',
+    verify: 'We keep your email and your AI agent’s address to run your check and tell you about Obsession.',
     link: 'Privacy notice',
     to: '/privacy',
   },
+  /* The plain thank you: the email is saved, but the sign up card can't open (its code didn't load, or the waitlist
+     script is an older one that keeps the email only). The same words as the script's own page after a plain form post. */
+  joined: { title: 'You’re on the list.', line: 'We’ll email you to set up your first run.' },
+  /* The sign up card's title after a free mystery shop or AI agent check (components/SignupSteps). */
   done: {
-    waitlist: { title: 'You’re on the list.', line: 'We’ll email you to set up your first run.' },
     /* {store} is the address without https:// */
-    mystery: {
-      title: 'Got it. We’ll shop {store}.',
-      line: 'First we confirm it’s your store, or that you have the owner’s OK. The report comes to {email}.',
-    },
+    mystery: { title: 'Got it. We’ll shop {store}.' },
     /* {agent} is the chat page without https://, or the phone number as typed. */
-    verify: {
-      title: 'Got it. We’ll check {agent}.',
-      line: 'First we confirm it’s your AI agent, or that you have the owner’s OK. The report comes to {email}.',
-    },
+    verify: { title: 'Got it. We’ll check {agent}.' },
   },
-  /* After a sign up, 1 tap tells us what to set it up for. A page can ask its own question instead (Capture.roles). */
-  roles: {
-    question: 'What do you do?',
-    options: ['Agency', 'Founder', 'Sales or CS', 'Marketing', 'Developer', 'Other'],
-    thanks: 'Thanks. It’s saved with your sign up.',
-    failed: 'That didn’t save. Tap it again.',
-  },
-  /* Shown only when VITE_WAITLIST_URL is unset (local builds): nothing leaves the browser. */
-  preview: 'Preview: nothing was sent.',
 }

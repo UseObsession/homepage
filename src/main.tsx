@@ -36,8 +36,17 @@ const app = (
   </StrictMode>
 )
 
-/* A page's chunk that no longer exists (a deploy replaced it while the page was open) loads the page afresh instead. */
+/* A page's chunk that no longer exists (a deploy replaced it while the page was open) loads the page afresh instead.
+   Once in 10 seconds at most: a chunk that fails again straight after the reload is missing for another reason, and
+   reloading again would never end (the sign up card's code is fetched on load while a sign up is open). The import
+   then fails as usual, and the form says the email is saved (CaptureForm). */
 window.addEventListener('vite:preloadError', (e) => {
+  try {
+    if (Date.now() - Number(sessionStorage.getItem('obs-reloaded') ?? 0) < 10000) return
+    sessionStorage.setItem('obs-reloaded', String(Date.now()))
+  } catch {
+    /* no storage: reload, as before */
+  }
   e.preventDefault()
   location.reload()
 })
@@ -57,3 +66,7 @@ if (root.hasChildNodes()) {
   hydrated()
   createRoot(root).render(app)
 }
+
+/* A test build only (VITE_SIGNUP_TEST=1, never set for the site): drives the sign up card for screenshots and checks.
+   The condition is a constant, so the site's build drops it and the file with it. */
+if (import.meta.env.VITE_SIGNUP_TEST === '1') void import('./lib/signupTest').then((m) => m.run())

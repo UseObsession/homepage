@@ -327,7 +327,6 @@ export const sample: SamplePage = {
       placeholder: 'Store address, e.g. your-store.example',
       micro: 'No store? Leave the address blank and you join the waitlist. We keep your email and store address to run the shop, send your report and tell you about Obsession.',
       orWaitlist: true,
-      roles: { question: 'Whose store is it?', options: ['Mine', 'A client’s, with their OK'] },
       interest: 'mystery',
     },
   },

@@ -1,3 +1,4 @@
+import { keepArrivedFrom } from './signupFlags'
 import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } from './types'
 import { WAYS } from './ways'
 
@@ -22,11 +23,6 @@ export const CONTROLLER: string | null = null
    short line (content/footer.ts). */
 const SENTENCE =
   'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.'
-
-const waitlistRoles = {
-  question: 'What should we set up first for you?',
-  options: ['Agency', 'Founder', 'Sales', 'Marketing', 'Developer', 'Something else'],
-}
 
 /* /recipes. James's index (1 job each, everything set up, the add-companies hub), grouped by job as in the nav.
    The groups render the recipes whose `group` matches, in this order. */
@@ -126,11 +122,7 @@ export const recipesPage: RecipesIndexPage = {
       source: 'recipes-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to tell you about Obsession, and nothing else.',
-      roles: {
-        question: 'Which job should we set up first?',
-        options: ['Win customers', 'Keep and grow customers', 'Watch rivals', 'Check our own journeys', 'Get paid and save', 'Check our AI agents', 'Something else'],
-      },
+      micro: 'We keep your email to set up your first run and tell you about Obsession.',
       interest: 'any',
     },
   },
@@ -147,7 +139,7 @@ export const privacyPage: PrivacyPage = {
     description:
       'What Obsession keeps when you join the waitlist or ask for a free mystery shop, why, for how long, who sees it, and how to see, change or delete it.',
     answer:
-      'Obsession keeps the email, company, role, interest, store or AI agent address and page you give when you join its waitlist or ask for a free mystery shop or AI agent check. It uses them to tell you about Obsession and run what you asked for, never sells them, and deletes them 12 months after you sign up or the day you ask.',
+      'Obsession keeps the email, name, company, role and set up answers you give when you join its waitlist or ask for a free mystery shop or AI agent check, plus the page you used. It uses them to tell you about Obsession, set up what you asked for and decide what to build, never sells them, and deletes them 12 months after you sign up or the day you ask.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Privacy', path: '/privacy' },
@@ -156,7 +148,7 @@ export const privacyPage: PrivacyPage = {
 
   headline: 'We keep what you type into our forms, and never sell it.',
   sub: 'This notice covers the waitlist, the free mystery shop and the free AI agent check on useobsession.com, under UK data protection law.',
-  updated: '3 October 2026',
+  updated: '6 October 2026',
 
   sections: [
     {
@@ -174,11 +166,15 @@ export const privacyPage: PrivacyPage = {
       lines: ['When you join the waitlist or ask for a free mystery shop or AI agent check, we keep:'],
       list: [
         'Your email address',
-        'Your company, if you give it',
-        'Your role and what you’d like set up first, if you tap them',
+        'Your name and company, if you give them',
+        'Who you are (an agency, founder, sales, marketing, developer or something else) and your answers to our set up questions, if you tap them',
+        'Anything you type in the note',
         'Your store’s web address, if you ask for a mystery shop',
         'Your AI agent’s chat page or phone number, if you ask for an AI agent check',
-        'The page and form you used, and when',
+        'The first company you name, if you name one',
+        keepArrivedFrom
+          ? 'The page and form you used, the site that sent you there, how far you got, and when'
+          : 'The page and form you used, how far you got, and when',
       ],
     },
     {
@@ -187,6 +183,7 @@ export const privacyPage: PrivacyPage = {
       lines: [
         'Our website host and form service see your device’s IP address, as they do on any website. We don’t keep it with your details.',
         'We use no advertising or tracking cookies. Your light or dark choice is saved in your own browser.',
+        'While you answer our set up questions, your answers wait in that browser tab for up to 24 hours, so a reload doesn’t lose them. Closing the tab clears them.',
         'You don’t have to give us anything. Without an email address, we can’t add you to the waitlist.',
       ],
     },
@@ -197,7 +194,9 @@ export const privacyPage: PrivacyPage = {
       list: [
         'Tell you about Obsession',
         'Set up what you asked for first',
+        'Decide who we call first, from your answers',
         'Run the free mystery shop or AI agent check you asked for, and send you the report',
+        'Decide what we build next, from what people tell us they need',
         'Keep our forms safe from bots and abuse',
       ],
     },
@@ -207,6 +206,8 @@ export const privacyPage: PrivacyPage = {
       lines: [
         `Emails about Obsession: your consent, given when you sign up. Withdraw it whenever you like by replying to any email from us or writing to ${CONTACT_EMAIL}.`,
         'Your free mystery shop or AI agent check: you asked us for it, so we use your details to deliver it (the legal basis is contract).',
+        'Your name, company and answers: our legitimate interest in setting up what you asked for and deciding what to build. Every answer is optional.',
+        'To prepare your first run we may read your company’s website and public profile. We look up your company, not you.',
         'Keeping the forms safe: our legitimate interest in stopping spam and abuse.',
         'We make no automated decisions about you.',
       ],
@@ -401,8 +402,7 @@ export const notFoundPage: NotFoundPage = {
     source: '404',
     button: 'Join the waitlist',
     placeholder: 'Your work email',
-    micro: 'We keep your email to tell you about Obsession, and nothing else.',
-    roles: waitlistRoles,
+    micro: 'We keep your email to set up your first run and tell you about Obsession.',
     interest: 'any',
   },
 }

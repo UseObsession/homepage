@@ -91,8 +91,10 @@ export const study: UseCaseStudy = {
         line: 'We’ll email {email} to confirm it’s a client’s store with their OK, and to ask for the other 4.',
       },
       roles: {
+        short: 'Format',
         question: 'Which format should we send the audits in?',
         options: ['A PDF', 'A branded client report', 'Slack', 'A sheet', 'Clay columns', 'Email'],
+        replaces: 'results',
       },
       interest: 'mystery',
     },
@@ -397,8 +399,10 @@ export const study: UseCaseStudy = {
         line: 'We’ll email {email} to confirm it’s a client’s store with their OK, and to ask for the other 4.',
       },
       roles: {
+        short: 'Format',
         question: 'Which format should we send the audits in?',
         options: ['A PDF', 'A branded client report', 'Slack', 'A sheet', 'Clay columns', 'Email'],
+        replaces: 'results',
       },
       interest: 'mystery',
     },

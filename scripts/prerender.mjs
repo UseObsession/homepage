@@ -572,6 +572,11 @@ const chunksOf = (key, into = new Set()) => {
   return into
 }
 const appChunks = chunksOf('index.html')
+/* The sign up card is code the app loads on demand, once a reader touches a form (lib/signupStore.ts), so it is never one
+   of a page's static imports. Its styles still have to be in the head of every page whose code can open it, or the card
+   would arrive unstyled: its class names count for each such page. */
+const cardKey = 'src/components/SignupSteps.tsx'
+const opensCard = (chunks) => Object.values(manifest).some((m) => chunks.has(m.file) && m.dynamicImports?.includes(cardKey))
 const chunkTokens = new Map()
 const tokensOfChunk = async (file) => {
   if (!chunkTokens.has(file)) chunkTokens.set(file, tokensOf(await readFile(join(dist, file), 'utf8')))
@@ -599,6 +604,7 @@ for (const [path, f] of [...entries.map((e) => [e.meta.path, fileFor(e.meta.path
   const chunks = new Set(appChunks)
   if (!manifest[routeFile(path)]) fail(`${path}: no chunk in the build for ${routeFile(path)}.`)
   chunksOf(routeFile(path), chunks)
+  if (opensCard(chunks)) chunksOf(cardKey, chunks)
   const tokens = tokensOf(html)
   for (const c of chunks) for (const t of await tokensOfChunk(c)) tokens.add(t)
   const [site, ...screens] = await Promise.all(links.map(async (href) => purge(await fileText(href), tokens).css))
