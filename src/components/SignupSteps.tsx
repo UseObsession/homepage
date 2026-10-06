@@ -433,6 +433,9 @@ function StepPanel({ s, step, uid, current, n, total, onPick, otherRef }: PanelP
   const a = s.answers[step.id]
   const other = options.find((o) => o.other && a?.picked.includes(o.id))
   const otherLabel = isReader ? copy.reader.other.label : copy.card.other
+  /* The job question's helper promises "We start with your first pick", so once 2 or more are ticked, the first carries
+     a quiet "1st" (read as "first pick"). */
+  const lead = q?.key === 'first_job' && multi && (a?.picked.length ?? 0) > 1 ? a?.picked[0] : undefined
 
   return (
     <fieldset className={cls} data-step={step.id} inert={!current} aria-describedby={helper ? `${base}-help` : undefined}>
@@ -467,6 +470,14 @@ function StepPanel({ s, step, uid, current, n, total, onPick, otherRef }: PanelP
             <span className="ob-chip-label">
               {multi && <Plus />}
               {o.label}
+              {lead === o.id && (
+                <>
+                  <span className="s-signup__first" aria-hidden="true">
+                    1st
+                  </span>
+                  <span className="ob-sr">, first pick</span>
+                </>
+              )}
             </span>
           </label>
         ))}

@@ -385,3 +385,15 @@ button.s-signup__sq:focus-visible { outline: var(--ob-focus-width) solid var(--o
   .s-signup__sq.is-skipped .s-signup__sqm::after { background: CanvasText; }
   .s-signup__sqm { border-color: CanvasText; }
 }
+
+/* The first ticked job, which sets where the agents start (SignupSteps, "lead"): a quiet tag, never a second colour. */
+.s-signup__first {
+  margin-inline-start: var(--ob-space-6, 6px);
+  padding: 0 var(--ob-space-4, 4px);
+  border: var(--ob-border-hair, 1px) solid currentColor;
+  border-radius: var(--ob-radius-xs, 4px);
+  font-family: var(--ob-font-mono);
+  font-size: 10px;
+  line-height: 16px;
+  opacity: .72;
+}
