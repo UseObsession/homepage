@@ -15,7 +15,8 @@ import './RecipeJobs.css'
    sit above it as quiet links of their own. Hover and keyboard focus draw the cell's rule in full ink, underline its
    name and wake its arrow; focus also rings the whole cell. 2 by 3 from 640 to 1079px. Under 640 the jobs are 6 slim rows (name, line,
    chevron) and the examples wait on the job's page, 1 tap away.
-   The link to every recipe sits at the right of the line from 860px, and closes the block under the jobs below it. Its
+   The link to every recipe sits at the right of the line from 860px, and closes the block under the jobs below it. It
+   comes after the jobs in the source, so keyboard focus and screen readers meet it where a phone shows it: last. Its
    count is the catalog's, so it is never typed. Nothing moves on scroll. */
 
 /* A 2 sentence claim sits 1 sentence to a line wherever both don't fit on 1: each sentence keeps together. */
@@ -54,10 +55,6 @@ export function RecipeJobs({ heading, line, all, id = 'recipes' }: Props) {
           ))}
         </h2>
         <p className="ob-type-body-lg s-rj__line">{line}</p>
-        <Link className="ob-btn ob-btn--link s-rj__all" to={all.to}>
-          <span className="ob-btn-label">{all.label.replace('{n}', String(catalog.recipes.length))}</span>
-          <Arrow className="ob-btn-glyph ob-btn-arrow" />
-        </Link>
         <ul className="s-rj__jobs">
           {recipeJobs.map((j, i) => (
             <li className="s-rj__job" key={j.name}>
@@ -88,6 +85,10 @@ export function RecipeJobs({ heading, line, all, id = 'recipes' }: Props) {
             </li>
           ))}
         </ul>
+        <Link className="ob-btn ob-btn--link s-rj__all" to={all.to}>
+          <span className="ob-btn-label">{all.label.replace('{n}', String(catalog.recipes.length))}</span>
+          <Arrow className="ob-btn-glyph ob-btn-arrow" />
+        </Link>
       </div>
     </section>
   )

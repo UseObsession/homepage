@@ -18,13 +18,14 @@ import './StoryPage.css'
      recipe (sections/RecipeJobs; #recipes). It sits right after whatever renders the gap >
    5 proof: the 1 real run, compact (its story in 1 line beside the output viewer, the link to the full report, and how
      the agents behave in 1 row) >
-   6 questions: 6, closed until opened, under a hairline: the run and the questions share the page's ground, so the rule
-     marks where 1 block ends, with the same section space on each side as an edge between 2 grounds has >
+   6 questions: 6, closed until opened, on the page's own ground again, so the edge out of the run marks where they
+     begin, with no hairline (_research/colour/THEMES.md 12, Never 10) >
    7 start: the waitlist (#join, where the nav's call to action lands) and the agencies' free audits.
-   Grounds (Paper and Gloss, styles/tones.css): the gap and the closing call are the ink chapters. The recipes stand on
-   the page's own ground right under the gap (an ink chapter never touches an alt ground, _research/colour/THEMES.md 12,
-   Never 3), and so does the real run under them: on ink its viewer is the lit product object and on paper the glossy
-   one. Home is drawn in the agency workspace, like Agencies. */
+   Grounds (Paper and Gloss, styles/tones.css): the ink gap, then the recipes on the page's own ground (an ink chapter
+   never touches an alt ground, THEMES.md 12, Never 3), then the real run as Home's 1 paper break (stone on paper, the
+   black stage on it either way, THEMES.md 1 and 6), then the questions on the page's own ground, and the closing call
+   as the second ink chapter. The recipes keep the break off the gap (Never 3) and each change of ground ends a block.
+   Home is drawn in the agency workspace, like Agencies. */
 const workspace = 'agency'
 
 export function Home() {
@@ -36,8 +37,8 @@ export function Home() {
       </div>
       <Gap gap={page.gap} story={page.gap.story && <GapStory story={page.gap.story} />} id="gap" />
       {page.recipeJobs && <RecipeJobs {...page.recipeJobs} id="recipes" />}
-      {page.outputs && <Outputs {...page.outputs} initial="pdf" tone="base" compact id="proof" />}
-      <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
+      {page.outputs && <Outputs {...page.outputs} initial="pdf" compact id="proof" />}
+      <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>
   )

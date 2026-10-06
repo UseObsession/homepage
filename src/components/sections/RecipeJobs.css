@@ -131,10 +131,11 @@
 }
 
 /* The 2 examples: quiet links on the cell's foot, so every row's examples share 1 line. They sit above the cell's
-   target; the dot between them belongs to the cell. */
+   target; the dot between them belongs to the cell. They never wrap as a pair, so no line can start on the dot: the
+   first keeps its width, and a second too long for the cell wraps inside itself, beside the dot. */
 .s-rj__eg {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   gap: 0 var(--ob-space-8);
   margin: auto 0 0;
@@ -149,6 +150,7 @@
   gap: var(--ob-space-8);
   min-width: 0;
 }
+.s-rj__eg > li:first-child { flex-shrink: 0; }
 .s-rj__dot { color: var(--ob-text-3); }
 .s-rj__ex {
   position: relative;
