@@ -23,34 +23,42 @@ const KEEP = { __html: '' }
 
 const RM = '(prefers-reduced-motion: reduce)'
 
-/* The camera (components/camera): a screen with a shot list on its root (data-cam, src/screens/cam.ts) is filmed as its
-   story plays, panning and zooming to what happens. Its module loads with the first such screen, never with the page,
-   and never with reduced motion. */
-let camera: Promise<typeof import('./camera')> | undefined
-function film(el: Element | null) {
-  if (!(el instanceof HTMLElement) || !el.hasAttribute('data-cam') || matchMedia(RM).matches) return
-  camera ??= import('./camera').catch((e) => {
-    camera = undefined
+/* The camera (components/camera): on a page that asks for it (Home's hero tabs, ScreenTabs), a screen with a shot list
+   (src/screens/cam.ts) is filmed as its story plays, panning and zooming to what happens. Its module loads with the
+   first screen it films, never with the page, and never with reduced motion. Everywhere else a screen plays as drawn. */
+let lens: Promise<typeof import('./camera')> | undefined
+function film(el: Element | null, shoot: string | undefined) {
+  if (!shoot || !(el instanceof HTMLElement) || matchMedia(RM).matches) return
+  lens ??= import('./camera').catch((e) => {
+    lens = undefined
     throw e
   })
   /* Without it the screen plays as drawn. */
-  camera.then((c) => c.film(el)).catch(() => {})
+  lens.then((c) => c.film(el, shoot)).catch(() => {})
 }
 /* Back to the screen as drawn, when its tab is left. */
 function unfilm(el: Element | null) {
-  if (el instanceof HTMLElement && camera) camera.then((c) => c.cut(el)).catch(() => {})
+  if (el instanceof HTMLElement && lens) lens.then((c) => c.cut(el)).catch(() => {})
 }
+
+/* When each story last started from the start. */
+const started = new WeakMap<Element, number>()
+/* A story asked to play again this soon after it started (its screen came into view as its tab was first chosen) carries
+   on where it is, rather than snapping back to the start. */
+const AGAIN_MS = 600
+const fresh = (el: Element | null) => !!el && performance.now() - (started.get(el) ?? -Infinity) < AGAIN_MS
 
 /* Plays the story: from the start again if it has played before (the reflow restarts its animations in the same
    frame), straight away the first time, which needs no reflow. */
-function replay(el: Element | null) {
+function replay(el: Element | null, shoot?: string) {
   if (!el || matchMedia(RM).matches) return
   if (el.classList.contains('play')) {
     el.classList.remove('play')
     void (el as HTMLElement).offsetWidth
   }
   el.classList.add('play')
-  film(el)
+  started.set(el, performance.now())
+  film(el, shoot)
 }
 
 /* A story the page's boot script started (src/boot.ts) before the app was there: true once, the first time a tab or step
@@ -72,10 +80,14 @@ type Props = {
      console's Example tag); only the real September report captures on /sample-output pass note="", and Home's hero
      screens, which carry the tag in their own line (ScreenTabs). */
   note?: string
+  /* Films the story with the camera (components/camera.ts): Home's hero tabs only. */
+  camera?: boolean
 }
 
-export function AppScreen({ name, playKey, className, workspace = 'agency', note = 'Example' }: Props) {
+export function AppScreen({ name, playKey, className, workspace = 'agency', note = 'Example', camera = false }: Props) {
   const ref = useRef<HTMLDivElement>(null)
+  /* What the camera films: this screen, when the page asks for it. */
+  const shoot = camera ? name : undefined
   /* On the server: the screen's HTML. In the browser: undefined, so the prerendered HTML stays as it is. */
   const [html, setHtml] = useState(() => screenHtmlNow(name, workspace))
   /* The screen the page shows now, prerendered or fetched: while hydrating, the prerendered one. */
@@ -109,8 +121,8 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
       ([entry]) => {
         if (entry.isIntersecting) {
           /* A story the boot script started is joined by the camera where it is. */
-          if (!il.classList.contains('play')) replay(il)
-          else film(il)
+          if (!il.classList.contains('play')) replay(il, shoot)
+          else film(il, shoot)
           io.disconnect()
         }
       },
@@ -118,10 +130,11 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     )
     io.observe(il)
     return () => io.disconnect()
-  }, [name, shown])
+  }, [name, shown, shoot])
 
-  /* A new playKey plays the story again; the first one a screen mounts with is not a change, so it waits to be seen.
-     No playKey any more (another tab plays) stops the camera. */
+  /* A new playKey plays the story again; the first one a screen mounts with is not a change, so it waits to be seen. A
+     story that has only just started (by the boot script, or as its screen came into view) carries on. No playKey any
+     more (another tab plays) stops the camera. */
   const firstKey = useRef(true)
   useEffect(() => {
     if (firstKey.current) {
@@ -130,9 +143,9 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     }
     const il = ref.current?.querySelector('.il') ?? null
     if (playKey === undefined) unfilm(il)
-    else if (!bootPlayed(il)) replay(il)
-    else film(il)
-  }, [playKey])
+    else if (bootPlayed(il) || fresh(il)) film(il, shoot)
+    else replay(il, shoot)
+  }, [playKey, shoot])
 
   return (
     <>
@@ -143,7 +156,7 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
         /* Keeps a screen's example data ("Rival B: free delivery now from £35") out of Google's snippets, AI Overviews
            and AI Mode, so it is never quoted as fact; the page's own words around it are. */
         data-nosnippet=""
-        onClick={() => replay(ref.current?.querySelector('.il') ?? null)}
+        onClick={() => replay(ref.current?.querySelector('.il') ?? null, shoot)}
         dangerouslySetInnerHTML={html === undefined ? KEEP : { __html: html }}
         suppressHydrationWarning
       />

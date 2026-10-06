@@ -1,21 +1,9 @@
-import { cam, type Shot } from './cam'
-
 /* The rivals app screen: 1 720 x 450 window of the product, at rest on its finished scene; AppScreen adds .play to
    its root to run the story. Its look and story: css/rivals.css, loaded by the page, never imported here. Converted
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
-
-/* The camera (src/screens/cam.ts): the wide board, the rails drawing down 30 days, Rival A's price change today, then
-   it holds on the finding and its before and after captures. */
-const SHOTS: Shot[] = [
-  { at: 0 },
-  { at: 1, on: '.rv-col:nth-child(-n+2)', phone: '.rv-a' },
-  { at: 2.75, on: '.rv-a .rv-ev' },
-  { at: 3.9, on: '.rv-txt, .rv-caps', phone: '.rv-txt' },
-]
-
 export function RivalsScreen() {
   return (
-    <div className="il appx-il app-rivals" data-cam={cam(SHOTS)}><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: 30 days of Rival A, B and C on 3 timelines, each dated change seen by a declared agent that checks every morning from the US and UK. Today's check catches Rival A's Pro plan rising from $49 to $59 in the US only, shown with before and after captures, and an update to your comparison page is drafted for your OK.">
+    <div className="il appx-il app-rivals"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: 30 days of Rival A, B and C on 3 timelines, each dated change seen by a declared agent that checks every morning from the US and UK. Today's check catches Rival A's Pro plan rising from $49 to $59 in the US only, shown with before and after captures, and an update to your comparison page is drafted for your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Rivals</span>
