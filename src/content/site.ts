@@ -64,7 +64,7 @@ export const recipesPage: RecipesIndexPage = {
       line: 'Go through your own business, or a client’s with their OK, as a customer or a buyer’s AI agent would, and catch every break first.',
     },
     {
-      group: 'Get paid and save',
+      group: 'Get paid and negotiate',
       line: 'Get paid from the day a customer signs, answer supplier price rises with quotes, and hold every software bill at the price you agreed.',
     },
     {
@@ -416,7 +416,7 @@ export const llms: Llms = {
     'Obsession’s agents sign up, shop, ask the site’s chat bot, chase, check and wait at every company on your list, continuously, and every step they take is signed.',
     'You get the proof and your next move by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
     `There are ${WAYS.length} ways in. ${WAYS.map((w) => `${w.name}, ${w.who.charAt(0).toLowerCase()}${w.who.slice(1)}: ${w.line}`).join(' ')}`,
-    'Recipes cover winning customers (prospect intelligence, listings and AI answers, inbound quotes, account handover), keeping and growing customers (account watch, business case, expansion offers, client upsells, renewal negotiation, cancellation saves, review requests), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, lead leaks, website audit, delivery monitoring, AI checkout test, ad landing check, partner checks), getting paid and saving (get paid, supplier quotes, software renewals), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
+    'Recipes cover winning customers (prospect intelligence, listings and AI answers, inbound quotes, account handover), keeping and growing customers (account watch, business case, expansion offers, client upsells, renewal negotiation, cancellation saves, review requests), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, lead leaks, website audit, delivery monitoring, AI checkout test, ad landing check, partner checks), getting paid and negotiating (get paid, supplier quotes, software renewals), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
     'To check an AI agent, Obsession’s declared test customers use a company’s own support bot, voice agent, AI SDR or sales agent on its real channels, only with the owner’s OK, ask what an ordinary customer asks and never try to trick it, tag every test so it is never billed, and sign every step.',
     'Most tools read what a company publishes. Obsession goes through it as a customer.',
     'Every agent says it’s an AI agent and never pretends to be a person. At rivals and prospects it uses only the paths any customer can (sign ups, newsletters, texts, public pages, the ads they run in public, the site’s chat bot and trials that need no card), never contacts staff or replies, closes a trial the moment a rep writes or calls, never names its customer and links to useobsession.com/agents. A company’s own journeys, or a client’s or account’s, run only with the owner’s OK, and on anyone else’s store every checkout stops before payment. It spends only on a card capped at a budget the customer sets, and never signs or accepts terms without the customer’s OK.',

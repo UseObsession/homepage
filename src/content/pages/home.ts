@@ -272,6 +272,6 @@ export const page: Page = {
       micro: 'We keep your email to set up your first run and tell you about Obsession.',
       interest: 'any',
     },
-    link: { label: 'Agency? Get 5 client stores audited free in 48 hours', to: '/use-cases/mystery-shopping-for-ecommerce-agencies' },
+    link: { label: 'Agency? Get 5 client stores audited free', to: '/use-cases/mystery-shopping-for-ecommerce-agencies' },
   },
 }

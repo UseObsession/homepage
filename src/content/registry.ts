@@ -55,7 +55,7 @@ const ORDER: RecipeId[] = [
   'adcheck',
   'partners',
   'delivery',
-  /* Get paid and save */
+  /* Get paid and negotiate */
   'get-paid',
   'supplier-quotes',
   'spend',

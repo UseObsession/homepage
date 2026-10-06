@@ -22,7 +22,7 @@ export const JOBS: RecipeGroup[] = [
   'Keep and grow customers',
   'Watch rivals',
   'Check your own journeys',
-  'Get paid and save',
+  'Get paid and negotiate',
   'Check your AI agents',
 ]
 
@@ -53,7 +53,7 @@ const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: s
   'Keep and grow customers': { line: 'See churn and growth coming.', examples: ['account-watch', 'saves'] },
   'Watch rivals': { line: 'Every rival move, as it lands.', examples: ['competitor', 'prices'] },
   'Check your own journeys': { line: 'Catch every break before a customer does.', examples: ['speed', 'checkout'] },
-  'Get paid and save': { line: 'Get paid sooner and hold every price.', examples: ['get-paid', 'supplier-quotes'] },
+  'Get paid and negotiate': { line: 'Get paid sooner and hold every price.', examples: ['get-paid', 'supplier-quotes'] },
   'Check your AI agents': {
     line: 'Declared test customers check the AI agents you run.',
     examples: ['support-bot', 'voice-agent'],

@@ -84,7 +84,7 @@ export const study: UseCaseStudy = {
       label: 'A client’s store web address',
       placeholder: 'Client store, e.g. store.example',
       micro:
-        '5 client stores audited free, back in 48 hours, in any format. Leave it blank to just join the waitlist.',
+        '5 client stores audited free, the report within 4 days, in any format. Leave it blank to just join the waitlist.',
       orWaitlist: true,
       done: {
         title: 'Got it. We’ll start with {store}.',
@@ -354,7 +354,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What do the 5 free audits cover?',
-        a: 'Send us 5 of your clients’ stores and we audit them free within 48 hours, in whatever format you want: a PDF, a branded client report, Slack, a sheet, Clay columns or an email. A store can be a prospect you’re pitching, a current client with their OK, or a client at renewal or at risk. Start with 1 store in the form, and we’ll ask for the other 4.',
+        a: 'Send us 5 of your clients’ stores and we audit them free and send the report within 4 days, in whatever format you want: a PDF, a branded client report, Slack, a sheet, Clay columns or an email. A store can be a prospect you’re pitching, a current client with their OK, or a client at renewal or at risk. Start with 1 store in the form, and we’ll ask for the other 4.',
       },
       {
         q: 'Do our clients have to agree to it?',
@@ -384,7 +384,7 @@ export const study: UseCaseStudy = {
   },
 
   final: {
-    heading: 'Send us 5 of your clients’ stores. We audit them free in 48 hours.',
+    heading: 'Send us 5 of your clients’ stores. We audit them free, the report within 4 days.',
     sub: 'In whatever format you want. Current clients with their OK, prospects through public sign ups only, and every checkout stops before payment. No stores to name yet? Leave the address blank to join the waitlist.',
     capture: {
       kind: 'mystery',

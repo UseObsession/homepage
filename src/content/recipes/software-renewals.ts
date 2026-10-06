@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Software renewals (/recipes/software-renewals). Get paid and save. Screen: spend (6 tools on their own capped
+/* Software renewals (/recipes/software-renewals). Get paid and negotiate. Screen: spend (6 tools on their own capped
    cards, £4,950 a month in all; Brindle, the design tool, renews 16% higher, £1,392 a month against its £1,200 cap,
    and the card holds it; a thread to keep last year's £30 a seat; 9 seats unused for 60 days removed under JO's OK,
    40 to 31; £5,544 a year saved: (£1,392 - 31 x £30) x 12). The run tells the same story, in the same words as the
@@ -28,7 +28,7 @@ export const recipe: Recipe = {
   id: 'spend',
   slug: 'software-renewals',
   name: 'Software renewals',
-  group: 'Get paid and save',
+  group: 'Get paid and negotiate',
   line: 'Pays each software vendor from its own capped card, so a price rise at renewal starts a negotiation instead of a charge.',
   gets: 'Every tool at a price you approved, with the next invoice checked.',
   kit: [

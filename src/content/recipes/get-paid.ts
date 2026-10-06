@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Get paid (/recipes/get-paid). Get paid and save. Screen: invoices (15 overdue invoices, $54,600; Law firm pays
+/* Get paid (/recipes/get-paid). Get paid and negotiate. Screen: invoices (15 overdue invoices, $54,600; Law firm pays
    $6,400 today; Dental group promised for Friday; Gym chain asked for email only; a day 5 call disputes seats and
    comes to you with a drafted reply; every chase signed).
    Base: site_founders.json "Get paid" (approved copy and demo). "For weeks" from the deck is gone: it chases until paid.
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
   id: 'get-paid',
   slug: 'get-paid',
   name: 'Get paid',
-  group: 'Get paid and save',
+  group: 'Get paid and negotiate',
   line: 'Sets you up in a new customer’s supplier portal the day they sign, then chases every invoice until it’s paid.',
   gets: 'New customers set up in their supplier portal from the day they sign, and every overdue invoice chased until it’s paid.',
   kit: [

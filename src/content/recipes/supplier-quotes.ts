@@ -1,6 +1,6 @@
 import type { Capture, Recipe } from '../types'
 
-/* Supplier quotes (/recipes/supplier-quotes). Get paid and save. Screen: suppliers (mailer boxes, +18% from 1 Nov:
+/* Supplier quotes (/recipes/supplier-quotes). Get paid and negotiate. Screen: suppliers (mailer boxes, +18% from 1 Nov:
    $400 to $472 per 1,000; 16 quotes in, the best 3 at $409, $416 and $421; pushback sent Mon 09:14 after your OK;
    rise cut to 6%, $424, in writing by day 10).
    No money up to (3 Oct): the run states the cut and how fast it came; the FAQ's figure is up to 104 hours a year,
@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   id: 'supplier-quotes',
   slug: 'supplier-quotes',
   name: 'Supplier quotes',
-  group: 'Get paid and save',
+  group: 'Get paid and negotiate',
   line: 'Gets quotes for your real order as your declared AI buyer, then pushes back on the price rise until the new price is in writing.',
   gets: 'Every quote side by side, and the new price in writing. You sign.',
   kit: [

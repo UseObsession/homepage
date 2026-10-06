@@ -16,7 +16,7 @@ const JOBS: RecipeGroup[] = [
   'Keep and grow customers',
   'Watch rivals',
   'Check your own journeys',
-  'Get paid and save',
+  'Get paid and negotiate',
   'Check your AI agents',
 ]
 
