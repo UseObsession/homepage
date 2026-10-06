@@ -29,7 +29,7 @@ export const page: Page = {
     pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
     /* 4 short sentences: the pain, what the agents do, what they carry, what you get. */
-    sub: 'Deals stall, prices slip and customers leave for reasons no tool can see. Obsession’s AI agents go in as the customer, at any company, yours included. Each has a real inbox, phone number and browser. You get signed proof and your next move.',
+    sub: 'Deals stall, prices slip and customers leave for reasons no tool can see. Obsession’s AI agents go in as the customer at any company, yours included, with real inboxes, phone numbers and browsers. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
@@ -196,7 +196,7 @@ export const page: Page = {
       },
       {
         q: 'When can I use it?',
-        a: 'Now, in early access. Join the waitlist and we set up your first job with you.',
+        a: 'Early access runs from the waitlist. Join, and we set up your first job with you.',
       },
     ],
   },
