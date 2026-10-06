@@ -60,7 +60,7 @@ export function makeGas(codePath, { headers = null, rows = [], quota = 100 } = {
     HtmlService: { createHtmlOutput: (h) => ({ html: h, setTitle() { return this }, addMetaTag() { return this } }) },
   }
   vm.createContext(ctx)
-  vm.runInContext(readFileSync(codePath, 'utf8') + '\n;globalThis.__doPost = doPost; globalThis.__doGet = doGet; globalThis.__HEADERS = HEADERS;', ctx)
+  vm.runInContext(readFileSync(codePath, 'utf8') + '\n;globalThis.__doPost = doPost; globalThis.__doGet = doGet; globalThis.__HEADERS = HEADERS; globalThis.__FIELDS = FIELDS;', ctx)
   // Date inside the context must be the fake one: Code.js uses `new Date()` and `Date.now()`.
   const post = (body, type = 'text/plain;charset=utf-8') => {
     const e = type.startsWith('application/x-www-form-urlencoded')
@@ -71,5 +71,5 @@ export function makeGas(codePath, { headers = null, rows = [], quota = 100 } = {
   }
   const table = () => { const [h, ...rs] = data; return rs.map((r) => Object.fromEntries(h.map((k, i) => [k, r[i]]))) }
   const get = () => JSON.parse(ctx.__doGet().body)
-  return { post, get, data, table, mail, cache, props, tick: (ms) => { clock += ms }, headers: () => data[0], HEADERS: ctx.__HEADERS }
+  return { post, get, data, table, mail, cache, props, tick: (ms) => { clock += ms }, headers: () => data[0], HEADERS: ctx.__HEADERS, FIELDS: ctx.__FIELDS }
 }

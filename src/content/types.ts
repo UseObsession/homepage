@@ -50,11 +50,12 @@ export type Capture = {
   micro?: string
   /* A page's own question (a recipe's, or the format of the agencies' audits): the sign up card asks it in place of the
      first job, and keeps the answer as the sign up's "Job detail" (content/signup.ts). `replaces: 'results'` asks it in
-     place of "Where should results land first?" instead, its answer in "Results to" (the audits' format is where they
+     place of "Where should results land?" instead, its answer in "Results to" (the audits' format is where they
      land). On a free shop or check it is asked only once a store or an AI agent is named. `short` names it in the
-     card's squares and on the thank you's list of answers. Other pages leave it out: the card's question bank covers
+     card's squares and on the thank you's list of answers. `multi: true` takes any number (where more than 1 answer can
+     be true); its helper is `helper`, else "Pick any." Other pages leave it out: the card's question bank covers
      them. */
-  roles?: { question: string; options: string[]; short?: string; replaces?: 'results' }
+  roles?: { question: string; options: string[]; short?: string; replaces?: 'results'; multi?: boolean; helper?: string }
   interest?: RecipeId | 'any'
   /* `mystery` and `verify` only: a blank first field (the store, or the AI agent) joins the waitlist instead of asking
      for one. The micro line says so. */

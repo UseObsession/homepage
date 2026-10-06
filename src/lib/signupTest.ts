@@ -1,11 +1,14 @@
 /* Test build only. main.tsx loads this file when the build sets VITE_SIGNUP_TEST=1, which the site's own build never
    does, so none of it ships (the condition is a constant the bundler drops). It drives the real sign up card through
    real DOM events, against a test build whose VITE_WAITLIST_URL is a local stub, never the live script:
-   - ?sd=N[.reader][.other]  fills the hero's form (a free shop's store or a check's AI agent first, then the email),
-     sends it, and answers each step until step N of the card is on screen (the first option of each single choice,
-     the first 2 of each multi select). `reader` picks the reader on a page that asks; `other` then taps "Something
-     else" on step N. ?sd=thanks ends on the thank you.
-   - ?sd=e2e  runs the checks below and posts the results to the stub's /__report.
+   - ?sd=N[.reader][.other|.back]  fills the hero's form (a free shop's store or a check's AI agent first, then the
+     email), sends it, and answers each step until step N of the card is on screen (the first option of each single
+     choice, the first 2 of each multi select: on Home, ?sd=3 is the agency's jobs, ?sd=4 its clients). `reader` picks
+     the reader on a page that asks; `other` then taps "Something else" on step N, and `back` goes back to the step
+     before it, its answer showing. ?sd=thanks ends on the thank you.
+   - ?sd=e2e  runs the checks below and posts the results to the stub's /__report: the single choice and the multi
+     select by tap, Space, number keys and Enter, how each looks at the frame's width, and the joined answers on the
+     thank you and in the stub's sheet (GET /__sheet).
    - ?sd=flow.NAME  runs 1 page's flow and posts its results the same way: agencies (the agencies use case with a store:
      its own thank you, whose store, and its format in place of the results), agenciesblank (the same form left blank:
      a waitlist sign up with the agency's own questions), verify (/verify with an AI agent), verifyblank, recipe
@@ -109,6 +112,10 @@ async function demo(spec: string) {
     if (extra === 'other') {
       const other = currentStep()!.querySelector<HTMLInputElement>('input[value="other"]')
       if (other) tap(other)
+    } else if (extra === 'back') {
+      const from = currentId()
+      card()!.querySelector<HTMLButtonElement>('.s-signup__back')?.click()
+      await moved(from)
     }
   }
   ;(document.activeElement as HTMLElement | null)?.blur()
@@ -120,6 +127,31 @@ async function demo(spec: string) {
 }
 
 type Result = { name: string; pass: boolean; detail?: string }
+
+/* How a step's choices look. A single choice: radios, no glyph, and on a narrow card a ring, never a box. A multi
+   select: checkboxes, the plus on every chip, and never a ring. */
+function looks(step: HTMLElement) {
+  const inputs = $$<HTMLInputElement>('.ob-chip-input', step)
+  const labels = $$('.ob-chip-label', step)
+  const lead = (l: Element) => {
+    const b = getComputedStyle(l, '::before')
+    if (b.content === 'none' || b.content === 'normal') return 'none'
+    return parseFloat(b.borderTopLeftRadius) >= parseFloat(b.width) / 2 ? 'ring' : 'box'
+  }
+  const leads = [...new Set(labels.map(lead))].join('/')
+  const glyphs = labels.filter((l) => l.querySelector('.ob-chip-glyph')).length
+  const radios = inputs.filter((i) => i.type === 'radio').length
+  const boxes = inputs.filter((i) => i.type === 'checkbox').length
+  const detail = `${radios} radios, ${boxes} checkboxes, ${glyphs} pluses, leading ${leads}, card ${card()!.getBoundingClientRect().width}px`
+  const single = radios === inputs.length && !glyphs && (leads === 'none' || leads === 'ring')
+  const multi = boxes === inputs.length && glyphs === labels.length && leads === 'none'
+  return { single, multi, detail }
+}
+
+/* The picks the card holds for a step, in the order they were ticked (sessionStorage, lib/signupStore.ts). */
+const picksOf = (id: string) => (JSON.parse(sessionStorage.getItem('obs-signup') ?? '{}') as { answers?: Record<string, { picked: string[] }> }).answers?.[id]?.picked ?? []
+const helpText = () => currentStep()?.querySelector('.s-signup__help')?.textContent ?? ''
+const ticked = () => $$<HTMLInputElement>('.ob-chip-input:checked', currentStep()!).map((i) => i.value)
 
 async function e2e() {
   const results: Result[] = []
@@ -145,70 +177,98 @@ async function e2e() {
       check('progress says 2 of 8', card()!.querySelector('.s-signup__count')?.textContent === '2 of 8', card()!.querySelector('.s-signup__count')?.textContent ?? '')
       check('no Back on the first question', !card()!.querySelector('.s-signup__back'))
       check('Next waits, unseen, until something is picked', !nextShown())
-      const skipX = skipBtn()!.getBoundingClientRect().x
+      const one = looks(currentStep()!)
+      check('a single choice shows radios, never a box or a plus', one.single, one.detail)
+      /* Next keeps its place on the right even while it waits unseen (SignupSteps.css). */
+      const nextRight = nextBtn()!.getBoundingClientRect().right
 
+      const rlegend = currentStep()!.querySelector('.s-signup__q')!
+      key(rlegend, 'Enter')
+      await sleep(400)
+      check('Enter with nothing picked does nothing', currentId() === 'reader', currentId())
+      key(rlegend, '3')
+      await sleep(400)
+      check('a number key picks that option and stays', currentId() === 'reader' && ticked().join() === 'sales', ticked().join())
       keyPick(currentStep()!.querySelector('input[value="founder"]')!)
       await sleep(600)
-      check('a pick from the keys never moves on', currentId() === 'reader')
+      check('a pick from the keys never moves on, and a single choice holds 1', currentId() === 'reader' && ticked().join() === 'founder', ticked().join())
       check('then Next shows', nextShown())
       key(currentStep()!.querySelector('input[value="founder"]')!, 'Enter')
       await moved('reader')
       check('Enter moves on', currentId() === 'F1', currentId())
       check('focus moves to the new question', document.activeElement?.classList.contains('s-signup__q') ?? false, document.activeElement?.textContent ?? '')
-      check('the question reads its place first', /^Question 3 of 8\./.test(document.activeElement?.textContent ?? ''), document.activeElement?.textContent ?? '')
-      check('Skip sits where it sat on the step before', Math.abs(skipBtn()!.getBoundingClientRect().x - skipX) < 1)
+      check('the question reads its place first', /^Question 3 of 8\.\s*What should your agents do\?$/.test(document.activeElement?.textContent ?? ''), document.activeElement?.textContent ?? '')
+      check('Next sits where it sat on the step before', Math.abs(nextBtn()!.getBoundingClientRect().right - nextRight) < 1)
+      const skipX = skipBtn()!.getBoundingClientRect().x
 
+      const many = looks(currentStep()!)
+      check('the jobs take any number: checkboxes with the plus, never a ring', many.multi, many.detail)
+      check('their helper says so', helpText() === 'Pick any. We start with your first pick.', helpText())
+      check('a multi select shows Next from the start', nextShown())
       const legend = currentStep()!.querySelector('.s-signup__q')!
-      key(legend, 'Enter')
+      key(legend, '5')
+      key(legend, '1')
+      key(legend, '4')
+      await sleep(300)
+      check('number keys tick 3 jobs and stay', currentId() === 'F1' && picksOf('F1').join() === 'paid,find,agents', picksOf('F1').join())
+      key(legend, '5')
+      await sleep(200)
+      check('the same key again unticks', picksOf('F1').join() === 'find,agents' && ticked().join() === 'find,agents', picksOf('F1').join())
+      tap(currentStep()!.querySelector('input[value="release"]')!)
+      keyPick(currentStep()!.querySelector('input[value="rivals"]')!)
+      await sleep(100)
+      check('a tap and Space tick too, in the order ticked', picksOf('F1').join() === 'find,agents,release,rivals', picksOf('F1').join())
+      keyPick(currentStep()!.querySelector('input[value="rivals"]')!)
       await sleep(400)
-      check('Enter with nothing picked does nothing', currentId() === 'F1', currentId())
-      key(legend, '2')
-      await sleep(400)
-      const picked = currentStep()!.querySelector<HTMLInputElement>('.ob-chip-input:checked')
-      check('a number key picks that option and stays', currentId() === 'F1' && picked?.value === 'release', picked?.value)
+      check('a multi select never moves on by itself', currentId() === 'F1' && picksOf('F1').join() === 'find,agents,release', picksOf('F1').join())
       key(legend, 'Enter')
       await moved('F1')
-      check('then Enter, with the focus on the question, moves on', currentId() === 'F2', currentId())
+      check('Enter moves on from a multi select', currentId() === 'F2', currentId())
+      check('once Back is there, Skip sits where it sat', Math.abs(skipBtn()!.getBoundingClientRect().x - skipX) < 1)
+
       ;(card()!.querySelector('.s-signup__back') as HTMLButtonElement).click()
       await moved('F2')
-      tap(currentStep()!.querySelector('input[value="find"]')!)
-      await sleep(120)
-      check('a tap waits for the chip to fill before moving on', currentId() === 'F1')
+      ;(card()!.querySelector('.s-signup__back') as HTMLButtonElement).click()
       await moved('F1')
-      check('then moves on by itself', currentId() === 'F2', currentId())
+      check('Back goes to the step before', currentId() === 'reader', currentId())
+      tap(currentStep()!.querySelector('input[value="founder"]')!)
+      await sleep(120)
+      check('a tap on a single choice waits for the chip to fill', currentId() === 'reader')
+      await moved('reader')
+      check('then moves on by itself, to the first unanswered step', currentId() === 'F2', currentId())
       const squares = $$<HTMLButtonElement>('button.s-signup__sq', card()!)
       check('answered squares are buttons back', squares.length === 2, String(squares.length))
 
+      check('what they sell takes any number', looks(currentStep()!).multi && helpText() === 'Pick any.', `${looks(currentStep()!).detail}; ${helpText()}`)
+      tap(currentStep()!.querySelector('input[value="saas"]')!)
+      tap(currentStep()!.querySelector('input[value="store"]')!)
       tap(currentStep()!.querySelector('input[value="other"]')!)
       await sleep(400)
       const otherField = currentStep()!.querySelector<HTMLInputElement>('.s-signup__other input')
-      check('"Something else" opens its field and waits', currentId() === 'F2' && !!otherField)
+      check('"Something else" ticked opens its field and waits', currentId() === 'F2' && !!otherField && picksOf('F2').join() === 'saas,store,other', picksOf('F2').join())
       check('the caret goes into that field', document.activeElement === otherField)
       type(otherField!, 'Training courses')
       await sleep(30)
       nextBtn()!.click()
       await moved('F2')
 
-      check('results name the first job', currentStep()!.querySelector('.s-signup__help')?.textContent === 'For finding customers.', currentStep()!.querySelector('.s-signup__help')?.textContent ?? '')
-      check('results take 1 pick', $$<HTMLInputElement>('.ob-chip-input', currentStep()!)[0].type === 'radio')
-      skipBtn()!.click()
+      check('results name the first pick, and take any number', helpText() === 'For finding customers. Pick any.' && looks(currentStep()!).multi, helpText())
+      key(currentStep()!.querySelector('.s-signup__q')!, 'Enter')
       await moved('F3')
-      check('Skip moves on and marks the square skipped', currentId() === 'F4' && $$('.s-signup__sq', card()!)[4].classList.contains('is-skipped'))
-      check('a multi select shows Next from the start', nextShown())
+      check('Enter with nothing ticked counts as Skip', currentId() === 'F4' && $$('.s-signup__sq', card()!)[4].classList.contains('is-skipped'), currentId())
 
       const opts = $$<HTMLInputElement>('.ob-chip-input', currentStep()!)
       tap(opts[0])
       tap(opts[1])
       tap(opts[5])
       await sleep(50)
-      check('"None of these" clears the others', opts[5].checked && !opts[0].checked && !opts[1].checked)
+      check('"None of these" clears the others', opts[5].checked && !opts[0].checked && !opts[1].checked && picksOf('F4').join() === 'none', picksOf('F4').join())
       tap(opts[2])
       await sleep(50)
-      check('any other choice clears "None of these"', opts[2].checked && !opts[5].checked)
-      check('a multi select never moves on by itself', currentId() === 'F4')
+      check('any other choice clears "None of these"', opts[2].checked && !opts[5].checked && picksOf('F4').join() === 'rival', picksOf('F4').join())
       ;(card()!.querySelector('.s-signup__back') as HTMLButtonElement).click()
       await moved('F4')
-      check('Back goes to the step before', currentId() === 'F3', currentId())
+      check('Back from the last week goes to the results', currentId() === 'F3', currentId())
       skipBtn()!.click()
       await moved('F3')
       check('then Skip comes back to where they were', currentId() === 'F4', currentId())
@@ -218,6 +278,8 @@ async function e2e() {
 
       sessionStorage.setItem('obs-e2e', '2')
       sessionStorage.setItem('obs-e2e-results', JSON.stringify(results))
+      /* These checks are reported now as well, so a run whose reload stalls still shows them. */
+      await fetch(`${STUB}/__report`, { method: 'POST', body: JSON.stringify({ page: `${location.pathname} (e2e, ${innerWidth}px, before the reload)`, results }) })
       location.reload()
       return
     }
@@ -225,10 +287,10 @@ async function e2e() {
     results.push(...(JSON.parse(sessionStorage.getItem('obs-e2e-results') ?? '[]') as Result[]))
     await until(() => card(), 8000)
     check('a reload reopens the card at the first unanswered step', currentId() === 'F4', currentId())
-    check('a reload keeps the answers', !!card()!.querySelector('.s-signup__sq.is-skipped'))
+    check('a reload keeps the answers, in their order', !!card()!.querySelector('.s-signup__sq.is-skipped') && picksOf('F1').join() === 'find,agents,release', picksOf('F1').join())
     const opts = $$<HTMLInputElement>('.ob-chip-input', currentStep()!)
+    check('a reload keeps the ticks on the step on screen', picksOf('F4').join() === 'rival' && opts[2].checked, picksOf('F4').join())
     tap(opts[0])
-    tap(opts[2])
     tap(opts[3])
     await sleep(30)
     nextBtn()!.click()
@@ -250,39 +312,74 @@ async function e2e() {
     check('Finish lands on the thank you with its title focused', document.activeElement?.classList.contains('ob-confirm-title') ?? false)
     const said = card()!.querySelector('.ob-confirm-title > span:last-child')?.textContent ?? ''
     check('the thank you names them', said === 'Thanks, Maya. You’re all set.', said)
+    const head = () => card()!.querySelector('.s-signup__next-h')?.textContent ?? ''
+    check('the AI agent check, ticked second, is not offered; a store, ticked second, offers the free shop', head() === 'Your first mystery shop is free.', head())
     const toggle = card()!.querySelector<HTMLButtonElement>('.s-signup__disclose')!
     toggle.click()
     await sleep(50)
     check('"Your answers" opens', toggle.getAttribute('aria-expanded') === 'true' && !card()!.querySelector<HTMLElement>('.s-signup__list')!.hidden)
-    const rows = $$('.s-signup__row', card()!)
+    let rows = $$('.s-signup__row', card()!)
+    const value = (i: number) => $$('.s-signup__row', card()!)[i]?.querySelector('dd')?.textContent ?? ''
     check('every answer is listed', rows.length === 7, rows.map((r) => r.textContent).join(' | '))
-    check('the answers read in the order asked', rows[0].querySelector('dt')?.textContent === 'Who you are' && rows[5].querySelector('dt')?.textContent === 'Name and company', rows.map((r) => r.querySelector('dt')?.textContent).join(','))
+    check('the answers read in the order asked', rows[0].querySelector('dt')?.textContent === 'Who you are' && rows[1].querySelector('dt')?.textContent === 'Jobs' && rows[5].querySelector('dt')?.textContent === 'Name and company', rows.map((r) => r.querySelector('dt')?.textContent).join(','))
+    check('every job ticked, in the order ticked', value(1) === 'Find customers with proof, Check our AI agents, Test every release', value(1))
+    check('every pick of what they sell, with what they typed', value(2) === 'Software to businesses, Products from our store, Something else: Training courses', value(2))
+    check('every pick of last week', value(4) === 'Checked a rival, Researched a prospect, Chased an unpaid invoice', value(4))
+
     rows[3].querySelector('button')!.click()
     await until(() => currentId() === 'F3')
     check('Change opens that step', currentId() === 'F3')
     const res = $$<HTMLInputElement>('.ob-chip-input', currentStep()!)
     tap(res[1])
+    tap(res[0])
+    await sleep(400)
+    check('a tap there ticks and waits for Next', currentId() === 'F3' && picksOf('F3').join() === 'slack,email', picksOf('F3').join())
+    nextBtn()!.click()
     await until(() => currentId() === 'thanks')
-    check('a tap there returns to the thank you', currentId() === 'thanks')
+    check('then Next returns to the thank you', currentId() === 'thanks')
 
-    const next = card()!.querySelector<HTMLFormElement>('form.s-signup__next-step')
-    check('a founder who picked "Find customers" is asked which company to start with', next?.querySelector('.s-signup__next-h')?.textContent === 'Which company should we start with?', next?.querySelector('.s-signup__next-h')?.textContent ?? '')
-    const v = next!.querySelector<HTMLInputElement>('input')!
-    type(v, 'not a site')
-    next!.requestSubmit()
+    card()!.querySelector<HTMLButtonElement>('.s-signup__disclose')!.click()
+    await sleep(50)
+    rows = $$('.s-signup__row', card()!)
+    check('the results read Slack, Email', value(3) === 'Slack, Email', value(3))
+    rows[1].querySelector('button')!.click()
+    await until(() => currentId() === 'F1')
+    tap(currentStep()!.querySelector('input[value="find"]')!)
     await sleep(60)
-    check('a bad address shows its error', v.getAttribute('aria-invalid') === 'true')
-    type(v, 'https://www.rival-co.example/pricing')
+    key(currentStep()!.querySelector('.s-signup__q')!, 'Enter')
+    await until(() => currentId() === 'thanks')
+    check('with the AI agent check now the first pick, the thank you offers it', head() === 'Check your AI agent free.', head())
+
+    const next = card()!.querySelector<HTMLFormElement>('form.s-signup__next-step')!
+    const v = next.querySelector<HTMLInputElement>('input')!
+    type(v, 'not a site')
+    next.requestSubmit()
+    await sleep(60)
+    check('a bad AI agent address shows its error', v.getAttribute('aria-invalid') === 'true')
+    type(v, 'help.rival-co.example/chat')
     await sleep(30)
-    next!.requestSubmit()
+    next.requestSubmit()
     await until(() => card()!.querySelector('.s-signup__next-step.is-done'))
-    check('a good one is saved', card()!.querySelector('.s-signup__next-step.is-done .s-signup__next-h')?.textContent === 'Saved. It’s in your plan.')
+    check('a good one is saved', head() === 'Got it. We’ll check help.rival-co.example/chat.', head())
+
+    /* The row the stub's sheet holds for this sign up (waitlist/test/stub.mjs runs the real waitlist/Code.js). */
+    const sid = (JSON.parse(sessionStorage.getItem('obs-signup') ?? '{}') as { sid?: string }).sid
+    let row: Record<string, string> | undefined
+    for (let i = 0; i < 40 && row?.['Next step'] !== 'Free AI agent check'; i++) {
+      await sleep(250)
+      const sheet = (await (await fetch(`${STUB}/__sheet`)).json()) as { rows: Record<string, string>[] }
+      row = sheet.rows.filter((r) => r['Sign up ID'] === sid).at(-1)
+    }
+    check('the sheet holds every job, joined, first pick first', row?.['First job'] === 'Check our AI agents, Test every release', row?.['First job'])
+    check('and every pick of the rest', row?.['Founder: sells'] === 'Software to businesses, Products from our store, Something else: Training courses' && row?.['Results to'] === 'Slack, Email' && row?.['Founder: did last week'] === 'Checked a rival, Researched a prospect, Chased an unpaid invoice', JSON.stringify(row))
+    check('the first pick sets the run and Call first', /^The free AI agent check/.test(row?.['Suggested first run'] ?? '') && row?.['Call first'] === 'Yes: their first job is an AI agent check', `${row?.['Suggested first run']} | ${row?.['Call first']}`)
+    check('the next step is the AI agent check', row?.['Next step'] === 'Free AI agent check' && row?.Agent === 'help.rival-co.example/chat', `${row?.['Next step']} | ${row?.Agent}`)
     await sleep(800)
   } catch (err) {
     check('no crash', false, String(err))
   }
   sessionStorage.removeItem('obs-e2e')
-  await fetch(`${STUB}/__report`, { method: 'POST', body: JSON.stringify({ page: location.pathname, results }) })
+  await fetch(`${STUB}/__report`, { method: 'POST', body: JSON.stringify({ page: `${location.pathname} (e2e, ${innerWidth}px)`, results }) })
 }
 
 const titleText = () => card()?.querySelector('.ob-confirm-title > span:last-child')?.textContent ?? ''
@@ -307,13 +404,16 @@ async function flow(name: string) {
       await answer()
       await answer()
       check('it asks the format, with its 6 options', legendText() === 'Which format should we send the audits in?' && $$('.ob-chip-input', currentStep()!).length === 6, legendText())
-      check('and no "Where should results land first?"', !stepIds().includes('A3'))
+      check('the format takes any number, and says so', looks(currentStep()!).multi && helpText() === 'Pick any.', `${looks(currentStep()!).detail}; ${helpText()}`)
+      check('and no "Where should results land?"', !stepIds().includes('A3'))
       await done()
       check('the thank you is the page’s own', titleText() === 'Got it. We’ll start with client-store.example.', titleText())
       check('its line says what happens next', lineText() === 'We’ll email maya@northwind-labs.co.uk to confirm it’s a client’s store with their OK, and to ask for the other 4.', lineText())
       card()!.querySelector<HTMLButtonElement>('.s-signup__disclose')!.click()
       await sleep(50)
       check('the answers list names the format', $$('.s-signup__row dt', card()!).some((d) => d.textContent === 'Format'), $$('.s-signup__row dt', card()!).map((d) => d.textContent).join(','))
+      const format = $$('.s-signup__row', card()!).find((r) => r.querySelector('dt')?.textContent === 'Format')?.querySelector('dd')?.textContent ?? ''
+      check('with both formats picked', format === 'A PDF, A branded client report', format)
       check('next: See a real report', card()!.querySelector('.s-signup__next-h')?.textContent === 'See a real report.', card()!.querySelector('.s-signup__next-h')?.textContent ?? '')
     } else if (name === 'agenciesblank') {
       await signUp('maya@northwind-labs.co.uk', null)
@@ -341,6 +441,9 @@ async function flow(name: string) {
       check('a waitlist sign up', titleText() === 'You’re on the list.', titleText())
       await answer('sales')
       check('the recipe’s own question stands in for the first job', legendText() === 'Who are your prospects?', legendText())
+      check('it takes any number, and says so', looks(currentStep()!).multi && helpText() === 'Pick any.', `${looks(currentStep()!).detail}; ${helpText()}`)
+      await answer('sales')
+      check('the team size after it is 1 pick', currentId() === 'S2' && looks(currentStep()!).single, `${currentId()}: ${looks(currentStep()!).detail}`)
       check('its square is named for the recipe', !!card()!.querySelector('[data-step="page"]'))
     } else if (name === 'v1') {
       const form = await until(() => $<HTMLFormElement>('.s-hero .s-capture form'))

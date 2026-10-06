@@ -22,7 +22,8 @@ export const readerLabel = (id?: RoleId) => (id ? readerNames[id] : '')
 
 /* The page's own question (Capture.roles) as a bank question: its options get ids by position. On a recipe page it is
    the recipe's; on the agencies use case it is the format the audits come in. A free shop or check asks it only once
-   a store or an AI agent is named: left blank, the form is a waitlist sign up, and the reader's own questions follow. */
+   a store or an AI agent is named: left blank, the form is a waitlist sign up, and the reader's own questions follow.
+   One that takes any number (`multi`) says "Pick any." unless it has a helper of its own. */
 function ownQuestion(ctx: Context): SignupQuestion | undefined {
   const q = ctx.question
   if (!q || copy.page.skipOwn.includes(q.question)) return undefined
@@ -33,6 +34,8 @@ function ownQuestion(ctx: Context): SignupQuestion | undefined {
     key: 'job_detail',
     short: q.short ?? ctx.recipe?.name ?? copy.page.own.short,
     question: q.question,
+    helper: q.helper ?? (q.multi ? copy.card.pickAny : undefined),
+    multi: q.multi,
     options: q.options.map((label, i) => (/^something else$/i.test(label) ? { id: 'other', label, other: true } : { id: `o${i + 1}`, label })),
   }
 }
@@ -74,6 +77,16 @@ export function flowOf(s: SignupState): Step[] {
 
 export const optionOf = (q: SignupQuestion, id: string) => q.options.find((o) => o.id === id)
 
+/* A tap or a number key on an option. A single choice holds just it. A multi select ticks or unticks it, and the picks
+   keep the order they were ticked in, so the first pick stays first; "None of these" (`none`) clears every other pick,
+   and any other pick clears it. */
+export function toggle(options: SignupOption[], picked: string[], o: SignupOption, multi: boolean): string[] {
+  if (!multi) return [o.id]
+  if (picked.includes(o.id)) return picked.filter((x) => x !== o.id)
+  if (o.none) return [o.id]
+  return [...picked.filter((x) => !options.find((p) => p.id === x)?.none), o.id]
+}
+
 /* "AI agent checks" keeps its capitals; "Pitch packs" becomes "pitch packs". */
 export const lower = (t: string) => (t.length > 1 && t[1] === t[1].toUpperCase() && /[A-Z]/.test(t[1]) ? t : t.charAt(0).toLowerCase() + t.slice(1))
 
@@ -97,14 +110,15 @@ export function answerText(q: SignupQuestion, a?: Answer) {
     .join(', ')
 }
 
-/* The first job's option, when the reader's own first job question was answered. */
+/* The first job's option, when the reader's own first job question was answered: the first pick, in the order they
+   ticked. It alone sets the Suggested first run, the AI agent check on the thank you and the results' helper. */
 function firstJobOption(s: SignupState): SignupOption | undefined {
   const q = questionsOf(s).find((x) => x.key === 'first_job')
   const a = q && s.marks[q.id] === 'answered' ? s.answers[q.id] : undefined
   return q && a?.picked[0] ? optionOf(q, a.picked[0]) : undefined
 }
 
-/* Every option picked so far in this flow. */
+/* Every option picked so far in this flow: the mystery shop on the thank you needs only 1 of them to offer it. */
 function pickedOptions(s: SignupState): SignupOption[] {
   const out: SignupOption[] = []
   for (const q of questionsOf(s)) {
@@ -117,7 +131,7 @@ function pickedOptions(s: SignupState): SignupOption[] {
   return out
 }
 
-/* "For pitch packs." under "Where should results land first?". */
+/* "For pitch packs. Pick any." under "Where should results land?", from the first job's first pick. */
 export function resultsHelper(s: SignupState) {
   const job = s.ctx.store ? copy.page.mystery.for : s.ctx.agent ? copy.page.verify.for : s.ctx.recipe ? lower(s.ctx.recipe.name) : firstJobOption(s)?.for
   return job ? fill(copy.card.results, { job }) : copy.card.resultsPlain
@@ -140,8 +154,10 @@ function ruleHolds(s: SignupState, rule: CallFirstRule): Record<string, string> 
     const a = q && s.marks[q.id] === 'answered' ? s.answers[q.id] : undefined
     if (!q || !a) return null
     if ('in' in c) {
-      if (!a.picked.some((id) => c.in.includes(id))) return null
-      values[c.key] = lower(answerText(q, a))
+      /* Any pick in the list holds it, and the reason names only those picks, each with its first letter lower case. */
+      const hits = a.picked.filter((id) => c.in.includes(id))
+      if (!hits.length) return null
+      values[c.key] = hits.map((id) => lower(answerText(q, { ...a, picked: [id] }))).join(', ')
     } else {
       const n = a.picked.filter((id) => !optionOf(q, id)?.none).length
       if (n < c.atLeast) return null
@@ -362,6 +378,17 @@ export function setAnswer(id: string, a: Answer) {
   const state = getSignup()
   if (!state) return
   update({ answers: { ...state.answers, [id]: a } })
+}
+
+/* A tap or a number key on an option (toggle, above), read against the state as it is now, never as the card last
+   drew it, so 2 quick taps both land. Returns the picks. */
+export function pickOption(id: string, options: SignupOption[], o: SignupOption, multi: boolean) {
+  const state = getSignup()
+  if (!state) return []
+  const a = state.answers[id] ?? { picked: [] }
+  const picked = toggle(options, a.picked, o, multi)
+  update({ answers: { ...state.answers, [id]: { ...a, picked } } })
+  return picked
 }
 
 /* Where to go after a step: back to the thank you if they came from it, else the first step after this one that has

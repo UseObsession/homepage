@@ -51,7 +51,9 @@ const BOOK_TITLE = 'Obsession waitlist'
 const VERSION = 2
 const SHEET_NAME = 'Sign ups'
 /* Header, JSON key, longest value kept. In reading order: the order of a new sheet's columns. Received, Updated and
-   Finished are the script's own times. */
+   Finished are the script's own times. A question that takes any number sends every pick, joined with ", " in the
+   order they were ticked, "Something else" with what they typed: its column keeps 400 characters, enough for every
+   option at once (waitlist/test/signup.test.mjs checks the longest the site can send). */
 const FIELDS = [
   ['Received', '', 0],
   ['Step reached', 'step', 20],
@@ -59,23 +61,23 @@ const FIELDS = [
   ['Name', 'name', 100],
   ['Company', 'company', 200],
   ['Reader', 'reader', 200],
-  ['First job', 'first_job', 200],
+  ['First job', 'first_job', 400],
   ['Call first', 'call_first', 200],
   ['Suggested first run', 'suggested', 200],
-  ['Job detail', 'job_detail', 200],
+  ['Job detail', 'job_detail', 400],
   ['Agency: clients', 'agency_clients', 200],
   ['Agency: last check took', 'agency_last_check', 200],
-  ['Founder: sells', 'founder_sells', 200],
-  ['Founder: did last week', 'founder_last_week', 200],
+  ['Founder: sells', 'founder_sells', 400],
+  ['Founder: did last week', 'founder_last_week', 400],
   ['Sales: team size', 'sales_team', 200],
   ['Sales: last slip seen', 'sales_last_slip', 200],
-  ['Marketing: markets', 'marketing_markets', 200],
+  ['Marketing: markets', 'marketing_markets', 400],
   ['Marketing: last break found by', 'marketing_last_break', 200],
-  ['Developer: builds for', 'developer_for', 200],
+  ['Developer: builds for', 'developer_for', 400],
   ['Developer: last used', 'developer_last_used', 200],
   ['Other: role', 'other_role', 200],
-  ['Other: did last week', 'other_last_week', 200],
-  ['Results to', 'results', 200],
+  ['Other: did last week', 'other_last_week', 400],
+  ['Results to', 'results', 400],
   ['Anything else', 'note', 1000],
   ['Next step', 'next_step', 200],
   ['Start with', 'start_with', 200],

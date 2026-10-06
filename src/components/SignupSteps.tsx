@@ -11,6 +11,7 @@ import {
   go,
   lower,
   nextStepFor,
+  pickOption,
   questionText,
   readerLabel,
   resend,
@@ -36,6 +37,10 @@ import { StatusMark } from './Logo'
    - Single choice: a tap or click picks and moves on 250ms later, once the chip has filled. A pick made from the keys
      (arrows, or 1 to 9) never moves on: Enter does, wherever the focus is in the step. "Something else" opens a short
      field and waits for Next.
+   - Multi select (the chips with the plus that becomes a tick): a tap, Space or a number key ticks or unticks, and the
+     picks keep the order they were ticked in (the first pick leads: lib/signup.ts). Enter or Next moves on. Ticking
+     "Something else" with a tap puts the caret in its field. A single choice never shows a box, and a multi select
+     never shows a ring (SignupSteps.css).
    - Back, Skip and Next sit in the same place on every step: Back and Skip on the left, Next on the right. On a single choice, Next appears once something is
      picked (for the keys, and for a step they came back to), and keeps its space until then, so a tap on the strongest
      button never skips a question unseen. On a multi select or a typed step, Next with nothing in it counts as Skip.
@@ -181,17 +186,12 @@ function Card({ s, owner }: { s: SignupState; owner: string }) {
   const multi = !!step.q?.multi
 
   function pick(id: string, o: SignupOption, isMulti: boolean, via: 'tap' | 'key') {
-    const a = s.answers[id] ?? { picked: [] }
-    let picked: string[]
-    if (!isMulti) picked = [o.id]
-    else if (a.picked.includes(o.id)) picked = a.picked.filter((x) => x !== o.id)
-    else if (o.none) picked = [o.id]
-    else {
-      const opts = id === 'reader' ? copy.reader.options : (flow.find((x) => x.id === id)?.q?.options ?? [])
-      picked = [...a.picked.filter((x) => !opts.find((p) => p.id === x)?.none), o.id]
+    const opts = id === 'reader' ? copy.reader.options : (flow.find((x) => x.id === id)?.q?.options ?? [])
+    const picked = pickOption(id, opts, o, isMulti)
+    if (isMulti) {
+      if (o.other && via === 'tap' && picked.includes(o.id)) focusOther.current = id
+      return
     }
-    setAnswer(id, { ...a, picked })
-    if (isMulti) return
     if (o.other) {
       stop()
       if (via === 'tap') focusOther.current = id

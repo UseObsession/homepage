@@ -5,6 +5,7 @@ import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
+import { makeGas } from './gas.mjs'
 const ROOT = new URL('../..', import.meta.url).pathname
 const posts = []
 globalThis.fetch = async (url, init) => {
@@ -21,12 +22,24 @@ const L = await vite.ssrLoadModule('/src/lib/signup.ts')
 const St = await vite.ssrLoadModule('/src/lib/signupStore.ts')
 const W = await vite.ssrLoadModule('/src/lib/waitlist.ts')
 const C = await vite.ssrLoadModule('/src/content/signup.ts')
+const Reg = await vite.ssrLoadModule('/src/content/registry.ts')
 const wait = (ms) => new Promise((r) => setTimeout(r, ms))
 let n = 0
 const t = async (name, fn) => { try { await fn(); n++; console.log('ok', name) } catch (e) { console.log('FAIL', name, '\n', e.stack); process.exitCode = 1 } }
 const ctx = (over = {}) => ({ page: '/', source: 'home-hero', kind: 'waitlist', interest: 'any', ...over })
 const startWith = (email, c) => { const d = L.draft(email, c); L.start(d, 'me', false); return L.getSignup() }
 const pickFirst = (id, optId) => { L.setAnswer(id, { picked: [optId] }); L.complete(id, false, 'me') }
+// Ticks options 1 by 1, as the card's chips do (lib/signup.ts, pickOption), then Next
+const optsOf = (id) => (id === 'reader' ? C.signup.reader.options : L.flowOf(L.getSignup()).find((x) => x.id === id).q.options)
+const tick = (id, ...optIds) => { for (const o of optIds) L.pickOption(id, optsOf(id), optsOf(id).find((x) => x.id === o), true) }
+const tickAll = (id, ...optIds) => { tick(id, ...optIds); L.complete(id, false, 'me') }
+// Every page's own question (Capture.roles), found in every page, recipe and use case
+const pageQuestions = []
+{
+  const seen = new Set()
+  const walk = (o) => { if (!o || typeof o !== 'object' || seen.has(o)) return; seen.add(o); if (o.roles && o.source) pageQuestions.push({ source: o.source, ...o.roles }); for (const v of Object.values(o)) walk(v) }
+  walk(Reg)
+}
 
 await t('company from the email', () => {
   assert.equal(L.companyFromEmail('maya@northwind-labs.co.uk'), 'Northwind Labs')
@@ -55,6 +68,175 @@ await t('every option is 32 characters or fewer, ids unique, keys known', () => 
   }
 })
 
+await t('which questions take any number: the jobs, the results, what they sell or market, who it is for, last week', () => {
+  const multi = []
+  const single = []
+  for (const r of Object.values(C.readers)) for (const q of r.questions) (q.multi ? multi : single).push(q.id)
+  assert.deepEqual(multi, ['A1', 'A3', 'F1', 'F2', 'F3', 'F4', 'S1', 'S3', 'M1', 'M2', 'M3', 'D1', 'D2', 'D3', 'G1', 'G2', 'G3'])
+  // 1 pick: the sizes and every question about 1 past event; "Which of these is you?" is never multi
+  assert.deepEqual(single, ['A2', 'A4', 'S2', 'S4', 'M4', 'D4'])
+  for (const r of Object.values(C.readers)) {
+    for (const q of r.questions) {
+      const helper = q.key === 'results' ? C.signup.card.resultsPlain : (q.helper ?? '')
+      if (q.multi) {
+        assert.match(helper, /Pick any\./, q.id + ' says it takes any number')
+        for (const o of q.options) assert.ok(!o.label.includes(','), `${q.id}: "${o.label}" holds a comma, so a joined answer would misread`)
+      } else assert.doesNotMatch(helper, /Pick any/, q.id)
+    }
+    const job = r.questions.find((q) => q.key === 'first_job')
+    assert.equal(job.question, r.id === 'developer' ? 'What will you build?' : 'What should your agents do?')
+    assert.equal(job.helper, 'Pick any. We start with your first pick.')
+    assert.equal(r.questions.find((q) => q.key === 'results').question, 'Where should results land?')
+  }
+  assert.equal(C.signup.card.results, 'For {job}. Pick any.')
+  // the page's own questions: multi where several can be true at once, the rest 1 pick
+  const pm = [...new Set(pageQuestions.filter((q) => q.multi).map((q) => q.question))].sort()
+  assert.deepEqual(pm, ['What gap does your product close?', 'Which format should we send the audits in?', 'Who are your prospects?', 'Who will use the teardown?'])
+  for (const q of pageQuestions.filter((x) => !x.multi)) assert.ok(/^(Whose|Where|What’s your role)/.test(q.question), q.question)
+})
+
+await t('a tap on an option: 1 pick holds just it; any number ticks and unticks in order; None of these clears the rest', () => {
+  const q = C.readers.founder.questions.find((x) => x.id === 'F4')
+  const o = (id) => q.options.find((x) => x.id === id)
+  let p = []
+  for (const id of ['prospect', 'rival', 'chased']) p = L.toggle(q.options, p, o(id), true)
+  assert.deepEqual(p, ['prospect', 'rival', 'chased'])
+  p = L.toggle(q.options, p, o('prospect'), true)
+  assert.deepEqual(p, ['rival', 'chased'], 'a second tap unticks')
+  p = L.toggle(q.options, p, o('prospect'), true)
+  assert.deepEqual(p, ['rival', 'chased', 'prospect'], 'ticked again, it goes last')
+  p = L.toggle(q.options, p, o('none'), true)
+  assert.deepEqual(p, ['none'], 'None of these clears the others')
+  p = L.toggle(q.options, p, o('tested'), true)
+  assert.deepEqual(p, ['tested'], 'any other choice clears None of these')
+  assert.deepEqual(L.toggle(q.options, ['a', 'b'], o('rival'), false), ['rival'], '1 pick holds just it')
+  // the developers' "Just exploring" clears the rest the same way
+  const d2 = C.readers.developer.questions.find((x) => x.id === 'D2')
+  assert.deepEqual(L.toggle(d2.options, ['own', 'customers'], d2.options.find((x) => x.id === 'exploring'), true), ['exploring'])
+})
+
+await t('3 jobs ticked: every pick in the sheet and on the thank you, in order; the first pick sets the run and the results helper', () => {
+  startWith('maya@northwind-labs.co.uk', ctx({ page: '/agencies', source: 'agencies-hero', pageReader: 'agency' }))
+  tickAll('A1', 'checks', 'pitch', 'rivals')
+  let g = L.getSignup()
+  assert.equal(g.current, 'A2', 'Next moves on')
+  assert.deepEqual(g.answers.A1.picked, ['checks', 'pitch', 'rivals'])
+  let snap = L.snapshot(g)
+  assert.equal(snap.first_job, 'Checks on every client, Pitch packs on prospects, Rival reports to sell')
+  assert.match(snap.suggested, /^1 client, with written OK/)
+  assert.equal(L.resultsHelper(g), 'For client checks. Pick any.')
+  pickFirst('A2', 'c16')
+  tickAll('A3', 'slack', 'email', 'a-pdf-or-link-for-clients')
+  snap = L.snapshot(L.getSignup())
+  assert.equal(snap.results, 'Slack, Email, A PDF or link for clients')
+  // back to the jobs: unticking the first pick makes the next one lead
+  L.go('A1', 'me'); tick('A1', 'checks'); L.complete('A1', false, 'me')
+  g = L.getSignup()
+  snap = L.snapshot(g)
+  assert.equal(snap.first_job, 'Pitch packs on prospects, Rival reports to sell')
+  assert.match(snap.suggested, /^Prospect intelligence and Competitor tracking/)
+  assert.equal(L.resultsHelper(g), 'For pitch packs. Pick any.')
+  // "Something else" first: no suggested run, the helper says only "Pick any."
+  L.go('A1', 'me'); L.setAnswer('A1', { picked: ['other', 'pitch'], other: 'Supplier audits' }); L.complete('A1', false, 'me')
+  g = L.getSignup()
+  assert.equal(L.snapshot(g).first_job, 'Something else: Supplier audits, Pitch packs on prospects')
+  assert.equal(L.snapshot(g).suggested, ''); assert.equal(L.resultsHelper(g), 'Pick any.')
+  // Next with nothing ticked counts as Skip
+  L.go('A3', 'me'); tick('A3', 'slack', 'email', 'a-pdf-or-link-for-clients'); L.complete('A3', false, 'me')
+  assert.equal(L.getSignup().marks.A3, 'skipped'); assert.equal(L.snapshot(L.getSignup()).results, 'Skipped')
+})
+
+await t('the AI agent check comes only from the first pick; the mystery shop from any pick', () => {
+  const f = () => startWith('f@f.example', ctx({ page: '/founders', pageReader: 'founder' }))
+  f(); tickAll('F1', 'find', 'agents')
+  let g = L.getSignup()
+  assert.equal(L.nextStepFor(g), 'company'); assert.equal(L.callFirst(g), null)
+  assert.match(L.snapshot(g).suggested, /^Prospect intelligence on 5 prospects/)
+  f(); tickAll('F1', 'agents', 'find')
+  g = L.getSignup()
+  assert.equal(L.nextStepFor(g), 'verify'); assert.equal(L.callFirst(g).reason, 'Yes: their first job is an AI agent check')
+  assert.equal(L.snapshot(g).call_first, 'Yes: their first job is an AI agent check'); assert.match(L.snapshot(g).suggested, /^The free AI agent check/)
+  // a store anywhere in what they sell offers the free shop
+  f(); tickAll('F1', 'find', 'agents'); tickAll('F2', 'saas', 'store')
+  g = L.getSignup()
+  assert.equal(L.nextStepFor(g), 'shop'); assert.equal(L.snapshot(g).founder_sells, 'Software to businesses, Products from our store')
+  // the AI agent check, first, still wins over the shop
+  f(); tickAll('F1', 'agents'); tickAll('F2', 'saas', 'store')
+  assert.equal(L.nextStepFor(L.getSignup()), 'verify')
+  // marketing: an online store, ticked second
+  startWith('k@k.example', ctx({ page: '/marketing', pageReader: 'marketing' }))
+  tickAll('M1', 'ai', 'prices'); tickAll('M2', 'software', 'store')
+  g = L.getSignup()
+  assert.equal(L.nextStepFor(g), 'shop'); assert.equal(L.snapshot(g).marketing_markets, 'Software, An online store')
+  // unticking the store takes the offer away
+  L.go('M2', 'me'); tick('M2', 'store'); L.complete('M2', false, 'me')
+  assert.equal(L.nextStepFor(L.getSignup()), 'rival')
+})
+
+await t('Call first: an "in" condition holds when any pick is in its list, and the reason names those picks', () => {
+  startWith('d@d.example', ctx({ page: '/developers', pageReader: 'developer' }))
+  tickAll('D1', 'ci'); tickAll('D2', 'own', 'customers')
+  let g = L.getSignup()
+  assert.equal(L.callFirst(g).reason, 'Yes: they build for their own customers, in their product')
+  assert.equal(L.snapshot(g).developer_for, 'Our own product, A feature for our customers')
+  L.go('D2', 'me'); tick('D2', 'customers'); L.complete('D2', false, 'me')
+  assert.equal(L.snapshot(L.getSignup()).call_first, 'No')
+  // a rule that names the answer: only the picks in its list are said
+  const real = C.readers.developer.callFirst
+  C.readers.developer.callFirst = { when: [{ key: 'developer_for', in: ['customers', 'clients'] }], reason: 'Yes: for {developer_for}', open: '?' }
+  try {
+    L.go('D2', 'me'); tick('D2', 'clients', 'customers'); L.complete('D2', false, 'me')
+    assert.deepEqual(L.getSignup().answers.D2.picked, ['own', 'clients', 'customers'])
+    assert.equal(L.callFirst(L.getSignup()).reason, 'Yes: for clients of our agency, a feature for our customers')
+  } finally {
+    C.readers.developer.callFirst = real
+  }
+  // atLeast is unchanged: None of these never counts
+  startWith('f@f.example', ctx({ page: '/founders', pageReader: 'founder' }))
+  tickAll('F4', 'prospect', 'rival', 'chased')
+  assert.equal(L.callFirst(L.getSignup()).reason, 'Yes: 3 of these by hand last week')
+  L.go('F4', 'me'); tick('F4', 'none'); L.complete('F4', false, 'me')
+  assert.deepEqual(L.getSignup().answers.F4.picked, ['none']); assert.equal(L.snapshot(L.getSignup()).founder_last_week, 'None of these')
+  assert.equal(L.snapshot(L.getSignup()).call_first, 'No')
+})
+
+await t('a page question that takes any number: its picks joined, "Pick any." under it', () => {
+  const prospects = pageQuestions.find((q) => q.source === 'recipe-prospect-hero')
+  startWith('r@r.example', ctx({ page: '/recipes/prospect-intelligence', recipe: { name: 'Prospect intelligence' }, question: prospects }))
+  pickFirst('reader', 'sales')
+  const q = L.questionsOf(L.getSignup())[0]
+  assert.equal(q.id, 'page'); assert.ok(q.multi); assert.equal(q.helper, 'Pick any.')
+  tickAll('page', 'o2', 'o1', 'other')
+  L.go('page', 'me'); L.setAnswer('page', { ...L.getSignup().answers.page, other: 'Clinics abroad' }); L.complete('page', false, 'me')
+  const snap = L.snapshot(L.getSignup())
+  assert.equal(snap.job_detail, 'Who are your prospects? Software companies, Stores and consumer brands, Something else: Clinics abroad')
+  assert.equal(snap.first_job, 'Prospect intelligence')
+  // a page question of 1 pick stays 1 pick, without the helper
+  startWith('r@r.example', ctx({ question: { question: 'Whose rivals should we track first?', options: ['Ours', 'A client’s', 'Both'] } }))
+  const one = L.questionsOf(L.getSignup())[0]
+  assert.ok(!one.multi); assert.equal(one.helper, undefined)
+  // its own helper wins over "Pick any."
+  startWith('r@r.example', ctx({ question: { question: 'Which?', options: ['A', 'B'], multi: true, helper: 'Pick any. Last month only.' } }))
+  assert.equal(L.questionsOf(L.getSignup())[0].helper, 'Pick any. Last month only.')
+})
+
+await t('every column keeps the longest answer the site can send: every option at once, "Something else" typed in full', () => {
+  const caps = Object.fromEntries(makeGas(new URL('../Code.js', import.meta.url).pathname).FIELDS.filter((f) => f[1]).map((f) => [f[1], f[2]]))
+  // The "Something else" field takes 120 characters (components/SignupSteps.tsx, maxLength)
+  const label = (o) => (o.other ? `${o.label}: ${'x'.repeat(120)}` : o.label)
+  const longest = (options, multi) => (multi ? options.filter((o) => !o.none).map(label).join(', ').length : Math.max(...options.map((o) => label(o).length)))
+  const need = {}
+  const add = (key, n, what) => { if (n > (need[key]?.n ?? 0)) need[key] = { n, what } }
+  for (const r of Object.values(C.readers)) for (const q of r.questions) add(q.key, longest(q.options, q.multi), q.id)
+  for (const q of pageQuestions) {
+    const options = q.options.map((l) => (/^something else$/i.test(l) ? { label: l, other: true } : { label: l }))
+    if (q.replaces) add('results', longest(options, q.multi), q.source)
+    else add('job_detail', q.question.length + 1 + longest(options, q.multi), q.source)
+  }
+  for (const [key, { n, what }] of Object.entries(need)) assert.ok(n <= caps[key], `${key} needs ${n} (${what}), keeps ${caps[key]}`)
+  assert.ok(need.first_job.n > 200, 'the jobs at once are longer than the old 200')
+})
+
 await t('home: 8 squares, the 1 tap questions first; agency flow; call first; suggested; next step', async () => {
   posts.length = 0
   const s = startWith('maya@northwind-labs.co.uk', ctx())
@@ -69,8 +251,8 @@ await t('home: 8 squares, the 1 tap questions first; agency flow; call first; su
   assert.equal(L.questionText(L.flowOf(g)[3].q, g.company), 'How many clients does Northwind Labs look after?')
   pickFirst('A1', 'pitch'); pickFirst('A2', 'c16')
   g = L.getSignup(); assert.equal(g.current, 'A3')
-  assert.equal(L.resultsHelper(g), 'For pitch packs.')
-  assert.ok(!L.flowOf(g)[4].q.multi, 'results is 1 pick'); assert.equal(L.flowOf(g)[4].q.question, 'Where should results land first?')
+  assert.equal(L.resultsHelper(g), 'For pitch packs. Pick any.')
+  assert.ok(L.flowOf(g)[4].q.multi, 'results take any number'); assert.equal(L.flowOf(g)[4].q.question, 'Where should results land?')
   pickFirst('A3', 'slack')
   pickFirst('A4', 'day')
   g = L.getSignup(); assert.equal(g.current, 'name'); assert.equal(L.snapshot(g).step, '6')
@@ -162,7 +344,7 @@ await t('free mystery shop: whose store replaces the first job; report link; rea
   assert.equal(snap.first_job, 'Free mystery shop'); assert.equal(snap.job_detail, 'Whose store is it? A client’s, with their OK')
   assert.equal(snap.store, 'https://www.client-store.example/'); assert.match(snap.suggested, /client-store\.example/)
   assert.equal(snap.call_first, 'Yes: a free mystery shop is ready to start')
-  assert.equal(L.resultsHelper(g), 'For your free mystery shop.')
+  assert.equal(L.resultsHelper(g), 'For your free mystery shop. Pick any.')
   assert.equal(L.nextStepFor(g), 'report')
   // a plain waitlist sign up sends nothing extra as the card opens
   await wait(50); posts.length = 0
@@ -196,7 +378,7 @@ await t('which pages know their reader: the 5 reader pages and the agencies use 
     assert.equal(L.readerOfPage(path), undefined, path)
 })
 
-const format = { short: 'Format', question: 'Which format should we send the audits in?', options: ['A PDF', 'A branded client report', 'Slack', 'A sheet', 'Clay columns', 'Email'], replaces: 'results' }
+const format = { short: 'Format', question: 'Which format should we send the audits in?', options: ['A PDF', 'A branded client report', 'Slack', 'A sheet', 'Clay columns', 'Email'], replaces: 'results', multi: true }
 
 await t('agencies use case with a store: whose store first, its format in place of the results; its thank you words ride in the state', () => {
   const done = { title: 'Got it. We’ll start with {store}.', line: 'We’ll email {email} to confirm it’s a client’s store with their OK, and to ask for the other 4.' }
@@ -204,10 +386,13 @@ await t('agencies use case with a store: whose store first, its format in place 
   const s = startWith('a@agency.example', ctx({ page, source: 'usecase-ecom-agencies-hero', kind: 'mystery', interest: 'mystery', store: 'client.example', pageReader: L.readerOfPage(page), question: format, done }))
   assert.equal(s.reader, 'agency'); assert.equal(s.readerFrom, 'Page'); assert.deepEqual(s.ctx.done, done)
   assert.deepEqual(L.flowOf(s).map((x) => x.id), ['email', 'mystery', 'A2', 'page', 'A4', 'name', 'note'])
-  pickFirst('mystery', 'client'); pickFirst('A2', 'c16'); pickFirst('page', 'o1')
+  pickFirst('mystery', 'client'); pickFirst('A2', 'c16'); tickAll('page', 'o1', 'o3')
   const g = L.getSignup(); const snap = L.snapshot(g)
+  assert.ok(L.questionsOf(g)[2].multi); assert.equal(L.questionsOf(g)[2].helper, 'Pick any.')
+  // the use case's own words agree with this copy of them
+  assert.deepEqual(pageQuestions.find((q) => q.source === 'usecase-ecom-agencies-hero'), { source: 'usecase-ecom-agencies-hero', ...format })
   assert.equal(snap.job_detail, 'Whose store is it? A client’s, with their OK'); assert.equal(snap.first_job, 'Free mystery shop')
-  assert.equal(snap.results, 'A PDF'); assert.equal(snap.agency_clients, '16 to 40')
+  assert.equal(snap.results, 'A PDF, Slack'); assert.equal(snap.agency_clients, '16 to 40')
   assert.equal(snap.store, 'client.example'); assert.equal(snap.reader, 'Agency'); assert.equal(snap.reader_from, 'Page')
   assert.equal(snap.call_first, 'Yes: a free mystery shop is ready to start'); assert.equal(L.questionsOf(g)[2].short, 'Format'); assert.equal(L.questionsOf(g)[2].step, 5)
   assert.equal(L.nextStepFor(g), 'report')

@@ -54,6 +54,7 @@ export const recipe: Recipe = {
       roles: {
         question: 'Who will use the teardown?',
         options: ['Sales', 'Marketing', 'Product', 'Founders', 'Something else'],
+        multi: true,
       },
       interest: 'trial',
     },
@@ -215,6 +216,7 @@ export const recipe: Recipe = {
       roles: {
         question: 'Who will use the teardown?',
         options: ['Sales', 'Marketing', 'Product', 'Founders', 'Something else'],
+        multi: true,
       },
       interest: 'trial',
     },

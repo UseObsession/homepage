@@ -32,9 +32,9 @@ export type Context = {
   agent?: string
   /* The reader the page knows (a reader's own page). */
   pageReader?: RoleId
-  /* The page's own question (Capture.roles), asked in place of the first job, or of "Where should results land first?"
-     when it says `replaces`; on a recipe page, the recipe's name too. */
-  question?: { question: string; options: string[]; short?: string; replaces?: 'results' }
+  /* The page's own question (Capture.roles), asked in place of the first job, or of "Where should results land?" when
+     it says `replaces`; on a recipe page, the recipe's name too. */
+  question?: { question: string; options: string[]; short?: string; replaces?: 'results'; multi?: boolean; helper?: string }
   recipe?: { name: string }
   /* The page's own thank you for a shop or check (Capture.done). */
   done?: Done

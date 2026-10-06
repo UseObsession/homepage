@@ -5,8 +5,9 @@
      buttons back to their step;
    - the stacked steps (.s-signup__steps): every step in 1 grid cell, so on a wide card the card keeps its tallest
      step's height and Back, Skip and Next never move (on a phone each step takes its own height);
-   - chips as checklist rows on a narrow card (under 440px of card): full width rows 44px tall, a square that fills
-     for a single choice, the plus that becomes a tick for many.
+   - chips as checklist rows on a narrow card (under 440px of card): full width rows 44px tall, a ring that holds a
+     square for a single choice (round means 1 of many, as the system's radio), the plus that becomes a tick for many.
+     A single choice never shows a box, and a multi select never shows a ring.
    Every colour is an --ob- token, so the card follows its ground: paper, ink, or the ink final call in light. */
 
 .s-signup {
@@ -234,7 +235,8 @@ button.s-signup__sq:focus-visible { outline: var(--ob-focus-width) solid var(--o
     white-space: normal;
     text-align: start;
   }
-  /* A single choice row leads with the brand square, which fills when chosen. */
+  /* A single choice row leads with a ring, as the system's radio: round means 1 of many. Chosen, it holds the brand
+     square. Never a box: that is a checkbox, and a multi select row leads with its plus. */
   .s-signup__chips:not(.is-multi) .ob-chip-label::before {
     content: "";
     flex: none;
@@ -242,12 +244,13 @@ button.s-signup__sq:focus-visible { outline: var(--ob-focus-width) solid var(--o
     width: var(--ob-chip-glyph);
     height: var(--ob-chip-glyph);
     border: 1.5px solid currentColor;
-    border-radius: var(--ob-radius-glyph);
+    border-radius: var(--ob-radius-pill);
+    background: linear-gradient(currentColor, currentColor) center / 0 0 no-repeat;
     opacity: .7;
-    transition: background-color var(--ob-dur-base) var(--ob-ease-out), opacity var(--ob-dur-base) var(--ob-ease-out);
+    transition: background-size var(--ob-dur-base) var(--ob-ease-out), opacity var(--ob-dur-base) var(--ob-ease-out);
   }
   .s-signup__chips:not(.is-multi) .ob-chip-input:checked + .ob-chip-label::before {
-    background-color: currentColor;
+    background-size: 5px 5px;
     opacity: 1;
   }
 }
