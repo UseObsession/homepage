@@ -10,7 +10,8 @@
    Story: the 3 rails draw down through 30 days and each event lands as the line reaches its date; at today Notewell and
    Pinecrate read No change while Tallyhop's price change pops with a soft highlight and its mark goes needs you; the
    finding rises under it, its screenshots land and the agent's ring lands on $59; later the drafted move, and Needs you
-   counts 2 to 3. Rest state = the finished scene.
+   counts 2 to 3. Times follow the camera's beats (screens/cam.ts): Tallyhop's rail at 2.2 s, the proof as the camera
+   turns to it (5.5 to 6.1 s), the drafted move as it arrives at 9.85 s. Rest state = the finished scene.
    Main (design px, 528 x 386 inside padding 14): header 24 | 12 | rails 179 | 12 | finding 107 | 12 | foot 40. */
 
 .app-rivals{--rv-k:4.6px}
@@ -149,12 +150,12 @@
 .appx-il.play.app-rivals .rv-a .st-needs{animation:rv-in .35s var(--ease) 3.3s both}
 
 /* 3. the proof rises under it: the screenshots, then the agent's ring on the new price */
-.appx-il.play.app-rivals .rv-find{animation:ax-in .55s var(--ease) 5s both}
-.appx-il.play.app-rivals .rv-c1{animation:ax-in .45s var(--ease) 5.2s both}
-.appx-il.play.app-rivals .rv-c2{animation:ax-pop .45s var(--snap) 5.4s both}
-.appx-il.play.app-rivals .rv-ring{animation:rv-ring .35s var(--ease) 5.75s both}
+.appx-il.play.app-rivals .rv-find{animation:ax-in .55s var(--ease) 5.5s both}
+.appx-il.play.app-rivals .rv-c1{animation:ax-in .45s var(--ease) 5.7s both}
+.appx-il.play.app-rivals .rv-c2{animation:ax-pop .45s var(--snap) 5.9s both}
+.appx-il.play.app-rivals .rv-ring{animation:rv-ring .35s var(--ease) 6.25s both}
 
 /* 4. the next move: the comparison page redrafted, waiting for your OK; Needs you counts 2 to 3 */
-.appx-il.play.app-rivals .rv-act{animation:ax-in .5s var(--ease) 8.9s both}
-.appx-il.play.app-rivals .ax-badge .rv-stk>:first-child{opacity:1;animation:rv-out .25s var(--ease) 9.05s forwards}
-.appx-il.play.app-rivals .ax-badge .rv-stk>:last-child{animation:rv-in .25s var(--ease) 9.05s both}
+.appx-il.play.app-rivals .rv-act{animation:ax-in .5s var(--ease) 9.9s both}
+.appx-il.play.app-rivals .ax-badge .rv-stk>:first-child{opacity:1;animation:rv-out .25s var(--ease) 10.05s forwards}
+.appx-il.play.app-rivals .ax-badge .rv-stk>:last-child{animation:rv-in .25s var(--ease) 10.05s both}

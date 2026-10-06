@@ -28,7 +28,8 @@ import css from './camera.css?inline'
      (its CSS animations' start), so the compositor runs it in step with the story. Off screen it pauses; back in view
      it catches up. A story already playing when the camera arrives (the page's boot
      script plays the first screen at once, src/boot.ts) is joined where it is, easing in from the wide view; a story
-     played again eases out from wherever the camera was.
+     played again eases out from wherever the camera was. A frame that changes size (a window resized, a phone turned)
+     is measured and laid out again where its story is, so the rig and the notes never hold stale px.
    - Reduced motion never films (AppScreen): the finished screen shows as it always has, with only its last note drawn
      still where it reads cleanly at rest (`still`). */
 
@@ -57,8 +58,10 @@ const LIT = 6
 const STEP = 1 / 30
 /* Frames a measure that does not add up is taken again for, before the screen plays as drawn. */
 const TRIES = 20
-/* The least a close beat holds, to be read at a glance (checked while developing). */
+/* The least a close beat holds, to be read at a glance, and the least a note's label stays fully in before it leaves
+   (both checked while developing). */
 const READ = 1.2
+const HOLD = 2
 /* A note: its line draws over DRAW once the shot has settled, then its label fades and rises over SHOW; both leave
    over GONE, ending as the next move starts. Frame px: how far a label stands off its region, how far into the label
    its line meets it, and the frame's inner margin a label keeps (a phone's labels dock to it). */
@@ -72,12 +75,16 @@ const EDGE = { desk: 12, phone: 6 } as const
 /* A phone's docked line reaches what it points at within this many frame px; farther, it is a stub this long. */
 const REACH = 40
 const STUB = 12
+/* A frame that changes size is laid out again once it has held its new size this long (ms). */
+const RESIZE = 160
 const PTR = '<path d="M3 1.5v12.2l3.1-3 2.05 4.6 2.15-.95-2-4.5h4.3Z"/>'
 
 type View = { x: number; y: number; s: number }
 type Box = { l: number; t: number; r: number; b: number }
 type Pt = { x: number; y: number }
-type Run = { lead?: CSSAnimation; anims: Animation[]; els: Element[] }
+/* A run: its animations and elements, what it films, and the frame's size it was laid out for (a still run, reduced
+   motion's note at rest, has no clock). */
+type Run = { lead?: CSSAnimation; anims: Animation[]; els: Element[]; name: string; frame: Element; w: number; h: number }
 /* A note laid out in the frame's px: its label's box, its line's segments (from the region outward) and its dot. */
 type Laid = { label: Box; segs: [Pt, Pt][]; dot?: Pt; text: string }
 
@@ -127,6 +134,39 @@ function watch(il: HTMLElement) {
     }
   })
   seen.observe(il)
+}
+
+/* A frame that changes size is filmed again where its story is (or its still note drawn again), once it has held the
+   new size a moment: the old run's px would put the rig and the notes in the wrong places for good. A run is cut and
+   laid out again in the same task, so no frame shows the screen between the two. */
+let sized: ResizeObserver | undefined
+const framing = new WeakMap<Element, HTMLElement>()
+const settling = new WeakMap<Element, number>()
+function follow(il: HTMLElement, run: Run) {
+  sized ??= new ResizeObserver((entries) => {
+    for (const e of entries) {
+      const il = framing.get(e.target)
+      const run = il && runs.get(il)
+      if (!il || !run) continue
+      const r = e.target.getBoundingClientRect()
+      if (!r.width || !r.height || (Math.abs(r.width - run.w) < 1 && Math.abs(r.height - run.h) < 1)) continue
+      clearTimeout(settling.get(il))
+      settling.set(
+        il,
+        window.setTimeout(() => {
+          settling.delete(il)
+          const now = runs.get(il)
+          const list = now && SHOTS[now.name]
+          if (!now || !list) return
+          cut(il)
+          if (now.lead) shoot(il, now.name, list, 0, true)
+          else still(il, now.name)
+        }, RESIZE),
+      )
+    }
+  })
+  framing.set(run.frame, il)
+  sized.observe(run.frame)
 }
 
 /* The camera's own styles, written into the page once, with its first shot. */
@@ -221,7 +261,7 @@ function measure(il: HTMLElement) {
     r: F.width / 2 + v.s * (ox + b.r * k - v.x),
     b: F.height / 2 + v.s * (oy + b.b * k - v.y),
   })
-  return { fit, win, F, R, k, phone, cx, cy, ox, oy, box, shown, wide: { x: cx, y: cy, s: 1 } as View }
+  return { fit, win, frame, F, R, k, phone, cx, cy, ox, oy, box, shown, wide: { x: cx, y: cy, s: 1 } as View }
 }
 type Geo = NonNullable<ReturnType<typeof measure>>
 
@@ -250,27 +290,39 @@ function lay(g: Geo, name: string, note: Note, v: View, lit: Box, label: HTMLEle
     return { l: b.l + dx, t: b.t + dy, r: b.r + dx, b: b.b + dy }
   }
 
-  /* A phone's label docks to the frame's edge; its line runs straight to the nearest edge of what it points at, when
-     that is near (`reach`). Farther, or with a header in between (`gap`), it would cross the words between, so it is a
-     short stub pointing the way, with no dot: the spotlight already shows what it means. */
+  /* A phone's label docks to the frame's edge. Its line stands over both the label and what it points at, so it never
+     points at nothing, and runs straight to the nearest edge of it, with a dot there. Farther than `reach`, it is a
+     short stub pointing the way, with no dot: the spotlight already shows what it means. With the page's header in
+     between (`gap`), the stub stands just before that element (the header's agent pill), clear of the words beside it,
+     when that spot is over the region. When the region lies to its left, the line runs on down through that clear
+     spot and turns into the region's side, level with `at` (the space beside a lit region is left empty for it); when
+     it does not, the line runs straight the whole way: the header's type is a few px and dimmed, so a hairline across
+     it reads, where a line pointing at the wrong thing would not. */
   if (g.phone && n.dock) {
     const top = n.dock === 'top'
     const y0 = top ? edge : g.F.height - edge - H
     const x0 = n.align === 'end' ? g.F.width - edge - W : n.align === 'center' ? cross.x - W / 2 : edge
     const L = inside({ l: x0, t: y0, r: x0 + W, b: y0 + H })
-    const x = clamp(cross.x, Math.max(L.l, from.l) + 8, Math.min(L.r, from.r) - 8)
-    const b = { x, y: top ? L.b : L.t }
-    const far = top ? from.t - b.y : b.y - from.b
+    const lo = Math.max(L.l, from.l) + 8
+    const hi = Math.min(L.r, from.r) - 8
+    if (lo > hi) warn(name, `the phone note "${text}" is not over what it points at`)
+    const x = clamp(cross.x, lo, hi)
+    const y = top ? L.b : L.t
+    const far = top ? from.t - y : y - from.b
     if (far < 4) warn(name, `the phone note "${text}" has no room for its line`)
-    if (n.gap || far > (n.reach ?? REACH)) {
-      /* A stub runs down (or up) clear of the words it would cross: just before `gap`, where it has one. */
-      const by = n.gap ? g.box(n.gap) : undefined
-      const sx = by ? clamp(g.shown(v, by).l - 14, L.l + 10, L.r - 10) : clamp(cross.x, L.l + 10, L.r - 10)
-      const a = { x: sx, y: b.y + (top ? STUB : -STUB) }
-      return { label: L, segs: [[a, { x: sx, y: b.y }]], text }
+    const by = n.gap ? g.box(n.gap) : undefined
+    const sx = by ? g.shown(v, by).l - 14 : x
+    if (n.gap ? sx >= lo && sx <= hi : far > (n.reach ?? REACH)) {
+      const a = { x: sx, y: y + (top ? STUB : -STUB) }
+      return { label: L, segs: [[a, { x: sx, y }]], text }
+    }
+    if (by && sx > from.r + 8 && sx >= L.l + 8 && sx <= L.r - 8) {
+      const a = { x: from.r, y: clamp(cross.y, from.t + 4, from.b - 4) }
+      const turn = { x: sx, y: a.y }
+      return { label: L, segs: [[a, turn], [turn, { x: sx, y }]], dot: a, text }
     }
     const a = { x, y: top ? from.t : from.b }
-    return { label: L, segs: [[a, b]], dot: a, text }
+    return { label: L, segs: [[a, { x, y }]], dot: a, text }
   }
 
   /* Beside the region: the line leaves `from` (out of its side facing the label, or first out of `exit` for `run` px,
@@ -388,10 +440,11 @@ export function film(il: HTMLElement, name: string) {
   /* Measured on the next frame, once the screen is drawn as shown; a run already on it carries on until then. */
   const id = pending.get(il)
   if (id !== undefined) cancelAnimationFrame(id)
-  pending.set(il, requestAnimationFrame(() => shoot(il, name, list, 0)))
+  pending.set(il, requestAnimationFrame(() => shoot(il, name, list, 0, false)))
 }
 
-function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?: { s: number; e: number; f: number }) {
+/* `relay`: laid out again for a new frame size, where the story is, with no easing in. */
+function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, relay: boolean, was?: { s: number; e: number; f: number }) {
   pending.delete(il)
   const lead = clock(il)
   if (!lead || !il.classList.contains('play') || runs.get(il)?.lead === lead) return
@@ -404,7 +457,7 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
   cut(il)
   /* Measured again on the next frame, for a few frames. */
   const again = () => {
-    if (tries < TRIES) pending.set(il, requestAnimationFrame(() => shoot(il, name, list, tries + 1, was)))
+    if (tries < TRIES) pending.set(il, requestAnimationFrame(() => shoot(il, name, list, tries + 1, relay, was)))
     return tries < TRIES
   }
 
@@ -413,7 +466,7 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
     if (!again()) warn(name, 'the window never measured up; the screen plays as drawn')
     return
   }
-  const { fit, win, F, R, k, phone, cx, cy, ox, oy, box, wide } = geo
+  const { fit, win, frame, F, R, k, phone, cx, cy, ox, oy, box, wide } = geo
   const push = phone ? PUSH.phone : PUSH.desk
 
   /* A centre the frame stays covered from: inside the window by half the view, or the frame's own centre while the
@@ -514,12 +567,12 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
   }
 
   /* The way in: a story joined late (it has run `late` seconds already) eases in from the wide view where it is; one
-     played again eases out from wherever the camera was. */
+     played again eases out from wherever the camera was; one laid out again for a new size is simply where it is. */
   const begun = num(lead.startTime)
   const now = num(document.timeline.currentTime)
   const late = begun === null || now === null ? 0 : Math.max(0, (now - begun) / 1000)
   const back = was && { x: (cx - was.e) / was.s, y: (cy - was.f) / was.s, s: was.s }
-  const into = late > 0.25 ? { t0: late, d: JOIN, from: back ?? wide } : back ? { t0: late, d: REJOIN, from: back } : undefined
+  const into = relay ? undefined : late > 0.25 ? { t0: late, d: JOIN, from: back ?? wide } : back ? { t0: late, d: REJOIN, from: back } : undefined
   const view = (t: number): View => {
     if (!into || t >= into.t0 + into.d) return path(t)
     if (t <= into.t0) return into.from
@@ -582,7 +635,7 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
       const cue = Math.max(from + SETTLE, note.cue ?? 0)
       const shown = cue + DRAW + SHOW
       const gone = Number.isFinite(to) ? to : Infinity
-      if (shown > gone - GONE - 0.8) warn(name, `the note "${laid.text}" is read for under .8s before the move at ${to}s`)
+      if (shown > gone - GONE - HOLD + 1e-6) warn(name, `the note "${laid.text}" is fully in for under ${HOLD}s before the move at ${to}s`)
       const span = Number.isFinite(gone) ? gone : shown
       const fade = (t: number) => (Number.isFinite(gone) ? 1 - ramp(t - (gone - GONE), GONE) : 1)
       const run = (el: Element, ts: number[], at: (t: number) => Keyframe) =>
@@ -681,11 +734,12 @@ function shoot(il: HTMLElement, name: string, list: Shot[], tries: number, was?:
     }
   }
 
-  const run: Run = { lead, anims, els }
+  const run: Run = { lead, anims, els, name, frame, w: F.width, h: F.height }
   runs.set(il, run)
   il.classList.add('cam-on')
   sync(run, il)
   watch(il)
+  follow(il, run)
 }
 
 /* Reduced motion: no camera, the finished screen as drawn, with its last note at rest where it reads cleanly without
@@ -704,16 +758,20 @@ export function still(il: HTMLElement, name: string) {
       pending.delete(il)
       if (runs.has(il)) return
       const g = measure(il)
-      if (!g || (g.phone && note.still === 'desk')) return
+      if (!g) return
+      /* Kept as a run even with nothing drawn (a phone, for a desktop only note), so a new size draws it again. */
+      const run: Run = { anims: [], els: [], name, frame: g.frame, w: g.F.width, h: g.F.height }
+      runs.set(il, run)
+      follow(il, run)
       const b = g.box(g.phone ? (sh.phone ?? sh.on) : sh.on)
-      if (!b) return
+      if ((g.phone && note.still === 'desk') || !b) return
       style()
       const over = layer(il, 'cam-still')
       const label = newLabel(over)
       const laid = lay(g, name, note, g.wide, grow(b, sh.lit ?? LIT), label)
       if (!laid) return over.remove()
       draw(over, laid, label)
-      runs.set(il, { anims: [], els: [over] })
+      run.els.push(over)
       il.classList.add('cam-on')
     }),
   )
@@ -733,4 +791,7 @@ export function cut(il: HTMLElement) {
   for (const el of run.els) el.remove()
   il.classList.remove('cam-on')
   seen?.unobserve(il)
+  sized?.unobserve(run.frame)
+  clearTimeout(settling.get(il))
+  settling.delete(il)
 }

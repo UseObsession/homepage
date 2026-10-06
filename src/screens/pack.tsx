@@ -6,8 +6,11 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function PackScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
+  /* A company's workspace (Home's hero tabs, beside 4 screens drawn for a company) has their sidebar: Accounts and
+     Rivals in the nav, its own lists. An agency's lists its clients. */
+  const company = workspace === 'company'
   return (
-    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence mission for 12 prospects from Clay, run by a declared Obsession AI agent through public sign ups only. Rows land 1 by 1 until it is a customer of 12 prospects with 10 gaps proven. Hobstone Coffee’s pitch fills with 3 findings and their captures, and a click on Copy link copies a proof link Hobstone can check for itself. The lead finding: Hobstone’s 10% welcome code lands in spam.">
+    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence mission for 12 prospects from Clay, run by a declared Obsession AI agent that signs up at each as a new customer, through public sign ups only. Rows land 1 by 1, each with its gap, until 10 of the 12 have one. Hobstone Coffee’s pitch fills with 3 findings and their captures, signed, and a click on Copy link copies its proof link. The lead finding is in the test inbox’s Spam folder. 10 of 12 prospects failed a new customer. Proof link Hobstone can check for itself. Hobstone’s 10% welcome code lands in spam.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Missions<span>/</span>Prospect intelligence</span>
@@ -21,12 +24,26 @@ export function PackScreen({ workspace = 'agency' }: ScreenProps) {
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
             <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Missions<em>24</em></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
+            {company && (
+              <>
+                <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 13.25h10.5M4.25 13.25V2.75h5.5v10.5M9.75 6.25h2v7" /><path d="M6.25 5.5h1.5M6.25 8h1.5M6.25 10.5h1.5" strokeLinecap="round" /></svg>Accounts</a>
+                <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M1.75 8S4 3.75 8 3.75 14.25 8 14.25 8 12 12.25 8 12.25 1.75 8 1.75 8Z" /><circle cx="8" cy="8" r="1.9" /></svg>Rivals</a>
+              </>
+            )}
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.5 9.5h3l1 2h3l1-2h3M2.5 9.5 4 3.5h8l1.5 6v3.25h-11Z" /></svg>Needs you<span className="ax-badge">3</span></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Records</a>
           </nav>
           <div className="ax-clients">
             <p className="ax-side-h">{ws.lists}</p>
-            <a role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
+            {company ? (
+              <>
+                <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Rivals</a><a role="none"><i />Suppliers</a>
+              </>
+            ) : (
+              <>
+                <a role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
+              </>
+            )}
           </div>
           <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
         </aside>
@@ -44,7 +61,7 @@ export function PackScreen({ workspace = 'agency' }: ScreenProps) {
               </div>
               <div className="pk-row pk-r1">
                 <i className="pk-fv fv-tw" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"><path d="M3 6c.8-.9 1.6-.9 2.4 0s1.6.9 2.4 0 1.6-.9 2.4 0" /><path d="M3 8.9c.8-.9 1.6-.9 2.4 0s1.6.9 2.4 0 1.6-.9 2.4 0" /></svg></i>
-                <div><p className="pk-nm">Tidewren Swim</p><p className="pk-gp"><span className="w">Waiting for a text, 47 h</span><span className="g">Opted in, 0 texts in 48 h</span></p></div>
+                <div><p className="pk-nm">Tidewren Swim</p><p className="pk-gp"><span className="w">Waiting for a text, 47h</span><span className="g">Opted in, 0 texts in 48h</span></p></div>
                 <svg className="sig st-landed" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg>
               </div>
               <div className="pk-row pk-r2">
@@ -76,26 +93,26 @@ export function PackScreen({ workspace = 'agency' }: ScreenProps) {
                 <span className="ax-btn pk-copy"><span className="pk-cl pk-a"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M6.9 9.1a2.4 2.4 0 0 0 3.4 0l2-2a2.4 2.4 0 0 0-3.4-3.4l-.7.7M9.1 6.9a2.4 2.4 0 0 0-3.4 0l-2 2a2.4 2.4 0 0 0 3.4 3.4l.7-.7" /></svg>Copy link</span><span className="pk-cl pk-b"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" /></svg>Copied</span></span>
               </div>
               <article className="pk-page">
-                <div className="pk-brand"><i>Y</i><span>{ws.org}</span><span className="pk-date">hobstone.example</span></div>
+                <div className="pk-brand"><i>Y</i><span>{ws.org}</span><span className="pk-date">Pitch · 8 Oct</span></div>
                 <h3>Prepared for <i className="pk-fv fv-hb" aria-hidden="true">H</i>Hobstone Coffee</h3>
                 <ol className="pk-finds">
-                  <li className="pk-f" style={{ '--d': '3.85s' }}>
+                  <li className="pk-f" style={{ '--d': '4.65s' }}>
                     <span className="pk-n">1</span><span className="pk-ft"><b>Welcome email in spam</b><em>09:06 · 10% code inside</em></span>
-                    <span className="ax-shot pk-shot pk-s1" aria-hidden="true"><i className="r" /><i className="r1" /><i className="r2" /><i className="r3" /><i className="a1" /><i className="l1" /><i className="t1" /><i className="pk-mk" /><i className="a2" /><i className="l2" /><i className="a3" /><i className="l3" /></span>
+                    <span className="ax-shot pk-shot pk-s1" aria-hidden="true"><b className="sp">Spam</b><i className="pk-mk" /><i className="dv" /><i className="a1" /><i className="l1" /><b className="t1">10% off</b><i className="a2" /><i className="l2" /></span>
                     <span className="pk-sk k1" aria-hidden="true" /><span className="pk-sk k2" aria-hidden="true"><i /><i /></span><span className="pk-sk k3" aria-hidden="true" />
                   </li>
-                  <li className="pk-f" style={{ '--d': '4s' }}>
-                    <span className="pk-n">2</span><span className="pk-ft"><b>No text after opt in</b><em>0 texts in 48 h</em></span>
+                  <li className="pk-f" style={{ '--d': '4.8s' }}>
+                    <span className="pk-n">2</span><span className="pk-ft"><b>No text after opt in</b><em>0 texts in 48h</em></span>
                     <span className="ax-shot pk-shot pk-s2" aria-hidden="true"><i className="lb" /><i className="in" /><i className="cd" /><i className="bt" /><i className="er" /><i className="tl" /></span>
                     <span className="pk-sk k1" aria-hidden="true" /><span className="pk-sk k2" aria-hidden="true"><i /><i /></span><span className="pk-sk k3" aria-hidden="true" />
                   </li>
-                  <li className="pk-f" style={{ '--d': '4.15s' }}>
-                    <span className="pk-n">3</span><span className="pk-ft"><b>Bot has no delivery date</b><em>Asked twice · no date</em></span>
+                  <li className="pk-f" style={{ '--d': '4.95s' }}>
+                    <span className="pk-n">3</span><span className="pk-ft"><b>Bot has no delivery date</b><em>Asked twice · 11:40</em></span>
                     <span className="ax-shot pk-shot pk-s3" aria-hidden="true"><i className="p1" /><i className="n1" /><i className="q1" /><i className="p2" /><i className="n2" /><i className="q2" /></span>
                     <span className="pk-sk k1" aria-hidden="true" /><span className="pk-sk k2" aria-hidden="true"><i /><i /></span><span className="pk-sk k3" aria-hidden="true" />
                   </li>
                 </ol>
-                <p className="pk-sign"><span>Signed</span>8 Oct · 7f3a 91c2 … c91e</p>
+                <p className="pk-sign"><span>Signed</span>11:52 · 7f3a 91c2 … c91e</p>
               </article>
             </section>
           </div>

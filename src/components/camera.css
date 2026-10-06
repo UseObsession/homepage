@@ -57,7 +57,11 @@
 /* ---------- the notes: a beat's point, a hairline from the lit region to a small label ----------
    Outside the rig, so their type is the frame's own and never scales. The page's own paper and ink are read off the
    root (a scope's tokens resolve where they are declared), since every screen is a glossy black object on either
-   theme: on ink the label is lit glass over the dimmed window; on paper it is the page's own paper, in its ink. */
+   theme: on ink the label is lit glass over the dimmed window, clearly brighter than any of the app's own surfaces
+   (its toasts and chips), so the narrator never reads as product UI; on paper it is the page's own paper, in its ink.
+   Its type stands level with the app's: a desktop card shows 11px app text at about 15.5px, so the point is set at
+   15px, in a heavier weight on a brighter surface (13px on a smaller card, 12px on a phone, where the frame is the main
+   panel). */
 :root {
   --cam-paper: var(--ob-surface);
   --cam-ink: var(--ob-text);
@@ -68,8 +72,8 @@
   inset: 0;
   z-index: 9;
   pointer-events: none;
-  --cam-line: rgb(243 241 236 / .62);
-  --cam-dot: #F3F1EC;
+  --cam-line: rgb(250 249 246 / .66);
+  --cam-dot: #FAF9F6;
 }
 .cam-dot,
 .cam-line,
@@ -89,17 +93,20 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font: 500 13px/18px var(--ob-font-sans, var(--sans));
-  letter-spacing: -.006em;
+  padding: 6px 12px;
+  border-radius: 9px;
+  font: 500 15px/20px var(--ob-font-sans, var(--sans));
+  letter-spacing: -.008em;
   white-space: pre;
   text-align: center;
-  color: #F3F1EC;
-  background: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(255 255 255 / .05)), rgb(22 22 20 / .6);
-  -webkit-backdrop-filter: blur(12px) saturate(1.15);
-  backdrop-filter: blur(12px) saturate(1.15);
-  box-shadow: 0 0 0 1px rgb(255 255 255 / .16) inset, 0 1px 0 rgb(255 255 255 / .1) inset, 0 10px 24px -10px rgb(0 0 0 / .7);
+  color: #FAF9F6;
+  background: linear-gradient(180deg, rgb(255 255 255 / .19), rgb(255 255 255 / .15)), rgb(30 30 28 / .66);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .3) inset, 0 1px 0 rgb(255 255 255 / .22) inset, 0 12px 28px -10px rgb(0 0 0 / .75);
+}
+@media (max-width: 1023.98px) {
+  .cam-note { padding: 5px 10px; border-radius: 8px; font-size: 13px; line-height: 18px; }
 }
 @media (max-width: 519.98px) {
   .cam-note { padding: 4px 9px; border-radius: 7px; font-size: 12px; line-height: 16px; }

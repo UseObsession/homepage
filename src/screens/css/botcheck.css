@@ -9,10 +9,11 @@
    head (title, meta, declared AI agent pill) as on app-board; the next run bottom left, level with the 1 toast.
    Geometry (design px, main 556 x 414, padding 14): head 14..38, wrap 50..339 (grid 248 = 112 + 3 x 42 + 10:
    who 32, head 28, 7 rows x 28, totals 32; gap 12; evidence 268), lock line 372..388, toast 360..400.
-   Story (5.2 s): the grid settles; a scan band walks Chat, Email, Portal and each column's checks tick in, the
-   passed count climbing; Chat's refund cell and Portal's promise cell land as needs you; each failure slides in
-   with its excerpt; once the refund evidence is in view, the fix is typed into the draft; Needs you ticks 2 to 3; the
-   toast.
+   Story (7.75 s, timed to the camera's beats, screens/cam.ts): the grid settles; a scan band walks Chat, Email, Portal
+   and each column's checks tick in, the passed count climbing; Chat's refund cell and Portal's promise cell land as
+   needs you, while the evidence column stays empty (the camera's first note stands there on Home); the evidence slides
+   in as the camera turns to it (4.35 s), the refund's excerpt marked; once it is in view, the fix is typed into the
+   draft; Needs you ticks 2 to 3; once the camera's last note has landed, the toast.
    Rest state (no .play) = the finished scene. */
 @property --bk-n{syntax:"<integer>";inherits:false;initial-value:18}
 
@@ -164,16 +165,16 @@
 .app-botcheck.play .bk-fail:nth-child(3){animation-delay:.72s}
 .app-botcheck.play .bk-fail:nth-child(5){animation-delay:2.52s}
 
-/* 2. each failure arrives with its evidence */
-.app-botcheck.play .bk-v1{animation:bk-slide .6s var(--ease) 1.35s both}
-.app-botcheck.play .bk-v1 .bk-x mark{animation:bk-hl .5s var(--ease) 1.95s both}
-.app-botcheck.play .bk-v2{animation:bk-slide .6s var(--ease) 3s both}
+/* 2. the evidence arrives as the camera turns to it: both failures, the refund's first */
+.app-botcheck.play .bk-v1{animation:bk-slide .6s var(--ease) 4.35s both}
+.app-botcheck.play .bk-v1 .bk-x mark{animation:bk-hl .5s var(--ease) 4.95s both}
+.app-botcheck.play .bk-v2{animation:bk-slide .6s var(--ease) 4.5s both}
 
 /* 3. the fix is suggested, for your OK, once the evidence is in view */
-.app-botcheck.play .bk-fx{animation:bk-fade .35s var(--ease) 4.55s both}
-.app-botcheck.play .bk-ft{animation:bk-type .64s steps(32,end) 4.75s both}
+.app-botcheck.play .bk-fx{animation:bk-fade .35s var(--ease) 5.6s both}
+.app-botcheck.play .bk-ft{animation:bk-type .64s steps(32,end) 5.8s both}
 
 /* 4. Needs you ticks 2 to 3; the toast */
-.app-botcheck.play .bk-nb b:first-child{animation:bk-out .3s var(--ease) 5s both}
-.app-botcheck.play .bk-nb b:last-child{animation:bk-in .3s var(--ease) 5s both}
-.app-botcheck.play .bk-toast{animation:bk-toast .45s var(--ease) 5.5s both}
+.app-botcheck.play .bk-nb b:first-child{animation:bk-out .3s var(--ease) 6.05s both}
+.app-botcheck.play .bk-nb b:last-child{animation:bk-in .3s var(--ease) 6.05s both}
+.app-botcheck.play .bk-toast{animation:bk-toast .45s var(--ease) 7.3s both}

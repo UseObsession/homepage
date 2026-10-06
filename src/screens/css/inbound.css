@@ -2,13 +2,15 @@
    at 09:00, 13:00 and 17:00 every day: the demo form, the site chat and the sales line.
    The hero is one chart: 3 lanes on a shared time scale (log-like: 0, 1 m, 5 min, 1 h, 4 h) crossed by the
    dashed 5 minute target line. Within target is quiet, past the line is solid. Each lane ends in a large readout
-   and the routing check under it: the lead in HubSpot (its mark stands in for its name), and its owner, an avatar or
-   a dashed empty one, Unassigned.
-   Story: the 3 test leads go out, the timers run with the bars; chat lands at 38 s, the phone rings 23 s and rings out
-   (Missed, no voicemail) while the form runs past the line to 4 h 12 m and lands unassigned; the phone's lead lands
-   unassigned too and the lane turns needs you. Once that finding has had its moment, the routing fix slides in, the
-   pointer clicks Approve (the owner's OK, live only after it), the phone item closes, and the toast reports the 17:00
-   retest: the form's first reply in 3m 40s. Bars share 1 clock, so their edges move together.
+   and the routing check under it: the lead's owner, an avatar or a dashed empty one, Unassigned. The owners are read
+   from HubSpot, named once in the chart's head (its mark stands in for its name) and once in the fix.
+   Story: the 3 test leads go out, the timers run with the bars; chat lands at 38s, the phone rings 23s and rings out
+   (Missed, no voicemail) while the form runs past the line to 4h 12m and lands unassigned; the phone's lead lands
+   unassigned too and the lane turns needs you. Once that finding has had its moment, the routing fix slides in as the
+   camera turns to it (6.35 s), the pointer clicks Approve at 7.85 s (the owner's OK, live only after it: Edit and
+   Approve leave before Approved lands, a clean swap), the phone item closes, and the toast reports the 17:00 retest as
+   the camera turns to it (11.1 s): the form's first reply in 3m 40s. Times follow the camera's beats (screens/cam.ts).
+   Bars share 1 clock, so their edges move together.
    Chrome (canonical): Missions selected, the declared AI agent pill in the page head, the lock line beside the OK it
    explains (in the fix), the toast in app-board's 1-line pattern with 1 action. The foot's left is left clear (the
    camera's notes sit there on Home).
@@ -74,7 +76,6 @@
 /* where the lead landed: HubSpot, and its owner (an avatar, or a dashed empty one) */
 .app-inbound .ib-rt{display:flex;align-items:center;gap:5px;height:14px;font:400 11px/14px var(--sans);color:var(--fg-2)}
 .app-inbound .ib-rt b{font-weight:500;color:var(--fg)}
-.app-inbound .ib-dt{font-style:normal;color:var(--fg-3)}
 .app-inbound .ib-un{flex:none;width:12px;height:12px;border-radius:50%;border:1px dashed var(--fg-3)}
 .app-inbound .ib-jo{display:grid;place-items:center;flex:none;width:16px;height:14px;border-radius:4px;font:600 8px/1 var(--sans);font-style:normal;color:var(--fg-2);background:var(--panel-3)}
 .app-inbound .ib-rts{display:grid}
@@ -141,7 +142,7 @@
 
 .app-inbound .l-form{--wk:3.2s;--land:3.2s}
 .app-inbound .l-chat{--wk:1.3s;--land:1.3s}
-.app-inbound .l-phone{--wk:1.2s;--land:7.8s}
+.app-inbound .l-phone{--wk:1.2s;--land:8.25s}
 
 /* 1. the 3 test leads go out: marks work, bars and timers run together */
 .appx-il.play.app-inbound .v-work{animation:ib-show .01s linear 0s both,ib-hide .12s linear var(--wk) forwards}
@@ -167,20 +168,20 @@
 /* the phone rings 23 s and rings out, lands unassigned, then needs you */
 .appx-il.play.app-inbound .l-phone .v-wait{animation:ib-show .01s linear 1.2s both,ib-hide .01s linear 3.45s forwards}
 .appx-il.play.app-inbound .l-phone .v-wait .sig-sq{animation:ib-blink 1.06s linear 1.2s infinite}
-.appx-il.play.app-inbound .l-phone .v-need{animation:ib-show .15s linear 3.45s both,ib-hide .15s linear 7.8s forwards}
+.appx-il.play.app-inbound .l-phone .v-need{animation:ib-show .15s linear 3.45s both,ib-hide .15s linear 8.25s forwards}
 .appx-il.play.app-inbound .l-phone .v-need .sig-sq{animation:ib-pulse 1.3s ease-in-out 3.45s infinite}
 .appx-il.play.app-inbound .ib-rts .w{animation:ib-show .3s var(--ease) 1.25s both,ib-hide .2s var(--ease) 3.45s forwards}
 .appx-il.play.app-inbound .ib-rts .n{animation:ib-show .35s var(--ease) 3.5s both}
-.appx-il.play.app-inbound .l-phone{animation:ib-glow 4.35s var(--ease) 3.45s forwards}
+.appx-il.play.app-inbound .l-phone{animation:ib-glow 4.8s var(--ease) 3.45s forwards}
 
 /* 3. once the finding has had its moment, the fix is drafted and AM approves it */
-.appx-il.play.app-inbound .ib-fix{animation:ax-in .55s var(--ease) 5.6s both}
-.appx-il.play.app-inbound .ib-edit{animation:ib-show .01s linear 0s both,ib-hide .2s var(--ease) 7.55s forwards}
-.appx-il.play.app-inbound .ib-ok{animation:ib-show .01s linear 0s both,ib-press .2s ease-out 7.4s,ib-hide .14s linear 7.56s forwards}
-.appx-il.play.app-inbound .ib-done{animation:ib-show .35s var(--ease) 7.58s both}
-.appx-il.play.app-inbound .ib-done .sig-sq{animation:ib-home .6s var(--snap) 7.65s both}
-.appx-il.play.app-inbound .ib-done .sig-gap{animation:ib-show .35s var(--ease) 7.85s both}
-.appx-il.play.app-inbound .ib-ptr{animation:ib-ptr 1.5s var(--ease) 6.62s both}
+.appx-il.play.app-inbound .ib-fix{animation:ax-in .55s var(--ease) 6.35s both}
+.appx-il.play.app-inbound .ib-edit{animation:ib-show .01s linear 0s both,ib-hide .12s var(--ease) 8s forwards}
+.appx-il.play.app-inbound .ib-ok{animation:ib-show .01s linear 0s both,ib-press .2s ease-out 7.85s,ib-hide .12s linear 8.01s forwards}
+.appx-il.play.app-inbound .ib-done{animation:ib-show .35s var(--ease) 8.15s both}
+.appx-il.play.app-inbound .ib-done .sig-sq{animation:ib-home .6s var(--snap) 8.22s both}
+.appx-il.play.app-inbound .ib-done .sig-gap{animation:ib-show .35s var(--ease) 8.42s both}
+.appx-il.play.app-inbound .ib-ptr{animation:ib-ptr 1.5s var(--ease) 7s both}
 
 /* 4. the same day's retest */
-.appx-il.play.app-inbound .ib-toast{animation:ax-in .55s var(--ease) 8.4s both}
+.appx-il.play.app-inbound .ib-toast{animation:ax-in .55s var(--ease) 11.1s both}

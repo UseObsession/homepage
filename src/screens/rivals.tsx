@@ -5,7 +5,7 @@ import { PartnerWord } from '../components/PartnerMark'
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function RivalsScreen() {
   return (
-    <div className="il appx-il app-rivals"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: 30 days of Tallyhop, Notewell and Pinecrate on 3 timelines, each dated change seen by a declared AI agent that checks their public pages and emails every morning from the US and UK. Today’s 07:04 check catches Tallyhop raising Pro from $49 to $59 in the US only, with screenshots of its pricing page 24 hours apart, and your comparison page is redrafted, waiting for your OK. Pro raised to $59, caught at 07:04 today. US only. Screenshots taken 24 hours apart. Comparison page redrafted. Live only on your OK.">
+    <div className="il appx-il app-rivals"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: 30 days of Tallyhop, Notewell and Pinecrate on 3 timelines, each dated change seen by a declared AI agent that checks their public pages and emails every morning from the US and UK. Today’s 07:04 check catches Tallyhop raising Pro from $49 to $59 in the US only, with screenshots of its pricing page 24 hours apart, and your comparison page is redrafted, waiting for your OK. Pro raised to $59, caught at 07:04 today. Same page, 24 hours apart: $49, then $59. Comparison page redrafted. Live only on your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Rivals</span>

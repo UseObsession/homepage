@@ -5,7 +5,7 @@ import { PartnerWord } from '../components/PartnerMark'
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function InboundScreen() {
   return (
-    <div className="il appx-il app-inbound"><div className="appx-fit"><div className="appx" role="img" aria-label="The Lead leaks page: with your OK, a test lead declared as AI uses your demo form, site chat and sales line at 09:00, 13:00 and 17:00 every day, each first reply timed against a 5 minute target. At 09:00 chat replies in 38 s and is assigned to JO in HubSpot; the form waits 4 h 12 m and lands unassigned; the sales line rings out with no voicemail and lands unassigned. Form waited 4h 12m. Phone rang out. 1 routing rule closes both leaks: unassigned form and phone leads go to the next free rep within 1 minute, live after your OK, and AM approves it at 13:20. At the 17:00 retest the form replies in 3 m 40 s. Same day: 4h 12m down to 3m 40s.">
+    <div className="il appx-il app-inbound"><div className="appx-fit"><div className="appx" role="img" aria-label="The Lead leaks page: with your OK, a test lead declared as AI uses your demo form, site chat and sales line at 09:00, 13:00 and 17:00 every day, each first reply timed against a 5 minute target, each lead’s owner read from HubSpot. At 09:00 chat replies in 38s and is assigned to JO; the form waits 4h 12m and lands unassigned; the sales line rings out with no voicemail and lands unassigned. The routing fix: unassigned form and phone leads go to the next free rep within 1 minute, live after your OK, and AM approves it at 13:20. At the 17:00 retest the form replies in 3m 40s. Form waited 4h 12m. Phone rang out. 1 routing rule closes both leaks. Same day: 4h 12m down to 3m 40s.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Missions<span>/</span>Lead leaks</span>
@@ -40,7 +40,7 @@ export function InboundScreen() {
           {/* the hero: 3 channels against the 5 minute line */}
           <section className="ax-card ib-chart ax-fade" style={{ '--d': '.06s' }}>
             <header className="ib-ch">
-              <b>Time to first reply</b><span>target 5 min</span>
+              <b>Time to first reply</b><span>target 5 min · owners in <PartnerWord id="hubspot" /></span>
               <span className="ib-runs" aria-hidden="true"><span className="on">09:00</span><span>13:00</span><span>17:00</span></span>
             </header>
             <div className="ib-lanes">
@@ -55,7 +55,7 @@ export function InboundScreen() {
                   <span className="ib-v">
                     <span style={{ '--t': '.3s', '--s': '.55s' }}>0<i>s</i></span><span style={{ '--t': '.85s', '--s': '.15s' }}>6<i>s</i></span><span style={{ '--t': '1s', '--s': '.1s' }}>14<i>s</i></span><span style={{ '--t': '1.1s', '--s': '.13s' }}>23<i>s</i></span><span style={{ '--t': '1.23s', '--s': '.22s' }}>38<i>s</i></span><span style={{ '--t': '1.45s' }}>1<i>m</i></span><span style={{ '--t': '1.7s' }}>3<i>m</i></span><span style={{ '--t': '1.95s' }}>6<i>m</i></span><span style={{ '--t': '2.2s' }}>13<i>m</i></span><span style={{ '--t': '2.45s' }}>29<i>m</i></span><span style={{ '--t': '2.7s' }}>1<i>h</i></span><span style={{ '--t': '2.95s', '--s': '.23s' }}>2<i>h</i> 8<i>m</i></span><span className="last" style={{ '--t': '3.18s' }}>4<i>h</i> 12<i>m</i></span>
                   </span>
-                  <span className="ib-rt" style={{ '--t': '3.25s' }}><PartnerWord id="hubspot" /><i className="ib-dt">·</i><i className="ib-un" /><b>Unassigned</b></span>
+                  <span className="ib-rt" style={{ '--t': '3.25s' }}><i className="ib-un" /><b>Unassigned</b></span>
                 </span>
               </div>
               {/* Chat */}
@@ -69,7 +69,7 @@ export function InboundScreen() {
                   <span className="ib-v">
                     <span style={{ '--t': '.3s', '--s': '.55s' }}>0<i>s</i></span><span style={{ '--t': '.85s', '--s': '.15s' }}>6<i>s</i></span><span style={{ '--t': '1s', '--s': '.1s' }}>14<i>s</i></span><span style={{ '--t': '1.1s', '--s': '.13s' }}>23<i>s</i></span><span className="last" style={{ '--t': '1.23s' }}>38<i>s</i></span>
                   </span>
-                  <span className="ib-rt" style={{ '--t': '1.3s' }}><PartnerWord id="hubspot" /><i className="ib-dt">·</i><i className="ib-jo">JO</i>Assigned</span>
+                  <span className="ib-rt" style={{ '--t': '1.3s' }}><i className="ib-jo">JO</i>Assigned</span>
                 </span>
               </div>
               {/* Phone */}
@@ -83,7 +83,7 @@ export function InboundScreen() {
                   <span className="ib-v">
                     <span style={{ '--t': '.3s', '--s': '.55s' }}>0<i>s</i></span><span style={{ '--t': '.85s', '--s': '.15s' }}>6<i>s</i></span><span style={{ '--t': '1s', '--s': '.1s' }}>14<i>s</i></span><span style={{ '--t': '1.1s', '--s': '.1s' }}>23<i>s</i></span><span className="last ib-word" style={{ '--t': '1.2s' }}>Missed</span>
                   </span>
-                  <span className="ib-rt ib-rts" style={{ '--t': '1.25s' }}><span className="w">Rang out, no voicemail</span><span className="n"><PartnerWord id="hubspot" /><i className="ib-dt">·</i><i className="ib-un" /><b>Unassigned</b></span></span>
+                  <span className="ib-rt ib-rts" style={{ '--t': '1.25s' }}><span className="w">Rang out, no voicemail</span><span className="n"><i className="ib-un" /><b>Unassigned</b></span></span>
                 </span>
               </div>
             </div>

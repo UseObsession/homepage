@@ -8,9 +8,14 @@
    - Times are seconds on the screen's own story clock (0 is the .play start, the clock its CSS story runs on).
      Selectors are inside the screen's window (.appx); a shot frames the union of what they match.
    - 1 to 3 beats a screen, each with a reason (the moment it happens, the proof, the finding or the next move), each
-     held long enough to read its note; moves take .6 to .8 s. The camera leans in gently and never dives: the whole
-     window stays in view, and the spotlight does the focusing. The last shot holds the screen's finding, still, with its
-     note. A click shot is framed and still before the pointer sets off.
+     held long enough to read its note: every label but the last is fully in for 2 s at least before it leaves (its cue
+     plus .6 s, to the next move's start less .2 s); moves take .5 to .8 s. The camera leans in gently and never dives:
+     the whole window stays in view, and the spotlight does the focusing. The last shot holds the screen's finding,
+     still, with its note. A click shot is framed and still before the pointer sets off, and its note follows what the
+     click did. Each screen's CSS story is timed to its beats (an event lands as the camera arrives at it).
+   - ScreenTabs (Home's hero) holds a tab for its screen's CSS story plus 4 s, and never sees the camera: so a last note
+     lands no later than about 1.1 s after its story ends (inbound's is the latest), leaving it 2.9 s on screen at
+     least. A story retimed here must keep that, or move its last event after the note.
    - Every beat has 1 note: its point in 8 words or fewer, specific (the finding, the proof or the next move), never
      the section's name or a description of the UI. Each screen's text alternative (its aria-label) ends with its
      notes' points, in order, since the notes are hidden from assistive tech. */
@@ -40,12 +45,14 @@ export type Note = {
   cover?: string
   /* When the line starts to draw: once the shot has settled, or at this story time, when its point lands later. */
   cue?: number
-  /* A phone's label docks to the frame's top or bottom edge, with a short straight line to what it points at: within
-     `reach` px (40), or else a short stub pointing the way. */
+  /* A phone's label docks to the frame's top or bottom edge, with a short straight line to what it points at, over its
+     span: within `reach` px (40), or else a short stub pointing the way. A docked label starts at the frame's left edge
+     unless it says otherwise, so it covers the window's crumb (at the top) or the page's red line (at the foot) whole,
+     never leaving cut words beside it. */
   dock?: 'top' | 'bottom'
   reach?: number
   /* With the page's header between them, a stub instead, just before this element (the header's agent pill), clear of
-     the words beside it. */
+     the words beside it, when that spot is over what it points at; when it is not, the line runs the whole way. */
   gap?: string
   /* What a phone changes: its own words, dock, alignment or anchor. */
   phone?: Partial<Omit<Note, 'phone'>>
@@ -75,9 +82,9 @@ export type Shot = {
 }
 
 export const SHOTS: Record<string, Shot[]> = {
-  /* Prospect intelligence. The moment: rows land 1 by 1 until 10 of the 12 prospects have a proven gap. The next move:
-     Hobstone Coffee's pitch fills as the camera arrives and Copy link copies its signed proof. The finding, held: its
-     10% welcome code lands in spam. */
+  /* Prospect intelligence. The moment: rows land 1 by 1 until 10 of the 12 prospects have failed the agent's sign up as
+     a new customer. The next move: Hobstone Coffee's pitch fills as the camera arrives and Copy link copies its signed
+     proof. The finding, held: its findings lit, the agent's ring on the Spam folder, its 10% welcome code in spam. */
   pack: [
     { at: 0 },
     {
@@ -85,71 +92,59 @@ export const SHOTS: Record<string, Shot[]> = {
       move: 0.7,
       on: '.pk-list',
       lit: 0,
-      note: { text: 'Customer of 12 prospects, 10 gaps proven', side: 'below', pos: 0.12, to: '.pk-list', cue: 1.85, dock: 'bottom' },
+      note: { text: '10 of 12 prospects failed a new customer', side: 'below', pos: 0.12, to: '.pk-list', cue: 1.85, dock: 'bottom' },
     },
     {
-      at: 4.55,
+      at: 5.35,
       move: 0.7,
       on: '.pk-pane',
       lit: 0,
       click: '.pk-copy',
-      tap: 5.3,
-      note: { text: 'Proof link Hobstone can check for itself', side: 'below', pos: 0.8, align: 'end', to: '.pk-pane', cue: 5.5, dock: 'bottom', phone: { align: 'end' } },
+      tap: 6.1,
+      note: { text: 'Proof link Hobstone can check for itself', side: 'below', pos: 0.8, align: 'end', to: '.pk-pane', cue: 6.3, dock: 'bottom', phone: { align: 'end' } },
     },
     {
-      at: 8.2,
+      at: 9.8,
       move: 0.7,
-      on: '.pk-f:first-child',
-      phone: '.pk-finds',
+      on: '.pk-finds',
       round: 8,
       note: {
         text: 'Hobstone’s 10% welcome code lands in spam',
         side: 'below',
-        from: '.pk-f:first-child .pk-shot',
-        exit: 'right',
-        run: 19,
+        at: '.pk-f:nth-child(3) .pk-shot',
         box: '.pk-pane',
+        len: 14,
         align: 'end',
         to: '.pk-pane',
-        cue: 8.55,
+        cue: 10.25,
         still: true,
-        phone: { from: '.pk-finds', pos: 0.88, dock: 'bottom', align: 'end' },
+        phone: { dock: 'bottom', align: 'end' },
       },
     },
   ],
   /* Mystery shopper. The moment and the red line: at hollin, the welcome code is rejected at checkout and the shopper
-     stops before payment. The proof, held: tested again on Day 3, it still fails for every subscriber. Paywren and
-     Molenna play in the dimmed lanes. */
+     stops before payment. The proof, held: tested again on Day 3 as the light opens to the whole lane, it still fails
+     for every subscriber. Paywren and Molenna play in the dimmed lanes. A phone lights hollin's lane to its wait, so its
+     line stands over it. */
   shop: [
     { at: 0 },
     {
       at: 1.1,
       move: 0.7,
       on: '.ms-l2 .ms-mk, .ms-l2 .ms-fav, .ms-l2 .ms-lh b, .ms-l2 .ms-lh em, .ms-l2 .ms-d1, .ms-l2 .ms-stop, .ms-l2 .ms-sp',
-      note: { text: 'SOFTER10 rejected at checkout, 09:15', side: 'right', at: '.ms-l2 .ms-sp', len: 20, cue: 1.6, dock: 'top', gap: '.ms-id' },
+      phone: '.ms-l2 .ms-mk, .ms-l2 .ms-fav, .ms-l2 .ms-lh b, .ms-l2 .ms-lh em, .ms-l2 .ms-d1, .ms-l2 .ms-stop, .ms-l2 .ms-sp, .ms-l2 .ms-wt, .ms-l2 .ms-wl',
+      note: { text: '10% welcome code rejected at checkout, 09:15', side: 'right', at: '.ms-l2 .ms-sp', len: 20, cue: 2.3, dock: 'top', gap: '.ms-id' },
     },
     {
-      at: 4.3,
-      move: 0.7,
+      at: 5.6,
+      move: 0.5,
       on: '.ms-l2 .ms-lh, .ms-l2 .ms-c, .ms-l2 .ms-stop, .ms-l2 .ms-wl, .ms-l2 .ms-sp, .ms-l2 .ms-cap',
-      note: {
-        text: 'Still failing on Day 3, for every subscriber',
-        side: 'below',
-        pos: 0.655,
-        len: 48,
-        align: 'end',
-        to: '.ms-l3 .ms-fd',
-        cue: 4.8,
-        still: 'desk',
-        dock: 'top',
-        gap: '.ms-id',
-        phone: { align: 'end' },
-      },
+      note: { text: 'Still failing on Day 3, for every subscriber', side: 'below', at: '.ms-l2 .ms-d3', len: 14, align: 'end', cue: 6.3, still: 'desk', dock: 'top', gap: '.ms-id', phone: { align: 'start' } },
     },
   ],
   /* Competitor tracking. The catch: the rails draw their 30 days and today Tallyhop's Pro moves from $49 to $59. The
-     proof: the change with its 2 dated screenshots. The next move, held: the comparison page redrafted, live only on
-     your OK. */
+     proof: the same pricing page captured 24 hours apart. The next move, held: the comparison page redrafted, live only
+     on your OK. */
   rivals: [
     { at: 0 },
     {
@@ -159,32 +154,22 @@ export const SHOTS: Record<string, Shot[]> = {
       note: { text: 'Pro raised to $59, caught at 07:04 today', side: 'below', from: '.rv-hit .rv-dot', len: 24, cue: 2.6, dock: 'bottom', reach: 100 },
     },
     {
-      at: 5.6,
+      at: 6.1,
       move: 0.7,
       on: '.rv-txt, .rv-caps',
-      note: { text: 'US only. Screenshots taken 24 hours apart.', side: 'below', from: '.rv-c2', len: 26, cue: 5.95, dock: 'bottom', phone: { align: 'center' } },
+      note: { text: 'Same page, 24 hours apart: $49, then $59', side: 'below', at: '.rv-c2', len: 18, align: 'start', cue: 6.45, dock: 'bottom' },
     },
     {
-      at: 8.85,
+      at: 9.85,
       move: 0.6,
       on: '.rv-find',
       lit: 0,
-      note: {
-        text: 'Comparison page redrafted. Live only on your OK.',
-        side: 'below',
-        at: '.rv-act',
-        len: 18,
-        align: 'end',
-        to: '.rv-find',
-        cue: 9.25,
-        still: true,
-        dock: 'bottom',
-        phone: { align: 'end' },
-      },
+      note: { text: 'Comparison page redrafted. Live only on your OK.', side: 'below', at: '.rv-act', len: 18, align: 'end', to: '.rv-find', cue: 10.4, still: true, dock: 'bottom', phone: { align: 'start' } },
     },
   ],
-  /* Lead leaks. The finding: the 3 channels race the 5 minute line until the form lands unassigned after 4 h 12 m and the
-     phone rings out. The next move: 1 routing rule, and the owner's OK on it. The proof, held: the same day's retest. */
+  /* Lead leaks. The finding: the 3 channels race the 5 minute line until the form lands unassigned after 4h 12m and the
+     phone rings out. The next move: 1 routing rule, and the owner's OK on it (the note follows the click). The proof,
+     held: the same day's retest. */
   inbound: [
     { at: 0 },
     {
@@ -195,46 +180,40 @@ export const SHOTS: Record<string, Shot[]> = {
       note: { text: 'Form waited 4h 12m. Phone rang out.', side: 'below', at: '.l-form .ib-rd', len: 16, align: 'end', to: '.ib-chart', cue: 3.55, dock: 'bottom', reach: 80, phone: { align: 'end' } },
     },
     {
-      at: 6.2,
+      at: 6.95,
       move: 0.6,
       on: '.ib-fix',
       lit: 0,
       click: '.ib-ok',
-      tap: 7.4,
-      note: { text: '1 routing rule closes both leaks', side: 'below', at: '.ib-fh b', len: 16, cue: 6.55, dock: 'bottom' },
+      tap: 7.85,
+      note: { text: '1 routing rule closes both leaks', side: 'below', at: '.ib-fh b', len: 16, cue: 8.3, dock: 'bottom' },
     },
     {
-      at: 9.1,
+      at: 11.8,
       move: 0.7,
       on: '.ib-toast',
       lit: 0,
-      note: { text: 'Same day: 4h 12m down to 3m 40s', side: 'left', len: 26, cue: 9.45, still: 'desk', phone: { text: '4h 12m to 3m 40s', len: 14 } },
+      note: { text: 'Same day: 4h 12m down to 3m 40s', side: 'left', len: 26, cue: 12.15, still: 'desk', phone: { text: '4h 12m to 3m 40s', len: 14 } },
     },
   ],
-  /* Check your AI agents. The finding: the same question, 1 different answer, on chat. The proof and the next move,
-     held: the transcript at 07:02 and the corrected answer, waiting for the owner's OK (never clicked for them). */
+  /* Check your AI agents. The finding: the same question, 1 different answer, on chat, noted in the evidence column
+     while it is still empty. The proof and the next move, held: the evidence slides in as the camera turns to it, the
+     transcript at 07:02 and the corrected answer, waiting for the owner's OK (never clicked for them); its note covers
+     the header's meta, clear of the declared AI agent pill. */
   botcheck: [
     { at: 0 },
     {
       at: 1.2,
       move: 0.7,
       on: '.bk-who, .bk-th, .bk-fail:nth-child(3)',
-      note: {
-        text: 'Chat quotes 30 days.\nYour policy says 14.',
-        side: 'left',
-        at: '.bk-fail:nth-child(3)',
-        cover: '.ax-nav a:nth-child(4), .ax-nav a:nth-child(5)',
-        cue: 1.55,
-        dock: 'top',
-        gap: '.bk-id',
-      },
+      note: { text: 'Chat quotes 30 days. Your policy says 14.', side: 'right', at: '.bk-fail:nth-child(3)', cue: 1.55, dock: 'top', gap: '.bk-id' },
     },
     {
-      at: 4.5,
+      at: 5.05,
       move: 0.7,
       on: '.bk-v1',
       lit: 0,
-      note: { text: 'Caught at 07:02. Fix ready for your OK.', side: 'above', pos: 0.9, align: 'end', cover: '.bk-id', cue: 5.45, still: true, dock: 'top', gap: '.bk-id', phone: { align: 'end' } },
+      note: { text: 'Caught at 07:02. Fix ready for your OK.', side: 'above', pos: 0.15, align: 'start', cover: '.bk-h .ax-meta', cue: 6.5, still: true, dock: 'top', gap: '.bk-id' },
     },
   ],
 }

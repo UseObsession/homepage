@@ -7,13 +7,16 @@
       code (SOFTER10) is rejected at checkout at 09:15; the shopper stops before payment, retests after 48 hours, and
       the Day 3 checkout rejects it again. The 1 finding that needs you: solid finding, needs-you mark, a lane bar, the
       sidebar count goes to 3.
-   3. Molenna Dental (molenna.example), a booking enquiry: sent at 10:40, the first reply at 14:52 (4 h 12 m), ended
-      on Day 1.
+   3. Molenna Dental (molenna.example), a booking enquiry: sent at 10:40, the first reply at 15:27 (4h 47m), ended
+      on Day 1. Its finding sits on its caption row, by the reply it times, so the lane's header is clear under hollin's
+      lane (the camera's last note stands there on Home, screens/cam.ts).
    The scale is honest: 7px an hour, 168px a day. Days run 6..174, 174..342, 342..510 (Day 2 is the quiet band).
-   The store's wait is 336px (48 h, late Day 1 to late Day 3); the dental wait is 30px (4 h 12 m).
+   The store's wait is 336px (48h, late Day 1 to late Day 3); the dental wait is 34px (4h 47m).
    Lane geometry (design px, inside a lane): header 10..30, captures 37..65 (path at 51), captions 70..82.
-   Story: a progress fill runs along the ruler's foot; steps land as it reaches them; the red lines land with the snap
-   tick; findings land and each lane's mark closes, the store's last, as needs you; the report posted in Slack.
+   Story: a progress fill runs along the ruler's foot in 5.6 s; steps land as it reaches them; the red lines land with
+   the snap tick; findings land and each lane's mark closes, the store's last, as needs you; the report posted in
+   Slack. Its clock is the camera's (screens/cam.ts): hollin's Day 1 lands as the camera arrives at 1.1 s, and the
+   Day 3 retest as it opens to the whole lane at 5.6 s.
    The fill, paths and waits scale with a registered --ms-p (animated on the main thread, so it paints in any capture).
    Rest state (no .play) = the finished scene. */
 @property --ms-p{syntax:"<number>";inherits:false;initial-value:1}
@@ -71,6 +74,8 @@
 .ilwrap .app-shop .ms-fd svg{width:12px;height:12px;color:var(--fg-3)}
 .app-shop .ms-fd.ms-hot{font-weight:500;color:var(--bg);background:var(--fg);box-shadow:none}
 .ilwrap .app-shop .ms-fd.ms-hot svg{color:var(--bg)}
+/* a finding on the caption row, beside the reply it times */
+.app-shop .ms-fd.ms-fc{position:absolute;left:var(--ms-x);top:66px;margin:0}
 
 /* the journey: a path behind the captures; waits are dashed, to scale */
 .app-shop .ms-pth{position:absolute;left:var(--ms-a);width:var(--ms-w);top:51px;height:1px;background:var(--line-3);transform-origin:0 50%;transform:scaleX(var(--ms-p))}
@@ -159,8 +164,8 @@
 @keyframes ms-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 @keyframes ms-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-/* 1. time passes: the fill runs Day 1 to Day 3 in 4 s (a clock, so linear), then leaves */
-.appx-il.play.app-shop .ms-fill{animation:ms-p 4s linear .5s both,ms-show .2s var(--ease) .5s both,ms-hide .25s var(--ob-ease-in) 4.5s forwards}
+/* 1. time passes: the fill runs Day 1 to Day 3 in 5.6 s (a clock, so linear), then leaves */
+.appx-il.play.app-shop .ms-fill{animation:ms-p 5.6s linear .5s both,ms-show .2s var(--ease) .5s both,ms-hide .25s var(--ob-ease-in) 6.1s forwards}
 
 /* 2. steps land as the fill reaches them; paths and waits draw with it */
 .appx-il.play.app-shop .ms-c{animation:ms-land .4s var(--ease) var(--ms-t) both}
@@ -175,17 +180,17 @@
 
 /* 4. findings land, each lane's mark closes; the store waits on its inboxes (blinks), then needs you */
 .appx-il.play.app-shop .ms-fd{animation:ms-land .45s var(--ease) var(--ms-t) both}
-.appx-il.play.app-shop .ms-l3 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 1.66s both}
-.appx-il.play.app-shop .ms-l3 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 1.83s both}
-.appx-il.play.app-shop .ms-l1 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 3.46s both}
-.appx-il.play.app-shop .ms-l1 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 3.63s both}
-.appx-il.play.app-shop .ms-l2 .w0{animation:ms-on .01s linear both,ms-hide .2s var(--ob-ease-in) 4.3s forwards}
-.appx-il.play.app-shop .ms-l2 .w0 .sig-sq{animation:ms-blink 1.3s steps(1,end) 1.45s 2}
-.appx-il.play.app-shop .ms-l2 .w1{animation:ms-show .25s var(--ease) 4.32s both}
-.appx-il.play.app-shop .ms-l2 .w1 .sig-sq{animation:ms-sqin .45s var(--snap) 4.32s both,ms-pulse 2.6s ease-in-out 4.8s infinite}
-.appx-il.play.app-shop .ms-l2::before{animation:ms-bar .4s var(--ease) 4.36s both}
-.appx-il.play.app-shop .ms-nb b:first-child{animation:ms-out .25s var(--ob-ease-in) 4.4s both}
-.appx-il.play.app-shop .ms-nb b:last-child{animation:ms-in .3s var(--ease) 4.44s both}
+.appx-il.play.app-shop .ms-l3 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 2.12s both}
+.appx-il.play.app-shop .ms-l3 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 2.36s both}
+.appx-il.play.app-shop .ms-l1 .ms-mk .sig-sq{animation:ms-home .55s var(--snap) 4.64s both}
+.appx-il.play.app-shop .ms-l1 .ms-mk .sig-gap{animation:ms-show .3s var(--ease) 4.88s both}
+.appx-il.play.app-shop .ms-l2 .w0{animation:ms-on .01s linear both,ms-hide .2s var(--ob-ease-in) 5.82s forwards}
+.appx-il.play.app-shop .ms-l2 .w0 .sig-sq{animation:ms-blink 1.3s steps(1,end) 1.83s 2}
+.appx-il.play.app-shop .ms-l2 .w1{animation:ms-show .25s var(--ease) 5.85s both}
+.appx-il.play.app-shop .ms-l2 .w1 .sig-sq{animation:ms-sqin .45s var(--snap) 5.85s both,ms-pulse 2.6s ease-in-out 6.5s infinite}
+.appx-il.play.app-shop .ms-l2::before{animation:ms-bar .4s var(--ease) 5.9s both}
+.appx-il.play.app-shop .ms-nb b:first-child{animation:ms-out .25s var(--ob-ease-in) 5.96s both}
+.appx-il.play.app-shop .ms-nb b:last-child{animation:ms-in .3s var(--ease) 6.02s both}
 
-/* 5. the report is posted, once the finding has landed */
-.appx-il.play.app-shop .ms-toast{animation:ms-toast .45s var(--ease) 5.7s both}
+/* 5. the report is posted, once the finding has landed and been noted */
+.appx-il.play.app-shop .ms-toast{animation:ms-toast .45s var(--ease) 7.3s both}
