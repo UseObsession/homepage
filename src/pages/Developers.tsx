@@ -24,7 +24,7 @@ export function Developers() {
   return (
     <>
       <Hero hero={page.hero} workspace={workspace} reader="developers" />
-      <How how={page.how} workspace={workspace} partners={readerPartners.developers} id="how" />
+      {page.how && <How how={page.how} workspace={workspace} partners={readerPartners.developers} id="how" />}
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="code" />}
       <Gap gap={page.gap} reader="developers" id="gap" />
       <UseCases uses={page.uses} workspace={workspace} reader="developers" id="uses" />

@@ -533,3 +533,76 @@
   .s-out-fact:nth-child(3) { padding-left: 0; border-left: 0; }
   .s-out-fact:nth-child(n + 3) { border-top: 1px solid var(--ob-line-subtle); }
 }
+
+/* ---- Compact (Home): the claim beside its object, then how the agents behave ---------------------------------------
+   From 1200px the claim and the run's 4 numbers take the split's 5 columns and the viewer its 7, top aligned; under that
+   the viewer would be too narrow for the workflow's 3 branches, so the 2 stack, in the same order. The stage keeps 1
+   fixed height in every tab (480 from 860px, the tablet and phone 520 under it, as tall as the workflow's rail needs),
+   and no caption: the 1 link under it goes to the full report. */
+.s-out-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-block);
+}
+.s-out--compact .s-sechead { margin-bottom: var(--ob-space-40); }
+/* The 4 numbers sit 2 by 2 beside the viewer, and on a phone. */
+.s-out--compact .s-out-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+.s-out--compact .s-out-fact:nth-child(3) { padding-left: 0; border-left: 0; }
+.s-out--compact .s-out-fact:nth-child(n + 3) { border-top: 1px solid var(--ob-line-subtle); }
+.s-out-object { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: start; gap: var(--ob-space-16); min-width: 0; }
+.s-out-object > .s-ov { justify-self: stretch; }
+@media (hover: hover) and (pointer: fine) {
+  .s-out-more:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+@media (min-width: 1200px) {
+  .s-out-split {
+    grid-template-columns: var(--s-split);
+    column-gap: var(--s-split-gap);
+    align-items: start;
+  }
+}
+@media (min-width: 860px) {
+  .s-ov--compact .s-ov__stage,
+  .s-ov--compact .s-ov__stage--pdf { height: 480px; padding: var(--ob-space-24); }
+}
+
+/* How the agents behave: 1 row of 6 under the run, each a few words hanging from its own rule (the first row opens on
+   the ink rule, styles/tones.css G2). 3 by 2 on a tablet, 2 by 3 on a phone. */
+.s-out-behave {
+  display: grid;
+  gap: var(--ob-space-24);
+  margin-top: var(--ob-space-block);
+}
+.s-out-behave__h {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-out-behave__list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--ob-space-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-out-behave__list > li {
+  min-width: 0;
+  padding-top: var(--ob-space-16);
+  border-top: var(--ob-border-hair) solid var(--s-rule);
+  font: var(--ob-type-body);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -.01em;
+  line-height: 1.35;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+@media (max-width: 1079.98px) {
+  .s-out-behave__list { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--ob-space-24); }
+  .s-out-behave__list > li:nth-child(n + 4) { border-top-color: var(--ob-line); }
+}
+@media (max-width: 639.98px) {
+  .s-out-behave__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-20) var(--ob-space-16); }
+  .s-out-behave__list > li:nth-child(n + 3) { border-top-color: var(--ob-line); }
+}

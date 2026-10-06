@@ -97,6 +97,8 @@ export type Hero = {
   consoleHeading: string[]
   screens?: HeroScreen[]
   demos?: Demo[]
+  /* Home: 1 quiet line under the tabs, for every recipe the tabs don't show, and its link. */
+  more?: { line: string; link: Cta }
 }
 
 /* The story every page tells, in this order:
@@ -157,8 +159,9 @@ export type Faq = { heading: string; items: { q: string; a: string }[] }
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
    agent meets can read (/agents). Never "it follows robots.txt". */
 export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
-/* `link` is the quiet second path under the form (the sample report, on a page whose offer is a free audit). */
-export type Final = { heading: string; sub: string; capture: Capture; link?: Cta }
+/* `link` is the quiet second path under the form (the sample report, on a page whose offer is a free audit). Home's
+   closing call has no `sub`: the claim, the form and the link. */
+export type Final = { heading: string; sub?: string; capture: Capture; link?: Cta }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
 export type Jobs = { heading: string; items: { title: string; line: string; example?: string; screen?: ScreenName }[] }
@@ -170,13 +173,23 @@ export type Audiences = {
   heading: string
   items: { audience: AudienceId | 'developers'; name: string; line: string; picks?: string[]; screen?: ScreenName; to: string }[]
 }
-export type Outputs = { heading: string; line: string; facts?: { value: string; label: string }[]; formats: { format: string; line: string }[]; cta: Cta }
+/* `formats`: the page's own line under each format (none: the viewer's own, content/sample.ts). `behave` (Home): the 6
+   rules every run follows, each in a few words, in 1 row under the viewer. */
+export type Outputs = {
+  heading: string
+  line: string
+  facts?: { value: string; label: string }[]
+  formats?: { format: string; line: string }[]
+  cta: Cta
+  behave?: { heading: string; items: string[] }
+}
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
 export type Page = {
   meta: Meta
   hero: Hero
-  how: How
+  /* Every story page but Home, where the hero's tabs and the gap's picture show the job. */
+  how?: How
   gap: Gap
   uses: Uses
   outcomes?: Outcomes

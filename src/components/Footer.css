@@ -1,15 +1,9 @@
-/* The site footer (components/Footer): the brand, the full site map, the red lines in 1 line, the trust links and the
-   theme switch. Tokens only. Labels are quiet sentence case; links rest in the second ink and take full ink on hover.
-
-   1 column grid for the whole footer (--s-foot-cols: 6, then 3, then 2). The brand takes every column but the last 3;
-   the page links (Who it’s for, Product, Resources) take the last 3; the 6 recipe groups fill the grid under them. The
-   page links sit in their own grid with the same gap, so their columns land exactly on the grid's. Under 1080px the
-   brand takes its own row and the page links span the grid. */
+/* The site footer (components/Footer): 4 short columns of links, then the logo and the 1 sentence beside the year and
+   the theme switch. Tokens only. Labels are quiet sentence case; links rest in the second ink and take full ink on hover.
+   4 columns across the container from 860px, 2 by 2 under it. The base row sits under a hairline: the brand on the left,
+   the year and the switch on the right; on a phone they stack. */
 
 .s-foot {
-  --s-foot-cols: 6;
-  --s-foot-map-cols: 3;
-  --s-foot-gap: var(--ob-space-24);
   border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
   background-color: var(--ob-bg);
   color: var(--ob-text);
@@ -17,35 +11,18 @@
 }
 .s-foot__in {
   display: grid;
-  gap: var(--ob-space-40);
+  gap: var(--ob-space-48);
   width: 100%;
   max-width: calc(var(--ob-container) + 2 * var(--s-gutter, clamp(16px, 4vw, 32px)));
   margin-inline: auto;
   padding: var(--ob-space-64) var(--s-gutter, clamp(16px, 4vw, 32px)) var(--ob-space-32);
 }
 
-.s-foot__grid {
-  display: grid;
-  grid-template-columns: repeat(var(--s-foot-cols), minmax(0, 1fr));
-  gap: var(--ob-space-32) var(--s-foot-gap);
-}
-
-.s-foot__brand { grid-column: 1 / -4; display: grid; align-content: start; justify-items: start; gap: var(--ob-space-16); }
-.s-foot__tagline { max-width: 30ch; margin: 0; color: var(--ob-text-2); text-wrap: balance; }
-/* The lockup is brand.css .ob-brand-link, like the nav's. */
-.s-foot__home { transition: scale var(--ob-dur-fast) var(--ob-ease-out); }
-.s-foot__home:active { scale: var(--ob-press-scale); }
-
 .s-foot__map {
-  grid-column: -4 / -1;
   display: grid;
-  grid-template-columns: repeat(var(--s-foot-map-cols), minmax(0, 1fr));
-  gap: var(--ob-space-32) var(--s-foot-gap);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--ob-space-32) var(--ob-space-24);
 }
-
-/* The recipes, by job, under a hairline. */
-.s-foot__recipes { padding-top: var(--ob-space-32); box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle); }
-
 .s-foot__col { display: grid; align-content: start; gap: var(--ob-space-12); min-width: 0; }
 .s-foot__label {
   margin: 0;
@@ -79,57 +56,37 @@
   vertical-align: 0.1em;
 }
 
-/* The red lines, then the legal line and the theme switch. */
+/* The logo and the 1 sentence, then the year and the theme switch. */
 .s-foot__base {
   display: grid;
-  gap: var(--ob-space-16);
-  padding-top: var(--ob-space-24);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--ob-space-24) var(--ob-space-48);
+  padding-top: var(--ob-space-32);
   box-shadow: inset 0 var(--ob-border-hair) 0 var(--ob-line-subtle);
 }
-.s-foot__rule {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--ob-space-12);
-  max-width: 76ch;
-  margin: 0;
-  color: var(--ob-text-2);
-  text-wrap: pretty;
-}
-/* The ring sits on the first line's cap height. */
-.s-foot__rule .s-mark { flex: none; margin-top: 3px; color: var(--ob-text); }
-.s-foot__rule a {
-  color: var(--ob-text);
-  text-decoration: underline;
-  text-decoration-thickness: var(--ob-border-hair);
-  text-decoration-color: var(--ob-link-underline);
-  text-underline-offset: 3px;
-  white-space: nowrap;
-}
-@media (hover: hover) and (pointer: fine) {
-  .s-foot__rule a:hover { text-decoration-color: currentColor; }
-}
-.s-foot__end { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-16); }
-.s-foot__legal { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8) var(--ob-space-24); margin: 0; color: var(--ob-text-3); font: var(--ob-type-caption); }
-.s-foot__legal a { color: var(--ob-text-2); }
+.s-foot__brand { display: grid; justify-items: start; gap: var(--ob-space-12); min-width: 0; }
+.s-foot__tagline { max-width: 56rem; margin: 0; color: var(--ob-text-2); text-wrap: balance; }
+/* The lockup is brand.css .ob-brand-link, like the nav's. */
+.s-foot__home { transition: scale var(--ob-dur-fast) var(--ob-ease-out); }
+.s-foot__home:active { scale: var(--ob-press-scale); }
+.s-foot__end { display: flex; align-items: center; gap: var(--ob-space-16); }
+.s-foot__legal { margin: 0; color: var(--ob-text-3); font: var(--ob-type-caption); white-space: nowrap; }
 /* The switch's hit area reaches past its edge; pull it in so it lines up with the content edge. */
 .s-foot__end > .s-theme { margin-inline-end: calc(var(--ob-space-8) * -1); }
 
-@media (max-width: 1079.98px) {
-  .s-foot { --s-foot-cols: 3; }
-  .s-foot__brand,
-  .s-foot__map { grid-column: 1 / -1; }
-}
 @media (max-width: 859.98px) {
-  .s-foot { --s-foot-cols: 2; --s-foot-map-cols: 2; }
+  .s-foot__map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-foot__base { grid-template-columns: minmax(0, 1fr); }
+  .s-foot__end { justify-content: space-between; }
 }
 @media (max-width: 519.98px) {
-  .s-foot { --s-foot-gap: var(--ob-space-16); }
-  .s-foot__in { padding-top: var(--ob-space-48); }
+  .s-foot__in { gap: var(--ob-space-40); padding-top: var(--ob-space-48); }
+  .s-foot__map { column-gap: var(--ob-space-16); }
 }
 /* Touch: rows grow to a comfortable 44px pitch. */
 @media (pointer: coarse) {
   .s-foot__links { gap: 0; }
   .s-foot__links a { display: flex; align-items: center; min-height: var(--ob-target-touch); padding-block: 0; }
   .s-foot__col { gap: var(--ob-space-4); }
-  .s-foot__legal a { display: inline-flex; align-items: center; min-height: var(--ob-target-touch); }
 }

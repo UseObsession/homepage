@@ -38,7 +38,7 @@ export function AudiencePage({
   return (
     <>
       <Hero hero={page.hero} workspace={workspace} reader={reader} />
-      <How how={page.how} workspace={workspace} partners={readerPartners[reader]} id="how" />
+      {page.how && <How how={page.how} workspace={workspace} partners={readerPartners[reader]} id="how" />}
       <Gap gap={page.gap} reader={reader} story={gapStory} id="gap" />
       <UseCases uses={page.uses} workspace={workspace} reader={reader} id="uses" />
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}

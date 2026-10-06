@@ -133,6 +133,25 @@
    a use case's flow), which has no width of its own and would shrink to nothing if centred. */
 .s-hero-console > :not(.s-hero-console-h) { justify-self: stretch; }
 
+/* Home: 1 quiet line under the tabs and its link, centred on the axis, at the tabs' own line size. The line is
+   secondary (the tabs carry the story), so it takes the second ink; the link keeps full ink. */
+.s-hero-console > .s-hero-more {
+  justify-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--ob-space-4) var(--ob-space-16);
+  max-width: var(--ob-container-sm);
+  margin: var(--ob-space-32) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-align: center;
+  text-wrap: balance;
+}
+.s-hero-more__link { flex: none; }
+
 /* The typed heading over the console (Typed.tsx TypedHeading): a heading from the type scale, centred on the axis, with
    the design system's caret. It replaces the console's label; the tabs sit under it. */
 .s-hero-console-h {
@@ -200,4 +219,5 @@
   .s-hero-proof > li + li { box-shadow: none; }
   .s-hero-console { margin-top: var(--ob-space-64); }
   .s-hero-console-h { margin-bottom: var(--ob-space-24); }
+  .s-hero-console > .s-hero-more { margin-top: var(--ob-space-24); }
 }

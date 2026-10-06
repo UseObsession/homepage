@@ -149,3 +149,9 @@
   .s-gap.s-gap--story[data-tone="ink"] .s-gap-row { border-top-color: var(--ob-line); }
   .s-gap.s-gap--story[data-tone="ink"] .s-gap-row:first-child { border-top-color: var(--s-rule); }
 }
+
+/* A gap with no rows (Home): the picture is the section's last word, so it takes no block space under it and the
+   chapter keeps its even padding at both ends. */
+.s-gap--bare .s-gs { margin-bottom: 0; }
+/* Its 2 sentence claim gets the measure to sit 1 sentence to a line wherever the container allows (815px at 52px). */
+.s-gap--bare .s-gap-head { max-width: 56rem; }

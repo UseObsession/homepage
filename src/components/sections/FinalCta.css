@@ -44,8 +44,14 @@
   justify-self: center;
 }
 
-/* The quiet second path under the form (final.link). */
+/* The quiet second path under the form (final.link). On a phone a long one wraps as a sentence, balanced and centred,
+   with its arrow straight after the last word. */
 .s-final__link { margin-top: var(--ob-space-16); }
+@media (max-width: 519.98px) {
+  .s-final__link { display: block; max-width: 30ch; white-space: normal; text-align: center; text-wrap: balance; }
+  .s-final__link .ob-btn-label { display: inline; }
+  .s-final__link .ob-btn-arrow { display: inline-block; margin-inline-start: var(--ob-space-6); vertical-align: -0.12em; }
+}
 
 /* In a centred column the form's micro line and privacy line centre under the pill too. */
 .s-final__form .ob-pill-foot,

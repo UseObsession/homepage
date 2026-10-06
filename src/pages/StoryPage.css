@@ -2,3 +2,6 @@
    The hero ends on its console with 1 section space under it (Hero.css), so the first beat after it starts at once:
    the same 1 section space sits between every 2 beats, from the console to the final call to action. */
 .s-hero + .s-section { padding-top: 0; }
+/* Home: James's persona band follows the hero. The hero's 1 section space is the gap between them, so his section takes
+   none of its own above it (the band itself is as he built it). */
+.s-hero + .james > .section:first-child { padding-top: 0; }

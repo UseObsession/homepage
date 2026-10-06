@@ -25,13 +25,15 @@ import './Hero.css'
    `reader` (Agencies, Founders, Sales, Marketing, Developers) lands the reader in their own room: 1 soft glow of their
    hue behind the pill and the headline, and the typed heading's caret in that hue (Hero.css, styles/accents.css). Home
    has no reader, so its caret stays the design system's: Home's colour is the persona band under the console, where
-   each reader picks their own door. */
+   each reader picks their own door.
+   `hero.more` (Home) is 1 quiet line under the tabs, for every recipe they don't show, with its link. It is the hero's,
+   not the tabs': the console stays the tabs and their screens. */
 
 type Workspace = 'agency' | 'company'
 
 /* The words every hero has; the proof facts and the console are a story page's. */
 type HeroWords = Pick<HeroContent, 'pill' | 'headline' | 'sub' | 'capture' | 'secondary'> &
-  Partial<Pick<HeroContent, 'proof' | 'consoleHeading' | 'screens' | 'demos'>>
+  Partial<Pick<HeroContent, 'proof' | 'consoleHeading' | 'screens' | 'demos' | 'more'>>
 
 function Arrow() {
   return (
@@ -120,6 +122,15 @@ export function Hero({
                 <ScreenTabs screens={hero.screens} labelledBy={`${id}-console`} workspace="company" />
               ) : (
                 hero.demos?.length ? <Console labelledBy={`${id}-console`} demos={hero.demos} workspace={workspace} /> : null
+              )}
+              {hero.more && (
+                <p className="s-hero-more">
+                  <span>{hero.more.line}</span>
+                  <Link className="ob-btn ob-btn--link s-hero-more__link" to={hero.more.link.to}>
+                    <span className="ob-btn-label">{hero.more.link.label}</span>
+                    <Arrow />
+                  </Link>
+                </p>
               )}
             </div>
           )

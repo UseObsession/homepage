@@ -12,7 +12,9 @@ import './Outputs.css'
 /* The output viewer: the 1 real run (the September store check) in every format it can arrive in. A row of pill tabs
    (.ob-ptabs) picks the format; 1 calm stage shows it. Rebuilt from James's OutputFormats on the design system:
    no auto-advance, so nothing moves until the reader picks a tab; the PDF's 2 pages spread out on click and stack
-   again on the next (on a phone the click brings page 2 to the front, since 2 pages side by side would be too small). The status of a verdict is the ring mark plus its word, never a colour. */
+   again on the next (on a phone the click brings page 2 to the front, since 2 pages side by side would be too small). The status of a verdict is the ring mark plus its word, never a colour.
+   `compact` (Home) keeps the tabs and 1 shorter stage, with no line under each format: the section's 1 link says where
+   the rest is. */
 
 /* The words the controls need. They are chrome, not copy; a page can pass its own. */
 const outputsUi = {
@@ -277,10 +279,12 @@ type ViewerProps = {
   lines?: { format: string; line: string }[]
   /* The format to open on. */
   initial?: ViewerFormatId
+  /* The tabs and a shorter stage, with no caption under it (Outputs.css .s-ov--compact). */
+  compact?: boolean
   ui?: Ui
 }
 
-export function OutputViewer({ views = outputFormats, lines, initial, ui = outputsUi }: ViewerProps) {
+export function OutputViewer({ views = outputFormats, lines, initial, compact, ui = outputsUi }: ViewerProps) {
   const base = useId()
   const formats = views.map((f) => {
     const own = lines?.find((l) => l.format === f.label)
@@ -361,7 +365,7 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
   }, [index, picked, reveal])
 
   return (
-    <div className="s-ov">
+    <div className={'s-ov' + (compact ? ' s-ov--compact' : '')}>
       <div ref={rail} className="ob-ptabs s-ov__tabs" role="tablist" aria-label={ui.tabs} onKeyDown={onKey}>
         {formats.map((f, n) => (
           <button
@@ -407,14 +411,16 @@ export function OutputViewer({ views = outputFormats, lines, initial, ui = outpu
               )}
             </div>
           </div>
-          <div className={'s-ov__caption' + (picked ? ' ob-anim-fade' : '')}>
-            <p className="s-ov__line">{f.line}</p>
-            {f.view.kind === 'pdf' && (
-              <To to={f.view.to} className="ob-btn ob-btn--link s-ov__more">
-                <span className="ob-btn-label">{ui.report}</span>
-              </To>
-            )}
-          </div>
+          {!compact && (
+            <div className={'s-ov__caption' + (picked ? ' ob-anim-fade' : '')}>
+              <p className="s-ov__line">{f.line}</p>
+              {f.view.kind === 'pdf' && (
+                <To to={f.view.to} className="ob-btn ob-btn--link s-ov__more">
+                  <span className="ob-btn-label">{ui.report}</span>
+                </To>
+              )}
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -431,27 +437,80 @@ type Props = ViewerProps & {
   facts?: { value: string; label: string }[]
   /* page.outputs.formats: the page's own line for each format. */
   formats?: { format: string; line: string }[]
+  /* page.outputs.behave: how the agents behave, in 1 row under the run (Home). */
+  behave?: { heading: string; items: string[] }
+  /* 'paper' is the page's paper break (Paper and Gloss, styles/tones.css); 'base' stands on the page's own ground, for a
+     page where the break would touch an ink chapter (Home: the gap is right above it). */
+  tone?: 'paper' | 'base'
   id?: string
   className?: string
 }
 
-export function Outputs({ heading, line, cta, facts, formats, views, lines, initial, ui, id, className }: Props) {
-  const headingId = useId()
+function Arrow() {
   return (
-    <section id={id} className={'s-section s-out ob-theme-hybrid' + (className ? ' ' + className : '')} data-tone="paper" aria-labelledby={headingId}>
+    <svg className="ob-btn-glyph ob-btn-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.5 8h9M9 4.5 12.5 8 9 11.5" />
+    </svg>
+  )
+}
+
+/* Compact (Home): the claim and the run's numbers on the left, the viewer and the link to the full report on the right,
+   on the page's split (the claim beside its object, like the questions under it); then how the agents behave, in 1 row.
+   Stacked, it reads in the same order: the claim, the numbers, the viewer, the link, the row. */
+export function Outputs({ heading, line, cta, facts, formats, behave, tone = 'paper', compact, views, lines, initial, ui, id, className }: Props) {
+  const headingId = useId()
+  const paper = tone === 'paper'
+  const factList = facts && facts.length > 0 && (
+    <dl className="s-out-facts">
+      {facts.map((f) => (
+        <div key={f.label} className="s-out-fact">
+          <dt className="s-out-fact__label">{f.label}</dt>
+          <dd className="s-out-fact__value ob-num">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )
+  return (
+    <section
+      id={id}
+      className={'s-section s-out' + (paper ? ' ob-theme-hybrid' : '') + (compact ? ' s-out--compact' : '') + (className ? ' ' + className : '')}
+      data-tone={paper ? 'paper' : undefined}
+      aria-labelledby={headingId}
+    >
       <div className="s-wrap">
-        <SectionHead id={headingId} heading={heading} line={line} cta={cta} />
-        {facts && facts.length > 0 && (
-          <dl className="s-out-facts">
-            {facts.map((f) => (
-              <div key={f.label} className="s-out-fact">
-                <dt className="s-out-fact__label">{f.label}</dt>
-                <dd className="s-out-fact__value ob-num">{f.value}</dd>
-              </div>
-            ))}
-          </dl>
+        {compact ? (
+          <div className="s-out-split">
+            <div className="s-out-claim">
+              <SectionHead id={headingId} heading={heading} line={line} />
+              {factList}
+            </div>
+            <div className="s-out-object">
+              <OutputViewer views={views} lines={lines ?? formats} initial={initial} ui={ui} compact />
+              {cta && (
+                <To to={cta.to} className="ob-btn ob-btn--link s-out-more">
+                  <span className="ob-btn-label">{cta.label}</span>
+                  <Arrow />
+                </To>
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            <SectionHead id={headingId} heading={heading} line={line} cta={cta} />
+            {factList}
+            <OutputViewer views={views} lines={lines ?? formats} initial={initial} ui={ui} />
+          </>
         )}
-        <OutputViewer views={views} lines={lines ?? formats} initial={initial} ui={ui} />
+        {behave && behave.items.length > 0 && (
+          <div className="s-out-behave">
+            <h3 className="s-out-behave__h">{behave.heading}</h3>
+            <ul className="s-out-behave__list">
+              {behave.items.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   )

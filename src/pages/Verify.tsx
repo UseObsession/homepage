@@ -22,7 +22,7 @@ export function Verify() {
   return (
     <>
       <Hero hero={page.hero} workspace="company" />
-      <How how={page.how} workspace="agency" id="how" />
+      {page.how && <How how={page.how} workspace="agency" id="how" />}
       <Gap gap={page.gap} id="gap" />
       <UseCases uses={page.uses} workspace="agency" id="uses" />
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}

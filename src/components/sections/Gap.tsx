@@ -13,7 +13,8 @@ import './Gap.css'
    A page whose gap has a `story` (Home, Marketing) passes the picture as `story`, and it shows first (sections/GapStory):
    the difference felt in 1 look, then the rows say it in words. There the picture holds the chapter's 1 lit thing (its
    receipts are the bone paper), so the rows drop the sheet and read as words on the ink, opened by the ink rule. The
-   page imports the picture, never this section, so only the pages that show it load its code (the app's chunks, App.tsx). */
+   page imports the picture, never this section, so only the pages that show it load its code (the app's chunks, App.tsx).
+   A gap with no rows (Home) is the claim and its picture alone. */
 
 type Props = {
   gap: GapContent
@@ -30,7 +31,7 @@ export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obses
 
   return (
     <section
-      className={'s-section s-gap ob-theme-dark' + (story ? ' s-gap--story' : '')}
+      className={'s-section s-gap ob-theme-dark' + (story ? ' s-gap--story' : '') + (gap.rows.length ? '' : ' s-gap--bare')}
       data-tone="ink"
       data-reader={reader}
       id={id}
@@ -46,35 +47,37 @@ export function Gap({ gap, id, labels = { today: 'Today', obsession: 'With Obses
 
         {story}
 
-        <div className="s-gap-cmp" style={{ '--s-gap-rows': gap.rows.length } as CSSProperties}>
-          <div className="s-gap-panel" aria-hidden="true" />
-          <div className="s-gap-cols" aria-hidden="true">
-            <span className="s-gap-col s-gap-col--today">
-              {labels.today}
-              <svg className="s-gap-arrow" viewBox="0 0 16 16" focusable="false">
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
-            </span>
-            <span className="s-gap-col s-gap-col--obs">
-              <Mark size={16} />
-              {labels.obsession}
-            </span>
+        {gap.rows.length > 0 && (
+          <div className="s-gap-cmp" style={{ '--s-gap-rows': gap.rows.length } as CSSProperties}>
+            <div className="s-gap-panel" aria-hidden="true" />
+            <div className="s-gap-cols" aria-hidden="true">
+              <span className="s-gap-col s-gap-col--today">
+                {labels.today}
+                <svg className="s-gap-arrow" viewBox="0 0 16 16" focusable="false">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+              <span className="s-gap-col s-gap-col--obs">
+                <Mark size={16} />
+                {labels.obsession}
+              </span>
+            </div>
+            <ul className="s-gap-rows">
+              {gap.rows.map((r) => (
+                <li key={r.today} className="s-gap-row">
+                  <p className="s-gap-today">
+                    <span className="ob-sr">{labels.today}: </span>
+                    {r.today}
+                  </p>
+                  <p className="s-gap-obs">
+                    <span className="ob-sr">{labels.obsession}: </span>
+                    {r.obsession}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="s-gap-rows">
-            {gap.rows.map((r) => (
-              <li key={r.today} className="s-gap-row">
-                <p className="s-gap-today">
-                  <span className="ob-sr">{labels.today}: </span>
-                  {r.today}
-                </p>
-                <p className="s-gap-obs">
-                  <span className="ob-sr">{labels.obsession}: </span>
-                  {r.obsession}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        )}
       </div>
     </section>
   )

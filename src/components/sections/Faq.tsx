@@ -5,9 +5,10 @@ import './Faq.css'
 /* The questions (page.faq): a claim heading (trust and the red lines), then the design system's accordion
    (surfaces.css .ob-faq). Each question is a real button inside a heading with aria-expanded; its answer opens in 1
    frame and its words fade in (.ob-disclose). A closed answer is hidden from keys and screen readers. Several can stay
-   open. The answers stay in the prerendered HTML, so crawlers and answer engines read every one, and every answer
-   starts open: AI answer engines may skip words hidden in a closed accordion (Microsoft's guidance for Copilot,
-   _research/seo/AI-SEARCH-RUBRIC.md G4), and a reader can still close any of them. */
+   open. Every answer starts closed (James's review, 6 Oct: collapsed on every page), so the reader sees
+   the 6 to 10 questions at a glance and opens the one they have. The answers stay in the prerendered HTML, so crawlers
+   and answer engines still read every one (and the FAQPage JSON-LD carries them in full); without script they show
+   open (Faq.css). Open any by default with `open`. */
 
 /* The FAQPage JSON-LD for a page's questions (docs/REBUILD.md, SEO). Pure: the same questions give the same object. */
 // oxlint-disable-next-line react/only-export-components
@@ -32,7 +33,7 @@ const LONG = 50
 
 type Props = {
   faq: FaqContent
-  /* The questions open at first, by index. Every one, unless a page says otherwise. */
+  /* The questions open at first, by index. None, unless a page says otherwise. */
   open?: number[]
   id?: string
   className?: string
@@ -41,7 +42,7 @@ type Props = {
 /* The accordion on its own (surfaces.css .ob-faq), for the questions inside a blog post too. */
 export function FaqList({ items, open, className = '' }: { items: FaqContent['items']; open?: number[]; className?: string }) {
   const base = useId()
-  const [shown, setShown] = useState<ReadonlySet<number>>(() => new Set(open ?? items.map((_, i) => i)))
+  const [shown, setShown] = useState<ReadonlySet<number>>(() => new Set(open ?? []))
 
   const toggle = (i: number) =>
     setShown((prev) => {

@@ -30,3 +30,9 @@
 /* An answer is the story, so it reads in the reading ink (styles/tones.css --s-read), not the supporting grey the
    design system's .ob-faq-a sets. Listed for the system to absorb. */
 .s-faq__list .ob-faq-a { color: var(--s-read, var(--ob-text-2)); }
+
+/* Every answer starts closed (Faq.tsx). Without script nothing could open one, so there every answer shows, as it is in
+   the HTML. The page's head script sets .js on <html> before paint, so with script this never applies. */
+:root:not(.js) .ob-faq .ob-disclose { grid-template-rows: 1fr; visibility: visible; }
+:root:not(.js) .ob-faq .ob-disclose > * { opacity: 1; translate: none; }
+:root:not(.js) .ob-faq .ob-faq-icon { display: none; }
