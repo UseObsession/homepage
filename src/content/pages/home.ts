@@ -1,17 +1,20 @@
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
-/* Home (/): 6 blocks, each with 1 job, 1 headline, at most 1 short line and 1 visual, and nothing said twice (Seun's
-   approved Home, 6 Oct):
+/* Home (/): 7 blocks, each with 1 job, 1 headline, at most 1 short line and 1 visual, and nothing said twice (Seun's
+   approved Home, 6 Oct; how it works back on 7 Oct, compact):
    1 what it is (the hero, its form, and the 5 tabs of app screens, with 1 quiet line to every other recipe) >
    2 who it's for (James's persona band, as he built it) >
-   3 the difference, shown (the gap: hollin's picture, Obsession as the customer next to a tool that reads the page) >
-   4 proof (the 1 real run: its story in 1 line, the output in every format, and how the agents behave) >
-   5 questions (6, closed until opened) >
-   6 start (the waitlist, and the agencies' free audits).
-   The jobs, your own AI agents, the recipe list, how it works, the API and the full rules each live on their own page.
+   3 how it works (4 short steps on 1 rail, each over a small slice of the app doing its 1 thing) >
+   4 the difference, shown (the gap: hollin's picture, Obsession as the customer next to a tool that reads the page) >
+   5 proof (the 1 real run: its story in 1 line, the output in every format, and how the agents behave) >
+   6 questions (6, closed until opened) >
+   7 start (the waitlist, and the agencies' free audits).
+   The jobs, your own AI agents, the recipe list, the API and the full rules each live on their own page, and the full
+   How (its app screens) on the reader pages, Developers and Verify.
    The only real run is the September store check: 4 test customers, 48 hours watched, 1 shopper left a basket and 1
-   stopped at checkout, 0 reminders. Every hero screen is an example and says so (its Example tag). */
+   stopped at checkout, 0 reminders. Every hero screen is an example and says so (its Example tag), and so do the how
+   it works slices. */
 
 export const page: Page = {
   meta: {
@@ -80,6 +83,61 @@ export const page: Page = {
       line: 'Plus recipes for renewals, invoices, reviews and more.',
       link: { label: 'Browse all recipes', to: '/recipes' },
     },
+  },
+
+  /* Seun's words, 7 Oct, word for word, with no sub line. The 4 slices follow 1 run: Mystery shopper picked, 12 companies
+     added, approved to run daily and keep watching, findings to Slack. Every name is invented, at a .example address. */
+  howRail: {
+    heading: 'You pick the job and the companies. The agents do the rest.',
+    steps: [
+      {
+        title: 'Pick the job',
+        line: 'A recipe, a task in plain words, or the API.',
+        station: {
+          kind: 'job',
+          field: 'Type a task, or pick a recipe',
+          chips: ['Prospect intelligence', 'Mystery shopper', 'Competitor tracking'],
+          pick: 1,
+        },
+      },
+      {
+        title: 'Add the companies',
+        line: 'Prospects, rivals, clients, even your own. From a list, a CSV or Clay.',
+        station: {
+          kind: 'companies',
+          sources: ['Paste a list', 'CSV', 'Clay'],
+          rows: [
+            { site: 'hollin.example', tag: 'Prospect' },
+            { site: 'larkbound.example', tag: 'Rival' },
+            { site: 'fennick.example', tag: 'Client' },
+          ],
+          more: '9 more',
+        },
+      },
+      {
+        title: 'Approve it',
+        line: 'Agents start when you approve, and keep watching until you stop them.',
+        station: {
+          kind: 'approve',
+          title: 'Mystery shopper',
+          meta: '12 companies · Daily',
+          toggle: 'Keep watching',
+          button: 'Approve',
+          done: 'Approved',
+        },
+      },
+      {
+        title: 'Get it your way',
+        line: 'Every finding lands in the format your team already works in.',
+        station: {
+          kind: 'formats',
+          label: 'Send findings to',
+          chips: ['PDF', 'Email', 'Slack', 'Sheet', 'CRM'],
+          pick: 2,
+          dest: { k: 'Channel', v: '#findings' },
+        },
+      },
+    ],
   },
 
   gap: {

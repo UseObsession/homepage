@@ -112,6 +112,16 @@ export type Hero = {
    use cases (each with its own screen) > outcomes > kinds (every kind of reader it fits) > recipes > proof >
    questions (trust and red lines) > final call to action. A page may skip a beat, never reorder it. */
 export type How = { heading: string; sub?: string; steps: { title: string; line: string; screen: ScreenName; chips?: string[] }[] }
+/* Home's how it works, compact (components/sections/HowRail): the same 4 steps on 1 rail, each over a small slice of the
+   app doing its 1 thing, in place of How's full screens. A station's words are the app's own (the typed line's
+   placeholder, chips, rows, a switch, a button), and the 4 follow 1 run. `pick` is the chip a station picks, by place;
+   `more` counts the rows the list doesn't show. */
+export type HowStation =
+  | { kind: 'job'; field: string; chips: string[]; pick: number }
+  | { kind: 'companies'; sources: string[]; rows: { site: string; tag: string }[]; more: string }
+  | { kind: 'approve'; title: string; meta: string; toggle: string; button: string; done: string }
+  | { kind: 'formats'; label: string; chips: string[]; pick: number; dest: { k: string; v: string } }
+export type HowRail = { heading: string; steps: { title: string; line: string; station: HowStation }[] }
 export type Gap = { heading: string; sub?: string; story?: GapStory; rows: { today: string; obsession: string }[] }
 /* The gap's picture (components/sections/GapStory): 1 invented company over 3 days, 2 lanes on 1 clock. The company is
    hollin, the linen shop in content/hollin.ts, so the picture shows its real looking home page, email and chat. Above,
@@ -194,8 +204,10 @@ export type Developers = { heading: string; line: string; code: string; screen: 
 export type Page = {
   meta: Meta
   hero: Hero
-  /* Every story page but Home, where the hero's tabs and the gap's picture show the job. */
+  /* Every story page but Home, which shows the 4 steps compact (`howRail`), with no full screens. */
   how?: How
+  /* Home only: how it works in 4 short steps, between who it's for and the gap. */
+  howRail?: HowRail
   gap: Gap
   uses: Uses
   outcomes?: Outcomes

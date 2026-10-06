@@ -46,6 +46,10 @@ export const studyPartners: Record<string, PartnerId> = {
   '/use-cases/prospect-intelligence-with-clay': 'clay',
 }
 
+/* Home's how it works (sections/HowRail): a chip in its slices that names 1 of these shows its mark in place of the
+   word: where the list comes from (Clay) and where a finding lands (Slack). */
+export const howRailPartners: PartnerId[] = ['clay', 'slack']
+
 /* Each reader's tools: in How's last step, a chip that names 1 of them shows its mark in place of the word. A tool
    listed here but named by no chip shows nothing (Sales' chip says "CRM", so HubSpot and Salesforce wait for it to
    name them). */

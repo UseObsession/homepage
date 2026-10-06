@@ -41,7 +41,8 @@ if (!dist) throw new Error('No built index.html in dist/ or dist/client/. Run vi
 
 /* The server build renders every app screen into the page: components/screens.ts (the browser's, which fetches a screen
    only on a client side move) is swapped for screens.server.ts, which draws every screen from its component. The partner
-   marks' drawings work the same way (components/partnerMarks.ts and partnerMarks.server.ts). */
+   marks' drawings work the same way (components/partnerMarks.ts and partnerMarks.server.ts), and so does Home's how it
+   works block (components/sections/howBody.ts and howBody.server.ts). */
 await build({
   configFile: false,
   root,
@@ -51,6 +52,7 @@ await build({
     alias: [
       { find: /^\.\/screens$/, replacement: join(root, 'src/components/screens.server.ts') },
       { find: /^\.\/partnerMarks$/, replacement: join(root, 'src/components/partnerMarks.server.ts') },
+      { find: /^\.\/howBody$/, replacement: join(root, 'src/components/sections/howBody.server.ts') },
     ],
   },
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
