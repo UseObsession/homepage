@@ -40,7 +40,7 @@ export function StepList({ steps, start = 1, className = '', level = 4 }: { step
    and its chips beside the screen that shows it, with its numbered steps under the title; the screen stays in view
    while the steps go by, and plays its story as it arrives. A phase without a screen sets its steps beside its title.
    The count runs on across phases, as James numbered them. */
-export function Phases({ how, workspace, id = 'how' }: { how: UseCaseStudy['how']; workspace: Workspace; id?: string }) {
+export function Phases({ how, workspace, id = 'how' }: { how: NonNullable<UseCaseStudy['how']>; workspace: Workspace; id?: string }) {
   const uid = useId()
   const starts = how.steps.reduce<number[]>((acc, _, i) => [...acc, i === 0 ? 1 : acc[i - 1] + how.steps[i - 1].steps.length], [])
   return (

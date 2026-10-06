@@ -45,7 +45,23 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 
 - **The rules every run follows** (James's "Built to behave." section): keep the idea and James's claim heading "Built to behave.", rebuilt on the design system (no all-caps eyebrow, no bullet squares, the ring mark where it helps) with the rules as we agreed: every agent says it's AI and who it works for; it asks the site's bot, never staff, at prospects and rivals; public journeys only, nothing behind a login it wasn't given; it stops before payment unless you set a budget; nothing is sent, signed or spent without your OK; every step is signed. Never "it follows robots.txt". Placed on Home after the proof and before the questions, as the trust beat.
 - **The questions** (James's "Before you name a company"): his heading is a good claim for Home's FAQ; no "Questions" eyebrow. Home v3 (6 Oct) says "Before you join.": nothing on the page asks the reader to name a company, and the form sits right under the questions.
-- **The real run** (Home's output viewer): heading "1 real run. The output, however you work.", the line "4 test customers shopped a UK store in September, name hidden. 2 left a basket or stopped at checkout, and in 48 hours nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.", and 4 facts: 4 journeys run, 2 silent, 15 screenshots, 48h watched. Other pages' proof lines must agree: 1 shopper left a basket and 1 stopped at checkout (never "2 full baskets"). Home v3 (6 Oct): heading "1 real run.", the line "4 test customers shopped a UK store in September. 1 left a basket, 1 stopped at checkout, and nobody wrote to either in 48 hours." and no facts row on Home (the line already gives them; /sample-output keeps them).
+- **The real run** (Home's output viewer): heading "1 real run. The output, however you work.", the line "4 test customers shopped a UK store in September, name hidden. 2 left a basket or stopped at checkout, and in 48 hours nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.", and 4 facts: 4 journeys run, 2 silent, 15 screenshots, 48h watched. Other pages' proof lines must agree: 1 shopper left a basket and 1 stopped at checkout (never "2 full baskets"). Home v3 (6 Oct, the heading and line replaced 7 Oct, 1e): heading "1 real run.", the line "4 test customers shopped a UK store in September. 1 left a basket, 1 stopped at checkout, and nobody wrote to either in 48 hours." and no facts row on Home (the line already gives them; /sample-output keeps them).
+
+## 1e. The agencies use case, cut to 6 blocks (Seun, 7 Oct)
+
+`/use-cases/mystery-shopping-for-ecommerce-agencies`, from `_research/pages/agencies.md` (Page 2, section 3, with the editor's changes 6 to 9), 1 line per change:
+
+- **Order:** hero > the fix > prospect, client, renewal > what real audits found > questions > start.
+- **Hero:** 1 chip ("Example: an agency with 15 clients and 5 prospects") and no note; the micro keeps "the report within 4 days" (never "in 48 hours" for the offer).
+- **The fix** (`fix`): "Each gap comes back with its fix drafted, waiting for your OK." beside the `approve` screen, on the alternate ground, linking Mystery shopper.
+- **Prospect, client, renewal:** 3 cards with the red line in each label and no line of their own; Candles is the bot's promise that was never kept.
+- **What real audits found** (`found`, `components/study/Found`, the page's paper break): "93% of stores we shopped end to end had a gap.", its line, then 4 real findings retold at invented shops (pellam, Celandre, quinnet, ferula in `content/shops.ts`), each a report window with its verdict, linking "See a full report". It replaces the real run block.
+- **Cut:** the phases, the problem, the fit, the report block, the real run block, the hours and the recipes. The hours stay on /agencies, the steps on /recipes/mystery-shopper.
+- **Questions:** "Every client says yes first.", 6, closed; the first is `meta.answer`.
+- **Start:** "Start with 1 store. We’ll ask for the other 4.", its line, the form, and 1 link to /agencies.
+- **Fine print:** says what is made up, and "The 4 examples come from real audits, with every store, brand and product changed."
+- **Build:** `how`, `problem`, `proof`, `hero.example.note` and a use's `line` are optional (`content/types.ts`), so the 2 other use cases draw as before.
+- **Home (1 change):** the real run's heading is "93% of stores we shopped end to end had a gap." and its line "Here is 1 of them. A basket and a checkout left, and no email in 48 hours."
 
 ## 2. The story every page tells
 
@@ -68,6 +84,7 @@ The site James shipped on 2 Oct is the base. We keep its core (prerendering, the
 - Headings make a claim; they never name their section, label the reasoning, or tease a payoff with a question. Run `node ~/.claude/skills/no-meta-callouts/scan.mjs` on the words a reader sees.
 - Numerals, British spelling, contractions, no em or en dashes, no hyphenated compounds where a plain word works.
 - "Continuously", never "for weeks". Never cap scale ("every company on your list", never "up to 50 companies"); example numbers inside demos are fine.
+- **The 50 rule (Seun, 7 Oct):** state strength, and never let an internal limit slip out. Of the audits the site shows only 93% (of stores shopped end to end), 77% (of the gaps, total silence) and up to 1,000 stores in 48 hours (what the agents can do), never how many stores were tried or finished, the run's dates or length, the tests that could not finish, or the cost behind its size.
 - No internal decisions on the page: no recipe counts, "soon", "join order", what is not built yet. The 2 exceptions are the hero pill "Early access" (Seun's call, 3 Oct) and Home's "See all N recipes", N counted from the catalog (Seun, 7 Oct).
 - No Obsession prices, no guarantees, no money promises, no sources or citations on the page, no real company names (use categories, Rival A/B/C, invented names checked to be unused).
 - Every example that is not from a real run is clearly an example in context; the real September store check is the one real run.

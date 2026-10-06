@@ -347,13 +347,23 @@ export type Llms = { summary: string; intro: string }
    An example about the real report itself (appended 3 Oct, mystery shopping for ecommerce agencies) adds, after its
    proof: `real` (the September check, as the report it is), `outcomes` (hours back, each with its model) and `recipes`
    (the other recipes that fit the reader's year); with those it leaves out `more`, the 2 link rows they replace.
-   Every name and figure is an example; `hero.example.note` and `fine` say so on the page. ---- */
+   Cut to 6 beats (Seun, 7 Oct, _research/pages/agencies.md): an example may leave out `how`, `problem` and `proof`, and
+   show instead `fix` (the 1 product moment, on its screen, after the hero) and `found` (what real audits found, after
+   its uses). The 2 other use cases keep every beat they had.
+   Every name and figure is an example; `hero.example.note` or `fine` says so on the page. ---- */
 
 /* 1 of James's numbered steps. `example` is what the customer in the example chose or got. */
 export type StudyStep = { title: string; line: string; example?: string }
 /* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
 export type StudyNode = { label: string; title: string; items: string[]; foot: string }
 export type StudyLink = { label: string; title: string; line: string; cta: Cta }
+
+/* 1 finding from a real audit, retold at an invented shop: `label` names the kind of store and the journey, `verdict`
+   is the report's word for it beside the ring, `finding` the 1 line under the picture, and `shop` the shop it is drawn
+   at (content/shops.ts). Only email was watched, so an absence is "no email". */
+export type ShopId = 'pellam' | 'celandre' | 'quinnet' | 'ferula'
+export type StudyFinding = { label: string; verdict: string; finding: string; shop: ShopId }
+export type StudyFound = { heading: string; line: string; items: StudyFinding[]; cta: Cta }
 
 /* A recipe's name and address come from the recipe itself (content/catalog), so only the line is written here. */
 export type StudyRecipes = {
@@ -371,24 +381,27 @@ export type UseCaseStudy = {
     pill?: string
     headline: string
     sub: string
-    /* Who the example is about, as chips, and the line that says it is made up. */
-    example: { chips: string[]; note: string }
+    /* Who the example is about, as chips, and the line that says it is made up (or none: `fine` says it). */
+    example: { chips: string[]; note?: string }
     flow?: StudyNode[]
     capture: Capture
     /* The second path under the form (the real report, for an example whose offer is a free audit). */
     secondary?: Cta
   }
   /* His phases in order. A phase plays its screen beside its numbered steps; a phase without a screen shows its chips. */
-  how: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
+  how?: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
+  /* The 1 moment of the product that matters, on its screen (the Proof section with `screen`): a gap found, its fix
+     drafted, the reader's OK. It follows the hero, in place of the phases. */
+  fix?: Proof
   /* `answer` is the 1 line that turns the problem into what Obsession hands back. */
-  problem: { heading: string; sub?: string; items: { title: string; line: string }[]; answer?: string }
+  problem?: { heading: string; sub?: string; items: { title: string; line: string }[]; answer?: string }
   /* How it fits the reader's own tools: in and out of the place they already work. */
   fit?: { heading: string; line: string; items: { title: string; line: string }[] }
   /* What the reader keeps, and what Obsession runs. */
   split?: { yours: { label: string; heading: string; items: string[] }; ours: { label: string; heading: string; items: string[] } }
-  outputs?: { heading: string; sub?: string; groups: { label?: string; line?: string; items: { label?: string; title: string; line: string; example: string }[] }[] }
+  outputs?: { heading: string; sub?: string; groups: { label?: string; line?: string; items: { label?: string; title: string; line?: string; example: string }[] }[] }
   /* What lands, on its screen. `opener` is the first email the reader writes from it, with their own mockup. */
-  proof: {
+  proof?: {
     heading: string
     line: string
     screen: ScreenName
@@ -400,6 +413,9 @@ export type UseCaseStudy = {
       mockup: { label: string; sender: string; channel: string; messages: { day: string; text: string }[] }
     }
   }
+  /* What real audits found (components/study/Found): the claim, its line, then each finding drawn as the email or inbox
+     moment it was, at an invented shop (content/shops.ts), with `cta` to a full report. */
+  found?: StudyFound
   /* The 1 real run, as the report it is (the Proof section), for an example that points at the sample output itself. */
   real?: Proof
   /* What the reader can expect, in hours, speed or coverage, each with its model (the Outcomes section). Never money. */

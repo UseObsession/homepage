@@ -1,0 +1,393 @@
+/* What real audits found (components/study/Found.tsx). Site classes start s-fd.
+   2 worlds, as the gap story keeps them (sections/GapStory.css). Obsession's is the report window, in design system
+   tokens only: the bar, the ring and its word, the inbox rows, the trail, the watch. Each shop's is its own: its paper,
+   its ink, 1 accent, a face of its own for its wordmark and headings (content/shops.ts), set as --s-fd-* on its item and
+   read only on its own surfaces (.s-fd-art, the avatar, the product tiles), never on a tag or a mark of ours. What the
+   agent holds a shop to (a blank where a product should be) is marked in our ink, as hollin's promise is. */
+
+/* ---- The grid: 7 and 5 columns, then 5 and 7, each finding over its window on 1 shared line --------------------- */
+
+.s-fd-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--ob-space-24);
+  row-gap: var(--ob-space-48);
+}
+.s-fd-item {
+  grid-column: span 6;
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: var(--ob-space-16);
+  min-width: 0;
+  margin: 0;
+}
+@supports not (grid-template-rows: subgrid) {
+  .s-fd-item { grid-template-rows: auto 1fr; }
+}
+@media (min-width: 1080px) {
+  .s-fd-item:nth-child(4n + 1),
+  .s-fd-item:nth-child(4n) { grid-column: span 7; }
+  .s-fd-item:nth-child(4n + 2),
+  .s-fd-item:nth-child(4n + 3) { grid-column: span 5; }
+}
+@media (max-width: 859.98px) {
+  .s-fd-grid { grid-template-columns: minmax(0, 1fr); row-gap: var(--ob-space-40); }
+  .s-fd-item { grid-column: auto; }
+}
+
+.s-fd-finding {
+  align-self: end;
+  max-width: 34ch;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-fd-cta { margin-top: var(--ob-space-48); }
+/* The example's small print closes the findings (pages/UseCase), a step under the link. */
+.s-fd .s-st-fine { margin-top: var(--ob-space-32); }
+@media (hover: hover) and (pointer: fine) {
+  .s-fd-cta:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+
+/* ---- The report window --------------------------------------------------------------------------------------------- */
+
+.s-fd-win {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  overflow: hidden;
+}
+.s-fd-win .ob-window-title {
+  white-space: normal;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+.s-fd-verdict { color: var(--ob-text); white-space: nowrap; }
+.s-fd-verdict__mark { display: inline-grid; place-items: center; color: var(--ob-text); }
+
+.s-fd-body {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-20);
+  min-width: 0;
+  padding: var(--ob-space-20);
+  color: var(--ob-text);
+  font: 400 12.5px/1.4 var(--ob-font-sans);
+}
+:where(.s-fd-body) p { margin: 0; }
+:where(.s-fd-body) time {
+  font: 400 11px/1.4 var(--ob-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text-3);
+  white-space: nowrap;
+}
+.s-fd-ic { display: inline-grid; place-items: center; flex: none; width: 15px; height: 15px; color: var(--ob-text-2); }
+.s-fd-ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The inbox, as any mail app draws it: the shop's avatar, its name and address, the time, then the subject. */
+.s-fd-mail { display: grid; align-content: start; gap: var(--ob-space-12); min-width: 0; }
+.s-fd-from { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.s-fd-avatar {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--s-fd-accent);
+  color: var(--s-fd-on-accent);
+  font: 600 14px/1 var(--s-fd-face);
+}
+.s-fd-from__n { flex: 1; display: grid; min-width: 0; }
+.s-fd-from__n b { font: 600 13px/1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-fd-from__n span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 11px/1.4 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-fd-subject { font: 600 14px/1.3 var(--ob-font-sans); letter-spacing: -.01em; color: var(--ob-text); }
+
+/* ---- A shop's email: its own paper, ink and face ------------------------------------------------------------------- */
+
+.s-fd-art {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px 16px 18px;
+  border-radius: 4px;
+  background: var(--s-fd-paper);
+  color: var(--s-fd-ink);
+  text-align: center;
+  font: 400 12px/1.45 var(--ob-font-sans);
+}
+.s-fd-wm {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--s-fd-hair);
+  font: var(--s-fd-wm-font);
+  letter-spacing: var(--s-fd-wm-track, 0);
+  text-transform: var(--s-fd-wm-case, none);
+  color: var(--s-fd-ink);
+}
+.s-fd-art__h { font: var(--s-fd-head-font); letter-spacing: -.01em; color: var(--s-fd-ink); text-wrap: balance; }
+.s-fd-art__b { max-width: 30ch; color: var(--s-fd-ink-2); text-wrap: balance; }
+.s-fd-art__k { font: 600 10px/1.2 var(--ob-font-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--s-fd-ink-2); }
+.s-fd-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 16px;
+  border-radius: var(--s-fd-btn-r, 0);
+  background: var(--s-fd-accent);
+  color: var(--s-fd-on-accent);
+  font: 600 11.5px/1 var(--ob-font-sans);
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+/* A product's tile: the shop's own photograph would sit here, so it is drawn flat in the shop's colours. */
+.s-fd-band { display: grid; place-items: center; width: 100%; padding: 10px 0 8px; background: var(--s-fd-tile); }
+.s-fd-prod { display: block; overflow: visible; }
+
+/* Our ink, marking what the agent holds the shop to (hollin's promise, GapStory.css). */
+.s-fd-mark { padding: 0 2px; border-radius: 2px; background: rgb(18 18 17 / .08); box-shadow: 0 1.5px 0 var(--ob-ink, #121211); color: var(--ob-ink, #121211); }
+
+/* ---- 1. pellam: the trail beside the email ------------------------------------------------------------------------- */
+
+.s-fd-item--pellam {
+  /* Oat paper, its walnut ink and 1 oxblood. Ink on paper 13:1, ink-2 on paper 5.4:1. */
+  --s-fd-paper: #EFE9DF;
+  --s-fd-ink: #2B2320;
+  --s-fd-ink-2: #6B5F57;
+  --s-fd-hair: rgb(43 35 32 / .14);
+  --s-fd-accent: #6B2330;
+  --s-fd-on-accent: #F6EFE6;
+  --s-fd-tile: #E3D8C7;
+  --s-fd-face: "Futura", "Century Gothic", "Avenir Next", "Trebuchet MS", sans-serif;
+  --s-fd-wm-font: 500 14px/1 var(--s-fd-face);
+  --s-fd-wm-track: .44em;
+  --s-fd-wm-case: uppercase;
+  --s-fd-head-font: 400 19px/1.15 var(--s-fd-face);
+}
+.s-fd-body--pellam { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); column-gap: var(--ob-space-24); }
+
+.s-fd-trail { position: relative; align-self: start; display: grid; align-content: start; margin: 0; padding: 0; list-style: none; }
+/* The thread through the steps, solid while the shopper acts, dashed while the store says nothing. */
+.s-fd-trail::before { content: ""; position: absolute; top: 18px; bottom: 18px; left: 7px; width: 1px; background: var(--ob-line-strong); }
+.s-fd-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 10px 0;
+}
+.s-fd-step .s-fd-ic { position: relative; height: 19px; background: var(--s-obj-face, var(--ob-surface)); }
+.s-fd-step > b { font: 500 12.5px/1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-fd-step.is-in .s-fd-ic { color: var(--ob-text); }
+.s-fd-wait {
+  position: relative;
+  padding: 10px 0 10px 25px;
+  font: 400 11px/1.4 var(--ob-font-mono);
+  color: var(--ob-text-2);
+}
+.s-fd-wait::before { content: ""; position: absolute; top: 0; bottom: 0; left: 5px; width: 5px; background: var(--s-obj-face, var(--ob-surface)); }
+.s-fd-wait::after { content: ""; position: absolute; top: 2px; bottom: 2px; left: 7px; border-left: 1px dashed var(--ob-text-3); }
+.s-fd-chip {
+  grid-column: 2 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 6px 10px 6px 6px;
+  border-radius: 8px;
+  background: rgb(var(--ob-sheen-rgb) / .04);
+  box-shadow: inset 0 0 0 1px var(--ob-line);
+}
+.s-fd-chip__ph { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 5px; background: var(--s-fd-tile); }
+.s-fd-chip__ph svg { width: 30px; height: 30px; }
+.s-fd-chip > span:last-child { display: grid; min-width: 0; }
+.s-fd-chip b { font: 500 12px/1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-fd-chip > span:last-child > span { font: 400 11px/1.35 var(--ob-font-sans); color: var(--ob-text-2); }
+
+.s-fd-pdp { display: grid; justify-items: center; gap: 8px; width: 100%; }
+.s-fd-pdp__ph { display: grid; place-items: center; width: 100%; max-width: 200px; aspect-ratio: 5 / 4; background: var(--s-fd-tile); }
+.s-fd-pdp__ph svg { width: 58%; height: auto; }
+.s-fd-pdp b { font: 500 12px/1.3 var(--s-fd-face); letter-spacing: .06em; color: var(--s-fd-ink); }
+
+.s-fd-prod--shirt .s-fd-prod__body { fill: #CDBA9D; stroke: #7E6A55; stroke-width: 1.4; stroke-linejoin: round; }
+.s-fd-prod--shirt .s-fd-prod__line { fill: none; stroke: #7E6A55; stroke-width: 1.4; stroke-linejoin: round; }
+.s-fd-prod--shirt .s-fd-prod__dot { fill: #6B5A47; }
+
+@container (max-width: 540px) {
+  .s-fd-body--pellam { grid-template-columns: minmax(0, 1fr); row-gap: var(--ob-space-16); }
+}
+
+/* ---- 2. Celandre: 2 cart emails, the first open, its table empty ---------------------------------------------------- */
+
+.s-fd-item--celandre {
+  /* Blush paper, near black, 1 gold. Ink on paper 15:1, ink-2 on paper 4.9:1. */
+  --s-fd-paper: #F7EEEA;
+  --s-fd-ink: #1F1A1A;
+  --s-fd-ink-2: #75655F;
+  --s-fd-hair: rgb(31 26 26 / .14);
+  --s-fd-accent: #1F1A1A;
+  --s-fd-on-accent: #F7EEEA;
+  --s-fd-tile: #EDD8CF;
+  --s-fd-face: "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", "Times New Roman", serif;
+  --s-fd-wm-font: 400 17px/1 var(--s-fd-face);
+  --s-fd-wm-track: .3em;
+  --s-fd-wm-case: uppercase;
+  --s-fd-head-font: italic 400 21px/1.1 var(--s-fd-face);
+}
+.s-fd-inbox { display: grid; margin: 0; padding: 0; list-style: none; overflow: hidden; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--ob-line); }
+.s-fd-row { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; column-gap: 10px; padding: 8px 12px; }
+.s-fd-row + .s-fd-row { border-top: 1px solid var(--ob-line-subtle); }
+.s-fd-row.is-open { background: rgb(var(--ob-sheen-rgb) / .06); }
+.s-fd-row .s-fd-avatar { width: 24px; height: 24px; font-size: 13px; }
+.s-fd-row__t { display: grid; min-width: 0; }
+.s-fd-row__t b { font: 600 12.5px/1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-fd-row__t span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 12px/1.35 var(--ob-font-sans); color: var(--ob-text-2); }
+/* The second email is the first again: its sheet shows behind the open one. */
+.s-fd-art--stack { margin: 5px 5px 0 0; box-shadow: 5px -5px 0 -1px color-mix(in oklab, var(--s-fd-paper) 34%, transparent); }
+
+.s-fd-prod--lip { width: 128px; height: auto; }
+.s-fd-prod--lip .s-fd-prod__bullet { fill: #9A2C43; }
+.s-fd-prod--lip .s-fd-prod__sleeve { fill: #B8934F; }
+.s-fd-prod--lip .s-fd-prod__case { fill: #262020; }
+.s-fd-prod--lip .s-fd-prod__pan { fill: #D9A497; stroke: #B8934F; stroke-width: 1.5; }
+
+.s-fd-table { display: grid; gap: 10px; width: 100%; padding: 12px 0; border-block: 1px solid var(--s-fd-hair); text-align: left; }
+.s-fd-table__h { font: 600 10px/1.2 var(--ob-font-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--s-fd-ink-2); }
+.s-fd-table__row { display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; column-gap: 12px; }
+.s-fd-table__img { width: 46px; height: 46px; border: 1px dashed rgb(31 26 26 / .3); }
+.s-fd-table__cells { display: grid; gap: 10px; color: var(--s-fd-ink); }
+.s-fd-table__total { display: flex; justify-content: flex-end; align-items: baseline; gap: 3px; font: 600 12px/1.3 var(--ob-font-sans); color: var(--s-fd-ink); }
+/* A blank where a word should be, marked in our ink. */
+.s-fd-blank {
+  display: inline-block;
+  width: 3em;
+  height: 1.1em;
+  vertical-align: -.25em;
+  border-radius: 2px;
+  background: rgb(18 18 17 / .07);
+  box-shadow: 0 1.5px 0 var(--ob-ink, #121211);
+}
+.s-fd-blank.is-wide { display: block; width: 70%; height: 12px; }
+
+/* ---- 3. quinnet: the welcome, its button, and the closed store it opens --------------------------------------------- */
+
+.s-fd-item--quinnet {
+  /* Cream, deep teal, 1 tangerine. Ink on paper 10.8:1, ink-2 on paper 5.6:1. */
+  --s-fd-paper: #FFF3E3;
+  --s-fd-ink: #0F3F3B;
+  --s-fd-ink-2: #476A66;
+  --s-fd-hair: rgb(15 63 59 / .16);
+  --s-fd-accent: #0F3F3B;
+  --s-fd-on-accent: #FFF3E3;
+  --s-fd-tile: #FFD7B5;
+  --s-fd-face: "Arial Rounded MT Bold", "Nunito", "Varela Round", "Avenir Next", sans-serif;
+  --s-fd-wm-font: 700 22px/1 var(--s-fd-face);
+  --s-fd-wm-track: -.02em;
+  --s-fd-head-font: 700 18px/1.1 var(--s-fd-face);
+  --s-fd-btn-r: 999px;
+}
+.s-fd-body--quinnet { position: relative; padding-bottom: var(--ob-space-24); }
+.s-fd-body--quinnet .s-fd-mail { width: 64%; }
+.s-fd-band__n { margin-top: 2px; font: 700 11px/1.2 var(--s-fd-face); color: var(--s-fd-ink); }
+.s-fd-prod--can { width: 74px; height: auto; }
+.s-fd-prod--can .s-fd-prod__fruit { fill: #C7343B; }
+.s-fd-prod--can .s-fd-prod__seg { fill: none; stroke: #FFD7B5; stroke-width: 1.4; }
+.s-fd-prod--can .s-fd-prod__can { fill: #F2652B; }
+.s-fd-prod--can .s-fd-prod__band { fill: #FFF3E3; }
+.s-fd-prod--can .s-fd-prod__rim { fill: none; stroke: #C64C1C; stroke-width: 2; stroke-linecap: round; }
+.s-fd-prod--can .s-fd-prod__seal { fill: #0F3F3B; }
+.s-fd-art__go { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
+.s-fd-code { padding: 6px 10px; border: 1px dashed var(--s-fd-ink-2); border-radius: 999px; font: 600 11px/1 var(--ob-font-mono); letter-spacing: .04em; color: var(--s-fd-ink); }
+.s-fd-btn.is-hover { background: color-mix(in oklab, var(--s-fd-accent) 86%, white); }
+.s-fd-pointer { position: absolute; right: 8px; bottom: -11px; width: 13px; height: 17px; fill: #FFFFFF; stroke: #121211; stroke-width: 1; stroke-linejoin: round; }
+/* The address the button goes to, as a browser shows it at the foot of the window on hover. */
+.s-fd-url {
+  justify-self: start;
+  max-width: 100%;
+  padding: 4px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 4px;
+  background: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 1px var(--ob-line-strong);
+  font: 400 10.5px/1.3 var(--ob-font-mono);
+  color: var(--ob-text);
+}
+/* The store it opens: a development store, closed, in the plain page any closed store shows. */
+.s-fd-closed {
+  position: absolute;
+  right: var(--ob-space-20);
+  bottom: 72px;
+  width: 38%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--ob-surface-raised);
+  box-shadow: 0 0 0 1px var(--ob-line-strong), 0 20px 40px -14px rgb(0 0 0 / .75);
+}
+.s-fd-closed__bar { display: flex; align-items: center; gap: 6px; min-width: 0; padding: 7px 10px; overflow: hidden; white-space: nowrap; font: 400 10.5px/1.2 var(--ob-font-mono); color: var(--ob-text-2); }
+.s-fd-closed__bar .s-fd-ic { width: 12px; height: 12px; }
+.s-fd-closed__bar .s-fd-ic svg { width: 12px; height: 12px; }
+.s-fd-closed__page { display: grid; justify-items: center; gap: 6px; padding: 20px 12px 22px; background: #F3F2EE; color: #2A2926; text-align: center; }
+.s-fd-closed__lock { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #E3E1DA; color: #2A2926; }
+.s-fd-closed__lock svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.s-fd-closed__page b { font: 600 13px/1.25 var(--ob-font-sans); }
+.s-fd-closed__page span { font: 400 11px/1.35 var(--ob-font-sans); color: #66645E; }
+@container (max-width: 440px) {
+  .s-fd-body--quinnet .s-fd-mail { width: auto; }
+  .s-fd-closed { position: relative; right: auto; bottom: auto; justify-self: end; width: 74%; margin-top: calc(var(--ob-space-12) * -1); }
+}
+
+/* ---- 4. ferula: the welcome, then the basket and 48 hours with nothing on them ------------------------------------ */
+
+.s-fd-item--ferula {
+  /* Pale clay, deep moss, 1 sage. Ink on paper 11.4:1, ink-2 on paper 5:1. */
+  --s-fd-paper: #F2F0E6;
+  --s-fd-ink: #2D3A28;
+  --s-fd-ink-2: #636D5A;
+  --s-fd-hair: rgb(45 58 40 / .15);
+  --s-fd-accent: #50653F;
+  --s-fd-on-accent: #F2F0E6;
+  --s-fd-tile: #DCE2CF;
+  --s-fd-face: "Optima", "Candara", "Segoe UI", "Gill Sans", sans-serif;
+  --s-fd-wm-font: 500 21px/1 var(--s-fd-face);
+  --s-fd-wm-track: .06em;
+  --s-fd-head-font: 500 18px/1.15 var(--s-fd-face);
+}
+.s-fd-body--ferula { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--ob-space-24); }
+.s-fd-prod--soap { width: 120px; height: auto; }
+.s-fd-prod--soap.is-small { width: 32px; }
+.s-fd-prod--soap .s-fd-prod__bar { fill: #E5DEC8; stroke: #A9A38A; stroke-width: 1.4; }
+.s-fd-prod--soap .s-fd-prod__press { fill: none; stroke: #C2BCA3; stroke-width: 1.2; }
+.s-fd-prod--soap .s-fd-prod__stem { fill: none; stroke: #50653F; stroke-width: 1.4; stroke-linecap: round; }
+.s-fd-prod--soap .s-fd-prod__leaf { fill: #6E8558; }
+
+.s-fd-after { align-self: start; display: grid; align-content: start; gap: var(--ob-space-12); min-width: 0; padding: var(--ob-space-16); border-radius: 8px; box-shadow: inset 0 0 0 1px var(--ob-line); }
+.s-fd-after__k { font: var(--ob-type-caption); color: var(--ob-text-2); }
+.s-fd-after__item { display: grid; grid-template-columns: 38px minmax(0, 1fr); grid-template-areas: "ph name" "ph time"; align-items: center; column-gap: 10px; }
+.s-fd-after__ph { grid-area: ph; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 6px; background: var(--s-fd-tile); }
+.s-fd-after__item b { grid-area: name; align-self: end; font: 500 12.5px/1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-fd-after__item time { grid-area: time; align-self: start; }
+.s-fd-watch { display: grid; gap: 6px; padding-top: 4px; }
+.s-fd-watch__track { position: relative; height: 26px; border-radius: 4px; background: rgb(var(--ob-sheen-rgb) / .02); box-shadow: inset 0 0 0 1px var(--ob-line); }
+.s-fd-watch__track i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ob-line); }
+.s-fd-watch__track i:first-child,
+.s-fd-watch__track i:last-child { display: none; }
+/* The moment the basket was left: the square, at hour 0. */
+.s-fd-watch__track::before { content: ""; position: absolute; top: 50%; left: 6px; width: 7px; height: 7px; translate: 0 -50%; background: var(--ob-text); }
+.s-fd-watch__scale { display: flex; justify-content: space-between; font: 400 10.5px/1.2 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-fd-none { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 1px dashed var(--ob-line-strong); border-radius: 8px; font: 500 12.5px/1.3 var(--ob-font-sans); color: var(--ob-text-2); }
+@container (max-width: 540px) {
+  .s-fd-body--ferula { grid-template-columns: minmax(0, 1fr); row-gap: var(--ob-space-16); }
+}
+
+@media (forced-colors: active) {
+  .s-fd-art, .s-fd-closed__page { forced-color-adjust: none; }
+}

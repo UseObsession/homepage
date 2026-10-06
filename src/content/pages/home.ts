@@ -210,10 +210,11 @@ export const page: Page = {
   uses: { heading: '', items: [] },
 
   outputs: {
-    /* The line tells the run and the viewer's tabs show the formats, so the heading says only what it is. */
-    heading: '1 real run.',
-    line: '4 test customers shopped a UK store in September. 1 left a basket, 1 stopped at checkout, and nobody wrote to either in 48 hours.',
-    /* No numbers row on Home: the line above already gives the run's 4, 2 and 48 hours. /sample-output has them all. */
+    /* The claim is what real audits found (Seun, 7 Oct, the same claim as the agencies use case); the line hands it to
+       the 1 store the viewer below shows. Only the strength shows: the share with a gap, never how many were tried. */
+    heading: '93% of stores we shopped end to end had a gap.',
+    line: 'Here is 1 of them. A basket and a checkout left, and no email in 48 hours.',
+    /* No numbers row on Home: the line above already says what the run found. /sample-output has every figure. */
     facts: [],
     cta: { label: 'See the full report', to: '/sample-output' },
     /* The rules every run follows, in a few words each; /agents has them in full. */

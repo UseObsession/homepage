@@ -29,7 +29,7 @@ function Arrow({ className }: { className: string }) {
 }
 
 /* The gap: why it matters, in the reader's terms. The pains side by side under the claim, then the answer, raised. */
-export function Problem({ problem, id = 'gap' }: { problem: UseCaseStudy['problem']; id?: string }) {
+export function Problem({ problem, id = 'gap' }: { problem: NonNullable<UseCaseStudy['problem']>; id?: string }) {
   const uid = useId()
   return (
     <section className="s-section s-st-problem ob-theme-dark" data-tone="ink" id={id} aria-labelledby={`${uid}-h`}>
@@ -149,7 +149,7 @@ export function Uses({ outputs, id = 'uses' }: { outputs: NonNullable<UseCaseStu
                   <li key={u.title} className="s-st-use">
                     {u.label && <p className="s-st-use__label">{u.label}</p>}
                     {g.label ? <h4 className="s-st-use__title">{tie(u.title)}</h4> : <h3 className="s-st-use__title">{tie(u.title)}</h3>}
-                    <p className="s-st-use__line">{tie(u.line)}</p>
+                    {u.line && <p className="s-st-use__line">{tie(u.line)}</p>}
                     <Example text={u.example} />
                   </li>
                 ))}
@@ -163,7 +163,7 @@ export function Uses({ outputs, id = 'uses' }: { outputs: NonNullable<UseCaseStu
 }
 
 /* The first email the reader writes from the proof, beside the mockup of their client's product it carries. */
-function Opener({ opener }: { opener: NonNullable<UseCaseStudy['proof']['opener']> }) {
+function Opener({ opener }: { opener: NonNullable<NonNullable<UseCaseStudy['proof']>['opener']> }) {
   const uid = useId()
   const { mail, mockup } = opener
   return (
@@ -232,7 +232,7 @@ function Opener({ opener }: { opener: NonNullable<UseCaseStudy['proof']['opener'
 }
 
 /* What lands: the claim, the steps beside the screen that shows them, then the first email written from it. */
-export function StudyProof({ proof, workspace, id = 'proof' }: { proof: UseCaseStudy['proof']; workspace: Workspace; id?: string }) {
+export function StudyProof({ proof, workspace, id = 'proof' }: { proof: NonNullable<UseCaseStudy['proof']>; workspace: Workspace; id?: string }) {
   const uid = useId()
   return (
     <section className="s-section s-st-proof ob-theme-hybrid" data-tone="paper" id={id} aria-labelledby={`${uid}-h`}>
