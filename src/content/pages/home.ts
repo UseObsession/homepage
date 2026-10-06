@@ -241,7 +241,7 @@ export const page: Page = {
       },
       {
         q: 'Do the agents pretend to be people?',
-        a: 'No. Every agent says it’s AI and who it works for, at first contact.',
+        a: 'No. Every agent says it’s AI at first contact and links a page about Obsession. At rivals and prospects it never names who it works for.',
       },
       {
         q: 'Is it legal to sign up at a rival or a prospect?',
