@@ -15,6 +15,21 @@
 }
 .s-faq__list { min-width: 0; }
 
+/* Ruled (Home): when the questions follow a block on the same ground, a hairline at the container's width marks where
+   they begin, with the section space on each side of it, as an edge between 2 grounds has. */
+.s-faq--ruled > .s-wrap {
+  position: relative;
+  padding-top: var(--ob-space-section, clamp(72px, 10vw, 128px));
+}
+.s-faq--ruled > .s-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: var(--s-gutter);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+  pointer-events: none;
+}
+
 @media (min-width: 1080px) {
   .s-faq__grid {
     grid-template-columns: var(--s-split);

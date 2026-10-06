@@ -13,9 +13,10 @@ import './StoryPage.css'
    2 who it's for: James's persona band, restored in src/legacy/james with 6 panels and the reader palette, inside a
      div.james, exactly as he built it >
    3 the difference, shown: the gap's claim and hollin's picture, with no comparison rows >
-   4 proof: the 1 real run, compact (its 4 numbers beside the output viewer, the link to the full report, and how the
-     agents behave in 1 row) >
-   5 questions: 6, closed until opened >
+   4 proof: the 1 real run, compact (its story in 1 line beside the output viewer, the link to the full report, and how
+     the agents behave in 1 row) >
+   5 questions: 6, closed until opened, under a hairline: the run and the questions share the page's ground, so the rule
+     marks where 1 block ends, with the same section space on each side as an edge between 2 grounds has >
    6 start: the waitlist (#join, where the nav's call to action lands) and the agencies' free audits.
    Grounds (Paper and Gloss, styles/tones.css): the gap and the closing call are the ink chapters. The real run stands on
    the page's own ground, not the paper break: right under the gap, the break would touch an ink chapter
@@ -32,7 +33,7 @@ export function Home() {
       </div>
       <Gap gap={page.gap} story={page.gap.story && <GapStory story={page.gap.story} />} id="gap" />
       {page.outputs && <Outputs {...page.outputs} initial="pdf" tone="base" compact id="proof" />}
-      <Faq faq={page.faq} id="questions" />
+      <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={page.final} id="join" />
     </>
   )

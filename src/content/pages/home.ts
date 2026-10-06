@@ -6,7 +6,7 @@ import type { Page } from '../types'
    1 what it is (the hero, its form, and the 5 tabs of app screens, with 1 quiet line to every other recipe) >
    2 who it's for (James's persona band, as he built it) >
    3 the difference, shown (the gap: hollin's picture, Obsession as the customer next to a tool that reads the page) >
-   4 proof (the 1 real run: its 4 numbers, the output in every format, and how the agents behave) >
+   4 proof (the 1 real run: its story in 1 line, the output in every format, and how the agents behave) >
    5 questions (6, closed until opened) >
    6 start (the waitlist, and the agencies' free audits).
    The jobs, your own AI agents, the recipe list, how it works, the API and the full rules each live on their own page.
@@ -28,7 +28,8 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'The intelligence infrastructure for commercial teams',
-    sub: 'Deals stall, prices slip and customers leave for reasons hidden behind sign ups, inboxes and checkouts no tool can see. Obsession’s AI agents go through them as the customer at any company, yours included, with real inboxes, phone numbers and browsers. You get signed proof and your next move.',
+    /* 4 short sentences: the pain, what the agents do, what they carry, what you get. */
+    sub: 'Deals stall, prices slip and customers leave for reasons no tool can see. Obsession’s AI agents go in as the customer, at any company, yours included. Each has a real inbox, phone number and browser. You get signed proof and your next move.',
     capture: {
       kind: 'waitlist',
       source: 'home-hero',
@@ -58,7 +59,7 @@ export const page: Page = {
         tab: 'Mystery shopper',
         screen: 'shop',
         recipe: 'mystery',
-        line: 'Any trial, store, app or booking, walked as a customer with the owner’s OK.',
+        line: 'Any trial, store, app or booking, tested as a customer, with the owner’s OK.',
       },
       {
         tab: 'Competitor tracking',
@@ -148,15 +149,11 @@ export const page: Page = {
   uses: { heading: '', items: [] },
 
   outputs: {
-    /* The no-break space keeps "The output," together, so beside the viewer the claim breaks after its first sentence. */
-    heading: '1 real run. The\u00a0output, however you work.',
+    /* The line tells the run and the viewer's tabs show the formats, so the heading says only what it is. */
+    heading: '1 real run.',
     line: '4 test customers shopped a UK store in September. 1 left a basket, 1 stopped at checkout, and nobody wrote to either in 48 hours.',
-    facts: [
-      { value: '4', label: 'journeys run' },
-      { value: '2', label: 'silent' },
-      { value: '15', label: 'screenshots' },
-      { value: '48h', label: 'watched' },
-    ],
+    /* No numbers row on Home: the line above already gives the run's 4, 2 and 48 hours. /sample-output has them all. */
+    facts: [],
     cta: { label: 'See the full report', to: '/sample-output' },
     /* The rules every run follows, in a few words each; /agents has them in full. */
     behave: {
@@ -172,10 +169,10 @@ export const page: Page = {
     },
   },
 
-  /* The 6 questions a reader asks before naming a company, each answered in 2 short sentences at most. The first answer
-     is meta.answer, word for word. */
+  /* The 6 questions a reader asks before joining, each answered in 2 short sentences at most. The first answer is
+     meta.answer, word for word. */
   faq: {
-    heading: 'Before you name a company.',
+    heading: 'Before you join.',
     items: [
       {
         q: 'What is Obsession?',

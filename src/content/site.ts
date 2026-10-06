@@ -18,7 +18,8 @@ export const CONTACT_EMAIL = 'hello@useobsession.com'
 export const CONTROLLER: string | null = null
 
 /* The 1 sentence (docs/SEARCH.md 2): what Obsession is, word for word wherever the site defines it (llms.summary below,
-   the footer, the Organization JSON-LD, Home's and Founders' "What is Obsession?" and /agents). */
+   the Organization JSON-LD, Home's and Founders' "What is Obsession?" and /agents). The footer carries its core in 1
+   short line (content/footer.ts). */
 const SENTENCE =
   'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.'
 

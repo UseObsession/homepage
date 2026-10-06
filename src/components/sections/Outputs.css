@@ -535,7 +535,8 @@
 }
 
 /* ---- Compact (Home): the claim beside its object, then how the agents behave ---------------------------------------
-   From 1200px the claim and the run's 4 numbers take the split's 5 columns and the viewer its 7, top aligned; under that
+   From 1200px the claim takes the split's 5 columns and the viewer its 7. A claim with no numbers under it (Home) sits
+   on the viewer's middle, so it never floats at the top of a tall column; with numbers it keeps the top. Under 1200px
    the viewer would be too narrow for the workflow's 3 branches, so the 2 stack, in the same order. The stage keeps 1
    fixed height in every tab (480 from 860px, the tablet and phone 520 under it, as tall as the workflow's rail needs),
    and no caption: the 1 link under it goes to the full report. */
@@ -545,6 +546,10 @@
   gap: var(--ob-space-block);
 }
 .s-out--compact .s-sechead { margin-bottom: var(--ob-space-40); }
+/* Alone in its column, the claim takes no space under it: the split's gap is the 1 space to the viewer. */
+.s-out--compact .s-out-claim > .s-sechead:last-child { margin-bottom: 0; }
+/* The run's line wraps in even lines, so "48 hours." never stands alone on a phone's last line. */
+.s-out--compact .s-sechead__line { text-wrap: balance; }
 /* The 4 numbers sit 2 by 2 beside the viewer, and on a phone. */
 .s-out--compact .s-out-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
 .s-out--compact .s-out-fact:nth-child(3) { padding-left: 0; border-left: 0; }
@@ -560,6 +565,7 @@
     column-gap: var(--s-split-gap);
     align-items: start;
   }
+  .s-out-claim:has(> .s-sechead:last-child) { align-self: center; }
 }
 @media (min-width: 860px) {
   .s-ov--compact .s-ov__stage,

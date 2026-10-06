@@ -134,7 +134,8 @@
 .s-hero-console > :not(.s-hero-console-h) { justify-self: stretch; }
 
 /* Home: 1 quiet line under the tabs and its link, centred on the axis, at the tabs' own line size. The line is
-   secondary (the tabs carry the story), so it takes the second ink; the link keeps full ink. */
+   secondary (the tabs carry the story), so it takes the second ink; the link keeps full ink. It stands further off the
+   console than the tab's own caption does, so it reads as the block's closing line, not a second caption. */
 .s-hero-console > .s-hero-more {
   justify-self: center;
   display: flex;
@@ -143,7 +144,7 @@
   justify-content: center;
   gap: var(--ob-space-4) var(--ob-space-16);
   max-width: var(--ob-container-sm);
-  margin: var(--ob-space-32) 0 0;
+  margin: var(--ob-space-48) 0 0;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
   color: var(--ob-text-2);

@@ -45,11 +45,13 @@
 }
 
 /* The quiet second path under the form (final.link). On a phone a long one wraps as a sentence, balanced and centred,
-   with its arrow straight after the last word. */
+   with its arrow straight after the last word. A wrapped label needs real line boxes: the design system trims a
+   label's box to its cap height (buttons.css .ob-btn-label), which would draw line 1's underline through line 2, so
+   it takes back the normal box and a reading leading, as the system's own inline link does (.ob-btn--inline). */
 .s-final__link { margin-top: var(--ob-space-16); }
 @media (max-width: 519.98px) {
-  .s-final__link { display: block; max-width: 30ch; white-space: normal; text-align: center; text-wrap: balance; }
-  .s-final__link .ob-btn-label { display: inline; }
+  .s-final__link { display: block; max-width: 30ch; white-space: normal; text-align: center; text-wrap: balance; line-height: 1.5; }
+  .s-final__link .ob-btn-label { display: inline; text-box: normal; line-height: 1.5; }
   .s-final__link .ob-btn-arrow { display: inline-block; margin-inline-start: var(--ob-space-6); vertical-align: -0.12em; }
 }
 

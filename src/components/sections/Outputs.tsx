@@ -454,9 +454,10 @@ function Arrow() {
   )
 }
 
-/* Compact (Home): the claim and the run's numbers on the left, the viewer and the link to the full report on the right,
-   on the page's split (the claim beside its object, like the questions under it); then how the agents behave, in 1 row.
-   Stacked, it reads in the same order: the claim, the numbers, the viewer, the link, the row. */
+/* Compact (Home): the claim (and the run's numbers, when a page gives them) on the left, the viewer and the link to the
+   full report on the right, on the page's split (the claim beside its object, like the questions under it); then how
+   the agents behave, in 1 row. Stacked, it reads in the same order: the claim, the numbers, the viewer, the link, the
+   row. Home gives no numbers: its line already tells the run. */
 export function Outputs({ heading, line, cta, facts, formats, behave, tone = 'paper', compact, views, lines, initial, ui, id, className }: Props) {
   const headingId = useId()
   const paper = tone === 'paper'
