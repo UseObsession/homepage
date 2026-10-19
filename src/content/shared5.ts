@@ -3,12 +3,12 @@
    its own file. Copy rules: COPY.md, "Voice". */
 import type { Compare, Life, OpenSource, Ways } from './types'
 
-/* How it works, as breadth first (COPY.md, "Home > How it works"; the 3 reviews of 19 Oct): a list signed up to at
-   once on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
+/* How it works, as breadth first (COPY.md, "Home > How it works"; the 3 reviews of 19 Oct): a customer of a whole list
+   by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
    stage's companies, so the 2 pictures tell 1 story. Larchwise's quiet lane is a finding too. */
 export const life: Life = {
-  heading: 'Every company on your list, signed up to today.',
-  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: the first welcome emails land within minutes, and each agent stays on the list, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
+  heading: 'A customer of 1,000 companies by lunch.',
+  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an agent signs up to each, the first welcome emails land within minutes, and it stays on as their customer, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
   list: 'brands.csv · 1,000 companies',
   axis: {
     start: 'Monday 09:00',
@@ -17,7 +17,7 @@ export const life: Life = {
       { day: 7, label: 'Day 7' },
       { day: 30, label: 'Day 30' },
     ],
-    end: 'Day 90: 1,000 still subscribed',
+    end: 'Day 90: still a customer of all 1,000',
   },
   lanes: [
     { name: 'Fern Hollow', wakes: [{ day: 0.006, label: '09:09 · welcome' }, { day: 30, label: 'Day 30 · sale' }] },
@@ -30,8 +30,8 @@ export const life: Life = {
   },
   phases: [
     { title: 'Name them', lead: 'Any input:', line: 'paste a list, connect Clay or your CRM, or just ask from your own agent.' },
-    { title: 'Each one, signed up', line: 'An agent per company signs up, follows the ad, starts the trial or fills the basket, as you choose.' },
-    { title: 'It stays signed up', line: 'Nothing for you to check. Each agent sleeps until its company does something.' },
+    { title: 'Each one, a customer', line: 'An agent per company signs up, follows the ad, starts the trial or fills the basket, as you choose.' },
+    { title: 'It stays a customer', line: 'Nothing for you to check. Each agent sleeps until its company does something.' },
     { title: 'It files the receipt', line: 'The email, page or price, kept as it arrived, with its time and its signature checked.' },
   ],
 }
