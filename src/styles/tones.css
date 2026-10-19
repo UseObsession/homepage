@@ -2,9 +2,10 @@
    PAPER AND GLOSS (site layer, --s-*): the rhythm of light and dark on every page.
 
    The idea. The product is the sharpest thing on the page, and each theme gets the other's light at its narrative beats.
-   - Paper (light) is the design system's hybrid page: warm paper, every product object glossy black on it (index.html
-     and ThemeToggle put .ob-theme-hybrid on <html> with data-theme="light"). The ink chapters (the gap, the closing call
-     and the footer, a recipe's steps) run full bleed in ink.
+   - Paper (light) is the design system's hybrid page: warm paper (index.html and ThemeToggle put .ob-theme-hybrid on
+     <html> with data-theme="light"). Its product objects were glossy black; since 19 Oct they turn paper with the page
+     (the end of this file). The ink chapters (the gap, the closing call and the footer, a recipe's steps) run full
+     bleed in ink, and what sits in them stays ink.
    - Ink (dark) is the mirror: the page stays ink, the product objects are lit and lifted off it, the ink chapters are
      lit from above, and 1 section per page is the paper break (the real run's proof), the system's own rule.
    - Between them, a quieter alternate ground (stone on paper, lifted ink on ink) separates sections without hairlines.
@@ -403,3 +404,62 @@
      Site level, because src/screens is synced from the screens' owner. */
   .ilwrap .appx { forced-color-adjust: none; }
 }
+
+/* ---- Light: the illustrations follow the page (James, 19 Oct) ------------------------------------------------------
+   Paper used to keep every product object glossy black (the design system's hybrid page). Now, with data-theme="light",
+   an object takes the set of the ground it sits on: on the paper page and in a paper section it turns paper too, and
+   inside an ink chapter (the gap story, the closing call, the footer) it stays ink, as that chapter does. Every token
+   the dark set re-declares on an object (ds/tokens.css, accents.css and the --s-* above) is handed back to the ground
+   with inherit, so the object reads the same values as whatever holds it. Dark is untouched. */
+:root[data-theme="light"] .ob-object {
+  color-scheme: inherit;
+  --ob-bg: inherit; --ob-bg-sunken: inherit; --ob-surface: inherit; --ob-surface-raised: inherit;
+  --ob-surface-hover: inherit; --ob-overlay: inherit; --ob-solid: inherit; --ob-solid-hover: inherit;
+  --ob-line-subtle: inherit; --ob-line: inherit; --ob-line-strong: inherit; --ob-line-ui: inherit;
+  --ob-text: inherit; --ob-text-2: inherit; --ob-text-3: inherit; --ob-text-inverse: inherit;
+  --ob-text-disabled: inherit; --ob-placeholder: inherit; --ob-link-underline: inherit; --ob-focus: inherit;
+  --ob-danger: inherit; --ob-danger-bg: inherit; --ob-danger-hover: inherit; --ob-danger-pressed: inherit;
+  --ob-success: inherit; --ob-success-bg: inherit; --ob-warning: inherit; --ob-warning-bg: inherit;
+  --ob-tint-rgb: inherit; --ob-fill-subtle: inherit; --ob-fill: inherit; --ob-state-hover: inherit;
+  --ob-state-pressed: inherit; --ob-state-selected: inherit; --ob-state-drag: inherit; --ob-field-bg: inherit;
+  --ob-field-bg-solid: inherit; --ob-field-bg-disabled: inherit; --ob-field-edge: inherit;
+  --ob-field-edge-hover: inherit; --ob-track: inherit; --ob-track-fill: inherit; --ob-track-bg: inherit;
+  --ob-btn-top: inherit; --ob-btn-bottom: inherit; --ob-btn-text: inherit; --ob-btn-highlight: inherit;
+  --ob-btn-edge: inherit; --ob-btn-edge-hover: inherit; --ob-btn-glow: inherit; --ob-btn-bg: inherit;
+  --ob-btn-shadow: inherit; --ob-btn-shadow-hover: inherit; --ob-btn-2-bg: inherit; --ob-btn-2-bg-hover: inherit;
+  --ob-btn-2-bg-pressed: inherit; --ob-btn-2-text: inherit; --ob-btn-2-edge: inherit; --ob-nav-bg: inherit;
+  --ob-scrim: inherit; --ob-selection: inherit; --ob-selection-text: inherit; --ob-sheen-rgb: inherit;
+  --ob-glow-rgb: inherit; --ob-shadow-rgb: inherit; --ob-sheen: inherit; --ob-highlight: inherit;
+  --ob-shadow-1: inherit; --ob-shadow-2: inherit; --ob-shadow-3: inherit; --ob-shadow-4: inherit;
+  --ob-grain-opacity: inherit; --s-ground-alt: inherit; --s-ground-ink: inherit; --s-chapter-light: inherit;
+  --s-read: inherit; --s-spot: inherit; --s-rule-mix: inherit; --s-accent-agencies: inherit;
+  --s-accent-founders: inherit; --s-accent-sales: inherit; --s-accent-marketing: inherit;
+  --s-accent-developers: inherit; --s-accent-agencies-glow: inherit; --s-accent-founders-glow: inherit;
+  --s-accent-sales-glow: inherit; --s-accent-marketing-glow: inherit; --s-accent-developers-glow: inherit;
+  --s-accent-glow-rest: inherit; --s-accent-glow-hover: inherit; --s-accent-glow-hero: inherit;
+}
+
+/* A paper object's material: a white face set down with a hairline and a soft warm shadow, in place of the gloss's dark
+   ring (which drew a black frame round a white face). Anything inside an object takes its object's material. */
+:root[data-theme="light"],
+:root[data-theme="light"] [data-tone="paper"] {
+  --s-obj-lift: 0;
+  --s-obj-sheen: 0;
+  --s-obj-rim: 0;
+  --s-obj-top: .9;
+  --s-obj-cast: 0 0 0 1px var(--ob-line), 0 1px 2px rgb(var(--ob-shadow-rgb) / .05), 0 24px 48px -28px rgb(var(--ob-shadow-rgb) / .22);
+}
+:root[data-theme="light"] .ob-object > * {
+  --s-obj-lift: inherit;
+  --s-obj-sheen: inherit;
+  --s-obj-rim: inherit;
+  --s-obj-top: inherit;
+  --s-obj-cast: inherit;
+}
+
+/* Marks drawn twice (site.css .s-on-dark, .s-on-paper): a paper object shows the paper one; an object in an ink
+   chapter keeps the ink one. */
+:root[data-theme="light"] .ob-object .s-on-dark { display: none; }
+:root[data-theme="light"] .ob-object .s-on-paper { display: inline-block; }
+:root[data-theme="light"] .ob-theme-dark .ob-object .s-on-dark { display: inline-block; }
+:root[data-theme="light"] .ob-theme-dark .ob-object .s-on-paper { display: none; }
