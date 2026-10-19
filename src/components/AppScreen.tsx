@@ -80,15 +80,14 @@ type Props = {
   className?: string
   /* Whose workspace the screen shows (components/workspace.ts). */
   workspace?: Workspace
-  /* The quiet tag under the screen. Every screen shows example data, so it reads "Example" (matching the hero
-     console's Example tag); only the real September report captures on /sample-output pass note="", and Home's hero
-     screens, which carry the tag in their own line (ScreenTabs). */
+  /* A quiet line under the screen, when a page wants one. The screens need no "Example" tag: their companies are
+     invented, at .example addresses, and data-nosnippet keeps their data out of search snippets. */
   note?: string
   /* Films the story with the camera (components/camera.ts): Home's hero tabs only. */
   camera?: boolean
 }
 
-export function AppScreen({ name, playKey, className, workspace = 'agency', note = 'Example', camera = false }: Props) {
+export function AppScreen({ name, playKey, className, workspace = 'agency', note = '', camera = false }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   /* What the camera films: this screen, when the page asks for it. */
   const shoot = camera ? name : undefined

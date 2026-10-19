@@ -23,7 +23,6 @@ import './ScreenTabs.css'
      screen, finished. Reduced motion keeps every screen finished and never advances. */
 
 const UI = {
-  example: 'Example',
   recipe: 'See the recipe',
   pause: 'Pause the example screens',
 }
@@ -213,7 +212,6 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
                 <AppScreen name={t.screen} workspace={workspace} note="" playKey={play?.i === i ? play.key : undefined} className="s-shots-screen" camera />
                 <div className="s-shots-foot">
                   <p className="s-shots-line">
-                    <span className="ob-tag s-shots-tag">{UI.example}</span>
                     <span>{t.line}</span>
                   </p>
                   {go && (

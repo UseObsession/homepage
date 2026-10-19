@@ -32,7 +32,6 @@ const UI = {
   workspace: { agency: 'Your agency', company: 'Your company' },
   missions: 'Missions',
   ownTask: 'Your own task',
-  example: 'Example',
   rows: { targets: 'Targets', journey: 'Journey', schedule: 'How often', report: 'Report', kit: 'Set up' },
   log: 'Run log',
   finding: 'Finding',
@@ -240,15 +239,15 @@ const Panel = memo(function Panel({
   )
 })
 
-/* `tag` replaces the bar's "Example" (the 1 real run says so). 1 demo is single-run mode (a recipe page): no tab row,
-   the label names the run, and it plays when the reader reaches it, then rests; Play runs it again.
+/* `tag` marks the 1 real run in the bar ("Real run"); the example runs carry none. 1 demo is single-run mode (a recipe
+   page): no tab row, the label names the run, and it plays when the reader reaches it, then rests; Play runs it again.
    In the hero, the typed heading over the console names it (`labelledBy`, its id) in place of the label. */
 export function Console({
   label,
   labelledBy,
   demos,
   workspace = 'agency',
-  tag = UI.example,
+  tag,
 }: {
   label?: string
   labelledBy?: string
@@ -459,7 +458,7 @@ export function Console({
             </span>
             <span className="s-console-crumb-now">{name}</span>
           </p>
-          <span className="ob-tag s-console-example">{tag}</span>
+          {tag && <span className="ob-tag s-console-example">{tag}</span>}
           <span className="s-console-end">
             {status && (
               <span className="ob-status s-console-status">

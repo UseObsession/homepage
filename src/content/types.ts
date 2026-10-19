@@ -339,7 +339,6 @@ export type Page = {
   openSource?: OpenSource
   parity?: Parity
   scale?: Scale
-  formats?: Formats
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
@@ -572,7 +571,7 @@ export type BlogIndexPage = {
 
 /* The hero's stage (components/v5/ReceiptStage): 1 company's journey as its customer, in 3 evidence cards (the ad, the
    page, the inbox) and the receipt it ends on, with its stamp. Home cycles through `receipts`; a reader page shows its
-   own. Invented companies only, each marked as an example. */
+   own. Invented companies only, at .example addresses. */
 export type StageReceipt = {
   company: string
   domain: string
@@ -586,7 +585,7 @@ export type StageReceipt = {
   stamp: string
   fact: string
 }
-export type Stage = { label: string; steps: [string, string, string]; example: string; receipts: StageReceipt[] }
+export type Stage = { label: string; steps: [string, string, string]; receipts: StageReceipt[] }
 
 /* The gap, as a pair (components/v5/GapPair): what a tool that reads the outside shows, beside what a customer of that
    company actually gets. */
@@ -672,9 +671,4 @@ export type Scale = {
   program: { kinds: Record<ScaleKind, string>; steps: { kind: ScaleKind; label: string }[]; routes: { heading: string; items: { label: string; share: number; line: string }[] } }
   run: { total: number; unit: string; call: string; covered: string; square: string; toast: string }
   principles: { title: string; line: string }[]
-  compare: { note: string; cols: { label: string; title: string; cost?: { value: string; line: string }; rows: { k: string; v: string }[] }[] }
 }
-
-/* What you get (Home, the close of how it works): every format the same fact can arrive in, as a dense grid of names,
-   each with 1 line showing that fact in that format (mono when it is code). No pictures. */
-export type Formats = { heading: string; line: string; items: { name: string; sample: string; code?: boolean }[]; cta: Cta }

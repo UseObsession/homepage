@@ -40,7 +40,7 @@
   min-width: 0;
   min-height: clamp(380px, 31vw, 450px);
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto 1fr auto;
   align-content: start;
   gap: 14px;
   padding: 32px calc(var(--slant) + 14px) 32px calc(var(--slant) * .55 + 16px);
@@ -129,6 +129,11 @@
   color: var(--s-read, var(--text-2));
 }
 
+.pband-more-in {
+  display: grid;
+  gap: 14px;
+}
+
 .pband-ways {
   display: flex;
   flex-wrap: wrap;
@@ -164,39 +169,55 @@
   right: 26px;
 }
 
-/* The reveal: with a pointer that hovers, a panel's line and chips are folded away under the name, so every name rests
-   on the panel's foot however its hidden words would wrap; as the panel widens they unfold and the name rises. */
+/* The reveal: with a pointer that hovers, a panel's line and chips are folded away under its name, so every name rests
+   on the panel's foot. Under the pointer the panel widens, then the block unfolds by its own height (rows 0fr to 1fr)
+   and its words fade up; leaving, the words fade first and the block folds after them, so nothing is cut mid line.
+   The block is as wide as the open panel will be, worked out from the band's width (--pband-open is the open panel's
+   share of the row), so its words never re-wrap while the panel's width moves. */
 @media (hover: hover) and (min-width: 861px) {
-  .pband-line,
-  .pband-ways {
+  .pband {
+    --pband-open: 0.41;
+    container-type: inline-size;
+  }
+
+  .pband-more {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 420ms var(--ease) 90ms;
+  }
+
+  .pband-more-in {
     min-height: 0;
-    max-height: 0;
     overflow: hidden;
+    width: calc((100cqi + 3 * (var(--slant) - var(--seam))) * var(--pband-open) - var(--slant) * 1.55 - 30px);
     opacity: 0;
-    transform: translateY(10px);
-    transition: max-height 460ms var(--ease), opacity 360ms var(--ease), transform 460ms var(--ease);
+    transform: translateY(6px);
+    transition: opacity 180ms ease-out, transform 260ms ease-out;
   }
 
-  .pband-item:hover .pband-line,
-  .pband-item:focus-visible .pband-line {
-    max-height: 6em;
+  .pband-item:hover .pband-more,
+  .pband-item:focus-visible .pband-more {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 520ms var(--ease) 60ms;
   }
 
-  .pband-item:hover .pband-ways,
-  .pband-item:focus-visible .pband-ways {
-    max-height: 58px;
-  }
-
-  .pband-item:hover :is(.pband-line, .pband-ways),
-  .pband-item:focus-visible :is(.pband-line, .pband-ways) {
+  .pband-item:hover .pband-more-in,
+  .pband-item:focus-visible .pband-more-in {
     opacity: 1;
     transform: none;
-    transition-delay: 120ms;
+    transition: opacity 420ms var(--ease) 240ms, transform 560ms var(--ease) 180ms;
   }
 }
+@media (hover: hover) and (min-width: 861px) and (max-width: 1100px) {
+  .pband { --pband-open: 0.333; }
+}
 @media (hover: hover) and (min-width: 861px) and (prefers-reduced-motion: reduce) {
-  .pband-line,
-  .pband-ways { transform: none; transition: opacity 200ms linear; }
+  .pband-more,
+  .pband-item:hover .pband-more,
+  .pband-item:focus-visible .pband-more { transition: none; }
+  .pband-more-in,
+  .pband-item:hover .pband-more-in,
+  .pband-item:focus-visible .pband-more-in { transform: none; transition: opacity 200ms linear; }
 }
 
 .pband-item:hover .pband-go,

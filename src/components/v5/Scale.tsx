@@ -167,7 +167,7 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
           <div className="s-wrap">
             <div className="v5-head v5-scale-head">
               <h2 className="v5-h2 v5-scale-h" id={`${hid}-h`} aria-label={scale.heading}>
-                <span className="v5-scale-lead">{scale.lead}</span>
+                <span className="v5-scale-lead">{scale.lead}</span>{' '}
                 <span className="v5-scale-count" key={cur}>
                   {scale.counts[cur]}
                 </span>
@@ -305,30 +305,6 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
             </li>
           ))}
         </ul>
-
-        <div className="v5-scale-compare">
-          {scale.compare.cols.map((c, k) => (
-            <div className={k === 1 ? 'v5-scale-col is-after' : 'v5-scale-col'} key={c.label}>
-              <p className="v5-scale-col-l">{c.label}</p>
-              <h3 className="v5-scale-col-t">{c.title}</h3>
-              {c.cost && (
-                <p className="v5-scale-cost">
-                  <span className="v5-scale-cost-v">{c.cost.value}</span>
-                  <span className="v5-scale-cost-l">{c.cost.line}</span>
-                </p>
-              )}
-              <dl>
-                {c.rows.map((r) => (
-                  <div key={r.k}>
-                    <dt>{r.k}</dt>
-                    <dd>{r.v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          ))}
-          <p className="v5-scale-note">{scale.compare.note}</p>
-        </div>
       </div>
     </section>
   )

@@ -102,7 +102,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 
 **Supporting messages, in reading order:** use it from your own agent, a workflow file, code or our website (the ways in); the engine is open source and the history is the cloud; other tools read the outside (the comparison).
 
-**Rules of voice:** British English; no dashes; plain verbs; numbers as numerals in data, words in prose where natural; every company on a screen is invented, at a `.example` address, under its Example tag; the only real result is the September store check and it says so; no now, next or later labels; no "never" rules except the three lines in system.md (the record, customer privacy, the law).
+**Rules of voice:** British English; no dashes; plain verbs; numbers as numerals in data, words in prose where natural; every company on a screen is invented, at a `.example` address (no "Example" tag on an illustration, James 19 Oct: the `.example` addresses and the invented names carry it); the only real result is the September store check and it says so; no now, next or later labels; no "never" rules except the three lines in system.md (the record, customer privacy, the law).
 
 ---
 
@@ -160,11 +160,11 @@ flowchart TD
 ```mermaid
 flowchart LR
   a["What is it? Hero and receipt stage"] --> b["Why can't my tools? The gap"]
-  b --> c["How many, how soon? A customer of 10,000 by lunch, every move after"]
-  c --> c2["What do I get? Every format"]
+  b --> c["How many, how soon? To know what 10,000 customers get, be all 10,000"]
+  c --> c2["Does it find anything? 93% of stores had a gap, 1 report in every format"]
   c2 --> d["Is it for me? Pick who you are"]
   d --> e["Of whom? Rivals, prospects, yourself, your AI"]
-  e --> s["How does it scale, and what does it cost? Learned once, run for 100,000"]
+  e --> s["How does it scale? Learn it once, run it for 100,000"]
   s --> f["Versus what? The comparison"]
   f --> g["Where do I use it? The ways in"]
   g --> i["Can I trust it? Open source"]
@@ -197,11 +197,11 @@ The full words are in the content files; this is the spine of each page.
 | Hero | Be a customer of every company. Keep the receipts. | Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. |
 | Stage | 3 examples: Fern Hollow (offer held), Larchwise (trial went quiet), Northfold (price cut on day 21) | Each: the ad, the page, the email, the receipt and its stamp |
 | Gap | Every tool shows you the ad. None of them is the customer. | Today it's a spare inbox, screenshots and a spreadsheet, kept up by hand, or a tool that saves the page and stops there. |
-| How | A customer of 10,000 companies by lunch. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
-| What you get | You get the fact, where you work, however you want it. | A small dense 3 by 3 grid, no pictures: Your agent, Slack, Email, Report, Clay, Sheet, CRM, JSON, Workflow, each with 1 line of Northfold's price cut as it lands there; "See sample output" |
+| How | To know what 10,000 customers get, you have to be all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
+| Proof | 93% of stores we shopped on every journey had a gap. | Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The September report in its 6 formats (PDF, Email, Slack, Sheet or Clay, JSON webhook, Workflow), kept small: the claim beside the viewer, a 400px stage; "See the full report". It replaced the formats grid on 19 Oct |
 | Readers | Pick who you are. | 4 panels |
 | Kinds | Be a customer of anyone. Rivals, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |
-| Scale | Learned once, run for 1 company. Or 1,000. Or 100,000. | The count follows 3 steps on 1 stage (learns the way in, turns it into a program, runs at any scale); 3 principles; the first store beside every store after (illustrative) |
+| Scale | Learn it once. Run it for 1 company, 1,000 or 100,000. | The count follows 3 steps on 1 stage (learns the way in, turns it into a program, runs at any scale); 3 principles. No cost card: what it costs us to run is internal (James, 19 Oct) |
 | Compare | Other tools read the outside. Obsession is the customer. | 6 columns, 7 rows, dated |
 | Ways | Your AI agent can think. It can't be a customer for thirty days. | 4 tabs and the 5 verbs |
 | Open source | An open source runtime for customer agents, built to run 100,000 at once. | The engine's 8 capabilities (fan out to 100,000, durable agents that sleep for free, learns once then runs as code, better with every run, tested before it ships, a record that proves itself, any model per job, built for agents to call) beside Obsession Cloud's 5 lines |
@@ -242,12 +242,12 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 | About 250 integrations | Open source | system.md, Integrations | As built |
 | The runtime is open source (a runtime for customer agents, not a general harness); github.com/UseObsession | Open source, footer, developers | system.md, "Open source core, Obsession Cloud" | As built; the org and licence to set up (open question in system.md) |
 | The engine's 8 capabilities: fan out to 100,000; hibernate and wake on mail, reply or clock; trace compiled to code, typed questions and small agents; escalations become the next program version; versions replayed on frozen evidence, facts re-derived; evidence by content hash, DKIM key kept; a model per job; typed verbs, webhooks, idempotency keys, spending caps | Open source (Home, developers) | system.md: the customer agent, Design rules for the engine, the compile and replay steps, the first build's boxes, What an agent needs that a human forgives | As built |
-| 6¢ a company to sign up once, 1.4¢ a company a month to keep, at 100,000 | Home scale card | `docs/positioning/scale_model.py`: our modelled cost to run, not a price; the card says so | Modelled; system.md sets no list price yet (priced per company watched) |
-| 93% of stores shopped on every journey had a gap | Removed from Home on 19 Oct (the scale section took its place) | Real audits (Seun, 7 Oct) | Real; not on the site now |
+| 6¢ a company to sign up once, 1.4¢ a company a month to keep, at 100,000 | Removed from Home on 19 Oct (internal) | `docs/positioning/scale_model.py`: our modelled cost to run, not a price | Modelled; internal, not on the site |
+| 93% of stores shopped on every journey had a gap | Home proof (back on 19 Oct, in the formats grid's place) | Real audits (Seun, 7 Oct) | Real |
 | One program per platform; learned, compiled, replayed; code, typed questions, small agents, escalation | Home scale | system.md, Program row and the 4 kinds of step | As built |
-| Sign ups 70% plain request, 25% replayed script, 5% agent; 200 runs to learn 40 platforms; 4.2 million wakes a month; about 2 awake at once; 1.2 million small model calls; 24,000 to a stronger agent; about 40 a day to a person; $0 runtime while asleep | Home scale stage and card | `docs/positioning/scale_model.py`, modelled on Cloudflare, Archil, Steel, Workspace and model prices read 19 Oct 2026; the card says "Modelled… Not yet measured" | Modelled; swap in measured numbers when system.md's evals report them |
+| Sign ups 70% plain request, 25% replayed script, 5% agent; about 140,000 wakes a day; about 2 awake at once | Home scale stage | `docs/positioning/scale_model.py`, modelled on Cloudflare, Archil, Steel, Workspace and model prices read 19 Oct 2026 | Modelled; swap in measured numbers when system.md's evals report them |
 | The September skincare store report: 4 test customers, 48 hours, 1 basket and 1 checkout left, 0 reminders | Proof on every reader page, llms.txt | The real run, /sample-output | Real |
-| Every company on the stage and screens | Home, reader pages | Invented, `.example` addresses, Example tag | Example |
+| Every company on the stage and screens | Home, reader pages | Invented, `.example` addresses; no Example tag since 19 Oct | Example |
 | Competitor facts (prices, counts, features) | /compare, competitors matrix | Each tool's own pages, 18 Oct 2026 (`docs/positioning/competitors.md`) | Checked on the date shown; Visualping, Klue and Crayon are described without numbers because their pages were not read |
 | The comparison marks | Home, /compare | competitors.md section 3, by kind of tool | "Partly" defined under the table |
 | Agents never use fake payment details, never get round a CAPTCHA, never click paid ads at volume, say they're AI to people | /agents, llms.txt, FAQ | system.md, the three lines | Policy |

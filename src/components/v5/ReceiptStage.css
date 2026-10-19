@@ -129,8 +129,7 @@
 .v5-rs-stamp { position: absolute; right: 16px; bottom: 20px; }
 
 /* Under the stage: the example tag, the companies and the pause */
-.v5-rs-cap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
-.v5-rs-example { font-size: 12.5px; color: var(--ob-text-3); }
+.v5-rs-cap { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; }
 .v5-rs-pick { display: flex; flex-wrap: wrap; gap: 6px; }
 .v5-rs-dot,
 .v5-rs-pause {

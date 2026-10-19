@@ -612,3 +612,20 @@
   .s-out-behave__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-20) var(--ob-space-16); }
   .s-out-behave__list > li:nth-child(n + 3) { border-top-color: var(--ob-line); }
 }
+
+/* ---- Home's proof (.v5-proof): the same compact run, kept small between how it works and the readers ------------------
+   Less air above and below, the claim beside the viewer from 1100px (the viewer keeps the 616px its 6 tabs need), and
+   a shorter stage: the report, the email and the rest each fit 400px, and the link under it opens the full report. */
+.s-section.s-out.v5-proof { padding-block: clamp(56px, 7vw, 96px); }
+.v5-proof .s-out-split { gap: var(--ob-space-24); }
+@media (min-width: 1100px) {
+  .v5-proof .s-out-split {
+    grid-template-columns: minmax(0, 1fr) minmax(616px, 1.6fr);
+    column-gap: var(--ob-space-40);
+    align-items: center;
+  }
+}
+@media (min-width: 860px) {
+  .v5-proof .s-ov--compact .s-ov__stage,
+  .v5-proof .s-ov--compact .s-ov__stage--pdf { height: 400px; padding: var(--ob-space-16); }
+}

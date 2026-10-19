@@ -8,7 +8,7 @@ import type { Page } from '../types'
    1 what it is (the hero: the claim, the form, and the receipt stage playing 3 companies' journeys) >
    2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
    3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   3b what you get (the same fact in every format, as a small dense grid, and the link to the sample) >
+   3b what it found (93% of stores we shopped had a gap: 1 real store's report, in every format) >
    4 who you are (James's reader band: each reader's own page) >
    5 who you can be a customer of (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
    6 how far it goes (1 company, 1,000, 100,000: learned once, run as a program, asleep for free) >
@@ -18,7 +18,7 @@ import type { Page } from '../types'
    10 questions, then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
-   stage and in the screens is invented, at a .example address, under its Example tag. */
+   stage and in the screens is invented, at a .example address. */
 
 const waitlist = {
   kind: 'waitlist',
@@ -55,7 +55,6 @@ export const page: Page = {
   stage: {
     label: 'Example: 3 companies, each followed as a customer, from the ad to the email',
     steps: ['Followed the ad', 'Signed up', 'Got the email'],
-    example: 'Example',
     receipts: [
       {
         company: 'Fern Hollow',
@@ -183,8 +182,8 @@ export const page: Page = {
      escalation; asleep costs nothing; the shared record. The numbers on the stage and in the card come from
      docs/positioning/scale_model.py, modelled on public prices, and say so (COPY.md, claims register). */
   scale: {
-    heading: 'Learned once, run for 1 company. Or 1,000. Or 100,000.',
-    lead: 'Learned once, run for',
+    heading: 'Learn it once. Run it for 1 company, 1,000 or 100,000.',
+    lead: 'Learn it once. Run it for',
     counts: ['1 company.', '1,000 companies.', '100,000 companies.'],
     line: 'The first sign up at a store teaches the agent the way in. Every store after runs it as a program: in seconds, the same way every time, and cheaper with each company you add.',
     steps: [
@@ -249,60 +248,20 @@ export const page: Page = {
       { title: 'Code where it can, judgement where it must', line: 'A stronger agent sees only the cases a program can’t settle, then the program learns them too.' },
       { title: 'Asleep costs nothing', line: 'Agents wait for weeks or months without running, and wake only when the company acts.' },
     ],
-    /* From docs/positioning/scale_model.py: the email and pages lenses on system.md's stack, at Cloudflare, Archil,
-       Steel, Workspace and model prices read on 19 Oct 2026. Modelled, not measured, and the note says so. */
-    compare: {
-      note: 'What it costs us to run, for newsletters and a daily page check, on public prices from October 2026.',
-      cols: [
-        {
-          label: 'Once',
-          title: 'Signing 100,000 up',
-          cost: { value: '6¢', line: 'a company, once. About $5,600 for all 100,000.' },
-          rows: [
-            { k: 'Plain requests', v: '70,000' },
-            { k: 'Replayed scripts', v: '25,000' },
-            { k: 'Agent runs', v: '5,000' },
-            { k: 'Runs to learn 40 platforms', v: '200' },
-          ],
-        },
-        {
-          label: 'Every month',
-          title: 'Keeping them as customers',
-          cost: { value: '1.4¢', line: 'a company, a month. About $1,370 for all 100,000.' },
-          rows: [
-            { k: 'Wakes', v: '4.2 million' },
-            { k: 'Awake at any moment', v: 'About 2' },
-            { k: 'Small model calls', v: '1.2 million' },
-            { k: 'Sent to a stronger agent', v: '24,000' },
-            { k: 'Sent to a person', v: 'About 40 a day' },
-            { k: 'Runtime billed while asleep', v: '$0' },
-          ],
-        },
-      ],
-    },
   },
 
   compare,
 
   ways,
 
-  /* The close of how it works (COPY.md, "Home > How"): step 5's fact, Northfold's price cut (the hero's third receipt), in every format it can
-     arrive in, as a small dense grid, and the link to the full sample. */
-  formats: {
-    heading: 'You get the fact, where you work, however you want it.',
-    line: 'Every fact is 1 sentence with its receipt. Send each one to as many places as you like, at once: 3 Slack channels, 2 webhooks, a sheet and your CRM.',
-    items: [
-      { name: 'JSON', sample: '{ "event": "fact.created" }', code: true },
-      { name: 'Slack', sample: '#rivals · Northfold: candle £24 → £19' },
-      { name: 'Email', sample: 'Your 08:00 digest: 3 rivals moved' },
-      { name: 'Report', sample: 'A PDF, every receipt linked' },
-      { name: 'Clay', sample: 'Price change · £19 · receipt ↗' },
-      { name: 'Sheet', sample: 'Row 214: northfold.example, £19' },
-      { name: 'CRM', sample: 'Updates the account record, with its proof' },
-      { name: 'Your agent', sample: 'Northfold cut its Harbour candle to £19 on day 21.' },
-      { name: 'Workflow', sample: 'When a price drops, start your play' },
-    ],
-    cta: { label: 'See sample output', to: '/sample-output' },
+  /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
+     those stores' report in every format it arrives in. Only the share with a gap shows, never how many were shopped
+     (the 50 rule); "every journey" is joined by a non breaking space so it never breaks inside it. */
+  outputs: {
+    heading: '93% of stores we shopped on every\u00a0journey had a gap.',
+    line: 'Here is 1 of them: a basket and a checkout left, and no email in 48 hours. Every step has its receipt, in whatever your team reads.',
+    facts: [],
+    cta: { label: 'See the full report', to: '/sample-output' },
   },
 
   openSource,

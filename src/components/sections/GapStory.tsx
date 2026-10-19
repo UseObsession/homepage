@@ -24,7 +24,7 @@ import './GapStory.css'
    The whole picture is 1 image to a screen reader (role="img" and the story's label); everything in it is aria-hidden,
    and every photograph in it is decorative (alt=""). Photographs are lazy, sized and served at the width drawn. */
 
-const UI = { example: 'Example', day: 'Day', signed: 'Signed', flows: 'Flows' }
+const UI = { day: 'Day', signed: 'Signed', flows: 'Flows' }
 const PHOTOS = '/illus/gap/'
 const PHONE = '(max-width: 859.98px)'
 
@@ -602,9 +602,8 @@ export function GapStory({ story }: { story: Story }) {
   return (
     <div ref={ref} className="s-gs" role="img" aria-label={story.label} data-outside={o.kind}>
       <div className="s-gs-grid" aria-hidden="true">
-        {/* The company, the Example tag, and the clock. */}
+        {/* The company and the clock. */}
         <p className="s-gs-site">
-          <span className="ob-tag">{UI.example}</span>
           <span className="s-gs-ic">{Icon.shop}</span>
           <span className="s-gs-site__n">{story.site}</span>
         </p>

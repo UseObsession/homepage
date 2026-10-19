@@ -9,7 +9,7 @@ import './Targets.css'
    over its own app screen, with the recipes that start there. A whole app screen is too much to read at a card's
    size, so each is filmed (components/camera, src/screens/cam.ts): as its story plays, the camera leans in to each
    beat and labels it, so the one thing that matters reads at a legible size. Every screen here has a shot list, and
-   carries its Example tag (components/AppScreen). */
+   runs to the card's foot. */
 const byId = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 export function Targets({ targets, id, workspace = 'company' }: { targets: TargetsContent; id?: string; workspace?: Workspace }) {
@@ -37,7 +37,12 @@ export function Targets({ targets, id, workspace = 'company' }: { targets: Targe
                     .filter(Boolean)
                     .map((r) => (
                       <li key={r.id}>
-                        <Link to={`/recipes/${r.slug}`}>{r.name}</Link>
+                        <Link to={`/recipes/${r.slug}`}>
+                          <span>{r.name}</span>
+                          <svg className="v5-target-go" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path d="M5 11 11 5M6.5 5H11v4.5" />
+                          </svg>
+                        </Link>
                       </li>
                     ))}
                 </ul>

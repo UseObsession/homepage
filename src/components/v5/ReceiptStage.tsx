@@ -116,7 +116,6 @@ export function ReceiptStage({ stage }: { stage: Stage }) {
         </div>
       </div>
       <figcaption className="v5-rs-cap">
-        <span className="v5-rs-example">{stage.example}</span>
         <span className="v5-rs-pick" role="group" aria-label="Companies">
           {stage.receipts.map((x, k) => (
             <button

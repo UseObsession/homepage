@@ -42,8 +42,9 @@ function Reveal({ children, className = '' }: { children: ReactNode; className?:
 
 /* 4 audiences, cut on the diagonal in 2 rows of 2. Each one opens its own page. James's band (his first commit,
    src/components/PersonaBand), with his markup and classes as he wrote them: only the data (content/band.ts) and the
-   colours (PersonaBand.css, the site's reader palette) are the site's. The sr-only stops are the one addition, so a
-   panel reads as sentences to a screen reader. */
+   colours (PersonaBand.css, the site's reader palette) are the site's. The sr-only stops are one addition, so a
+   panel reads as sentences to a screen reader; the other is .pband-more around the line and chips, the 1 block the
+   reveal folds. */
 export function PersonaBand() {
   return (
     <nav className="pband" aria-label="Who it's for">
@@ -56,17 +57,21 @@ export function PersonaBand() {
             {r.bandName}
             <span className="sr-only">. </span>
           </span>
-          <span className="pband-line">
-            {r.bandLine}
-            <span className="sr-only">. </span>
-          </span>
-          <span className="pband-ways">
-            {r.ways.map((w, wi) => (
-              <span key={w}>
-                {w}
-                {wi < r.ways.length - 1 && <span className="sr-only">, </span>}
+          <span className="pband-more">
+            <span className="pband-more-in">
+              <span className="pband-line">
+                {r.bandLine}
+                <span className="sr-only">. </span>
               </span>
-            ))}
+              <span className="pband-ways">
+                {r.ways.map((w, wi) => (
+                  <span key={w}>
+                    {w}
+                    {wi < r.ways.length - 1 && <span className="sr-only">, </span>}
+                  </span>
+                ))}
+              </span>
+            </span>
           </span>
           <span className="pband-go" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
