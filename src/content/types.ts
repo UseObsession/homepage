@@ -590,6 +590,8 @@ export type BlogIndexPage = {
    page, the inbox) and the receipt it ends on, with its stamp. Home cycles through `receipts`; a reader page shows its
    own. Invented companies only, at .example addresses. */
 export type StageReceipt = {
+  /* What the story shows, in the buyer's words: the name on its button under the stage. */
+  topic: string
   company: string
   domain: string
   monogram: string

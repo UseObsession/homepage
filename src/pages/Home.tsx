@@ -21,7 +21,7 @@ import './StoryPage.css'
 export function Home() {
   return (
     <>
-      <Hero5 hero={page.hero} visual={page.stage && <ReceiptStage stage={page.stage} />} crumbs={false} />
+      <Hero5 hero={page.hero} visual={page.stage && <ReceiptStage stage={page.stage} />} crumbs={false} center />
       {page.gapPair && <GapPair gap={page.gapPair} id="gap" />}
       {page.life && <AgentLife life={page.life} id="how" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" compact className="v5-proof" id="proof" />}

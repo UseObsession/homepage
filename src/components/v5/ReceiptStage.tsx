@@ -116,7 +116,7 @@ export function ReceiptStage({ stage }: { stage: Stage }) {
         </div>
       </div>
       <figcaption className="v5-rs-cap">
-        <span className="v5-rs-pick" role="group" aria-label="Companies">
+        <span className="v5-rs-pick" role="group" aria-label="Journeys">
           {stage.receipts.map((x, k) => (
             <button
               key={x.domain}
@@ -125,12 +125,19 @@ export function ReceiptStage({ stage }: { stage: Stage }) {
               aria-pressed={k === i}
               onClick={() => pick(k)}
             >
-              {x.company}
+              {x.topic}
             </button>
           ))}
           {n > 1 && (
-            <button type="button" className="v5-rs-pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
-              {paused ? 'Play' : 'Pause'}
+            <button type="button" className="v5-rs-pause" aria-label="Pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
+              {/* Paused, it shows play: the press that starts it again. */}
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                {paused ? (
+                  <path d="M5 3.3v9.4a.6.6 0 0 0 .92.5l7.3-4.7a.6.6 0 0 0 0-1L5.92 2.8a.6.6 0 0 0-.92.5Z" />
+                ) : (
+                  <path d="M4.6 3h2.2a.6.6 0 0 1 .6.6v8.8a.6.6 0 0 1-.6.6H4.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6Zm4.6 0h2.2a.6.6 0 0 1 .6.6v8.8a.6.6 0 0 1-.6.6H9.2a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6Z" />
+                )}
+              </svg>
             </button>
           )}
         </span>

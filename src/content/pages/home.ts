@@ -57,6 +57,7 @@ export const page: Page = {
     steps: ['Followed the ad', 'Signed up', 'Got the email'],
     receipts: [
       {
+        topic: 'Ad offer',
         company: 'Fern Hollow',
         domain: 'fernhollow.example',
         monogram: 'F',
@@ -74,6 +75,7 @@ export const page: Page = {
         fact: 'The ad promised 40% off. The page and the email held it.',
       },
       {
+        topic: 'Abandoned basket',
         company: 'Wrenfield',
         domain: 'wrenfield.example',
         monogram: 'W',
@@ -92,6 +94,7 @@ export const page: Page = {
         fact: 'A basket left at 20:14 got a reminder an hour later, with 10% off.',
       },
       {
+        topic: 'Price drop',
         company: 'Northfold',
         domain: 'northfold.example',
         monogram: 'N',

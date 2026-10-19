@@ -40,6 +40,8 @@
   min-width: 0;
   min-height: clamp(380px, 31vw, 450px);
   display: grid;
+  /* 1 column as wide as the panel, whatever its children ask for (the reveal's block is wider while it waits). */
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   align-content: start;
   gap: 14px;
@@ -183,6 +185,8 @@
   .pband-more {
     display: grid;
     grid-template-rows: 0fr;
+    min-width: 0;
+    overflow: hidden;
     transition: grid-template-rows 420ms var(--ease) 90ms;
   }
 
