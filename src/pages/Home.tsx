@@ -32,7 +32,7 @@ export function Home() {
       {page.scale && <Scale scale={page.scale} id="scale" />}
       {page.compare && <Compare compare={page.compare} id="compare" />}
       {page.ways && <Ways ways={page.ways} id="ways" />}
-      {page.openSource && <OpenSource open={page.openSource} id="open-source" />}
+      {page.openSource && <OpenSource open={page.openSource} id="open-source" deskOnly />}
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

@@ -25,10 +25,10 @@ function Go({ cta, primary }: { cta: Cta; primary?: boolean }) {
   )
 }
 
-export function OpenSource({ open, id }: { open: OpenSourceContent; id?: string }) {
+export function OpenSource({ open, id, deskOnly }: { open: OpenSourceContent; id?: string; deskOnly?: boolean }) {
   const hid = useId()
   return (
-    <section className="v5-section v5-os" id={id} aria-labelledby={`${hid}-h`}>
+    <section className={deskOnly ? 'v5-section v5-os v5-deskonly' : 'v5-section v5-os'} id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="v5-head">
           <h2 className="v5-h2" id={`${hid}-h`}>

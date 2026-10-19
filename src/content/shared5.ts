@@ -5,11 +5,11 @@ import type { Compare, Life, OpenSource, Ways } from './types'
 
 /* How it works, as breadth first (COPY.md, "Home > How it works"; the 3 reviews of 19 Oct): a customer of a whole list
    by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
-   stage's companies, so the 2 pictures tell 1 story. Larchwise's quiet lane is a finding too. */
+   stage's companies, so the 2 pictures tell 1 story. */
 export const life: Life = {
-  heading: 'A customer of 1,000 companies by lunch.',
+  heading: 'A customer of 10,000 companies by lunch.',
   line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an agent signs up to each, the first welcome emails land within minutes, and it stays on as their customer, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
-  list: 'brands.csv · 1,000 companies',
+  list: 'brands.csv · 10,000 companies',
   axis: {
     start: 'Monday 09:00',
     ticks: [
@@ -17,15 +17,15 @@ export const life: Life = {
       { day: 7, label: 'Day 7' },
       { day: 30, label: 'Day 30' },
     ],
-    end: 'Day 90: still a customer of all 1,000',
+    end: 'Day 90: still a customer of all 10,000',
   },
   lanes: [
     { name: 'Fern Hollow', wakes: [{ day: 0.006, label: '09:09 · welcome' }, { day: 30, label: 'Day 30 · sale' }] },
-    { name: 'Larchwise', wakes: [{ day: 1, label: 'Day 1 · trial' }, { day: 3, label: 'Day 3 · then silence' }] },
+    { name: 'Wrenfield', wakes: [{ day: 0.51, label: '21:14 · basket, 10% off' }, { day: 3, label: 'Day 3 · second reminder' }] },
     { name: 'Northfold', wakes: [{ day: 2, label: 'Day 2 · basket' }, { day: 21, label: 'Day 21 · £19' }, { day: 47, label: 'Day 47 · 30% off' }] },
   ],
   more: {
-    name: '+ 997 more',
+    name: '+ 9,997 more',
     days: [0.004, 0.005, 0.007, 0.008, 0.01, 0.012, 0.3, 0.5, 0.8, 1, 1.2, 2, 2.5, 3, 4, 5, 6, 7, 9, 11, 13, 14, 16, 19, 22, 24, 27, 29, 31, 34, 38, 41, 44, 49, 53, 58, 61, 66, 70, 75, 79, 84, 88],
   },
   phases: [

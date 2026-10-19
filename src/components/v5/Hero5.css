@@ -74,3 +74,21 @@
 
 /* A reader page's headline is longer than Home's, so it sets a step smaller. */
 .v5-hero[data-reader] .v5-hero-h { font-size: clamp(36px, 4.4vw, 58px); }
+
+/* The category tag over Home's headline: 1 pill, ink only, a filled dot before the word. */
+.v5-hero-tag {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ob-line);
+  font: 500 13px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.v5-hero-tag:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.v5-hero-tag:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+.v5-hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ob-text); }

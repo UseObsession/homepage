@@ -93,7 +93,7 @@ export function Ways({ ways, id }: { ways: WaysContent; id?: string }) {
         ))}
         <div className="v5-ways-verbs">
           <h3 className="v5-ways-verbs-h">{ways.verbs.heading}</h3>
-          <dl>
+          <dl className="v5-rail v5-rail--cards">
             {ways.verbs.items.map((v) => (
               <div key={v.name}>
                 <dt>

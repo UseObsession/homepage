@@ -15,7 +15,7 @@ export function Parity({ parity, id }: { parity: ParityContent; id?: string }) {
           </h2>
           {parity.line && <p className="v5-line">{parity.line}</p>}
         </div>
-        <ul className="v5-parity-list">
+        <ul className="v5-parity-list v5-rail v5-rail--cards">
           {parity.items.map((p) => (
             <li className="v5-parity-row" key={p.tool}>
               <h3 className="v5-parity-tool">{p.tool}</h3>

@@ -23,7 +23,7 @@ export function Targets({ targets, id, workspace = 'company' }: { targets: Targe
           </h2>
           {targets.line && <p className="v5-line">{targets.line}</p>}
         </div>
-        <div className="v5-targets-grid">
+        <div className="v5-targets-grid v5-rail">
           {targets.items.map((t) => (
             <article className="v5-target" key={t.name}>
               <div className="v5-target-copy">

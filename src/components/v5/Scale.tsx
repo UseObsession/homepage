@@ -36,6 +36,7 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
   const section = useRef<HTMLElement>(null)
   const track = useRef<HTMLDivElement>(null)
   const pin = useRef<HTMLDivElement>(null)
+  const stage = useRef<HTMLDivElement>(null)
   const steps = useRef<(HTMLDivElement | null)[]>([])
   const [cur, setCur] = useState(0)
   const [live, setLive] = useState(false)
@@ -83,24 +84,34 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
         go(Math.min(2, Math.floor(p * 3)))
       })
     }
-    /* Stacked: step 3's field fills as its panel rises from the bottom of the screen to the middle. */
-    const onStackScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        const el = steps.current[2]
-        if (!el) return
-        const r = el.getBoundingClientRect()
-        const vh = window.innerHeight
-        fill(clamp((vh * 0.9 - r.top) / (vh * 0.6)))
-      })
+    /* Stacked (or a phone's row of cards): step 3's field fills, square by square, as that step arrives. */
+    let filling = 0
+    const fillIn = () => {
+      cancelAnimationFrame(filling)
+      if (reduced()) return fill(1)
+      const t0 = performance.now()
+      const tick = (t: number) => {
+        const p = Math.min(1, (t - t0) / 1600)
+        fill(p * FULL_AT)
+        if (p < 1) filling = requestAnimationFrame(tick)
+      }
+      filling = requestAnimationFrame(tick)
     }
-    /* Stacked: the step in the middle of the screen is the current one. */
+    const arrive = (k: number) => {
+      if (k < 0 || k === curRef.current) return
+      go(k)
+      if (k === 2) fillIn()
+    }
+    /* Stacked: the step in the middle of the screen is the current one. On a phone the steps are a row of cards
+       (styles/v5.css .v5-rail): the card mostly in view in that row is the current one. */
     const watch = () => {
+      const row = stage.current
+      const rail = !!row && getComputedStyle(row).overflowX === 'auto'
       io = new IntersectionObserver(
         (entries) => {
-          for (const e of entries) if (e.isIntersecting) go(steps.current.indexOf(e.target as HTMLDivElement))
+          for (const e of entries) if (e.isIntersecting && (!rail || e.intersectionRatio >= 0.6)) arrive(steps.current.indexOf(e.target as HTMLDivElement))
         },
-        { rootMargin: '-45% 0px -45% 0px' },
+        rail ? { root: row, threshold: [0.6] } : { rootMargin: '-45% 0px -45% 0px' },
       )
       steps.current.forEach((el) => el && io!.observe(el))
     }
@@ -111,7 +122,6 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
     const setup = () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
-      window.removeEventListener('scroll', onStackScroll)
       io?.disconnect()
       if (pinned.matches) {
         measure()
@@ -119,9 +129,9 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
         window.addEventListener('resize', onResize)
         onScroll()
       } else {
-        window.addEventListener('scroll', onStackScroll, { passive: true })
-        onStackScroll()
+        fill(curRef.current === 2 ? 1 : 0)
         if ('IntersectionObserver' in window) watch()
+        else fill(1)
       }
     }
     setup()
@@ -130,7 +140,7 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
       cancelAnimationFrame(raf)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
-      window.removeEventListener('scroll', onStackScroll)
+      cancelAnimationFrame(filling)
       io?.disconnect()
       pinned.removeEventListener('change', setup)
     }
@@ -165,7 +175,7 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
               <p className="v5-line">{scale.line}</p>
             </div>
 
-            <div className="v5-scale-stage">
+            <div className="v5-scale-stage v5-rail" ref={stage}>
               {scale.steps.map((s, k) => (
                 <div
                   className="v5-scale-step"
@@ -287,7 +297,7 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
       </div>
 
       <div className="s-wrap">
-        <ul className="v5-scale-principles">
+        <ul className="v5-scale-principles v5-rail v5-rail--cards">
           {scale.principles.map((x) => (
             <li key={x.title}>
               <h3>{x.title}</h3>

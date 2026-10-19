@@ -1,7 +1,10 @@
 /* The comparison (Compare.tsx). 1 table, no boxes per cell: rows separated by 1 hairline each, Obsession's column a
    faint band in the stamp ink. Marks are text (●, ◐, ○), so they print, scale and read in both themes. */
 
+/* position: relative makes the frame the containing block of the cells' hidden legend words (.v5-visually-hidden is
+   absolute), so its scroll clips them; without it they hang out past a phone's edge and widen the whole page. */
 .v5-compare-frame {
+  position: relative;
   overflow-x: auto;
   border-radius: 16px;
   border: 1px solid var(--ob-line-subtle);

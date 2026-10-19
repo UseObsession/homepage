@@ -72,7 +72,7 @@ export function AgentLife({ life, id }: { life: Life; id?: string }) {
           </p>
         </div>
 
-        <ol className="v5-life-steps">
+        <ol className="v5-life-steps v5-rail v5-rail--cards">
           {life.phases.map((s) => (
             <li key={s.title}>
               <h3>{s.title}</h3>

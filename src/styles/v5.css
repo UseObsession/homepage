@@ -131,3 +131,37 @@
 
 /* What you get (Home): the close of how it works, on the same ground, straight under its steps. */
 .v5-section:has(+ .v5-formats) { padding-bottom: clamp(36px, 4vw, 56px); }
+
+/* Rails (phones only): a list that would stack into a long column becomes a row of cards to swipe, each most of the
+   screen wide and snapping into place, the next one's edge showing so the row reads as more. The row runs to the
+   screen's edges (out of the page's gutter) and starts on the gutter. .v5-rail--cards gives plain items a card of their
+   own; lists whose items are already cards leave it off. !important: a section's own phone rules stack the same list
+   into 1 column, and the rail wins over them. */
+@media (max-width: 760px) {
+  .v5-rail {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 82% !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--s-gutter, 16px)) !important;
+    padding: 2px var(--s-gutter, 16px) 10px !important;
+    scroll-padding-inline: var(--s-gutter, 16px);
+  }
+  .v5-rail::-webkit-scrollbar { display: none; }
+  .v5-rail > * { scroll-snap-align: start; min-width: 0; }
+  .v5-rail--cards > * {
+    background: var(--ob-surface);
+    border: 1px solid var(--ob-line-subtle) !important;
+    border-radius: 14px;
+    padding: 16px !important;
+  }
+  /* Home's open source section waits for a wider screen. */
+  .v5-deskonly { display: none !important; }
+}

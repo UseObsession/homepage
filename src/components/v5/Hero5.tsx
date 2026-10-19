@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { nav } from '../../content/nav'
 import type { Cta, Hero as HeroContent, ReaderId } from '../../content/types'
 import { CaptureForm } from '../CaptureForm'
 import { Crumbs } from '../Crumbs'
@@ -10,7 +11,7 @@ import './Hero5.css'
    The right column is the page's own object: Home's receipt stage, or a reader page's screen. No pill, no proof row,
    no tagline under the form (those live in their own sections below).
    `reader` gives a reader page its hue on the hero's 1 soft glow (styles/accents.css), as before. */
-type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary'>
+type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary'> & { pill?: string }
 
 function Secondary({ cta }: { cta: Cta }) {
   return cta.to.startsWith('/') ? (
@@ -34,6 +35,13 @@ export function Hero5({ hero, visual, reader, crumbs = true }: { hero: HeroWords
         {crumbs && <Crumbs />}
         <div className="v5-hero-grid">
           <div className="v5-hero-words ob-anim-hero">
+            {/* The category tag (Home's "Open source"): a quiet link to the code, on the headline's own left edge. */}
+            {hero.pill && (
+              <a className="v5-hero-tag" href={nav.github.to} rel="noopener">
+                <span className="v5-hero-tag-dot" aria-hidden="true" />
+                {hero.pill}
+              </a>
+            )}
             <h1 className="v5-hero-h" id={`${id}-h`}>
               {hero.headline}
             </h1>

@@ -16,7 +16,7 @@ export function GapPair({ gap, id }: { gap: GapPairContent; id?: string }) {
           </h2>
           {gap.line && <p className="v5-line">{gap.line}</p>}
         </div>
-        <div className="v5-gap-sheet">
+        <div className="v5-gap-sheet v5-rail">
           <div className="v5-gap-col v5-gap-tools">
             <h3 className="v5-gap-label">{gap.tools.label}</h3>
             <ul>

@@ -579,6 +579,8 @@ export type StageReceipt = {
   monogram: string
   ad: { source: string; text: string; cta: string }
   page: { path: string; title: string; note: string }
+  /* The hop from the page to the inbox when the agent did something other than sign up, such as leaving a basket. */
+  did?: string
   mail: { time: string; from: string; subject: string; tab: string }
   rows: { k: string; v: string }[]
   stamp: string

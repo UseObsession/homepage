@@ -160,7 +160,7 @@ flowchart TD
 ```mermaid
 flowchart LR
   a["What is it? Hero and receipt stage"] --> b["Why can't my tools? The gap"]
-  b --> c["How many, how soon? A customer of 1,000 by lunch, every move after"]
+  b --> c["How many, how soon? A customer of 10,000 by lunch, every move after"]
   c --> c2["What do I get? Every format"]
   c2 --> d["Is it for me? Pick who you are"]
   d --> e["Of whom? Rivals, prospects, yourself, your AI"]
@@ -197,7 +197,7 @@ The full words are in the content files; this is the spine of each page.
 | Hero | Be a customer of every company. Keep the receipts. | Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. |
 | Stage | 3 examples: Fern Hollow (offer held), Larchwise (trial went quiet), Northfold (price cut on day 21) | Each: the ad, the page, the email, the receipt and its stamp |
 | Gap | Every tool shows you the ad. None of them is the customer. | Today it's a spare inbox, screenshots and a spreadsheet, kept up by hand, or a tool that saves the page and stops there. |
-| How | A customer of 1,000 companies by lunch. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
+| How | A customer of 10,000 companies by lunch. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
 | What you get | You get the fact, where you work, however you want it. | A small dense 3 by 3 grid, no pictures: Your agent, Slack, Email, Report, Clay, Sheet, CRM, JSON, Workflow, each with 1 line of Northfold's price cut as it lands there; "See sample output" |
 | Readers | Pick who you are. | 4 panels |
 | Kinds | Be a customer of anyone. Rivals, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |

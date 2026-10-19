@@ -80,7 +80,7 @@ export function ReceiptStage({ stage }: { stage: Stage }) {
             <span className="v5-rs-ad-cta">{r.ad.cta}</span>
           </article>
           <p className="v5-rs-hop">{stage.steps[0]}</p>
-          <article className="v5-rs-card v5-rs-page" aria-label={`${stage.steps[1]}: ${r.page.title}`}>
+          <article className="v5-rs-card v5-rs-page" aria-label={`${r.did ?? stage.steps[1]}: ${r.page.title}`}>
             <p className="v5-rs-url">
               <span>{r.domain}</span>
               {r.page.path}
@@ -88,7 +88,7 @@ export function ReceiptStage({ stage }: { stage: Stage }) {
             <p className="v5-rs-page-t">{r.page.title}</p>
             <p className="v5-rs-page-n">{r.page.note}</p>
           </article>
-          <p className="v5-rs-hop">{stage.steps[1]}</p>
+          <p className="v5-rs-hop">{r.did ?? stage.steps[1]}</p>
           <article className="v5-rs-card v5-rs-mail" aria-label={`${stage.steps[2]}: ${r.mail.subject}`}>
             <span className="v5-rs-mail-time">{r.mail.time}</span>
             <span className="v5-rs-mail-main">
