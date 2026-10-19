@@ -162,6 +162,9 @@
   background: radial-gradient(closest-side, var(--s-spot), transparent);
   pointer-events: none;
 }
+/* 100vw counts a classic scrollbar, so the light was 1 scrollbar wider than the page and scrolled it sideways: the hero
+   clips it at its own edges, across only. */
+.s-hero:not([data-reader]) { overflow-x: clip; }
 /* C1 (THEMES.md, fix): the light falls from above, so the stage throws no shadow up into it. Its cast (offset 40px,
    spread -40px, blur 100px) reached about 100px above the stage's top edge and cut a box into the spot round the
    heading: 1 level under the page at 1:1, a hard contour at 8x gain. On Home's ink hero the cast drops 120px instead,

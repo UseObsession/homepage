@@ -10,7 +10,11 @@ import type { Recipe } from '../types'
    Set (£40) left in the basket at 02:57 and a Deodorant (£21) left at checkout, before payment, at 03:11 on Tuesday
    22 September; each inbox watched for 48 hours; 0 reminders reached either; browse got 3 messages (Delivered),
    welcome 2, too few to call (No verdict); 15 screenshots and 5 messages kept. No control message, no second run and
-   no signature are claimed on it. The final capture is the free store mystery shop. */
+   no signature are claimed on it. The final capture is the free store mystery shop.
+   Brought into the October voice on 19 Oct (James), with the agencies use case it links to: AI agents become the
+   customer ("customer agents"), never "test customers"; James's headline, the checks, the verdicts, the comparison
+   and the real run's facts are kept as they were. The comparison loses its "Example." label: Rival A and Rival B are
+   plainly invented. The app screen keeps its own words (src/screens is synced from the screens' owner). */
 
 export const recipe: Recipe = {
   id: 'mystery',
@@ -20,7 +24,7 @@ export const recipe: Recipe = {
   line: 'Goes through your business, or a client’s, as a customer does, from the first click to the last email.',
   gets: 'A verdict on every journey, with the proof behind each one.',
   kit: [
-    'An AI test customer per journey',
+    'A customer agent per journey',
     'Its own inbox, number and browser',
     'Mobile, desktop or both',
     'A screenshot of every step',
@@ -32,9 +36,9 @@ export const recipe: Recipe = {
     path: '/recipes/mystery-shopper',
     title: 'AI mystery shopper: see what your customers get · Obsession',
     description:
-      'AI test customers sign up, shop, book and start trials at your business as a new customer does, and time every email, text and reply that follows.',
+      'AI agents become new customers of your business, or a client’s: they sign up, shop, book and start trials, and time every email, text and reply that follows, with the receipts.',
     answer:
-      'Mystery shopper is AI mystery shopping for digital journeys: AI test customers sign up, shop, book and start trials at your business, and time every email, text and reply that follows.',
+      'Mystery shopper is AI mystery shopping for digital journeys. AI agents become new customers of your business, or a client’s: they sign up, shop, book or start the trial, and time every email, text and reply that follows, with the receipts.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,14 +49,14 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'See what a customer actually gets after they show up.',
-    sub: 'Mystery shopper is AI mystery shopping for digital journeys: AI test customers sign up, shop, book and start trials at your business, and time every email, text and reply that follows.',
+    sub: 'Mystery shopper is AI mystery shopping for digital journeys. AI agents become new customers of your business, or a client’s: they sign up, shop, book or start the trial, and time every email, text and reply that follows, with the receipts.',
     screen: 'shop',
     capture: {
       kind: 'mystery',
       source: 'recipe-mystery-hero',
       button: 'Get my free report',
       placeholder: 'Store address, e.g. your-store.example',
-      micro: 'Free for a store you run, or a client’s: 4 test customers, 48 hours watched, your report within 4 days.',
+      micro: 'Free for a store you run, or a client’s: 4 customer agents, 48 hours watched, your report within 4 days.',
       interest: 'mystery',
     },
   },
@@ -60,20 +64,20 @@ export const recipe: Recipe = {
   run: {
     tab: 'Real run, September 2026',
     recipe: 'mystery',
-    task: 'Shop a skincare store as 4 test customers: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
+    task: 'Be 4 customers of a skincare store: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
     targets: 'A skincare store, name hidden',
     journey: ['Sign up for emails', 'Browse and leave', 'Leave a basket', 'Leave at checkout, before payment'],
     schedule: 'Once, 22 to 24 September 2026',
     report: 'A report with every screenshot and message as proof',
-    kit: ['4 test customers', '4 inboxes, 1 per journey', 'Shopped from the UK', '48 hour watch'],
+    kit: ['4 customer agents', '4 inboxes, 1 per journey', 'Shopped from the UK', '48 hour watch'],
     events: [
-      { time: '22 Sep, 02:57', text: 'The basket shopper leaves a £40 gift set in the basket.' },
-      { time: '22 Sep, 03:11', text: 'The checkout shopper leaves a £21 deodorant at checkout, before payment.' },
+      { time: '22 Sep, 02:57', text: 'The basket agent leaves a £40 gift set in the basket.' },
+      { time: '22 Sep, 03:11', text: 'The checkout agent leaves a £21 deodorant at checkout, before payment.' },
       { time: '22 to 24 Sep', text: 'Browse: 3 messages arrive. Welcome: 2, too few to call.' },
       { time: '24 Sep, 02:57', text: '48 hours on. No reminder for the £40 basket.' },
       { time: '24 Sep, 03:11', text: '48 hours on. No reminder for the £21 checkout.' },
     ],
-    finding: '1 shopper left £40 in the basket and 1 stopped at checkout with £21. No reminder reached either in 48 hours.',
+    finding: '1 agent left £40 in the basket and 1 stopped at checkout with £21. No reminder reached either in 48 hours.',
     fix: 'The 2 missing reminders drafted in the report, ready for the store to approve.',
     ledger: 'Real run, September 2026. Store name hidden. 15 screenshots and 5 messages kept as proof.',
   },
@@ -84,11 +88,11 @@ export const recipe: Recipe = {
       line: 'A store’s basket and checkout, a software trial, a demo request, a booking or a quote. Yours, or a client’s with their OK.',
     },
     {
-      title: 'Test customers go through them',
-      line: 'Each is an AI agent with its own inbox, number and browser. It signs up, books, starts the trial or fills the basket, and screenshots every step.',
+      title: 'An agent becomes the customer',
+      line: 'One per journey, each with its own inbox, number and browser. It signs up, books, starts the trial or fills the basket, and keeps a screenshot of every step.',
     },
     {
-      title: 'They wait, and watch',
+      title: 'It stays, and watches',
       line: 'Every inbox and number is watched for the window you set, so a reminder that never comes shows up too.',
     },
     {
@@ -178,7 +182,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Rival A welcomes new customers 5 minutes faster, with a bigger offer.',
-    line: 'Example. The same steps at each rival: sign up, texts and the site’s chat bot.',
+    line: 'The same steps as a customer of each rival: sign up, texts and the site’s chat bot.',
     cols: ['You', 'Rival A', 'Rival B'],
     rows: [
       { label: 'Time to welcome email', values: ['6 min', '1 min', 'None in 24 h'] },
@@ -190,23 +194,23 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI when it talks to a person.',
+    heading: 'Every agent says it’s AI when it talks to a person.',
     items: [
       {
         q: 'What is AI mystery shopping?',
-        a: 'AI mystery shopping for digital journeys means an AI test customer lives your online journey, from sign up to the last email, and every message that follows is timed. It says it’s AI when it talks to a person.',
+        a: 'AI mystery shopping for digital journeys means an AI agent becomes a new customer of your online business, from sign up to the last email, and every message that follows is timed and kept. It says it’s AI when it talks to a person.',
       },
       {
         q: 'Can you do mystery shopping online?',
-        a: 'Yes. Obsession’s Mystery shopper runs your online journeys, a store’s basket and checkout, a software trial, a demo request or a booking, each lived by an AI test customer with its own inbox, number and browser.',
+        a: 'Yes. Obsession’s Mystery shopper runs your online journeys, a store’s basket and checkout, a software trial, a demo request or a booking, each lived by an AI agent with its own inbox, number and browser.',
       },
       {
         q: 'How do I test my abandoned cart and checkout emails without a dummy address?',
-        a: 'Obsession uses real inboxes. 4 AI test customers sign up, browse, leave a basket and stop at checkout before payment on your store, and every inbox is watched for 48 hours, so you see which reminders came and which never did.',
+        a: 'Obsession uses real inboxes. 4 customer agents sign up, browse, leave a basket and stop at checkout before payment on your store, and every inbox is watched for 48 hours, so you see which reminders came and which never did.',
       },
       {
         q: 'Is the September run on this page real?',
-        a: 'Yes. In September 2026, Obsession’s 4 test customers shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
+        a: 'Yes. In September 2026, 4 of Obsession’s customer agents shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
       },
       {
         q: 'Do you need our logins?',
@@ -218,7 +222,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Mystery shopper pretend to be a person?',
-        a: 'No. Every Obsession test customer says it’s an AI agent when it talks to a person. Who it works for stays private unless you choose to be named.',
+        a: 'No. Every Obsession agent says it’s an AI agent when it talks to a person. Who it works for stays private unless you choose to be named.',
       },
       {
         q: 'Can Mystery shopper test a software trial or a booking?',
@@ -236,14 +240,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free report?',
-        a: 'The free report is a Mystery shopper run on a store you run, or a client’s: 4 test customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
+        a: 'The free report is a Mystery shopper run on a store you run, or a client’s: 4 customer agents sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
       },
     ],
   },
 
   final: {
     heading: 'Your first store mystery shop is free.',
-    sub: 'Name a store you run, or a client’s. 4 test customers shop it, every inbox is watched for 48 hours, and your report lands within 4 days.',
+    sub: 'Name a store you run, or a client’s. 4 customer agents become its customers, every inbox is watched for 48 hours, and your report lands within 4 days.',
     capture: {
       kind: 'mystery',
       source: 'recipe-mystery-final',

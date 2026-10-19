@@ -29,12 +29,12 @@ import type { UseCaseStudy } from '../types'
    land, with its trademark line in the small print).
    Screens (reused, none new): approve (the findings and the drafted fix).
    Rewritten 19 Oct (James) in the site's October voice: the agency becomes a customer of every store it serves or
-   pitches, and keeps the receipts. The hero's picture is the board (components/study/Board), in place of the 3 stop
-   flow: the agency's stores watched at once for 48 hours, 1 column per journey, each gap landing at the last hour, and
-   the receipt of coffee.example's missing welcome email, the gap the approve screen below drafts a fix for. The 4 rows
-   are the 4 stores the uses name (outdoor, candles, homeware, coffee). No "Example" chip: the stores are .example
-   addresses and the small print says what is made up.
-   Additions this page uses: hero.secondary, hero.board, fix, found, no `more`, final.link and capture.done (types.ts). */
+   pitches, and keeps the receipts. The hero's picture is the report stack (components/study/ReportStack), in place of
+   the 3 stop flow and of the store board James turned down the same day: what the agency hands each client, 1 report
+   per store in its own brand, the front one coffee.example's (the missing welcome email the approve screen below
+   drafts a fix for), the 3 behind it the other stores the uses name (outdoor, candles, homeware). No "Example" chip:
+   the stores are .example addresses and the small print says what is made up.
+   Additions this page uses: hero.secondary, hero.report, fix, found, no `more`, final.link and capture.done (types.ts). */
 
 export const study: UseCaseStudy = {
   name: 'Mystery shopping for ecommerce agencies',
@@ -61,70 +61,35 @@ export const study: UseCaseStudy = {
     headline: 'Be a customer of every store you serve or pitch.',
     sub: 'Clients can’t see what the retainer buys, and nobody has time to shop 20 stores by hand. AI agents sign up, fill a basket and wait at every client and prospect store at once. Each gap comes back with its receipt and a drafted fix, in your brand.',
     example: { chips: [] },
-    /* The board: 20 stores, 4 journeys, 48 hours. A cell's `at` is the hour it came back; a gap lands at hour 48. */
-    board: {
+    /* The report stack: what the agency hands each client, in its own brand. The front report is coffee.example's
+       (the gap the approve screen below drafts a fix for); behind it, the 3 other stores the uses name. */
+    report: {
       label:
-        'An agency’s 20 client and prospect stores, each watched as a customer for 48 hours: the welcome email, the basket reminder, texts after opting in, and the support bot. outdoor.example, a prospect: no text after opting in. candles.example, a client: the bot promised an email that never came. homeware.example, renewing in 30 days: every journey came back. coffee.example, at risk: no welcome email in 48 hours, its receipt kept and a fix drafted.',
-      who: 'Your agency',
-      count: '20 stores, 4 journeys each',
-      hours: 48,
-      hour: 'Hour',
-      cols: ['Welcome email', 'Basket reminder', 'Texts', 'Support bot'],
+        'A stack of client reports in your agency’s brand, 1 per store, from 20 stores checked at once. The front one, a customer journey check for coffee.example, a coffee roaster and a client at risk: 3 of 4 journeys worked. The welcome email was silent, none in 48 hours; the basket reminder came after 3 hours with 10% off; texts are not offered; the support bot answered in 40 seconds. The gap: signed up on Monday at 09:02 and no welcome email came in 48 hours; the inbox, Promotions and spam were checked every hour; a welcome flow with the 10% code is drafted for your OK. Behind it: outdoor.example, a prospect, with no text after opting in; candles.example, a client, whose bot promised an email that never came; homeware.example, renewing in 30 days, with all 4 journeys working.',
+      brand: 'Your agency',
+      kind: 'Customer journey check',
+      store: 'coffee.example',
+      about: 'Coffee roaster · client, at risk · watched for 48 hours as a new customer',
+      score: { value: '3 of 4', line: 'journeys worked' },
       rows: [
-        {
-          store: 'outdoor.example',
-          role: 'Prospect, pitch on Friday',
-          cells: [
-            { state: 'ok', text: 'In 6 min', at: 0.1 },
-            { state: 'ok', text: 'After 1 h', at: 1 },
-            { state: 'gap', text: 'Silent' },
-            { state: 'ok', text: 'Answered', at: 0.05 },
-          ],
-        },
-        {
-          store: 'candles.example',
-          role: 'Client',
-          cells: [
-            { state: 'ok', text: 'In 4 min', at: 0.07 },
-            { state: 'ok', text: 'After 2 h', at: 2 },
-            { state: 'none', text: 'Not offered' },
-            { state: 'gap', text: 'Promised, never sent' },
-          ],
-        },
-        {
-          store: 'homeware.example',
-          role: 'Client, renews in 30 days',
-          cells: [
-            { state: 'ok', text: 'In 2 min', at: 0.03 },
-            { state: 'ok', text: 'After 50 min', at: 0.83 },
-            { state: 'ok', text: 'In 3 min', at: 0.05 },
-            { state: 'ok', text: 'Answered', at: 0.04 },
-          ],
-        },
-        {
-          store: 'coffee.example',
-          role: 'Client, at risk',
-          cells: [
-            { state: 'gap', text: 'Silent' },
-            { state: 'ok', text: 'After 3 h', at: 3 },
-            { state: 'none', text: 'Not offered' },
-            { state: 'ok', text: 'Answered', at: 0.06 },
-          ],
-        },
+        { k: 'Welcome email', state: 'gap', verdict: 'Silent', v: 'None in 48 hours' },
+        { k: 'Basket reminder', state: 'ok', verdict: 'Delivered', v: 'After 3 hours, with 10% off' },
+        { k: 'Texts', state: 'none', verdict: 'Not offered', v: '' },
+        { k: 'Support bot', state: 'ok', verdict: 'Answered', v: 'In 40 seconds' },
       ],
-      more: '+ 16 more stores',
-      receipt: {
-        store: 'coffee.example',
-        rows: [
-          { k: 'Signed up', v: 'Monday, 09:02' },
-          { k: 'Welcome', v: 'None in 48 hours' },
-          { k: 'Looked in', v: 'Inbox, Promotions, spam' },
-          { k: 'Basket', v: 'Reminder after 3 hours' },
-          { k: 'Fix', v: 'Welcome flow drafted, for your OK' },
-        ],
+      gap: {
+        heading: 'The gap',
         fact: 'Signed up on Monday at 09:02. No welcome email came in 48 hours.',
-        stamp: 'Silent',
+        receipt: 'Receipt: the inbox, Promotions and spam, checked every hour.',
+        fix: 'Fix, drafted for your OK: a welcome flow with the 10% code.',
       },
+      stamp: 'Silent',
+      behind: [
+        { store: 'outdoor.example', verdict: 'Prospect · 1 gap: no text after opting in' },
+        { store: 'candles.example', verdict: 'Client · 1 gap: the bot’s email never came' },
+        { store: 'homeware.example', verdict: 'Renews in 30 days · 4 of 4 worked' },
+      ],
+      caption: '20 stores checked at once. 1 report each, in your brand.',
     },
     capture: {
       kind: 'mystery',
@@ -151,7 +116,7 @@ export const study: UseCaseStudy = {
   },
 
   /* The 1 product moment: a gap found, its fix drafted, the agency's OK (the approve screen, drawn for an agency). It
-     picks up the board's receipt, coffee.example's missing welcome email. The steps live on the recipe's own page. */
+     picks up the front report's gap, coffee.example's missing welcome email. The steps live on the recipe's own page. */
   fix: {
     heading: 'Every gap comes back with its fix drafted, waiting for your OK.',
     line: 'Send it to the client, save it for the pitch or keep it for the renewal. Every step keeps its receipt, so the client can check the work.',

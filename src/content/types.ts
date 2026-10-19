@@ -481,6 +481,23 @@ export type StudyBoard = {
   more: string
   receipt: { store: string; rows: { k: string; v: string }[]; fact: string; stamp: string }
 }
+/* The hero's report stack (components/study/ReportStack): the client report the reader hands over, 1 per store, in
+   the reader's brand. The front page is 1 store's report in full: its journeys, each with its verdict, and its gap
+   with the receipt and the fix drafted. Behind it, the other stores' reports fan out, each showing its store and its
+   verdict. `rows[].state`: 'ok' came back, 'gap' did not, 'none' the store doesn't offer it. */
+export type StudyReport = {
+  label: string
+  brand: string
+  kind: string
+  store: string
+  about: string
+  score: { value: string; line: string }
+  rows: { k: string; state: 'ok' | 'gap' | 'none'; verdict: string; v: string }[]
+  gap: { heading: string; fact: string; receipt: string; fix: string }
+  stamp: string
+  behind: { store: string; verdict: string }[]
+  caption: string
+}
 export type StudyLink = { label: string; title: string; line: string; cta: Cta }
 
 /* 1 finding from a real audit, retold at an invented shop: `label` names the kind of store and the journey, `verdict`
@@ -511,6 +528,8 @@ export type UseCaseStudy = {
     flow?: StudyNode[]
     /* In place of the flow: the reader's stores on 1 board (StudyBoard). */
     board?: StudyBoard
+    /* In place of the flow: the reader's report, 1 per store, in their brand (StudyReport). */
+    report?: StudyReport
     capture: Capture
     /* The second path under the form (the real report, for an example whose offer is a free audit). */
     secondary?: Cta

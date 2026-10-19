@@ -5,6 +5,7 @@ import { Hero } from '../components/sections/Hero'
 import { Outcomes } from '../components/sections/Outcomes'
 import { Proof } from '../components/sections/Proof'
 import { Board } from '../components/study/Board'
+import { ReportStack } from '../components/study/ReportStack'
 import { Flow } from '../components/study/Flow'
 import { Found } from '../components/study/Found'
 import { Phases } from '../components/study/Phases'
@@ -71,7 +72,13 @@ export function UseCase({ study }: { study: UseCaseStudy }) {
           )
         }
         object={
-          h.board ? <Board board={h.board} /> : h.flow && h.flow.length > 0 ? <Flow nodes={h.flow} label={study.name} partner={partner} /> : undefined
+          h.report ? (
+            <ReportStack report={h.report} />
+          ) : h.board ? (
+            <Board board={h.board} />
+          ) : h.flow && h.flow.length > 0 ? (
+            <Flow nodes={h.flow} label={study.name} partner={partner} />
+          ) : undefined
         }
       />
       {study.how && <Phases how={study.how} workspace={workspace} id="how" />}
