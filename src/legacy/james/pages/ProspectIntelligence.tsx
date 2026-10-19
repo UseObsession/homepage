@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Board } from '../../../components/study/Board'
 import { study } from '../../../content/usecases/prospect-intelligence-with-clay'
 import { Faq, FinalCta, SectionHead } from '../components/Blocks'
 import { Mark } from '../components/Logo'
@@ -10,8 +9,15 @@ import { allRecipeIds, recipes, type RecipeId } from '../content/recipes'
 
 /* Use case: an outbound agency runs prospect intelligence for one client from a Clay table.
    The agency, client, brands, people and numbers are made up, and the small print says so.
-   The hero's words, its board (the site's components/study/Board, in place of the 3 stop flow), the questions and the
-   small print come from the site's content file for this address, so the head and the JSON-LD say what the page says. */
+   The hero's headline and sub, the questions and the small print come from the site's content file for this address, so
+   the head and the JSON-LD say what the page says. The hero's flow is his, and the content file's hero.flow mirrors it. */
+
+const brands = [
+  { name: 'Tidewren Swim', gap: 'No texts after opt in', tone: 'bad' },
+  { name: 'Halvard & Moss', gap: 'No gap', tone: 'idle' },
+  { name: 'Fennick Home', gap: 'No welcome email', tone: 'bad' },
+  { name: 'Larkbound', gap: 'No texts, no reply', tone: 'bad' },
+]
 
 const shortLine: Record<RecipeId, string> = {
   competitor: 'Rivals’ sign ups, emails, offers and launches, over time',
@@ -69,7 +75,58 @@ export function ProspectIntelligence() {
             <h1 className="h1">{study.hero.headline}</h1>
             <p className="lede">{study.hero.sub}</p>
           </div>
-          <div className="hero-stage">{study.hero.board && <Board board={study.hero.board} />}</div>
+          <div className="hero-stage">
+            <div className="uc-flow">
+              <div className="uc-node">
+                <span className="kicker">Clay in</span>
+                <b>UK ecommerce brands</b>
+                <ul>
+                  {brands.map((b) => (
+                    <li key={b.name}>{b.name}</li>
+                  ))}
+                </ul>
+                <span className="uc-node-foot">View: SMS popup is yes · 300 rows</span>
+              </div>
+              <div className="uc-pipe" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="uc-node mid">
+                <span className="kicker">Obsession</span>
+                <b>A customer at each brand</b>
+                <ul>
+                  <li>Its own inbox</li>
+                  <li>A UK mobile number</li>
+                  <li>Its own browser</li>
+                  <li>Says it’s AI</li>
+                </ul>
+                <span className="uc-node-foot">
+                  <span className="uc-live" /> Watching for 48 hours
+                </span>
+              </div>
+              <div className="uc-pipe" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="uc-node">
+                <span className="kicker">Back in Clay</span>
+                <b>4 new columns, same rows</b>
+                <ul className="uc-out">
+                  {brands.map((b, i) => (
+                    <li key={b.name}>
+                      {b.name}
+                      <span className={`tag ${b.tone}`} style={at(i)}>
+                        {b.gap}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <span className="uc-node-foot">{columns.join(' · ')}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

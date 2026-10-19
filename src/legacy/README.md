@@ -17,10 +17,10 @@ Price watch, in `pages/ProspectIntelligence.tsx`, `pages/PriceIntelligence.tsx` 
 basket, checkout and "never buys" rules are gone from both pages, since those are now the customer's settings.
 
 Also 19 Oct, in the site's October voice ("Be a customer of ...", as the agencies example): both heroes lose the
-Example chips and the Illustration note, and the site's board (`components/study/Board`) replaces his 3 stop flow in the
-hero stage. The hero's headline, sub and board, the questions (now on the Clay page too, in his `Faq` block) and the
-small print are read from the page's content file (`content/usecases`), so the head, the JSON-LD and the page say the
-same words and `meta.answer` is the first answer. Everything else on the 2 pages is still his file. Through the steps:
+Example chips and the Illustration note and keep his 3 stop flow, its words in line with the rest. The hero's headline
+and sub, the questions (now on the Clay page too, in his `Faq` block) and the small print are read from the page's
+content file (`content/usecases`), so the head, the JSON-LD and the page say the same words and `meta.answer` is the
+first answer; the content file's `hero.flow` mirrors his flow. Everything else on the 2 pages is still his file. Through the steps:
 no real company names but Clay, `.example` addresses, "says it's AI" for "declared as automated", no "test customer",
 rechecks as this example's setting, and the basket checks unlocked.
 

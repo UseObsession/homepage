@@ -19,12 +19,11 @@ import type { UseCaseStudy } from '../types'
    chat bot.
    Rewritten 19 Oct (James) in the site's October voice, as the agencies example was: the agency becomes a customer of
    every brand its client wants to win, and keeps the receipts. No "Example" chips: the brands are .example addresses
-   and `fine` says what is made up. The hero's picture is the board (components/study/Board) in place of the 3 stop
-   flow: the Clay view's brands watched at once for 48 hours, 1 column per check, the silences landing at the last
-   hour, and the receipt of tidewren.example's missing texts, the gap the proof steps and the first email pick up.
-   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its board, its questions and
-   its small print from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first
-   answer. These words also give its card in the nav and on /use-cases.
+   and `fine` says what is made up. The hero keeps James's 3 stop flow (Clay in, a customer at each brand, back in
+   Clay), its words in line with the rest; `flow` mirrors it.
+   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its questions and its small print
+   from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first answer. These words
+   also give its card in the nav and on /use-cases.
    Screens: claycols (set up), brandwatch (the watching), proofmail (the proof and the opener). */
 
 export const study: UseCaseStudy = {
@@ -52,68 +51,26 @@ export const study: UseCaseStudy = {
     headline: 'Be a customer of every brand your client wants to win.',
     sub: 'Every agency buys the same install data, so every brand hears the same opener. AI agents sign up at each brand in your client’s Clay view, opt in to texts and ask support a question. Each gap comes back to the same rows with its receipt, ready for the first email.',
     example: { chips: [] },
-    /* The board: 300 brands, 3 checks, 48 hours. A cell's `at` is the hour it came back; a silence lands at hour 48.
-       The 4 rows are the 4 brands the steps and the Clay table name; each role is the contact on that Clay row. */
-    board: {
-      label:
-        'An outbound agency’s Clay view of 300 UK ecommerce brands, each watched as a customer for 48 hours for 1 client, an SMS app: the welcome email, texts after opting in, and a support question. tidewren.example: no text after opting in, its receipt kept for the first email. halvard.example: every check came back. fennick.example: no welcome email. larkbound.example: no texts and no reply from support.',
-      who: 'SMS app prospects',
-      count: '300 brands from Clay, 3 checks each',
-      hours: 48,
-      hour: 'Hour',
-      cols: ['Welcome email', 'Texts', 'Support'],
-      rows: [
-        {
-          store: 'tidewren.example',
-          role: 'Hannah Price, Head of CRM',
-          cells: [
-            { state: 'ok', text: 'In 38 s', at: 0.01 },
-            { state: 'gap', text: 'Silent' },
-            { state: 'ok', text: 'After 26 h', at: 26 },
-          ],
-        },
-        {
-          store: 'halvard.example',
-          role: 'Leo Grant, Founder',
-          cells: [
-            { state: 'ok', text: 'In 2 min', at: 0.03 },
-            { state: 'ok', text: '2 texts', at: 0.25 },
-            { state: 'ok', text: 'After 3 h', at: 3 },
-          ],
-        },
-        {
-          store: 'fennick.example',
-          role: 'Priya Shah, Head of Retention',
-          cells: [
-            { state: 'gap', text: 'Silent' },
-            { state: 'ok', text: '1 text', at: 0.5 },
-            { state: 'ok', text: 'After 31 h', at: 31 },
-          ],
-        },
-        {
-          store: 'larkbound.example',
-          role: 'Owen Hale, Ecommerce Director',
-          cells: [
-            { state: 'ok', text: 'In 4 min', at: 0.07 },
-            { state: 'gap', text: 'Silent' },
-            { state: 'gap', text: 'No reply' },
-          ],
-        },
-      ],
-      more: '+ 296 more brands',
-      receipt: {
-        store: 'tidewren.example',
-        rows: [
-          { k: 'Signed up', v: 'Tue 15 Sep, 10:14' },
-          { k: 'Texts', v: 'Opted in, 0 in 48 hours' },
-          { k: 'Control', v: 'Our text arrived in 4 s' },
-          { k: 'Rerun', v: 'Fresh number, 0 texts' },
-          { k: 'Clay', v: 'Back in 4 new columns' },
-        ],
-        fact: 'Opted in for texts on 15 September. 3 emails came in 48 hours, and no text.',
-        stamp: 'No texts',
+    flow: [
+      {
+        label: 'Clay in',
+        title: 'UK ecommerce brands',
+        items: ['Tidewren Swim', 'Halvard & Moss', 'Fennick Home', 'Larkbound'],
+        foot: 'View: SMS popup is yes · 300 rows',
       },
-    },
+      {
+        label: 'Obsession',
+        title: 'A customer at each brand',
+        items: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'Says it’s AI'],
+        foot: 'Watching for 48 hours',
+      },
+      {
+        label: 'Back in Clay',
+        title: '4 new columns, same rows',
+        items: ['Tidewren Swim: no texts after opt in', 'Halvard & Moss: no gap', 'Fennick Home: no welcome email', 'Larkbound: no texts, no reply'],
+        foot: 'Gap · Seen · What happened · Proof',
+      },
+    ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-clay-hero',

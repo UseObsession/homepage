@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Board } from '../../../components/study/Board'
 import { study } from '../../../content/usecases/member-prices-for-price-intelligence'
 import { Faq, FinalCta, SectionHead } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
@@ -9,8 +8,8 @@ import './PriceIntelligence.css'
 
 /* Use case: a price intelligence firm adds what retailers show only after sign up to the sources it already collects.
    The firm, its client, the retailers, products, prices and figures are made up, and the small print says so.
-   The hero's words, its board (the site's components/study/Board, in place of the 3 stop flow), the questions and the
-   small print come from the site's content file for this address, so the head and the JSON-LD say what the page says. */
+   The hero's headline and sub, the questions and the small print come from the site's content file for this address, so
+   the head and the JSON-LD say what the page says. The hero's flow is his, and the content file's hero.flow mirrors it. */
 
 const basket = [
   { product: 'Brand A macinato 250 g', ean: '80…0417', pub: '3,19 €', member: '2,69 €', gap: '−16%' },
@@ -70,7 +69,64 @@ export function PriceIntelligence() {
             <h1 className="h1 pr-h1">{study.hero.headline}</h1>
             <p className="lede">{study.hero.sub}</p>
           </div>
-          <div className="hero-stage">{study.hero.board && <Board board={study.hero.board} />}</div>
+          <div className="hero-stage">
+            <div className="uc-flow">
+              <div className="uc-node">
+                <span className="kicker">What you collect</span>
+                <b>Your sources</b>
+                <ul className="pr-sources">
+                  <li>
+                    Flyers<span className="tag idle">today</span>
+                  </li>
+                  <li>
+                    Shelves<span className="tag idle">today</span>
+                  </li>
+                  <li>
+                    Online prices<span className="tag idle">today</span>
+                  </li>
+                  <li>
+                    Newsletters<span className="tag idle">today</span>
+                  </li>
+                  <li className="new">
+                    After sign up<span className="tag">new</span>
+                  </li>
+                </ul>
+                <span className="uc-node-foot">Member prices · coupons · later offers</span>
+              </div>
+              <div className="uc-pipe" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="uc-node mid">
+                <span className="kicker">Your platform</span>
+                <b>One more domain</b>
+                <ul>
+                  <li>Matched to your product database</li>
+                  <li>On your promo calendar</li>
+                  <li>In your alerts and raw data</li>
+                </ul>
+                <span className="uc-node-foot">
+                  <span className="uc-live" /> Your team, your analysis
+                </span>
+              </div>
+              <div className="uc-pipe" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="uc-node">
+                <span className="kicker">Your clients</span>
+                <b>Brands and retailers</b>
+                <ul>
+                  <li>Trade marketing</li>
+                  <li>Category management</li>
+                  <li>Sales teams</li>
+                </ul>
+                <span className="uc-node-foot">Nothing changes in how they work</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

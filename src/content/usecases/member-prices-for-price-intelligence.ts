@@ -20,13 +20,11 @@ import type { UseCaseStudy } from '../types'
    run's line states what it found.
    Rewritten 19 Oct (James) in the site's October voice, as the agencies example was: the firm becomes a customer of
    every retailer it tracks, and keeps the receipts. No "Example" chips and no "test customer": the retailers are
-   .example addresses and `fine` says what is made up. The hero's picture is the board (components/study/Board) in
-   place of the 3 stop flow: 120 retailers, 1 member each for 30 days, 1 column per thing only members see. A filled
-   cell is a members only price or offer, landing on the day it came; the receipt is corvalle.example's text to card
-   holders, the observation the delivery steps and the promo calendar pick up.
-   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its board, its questions and
-   its small print from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first
-   answer. These words also give its card in the nav and on /use-cases.
+   .example addresses and `fine` says what is made up. The hero keeps James's 3 stop flow (what you collect, your
+   platform, your clients); `flow` mirrors it.
+   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its questions and its small print
+   from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first answer. These words
+   also give its card in the nav and on /use-cases.
    Screens: members (the collecting), memberfeed (what lands in the platform). The set up phase shows its chips. */
 
 export const study: UseCaseStudy = {
@@ -54,74 +52,26 @@ export const study: UseCaseStudy = {
     headline: 'Be a customer of every retailer you track.',
     sub: 'You already collect flyers, shelves, online prices and newsletters. AI agents sign up at every retailer you track and bring back what only members see: member prices, welcome coupons and the offers that arrive days later. Each one lands in your platform with its receipt.',
     example: { chips: [] },
-    /* The board: 120 retailers, 4 things only members see, 30 days, so the clock counts days. A cell's `at` is the day
-       it came; a filled cell is members only (a member price under the public one, an offer sent to card holders). The
-       4 rows are the firm's 3 cities; the last stops at a card that needs a tax code, as the questions say. */
-    board: {
-      label:
-        'A price intelligence firm’s 120 Italian grocery retailers, each with an AI member for 30 days, read for 1 client’s coffee basket: the member price on Brand A’s macinato, the welcome coupon, coffee offers and the win back coupon. corvalle.example, Milano Centro: 16% off Brand A for members, and on day 7 a text to card holders only, 20% off coffee, its receipt kept. mirtena.example, Roma: the same price for everyone. valdora.example, Napoli: 9% off Brand A for members. seravo.example, Milano: its card needs a tax code, so the member stopped at the card and reported it, and kept the newsletter.',
-      who: 'Your coffee client',
-      count: '120 retailers, 1 member each',
-      hours: 30,
-      hour: 'Day',
-      cols: ['Member price', 'Welcome coupon', 'Coffee offers', 'Win back'],
-      rows: [
-        {
-          store: 'corvalle.example',
-          role: 'Milano Centro',
-          cells: [
-            { state: 'gap', text: '16% off', at: 0.002 },
-            { state: 'ok', text: '5 € off 30 €', at: 0.001 },
-            { state: 'gap', text: '20%, card', at: 7 },
-            { state: 'ok', text: '10 € off', at: 21 },
-          ],
-        },
-        {
-          store: 'mirtena.example',
-          role: 'Roma',
-          cells: [
-            { state: 'ok', text: 'Same price', at: 0.002 },
-            { state: 'ok', text: '10% off', at: 0.003 },
-            { state: 'ok', text: '10%, for all', at: 10 },
-            { state: 'none', text: 'None in 30 days' },
-          ],
-        },
-        {
-          store: 'valdora.example',
-          role: 'Napoli',
-          cells: [
-            { state: 'gap', text: '9% off', at: 0.002 },
-            { state: 'ok', text: '3 € off 20 €', at: 0.002 },
-            { state: 'ok', text: '15%, for all', at: 12 },
-            { state: 'none', text: 'None in 30 days' },
-          ],
-        },
-        {
-          store: 'seravo.example',
-          role: 'Milano',
-          cells: [
-            { state: 'none', text: 'Needs a tax code' },
-            { state: 'ok', text: '2 € off 25 €', at: 0.004 },
-            { state: 'none', text: 'None in 30 days' },
-            { state: 'ok', text: '5 € off 40 €', at: 25 },
-          ],
-        },
-      ],
-      more: '+ 116 more retailers',
-      receipt: {
-        store: 'corvalle.example',
-        rows: [
-          { k: 'Signed up', v: 'Mon 28 Sep, 09:03' },
-          { k: 'Store', v: 'Milano Centro' },
-          { k: 'Text', v: 'Mon 5 Oct, 11:15' },
-          { k: 'To', v: 'Card holders only' },
-          { k: 'Offer', v: '20% off coffee, 5 to 11 Oct' },
-          { k: 'Image', v: 'The text as received' },
-        ],
-        fact: 'Texted to card holders on 5 October: 20% off coffee until Sunday 11 October.',
-        stamp: 'Members only',
+    flow: [
+      {
+        label: 'What you collect',
+        title: 'Your sources',
+        items: ['Flyers', 'Shelves', 'Online prices', 'Newsletters', 'After sign up, new'],
+        foot: 'Member prices · coupons · later offers',
       },
-    },
+      {
+        label: 'Your platform',
+        title: '1 more domain',
+        items: ['Matched to your product database', 'On your promo calendar', 'In your alerts and raw data'],
+        foot: 'Your team, your analysis',
+      },
+      {
+        label: 'Your clients',
+        title: 'Brands and retailers',
+        items: ['Trade marketing', 'Category management', 'Sales teams'],
+        foot: 'Nothing changes in how they work',
+      },
+    ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-price-hero',
