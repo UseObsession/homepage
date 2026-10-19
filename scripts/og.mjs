@@ -9,6 +9,10 @@
    A long headline first widens its measure, then steps down the scale, so the copy always keeps 64px of air under
    the lockup.
 
+   Home's card carries the site's 1 memorable object beside the headline: the hero's first receipt, on its paper, with
+   its rows, its fact and its stamp, tilted a little and torn at the foot (src/styles/v5.css .v5-receipt). Its headline
+   and line keep to the left 600px.
+
    The words come from the content (src/content/meta.ts `entries`), loaded through Vite so the TypeScript content needs
    no build of its own. Unchanged cards are not drawn again (node_modules/.cache/og.json). */
 import { Resvg } from '@resvg/resvg-js'
@@ -76,9 +80,13 @@ const HEADLINE_STEPS = [
   [52, 22],
 ]
 
+/* A card with a receipt keeps its words to the left of it. */
+const BESIDE = 600
+
 async function layout(card) {
   const room = H - 2 * PAD - LOCKUP_H - FOOT - COPY_BOTTOM - AIR
-  const lineStyle = { size: 28, weight: 400, leading: 1.35, width: Math.round(40 * CH.sans400 * 28) }
+  const cap = card.receipt ? BESIDE : Infinity
+  const lineStyle = { size: 28, weight: 400, leading: 1.35, width: Math.min(cap - 40, Math.round(40 * CH.sans400 * 28)) }
   let line = card.line
   let lineH = await heightOf(line, lineStyle)
   if (linesOf(lineH, 28, 1.35) > 3) {
@@ -86,17 +94,50 @@ async function layout(card) {
     lineH = await heightOf(line, lineStyle)
   }
   for (const [size, ch] of HEADLINE_STEPS) {
-    const width = Math.round(ch * CH.sans600 * size)
+    const width = Math.min(cap, Math.round(ch * CH.sans600 * size))
     const h = await heightOf(card.headline, { size, weight: 600, leading: 0.96, tracking: -0.052 * size, width })
     if (linesOf(h, size, 0.96) <= 4 && h + COPY_GAP + lineH <= room) return { size, width, line, lineWidth: lineStyle.width }
   }
   throw new Error(`The headline "${card.headline}" does not fit a share card.`)
 }
 
+/* The receipt's paper and inks (src/styles/v5.css, the dark theme's --v5-paper and --v5-paper-ink). */
+const PAPER = { bg: '#f1efe8', ink: '#17160f', ink2: '#5d5a51', line: '#d6d2c6' }
+const RECEIPT_W = 408
+/* The torn foot: a zigzag of the paper, 10px deep. */
+const TEAR = (() => {
+  const step = 12
+  const pts = [`0,0`, `${RECEIPT_W},0`]
+  for (let x = RECEIPT_W, k = 0; x >= 0; x -= step / 2, k++) pts.push(`${x},${k % 2 ? 10 : 2}`)
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${RECEIPT_W}" height="10" viewBox="0 0 ${RECEIPT_W} 10"><polygon points="${pts.join(' ')}" fill="${PAPER.bg}"/></svg>`
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
+})()
+
+function receiptTree(r) {
+  const rule = el('div', { display: 'flex', height: 0, borderTop: `2px dashed ${PAPER.line}`, margin: '14px 0' }, [])
+  return el('div', { position: 'absolute', right: 76, top: 112, display: 'flex', flexDirection: 'column', width: RECEIPT_W, transform: 'rotate(-2deg)' }, [
+    el(
+      'div',
+      { display: 'flex', flexDirection: 'column', backgroundColor: PAPER.bg, color: PAPER.ink, padding: '24px 28px 20px', fontFamily: 'Geist Mono', fontWeight: 500, fontSize: 16, lineHeight: 1.55 },
+      [
+        el('div', { display: 'flex', justifyContent: 'space-between', fontSize: 15 }, [el('span', {}, 'Record'), el('span', {}, r.domain)]),
+        rule,
+        ...r.rows.map((row) => el('div', { display: 'flex' }, [el('span', { width: 118, color: PAPER.ink2 }, row.k), el('span', {}, row.v)])),
+        rule,
+        el('div', { display: 'flex', fontSize: 17, lineHeight: 1.45 }, r.fact),
+        el('div', { display: 'flex', justifyContent: 'flex-end', marginTop: 14 }, [
+          el('span', { display: 'flex', border: `2px solid ${PAPER.ink}`, borderRadius: 4, padding: '3px 12px', fontSize: 16, transform: 'rotate(-6deg)' }, r.stamp),
+        ]),
+      ],
+    ),
+    { type: 'img', props: { src: TEAR, width: RECEIPT_W, height: 10, style: { width: RECEIPT_W, height: 10 } } },
+  ])
+}
+
 function cardTree(card, fit) {
   return el(
     'div',
-    { width: W, height: H, display: 'flex', flexDirection: 'column', padding: PAD, backgroundColor: INK.bg, color: INK.text, fontFamily: 'Geist' },
+    { position: 'relative', width: W, height: H, display: 'flex', flexDirection: 'column', padding: PAD, backgroundColor: INK.bg, color: INK.text, fontFamily: 'Geist' },
     [
       { type: 'img', props: { src: lockup.src, width: lockup.width, height: lockup.height, style: { width: lockup.width, height: lockup.height } } },
       el('div', { display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', flexGrow: 1, paddingBottom: COPY_BOTTOM }, [
@@ -134,6 +175,7 @@ function cardTree(card, fit) {
         },
         [el('span', {}, DOMAIN), el('span', {}, card.place)],
       ),
+      ...(card.receipt ? [receiptTree(card.receipt)] : []),
     ],
   )
 }
@@ -163,6 +205,7 @@ async function loadCards() {
       line: e.line,
       /* Where the page sits: its own place (a post's "Blog / Mystery shopping"), else its breadcrumb after Home. */
       place: e.place ?? (e.meta.breadcrumb ?? []).filter((c) => c.path !== '/').map((c) => c.name).join(' / '),
+      receipt: e.receipt,
       alt: '',
     }))
   } finally {
@@ -171,7 +214,7 @@ async function loadCards() {
 }
 
 const self = createHash('sha1').update(readFileSync(fileURLToPath(import.meta.url))).digest('hex')
-const keyOf = (card) => createHash('sha1').update(self).update(JSON.stringify([card.headline, card.line, card.place])).digest('hex')
+const keyOf = (card) => createHash('sha1').update(self).update(JSON.stringify([card.headline, card.line, card.place, card.receipt ?? null])).digest('hex')
 
 async function main() {
   const started = Date.now()

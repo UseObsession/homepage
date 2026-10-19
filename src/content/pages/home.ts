@@ -37,6 +37,7 @@ export const page: Page = {
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
       'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. Use it from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
+    ogLine: 'AI agents that sign up to any company and stay its customer, with proof.',
     ogImage: '/og/home.png',
   },
 

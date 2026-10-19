@@ -30,6 +30,8 @@ export type Meta = {
   title: string
   description: string
   answer: string
+  /* The share image's line under the headline, where the page has its own (Home's). */
+  ogLine?: string
   ogImage?: string
   breadcrumb?: { name: string; path: string }[]
 }
