@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { Board } from '../../../components/study/Board'
+import { study } from '../../../content/usecases/member-prices-for-price-intelligence'
 import { Faq, FinalCta, SectionHead } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
 import { at } from '../components/stagger'
@@ -6,7 +8,9 @@ import { Count, Step, Win } from '../components/UseCase'
 import './PriceIntelligence.css'
 
 /* Use case: a price intelligence firm adds what retailers show only after sign up to the sources it already collects.
-   Everything here is an illustration. The firm, its client, the retailers, products, prices and figures are made up. */
+   The firm, its client, the retailers, products, prices and figures are made up, and the small print says so.
+   The hero's words, its board (the site's components/study/Board, in place of the 3 stop flow), the questions and the
+   small print come from the site's content file for this address, so the head and the JSON-LD say what the page says. */
 
 const basket = [
   { product: 'Brand A macinato 250 g', ean: '80…0417', pub: '3,19 €', member: '2,69 €', gap: '−16%' },
@@ -63,80 +67,10 @@ export function PriceIntelligence() {
             <span className="hero-pill">
               Use cases <b aria-hidden="true">/</b> Member prices for price intelligence
             </span>
-            <h1 className="h1 pr-h1">The prices retailers only show after sign up</h1>
-            <p className="lede">
-              You already watch flyers, shelves, online prices and newsletters. Obsession adds what sits behind the sign up: member
-              prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform
-              with the proof.
-            </p>
-            <ul className="uc-meta">
-              <li className="chip">Example: a price intelligence firm</li>
-              <li className="chip">Its client: a coffee brand</li>
-              <li className="chip">120 Italian grocery retailers</li>
-            </ul>
-            <p className="uc-note">
-              <span className="tag warn">Illustration</span>
-              The firm, its client, the retailers, the products, the prices and the numbers on this page are made up.
-            </p>
+            <h1 className="h1 pr-h1">{study.hero.headline}</h1>
+            <p className="lede">{study.hero.sub}</p>
           </div>
-          <div className="hero-stage">
-            <div className="uc-flow">
-              <div className="uc-node">
-                <span className="kicker">What you collect</span>
-                <b>Your sources</b>
-                <ul className="pr-sources">
-                  <li>
-                    Flyers<span className="tag idle">today</span>
-                  </li>
-                  <li>
-                    Shelves<span className="tag idle">today</span>
-                  </li>
-                  <li>
-                    Online prices<span className="tag idle">today</span>
-                  </li>
-                  <li>
-                    Newsletters<span className="tag idle">today</span>
-                  </li>
-                  <li className="new">
-                    After sign up<span className="tag">new</span>
-                  </li>
-                </ul>
-                <span className="uc-node-foot">Member prices · coupons · later offers</span>
-              </div>
-              <div className="uc-pipe" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </div>
-              <div className="uc-node mid">
-                <span className="kicker">Your platform</span>
-                <b>One more domain</b>
-                <ul>
-                  <li>Matched to your product database</li>
-                  <li>On your promo calendar</li>
-                  <li>In your alerts and raw data</li>
-                </ul>
-                <span className="uc-node-foot">
-                  <span className="uc-live" /> Your team, your analysis
-                </span>
-              </div>
-              <div className="uc-pipe" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </div>
-              <div className="uc-node">
-                <span className="kicker">Your clients</span>
-                <b>Brands and retailers</b>
-                <ul>
-                  <li>Trade marketing</li>
-                  <li>Category management</li>
-                  <li>Sales teams</li>
-                </ul>
-                <span className="uc-node-foot">Nothing changes in how they work</span>
-              </div>
-            </div>
-          </div>
+          <div className="hero-stage">{study.hero.board && <Board board={study.hero.board} />}</div>
         </div>
       </section>
 
@@ -179,11 +113,11 @@ export function PriceIntelligence() {
             </div>
             <div className="ours">
               <p className="kicker">Obsession runs</p>
-              <h3 className="h3">The identities, the inboxes and the waiting.</h3>
+              <h3 className="h3">The members, the inboxes and the waiting.</h3>
               <ul>
-                <li>A test customer per retailer and city, with its own inbox, Italian mobile number and browser</li>
+                <li>An AI member per retailer and city, with its own inbox, Italian mobile number and browser</li>
                 <li>The sign ups, the store choice and the readings on your basket</li>
-                <li>Inboxes and phones kept open for weeks</li>
+                <li>Inboxes and phones kept open for as long as you watch</li>
                 <li>A screenshot or the message behind every observation</li>
               </ul>
             </div>
@@ -288,10 +222,9 @@ export function PriceIntelligence() {
                         <span className="uc-cb on" style={at(4)} />
                         Prices after choosing a store
                       </li>
-                      <li className="locked">
-                        <span className="uc-cb lock" />
+                      <li>
+                        <span className="uc-cb" />
                         Basket and delivery fees
-                        <span className="tag idle">Needs the retailer’s OK</span>
                       </li>
                     </ul>
                   </div>
@@ -393,7 +326,7 @@ export function PriceIntelligence() {
                   <dl className="uc-idrows">
                     <div>
                       <dt>Identity</dt>
-                      <dd>Declared as automated</dd>
+                      <dd>AI, says so to a person</dd>
                     </div>
                     <div>
                       <dt>Inbox</dt>
@@ -424,7 +357,7 @@ export function PriceIntelligence() {
                   </ol>
                 </div>
                 <div className="uc-browser">
-                  <div className="uc-url">corvalle.it/spesa/caffe</div>
+                  <div className="uc-url">corvalle.example/spesa/caffe</div>
                   <div className="pr-shop">
                     <div className="pr-shop-bar">
                       <b>Corvalle</b>
@@ -681,35 +614,8 @@ export function PriceIntelligence() {
 
       <section className="section">
         <div className="wrap wrap-sm">
-          <SectionHead kicker="Questions" title="What price intelligence teams ask." />
-          <Faq
-            items={[
-              {
-                q: 'Do you need access to our platform?',
-                a: 'No. We deliver a feed, by file, API or webhook, with the fields you choose. It loads into your platform like any other source.',
-              },
-              {
-                q: 'Who matches products to our database?',
-                a: 'Your team, as it does today. We send the product as the retailer shows it, the EAN when the page carries one, and the screenshot, so your product specialists can link it.',
-              },
-              {
-                q: 'What about loyalty cards that need a tax code or a card from the store?',
-                a: 'We don’t invent identity details. Where a programme needs a codice fiscale or an in store card, the member stops there and reports it, so you know exactly where the wall is.',
-              },
-              {
-                q: 'Do the test members buy anything?',
-                a: 'Not in this example. They join, choose a store and read what members see. If you choose, a member fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
-              },
-              {
-                q: 'How often does it run?',
-                a: 'Weekly to follow promotion cycles, daily around key dates such as Black Friday, or any rhythm you set per retailer.',
-              },
-              {
-                q: 'Will our clients see Obsession?',
-                a: 'Only if you want them to. The data comes to you, and you decide how it appears in your platform.',
-              },
-            ]}
-          />
+          <SectionHead kicker="Questions" title={study.faq.heading} />
+          <Faq items={study.faq.items} />
         </div>
       </section>
 
@@ -731,10 +637,7 @@ export function PriceIntelligence() {
               <span className="uc-more-go">See it →</span>
             </Link>
           </Reveal>
-          <p className="uc-fine">
-            About this page: it illustrates how the product works. The firm, its client, the retailers, the products, the prices and
-            every figure are made up, and no real retailer’s prices or offers are shown.
-          </p>
+          <p className="uc-fine">{study.fine}</p>
         </div>
       </section>
 

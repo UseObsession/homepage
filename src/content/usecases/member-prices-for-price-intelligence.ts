@@ -18,6 +18,15 @@ import type { UseCaseStudy } from '../types'
    and what each member does; the things to sell read as 6 jobs, each example true to the screens (Brand A's macinato
    16% off for Corvalle members, Rival B's 21%); the proof's 2 steps say what each row holds and where it sits; the real
    run's line states what it found.
+   Rewritten 19 Oct (James) in the site's October voice, as the agencies example was: the firm becomes a customer of
+   every retailer it tracks, and keeps the receipts. No "Example" chips and no "test customer": the retailers are
+   .example addresses and `fine` says what is made up. The hero's picture is the board (components/study/Board) in
+   place of the 3 stop flow: 120 retailers, 1 member each for 30 days, 1 column per thing only members see. A filled
+   cell is a members only price or offer, landing on the day it came; the receipt is corvalle.example's text to card
+   holders, the observation the delivery steps and the promo calendar pick up.
+   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its board, its questions and
+   its small print from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first
+   answer. These words also give its card in the nav and on /use-cases.
    Screens: members (the collecting), memberfeed (what lands in the platform). The set up phase shows its chips. */
 
 export const study: UseCaseStudy = {
@@ -28,9 +37,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/member-prices-for-price-intelligence',
     title: 'Member price intelligence: what retailers show only members',
     description:
-      'An example: AI test members join each retailer, read member prices beside public ones and keep every coupon and offer, sent to your platform with proof.',
+      'AI agents become a customer of every retailer you track: they sign up, read member prices beside public ones and send each offer with its receipt.',
     answer:
-      'Obsession adds what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform with the proof. In this worked example, AI members join 120 Italian grocery retailers. The firm, retailers and prices are made up.',
+      'Obsession gives price intelligence firms a customer at every retailer they track: AI agents with their own inbox, mobile number and browser that sign up, read the member price beside the public one and keep every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,32 +51,77 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents bring back the prices retailers show only to members.',
-    sub: 'Obsession adds what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform with the proof. An AI member joins each retailer.',
-    example: {
-      chips: ['Example: a price intelligence firm', 'Its client: a coffee brand', '120 Italian grocery retailers'],
-      note: 'The firm, its client, the retailers, the products, the prices and the numbers on this page are made up.',
+    headline: 'Be a customer of every retailer you track.',
+    sub: 'You already collect flyers, shelves, online prices and newsletters. AI agents sign up at every retailer you track and bring back what only members see: member prices, welcome coupons and the offers that arrive days later. Each one lands in your platform with its receipt.',
+    example: { chips: [] },
+    /* The board: 120 retailers, 4 things only members see, 30 days, so the clock counts days. A cell's `at` is the day
+       it came; a filled cell is members only (a member price under the public one, an offer sent to card holders). The
+       4 rows are the firm's 3 cities; the last stops at a card that needs a tax code, as the questions say. */
+    board: {
+      label:
+        'A price intelligence firm’s 120 Italian grocery retailers, each with an AI member for 30 days, read for 1 client’s coffee basket: the member price on Brand A’s macinato, the welcome coupon, coffee offers and the win back coupon. corvalle.example, Milano Centro: 16% off Brand A for members, and on day 7 a text to card holders only, 20% off coffee, its receipt kept. mirtena.example, Roma: the same price for everyone. valdora.example, Napoli: 9% off Brand A for members. seravo.example, Milano: its card needs a tax code, so the member stopped at the card and reported it, and kept the newsletter.',
+      who: 'Your coffee client',
+      count: '120 retailers, 1 member each',
+      hours: 30,
+      hour: 'Day',
+      cols: ['Member price', 'Welcome coupon', 'Coffee offers', 'Win back'],
+      rows: [
+        {
+          store: 'corvalle.example',
+          role: 'Milano Centro',
+          cells: [
+            { state: 'gap', text: '16% off', at: 0.002 },
+            { state: 'ok', text: '5 € off 30 €', at: 0.001 },
+            { state: 'gap', text: '20%, card', at: 7 },
+            { state: 'ok', text: '10 € off', at: 21 },
+          ],
+        },
+        {
+          store: 'mirtena.example',
+          role: 'Roma',
+          cells: [
+            { state: 'ok', text: 'Same price', at: 0.002 },
+            { state: 'ok', text: '10% off', at: 0.003 },
+            { state: 'ok', text: '10%, for all', at: 10 },
+            { state: 'none', text: 'None in 30 days' },
+          ],
+        },
+        {
+          store: 'valdora.example',
+          role: 'Napoli',
+          cells: [
+            { state: 'gap', text: '9% off', at: 0.002 },
+            { state: 'ok', text: '3 € off 20 €', at: 0.002 },
+            { state: 'ok', text: '15%, for all', at: 12 },
+            { state: 'none', text: 'None in 30 days' },
+          ],
+        },
+        {
+          store: 'seravo.example',
+          role: 'Milano',
+          cells: [
+            { state: 'none', text: 'Needs a tax code' },
+            { state: 'ok', text: '2 € off 25 €', at: 0.004 },
+            { state: 'none', text: 'None in 30 days' },
+            { state: 'ok', text: '5 € off 40 €', at: 25 },
+          ],
+        },
+      ],
+      more: '+ 116 more retailers',
+      receipt: {
+        store: 'corvalle.example',
+        rows: [
+          { k: 'Signed up', v: 'Mon 28 Sep, 09:03' },
+          { k: 'Store', v: 'Milano Centro' },
+          { k: 'Text', v: 'Mon 5 Oct, 11:15' },
+          { k: 'To', v: 'Card holders only' },
+          { k: 'Offer', v: '20% off coffee, 5 to 11 Oct' },
+          { k: 'Image', v: 'The text as received' },
+        ],
+        fact: 'Texted to card holders on 5 October: 20% off coffee until Sunday 11 October.',
+        stamp: 'Members only',
+      },
     },
-    flow: [
-      {
-        label: 'What you collect',
-        title: 'Your sources',
-        items: ['Flyers', 'Shelves', 'Online prices', 'Newsletters', 'After sign up, new'],
-        foot: 'Member prices · coupons · later offers',
-      },
-      {
-        label: 'Your platform',
-        title: '1 more domain',
-        items: ['Matched to your product database', 'On your promo calendar', 'In your alerts and raw data'],
-        foot: 'Your team, your analysis',
-      },
-      {
-        label: 'Your clients',
-        title: 'Brands and retailers',
-        items: ['Trade marketing', 'Category management', 'Sales teams'],
-        foot: 'Nothing changes in how they work',
-      },
-    ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-price-hero',
@@ -161,9 +215,9 @@ export const study: UseCaseStudy = {
       label: 'Obsession runs',
       heading: 'The members, the inboxes and the waiting.',
       items: [
-        'An AI test customer per retailer and city, with its own inbox, Italian mobile number and browser',
+        'An AI member per retailer and city, with its own inbox, Italian mobile number and browser',
         'The sign ups, the store choice and the readings on your basket',
-        'Inboxes and phones kept open, continuously',
+        'Inboxes and phones kept open for as long as you watch',
         'A screenshot or the message behind every observation',
       ],
     },
@@ -252,14 +306,14 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'The firm, its client, the retailers, the products, the prices and every figure here are made up, and no real retailer’s prices or offers are shown.',
+  fine: 'The firm, its client, the retailers and their .example addresses, the products, the prices and every figure here are made up, and no real retailer’s prices or offers are shown.',
 
   faq: {
-    heading: 'Every member says it’s AI when it talks to a person. Your team keeps the matching.',
+    heading: 'What price intelligence teams ask.',
     items: [
       {
-        q: 'What is member price intelligence?',
-        a: 'Member price intelligence tracks the prices, coupons and offers retailers show only to members, read by joining each retailer as an AI member. Flyers, shelves and public prices stay with the sources you already use.',
+        q: 'What does Obsession do for price intelligence firms?',
+        a: 'Obsession gives price intelligence firms a customer at every retailer they track: AI agents with their own inbox, mobile number and browser that sign up, read the member price beside the public one and keep every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
       },
       {
         q: 'Do you need access to our platform?',
@@ -274,8 +328,8 @@ export const study: UseCaseStudy = {
         a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, the member stops there and reports it, so you know exactly where the wall is.',
       },
       {
-        q: 'Do the test members buy anything?',
-        a: 'Not in this example. Obsession’s test members join, choose a store and read what members see. If you choose, a member fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
+        q: 'Do the members buy anything?',
+        a: 'Not in this example. Obsession’s members sign up, choose a store and read what members see. If you choose, a member fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
       },
       {
         q: 'How often does Obsession run it?',

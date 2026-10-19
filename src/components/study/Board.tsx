@@ -4,12 +4,13 @@ import { StatusMark } from '../Logo'
 import { useInView } from '../v5/useInView'
 import './Board.css'
 
-/* The hero's board (an agency's mystery shop, content/usecases): every store on the list watched as its customer at
-   once, 1 row per store and 1 column per journey, and the receipt of 1 gap beside it. Played once, when it comes into
-   view: the clock runs the watch's hours as a time lapse (slow at first, so the minutes after a sign up can be seen,
-   then faster), each cell lands at its hour with what came back, the gaps all land at the last hour (silence is only
-   known when the watch ends), and the receipt prints for the gap the next section fixes. The prerendered HTML is the
-   board at rest, finished; under reduced motion it stays that way. 1 picture (role="img"), read as its label. */
+/* The hero's board (a worked example's watch, content/usecases): every company on the list watched as its customer at
+   once, 1 row per company and 1 column per journey, and the receipt of 1 gap beside it. Played once, when it comes into
+   view: the clock runs the watch's hours (or days) as a time lapse (slow at first, so the minutes after a sign up can
+   be seen, then faster), each cell lands at its hour with what came back, a silence lands at the last hour (it is only
+   known when the watch ends) and a gap that arrived lands at its own hour, and the receipt prints for the gap the next
+   section picks up. The prerendered HTML is the board at rest, finished; under reduced motion it stays that way. 1
+   picture (role="img"), read as its label. Inside James's 2 pages (src/legacy/james) it sits in his hero stage. */
 
 const PLAY = 4.8
 /* The clock's time lapse: hour h of `total` lands at PLAY x sqrt(h / total) seconds. */
@@ -85,7 +86,7 @@ export function Board({ board }: { board: StudyBoard }) {
                 <span
                   key={board.cols[k]}
                   className={CELL[c.state]}
-                  style={{ '--s-board-d': `${at(c.state === 'gap' ? board.hours : (c.at ?? 0), board.hours)}s` } as Style}
+                  style={{ '--s-board-d': `${at(c.at ?? (c.state === 'gap' ? board.hours : 0), board.hours)}s` } as Style}
                 >
                   <span className="s-board-ck">{board.cols[k]}</span>
                   <span className="s-board-wait">Waiting</span>

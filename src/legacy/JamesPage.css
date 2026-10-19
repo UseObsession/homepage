@@ -4,3 +4,9 @@
   opacity: 1;
   transform: none;
 }
+
+/* The site's board (components/study/Board) in his hero stage: his base rule `p { margin: 0 }`, scoped here as
+   `.james p`, outranks the board's own, so the receipt's fact keeps its room above the stamp this way. */
+.james .s-board-fact {
+  margin-bottom: 30px;
+}

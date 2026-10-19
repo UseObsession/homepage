@@ -466,9 +466,11 @@ export type Llms = { summary: string; intro: string }
 export type StudyStep = { title: string; line: string; example?: string }
 /* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
 export type StudyNode = { label: string; title: string; items: string[]; foot: string }
-/* The hero's board (components/study/Board): every store on the reader's list, each watched as its customer for the
-   same hours, 1 column per journey. A cell lands at its hour (`at`) with what came back; a gap is only known when the
-   watch ends, so it lands at the last hour. The board closes on the receipt of 1 gap, the gap the next section fixes. */
+/* The hero's board (components/study/Board): every company on the reader's list, each watched as its customer for the
+   same hours (or days: `hour` names the unit), 1 column per journey. A cell lands at its hour (`at`) with what came
+   back; a silence is only known when the watch ends, so a gap with no `at` lands at the last hour, and a gap that
+   arrived (a members only offer) lands at its own. The board closes on the receipt of 1 gap, the gap the next section
+   fixes or proves. */
 export type StudyBoardCell = { state: 'ok' | 'gap' | 'none'; text: string; at?: number }
 export type StudyBoard = {
   label: string

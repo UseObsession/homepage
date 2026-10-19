@@ -9,11 +9,20 @@ case pages), at the same addresses:
 - `/use-cases/member-prices-for-price-intelligence` (`james/pages/PriceIntelligence.tsx`, `.css`)
 
 The files in `james/` are his, byte for byte, in the same folder layout he had under `src/`, so his relative imports work
-unchanged. They are the only place these 2 pages' words, numbers and layout live, so a change to one is a change to his file.
+unchanged. Apart from what they read from their content files (below), they are the only place these 2 pages' words,
+numbers and layout live, so a change to one is a change to his file.
 
 Changed since, with his OK (19 Oct 2026): the recipe names now match the recipe pages (Prospect intelligence, Lead leaks,
 Price watch, in `pages/ProspectIntelligence.tsx`, `pages/PriceIntelligence.tsx` and `content/recipes.ts`), and the
 basket, checkout and "never buys" rules are gone from both pages, since those are now the customer's settings.
+
+Also 19 Oct, in the site's October voice ("Be a customer of ...", as the agencies example): both heroes lose the
+Example chips and the Illustration note, and the site's board (`components/study/Board`) replaces his 3 stop flow in the
+hero stage. The hero's headline, sub and board, the questions (now on the Clay page too, in his `Faq` block) and the
+small print are read from the page's content file (`content/usecases`), so the head, the JSON-LD and the page say the
+same words and `meta.answer` is the first answer. Everything else on the 2 pages is still his file. Through the steps:
+no real company names but Clay, `.example` addresses, "says it's AI" for "declared as automated", no "test customer",
+rechecks as this example's setting, and the basket checks unlocked.
 
 How they sit in the site:
 

@@ -3,8 +3,8 @@ import type { UseCaseStudy } from '../types'
 /* Prospect intelligence with Clay (/use-cases/prospect-intelligence-with-clay): James's worked example, moved into
    typed content in the rebuild's story order (types.ts, "Use case studies"). An outbound agency proves a gap at 300
    brands for 1 client, an SMS app, from a Clay view and back. Every name and figure is invented and the page says so.
-   Kept from James: the cast and numbers (SMS app prospects and UK Shopify brands, his 2 Oct naming; Tidewren Swim, Halvard & Moss, Fennick Home, Larkbound, 300 and 296
-   brands, 61, 19, 74, Hannah and Sam, TIDE10), his 10 steps in 3 phases, the picks, the Clay columns, the opener email
+   Kept from James: the cast and numbers (SMS app prospects and UK ecommerce brands, his 2 Oct naming without Shopify;
+   Tidewren Swim, Halvard & Moss, Fennick Home, Larkbound, 300 and 296 brands, 61, 19, 74, Hannah and Sam, TIDE10), his 10 steps in 3 phases, the picks, the Clay columns, the opener email
    and mockup, the 4 ways to use the facts, the final offer. The control text and second run stay only as this
    example's recheck setting, which the agency turns on, never as how every gap is confirmed: the real September run had
    neither.
@@ -15,21 +15,29 @@ import type { UseCaseStudy } from '../types'
    recipe is Prospect intelligence; numerals; no meta headings.
    Rules (19 Oct, in line with /recipes/prospect-intelligence): only the 3 lines in obsession/system.md hold. Baskets,
    checkout and writing to staff are the agency's setting; a shopper says it is AI when it talks to a person, and
-   uses no fake payment details. meta.answer opens with the sub on James's page (src/legacy/james), which draws this
-   address; these words give its head, its JSON-LD and its card in the nav and on /use-cases.
+   uses no fake payment details. So the question goes to the brand's support again, as James had it, not only to a
+   chat bot.
+   Rewritten 19 Oct (James) in the site's October voice, as the agencies example was: the agency becomes a customer of
+   every brand its client wants to win, and keeps the receipts. No "Example" chips: the brands are .example addresses
+   and `fine` says what is made up. The hero's picture is the board (components/study/Board) in place of the 3 stop
+   flow: the Clay view's brands watched at once for 48 hours, 1 column per check, the silences landing at the last
+   hour, and the receipt of tidewren.example's missing texts, the gap the proof steps and the first email pick up.
+   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its board, its questions and
+   its small print from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first
+   answer. These words also give its card in the nav and on /use-cases.
    Screens: claycols (set up), brandwatch (the watching), proofmail (the proof and the opener). */
 
 export const study: UseCaseStudy = {
   name: 'Prospect intelligence with Clay',
-  line: 'Proof of a real gap at each brand, back in Clay.',
+  line: 'Each gap and its receipt, back in the same Clay rows.',
 
   meta: {
     path: '/use-cases/prospect-intelligence-with-clay',
     title: 'Prospect intelligence with Clay: a proven gap at each brand',
     description:
-      'An example: AI agents become a customer of every brand in a Clay view, watch for 48 hours, and write each gap and its proof back to the same rows.',
+      'AI agents become a customer of every brand in your Clay view: they sign up, opt in to texts and ask support, and write each gap back with its receipt.',
     answer:
-      'Obsession becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table. In this worked example, an outbound agency checks 300 UK ecommerce brands for 1 client, an SMS app. The agency, brands and figures are made up.',
+      'Obsession gives outbound agencies a customer at every brand in a client’s Clay view: AI agents with their own inbox, mobile number and browser that sign up, opt in to texts and ask support a question, then wait 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
     ogImage: '/og/prospect-intelligence-with-clay.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,32 +49,71 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents check every brand in your client’s Clay view and write each gap back.',
-    sub: 'Obsession becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table. Prospect intelligence with Clay is a worked example.',
-    example: {
-      chips: ['Example: an outbound agency', 'Its client: an SMS app', '300 UK ecommerce brands'],
-      note: 'The agency, its client, the brands, the people and the numbers on this page are made up.',
+    headline: 'Be a customer of every brand your client wants to win.',
+    sub: 'Every agency buys the same install data, so every brand hears the same opener. AI agents sign up at each brand in your client’s Clay view, opt in to texts and ask support a question. Each gap comes back to the same rows with its receipt, ready for the first email.',
+    example: { chips: [] },
+    /* The board: 300 brands, 3 checks, 48 hours. A cell's `at` is the hour it came back; a silence lands at hour 48.
+       The 4 rows are the 4 brands the steps and the Clay table name; each role is the contact on that Clay row. */
+    board: {
+      label:
+        'An outbound agency’s Clay view of 300 UK ecommerce brands, each watched as a customer for 48 hours for 1 client, an SMS app: the welcome email, texts after opting in, and a support question. tidewren.example: no text after opting in, its receipt kept for the first email. halvard.example: every check came back. fennick.example: no welcome email. larkbound.example: no texts and no reply from support.',
+      who: 'SMS app prospects',
+      count: '300 brands from Clay, 3 checks each',
+      hours: 48,
+      hour: 'Hour',
+      cols: ['Welcome email', 'Texts', 'Support'],
+      rows: [
+        {
+          store: 'tidewren.example',
+          role: 'Hannah Price, Head of CRM',
+          cells: [
+            { state: 'ok', text: 'In 38 s', at: 0.01 },
+            { state: 'gap', text: 'Silent' },
+            { state: 'ok', text: 'After 26 h', at: 26 },
+          ],
+        },
+        {
+          store: 'halvard.example',
+          role: 'Leo Grant, Founder',
+          cells: [
+            { state: 'ok', text: 'In 2 min', at: 0.03 },
+            { state: 'ok', text: '2 texts', at: 0.25 },
+            { state: 'ok', text: 'After 3 h', at: 3 },
+          ],
+        },
+        {
+          store: 'fennick.example',
+          role: 'Priya Shah, Head of Retention',
+          cells: [
+            { state: 'gap', text: 'Silent' },
+            { state: 'ok', text: '1 text', at: 0.5 },
+            { state: 'ok', text: 'After 31 h', at: 31 },
+          ],
+        },
+        {
+          store: 'larkbound.example',
+          role: 'Owen Hale, Ecommerce Director',
+          cells: [
+            { state: 'ok', text: 'In 4 min', at: 0.07 },
+            { state: 'gap', text: 'Silent' },
+            { state: 'gap', text: 'No reply' },
+          ],
+        },
+      ],
+      more: '+ 296 more brands',
+      receipt: {
+        store: 'tidewren.example',
+        rows: [
+          { k: 'Signed up', v: 'Tue 15 Sep, 10:14' },
+          { k: 'Texts', v: 'Opted in, 0 in 48 hours' },
+          { k: 'Control', v: 'Our text arrived in 4 s' },
+          { k: 'Rerun', v: 'Fresh number, 0 texts' },
+          { k: 'Clay', v: 'Back in 4 new columns' },
+        ],
+        fact: 'Opted in for texts on 15 September. 3 emails came in 48 hours, and no text.',
+        stamp: 'No texts',
+      },
     },
-    flow: [
-      {
-        label: 'Clay in',
-        title: 'UK Shopify brands',
-        items: ['Tidewren Swim', 'Halvard & Moss', 'Fennick Home', 'Larkbound'],
-        foot: 'View: SMS popup is yes · 300 rows',
-      },
-      {
-        label: 'Obsession',
-        title: 'A shopper for each brand',
-        items: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'Says it’s AI'],
-        foot: 'Watching for 48 hours',
-      },
-      {
-        label: 'Back in Clay',
-        title: '4 new columns, same rows',
-        items: ['Tidewren Swim: no texts after opt in', 'Halvard & Moss: no gap', 'Fennick Home: no welcome email', 'Larkbound: no texts, no bot answer'],
-        foot: 'Gap · Seen · What happened · Proof',
-      },
-    ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-clay-hero',
@@ -88,7 +135,7 @@ export const study: UseCaseStudy = {
         chips: [
           'No text within 24 hours of opting in',
           'No welcome email within 1 hour',
-          'No answer from the site’s chat bot within 24 hours',
+          'No support reply within 24 hours',
           'Every miss rechecked from a fresh number',
         ],
         steps: [
@@ -107,7 +154,7 @@ export const study: UseCaseStudy = {
             title: 'Configure it',
             line: 'Choose the gap your client’s product closes and what counts as a gap. Each check has its own deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer.',
             example:
-              'Email sign up, text opt in and 1 question to the site’s chat bot, watched for 48 hours, then every week. Rechecks are on: a control text proves each phone gets texts, and every miss runs again from a fresh number.',
+              'Email sign up, text opt in and 1 support question, watched for 48 hours, then every week. Rechecks are on: a control text proves each phone gets texts, and every miss runs again from a fresh number.',
           },
           {
             title: 'Add the companies',
@@ -136,7 +183,7 @@ export const study: UseCaseStudy = {
           },
           {
             title: 'It waits, up to 48 hours',
-            line: 'Every email and text lands in that brand’s own inbox and phone, and every answer from its chat bot is saved. With rechecks on, a deadline that passes with nothing gets a second run from a fresh number before it counts. Brands added later run on their own clock.',
+            line: 'Every email and text lands in that brand’s own inbox and phone, and every reply from support is saved. With rechecks on, a deadline that passes with nothing gets a second run from a fresh number before it counts. Brands added later run on their own clock.',
             example:
               'Hour 30 of 48: 1,104 emails and 466 texts in, 74 brands with no text 24 hours after opting in, and 12 new rows from Clay on their own watch.',
           },
@@ -144,7 +191,7 @@ export const study: UseCaseStudy = {
             title: 'Results after 48 hours',
             line: 'A finding for every brand. With rechecks on, as here, a missed deadline counts as a gap only once the control text and the second run confirm it.',
             example:
-              '61 of 296 brands opted in for texts and never got one, 19 sent no welcome email at all, and at 84 the site’s chat bot gave no answer within 24 hours. 4 had no working sign up form, which is logged as a finding too.',
+              '61 of 296 brands opted in for texts and never got one, 19 sent no welcome email at all, and at 84 support took more than 24 hours to reply. 4 had no working sign up form, which is logged as a finding too.',
           },
         ],
       },
@@ -229,7 +276,7 @@ export const study: UseCaseStudy = {
         title: 'The facts land back in Clay',
         line: '4 new columns on the same rows: the gap, the date it was seen, what happened in 1 plain sentence, and the proof link. Obsession reports what happened, and your team writes to the brand.',
         example:
-          'In #sms_app_prospects: UK Shopify brands, the first 300 are done. 61 opted in for texts and never got one, and 19 never sent a welcome email. New rows report as they finish.',
+          'In #sms_app_prospects: UK ecommerce brands, the first 300 are done. 61 opted in for texts and never got one, and 19 never sent a welcome email. New rows report as they finish.',
       },
     ],
     opener: {
@@ -276,18 +323,18 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'The agency, its client, the brands, the people, the phone number and every figure here are made up, and no real company’s results are shown. Clay is a trademark of its owner, named to show where the data comes from and goes.',
+  fine: 'The agency, its client, the brands and their .example addresses, the people, the phone number and every figure here are made up, and no real company’s results are shown. Clay is a trademark of its owner, named to show where the data comes from and goes.',
 
   faq: {
-    heading: 'Every shopper says it’s AI when it talks to a person. How far it goes is your setting.',
+    heading: 'What outbound agencies ask.',
     items: [
       {
-        q: 'What does a Clay prospect intelligence workflow look like with Obsession?',
-        a: 'Obsession reads the brands in your Clay view, and an AI shopper becomes a customer of each one: it signs up, opts in to texts and asks the site’s chat bot, watches for 48 hours, then writes each gap, its date and its proof back to the same rows.',
+        q: 'What does Obsession do for outbound agencies that use Clay?',
+        a: 'Obsession gives outbound agencies a customer at every brand in a client’s Clay view: AI agents with their own inbox, mobile number and browser that sign up, opt in to texts and ask support a question, then wait 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
       },
       {
         q: 'Does it contact anyone at the brand?',
-        a: 'Only if you set it to. In this example it signs up, opts in to texts and asks the site’s chat bot 1 question. When it talks to a person, by chat, email or phone, it says it’s AI from Obsession.',
+        a: 'Only if you set it to. In this example it signs up, opts in to texts and asks support 1 question. When it talks to a person, by chat, email or phone, it says it’s AI from Obsession.',
       },
       {
         q: 'How do you know a gap is real?',
