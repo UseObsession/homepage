@@ -381,7 +381,7 @@ export function PriceIntelligence() {
           <Step
             n={4}
             title="Each retailer gets its own member"
-            line="A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would, says it’s automated, and never buys anything."
+            line="A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI."
           >
             <Win title="Corvalle · Milano">
               <div className="uc-s6">
@@ -698,7 +698,7 @@ export function PriceIntelligence() {
               },
               {
                 q: 'Do the test members buy anything?',
-                a: 'No. They join, choose a store and read what members see. Basket and delivery fees are read only with the retailer’s written OK.',
+                a: 'Not in this example. They join, choose a store and read what members see. If you choose, a member fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
               },
               {
                 q: 'How often does it run?',
@@ -718,7 +718,7 @@ export function PriceIntelligence() {
           <Reveal className="card">
             <Link to="/recipes/price-watch">
               <span className="kicker">The recipe</span>
-              <span className="h3">Price and promotion watch</span>
+              <span className="h3">Price watch</span>
               <span className="muted">Prices, offers and terms as a customer sees them, on the schedule you set.</span>
               <span className="uc-more-go">Learn more →</span>
             </Link>
@@ -733,8 +733,7 @@ export function PriceIntelligence() {
           </Reveal>
           <p className="uc-fine">
             About this page: it illustrates how the product works. The firm, its client, the retailers, the products, the prices and
-            every figure are made up, and no real retailer’s prices or offers are shown. Basket and delivery fees are read only with the
-            retailer’s OK.
+            every figure are made up, and no real retailer’s prices or offers are shown.
           </p>
         </div>
       </section>

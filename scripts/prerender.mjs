@@ -314,7 +314,7 @@ await writeFile(
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
 const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
 const llmsSections = [
-  ['Pages', ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources')],
+  ['Pages', ofKind('home', 'audience', 'developers', 'compare', 'verify', 'recipes', 'sample', 'resources')],
   ['Recipes', ofKind('recipe')],
   ['Use cases', ofKind('use-cases', 'use-case')],
   ['Blog', ofKind('blog', 'post')],
@@ -594,10 +594,11 @@ const fileText = async (href) => {
   return files.get(href)
 }
 const sheetLink = /\s*<link rel="stylesheet" crossorigin href="(\/assets\/[\w.-]+\.css)">/g
-/* A page's code that Vite loads names the site's sheet, by the name Vite gave it, as something to load first. It is
-   already in the page, so a disabled link (never fetched) under that name tells Vite's loader so. */
-const siteMark = `<link rel="stylesheet" href="/assets/${siteSheet}" disabled />`
 const siteHref = purged ? `/assets/${purged.to}` : `/assets/${siteSheet}`
+/* A page's code that Vite loads names the site's sheet as something to load first (scripts/purge-css.mjs renames it
+   there too). It is already in the page, so a disabled link under that name tells Vite's loader so. It names the file
+   that exists, because some browsers fetch a disabled link anyway. */
+const siteMark = `<link rel="stylesheet" href="${siteHref}" disabled />`
 const sizes = []
 for (const [path, f] of [...entries.map((e) => [e.meta.path, fileFor(e.meta.path)]), ['/404', join(dist, '404.html')]]) {
   const html = await readFile(f, 'utf8')

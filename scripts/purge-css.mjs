@@ -178,5 +178,10 @@ export async function purgeCss(dist, main) {
     const page = await readFile(f, 'utf8')
     if (page.includes(main)) await writeFile(f, page.replaceAll(`/assets/${main}`, `/assets/${name}`))
   }
+  /* A lazy chunk's preload list names the sheet too ("assets/site-….css"), so it follows the new name. */
+  for (const f of js) {
+    const code = await readFile(f, 'utf8')
+    if (code.includes(main)) await writeFile(f, code.replaceAll(`assets/${main}`, `assets/${name}`))
+  }
   return { from: main, to: name, before: before.length, after: after.length, dropped }
 }

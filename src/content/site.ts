@@ -3,11 +3,11 @@ import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } fr
 import { WAYS } from './ways'
 
 /* Site pages: the Recipes index (/recipes), the privacy notice (/privacy), the page for companies an agent visits
-   (/agents), the 404 page and the llms.txt intro. Copy rules: docs/REBUILD.md, "Copy". The red lines hold on every
-   page: agents are declared AI; at rivals and prospects they use public self-serve paths only (sign ups, newsletters,
-   texts, public pages, the ads they run in public, the site's chat bot), never a person, never a card, never a basket,
-   link to useobsession.com/agents and never name the customer; a company's own journeys, or a client's or account's,
-   only with the owner's OK; on anyone else's store every checkout stops before payment. */
+   (/agents), the 404 page and the llms.txt intro. Copy rules: COPY.md, "Voice". The lines every agent keeps, whoever
+   it works for (obsession/system.md, the 3 lines): the record is never changed (every receipt kept as it arrived), the
+   customer stays private unless they choose to be named, and the law (an agent says it's AI when it talks to a person,
+   never uses fake payment details, never gets round a CAPTCHA or a bot block, never clicks paid ads at volume).
+   Everything else an agent does is its customer's setting. */
 
 /* The 1 address every notice on the site gives. The founders must confirm this mailbox exists and is read before the
    site ships (agents@ or privacy@ can be aliases that forward here). */
@@ -19,21 +19,21 @@ export const CONTACT_EMAIL = 'hello@useobsession.com'
 export const CONTROLLER: string | null = null
 
 /* The 1 sentence (docs/SEARCH.md 2): what Obsession is, word for word wherever the site defines it (llms.summary below,
-   the Organization JSON-LD, Home's and Founders' "What is Obsession?" and /agents). The footer carries its core in 1
-   short line (content/footer.ts). */
+   the Organization JSON-LD, Home's hero, its "What is Obsession?" and /agents). The footer carries its core in 1 short
+   line (content/footer.ts). */
 const SENTENCE =
-  'Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.'
+  'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.'
 
 /* /recipes. James's index (1 job each, everything set up, the add-companies hub), grouped by job as in the nav.
    The groups render the recipes whose `group` matches, in this order. */
 export const recipesPage: RecipesIndexPage = {
   meta: {
     path: '/recipes',
-    title: 'AI agent recipes for commercial teams, set up for the job',
+    title: 'Obsession recipes: AI customer agents set up for each job',
     description:
-      'Pick a recipe and declared AI agents arrive set up for it: their own inbox, number and browser, every wait and every check. Or type any job.',
+      'Pick a recipe and Obsession’s customer agents set up for it: inboxes, numbers, browsers, waits and checks. Watch rivals, your own journeys or your AI.',
     answer:
-      'Obsession recipes are jobs ready to run for commercial teams: each comes with its declared AI agents, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
+      'Obsession recipes are watches ready to run: each comes with its customer agents, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,74 +42,58 @@ export const recipesPage: RecipesIndexPage = {
   },
 
   hero: {
-    headline: 'AI agents that come set up for the job you pick.',
-    sub: 'Obsession recipes are jobs ready to run for commercial teams: each comes with its declared AI agents, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
+    headline: 'Pick the job. The customer agents come set up for it.',
+    sub: 'Obsession recipes are watches ready to run: each comes with its customer agents, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
   },
 
   groups: [
     {
-      group: 'Win customers',
-      line: 'Prove the gap before you pitch, quote every buyer in minutes, correct what AI says about you, and move a new client’s accounts into their name.',
-    },
-    {
-      group: 'Keep and grow customers',
-      line: 'See churn and growth coming, offer more after your OK, renew on real usage, offer a pause next to every cancel, and ask every customer for a review.',
-    },
-    {
-      group: 'Watch rivals',
-      line: 'Every email, text, price change, public ad and trial step from your rivals, logged the day it lands.',
+      group: 'Watch other companies',
+      line: 'Every email, text, price, ad and trial step from rivals, prospects and accounts, kept the day it lands.',
     },
     {
       group: 'Check your own journeys',
-      line: 'Go through your own business, or a client’s with their OK, as a customer or a buyer’s AI agent would, and catch every break first.',
-    },
-    {
-      group: 'Get paid and negotiate',
-      line: 'Get paid from the day a customer signs, answer supplier price rises with quotes, and hold every software bill at the price you agreed.',
+      line: 'Go through your own ads, forms, checkout and partners the way a customer does, and catch every break first.',
     },
     {
       group: 'Check your AI agents',
-      line: 'Declared test customers call, chat, email and shop the AI agents you run, or a client’s with their OK, every day, and sign what they find.',
+      line: 'Test customers call, chat, email and shop the AI agents you run every day, and keep what they find.',
     },
   ],
 
   hub: {
     heading: 'Every company on your list, from wherever it lives.',
-    line: 'The proof and your next move come back wherever your team already works.',
-    inputs: ['Paste a list', 'Upload a CSV', 'Connect Clay', 'The API'],
+    line: 'What the agents find comes back wherever your team already works.',
+    inputs: ['Paste a list', 'Upload a CSV', 'Connect Clay', 'Your own agent', 'The API'],
     outputs: ['Email', 'PDF', 'Slack', 'A sheet', 'Clay', 'Your CRM', 'A webhook'],
   },
 
   faq: {
-    heading: 'Every recipe runs on declared AI agents, and every step is signed.',
+    heading: 'Questions about recipes.',
     items: [
       {
         q: 'What’s an Obsession recipe?',
-        a: 'An Obsession recipe is a job that comes ready to run: the agents, each with its own inbox, phone number and browser, plus the schedule, the waits and the checks. You add the companies and choose where the results go.',
+        a: 'An Obsession recipe is a watch that comes ready to run: the customer agents, each with its own inbox, phone number and browser, plus the schedule, the waits and the checks. You add the companies and choose where the results go.',
       },
       {
         q: 'What if my job isn’t here?',
-        a: 'Type it into Obsession in plain words, like “Tell me which of our prospects never send a welcome email”. The system sets up what the job needs, you approve the plan, and the agents get to work.',
+        a: 'Type it in plain words, like “Tell me which of our prospects never send a welcome email”, on our website or to your own agent. Obsession plans the watch, you approve it, and the agents start.',
       },
       {
         q: 'Can I build my own?',
-        a: 'Yes, on the Obsession API: the same agents, inboxes, phone numbers and browsers, from your own code.',
+        a: 'Yes. Recipes are open source, and the same agents, inboxes, numbers and browsers are there from your own code through MCP and the API.',
       },
       {
         q: 'Can I change a recipe?',
-        a: 'Yes. You can change an Obsession recipe’s journeys, schedule, companies and where the results land. The rules every agent follows stay the same.',
+        a: 'Yes. You can change a recipe’s steps, schedule, companies and where the results land. What an agent does at a company is your setting.',
       },
       {
         q: 'How many companies can 1 recipe cover?',
-        a: 'An Obsession recipe covers as many as you add. Every company gets its own agent, and they all run at once, continuously.',
-      },
-      {
-        q: 'What do Obsession’s agents do at a rival or a prospect?',
-        a: 'An Obsession agent does only what any customer can: sign up, join the emails and texts, read public pages and the ads they run in public, ask the site’s chat bot, and start trials that need no card. They say they’re AI agents, link to useobsession.com/agents, never name you and never reply. If a person picks up the chat, or a rep writes or calls, the step ends.',
+        a: 'As many as you add. Every company gets its own customer agent, and they all run at once.',
       },
       {
         q: 'Can an Obsession agent spend money?',
-        a: 'An Obsession agent spends only on a card capped at a budget you set, for a job you approved: a test order on your own store that it refunds, a transfer fee, or a software bill at the price you agreed. Above the cap it stops and asks you. It never signs or accepts terms without your OK.',
+        a: 'Only on a card capped at a budget you set, for a job you approved, like a test order on your own store that it refunds. Above the cap it stops and asks you.',
       },
     ],
   },
@@ -122,7 +106,7 @@ export const recipesPage: RecipesIndexPage = {
       source: 'recipes-final',
       button: 'Join the waitlist',
       placeholder: 'Your work email',
-      micro: 'We keep your email to set up your first run and tell you about Obsession.',
+      micro: 'We keep your email to set up your first watch and tell you about Obsession.',
       interest: 'any',
     },
   },
@@ -267,12 +251,12 @@ export const privacyPage: PrivacyPage = {
 export const agentsPage: AgentsPage = {
   meta: {
     path: '/agents',
-    title: 'Saw an Obsession agent? What a declared AI agent does here',
+    title: 'Saw an Obsession agent? What an AI customer agent does here',
     description:
-      'An Obsession agent is a declared AI agent with its own inbox, number and browser. What it does at your company, what it never does, and how to opt out.',
+      'An Obsession agent is an AI customer agent with its own inbox, number and browser, working for an Obsession customer. What it does, and how to opt out.',
     /* The sub, then the contact in full: an assistant that quotes this answer away from the page still says where to
        write. */
-    answer: `An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. Any company can write to ${CONTACT_EMAIL} with a question about an agent, or to keep Obsession’s agents off its site.`,
+    answer: `An Obsession agent is an AI customer agent with its own inbox, phone number and browser, working for an Obsession customer. Any company can write to ${CONTACT_EMAIL} with a question about an agent, or to keep Obsession’s agents off its site.`,
     ogImage: '/og/agents.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -281,57 +265,43 @@ export const agentsPage: AgentsPage = {
   },
 
   pill: 'Saw an Obsession agent?',
-  headline: 'Every Obsession agent is an AI agent, and says so.',
-  sub: 'An Obsession agent is a declared AI agent with its own identity, inbox, phone number and browser, working for an Obsession customer. Write to us with any question about it, or to keep our agents off your site.',
+  headline: 'An Obsession agent is a customer, and an AI.',
+  sub: 'An Obsession agent is an AI customer agent with its own inbox, phone number and browser, working for an Obsession customer. Write to us with any question about it, or to keep our agents off your site.',
 
   sections: [
     {
       id: 'what',
-      heading: 'It has its own identity, inbox, phone number and browser.',
+      heading: 'It has its own inbox, phone number and browser.',
       lines: [
-        `${SENTENCE} They sign up, shop, ask a site’s chat bot, chase, check and wait, then report back to the company that sent them.`,
-        'Every step an agent takes is signed and dated, so nobody has to take its word for what happened.',
+        `${SENTENCE} Each agent is a customer of 1 company: it signs up, reads what arrives, follows offers, fills baskets, starts trials and asks the site’s chat bot, as any customer can.`,
+        'Everything it keeps is dated and kept exactly as it arrived, so nobody has to take its word for what happened.',
       ],
     },
     {
       id: 'declared',
       heading: 'It never pretends to be a person.',
       lines: [
-        'A declared AI agent says it’s an AI agent and who sent it, never uses a fake name or a fake identity, and keeps a signed record of every step.',
-        'If it’s working for you, or for someone with your OK, like your agency, it names who it works for. So does an agent that asks you for a quote, answers your request for one, negotiates a renewal, asks for a client’s accounts back or follows up an invoice.',
-        'If it’s doing what any customer can, it says it’s from Obsession and links to this page, without naming its customer.',
-      ],
-    },
-    {
-      id: 'does',
-      heading: 'When it keeps its customer private, it only does what any customer can.',
-      lines: ['In that case, it only:'],
-      list: [
-        'Signs up, and joins the emails and texts',
-        'Reads public pages, prices and the ads you run in public',
-        'Asks your site’s chat bot. If a person picks it up, the step ends',
-        'Starts a free trial that needs no card',
-        'Waits, and keeps what arrives',
+        'When it talks to a person, by chat, email or phone, it says it’s an AI agent from Obsession and links to this page.',
+        'Its customer stays private unless they choose to be named.',
       ],
     },
     {
       id: 'never',
-      heading: 'It never pays on your store without your OK, and never poses as a buyer.',
-      lines: [
-        'No agent sends cold emails, or goes behind a login it wasn’t given, past a CAPTCHA or past a block.',
-        'When it keeps its customer private, it also never:',
-      ],
+      heading: 'What no Obsession agent does, whoever it works for.',
+      lines: ['Every agent keeps to the law and to its record. It never:'],
       list: [
-        'Fills a basket or starts a checkout',
-        'Sends your staff an enquiry, a contact form or a question',
-        'Replies to your team, or stays in a trial once a rep writes or calls',
+        'Pretends to be a person when it talks to one',
+        'Uses fake payment details',
+        'Gets round a CAPTCHA or a bot block',
+        'Clicks paid ads at volume',
+        'Changes what it found: every receipt is kept as it arrived',
       ],
     },
     {
       id: 'keeps',
       heading: 'It keeps what any customer would see.',
       lines: [
-        'The pages, emails, texts and bot answers it receives, with screenshots and times, for the customer it works for. Nothing from behind a login it wasn’t given, and nothing from inside your systems.',
+        'The pages, emails, texts and bot answers it receives, with their times and signatures, for the customer it works for. Nothing from behind a login it wasn’t given, and nothing from inside your systems.',
       ],
     },
     {
@@ -352,11 +322,11 @@ export const agentsPage: AgentsPage = {
     items: [
       {
         q: 'Who sent the AI agent that signed up to my site?',
-        a: `An Obsession customer did. Every Obsession agent says it’s an AI agent and links to this page, and it never names its customer without their OK. Write to ${CONTACT_EMAIL} with the email address or number it used, and we tell you what it did and when.`,
+        a: `An Obsession customer did. Obsession agents say they’re AI when they talk to a person, link to this page, and never name their customer without their OK. Write to ${CONTACT_EMAIL} with the email address or number it used, and we tell you what it did and when.`,
       },
       {
         q: 'Is there a real company behind an AI agent on my checkout?',
-        a: 'For an Obsession agent, yes: it works for an Obsession customer, and Obsession answers any question about it. When it keeps that customer private, it never fills a basket or starts a checkout.',
+        a: 'For an Obsession agent, yes: it works for an Obsession customer, and Obsession answers any question about it. It never uses fake payment details.',
       },
       {
         q: 'How do I keep Obsession’s AI agents off my site?',
@@ -364,7 +334,7 @@ export const agentsPage: AgentsPage = {
       },
       {
         q: 'Will an Obsession agent contact my staff?',
-        a: 'Not when an Obsession agent keeps its customer private: it only asks your site’s chat bot, and if a person picks it up, the step ends. It never sends your staff an enquiry or a contact form, and leaves a trial the moment a rep writes or calls.',
+        a: 'Only the way a customer would, through your chat, email or phone, and it says it’s an AI agent from Obsession the moment it does.',
       },
     ],
   },
@@ -383,14 +353,13 @@ export const agentsPage: AgentsPage = {
 export const notFoundPage: NotFoundPage = {
   meta: {
     path: '/404',
-    title: 'Page not found · Obsession, AI agents for commercial teams',
+    title: 'Page not found · Obsession, a customer of every company',
     description:
-      'There’s no page at this address. Obsession sends declared AI agents to sign up, shop, ask and check at every company on your list, continuously.',
-    answer:
-      'There’s no page at this address on useobsession.com. Obsession is the intelligence infrastructure for commercial teams: declared AI agents that do business with other companies for you.',
+      'There’s no page at this address. Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, with proof.',
+    answer: `There’s no page at this address on useobsession.com. ${SENTENCE}`,
   },
   headline: 'There’s no page at this address.',
-  sub: 'The link may be old or mistyped. Obsession sends declared AI agents to sign up, shop and check at every company on your list. If an agent sent you here, start at useobsession.com/agents.',
+  sub: 'The link may be old or mistyped. Obsession’s AI agents sign up to any company you name and stay its customer. If an agent sent you here, start at useobsession.com/agents.',
   links: [
     { label: 'Home', to: '/' },
     { label: 'Recipes', to: '/recipes' },
@@ -402,7 +371,7 @@ export const notFoundPage: NotFoundPage = {
     source: '404',
     button: 'Join the waitlist',
     placeholder: 'Your work email',
-    micro: 'We keep your email to set up your first run and tell you about Obsession.',
+    micro: 'We keep your email to set up your first watch and tell you about Obsession.',
     interest: 'any',
   },
 }
@@ -413,13 +382,14 @@ export const notFoundPage: NotFoundPage = {
 export const llms: Llms = {
   summary: SENTENCE,
   intro: [
-    'Obsession’s agents sign up, shop, ask the site’s chat bot, chase, check and wait at every company on your list, continuously, and every step they take is signed.',
-    'You get the proof and your next move by email, PDF, Slack, a sheet, Clay, your CRM or a webhook.',
+    'Each Obsession customer agent is a long lived customer of 1 company, with its own inbox, phone number and browser. It signs up, follows ads to their pages, starts trials, fills baskets and asks the site’s chat bot, then sleeps until the company does something, wakes, and files the receipt: the email, page or price as it arrived, with its time and its signature checked.',
+    'You get each fact, 1 sentence with its receipt, in your own AI agent, Slack, Clay, your CRM, a sheet, a report or a webhook.',
+    'Use it from your own AI agent through MCP, from a workflow file, from code through the API and SDKs (5 verbs: lookup, facts, evidence, become_customer, notify), or from the Obsession website, where you type what you want to know or pick a recipe.',
     `There are ${WAYS.length} ways in. ${WAYS.map((w) => `${w.name}, ${w.who.charAt(0).toLowerCase()}${w.who.slice(1)}: ${w.line}`).join(' ')}`,
-    'Recipes cover winning customers (prospect intelligence, listings and AI answers, inbound quotes, account handover), keeping and growing customers (account watch, business case, expansion offers, client upsells, renewal negotiation, cancellation saves, review requests), watching rivals (competitor tracking, email and SMS tracking, price watch, ad tracking, trial teardown), checking your own journeys (mystery shopper, lead leaks, website audit, delivery monitoring, AI checkout test, ad landing check, partner checks), getting paid and negotiating (get paid, supplier quotes, software renewals), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
-    'To check an AI agent, Obsession’s declared test customers use a company’s own support bot, voice agent, AI SDR or sales agent on its real channels, only with the owner’s OK, ask what an ordinary customer asks and never try to trick it, tag every test so it is never billed, and sign every step.',
-    'Most tools read what a company publishes. Obsession goes through it as a customer.',
-    'Every agent says it’s an AI agent and never pretends to be a person. At rivals and prospects it uses only the paths any customer can (sign ups, newsletters, texts, public pages, the ads they run in public, the site’s chat bot and trials that need no card), never contacts staff or replies, closes a trial the moment a rep writes or calls, never names its customer and links to useobsession.com/agents. A company’s own journeys, or a client’s or account’s, run only with the owner’s OK, and on anyone else’s store every checkout stops before payment. It spends only on a card capped at a budget the customer sets, and never signs or accepts terms without the customer’s OK.',
-    'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours; 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency with a client’s OK, can get a first mystery shop free.',
+    'Recipes cover watching other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), checking your own journeys (mystery shopper, ad landing check, lead leaks, AI checkout test, partner checks, website audit, delivery monitoring, listings and AI answers), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
+    'Other tools read the outside of a company: ad libraries such as Foreplay keep the ads, email archives such as Panoramata, MailCharts and Milled keep newsletters, and page monitors such as Visualping alert on changes. Obsession is the customer, so it sees what comes after the click. The comparison is at useobsession.com/compare.',
+    'The runtime is open source: the customer agents, how they fan out, sleep and learn, the record, recipes, integrations and the 5 verbs. Obsession Cloud runs it, with inboxes and numbers in many countries and months of shared history.',
+    'Every agent says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never clicks paid ads at volume, and keeps every receipt exactly as it arrived. Any company can write to hello@useobsession.com to keep the agents off its site.',
+    'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours; 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency for a client, can get a first report free.',
   ].join(' '),
 }

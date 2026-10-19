@@ -161,7 +161,7 @@ export const recipes: Record<RecipeId, Recipe> = {
   prospect: {
     id: 'prospect',
     slug: 'prospect-research',
-    name: 'Prospect research',
+    name: 'Prospect intelligence',
     line: 'Proves a real gap at each company on your list: a welcome email that never comes, a text that never follows, a question nobody answers.',
     gets: 'A verdict per company, with a proof link, back in Clay or a sheet.',
     journey: ['Sign up', 'Opt in to texts', 'Ask a question', 'Wait for what follows'],
@@ -361,7 +361,7 @@ export const recipes: Record<RecipeId, Recipe> = {
   speed: {
     id: 'speed',
     slug: 'speed-to-lead',
-    name: 'Speed to lead',
+    name: 'Lead leaks',
     line: 'Sends an enquiry by form, email, chat or text and times the reply.',
     gets: 'Reply time for each company and channel, with the replies attached.',
     journey: ['Send the enquiry', 'Wait for a reply', 'Log who answered', 'Time it'],
@@ -424,7 +424,7 @@ export const recipes: Record<RecipeId, Recipe> = {
   prices: {
     id: 'prices',
     slug: 'price-watch',
-    name: 'Price and promotion watch',
+    name: 'Price watch',
     line: 'Checks prices, delivery thresholds and offers on rivals’ sites, as often as you choose.',
     gets: 'A change log, with a screenshot of each change.',
     journey: ['Open the pages', 'Read prices and offers', 'Compare with last time', 'Save each change'],

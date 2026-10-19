@@ -2,8 +2,7 @@ import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Sales agent check (/recipes/sales-agent-check). Check your AI agents. It replaces VERIFY.md 6.4's Checkout agent
-   check: a store's own AI sales or shopping agent quoting wrong prices, followed to checkout and stopped before
-   payment. Outside AI shoppers buying from the store are AI checkout test's job, and the FAQ says so.
+   check: a store's own AI sales or shopping agent quoting wrong prices, followed to checkout. Outside AI shoppers buying from the store are AI checkout test's job, and the FAQ says so.
    Screen: salescheck (Your company; "WhatsApp · Site chat · daily"; Mon 07:01; Test customer 2, AI, for Your company:
    "AI test customer for Your company. Duo bundle price?"; the agent: "I'm the AI assistant. The Duo bundle is €89, in
    stock and arrives in 2 to 3 working days."; "Can I order now?"; checkout €89.00, stopped before payment, budget €0;
@@ -13,11 +12,13 @@ import type { Recipe } from '../types'
    your OK"). The screen's law reference beside "Says it's AI" stays off the page: no citations.
    Base: _research/verify/VERIFY.md 6.4 (the checks, the channels) and 11 (the red lines). No real AI agent check has
    run yet, so the run is an example and says so, and no Verify claim sits in proof.
-   Red lines held: only the reader's own agent, or a client's with their written OK; every test customer says it's AI
-   and who it works for; ordinary questions only, no jailbreaks, haggling or flattery; every checkout stops before
-   payment unless it's the reader's own store with a budget set; the chat history is read only through a connection the
-   reader sets up; every test chat tagged, agreed with the vendor; nothing changes in the agent without the reader's
-   OK. No vendor or product names: "your sales agent".
+   The three lines hold (system.md), and nothing else is written as a rule: every chat and checkout kept exactly as it
+   arrived; the reader private unless they choose to be named; the law (every test customer says it's AI when it talks
+   to a person and pays only with real payment details). The rest is the reader's setting: the budget (at €0 every
+   checkout stops before payment, as in the example), haggling or adversarial questions, and when a fix goes live. The
+   chat history is read through a connection the reader sets up; every test chat tagged, agreed with the vendor. A
+   client's agent is named with the client's agreement once, in the FAQ. No vendor or product names: "your sales
+   agent".
    Up-to-50 rule, no money promises (James and Seun, 3 Oct): the 1 modelled figure (up to 27 orders a week kept at the
    right price) carries its model in the same line: 27 Duo bundle chats a week, each quoted €89 where the price list
    says €189; if every chat became an order, 27 x 1 = 27 orders a week at €89, which a daily check finds the morning
@@ -31,24 +32,24 @@ export const recipe: Recipe = {
   slug: 'sales-agent-check',
   name: 'Sales agent check',
   group: 'Check your AI agents',
-  line: 'Asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and stops before payment.',
+  line: 'Asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and follows it to checkout.',
   gets: 'Every price, stock and delivery answer checked against your store, and the right answer drafted wherever it went wrong.',
   kit: [
-    'A declared AI test customer, working for your store',
+    'An AI test customer, working for your store',
     'Its own inbox and WhatsApp number',
     'Your price list, stock feed and delivery page, captured each run',
     'Every channel your agent sells on',
-    'A €0 budget, or a cap you set on your own store',
-    'Every answer signed and dated',
+    'A budget you set, or €0 to stop before payment',
+    'Every answer kept with its receipt',
   ],
 
   meta: {
     path: '/recipes/sales-agent-check',
     title: 'Sales agent check: catch wrong AI prices daily · Obsession',
     description:
-      'Declared AI test customers ask your AI sales agent about prices, stock and delivery daily, check each answer against your store and stop before payment.',
+      'AI test customers ask your AI sales agent about prices, stock and delivery daily, check each answer against your store and follow it to checkout.',
     answer:
-      'Sales agent check asks your AI sales agent what it charges, every day: declared test customers ask on chat about prices, stock and delivery, check each answer against your price list and stop every checkout before payment.',
+      'Sales agent check asks your AI sales agent what it charges, every day: test customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
     ogImage: '/og/sales-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +60,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask your AI sales agent what it charges.',
-    sub: 'Sales agent check asks your AI sales agent what it charges, every day: declared test customers ask on chat about prices, stock and delivery, check each answer against your price list and stop every checkout before payment.',
+    sub: 'Sales agent check asks your AI sales agent what it charges, every day: test customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
     screen: 'salescheck',
     capture: {
       kind: 'verify',
@@ -96,7 +97,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Point it at your sales agent',
-      line: 'Your site chat, WhatsApp or text sales agent, or a client’s with their OK. Add your price list, stock feed and delivery page.',
+      line: 'Your site chat, WhatsApp or text sales agent, or a client’s. Add your price list, stock feed and delivery page.',
     },
     {
       title: 'Approve the checks',
@@ -104,7 +105,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'Test customers ask, then go to checkout',
-      line: 'Each says it’s AI and who it works for, asks what your customers ask on every channel, and follows the answer to checkout. It stops before payment, unless it’s your own store and you’ve set a budget.',
+      line: 'Each says it’s AI and who it works for, asks what your customers ask on every channel, and follows the answer to checkout. It pays with real payment details up to the budget you set, and at €0 stops before payment.',
     },
     {
       title: 'You get a verdict and the fix',
@@ -137,10 +138,10 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Before payment', line: 'Every checkout, unless it’s your own store and you’ve set a budget.' },
-        { title: 'No tricks', line: 'It asks what an ordinary customer asks. No jailbreaks, prompt tricks or haggling for a discount.' },
+        { title: 'Payment', line: 'Real payment details only, up to the budget you set. At €0, every checkout stops before payment.' },
+        { title: 'Hard questions', line: 'What an ordinary customer asks, and haggling or adversarial questions if you want them.' },
         { title: 'Your figures', line: 'Every test chat tagged, agreed with your vendor first, so it stays out of your sales and your bill.' },
-        { title: 'Anyone else’s agent', line: 'Never. Your own sales agent, or a client’s with their written OK.' },
+        { title: 'The record', line: 'Every chat and checkout kept exactly as it arrived.' },
       ],
     },
   ],
@@ -150,25 +151,25 @@ export const recipe: Recipe = {
     items: [
       { format: 'A verdict per check', line: 'Passed or needs you, beside the price list, feed or page it was checked against.' },
       { format: 'The chat', line: 'Every message on every channel, timed, beside your price list as it read that minute.' },
-      { format: 'The checkout', line: 'What checkout showed, captured at the step where it stopped before payment.' },
+      { format: 'The checkout', line: 'What checkout showed, captured at every step it reached.' },
       {
         format: 'What’s at risk',
         line: 'How many chats asked about the same product last week, from the chat history you connect.',
       },
-      { format: 'The fix, drafted', line: 'The right answer written for your agent’s settings. Live only after your OK.' },
+      { format: 'The fix, drafted', line: 'The right answer written for your agent’s settings. Live when you approve it.' },
       {
         format: 'A record to share',
-        line: 'A page and a PDF for your team, your vendor or your client, or an email, Slack, a sheet or a webhook. Every answer signed.',
+        line: 'A page and a PDF for your team, your vendor or your client, or an email, Slack, a sheet or a webhook. Every answer kept with its receipt.',
       },
     ],
   },
 
   settings: [
-    { k: 'Sales agent', v: 'Yours, or a client’s with their written OK' },
+    { k: 'Sales agent', v: 'Yours, or one you run for a client' },
     { k: 'Channels', v: 'Site chat, WhatsApp, text and your app' },
     { k: 'Products', v: 'Your best sellers, bundles and this week’s offers' },
     { k: 'Sources', v: 'Your price list, stock feed, delivery and returns pages, captured each run' },
-    { k: 'Budget', v: '€0, so every checkout stops before payment, or a cap you set on your own store' },
+    { k: 'Budget', v: 'A cap you set, or €0 so every checkout stops before payment' },
     { k: 'Chat history', v: 'Connected by you, to count what a wrong answer puts at risk' },
     { k: 'Tagging', v: 'Every test chat tagged, agreed with your vendor first' },
     { k: 'How often', v: 'Daily, and after every price change or update' },
@@ -178,7 +179,7 @@ export const recipe: Recipe = {
     { audience: 'marketing', line: 'Check your sales agent quotes this week’s offer and code, not last month’s.' },
     {
       audience: 'agencies',
-      line: 'A daily price check on every client’s sales agent, with their OK, and a signed record to show them.',
+      line: 'A daily price check on every client’s sales agent, and a record to show them, every answer with its receipt.',
     },
     { audience: 'founders', line: 'Know what your sales agent charges while you sleep, and hear the morning it gets a price wrong.' },
     {
@@ -195,22 +196,22 @@ export const recipe: Recipe = {
       { label: 'A wrong price', values: ['Found when orders arrive at €89', 'Found the same morning, with the chat'] },
       { label: 'Stock and delivery', values: ['Trusted to match your feed', 'Checked against your feed every morning'] },
       { label: 'WhatsApp and site chat', values: ['Never compared', 'The same question, the same minute, compared'] },
-      { label: 'Checkout', values: ['Nobody checks it matches the chat', 'Followed to checkout, stopped before payment'] },
+      { label: 'Checkout', values: ['Nobody checks it matches the chat', 'Followed to checkout and checked against the chat'] },
       { label: 'After a price change', values: ['You hope the agent knows', 'Checked again the same day'] },
-      { label: 'Evidence', values: ['A customer’s screenshot', 'Every answer signed and dated'] },
+      { label: 'Evidence', values: ['A customer’s screenshot', 'Every answer kept with its receipt'] },
     ],
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Every checkout stops before payment.',
+    heading: 'Every test customer says it’s AI, and pays only with real details.',
     items: [
       {
         q: 'How do we stop our AI sales agent quoting the wrong price?',
-        a: 'Catch it the morning it starts: Obsession’s Sales agent check asks your agent about prices, bundles and codes every day and checks each answer against your own price list, stopping every checkout before payment.',
+        a: 'Catch it the morning it starts: Obsession’s Sales agent check asks your agent about prices, bundles and codes every day and checks each answer against your own price list, through to checkout.',
       },
       {
         q: 'Does Sales agent check buy anything?',
-        a: 'No. Sales agent check stops every checkout before payment, unless it’s your own store and you’ve set a budget.',
+        a: 'Only if you set a budget. Then Sales agent check pays with real payment details, up to your cap. At €0, it stops every checkout before payment.',
       },
       {
         q: 'Does Sales agent check say it’s AI?',
@@ -218,7 +219,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will Sales agent check haggle or trick our agent?',
-        a: 'No. Sales agent check asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
+        a: 'Only if you want it to. Sales agent check asks what an ordinary customer asks, and you can add haggling or adversarial questions to see where your agent gives way.',
       },
       {
         q: 'What does Sales agent check compare answers with?',
@@ -238,7 +239,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Sales agent check cover a client’s agent?',
-        a: 'Yes, with the client’s written OK: the Sales agent check record carries your agency’s name, and the client can check every step.',
+        a: 'Yes, with the client’s agreement: the Sales agent check record carries your agency’s name, and the client can check every receipt.',
       },
       {
         q: 'What’s it worth?',
@@ -250,14 +251,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Sales agent check on a sales agent you run, or a client’s with their OK: 3 test customers ask it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Sales agent check on a sales agent you run for yourself or a client: 3 test customers ask it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Catch a wrong price the morning it appears, not 27 orders later.',
-    sub: 'Your first check is free: 3 test customers ask your sales agent on 1 channel, and your report lands within 4 days. Your store, or a client’s with their OK.',
+    sub: 'Your first check is free: 3 test customers ask your sales agent on 1 channel, and your report lands within 4 days. Your store, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-sales-agent-final',

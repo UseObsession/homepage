@@ -3,21 +3,21 @@ import type { Recipe } from '../types'
 /* Competitor tracking (/recipes/competitor-tracking). James's strongest page with Mystery shopper, written from the
    terms buyers use. Kept: his headline, the sign up record dated from a known sign up, the welcome series mapped and
    timed, his check groups and deliverables, his week 1 summary and his FAQ ("Can you show their past emails?").
-   Fixed to the red lines: 1 question to the site's chat bot, never staff, and the step ends if a person picks it up;
-   no organic posts and no named ad platforms ("the ads they run in public"); rivals see a declared AI agent that
-   links to useobsession.com/agents and never names the client; rival trials are no-card only and close the moment a
-   rep writes or calls. The run is an example and says so. Its rival is a skincare store, so it never collides with
-   the SaaS rivals Tallyhop, Notewell and Pinecrate on the `rivals` screen in the hero. */
+   The 3 lines hold (obsession/system.md): the record kept as it arrived, the client private unless they choose to be
+   named, and the law (an agent says it's AI when it talks to a person, never gets round a CAPTCHA). No organic posts
+   and no named ad platforms ("the ads they run in public"). Everything else, from trials and baskets to talking to
+   staff, is the customer's setting. The run is an example and says so. Its rival is a skincare store, so it never
+   collides with the SaaS rivals Tallyhop, Notewell and Pinecrate on the `rivals` screen in the hero. */
 
 export const recipe: Recipe = {
   id: 'competitor',
   slug: 'competitor-tracking',
   name: 'Competitor tracking',
-  group: 'Watch rivals',
+  group: 'Watch other companies',
   line: 'Signs up to every rival and logs each email, text, offer, price change and public ad.',
   gets: 'A timeline per rival, and a note of what changed, as often as you choose.',
   kit: [
-    'A declared AI agent per rival',
+    'A customer agent per rival',
     'Its own inbox and phone number',
     'An isolated browser for each rival',
     'Page and price checks on your schedule',
@@ -29,9 +29,9 @@ export const recipe: Recipe = {
     path: '/recipes/competitor-tracking',
     title: 'Competitor tracking: see every rival as its customers do',
     description:
-      'A declared AI agent signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously.',
+      'An AI agent signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with proof.',
     answer:
-      'Competitor tracking signs a declared AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
+      'Competitor tracking signs an AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     ogImage: '/og/competitor-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email, text, ad and offer your rivals send, on 1 timeline.',
-    sub: 'Competitor tracking signs a declared AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
+    sub: 'Competitor tracking signs an AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     screen: 'rivals',
     capture: {
       kind: 'waitlist',
@@ -60,12 +60,12 @@ export const recipe: Recipe = {
     recipe: 'competitor',
     task: 'Sign up to this rival’s emails and texts. Log every offer, price change and public ad, and send me what changed each Monday.',
     targets: 'skincare-rival.example, a skincare store',
-    journey: ['Sign up from the pop up', 'Opt in to texts', 'Ask the bot, never staff', 'Check pages, prices and ads daily'],
+    journey: ['Sign up from the pop up', 'Opt in to texts', 'Ask the site’s chat bot', 'Check pages, prices and ads daily'],
     schedule: 'Daily checks, a note every Monday',
     report: 'A Monday note by email, Slack when anything changes',
-    kit: ['Agent ID, declared as AI', 'Own inbox', 'Own phone number', 'Browser set to the UK'],
+    kit: ['Agent ID', 'Own inbox', 'Own phone number', 'Browser set to the UK'],
     events: [
-      { time: 'Mon 07:02', text: 'Signs up from the pop up as a declared AI agent, with its own inbox and number.' },
+      { time: 'Mon 07:02', text: 'Signs up from the pop up, with its own inbox and number.' },
       { time: 'Mon 07:04', text: 'Welcome email: 15% off your first order.' },
       { time: 'Mon 07:20', text: 'Asks the site’s chat bot how long delivery takes. Answered in 6 seconds.' },
       { time: 'Tue 19:30', text: 'First text: a free gift on orders over £40.' },
@@ -84,7 +84,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'An agent signs up to each one',
-      line: 'It joins the emails and texts from the pop up, as any customer can. It says it’s an AI agent and keeps your name out.',
+      line: 'It joins the emails and texts from the pop up, as any customer can. You stay private unless you choose to be named.',
     },
     {
       title: 'It logs everything that follows',
@@ -114,7 +114,7 @@ export const recipe: Recipe = {
         },
         {
           title: 'The site’s chat bot',
-          line: '1 labelled question, the answer and how long it took. If a person picks it up, the step ends.',
+          line: 'The questions you choose, each answer and how long it took. If a person picks it up, the agent says it’s an AI.',
         },
       ],
     },
@@ -138,7 +138,7 @@ export const recipe: Recipe = {
         },
         {
           title: 'Trial offers',
-          line: 'On software rivals, the offer at the end of a free trial that needs no card. The agent never replies, and closes the trial the moment a rep writes or calls.',
+          line: 'On software rivals, every email in a free trial and the offer at its end. If the agent talks to a rep, it says it’s an AI.',
         },
       ],
     },
@@ -164,7 +164,7 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Rivals', v: 'Any companies you name, by web address' },
-    { k: 'Journeys', v: 'Email sign up, text opt in, a free trial with no card, 1 question to the site’s chat bot' },
+    { k: 'Journeys', v: 'Email sign up, text opt in, a free trial, a basket, questions to the site’s chat bot' },
     { k: 'Channels', v: 'Email, texts, public ads, pages and prices' },
     { k: 'How often', v: 'Daily, weekly or monthly, set for each channel' },
     { k: 'Alerts', v: 'The changes you care about, by email, Slack or webhook' },
@@ -188,7 +188,7 @@ export const recipe: Recipe = {
     line: 'Example. Every message is placed by the time since the agent signed up, so you see the sequence and its rhythm, not a pile of emails.',
     cols: ['Channel', 'What arrived'],
     rows: [
-      { label: '0 min', values: ['Pop up', 'Signed up, declared as AI'] },
+      { label: '0 min', values: ['Pop up', 'Signed up'] },
       { label: '+2 min', values: ['Email', 'Welcome, 15% off'] },
       { label: '+1 day', values: ['Text', 'A free gift over £40'] },
       { label: '+2 days', values: ['Email', 'Bestsellers, no code'] },
@@ -200,7 +200,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every agent says it’s AI. Your name stays out.',
+    heading: 'It says it’s AI to people. You stay private unless you choose to be named.',
     items: [
       {
         q: 'How do I keep track of competitors without checking 10 tabs a day?',
@@ -216,19 +216,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can you show their past emails?',
-        a: 'No. Competitor tracking’s record starts the day the agent signs up, so every message is dated from a known sign up. That’s what an archive can’t give you: any company you name, the same day.',
+        a: 'From the day an Obsession agent first signed up there. If one already has, its history is there the moment you ask; if not, the record starts today. Every message is dated from a known sign up, for any company you name.',
       },
       {
         q: 'Will the rival know?',
-        a: 'Every Obsession agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out. If that changes what a rival sends, the record shows it.',
+        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named. If that changes what a rival sends, the record shows it.',
       },
       {
         q: 'Does Competitor tracking talk to their staff?',
-        a: 'Never. Competitor tracking asks the site’s chat bot 1 question. If a person picks it up, the step ends.',
+        a: 'Only if you set it to. When Competitor tracking talks to a person, by chat, email or phone, it says it’s an AI.',
       },
       {
         q: 'Do you trigger their basket emails?',
-        a: 'Not at rivals: baskets and checkouts need the owner’s OK, so they belong to Obsession’s Mystery shopper, on your own store or a client’s.',
+        a: 'Yes, if you choose: Competitor tracking fills a basket and leaves it, and keeps every reminder that follows with its receipt. It never uses fake payment details.',
       },
       {
         q: 'How many rivals can Competitor tracking follow?',

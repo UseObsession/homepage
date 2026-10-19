@@ -34,10 +34,10 @@
   --accent: var(--s-accent, var(--text-2));
   --pband-glow: var(--s-accent-glow-rest, 0%);
   position: relative;
-  /* Basis 0 with a minimum of a third: 3 panels fit a row and a 4th does not, so the rows break after 3 and each row
-     still shares its width by grow, as his single row did. */
+  /* Basis 0 with a minimum of 46%: 2 panels fit a row and a 3rd does not, so the 4 panels sit in 2 rows of 2 and each
+     row still shares its width by grow, as his single row did. */
   flex: 1 1 0;
-  min-width: 31%;
+  min-width: 46%;
   min-height: clamp(300px, 23vw, 330px);
   display: grid;
   grid-template-rows: auto 1fr auto auto;
@@ -58,14 +58,14 @@
 }
 
 /* The panel that starts a row is flat on its left, the one that ends it flat on its right. */
-.pband-item:nth-child(3n + 1) {
+.pband-item:nth-child(2n + 1) {
   margin-left: 0;
   padding-left: 32px;
   clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
   border-radius: var(--radius-lg) 0 0 var(--radius-lg);
 }
 
-.pband-item:nth-child(3n) {
+.pband-item:nth-child(2n) {
   padding-right: 32px;
   clip-path: polygon(var(--slant) 0, 100% 0, 100% 100%, 0 100%);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
@@ -105,7 +105,7 @@
   color: var(--text-2);
 }
 
-.pband-item:not(:nth-child(3n + 1)) .pband-n {
+.pband-item:not(:nth-child(2n + 1)) .pband-n {
   margin-left: calc(var(--slant) * .45);
 }
 
@@ -160,7 +160,7 @@
   transition: transform 500ms var(--ease), background 300ms var(--ease), color 300ms var(--ease);
 }
 
-.pband-item:nth-child(3n) .pband-go {
+.pband-item:nth-child(2n) .pband-go {
   right: 26px;
 }
 
@@ -202,7 +202,7 @@
     row-gap: 0;
   }
 
-  .pband-item:not(:nth-child(3n + 1)) .pband-n {
+  .pband-item:not(:nth-child(2n + 1)) .pband-n {
     margin-left: 0;
   }
 
@@ -242,7 +242,7 @@
   }
 
   .pband-go,
-  .pband-item:nth-child(3n) .pband-go,
+  .pband-item:nth-child(2n) .pband-go,
   .pband-item:last-child .pband-go {
     top: 28px;
     right: 20px;

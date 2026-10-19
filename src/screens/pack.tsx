@@ -10,10 +10,10 @@ export function PackScreen({ workspace = 'agency' }: ScreenProps) {
      Rivals in the nav, its own lists. An agency's lists its clients. */
   const company = workspace === 'company'
   return (
-    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence mission for 12 prospects from Clay, run by a declared Obsession AI agent that signs up at each as a new customer, through public sign ups only. Rows land 1 by 1, each with its gap, until 10 of the 12 have one. Hobstone Coffee’s pitch fills with 3 findings and their captures, signed, and a click on Copy link copies its proof link. The lead finding is in the test inbox’s Spam folder. 10 of 12 prospects failed a new customer. Proof link Hobstone can check for itself. Hobstone’s 10% welcome code lands in spam.">
+    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence watch for 12 prospects from Clay, run by a declared Obsession AI agent that signs up at each as a new customer, through public sign ups only. Rows land 1 by 1, each with its gap, until 10 of the 12 have one. Hobstone Coffee’s pitch fills with 3 findings and their captures, signed, and a click on Copy link copies its proof link. The lead finding is in the test inbox’s Spam folder. 10 of 12 prospects failed a new customer. Proof link Hobstone can check for itself. Hobstone’s 10% welcome code lands in spam.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
-        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Missions<span>/</span>Prospect intelligence</span>
+        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>Prospect intelligence</span>
         <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
         <span className="ax-team" aria-hidden="true"><span>AM</span><span>JO</span></span>
       </div>
@@ -22,7 +22,7 @@ export function PackScreen({ workspace = 'agency' }: ScreenProps) {
           <div className="ax-ws"><i>Y</i>{ws.org}</div>
           <nav className="ax-nav">
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
-            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Missions<em>24</em></a>
+            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>24</em></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
             {company && (
               <>

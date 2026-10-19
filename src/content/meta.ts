@@ -13,6 +13,7 @@ export type PageKind =
   | 'home'
   | 'audience'
   | 'developers'
+  | 'compare'
   | 'verify'
   | 'recipes'
   | 'recipe'
@@ -66,11 +67,12 @@ const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 const ogFor = (meta: Meta) => ({ ...meta, ogImage: meta.ogImage ?? `/og/${meta.path === '/' ? 'home' : meta.path.split('/').pop()}.png` })
 const crumbName = (meta: Meta, fallback: string) => meta.breadcrumb?.[meta.breadcrumb.length - 1]?.name ?? fallback
 
-const AUDIENCES = ['agencies', 'founders', 'sales', 'marketing'] as const
+const AUDIENCES = ['marketing', 'sales', 'agencies'] as const
 
 const home = pages.home
 const dev = pages.developers
 const verify = pages.verify
+const compare = pages.compare
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
@@ -94,6 +96,15 @@ export const entries: Entry[] = [
     line: dev.hero.proof[0] ? `${dev.hero.proof[0].value} ${dev.hero.proof[0].label}` : dev.hero.pill,
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  {
+    kind: 'compare',
+    meta: ogFor(compare.meta),
+    name: crumbName(compare.meta, 'Compare'),
+    headline: compare.hero.headline,
+    line: firstSentence(compare.hero.sub),
+    faq: compare.faq,
+    source: 'src/content/pages/compare.ts',
   },
   {
     kind: 'verify',

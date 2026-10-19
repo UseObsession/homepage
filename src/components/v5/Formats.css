@@ -1,0 +1,60 @@
+/* What you get (Formats.tsx): small and dense. The claim on the left (4 of 12), a 3 by 3 grid of hairline cells on the
+   right, each a format's name over 1 line of the fact as it lands there. 2 columns on a tablet, 1 on a phone. */
+
+.v5-formats-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+.v5-formats-head { display: grid; gap: 12px; justify-items: start; }
+.v5-formats-h {
+  margin: 0;
+  font: 600 clamp(22px, 2.2vw, 28px) / 1.2 var(--ob-font-sans);
+  letter-spacing: -0.02em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.v5-formats-line { margin: 0; font: 400 15px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); max-width: 38ch; }
+
+.v5-formats-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--ob-line-subtle);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.v5-formats-grid li {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-right: 1px solid var(--ob-line-subtle);
+  border-bottom: 1px solid var(--ob-line-subtle);
+  min-width: 0;
+}
+.v5-formats-grid li:nth-child(3n) { border-right: 0; }
+.v5-formats-grid li:nth-last-child(-n + 3) { border-bottom: 0; }
+.v5-formats-name { font: 600 14.5px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.v5-formats-sample {
+  font: 400 12.5px / 1.4 var(--ob-font-mono);
+  color: var(--ob-text-3);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .v5-formats-wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .v5-formats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v5-formats-grid li:nth-child(3n) { border-right: 1px solid var(--ob-line-subtle); }
+  .v5-formats-grid li:nth-child(2n) { border-right: 0; }
+  .v5-formats-grid li:nth-last-child(-n + 3) { border-bottom: 1px solid var(--ob-line-subtle); }
+  .v5-formats-grid li:last-child { border-bottom: 0; }
+}

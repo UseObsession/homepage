@@ -81,7 +81,12 @@ export type Shot = {
   note?: Note
 }
 
+import { SHOTS_B } from './cam-b'
+import { SHOTS_C } from './cam-c'
+
 export const SHOTS: Record<string, Shot[]> = {
+  ...SHOTS_B,
+  ...SHOTS_C,
   /* Prospect intelligence. The moment: rows land 1 by 1 until 10 of the 12 prospects have failed the agent's sign up as
      a new customer. The next move: Hobstone Coffee's pitch fills as the camera arrives and Copy link copies its signed
      proof. The finding, held: its findings lit, the agent's ring on the Spam folder, its 10% welcome code in spam. */

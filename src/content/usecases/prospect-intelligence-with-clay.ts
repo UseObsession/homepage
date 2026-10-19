@@ -10,10 +10,13 @@ import type { UseCaseStudy } from '../types'
    neither.
    Narrative edit (3 Oct): the hero is a complete claim and names the declared shopper; How says what the agency picks
    and what the shopper does; the proof hands off to the first email; the real run's line states what it found.
-   Fixed (red lines and copy rules): the support question is a question to the site's chat bot (no answer within 24
-   hours is the gap, and the step ends if a person picks up); live chat is gone; basket and checkout need the brand's
-   OK and stop before payment; no real company names but Clay (Store Leads, BuiltWith, Klaviyo and Shopify are gone);
-   the recipe is Prospect intelligence; the shoppers say they're AI; numerals; no meta headings.
+   Fixed (copy rules): the support question is a question to the site's chat bot (no answer within 24 hours is the
+   gap); live chat is gone; no real company names but Clay (Store Leads, BuiltWith, Klaviyo and Shopify are gone); the
+   recipe is Prospect intelligence; numerals; no meta headings.
+   Rules (19 Oct, in line with /recipes/prospect-intelligence): only the 3 lines in obsession/system.md hold. Baskets,
+   checkout and writing to staff are the agency's setting; a shopper says it is AI when it talks to a person, and
+   uses no fake payment details. meta.answer opens with the sub on James's page (src/legacy/james), which draws this
+   address; these words give its head, its JSON-LD and its card in the nav and on /use-cases.
    Screens: claycols (set up), brandwatch (the watching), proofmail (the proof and the opener). */
 
 export const study: UseCaseStudy = {
@@ -26,7 +29,7 @@ export const study: UseCaseStudy = {
     description:
       'An example: AI agents become a customer of every brand in a Clay view, watch for 48 hours, and write each gap and its proof back to the same rows.',
     answer:
-      'Prospect intelligence with Clay is a worked example: a declared AI shopper becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table. The agency, brands and figures are made up.',
+      'Obsession becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table. In this worked example, an outbound agency checks 300 UK ecommerce brands for 1 client, an SMS app. The agency, brands and figures are made up.',
     ogImage: '/og/prospect-intelligence-with-clay.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -39,7 +42,7 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents check every brand in your client’s Clay view and write each gap back.',
-    sub: 'Prospect intelligence with Clay is a worked example: a declared AI shopper becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table.',
+    sub: 'Obsession becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into your Clay table. Prospect intelligence with Clay is a worked example.',
     example: {
       chips: ['Example: an outbound agency', 'Its client: an SMS app', '300 UK ecommerce brands'],
       note: 'The agency, its client, the brands, the people and the numbers on this page are made up.',
@@ -75,7 +78,7 @@ export const study: UseCaseStudy = {
   },
 
   how: {
-    heading: 'You pick the gap and the Clay view. A declared AI shopper watches each brand.',
+    heading: 'You pick the gap and the Clay view. An AI shopper watches each brand.',
     sub: 'An outbound agency runs it for 1 client, an SMS app, across 300 UK ecommerce brands.',
     steps: [
       {
@@ -121,13 +124,13 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Obsession does the watching',
-        line: '48 hours in this example. Each brand gets its own declared shopper, and a miss counts only once the recheck confirms it.',
+        line: '48 hours in this example. Each brand gets its own AI shopper, and a miss counts only once the recheck confirms it.',
         screen: 'brandwatch',
         chips: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'Says it’s AI'],
         steps: [
           {
             title: 'Each brand gets its own shopper',
-            line: 'A real inbox, a real UK mobile number and its own browser, used for that 1 brand only. It signs up the way a customer would and saves a screenshot at every step. It always says it’s AI.',
+            line: 'A real inbox, a real UK mobile number and its own browser, used for that 1 brand only. It signs up the way a customer would and saves a screenshot at every step. It says it’s AI when it talks to a person.',
             example:
               'Tidewren Swim, shopper 4F2A: signed up and ticked text consent at 10:14. The welcome email came in 38 seconds, the control text in 4.',
           },
@@ -224,7 +227,7 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'The facts land back in Clay',
-        line: '4 new columns on the same rows: the gap, the date it was seen, what happened in 1 plain sentence, and the proof link. Obsession reports what happened, and never writes to the brand.',
+        line: '4 new columns on the same rows: the gap, the date it was seen, what happened in 1 plain sentence, and the proof link. Obsession reports what happened, and your team writes to the brand.',
         example:
           'In #sms_app_prospects: UK Shopify brands, the first 300 are done. 61 opted in for texts and never got one, and 19 never sent a welcome email. New rows report as they finish.',
       },
@@ -273,18 +276,18 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'The agency, its client, the brands, the people, the phone number and every figure here are made up, and no real company’s results are shown. Basket and checkout checks run only with the brand’s OK, and stop before payment. Clay is a trademark of its owner, named to show where the data comes from and goes.',
+  fine: 'The agency, its client, the brands, the people, the phone number and every figure here are made up, and no real company’s results are shown. Clay is a trademark of its owner, named to show where the data comes from and goes.',
 
   faq: {
-    heading: 'Every shopper says it’s AI. Only the site’s chat bot hears a question.',
+    heading: 'Every shopper says it’s AI when it talks to a person. How far it goes is your setting.',
     items: [
       {
-        q: 'What does a Clay prospect research workflow look like with Obsession?',
-        a: 'Obsession reads the brands in your Clay view, and a declared AI shopper becomes a customer of each one: it signs up, opts in to texts and asks the site’s chat bot, watches for 48 hours, then writes each gap, its date and its proof back to the same rows.',
+        q: 'What does a Clay prospect intelligence workflow look like with Obsession?',
+        a: 'Obsession reads the brands in your Clay view, and an AI shopper becomes a customer of each one: it signs up, opts in to texts and asks the site’s chat bot, watches for 48 hours, then writes each gap, its date and its proof back to the same rows.',
       },
       {
         q: 'Does it contact anyone at the brand?',
-        a: 'No. Declared as AI and from Obsession, it signs up, opts in to texts and asks the site’s chat bot 1 question. If a person picks up the chat, the step ends. It never writes to staff.',
+        a: 'Only if you set it to. In this example it signs up, opts in to texts and asks the site’s chat bot 1 question. When it talks to a person, by chat, email or phone, it says it’s AI from Obsession.',
       },
       {
         q: 'How do you know a gap is real?',
@@ -292,11 +295,11 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Does Obsession fill a basket or buy anything?',
-        a: 'Not at a prospect: Obsession runs basket and checkout checks only with the brand’s OK, and they stop before payment.',
+        a: 'If you choose. This agency didn’t, since the gap was texts. A basket check fills a basket and leaves it, to see whether a reminder follows. A real order goes on a card you fund, never on fake payment details.',
       },
       {
         q: 'Who writes the email?',
-        a: 'You do. Obsession reports what happened, with the proof. Your own Clay prompts decide what to say.',
+        a: 'You do. Obsession reports what happened, with the proof, and can draft an opener if you want one. Here, the agency’s own Clay prompts decide what to say.',
       },
       {
         q: 'Do new rows in the Clay view get checked?',

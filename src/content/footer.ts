@@ -13,7 +13,7 @@ export const footer = {
   /* 1 short line under the logo, the 1 sentence's core (docs/SEARCH.md 2). The full sentence stays word for word where
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
-  tagline: 'Declared AI agents that do business with other companies for you.',
+  tagline: 'A customer of every company, that keeps the receipts.',
   columns: [
     { label: 'Who it’s for', links: readers },
     {
@@ -22,6 +22,8 @@ export const footer = {
         /* The recipe jobs; Check your AI agents has its own page, so it is linked by its own name. */
         ...JOBS.filter((j) => j !== 'Check your AI agents').map((j) => ({ label: j, to: `/recipes#${jobAnchor(j)}` })),
         { label: ways.verify.name, to: ways.verify.to },
+        { label: 'Compare', to: '/compare' },
+        { label: 'Open source', to: 'https://github.com/UseObsession' },
       ],
     },
     {

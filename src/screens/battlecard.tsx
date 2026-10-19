@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function BattlecardScreen() {
   return (
-    <div className="il appx-il app-battlecard"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: a battlecard built from 3 rivals' 14 day trials that need no card, each run by a declared AI agent that never replies. Day by day the cells fill with onboarding emails, time to a first report, the trial end offer and the 40 seat price, each linked to a signed capture; Rival B's trial closes on day 6 when its rep writes. A 3 line talk track is drafted, Push to CRM is clicked and the battlecard goes live for 14 reps.">
+    <div className="il appx-il app-battlecard"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: a battlecard built from 3 rivals' 14 day trials that need no card, each run by an AI customer agent. Day by day the cells fill with onboarding emails, time to a first report, the trial end offer and the 40 seat price, each linked to a signed capture; Rival B's trial closes on day 6 when its rep writes. A 3 line talk track is drafted, Push to CRM is clicked and the battlecard goes live for 14 reps. Rival A offers 20% off on day 13. Pushed to the CRM for all 14 reps.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Rivals<span>/</span>Battlecard</span>
@@ -15,7 +15,7 @@ export function BattlecardScreen() {
           <div className="ax-ws"><i>Y</i>Your company</div>
           <nav className="ax-nav">
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
-            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Missions<em>24</em></a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>24</em></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 13.25h10.5M4.25 13.25V2.75h5.5v10.5M9.75 6.25h2v7" /><path d="M6.25 5.5h1.5M6.25 8h1.5M6.25 10.5h1.5" strokeLinecap="round" /></svg>Accounts</a>
             <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M1.75 8S4 3.75 8 3.75 14.25 8 14.25 8 12 12.25 8 12.25 1.75 8 1.75 8Z" /><circle cx="8" cy="8" r="1.9" /></svg>Rivals</a>
@@ -86,7 +86,7 @@ export function BattlecardScreen() {
             </div>
             <footer className="bc-f">
               <span><i className="bc-pf" />Signed capture</span>
-              <span className="bc-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg>Trials with no card · never replies</span>
+              <span className="bc-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg>Trials with no card · replies off</span>
             </footer>
           </section>
           {/* bottom: the drafted talk track; the toast lands in the space beside it */}

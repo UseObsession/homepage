@@ -2,13 +2,13 @@ import type { Capture, Recipe } from '../types'
 
 /* Price watch (/recipes/price-watch). Watch rivals. Screen: prices.
    Rewritten from James's "Price and promotion watch". Kept: his checks (prices and sale prices, bundles per item,
-   stock, delivery and where free delivery starts, sitewide sales, codes on show), his settings, "a browser per rival,
-   set to your country", and his honest code rule (codes tried only on stores you own or manage).
+   stock, delivery and where free delivery starts, sitewide sales, codes on show), his settings and "a browser per rival,
+   set to your country".
    Fixed (review P2: a silent checklist and an inbox and phone it never used): the kit lists only what the run uses.
    The inbox is real and earns its place: each agent is on the rival's email list, so it sees the subscriber codes a
-   page never shows (the Marketing page's "why only agents" line). No phone. At rivals: public pages and their own
-   email list only. Never a basket, a checkout or a person. Codes are tried only on your own store, or a client's
-   with their OK, stopping before payment.
+   page never shows (the Marketing page's "why only agents" line). No phone. Baskets, codes tried at checkout and
+   real orders are the customer's setting; the 3 lines hold (obsession/system.md), so an agent never uses fake
+   payment details and says it's AI when it talks to a person.
    The run and the table tell the same story as the `prices` screen (Rival B's soy candle, 4 days before Black
    Friday, 3 prices cut, the alert in #pricing). Example, and labelled so. */
 
@@ -23,11 +23,11 @@ export const recipe: Recipe = {
   id: 'prices',
   slug: 'price-watch',
   name: 'Price watch',
-  group: 'Watch rivals',
+  group: 'Watch other companies',
   line: 'Checks every rival’s prices, offers and delivery each morning, plus the codes they only send subscribers.',
   gets: 'Every rival price cut and sale before your day starts, and every subscriber code the minute it lands.',
   kit: [
-    'A declared AI agent per rival',
+    'A customer agent per rival',
     'A browser set to your country',
     'An inbox on each rival’s list',
     'A check every morning',
@@ -39,9 +39,9 @@ export const recipe: Recipe = {
     path: '/recipes/price-watch',
     title: 'Price watch: AI agents that catch every rival price cut',
     description:
-      'Declared AI agents check every rival’s prices, offers and delivery each morning, and join their lists for subscriber codes. Every change arrives signed.',
+      'AI agents check every rival’s prices, offers and delivery each morning, and join their lists for subscriber codes. Every change arrives with its proof.',
     answer:
-      'Price watch catches every rival price cut and the codes only subscribers get: declared AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
+      'Price watch catches every rival price cut and the codes only subscribers get: AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     ogImage: '/og/price-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch every rival price cut, and the codes only subscribers get.',
-    sub: 'Price watch catches every rival price cut and the codes only subscribers get: declared AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
+    sub: 'Price watch catches every rival price cut and the codes only subscribers get: AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     screen: 'prices',
     capture: {
       kind: 'waitlist',
@@ -73,7 +73,7 @@ export const recipe: Recipe = {
     journey: ['Open each product page', 'Read price, offer and delivery', 'Read the codes sent to subscribers', 'Compare with yesterday and with you'],
     schedule: 'Every morning at 06:00',
     report: 'Slack alert to #pricing, weekly PDF',
-    kit: ['Agent ID, declared as AI', '3 browsers, set to the UK', '3 inboxes on rivals’ lists', 'Before and after screenshots'],
+    kit: ['Agent ID', '3 browsers, set to the UK', '3 inboxes on rivals’ lists', 'Before and after screenshots'],
     events: [
       { time: 'Mon 06:00', text: 'Morning check: 6 products at 3 rivals, priced as a UK shopper.' },
       { time: 'Mon 06:04', text: 'Rival B: soy candle now £19 and ships free. On Sunday it was £24 plus £3.95 delivery.' },
@@ -93,7 +93,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'Each rival gets its own agent',
-      line: 'A browser set to your country and currency, and an inbox on the rival’s email list. It says it’s an AI agent.',
+      line: 'A browser set to your country and currency, and an inbox on the rival’s email list.',
     },
     {
       title: 'Every morning, it compares',
@@ -170,7 +170,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'It sees what any shopper sees, and never touches a rival’s basket.',
+    heading: 'It sees what any shopper sees, with a before and after for every change.',
     items: [
       {
         q: 'How do I track competitor prices without checking every day by hand?',
@@ -186,15 +186,15 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Price watch buy anything or use a rival’s basket?',
-        a: 'Never. At a rival, Price watch reads public pages and the emails it signed up for. It never adds to a basket or checks out.',
+        a: 'If you choose. Price watch can fill a basket to see the price at checkout, with delivery and codes applied. Real orders go on a card you fund, and it never uses fake payment details.',
       },
       {
         q: 'Can Price watch check that a code works?',
-        a: 'Yes, on your own store, or a client’s with their OK: Price watch tries the code at checkout and stops before payment. At a rival it records every code on show or sent to subscribers.',
+        a: 'Yes. Price watch tries the code at checkout and keeps what the checkout showed. It also records every code on show or sent to subscribers.',
       },
       {
         q: 'Do rivals know it’s an AI agent?',
-        a: 'Yes. Every Obsession agent signs up as an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you and never replies.',
+        a: 'Signing up and reading prices needs no conversation. When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'Which countries can Price watch check prices in?',

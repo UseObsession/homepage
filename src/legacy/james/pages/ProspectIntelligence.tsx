@@ -6,7 +6,7 @@ import { at } from '../components/stagger'
 import { Count, Play, Step, Win } from '../components/UseCase'
 import { allRecipeIds, recipes, type RecipeId } from '../content/recipes'
 
-/* Use case: an outbound agency runs prospect research for one client from a Clay table.
+/* Use case: an outbound agency runs prospect intelligence for one client from a Clay table.
    Everything here is an illustration. The agency, client, brands, people and numbers are made up. */
 
 const brands = [
@@ -218,14 +218,14 @@ export function ProspectIntelligence() {
               <ul className="uc-list uc-seq">
                 <li style={at(0)}>
                   <b>
-                    Reviews app prospects<small>From the Prospect research recipe</small>
+                    Reviews app prospects<small>From the Prospect intelligence recipe</small>
                   </b>
                   <span>120 brands</span>
                   <span className="tag idle">Weekly</span>
                 </li>
                 <li style={at(1)}>
                   <b>
-                    Pitch: helpdesk prospect<small>From the Speed to lead recipe</small>
+                    Pitch: helpdesk prospect<small>From the Lead leaks recipe</small>
                   </b>
                   <span>25 brands</span>
                   <span className="tag idle">Once</span>
@@ -247,7 +247,7 @@ export function ProspectIntelligence() {
             line="A recipe sets up the checks for one job. Launch it as it is, change anything you like, or skip recipes and describe what you want to know in your own words."
             pick={
               <>
-                <b>The agency picks Prospect research.</b> It proves a gap at companies you’re about to write to. Competitor tracking is for
+                <b>The agency picks Prospect intelligence.</b> It proves a gap at companies you’re about to write to. Competitor tracking is for
                 watching rivals over time.
               </>
             }
@@ -267,7 +267,7 @@ export function ProspectIntelligence() {
                 </li>
               </ul>
               <div className="uc-sets">
-                <b>Prospect research sets up for each company:</b>
+                <b>Prospect intelligence sets up for each company:</b>
                 <span>its own inbox</span>
                 <span>a UK mobile number</span>
                 <span>a browser</span>
@@ -282,7 +282,7 @@ export function ProspectIntelligence() {
             line="Choose the gap your client’s product closes and what counts as a gap. Each check has its own deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer."
             pick="Email sign up, SMS opt in and one support question, watched for 48 hours, then every week."
           >
-            <Win title="New watch · Prospect research · Configure">
+            <Win title="New watch · Prospect intelligence · Configure">
               <div className="uc-cfg">
                 <div>
                   <div className="uc-fld">
@@ -447,7 +447,7 @@ export function ProspectIntelligence() {
             <Win title="New watch · Review">
               <dl className="uc-sum uc-seq">
                 {[
-                  ['Recipe', 'Prospect research'],
+                  ['Recipe', 'Prospect intelligence'],
                   ['Watching', 'SMS app prospects'],
                   ['Brands', '300 now, plus new rows from the Clay view'],
                   ['Checks', 'Email sign up, SMS opt in, one support question'],
@@ -476,7 +476,7 @@ export function ProspectIntelligence() {
           <Step
             n={6}
             title="Each brand gets its own shopper"
-            line="A real inbox, a real UK mobile number and its own browser, used for that one brand only. It signs up the way a customer would and saves a screenshot at every step. It always says it’s automated."
+            line="A real inbox, a real UK mobile number and its own browser, used for that one brand only. It signs up the way a customer would and saves a screenshot at every step. It says it’s AI when it talks to a person."
           >
             <Win title="UK Shopify TAM · Tidewren Swim">
               <div className="uc-s6">
@@ -550,7 +550,7 @@ export function ProspectIntelligence() {
               <div className="uc-row">
                 <span className="uc-mh">UK Shopify TAM</span>
                 <span className="tag idle">Hour 30 of 48</span>
-                <span className="uc-small">From the Prospect research recipe</span>
+                <span className="uc-small">From the Prospect intelligence recipe</span>
               </div>
               <div className="uc-track">
                 <i style={{ width: '62.5%' }} />
@@ -870,7 +870,7 @@ export function ProspectIntelligence() {
           <Reveal className="card">
             <Link to="/recipes/prospect-research">
               <span className="kicker">The recipe</span>
-              <span className="h3">Prospect research</span>
+              <span className="h3">Prospect intelligence</span>
               <span className="muted">Every check it can run, and everything you can change.</span>
               <span className="uc-more-go">Learn more →</span>
             </Link>
@@ -885,7 +885,7 @@ export function ProspectIntelligence() {
           </Reveal>
           <p className="uc-fine">
             About this page: it illustrates how the product works. The agency, its client, the brands, the people, the phone number and every
-            figure are made up, and no real company’s results are shown. Basket, checkout and purchase checks run only with the brand’s OK.
+            figure are made up, and no real company’s results are shown.
             Clay, Store Leads, BuiltWith and Klaviyo are trademarks of their owners, named here to describe where data comes from and goes.
           </p>
         </div>
@@ -893,7 +893,7 @@ export function ProspectIntelligence() {
 
       <FinalCta
         title="Try it on one client."
-        line="Join the waitlist, and we’ll run prospect research on 20 brands from one client’s list, with the facts back in your Clay table."
+        line="Join the waitlist, and we’ll run prospect intelligence on 20 brands from one client’s list, with the facts back in your Clay table."
         source="usecase-clay-final"
         withCompany={false}
       />

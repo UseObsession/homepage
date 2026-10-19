@@ -40,6 +40,10 @@
 }
 @container ob-nav (max-width: 1199.98px) {
   .s-nav .s-nav__in { --s-link-px: var(--ob-space-8); --s-link-gap: var(--ob-space-2); --s-group-gap: var(--ob-space-12); --s-brand-gap: var(--ob-space-8); }
+}
+/* The theme switch stays in the bar as long as the readers keep their place beside it; Star on GitHub gives way first
+   (below). */
+@container ob-nav (max-width: 979.98px) {
   .ob-nav__end > .s-nav__theme { display: none; }
 }
 
@@ -151,6 +155,14 @@
 @container ob-nav (max-width: 387.98px) {
   .ob-nav__end > .ob-nav__cta { display: none; }
 }
+
+/* Star on GitHub sits before the call to action only where the bar has room for it beside the readers, the menus and the
+   theme switch (from 1180); narrower, it waits in the sheet, above the call to action, and the theme switch keeps its
+   place. */
+@container ob-nav (max-width: 1179.98px) {
+  .ob-nav__end > .s-nav__github { display: none; }
+}
+.s-mnav__foot { display: grid; gap: var(--ob-space-8); }
 
 
 /* ---------------------------------------------------------------------------------------------

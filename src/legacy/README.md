@@ -11,6 +11,10 @@ case pages), at the same addresses:
 The files in `james/` are his, byte for byte, in the same folder layout he had under `src/`, so his relative imports work
 unchanged. They are the only place these 2 pages' words, numbers and layout live, so a change to one is a change to his file.
 
+Changed since, with his OK (19 Oct 2026): the recipe names now match the recipe pages (Prospect intelligence, Lead leaks,
+Price watch, in `pages/ProspectIntelligence.tsx`, `pages/PriceIntelligence.tsx` and `content/recipes.ts`), and the
+basket, checkout and "never buys" rules are gone from both pages, since those are now the customer's settings.
+
 How they sit in the site:
 
 - `src/pages/ProspectIntelligence.tsx` and `PriceIntelligence.tsx` are small wrappers the page glob finds (`App.tsx`). Each

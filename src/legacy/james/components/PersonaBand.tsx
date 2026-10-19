@@ -40,7 +40,7 @@ function Reveal({ children, className = '' }: { children: ReactNode; className?:
   )
 }
 
-/* Six audiences, cut on the diagonal in 2 rows of 3. Each one opens its own page. James's band (his first commit,
+/* 4 audiences, cut on the diagonal in 2 rows of 2. Each one opens its own page. James's band (his first commit,
    src/components/PersonaBand), with his markup and classes as he wrote them: only the data (content/band.ts) and the
    colours (PersonaBand.css, the site's reader palette) are the site's. The sr-only stops are the one addition, so a
    panel reads as sentences to a screen reader. */
@@ -87,7 +87,7 @@ export function PersonaSection({ id = 'for' }: { id?: string }) {
         <Reveal className="head">
           <p className="kicker">Who it’s for</p>
           <h2 className="h2">Pick who you are.</h2>
-          <p className="lede">Recipes, a task in plain words, or the API. Each page shows the parts that fit you.</p>
+          <p className="lede">From our website, your own agent or the API. Each page shows the parts that fit your team.</p>
         </Reveal>
         <Reveal>
           <PersonaBand />

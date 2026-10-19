@@ -7,8 +7,8 @@ import type { Capture, Recipe } from '../types'
    so this recipe is rivals only and the 2 never sell the same job.
    Fixed: no platform names and no claim of collecting from any ad platform ("the ads they run in public", review
    CL-10). The kit lists only what the run uses (review P2): the inbox is real, because where an ad offers a code for
-   signing up, the declared agent signs up and records what arrives. No phone. At rivals: public ads, public pages
-   and public sign ups only. Never a basket, a checkout or a person.
+   signing up, the agent signs up and records what arrives. No phone. Each page is opened directly, because paid
+   clicks at volume on a rival's ads are the one thing here the law rules out (system.md, the 3 lines).
    The run and the table tell the same story as the `ads` screen and the Marketing page's "Rival ads" use case
    (Friday 07:06: Rival A's 9 new ads overnight, a gift set at £56, £2 under your £58; Rival C's ad at 41 days). Example.
    Never £40 for a gift set here: that is the real September run's basket. */
@@ -24,11 +24,11 @@ export const recipe: Recipe = {
   id: 'ads',
   slug: 'ad-tracking',
   name: 'Ad tracking',
-  group: 'Watch rivals',
+  group: 'Watch other companies',
   line: 'Reads the ads your rivals run in public and follows each one to its page, price and code.',
   gets: 'Each new rival ad and its offer, every morning, side by side with the page it lands on.',
   kit: [
-    'A declared AI agent per rival',
+    'A customer agent per rival',
     'Phone and desktop browsers',
     'An inbox for sign up codes',
     'A check every morning',
@@ -40,9 +40,9 @@ export const recipe: Recipe = {
     path: '/recipes/ad-tracking',
     title: 'Ad tracking: AI agents follow your rivals’ ads to the offer',
     description:
-      'Declared AI agents read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer arrives signed.',
+      'AI agents read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer arrives with its proof.',
     answer:
-      'Ad tracking follows your rivals’ ads to the offer behind each one: declared AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, signed.',
+      'Ad tracking follows your rivals’ ads to the offer behind each one: AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -53,7 +53,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that follow your rivals’ ads to the offer behind each one.',
-    sub: 'Ad tracking follows your rivals’ ads to the offer behind each one: declared AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, signed.',
+    sub: 'Ad tracking follows your rivals’ ads to the offer behind each one: AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     screen: 'ads',
     capture: {
       kind: 'waitlist',
@@ -74,12 +74,12 @@ export const recipe: Recipe = {
     journey: ['Read the ads they run in public', 'Open each page on phone and desktop', 'Sign up where an ad offers a code', 'Compare the offer with yours'],
     schedule: 'Every morning at 07:00',
     report: 'Slack alert, weekly PDF',
-    kit: ['Agent ID, declared as AI', 'Phone and desktop browsers', '3 inboxes, for sign up codes', 'Screenshots of every ad and page'],
+    kit: ['Agent ID', 'Phone and desktop browsers', '3 inboxes, for sign up codes', 'Screenshots of every ad and page'],
     events: [
       { time: 'Fri 07:00', text: 'Read the ads 3 rivals run in public. Rival A started 9 overnight.' },
       { time: 'Fri 07:04', text: 'Opened the page behind Rival A’s “Free gift over £40” ad, on phone and desktop.' },
       { time: 'Fri 07:06', text: 'That page shows code GIFT40 and a gift set at £56, £2 under yours.' },
-      { time: 'Fri 07:09', text: 'Rival B’s ad offers 15% off for signing up. The agent signs up as an AI agent, and the code arrives in 2 minutes.' },
+      { time: 'Fri 07:09', text: 'Rival B’s ad offers 15% off for signing up. The agent signs up, and the code arrives in 2 minutes.' },
       { time: 'Fri 07:12', text: 'Rival C’s free UK delivery ad has run 41 days, unchanged.' },
     ],
     finding: 'Rival A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
@@ -98,7 +98,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'It follows every ad',
-      line: 'To its page, opened directly on phone and desktop. Where an ad offers a code for signing up, it signs up as an AI agent.',
+      line: 'To its page, opened directly on phone and desktop. Where an ad offers a code for signing up, it signs up and keeps what arrives.',
     },
     {
       title: 'You get the offer next to yours',
@@ -161,7 +161,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Nobody pays for a click, and nobody at a rival is contacted.',
+    heading: 'Nobody pays for a click, and every offer comes with its proof.',
     items: [
       {
         q: 'How do I see what happens after a competitor’s ad, not just the ad?',
@@ -173,15 +173,15 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Ad tracking click on paid ads?',
-        a: 'No. Ad tracking opens each ad’s page directly, so nobody pays for a click.',
+        a: 'No. Ad tracking reads the ads in the public ad libraries and opens each landing page from its link, so nobody pays for a click.',
       },
       {
         q: 'Which ads does Ad tracking read?',
-        a: 'Ad tracking reads the ads your rivals run in public, and the pages they point to. Nothing behind a login, and nothing bought.',
+        a: 'Ad tracking reads the ads your rivals run in public, and opens the page each one points to, on phone and desktop.',
       },
       {
         q: 'Does Ad tracking sign up at rivals?',
-        a: 'Ad tracking signs up only where an ad offers a code for signing up. It says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you and never replies.',
+        a: 'Yes, where an ad offers a code for signing up, so you see what a new customer gets. You stay private unless you choose to be named. When an agent talks to a person, it says it’s an AI.',
       },
       {
         q: 'Can Ad tracking check our own ads, or a client’s?',

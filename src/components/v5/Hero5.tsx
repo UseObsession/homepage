@@ -1,0 +1,51 @@
+import { useId, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import type { Cta, Hero as HeroContent, ReaderId } from '../../content/types'
+import { CaptureForm } from '../CaptureForm'
+import { Crumbs } from '../Crumbs'
+import './Hero5.css'
+
+/* The October hero (COPY.md, "Hero"): left aligned, the words on the left and the evidence on the right. Top to
+   bottom on the left: the headline, the sub (20 words at most), the capture form, and the second path as a quiet link.
+   The right column is the page's own object: Home's receipt stage, or a reader page's screen. No pill, no proof row,
+   no tagline under the form (those live in their own sections below).
+   `reader` gives a reader page its hue on the hero's 1 soft glow (styles/accents.css), as before. */
+type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary'>
+
+function Secondary({ cta }: { cta: Cta }) {
+  return cta.to.startsWith('/') ? (
+    <Link className="v5-link v5-hero-second" to={cta.to}>
+      {cta.label}
+      <span aria-hidden="true" className="v5-hero-arrow" />
+    </Link>
+  ) : (
+    <a className="v5-link v5-hero-second" href={cta.to}>
+      {cta.label}
+      <span aria-hidden="true" className="v5-hero-arrow" />
+    </a>
+  )
+}
+
+export function Hero5({ hero, visual, reader, crumbs = true }: { hero: HeroWords; visual: ReactNode; reader?: ReaderId; crumbs?: boolean }) {
+  const id = useId()
+  return (
+    <section className="v5-hero" data-reader={reader} aria-labelledby={`${id}-h`}>
+      <div className="s-wrap v5-hero-wrap">
+        {crumbs && <Crumbs />}
+        <div className="v5-hero-grid">
+          <div className="v5-hero-words ob-anim-hero">
+            <h1 className="v5-hero-h" id={`${id}-h`}>
+              {hero.headline}
+            </h1>
+            <p className="v5-hero-sub">{hero.sub}</p>
+            <div className="v5-hero-act">
+              <CaptureForm capture={hero.capture} className="v5-hero-form" />
+              {hero.secondary && <Secondary cta={hero.secondary} />}
+            </div>
+          </div>
+          <div className="v5-hero-visual ob-anim-hero-object">{visual}</div>
+        </div>
+      </div>
+    </section>
+  )
+}

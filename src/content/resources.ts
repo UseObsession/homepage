@@ -50,7 +50,7 @@ export const resourcesPage: ResourcesPage = {
     sample: {
       id: 'sample-output',
       name: 'Sample output',
-      line: 'The 1 real run: a store check from September 2026, with the store’s name hidden.',
+      line: 'A real run: a store check from September 2026, with the store’s name hidden.',
       link: { label: 'The September store check', to: '/sample-output', line: '4 test customers, every inbox watched for 48 hours. 1 left a basket, 1 stopped at checkout, and nobody wrote to either.' },
     },
     blog: {

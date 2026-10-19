@@ -13,12 +13,12 @@ import type { Capture, Recipe } from '../types'
    minute as Ad landing check beside it on /marketing.
    Seun approved the recipe on 3 Oct. It is the partner side of Ad landing check: that recipe opens the pages the
    reader's own ads point to; this 1 follows the links other sites run for the reader.
-   Red lines held: links, codes and banners only (1 word for what is checked, on every line a reader sees), never a
-   partner's prices (it never reads, logs or compares what a
-   partner charges); only the partners on the reader's own list, read through their public pages as any visitor
-   would, as a declared AI agent; the code is tried in a basket on the reader's own store, which it leaves before
-   payment, so nothing is bought and no partner earns a commission from a check; it never writes to a partner as
-   itself or as a person: each note is drafted in your team's own thread and goes only after the owner's OK.
+   Rules: only the 3 lines in system.md; everything else is the reader's setting. It checks links, codes and banners
+   (1 word for what is checked, on every line a reader sees) at the partners on the reader's list, reading their
+   public pages as any visitor would; anything else on a partner's page, prices included, is the reader's to add. The
+   code is tried in a basket on the reader's own store, where the agent stops before payment (so no partner earns a
+   commission from a check) or buys on a capped card and refunds, as the reader chooses. Each note is drafted in the
+   team's own thread and goes after the reader's OK; a client's partners with the client's agreement are said once.
    Up-to-50 rule: no money figure is modelled, because the screen has no traffic or sales to model it on. The flat
    specific instead: a weekly check means a dead code, link or banner is found within 7 days (within a day when the
    check runs daily in a sale). It is found, not taken down: only the partner can change their page. No sources,
@@ -39,21 +39,21 @@ export const recipe: Recipe = {
   line: 'Follows every partner’s link and code to your basket as a customer each week, and drafts a note when one is out of date.',
   gets: 'Every partner’s link, code and banner checked as a customer each Monday, and a note drafted for any that’s out of date.',
   kit: [
-    'An agent ID, declared as AI',
+    'An AI agent with its own ID',
     'Your partner list, codes and banners',
     'A browser to visit every partner',
-    'A basket on your store, never paid',
+    'A basket on your own store',
     'Notes in your team’s own thread',
-    'Every check and OK signed and dated',
+    'Every check and OK kept with its receipt',
   ],
 
   meta: {
     path: '/recipes/partner-checks',
     title: 'Partner checks: test every partner link and code · Obsession',
     description:
-      'Each week a declared AI agent follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
+      'Each week an AI agent follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
     answer:
-      'Partner checks catches every partner still sharing an expired code or an old banner: each Monday a declared AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
+      'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch every partner still sharing an expired code or an old banner.',
-    sub: 'Partner checks catches every partner still sharing an expired code or an old banner: each Monday a declared AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
+    sub: 'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     screen: 'partners',
     capture: {
       kind: 'waitlist',
@@ -80,12 +80,12 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: 6 partners, every Monday',
     recipe: 'partners',
-    task: 'Every Monday, visit each partner as a customer, follow our link to the store and try their code in the basket. Draft a note to any partner whose link, code or banner is out of date. Never check their prices.',
+    task: 'Every Monday, visit each partner as a customer, follow our link to the store and try their code in the basket. Draft a note to any partner whose link, code or banner is out of date.',
     targets: 'Your 6 affiliates and partners, from a hiking blog to a newsletter',
     journey: ['Visit each partner’s page', 'Follow the link to your store', 'Try the code in your basket', 'Draft the note for your OK'],
     schedule: 'Every Monday at 07:00',
     report: 'A Monday note, and drafts ready to approve',
-    kit: ['Agent ID, declared as AI', 'Your partner list', 'A basket, never paid', 'Your team’s thread'],
+    kit: ['Its own agent ID', 'Your partner list', 'A basket on your store', 'Your team’s thread'],
     events: [
       { time: 'Mon 07:00', text: '6 partners visited as a customer: 3 affiliates and 3 partners, each with its own link and code.' },
       { time: 'Mon 07:08', text: 'Hiking blog and Run club pass. The links land, and HIKE15 and RUN15 take 15% off in your basket.' },
@@ -102,7 +102,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Deals site still sends customers to SUMMER20, a code that ended on 31 Aug, under last season’s banner.',
     fix: 'A note from your partnerships lead’s thread with DEALS15 and the new banner, sent with your OK at 09:14. Checked again next Monday.',
-    ledger: 'Example run. Every visit, basket and OK signed and dated. No partner prices read.',
+    ledger: 'Example run. Every visit, basket and OK kept with its receipt.',
   },
 
   steps: [
@@ -116,7 +116,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'Try the code in your basket',
-      line: 'On your own store, it applies the partner’s code to a basket and checks the discount, then leaves before payment.',
+      line: 'On your own store, it applies the partner’s code to a basket and checks the discount. It stops before payment, or buys on a capped card and refunds, as you choose.',
     },
     {
       title: 'Draft the note for your OK',
@@ -138,15 +138,14 @@ export const recipe: Recipe = {
       items: [
         { title: 'The landing page', line: 'It loads, shows what the partner promised, and keeps their tag so they get the credit.' },
         { title: 'The code in the basket', line: 'Applied to a real basket, with the discount checked against the offer.' },
-        { title: 'Before payment', line: 'It always stops there. Nothing is bought, so no partner earns a commission from a check.' },
+        { title: 'At payment', line: 'It stops there, or buys on a capped card and refunds, as you choose. Stopping means no partner earns a commission.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
-        { title: 'Partner prices', line: 'Never. It doesn’t read, log or compare what a partner charges. Links, codes and banners only.' },
         { title: 'Before any note', line: 'Every note waits for your OK, then goes from your team’s own thread.' },
-        { title: 'Anyone else’s partners', line: 'Never. Only the partners on your own list.' },
+        { title: 'At a block', line: 'A CAPTCHA or a bot block on a partner’s page ends that visit, and the Monday note names it.' },
       ],
     },
   ],
@@ -159,7 +158,7 @@ export const recipe: Recipe = {
       { format: 'Codes that fail', line: 'Every code your basket rejects, which partner shows it, and since when.' },
       { format: 'Checked again', line: 'The partner checked again the next Monday, and marked fixed once their page is right.' },
       { format: 'A weekly note', line: 'Partners checked, problems found, notes sent and pages fixed.' },
-      { format: 'A record to share', line: 'Every visit, basket and OK signed and dated.' },
+      { format: 'A record to share', line: 'Every visit, basket and OK kept with its receipt.' },
     ],
   },
 
@@ -168,10 +167,10 @@ export const recipe: Recipe = {
     { k: 'Your list', v: 'Each partner’s page, link and code: paste it, upload a CSV or use the API' },
     { k: 'Offers', v: 'Your current codes, offers and banners' },
     { k: 'How often', v: 'Every Monday at 07:00, or daily in a sale' },
-    { k: 'Store', v: 'Yours, as far as the basket, never paid' },
+    { k: 'Store', v: 'Yours: stop at the basket, or buy on a capped card and refund' },
     { k: 'Notes from', v: 'Your team’s own thread' },
     { k: 'Needs your OK', v: 'Every note to a partner' },
-    { k: 'Never', v: 'A partner’s prices' },
+    { k: 'Also log', v: 'Anything else on a partner’s page, prices included' },
   ],
 
   forWho: [
@@ -181,13 +180,13 @@ export const recipe: Recipe = {
     },
     {
       audience: 'agencies',
-      line: 'Check every client’s affiliates and creators each week with their OK, and send a signed record of every code you caught.',
+      line: 'Check every client’s affiliates and creators each week with their OK, and send a record of every code you caught, with proof.',
     },
     { audience: 'founders', line: 'A few partners and nobody to check them? Every link and code tried each Monday, and the note drafted for you.' },
   ],
 
   table: {
-    heading: 'It checks the link, the code and the offer at every partner. Never their prices.',
+    heading: 'It checks the link, the code and the offer at every partner.',
     line: 'From the example run: 5 partners current, and 1 showing a code that ended on 31 Aug. Checked every Monday, a dead code, link or banner is found within 7 days, or within a day when you check daily in a sale.',
     cols: ['Link', 'Code', 'Offer'],
     rows: [
@@ -201,23 +200,19 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Links, codes and banners only. Nothing sent without your OK.',
+    heading: 'Every link, code and banner checked. Every note sent after your OK.',
     items: [
       {
         q: 'How do I check my affiliates’ links and codes still work?',
-        a: 'Partner checks tries them every Monday: a declared AI agent follows each partner’s link to your store, applies their code to a basket on your own store, checks the discount and stops before payment, then drafts a note for your OK when a link, code or banner is out of date.',
-      },
-      {
-        q: 'Does Partner checks look at our partners’ prices?',
-        a: 'No. Partner checks covers only your links, codes and banners. It never reads, logs or compares what a partner charges.',
+        a: 'Partner checks tries them every Monday: an AI agent follows each partner’s link to your store, applies their code to a basket on your own store and checks the discount, then drafts a note for your OK when a link, code or banner is out of date.',
       },
       {
         q: 'Does Partner checks contact our partners?',
-        a: 'Only through your team: Partner checks drafts each note in your team’s own thread, and the note goes only after your OK.',
+        a: 'Through your team: Partner checks drafts each note in your team’s own thread, and it goes after your OK.',
       },
       {
         q: 'Does Partner checks buy anything?',
-        a: 'No. Partner checks tries the code in a basket on your own store and leaves before payment. Nothing is bought, so no partner earns a commission from a check.',
+        a: 'If you choose. Partner checks tries the code in a basket on your own store and stops before payment, so no partner earns a commission. Or it buys on a capped card and refunds the order.',
       },
       {
         q: 'Which partners can Partner checks cover?',
@@ -229,7 +224,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Partner checks say it’s AI?',
-        a: 'Yes. It’s a declared Obsession agent, and on a partner’s page it only reads what any visitor can see.',
+        a: 'Yes, whenever it talks to a person. On a partner’s page it reads what any visitor can see.',
       },
       {
         q: 'What’s it worth?',

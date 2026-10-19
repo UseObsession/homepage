@@ -8,9 +8,12 @@ import type { UseCaseStudy } from '../types'
    250 g at 3,19 € and 2,69 €, "Solo con la Carta", the 5 to 11 October coffee offer, the codice fiscale wall), his 8
    steps in 3 phases, the picks, the you keep and Obsession runs split, the 6 things to sell, his questions and the
    final offer.
-   Fixed (red lines and copy rules): inboxes and phones are kept open continuously, not "for weeks"; the members say
-   they're AI; "the identities" is "the members", so nothing reads as an invented identity; basket and delivery fee
-   readings need the retailer's OK and stop before payment; numerals; no meta headings.
+   Fixed (copy rules): inboxes and phones are kept open continuously, not "for weeks"; "the identities" is "the
+   members", so nothing reads as an invented identity; numerals; no meta headings.
+   Rules (19 Oct, in line with /recipes/price-watch): only the 3 lines in obsession/system.md hold. Baskets, delivery
+   fees and real orders are the firm's setting; a member says it is AI when it talks to a person, and uses no fake
+   payment details or made up tax codes. meta.answer opens with the sub on James's page (src/legacy/james), which
+   draws this address; these words give its head, its JSON-LD and its card in the nav and on /use-cases.
    Narrative edit (3 Oct): the hero is a complete claim and names the declared AI members; How says what the firm sends
    and what each member does; the things to sell read as 6 jobs, each example true to the screens (Brand A's macinato
    16% off for Corvalle members, Rival B's 21%); the proof's 2 steps say what each row holds and where it sits; the real
@@ -27,7 +30,7 @@ export const study: UseCaseStudy = {
     description:
       'An example: AI test members join each retailer, read member prices beside public ones and keep every coupon and offer, sent to your platform with proof.',
     answer:
-      'Member price intelligence tracks what retailers show only to members: member prices, welcome coupons and the offers that arrive days later. Declared AI members join each retailer and send every one to your platform with its proof. The firm, retailers and prices are made up.',
+      'Obsession adds what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform with the proof. In this worked example, AI members join 120 Italian grocery retailers. The firm, retailers and prices are made up.',
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -40,7 +43,7 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents bring back the prices retailers show only to members.',
-    sub: 'Member price intelligence tracks what retailers show only to members: member prices, welcome coupons and the offers that arrive days later. Declared AI members join each retailer and send every one to your platform with its proof.',
+    sub: 'Obsession adds what sits behind the sign up: member prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform with the proof. An AI member joins each retailer.',
     example: {
       chips: ['Example: a price intelligence firm', 'Its client: a coffee brand', '120 Italian grocery retailers'],
       note: 'The firm, its client, the retailers, the products, the prices and the numbers on this page are made up.',
@@ -76,7 +79,7 @@ export const study: UseCaseStudy = {
   },
 
   how: {
-    heading: 'You choose the retailers and the basket. A declared AI member joins each one.',
+    heading: 'You choose the retailers and the basket. An AI member joins each one.',
     sub: 'A price intelligence firm adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers.',
     steps: [
       {
@@ -103,13 +106,13 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Obsession does the collecting',
-        line: '30 days in this example. Each retailer gets its own declared member, and every reading has its screenshot.',
+        line: '30 days in this example. Each retailer gets its own AI member, and every reading has its screenshot.',
         screen: 'members',
-        chips: ['Its own inbox', 'An Italian mobile number', 'A browser set to the city', 'Says it’s AI, never buys'],
+        chips: ['Its own inbox', 'An Italian mobile number', 'A browser set to the city', 'Says it’s AI'],
         steps: [
           {
             title: 'Each retailer gets its own member',
-            line: 'A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would, says it’s AI, and never buys anything.',
+            line: 'A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI.',
             example:
               'Corvalle, Milano Centro: joined with the newsletter and texts ticked at 09:03, the welcome email and its coupon came at 09:04, and all 40 basket items were read signed out and in by 09:06.',
           },
@@ -158,7 +161,7 @@ export const study: UseCaseStudy = {
       label: 'Obsession runs',
       heading: 'The members, the inboxes and the waiting.',
       items: [
-        'A test customer per retailer and city, declared as AI, with its own inbox, Italian mobile number and browser',
+        'An AI test customer per retailer and city, with its own inbox, Italian mobile number and browser',
         'The sign ups, the store choice and the readings on your basket',
         'Inboxes and phones kept open, continuously',
         'A screenshot or the message behind every observation',
@@ -249,14 +252,14 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'The firm, its client, the retailers, the products, the prices and every figure here are made up, and no real retailer’s prices or offers are shown. Basket and delivery fees are read only with the retailer’s OK, and stop before payment.',
+  fine: 'The firm, its client, the retailers, the products, the prices and every figure here are made up, and no real retailer’s prices or offers are shown.',
 
   faq: {
-    heading: 'Every member says it’s AI and never buys. Your team keeps the matching.',
+    heading: 'Every member says it’s AI when it talks to a person. Your team keeps the matching.',
     items: [
       {
         q: 'What is member price intelligence?',
-        a: 'Member price intelligence tracks the prices, coupons and offers retailers show only to members, read by joining each retailer as a declared AI member. Flyers, shelves and public prices stay with the sources you already use.',
+        a: 'Member price intelligence tracks the prices, coupons and offers retailers show only to members, read by joining each retailer as an AI member. Flyers, shelves and public prices stay with the sources you already use.',
       },
       {
         q: 'Do you need access to our platform?',
@@ -272,7 +275,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Do the test members buy anything?',
-        a: 'No. Obsession’s test members join, choose a store and read what members see. Basket and delivery fees are read only with the retailer’s written OK, and stop before payment.',
+        a: 'Not in this example. Obsession’s test members join, choose a store and read what members see. If you choose, a member fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
       },
       {
         q: 'How often does Obsession run it?',

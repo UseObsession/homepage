@@ -6,7 +6,7 @@ import type { Page } from '../types'
    The story, in the site's order: hero (the free AI agent check, 5 example runs in the console) > how it works (point
    it at your agent, approve the checks, test customers use it, a verdict and a signed record) > the gap (your vendor
    grades its own agent) > use cases > outcomes (up to ceilings, each with its model in the line) > every kind of AI
-   agent > the 8 recipes > proof > questions (the red lines) > the free check.
+   agent > the 8 recipes > proof > questions (the three lines) > the free check.
    No real AI agent check has run yet: every run, screen and figure here is an example and says so (the console's
    Example tag and "Example run." in every ledger; every screen's Example tag). The proof beat is the 1 real run, the
    September store check, as the method the checks use; it makes no claim about an AI agent check. Swap in the first
@@ -26,17 +26,17 @@ import type { Page } from '../types'
    How's heading says what you give it, so its first step isn't said twice; the use cases cover more than answers
    (a discount over its limit, a vendor that keeps a customer waiting), so their claim does too; the kinds cover agents
    that send as well as answer. The console's last tab and its use case share 1 name, "After every update".
-   "Customer-Side Assurance" is the category's name for decks and analysts: it appears once here, in the questions,
-   and never as a button. */
+   The questions hold only the three lines (system.md): the record, the reader's privacy and the law. Hard
+   questions, budgets and channels are the reader's settings, not rules. */
 
 export const page: Page = {
   meta: {
     path: '/verify',
     title: 'Check your AI agents as a customer, every day · Obsession',
     description:
-      'Declared AI test customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
+      'AI test customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
     answer:
-      'Obsession checks your AI agents as your customer: declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+      'Obsession checks your AI agents as your customer: AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     ogImage: '/og/verify.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -47,7 +47,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. Declared test customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with signed proof.',
+    sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. Test customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -58,7 +58,7 @@ export const page: Page = {
     proof: [
       { value: 'Every channel', label: 'chat, phone, email, text and checkout' },
       { value: 'Every day', label: 'and again after every update' },
-      { value: 'Every step signed', label: 'for legal, your vendor or your insurer' },
+      { value: 'Every answer kept', label: 'with its receipt, for legal, your vendor or your insurer' },
     ],
     consoleHeading,
     demos: [
@@ -92,7 +92,7 @@ export const page: Page = {
         report: 'A report by 09:00, with every recording',
         kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Your calendar, connected by you'],
         events: [
-          { time: 'Mon 08:00', text: '3 test customers ring as new patients, with your OK. Each says it’s an AI test customer, who it works for and that the call is recorded.' },
+          { time: 'Mon 08:00', text: '3 test customers ring as new patients. Each says it’s an AI test customer, who it works for and that the call is recorded.' },
           { time: 'Mon 08:00', text: 'Call 2: the receptionist says it’s AI in its first 2 seconds, and books Tuesday at 10:20.' },
           { time: 'Mon 08:01', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Your price list says £50.' },
           { time: 'Mon 08:01', text: 'Asks for a person. A person answers after 1 minute 12 seconds on hold.' },
@@ -107,12 +107,12 @@ export const page: Page = {
         recipe: 'outbound-agent',
         task: 'Add 2 test prospects to our AI SDR’s lists. Read every email, text and call it sends them, and check each one against our rules.',
         targets: 'Your AI SDR: email, text and calls',
-        journey: ['Join its lists, with your OK', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
+        journey: ['Join its lists', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
         schedule: 'Every message, as it lands',
         report: 'A Slack flag, and a weekly signed record',
-        kit: ['2 test prospects, declared as AI', '2 inboxes', '2 phone numbers', 'Only receives, never calls out'],
+        kit: ['2 test prospects, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
         events: [
-          { time: 'Mon 08:31', text: 'Test prospects 1 and 2, added with your OK, get the first email. Its claims match your list.' },
+          { time: 'Mon 08:31', text: 'Test prospects 1 and 2 get the first email. Its claims match your list.' },
           { time: 'Tue 11:26', text: 'Email: “30% off if you sign today.” Your rule allows up to 15%.' },
           { time: 'Wed 03:12', text: 'A text at 03:12. Your quiet hours run from 21:00 to 08:00.' },
           { time: 'Wed 09:14', text: 'Email: it names a customer you don’t have.' },
@@ -125,8 +125,8 @@ export const page: Page = {
       {
         tab: 'Before you sign',
         recipe: 'vendor-agent',
-        task: 'With both vendors’ OK, run our 20 hardest tickets on each shortlisted vendor’s agent, set up on our policies, and compare them side by side.',
-        targets: 'Vendor B and Vendor C, with their OK',
+        task: 'Run our 20 hardest tickets on each shortlisted vendor’s agent, set up on our policies, and compare them side by side.',
+        targets: 'Vendor B and Vendor C',
         journey: ['Set up the same 20 cases', 'Ask as declared test customers', 'Time every handoff', 'Score against your policy'],
         schedule: '2 weeks before you sign, then monthly',
         report: 'A signed report for procurement',
@@ -146,7 +146,7 @@ export const page: Page = {
         tab: 'After every update',
         recipe: 'drift',
         task: 'Replay our 40 hardest support cases every morning, and again within the hour of any update. Tell me what changed.',
-        targets: 'Your support bot, with Vendor A’s OK',
+        targets: 'Your support bot, run by Vendor A',
         journey: ['Replay your 40 cases', 'Compare with the baseline', 'Run again after every update', 'Flag every new failure'],
         schedule: 'Daily at 07:00, and within the hour of any update',
         report: 'A Slack alert, and a note for your vendor',
@@ -171,7 +171,7 @@ export const page: Page = {
     steps: [
       {
         title: 'Point it at your AI agent',
-        line: 'A chat page, phone number, inbox, portal or checkout: yours, a client’s with their OK, or a vendor’s you’re trialling with theirs. Add your policies, prices and where you sell.',
+        line: 'A chat page, phone number, inbox, portal or checkout: yours, a client’s with their agreement, or a vendor’s you’re trialling. Add your policies, prices and where you sell.',
         screen: 'disclosure',
         chips: ['Chat', 'Phone', 'Email', 'Text', 'Portal', 'Checkout'],
       },
@@ -181,8 +181,8 @@ export const page: Page = {
         screen: 'salescheck',
       },
       {
-        title: 'Declared test customers use it',
-        line: 'Each has its own ID, inbox, number, account and card, and says it’s AI and who it works for. Every day, and after every update. Checkouts stop before payment.',
+        title: 'Test customers use it',
+        line: 'Each has its own ID, inbox, number, account and card, and says it’s AI and who it works for. Every day, and after every update. Checkouts go as far as the budget you set.',
         screen: 'callcheck',
       },
       {
@@ -197,11 +197,11 @@ export const page: Page = {
     heading: 'Your AI vendor grades its own agent. Obsession checks it as your customer.',
     sub: 'It asks, then waits for the refund, the email and the callback, and keeps every receipt.',
     rows: [
-      { today: 'Your vendor tests its agent in its own simulator', obsession: 'Declared test customers use it on your real channels' },
+      { today: 'Your vendor tests its agent in its own simulator', obsession: 'Test customers use it on your real channels' },
       { today: 'You hear from a complaint, days later', obsession: 'A failed check reaches you the same morning' },
       { today: 'Transcripts show what the bot said', obsession: 'Checks follow what happened next: the refund, the email, the booking' },
       { today: 'Resolutions billed on the vendor’s own count', obsession: 'Each billed outcome checked against what the customer got' },
-      { today: 'Screenshots in a folder', obsession: 'Every step signed, for legal, your vendor or your insurer' },
+      { today: 'Screenshots in a folder', obsession: 'Every answer kept with its receipt, for legal, your vendor or your insurer' },
     ],
   },
 
@@ -221,7 +221,7 @@ export const page: Page = {
         tab: 'AI SDR',
         moment: 'Monday, as the week’s sequences go out.',
         outcome: 'Every claim, discount and send time your test prospects receive, checked against your rules.',
-        line: 'Test prospects on its lists, added with your OK, read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
+        line: 'Test prospects on its lists read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
         whyOnly: 'Real inboxes and numbers on the receiving end, so you see each message as a prospect does.',
         recipe: 'outbound-agent',
         screen: 'outcheck',
@@ -230,7 +230,7 @@ export const page: Page = {
         tab: 'Before you sign',
         moment: 'The shortlist meeting, with 2 vendors left.',
         outcome: '2 vendors, the same 20 cases, signed and side by side.',
-        line: 'Test customers run your real cases on each vendor’s agent, with the vendor’s OK, and time every handoff.',
+        line: 'Test customers run your real cases on each vendor’s agent and time every handoff.',
         whyOnly: 'The same customers, cases and channels on both, so the comparison is fair.',
         recipe: 'vendor-agent',
         screen: 'vendorcheck',
@@ -240,7 +240,7 @@ export const page: Page = {
         moment: 'Your vendor ships an update at 23:20.',
         outcome: 'By 00:10 you know which 9 answers broke.',
         line: 'Test customers replay your 40 hardest cases every morning, and again within the hour of any update.',
-        whyOnly: 'The same declared customers ask the same questions every day, so any change is the agent’s.',
+        whyOnly: 'The same test customers ask the same questions every day, so any change is the agent’s.',
         recipe: 'drift',
         screen: 'drift',
       },
@@ -282,17 +282,17 @@ export const page: Page = {
       },
       {
         name: 'Shopping and sales agents',
-        line: 'The prices, stock and delivery it quotes, checked against your store, stopping before payment.',
+        line: 'The prices, stock and delivery it quotes, checked against your store, through to checkout.',
         recipes: ['sales-agent', 'drift'],
       },
       {
         name: 'AI in your support portal',
-        line: 'A test account, with your OK, asks what a signed in customer asks and follows what happens next.',
+        line: 'A test account asks what a signed in customer asks and follows what happens next.',
         recipes: ['support-bot', 'resolution'],
       },
       {
         name: 'Agents you’re about to buy',
-        line: 'Your real cases on each shortlisted vendor’s agent, with their OK, before you sign.',
+        line: 'Your real cases on each shortlisted vendor’s agent, before you sign.',
         recipes: ['vendor-agent', 'drift'],
       },
     ],
@@ -310,19 +310,19 @@ export const page: Page = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Nothing runs without the owner’s OK.',
+    heading: 'Every test customer says it’s AI. Everything else is yours to set.',
     items: [
       {
         q: 'What does Obsession check in my AI agents?',
-        a: 'Obsession checks your AI agents as your customer: declared AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+        a: 'Obsession checks your AI agents as your customer: AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
       },
       {
-        q: 'What is Customer-Side Assurance?',
-        a: 'Customer-Side Assurance is checking an AI agent from the outside, as its customer: declared test customers use it on its real channels, check each answer against your policies and the law, and sign every step. Your vendor’s own tests run inside its tools, often with simulated customers.',
+        q: 'How is this different from our vendor’s own tests?',
+        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession’s test customers use your agent on its real channels, check each answer against your policies and the law, and keep every answer with its receipt.',
       },
       {
         q: 'How do we find out our chatbot is giving customers wrong answers?',
-        a: 'Before customers do: Obsession’s declared test customers ask your bot what customers ask every day and check each answer against your policy pages, so a wrong answer shows up the morning it starts.',
+        a: 'Before customers do: Obsession’s test customers ask your bot what customers ask every day and check each answer against your policy pages, so a wrong answer shows up the morning it starts.',
       },
       {
         q: 'Our deflection numbers look great. Are the resolutions real?',
@@ -334,7 +334,7 @@ export const page: Page = {
       },
       {
         q: 'Will Obsession try to break or trick our bot?',
-        a: 'No. Obsession asks what an ordinary customer asks. No jailbreaks, no prompt tricks and no flattery to win a discount.',
+        a: 'Only if you want it to. Obsession asks what your customers ask, and you can add hard or adversarial questions to see where your bot breaks.',
       },
       {
         q: 'Will our vendor bill us for the tests?',
@@ -342,7 +342,7 @@ export const page: Page = {
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. Obsession’s test customers call only numbers you own or authorise, and each says at the start that it’s AI and that the call is recorded. No recording is ever used for training.',
+        a: 'Yes. Each of Obsession’s test customers says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
       },
       {
         q: 'Can we check a vendor’s agent before we sign?',
@@ -350,15 +350,15 @@ export const page: Page = {
       },
       {
         q: 'Can you check a rival’s bot?',
-        a: 'Not as an Obsession check: a check runs only with the owner’s written OK. Competitor tracking asks a rival’s bot only what any customer can ask in public, and we never score, rank or publish anyone’s agent.',
+        a: 'Yes, as its customer: Competitor tracking asks a rival’s chat bot what any customer can ask, and keeps every answer exactly as it arrived.',
       },
       {
         q: 'Does Obsession pay or place orders?',
-        a: 'Obsession stops every checkout before payment, unless it’s your own store and you’ve set a budget.',
+        a: 'Only if you set a budget. Obsession’s test customers pay with real payment details, up to the cap you set. With no budget, every checkout stops before payment.',
       },
       {
         q: 'What do we get back?',
-        a: 'Obsession sends a verdict on every check, with the transcript or recording, the policy it broke, what happened next and the fix drafted. Every step is signed.',
+        a: 'Obsession sends a verdict on every check, with the transcript or recording, the policy it broke, what happened next and the fix drafted. Every answer is kept with its receipt.',
       },
       {
         q: 'Is a passed check a guarantee?',
@@ -369,7 +369,7 @@ export const page: Page = {
 
   final: {
     heading: 'Your first AI agent check is free.',
-    sub: 'Name a chat page or phone number you run, or a client’s with their OK. 3 test customers use it, and your report lands within 4 days.',
+    sub: 'Name a chat page or phone number you run, for yourself or a client. 3 test customers use it, and your report lands within 4 days.',
     capture: {
       kind: 'verify',
       source: 'verify-final',

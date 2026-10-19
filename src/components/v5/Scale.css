@@ -1,0 +1,352 @@
+/* Scale (Scale.tsx), bound to the reader's scroll. Pinned (a wide, tall screen): the track is 3 screens tall and its
+   pin (the headline, the stage and the steps) sticks under the nav while the reader scrolls through it; the stage shows
+   1 step at a time, and each step's bar fills with --v5-fN, set from the scroll. Stacked (a phone or a short screen):
+   the 3 steps follow each other, each under its own heading, and the tabs go. Either way the step plays its small
+   story when it becomes the current one ([data-on], under data-live), and reduced motion shows each step finished.
+   After the track: the 3 principles on hairlines, and the first store beside every store after. */
+
+.v5-scale-head { max-width: 900px; }
+.v5-scale-lead,
+.v5-scale-count { display: block; }
+.v5-scale-count { font-variant-numeric: tabular-nums; }
+
+/* Stacked, the default: each step under its own heading, on the ways' frame. */
+.v5-scale-stage { display: grid; gap: 28px; }
+.v5-scale-step { display: grid; gap: 14px; min-width: 0; }
+.v5-scale-step-h { margin: 0; display: grid; gap: 4px; }
+.v5-scale-step-t { font: 600 18px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.v5-scale-step-l { font: 400 15px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+.v5-scale-panel {
+  display: grid;
+  gap: clamp(18px, 3vw, 40px);
+  align-items: center;
+  min-width: 0;
+  border: 1px solid var(--v5-stage-line);
+  background: var(--v5-stage);
+  border-radius: 18px;
+  padding: clamp(16px, 3vw, 36px);
+}
+.v5-scale-tabs { display: none; }
+
+/* 1: learn. A small browser beside the trace it leaves. */
+.v5-scale-learn { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.v5-scale-browser {
+  border: 1px solid var(--ob-line);
+  border-radius: 12px;
+  background: var(--ob-surface-raised);
+  overflow: hidden;
+}
+.v5-scale-url {
+  margin: 0;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--ob-line-subtle);
+  font: 400 12px / 1.3 var(--ob-font-mono);
+  color: var(--ob-text-3);
+}
+.v5-scale-form { display: grid; gap: 12px; padding: 22px 20px 24px; }
+.v5-scale-form-t { margin: 0; font: 600 18px / 1.2 var(--ob-font-sans); color: var(--ob-text); }
+.v5-scale-field {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--ob-line-strong);
+  font: 400 13px / 1.3 var(--ob-font-mono);
+  color: var(--ob-text);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.v5-scale-typed { display: inline-block; overflow: hidden; vertical-align: bottom; max-width: 100%; }
+.v5-scale-check { margin: 0; display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--ob-text-2); }
+.v5-scale-box {
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ob-text-3);
+  position: relative;
+  flex: none;
+}
+.v5-scale-box::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--ob-text);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+.v5-scale-submit {
+  justify-self: start;
+  font: 500 13px / 1 var(--ob-font-sans);
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+}
+.v5-scale-trace-h { margin: 0 0 10px; font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-scale-trace ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: v5t; }
+.v5-scale-trace li {
+  counter-increment: v5t;
+  font: 400 13px / 1.4 var(--ob-font-mono);
+  color: var(--ob-text);
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--ob-line-subtle);
+}
+.v5-scale-trace li::before { content: counter(v5t) '  '; color: var(--ob-text-3); white-space: pre; }
+.v5-scale-saved {
+  margin: 14px 0 0;
+  display: inline-block;
+  font: 600 12px / 1 var(--ob-font-mono);
+  letter-spacing: 0.04em;
+  color: var(--ob-text);
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  padding: 6px 8px;
+  transform: rotate(-2deg);
+}
+
+/* 2: program. The steps, each marked by who does it, beside 2 meters that fall. Kinds differ by their outline, not by
+   colour: the 1 accent stays on proof. */
+.v5-scale-program { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.v5-scale-pipe { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.v5-scale-pipe li {
+  display: grid;
+  grid-template-columns: 11ch minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--ob-surface-raised);
+  border: 1px solid var(--ob-line-subtle);
+}
+.v5-scale-k {
+  justify-self: start;
+  font: 500 11.5px / 1 var(--ob-font-mono);
+  padding: 5px 7px;
+  border-radius: 6px;
+  color: var(--ob-text-2);
+  border: 1px solid var(--ob-line-strong);
+}
+.v5-scale-k--question { border-style: dashed; }
+.v5-scale-k--agent { background: var(--ob-fill); border-color: transparent; color: var(--ob-text); }
+.v5-scale-k--escalate { border-width: 1.5px; color: var(--ob-text); }
+.v5-scale-pipe-l { font-size: 14px; color: var(--ob-text); }
+/* How a sign up runs: 3 routes, each a bar as wide as its share (--w). */
+.v5-scale-routes { display: grid; gap: 16px; }
+.v5-scale-routes-h { margin: 0; font-size: 13.5px; color: var(--ob-text-3); }
+.v5-scale-route { display: grid; gap: 6px; }
+.v5-scale-route-l { margin: 0; display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; color: var(--ob-text); }
+.v5-scale-route-n { font-weight: 600; font-variant-numeric: tabular-nums; }
+.v5-scale-route-d { margin: 0; font-size: 13px; color: var(--ob-text-3); }
+.v5-scale-bar { display: block; height: 6px; border-radius: 999px; background: var(--ob-fill); position: relative; overflow: hidden; }
+.v5-scale-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w, 0%);
+  border-radius: inherit;
+  background: var(--ob-text);
+}
+
+/* 3: run. A field of 400 squares, 25 by 16 (each 250 companies), beside the call and the count. */
+.v5-scale-run { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+/* Capped so step 3 is no taller than steps 1 and 2: the pinned stage keeps 1 height for all 3. */
+.v5-scale-field-grid { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); gap: 3px; width: 100%; max-width: 470px; }
+.v5-scale-dot { aspect-ratio: 1; border-radius: 2px; background: var(--ob-line-subtle); position: relative; }
+/* Each square lights as the fill passes its place: --v5-fill (0 to 400, set from the scroll) minus its own --i. Full
+   before the script runs, so the page without it shows the field full. */
+.v5-scale-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--ob-text);
+  opacity: clamp(0, calc(var(--v5-fill, 400) - var(--i)), 1);
+}
+.v5-scale-side { display: grid; gap: 14px; align-content: center; }
+.v5-scale-call { margin: 0; }
+.v5-scale-call code {
+  display: inline-block;
+  font: 400 12.5px / 1.4 var(--ob-font-mono);
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: var(--ob-bg-sunken);
+  border: 1px solid var(--ob-line-subtle);
+  color: var(--ob-text);
+  overflow-wrap: anywhere;
+}
+.v5-scale-num { margin: 0; display: grid; gap: 4px; }
+.v5-scale-n { font: 600 clamp(36px, 4.4vw, 56px) / 1 var(--ob-font-sans); letter-spacing: -0.035em; font-variant-numeric: tabular-nums; color: var(--ob-text); }
+.v5-scale-unit { font-size: 14px; color: var(--ob-text-3); }
+.v5-scale-covered { margin: 0; font-size: 14.5px; color: var(--ob-text-2); }
+.v5-scale-legend { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ob-text-3); }
+.v5-scale-key { width: 10px; height: 10px; border-radius: 2px; background: var(--ob-text); flex: none; }
+.v5-scale-toast {
+  margin: 4px 0 0;
+  justify-self: start;
+  font: 500 13px / 1.3 var(--ob-font-sans);
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--ob-surface-raised);
+  border: 1px solid var(--ob-line);
+  color: var(--ob-text);
+  box-shadow: 0 10px 30px -18px rgb(0 0 0 / 0.6);
+}
+
+/* Pinned: the track gives the scroll its room, the pin holds the headline, the stage and the steps under the nav. */
+@media (min-width: 961px) and (min-height: 760px) {
+  .v5-scale { padding-top: 0; }
+  /* The track is the pin's own height plus the scroll the 3 steps take (60vh each), so it ends right under the pin.
+     The pin sticks centred in the screen below the nav. */
+  .v5-scale-track { height: calc(var(--v5-pin-h, 100vh) + 180vh); position: relative; }
+  .v5-scale-pin {
+    position: sticky;
+    top: max(72px, calc((100vh - var(--v5-pin-h, 100vh)) / 2 + 32px));
+  }
+  .v5-scale-head { margin-bottom: clamp(20px, 3vh, 36px); }
+  .v5-scale-stage { display: grid; gap: 0; }
+  .v5-scale-step { grid-area: 1 / 1; }
+  .v5-scale-step:not([data-on]),
+  .v5-scale-step-h {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .v5-scale-panel { min-height: min(380px, 44vh); }
+  .v5-scale-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 3vw, 40px);
+    margin-top: 22px;
+  }
+}
+.v5-scale-tab {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  text-align: left;
+  padding: 0 0 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--ob-text-3);
+  font: inherit;
+}
+.v5-scale-progress { display: block; height: 2px; background: var(--ob-line-subtle); position: relative; overflow: hidden; margin-bottom: 10px; }
+.v5-scale-progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ob-text);
+  transform: scaleX(var(--v5-f, 0));
+  transform-origin: left;
+}
+.v5-scale-tab-t { font: 600 17px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text-3); transition: color 0.2s; }
+.v5-scale-tab-l { font: 400 14.5px / 1.5 var(--ob-font-sans); color: var(--ob-text-3); transition: color 0.2s; }
+.v5-scale-tab[data-on] .v5-scale-tab-t { color: var(--ob-text); }
+.v5-scale-tab[data-on] .v5-scale-tab-l { color: var(--ob-text-2); }
+.v5-scale-tab:hover .v5-scale-tab-t { color: var(--ob-text); }
+
+/* The 3 principles, on hairlines. */
+.v5-scale-principles {
+  list-style: none;
+  margin: clamp(48px, 6vw, 80px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 40px);
+}
+.v5-scale-principles li { border-top: 1px solid var(--ob-line-subtle); padding-top: 18px; }
+.v5-scale-principles h3 { margin: 0 0 8px; font: 600 17px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.v5-scale-principles p { margin: 0; font: 400 15px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+
+/* The first store beside every store after. */
+.v5-scale-compare {
+  margin-top: clamp(32px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--v5-stage-line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.v5-scale-col { padding: clamp(20px, 3vw, 32px); background: var(--ob-surface); }
+.v5-scale-col + .v5-scale-col { border-left: 1px solid var(--v5-stage-line); }
+.v5-scale-col-l { margin: 0 0 6px; font: 500 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-scale-col.is-after .v5-scale-col-l { color: var(--ob-text); }
+.v5-scale-col-t { margin: 0 0 18px; font: 600 22px / 1.2 var(--ob-font-sans); letter-spacing: -0.015em; color: var(--ob-text); }
+/* What it costs to run: the 1 big number in each column. */
+.v5-scale-cost { margin: 0 0 18px; display: grid; gap: 6px; }
+.v5-scale-cost-v { font: 600 clamp(40px, 4.6vw, 60px) / 1 var(--ob-font-sans); letter-spacing: -0.035em; color: var(--ob-text); font-variant-numeric: tabular-nums; }
+.v5-scale-cost-l { font-size: 14px; color: var(--ob-text-2); }
+.v5-scale-col dl { margin: 0; display: grid; }
+.v5-scale-col dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-top: 1px solid var(--ob-line-subtle);
+  font-size: 14.5px;
+}
+.v5-scale-col dt { color: var(--ob-text-3); }
+.v5-scale-col dd { margin: 0; color: var(--ob-text); text-align: right; font-variant-numeric: tabular-nums; }
+.v5-scale-note { grid-column: 1 / -1; margin: 0; padding: 12px clamp(20px, 3vw, 32px); font-size: 13px; color: var(--ob-text-3); border-top: 1px solid var(--v5-stage-line); background: var(--ob-surface); }
+
+/* Motion: a step plays its story as it becomes the current one. */
+@media (prefers-reduced-motion: no-preference) {
+  .v5-scale[data-live] .v5-scale-count { animation: v5-scale-up 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+  /* 1: the email types, the box ticks, the button presses, the trace fills line by line, the program is saved. */
+  .v5-scale[data-live] [data-on] .v5-scale-typed { animation: v5-scale-type 1.2s steps(28, end) 0.1s both; }
+  .v5-scale[data-live] [data-on] .v5-scale-box::after { animation: v5-scale-in 0.2s ease-out 1.4s both; }
+  .v5-scale[data-live] [data-on] .v5-scale-submit { animation: v5-scale-press 0.3s ease-out 1.7s both; }
+  .v5-scale[data-live] [data-on] .v5-scale-trace li { animation: v5-scale-in 0.3s ease-out calc(0.2s + var(--k) * 0.32s) both; }
+  .v5-scale[data-live] [data-on] .v5-scale-saved { animation: v5-scale-stamp 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) 2.4s both; }
+
+  /* 2: the steps settle in, then each route's bar grows to its share. */
+  .v5-scale[data-live] [data-on] .v5-scale-pipe li { animation: v5-scale-in 0.3s ease-out calc(0.1s + var(--k) * 0.14s) both; }
+  .v5-scale[data-live] [data-on] .v5-scale-bar::after { animation: v5-scale-grow 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.9s both; }
+
+  /* 3: the field follows the scroll (above); the cards settle in. */
+  .v5-scale[data-live] [data-on] .v5-scale-covered { animation: v5-scale-in 0.4s ease-out 0.4s both; }
+  .v5-scale[data-live] [data-on] .v5-scale-toast { animation: v5-scale-in 0.45s ease-out 2.2s both; }
+}
+@keyframes v5-scale-up {
+  from { opacity: 0; transform: translateY(0.35em); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes v5-scale-type {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+@keyframes v5-scale-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes v5-scale-press {
+  0% { opacity: 0.4; }
+  50% { transform: scale(0.96); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes v5-scale-stamp {
+  from { opacity: 0; transform: rotate(-2deg) scale(1.5); }
+  to { opacity: 1; transform: rotate(-2deg) scale(1); }
+}
+@keyframes v5-scale-grow {
+  from { width: 0; }
+}
+
+@media (max-width: 960px) {
+  .v5-scale-learn,
+  .v5-scale-program,
+  .v5-scale-run { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .v5-scale-principles,
+  .v5-scale-compare { grid-template-columns: 1fr; }
+  .v5-scale-col + .v5-scale-col { border-left: 0; border-top: 1px solid var(--v5-stage-line); }
+}

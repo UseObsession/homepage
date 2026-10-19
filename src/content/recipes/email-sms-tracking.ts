@@ -5,10 +5,10 @@ import type { Capture, Recipe } from '../types'
    mapped and timed, every text with its short links followed, what happens after STOP, the record dated from the
    sign up, quiet weeks staying quiet). Where Competitor tracking is the whole record of 1 rival, this is the inbox
    across every brand on your list, side by side.
-   A declared AI subscriber to rivals' newsletters and texts: public sign ups and text opt ins only. It never replies,
-   never buys and never contacts staff, and it links to useobsession.com/agents without naming the customer. The only
-   text it ever sends is STOP, when the watch ends (the opt out ladder the review set). Our version's demo left a
-   basket at every rival: removed (no baskets at rivals).
+   An AI subscriber to rivals' newsletters and texts. Replying, buying and writing to staff are the customer's
+   settings; the 3 lines hold (obsession/system.md): the record kept as it arrived, the customer private unless they
+   choose to be named, and the law (an agent says it's AI when it talks to a person, never uses fake payment details).
+   When the watch ends it texts STOP and checks the texts stop.
    The run and the table tell the same story as the `inbox` screen and the Marketing page (Rival B swaps 20% off for
    a free gift; 30 days from 3 Sep; Rival A 9 emails and 2 texts, Rival B 14 and 4, Rival C 6 and 1). Example. */
 
@@ -23,11 +23,11 @@ export const recipe: Recipe = {
   id: 'email-sms',
   slug: 'email-sms-tracking',
   name: 'Email and SMS tracking',
-  group: 'Watch rivals',
+  group: 'Watch other companies',
   line: 'Subscribes to every brand on your list and sets their emails and texts side by side: who sends most, and who discounts first.',
   gets: 'Every email and text each rival sends, on 1 timeline, with the welcome series mapped.',
   kit: [
-    'A declared AI agent per brand',
+    'A customer agent per brand',
     'Its own inbox',
     'Its own texting number',
     'Every message kept as it arrived',
@@ -39,9 +39,9 @@ export const recipe: Recipe = {
     path: '/recipes/email-sms-tracking',
     title: 'Email and SMS tracking: AI agents on every rival’s list',
     description:
-      'A declared AI agent subscribes to each rival’s emails and texts, never replies, and logs every message, offer and code on 1 timeline, continuously.',
+      'An AI agent subscribes to each rival’s emails and texts and logs every message, offer and code on 1 timeline, continuously, each with its receipt.',
     answer:
-      'Email and SMS tracking subscribes a declared AI agent to each rival’s emails and texts. It never replies, and logs every message, offer and code on 1 timeline, continuously.',
+      'Email and SMS tracking subscribes an AI agent to each rival’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     ogImage: '/og/email-sms-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that join every rival’s emails and texts and log every offer.',
-    sub: 'Email and SMS tracking subscribes a declared AI agent to each rival’s emails and texts. It never replies, and logs every message, offer and code on 1 timeline, continuously.',
+    sub: 'Email and SMS tracking subscribes an AI agent to each rival’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     screen: 'inbox',
     capture: {
       kind: 'waitlist',
@@ -70,10 +70,10 @@ export const recipe: Recipe = {
     recipe: 'email-sms',
     task: 'Subscribe to our 3 rivals’ emails and texts. Log every message and flag every new offer.',
     targets: 'rival-a.example, rival-b.example, rival-c.example',
-    journey: ['Sign up, declared as AI', 'Opt in to texts', 'Never reply', 'Log every message'],
+    journey: ['Sign up to emails', 'Opt in to texts', 'Log every message', 'Flag every new offer'],
     schedule: 'Continuously, digest Mondays at 08:00',
     report: 'Slack alerts, weekly digest',
-    kit: ['Agent ID, declared as AI', '3 inboxes', '3 texting numbers', 'Every message kept as it arrived'],
+    kit: ['Agent ID', '3 inboxes', '3 texting numbers', 'Every message kept as it arrived'],
     events: [
       { time: 'Thu 08:30', text: 'Rival A email: “The autumn edit is here”, no offer.' },
       { time: 'Thu 10:00', text: 'Rival B text: last day for 20% off everything.' },
@@ -93,7 +93,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'An agent subscribes to each',
-      line: 'With its own inbox and texting number, from the sign up any customer can use. It says it’s AI and never replies.',
+      line: 'With its own inbox and texting number, from the sign up any customer can use. Whether it ever replies is your setting.',
     },
     {
       title: 'Every message is logged',
@@ -172,11 +172,11 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every subscriber says it’s an AI agent, and never writes back.',
+    heading: 'Every message kept exactly as it arrived, with its receipt.',
     items: [
       {
         q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
-        a: 'Email and SMS tracking subscribes a declared AI agent with its own inbox and texting number to each rival. It never replies, and logs every welcome email, text, offer and code with its time.',
+        a: 'Email and SMS tracking subscribes an AI agent with its own inbox and texting number to each rival. It logs every welcome email, text, offer and code with its time and its receipt.',
       },
       {
         q: 'What’s it worth?',
@@ -184,19 +184,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'Do rivals know it’s an AI agent?',
-        a: 'Yes. Every Obsession agent subscribes as an AI agent and links to useobsession.com/agents, a page explaining Obsession. It never names you.',
+        a: 'Signing up needs no conversation. When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'Does Email and SMS tracking ever reply, buy or contact staff?',
-        a: 'Never. Email and SMS tracking reads what arrives and opens links to public pages. The only text it sends is STOP, when the watch ends.',
+        a: 'Only if you set it to: replying, buying and writing to staff are your settings. When Email and SMS tracking talks to a person, it says it’s an AI, and it never uses fake payment details. When the watch ends, it texts STOP.',
       },
       {
         q: 'Can you show what they sent before?',
-        a: 'No. Email and SMS tracking’s record starts the minute the agent subscribes, so every message is dated from a known sign up and the welcome series shows in order. Any brand you name, the same day.',
+        a: 'From the minute an Obsession agent first subscribed there. If one already has, its history is there the moment you ask; if not, the record starts today, with the welcome series in order. Any brand you name, the same day.',
       },
       {
         q: 'Can Email and SMS tracking follow our own emails and texts too?',
-        a: 'Yes. Email and SMS tracking joins your own list, or a client’s with their OK, so your messages sit next to every rival’s.',
+        a: 'Yes. Email and SMS tracking joins your own list, or a client’s, so your messages sit next to every rival’s.',
       },
       {
         q: 'How many brands can Email and SMS tracking follow?',

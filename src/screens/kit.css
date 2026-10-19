@@ -26,7 +26,7 @@
   background: linear-gradient(180deg, rgb(var(--hi-rgb) / .04), rgb(var(--fg-rgb) / .008)), var(--bg-2);
   box-shadow: 0 0 0 1px var(--line-2) inset, 0 1px 0 rgb(var(--hi-rgb) / .07) inset;
 }
-.ilwrap .il svg { display: block; width: 100%; height: auto; }
+.ilwrap :where(.il) svg { display: block; width: 100%; height: auto; }
 .ilwrap .appx-il svg.ax-ptr { width: 16px !important; height: 16px !important; }
 
 /* Each screen is one 720 x 450 window scaled to its frame. The scale is pure CSS (container width / 720),

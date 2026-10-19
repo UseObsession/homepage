@@ -20,13 +20,15 @@ import type { UseCaseStudy } from '../types'
    The rest is an example (types.ts, "Use case studies"): the agency, its clients, the prospects, the stores and every
    figure on the screens and cards are invented (.example domains, category names for the stores, as the screens use
    them: Candles, Homeware, Coffee roaster, Outdoor gear). The fine print says which is which.
-   Red lines held (Obsession Context.md, sections 5 and 8): every agent says it is AI; at a prospect only public sign
-   ups and the site's chat bot, never staff, no basket until the owner says OK, and its customer's name kept out; a
-   client's store only with the client's written OK; every checkout stops before payment; no money anywhere; no price,
-   plan or guarantee; no recipe count; no real company name (Clay is named only as a place results land, with its
-   trademark line in the small print).
+   Rules (19 Oct, in line with the recipe pages): only the 3 lines in obsession/system.md hold. The record is kept as
+   it arrived; the agency stays private unless it chooses to be named; and the law (an agent says it is AI when it
+   talks to a person, uses no fake payment details, never gets round a CAPTCHA). What an agent does at a prospect
+   (baskets, questions to staff) is the agency's setting. A client's store is shopped with the client's OK, as on
+   /recipes/mystery-shopper. The free audits stop at checkout, before payment; past that is a setting. Copy rules
+   kept: no price, plan or guarantee; no recipe count; no real company name (Clay is named only as a place results
+   land, with its trademark line in the small print).
    Screens (reused, none new): approve (the findings and the drafted fix). The hero's flow is its own diagram.
-   Template additions this page uses: hero.secondary, fix, found, no `more`, final.link and capture.done (types.ts). */
+   Additions this page uses: hero.secondary, fix, found, no `more`, final.link and capture.done (types.ts). */
 
 export const study: UseCaseStudy = {
   name: 'Mystery shopping for ecommerce agencies',
@@ -36,9 +38,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/mystery-shopping-for-ecommerce-agencies',
     title: 'Mystery shopping every client store, for ecommerce agencies',
     description:
-      'An example: declared AI agents mystery shop every client and prospect store of an ecommerce agency at once, then report in its own brand and format.',
+      'An example: AI agents mystery shop every client and prospect store of an ecommerce agency at once, as a customer would, then report in its own brand.',
     answer:
-      'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
+      'Obsession gives ecommerce agencies AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
     ogImage: '/og/mystery-shopping-for-ecommerce-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -51,7 +53,7 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that mystery shop every client and prospect store at once.',
-    sub: 'Clients can’t see what the retainer buys, and nobody has time to shop every store. Declared AI agents shop each one as a real customer. You get the findings and the fix, in your brand.',
+    sub: 'Clients can’t see what the retainer buys, and nobody has time to shop every store. AI agents shop each one as a real customer. You get the findings and the fix, in your brand.',
     /* 1 chip says it is an example; the fine print says what is made up and what is real. */
     example: { chips: ['Example: an agency with 15 clients and 5 prospects'] },
     flow: [
@@ -107,19 +109,19 @@ export const study: UseCaseStudy = {
      matches the flow's "coffee.example: no welcome email". The steps live on the recipe's own page. */
   fix: {
     heading: 'Each gap comes back with its fix drafted, waiting for your OK.',
-    line: 'Every step is signed, so your client can check the work.',
+    line: 'Every step is kept with its proof, so your client can check the work.',
     screen: 'approve',
     cta: { label: 'See how Mystery shopper works', to: '/recipes/mystery-shopper' },
   },
 
-  /* The 3 ways an agency uses 1 shop. The red line sits in each label, so the cards carry no line of their own. */
+  /* The 3 ways an agency uses 1 shop. Each label says when the shop runs, so the cards carry no line of their own. */
   outputs: {
     heading: 'A prospect gets an opening, a client gets a catch, and a renewal gets proof.',
     groups: [
       {
         items: [
           {
-            label: 'A prospect, public sign ups only',
+            label: 'A prospect, before the pitch',
             title: 'Open the pitch on their own sign up',
             example: 'Outdoor gear: texts opted in on Monday, none by Wednesday.',
           },
@@ -175,8 +177,7 @@ export const study: UseCaseStudy = {
   },
 
   /* The small print sits right under the 4 real findings (components/study/Found), so it names only the example as
-     made up, never "figures" (the 2 shares above it are real), and it leaves the basket rule to questions 3 to 5: under
-     3 real "Basket left" audits it would read as if those baskets had the owners' OK. */
+     made up, never "figures" (the 2 shares above it are real). What the agents may do is in questions 3 to 6. */
   fine: 'The example agency, its clients and prospects, and their stores are made up. The 4 examples come from real audits, with every store, brand and product changed. Clay is a trademark of its owner, named to show where results can land.',
 
   /* 6 questions, closed. The first answer is meta.answer, word for word. */
@@ -185,34 +186,34 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for ecommerce agencies?',
-        a: 'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
+        a: 'Obsession gives ecommerce agencies AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
       },
       {
         q: 'What do the 5 free audits cover?',
-        a: '5 stores you serve or pitch, shopped by declared AI test customers. Each is watched for 48 hours. The report comes within 4 days, in any format.',
+        a: '5 stores you serve or pitch, shopped by AI test customers. Each is watched for 48 hours. The report comes within 4 days, in any format.',
       },
       {
         q: 'Do our clients have to agree to the audit?',
-        a: 'Yes. A basket or checkout on a client’s store needs their written OK. They install nothing.',
+        a: 'Yes. A client’s store is shopped with the client’s OK. They install nothing.',
       },
       {
         q: 'Can we audit a prospect’s store?',
-        a: 'Yes, through public sign ups and the site’s bot only, never staff. No basket without the owner’s OK. It says it’s AI from Obsession and keeps your name out.',
+        a: 'Yes. The agents do what any customer can: sign up, opt in to texts, fill a basket, ask the bot or write to staff. How far they go is your setting. When one talks to a person, it says it’s AI from Obsession, and your name stays out unless you choose to be named.',
       },
       {
         q: 'Will it affect the store’s numbers?',
-        a: 'Slightly. Each test customer counts as a sign up or basket, and the report lists them. Every checkout stops before payment, so nothing is bought.',
+        a: 'Slightly. Each test customer counts as a sign up or basket, and the report lists them. The free audits stop at checkout, before payment. A real order is your setting, on a capped card, refunded after.',
       },
       {
         q: 'Is AI mystery shopping legal?',
-        a: 'Every agent says it’s AI and does only what any customer can do. Any company can opt out at useobsession.com/agents. This is not legal advice.',
+        a: 'Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
       },
     ],
   },
 
   final: {
     heading: 'Start with 1 store. We’ll ask for the other 4.',
-    sub: 'Clients with their OK. Prospects through public sign ups only.',
+    sub: 'Clients with their OK. Prospects before you pitch them.',
     capture: {
       kind: 'mystery',
       source: 'usecase-ecom-agencies-final',

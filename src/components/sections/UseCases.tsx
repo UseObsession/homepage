@@ -237,7 +237,7 @@ export function UseCases({
                   )}
                 </div>
                 <div className="s-uses__screen">
-                  <AppScreen name={u.screen} workspace={workspace} playKey={on && picks > 0 ? picks : undefined} />
+                  <AppScreen name={u.screen} workspace={workspace} playKey={on && picks > 0 ? picks : undefined} camera />
                 </div>
               </div>
             )
