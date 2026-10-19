@@ -125,7 +125,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 | Developers: How, Outcomes, Kinds, mission API | Replace | Gap, how it works, the ways in, the 5 verbs code, what developers build, open source |
 | /compare | New | Full table, "When you might want something else", FAQ |
 | /agents "never" list (8 rules) | Rewrite | The three lines only |
-| Use case pages (/use-cases/...) | Keep | Untouched, as briefed |
+| Use case pages (/use-cases/...) | Keep | Untouched, as briefed, except mystery shopping for ecommerce agencies: rewritten 19 Oct in this voice ("Be a customer of every store you serve or pitch."), its hero picture the 48 hour board of the agency's stores and 1 gap's receipt |
 | /verify | Light touch | Composition guarded; copy unchanged |
 
 **One taxonomy everywhere** (nav, footer, /recipes, llms.txt, Home): the 3 recipe groups above, and 4 readers. `src/content/nav.ts` is the source; every surface reads it.

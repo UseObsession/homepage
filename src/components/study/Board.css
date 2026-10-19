@@ -1,0 +1,153 @@
+/* The hero's board (Board.tsx): the stores as rows, the journeys as columns, the receipt of 1 gap laid over its
+   right edge. Ink only: a journey that came back is an outlined pill, a gap is the ink filled one, a journey the store
+   doesn't offer is a quiet word. Under 1000px the receipt drops under the board; on a phone the stores are cards to
+   swipe, each with its 4 journeys 2 by 2, each named. */
+
+.s-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 276px;
+  align-items: start;
+  margin: 0;
+  text-align: left;
+}
+
+.s-board-sheet {
+  min-width: 0;
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line), var(--ob-highlight);
+  overflow: hidden;
+}
+
+/* The bar: who, how many, the clock, and the watch filling under them. */
+.s-board-h {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 16px 20px 14px;
+  font: 400 13px / 1.3 var(--ob-font-sans);
+  color: var(--ob-text-2);
+}
+.s-board-who { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ob-text); }
+.s-board-count { color: var(--ob-text-3); }
+.s-board-clock { font: 500 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-3); white-space: nowrap; }
+.s-board-clock b { display: inline-block; min-width: 2ch; text-align: right; font-weight: 600; color: var(--ob-text); font-variant-numeric: tabular-nums; }
+.s-board-bar { grid-column: 1 / -1; height: 2px; border-radius: 2px; background: var(--ob-line-subtle); overflow: hidden; }
+.s-board-bar i { display: block; height: 100%; background: var(--ob-text); transform-origin: left; transform: scaleX(var(--s-board-p, 1)); }
+
+/* The rows share 1 template, so the columns line up under their heads. */
+.s-board-grid { --s-board-tpl: minmax(150px, 1.2fr) repeat(var(--s-board-cols, 4), minmax(0, 1fr)); }
+.s-board-row {
+  display: grid;
+  grid-template-columns: var(--s-board-tpl);
+  align-items: center;
+  gap: 10px;
+  /* Room on the right for the receipt laid over the board's edge, so it covers no cell. */
+  padding: 11px 56px 11px 20px;
+  border-top: 1px solid var(--ob-line-subtle);
+}
+.s-board-row--h { padding-block: 9px; font: 500 12px / 1.2 var(--ob-font-mono); color: var(--ob-text-3); }
+
+.s-board-store { display: grid; gap: 3px; min-width: 0; }
+.s-board-store b { font: 500 13px / 1.3 var(--ob-font-mono); color: var(--ob-text); overflow-wrap: anywhere; }
+.s-board-store em { font: 400 12.5px / 1.3 var(--ob-font-sans); font-style: normal; color: var(--ob-text-3); }
+.s-board-row--more .s-board-store b { color: var(--ob-text-3); font-weight: 400; }
+
+.s-board-cell { display: grid; justify-items: start; min-width: 0; font: 500 12.5px / 1.25 var(--ob-font-sans); }
+.s-board-cell > .s-board-wait,
+.s-board-cell > .s-board-val { grid-area: 2 / 1; }
+.s-board-ck,
+.s-board-wait { display: none; }
+.s-board-val { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 5px 9px; border-radius: 999px; }
+.s-board-cell--ok .s-board-val { color: var(--ob-text); box-shadow: inset 0 0 0 1px var(--ob-line); }
+.s-board-cell--ok .s-board-val::before { content: ''; flex: none; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.s-board-cell--gap .s-board-val { color: var(--ob-bg); background: var(--ob-text); font-weight: 600; }
+.s-board-cell--none .s-board-val { padding-inline: 0; font-weight: 400; color: var(--ob-text-3); }
+.s-board-ghost { height: 24px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--ob-line-subtle); }
+
+/* The receipt, laid over the board's right edge, a step lower: the 1 gap the next section fixes. */
+.s-board-receipt {
+  z-index: 2;
+  margin: 104px 0 0 -36px;
+  transform: rotate(1.4deg);
+  transform-origin: top left;
+}
+.s-board-receipt-h { margin: 0; display: flex; justify-content: space-between; gap: 10px; font-weight: 600; letter-spacing: 0.04em; }
+.s-board-receipt .v5-receipt-row { font-size: 12px; }
+.s-board-fact { margin: 0 0 30px; font: 500 13px / 1.5 var(--ob-font-mono); }
+.s-board-stamp { position: absolute; right: 16px; bottom: 20px; }
+
+/* Played (data-run, set once it comes into view): every cell waits, then lands at its hour; the gaps land together at
+   the last hour, and the receipt prints after them, its stamp last. */
+@media (prefers-reduced-motion: no-preference) {
+  .s-board[data-run] .s-board-wait {
+    display: block;
+    padding: 5px 0;
+    color: var(--ob-text-3);
+    font-weight: 400;
+    animation: s-board-out 0.2s linear var(--s-board-d) both;
+  }
+  .s-board[data-run] .s-board-val { animation: s-board-land 0.42s cubic-bezier(0.2, 1.25, 0.4, 1) var(--s-board-d) both; }
+  .s-board[data-run] .s-board-receipt { animation: s-board-print 1.2s cubic-bezier(0.45, 0, 0.2, 1) var(--s-board-d) both; }
+  .s-board[data-run] .s-board-stamp { animation: s-board-stamp 0.42s cubic-bezier(0.2, 1.4, 0.4, 1) calc(var(--s-board-d) + 1.2s) both; }
+}
+@keyframes s-board-out {
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
+}
+@keyframes s-board-land {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes s-board-print {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes s-board-stamp {
+  from { opacity: 0; transform: rotate(-6deg) scale(1.6); }
+  to { opacity: 1; transform: rotate(-6deg) scale(1); }
+}
+
+/* A tablet: the receipt drops under the board's right side, still laid over its edge. */
+@media (max-width: 1000px) {
+  .s-board { grid-template-columns: minmax(0, 1fr); }
+  .s-board-row { padding-right: 20px; }
+  .s-board-receipt { justify-self: end; width: min(100%, 300px); margin: -28px 12px 0 0; }
+}
+
+/* A phone: the stores are a row of cards to swipe inside the board, each its 4 journeys 2 by 2, each named, with the
+   next card's edge showing; the receipt sits under the board. */
+@media (max-width: 760px) {
+  .s-board-h { grid-template-columns: minmax(0, 1fr) auto; padding: 14px 16px 12px; }
+  .s-board-count { grid-row: 2; grid-column: 1 / -1; }
+  .s-board-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    gap: 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
+    padding: 4px 16px 16px;
+  }
+  .s-board-grid::-webkit-scrollbar { display: none; }
+  .s-board-row--h { display: none; }
+  .s-board-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--ob-line-subtle);
+    border-radius: 12px;
+    scroll-snap-align: start;
+  }
+  .s-board-row--more { align-content: center; }
+  .s-board-store { grid-column: 1 / -1; }
+  .s-board-ck { display: block; grid-area: 1 / 1; margin-bottom: 5px; font: 500 11.5px / 1.2 var(--ob-font-mono); color: var(--ob-text-3); }
+  .s-board-ghost { display: none; }
+  .s-board-receipt { justify-self: stretch; width: auto; margin: 14px 0 0; transform: none; }
+}

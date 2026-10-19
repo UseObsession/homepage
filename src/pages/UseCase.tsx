@@ -4,6 +4,7 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { Hero } from '../components/sections/Hero'
 import { Outcomes } from '../components/sections/Outcomes'
 import { Proof } from '../components/sections/Proof'
+import { Board } from '../components/study/Board'
 import { Flow } from '../components/study/Flow'
 import { Found } from '../components/study/Found'
 import { Phases } from '../components/study/Phases'
@@ -56,18 +57,22 @@ export function UseCase({ study }: { study: UseCaseStudy }) {
         hero={{ pill: h.pill ?? '', headline: h.headline, sub: h.sub, capture: h.capture, secondary: h.secondary }}
         workspace={workspace}
         aside={
-          <div className="s-st-who">
-            <ul className="s-st-who__chips">
-              {h.example.chips.map((c) => (
-                <li key={c} className="ob-tag">
-                  {c}
-                </li>
-              ))}
-            </ul>
-            {h.example.note && <p className="s-st-who__note">{h.example.note}</p>}
-          </div>
+          h.example.chips.length > 0 && (
+            <div className="s-st-who">
+              <ul className="s-st-who__chips">
+                {h.example.chips.map((c) => (
+                  <li key={c} className="ob-tag">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              {h.example.note && <p className="s-st-who__note">{h.example.note}</p>}
+            </div>
+          )
         }
-        object={h.flow && h.flow.length > 0 ? <Flow nodes={h.flow} label={study.name} partner={partner} /> : undefined}
+        object={
+          h.board ? <Board board={h.board} /> : h.flow && h.flow.length > 0 ? <Flow nodes={h.flow} label={study.name} partner={partner} /> : undefined
+        }
       />
       {study.how && <Phases how={study.how} workspace={workspace} id="how" />}
       {study.fix && <Proof proof={study.fix} id="fix" workspace={workspace} tone="alt" />}

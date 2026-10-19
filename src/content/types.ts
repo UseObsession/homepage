@@ -466,6 +466,21 @@ export type Llms = { summary: string; intro: string }
 export type StudyStep = { title: string; line: string; example?: string }
 /* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
 export type StudyNode = { label: string; title: string; items: string[]; foot: string }
+/* The hero's board (components/study/Board): every store on the reader's list, each watched as its customer for the
+   same hours, 1 column per journey. A cell lands at its hour (`at`) with what came back; a gap is only known when the
+   watch ends, so it lands at the last hour. The board closes on the receipt of 1 gap, the gap the next section fixes. */
+export type StudyBoardCell = { state: 'ok' | 'gap' | 'none'; text: string; at?: number }
+export type StudyBoard = {
+  label: string
+  who: string
+  count: string
+  hours: number
+  hour: string
+  cols: string[]
+  rows: { store: string; role: string; cells: StudyBoardCell[] }[]
+  more: string
+  receipt: { store: string; rows: { k: string; v: string }[]; fact: string; stamp: string }
+}
 export type StudyLink = { label: string; title: string; line: string; cta: Cta }
 
 /* 1 finding from a real audit, retold at an invented shop: `label` names the kind of store and the journey, `verdict`
@@ -494,6 +509,8 @@ export type UseCaseStudy = {
     /* Who the example is about, as chips, and the line that says it is made up (or none: `fine` says it). */
     example: { chips: string[]; note?: string }
     flow?: StudyNode[]
+    /* In place of the flow: the reader's stores on 1 board (StudyBoard). */
+    board?: StudyBoard
     capture: Capture
     /* The second path under the form (the real report, for an example whose offer is a free audit). */
     secondary?: Cta
