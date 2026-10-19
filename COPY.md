@@ -176,7 +176,7 @@ flowchart LR
 - The headline count follows the step: 1 company, then 1,000 companies, then 100,000 companies. The h2's label is the full sentence.
 - Each step's bar fills with the scroll, and a step's tab scrolls to it. On a phone or a short screen the 3 steps stack, and the count follows the step in the middle of the screen.
 - The 3 steps:
-  1. A browser signs up and leaves a trace, saved as "Klaviyo sign up, v1".
+  1. An agent signs up at the first company and leaves a trace, saved as "newsletter sign up, v1". No platform is named (James, 19 Oct).
   2. The trace becomes a program, each step marked code, question, small agent or person, while 2 meters fall.
   3. A field of 400 squares (each 250 companies) fills square by square with the scroll, and the count climbs with it to 100,000. Scrolling back empties it.
 - A step plays its small story as it becomes the current one; reduced motion shows each step finished.
