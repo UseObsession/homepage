@@ -46,7 +46,6 @@ export const page: Page = {
     headline: 'Be a customer of every company. Keep the receipts.',
     sub: 'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
-    secondary: { label: 'See a real report', to: '/sample-output' },
     proof: [],
     consoleHeading,
   },
@@ -188,12 +187,12 @@ export const page: Page = {
     heading: 'Learn it once. Run it for 1 company, 1,000 or 100,000.',
     lead: 'Learn it once. Run it for',
     counts: ['1 company.', '1,000 companies.', '100,000 companies.'],
-    line: 'The first sign up at a store teaches the agent the way in. Every store after runs it as a program: in seconds, the same way every time, and cheaper with each company you add.',
+    line: 'The first sign up at a company teaches the agent the way in. Every company after it runs that way in as a program: in seconds, the same way every time, and cheaper with each company you add.',
     steps: [
       {
         title: 'Learns the way in',
-        line: 'An agent signs up at the first Klaviyo store step by step, and keeps the trace.',
-        label: 'An agent signs up at the first Klaviyo store: it opens the newsletter page, types its own email, ticks marketing emails, submits, then clicks the confirm link. Each action lands in a trace, saved as the Klaviyo sign up, version 1.',
+        line: 'An agent signs up at the first company step by step, and keeps every action as a trace.',
+        label: 'An agent signs up at the first company: it opens the newsletter page, finds the sign up form, types its own email, ticks marketing emails, submits, then clicks the confirm link. Each action lands in a trace, saved as the newsletter sign up, version 1.',
       },
       {
         title: 'Turns it into a program',
@@ -202,8 +201,8 @@ export const page: Page = {
       },
       {
         title: 'Runs at any scale',
-        line: 'Hand it 100,000 brands. Companies another customer already watches have their history on day one.',
-        label: 'A list of 100,000 brands goes in through 1 API call, and the field of companies fills square by square, each square 250 companies, as the count reaches 100,000 customers kept. Then they sleep: about 140,000 wake a day, and about 2 are awake at any moment.',
+        line: 'Hand it 100,000 companies. The ones another customer already watches have their history on day one.',
+        label: 'A list of 100,000 companies goes in through 1 API call, and the field of companies fills square by square, each square 250 companies, as the count reaches 100,000 customers kept. Then they sleep: about 140,000 wake a day, and about 2 are awake at any moment.',
       },
     ],
     learn: {
@@ -211,13 +210,13 @@ export const page: Page = {
       field: 'a1.fernhollow@inbox.example',
       trace: [
         'Open /pages/newsletter',
-        'Find the Klaviyo form',
+        'Find the sign up form',
         'Type its own email',
         'Tick “marketing emails”',
         'Submit',
         'Click the confirm link',
       ],
-      saved: 'Saved: Klaviyo sign up, v1',
+      saved: 'Saved: newsletter sign up, v1',
     },
     program: {
       kinds: { code: 'Code', question: 'Question', agent: 'Small agent', escalate: 'Person' },
@@ -247,7 +246,7 @@ export const page: Page = {
       toast: 'About 2 awake right now · 140,000 wakes a day',
     },
     principles: [
-      { title: 'Learn once per platform', line: 'The Klaviyo sign up works on every Klaviyo store, and Shopify’s checkout on every Shopify store.' },
+      { title: 'Learn once per platform', line: 'Most companies sign customers up on the same few platforms, so a sign up learned at one company runs at every company built the same way.' },
       { title: 'Code where it can, judgement where it must', line: 'A stronger agent sees only the cases a program can’t settle, then the program learns them too.' },
       { title: 'Asleep costs nothing', line: 'Agents wait for weeks or months without running, and wake only when the company acts.' },
     ],

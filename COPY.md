@@ -160,7 +160,7 @@ flowchart TD
 ```mermaid
 flowchart LR
   a["What is it? Hero and receipt stage"] --> b["Why can't my tools? The gap"]
-  b --> c["How many, how soon? To know what 10,000 customers get, be all 10,000"]
+  b --> c["How many, how soon? To know what 10,000 companies do, you have to be a customer of all 10,000"]
   c --> c2["Does it find anything? 93% of stores had a gap, 1 report in every format"]
   c2 --> d["Is it for me? Pick who you are"]
   d --> e["Of whom? Rivals, prospects, yourself, your AI"]
@@ -176,7 +176,7 @@ flowchart LR
 - The headline count follows the step: 1 company, then 1,000 companies, then 100,000 companies. The h2's label is the full sentence.
 - Each step's bar fills with the scroll, and a step's tab scrolls to it. On a phone or a short screen the 3 steps stack, and the count follows the step in the middle of the screen.
 - The 3 steps:
-  1. A browser signs up and leaves a trace, saved as "Klaviyo sign up, v1".
+  1. An agent signs up at the first company and leaves a trace, saved as "newsletter sign up, v1". No platform is named (James, 19 Oct).
   2. The trace becomes a program, each step marked code, question, small agent or person, while 2 meters fall.
   3. A field of 400 squares (each 250 companies) fills square by square with the scroll, and the count climbs with it to 100,000. Scrolling back empties it.
 - A step plays its small story as it becomes the current one; reduced motion shows each step finished.
@@ -197,7 +197,7 @@ The full words are in the content files; this is the spine of each page.
 | Hero | Be a customer of every company. Keep the receipts. | Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. |
 | Stage | 3 examples: Fern Hollow (offer held), Larchwise (trial went quiet), Northfold (price cut on day 21) | Each: the ad, the page, the email, the receipt and its stamp |
 | Gap | Every tool shows you the ad. None of them is the customer. | Today it's a spare inbox, screenshots and a spreadsheet, kept up by hand, or a tool that saves the page and stops there. |
-| How | To know what 10,000 customers get, you have to be all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
+| How | To know what 10,000 companies do, you have to be a customer of all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
 | Proof | 93% of stores we shopped on every journey had a gap. | Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The September report in its 6 formats (PDF, Email, Slack, Sheet or Clay, JSON webhook, Workflow), kept small: the claim beside the viewer, a 400px stage; "See the full report". It replaced the formats grid on 19 Oct |
 | Readers | Pick who you are. | 4 panels |
 | Kinds | Be a customer of anyone. Rivals, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |
