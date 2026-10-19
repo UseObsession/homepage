@@ -7,7 +7,7 @@ import type { Compare, Life, OpenSource, Ways } from './types'
    by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
    stage's companies, so the 2 pictures tell 1 story. */
 export const life: Life = {
-  heading: 'To know what 10,000 customers get, you have to be all 10,000.',
+  heading: 'To know what 10,000 companies send their customers, be a customer of all 10,000.',
   line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an agent signs up to each, the first welcome emails land within minutes, and it stays on as their customer, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
   list: 'brands.csv · 10,000 companies',
   axis: {
