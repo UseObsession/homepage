@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function RunScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-run"><div className="appx-fit"><div className="appx" role="img" aria-label="The signed record of an example mystery shop for the Candles client: the run log lists each step the test shoppers took, with screenshots, and receipt 4 of 9, the checkout stopped before payment, is open. The account manager clicks Verify, the signature checks out with the chain intact, and a link to share the record with the client appears.">
+    <div className="il appx-il app-run"><div className="appx-fit"><div className="appx" role="img" aria-label="The signed record of an example mystery shop for the Candles client: the run log lists each step the test shoppers took, with screenshots, and receipt 4 of 9, the checkout stopped before payment, is open. The account manager clicks Verify, the signature checks out with the chain intact, and a link to share the record with the client appears. 0 basket emails in 48 hours. All 9 receipts check out, chain intact.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Records<span>/</span>Mystery shopper</span>

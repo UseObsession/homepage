@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function LeadsScreen() {
   return (
-    <div className="il appx-il app-leads"><div className="appx-fit"><div className="appx" role="img" aria-label="A Monday list of 50 prospects imported from Clay, each tested by a labelled test customer. As results land, the 13 companies with a proven gap rise to the top and the 37 with no gap fold away; the top company opens with 3 dated captures and a drafted 3 line opener for you to send yourself.">
+    <div className="il appx-il app-leads"><div className="appx-fit"><div className="appx" role="img" aria-label="A Monday list of 50 prospects imported from Clay, each tested by a labelled test customer. As results land, the 13 companies with a proven gap rise to the top and the 37 with no gap fold away; the top company opens with 3 dated captures and a drafted 3 line opener for you to send yourself. 13 of 50 have a proven gap. 3 dated captures, opener drafted. You send it.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Monday list</span>

@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function ReportScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-report"><div className="appx-fit"><div className="appx" role="img" aria-label="A monthly email and SMS report for the Candles client, in the agency’s brand, gathered by a declared Obsession agent through public sign ups only: the counts fill in and 3 rivals’ message bars run 4 times longer than the client’s. The agency sends it, and the button reads Sent, in your brand.">
+    <div className="il appx-il app-report"><div className="appx-fit"><div className="appx" role="img" aria-label="A monthly email and SMS report for the Candles client, in the agency’s brand, gathered by a declared Obsession agent through public sign ups only: the counts fill in and 3 rivals’ message bars run 4 times longer than the client’s. The agency sends it, and the button reads Sent, in your brand. Candles sent 12 messages. Rival A sent 52. Sent to Candles, signed, in your brand.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Records<span>/</span>Email and SMS tracking</span>

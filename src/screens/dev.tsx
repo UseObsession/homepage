@@ -3,7 +3,7 @@
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function DevScreen() {
   return (
-    <div className="il appx-il app-dev"><div className="appx-fit"><div className="appx" role="img" aria-label="A developer console in test mode: 3 watches created by code stream into the request log, each POST /v1/watches answered 201, and the newest opens on its verdict payload with a receipt_url. The verdict lands on your webhook with 200 OK.">
+    <div className="il appx-il app-dev"><div className="appx-fit"><div className="appx" role="img" aria-label="A developer console in test mode: 3 watches created by code stream into the request log, each POST /v1/watches answered 201, and the newest opens on its verdict payload with a receipt_url. The verdict lands on your webhook with 200 OK. 3 API calls made 3 watches, each 201. Verdict on your webhook in 38 ms.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Developers</span>

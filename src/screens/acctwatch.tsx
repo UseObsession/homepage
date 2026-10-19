@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function AcctwatchScreen() {
   return (
-    <div className="il appx-il app-acctwatch"><div className="appx-fit"><div className="appx" role="img" aria-label="Account watch for a sales team: each account shows a health mark and 3 signal sources: inside data from your helpdesk and analytics with consent, outside news and hiring, and what their own customers get. Snack brand's usage drops 38% in 14 days and 3 urgent tickets arrive, so it flips to at risk with the reasons listed, a save plan with a QBR deck is drafted, and AM approves it. Inside data with consent, public pages only.">
+    <div className="il appx-il app-acctwatch"><div className="appx-fit"><div className="appx" role="img" aria-label="Account watch for a sales team: each account shows a health mark and 3 signal sources: inside data from your helpdesk and analytics with consent, outside news and hiring, and what their own customers get. Snack brand's usage drops 38% in 14 days and 3 urgent tickets arrive, so it flips to at risk with the reasons listed, a save plan with a QBR deck is drafted, and AM approves it. Inside data with consent, public pages only. Usage down 38%, 3 urgent tickets. Save plan and QBR deck, approved by AM.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Accounts<span>/</span>Account watch</span>

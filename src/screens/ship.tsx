@@ -3,7 +3,7 @@
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function ShipScreen() {
   return (
-    <div className="il appx-il app-ship"><div className="appx-fit"><div className="appx" role="img" aria-label="Launch morning for release v2.15, live at 06:02 with the launch email due at 08:00: a labelled test customer on a fresh UK number and inbox runs the release checklist, and the first order code LAUNCH20 is rejected at checkout. You click Hold the 08:00 send, and the email waits while a fix is drafted for your OK.">
+    <div className="il appx-il app-ship"><div className="appx-fit"><div className="appx" role="img" aria-label="Launch morning for release v2.15, live at 06:02 with the launch email due at 08:00: a labelled test customer on a fresh UK number and inbox runs the release checklist, and the first order code LAUNCH20 is rejected at checkout. You click Hold the 08:00 send, and the email waits while a fix is drafted for your OK. 08:00 email held. Fix drafted for your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Release v2.15</span>

@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function BoardScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-board"><div className="appx-fit"><div className="appx" role="img" aria-label="An agency’s Watches board at 08:02 on Monday: 6 watches, each with its status, progress and latest result, run by a declared Obsession agent. Outdoor gear’s link check counts to 214 and lands, then Homeware arrives on top needing you, Ad 4 sending paid clicks to a sold out lamp, with a fix ready to review.">
+    <div className="il appx-il app-board"><div className="appx-fit"><div className="appx" role="img" aria-label="An agency’s Watches board at 08:02 on Monday: 6 watches, each with its status, progress and latest result, run by a declared Obsession agent. Outdoor gear’s link check counts to 214 and lands, then Homeware arrives on top needing you, Ad 4 sending paid clicks to a sold out lamp, with a fix ready to review. Opens all 214 links, not a sample. $410/day to a sold out lamp.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches</span>

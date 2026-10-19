@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function WinbackScreen() {
   return (
-    <div className="il appx-il app-winback"><div className="appx-fit"><div className="appx" role="img" aria-label="The Accounts page filtered to 4 accounts lost to a rival, each with the month it left and the date it renews with the rival. For Tarnfell Outdoor, 9 months on Rival A draw out as a timeline of checks every 2 weeks by a declared test customer, with 3 dated breaks and their captures, all from public sign ups: the welcome email stopped in March, a text unsubscribe was ignored in June, and an emailed code had already expired in August. A reopen note citing all 3 is drafted for you to send yourself, and the account turns to needs you.">
+    <div className="il appx-il app-winback"><div className="appx-fit"><div className="appx" role="img" aria-label="The Accounts page filtered to 4 accounts lost to a rival, each with the month it left and the date it renews with the rival. For Tarnfell Outdoor, 9 months on Rival A draw out as a timeline of checks every 2 weeks by a declared test customer, with 3 dated breaks and their captures, all from public sign ups: the welcome email stopped in March, a text unsubscribe was ignored in June, and an emailed code had already expired in August. A reopen note citing all 3 is drafted for you to send yourself, and the account turns to needs you. Rival A broke 3 times in 9 months. Reopen note cites all 3, yours to send.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Accounts</span>

@@ -7,7 +7,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-compose app-agencytask"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to shop the agency’s 15 client stores as 4 customers each, with each client’s OK, before Black Friday, answers the agent’s 2 questions (all 15 clients, a PDF per client), and gets a 4 day plan with its kit: 60 declared agents, each with its own ID and inbox, a 48 hour watch of every inbox and 15 PDF reports. AM approves the plan, which buys nothing, and the agents start working.">
+    <div className="il appx-il app-compose app-agencytask"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to shop the agency’s 15 client stores as 4 customers each, with each client’s OK, before Black Friday, answers the agent’s 2 questions (all 15 clients, a PDF per client), and gets a 4 day plan with its kit: 60 declared agents, each with its own ID and inbox, a 48 hour watch of every inbox and 15 PDF reports. AM approves the plan, which buys nothing, and the agents start working. 1 typed line, then just 2 questions. AM’s OK starts 60 agents, nothing bought.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>New watch</span>
