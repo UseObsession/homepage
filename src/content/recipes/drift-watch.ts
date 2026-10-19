@@ -14,10 +14,11 @@ import type { Recipe } from '../types'
    Base: _research/verify/VERIFY.md 6.8 (the golden set, the run after every change, the checks, the outcome) and 11
    (the red lines). No real AI agent check has run yet, so the run is an example and says so, and no Verify claim sits
    in proof.
-   Red lines held: only the reader's own agent, or a client's with their written OK, and the vendor's agreement to the
-   test tags; every test customer says it's AI and who it works for; it asks what an ordinary customer asks, never a
-   jailbreak or a prompt trick; the volume of 1 customer; every replay tagged so none is billed; the note goes to the
-   vendor only after the reader's OK. No vendor or product names: Vendor A.
+   The three lines hold (system.md), and nothing else is written as a rule: every answer kept exactly as it arrived,
+   before and after; the reader private unless they choose to be named; the law (every test customer says it's AI when
+   it talks to a person). The rest is the reader's setting: the cases, hard or adversarial ones included, and when the
+   note goes to the vendor. Every replay is tagged, agreed with the vendor, so none is billed. A client's agent is
+   named with the client's agreement once, in the FAQ. No vendor or product names: Vendor A.
    Up-to-50 rule: the 1 modelled figure (up to 10 days sooner) carries its model in the same line: 1 team found a drop
    in its agent 11 days after the change that caused it; a replay every morning finds it within 1 day, 11 - 1 = 10.
    Flat facts from the example: 37, then 28, of 40 (92.5%, then 70%), 9 newly failing, found 50 minutes after the
@@ -31,23 +32,23 @@ export const recipe: Recipe = {
   name: 'Drift watch',
   group: 'Check your AI agents',
   line: 'Replays your hardest cases on your AI agent every morning and after every update, and flags every answer that changed.',
-  gets: 'Every answer that changed, found the day it changed, with the before and after signed.',
+  gets: 'Every answer that changed, found the day it changed, with its before and after as proof.',
   kit: [
-    'A declared AI test customer, working for your company',
+    'An AI test customer, working for your company',
     'Its own inbox and test account',
     'Your hardest cases, each with its rule',
     'Your vendor’s updates, watched',
     'Every replay tagged, agreed with your vendor',
-    'Every answer signed and dated',
+    'Every answer kept with its receipt',
   ],
 
   meta: {
     path: '/recipes/drift-watch',
     title: 'Drift watch: catch the answers an update breaks · Obsession',
     description:
-      'A declared test customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
+      'An AI test customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
     answer:
-      'Drift watch catches what each update breaks in your AI agent: a declared test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, signed.',
+      'Drift watch catches what each update breaks in your AI agent: a test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -58,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch what each update breaks in your AI agent.',
-    sub: 'Drift watch catches what each update breaks in your AI agent: a declared test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, signed.',
+    sub: 'Drift watch catches what each update breaks in your AI agent: a test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
     screen: 'drift',
     capture: {
       kind: 'verify',
@@ -74,7 +75,7 @@ export const recipe: Recipe = {
     tab: 'Example: the night of a vendor update',
     recipe: 'drift',
     task: 'Replay our 40 hardest support cases every morning, and again within the hour of any update. Tell me which answers changed.',
-    targets: 'Your support bot, with Vendor A’s OK',
+    targets: 'Your support bot, run by Vendor A',
     journey: ['Replay your 40 cases', 'Compare with the baseline', 'Run again after any update', 'Flag every new failure'],
     schedule: 'Daily at 07:00, and within the hour of any update',
     report: 'A Slack alert, and a note for your vendor',
@@ -102,11 +103,11 @@ export const recipe: Recipe = {
     },
     {
       title: 'It replays every morning, and after any update',
-      line: 'A declared test customer asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
+      line: 'A test customer asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
     },
     {
       title: 'You see what changed',
-      line: 'Every case that newly fails, with the answer before and after, and a note to your vendor drafted. It goes only after your OK.',
+      line: 'Every case that newly fails, with the answer before and after, and a note to your vendor drafted. It goes when you approve it.',
     },
   ],
 
@@ -132,10 +133,10 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Your bot only', line: 'Your own, or a client’s with their written OK, and with your vendor’s agreement.' },
-        { title: 'No tricks', line: 'The questions an ordinary customer asks. No jailbreaks or prompt tricks.' },
+        { title: 'Hard questions', line: 'What an ordinary customer asks, and hard or adversarial cases if you want them.' },
+        { title: 'The record', line: 'Every answer kept exactly as it arrived, before and after.' },
         { title: 'Your bill', line: 'Every replay is tagged, and agreed with your vendor, so none is billed as a resolution.' },
-        { title: 'Your vendor', line: 'The note goes to your vendor only after your OK.' },
+        { title: 'Your vendor', line: 'The note goes to your vendor when you send it.' },
       ],
     },
   ],
@@ -146,17 +147,17 @@ export const recipe: Recipe = {
       { format: 'A verdict per case', line: 'Passed, or newly failing, against your baseline.' },
       { format: 'Before and after', line: 'Every changed answer side by side, with the rule it broke.' },
       { format: 'The pass rate over time', line: 'Every morning’s replay on 1 line, with each update marked.' },
-      { format: 'A note for your vendor', line: 'Drafted with the evidence and signed. Sent only after your OK.' },
+      { format: 'A note for your vendor', line: 'Drafted with the evidence. Sent when you approve it.' },
       { format: 'An alert where you look', line: 'Slack, email or a webhook, the moment a replay drops below your baseline.' },
       {
         format: 'A dated record',
-        line: 'Every replay signed and dated, as a page and a PDF for your vendor, your client or your insurer.',
+        line: 'Every replay kept with its receipt, as a page and a PDF for your vendor, your client or your insurer.',
       },
     ],
   },
 
   settings: [
-    { k: 'Agent', v: 'Yours, or a client’s with their written OK' },
+    { k: 'Agent', v: 'Yours, or one you run for a client' },
     { k: 'Cases', v: 'For example: your 40 hardest, each with the rule that decides it' },
     { k: 'Baseline', v: 'For example: 90 to 100% of cases passing' },
     { k: 'Channels', v: 'Chat, email, phone or your portal' },
@@ -173,7 +174,7 @@ export const recipe: Recipe = {
     },
     {
       audience: 'agencies',
-      line: 'Watch every agent you run for clients, with their OK, and catch a vendor update before your client does.',
+      line: 'Watch every agent you run for clients and catch a vendor update before your client does.',
     },
     { audience: 'marketing', line: 'Catch the morning your bot starts handing out a code that has expired.' },
     {
@@ -225,11 +226,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will Drift watch try to trick our bot?',
-        a: 'No. Drift watch asks what an ordinary customer asks. No jailbreaks or prompt tricks.',
+        a: 'Only if you want it to. Drift watch asks what an ordinary customer asks, and you can add hard or adversarial cases to your set.',
       },
       {
         q: 'Can Drift watch cover a client’s agents?',
-        a: 'Yes, with the client’s written OK and their vendor’s agreement: the Drift watch record carries your agency’s name.',
+        a: 'Yes, with the client’s agreement: the Drift watch record carries your agency’s name.',
       },
       {
         q: 'What’s it worth?',
@@ -248,7 +249,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Know which answers an update changed within the hour.',
-    sub: 'Your first check is free: 3 test customers use your AI agent on 1 channel, and your report lands within 4 days. Your agent, or a client’s with their OK.',
+    sub: 'Your first check is free: 3 test customers use your AI agent on 1 channel, and your report lands within 4 days. Your agent, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-drift-final',

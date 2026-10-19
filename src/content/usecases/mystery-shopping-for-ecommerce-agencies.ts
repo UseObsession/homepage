@@ -20,13 +20,21 @@ import type { UseCaseStudy } from '../types'
    The rest is an example (types.ts, "Use case studies"): the agency, its clients, the prospects, the stores and every
    figure on the screens and cards are invented (.example domains, category names for the stores, as the screens use
    them: Candles, Homeware, Coffee roaster, Outdoor gear). The fine print says which is which.
-   Red lines held (Obsession Context.md, sections 5 and 8): every agent says it is AI; at a prospect only public sign
-   ups and the site's chat bot, never staff, no basket until the owner says OK, and its customer's name kept out; a
-   client's store only with the client's written OK; every checkout stops before payment; no money anywhere; no price,
-   plan or guarantee; no recipe count; no real company name (Clay is named only as a place results land, with its
-   trademark line in the small print).
-   Screens (reused, none new): approve (the findings and the drafted fix). The hero's flow is its own diagram.
-   Template additions this page uses: hero.secondary, fix, found, no `more`, final.link and capture.done (types.ts). */
+   Rules (19 Oct, in line with the recipe pages): only the 3 lines in obsession/system.md hold. The record is kept as
+   it arrived; the agency stays private unless it chooses to be named; and the law (an agent says it is AI when it
+   talks to a person, uses no fake payment details, never gets round a CAPTCHA). What an agent does at a prospect
+   (baskets, questions to staff) is the agency's setting. A client's store is shopped with the client's OK, as on
+   /recipes/mystery-shopper. The free audits stop at checkout, before payment; past that is a setting. Copy rules
+   kept: no price, plan or guarantee; no recipe count; no real company name (Clay is named only as a place results
+   land, with its trademark line in the small print).
+   Screens (reused, none new): approve (the findings and the drafted fix).
+   Rewritten 19 Oct (James) in the site's October voice: the agency becomes a customer of every store it serves or
+   pitches, and keeps the receipts. The hero's picture is the report stack (components/study/ReportStack), in place of
+   the 3 stop flow and of the store board James turned down the same day: what the agency hands each client, 1 report
+   per store in its own brand, the front one coffee.example's (the missing welcome email the approve screen below
+   drafts a fix for), the 3 behind it the other stores the uses name (outdoor, candles, homeware). No "Example" chip:
+   the stores are .example addresses and the small print says what is made up.
+   Additions this page uses: hero.secondary, hero.report, fix, found, no `more`, final.link and capture.done (types.ts). */
 
 export const study: UseCaseStudy = {
   name: 'Mystery shopping for ecommerce agencies',
@@ -36,9 +44,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/mystery-shopping-for-ecommerce-agencies',
     title: 'Mystery shopping every client store, for ecommerce agencies',
     description:
-      'An example: declared AI agents mystery shop every client and prospect store of an ecommerce agency at once, then report in its own brand and format.',
+      'AI agents become a customer of every store an ecommerce agency serves or pitches, at once: they sign up, fill a basket and wait, and bring back each gap with its receipt and a drafted fix, in the agency’s brand.',
     answer:
-      'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
+      'Obsession gives ecommerce agencies a customer at every client and prospect store: AI agents with their own inbox, phone number and browser that sign up, fill a basket and wait, up to 1,000 stores in 48 hours. Each gap comes back with its receipt and a drafted fix, in the agency’s own format and brand.',
     ogImage: '/og/mystery-shopping-for-ecommerce-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,35 +58,39 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents that mystery shop every client and prospect store at once.',
-    sub: 'Clients can’t see what the retainer buys, and nobody has time to shop every store. Declared AI agents shop each one as a real customer. You get the findings and the fix, in your brand.',
-    /* 1 chip says it is an example; the fine print says what is made up and what is real. */
-    example: { chips: ['Example: an agency with 15 clients and 5 prospects'] },
-    flow: [
-      {
-        label: 'Your list in',
-        title: 'Every store you serve or pitch',
-        items: ['outdoor.example, a prospect', 'candles.example, a current client', 'homeware.example, renews in 30 days', 'coffee.example, at risk'],
-        foot: '20 stores · pasted or uploaded',
+    headline: 'Be a customer of every store you serve or pitch.',
+    sub: 'Clients can’t see what the retainer buys, and nobody has time to shop 20 stores by hand. AI agents sign up, fill a basket and wait at every client and prospect store at once. Each gap comes back with its receipt and a drafted fix, in your brand.',
+    example: { chips: [] },
+    /* The report stack: what the agency hands each client, in its own brand. The front report is coffee.example's
+       (the gap the approve screen below drafts a fix for); behind it, the 3 other stores the uses name. */
+    report: {
+      label:
+        'A stack of client reports in your agency’s brand, 1 per store, from 20 stores checked at once. The front one, a customer journey check for coffee.example, a coffee roaster and a client at risk: 3 of 4 journeys worked. The welcome email was silent, none in 48 hours; the basket reminder came after 3 hours with 10% off; texts are not offered; the support bot answered in 40 seconds. The gap: signed up on Monday at 09:02 and no welcome email came in 48 hours; the inbox, Promotions and spam were checked every hour; a welcome flow with the 10% code is drafted for your OK. Behind it: outdoor.example, a prospect, with no text after opting in; candles.example, a client, whose bot promised an email that never came; homeware.example, renewing in 30 days, with all 4 journeys working.',
+      brand: 'Your agency',
+      kind: 'Customer journey check',
+      store: 'coffee.example',
+      about: 'Coffee roaster · client, at risk · watched for 48 hours as a new customer',
+      score: { value: '3 of 4', line: 'journeys worked' },
+      rows: [
+        { k: 'Welcome email', state: 'gap', verdict: 'Silent', v: 'None in 48 hours' },
+        { k: 'Basket reminder', state: 'ok', verdict: 'Delivered', v: 'After 3 hours, with 10% off' },
+        { k: 'Texts', state: 'none', verdict: 'Not offered', v: '' },
+        { k: 'Support bot', state: 'ok', verdict: 'Answered', v: 'In 40 seconds' },
+      ],
+      gap: {
+        heading: 'The gap',
+        fact: 'Signed up on Monday at 09:02. No welcome email came in 48 hours.',
+        receipt: 'Receipt: the inbox, Promotions and spam, checked every hour.',
+        fix: 'Fix, drafted for your OK: a welcome flow with the 10% code.',
       },
-      {
-        label: 'Obsession',
-        title: 'A test customer at every store',
-        items: ['Its own inbox', 'A phone number for texts', 'Its own browser', 'Says it’s AI'],
-        foot: 'Watching for 48 hours',
-      },
-      {
-        label: 'Your report',
-        title: 'A page per store, in your brand',
-        items: [
-          'outdoor.example: no text after opt in',
-          'candles.example: no basket reminder',
-          'homeware.example: no gap',
-          'coffee.example: no welcome email',
-        ],
-        foot: 'PDF · Slack · sheet · Clay · email',
-      },
-    ],
+      stamp: 'Silent',
+      behind: [
+        { store: 'outdoor.example', verdict: 'Prospect · 1 gap: no text after opting in' },
+        { store: 'candles.example', verdict: 'Client · 1 gap: the bot’s email never came' },
+        { store: 'homeware.example', verdict: 'Renews in 30 days · 4 of 4 worked' },
+      ],
+      caption: '20 stores checked at once. 1 report each, in your brand.',
+    },
     capture: {
       kind: 'mystery',
       source: 'usecase-ecom-agencies-hero',
@@ -100,26 +112,26 @@ export const study: UseCaseStudy = {
       },
       interest: 'mystery',
     },
-    secondary: { label: 'See what a mystery shop finds', to: '/sample-output' },
+    secondary: { label: 'See a real report', to: '/sample-output' },
   },
 
   /* The 1 product moment: a gap found, its fix drafted, the agency's OK (the approve screen, drawn for an agency). It
-     matches the flow's "coffee.example: no welcome email". The steps live on the recipe's own page. */
+     picks up the front report's gap, coffee.example's missing welcome email. The steps live on the recipe's own page. */
   fix: {
-    heading: 'Each gap comes back with its fix drafted, waiting for your OK.',
-    line: 'Every step is signed, so your client can check the work.',
+    heading: 'Every gap comes back with its fix drafted, waiting for your OK.',
+    line: 'Send it to the client, save it for the pitch or keep it for the renewal. Every step keeps its receipt, so the client can check the work.',
     screen: 'approve',
     cta: { label: 'See how Mystery shopper works', to: '/recipes/mystery-shopper' },
   },
 
-  /* The 3 ways an agency uses 1 shop. The red line sits in each label, so the cards carry no line of their own. */
+  /* The 3 ways an agency uses 1 shop. Each label says when the shop runs, so the cards carry no line of their own. */
   outputs: {
-    heading: 'A prospect gets an opening, a client gets a catch, and a renewal gets proof.',
+    heading: 'One shop, three jobs: open the pitch, catch the break, prove the retainer.',
     groups: [
       {
         items: [
           {
-            label: 'A prospect, public sign ups only',
+            label: 'A prospect, before the pitch',
             title: 'Open the pitch on their own sign up',
             example: 'Outdoor gear: texts opted in on Monday, none by Wednesday.',
           },
@@ -175,8 +187,7 @@ export const study: UseCaseStudy = {
   },
 
   /* The small print sits right under the 4 real findings (components/study/Found), so it names only the example as
-     made up, never "figures" (the 2 shares above it are real), and it leaves the basket rule to questions 3 to 5: under
-     3 real "Basket left" audits it would read as if those baskets had the owners' OK. */
+     made up, never "figures" (the 2 shares above it are real). What the agents may do is in questions 3 to 6. */
   fine: 'The example agency, its clients and prospects, and their stores are made up. The 4 examples come from real audits, with every store, brand and product changed. Clay is a trademark of its owner, named to show where results can land.',
 
   /* 6 questions, closed. The first answer is meta.answer, word for word. */
@@ -185,34 +196,34 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for ecommerce agencies?',
-        a: 'Obsession gives ecommerce agencies declared AI agents that mystery shop every client and prospect store as a customer would, with real inboxes, phone numbers and browsers. They can shop up to 1,000 stores in 48 hours, watching every email and text, and the agency gets a report in its own format and brand.',
+        a: 'Obsession gives ecommerce agencies a customer at every client and prospect store: AI agents with their own inbox, phone number and browser that sign up, fill a basket and wait, up to 1,000 stores in 48 hours. Each gap comes back with its receipt and a drafted fix, in the agency’s own format and brand.',
       },
       {
         q: 'What do the 5 free audits cover?',
-        a: '5 stores you serve or pitch, shopped by declared AI test customers. Each is watched for 48 hours. The report comes within 4 days, in any format.',
+        a: '5 stores you serve or pitch, each with an AI agent as its customer for 48 hours: the welcome, the basket, texts and the support bot. The report comes within 4 days, in any format.',
       },
       {
         q: 'Do our clients have to agree to the audit?',
-        a: 'Yes. A basket or checkout on a client’s store needs their written OK. They install nothing.',
+        a: 'Yes. A client’s store is shopped with the client’s OK. They install nothing.',
       },
       {
         q: 'Can we audit a prospect’s store?',
-        a: 'Yes, through public sign ups and the site’s bot only, never staff. No basket without the owner’s OK. It says it’s AI from Obsession and keeps your name out.',
+        a: 'Yes. The agents do what any customer can: sign up, opt in to texts, fill a basket, ask the bot or write to staff. How far they go is your setting. When one talks to a person, it says it’s AI from Obsession, and your name stays out unless you choose to be named.',
       },
       {
         q: 'Will it affect the store’s numbers?',
-        a: 'Slightly. Each test customer counts as a sign up or basket, and the report lists them. Every checkout stops before payment, so nothing is bought.',
+        a: 'Slightly. Each agent counts as a sign up or a basket, and the report lists them. The free audits stop at checkout, before payment. A real order is your setting, on a capped card, refunded after.',
       },
       {
         q: 'Is AI mystery shopping legal?',
-        a: 'Every agent says it’s AI and does only what any customer can do. Any company can opt out at useobsession.com/agents. This is not legal advice.',
+        a: 'Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
       },
     ],
   },
 
   final: {
     heading: 'Start with 1 store. We’ll ask for the other 4.',
-    sub: 'Clients with their OK. Prospects through public sign ups only.',
+    sub: 'Clients with their OK. Prospects before you pitch them.',
     capture: {
       kind: 'mystery',
       source: 'usecase-ecom-agencies-final',

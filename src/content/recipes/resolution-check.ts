@@ -11,12 +11,13 @@ import type { Recipe } from '../types'
    billed". Challenge with evidence, then "Challenge sent 10:12" and "Dispute pack sent, signed").
    Base: _research/verify/VERIFY.md 6.6 (the checks, the outcome, the design rule) and 11 (the red lines). No real AI
    agent check has run yet, so the run is an example and says so, and no Verify claim sits in proof.
-   Red lines held: the reader's own bot, or a client's with their written OK, and the vendor's agreement to the test
-   tags before the first test, so no test is billed; inside data only through the helpdesk export and payments tool
-   the reader connects, with consent; every test customer says it's AI and who it works for, and asks what an ordinary
-   customer asks, never a jailbreak or a prompt trick; it spends only on the reader's own store, inside a test budget
-   the reader sets; the dispute pack goes to the vendor only after the reader's OK. "Challenge", never "recover":
-   whether a vendor credits a disputed resolution is up to its contract. No vendor or product names: Vendor A.
+   The three lines hold (system.md), and nothing else is written as a rule: every case kept exactly as it arrived; the
+   reader private unless they choose to be named; the law (every test customer says it's AI when it talks to a person
+   and pays only with real payment details). The rest is the reader's setting: the test budget, hard or adversarial
+   asks, and when the dispute pack goes. Inside data comes through the helpdesk export and payments tool the reader
+   connects, and the vendor agrees the test tags first, so no test is billed. A client's bot is named with the
+   client's agreement once, in the FAQ. "Challenge", not "recover": whether a vendor credits a disputed resolution is
+   up to its contract. No vendor or product names: Vendor A.
    Up-to-50 rule (no money promises, 3 Oct): the modelled figures carry their model in the same line: 10,000 billed
    resolutions a month x 19 in 100 not real (the example's own rate, 19 of 100) = up to 1,900 a month to challenge,
    the count /verify states; checking all 10,000 by hand at 3 minutes each = 30,000 minutes = 500 hours a month. */
@@ -31,12 +32,12 @@ export const recipe: Recipe = {
   line: 'Checks every resolution your AI support vendor bills you for against what the customer actually got.',
   gets: 'Every billed resolution checked against the real outcome, and a signed dispute pack for the ones that weren’t real.',
   kit: [
-    'A declared AI test customer, working for your company',
+    'An AI test customer, working for your company',
     'Its own inbox, test account and test budget',
     'Your helpdesk and payments, connected by you',
     'Your vendor’s billing terms, rule by rule',
     'Every test tagged, agreed with your vendor',
-    'Every case and challenge signed and dated',
+    'Every case and challenge kept with its receipt',
   ],
 
   meta: {
@@ -45,7 +46,7 @@ export const recipe: Recipe = {
     description:
       'Check each resolution your AI support vendor bills against what the customer really got: the refund, the cancellation, the order change. Then challenge it.',
     answer:
-      'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while declared test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
+      'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     ogImage: '/og/resolution-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +57,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that check every resolution your AI vendor bills.',
-    sub: 'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while declared test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
+    sub: 'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     screen: 'resolution',
     capture: {
       kind: 'verify',
@@ -73,7 +74,7 @@ export const recipe: Recipe = {
     tab: 'Example: September’s bill, before you pay',
     recipe: 'resolution',
     task: 'Before we pay Vendor A for September, check every resolution it billed against what the customer really got, and make the same asks ourselves as a test.',
-    targets: 'Vendor A’s September bill, with its OK',
+    targets: 'Vendor A’s September bill',
     journey: ['Take the billed resolutions', 'Check payments and the helpdesk', 'Make the same ask as a test', 'Build the challenge'],
     schedule: 'Monthly, before you pay the bill',
     report: 'A signed dispute pack, sent after your OK',
@@ -105,7 +106,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'You challenge with evidence',
-      line: 'Every resolution that wasn’t real goes into a signed dispute pack under your vendor’s own terms. It goes to your vendor only after your OK.',
+      line: 'Every resolution that wasn’t real goes into a signed dispute pack under your vendor’s own terms. You decide when it goes to your vendor.',
     },
   ],
 
@@ -123,7 +124,7 @@ export const recipe: Recipe = {
       group: 'What the bot promised',
       items: [
         { title: '“Done” that wasn’t', line: 'A refund or cancellation the bot confirmed and nobody carried out.' },
-        { title: 'The same ask, as a test', line: 'A declared test customer makes it on your live channel and sees what really happens.' },
+        { title: 'The same ask, as a test', line: 'A test customer makes it on your live channel and sees what really happens.' },
         { title: 'Against the contract', line: 'Each resolution against your vendor’s own rule for what it may bill.' },
         { title: 'Month by month', line: 'How many billed resolutions weren’t real, and whether that’s rising or falling.' },
       ],
@@ -131,10 +132,10 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Inside your systems', line: 'Only through the helpdesk and payment tools you connect, with your consent.' },
+        { title: 'Inside your systems', line: 'Through the helpdesk and payment tools you connect.' },
         { title: 'Your bill', line: 'Every test is tagged, and agreed with your vendor first, so no test is billed.' },
-        { title: 'Your money', line: 'Test orders only on your own store, inside a budget you set.' },
-        { title: 'Your vendor', line: 'No challenge goes to your vendor without your OK. Whether it credits you is up to your contract.' },
+        { title: 'Your money', line: 'Test orders on your store, paid with real payment details inside a budget you set.' },
+        { title: 'Your vendor', line: 'A challenge goes when you send it. Whether your vendor credits you is up to your contract.' },
       ],
     },
   ],
@@ -146,7 +147,7 @@ export const recipe: Recipe = {
       { format: 'The bot’s own words', line: 'What it told the customer, timed, beside what really happened.' },
       { format: 'The test customer’s result', line: 'The same ask, made on your live channel, and what came of it.' },
       { format: 'The monthly count', line: 'How many billed resolutions weren’t real, by reason: a refund never made, a customer gone quiet or back, a case a person finished.' },
-      { format: 'The dispute pack', line: 'Every case under your vendor’s own terms, signed. Sent only after your OK.' },
+      { format: 'The dispute pack', line: 'Every case under your vendor’s own terms, with its receipt. Sent when you approve it.' },
       {
         format: 'A record to share',
         line: 'A page and a PDF for finance, your vendor or your client, or an email, Slack, a sheet or a webhook.',
@@ -156,12 +157,12 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Vendor', v: 'Your AI support vendor, which agrees the test tags first' },
-    { k: 'Bot', v: 'Yours, or a client’s with their written OK' },
+    { k: 'Bot', v: 'Yours, or one you run for a client' },
     { k: 'Sample', v: 'For example: 100 billed resolutions a month, or every one' },
     { k: 'Evidence', v: 'Your helpdesk export and payments tool, connected by you' },
     { k: 'Rules', v: 'Your vendor’s billing terms, and your own refund and cancellation policy' },
     { k: 'Test asks', v: 'Refunds, cancellations, address changes and order edits' },
-    { k: 'Test budget', v: 'A monthly cap you set, on your own store' },
+    { k: 'Test budget', v: 'A monthly cap you set' },
     { k: 'How often', v: 'Monthly, before you pay the bill' },
   ],
 
@@ -169,7 +170,7 @@ export const recipe: Recipe = {
     { audience: 'founders', line: 'Pay your AI support vendor for what it solved, not for what it counted.' },
     {
       audience: 'agencies',
-      line: 'Check what each client’s support bot is billed for, with their OK, and hand them the signed record.',
+      line: 'Check what each client’s support bot is billed for, and hand them the record with every receipt.',
     },
     {
       audience: 'developers',
@@ -192,7 +193,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. No test is billed, and nothing goes out without your OK.',
+    heading: 'Every test customer says it’s AI, and no test is billed.',
     items: [
       {
         q: 'Our deflection numbers look great. Are the resolutions real?',
@@ -204,7 +205,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Do you need our logins?',
-        a: 'No. Resolution check reads your helpdesk export and payments tool only if you connect them, with your consent. Test customers use your live channels the way your customers do.',
+        a: 'No. Resolution check reads your helpdesk export and payments tool if you connect them. Test customers use your live channels the way your customers do.',
       },
       {
         q: 'Will our vendor bill us for the tests?',
@@ -216,11 +217,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will Resolution check try to trick our bot?',
-        a: 'No. Resolution check makes the asks an ordinary customer makes. No jailbreaks or prompt tricks.',
+        a: 'Only if you want it to. Resolution check makes the asks an ordinary customer makes, and you can add hard or adversarial ones.',
       },
       {
         q: 'Does Resolution check spend our money?',
-        a: 'Resolution check spends only on your own store, inside a test budget you set, so a test customer can ask for a refund on a real order.',
+        a: 'Only inside the test budget you set, with real payment details, so a test customer can ask for a refund on a real order.',
       },
       {
         q: 'Will our vendor credit what we challenge?',
@@ -228,7 +229,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Resolution check cover a client’s bot?',
-        a: 'Yes, with the client’s written OK and their vendor’s agreement to the test tags: the Resolution check record carries your agency’s name.',
+        a: 'Yes, with the client’s agreement, and their vendor’s agreement to the test tags: the Resolution check record carries your agency’s name.',
       },
       {
         q: 'What’s it worth?',
@@ -247,7 +248,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Check what your AI vendor billed before you pay for it.',
-    sub: 'Your first check is free: 3 test customers use your support bot on 1 channel, tagged so none is billed, and your report lands within 4 days. Your bot, or a client’s with their OK.',
+    sub: 'Your first check is free: 3 test customers use your support bot on 1 channel, tagged so none is billed, and your report lands within 4 days. Your bot, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-resolution-final',

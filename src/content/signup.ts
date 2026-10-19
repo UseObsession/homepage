@@ -118,8 +118,6 @@ const agency: SignupReader = {
       options: [
         { id: 'pitch', label: 'Pitch packs on prospects', for: 'pitch packs', run: 'Prospect intelligence and Competitor tracking on their next pitch: the prospect and its 3 rivals, a pitch pack before the meeting' },
         { id: 'checks', label: 'Checks on every client', for: 'client checks', run: '1 client, with written OK: Ad landing check, Delivery monitoring, Lead leaks or Mystery shopper, picked from their site' },
-        { id: 'handover', label: 'Account handovers', for: 'account handovers', run: 'Account handover on their newest client’s accounts, with the client’s written OK' },
-        { id: 'upsells', label: 'Upsells for each client', for: 'client upsells', run: 'Mystery shopper on 3 clients first, then Client upsells drafts' },
         { id: 'rivals', label: 'Rival reports to sell', for: 'rival reports', run: 'Competitor tracking and Email and SMS tracking on 1 client’s 3 rivals, the report under their name' },
         somethingElse,
       ],
@@ -179,7 +177,6 @@ const founder: SignupReader = {
         { id: 'release', label: 'Test every release', for: 'release tests', run: 'Website audit and Delivery monitoring on their sign up after the next release, and its first 14 days (Mystery shopper for a store)' },
         { id: 'rivals', label: 'Watch rivals', for: 'watching rivals', run: 'Competitor tracking on 3 rivals they name (Price watch for a store, Trial teardown for software)' },
         { id: 'agents', label: 'Check our AI agents', for: 'AI agent checks', run: 'The free AI agent check: Support bot, Voice agent or Sales agent check', offer: 'verify' },
-        { id: 'paid', label: 'Get paid and negotiate', for: 'getting paid and negotiating', run: 'Get paid on overdue invoices first, then Supplier quotes and Software renewals' },
         somethingElse,
       ],
     },
@@ -237,8 +234,8 @@ const sales: SignupReader = {
       ...firstJob,
       options: [
         { id: 'briefs', label: 'Briefs before calls', for: 'call briefs', run: 'Prospect intelligence: a brief on the account they name, 7 days before the call' },
-        { id: 'renewals', label: 'Renewals at risk', for: 'renewals at risk', run: 'Account watch on next quarter’s renewals, then Renewal negotiation' },
-        { id: 'grow', label: 'Growing accounts', for: 'growing accounts', run: 'Expansion offers and Business case on their 10 largest accounts' },
+        { id: 'renewals', label: 'Renewals at risk', for: 'renewals at risk', run: 'Account watch on next quarter’s renewals' },
+        { id: 'grow', label: 'Growing accounts', for: 'growing accounts', run: 'Account watch on their 10 largest accounts' },
         { id: 'battle', label: 'Battlecards', for: 'battlecards', run: 'Trial teardown and Competitor tracking on their top 3 rivals' },
         { id: 'sdr', label: 'Check our AI SDR', for: 'AI SDR checks', run: 'Outbound agent check: declared test prospects on their AI SDR’s lists, with their OK', offer: 'verify' },
         somethingElse,
@@ -385,7 +382,6 @@ const developer: SignupReader = {
       helper: 'Scripts like Playwright count as your own.',
       options: [
         { id: 'scripts', label: 'Our own scripts' },
-        { id: 'paid', label: 'A paid testing service' },
         { id: 'staff', label: 'Staff inboxes and phones' },
         { id: 'none', label: 'We haven’t needed them' },
         somethingElse,
@@ -412,7 +408,6 @@ const other: SignupReader = {
         { id: 'rivals', label: 'Watch rivals', for: 'watching rivals', run: 'Competitor tracking, agreed on the set up email' },
         { id: 'journeys', label: 'Check our own journeys', for: 'checks on your own journeys', run: 'Mystery shopper, agreed on the set up email' },
         { id: 'agents', label: 'Check our AI agents', for: 'AI agent checks', run: 'The free AI agent check', offer: 'verify' },
-        { id: 'paid', label: 'Get paid and negotiate', for: 'getting paid and negotiating', run: 'Get paid, agreed on the set up email' },
         somethingElse,
       ],
     },

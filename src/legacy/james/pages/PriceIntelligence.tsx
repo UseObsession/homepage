@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { study } from '../../../content/usecases/member-prices-for-price-intelligence'
 import { Faq, FinalCta, SectionHead } from '../components/Blocks'
 import { Reveal } from '../components/Reveal'
 import { at } from '../components/stagger'
@@ -6,7 +7,9 @@ import { Count, Step, Win } from '../components/UseCase'
 import './PriceIntelligence.css'
 
 /* Use case: a price intelligence firm adds what retailers show only after sign up to the sources it already collects.
-   Everything here is an illustration. The firm, its client, the retailers, products, prices and figures are made up. */
+   The firm, its client, the retailers, products, prices and figures are made up, and the small print says so.
+   The hero's headline and sub, the questions and the small print come from the site's content file for this address, so
+   the head and the JSON-LD say what the page says. The hero's flow is his, and the content file's hero.flow mirrors it. */
 
 const basket = [
   { product: 'Brand A macinato 250 g', ean: '80…0417', pub: '3,19 €', member: '2,69 €', gap: '−16%' },
@@ -63,21 +66,8 @@ export function PriceIntelligence() {
             <span className="hero-pill">
               Use cases <b aria-hidden="true">/</b> Member prices for price intelligence
             </span>
-            <h1 className="h1 pr-h1">The prices retailers only show after sign up</h1>
-            <p className="lede">
-              You already watch flyers, shelves, online prices and newsletters. Obsession adds what sits behind the sign up: member
-              prices, welcome coupons and the offers that arrive days later, collected by test customers and delivered to your platform
-              with the proof.
-            </p>
-            <ul className="uc-meta">
-              <li className="chip">Example: a price intelligence firm</li>
-              <li className="chip">Its client: a coffee brand</li>
-              <li className="chip">120 Italian grocery retailers</li>
-            </ul>
-            <p className="uc-note">
-              <span className="tag warn">Illustration</span>
-              The firm, its client, the retailers, the products, the prices and the numbers on this page are made up.
-            </p>
+            <h1 className="h1 pr-h1">{study.hero.headline}</h1>
+            <p className="lede">{study.hero.sub}</p>
           </div>
           <div className="hero-stage">
             <div className="uc-flow">
@@ -179,11 +169,11 @@ export function PriceIntelligence() {
             </div>
             <div className="ours">
               <p className="kicker">Obsession runs</p>
-              <h3 className="h3">The identities, the inboxes and the waiting.</h3>
+              <h3 className="h3">The members, the inboxes and the waiting.</h3>
               <ul>
-                <li>A test customer per retailer and city, with its own inbox, Italian mobile number and browser</li>
+                <li>An AI member per retailer and city, with its own inbox, Italian mobile number and browser</li>
                 <li>The sign ups, the store choice and the readings on your basket</li>
-                <li>Inboxes and phones kept open for weeks</li>
+                <li>Inboxes and phones kept open for as long as you watch</li>
                 <li>A screenshot or the message behind every observation</li>
               </ul>
             </div>
@@ -288,10 +278,9 @@ export function PriceIntelligence() {
                         <span className="uc-cb on" style={at(4)} />
                         Prices after choosing a store
                       </li>
-                      <li className="locked">
-                        <span className="uc-cb lock" />
+                      <li>
+                        <span className="uc-cb" />
                         Basket and delivery fees
-                        <span className="tag idle">Needs the retailer’s OK</span>
                       </li>
                     </ul>
                   </div>
@@ -381,7 +370,7 @@ export function PriceIntelligence() {
           <Step
             n={4}
             title="Each retailer gets its own member"
-            line="A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would, says it’s automated, and never buys anything."
+            line="A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI."
           >
             <Win title="Corvalle · Milano">
               <div className="uc-s6">
@@ -393,7 +382,7 @@ export function PriceIntelligence() {
                   <dl className="uc-idrows">
                     <div>
                       <dt>Identity</dt>
-                      <dd>Declared as automated</dd>
+                      <dd>AI, says so to a person</dd>
                     </div>
                     <div>
                       <dt>Inbox</dt>
@@ -424,7 +413,7 @@ export function PriceIntelligence() {
                   </ol>
                 </div>
                 <div className="uc-browser">
-                  <div className="uc-url">corvalle.it/spesa/caffe</div>
+                  <div className="uc-url">corvalle.example/spesa/caffe</div>
                   <div className="pr-shop">
                     <div className="pr-shop-bar">
                       <b>Corvalle</b>
@@ -681,35 +670,8 @@ export function PriceIntelligence() {
 
       <section className="section">
         <div className="wrap wrap-sm">
-          <SectionHead kicker="Questions" title="What price intelligence teams ask." />
-          <Faq
-            items={[
-              {
-                q: 'Do you need access to our platform?',
-                a: 'No. We deliver a feed, by file, API or webhook, with the fields you choose. It loads into your platform like any other source.',
-              },
-              {
-                q: 'Who matches products to our database?',
-                a: 'Your team, as it does today. We send the product as the retailer shows it, the EAN when the page carries one, and the screenshot, so your product specialists can link it.',
-              },
-              {
-                q: 'What about loyalty cards that need a tax code or a card from the store?',
-                a: 'We don’t invent identity details. Where a programme needs a codice fiscale or an in store card, the member stops there and reports it, so you know exactly where the wall is.',
-              },
-              {
-                q: 'Do the test members buy anything?',
-                a: 'No. They join, choose a store and read what members see. Basket and delivery fees are read only with the retailer’s written OK.',
-              },
-              {
-                q: 'How often does it run?',
-                a: 'Weekly to follow promotion cycles, daily around key dates such as Black Friday, or any rhythm you set per retailer.',
-              },
-              {
-                q: 'Will our clients see Obsession?',
-                a: 'Only if you want them to. The data comes to you, and you decide how it appears in your platform.',
-              },
-            ]}
-          />
+          <SectionHead kicker="Questions" title={study.faq.heading} />
+          <Faq items={study.faq.items} />
         </div>
       </section>
 
@@ -718,7 +680,7 @@ export function PriceIntelligence() {
           <Reveal className="card">
             <Link to="/recipes/price-watch">
               <span className="kicker">The recipe</span>
-              <span className="h3">Price and promotion watch</span>
+              <span className="h3">Price watch</span>
               <span className="muted">Prices, offers and terms as a customer sees them, on the schedule you set.</span>
               <span className="uc-more-go">Learn more →</span>
             </Link>
@@ -731,11 +693,7 @@ export function PriceIntelligence() {
               <span className="uc-more-go">See it →</span>
             </Link>
           </Reveal>
-          <p className="uc-fine">
-            About this page: it illustrates how the product works. The firm, its client, the retailers, the products, the prices and
-            every figure are made up, and no real retailer’s prices or offers are shown. Basket and delivery fees are read only with the
-            retailer’s OK.
-          </p>
+          <p className="uc-fine">{study.fine}</p>
         </div>
       </section>
 

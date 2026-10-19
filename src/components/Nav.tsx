@@ -366,7 +366,8 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     html.style.overflow = 'hidden'
     const others = navEl?.parentElement ? Array.from(navEl.parentElement.children).filter((n) => n !== navEl) : []
     others.forEach((n) => n.setAttribute('inert', ''))
-    const raf = requestAnimationFrame(() => focusables(sheetRef.current)[0]?.focus())
+    /* preventScroll: the sheet is still sliding in from the side, and focusing into it would scroll the page sideways. */
+    const raf = requestAnimationFrame(() => focusables(sheetRef.current)[0]?.focus({ preventScroll: true }))
 
     const onKey = (e: globalThis.KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -731,6 +732,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
 
         <div className="ob-nav__end">
           <ThemeToggle className="s-nav__theme" />
+          <CtaLink cta={nav.github} className="ob-btn ob-btn--sm ob-btn--secondary s-nav__github" onClick={close} />
           <CtaLink
             cta={cta}
             label={cta.bar}
@@ -825,6 +827,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
         </div>
 
         <div className="ob-mnav__foot s-mnav__foot">
+          <CtaLink cta={nav.github} className="ob-btn ob-btn--lg ob-btn--block ob-btn--secondary" onClick={close} />
           <CtaLink cta={cta} className="ob-btn ob-btn--lg ob-btn--block" onClick={close} />
         </div>
       </div>

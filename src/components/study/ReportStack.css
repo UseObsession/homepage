@@ -1,0 +1,169 @@
+/* The report stack (ReportStack.tsx): client reports on the receipt's paper (styles/v5.css --v5-paper), the front
+   one in full, 3 more fanned behind it. Ink only: a journey that came back is an outlined pill, a gap is the ink
+   filled one, a journey the store doesn't offer is a quiet word; the stamp sits beside the score. On a phone the
+   front page stands alone, with the next report's top edge behind it. */
+
+.s-rpt {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  text-align: left;
+  /* The fan is sized to stay inside the figure at every width (below); this only keeps a turned corner's last pixels
+     from widening the page. */
+  overflow-x: clip;
+}
+
+.s-rpt-fan {
+  position: relative;
+  width: min(100%, 540px);
+  /* Room above the front page for the report behind it to show its top edge, and below it for the turned pages. */
+  margin: 46px 0 34px;
+}
+
+.s-rpt-page {
+  background: var(--v5-paper);
+  color: var(--v5-paper-ink);
+  border-radius: 6px;
+  box-shadow: var(--v5-paper-shadow);
+  padding: 24px 28px 26px;
+  font: 400 13px / 1.45 var(--ob-font-sans);
+}
+
+/* ---- The reports behind: each shows its store and verdict on the edge that stays in view ---- */
+.s-rpt-back { position: absolute; inset: 0; overflow: hidden; }
+.s-rpt-back--l { z-index: 2; transform: translate(-44%, 26px) rotate(-5deg); }
+.s-rpt-back--r { z-index: 2; transform: translate(44%, 26px) rotate(5deg); text-align: right; }
+.s-rpt-back--c { z-index: 1; transform: translateY(-46px) scale(0.94); padding-top: 12px; text-align: center; }
+.s-rpt-back--l > *,
+.s-rpt-back--r > * { max-width: 200px; }
+/* Pushed to the right edge, the 1 in view; 2 classes, so it wins over each line's own margins. */
+.s-rpt-back.s-rpt-back--r > * { margin-left: auto; }
+.s-rpt-back--r .s-rpt-h { justify-content: flex-end; }
+.s-rpt-back--c .s-rpt-h,
+.s-rpt-back--c .s-rpt-lines { display: none; }
+.s-rpt-back--c > p { display: inline; }
+.s-rpt-back--c .s-rpt-back-v::before { content: ' · '; }
+.s-rpt-back-store { margin: 14px 0 4px; font: 600 15px / 1.3 var(--ob-font-mono); }
+.s-rpt-back-v { margin: 0; color: var(--v5-paper-ink-2); }
+.s-rpt-back--c .s-rpt-back-store { font-size: 13px; }
+/* The rest of a report behind, as ruled lines: it reads as a page, not as words to read. */
+.s-rpt-lines {
+  display: block;
+  height: 210px;
+  margin-top: 22px;
+  background: repeating-linear-gradient(to bottom, var(--v5-paper-line) 0 1px, transparent 1px 30px);
+  opacity: 0.8;
+}
+
+/* ---- The front report ---- */
+.s-rpt-front { position: relative; z-index: 3; }
+.s-rpt-h {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--v5-paper-line);
+}
+.s-rpt-brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: -0.01em; }
+.s-rpt-brand i { width: 14px; height: 14px; border-radius: 3px; background: var(--v5-paper-ink); }
+.s-rpt-kind { font: 500 11.5px / 1.2 var(--ob-font-mono); color: var(--v5-paper-ink-2); }
+.s-rpt-store { margin: 16px 0 2px; font: 600 18px / 1.25 var(--ob-font-mono); letter-spacing: -0.01em; }
+.s-rpt-about { margin: 0; color: var(--v5-paper-ink-2); font-size: 12.5px; }
+.s-rpt-score { margin: 16px 0 10px; display: flex; align-items: baseline; gap: 10px; }
+.s-rpt-score b { font: 600 38px / 1 var(--ob-font-sans); letter-spacing: -0.035em; font-variant-numeric: tabular-nums; }
+.s-rpt-score span { font-size: 14px; color: var(--v5-paper-ink-2); }
+
+.s-rpt-rows { display: grid; }
+.s-rpt-row {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--v5-paper-line);
+}
+.s-rpt-k { font-weight: 500; }
+.s-rpt-verdict { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; font: 600 11.5px / 1.3 var(--ob-font-mono); }
+.s-rpt-row--ok .s-rpt-verdict { box-shadow: inset 0 0 0 1px var(--v5-paper-ink-2); }
+.s-rpt-row--ok .s-rpt-verdict::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.s-rpt-row--gap .s-rpt-verdict { background: var(--v5-paper-ink); color: var(--v5-paper); }
+.s-rpt-row--none .s-rpt-verdict { padding-inline: 0; font-weight: 400; color: var(--v5-paper-ink-2); }
+.s-rpt-v { color: var(--v5-paper-ink-2); font-size: 12.5px; }
+.s-rpt-row--gap .s-rpt-v { color: var(--v5-paper-ink); font-weight: 500; }
+
+/* The gap: what happened, the receipt behind it, and the fix waiting for the agency's OK. */
+.s-rpt-gap {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--v5-paper-ink) 5%, var(--v5-paper));
+  border: 1px solid var(--v5-paper-line);
+  display: grid;
+  gap: 6px;
+}
+.s-rpt-gap p { margin: 0; }
+.s-rpt-gap-h { font-weight: 700; }
+.s-rpt-fact { font: 500 13px / 1.5 var(--ob-font-mono); }
+.s-rpt-receipt { font-size: 12px; color: var(--v5-paper-ink-2); }
+.s-rpt-fix { font-size: 13px; }
+
+/* The stamp sits at the end of the score's line, beside the verdict it sums up. */
+.s-rpt .s-rpt-stamp { margin-left: auto; align-self: center; font-size: 13px; padding: 6px 9px 5px; color: var(--v5-paper-ink); }
+
+.s-rpt-cap { margin: 0; font: 500 13px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); text-align: center; }
+
+/* Played (data-run, set once it comes into view): the reports behind fan out from under the front one, the front's
+   journeys land in order, then its gap, then the stamp. */
+@media (prefers-reduced-motion: no-preference) {
+  .s-rpt[data-run] .s-rpt-back { animation: s-rpt-fan 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .s-rpt[data-run] .s-rpt-back--r { animation-delay: 0.08s; }
+  .s-rpt[data-run] .s-rpt-back--c { animation-delay: 0.16s; }
+  .s-rpt[data-run] .s-rpt-row { animation: s-rpt-in 0.45s ease-out both; animation-delay: calc(0.7s + var(--s-rpt-i, 0) * 0.18s); }
+  .s-rpt[data-run] .s-rpt-gap { animation: s-rpt-in 0.5s ease-out 1.55s both; }
+  .s-rpt[data-run] .s-rpt-stamp { animation: s-rpt-stamp 0.42s cubic-bezier(0.2, 1.4, 0.4, 1) 2.15s both; }
+}
+@keyframes s-rpt-fan {
+  from { opacity: 0; transform: none; }
+}
+@keyframes s-rpt-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes s-rpt-stamp {
+  from { opacity: 0; transform: rotate(-6deg) scale(1.6); }
+  to { opacity: 1; transform: rotate(-6deg) scale(1); }
+}
+
+/* Narrower screens fan the reports behind less, so their turned edges stay inside the figure; on a tablet they only
+   peek out from behind the front one, as a stack. */
+@media (max-width: 1180px) {
+  .s-rpt-back--l { transform: translate(-36%, 26px) rotate(-5deg); }
+  .s-rpt-back--r { transform: translate(36%, 26px) rotate(5deg); }
+  .s-rpt-back--l > *,
+  .s-rpt-back--r > * { max-width: 170px; }
+}
+@media (max-width: 1100px) {
+  .s-rpt-back--l { transform: translate(-31%, 24px) rotate(-4deg); }
+  .s-rpt-back--r { transform: translate(31%, 24px) rotate(4deg); }
+  .s-rpt-back--l > *,
+  .s-rpt-back--r > * { max-width: 140px; }
+}
+@media (max-width: 1000px) {
+  .s-rpt-back--l { transform: translate(-9%, 18px) rotate(-3deg); }
+  .s-rpt-back--r { transform: translate(9%, 18px) rotate(3deg); }
+  .s-rpt-back--l > *,
+  .s-rpt-back--r > * { visibility: hidden; }
+}
+
+/* A phone: the front report alone, the next one's top edge behind it. */
+@media (max-width: 760px) {
+  .s-rpt-back--l,
+  .s-rpt-back--r { display: none; }
+  .s-rpt-page { padding: 20px 18px 22px; }
+  .s-rpt-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .s-rpt-v { grid-column: 1 / -1; }
+}

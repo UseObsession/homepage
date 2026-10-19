@@ -20,6 +20,23 @@ const RM = '(prefers-reduced-motion: reduce)'
 const WAIT_MS = 2000
 const PAINT_MS = 300
 
+/* The October sections that play once in view (components/v5, [data-v5-play]): the page marks itself as scripted, so
+   their CSS may hold them at their start, and each is set playing (data-on) as it comes into view, before the app. */
+document.documentElement.classList.add('v5-js')
+if ('IntersectionObserver' in window) {
+  const v5 = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue
+        v5.unobserve(e.target)
+        e.target.setAttribute('data-on', '')
+      }
+    },
+    { rootMargin: '0px 0px -8% 0px', threshold: 0.3 },
+  )
+  document.querySelectorAll('[data-v5-play]').forEach((el) => v5.observe(el))
+}
+
 if (!matchMedia(RM).matches && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver(
     (entries) => {

@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
-import { FinalCta, SectionHead } from '../components/Blocks'
+import { study } from '../../../content/usecases/prospect-intelligence-with-clay'
+import { Faq, FinalCta, SectionHead } from '../components/Blocks'
 import { Mark } from '../components/Logo'
 import { Reveal } from '../components/Reveal'
 import { at } from '../components/stagger'
 import { Count, Play, Step, Win } from '../components/UseCase'
 import { allRecipeIds, recipes, type RecipeId } from '../content/recipes'
 
-/* Use case: an outbound agency runs prospect research for one client from a Clay table.
-   Everything here is an illustration. The agency, client, brands, people and numbers are made up. */
+/* Use case: an outbound agency runs prospect intelligence for one client from a Clay table.
+   The agency, client, brands, people and numbers are made up, and the small print says so.
+   The hero's headline and sub, the questions and the small print come from the site's content file for this address, so
+   the head and the JSON-LD say what the page says. The hero's flow is his, and the content file's hero.flow mirrors it. */
 
 const brands = [
   { name: 'Tidewren Swim', gap: 'No texts after opt in', tone: 'bad' },
@@ -69,26 +72,14 @@ export function ProspectIntelligence() {
             <span className="hero-pill">
               Use cases <b aria-hidden="true">/</b> Prospect intelligence with Clay
             </span>
-            <h1 className="h1">Proof of a real gap at every brand on your list</h1>
-            <p className="lede">
-              Obsession becomes a customer of each brand your client wants to win, watches what happens, and writes the facts back into
-              your Clay table.
-            </p>
-            <ul className="uc-meta">
-              <li className="chip">Example: an outbound agency</li>
-              <li className="chip">Its client: an SMS app</li>
-              <li className="chip">300 UK Shopify brands</li>
-            </ul>
-            <p className="uc-note">
-              <span className="tag warn">Illustration</span>
-              The agency, its client, the brands, the people and the numbers on this page are made up.
-            </p>
+            <h1 className="h1">{study.hero.headline}</h1>
+            <p className="lede">{study.hero.sub}</p>
           </div>
           <div className="hero-stage">
             <div className="uc-flow">
               <div className="uc-node">
                 <span className="kicker">Clay in</span>
-                <b>UK Shopify brands</b>
+                <b>UK ecommerce brands</b>
                 <ul>
                   {brands.map((b) => (
                     <li key={b.name}>{b.name}</li>
@@ -103,12 +94,12 @@ export function ProspectIntelligence() {
               </div>
               <div className="uc-node mid">
                 <span className="kicker">Obsession</span>
-                <b>A shopper for each brand</b>
+                <b>A customer at each brand</b>
                 <ul>
                   <li>Its own inbox</li>
                   <li>A UK mobile number</li>
                   <li>Its own browser</li>
-                  <li>A control message and a second run</li>
+                  <li>Says it’s AI</li>
                 </ul>
                 <span className="uc-node-foot">
                   <span className="uc-live" /> Watching for 48 hours
@@ -146,7 +137,7 @@ export function ProspectIntelligence() {
             <Reveal as="li" className="card">
               <h3 className="h3">Everyone has the same signals</h3>
               <p className="muted">
-                Store Leads and BuiltWith are open to every agency, so the brands you write to hear “noticed you use Klaviyo” every week.
+                Every agency can buy the same install data, so the brands you write to hear the same “noticed you use” line every week.
               </p>
             </Reveal>
             <Reveal as="li" className="card">
@@ -163,7 +154,7 @@ export function ProspectIntelligence() {
           </ul>
           <Reveal className="uc-gives">
             <p>
-              <b>Obsession gets you a dated fact about each brand,</b> collected as a customer, about the exact problem your client’s
+              <b>As its customer, you get a dated fact about each brand,</b> with its receipt, about the exact problem your client’s
               product fixes.
             </p>
           </Reveal>
@@ -176,7 +167,7 @@ export function ProspectIntelligence() {
             <ul>
               <li>
                 <b>Your list is already there</b>
-                Each client’s TAM is a Clay table, built from your ecommerce data, Store Leads and BuiltWith.
+                Each client’s TAM is a Clay table, built from your ecommerce and install data.
               </li>
               <li>
                 <b>Facts come back as columns</b>
@@ -196,7 +187,7 @@ export function ProspectIntelligence() {
           <SectionHead
             kicker="Step by step"
             title="From recipe to facts in Clay."
-            lede="How the agency in this example runs it for one client, an SMS app, across 300 UK Shopify brands."
+            lede="How the agency in this example runs it for one client, an SMS app, across 300 UK ecommerce brands."
           />
 
           <div className="uc-phase first">
@@ -218,14 +209,14 @@ export function ProspectIntelligence() {
               <ul className="uc-list uc-seq">
                 <li style={at(0)}>
                   <b>
-                    Reviews app prospects<small>From the Prospect research recipe</small>
+                    Reviews app prospects<small>From the Prospect intelligence recipe</small>
                   </b>
                   <span>120 brands</span>
                   <span className="tag idle">Weekly</span>
                 </li>
                 <li style={at(1)}>
                   <b>
-                    Pitch: helpdesk prospect<small>From the Speed to lead recipe</small>
+                    Pitch: helpdesk prospect<small>From the Lead leaks recipe</small>
                   </b>
                   <span>25 brands</span>
                   <span className="tag idle">Once</span>
@@ -247,7 +238,7 @@ export function ProspectIntelligence() {
             line="A recipe sets up the checks for one job. Launch it as it is, change anything you like, or skip recipes and describe what you want to know in your own words."
             pick={
               <>
-                <b>The agency picks Prospect research.</b> It proves a gap at companies you’re about to write to. Competitor tracking is for
+                <b>The agency picks Prospect intelligence.</b> It proves a gap at companies you’re about to write to. Competitor tracking is for
                 watching rivals over time.
               </>
             }
@@ -267,7 +258,7 @@ export function ProspectIntelligence() {
                 </li>
               </ul>
               <div className="uc-sets">
-                <b>Prospect research sets up for each company:</b>
+                <b>Prospect intelligence sets up for each company:</b>
                 <span>its own inbox</span>
                 <span>a UK mobile number</span>
                 <span>a browser</span>
@@ -282,7 +273,7 @@ export function ProspectIntelligence() {
             line="Choose the gap your client’s product closes and what counts as a gap. Each check has its own deadline, and fixed rules decide every verdict, so the same evidence always gets the same answer."
             pick="Email sign up, SMS opt in and one support question, watched for 48 hours, then every week."
           >
-            <Win title="New watch · Prospect research · Configure">
+            <Win title="New watch · Prospect intelligence · Configure">
               <div className="uc-cfg">
                 <div>
                   <div className="uc-fld">
@@ -312,10 +303,9 @@ export function ProspectIntelligence() {
                         <span className="uc-cb" />
                         Live chat
                       </li>
-                      <li className="locked">
-                        <span className="uc-cb lock" />
+                      <li>
+                        <span className="uc-cb" />
                         Basket, checkout and purchase
-                        <span className="tag idle">Needs the brand’s OK</span>
                       </li>
                     </ul>
                   </div>
@@ -394,7 +384,7 @@ export function ProspectIntelligence() {
                 <p className="uc-lab">Bring companies in</p>
                 <dl className="uc-kv">
                   <dt>Table</dt>
-                  <dd className="uc-field uc-dd">UK Shopify brands</dd>
+                  <dd className="uc-field uc-dd">UK ecommerce brands</dd>
                   <dt>View</dt>
                   <dd className="uc-field uc-dd">SMS popup is yes</dd>
                   <dt>Website column</dt>
@@ -447,7 +437,7 @@ export function ProspectIntelligence() {
             <Win title="New watch · Review">
               <dl className="uc-sum uc-seq">
                 {[
-                  ['Recipe', 'Prospect research'],
+                  ['Recipe', 'Prospect intelligence'],
                   ['Watching', 'SMS app prospects'],
                   ['Brands', '300 now, plus new rows from the Clay view'],
                   ['Checks', 'Email sign up, SMS opt in, one support question'],
@@ -476,9 +466,9 @@ export function ProspectIntelligence() {
           <Step
             n={6}
             title="Each brand gets its own shopper"
-            line="A real inbox, a real UK mobile number and its own browser, used for that one brand only. It signs up the way a customer would and saves a screenshot at every step. It always says it’s automated."
+            line="A real inbox, a real UK mobile number and its own browser, used for that one brand only. It signs up the way a customer would and saves a screenshot at every step. It says it’s AI when it talks to a person."
           >
-            <Win title="UK Shopify TAM · Tidewren Swim">
+            <Win title="UK ecommerce TAM · Tidewren Swim">
               <div className="uc-s6">
                 <div className="uc-id">
                   <div className="uc-row uc-between">
@@ -488,7 +478,7 @@ export function ProspectIntelligence() {
                   <dl className="uc-idrows">
                     <div>
                       <dt>Identity</dt>
-                      <dd>Declared as automated</dd>
+                      <dd>AI, says so to a person</dd>
                     </div>
                     <div>
                       <dt>Inbox</dt>
@@ -519,7 +509,7 @@ export function ProspectIntelligence() {
                   </ol>
                 </div>
                 <div className="uc-browser">
-                  <div className="uc-url">tidewren.co.uk</div>
+                  <div className="uc-url">tidewren.example</div>
                   <div className="uc-page">
                     <div className="uc-pop">
                       <b>10% off your first suit</b>
@@ -544,13 +534,13 @@ export function ProspectIntelligence() {
           <Step
             n={7}
             title="It waits, up to 48 hours"
-            line="Every email, text and reply lands in that brand’s own inbox and phone. When a deadline passes with nothing, it tries again from a fresh number before calling it. Brands added later run on their own clock."
+            line="Every email, text and reply lands in that brand’s own inbox and phone. With rechecks on, a deadline that passes with nothing gets a second run from a fresh number before it counts. Brands added later run on their own clock."
           >
-            <Win title="Watches · UK Shopify TAM">
+            <Win title="Watches · UK ecommerce TAM">
               <div className="uc-row">
-                <span className="uc-mh">UK Shopify TAM</span>
+                <span className="uc-mh">UK ecommerce TAM</span>
                 <span className="tag idle">Hour 30 of 48</span>
-                <span className="uc-small">From the Prospect research recipe</span>
+                <span className="uc-small">From the Prospect intelligence recipe</span>
               </div>
               <div className="uc-track">
                 <i style={{ width: '62.5%' }} />
@@ -610,9 +600,9 @@ export function ProspectIntelligence() {
           <Step
             n={8}
             title="Results after 48 hours"
-            line="A finding for every brand. A missed deadline only counts as a gap once a control message and a second run from a fresh number confirm it."
+            line="A finding for every brand. With rechecks on, as here, a missed deadline counts as a gap only once the control text and the second run confirm it."
           >
-            <Win title="Watches · UK Shopify TAM · Results">
+            <Win title="Watches · UK ecommerce TAM · Results">
               <ul className="uc-tiles">
                 <li className="bad">
                   <small>Opted in for texts, none sent</small>
@@ -707,7 +697,7 @@ export function ProspectIntelligence() {
                   ['Tue 15 Sep 10:14', 'Signed up with an email and a UK mobile'],
                   ['Tue 15 Sep 10:15', 'Welcome email after 38 s'],
                   ['Tue 15 Sep 10:20', 'Control text to the same number arrived in 4 s'],
-                  ['Tue 15 Sep 10:31', 'Asked support about sizing, declared as automated'],
+                  ['Tue 15 Sep 10:31', 'Asked support about sizing, said it’s AI'],
                   ['Wed 16 Sep 10:14', 'No text after 24 hours; second run from a fresh number'],
                   ['Wed 16 Sep 12:40', 'Support replied after 26 hours'],
                   ['Thu 17 Sep 10:14', '48 hours: 3 emails, 0 texts on either number'],
@@ -743,7 +733,7 @@ export function ProspectIntelligence() {
             title="The facts land back in Clay"
             line="Four new columns on the same rows: the gap, the date it was seen, what happened in one plain sentence, and the proof link. Obsession reports what happened; your own Clay prompts decide what to say."
           >
-            <Win title="Clay table · UK Shopify brands">
+            <Win title="Clay table · UK ecommerce brands">
               <div className="uc-table uc-claytable">
                 <table>
                   <thead>
@@ -789,7 +779,7 @@ export function ProspectIntelligence() {
                 <p>
                   <b>Obsession</b> <span className="uc-small">#sms_app_prospects</span>
                   <br />
-                  UK Shopify TAM: the first 300 brands are done. <b>61</b> opted in for texts and never got one, and <b>19</b> never sent a
+                  UK ecommerce TAM: the first 300 brands are done. <b>61</b> opted in for texts and never got one, and <b>19</b> never sent a
                   welcome email. New rows report as they finish. The facts and proof are in your Clay table.
                 </p>
               </div>
@@ -866,11 +856,18 @@ export function ProspectIntelligence() {
       </section>
 
       <section className="section">
+        <div className="wrap wrap-sm">
+          <SectionHead kicker="Questions" title={study.faq.heading} />
+          <Faq items={study.faq.items} />
+        </div>
+      </section>
+
+      <section className="section">
         <div className="wrap uc-more">
           <Reveal className="card">
-            <Link to="/recipes/prospect-research">
+            <Link to="/recipes/prospect-intelligence">
               <span className="kicker">The recipe</span>
-              <span className="h3">Prospect research</span>
+              <span className="h3">Prospect intelligence</span>
               <span className="muted">Every check it can run, and everything you can change.</span>
               <span className="uc-more-go">Learn more →</span>
             </Link>
@@ -883,17 +880,13 @@ export function ProspectIntelligence() {
               <span className="uc-more-go">See it →</span>
             </Link>
           </Reveal>
-          <p className="uc-fine">
-            About this page: it illustrates how the product works. The agency, its client, the brands, the people, the phone number and every
-            figure are made up, and no real company’s results are shown. Basket, checkout and purchase checks run only with the brand’s OK.
-            Clay, Store Leads, BuiltWith and Klaviyo are trademarks of their owners, named here to describe where data comes from and goes.
-          </p>
+          <p className="uc-fine">{study.fine}</p>
         </div>
       </section>
 
       <FinalCta
         title="Try it on one client."
-        line="Join the waitlist, and we’ll run prospect research on 20 brands from one client’s list, with the facts back in your Clay table."
+        line="Join the waitlist, and we’ll run prospect intelligence on 20 brands from one client’s list, with the facts back in your Clay table."
         source="usecase-clay-final"
         withCompany={false}
       />

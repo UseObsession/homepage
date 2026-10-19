@@ -20,7 +20,7 @@ function page<P extends object = object>(file: string, name = file) {
 }
 const Home = page('Home')
 const Agencies = page('Agencies')
-const Founders = page('Founders')
+const Compare = page('Compare')
 const Sales = page('Sales')
 const Marketing = page('Marketing')
 const Developers = page('Developers')
@@ -46,7 +46,7 @@ const POSTS = new Set(catalog.posts.map((p) => p.slug))
 const PAGES: Record<string, LazyPage> = {
   '/': Home,
   '/agencies': Agencies,
-  '/founders': Founders,
+  '/compare': Compare,
   '/sales': Sales,
   '/marketing': Marketing,
   '/developers': Developers,
@@ -264,7 +264,7 @@ export function AppRoutes() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="agencies" element={<Agencies />} />
-        <Route path="founders" element={<Founders />} />
+        <Route path="compare" element={<Compare />} />
         <Route path="sales" element={<Sales />} />
         <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />

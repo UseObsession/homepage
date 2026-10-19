@@ -1,0 +1,18 @@
+/* When you might want something else (Parity.tsx): 1 row per tool, 3 columns on a wide screen (the name, when to pick
+   it, what it keeps), stacked on a phone. Hairlines between rows, no cards. */
+
+.v5-parity-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ob-line-subtle); }
+.v5-parity-row {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 5fr);
+  gap: clamp(16px, 3vw, 40px);
+  padding-block: 22px;
+  border-bottom: 1px solid var(--ob-line-subtle);
+}
+.v5-parity-tool { margin: 0; font: 600 17px / 1.35 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.v5-parity-job { margin: 0; font: 400 15.5px / 1.5 var(--ob-font-sans); color: var(--ob-text); }
+.v5-parity-data { margin: 0; font: 400 15px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+
+@media (max-width: 820px) {
+  .v5-parity-row { grid-template-columns: 1fr; gap: 6px; }
+}

@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function WinbackScreen() {
   return (
-    <div className="il appx-il app-winback"><div className="appx-fit"><div className="appx" role="img" aria-label="The Accounts page filtered to 4 accounts lost to a rival, each with the month it left and the date it renews with the rival. For Tarnfell Outdoor, 9 months on Rival A draw out as a timeline of checks every 2 weeks by a declared test customer, with 3 dated breaks and their captures, all from public sign ups: the welcome email stopped in March, a text unsubscribe was ignored in June, and an emailed code had already expired in August. A reopen note citing all 3 is drafted for you to send yourself, and the account turns to needs you.">
+    <div className="il appx-il app-winback"><div className="appx-fit"><div className="appx" role="img" aria-label="The Accounts page filtered to 4 accounts lost to a rival, each with the month it left and the date it renews with the rival. For Tarnfell Outdoor, 9 months on Rival A draw out as a timeline of checks every 2 weeks by a declared test customer, with 3 dated breaks and their captures, all from public sign ups: the welcome email stopped in March, a text unsubscribe was ignored in June, and an emailed code had already expired in August. A reopen note citing all 3 is drafted for you to send yourself, and the account turns to needs you. Rival A broke 3 times in 9 months. Reopen note cites all 3, yours to send.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Accounts</span>
@@ -15,7 +15,7 @@ export function WinbackScreen() {
           <div className="ax-ws"><i>Y</i>Your company</div>
           <nav className="ax-nav">
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
-            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Missions<em>24</em></a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>24</em></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
             <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 13.25h10.5M4.25 13.25V2.75h5.5v10.5M9.75 6.25h2v7" /><path d="M6.25 5.5h1.5M6.25 8h1.5M6.25 10.5h1.5" strokeLinecap="round" /></svg>Accounts</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M1.75 8S4 3.75 8 3.75 14.25 8 14.25 8 12 12.25 8 12.25 1.75 8 1.75 8Z" /><circle cx="8" cy="8" r="1.9" /></svg>Rivals</a>

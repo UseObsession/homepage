@@ -13,9 +13,8 @@ export type ScreenName = string
    ('vendor-agent'), resolution-check ('resolution'), ai-disclosure-check ('disclosure'), drift-watch ('drift'). */
 export type RecipeId =
   | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
-  | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'business-case' | 'get-paid' | 'supplier-quotes' | 'listings'
-  | 'checkout' | 'quotes' | 'renewal' | 'saves' | 'handover' | 'spend'
-  | 'expansion' | 'upsells' | 'reviews' | 'adcheck' | 'partners'
+  | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'listings'
+  | 'checkout' | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 /* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
@@ -31,6 +30,8 @@ export type Meta = {
   title: string
   description: string
   answer: string
+  /* The share image's line under the headline, where the page has its own (Home's). */
+  ogLine?: string
   ogImage?: string
   breadcrumb?: { name: string; path: string }[]
 }
@@ -309,8 +310,8 @@ export type Page = {
   how?: How
   /* Home only: how it works in 4 short steps, between who it's for and the gap. */
   howRail?: HowRail
-  gap: Gap
-  uses: Uses
+  gap?: Gap
+  uses?: Uses
   outcomes?: Outcomes
   kinds?: Kinds
   recipes?: { heading: string; ids: RecipeId[] }
@@ -328,16 +329,23 @@ export type Page = {
   rules?: Rules
   faq: Faq
   final: Final
+  /* The October rewrite's blocks (COPY.md). */
+  stage?: Stage
+  gapPair?: GapPair
+  life?: Life
+  targets?: Targets
+  compare?: Compare
+  ways?: Ways
+  openSource?: OpenSource
+  parity?: Parity
+  scale?: Scale
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
 export type RecipeGroup =
-  | 'Win customers'
-  | 'Keep and grow customers'
-  | 'Watch rivals'
+  | 'Watch other companies'
   | 'Check your own journeys'
-  | 'Get paid and negotiate'
   | 'Check your AI agents'
 export type Recipe = {
   id: RecipeId
@@ -458,6 +466,23 @@ export type Llms = { summary: string; intro: string }
 export type StudyStep = { title: string; line: string; example?: string }
 /* 1 stop on the way from the reader's list to their own tools (his hero diagram). */
 export type StudyNode = { label: string; title: string; items: string[]; foot: string }
+/* The hero's report stack (components/study/ReportStack): the client report the reader hands over, 1 per store, in
+   the reader's brand. The front page is 1 store's report in full: its journeys, each with its verdict, and its gap
+   with the receipt and the fix drafted. Behind it, the other stores' reports fan out, each showing its store and its
+   verdict. `rows[].state`: 'ok' came back, 'gap' did not, 'none' the store doesn't offer it. */
+export type StudyReport = {
+  label: string
+  brand: string
+  kind: string
+  store: string
+  about: string
+  score: { value: string; line: string }
+  rows: { k: string; state: 'ok' | 'gap' | 'none'; verdict: string; v: string }[]
+  gap: { heading: string; fact: string; receipt: string; fix: string }
+  stamp: string
+  behind: { store: string; verdict: string }[]
+  caption: string
+}
 export type StudyLink = { label: string; title: string; line: string; cta: Cta }
 
 /* 1 finding from a real audit, retold at an invented shop: `label` names the kind of store and the journey, `verdict`
@@ -486,6 +511,8 @@ export type UseCaseStudy = {
     /* Who the example is about, as chips, and the line that says it is made up (or none: `fine` says it). */
     example: { chips: string[]; note?: string }
     flow?: StudyNode[]
+    /* In place of the flow: the reader's report, 1 per store, in their brand (StudyReport). */
+    report?: StudyReport
     capture: Capture
     /* The second path under the form (the real report, for an example whose offer is a free audit). */
     secondary?: Cta
@@ -554,4 +581,115 @@ export type BlogIndexPage = {
   /* With no posts yet, the page points at the work itself instead (the use cases and the real run). */
   empty: { heading: string; line: string }
   final: Final
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   The October rewrite (COPY.md). Blocks for Home, the reader pages, Developers and Compare, drawn by src/components/v5.
+   Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
+   --------------------------------------------------------------------------------------------------------------------- */
+
+/* The hero's stage (components/v5/ReceiptStage): 1 company's journey as its customer, in 3 evidence cards (the ad, the
+   page, the inbox) and the receipt it ends on, with its stamp. Home cycles through `receipts`; a reader page shows its
+   own. Invented companies only, at .example addresses. */
+export type StageReceipt = {
+  /* What the story shows, in the buyer's words: the name on its button under the stage. */
+  topic: string
+  company: string
+  domain: string
+  monogram: string
+  ad: { source: string; text: string; cta: string }
+  page: { path: string; title: string; note: string }
+  /* The hop from the page to the inbox when the agent did something other than sign up, such as leaving a basket. */
+  did?: string
+  mail: { time: string; from: string; subject: string; tab: string }
+  rows: { k: string; v: string }[]
+  stamp: string
+  fact: string
+}
+export type Stage = { label: string; steps: [string, string, string]; receipts: StageReceipt[] }
+
+/* The gap, as a pair (components/v5/GapPair): what a tool that reads the outside shows, beside what a customer of that
+   company actually gets. */
+export type GapPair = {
+  heading: string
+  line?: string
+  tools: { label: string; items: string[] }
+  customer: { label: string; items: string[] }
+}
+
+/* How it works, as 1 customer agent's life (components/v5/AgentLife): the steps in order, and the timeline drawn above
+   them: when it signed up, how long it slept, and each time the world woke it. */
+/* A step's `lead` opens its line in bold (step 1's "Any input:"). */
+/* How it works (components/v5/AgentLife): a list fans out to many companies at once, then each lane wakes when its
+   company acts. `day` places a wake on the 90 day axis (0.006 is minutes after the start; the axis is logarithmic, so
+   the first days have room). `more` is the faded lane for the rest of the list: its dots, unlabelled. `phases` are the
+   4 steps under the axis, in order; a phase's `lead` opens its line in bold. */
+export type LifeLane = { name: string; wakes: { day: number; label: string }[] }
+export type Life = {
+  heading: string
+  line?: string
+  list: string
+  axis: { start: string; ticks: { day: number; label: string }[]; end: string }
+  lanes: LifeLane[]
+  more: { name: string; days: number[] }
+  phases: { title: string; line: string; lead?: string }[]
+}
+
+/* The 3 kinds of company a customer agent can be a customer of (components/v5/Targets): each with its app screen, 1
+   line and the recipes that start there. */
+export type Targets = {
+  heading: string
+  line?: string
+  items: { name: string; line: string; screen: ScreenName; to: string; recipes: RecipeId[] }[]
+  all: Cta
+}
+
+/* The comparison (components/v5/Compare). `cells` follow `cols` in order; the first column is Obsession. */
+export type CompareMark = 'yes' | 'part' | 'no'
+export type Compare = {
+  heading: string
+  line?: string
+  cols: { name: string; who: string }[]
+  rows: { label: string; cells: CompareMark[] }[]
+  legend: Record<CompareMark, string>
+  foot?: string
+  more?: Cta
+}
+
+/* The 4 ways in (components/v5/Ways): the same customer agents and record from our website, your own agent in a chat,
+   a workflow file, or code. Each way shows 1 real object: the platform's ask box, a chat, a file or a script. */
+export type Way =
+  | { tab: string; title: string; line: string; who: string; kind: 'platform'; ask: string; recipes: string[]; plan: { k: string; v: string }[] }
+  | { tab: string; title: string; line: string; who: string; kind: 'chat'; setup: string; you: string; calls: string[]; reply: string[]; proof: string }
+  | { tab: string; title: string; line: string; who: string; kind: 'code'; file: string; code: string }
+export type Ways = { heading: string; line?: string; ways: Way[]; verbs: { heading: string; items: { name: string; line: string }[] } }
+
+/* Open source (components/v5/OpenSource): what is in the code, what is the cloud. */
+/* `core.items` are the engine's capabilities, each a name and 1 technical line; `cloud.items` are short lines. */
+export type OpenSource = {
+  heading: string
+  line: string
+  core: { title: string; items: { name: string; line: string }[] }
+  cloud: { title: string; items: string[] }
+  cta: Cta
+  secondary?: Cta
+}
+
+/* Data parity (Compare page): for each tool, what its users do, and the data in the record that does it. */
+export type Parity = { heading: string; line?: string; items: { tool: string; job: string; data: string }[] }
+
+/* Home's scale section (COPY.md, "Scale"): 1 customer, then 1,000, then 100,000. `heading` is the full sentence (the
+   h2's label, read by screen readers and llms-full.txt); `counts` are what the headline shows at each step, after
+   `lead`. The 3 steps play on 1 stage: the first sign up learned, turned into a program, then run at scale. */
+export type ScaleKind = 'code' | 'question' | 'agent' | 'escalate'
+export type Scale = {
+  heading: string
+  lead: string
+  counts: [string, string, string]
+  line: string
+  steps: [{ title: string; line: string; label: string }, { title: string; line: string; label: string }, { title: string; line: string; label: string }]
+  learn: { url: string; field: string; trace: string[]; saved: string }
+  program: { kinds: Record<ScaleKind, string>; steps: { kind: ScaleKind; label: string }[]; routes: { heading: string; items: { label: string; share: number; line: string }[] } }
+  run: { total: number; unit: string; call: string; covered: string; square: string; toast: string }
+  principles: { title: string; line: string }[]
 }

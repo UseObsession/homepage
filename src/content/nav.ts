@@ -15,16 +15,10 @@ export type NavJob = { name: RecipeGroup; line: string; to: string; examples: Na
 /* A card in the Resources menu: who it is for (or what it is), its name, and what happened in 1 line. */
 export type NavCard = NavPage & { line: string; kicker: string }
 
-/* The 6 jobs, in the order the menu, the phone sheet, the footer and the Recipes index list them. Check your AI agents
-   is the 4th way in (content/ways.ts), and its recipes are a job of their own. */
-export const JOBS: RecipeGroup[] = [
-  'Win customers',
-  'Keep and grow customers',
-  'Watch rivals',
-  'Check your own journeys',
-  'Get paid and negotiate',
-  'Check your AI agents',
-]
+/* The 3 jobs, in the order the menu, the phone sheet, the footer and the Recipes index list them (COPY.md, "One
+   taxonomy"): who the customer agent is a customer of. Other companies (rivals, prospects, accounts), your own company,
+   and the AI agents you run. */
+export const JOBS: RecipeGroup[] = ['Watch other companies', 'Check your own journeys', 'Check your AI agents']
 
 /* Each job's anchor on /recipes (pages/Recipes gives each job's section this id). */
 export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
@@ -49,13 +43,10 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
    beachhead first: Prospect intelligence). Mystery shopper is the featured card, so its job shows 2 others. Check your
    AI agents leads to its own page, /verify, which lists its recipes; the other 5 lead to their section of /recipes. */
 const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
-  'Win customers': { line: 'Prove the gap before you pitch.', examples: ['prospect', 'quotes'] },
-  'Keep and grow customers': { line: 'See churn and growth coming.', examples: ['account-watch', 'saves'] },
-  'Watch rivals': { line: 'Every rival move, as it lands.', examples: ['competitor', 'prices'] },
-  'Check your own journeys': { line: 'Catch every break before a customer does.', examples: ['speed', 'checkout'] },
-  'Get paid and negotiate': { line: 'Get paid sooner and hold every price.', examples: ['get-paid', 'supplier-quotes'] },
+  'Watch other companies': { line: 'Every email, ad, price and trial, as their customer.', examples: ['competitor', 'prospect'] },
+  'Check your own journeys': { line: 'Find the break before a customer does.', examples: ['adcheck', 'speed'] },
   'Check your AI agents': {
-    line: 'Declared test customers check the AI agents you run.',
+    line: 'Test customers check the AI agents you run.',
     examples: ['support-bot', 'voice-agent'],
     to: ways.verify.to,
   },
@@ -82,13 +73,12 @@ export const nav = {
   home: 'Obsession home',
   skip: 'Skip to content',
   label: 'Main',
-  /* The readers, as plain links: who it is for comes first. Agencies are the beachhead. */
+  /* The readers, as plain links: who it is for comes first (COPY.md, "One taxonomy": 4 readers, by role). */
   readers: [
-    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client checked. Every pitch proven.' },
-    { id: 'founders', label: 'Founders', to: '/founders', line: 'Leads with a proven gap. QA on every release.' },
-    { id: 'sales', label: 'Sales', to: '/sales', line: 'Know each account as its customers do.' },
-    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every ad, launch and rival, seen as a customer.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'Build on the same agents in your own code.' },
+    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every rival ad, email and offer, seen as their customer.' },
+    { id: 'sales', label: 'Sales', to: '/sales', line: 'Know what each account does to its customers.' },
+    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client and prospect, checked as a customer.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'A customer at every company, for your agents.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
@@ -137,6 +127,8 @@ export const nav = {
   },
   /* The page's call to action. Pages without their own use this one. */
   cta: { label: 'Join the waitlist', to: '#join' } satisfies Cta,
+  /* The open source engine, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. */
+  github: { label: 'Star on GitHub', to: 'https://github.com/UseObsession' } satisfies Cta,
   menu: { open: 'Open menu', close: 'Close menu', sheet: 'Menu' },
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }

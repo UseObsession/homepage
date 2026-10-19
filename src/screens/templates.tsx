@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-templates"><div className="appx-fit"><div className="appx" role="img" aria-label="The Recipes page: a typed line for any task above the recipes, among them a Support bot check for your own AI agent. A person picks Mystery shopper, its setup sheet slides in with 2 client stores, a 4 step journey that always stops before payment, weekly runs and the report, and Approve and run starts setting up 8 agents.">
+    <div className="il appx-il app-templates"><div className="appx-fit"><div className="appx" role="img" aria-label="The Recipes page: a typed line for any task above the recipes, among them a Support bot check for your own AI agent. A person picks Mystery shopper, its setup sheet slides in with 2 client stores, a 4 step journey that stops before payment, weekly runs and the report, and Approve and run starts setting up 8 agents.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Recipes</span>
@@ -18,7 +18,7 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
           <div className="ax-ws"><i>Y</i>{ws.org}</div>
           <nav className="ax-nav">
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
-            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Missions<em>24</em></a>
+            <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>24</em></a>
             <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.5 9.5h3l1 2h3l1-2h3M2.5 9.5 4 3.5h8l1.5 6v3.25h-11Z" /></svg>Needs you<span className="ax-badge">3</span></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Records</a>
@@ -42,48 +42,48 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
             <span className="tp-ico"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M10.6 5.2 6 9.8a1.35 1.35 0 0 0 1.9 1.9l4.7-4.7a2.7 2.7 0 0 0-3.8-3.8L4.1 7.9a4 4 0 0 0 5.7 5.7l3.4-3.4" /></svg></span>
             <span className="ax-kbd">↵</span>
           </div>
-          {/* the 8 templates; the counts add up to the 24 missions in the sidebar */}
+          {/* the 8 templates; the counts add up to the 24 watches in the sidebar */}
           <div className="tp-grid">
             <div className="tp-card is-pick ax-in" style={{ '--d': '.14s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.6 7.25h10.8l-.85 8.6a1.5 1.5 0 0 1-1.5 1.35H6.95a1.5 1.5 0 0 1-1.5-1.35Z" /><path d="M7.5 9.6V6.25a2.5 2.5 0 0 1 5 0V9.6" /></svg><span className="tp-tile-on" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.6 7.25h10.8l-.85 8.6a1.5 1.5 0 0 1-1.5 1.35H6.95a1.5 1.5 0 0 1-1.5-1.35Z" /><path d="M7.5 9.6V6.25a2.5 2.5 0 0 1 5 0V9.6" /></svg></span></span>
               <p className="tp-tx"><b>Mystery shopper</b><span>4 test customers shop a store</span></p>
-              <span className="tp-use">6 missions</span>
+              <span className="tp-use">6 watches</span>
               <i className="tp-ring" aria-hidden="true" />
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.18s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="8.75" cy="8.75" r="5" /><path d="m12.4 12.4 4.35 4.35" /></svg></span>
               <p className="tp-tx"><b>Prospect intelligence</b><span>Joins prospects as a customer</span></p>
-              <span className="tp-use">5 missions</span>
+              <span className="tp-use">5 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.22s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.1h2.9l5.6-3.6v11l-5.6-3.6h-2.9Z" /><path d="M6.65 11.9 7.6 16h1.9" /><path d="M14.9 7.6a3.3 3.3 0 0 1 0 4.8" /></svg></span>
               <p className="tp-tx"><b>Ad tracking</b><span>Follows rivals’ public ads daily</span></p>
-              <span className="tp-use">4 missions</span>
+              <span className="tp-use">4 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.26s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2.75" y="3.75" width="14.5" height="12.5" rx="2" /><path d="M2.75 7.25h14.5" /><path d="m7.4 11.8 1.8 1.8 3.5-3.6" /></svg></span>
               <p className="tp-tx"><b>Website audit</b><span>Tests every form and booking link</span></p>
-              <span className="tp-use">3 missions</span>
+              <span className="tp-use">3 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.30s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 3.75h11a1.75 1.75 0 0 1 1.75 1.75v7a1.75 1.75 0 0 1-1.75 1.75H9.25l-3.5 2.75v-2.75H4.5a1.75 1.75 0 0 1-1.75-1.75v-7A1.75 1.75 0 0 1 4.5 3.75Z" /><path d="m7.25 9 1.9 1.9 3.6-3.6" /></svg></span>
               <p className="tp-tx"><b>Support bot check</b><span>Asks your bot what customers ask</span></p>
-              <span className="tp-use">2 missions</span>
+              <span className="tp-use">2 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.34s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2.75" y="3.75" width="10.5" height="7.75" rx="1.5" /><path d="m3.4 4.6 4.6 3.5 4.6-3.5" /><path d="M12.6 12.75h2.65a2 2 0 0 1 0 4h-1.1l-1.9 1.4v-1.5a2 2 0 0 1 .35-3.9Z" /></svg></span>
               <p className="tp-tx"><b>Email and SMS tracking</b><span>Logs every email and text</span></p>
-              <span className="tp-use">2 missions</span>
+              <span className="tp-use">2 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.38s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.25 4.5v5.2a1 1 0 0 0 .3.7l6.3 6.3a1 1 0 0 0 1.4 0l5.2-5.2a1 1 0 0 0 0-1.4l-6.3-6.3a1 1 0 0 0-.7-.3H4.5a1.25 1.25 0 0 0-1.25 1Z" /><circle cx="7" cy="7" r="1.2" /></svg></span>
               <p className="tp-tx"><b>Price watch</b><span>Flags rivals’ price changes</span></p>
-              <span className="tp-use">1 mission</span>
+              <span className="tp-use">1 watch</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.42s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2.25 10s2.8-5.25 7.75-5.25S17.75 10 17.75 10 14.95 15.25 10 15.25 2.25 10 2.25 10Z" /><circle cx="10" cy="10" r="2.4" /></svg></span>
               <p className="tp-tx"><b>Competitor tracking</b><span>Logs every rival email, text and ad</span></p>
-              <span className="tp-use">1 mission</span>
+              <span className="tp-use">1 watch</span>
             </div></div>
           </div>
           {/* the setup sheet for the picked template: it sits exactly over columns 2 to 4 */}

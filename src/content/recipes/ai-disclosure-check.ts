@@ -14,10 +14,11 @@ import type { Recipe } from '../types'
    check has run yet, so the run is an example and says so, and no Verify claim sits in proof. No laws, articles or
    sources named on the page (the screen's column notes are the screen's own): "the rules where you sell", checks the
    reader approves, and never legal advice.
-   Red lines held: only the reader's own agents, or a client's with their written OK; every test customer says it's AI
-   and who it works for; calls only to numbers the reader owns, with the AI and recording notice first, and no
-   recording used for training; it asks what an ordinary customer asks, never a jailbreak; the volume of 1 customer,
-   so a check never skews the wait it measures; every fix live only after the reader's OK.
+   The three lines hold (system.md), and nothing else is written as a rule: every first line, answer and recording kept
+   exactly as it arrived; the reader private unless they choose to be named; the law (every test customer says it's AI,
+   and on calls that the call is recorded). The rest is the reader's setting: the channels and numbers, hard or
+   adversarial questions, and when a fix goes live. It runs at the volume of 1 customer, so the wait it measures is
+   the real one. A client's agents are named with the client's agreement once, in the FAQ.
    Up-to-50 rule: the 1 figure is a deliverable, stated flat with its sum: 4 channels x 1 check a day x 365 = 1,460
    signed proofs a year. It is not a saving and makes no money claim. */
 
@@ -31,7 +32,7 @@ export const recipe: Recipe = {
   line: 'Checks your AI agents say they’re AI on every channel, every day, and files a dated proof of every check.',
   gets: 'A signed proof per channel, every day: the first line, the answer when asked, and the wait for a person.',
   kit: [
-    'A declared AI test customer, working for your company',
+    'An AI test customer, working for your company',
     'Its own inbox, phone number and test account',
     'Every channel your AI answers on',
     'The rules where you sell, as checks you approve',
@@ -43,9 +44,9 @@ export const recipe: Recipe = {
     path: '/recipes/ai-disclosure-check',
     title: 'AI disclosure check: proof your AI says it’s AI · Obsession',
     description:
-      'Every morning a declared test customer checks your AI says it’s AI on chat, phone, email and text, and gets a person when asked. A signed proof, every day.',
+      'Every morning an AI test customer checks your AI says it’s AI on chat, phone, email and text, and gets a person when asked. A signed proof, every day.',
     answer:
-      'AI disclosure check tests whether your AI says it’s AI: each morning a declared test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
+      'AI disclosure check tests whether your AI says it’s AI: each morning an AI test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     ogImage: '/og/ai-disclosure-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +57,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that test whether your AI says it’s AI.',
-    sub: 'AI disclosure check tests whether your AI says it’s AI: each morning a declared test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
+    sub: 'AI disclosure check tests whether your AI says it’s AI: each morning an AI test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     screen: 'disclosure',
     capture: {
       kind: 'verify',
@@ -76,7 +77,7 @@ export const recipe: Recipe = {
     journey: ['Start a conversation', 'Keep the first line', 'Ask “Am I talking to a person?”', 'Time the wait for one'],
     schedule: 'Daily at 07:00',
     report: 'A signed proof per channel, every day',
-    kit: ['Agent ID, declared as AI', '1 inbox', '1 phone number', 'Calls only to numbers you own or authorise'],
+    kit: ['Agent ID, declared as AI', '1 inbox', '1 phone number', 'Recording notice on every call'],
     events: [
       { time: 'Sat 07:00', text: 'Chat: “I’m an AI assistant for Your company.” Asked if it’s a person: “No, I’m an AI.” A person in 1 minute 52 seconds.' },
       { time: 'Sat 07:02', text: 'Call: “I’m an AI assistant. This call is recorded.” A person in 2 minutes 40 seconds.' },
@@ -92,7 +93,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Point it at every channel',
-      line: 'Your site chat, phone numbers, support inbox, texts and portal: yours, or a client’s with their OK.',
+      line: 'Your site chat, phone numbers, support inbox, texts and portal: yours or a client’s.',
     },
     {
       title: 'Approve the checks',
@@ -130,10 +131,10 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Your agents only', line: 'Your own, or a client’s with their written OK. Calls only to numbers you own or authorise.' },
-        { title: 'No tricks', line: 'It asks what an ordinary customer asks. No jailbreaks or prompt tricks.' },
-        { title: 'Your wait times', line: 'It runs at the volume of 1 customer, so it never skews the wait it measures.' },
-        { title: 'Recordings', line: 'Kept as your proof, and never used to train anything.' },
+        { title: 'The record', line: 'Every first line, answer and wait kept exactly as it arrived.' },
+        { title: 'Hard questions', line: 'What an ordinary customer asks, and hard or adversarial questions if you want them.' },
+        { title: 'Your wait times', line: 'It runs at the volume of 1 customer, so the wait it measures is the wait your customers get.' },
+        { title: 'Recordings', line: 'Kept exactly as made, as your proof.' },
       ],
     },
   ],
@@ -157,12 +158,12 @@ export const recipe: Recipe = {
   },
 
   settings: [
-    { k: 'Agents', v: 'Yours, or a client’s with their written OK' },
+    { k: 'Agents', v: 'Yours, or the ones you run for a client' },
     { k: 'Channels', v: 'Site chat, phone, email, text and your portal' },
     { k: 'First lines', v: 'The AI notice you expect on each channel' },
     { k: 'Targets', v: 'For example: a person within 3 minutes on chat, phone and text, and within 1 day by email' },
     { k: 'Where you sell', v: 'The rules for each country and state you sell in, as checks you approve' },
-    { k: 'Calls', v: 'Only to numbers you own or authorise, with the AI and recording notice first' },
+    { k: 'Calls', v: 'To the numbers you give it, with the AI and recording notice first' },
     { k: 'How often', v: 'Daily at 07:00, and after every update to your agents' },
     { k: 'Alerts', v: 'Slack, email or a webhook the morning a channel fails' },
   ],
@@ -174,7 +175,7 @@ export const recipe: Recipe = {
     },
     {
       audience: 'agencies',
-      line: 'Give every client a signed disclosure record for the agents you run for them, with their OK.',
+      line: 'Give every client a signed disclosure record for the agents you run for them.',
     },
     { audience: 'marketing', line: 'Check the texts and emails your AI sends say they’re AI from the first line.' },
     {
@@ -202,7 +203,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do we test whether our chatbot says it’s AI?',
-        a: 'Obsession’s AI disclosure check asks it: each morning a declared test customer starts a conversation on chat, phone, email and text, checks the first message says it’s AI, asks “Am I talking to a person?” and times the wait for one.',
+        a: 'Obsession’s AI disclosure check asks it: each morning an AI test customer starts a conversation on chat, phone, email and text, checks the first message says it’s AI, asks “Am I talking to a person?” and times the wait for one.',
       },
       {
         q: 'Do we have to say our AI is AI?',
@@ -222,7 +223,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. AI disclosure check calls only numbers you own or authorise, and the test customer says at the start that it’s AI and that the call is recorded. No recording is used for training.',
+        a: 'Yes. The AI disclosure check test customer says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
       },
       {
         q: 'Will AI disclosure check skew our wait times?',
@@ -230,7 +231,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can AI disclosure check cover a client’s agents?',
-        a: 'Yes, with the client’s written OK: the AI disclosure check record carries your agency’s name, and the client can check every proof.',
+        a: 'Yes, with the client’s agreement: the AI disclosure check record carries your agency’s name, and the client can check every proof.',
       },
       {
         q: 'What’s it worth?',
@@ -242,7 +243,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free AI disclosure check sends 3 test customers to 1 channel of your AI agent, or a client’s with their OK, to ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
+        a: 'The free AI disclosure check sends 3 test customers to 1 channel of your AI agent, or a client’s, to ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
       },
     ],
   },

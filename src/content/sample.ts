@@ -91,19 +91,22 @@ export const outputFormats: ViewerFormat[] = [
   },
   {
     id: 'webhook',
-    label: 'Webhook',
-    line: 'Every verdict as JSON, posted to your endpoint, with a link to the evidence.',
+    label: 'JSON webhook',
+    line: 'Every fact as JSON, posted to your endpoint, with its receipt.',
     view: {
       kind: 'webhook',
       request: 'POST https://your-app.example/hooks/obsession',
       body: `{
-  "target": "brand-g.example",
-  "journey": "basket",
+  "event": "fact.created",
+  "company": "brand-g.example",
+  "sentence": "A basket left at 02:57 got no reminder in 48 hours.",
+  "seen_at": "2026-09-24T02:57:00+01:00",
   "verdict": "silent",
-  "window": ["2026-09-22T02:57:00+01:00", "2026-09-24T02:57:00+01:00"],
-  "messages_in_window": 0,
-  "checks": { "journey_completed": true, "full_window_watched": true },
-  "evidence": "https://api.useobsession.com/v1/evidence/run_g3_0922"
+  "receipt": {
+    "journey": "basket",
+    "messages_in_window": 0,
+    "url": "https://api.useobsession.com/v1/evidence/run_g3_0922"
+  }
 }`,
     },
   },
@@ -304,7 +307,7 @@ export const sample: SamplePage = {
       },
       {
         q: 'Did the test customers buy anything?',
-        a: 'No. Obsession’s checkout shopper stopped before payment. On anyone else’s store, every checkout does.',
+        a: 'No. This check was set to stop before payment, so the checkout shopper left at the last step.',
       },
       {
         q: 'What would a check of my store include?',

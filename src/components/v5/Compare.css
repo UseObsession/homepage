@@ -1,0 +1,79 @@
+/* The comparison (Compare.tsx). 1 table, no boxes per cell: rows separated by 1 hairline each, Obsession's column a
+   faint band in the stamp ink. Marks are text (●, ◐, ○), so they print, scale and read in both themes. */
+
+/* position: relative makes the frame the containing block of the cells' hidden legend words (.v5-visually-hidden is
+   absolute), so its scroll clips them; without it they hang out past a phone's edge and widen the whole page. */
+.v5-compare-frame {
+  position: relative;
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid var(--ob-line-subtle);
+  background: var(--ob-surface);
+}
+.v5-compare-frame:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 3px; }
+
+.v5-compare-table { width: 100%; min-width: 760px; border-collapse: collapse; font: 400 14.5px / 1.4 var(--ob-font-sans); }
+.v5-compare-table th,
+.v5-compare-table td { padding: 16px 14px; text-align: center; border-bottom: 1px solid var(--ob-line-subtle); }
+.v5-compare-table tbody tr:last-child th,
+.v5-compare-table tbody tr:last-child td { border-bottom: 0; }
+
+.v5-compare-table thead th { vertical-align: bottom; padding-top: 22px; }
+.v5-compare-col { display: block; font: 600 14px / 1.25 var(--ob-font-sans); color: var(--ob-text); }
+.v5-compare-who { display: block; margin-top: 4px; font: 400 12px / 1.35 var(--ob-font-sans); color: var(--ob-text-3); }
+
+.v5-compare-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--ob-text);
+  position: sticky;
+  left: 0;
+  background: var(--ob-surface);
+  min-width: 210px;
+  max-width: 280px;
+}
+.v5-compare-corner { position: sticky; left: 0; background: var(--ob-surface); }
+
+/* Obsession's column: inverted at the head (ink fill, page text), a faint fill down the rows. */
+.v5-compare-us { background: var(--ob-fill); }
+thead .v5-compare-us { background: var(--ob-text); }
+thead .v5-compare-us .v5-compare-col { color: var(--ob-bg); }
+thead .v5-compare-us .v5-compare-who { color: color-mix(in srgb, var(--ob-bg) 72%, var(--ob-text)); }
+
+.v5-compare-mark {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  color: var(--ob-text-3);
+}
+.v5-compare-yes .v5-compare-mark,
+.v5-compare-mark.v5-compare-yes { color: var(--ob-text); background: currentColor; }
+.v5-compare-part .v5-compare-mark,
+.v5-compare-mark.v5-compare-part { color: var(--ob-text-2); background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+.v5-compare-no .v5-compare-mark,
+.v5-compare-mark.v5-compare-no { color: var(--ob-text-3); background: transparent; }
+
+.v5-compare-foot { display: grid; gap: 14px; justify-items: start; margin-top: 20px; }
+.v5-compare-legend { margin: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13.5px; color: var(--ob-text-2); }
+.v5-compare-note { margin: 0; font-size: 13.5px; color: var(--ob-text-3); max-width: 80ch; }
+
+.v5-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* On a phone the row names take less room, so 2 columns show beside them before the table scrolls. */
+@media (max-width: 560px) {
+  .v5-compare-table { min-width: 640px; font-size: 13.5px; }
+  .v5-compare-table tbody th { min-width: 128px; max-width: 140px; }
+}

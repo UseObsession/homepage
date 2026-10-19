@@ -272,7 +272,7 @@ export function How({ how, workspace = 'agency', partners, id }: Props) {
           </div>
         </div>
 
-        <ol className="s-how-list">
+        <ol className="s-how-list v5-rail">
           {steps.map((s, i) => (
             <li key={i} className="s-how-item">
               <div className="s-how-copy">

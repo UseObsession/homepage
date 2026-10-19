@@ -19,46 +19,32 @@ const postFiles = import.meta.glob<BlogPost>(['./blog/*.ts', '!./blog/types.ts']
 
 const nameOf = (file: string) => file.slice(file.lastIndexOf('/') + 1, -'.ts'.length)
 
-/* The pages built on the Page contract, by file name: home, agencies, founders, sales, marketing, developers, and
+/* The pages built on the Page contract, by file name: home, agencies, sales, marketing, developers, compare, and
    verify (/verify, Check your AI agents). */
-export type PageName = 'home' | 'agencies' | 'founders' | 'sales' | 'marketing' | 'developers' | 'verify'
+export type PageName = 'home' | 'agencies' | 'sales' | 'marketing' | 'developers' | 'verify' | 'compare'
 export const pages = Object.fromEntries(Object.entries(pageFiles).map(([file, p]) => [nameOf(file), p])) as Record<PageName, Page>
 
 /* Every recipe, in the order the nav menu, the phone sheet, the footer and the Recipes index list them within their job.
    Each recipe's job (group), name and address come from its own file, and content/nav builds its groups from this list,
    so every surface names and groups a recipe the same way. */
 const ORDER: RecipeId[] = [
-  /* Win customers */
-  'prospect',
-  'listings',
-  'handover',
-  'quotes',
-  /* Keep and grow customers: see it coming, grow it, prove it, renew it, save it, ask for the review */
-  'account-watch',
-  'expansion',
-  'upsells',
-  'business-case',
-  'renewal',
-  'saves',
-  'reviews',
-  /* Watch rivals */
+  /* Watch other companies: rivals, prospects and accounts, as their customer */
   'competitor',
-  'prices',
   'ads',
   'email-sms',
+  'prices',
   'trial',
-  /* Check your own journeys */
+  'prospect',
+  'account-watch',
+  /* Check your own journeys: your own ads, funnel, checkout and partners, as a customer */
   'mystery',
-  'checkout',
-  'speed',
-  'audit',
   'adcheck',
+  'speed',
+  'checkout',
   'partners',
+  'audit',
   'delivery',
-  /* Get paid and negotiate */
-  'get-paid',
-  'supplier-quotes',
-  'spend',
+  'listings',
   /* Check your AI agents */
   'support-bot',
   'voice-agent',

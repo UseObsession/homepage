@@ -102,8 +102,9 @@
 @media (prefers-reduced-motion:reduce){.appx-il.play *{animation:none!important}}
 
 /* the page sizes every illustration svg to 100%; inside the app, icons and marks keep their own sizes.
-   Size any svg in a screen with a selector that starts ".ilwrap .app-NAME" so it wins. */
-.ilwrap .appx-il .appx svg{display:block;width:auto;height:auto;max-width:none}
+   Size any svg in a screen with a selector that starts ".ilwrap .app-NAME" so it wins. :where keeps this rule and
+   kit.css's below every screen's own, whatever order the sheets load in (the site sheet loads after a screen's). */
+.ilwrap :where(.appx-il) .appx svg{display:block;width:auto;height:auto;max-width:none}
 .ilwrap .appx-il .ax-nav a svg{width:14px;height:14px}
 .ilwrap .appx-il .ax-search svg{width:12px;height:12px}
 .ilwrap .appx-il .ax-btn svg{width:12px;height:12px}

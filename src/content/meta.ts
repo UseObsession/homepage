@@ -5,7 +5,7 @@ import { nav } from './nav'
 import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
-import type { Faq, Meta } from './types'
+import type { Faq, Meta, StageReceipt } from './types'
 
 export { SITE, absolute, cleanPath }
 
@@ -13,6 +13,7 @@ export type PageKind =
   | 'home'
   | 'audience'
   | 'developers'
+  | 'compare'
   | 'verify'
   | 'recipes'
   | 'recipe'
@@ -47,6 +48,8 @@ export type Entry = {
   headline: string
   /* The share image's 1 line under the headline, taken from the page's own words. */
   line: string
+  /* Home's share image only: the hero's first receipt, drawn beside the headline (scripts/og.mjs). */
+  receipt?: StageReceipt
   /* The questions the page shows, for FAQPage JSON-LD. */
   faq?: Faq
   /* The content file the page's words live in, for the sitemap's lastmod. */
@@ -59,29 +62,31 @@ export type Entry = {
   article?: Article
 }
 
-/* The share image's line on an audience page: the line the nav gives its reader. */
+/* The share image's line on an audience page: its gap's claim (what the reader can't see today), else the line the nav
+   gives its reader. */
 const solutionLine = (path: string) => nav.readers.find((s) => s.to === path)?.line ?? ''
 const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 
 const ogFor = (meta: Meta) => ({ ...meta, ogImage: meta.ogImage ?? `/og/${meta.path === '/' ? 'home' : meta.path.split('/').pop()}.png` })
 const crumbName = (meta: Meta, fallback: string) => meta.breadcrumb?.[meta.breadcrumb.length - 1]?.name ?? fallback
 
-const AUDIENCES = ['agencies', 'founders', 'sales', 'marketing'] as const
+const AUDIENCES = ['marketing', 'sales', 'agencies'] as const
 
 const home = pages.home
 const dev = pages.developers
 const verify = pages.verify
+const compare = pages.compare
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
-  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.hero.pill, faq: home.faq, source: 'src/content/pages/home.ts' },
+  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, receipt: home.stage?.receipts[0], faq: home.faq, source: 'src/content/pages/home.ts' },
   ...AUDIENCES.map(
     (a): Entry => ({
       kind: 'audience',
       meta: ogFor(pages[a].meta),
       name: crumbName(pages[a].meta, a),
       headline: pages[a].hero.headline,
-      line: solutionLine(pages[a].meta.path) || pages[a].hero.pill,
+      line: pages[a].gapPair?.heading ?? (solutionLine(pages[a].meta.path) || pages[a].hero.pill),
       faq: pages[a].faq,
       source: `src/content/pages/${a}.ts`,
     }),
@@ -91,9 +96,18 @@ export const entries: Entry[] = [
     meta: ogFor(dev.meta),
     name: crumbName(dev.meta, 'Developers'),
     headline: dev.hero.headline,
-    line: dev.hero.proof[0] ? `${dev.hero.proof[0].value} ${dev.hero.proof[0].label}` : dev.hero.pill,
+    line: dev.gapPair?.heading ?? (dev.hero.proof[0] ? `${dev.hero.proof[0].value} ${dev.hero.proof[0].label}` : dev.hero.pill),
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  {
+    kind: 'compare',
+    meta: ogFor(compare.meta),
+    name: crumbName(compare.meta, 'Compare'),
+    headline: compare.hero.headline,
+    line: firstSentence(compare.hero.sub),
+    faq: compare.faq,
+    source: 'src/content/pages/compare.ts',
   },
   {
     kind: 'verify',

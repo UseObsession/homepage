@@ -260,7 +260,7 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
       </Section>
 
       <Section id="run" heading={ui.run.heading} line={r.gets} tone="paper" className="s-rp-run">
-        <Console label={r.run.tab} demos={[r.run]} workspace={workspace} tag={real ? ui.run.tag.real : ui.run.tag.example} />
+        <Console label={r.run.tab} demos={[r.run]} workspace={workspace} tag={real ? ui.run.tag.real : undefined} />
       </Section>
 
       <Section id="steps" heading={ui.steps.heading} tone="ink">

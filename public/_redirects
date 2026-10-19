@@ -8,6 +8,30 @@
 /recipes/prospect-research/   /recipes/prospect-intelligence  301
 /recipes/speed-to-lead        /recipes/lead-leaks             301
 /recipes/speed-to-lead/       /recipes/lead-leaks             301
+# The seller's representative recipes, retired from the site in the October rewrite (COPY.md, "Recipes").
+/recipes/account-handover           /recipes                        301
+/recipes/account-handover/          /recipes                        301
+/recipes/business-case              /recipes                        301
+/recipes/business-case/             /recipes                        301
+/recipes/cancellation-saves         /recipes                        301
+/recipes/cancellation-saves/        /recipes                        301
+/recipes/client-upsells             /recipes                        301
+/recipes/client-upsells/            /recipes                        301
+/recipes/expansion-offers           /recipes                        301
+/recipes/expansion-offers/          /recipes                        301
+/recipes/get-paid                   /recipes                        301
+/recipes/get-paid/                  /recipes                        301
+/recipes/inbound-quotes             /recipes                        301
+/recipes/inbound-quotes/            /recipes                        301
+/recipes/renewal-negotiation        /recipes                        301
+/recipes/renewal-negotiation/       /recipes                        301
+/recipes/review-requests            /recipes                        301
+/recipes/review-requests/           /recipes                        301
+/recipes/software-renewals          /recipes                        301
+/recipes/software-renewals/         /recipes                        301
+/recipes/supplier-quotes            /recipes                        301
+/recipes/supplier-quotes/           /recipes                        301
+/founders                     /                               301
 /sample-report                /sample-output                  301
 /sample-report/               /sample-output                  301
 /templates                    /recipes                        301
@@ -20,7 +44,7 @@
 # The old site's indexed addresses ended in a slash: every page's slashed address is sent for good to the canonical
 # address without it (a new page adds its line here).
 /agencies/                    /agencies                       301
-/founders/                    /founders                       301
+/founders/                    /                               301
 /sales/                       /sales                          301
 /marketing/                   /marketing                      301
 /developers/                  /developers                     301

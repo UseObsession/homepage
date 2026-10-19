@@ -1,5 +1,6 @@
-/* James's persona band, with 6 panels in 2 rows of 3 (the rows are decided by measurement, see the README: 6 in 1 row
-   leave a 119px text column at 1440 and 1280, and "Developers" and "Marketing" break mid word at his type size).
+/* James's persona band: the 4 readers in 1 row, as his single row was, each panel taller than his and revealing: at
+   rest the number, the name and the arrow; under the pointer or keyboard focus the panel widens and its line and chips
+   rise in. Without hover (a touch screen) everything shows. On a phone the 4 are a row of cards to swipe.
    His layout language and motion are kept as he wrote them: the slanted panels cut with a clip path, the 5px seam, the
    panel that grows on hover or focus, the glow that rises, the circled arrow that fills and turns, and the stack with
    overlapping slants on a phone. What changed is colour, and only colour:
@@ -34,13 +35,14 @@
   --accent: var(--s-accent, var(--text-2));
   --pband-glow: var(--s-accent-glow-rest, 0%);
   position: relative;
-  /* Basis 0 with a minimum of a third: 3 panels fit a row and a 4th does not, so the rows break after 3 and each row
-     still shares its width by grow, as his single row did. */
+  /* Basis 0: the 4 share 1 row by grow, as his single row did. */
   flex: 1 1 0;
-  min-width: 31%;
-  min-height: clamp(300px, 23vw, 330px);
+  min-width: 0;
+  min-height: clamp(380px, 31vw, 450px);
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  /* 1 column as wide as the panel, whatever its children ask for (the reveal's block is wider while it waits). */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
   align-content: start;
   gap: 14px;
   padding: 32px calc(var(--slant) + 14px) 32px calc(var(--slant) * .55 + 16px);
@@ -57,15 +59,15 @@
   transition: flex-grow 600ms var(--ease), --pband-glow 400ms var(--ease);
 }
 
-/* The panel that starts a row is flat on its left, the one that ends it flat on its right. */
-.pband-item:nth-child(3n + 1) {
+/* The first panel is flat on its left, the last flat on its right. */
+.pband-item:first-child {
   margin-left: 0;
   padding-left: 32px;
   clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
   border-radius: var(--radius-lg) 0 0 var(--radius-lg);
 }
 
-.pband-item:nth-child(3n) {
+.pband-item:last-child {
   padding-right: 32px;
   clip-path: polygon(var(--slant) 0, 100% 0, 100% 100%, 0 100%);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
@@ -73,7 +75,7 @@
 
 .pband-item:hover,
 .pband-item:focus-visible {
-  flex-grow: 1.7;
+  flex-grow: 2.1;
   --pband-glow: var(--s-accent-glow-hover, 0%);
 }
 
@@ -105,13 +107,13 @@
   color: var(--text-2);
 }
 
-.pband-item:not(:nth-child(3n + 1)) .pband-n {
+.pband-item:not(:first-child) .pband-n {
   margin-left: calc(var(--slant) * .45);
 }
 
 .pband-name {
   align-self: end;
-  font-size: clamp(24px, 2.8vw, 40px);
+  font-size: clamp(24px, 2.5vw, 38px);
   overflow-wrap: break-word;
   font-weight: 600;
   line-height: 1;
@@ -127,6 +129,11 @@
   min-height: 2.9em;
   text-wrap: pretty;
   color: var(--s-read, var(--text-2));
+}
+
+.pband-more-in {
+  display: grid;
+  gap: 14px;
 }
 
 .pband-ways {
@@ -160,8 +167,61 @@
   transition: transform 500ms var(--ease), background 300ms var(--ease), color 300ms var(--ease);
 }
 
-.pband-item:nth-child(3n) .pband-go {
+.pband-item:last-child .pband-go {
   right: 26px;
+}
+
+/* The reveal: with a pointer that hovers, a panel's line and chips are folded away under its name, so every name rests
+   on the panel's foot. Under the pointer the panel widens, then the block unfolds by its own height (rows 0fr to 1fr)
+   and its words fade up; leaving, the words fade first and the block folds after them, so nothing is cut mid line.
+   The block is as wide as the open panel will be, worked out from the band's width (--pband-open is the open panel's
+   share of the row), so its words never re-wrap while the panel's width moves. */
+@media (hover: hover) and (min-width: 861px) {
+  .pband {
+    --pband-open: 0.41;
+    container-type: inline-size;
+  }
+
+  .pband-more {
+    display: grid;
+    grid-template-rows: 0fr;
+    min-width: 0;
+    overflow: hidden;
+    transition: grid-template-rows 420ms var(--ease) 90ms;
+  }
+
+  .pband-more-in {
+    min-height: 0;
+    overflow: hidden;
+    width: calc((100cqi + 3 * (var(--slant) - var(--seam))) * var(--pband-open) - var(--slant) * 1.55 - 30px);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 180ms ease-out, transform 260ms ease-out;
+  }
+
+  .pband-item:hover .pband-more,
+  .pband-item:focus-visible .pband-more {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 520ms var(--ease) 60ms;
+  }
+
+  .pband-item:hover .pband-more-in,
+  .pband-item:focus-visible .pband-more-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 420ms var(--ease) 240ms, transform 560ms var(--ease) 180ms;
+  }
+}
+@media (hover: hover) and (min-width: 861px) and (max-width: 1100px) {
+  .pband { --pband-open: 0.333; }
+}
+@media (hover: hover) and (min-width: 861px) and (prefers-reduced-motion: reduce) {
+  .pband-more,
+  .pband-item:hover .pband-more,
+  .pband-item:focus-visible .pband-more { transition: none; }
+  .pband-more-in,
+  .pband-item:hover .pband-more-in,
+  .pband-item:focus-visible .pband-more-in { transform: none; transition: opacity 200ms linear; }
 }
 
 .pband-item:hover .pband-go,
@@ -178,46 +238,47 @@
   outline-offset: 3px;
 }
 
-/* Narrower than his full width, the panels in a row are tighter: the one under the pointer grows less, so its
-   neighbours keep room for "Developers". */
+/* Narrower than his full width, the one under the pointer grows less, so its neighbours keep room for their names. */
 @media (max-width: 1100px) {
-  .pband-item {
-    min-width: 32%;
-  }
-
   .pband-item:hover,
   .pband-item:focus-visible {
-    flex-grow: 1.25;
+    flex-grow: 1.5;
   }
 }
 
-/* A phone: the panels stack, each slanted into the one above, as in his. Each takes the height its words need (his
-   fixed minimum cut a panel off from its own chips once a line wrapped), and the arrow moves to the top right, beside
-   the numeral, where nothing is written, so it never lands on a line. */
+/* A phone or a small tablet: the 4 are a row of cards to swipe, each most of the screen wide and snapping into place,
+   with no slants (a cut corner on a card this small reads as damage), and the next card's edge showing so the row
+   reads as more. Every line and chip shows. */
 @media (max-width: 860px) {
   .pband {
-    --slant: 28px;
-    flex-direction: column;
+    --slant: 0px;
     flex-wrap: nowrap;
+    gap: 10px;
     row-gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -16px;
+    padding: 2px 16px 6px;
+    scroll-padding-inline: 16px;
   }
-
-  .pband-item:not(:nth-child(3n + 1)) .pband-n {
-    margin-left: 0;
-  }
+  .pband::-webkit-scrollbar { display: none; }
 
   .pband-item,
   .pband-item:nth-child(n),
   .pband-item:first-child,
   .pband-item:last-child {
-    flex: none;
+    flex: 0 0 80%;
+    margin: 0;
+    padding: 24px;
+    min-height: 240px;
+    border-radius: var(--radius-lg);
+    clip-path: none;
+    scroll-snap-align: start;
+  }
+
+  .pband-item:not(:first-child) .pband-n {
     margin-left: 0;
-    margin-top: calc(-1 * var(--slant) + var(--seam));
-    padding: calc(var(--slant) + 12px) 24px calc(var(--slant) + 12px);
-    min-width: 0;
-    min-height: 216px;
-    border-radius: 0;
-    clip-path: polygon(0 var(--slant), 100% 0, 100% calc(100% - var(--slant)), 0 100%);
   }
 
   .pband-name {
@@ -228,28 +289,10 @@
     min-height: 0;
   }
 
-  .pband-item:first-child {
-    margin-top: 0;
-    padding-top: 26px;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-
-  .pband-item:last-child {
-    padding-bottom: 26px;
-    clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  }
-
   .pband-go,
-  .pband-item:nth-child(3n) .pband-go,
   .pband-item:last-child .pband-go {
-    top: 28px;
+    top: 20px;
     right: 20px;
-  }
-
-  .pband-item:first-child .pband-go {
-    top: 14px;
   }
 
   .pband-item:hover,

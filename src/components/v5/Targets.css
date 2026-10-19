@@ -1,0 +1,51 @@
+/* The 4 kinds of company (Targets.tsx), 2 by 2, every cell its copy over its screen. Phone: 1 column. */
+
+.v5-targets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.v5-target {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 2.6vw, 32px);
+  border-radius: 20px;
+  background: var(--ob-surface);
+  border: 1px solid var(--ob-line-subtle);
+  overflow: hidden;
+  min-width: 0;
+}
+/* The screen runs to the card's foot, with no padding under it, however tall the row is. */
+.v5-target { grid-template-rows: auto 1fr; padding-bottom: 0; }
+
+.v5-target-copy { display: grid; gap: 10px; align-content: start; }
+.v5-target-h { margin: 0; font: 600 21px / 1.2 var(--ob-font-sans); letter-spacing: -0.015em; }
+.v5-target-h a { color: var(--ob-text); text-decoration: none; }
+.v5-target-h a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.v5-target-h a:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 3px; border-radius: 2px; }
+.v5-target-line { margin: 0; font: 400 15px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); max-width: 46ch; }
+
+.v5-target-recipes { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.v5-target-recipes a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: 500 13px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ob-line);
+}
+.v5-target-recipes a:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.v5-target-recipes a:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+.v5-target-go { width: 11px; height: 11px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.v5-target-screen { min-width: 0; align-self: end; border-radius: 12px 12px 0 0; overflow: hidden; }
+
+.v5-targets-all { margin: 28px 0 0; }
+
+@media (max-width: 960px) {
+  .v5-targets-grid { grid-template-columns: 1fr; }
+}

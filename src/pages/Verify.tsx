@@ -23,8 +23,8 @@ export function Verify() {
     <>
       <Hero hero={page.hero} workspace="company" />
       {page.how && <How how={page.how} workspace="agency" id="how" />}
-      <Gap gap={page.gap} id="gap" />
-      <UseCases uses={page.uses} workspace="agency" id="uses" />
+      {page.gap && <Gap gap={page.gap} id="gap" />}
+      {page.uses && <UseCases uses={page.uses} workspace="agency" id="uses" />}
       {page.outcomes && <Outcomes outcomes={page.outcomes} id="outcomes" />}
       {page.kinds && <Kinds kinds={page.kinds} id="kinds" />}
       {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}

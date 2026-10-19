@@ -11,8 +11,6 @@ import { hasWord } from '../partnerFiles'
    as the app screens' components are never in the bundle. The look, both layouts and each slice's 1 action:
    HowRail.css. */
 
-const UI = { example: 'Example' }
-
 type Style = CSSProperties & Record<`--${string}`, string | number>
 
 /* A chip that names 1 of the tools (content/partners.ts howRailPartners) shows its mark in place of the word. */
@@ -170,10 +168,6 @@ export function HowRailBody({ rail, headId }: { rail: HowRail; headId: string })
             </li>
           ))}
         </ol>
-        {/* For the eye: the slices it names are hidden from assistive tech, the steps' words say it all. */}
-        <p className="s-screen-note s-hw-note" aria-hidden="true">
-          {UI.example}
-        </p>
       </div>
     </>
   )

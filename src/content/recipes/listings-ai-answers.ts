@@ -5,18 +5,18 @@ import type { Capture, Recipe } from '../types'
    gives the wrong hours, B and D don't name you; asked again every Monday).
    Active since 3 Oct (the research's "Answer Fix", _research/recipes/ACTIVE-RECIPES.md 8): when an AI assistant states
    a wrong fact, the agent traces it to the page the assistant cites, fixes the customer's own pages and listings after
-   their OK, files 1 correction with each other site's owner through that site's own route, chases twice at most
-   (a week apart), then asks again every Monday and closes a fact only when the answer changes, with the before and
+   their OK, files 1 correction with each other site's owner through that site's own route, chases as the reader sets
+   (twice, a week apart), then asks again every Monday and closes a fact only when the answer changes, with the before and
    after signed. It also runs within a day of every price change, launch or rename.
    Human OK gates: the fact sheet (once), every edit to the customer's own pages and profiles, the first message to each
    new site. Up-to-50 rule: "up to 62%" with its model in the same line (62% of wrong AI answers are out of date rather
    than made up, so fixing the stale page fixes every answer that cites it). No source named on the page.
-   Red lines held: the agent works for your own business, declared; it claims listings through your own listed number
-   or domain, never its own number; it asks AI assistants through each one's official route from a clean history
-   (consumer apps are never scraped: OpenAI's terms ban automated extraction of output); it writes only to sites
-   showing a wrong fact about you, through their own correction route (an edit form, never a person), and never pitches
-   for a mention or a link; where a site's rules need a person, it drafts the request and someone at your company sends
-   it; it never writes, buys or answers reviews; every change to your facts goes live after your OK. Sites and
+   Rules: only the 3 lines in system.md. The agent works for the reader's business and says it is an AI to any person
+   it talks to; it claims listings through the reader's own listed number or domain; it asks AI assistants through
+   each one's official route from a clean history (OpenAI's terms ban automated extraction of output from consumer
+   apps); it sends each site's owner 1 correction with the evidence and chases as the reader sets; where a site's rules
+   need a person, it drafts the request and someone at the reader's company sends it; every change to the reader's own
+   facts goes live after their OK. A client's facts with the client's agreement are said once, for agencies. Sites and
    assistants are unnamed (Maps, Review site A, Assistant A). The run is an example and says so. */
 
 const roles: Capture['roles'] = {
@@ -30,25 +30,25 @@ export const recipe: Recipe = {
   id: 'listings',
   slug: 'listings-ai-answers',
   name: 'Listings and AI answers',
-  group: 'Win customers',
+  group: 'Check your own journeys',
   line: 'Corrects the source when a listing or an AI assistant gets a fact about you wrong, and asks again until the answer changes.',
   gets: 'Each wrong fact about you corrected where AI assistants read it, and the question asked again every Monday until the answer is right.',
   kit: [
-    'An agent ID, declared as AI for your company',
+    'An AI agent for your company',
     'Your facts, approved by you once',
     'Listings claimed through your own number or domain',
     'Each AI assistant asked the official way',
     'A check every Monday, and after every price change',
-    'Every answer, source and fix signed and dated',
+    'Every answer, source and fix kept with its receipt',
   ],
 
   meta: {
     path: '/recipes/listings-ai-answers',
     title: 'Listings and AI answers, fixed at the source · Obsession',
     description:
-      'When an AI assistant or a listing gets a fact about you wrong, a declared AI agent fixes it at the source and asks again until the answer changes.',
+      'When an AI assistant or a listing gets a fact about you wrong, an AI agent fixes it at the source and asks again every Monday until the answer changes.',
     answer:
-      'Listings and AI answers fixes wrong facts about you at the source: every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
+      'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     ogImage: '/og/listings-ai-answers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'When AI gets a fact about you wrong, fix the page it read.',
-    sub: 'Listings and AI answers fixes wrong facts about you at the source: every Monday, declared AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
+    sub: 'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     screen: 'listings',
     capture: {
       kind: 'waitlist',
@@ -80,18 +80,18 @@ export const recipe: Recipe = {
     journey: ['Ask what buyers ask', 'Trace each wrong answer', 'Fix it at the source', 'Ask again until it changes'],
     schedule: 'Every Monday, and after any price change',
     report: 'A Monday email and a sheet',
-    kit: ['Agent ID, declared as AI for your company', 'Your number or domain', 'Clean AI history', 'Every Monday'],
+    kit: ['Agent ID for your company', 'Your number or domain', 'Clean AI history', 'Every Monday'],
     events: [
       { time: 'Mon 09:00', text: '4 AI assistants asked what buyers ask. Assistant C says Leeds opens at 9. It opens at 8.' },
       { time: 'Mon 09:05', text: 'The source: Assistant C cites Directory B, which still lists the old hours.' },
-      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its edit form, after your OK, as your declared AI agent.' },
+      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its edit form, after your OK, as your AI agent.' },
       { time: 'Mon 09:42', text: 'Your own listings fixed after your OK, claimed with a code to your listed number. Review site B no longer says closed.' },
-      { time: 'Week 2, Mon', text: 'Directory B unchanged. 1 polite chase, the first of 2 at most.' },
+      { time: 'Week 2, Mon', text: 'Directory B unchanged. 1 polite chase.' },
       { time: 'Week 3, Mon', text: 'Directory B updated. Asked again, Assistant C says Leeds opens at 8.' },
     ],
     finding: 'Assistant C gave Leeds the wrong hours because Directory B did. 4 of 6 Leeds listings were wrong or missing.',
     fix: 'Every source fixed by week 3. The same questions go to all 4 assistants every Monday, so you hear the day a wrong fact comes back.',
-    ledger: 'Example run. Every answer, source and fix dated and signed.',
+    ledger: 'Example run. Every answer, source and fix kept with its receipt.',
   },
 
   steps: [
@@ -105,11 +105,11 @@ export const recipe: Recipe = {
     },
     {
       title: 'Wrong facts fixed at the source',
-      line: 'Each wrong answer is traced to the page it cites. Your own pages and listings are fixed after your OK; every other site gets 1 correction through its own edit form.',
+      line: 'Each wrong answer is traced to the page it cites. Your own pages and listings are fixed after your OK, and every other site’s owner gets 1 correction with the evidence.',
     },
     {
       title: 'Closed only when the answer changes',
-      line: 'They ask again every Monday and close a fact only when the answer is right, with the before and after signed.',
+      line: 'They ask again every Monday and close a fact only when the answer is right, with the before and after kept as proof.',
     },
   ],
 
@@ -136,7 +136,7 @@ export const recipe: Recipe = {
       group: 'The fix',
       items: [
         { title: 'Your own pages first', line: 'Your site and the profiles you run, corrected through the logins you connect, after your OK.' },
-        { title: 'Other sites', line: '1 correction with the evidence, through each site’s own edit form, as your declared AI agent. 2 polite chases at most.' },
+        { title: 'Other sites', line: '1 correction with the evidence to each site’s owner, from an AI agent that says it works for you. Chased as often as you set.' },
         { title: 'After every change', line: 'A new price, a launch or a rename sends the questions out again within a day.' },
         { title: 'Asked until it changes', line: 'Every Monday, so you see the day each answer turns right.' },
       ],
@@ -148,7 +148,7 @@ export const recipe: Recipe = {
     items: [
       { format: 'Email', line: 'Every Monday: what changed, what’s fixed and what’s still being chased.' },
       { format: 'Slack', line: 'The same morning an assistant or a listing gets you wrong.' },
-      { format: 'Before and after', line: 'Each fixed fact with the answer before and after, signed.' },
+      { format: 'Before and after', line: 'Each fixed fact, with the answer before and after as proof.' },
       { format: 'Sheet', line: 'Every listing, answer and source, by location, week by week.' },
       { format: 'PDF', line: 'A report for each location manager, or each client.' },
       { format: 'Webhook', line: 'Every check and fix, with its screenshot.' },
@@ -161,7 +161,7 @@ export const recipe: Recipe = {
     { k: 'Where', v: 'Maps, directories, review sites and AI assistants' },
     { k: 'Questions', v: 'The ones your buyers ask, in their words' },
     { k: 'Your own pages', v: 'Fixed through the logins you connect, after your OK' },
-    { k: 'Other sites', v: '1 correction through their own edit form, 2 chases at most' },
+    { k: 'Other sites', v: '1 correction to the owner, then the chases you set' },
     { k: 'Verification', v: 'Through your own listed number or domain' },
     { k: 'How often', v: 'Every Monday, and within a day of any price change' },
   ],
@@ -169,7 +169,7 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'founders', line: 'Stop losing buyers to an old price, a retired plan or the wrong hours.' },
     { audience: 'marketing', line: 'Fix what AI assistants tell your buyers at the source, and see the day each answer changes.' },
-    { audience: 'agencies', line: 'Correct what AI assistants say about each client, with their OK, and show the before and after signed.' },
+    { audience: 'agencies', line: 'Correct what AI assistants say about each client, with their OK, and show the before and after as proof.' },
     { audience: 'developers', line: 'Pull every answer, source and fix into your own dashboard through the API.' },
   ],
 
@@ -188,7 +188,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Only facts about you, corrected through each site’s own form.',
+    heading: 'Facts about you, corrected where AI assistants read them.',
     items: [
       {
         q: 'Why does an AI assistant quote a price we stopped charging?',
@@ -208,15 +208,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Who does it contact?',
-        a: 'Listings and AI answers contacts only the sites showing a wrong fact about you, through their own edit form, as your declared AI agent: 1 correction with the evidence, 2 polite chases at most. The first message to each new site goes after your OK.',
+        a: 'Listings and AI answers contacts each site showing a wrong fact about you: 1 correction with the evidence, from an AI agent that says it works for you, then the chases you set. The first message to each new site goes after your OK.',
       },
       {
         q: 'How does Listings and AI answers claim our listings?',
-        a: 'Listings and AI answers claims them through your own listed number or an address on your domain, so each site knows it’s really your business. It never lists its own number as yours.',
-      },
-      {
-        q: 'Does it ask for a mention or post reviews?',
-        a: 'Never. Listings and AI answers corrects facts and nothing else: no pitches for a mention or a link, and it doesn’t write, buy or answer reviews.',
+        a: 'Listings and AI answers claims them through your own listed number or an address on your domain, so each site knows it’s really your business.',
       },
       {
         q: 'What does Listings and AI answers need from us?',

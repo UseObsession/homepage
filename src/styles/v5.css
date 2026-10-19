@@ -1,0 +1,167 @@
+/* The October rewrite's layer (COPY.md, "Design plan"), on top of the design system's tokens (src/styles/ds), never in
+   place of them. 1 idea runs through it: Obsession keeps the receipts, so the page's one memorable object is the
+   receipt (paper, mono, a torn edge, a stamp). Everything around it stays quiet: the ds neutrals, Geist, hairlines.
+
+   Tokens
+   - No hue. Colour on this site means something specific: a reader's hue says whose page it is (styles/accents.css),
+     and green or red in an app screen says passed or failed. Everything here is ink, paper and inversion.
+     --v5-stamp is the ink that marks proof (the stamp on a receipt, the wake points on an agent's timeline, a chosen
+     tab), the page's own text colour; --v5-stamp-soft its faint fill. On the receipt's paper, the stamp is paper ink.
+   - --v5-paper and --v5-paper-*: the receipt's material. Like the design system's .ob-object, a receipt keeps its own
+     material in both themes (bone paper on ink, white thermal paper on paper), so it reads as a thing you hold.
+   Classes start v5- and live in the components' own CSS files beside them (src/components/v5); this file holds the
+   tokens and the 2 primitives every v5 section uses (.v5-section, .v5-h2). */
+
+:root,
+.ob-theme-dark,
+[data-theme="dark"] {
+  --v5-stamp: var(--ob-text);
+  --v5-stamp-soft: var(--ob-fill);
+  --v5-paper: #f1efe8;
+  --v5-paper-ink: #17160f;
+  --v5-paper-ink-2: #5d5a51;
+  --v5-paper-line: #d6d2c6;
+  --v5-paper-shadow: 0 1px 0 rgb(255 255 255 / 0.5) inset, 0 24px 60px -24px rgb(0 0 0 / 0.7), 0 2px 6px rgb(0 0 0 / 0.35);
+  --v5-stage: color-mix(in srgb, var(--ob-surface) 70%, transparent);
+  --v5-stage-line: var(--ob-line-subtle);
+}
+
+.ob-theme-light,
+[data-theme="light"] {
+  --v5-stamp: var(--ob-text);
+  --v5-stamp-soft: var(--ob-fill);
+  --v5-paper: #ffffff;
+  --v5-paper-ink: #17160f;
+  --v5-paper-ink-2: #5d5a51;
+  --v5-paper-line: #e1ded5;
+  --v5-paper-shadow: 0 1px 0 rgb(255 255 255) inset, 0 22px 50px -26px rgb(40 36 26 / 0.38), 0 1px 3px rgb(40 36 26 / 0.12);
+  --v5-stage: var(--ob-surface);
+  --v5-stage-line: var(--ob-line-subtle);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"], .ob-theme-dark) {
+    --v5-stamp: var(--ob-text);
+    --v5-stamp-soft: var(--ob-fill);
+    --v5-paper: #ffffff;
+    --v5-paper-shadow: 0 1px 0 rgb(255 255 255) inset, 0 22px 50px -26px rgb(40 36 26 / 0.38), 0 1px 3px rgb(40 36 26 / 0.12);
+    --v5-paper-line: #e1ded5;
+    --v5-stage: var(--ob-surface);
+  }
+}
+
+/* Section rhythm: the design system's section space, the page's own ground. */
+.v5-section {
+  padding-block: clamp(80px, 11vw, 144px);
+  position: relative;
+}
+.v5-section--tight { padding-block: clamp(56px, 7vw, 96px); }
+.v5-section + .v5-section { padding-top: 0; }
+.v5-section--rule { border-top: 1px solid var(--ob-line-subtle); }
+.v5-section--rule + .v5-section { padding-top: clamp(80px, 11vw, 144px); }
+
+/* A section's head: the claim, then at most 1 line under it, stacked (never a split header). */
+.v5-head { max-width: 760px; display: grid; gap: 16px; margin-bottom: clamp(36px, 5vw, 56px); }
+.v5-h2 {
+  margin: 0;
+  font: 600 clamp(30px, 3.6vw, 46px) / 1.06 var(--ob-font-sans);
+  letter-spacing: -0.032em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.v5-line {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 clamp(16px, 1.3vw, 18px) / 1.55 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* A quiet text link with an arrow drawn in CSS (no icon font, no hand-drawn path). */
+.v5-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 15px / 1.3 var(--ob-font-sans);
+  color: var(--ob-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ob-line-strong);
+  padding-bottom: 2px;
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.v5-link:hover { border-color: var(--ob-text); }
+.v5-link:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 4px; border-radius: 2px; }
+
+/* The receipt: the page's 1 memorable object. Mono, paper, a torn bottom edge, the stamp. */
+.v5-receipt {
+  position: relative;
+  background: var(--v5-paper);
+  color: var(--v5-paper-ink);
+  font: 400 12.5px / 1.55 var(--ob-font-mono);
+  padding: 18px 18px 26px;
+  box-shadow: var(--v5-paper-shadow);
+  border-radius: 3px 3px 0 0;
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 12px 8px repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 12px 8px repeat-x;
+}
+.v5-receipt-row { display: grid; grid-template-columns: 9ch minmax(0, 1fr); gap: 10px; }
+.v5-receipt-k { color: var(--v5-paper-ink-2); }
+.v5-receipt-v { overflow-wrap: anywhere; }
+.v5-receipt-rule { border: 0; border-top: 1px dashed var(--v5-paper-line); margin: 10px 0; }
+
+/* The stamp: outlined, slightly turned, in the 1 accent. */
+.v5-stamp {
+  display: inline-block;
+  font: 600 11px / 1 var(--ob-font-mono);
+  letter-spacing: 0.08em;
+  color: var(--v5-stamp);
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  padding: 5px 7px 4px;
+  transform: rotate(-6deg);
+}
+[data-theme="dark"] .v5-receipt .v5-stamp,
+.v5-receipt .v5-stamp { color: var(--v5-paper-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .v5-link { transition: none; }
+}
+
+/* What you get (Home): the close of how it works, on the same ground, straight under its steps. */
+.v5-section:has(+ .v5-formats) { padding-bottom: clamp(36px, 4vw, 56px); }
+
+/* Rails (phones only): a list that would stack into a long column becomes a row of cards to swipe, each most of the
+   screen wide and snapping into place, the next one's edge showing so the row reads as more. The row runs to the
+   screen's edges (out of the page's gutter) and starts on the gutter. .v5-rail--cards gives plain items a card of their
+   own; lists whose items are already cards leave it off. !important: a section's own phone rules stack the same list
+   into 1 column, and the rail wins over them. */
+@media (max-width: 760px) {
+  .v5-rail {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 82% !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--s-gutter, 16px)) !important;
+    padding: 2px var(--s-gutter, 16px) 10px !important;
+    scroll-padding-inline: var(--s-gutter, 16px);
+  }
+  .v5-rail::-webkit-scrollbar { display: none; }
+  .v5-rail > * { scroll-snap-align: start; min-width: 0; }
+  .v5-rail--cards > * {
+    background: var(--ob-surface);
+    border: 1px solid var(--ob-line-subtle) !important;
+    border-radius: 14px;
+    padding: 16px !important;
+  }
+  /* Home's open source section waits for a wider screen. */
+  .v5-deskonly { display: none !important; }
+}

@@ -1,0 +1,109 @@
+/* The October hero (Hero5.tsx). Split: 5 of 12 columns of words, 7 of evidence; 1 column below 960px. The words sit
+   on the visual's top third, not its middle, so the headline is the first thing read. */
+
+.v5-hero {
+  position: relative;
+  padding-block: clamp(36px, 6vw, 88px) clamp(56px, 8vw, 112px);
+  overflow: clip;
+}
+.v5-hero[data-reader]::before {
+  content: '';
+  position: absolute;
+  inset: -20% 40% auto -20%;
+  height: 560px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent), transparent);
+  pointer-events: none;
+}
+.v5-hero-wrap { position: relative; }
+
+.v5-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  margin-top: 8px;
+}
+
+.v5-hero-words { display: grid; gap: 22px; align-content: center; }
+
+.v5-hero-h {
+  margin: 0;
+  font: 600 clamp(40px, 5.2vw, 68px) / 1.02 var(--ob-font-sans);
+  letter-spacing: -0.042em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+
+.v5-hero-sub {
+  margin: 0;
+  max-width: 44ch;
+  font: 400 clamp(17px, 1.45vw, 19.5px) / 1.5 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+.v5-hero-act { display: grid; gap: 16px; justify-items: start; margin-top: 6px; }
+.v5-hero-form { width: 100%; max-width: 460px; }
+.v5-hero-second { font-size: 14.5px; }
+.v5-hero-arrow {
+  width: 7px;
+  height: 7px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 2px;
+}
+
+.v5-hero-visual { min-width: 0; }
+
+@media (max-width: 960px) {
+  .v5-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .v5-hero-sub { max-width: 52ch; }
+}
+
+/* A words only hero (/compare): the claim at reading width, with no object beside it. */
+.v5-hero--text { padding-bottom: 0; }
+.v5-hero--text .v5-hero-words { max-width: 900px; margin-top: 8px; }
+.v5-hero--text .v5-hero-h { font-size: clamp(36px, 4.6vw, 60px); }
+.v5-hero--text .v5-hero-sub { max-width: 60ch; }
+
+/* The breadcrumb sits on the words' left edge, not centred: the October hero is left aligned. */
+.v5-hero .s-crumbs { justify-self: start; margin-bottom: 20px; }
+.v5-hero .s-crumbs .ob-crumbs__list { justify-content: flex-start; }
+.v5-hero:has(.s-crumbs) { padding-top: clamp(28px, 4vw, 48px); }
+
+/* A reader page's headline is longer than Home's, so it sets a step smaller. */
+.v5-hero[data-reader] .v5-hero-h { font-size: clamp(36px, 4.4vw, 58px); }
+
+/* The category tag over Home's headline: 1 pill, ink only, a filled dot before the word. */
+.v5-hero-tag {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ob-line);
+  font: 500 13px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.v5-hero-tag:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.v5-hero-tag:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+.v5-hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ob-text); }
+
+/* Centred (Home): the words on the page's middle, the headline 1 sentence to a full line and a step larger, the
+   object under them at the page's width. */
+.v5-hero--center { padding-top: clamp(48px, 7vw, 104px); }
+.v5-hero--center .v5-hero-grid { grid-template-columns: minmax(0, 1fr); gap: clamp(48px, 7vw, 104px); margin-top: 0; }
+.v5-hero--center .v5-hero-words { justify-items: center; text-align: center; gap: 24px; }
+.v5-hero--center .v5-hero-tag { justify-self: center; }
+.v5-hero--center .v5-hero-h { font-size: clamp(40px, 5.6vw, 76px); line-height: 1.04; }
+.v5-hero-line { display: block; text-wrap: balance; }
+.v5-hero--center .v5-hero-sub { max-width: 54ch; }
+.v5-hero--center .v5-hero-act { justify-items: center; width: 100%; margin-top: 4px; }
+.v5-hero--center .v5-hero-form { max-width: 480px; margin-inline: auto; }
+/* The micro line, an error and the privacy line sit centred under the pill, as in the centred use case hero. */
+.v5-hero--center .v5-hero-form .ob-pill-foot,
+.v5-hero--center .v5-hero-form .s-capture__privacy { justify-items: center; padding-inline: 0; text-align: center; text-wrap: balance; }

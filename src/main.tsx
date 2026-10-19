@@ -13,6 +13,8 @@ import './styles/ds/components/surfaces.css'
 import './styles/ds/components/brand.css'
 import './styles/tokens.css'
 import './styles/site.css'
+/* The October rewrite's layer: the stamp accent, the receipt object, the v5 section primitives (COPY.md). */
+import './styles/v5.css'
 import './styles/base.css'
 /* How the page renders, never how it looks (styles/perf.css). */
 import './styles/perf.css'

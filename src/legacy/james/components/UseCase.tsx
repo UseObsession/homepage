@@ -48,7 +48,6 @@ export function Win({ title, children }: { title: string; children: ReactNode })
         <i />
         <i />
         <span>{title}</span>
-        <em className="tag idle">Example</em>
       </div>
       <div className="uc-body">{children}</div>
     </Play>

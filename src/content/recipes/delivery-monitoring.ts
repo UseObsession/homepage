@@ -2,12 +2,13 @@ import type { Capture, Recipe } from '../types'
 
 /* Delivery monitoring (/recipes/delivery-monitoring). Check your own journeys. Screen: qa.
    New page (James's original recipe set had Delivery monitoring; our version's "First 14 days" use case on the
-   Founders page). Labelled test customers with real inboxes and numbers live your first 14 days, a new one after
-   every release and every week, and prove every email, text and login code arrives. It also covers every launch
-   send (Marketing's "Your launch", the Agencies weekend codes, the webinar invite). Your own journeys only, or a
-   client's with their OK; every code tried stops before payment. No claim about spam folder placement: only what
-   arrived, when, and whether it works.
-   The run and the table tell the same story as the `qa` screen (release 4.2, 3 labelled test customers, UK login
+   Founders page). AI test customers with real inboxes and numbers live your first 14 days, a new one after every
+   release and every week, and prove every email, text and login code arrives. It also covers every launch send
+   (Marketing's "Your launch", the Agencies weekend codes, the webinar invite). The reader's own journeys, or a
+   client's with the client's agreement (said once, in the FAQ); each code is tried at checkout, then stopped before
+   payment or bought on a capped card, as the reader chooses. Only the 3 lines in system.md are rules. No claim about
+   spam folder placement: only what arrived, when, and whether it works.
+   The run and the table tell the same story as the `qa` screen (release 4.2, 3 test customers, UK login
    codes stop on day 6, US codes in 6 seconds, the fix ticket drafted). Example. */
 
 const roles: Capture['roles'] = {
@@ -22,24 +23,24 @@ export const recipe: Recipe = {
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
   group: 'Check your own journeys',
-  line: 'Lives your first 14 days as labelled test customers on real inboxes and numbers, and proves every message arrives.',
+  line: 'Lives your first 14 days as test customers on real inboxes and numbers, and proves every message arrives.',
   gets: 'Every email, text and code your customers should get, timed, and anything missing flagged the day it’s due.',
   kit: [
-    'Labelled AI test customers',
+    'AI test customers',
     'Real inboxes',
     'Numbers in each country you sell in',
     'iPhone, Android and desktop',
     'A 14 day watch, every message timed',
-    'Every step signed and dated',
+    'Every message kept with its receipt',
   ],
 
   meta: {
     path: '/recipes/delivery-monitoring',
     title: 'Delivery monitoring: prove every email, text and code lands',
     description:
-      'Labelled AI test customers live your first 14 days on real inboxes and numbers in each country, and flag any email, text or code that never arrives.',
+      'AI test customers live your first 14 days on real inboxes and numbers in each country you sell in, and flag any email, text or code that never arrives.',
     answer:
-      'Delivery monitoring proves every email, text and login code arrives: after every release, labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
+      'Delivery monitoring proves every email, text and login code arrives: after every release, AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,7 +51,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that prove every email, text and login code arrives.',
-    sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
+    sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     screen: 'qa',
     capture: {
       kind: 'waitlist',
@@ -66,14 +67,14 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: release 4.2',
     recipe: 'delivery',
-    task: 'After release 4.2, start 3 labelled test customers in the UK and US. Live our first 14 days and flag anything that never arrives.',
+    task: 'After release 4.2, start 3 test customers in the UK and US. Live our first 14 days and flag anything that never arrives.',
     targets: 'Your app, UK and US',
-    journey: ['Sign up as labelled test customers', 'Log in by text code', 'Open every email', 'Stop before payment'],
+    journey: ['Sign up as test customers', 'Log in by text code', 'Open every email', 'Time every message'],
     schedule: 'Every release, then daily for 14 days',
     report: 'Slack alert, ticket drafted',
-    kit: ['Agent ID, declared as AI', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
+    kit: ['3 AI test customers', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
     events: [
-      { time: 'Day 1, 09:00', text: '3 labelled test customers sign up: UK on iPhone, US and UK on Android.' },
+      { time: 'Day 1, 09:00', text: '3 test customers sign up: UK on iPhone, US and UK on Android.' },
       { time: 'Day 1, 09:03', text: 'Welcome emails in 2 to 3 minutes. Login codes by text in under 10 seconds.' },
       { time: 'Day 3, 10:00', text: 'Setup tips email arrives for all 3. Every link opens.' },
       { time: 'Day 6, 09:12', text: 'Login code by text: the US customer gets it in 6 seconds.' },
@@ -81,12 +82,12 @@ export const recipe: Recipe = {
     ],
     finding: 'Login codes stopped reaching UK numbers on day 6. US numbers still get them in 6 seconds.',
     fix: 'A fix ticket drafted for your tracker with the text log, filed after your OK. Once it’s fixed, both UK customers try again.',
-    ledger: 'Example run. Every email, text and code timed, screenshotted and signed.',
+    ledger: 'Example run. Every email, text and code timed and screenshotted, with proof.',
   },
 
   steps: [
     { title: 'Pick the journeys', line: 'Sign up, onboarding, trial, a launch: every message a customer should get.' },
-    { title: 'Labelled test customers join', line: 'Each says it’s AI, with a real inbox and number in the countries you sell in.' },
+    { title: 'Test customers join', line: 'Each has a real inbox and number in the countries you sell in, and says it’s AI to any person it talks to.' },
     { title: 'They live it for 14 days', line: 'Every email, text and code timed against when it should arrive. A new test customer starts every week.' },
     { title: 'What never arrives reaches you', line: 'The day it was due, with the screenshot, the log and a ticket drafted.' },
   ],
@@ -104,7 +105,7 @@ export const recipe: Recipe = {
       group: 'Every launch',
       items: [
         { title: 'Emails and texts', line: 'Each send lands in every test inbox and on every number.' },
-        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment. Every link opened on phone and desktop.' },
+        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment or buying on a capped card, as you choose. Every link opened on phone and desktop.' },
       ],
     },
     {
@@ -144,7 +145,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Day 1 passed. On day 6, UK login codes stopped arriving.',
-    line: 'Example: release 4.2, 3 labelled test customers.',
+    line: 'Example: release 4.2, 3 test customers.',
     cols: ['UK, iPhone', 'US, Android', 'UK, Android'],
     rows: [
       { label: 'Day 1, welcome email', values: ['2 min', '2 min', '3 min'] },
@@ -156,11 +157,11 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI, and lives only your own journeys.',
+    heading: 'Real inboxes and numbers, and every message timed.',
     items: [
       {
         q: 'How do I know our welcome emails and login codes actually arrive?',
-        a: 'Obsession’s Delivery monitoring has labelled AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flags any email, text or code that never arrives.',
+        a: 'Obsession’s Delivery monitoring has AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flags any email, text or code that never arrives.',
       },
       {
         q: 'Why 14 days?',
@@ -172,7 +173,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Delivery monitoring check our launch emails and texts?',
-        a: 'Yes. Delivery monitoring’s test customers on your list get every send, open every link and try every code, stopping before payment.',
+        a: 'Yes. Delivery monitoring’s test customers on your list get every send, open every link and try every code at checkout, stopping before payment or buying on a capped card, as you choose.',
       },
       {
         q: 'Does Delivery monitoring see our real customers’ data?',

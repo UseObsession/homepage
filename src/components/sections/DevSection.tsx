@@ -239,7 +239,7 @@ export function DevSection({ developers, workspace = 'company', id, className, u
             <CodeWindow code={code} ui={ui} />
           </div>
           <div className="s-dev__screen">
-            <AppScreen name={screen} workspace={workspace} />
+            <AppScreen name={screen} workspace={workspace} camera />
           </div>
         </div>
       </div>

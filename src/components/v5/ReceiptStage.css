@@ -1,0 +1,228 @@
+/* The hero's stage (ReceiptStage.tsx). Desktop: the 3 evidence cards down the left, the receipt on the right, a step
+   lower, overlapping the cards' edge as if just printed beside them. Phone: 1 column, the receipt last. */
+
+.v5-rs {
+  margin: 0;
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+
+.v5-rs-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 0;
+  padding: 22px;
+  border: 1px solid var(--v5-stage-line);
+  border-radius: 18px;
+  background: var(--v5-stage);
+  min-height: 452px;
+}
+
+.v5-rs-flow { display: grid; gap: 6px; position: relative; z-index: 1; }
+
+.v5-rs-card {
+  background: var(--ob-surface-raised);
+  border: 1px solid var(--ob-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--ob-text);
+  font: 400 13px / 1.45 var(--ob-font-sans);
+}
+
+/* The ad */
+.v5-rs-ad-h { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; margin-bottom: 8px; }
+.v5-rs-mono {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ob-text);
+  color: var(--ob-bg);
+  font: 600 11px / 1 var(--ob-font-sans);
+}
+.v5-rs-ad-name { font-weight: 600; font-size: 13px; }
+.v5-rs-ad-src { color: var(--ob-text-3); font-size: 11.5px; }
+.v5-rs-ad-text { margin: 0 0 10px; font: 500 15px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; }
+.v5-rs-ad-cta {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--ob-fill);
+  border: 1px solid var(--ob-line);
+}
+
+/* The hop between 2 pieces of evidence: what the agent did next. */
+.v5-rs-hop {
+  margin: 0;
+  padding: 2px 0 2px 26px;
+  position: relative;
+  font: 400 12px / 1.4 var(--ob-font-mono);
+  color: var(--ob-text-3);
+}
+.v5-rs-hop::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: -4px;
+  bottom: -4px;
+  border-left: 1px dashed var(--ob-line-strong);
+}
+
+/* The page */
+.v5-rs-url {
+  margin: 0 0 8px;
+  font: 400 11.5px / 1.3 var(--ob-font-mono);
+  color: var(--ob-text-3);
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--ob-fill-subtle);
+  border: 1px solid var(--ob-line-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v5-rs-url span { color: var(--ob-text-2); }
+.v5-rs-page-t { margin: 0; font: 600 14.5px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; }
+.v5-rs-page-n { margin: 4px 0 0; color: var(--ob-text-2); font-size: 12.5px; }
+
+/* The inbox row */
+.v5-rs-mail { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.v5-rs-mail-time { font: 400 11.5px / 1 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-rs-mail-main { display: grid; min-width: 0; }
+.v5-rs-mail-from { font-size: 12px; color: var(--ob-text-2); }
+.v5-rs-mail-sub { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.v5-rs-mail-tab {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--ob-line-strong);
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+
+/* The receipt, beside the cards and a step lower */
+.v5-rs-receipt {
+  position: relative;
+  z-index: 2;
+  margin: 58px 0 0 -18px;
+  transform: rotate(1.2deg);
+  transform-origin: top left;
+}
+.v5-rs-receipt-h {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.v5-rs-receipt .v5-receipt-row { font-size: 12px; }
+.v5-rs-fact { margin: 0 0 30px; font: 500 13px / 1.5 var(--ob-font-mono); }
+/* The stamp lands in its own room under the fact, never on its words. */
+.v5-rs-stamp { position: absolute; right: 16px; bottom: 20px; }
+
+/* Under the stage: the journeys by name, and the pause */
+.v5-rs-cap { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; }
+.v5-rs-pick { display: flex; flex-wrap: wrap; gap: 6px; }
+.v5-rs-dot,
+.v5-rs-pause {
+  font: 500 12.5px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  background: transparent;
+  border: 1px solid var(--ob-line);
+  border-radius: 999px;
+  padding: 7px 11px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.v5-rs-dot:hover,
+.v5-rs-pause:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.v5-rs-dot[aria-pressed='true'] { color: var(--ob-text); border-color: var(--v5-stamp); box-shadow: inset 0 0 0 1px var(--v5-stamp); }
+.v5-rs-dot:focus-visible,
+.v5-rs-pause:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+/* Pause and play as a round icon button, the same height as the journeys beside it. */
+.v5-rs-pause { display: inline-grid; place-items: center; width: 30px; height: 30px; padding: 0; border-radius: 50%; }
+.v5-rs-pause svg { width: 12px; height: 12px; fill: currentColor; }
+
+/* The journey, played: the cards land in order, the receipt prints top to bottom, the stamp lands last. Only once the
+   stage has moved on from the prerendered first story (data-run), so the first paint is the story at rest. */
+@media (prefers-reduced-motion: no-preference) {
+  .v5-rs[data-run] .v5-rs-ad,
+  .v5-rs[data-run] .v5-rs-page,
+  .v5-rs[data-run] .v5-rs-mail { animation: v5-rs-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .v5-rs[data-run] .v5-rs-page { animation-delay: 0.7s; }
+  .v5-rs[data-run] .v5-rs-mail { animation-delay: 1.4s; }
+  .v5-rs[data-run] .v5-rs-hop { animation: v5-rs-fade 0.4s ease-out both; }
+  .v5-rs[data-run] .v5-rs-hop:nth-of-type(1) { animation-delay: 0.45s; }
+  .v5-rs[data-run] .v5-rs-hop:nth-of-type(2) { animation-delay: 1.15s; }
+  .v5-rs[data-run] .v5-rs-receipt { animation: v5-rs-print 1.3s cubic-bezier(0.45, 0, 0.2, 1) 2.1s both; }
+  .v5-rs[data-run] .v5-rs-stamp { animation: v5-rs-stamp 0.42s cubic-bezier(0.2, 1.4, 0.4, 1) 3.5s both; }
+}
+@keyframes v5-rs-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes v5-rs-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes v5-rs-print {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes v5-rs-stamp {
+  0% { opacity: 0; transform: rotate(-6deg) scale(1.6); }
+  100% { opacity: 1; transform: rotate(-6deg) scale(1); }
+}
+
+@media (max-width: 720px) {
+  .v5-rs-stage { grid-template-columns: 1fr; padding: 14px; min-height: 0; }
+  .v5-rs-receipt { margin: 14px 0 0; transform: none; }
+}
+
+/* Under a centred hero (Home, Hero5 `center`) the stage has the page's width. Below 1080px it keeps its 2 columns at a
+   reading width; from 1080px the journey reads left to right in 1 row: the ad, the page and the email, each hop a
+   dashed arrow with its words under it, and the receipt at the end of the row, a little turned and risen out of it. */
+.v5-hero--center .v5-hero-visual { justify-self: center; width: 100%; max-width: 760px; }
+@media (min-width: 1080px) {
+  .v5-hero--center .v5-hero-visual { max-width: none; }
+  .v5-hero--center .v5-rs-stage {
+    grid-template-columns: minmax(0, 1fr) 286px;
+    align-items: center;
+    min-height: 0;
+    padding: 24px 28px;
+  }
+  .v5-hero--center .v5-rs-flow {
+    grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr) 76px minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0;
+  }
+  .v5-hero--center .v5-rs-card { text-align: left; }
+  .v5-hero--center .v5-rs-hop { align-self: center; padding: 16px 6px 0; text-align: center; font-size: 11.5px; }
+  .v5-hero--center .v5-rs-hop::before { left: 10px; right: 12px; top: 4px; bottom: auto; border-left: 0; border-top: 1px dashed var(--ob-line-strong); }
+  .v5-hero--center .v5-rs-hop::after {
+    content: '';
+    position: absolute;
+    right: 11px;
+    top: 1px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--ob-line-strong);
+    border-right: 1px solid var(--ob-line-strong);
+    transform: rotate(45deg);
+  }
+  /* The inbox row stands up in a column this narrow: the time and the tab on top, the sender and subject under. */
+  .v5-hero--center .v5-rs-mail { grid-template-columns: minmax(0, 1fr) auto; align-content: center; row-gap: 8px; }
+  .v5-hero--center .v5-rs-mail-main { grid-column: 1 / -1; grid-row: 2; }
+  .v5-hero--center .v5-rs-mail-sub { white-space: normal; }
+  /* The receipt rises out over the stage's top edge, as if just printed, so the row keeps the cards' height. */
+  .v5-hero--center .v5-rs-receipt { margin: -64px 0 -12px 22px; transform: rotate(1.6deg); transform-origin: center; text-align: left; }
+  .v5-hero--center .v5-rs-cap { justify-content: center; }
+}

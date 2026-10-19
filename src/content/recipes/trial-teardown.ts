@@ -1,11 +1,12 @@
 import type { Recipe } from '../types'
 
-/* Trial teardown (/recipes/trial-teardown). Rewritten around the 3 safeguards adopted on 2 Oct: free trials that need
-   no card only, a declared AI agent that never replies, and the trial closes the moment a rep writes or calls.
-   No sales calls are logged or sold, no card is ever entered, and trials that need a card or a sales call are
-   skipped. Kept from James: the day by day sequence, what's asked at sign up, the end offer, rivals side by side and
-   the "signs in daily or goes quiet" setting. The run and the comparison are examples, say so, and match the
-   `battlecard` screen (Rival A 20% off on day 13, Rival B closed on day 6 when a rep wrote, Rival C 30% off).
+/* Trial teardown (/recipes/trial-teardown). The 2 Oct safeguards (no card trials only, never replies, closes when a rep
+   writes) are now the customer's settings. The 3 lines hold (obsession/system.md): the record kept as it arrived,
+   the customer private unless they choose to be named, and the law (an agent says it's AI when it talks to a person,
+   never uses fake payment details). Kept from James: the day by day sequence, what's asked at sign up, the end offer,
+   rivals side by side and the "signs in daily or goes quiet" setting. The run and the comparison are examples, say
+   so, and match the `battlecard` screen (Rival A 20% off on day 13, Rival B closed on day 6 when a rep wrote, Rival C
+   30% off); the comparison says it was set to close a trial when a rep writes, so that close reads as a setting.
    AI search (3 Oct): every answer names the recipe, because an assistant may quote 1 answer alone, without the page or
    the question around it, and whoever reads it there still has to know which recipe it describes and whose it is.
    Keep it that way. */
@@ -14,11 +15,11 @@ export const recipe: Recipe = {
   id: 'trial',
   slug: 'trial-teardown',
   name: 'Trial teardown',
-  group: 'Watch rivals',
-  line: 'Starts a rival’s free trial, with no card, and logs every onboarding email, prompt and offer, day by day.',
+  group: 'Watch other companies',
+  line: 'Starts a rival’s free trial and logs every onboarding email, prompt and offer, day by day.',
   gets: 'The whole trial on 1 page, from the welcome email to the offer at the end.',
   kit: [
-    'A declared AI agent per rival',
+    'A customer agent per rival',
     'Its own inbox and browser',
     'Daily sign ins, like a new user',
     'A watch to the last trial day',
@@ -30,9 +31,9 @@ export const recipe: Recipe = {
     path: '/recipes/trial-teardown',
     title: 'Trial teardown: every email in a rival’s trial · Obsession',
     description:
-      'A declared AI agent starts each rival’s free trial with no card and logs every email and offer. It never replies, and closes it if a rep writes or calls.',
+      'An AI agent starts each rival’s free trial and logs every onboarding email, prompt and offer, day by day, from the welcome email to the offer at the end.',
     answer:
-      'Trial teardown logs every email, prompt and offer in a rival’s free trial: a declared AI agent starts each trial that needs no card, never replies, and closes it the moment a rep writes or calls.',
+      'Trial teardown logs every email, prompt and offer in a rival’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +44,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that log every email, prompt and offer in a rival’s free trial.',
-    sub: 'Trial teardown logs every email, prompt and offer in a rival’s free trial: a declared AI agent starts each trial that needs no card, never replies, and closes it the moment a rep writes or calls.',
+    sub: 'Trial teardown logs every email, prompt and offer in a rival’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
     screen: 'battlecard',
     capture: {
       kind: 'waitlist',
@@ -63,14 +64,14 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: Rival A’s 14 day trial',
     recipe: 'trial',
-    task: 'Start Rival A’s free trial with no card. Log every email, prompt and offer until it ends. Never reply.',
+    task: 'Start Rival A’s free trial with no card. Log every email, prompt and offer until it ends.',
     targets: 'rival-a.example, reporting software',
-    journey: ['Start the trial, no card', 'Sign in daily like a new user', 'Never reply', 'Close if a rep writes or calls'],
+    journey: ['Start the trial, no card', 'Sign in daily like a new user', 'Log every email and prompt', 'Watch to the last day'],
     schedule: 'Daily, until the trial ends',
     report: 'A battlecard in your CRM, the trial as a PDF',
-    kit: ['Agent ID, declared as AI', 'Own inbox', 'Own browser', '14 day watch'],
+    kit: ['Agent ID', 'Own inbox', 'Own browser', '14 day watch'],
     events: [
-      { time: 'Day 0, 10:00', text: 'Starts a free trial with no card, declared as an AI agent.' },
+      { time: 'Day 0, 10:00', text: 'Starts a free trial with no card.' },
       { time: 'Day 0, 10:01', text: 'Welcome email with a 6 step setup checklist.' },
       { time: 'Day 3, 09:00', text: 'Case study email with 3 customer logos.' },
       { time: 'Day 12, 09:00', text: 'Reminder: 2 days left, with an upgrade link.' },
@@ -78,21 +79,21 @@ export const recipe: Recipe = {
     ],
     finding: '11 emails, 4 in app prompts and 1 offer in 14 days. Rival A saves its 20% off for day 13.',
     fix: 'A talk track drafted for your reps: plan for the 20% on day 13. In your CRM after your OK.',
-    ledger: 'Example run. It never replied, and no rep got in touch, so the trial ran to the end.',
+    ledger: 'Example run. No rep got in touch, so the trial ran to the end.',
   },
 
   steps: [
     {
       title: 'Add your rivals',
-      line: 'Any software with a free trial that needs no card. Trials that need a card or a sales call are skipped.',
+      line: 'Any software with a free trial. Where a trial asks for a card, the agent uses one you fund.',
     },
     {
       title: 'An agent starts each trial',
-      line: 'Declared as an AI agent, with its own inbox, and your name kept out. It signs in and follows onboarding like a new user.',
+      line: 'With its own inbox and browser. It signs in and follows onboarding like a new user.',
     },
     {
-      title: 'It logs every touch, and never replies',
-      line: 'Every email, in app prompt and offer, timed by trial day. If a rep writes or calls, the trial closes and that message is the last record.',
+      title: 'It logs every touch',
+      line: 'Every email, in app prompt and offer, timed by trial day, and any message or call from a rep.',
     },
     {
       title: 'You get the teardown',
@@ -104,7 +105,7 @@ export const recipe: Recipe = {
     {
       group: 'Signing up',
       items: [
-        { title: 'What’s asked', line: 'The fields, the questions and whether a card is needed. If it is, the trial is skipped.' },
+        { title: 'What’s asked', line: 'The fields, the questions and whether a card is needed.' },
         { title: 'First minutes', line: 'The welcome email, the checklist and the first prompt.' },
       ],
     },
@@ -121,7 +122,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Before it ends', line: 'The reminders, and how many days before the end each one comes.' },
         { title: 'The offer', line: 'The discount or extension at the end, and how long it lasts.' },
-        { title: 'If a rep gets in touch', line: 'The trial closes the moment it happens, and the record says when.' },
+        { title: 'If a rep gets in touch', line: 'When it happens, what the rep says, and what the agent did next.' },
       ],
     },
   ],
@@ -141,12 +142,12 @@ export const recipe: Recipe = {
   },
 
   settings: [
-    { k: 'Rivals', v: 'Any software with a free trial that needs no card' },
+    { k: 'Rivals', v: 'Any software with a free trial' },
     { k: 'Length', v: 'To the last day of the trial' },
     { k: 'Activity', v: 'Signs in daily, or goes quiet after day 1' },
     { k: 'Country', v: 'For the browser, and a number only if the sign up asks for one' },
     { k: 'How often', v: 'Once, or a fresh trial whenever a rival changes its plans' },
-    { k: 'If a rep gets in touch', v: 'The trial closes. Always on.' },
+    { k: 'If a rep gets in touch', v: 'Close the trial, carry on, or reply and say it’s an AI' },
   ],
 
   forWho: [
@@ -158,7 +159,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Rival A offers 20% off on day 13. Rival C offers 30% off once the trial ends.',
-    line: 'Example. Rival B’s trial closed on day 6, when a rep wrote.',
+    line: 'Example, set to close a trial when a rep writes. Rival B’s closed on day 6.',
     cols: ['Rival A', 'Rival B', 'Rival C'],
     rows: [
       { label: 'Trial length', values: ['14 days', '14 days', '14 days'] },
@@ -170,11 +171,11 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'It never replies, and it leaves the moment a rep gets in touch.',
+    heading: 'Every email in the trial, kept with its receipt.',
     items: [
       {
         q: 'Is it ethical to sign up for a competitor’s free trial to compare onboarding?',
-        a: 'Obsession’s Trial teardown does it openly: the agent says it’s AI, starts only trials that need no card, never replies, and closes the trial the moment a rep writes or calls.',
+        a: 'Starting a free trial is what any customer can do, and Obsession’s Trial teardown does the same. When the agent talks to a person, it says it’s an AI. It never uses fake payment details, and every email is kept exactly as it arrived.',
       },
       {
         q: 'What’s it worth?',
@@ -182,12 +183,12 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will Trial teardown talk to a sales rep?',
-        a: 'No. Trial teardown never replies. If a rep writes or calls, the trial closes that moment and the record says when.',
+        a: 'If you want it to. Trial teardown can close the trial, carry on quietly or reply. When it talks to a rep, it says it’s an AI.',
       },
-      { q: 'What about trials that need a card?', a: 'Trial teardown skips them, and every trial that needs a sales call to start.' },
+      { q: 'What about trials that need a card?', a: 'Trial teardown starts them on a card you fund. It never uses fake payment details.' },
       {
         q: 'Will the rival know?',
-        a: 'Every Obsession agent says it’s an AI agent and links to useobsession.com/agents, a page explaining Obsession. Your name stays out.',
+        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'Does Trial teardown use the product?',
@@ -199,7 +200,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How long does Trial teardown take?',
-        a: 'Trial teardown takes as long as the trial. Its first emails land in minutes, and the teardown is ready the day the trial ends, or the day a rep gets in touch.',
+        a: 'Trial teardown takes as long as the trial. Its first emails land in minutes, and the teardown is ready the day the trial ends.',
       },
     ],
   },

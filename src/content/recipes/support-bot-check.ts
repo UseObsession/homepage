@@ -8,12 +8,12 @@ import type { Recipe } from '../types'
    the reader's OK; "With your OK · no jailbreaks").
    Base: _research/verify/VERIFY.md 6.1 (the checks, the channels, the outcome) and 11 (the red lines). No real AI agent
    check has run yet, so the run is an example and says so, and no Verify claim sits in proof.
-   Red lines held: only the reader's own bot, or a client's with their written OK; every test customer says it's AI and
-   who it works for, and answers "am I talking to a person?" truthfully; it asks what an ordinary customer asks, never a
-   jailbreak, a prompt trick or flattery for a discount; every test tagged, agreed with the bot's vendor first, so no
-   test is billed as a resolution; a portal only through a test account the reader gives, a helpdesk only through an
-   export the reader connects; volume a single customer could create; checkouts stop before payment; nothing changes
-   in the bot without the reader's OK. No vendor or product names: "your bot", "your vendor".
+   The three lines hold (system.md), and nothing else is written as a rule: every answer kept exactly as it arrived;
+   the reader private unless they choose to be named; the law (a test customer says it's AI when it talks to a person,
+   pays only with real payment details and never gets round a CAPTCHA or a bot block). The rest is the reader's
+   setting: hard or adversarial questions if they want them, a portal test account or helpdesk export they give, and
+   when a fix goes live. Every test is tagged, agreed with the vendor, so none is billed as a resolution. A client's
+   bot is named with the client's agreement once, in the FAQ. No vendor or product names: "your bot", "your vendor".
    Up-to-50 rule: the 1 modelled figure (up to 780 hours a year) carries its model in the same line: 1 person reading
    bot transcripts 15 hours a week x 52 weeks = 780, turned into a short list of what failed. */
 
@@ -27,21 +27,21 @@ export const recipe: Recipe = {
   line: 'Asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
   gets: 'A verdict on every check, the transcript behind it, and the right answer drafted for every wrong one.',
   kit: [
-    'A declared AI test customer, working for your company',
+    'An AI test customer, working for your company',
     'Its own inboxes, phone number and test account',
     'Your policy pages, captured on every run',
     'Every channel your bot answers on',
     'Every test tagged, agreed with your vendor',
-    'Every answer and wait signed and dated',
+    'Every answer and wait kept with its receipt',
   ],
 
   meta: {
     path: '/recipes/support-bot-check',
     title: 'Support bot check: test your AI chatbot daily · Obsession',
     description:
-      'Declared AI test customers ask your support bot what customers ask, on chat, email and your portal, every day, and check each answer against your policy.',
+      'AI test customers ask your support bot what customers ask, on chat, email and your portal, every day, and check each answer against your policy.',
     answer:
-      'Support bot check asks your support bot what customers ask, every morning: declared test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
+      'Support bot check asks your support bot what customers ask, every morning: test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     ogImage: '/og/support-bot-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask your support bot what customers ask.',
-    sub: 'Support bot check asks your support bot what customers ask, every morning: declared test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
+    sub: 'Support bot check asks your support bot what customers ask, every morning: test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     screen: 'botcheck',
     capture: {
       kind: 'verify',
@@ -89,7 +89,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Point it at your bot',
-      line: 'Your site chat, help centre bot, support inbox, portal, WhatsApp or text: yours, or a client’s with their OK. Add your policy pages and the questions your customers ask most.',
+      line: 'Your site chat, help centre bot, support inbox, portal, WhatsApp or text: yours or a client’s. Add your policy pages and the questions your customers ask most.',
     },
     {
       title: 'Approve the checks',
@@ -127,10 +127,10 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'No tricks', line: 'It asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.' },
-        { title: 'Inside your systems', line: 'Your portal only with a test account you give it, and your helpdesk only through an export you connect.' },
+        { title: 'Hard questions', line: 'The questions your customers ask, and hard or adversarial ones if you want them.' },
+        { title: 'Inside your systems', line: 'Your portal through a test account you give it, and your helpdesk through an export you connect.' },
         { title: 'Your bill', line: 'Every test is tagged, and agreed with your vendor first, so no test is billed as a resolution.' },
-        { title: 'Anyone else’s bot', line: 'Never. Your own bot, or a client’s with their written OK.' },
+        { title: 'The record', line: 'Every answer and wait kept exactly as it arrived, private unless you share it.' },
       ],
     },
   ],
@@ -143,23 +143,23 @@ export const recipe: Recipe = {
       { format: 'What happened next', line: 'The promised email, ticket or callback, and when it arrived, or that it never did.' },
       {
         format: 'The fix, drafted',
-        line: 'The right answer written for your bot’s settings, and the handoff rule for your helpdesk. Live only after your OK.',
+        line: 'The right answer written for your bot’s settings, and the handoff rule for your helpdesk. Live when you approve it.',
       },
       { format: 'What changed', line: 'After every update to your bot, the checks that broke or recovered.' },
       {
         format: 'A record to share',
-        line: 'A page and a PDF for your team, your vendor or your client, or an email, Slack, a sheet or a webhook. Every step signed.',
+        line: 'A page and a PDF for your team, your vendor or your client, or an email, Slack, a sheet or a webhook. Every answer kept with its receipt.',
       },
     ],
   },
 
   settings: [
-    { k: 'Bot', v: 'Yours, or a client’s with their written OK' },
+    { k: 'Bot', v: 'Yours, or one you run for a client' },
     { k: 'Channels', v: 'Site chat, help centre bot, support inbox, portal, WhatsApp and text' },
-    { k: 'Questions', v: 'The questions your customers ask most, and your own tricky cases' },
+    { k: 'Questions', v: 'The questions your customers ask most, your own tricky cases, and hard or adversarial ones if you want them' },
     { k: 'Policies', v: 'Your refund, returns, cancellation and delivery pages, captured on every run' },
     { k: 'What counts', v: 'For example: a person within 3 minutes, the promised email within 1 hour' },
-    { k: 'Test accounts', v: 'A portal test account and a helpdesk export, only if you give them' },
+    { k: 'Test accounts', v: 'A portal test account and a helpdesk export, if you give them' },
     { k: 'Tagging', v: 'Every test tagged, agreed with your vendor first' },
     { k: 'How often', v: 'Daily, and after every update to your bot' },
   ],
@@ -167,7 +167,7 @@ export const recipe: Recipe = {
   forWho: [
     {
       audience: 'agencies',
-      line: 'A daily check on every bot you build or run for a client, with their OK, and a signed record to show them.',
+      line: 'A daily check on every bot you build or run for a client, and a record to show them, every answer with its receipt.',
     },
     { audience: 'founders', line: 'Know what your bot tells customers while you sleep, and hear the morning it gets a policy wrong.' },
     { audience: 'marketing', line: 'Check your bot quotes the offer and the code you launched today, not last month’s.' },
@@ -187,12 +187,12 @@ export const recipe: Recipe = {
       { label: 'Promised emails', values: ['Nobody checks they arrive', 'Watched until they arrive or the wait ends'] },
       { label: 'Chat against email', values: ['Never compared', 'The same question, the same minute, compared'] },
       { label: 'After an update', values: ['You hope nothing changed', 'Checked again the same day'] },
-      { label: 'Evidence', values: ['Screenshots in a folder', 'Every step signed and dated'] },
+      { label: 'Evidence', values: ['Screenshots in a folder', 'Every answer kept with its receipt'] },
     ],
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Your bot only, with your OK.',
+    heading: 'Every test customer says it’s AI. You set the rest.',
     items: [
       {
         q: 'How do we find out our chatbot is giving customers wrong answers?',
@@ -204,7 +204,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will Support bot check try to trick our bot?',
-        a: 'No. Support bot check asks what an ordinary customer asks. No jailbreaks, prompt tricks or flattery to win a discount.',
+        a: 'Only if you want it to. Support bot check asks what your customers ask, and you can add hard or adversarial questions to see where your bot breaks.',
       },
       {
         q: 'Does Support bot check say it’s AI?',
@@ -224,7 +224,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Support bot check cover a client’s bot?',
-        a: 'Yes, with the client’s written OK: the Support bot check record carries your agency’s name, and the client can check every step.',
+        a: 'Yes, with the client’s agreement: the Support bot check record carries your agency’s name, and the client can check every receipt.',
       },
       {
         q: 'How often does Support bot check run?',
@@ -240,14 +240,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Support bot check on a bot you run, or a client’s with their OK: 3 test customers use it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Support bot check on a bot you run for yourself or a client: 3 test customers use it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Hear what your support bot tells customers, before they tell you.',
-    sub: 'Your first check is free: 3 test customers ask your bot on 1 channel, and your report lands within 4 days. Your bot, or a client’s with their OK.',
+    sub: 'Your first check is free: 3 test customers ask your bot on 1 channel, and your report lands within 4 days. Your bot, or one you run for a client.',
     capture: {
       kind: 'verify',
       source: 'recipe-support-bot-final',

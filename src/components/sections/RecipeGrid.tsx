@@ -10,15 +10,8 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
    line is only ever written once. */
 const RECIPES = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
-/* The 6 jobs, in the order every page shows them (content/nav JOBS). */
-const JOBS: RecipeGroup[] = [
-  'Win customers',
-  'Keep and grow customers',
-  'Watch rivals',
-  'Check your own journeys',
-  'Get paid and negotiate',
-  'Check your AI agents',
-]
+/* The 3 jobs, in the order every page shows them (content/nav JOBS). */
+const JOBS: RecipeGroup[] = ['Watch other companies', 'Check your own journeys', 'Check your AI agents']
 
 type Props = {
   heading: string
