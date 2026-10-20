@@ -7,7 +7,11 @@ import type { Recipe } from '../types'
    What an agent does at a prospect (questions to staff, forms, baskets, trials, replies) is the customer's setting;
    the 3 lines hold (obsession/system.md): the record kept as it arrived, the customer private unless they choose to
    be named, and the law (an agent says it's AI when it talks to a person). No WhatsApp check, no control message or
-   second run claimed. The run is an example and says so. */
+   second run claimed. The run is an example and says so.
+   19 Oct (James): it also sends a declared demo request and times the reply, at one company or a whole market (the
+   customer signals a lead generation agency targets with, /use-cases/customer-signals-for-lead-generation-agencies);
+   and a signal can add each account as it fires: a new Clay row, a webhook from a signal tool such as treg, or a call
+   from the customer's own AI agent. */
 
 export const recipe: Recipe = {
   id: 'prospect',
@@ -29,9 +33,9 @@ export const recipe: Recipe = {
     path: '/recipes/prospect-intelligence',
     title: 'Prospect intelligence: proof of a real gap at every prospect',
     description:
-      'An AI agent becomes a customer of every company on your list. It signs up, opts in and asks the bot, then shows the gap you fix, with proof they can open.',
+      'An AI agent becomes a customer of every company on your list. It signs up, opts in, requests a demo and asks the bot, then shows the gap you fix, with proof they can open.',
     answer:
-      'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
+      'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in, requests a demo and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
     ogImage: '/og/prospect-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +46,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Prove a real gap at every company on your list.',
-    sub: 'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
+    sub: 'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in, requests a demo and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
     screen: 'pack',
     capture: {
       kind: 'waitlist',
@@ -83,11 +87,11 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add your list',
-      line: 'Paste it, upload a CSV, connect Clay or use the API. You bring the contacts. The agents find the gap.',
+      line: 'Paste it, upload a CSV, connect Clay or use the API, or let a signal add each account as it fires: a new Clay row, a webhook or a call from your AI agent. You bring the contacts. The agents find the gap.',
     },
     {
       title: 'An agent becomes their customer',
-      line: 'It signs up, opts in to texts, reads their pages and the ads they run in public, and asks the site’s chat bot, as you choose.',
+      line: 'It signs up, opts in to texts, requests a demo, reads their pages and the ads they run in public, and asks the site’s chat bot, as you choose.',
     },
     {
       title: 'It waits for what follows',
@@ -110,6 +114,16 @@ export const recipe: Recipe = {
           title: 'Free trials',
           line: 'Every onboarding email by trial day, and what a rep sends. If the agent talks to a rep, it says it’s an AI.',
         },
+      ],
+    },
+    {
+      group: 'Their sales team',
+      items: [
+        {
+          title: 'Demo and contact forms',
+          line: 'The request says it’s from an AI agent. Then how long the first reply takes, who sends it and from which address, and every follow up after it.',
+        },
+        { title: 'Against their rivals', line: 'The same request at their closest rivals in the same minute, so every reply time has a yardstick.' },
       ],
     },
     {
@@ -152,7 +166,7 @@ export const recipe: Recipe = {
     { k: 'How long', v: '7, 14 or 30 days, then again on a schedule' },
     { k: 'Afterwards', v: 'Stop, or keep checking and hear when a gap closes' },
     { k: 'Location', v: 'Phone number and browser country, to match each company' },
-    { k: 'Companies', v: 'A Clay table, a CSV, a pasted list or the API, filtered to the rows worth checking' },
+    { k: 'Companies', v: 'A Clay table, a CSV, a pasted list or the API, filtered to the rows worth checking, or each new account as a signal fires: a new Clay row, a webhook or a call from your AI agent' },
   ],
 
   forWho: [
@@ -203,7 +217,15 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Prospect intelligence contact their staff?',
-        a: 'Only if you set it to. The recipe signs up, opts in, reads their pages and asks the site’s chat bot. When Prospect intelligence talks to a person, by chat, email or phone, it says it’s an AI.',
+        a: 'Only if you set it to. The recipe signs up, opts in, reads their pages and asks the site’s chat bot; a demo request or a question to staff is your setting. When Prospect intelligence talks to a person, by chat, email or phone, it says it’s an AI.',
+      },
+      {
+        q: 'Can Prospect intelligence check how fast a prospect answers a demo request?',
+        a: 'Yes. An agent sends a declared demo request, times the first reply, notes who sent it and from which address, and keeps every follow up, at one company or a whole segment. Your first line can be a count of how the segment answers, or one company’s reply time, as you choose.',
+      },
+      {
+        q: 'Can a signal start a check?',
+        a: 'Yes. A new row in a Clay table, a webhook from your signal tool, or a call from your own AI agent starts the check on that account, so a new Head of Sales or a funding round becomes a fact you can open with.',
       },
       {
         q: 'Will the prospect know?',

@@ -23,4 +23,5 @@ export const readerPages: Record<string, RoleId> = {
   '/marketing': 'marketing',
   '/developers': 'developer',
   '/use-cases/mystery-shopping-for-ecommerce-agencies': 'agency',
+  '/use-cases/customer-signals-for-lead-generation-agencies': 'agency',
 }

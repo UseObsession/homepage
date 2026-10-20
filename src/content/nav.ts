@@ -67,6 +67,7 @@ const STUDY_FOR: Record<string, string> = {
   '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
   '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
   '/use-cases/mystery-shopping-for-ecommerce-agencies': 'For ecommerce agencies',
+  '/use-cases/customer-signals-for-lead-generation-agencies': 'For lead generation agencies',
 }
 
 export const nav = {
