@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { catalog } from '../content/catalog'
-import { study } from '../content/usecases/competitor-emails-for-retention-agencies'
+import { study } from '../content/usecases/leak-checks-for-retention-agencies'
 import { JamesPage } from '../legacy/JamesPage'
 import { Faq, FinalCta, SectionHead } from '../legacy/james/components/Blocks'
 import { Mark } from '../legacy/james/components/Logo'
@@ -9,66 +8,53 @@ import { Reveal } from '../legacy/james/components/Reveal'
 import { at } from '../legacy/james/components/stagger'
 import { Count, Play, Step, Win } from '../legacy/james/components/UseCase'
 
-/* /use-cases/competitor-emails-for-retention-agencies, drawn in James's format: his Clay page's hero flow, 10 steps in
-   3 phases each beside its app window, the opener with its mockup, the questions and the waitlist, built from his
-   pieces (src/legacy/james/components) inside his wrapper, so his styles draw it. The words are the content file's
+/* /use-cases/leak-checks-for-retention-agencies, drawn in James's format: his Clay page's hero flow, the problem, 10
+   steps in 3 phases each beside its app window, the opener with its mockup, the questions and the waitlist, built from
+   his pieces (src/legacy/james/components) inside his wrapper, so his styles draw it. The words are the content file's
    (content/usecases), so the head, the JSON-LD and the page say the same thing; the app windows' rows and numbers are
-   here, as on his. A pet pod at a retention agency watches its category through Black Friday: 2 clients, their 18
-   closest rivals and 100 brands it would like to win. Every brand, person and figure is made up; `fine` says so. */
+   here, as on his. 1 store carries the page, as Tidewren carries his: Larch & Lye, from the pitch list to the month's
+   report. Every store, person and figure is made up; `fine` says so. */
 
 const phases = study.how?.steps ?? []
 const step = (phase: number, i: number) => phases[phase].steps[i]
 
-/* The hero's last stop: each brand and what came back, in his tags. */
-const tones = ['bad', 'idle', 'warn', 'bad']
+/* The hero's last stop: each store and its leak, in his tags. */
+const tones = ['bad', 'bad', 'idle', 'bad']
 
-/* The recipes the picker shows, by the names and lines on their own pages. */
-const picker = ['email-sms-tracking', 'competitor-tracking', 'prospect-intelligence', 'mystery-shopper', 'price-watch', 'ad-tracking']
-  .map((slug) => catalog.recipes.find((r) => r.slug === slug))
-  .filter((r) => r !== undefined)
-
-const side = [
-  { brand: 'Barkwell', role: 'Client', first: '20 Nov', emails: '9', finding: '7 of 9 rivals first', tone: 'bad' },
-  { brand: 'Fern Hollow Pet', role: 'Rival', first: '6 Nov', emails: '14', finding: 'First in category', tone: 'idle' },
-  { brand: 'Copper & Kibble', role: 'Rival', first: '13 Nov', emails: '11', finding: 'New platform', tone: 'warn' },
-  { brand: 'Brightpaw', role: 'To win', first: '24 Nov', emails: '3', finding: 'No basket reminder', tone: 'bad' },
-  { brand: 'Thistle & Bone', role: 'To win', first: 'none', emails: '0', finding: 'Quiet since 9 Oct', tone: 'bad' },
+const pitchList = [
+  { store: 'Larch & Lye', domain: 'larchandlye.example' },
+  { store: 'Pellwood', domain: 'pellwood.example' },
+  { store: 'Fenwick Apothecary', domain: 'fenwickapothecary.example' },
+  { store: 'Marrow Skin', domain: 'marrowskin.example' },
 ]
 
-const toWin = [
+const results = [
+  { store: 'Larch & Lye', code: 'none', text: 'none', reminder: 'none', leaks: '3 leaks', tone: 'bad' },
+  { store: 'Marrow Skin', code: '6 min', text: 'none', reminder: '2 h', leaks: '1 leak', tone: 'bad' },
+  { store: 'Pellwood', code: '2 min', text: '4 min', reminder: 'none', leaks: '1 leak', tone: 'bad' },
+  { store: 'Fenwick Apothecary', code: '1 min', text: '3 min', reminder: '1 h', leaks: 'No leak', tone: 'idle' },
+]
+
+const sorted = [
   {
-    brand: 'Brightpaw',
-    gap: 'No basket reminder',
-    name: 'Dana Ortiz',
+    store: 'Larch & Lye',
+    name: 'Clara Holt',
     role: 'Head of Ecommerce',
-    what: 'Left a basket on 3 Nov. No reminder in 24 days, then 3 Black Friday emails.',
-    seen: '3 Nov',
+    leak: 'No 15% code',
+    what: 'Pop up promised 15% off. Welcome came 9 hours later, no code. No text, no basket reminder.',
   },
-  {
-    brand: 'Thistle & Bone',
-    gap: 'Quiet after a move',
-    name: 'Owen Reyes',
-    role: 'Founder',
-    what: 'Moved email platform on 9 Oct. No email since, Black Friday included.',
-    seen: '9 Oct',
-  },
-  {
-    brand: 'Pebble & Paw',
-    gap: 'No welcome email',
-    name: 'Ruth Lin',
-    role: 'Ecommerce Manager',
-    what: 'Signed up on 2 Nov. No welcome email in 48 hours.',
-    seen: '2 Nov',
-  },
-  {
-    brand: 'Harrow Feeds',
-    gap: 'No gap',
-    name: 'Sam Okafor',
-    role: 'Founder',
-    what: 'Welcome email in 1 min, basket reminder in 2 hours.',
-    seen: '2 Nov',
-    none: true,
-  },
+  { store: 'Marrow Skin', name: 'Theo Grant', role: 'Founder', leak: 'Texts never sent', what: 'Opted in for texts. 0 texts in 48 hours.' },
+  { store: 'Pellwood', name: 'Nadia Reyes', role: 'Ecommerce Manager', leak: 'No basket reminder', what: 'Code in 2 min, texts in 4. Basket left, no reminder.' },
+  { store: 'Fenwick Apothecary', name: 'Ruth Lin', role: 'Founder', leak: 'No leak', what: 'Code in 1 min, basket reminder in 1 hour.', none: true },
+]
+
+const rivals = [
+  { store: 'Larch & Lye', role: 'Client', welcome: '40 s', reminder: '1 h', text: '2 min', emails: '3' },
+  { store: 'Ashgrove Skin', role: 'Rival', welcome: '4 h', reminder: 'none', text: 'none', emails: '6' },
+  { store: 'Ceril Botanics', role: 'Rival', welcome: '11 h', reminder: 'none', text: '5 min', emails: '5' },
+  { store: 'Hollin & Pine', role: 'Rival', welcome: '2 h', reminder: 'none', text: 'none', emails: '4' },
+  { store: 'Wrenmoor', role: 'Rival', welcome: '9 h', reminder: 'none', text: '1 day', emails: '7' },
+  { store: 'Sallow & Co', role: 'Rival', welcome: '6 h', reminder: 'none', text: 'none', emails: '4' },
 ]
 
 /* The answer under the problem, its opening clause in bold, as on his. */
@@ -107,12 +93,12 @@ export function RetentionAgencies() {
                       {k === 2 ? (
                         <ul className="uc-out">
                           {node.items.map((item, i) => {
-                            const [brand, what] = item.split(': ')
+                            const [store, leak] = item.split(': ')
                             return (
                               <li key={item}>
-                                {brand}
+                                {store}
                                 <span className={`tag ${tones[i]}`} style={at(i)}>
-                                  {what}
+                                  {leak}
                                 </span>
                               </li>
                             )
@@ -143,7 +129,7 @@ export function RetentionAgencies() {
         {study.problem && study.fit && (
           <section className="section sunken">
             <div className="wrap">
-              <SectionHead kicker="Why it’s done by hand" title={study.problem.heading} />
+              <SectionHead kicker="Why the audit comes too late" title={study.problem.heading} />
               <ul className="uc-why">
                 {study.problem.items.map((item) => (
                   <Reveal as="li" key={item.title} className="card">
@@ -160,7 +146,7 @@ export function RetentionAgencies() {
               </Reveal>
               <Reveal className="uc-inout">
                 <div>
-                  <p className="kicker">One watch per category</p>
+                  <p className="kicker">Before the yes, and after it</p>
                   <h3 className="h2">{study.fit.heading}</h3>
                   <p className="muted">{study.fit.line}</p>
                 </div>
@@ -187,76 +173,58 @@ export function RetentionAgencies() {
             </div>
 
             <Step n={1} title={step(0, 0).title} line={step(0, 0).line} pick={step(0, 0).example}>
-              <Win title="Obsession · Watches">
-                <div className="uc-row uc-between">
-                  <span className="uc-mh">Watches</span>
-                  <span className="uc-btn uc-pulse">Create a watch</span>
-                </div>
-                <ul className="uc-list uc-seq">
-                  <li style={at(0)}>
-                    <b>
-                      Skincare clients and rivals<small>From the Competitor tracking recipe</small>
-                    </b>
-                    <span>140 brands</span>
-                    <span className="tag idle">Weekly</span>
+              <Win title="New check · Add stores">
+                <ul className="uc-ins">
+                  <li className="sel">
+                    Paste a list<small>Names or websites</small>
                   </li>
-                  <li style={at(1)}>
-                    <b>
-                      Pitch: Harbor Supplements<small>From the Email and SMS tracking recipe</small>
-                    </b>
-                    <span>10 brands</span>
-                    <span className="tag idle">Once</span>
+                  <li>
+                    Upload a CSV<small>One column of websites</small>
                   </li>
-                  <li style={at(2)}>
-                    <b>
-                      Clients after a rebuild<small>Described in your own words</small>
-                    </b>
-                    <span>12 brands</span>
-                    <span className="tag idle">Each launch</span>
+                  <li>
+                    Connect Clay<small>A table and a view</small>
+                  </li>
+                  <li>
+                    API<small>Send stores as you go</small>
                   </li>
                 </ul>
+                <div className="uc-fld">
+                  <p className="uc-lab">Pitch list: skincare, November</p>
+                  <ul className="uc-list uc-seq">
+                    {pitchList.map((s, i) => (
+                      <li key={s.store} style={at(i)}>
+                        <b>
+                          {s.store}
+                          <small>{s.domain}</small>
+                        </b>
+                        <span>Skincare</span>
+                        <span className="tag idle">To pitch</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="uc-small">And 36 more from the list you pasted.</p>
+                </div>
+                <div className="uc-ready">
+                  <span>
+                    Ready to check<small>Each store gets its own customer</small>
+                  </span>
+                  <b>
+                    <Count to={40} /> stores
+                  </b>
+                </div>
               </Win>
             </Step>
 
             <Step n={2} title={step(0, 1).title} line={step(0, 1).line} pick={step(0, 1).example}>
-              <Win title="New watch · Choose a recipe">
-                <p className="uc-mh">Launch from a recipe, or describe what you want to know</p>
-                <ul className="uc-recipes uc-seq">
-                  {picker.map((r, i) => (
-                    <li key={r.slug} style={at(i)} className={`uc-rcard ${r.slug === 'email-sms-tracking' ? 'sel' : ''}`}>
-                      <b>{r.name}</b>
-                      {r.line}
-                    </li>
-                  ))}
-                  <li style={at(picker.length)} className="uc-rcard own">
-                    <b>Describe it yourself</b>
-                    “When does each brand send its first Black Friday email?”
-                  </li>
-                </ul>
-                <div className="uc-sets">
-                  <b>Email and SMS tracking sets up for each brand:</b>
-                  <span>its own inbox</span>
-                  <span>a US mobile number</span>
-                  <span>a browser</span>
-                  <span>a watch until you stop it</span>
-                </div>
-              </Win>
-            </Step>
-
-            <Step n={3} title={step(0, 2).title} line={step(0, 2).line} pick={step(0, 2).example}>
-              <Win title="New watch · Email and SMS tracking · Configure">
+              <Win title="New check · Pitch list: skincare · Configure">
                 <div className="uc-cfg">
                   <div>
                     <div className="uc-fld">
-                      <p className="uc-lab">Watching</p>
-                      <div className="uc-field">Pet brands: Black Friday</div>
-                    </div>
-                    <div className="uc-fld">
-                      <p className="uc-lab">At each brand, the customer</p>
+                      <p className="uc-lab">At each store, the customer</p>
                       <ul className="uc-checks">
                         <li>
                           <span className="uc-cb on" style={at(0)} />
-                          Signs up for emails
+                          Signs up through the pop up
                         </li>
                         <li>
                           <span className="uc-cb on" style={at(1)} />
@@ -264,166 +232,72 @@ export function RetentionAgencies() {
                         </li>
                         <li>
                           <span className="uc-cb on" style={at(2)} />
+                          Browses a product
+                        </li>
+                        <li>
+                          <span className="uc-cb on" style={at(3)} />
                           Leaves a basket
-                        </li>
-                        <li>
-                          <span className="uc-cb" />
-                          Joins the loyalty programme
-                        </li>
-                        <li>
-                          <span className="uc-cb" />
-                          Subscribes and saves
                         </li>
                         <li>
                           <span className="uc-cb" />
                           Asks support a question
                         </li>
+                        <li>
+                          <span className="uc-cb" />
+                          Places an order
+                        </li>
                       </ul>
                     </div>
                   </div>
                   <div>
                     <div className="uc-fld">
-                      <p className="uc-lab">Tell me when</p>
+                      <p className="uc-lab">What counts as a leak</p>
                       <ul className="uc-rules uc-seq">
-                        <li style={at(3)}>A brand sends its first Black Friday email</li>
                         <li style={at(4)}>
-                          A subject line offers more than <em>30% off</em>
+                          No discount code within <em>1 hour</em> of signing up
                         </li>
-                        <li style={at(5)}>A brand moves email platform</li>
+                        <li style={at(5)}>
+                          No welcome email within <em>1 hour</em>
+                        </li>
                         <li style={at(6)}>
-                          No welcome email within <em>1 hour</em>, or no basket reminder within <em>24 hours</em>
+                          No text within <em>24 hours</em> of opting in
+                        </li>
+                        <li style={at(7)}>
+                          No basket reminder within <em>24 hours</em>
                         </li>
                       </ul>
                     </div>
                     <div className="uc-fld">
-                      <p className="uc-lab">Watch each brand</p>
+                      <p className="uc-lab">Wait at each store</p>
                       <div className="uc-seg">
-                        <span>48 hours</span>
-                        <span className="on">To 4 Jan</span>
-                        <span>Ongoing</span>
+                        <span>24 hours</span>
+                        <span className="on">48 hours</span>
+                        <span>7 days</span>
                       </div>
                     </div>
                     <div className="uc-fld">
                       <p className="uc-lab">Afterwards</p>
                       <div className="uc-seg">
-                        <span>Stop</span>
-                        <span className="on">Check every week</span>
+                        <span className="on">Stop</span>
+                        <span>Check every week</span>
                       </div>
                     </div>
                     <div className="uc-fld">
-                      <p className="uc-lab">Customers based in</p>
-                      <div className="uc-field uc-dd">United States</div>
-                    </div>
-                    <div className="uc-fld">
-                      <p className="uc-lab">Alerts</p>
-                      <div className="uc-field uc-dd">Slack #pet-pod, daily at 09:00</div>
+                      <p className="uc-lab">Results</p>
+                      <div className="uc-field uc-dd">Slack #new-business</div>
                     </div>
                   </div>
                 </div>
               </Win>
             </Step>
 
-            <Step n={4} title={step(0, 3).title} line={step(0, 3).line} pick={step(0, 3).example}>
-              <Win title="New watch · Add brands">
-                <ul className="uc-ins">
-                  <li>
-                    Connect Clay<small>A table and a view</small>
-                  </li>
-                  <li className="sel">
-                    Upload a CSV<small>pet-brands.csv</small>
-                  </li>
-                  <li>
-                    API<small>Send rows as you go</small>
-                  </li>
-                  <li>
-                    Paste a list<small>For one offs</small>
-                  </li>
-                </ul>
-                <div className="uc-fld">
-                  <p className="uc-lab">Read the file</p>
-                  <dl className="uc-kv">
-                    <dt>Website column</dt>
-                    <dd className="uc-field uc-dd">Domain</dd>
-                    <dt>Role column</dt>
-                    <dd className="uc-field uc-dd">Tag: client, rival or to win</dd>
-                    <dt>Rival of</dt>
-                    <dd className="uc-field uc-dd">Client</dd>
-                  </dl>
-                </div>
-                <div className="uc-fld">
-                  <p className="uc-lab">In this list</p>
-                  <ul className="uc-map uc-seq">
-                    {[
-                      ['Clients', '2 brands, your own'],
-                      ['Rivals', '18 brands, 9 for each client'],
-                      ['To win', '100 brands for the pitch list'],
-                    ].map(([k, v], i) => (
-                      <li key={k} style={at(i)}>
-                        <span className="uc-col">{k}</span>
-                        <span className="uc-arr" aria-hidden="true">
-                          →
-                        </span>
-                        <span className="uc-field">{v}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="uc-small">A rival tagged to a client shows up in that client’s report and nowhere else.</p>
-                </div>
-                <div className="uc-toggle">
-                  <span className="uc-tog" />
-                  <div>
-                    <b>Bring the history</b>
-                    <small>Brands Obsession already watches come with every email since that day.</small>
-                  </div>
-                </div>
-                <div className="uc-ready">
-                  <span>
-                    Ready to watch<small>74 with emails since September</small>
-                  </span>
-                  <b>
-                    <Count to={120} /> brands now
-                  </b>
-                </div>
-              </Win>
-            </Step>
-
-            <Step n={5} title={step(0, 4).title} line={step(0, 4).line} pick={step(0, 4).example}>
-              <Win title="New watch · Review">
-                <dl className="uc-sum uc-seq">
-                  {[
-                    ['Recipe', 'Email and SMS tracking'],
-                    ['Watching', 'Pet brands: Black Friday'],
-                    ['Brands', '120: 2 clients, 18 rivals, 100 to win'],
-                    ['At each brand', 'Email sign up, text opt in, a basket left'],
-                    ['Tell me when', 'First Black Friday email · Over 30% off · New email platform · No welcome or basket reminder'],
-                    ['Watch', 'Through 4 January, then every week'],
-                    ['Results', 'Slack daily, a report per client, a list of brands to win'],
-                  ].map(([k, v], i) => (
-                    <div key={k} style={at(i)}>
-                      <dt>{k}</dt>
-                      <dd>{v}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="uc-row uc-end">
-                  <span className="uc-btn alt">Save as a recipe</span>
-                  <span className="uc-btn uc-pulse">Start watching 120 brands</span>
-                </div>
-              </Win>
-            </Step>
-
-            <div className="uc-phase">
-              <h3>{phases[1].title}</h3>
-              <span>{phases[1].line}</span>
-            </div>
-
-            <Step n={6} title={step(1, 0).title} line={step(1, 0).line}>
-              <Win title="Pet brands · Brightpaw">
+            <Step n={3} title={step(0, 2).title} line={step(0, 2).line} pick={step(0, 2).example}>
+              <Win title="Pitch list · Larch & Lye">
                 <div className="uc-s6">
                   <div className="uc-id">
                     <div className="uc-row uc-between">
-                      <span className="uc-mh">Brightpaw</span>
-                      <span className="tag idle">Customer 7C1D</span>
+                      <span className="uc-mh">Larch & Lye</span>
+                      <span className="tag idle">Customer 3E9A</span>
                     </div>
                     <dl className="uc-idrows">
                       <div>
@@ -432,11 +306,11 @@ export function RetentionAgencies() {
                       </div>
                       <div>
                         <dt>Inbox</dt>
-                        <dd>brightpaw.7c1d@test.useobsession.com</dd>
+                        <dd>larchandlye.3e9a@test.useobsession.com</dd>
                       </div>
                       <div>
                         <dt>Mobile</dt>
-                        <dd>+1 512 555 0143</dd>
+                        <dd>+1 512 555 0186</dd>
                       </div>
                       <div>
                         <dt>Browser</dt>
@@ -445,11 +319,11 @@ export function RetentionAgencies() {
                     </dl>
                     <ol className="uc-log uc-seq">
                       {[
-                        ['09:02:11', 'Opened the store'],
-                        ['09:02:16', 'Found the sign up pop up'],
-                        ['09:02:41', 'Signed up, ticked text consent'],
-                        ['09:03:32', 'Welcome email, 51 s, Promotions'],
-                        ['10:20:05', 'Day 2: left a basket of 2 items'],
+                        ['10:14:02', 'Opened the store'],
+                        ['10:14:09', 'Found the 15% pop up'],
+                        ['10:14:31', 'Signed up, ticked text consent'],
+                        ['10:16:40', 'Browsed the Night Balm'],
+                        ['10:18:05', 'Left a basket'],
                       ].map(([t, e], i) => (
                         <li key={t} style={at(i)}>
                           <time>{t}</time>
@@ -459,19 +333,19 @@ export function RetentionAgencies() {
                     </ol>
                   </div>
                   <div className="uc-browser">
-                    <div className="uc-url">brightpaw.example</div>
+                    <div className="uc-url">larchandlye.example</div>
                     <div className="uc-page">
                       <div className="uc-pop">
                         <b>15% off your first order</b>
                         <i>
-                          <span style={at(0)}>brightpaw.7c1d@test.useobsession.com</span>
+                          <span style={at(0)}>larchandlye.3e9a@test.useobsession.com</span>
                         </i>
                         <i>
-                          <span style={at(1)}>+1 512 555 0143</span>
+                          <span style={at(1)}>+1 512 555 0186</span>
                         </i>
                         <span className="uc-pop-c">
                           <span className="uc-cb on" style={at(8)} />
-                          Text me deals and restocks
+                          Text me offers and restocks
                         </span>
                         <span className="uc-go">Get my 15%</span>
                       </div>
@@ -481,101 +355,43 @@ export function RetentionAgencies() {
               </Win>
             </Step>
 
-            <Step n={7} title={step(1, 1).title} line={step(1, 1).line}>
-              <Win title="Watches · Pet brands: Black Friday">
-                <div className="uc-row">
-                  <span className="uc-mh">Pet brands: Black Friday</span>
-                  <span className="tag idle">Fri 27 Nov</span>
-                  <span className="uc-small">From the Email and SMS tracking recipe</span>
-                </div>
-                <div className="uc-track">
-                  <i style={{ width: '40%' }} />
-                </div>
+            <Step n={4} title={step(0, 3).title} line={step(0, 3).line} pick={step(0, 3).example}>
+              <Win title="Pitch list: skincare · Results">
                 <ul className="uc-tiles">
-                  <li>
-                    <small>Emails received</small>
+                  <li className="bad">
+                    <small>No code from the pop up</small>
                     <p>
                       <b>
-                        <Count to={3412} />
+                        <Count to={14} />
                       </b>
-                    </p>
-                  </li>
-                  <li>
-                    <small>Texts received</small>
-                    <p>
-                      <b>
-                        <Count to={1108} />
-                      </b>
-                    </p>
-                  </li>
-                  <li>
-                    <small>Sent a Black Friday email</small>
-                    <p>
-                      <b>
-                        <Count to={109} />
-                      </b>
-                      <em>of 120</em>
+                      <em>of 40</em>
                     </p>
                   </li>
                   <li className="bad">
-                    <small>No basket reminder</small>
+                    <small>No text after opting in</small>
                     <p>
                       <b>
-                        <Count to={31} />
+                        <Count to={17} />
                       </b>
-                      <em>of 120</em>
-                    </p>
-                  </li>
-                </ul>
-                <ol className="uc-feed uc-seq">
-                  {[
-                    ['09:12', 'Fern Hollow Pet, a Barkwell rival: “Doors open: 50% off everything”, Promotions tab'],
-                    ['08:40', 'Barkwell, a client: its 6th Black Friday email, 25% off'],
-                    ['07:55', 'Copper & Kibble sent from a new email platform for the first time'],
-                    ['07:30', 'Thistle & Bone: no email for 49 days, Black Friday included'],
-                  ].map(([t, e], i) => (
-                    <li key={t} style={at(i + 4)}>
-                      <time>{t}</time>
-                      {e}
-                    </li>
-                  ))}
-                </ol>
-              </Win>
-            </Step>
-
-            <Step n={8} title={step(1, 2).title} line={step(1, 2).line}>
-              <Win title="Watches · Pet brands: Black Friday · Side by side">
-                <ul className="uc-tiles">
-                  <li>
-                    <small>First Black Friday email in the category</small>
-                    <p>
-                      <b>6 Nov</b>
+                      <em>of 40</em>
                     </p>
                   </li>
                   <li className="bad">
-                    <small>Barkwell’s rivals that sent first</small>
+                    <small>Nothing after a basket</small>
                     <p>
                       <b>
-                        <Count to={7} />
+                        <Count to={22} />
                       </b>
-                      <em>of 9</em>
+                      <em>of 40</em>
                     </p>
                   </li>
                   <li>
-                    <small>Deepest discount in a subject line</small>
+                    <small>3 or more leaks</small>
                     <p>
                       <b>
-                        <Count to={50} />%
+                        <Count to={12} />
                       </b>
-                    </p>
-                  </li>
-                  <li className="bad">
-                    <small>No welcome email within an hour</small>
-                    <p>
-                      <b>
-                        <Count to={23} />
-                      </b>
-                      <em>of 120</em>
+                      <em>of 40</em>
                     </p>
                   </li>
                 </ul>
@@ -583,54 +399,56 @@ export function RetentionAgencies() {
                   <table>
                     <thead>
                       <tr>
-                        <th>Brand</th>
-                        <th>First Black Friday email</th>
-                        <th>Emails</th>
-                        <th>Finding</th>
+                        <th>Store</th>
+                        <th>Code</th>
+                        <th>Text</th>
+                        <th>Basket</th>
+                        <th>Leaks</th>
                       </tr>
                     </thead>
                     <tbody className="uc-seq">
-                      {side.map((r, i) => (
-                        <tr key={r.brand} style={at(i + 3)}>
+                      {results.map((r, i) => (
+                        <tr key={r.store} style={at(i + 3)}>
                           <td>
-                            <b>{r.brand}</b>
-                            <small> · {r.role}</small>
+                            <b>{r.store}</b>
                           </td>
-                          <td className={`num ${r.first === 'none' ? 'zero' : ''}`}>{r.first}</td>
-                          <td className={`num ${r.emails === '0' ? 'zero' : ''}`}>{r.emails}</td>
+                          <td className={`num ${r.code === 'none' ? 'zero' : ''}`}>{r.code}</td>
+                          <td className={`num ${r.text === 'none' ? 'zero' : ''}`}>{r.text}</td>
+                          <td className={`num ${r.reminder === 'none' ? 'zero' : ''}`}>{r.reminder}</td>
                           <td>
-                            <span className={`tag ${r.tone}`}>{r.finding}</span>
+                            <span className={`tag ${r.tone}`}>{r.leaks}</span>
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                <p className="uc-small">120 of 120 watched through Black Friday week. 3 had no working sign up form, which is logged as a finding too.</p>
+                <p className="uc-small">40 of 40 done. 2 had no working sign up form, which counts as a leak too.</p>
               </Win>
             </Step>
 
             <div className="uc-phase">
-              <h3>{phases[2].title}</h3>
-              <span>{phases[2].line}</span>
+              <h3>{phases[1].title}</h3>
+              <span>{phases[1].line}</span>
             </div>
 
-            <Step n={9} title={step(2, 0).title} line={step(2, 0).line}>
-              <Win title="Report · Barkwell · Black Friday 2026">
+            <Step n={5} title={step(1, 0).title} line={step(1, 0).line} pick={step(1, 0).example}>
+              <Win title="Receipt · Larch & Lye">
                 <div className="uc-verdict">
-                  <span className="uc-lab">For the client review</span>
-                  <b>Barkwell sent its first Black Friday email on 20 Nov. 7 of its 9 rivals had already sent theirs, and Fern Hollow Pet was 14 days ahead.</b>
-                  <span className="uc-small">Every value links to the email it came from.</span>
+                  <span className="uc-lab">3 leaks</span>
+                  <b>The pop up promised 15% off. No code came, no text came, and the basket got no reminder.</b>
+                  <span className="uc-small">Each deadline passed with nothing, logged at the minute it ran out.</span>
                 </div>
                 <ol className="uc-tl uc-seq">
                   {[
-                    ['Fri 6 Nov 09:12', 'Fern Hollow Pet: “Early access: 40% off”, Promotions tab'],
-                    ['Fri 13 Nov 08:00', 'Copper & Kibble: “Black Friday starts now: 35% off”'],
-                    ['Fri 20 Nov 10:00', 'Barkwell: “Our biggest sale: 25% off”, Primary tab'],
-                    ['Fri 27 Nov 09:12', 'Fern Hollow Pet: “Doors open: 50% off everything”'],
-                    ['Mon 30 Nov', 'The week: Barkwell 9 emails and 4 texts, its rivals 11 emails each on average'],
-                  ].map(([t, e], i) => (
-                    <li key={t} style={at(i)} className={i === 2 ? 'bad' : ''}>
+                    ['Mon 2 Nov 10:14', 'Signed up through the 15% pop up, with an email and a US mobile'],
+                    ['Mon 2 Nov 10:18', 'Left a basket: the Night Balm'],
+                    ['Mon 2 Nov 19:20', 'Welcome email, 9 hours later, with no code in it'],
+                    ['Tue 3 Nov 10:14', 'No text 24 hours after opting in'],
+                    ['Tue 3 Nov 10:18', 'No basket reminder after 24 hours'],
+                    ['Wed 4 Nov 10:14', '48 hours: 1 email, 0 texts, no code'],
+                  ].map(([t, e], i, all) => (
+                    <li key={t} style={at(i)} className={i === all.length - 1 ? 'bad' : ''}>
                       <time>{t}</time>
                       <span>{e}</span>
                     </li>
@@ -638,50 +456,49 @@ export function RetentionAgencies() {
                 </ol>
                 <div className="uc-shots">
                   <div className="uc-shot">
-                    <div>Fern Hollow’s first email</div>
-                    <span>6 Nov, Promotions tab</span>
+                    <div>Pop up, 15% off</div>
+                    <span>Signed up, 10:14</span>
                   </div>
                   <div className="uc-shot bad">
-                    <div>Barkwell’s first email</div>
-                    <span>20 Nov, Primary tab</span>
+                    <div>Welcome email</div>
+                    <span>19:20, no code</span>
                   </div>
-                  <div className="uc-shot">
-                    <div>Discounts, 9 rivals</div>
-                    <span>Subject lines, 2 to 30 Nov</span>
+                  <div className="uc-shot bad">
+                    <div>No texts</div>
+                    <span>48 hours</span>
                   </div>
                 </div>
                 <div className="uc-row uc-end">
-                  <span className="uc-btn alt">Add to the client deck</span>
-                  <span className="uc-btn">Copy proof link</span>
+                  <span className="uc-btn">Copy receipt link</span>
                 </div>
               </Win>
             </Step>
 
-            <Step n={10} title={step(2, 1).title} line={step(2, 1).line}>
-              <Win title="Pet brands · Brands to win">
+            <Step n={6} title={step(1, 1).title} line={step(1, 1).line} pick={step(1, 1).example}>
+              <Win title="Pitch list: skincare · Sorted by leaks">
                 <div className="uc-table uc-claytable">
                   <table>
                     <thead>
                       <tr>
-                        <th>Brand</th>
+                        <th>Store</th>
                         <th>Contact</th>
-                        <th className="new">Gap</th>
+                        <th className="new">Leak</th>
                         <th className="new">Seen</th>
                         <th className="new">What happened</th>
-                        <th className="new">Proof</th>
+                        <th className="new">Receipt</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {toWin.map((r, i) => (
-                        <tr key={r.brand}>
+                      {sorted.map((r, i) => (
+                        <tr key={r.store}>
                           <td>
-                            <b>{r.brand}</b>
+                            <b>{r.store}</b>
                           </td>
                           <td>
                             {r.name}
                             <small>{r.role}</small>
                           </td>
-                          {[r.gap, r.seen, r.what].map((v, j) => (
+                          {[r.leak, '2 Nov', r.what].map((v, j) => (
                             <td key={j} className={`new ${r.none ? 'none' : ''}`}>
                               <span style={at(i * 4 + j)}>{v}</span>
                             </td>
@@ -701,11 +518,198 @@ export function RetentionAgencies() {
                     <Mark size={18} />
                   </span>
                   <p>
-                    <b>Obsession</b> <span className="uc-small">#pet-pod</span>
+                    <b>Obsession</b> <span className="uc-small">#new-business</span>
                     <br />
-                    Black Friday week is done for 120 brands. Barkwell’s report is ready for Monday’s review. Of the 100 brands to win,{' '}
-                    <b>12</b> sent no welcome email, <b>9</b> left a basket with no reminder and <b>4</b> moved email platform this month.
+                    Pitch list done: 40 skincare stores. <b>12</b> have 3 or more leaks, sorted to the top with their receipts. Larch & Lye
+                    is first.
                   </p>
+                </div>
+              </Win>
+            </Step>
+
+            <div className="uc-phase">
+              <h3>{phases[2].title}</h3>
+              <span>{phases[2].line}</span>
+            </div>
+
+            <Step n={7} title={step(2, 0).title} line={step(2, 0).line} pick={step(2, 0).example}>
+              <Win title="Clients · Larch & Lye · Every week">
+                <div className="uc-row">
+                  <span className="uc-mh">Larch & Lye</span>
+                  <span className="tag ok">Client since 16 Nov</span>
+                  <span className="uc-small">Every Monday, and after every launch</span>
+                </div>
+                <div className="uc-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Sign up</th>
+                        <th>Code</th>
+                        <th>Text</th>
+                        <th>Basket</th>
+                      </tr>
+                    </thead>
+                    <tbody className="uc-seq">
+                      {[
+                        ['2 Nov, before you', 'none', 'none', 'none'],
+                        ['23 Nov, after the rebuild', '40 s', '2 min', '1 h'],
+                        ['30 Nov, Black Friday week', '38 s', '2 min', '1 h'],
+                      ].map(([w, c, t, b], i) => (
+                        <tr key={w} style={at(i)}>
+                          <td>
+                            <b>{w}</b>
+                          </td>
+                          {[c, t, b].map((v, j) => (
+                            <td key={j} className={`num ${v === 'none' ? 'zero' : ''}`}>
+                              {v}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="uc-small">The first row is the check from the pitch, so the before is on record from day 1.</p>
+              </Win>
+            </Step>
+
+            <Step n={8} title={step(2, 1).title} line={step(2, 1).line} pick={step(2, 1).example}>
+              <Win title="Clients · Larch & Lye · Tue 1 Dec">
+                <div className="uc-verdict">
+                  <span className="uc-lab">Leak caught</span>
+                  <b>After this morning’s theme update, the pop up takes the email but sends no code.</b>
+                  <span className="uc-small">Found 1 hour after the update. Fixed the same morning.</span>
+                </div>
+                <ol className="uc-tl uc-seq">
+                  {[
+                    ['09:00', 'Theme update goes live; the agency tells Obsession'],
+                    ['09:20', 'A fresh sign up through the 15% pop up'],
+                    ['10:20', 'No code after 1 hour: alert sent with the receipt'],
+                    ['11:05', 'The agency reconnects the pop up to the welcome email'],
+                    ['11:30', 'Checked again: code in 39 seconds'],
+                  ].map(([t, e], i) => (
+                    <li key={t} style={at(i)} className={i === 2 ? 'bad' : ''}>
+                      <time>{t}</time>
+                      <span>{e}</span>
+                    </li>
+                  ))}
+                </ol>
+                <div className="uc-slack">
+                  <span className="uc-slack-av">
+                    <Mark size={18} />
+                  </span>
+                  <p>
+                    <b>Obsession</b> <span className="uc-small">#larch-and-lye</span>
+                    <br />
+                    After this morning’s theme update, the pop up takes the email but sends no code. Receipt attached.
+                  </p>
+                </div>
+              </Win>
+            </Step>
+
+            <Step n={9} title={step(2, 2).title} line={step(2, 2).line} pick={step(2, 2).example}>
+              <Win title="Clients · Larch & Lye · Beside 5 rivals">
+                <ul className="uc-tiles">
+                  <li>
+                    <small>Welcome email</small>
+                    <p>
+                      <b>40 s</b>
+                      <em>rivals 6 h</em>
+                    </p>
+                  </li>
+                  <li>
+                    <small>Basket reminder</small>
+                    <p>
+                      <b>
+                        <Count to={1} />
+                      </b>
+                      <em>of 6 stores</em>
+                    </p>
+                  </li>
+                  <li>
+                    <small>Text after opting in</small>
+                    <p>
+                      <b>2 min</b>
+                      <em>3 rivals never</em>
+                    </p>
+                  </li>
+                  <li>
+                    <small>Emails a week</small>
+                    <p>
+                      <b>
+                        <Count to={3} />
+                      </b>
+                      <em>rivals 5</em>
+                    </p>
+                  </li>
+                </ul>
+                <div className="uc-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Store</th>
+                        <th>Welcome</th>
+                        <th>Basket</th>
+                        <th>Text</th>
+                        <th>A week</th>
+                      </tr>
+                    </thead>
+                    <tbody className="uc-seq">
+                      {rivals.map((r, i) => (
+                        <tr key={r.store} style={at(i + 3)}>
+                          <td>
+                            <b>{r.store}</b>
+                            <small> · {r.role}</small>
+                          </td>
+                          <td className="num">{r.welcome}</td>
+                          <td className={`num ${r.reminder === 'none' ? 'zero' : ''}`}>{r.reminder}</td>
+                          <td className={`num ${r.text === 'none' ? 'zero' : ''}`}>{r.text}</td>
+                          <td className="num">{r.emails}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Win>
+            </Step>
+
+            <Step n={10} title={step(2, 3).title} line={step(2, 3).line} pick={step(2, 3).example}>
+              <Win title="Report · Larch & Lye · December">
+                <ul className="uc-tiles">
+                  {[
+                    ['Leaks fixed', 3, ''],
+                    ['Caught and fixed the same day', 1, ''],
+                    ['Leaks open', 0, ''],
+                    ['Faster welcome than', 5, 'of 5 rivals'],
+                  ].map(([k, n, of]) => (
+                    <li key={k}>
+                      <small>{k}</small>
+                      <p>
+                        <b>
+                          <Count to={n as number} />
+                        </b>
+                        {of && <em>{of}</em>}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                <dl className="uc-sum uc-seq">
+                  {[
+                    ['Fixed', 'The 15% code, the text opt in, the basket reminder'],
+                    ['Caught', 'Code stopped after the 1 Dec theme update, fixed the same morning'],
+                    ['Open', 'None'],
+                    ['Against 5 rivals', 'Fastest welcome email; the only basket reminder'],
+                    ['Before and after', '2 Nov: 1 email, no code. 1 Dec: code in 39 seconds'],
+                  ].map(([k, v], i) => (
+                    <div key={k} style={at(i)}>
+                      <dt>{k}</dt>
+                      <dd>{v}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="uc-row uc-end">
+                  <span className="uc-btn alt">Add to the review deck</span>
+                  <span className="uc-btn">Copy report link</span>
                 </div>
               </Win>
             </Step>
@@ -714,41 +718,41 @@ export function RetentionAgencies() {
 
         <section className="section sunken">
           <div className="wrap">
-            <SectionHead kicker="Once it’s in" title={study.outputs?.heading ?? ''} />
+            <SectionHead kicker="Once you have the leaks" title={study.outputs?.heading ?? ''} />
             <Reveal className="uc-opener">
               <div>
                 <p className="kicker">The opener</p>
-                <h3 className="h2">Their own emails and your plan, in 1 email.</h3>
-                <p className="muted">The proof shows what the brand’s customers get today. Your mockup shows what you’d send instead.</p>
+                <h3 className="h2">Their own receipt and your fix, in 1 email.</h3>
+                <p className="muted">The receipt shows what the store does to a new customer today. Your mockup shows what it would do with you.</p>
                 <div className="uc-mail">
                   <p className="uc-mail-head">
-                    From <b>Maya, your agency</b> to <b>Dana Ortiz, Brightpaw</b> · Subject <b>Brightpaw’s Black Friday</b>
+                    From <b>Maya, your agency</b> to <b>Clara Holt, Larch & Lye</b> · Subject <b>Larch & Lye’s 15% code</b>
                   </p>
-                  <p>Hi Dana,</p>
+                  <p>Hi Clara,</p>
                   <p>
-                    We signed up to Brightpaw on 2 November and left a basket the next morning. No reminder came, and your first Black Friday
-                    email arrived on the 24th, after most of the pet brands we watch had sent theirs.
+                    We signed up through Larch & Lye’s pop up on 2 November. It promised 15% off your first order, but the code never came,
+                    and the basket we left got no reminder either.
                   </p>
-                  <p>I’ve mocked up a basket reminder and a Black Friday run in your voice. Worth 15 minutes?</p>
+                  <p>I’ve mocked up the welcome email and basket reminder we’d send instead. Worth 15 minutes?</p>
                   <p>Maya</p>
                   <p className="uc-att">
-                    <span>Proof: Brightpaw, 2 to 30 Nov</span>
-                    <span>Mockup: Brightpaw emails</span>
+                    <span>Receipt: Larch & Lye, 2 to 4 Nov</span>
+                    <span>Mockup: Larch & Lye welcome</span>
                   </p>
                 </div>
-                <p className="uc-small">Written by your strategist, from Brightpaw’s row.</p>
+                <p className="uc-small">Written by your strategist, from the store’s receipt.</p>
               </div>
               <div className="uc-phone-wrap">
                 <p className="kicker">Your mockup</p>
                 <Play className="uc-phone">
                   <div className="uc-screen uc-seq">
                     <p className="uc-screen-head" style={at(0)}>
-                      Brightpaw<small>Email</small>
+                      Larch & Lye<small>Email</small>
                     </p>
                     {[
-                      ['Day 0', 'Still thinking it over? Your salmon bites are saved in your basket.'],
-                      ['Day 1', 'Here’s 10% off to finish your order, today only.'],
-                      ['Day 3', 'You’re in early: Black Friday starts now for you.'],
+                      ['Day 0', 'Welcome to Larch & Lye. Here’s your 15%: LARCH15.'],
+                      ['Day 1', 'Still thinking about the Night Balm? It’s in your basket.'],
+                      ['Day 3', 'Your 15% ends tonight.'],
                     ].map(([d, t], i) => (
                       <div key={d} style={at(i + 1)}>
                         <p className="uc-day">{d}</p>

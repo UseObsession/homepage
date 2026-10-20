@@ -4,7 +4,7 @@
 export const JAMES_PATHS = {
   prospect: '/use-cases/prospect-intelligence-with-clay',
   price: '/use-cases/member-prices-for-price-intelligence',
-  retention: '/use-cases/competitor-emails-for-retention-agencies',
+  retention: '/use-cases/leak-checks-for-retention-agencies',
 }
 
 export const isJamesPath = (path: string) => Object.values(JAMES_PATHS).includes(path)

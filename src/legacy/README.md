@@ -24,11 +24,11 @@ first answer; the content file's `hero.flow` mirrors his flow. Everything else o
 no real company names but Clay, `.example` addresses, "says it's AI" for "declared as automated", no "test customer",
 rechecks as this example's setting, and the basket checks unlocked.
 
-A third page in his format (20 Oct 2026): `/use-cases/competitor-emails-for-retention-agencies`
+A third page in his format (20 Oct 2026): `/use-cases/leak-checks-for-retention-agencies`
 (`src/pages/RetentionAgencies.tsx`). It isn't his file: it is built from his pieces (`james/components`: `Step`, `Win`,
 `Play`, `Count`, `SectionHead`, `Faq`, `FinalCta`, `Reveal`) inside `JamesPage`, with his classes, so his scoped styles
 draw it and nothing in `james/` changed. Unlike his 2, every word it shows comes from its content file
-(`content/usecases/competitor-emails-for-retention-agencies.ts`), steps included; only the app windows' rows and numbers
+(`content/usecases/leak-checks-for-retention-agencies.ts`), steps included; only the app windows' rows and numbers
 live in the page. `jamesPaths.ts` lists it with his 2, so it gets its own route and the study system leaves it alone.
 
 How they sit in the site:
