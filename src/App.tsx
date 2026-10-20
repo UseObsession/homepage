@@ -2,6 +2,7 @@ import { Suspense, useEffect, useLayoutEffect, useRef, type ComponentType } from
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigationType, useParams } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
+import { NavProgress } from './components/NavProgress'
 import { catalog } from './content/catalog'
 import { headFor } from './content/head'
 import { storyCtas } from './content/heads'
@@ -10,6 +11,8 @@ import { absolute, cleanPath } from './content/paths'
 import { recipeWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
 import { lazyPage, type LazyPage } from './lib/lazy'
+import { endNav, startNav } from './lib/navProgress'
+import { siteStyles } from './lib/siteStyles'
 
 /* Each page's code (and its words) is its own chunk, loaded for the page that shows it (lib/lazy.ts): the app itself
    carries only the nav, the footer and the index of every page (content/catalog.ts, content/heads.ts). A page is named
@@ -108,6 +111,17 @@ function syncHead(pathname: string) {
 
 const SCROLL_STORE = 'obs-scroll'
 
+/* A page reached from another one rises in (components/NavProgress.css), so the move shows. Never on the first load,
+   and never for a jump within the same page. */
+function arrive() {
+  const main = document.getElementById('main')
+  if (!main) return
+  main.classList.remove('s-page-enter')
+  void main.offsetWidth
+  main.classList.add('s-page-enter')
+  main.addEventListener('animationend', () => main.classList.remove('s-page-enter'), { once: true })
+}
+
 /* Where each page opens:
    - A link to another page opens at its top (or its #anchor), with focus on the page itself so a screen reader starts
      reading there.
@@ -122,6 +136,8 @@ function ScrollManager() {
      effects sees the same entry again and leaves it alone. */
   const handled = useRef<string | null>(null)
   const current = useRef(key)
+  /* The page last shown, so a jump to an anchor on the same page doesn't play the arrival. */
+  const shown = useRef(pathname)
   const saved = useRef<Record<string, number>>({})
 
   useEffect(() => {
@@ -169,6 +185,10 @@ function ScrollManager() {
       return
     }
     handled.current = key
+    /* The new page has committed: the bar ends (lib/navProgress.ts), and a new page rises in. */
+    endNav()
+    if (shown.current !== pathname) arrive()
+    shown.current = pathname
     const target = hash ? document.getElementById(idOf(hash)) : null
     if (how === 'POP') {
       const y = saved.current[key]
@@ -209,12 +229,78 @@ function ctaAt(pathname: string) {
 const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog', JAMES_PATHS.prospect, JAMES_PATHS.price])
 const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !clean.startsWith('/blog/')
 
+/* The internal page a link event points at (its path and query), or null for another site, a new tab or a download. */
+function linkPath(e: Event): string | null {
+  const a = e.target instanceof Element ? e.target.closest('a[href]') : null
+  if (!(a instanceof HTMLAnchorElement) || (a.target && a.target !== '_self') || a.hasAttribute('download')) return null
+  const url = new URL(a.href, location.href)
+  return url.origin === location.origin ? url.pathname + url.search : null
+}
+
+/* Moving between pages, so it feels immediate (components/NavProgress.css):
+   - A pointer that rests on a link, a focus or a touch loads that page's code and words ahead (preloadRoute), so most
+     clicks open a page that is already here.
+   - Once the first page is idle, the site's whole stylesheet loads (lib/siteStyles.ts), then every page's code, 1 page
+     at a time: about 115 KB compressed in all, so the first move to any page waits only for its words. A reader who
+     asks to save data gets neither; their pages load on the pointer or the click, as before.
+   - A click on a link to another page, or Back and Forward, starts the bar (lib/navProgress.ts); ScrollManager ends it
+     when the new page commits. */
+function NavIntent() {
+  useEffect(() => {
+    let rest: ReturnType<typeof setTimeout> | undefined
+    const warm = (path: string | null) => {
+      if (path) preloadRoute(new URL(path, location.origin).pathname).catch(() => {})
+    }
+    const over = (e: Event) => {
+      clearTimeout(rest)
+      const path = linkPath(e)
+      if (path) rest = setTimeout(() => warm(path), 60)
+    }
+    const now = (e: Event) => warm(linkPath(e))
+    const click = (e: MouseEvent) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+      const path = linkPath(e)
+      if (path && path !== location.pathname + location.search) startNav()
+    }
+    let stopped = false
+    const ahead = async () => {
+      await siteStyles()
+      for (const page of [...Object.values(PAGES), Recipe, UseCase]) {
+        if (stopped) return
+        await page.preload().catch(() => {})
+      }
+    }
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true
+    const run = () => void (saveData ? undefined : ahead())
+    const idle = window.requestIdleCallback ? window.requestIdleCallback(run, { timeout: 4000 }) : window.setTimeout(run, 1500)
+    document.addEventListener('pointerover', over, { passive: true })
+    document.addEventListener('focusin', now)
+    document.addEventListener('touchstart', now, { passive: true })
+    document.addEventListener('click', click, true)
+    window.addEventListener('popstate', startNav)
+    return () => {
+      stopped = true
+      clearTimeout(rest)
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle)
+      else clearTimeout(idle)
+      document.removeEventListener('pointerover', over)
+      document.removeEventListener('focusin', now)
+      document.removeEventListener('touchstart', now)
+      document.removeEventListener('click', click, true)
+      window.removeEventListener('popstate', startNav)
+    }
+  }, [])
+  return null
+}
+
 function Layout() {
   const { pathname } = useLocation()
   const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
   return (
     <>
       <ScrollManager />
+      <NavIntent />
+      <NavProgress />
       <a className="ob-skip s-skip" href="#main">
         {nav.skip}
       </a>
