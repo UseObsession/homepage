@@ -19,7 +19,7 @@ import './RetentionAgencies.css'
    Since the mystery shopping page merged in (21 Oct), the page also carries the real proof right after step 4 (`found`,
    in his 2 column block), 3 link cards (the 2 recipes and the real run), and the site's own final section, whose form
    takes a store's address for the 5 free checks (components/sections/FinalCta, outside his wrapper, so the site's form
-   keeps its own styles). The hero's 2 buttons go to that form and to the real report. */
+   keeps its own styles). The hero has no buttons; the link to the sample output closes the 10 steps. */
 
 const phases = study.how?.steps ?? []
 const step = (phase: number, i: number) => phases[phase].steps[i]
@@ -82,16 +82,6 @@ export function RetentionAgencies() {
                 </span>
                 <h1 className="h1">{study.hero.headline}</h1>
                 <p className="lede">{study.hero.sub}</p>
-                <div className="uc-hero-ctas">
-                  <a className="btn" href="#join">
-                    {study.final.capture.button}
-                  </a>
-                  {study.hero.secondary && (
-                    <Link className="btn-2" to={study.hero.secondary.to}>
-                      {study.hero.secondary.label}
-                    </Link>
-                  )}
-                </div>
               </div>
               <div className="hero-stage">
                 <div className="uc-flow">
@@ -450,9 +440,6 @@ export function RetentionAgencies() {
                     <p className="kicker">What real checks found</p>
                     <h3 className="h2">{study.found.heading}</h3>
                     <p className="muted">{study.found.line}</p>
-                    <Link className="btn-2" to={study.found.cta.to}>
-                      {study.found.cta.label}
-                    </Link>
                   </div>
                   <ul>
                     {study.found.items.map((f) => (
@@ -753,6 +740,14 @@ export function RetentionAgencies() {
                   </div>
                 </Win>
               </Step>
+
+              {study.found && (
+                <div className="uc-steps-end">
+                  <Link className="btn-2" to={study.found.cta.to}>
+                    {study.found.cta.label}
+                  </Link>
+                </div>
+              )}
             </div>
           </section>
 

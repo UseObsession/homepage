@@ -1,23 +1,16 @@
 /* The leak checks page (RetentionAgencies.tsx), in James's format: 3 additions to his classes, scoped under his
    wrapper so they reach this page only. */
 
-/* The hero's 2 buttons, under the sub: the 5 free checks and the real report. */
-.james .uc-hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-/* What real checks found, after step 4: his 2 column block, with room above it and the button sitting under the line. */
+/* What real checks found, after step 4: his 2 column block, with room above and below it. */
 .james .uc-inout.uc-real {
   margin: 8px 0 clamp(48px, 6vw, 80px);
 }
 
-.james .uc-real .btn-2 {
-  justify-self: start;
-  margin-top: 6px;
+/* The link to the sample output, closing the 10 steps. */
+.james .uc-steps-end {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(32px, 4vw, 56px);
 }
 
 /* 3 link cards (the 2 recipes and the real run) in place of his 2. */

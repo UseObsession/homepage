@@ -82,7 +82,6 @@ export const study: UseCaseStudy = {
       },
       interest: 'mystery',
     },
-    secondary: { label: 'See a real report', to: '/sample-output' },
   },
 
   /* The 10 steps, in the 3 phases the page draws them in. Each step's app window is in the page. */
@@ -259,7 +258,7 @@ export const study: UseCaseStudy = {
         shop: 'ferula',
       },
     ],
-    cta: { label: 'See a real report', to: '/sample-output' },
+    cta: { label: 'See a sample output', to: '/sample-output' },
   },
 
   /* The 2 recipes the page runs, 1 for each half of the offer, and the 1 real run. */
