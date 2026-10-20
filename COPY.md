@@ -104,6 +104,8 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 
 **Rules of voice:** British English; no dashes; plain verbs; numbers as numerals in data, words in prose where natural; every company on a screen is invented, at a `.example` address (no "Example" tag on an illustration, James 19 Oct: the `.example` addresses and the invented names carry it); the only real result is the September store check and it says so; no now, next or later labels; no "never" rules except the three lines in system.md (the record, customer privacy, the law).
 
+**Sell it as designed; the market sets the build (James, 19 Oct):** everything we write about Obsession describes it as it is designed to work, not as it runs today: the site, offers, FAQs, sales and prospect pages, decks, research and our own docs (system.md's "What is true today" section is gone). No "what's real today" sections anywhere, no capability caveats ("email only", "no phones yet", "checked by a person"), no limits we set ourselves. What buyers ask for and pay for decides what we build next. The only lines that hold are the three in system.md: the record is kept as it arrived, customer privacy, the law.
+
 ---
 
 ## 5. Content inventory: keep, merge, cut
