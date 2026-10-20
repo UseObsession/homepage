@@ -65,6 +65,7 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
 /* Who each worked example is for (content/usecases). James sends these addresses to prospects: they always stay. */
 const STUDY_FOR: Record<string, string> = {
   '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
+  '/use-cases/competitor-emails-for-retention-agencies': 'For retention agencies',
   '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
   '/use-cases/mystery-shopping-for-ecommerce-agencies': 'For ecommerce agencies',
 }
