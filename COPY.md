@@ -34,7 +34,7 @@ Full sheet: `docs/positioning/voc.md` (102 outside quotes from Capterra, G2 via 
 | 4 | "It allows me to prove that they've got a problem that is solvable." | Jamie | Proof is the buyer's job for a seller to brands; the receipt is the product's device. |
 | 5 | "I get an alert every day with the subject "Important Change to the Site XXX" I open the email to find the body reads "no changes were made to this page"" | Visualping user, Trustpilot | Facts, not alerts: each finding is 1 sentence with what sits behind it. |
 
-**Words buyers use, so the site uses them:** competitor emails; sign up; newsletters; abandoned basket; welcome email; Promotions tab; keep an eye on; in one place; manually; battlecards (B2B only); report to the client (agencies).
+**Words buyers use, so the site uses them:** competitor emails; sign up; newsletters; abandoned basket; welcome email; Promotions tab; keep an eye on; in one place; manually; battlecards (B2B only); report to the client (agencies); leak (agencies: Email Kong calls its audit a leak report, 21 Oct).
 
 **Customer in headlines, sign up in lines (19 Oct):** "customer" is the differentiator (MailCharts' own pitch is "we signup, trigger, collect"), so headlines name the identity; buyers say "sign up", so the line under it names the act.
 
@@ -125,7 +125,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 | Developers: How, Outcomes, Kinds, mission API | Replace | Gap, how it works, the ways in, the 5 verbs code, what developers build, open source |
 | /compare | New | Full table, "When you might want something else", FAQ |
 | /agents "never" list (8 rules) | Rewrite | The three lines only |
-| Use case pages (/use-cases/...) | Rewrite | All 3 rewritten 19 Oct in this voice: mystery shopping for ecommerce agencies ("Be a customer of every store you serve or pitch."), prospect intelligence with Clay ("Be a customer of every brand your client wants to win.") and member prices for price intelligence ("Be a customer of every retailer you track."). The last 2 stay James's own pages (`src/legacy/james`), his 3 stop hero flow kept with its words in line, and read their headline, sub, questions and small print from `content/usecases` |
+| Use case pages (/use-cases/...) | Rewrite | Rewritten 19 Oct in this voice: mystery shopping for ecommerce agencies ("Be a customer of every store you serve or pitch."; merged on 21 Oct into leak checks for retention agencies, "Be the new customer of every store you pitch, and every store you keep.", drawn in James's format from his pieces, its old address a 301), prospect intelligence with Clay ("Be a customer of every brand your client wants to win.") and member prices for price intelligence ("Be a customer of every retailer you track."). The last 2 stay James's own pages (`src/legacy/james`), his 3 stop hero flow kept with its words in line, and read their headline, sub, questions and small print from `content/usecases` |
 | /verify | Light touch | Composition guarded; copy unchanged |
 
 **One taxonomy everywhere** (nav, footer, /recipes, llms.txt, Home): the 3 recipe groups above, and 4 readers. `src/content/nav.ts` is the source; every surface reads it.
@@ -148,7 +148,7 @@ flowchart TD
   M --> C
   S --> C
   A --> C
-  A --> UC["/use-cases/mystery-shopping-for-ecommerce-agencies"]
+  A --> UC["/use-cases/leak-checks-for-retention-agencies"]
   D --> GH["github.com/UseObsession"]
   H --> AG["/agents (for companies an agent visits)"]
   F["/founders"] -. 301 .-> H

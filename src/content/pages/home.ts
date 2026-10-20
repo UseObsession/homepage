@@ -314,6 +314,6 @@ export const page: Page = {
   final: {
     heading: 'Name a company. See what its customers get.',
     capture: { ...waitlist, source: 'home-final' },
-    link: { label: 'Agency? Get 5 client stores checked free', to: '/use-cases/mystery-shopping-for-ecommerce-agencies' },
+    link: { label: 'Agency? Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
   },
 }

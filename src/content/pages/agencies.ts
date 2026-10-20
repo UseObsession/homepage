@@ -37,7 +37,7 @@ export const page: Page = {
       micro: 'We keep your email to set up your first watch and tell you about Obsession.',
       interest: 'any',
     },
-    secondary: { label: 'Get 5 client stores checked free', to: '/use-cases/mystery-shopping-for-ecommerce-agencies' },
+    secondary: { label: 'Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
     proof: [],
     consoleHeading,
     screens: [{ tab: 'Every client', screen: 'agencytask', recipe: 'mystery', line: '' }],

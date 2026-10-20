@@ -8,6 +8,9 @@
 /recipes/prospect-research/   /recipes/prospect-intelligence  301
 /recipes/speed-to-lead        /recipes/lead-leaks             301
 /recipes/speed-to-lead/       /recipes/lead-leaks             301
+# The ecommerce agencies' mystery shopping page, merged into leak checks on 21 Oct 2026.
+/use-cases/mystery-shopping-for-ecommerce-agencies    /use-cases/leak-checks-for-retention-agencies  301
+/use-cases/mystery-shopping-for-ecommerce-agencies/   /use-cases/leak-checks-for-retention-agencies  301
 # The seller's representative recipes, retired from the site in the October rewrite (COPY.md, "Recipes").
 /recipes/account-handover           /recipes                        301
 /recipes/account-handover/          /recipes                        301

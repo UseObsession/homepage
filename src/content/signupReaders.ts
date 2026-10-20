@@ -14,7 +14,7 @@ export const readerNames: Record<RoleId, string> = {
   other: 'Something else',
 }
 
-/* The pages that know their reader: the 5 reader pages, and a page that names its reader (the agencies use case).
+/* The pages that know their reader: the 5 reader pages, and the use cases that name theirs (the agency ones).
    Every other page asks "Which of these is you?" first. */
 export const readerPages: Record<string, RoleId> = {
   '/agencies': 'agency',
@@ -22,6 +22,5 @@ export const readerPages: Record<string, RoleId> = {
   '/sales': 'sales',
   '/marketing': 'marketing',
   '/developers': 'developer',
-  '/use-cases/mystery-shopping-for-ecommerce-agencies': 'agency',
   '/use-cases/leak-checks-for-retention-agencies': 'agency',
 }

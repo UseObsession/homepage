@@ -13,7 +13,15 @@ import type { UseCaseStudy } from '../types'
    Drawn in James's format (10 steps in 3 phases, each beside its app window) by src/pages/RetentionAgencies.tsx from
    his pieces. Every word here; the app windows' rows and numbers in the page.
    Copy (COPY.md): buyer words (sign up, welcome email, abandoned basket, Promotions tab, report to the client); no
-   "lifecycle" and no "facts"; every store invented at a .example address; written as designed. */
+   "lifecycle" and no "facts"; every store invented at a .example address; written as designed.
+   Merged 21 Oct 2026 (James): the mystery shopping page for ecommerce agencies folds into this one, and its address
+   now redirects here (public/_redirects). From it, this page keeps the real proof (`found`: 93% of stores shopped on
+   every journey had a leak, 1,500 stores shopped, 77% of leaks silence, 4 real findings retold at invented shops, the
+   real September report), the free 5 stores form with its client OK, the agents' capacity (up to 1,000 stores in 48
+   hours) and the term itself, as the question "Is this mystery shopping?". Seun's rule on the real block still holds:
+   only those 2 shares, the store count and the capacity, never how many stores were tried or finished, the run's
+   dates or length, or the tests that could not finish. Its report stack, its drafted fixes, "gap" and "audit" for our
+   own offer are dropped: the agency's team owns the fix, and the agency already sells an audit. */
 
 export const study: UseCaseStudy = {
   name: 'Leak checks for retention agencies',
@@ -61,13 +69,20 @@ export const study: UseCaseStudy = {
       },
     ],
     capture: {
-      kind: 'waitlist',
+      kind: 'mystery',
       source: 'usecase-leaks-hero',
-      button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro: 'We’ll only use your email to tell you about Obsession.',
-      interest: 'prospect',
+      button: 'Check 5 stores free',
+      label: 'A store’s web address',
+      placeholder: 'A store, e.g. store.example',
+      micro: '5 stores checked free, what happened within 4 days, with proof. Leave it blank to join the waitlist.',
+      orWaitlist: true,
+      done: {
+        title: 'Got it. We’ll start with {store}.',
+        line: 'We’ll email {email} to ask for the other 4, and to confirm any client’s store is checked with their OK.',
+      },
+      interest: 'mystery',
     },
+    secondary: { label: 'See a real report', to: '/sample-output' },
   },
 
   /* The 10 steps, in the 3 phases the page draws them in. Each step's app window is in the page. */
@@ -149,7 +164,7 @@ export const study: UseCaseStudy = {
   },
 
   problem: {
-    heading: 'Your audit finds the leaks after the yes. The pitch needs them before.',
+    heading: 'A login tells you how the flows are built, not what a customer gets.',
     items: [
       {
         title: 'Everyone has the same audit',
@@ -212,7 +227,42 @@ export const study: UseCaseStudy = {
     ],
   },
 
-  /* The 2 recipes the page runs, 1 for each half of the offer. */
+  /* What real checks found, right after the invented 40 store run (moved from the mystery shopping page, 21 Oct). The
+     2 shares are of the stores shopped on every journey and of the leaks they had; the 4 findings are real, retold at
+     invented shops (content/shops.ts). Only email was watched in those checks: "no email", never "no message". */
+  found: {
+    heading: '93% of stores we shopped on every\u00a0journey had a leak. 77% of the leaks were silence.',
+    line: '1,500 stores shopped so far. Silence is the leak an audit inside the account can’t see: the email that never came.',
+    items: [
+      {
+        label: 'Fashion store · Basket left',
+        verdict: 'Wrong email',
+        finding: 'A buyer left a basket, and 2 hours later got a browse email instead.',
+        shop: 'pellam',
+      },
+      {
+        label: 'Cosmetics store · Basket left',
+        verdict: 'Broken email',
+        finding: '2 cart emails came, both with no product name and a blank total.',
+        shop: 'celandre',
+      },
+      {
+        label: 'Drinks store · New subscriber',
+        verdict: 'Broken links',
+        finding: 'The welcome email came, but every product link and button opened a closed development store.',
+        shop: 'quinnet',
+      },
+      {
+        label: 'Natural beauty store · Basket left',
+        verdict: 'Cart silent',
+        finding: 'A subscriber got the welcome, then left a basket. No cart email in 48 hours.',
+        shop: 'ferula',
+      },
+    ],
+    cta: { label: 'See a real report', to: '/sample-output' },
+  },
+
+  /* The 2 recipes the page runs, 1 for each half of the offer, and the 1 real run. */
   more: {
     recipe: {
       label: 'Before the pitch',
@@ -220,15 +270,21 @@ export const study: UseCaseStudy = {
       line: 'Proof of a real leak at each store on your pitch list.',
       cta: { label: 'Learn more', to: '/recipes/prospect-intelligence' },
     },
-    sample: {
+    second: {
       label: 'After you win',
       title: 'Mystery shopper',
       line: 'Your clients’ stores, journey by journey, every week and after every launch.',
       cta: { label: 'Learn more', to: '/recipes/mystery-shopper' },
     },
+    sample: {
+      label: '1 real run',
+      title: 'Sample output',
+      line: 'A real store check from September 2026, shown in every format it can arrive in.',
+      cta: { label: 'See it', to: '/sample-output' },
+    },
   },
 
-  fine: 'The agency, the stores and their .example addresses, the people, the phone number and every figure here are made up, and no real company’s results are shown. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
+  fine: 'The agency, the stores in the 10 steps and their .example addresses, the people, the phone number and every figure on their screens are made up. The 93%, the 1,500 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
 
   faq: {
     heading: 'What retention agencies ask.',
@@ -236,6 +292,18 @@ export const study: UseCaseStudy = {
       {
         q: 'What does Obsession do for retention agencies?',
         a: 'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its rivals compare.',
+      },
+      {
+        q: 'Is this mystery shopping?',
+        a: 'Yes, of what a new customer gets: the emails, the texts and the basket reminders, at any store you name, every week. An AI agent does the shopping, so it runs on 40 stores as easily as 1, and keeps every message as proof.',
+      },
+      {
+        q: 'What do the 5 free checks cover?',
+        a: '5 stores you name, prospects or clients, each with an AI agent as its new customer for 48 hours: the pop up and its code, the welcome email, texts and a basket. You get what happened within 4 days, with proof, in any format.',
+      },
+      {
+        q: 'Do our clients have to agree?',
+        a: 'Yes. A client’s store is checked with the client’s OK, and they install nothing. A prospect’s store you can check before you pitch.',
       },
       {
         q: 'Do we need the brand’s login?',
@@ -258,30 +326,48 @@ export const study: UseCaseStudy = {
         a: 'As often as you choose: every week, and after every launch, rebuild or theme update you tell it about.',
       },
       {
+        q: 'How many stores can it check at once?',
+        a: 'Up to 1,000 stores in 48 hours, so a whole pitch list or every client store in one go.',
+      },
+      {
         q: 'Will a store know who’s asking?',
         a: 'No. Obsession shares what a store did, never who asked.',
       },
       {
         q: 'Does it buy anything?',
-        a: 'If you choose. A basket check fills a basket and leaves it. A real order goes on a card you fund, never on fake payment details.',
+        a: 'If you choose. A basket check fills a basket and leaves it, and counts as 1 basket in the store’s numbers. A real order goes on a card you fund, never on fake payment details.',
       },
       {
-        q: 'Does it need Clay?',
-        a: 'No. Paste a list, upload a CSV or call the API.',
+        q: 'Is it legal?',
+        a: 'Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
       },
     ],
   },
 
   final: {
     heading: 'Try it on 5 stores.',
-    sub: 'Join the waitlist, and we’ll become the new customer of 5 stores you name, prospects or clients, and show you what happened, with proof.',
+    sub: 'Name a store, a prospect or a client with their OK. We’ll become its new customer and send you what happened within 4 days, with proof, then ask for the other 4.',
     capture: {
-      kind: 'waitlist',
+      kind: 'mystery',
       source: 'usecase-leaks-final',
-      button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro: 'We’ll only use your email to tell you about Obsession.',
-      interest: 'prospect',
+      button: 'Check 5 stores free',
+      label: 'A store’s web address',
+      placeholder: 'A store, e.g. store.example',
+      micro: 'Leave it blank to join the waitlist.',
+      orWaitlist: true,
+      done: {
+        title: 'Got it. We’ll start with {store}.',
+        line: 'We’ll email {email} to ask for the other 4, and to confirm any client’s store is checked with their OK.',
+      },
+      roles: {
+        short: 'Format',
+        question: 'Which format should we send it in?',
+        options: ['A PDF', 'A branded client report', 'Slack', 'A sheet', 'Clay columns', 'Email'],
+        replaces: 'results',
+        multi: true,
+      },
+      interest: 'mystery',
     },
+    link: { label: 'See everything agents do for agencies', to: '/agencies' },
   },
 }

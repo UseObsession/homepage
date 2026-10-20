@@ -30,6 +30,11 @@ A third page in his format (20 Oct 2026): `/use-cases/leak-checks-for-retention-
 draw it and nothing in `james/` changed. Unlike his 2, every word it shows comes from its content file
 (`content/usecases/leak-checks-for-retention-agencies.ts`), steps included; only the app windows' rows and numbers
 live in the page. `jamesPaths.ts` lists it with his 2, so it gets its own route and the study system leaves it alone.
+On 21 Oct the mystery shopping page for ecommerce agencies merged into it (its address is a 301 here). From it this
+page took the real proof (after step 4, in his `uc-inout` block), the hero's real report link, a third link card for
+the real run, and the site's own final section with the store address form for the 5 free checks. That section is the
+site's `FinalCta`, placed after `JamesPage` rather than inside it, so the site's form keeps its own styles. Its 3
+additions to his classes are in `src/pages/RetentionAgencies.css`, written with the `.james` prefix by hand.
 
 How they sit in the site:
 
