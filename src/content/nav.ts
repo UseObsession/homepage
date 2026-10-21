@@ -65,8 +65,8 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
 /* Who each worked example is for (content/usecases). James sends these addresses to prospects: they always stay. */
 const STUDY_FOR: Record<string, string> = {
   '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
+  '/use-cases/leak-checks-for-retention-agencies': 'For retention agencies',
   '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
-  '/use-cases/mystery-shopping-for-ecommerce-agencies': 'For ecommerce agencies',
 }
 
 export const nav = {
@@ -141,8 +141,8 @@ const BAR_WORDS: Record<string, string> = {
   'Get early access for my team': 'Get early access',
   'Get one for your store': 'Get free report',
   'Get my free report': 'Get free report',
-  /* The ecommerce agencies' use case: 5 of their clients' stores audited free (the same width as "Get free report"). */
-  'Get my free audits': 'Get free audits',
+  /* The leak checks use case: 5 stores checked free, prospects or clients (about the width of "Get free report"). */
+  'Check 5 stores free': 'Check stores free',
 }
 /* The free check of an AI agent (/verify and its recipes: "Check my support bot free" and the rest). */
 const VERIFY_BAR = 'Check mine free'
@@ -158,8 +158,8 @@ export const pageCtas: Record<string, Cta> = {
   '/recipes/mystery-shopper': barCta({ label: 'Get my free report', to: '#join' }),
   /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
   '/sample-output': barCta({ label: 'Get one for your store', to: '#get-one' }),
-  /* The ecommerce agencies' use case: the free audits of 5 clients' stores, and the waitlist, in its final form. */
-  '/use-cases/mystery-shopping-for-ecommerce-agencies': barCta({ label: 'Get my free audits', to: '#join' }),
+  /* The leak checks use case: 5 stores checked free, prospects or clients, and the waitlist, in its final form. */
+  '/use-cases/leak-checks-for-retention-agencies': barCta({ label: 'Check 5 stores free', to: '#join' }),
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
   '/agents': catalog.agentsCta,
 }

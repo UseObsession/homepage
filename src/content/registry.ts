@@ -66,7 +66,11 @@ export const recipeFileOf: Record<string, string> = Object.fromEntries(Object.en
 export const recipeById = Object.fromEntries(recipes.map((r) => [r.id, r])) as Record<RecipeId, Recipe>
 
 /* The worked examples, in the order the Resources menu, the footer and the Use cases index list them. */
-const STUDY_ORDER = ['/use-cases/prospect-intelligence-with-clay', '/use-cases/member-prices-for-price-intelligence']
+const STUDY_ORDER = [
+  '/use-cases/prospect-intelligence-with-clay',
+  '/use-cases/leak-checks-for-retention-agencies',
+  '/use-cases/member-prices-for-price-intelligence',
+]
 const studyRank = (path: string) => {
   const i = STUDY_ORDER.indexOf(path)
   return i === -1 ? STUDY_ORDER.length : i

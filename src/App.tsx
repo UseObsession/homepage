@@ -35,6 +35,7 @@ const UseCases = page('UseCases')
 const UseCase = page<{ path: string }>('UseCase', 'UseCaseAt')
 const ProspectIntelligence = page('ProspectIntelligence')
 const PriceIntelligence = page('PriceIntelligence')
+const RetentionAgencies = page('RetentionAgencies')
 const Blog = page('Blog')
 const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
 const SampleOutput = page('SampleOutput')
@@ -43,7 +44,7 @@ const Agents = page('Agents')
 const NotFound = page('NotFound')
 
 const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
-/* The worked examples the study system draws. James's 2 (src/legacy/james) are his own pages at their own addresses. */
+/* The worked examples the study system draws. The pages in James's format (legacy/jamesPaths) are their own pages at their own addresses. */
 const STUDIES = new Set(catalog.studies.map((s) => s.path).filter((p) => !isJamesPath(p)))
 const POSTS = new Set(catalog.posts.map((p) => p.slug))
 const PAGES: Record<string, LazyPage> = {
@@ -62,6 +63,7 @@ const PAGES: Record<string, LazyPage> = {
   '/agents': Agents,
   [JAMES_PATHS.prospect]: ProspectIntelligence,
   [JAMES_PATHS.price]: PriceIntelligence,
+  [JAMES_PATHS.retention]: RetentionAgencies,
   ...(catalog.blogLive ? { '/blog': Blog } : {}),
 }
 
@@ -226,7 +228,7 @@ function ctaAt(pathname: string) {
 
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
    view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
-const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog', JAMES_PATHS.prospect, JAMES_PATHS.price])
+const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
 const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !clean.startsWith('/blog/')
 
 /* The internal page a link event points at (its path and query), or null for another site, a new tab or a download. */
@@ -321,8 +323,8 @@ function RecipeRoute() {
   return RECIPES.has(slug) ? <Recipe key={slug} slug={slug} /> : <NotFound />
 }
 
-/* /use-cases/SLUG for every worked example in src/content/usecases that the study system draws (James's 2 have routes of
-   their own, above this one). */
+/* /use-cases/SLUG for every worked example in src/content/usecases that the study system draws (the pages in James's
+   format have routes of their own, above this one). */
 function UseCaseRoute() {
   const { slug = '' } = useParams()
   const path = `/use-cases/${slug}`
@@ -362,6 +364,7 @@ export function AppRoutes() {
         <Route path="use-cases" element={<UseCases />} />
         <Route path={JAMES_PATHS.prospect.slice(1)} element={<ProspectIntelligence />} />
         <Route path={JAMES_PATHS.price.slice(1)} element={<PriceIntelligence />} />
+        <Route path={JAMES_PATHS.retention.slice(1)} element={<RetentionAgencies />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
         {catalog.blogLive && <Route path="blog" element={<Blog />} />}
         {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
