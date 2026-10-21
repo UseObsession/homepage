@@ -12,12 +12,19 @@ export function once<T>(load: () => Promise<T>): Once<T> {
   let value: T | undefined
   let ready = false
   let pending: Promise<T> | undefined
+  /* A load that fails (offline, or a link warmed ahead that never loaded) is forgotten, so the next read tries again. */
   const preload = () =>
-    (pending ??= load().then((v) => {
-      value = v
-      ready = true
-      return v
-    }))
+    (pending ??= load().then(
+      (v) => {
+        value = v
+        ready = true
+        return v
+      },
+      (err: unknown) => {
+        pending = undefined
+        throw err
+      },
+    ))
   /* Read while rendering: the value, or a wait (Suspense) until it lands. */
   function useLoaded(): T {
     return ready ? (value as T) : use(preload())
