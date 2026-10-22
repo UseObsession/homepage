@@ -2,7 +2,7 @@ import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Sales agent check (/recipes/sales-agent-check). Check your AI agents. It replaces VERIFY.md 6.4's Checkout agent
-   check: a store's own AI sales or shopping agent quoting wrong prices, followed to checkout. Outside AI shoppers buying from the store are AI checkout test's job, and the FAQ says so.
+   check: a store's own AI sales or shopping agent quoting wrong prices, followed to checkout.
    Screen: salescheck (Your company; "WhatsApp · Site chat · daily"; Mon 07:01; Test customer 2, AI, for Your company:
    "AI test customer for Your company. Duo bundle price?"; the agent: "I'm the AI assistant. The Duo bundle is €89, in
    stock and arrives in 2 to 3 working days."; "Can I order now?"; checkout €89.00, stopped before payment, budget €0;
@@ -232,10 +232,6 @@ export const recipe: Recipe = {
       {
         q: 'How do you know what’s at risk?',
         a: 'Sales agent check reads it from the chat history you connect: it counts how many chats asked about the same product, so you see how far a wrong price could have gone.',
-      },
-      {
-        q: 'How is Sales agent check different from AI checkout test?',
-        a: 'Sales agent check makes sure your own AI agent tells customers the right price, stock and delivery. AI checkout test makes sure outside AI shoppers can buy from your store.',
       },
       {
         q: 'Can Sales agent check cover a client’s agent?',

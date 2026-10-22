@@ -125,7 +125,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 | Developers: How, Outcomes, Kinds, mission API | Replace | Gap, how it works, the ways in, the 5 verbs code, what developers build, open source |
 | /compare | New | Full table, "When you might want something else", FAQ |
 | /agents "never" list (8 rules) | Rewrite | The three lines only |
-| Use case pages (/use-cases/...) | Rewrite | Rewritten 19 Oct in this voice: mystery shopping for ecommerce agencies ("Be a customer of every store you serve or pitch."; merged on 21 Oct into leak checks for retention agencies, "Be the new customer of every store you pitch, and every store you keep.", drawn in James's format from his pieces, its old address a 301), prospect intelligence with Clay ("Be a customer of every brand your client wants to win.") and member prices for price intelligence ("Be a customer of every retailer you track."). The last 2 stay James's own pages (`src/legacy/james`), his 3 stop hero flow kept with its words in line, and read their headline, sub, questions and small print from `content/usecases` |
+| Use case pages (/use-cases/...) | Rewrite | Rewritten 19 Oct in this voice: mystery shopping for ecommerce agencies ("Be a customer of every store you serve or pitch."; merged on 21 Oct into leak checks for retention agencies, "Be the new customer of every store you pitch, and every store you keep.", drawn in James's format from his pieces, its old address a 301), prospect intelligence with Clay ("Be a customer of every brand your client wants to win.") and member prices for price intelligence ("Be a customer of every retailer you track."). On 22 Oct a fourth joined, leak checks for ecommerce stores ("Be the new customer of your own store, every week and after every change."), drawn as the retention agencies page is; its copy and reviews are in `docs/copy/leak-checks-for-ecommerce-stores.md`. The last 2 stay James's own pages (`src/legacy/james`), his 3 stop hero flow kept with its words in line, and read their headline, sub, questions and small print from `content/usecases` |
 | /verify | Light touch | Composition guarded; copy unchanged |
 
 **One taxonomy everywhere** (nav, footer, /recipes, llms.txt, Home): the 3 recipe groups above, and 4 readers. `src/content/nav.ts` is the source; every surface reads it.
@@ -143,7 +143,7 @@ flowchart TD
   H --> C["/compare"]
   H --> R["/recipes"]
   H --> SO["/sample-output (the real report)"]
-  R --> RP["/recipes/slug (23 recipes)"]
+  R --> RP["/recipes/slug (22 recipes)"]
   H --> V["/verify (Check your AI agents)"]
   M --> C
   S --> C
@@ -210,7 +210,7 @@ The full words are in the content files; this is the spine of each page.
 
 **Shared blocks** (`src/content/shared5.ts`): the agent's life, the ask section's shared parts and its example questions, the ways in (/developers only), the comparison, open source. Written once; Home and the reader pages import them. The ask section sits directly above the comparison wherever the comparison shows; on Sales and Agencies, which don't show it, it sits after how it works.
 
-**Marketing** (`pages/marketing.ts`): "Every rival email, offer and price, seen as their customer." Gap: "Your dashboards show what you sent. Only a customer sees what arrived." 6 tabs: Product marketing, Performance, Brand and AI search, Partnerships, Lifecycle, Ecommerce. Final: the free store report.
+**Marketing** (`pages/marketing.ts`): "Every rival email, offer and price, seen as their customer." Gap: "Your dashboards show what you sent. Only a customer sees what arrived." 5 tabs: Product marketing, Performance, Brand and AI search, Partnerships, Lifecycle (the Ecommerce tab went with the AI checkout test recipe, retired 22 Oct: James, too narrow). Final: the free store report.
 
 **Sales** (`pages/sales.ts`): "Know what every account and rival does to its customers." Gap: "Your CRM knows what they told you. A customer knows what they do." 6 tabs: Account brief (started by the calendar), Battlecards, Lead leaks, Pilot proof, Account watch, Win back.
 

@@ -1,0 +1,25 @@
+/* The ecommerce stores leak checks page (EcommerceStores.tsx), in James's format: 2 additions to his classes, scoped
+   under his wrapper so they reach this page only. The agencies page's 3 (RetentionAgencies.css) are imported too. */
+
+/* Step 3: the store's own checkout refusing the code, in the store's colours, like a screenshot. */
+.james .uc-pop-err {
+  color: #b42318;
+  font-size: 11px;
+}
+
+/* 4 link cards (the 3 recipes and the real run): 4 across, 2 by 2 on a tablet, 1 on a phone. */
+.james .uc-more.uc-more--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1000px) {
+  .james .uc-more.uc-more--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .james .uc-more.uc-more--4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

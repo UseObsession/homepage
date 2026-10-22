@@ -116,15 +116,6 @@ export const page: Page = {
         recipe: 'delivery',
         screen: 'campaign',
       },
-      {
-        tab: 'Ecommerce',
-        moment: 'Saturday, 09:16. An AI assistant shopping for a customer adds your linen shirt to the basket, and the basket comes back empty.',
-        outcome: 'A real order through every AI checkout into your store each month, refunded, and the fix for any that breaks.',
-        line: 'An agent buys through each path an AI shopper can use, on a card capped to that order, inside a monthly budget you set, then checks the order and refunds it.',
-        whyOnly: 'A check that stops before payment can’t tell you whether an AI shopper can pay. Agents buy for real on their own capped cards.',
-        recipe: 'checkout',
-        screen: 'checkout',
-      },
     ],
   },
 
