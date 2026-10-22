@@ -1,16 +1,17 @@
 /* Open source (OpenSource.tsx): the engine's capabilities as a 2 column grid of names and lines (8 of 12 columns), the
-   cloud's short list on receipt paper beside it (4 of 12). Stacked below 1080px; the grid is 1 column on a phone. */
+   cloud's short list on receipt paper beside it (4 of 12). Stacked below 1080px; the grid is 1 column on a phone. Kept
+   tight (James, 22 Oct: too much padding): smaller frames, rows and line height, about a fifth shorter. */
 
 .v5-os-pair { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 16px; align-items: start; }
 .v5-os-col {
-  padding: clamp(22px, 3vw, 36px);
+  padding: clamp(18px, 2.2vw, 26px);
   border-radius: 20px;
   border: 1px solid var(--ob-line-subtle);
 }
-.v5-os-col h3 { margin: 0 0 18px; font: 600 18px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
-.v5-os-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.v5-os-col h3 { margin: 0 0 6px; font: 600 17px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.v5-os-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .v5-os-col li {
-  font: 400 15.5px / 1.5 var(--ob-font-sans);
+  font: 400 14.5px / 1.5 var(--ob-font-sans);
   color: var(--ob-text-2);
   padding-left: 16px;
   position: relative;
@@ -30,12 +31,12 @@
 .v5-os-cloud li { color: var(--v5-paper-ink); }
 .v5-os-cloud li::before { border-color: var(--v5-paper-ink); background: var(--v5-paper-ink); }
 
-.v5-os-act { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 28px; }
+.v5-os-act { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 20px; }
 
-.v5-os-caps { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
-.v5-os-caps div { padding: 16px 0; border-top: 1px solid var(--ob-line-subtle); }
-.v5-os-caps dt { font: 600 15.5px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
-.v5-os-caps dd { margin: 6px 0 0; font: 400 14.5px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+.v5-os-caps { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 22px; }
+.v5-os-caps div { padding: 11px 0; border-top: 1px solid var(--ob-line-subtle); }
+.v5-os-caps dt { font: 600 15px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.v5-os-caps dd { margin: 3px 0 0; font: 400 14px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); }
 
 @media (max-width: 1080px) {
   .v5-os-pair { grid-template-columns: 1fr; }

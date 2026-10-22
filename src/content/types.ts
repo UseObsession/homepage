@@ -335,6 +335,8 @@ export type Page = {
   life?: Life
   targets?: Targets
   compare?: Compare
+  /* The ask section (components/v5/Ask): the record as something to ask, on Home, Marketing, Sales and Agencies. */
+  ask?: Ask
   ways?: Ways
   openSource?: OpenSource
   parity?: Parity
@@ -664,6 +666,24 @@ export type Way =
   | { tab: string; title: string; line: string; who: string; kind: 'chat'; setup: string; you: string; calls: string[]; reply: string[]; proof: string }
   | { tab: string; title: string; line: string; who: string; kind: 'code'; file: string; code: string }
 export type Ways = { heading: string; line?: string; ways: Way[]; verbs: { heading: string; items: { name: string; line: string }[] } }
+
+/* The ask section (components/v5/Ask, docs/positioning/ask-section.md): what the record holds, as questions a reader
+   asks from the AI they already use, each answered with its receipts. `where` names the AI or the place each example
+   was asked in; an example asked from code ('Code') shows only its `code`, in a window titled `file`, with no answer under it. The shared parts (`from`, `connect`, `keeps`, `notYet`, `more`) come from shared5's `askShared`. */
+export type AskExample = { where: string; q: string; a?: string[]; receipts?: string; file?: string; code?: string }
+export type Ask = {
+  heading: string
+  /* The areas it covers on this page, shown in a small label above the heading. */
+  areas: string[]
+  line: string
+  examples: AskExample[]
+  from: { label: string; items: string[] }
+  /* The 1 line that connects Obsession to each tool an example is asked in, keyed by `where`. */
+  connect: Record<string, string>
+  keeps: { heading: string; items: string[] }
+  notYet: string
+  more: Cta
+}
 
 /* Open source (components/v5/OpenSource): what is in the code, what is the cloud. */
 /* `core.items` are the engine's capabilities, each a name and 1 technical line; `cloud.items` are short lines. */

@@ -1,4 +1,4 @@
-import { life } from '../shared5'
+import { askExamples, askShared, life } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -123,6 +123,14 @@ export const page: Page = {
   },
 
   life,
+
+  /* The ask section (docs/positioning/ask-section.md), where the comparison sits on other pages: an account brief,
+     support speed across a target list, and what changed in their stack. */
+  ask: {
+    ...askShared,
+    areas: ['Prospects', 'Accounts', 'Rivals'],
+    examples: [{ ...askExamples.brief, where: 'Claude Code' }, askExamples.support, askExamples.watch],
+  },
 
   proof: {
     heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',

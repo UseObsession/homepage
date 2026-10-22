@@ -1,4 +1,4 @@
-import { life } from '../shared5'
+import { askExamples, askShared, life } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -119,6 +119,14 @@ export const page: Page = {
   },
 
   life,
+
+  /* The ask section (docs/positioning/ask-section.md), where the comparison sits on other pages: pitch evidence,
+     Promotions across every client, and a reminder that stopped. */
+  ask: {
+    ...askShared,
+    areas: ['Clients', 'Prospects', 'Their rivals'],
+    examples: [askExamples.pitch, askExamples.promotions, askExamples.watch],
+  },
 
   proof: {
     heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',

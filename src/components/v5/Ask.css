@@ -1,0 +1,198 @@
+/* The ask section (Ask.tsx). The questions on the left (5 of 12), the chosen one's window on the right (7 of 12) in the
+   stage's frame, so changing question changes only what is inside it. Under them, what Obsession keeps beside where
+   you ask from; 1 column on a phone. */
+
+.v5-ask-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(20px, 3.5vw, 48px);
+  align-items: start;
+}
+
+.v5-ask-qs { display: grid; gap: 8px; }
+.v5-ask-tab {
+  display: grid;
+  gap: 6px;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid var(--ob-line);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ob-text-2);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+.v5-ask-tab:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.v5-ask-tab[aria-selected='true'] { color: var(--ob-text); border-color: var(--v5-stamp); background: var(--v5-stamp-soft); }
+.v5-ask-tab:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+.v5-ask-where { font: 500 12px / 1 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-3); }
+.v5-ask-tab[aria-selected='true'] .v5-ask-where { color: var(--v5-stamp); }
+.v5-ask-q { font: 500 16px / 1.4 var(--ob-font-sans); }
+
+.v5-ask-stage {
+  border: 1px solid var(--v5-stage-line);
+  background: var(--v5-stage);
+  border-radius: 18px;
+  padding: clamp(16px, 2.2vw, 26px);
+  min-width: 0;
+}
+.v5-ask-panel { display: grid; gap: 12px; }
+.v5-ask-panel[hidden] { display: none; }
+.v5-ask-app {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ob-line-subtle);
+  font: 500 13px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+}
+.v5-ask-dots,
+.v5-ask-dots::before,
+.v5-ask-dots::after { width: 8px; height: 8px; border-radius: 50%; background: var(--ob-line-strong); }
+.v5-ask-dots { position: relative; margin-left: 16px; margin-right: 16px; }
+.v5-ask-dots::before,
+.v5-ask-dots::after { content: ''; position: absolute; top: 0; }
+.v5-ask-dots::before { left: -14px; }
+.v5-ask-dots::after { left: 14px; }
+.v5-ask-you {
+  justify-self: end;
+  max-width: 86%;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--ob-solid);
+  color: var(--ob-text-inverse);
+  font: 400 15px / 1.45 var(--ob-font-sans);
+}
+.v5-ask-reply {
+  max-width: 94%;
+  padding: 12px 14px;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--ob-surface-raised);
+  border: 1px solid var(--ob-line-subtle);
+  display: grid;
+  gap: 8px;
+  font: 400 15px / 1.5 var(--ob-font-sans);
+  color: var(--ob-text);
+}
+.v5-ask-reply p { margin: 0; }
+.v5-ask-receipts {
+  margin-top: 2px !important;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ob-line-strong);
+  font: 400 12.5px / 1.4 var(--ob-font-mono);
+  color: var(--v5-stamp);
+}
+
+.v5-ask-foot {
+  margin-top: clamp(32px, 4.5vw, 56px);
+  padding-top: 28px;
+  border-top: 1px solid var(--ob-line-subtle);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(24px, 4vw, 56px);
+}
+.v5-ask-h3 { margin: 0 0 14px; font: 600 16px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.v5-ask-keeps ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+}
+.v5-ask-keeps li {
+  position: relative;
+  margin: 0;
+  padding-left: 18px;
+  font: 400 14.5px / 1.5 var(--ob-font-sans);
+  color: var(--ob-text-2);
+}
+.v5-ask-keeps li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--v5-stamp);
+}
+.v5-ask-chips { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.v5-ask-chips li {
+  margin: 0;
+  font: 500 13.5px / 1 var(--ob-font-sans);
+  color: var(--ob-text);
+  border: 1px solid var(--ob-line-strong);
+  border-radius: 999px;
+  padding: 8px 12px;
+}
+.v5-ask-note { margin: 0 0 12px; font: 400 14.5px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+.v5-ask-more { font-size: 14px; }
+
+@media (max-width: 960px) {
+  .v5-ask-grid,
+  .v5-ask-foot { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .v5-ask-keeps ul { grid-template-columns: 1fr; }
+  .v5-ask-you,
+  .v5-ask-reply { max-width: 100%; }
+}
+
+/* The answer plays (Ask.tsx): once the section is on screen ([data-live]), and again when a question shows its panel
+   (a panel that was display: none restarts its animations). Under reduced motion it shows finished. */
+@media (prefers-reduced-motion: no-preference) {
+  .v5-ask[data-live] .v5-ask-panel:not([hidden]) .v5-ask-you { animation: v5-ask-in 0.35s ease-out 0.2s both; }
+  .v5-ask[data-live] .v5-ask-panel:not([hidden]) .v5-ask-reply { animation: v5-ask-in 0.35s ease-out 0.9s both; }
+  .v5-ask[data-live] .v5-ask-panel:not([hidden]) .v5-ask-reply p { animation: v5-ask-in 0.35s ease-out calc(1.1s + var(--k) * 0.45s) both; }
+}
+@keyframes v5-ask-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The areas, in a small label above the heading (Ask.tsx): the stamp's ink, set in the mono's capitals. */
+.v5-ask-areas {
+  margin: 0 0 14px;
+  font: 500 12.5px / 1.5 var(--ob-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v5-stamp);
+}
+
+/* An example asked from code: only the code, in the window. */
+.v5-ask-code {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--ob-bg-sunken);
+  border: 1px solid var(--ob-line-subtle);
+  font: 400 13px / 1.6 var(--ob-font-mono);
+  color: var(--ob-text);
+  overflow-x: auto;
+  white-space: pre;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .v5-ask[data-live] .v5-ask-panel:not([hidden]) .v5-ask-code { animation: v5-ask-in 0.35s ease-out 0.2s both; }
+}
+
+/* The 1 line that connected Obsession to the tool, above the question: a reader sees it takes 1 step. */
+.v5-ask-connect { display: grid; gap: 6px; margin: 0; }
+.v5-ask-connect-label { font: 500 11.5px / 1 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-3); }
+.v5-ask-connect code {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--ob-bg-sunken);
+  border: 1px solid var(--ob-line-subtle);
+  font: 400 12.5px / 1.5 var(--ob-font-mono);
+  color: var(--ob-text);
+  overflow-x: auto;
+  white-space: pre;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .v5-ask[data-live] .v5-ask-panel:not([hidden]) .v5-ask-connect { animation: v5-ask-in 0.35s ease-out 0.05s both; }
+}

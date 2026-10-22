@@ -1,5 +1,5 @@
 import { consoleHeading } from '../console'
-import { compare, life, openSource, ways } from '../shared5'
+import { askExamples, askShared, compare, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
 /* Home (/), the October rewrite (COPY.md, "Copy deck > Home"). 1 idea: to know what a company does to its customers,
@@ -11,9 +11,9 @@ import type { Page } from '../types'
    3b what it found (93% of stores we shopped had a gap: 1 real store's report, in every format) >
    4 who you are (James's reader band: each reader's own page) >
    5 who you can be a customer of (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
-   6 how far it goes (1 company, 1,000, 100,000: learned once, run as a program, asleep for free) >
+   6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
    7 how it compares (6 kinds of tool, 7 rows, dated, linking /compare) >
-   8 where you use it (your own agent, our website, a workflow file, code, and the 5 verbs) >
+   8 how far it goes (1 company, 1,000, 100,000: learned once, run as a program, asleep for free) >
    9 what is open (the engine on GitHub, the history in Obsession Cloud) >
    10 questions, then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
@@ -252,9 +252,16 @@ export const page: Page = {
     ],
   },
 
-  compare,
+  /* The ask section (docs/positioning/ask-section.md), above the comparison: the commercial intelligence only a customer
+     gets, its 4 areas in a small label above the heading, and 1 question from each reader, each asked somewhere else. It took the place of the 4
+     ways in, which /developers keeps. */
+  ask: {
+    ...askShared,
+    areas: ['Rivals', 'Prospects', 'Clients', 'Your own business'],
+    examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
+  },
 
-  ways,
+  compare,
 
   /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
      those stores' report in every format it arrives in. Only the share with a gap shows, never how many were shopped

@@ -1,4 +1,4 @@
-import { compare, life } from '../shared5'
+import { askExamples, askShared, compare, life } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -129,6 +129,12 @@ export const page: Page = {
   },
 
   life,
+  /* The ask section (docs/positioning/ask-section.md), above the comparison: rivals' emails, prices and first week. */
+  ask: {
+    ...askShared,
+    areas: ['Rivals', 'Your own business', 'Any brand you name'],
+    examples: [askExamples.blackFriday, askExamples.prices, askExamples.watch],
+  },
   compare,
 
   proof: {
