@@ -132,11 +132,7 @@ export const page: Page = {
   /* The ask section (docs/positioning/ask-section.md), above the comparison: rivals' emails, prices and first week. */
   ask: {
     ...askShared,
-    areas: [
-      { name: 'Rivals', line: 'What they send, offer and charge' },
-      { name: 'Your own store', line: 'What a new customer gets from you' },
-      { name: 'Any brand you name', line: 'Its emails, offers and prices, from the day you name it' },
-    ],
+    areas: ['Rivals', 'Your own business', 'Any brand you name'],
     examples: [askExamples.blackFriday, askExamples.prices, askExamples.watch],
   },
   compare,

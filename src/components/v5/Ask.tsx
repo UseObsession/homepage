@@ -4,7 +4,7 @@ import type { Ask as AskContent } from '../../content/types'
 import './Ask.css'
 
 /* The ask section (docs/positioning/ask-section.md): the record sold as commercial intelligence you ask. Under the
-   heading, the areas it covers on this page as labels, each with 1 short line. The questions sit on the left as
+   heading, the areas it covers on this page sit in a small label above it. The questions sit on the left as
    tabs (the ARIA tabs pattern, arrow keys move between them), each saying where it was asked; the chosen one plays on
    the right in that place's window: the question, the answer line by line, then its receipts. Every answer stays in the
    page for search and llms-full.txt (data-llms="keep"); only the chosen one shows. An example asked from code shows only
@@ -47,17 +47,10 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
     <section ref={ref} className="v5-section v5-ask" id={id} aria-labelledby={`${hid}-h`} data-live={live ? '' : undefined}>
       <div className="s-wrap">
         <div className="v5-head">
+          <p className="v5-ask-areas">{ask.areas.join(' · ')}</p>
           <h2 className="v5-h2" id={`${hid}-h`}>
             {ask.heading}
           </h2>
-          <ul className="v5-ask-areas" aria-label="What it covers">
-            {ask.areas.map((a) => (
-              <li key={a.name}>
-                <span className="v5-ask-area">{a.name}</span>
-                <span className="v5-ask-area-line">{a.line}</span>
-              </li>
-            ))}
-          </ul>
           <p className="v5-line">{ask.line}</p>
         </div>
         <div className="v5-ask-grid">

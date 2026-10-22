@@ -673,8 +673,8 @@ export type Ways = { heading: string; line?: string; ways: Way[]; verbs: { headi
 export type AskExample = { where: string; q: string; a?: string[]; receipts?: string; file?: string; code?: string }
 export type Ask = {
   heading: string
-  /* The areas it covers on this page, as labels under the heading, each with 1 short line. */
-  areas: { name: string; line: string }[]
+  /* The areas it covers on this page, shown in a small label above the heading. */
+  areas: string[]
   line: string
   examples: AskExample[]
   from: { label: string; items: string[] }

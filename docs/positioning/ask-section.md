@@ -24,18 +24,18 @@ Options weighed:
 
 ### The heading and its areas (22 Oct, James)
 
-The typed heading was tried, then dropped, for one heading about the data itself. The same heading appears on every page, with that page's areas shown as labels under it, each with a short line. The line under the labels is the same everywhere.
+The typed heading was tried, then dropped, for one heading about the data itself. The same heading appears on every page, with that page's areas in a small label above it, in capitals (option A, James, 22 Oct; the labels with a short line each were dropped). The line under the heading is the same everywhere.
 
 **The commercial intelligence only a customer gets.**
 
 Every email, offer, price and reply a company sends its customers, kept as it arrives. None of it is on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex and ask there, or ask on our website. Every answer comes with its receipts.
 
-| Page | Areas (label: short line) |
+| Page | Label above the heading |
 |---|---|
-| Home | Rivals: What they send, offer and charge · Prospects: How they treat their customers, before your first call · Clients: What their customers actually get · Your own store: What a new customer gets from you |
-| Marketing | Rivals: What they send, offer and charge · Your own store: What a new customer gets from you · Any brand you name: Its emails, offers and prices, from the day you name it |
-| Sales | Prospects: How they treat their customers, before your first call · Accounts: Their support, their checkout, and the tools they switch to · Rivals: What they offer in a trial, and what they charge |
-| Agencies | Clients: What their customers actually get · Prospects: What a new customer gets, before the pitch · Their rivals: What they send, offer and charge |
+| Home | Rivals · Prospects · Clients · Your own business |
+| Marketing | Rivals · Your own business · Any brand you name |
+| Sales | Prospects · Accounts · Rivals |
+| Agencies | Clients · Prospects · Their rivals |
 
 ### Asked from code (22 Oct, James)
 
@@ -106,7 +106,7 @@ Heading, areas and line as above. The questions:
 
 Each draft was checked against these questions, and changed where it failed.
 
-1. **Does the headline sell the data, not the plumbing?** The first draft led with the AI ("Claude can search the web. Your rivals' emails were never on it."), which put the AI back in the spotlight. The next, "Ask what any company sends its customers", typed its middle phrase in turn and was dropped (22 Oct). The heading is now about the data itself: "The commercial intelligence only a customer gets." The labels under it show the areas, and the line says how to ask and that every answer comes with its receipts.
+1. **Does the headline sell the data, not the plumbing?** The first draft led with the AI ("Claude can search the web. Your rivals' emails were never on it."), which put the AI back in the spotlight. The next, "Ask what any company sends its customers", typed its middle phrase in turn and was dropped (22 Oct). The heading is now about the data itself: "The commercial intelligence only a customer gets." The label above it names the areas, and the line says how to ask and that every answer comes with its receipts.
 2. **Does it say why an AI on its own can't answer?** Yes: "none of it is on the web, so no AI can search for it". That's the old headline's real point ("it can't be a customer for thirty days"), said in the buyer's terms.
 3. **Is it technical?** No code, no verb names and no MCP command in the section itself. The four ways in and the five verbs stay on /developers, which keeps the old section. A single small link sends builders there.
 4. **Is every claim true as designed?**

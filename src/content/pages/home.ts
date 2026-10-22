@@ -253,16 +253,11 @@ export const page: Page = {
   },
 
   /* The ask section (docs/positioning/ask-section.md), above the comparison: the commercial intelligence only a customer
-     gets, its 4 areas as labels, and 1 question from each reader, each asked somewhere else. It took the place of the 4
+     gets, its 4 areas in a small label above the heading, and 1 question from each reader, each asked somewhere else. It took the place of the 4
      ways in, which /developers keeps. */
   ask: {
     ...askShared,
-    areas: [
-      { name: 'Rivals', line: 'What they send, offer and charge' },
-      { name: 'Prospects', line: 'How they treat their customers, before your first call' },
-      { name: 'Clients', line: 'What their customers actually get' },
-      { name: 'Your own store', line: 'What a new customer gets from you' },
-    ],
+    areas: ['Rivals', 'Prospects', 'Clients', 'Your own business'],
     examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
   },
 

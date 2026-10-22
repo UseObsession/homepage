@@ -128,11 +128,7 @@ export const page: Page = {
      support speed across a target list, and what changed in their stack. */
   ask: {
     ...askShared,
-    areas: [
-      { name: 'Prospects', line: 'How they treat their customers, before your first call' },
-      { name: 'Accounts', line: 'Their support, their checkout, and the tools they switch to' },
-      { name: 'Rivals', line: 'What they offer in a trial, and what they charge' },
-    ],
+    areas: ['Prospects', 'Accounts', 'Rivals'],
     examples: [{ ...askExamples.brief, where: 'Claude Code' }, askExamples.support, askExamples.watch],
   },
 

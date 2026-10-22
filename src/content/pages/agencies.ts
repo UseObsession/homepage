@@ -124,11 +124,7 @@ export const page: Page = {
      Promotions across every client, and a reminder that stopped. */
   ask: {
     ...askShared,
-    areas: [
-      { name: 'Clients', line: 'What their customers actually get' },
-      { name: 'Prospects', line: 'What a new customer gets, before the pitch' },
-      { name: 'Their rivals', line: 'What they send, offer and charge' },
-    ],
+    areas: ['Clients', 'Prospects', 'Their rivals'],
     examples: [askExamples.pitch, askExamples.promotions, askExamples.watch],
   },
 
