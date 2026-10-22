@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import type { Ask as AskContent } from '../../content/types'
 import './Ask.css'
 
-/* The ask section (docs/positioning/ask-section.md): the record sold as data you ask. The heading types its middle
-   phrase in turn (any company, rivals, prospects, clients, your own store): the HTML holds the full sentence for search,
-   screen readers and llms-full.txt, and a hidden copy of the longest phrase holds the heading's height, so nothing
-   below it moves. The questions sit on the left as
+/* The ask section (docs/positioning/ask-section.md): the record sold as commercial intelligence you ask. Under the
+   heading, the areas it covers on this page as labels, each with 1 short line. The questions sit on the left as
    tabs (the ARIA tabs pattern, arrow keys move between them), each saying where it was asked; the chosen one plays on
    the right in that place's window: the question, the answer line by line, then its receipts. Every answer stays in the
    page for search and llms-full.txt (data-llms="keep"); only the chosen one shows. An example asked from code shows only
@@ -19,8 +17,6 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
   const [live, setLive] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const tabs = useRef<(HTMLButtonElement | null)[]>([])
-  const typed = useTypewriter(ask.type.phrases, live)
-  const longest = ask.type.phrases.reduce((a, b) => (b.length > a.length ? b : a), '')
   useEffect(() => {
     const el = ref.current
     if (!el || !('IntersectionObserver' in window)) return
@@ -51,20 +47,17 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
     <section ref={ref} className="v5-section v5-ask" id={id} aria-labelledby={`${hid}-h`} data-live={live ? '' : undefined}>
       <div className="s-wrap">
         <div className="v5-head">
-          <h2 className="v5-h2 v5-ask-h2" id={`${hid}-h`}>
-            <span className="v5-visually-hidden">{ask.heading}</span>
-            <span className="v5-ask-type" aria-hidden="true">
-              <span className="v5-ask-sizer">
-                {ask.type.lead} {longest}
-                {ask.type.tail}
-              </span>
-              <span className="v5-ask-shown">
-                {ask.type.lead} <span className="v5-ask-typed">{typed}</span>
-                <span className="v5-ask-caret" />
-                {ask.type.tail}
-              </span>
-            </span>
+          <h2 className="v5-h2" id={`${hid}-h`}>
+            {ask.heading}
           </h2>
+          <ul className="v5-ask-areas" aria-label="What it covers">
+            {ask.areas.map((a) => (
+              <li key={a.name}>
+                <span className="v5-ask-area">{a.name}</span>
+                <span className="v5-ask-area-line">{a.line}</span>
+              </li>
+            ))}
+          </ul>
           <p className="v5-line">{ask.line}</p>
         </div>
         <div className="v5-ask-grid">
@@ -164,39 +157,3 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
   )
 }
 
-/* Types the phrases in turn once `on` (the section is on screen): holds each for a moment, deletes it, types the next,
-   and loops. It starts from the first phrase, the one in the HTML, so the first paint and hydration agree; under reduced
-   motion, or with 1 phrase, it stays there. */
-function useTypewriter(phrases: string[], on: boolean) {
-  const [text, setText] = useState(phrases[0])
-  useEffect(() => {
-    if (!on || phrases.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let i = 0
-    let pos = phrases[0].length
-    let deleting = true
-    let t = 0
-    const tick = () => {
-      if (deleting) {
-        pos -= 1
-        setText(phrases[i].slice(0, pos))
-        if (pos > 0) t = window.setTimeout(tick, 22)
-        else {
-          deleting = false
-          i = (i + 1) % phrases.length
-          t = window.setTimeout(tick, 320)
-        }
-        return
-      }
-      pos += 1
-      setText(phrases[i].slice(0, pos))
-      if (pos < phrases[i].length) t = window.setTimeout(tick, 46)
-      else {
-        deleting = true
-        t = window.setTimeout(tick, 2600)
-      }
-    }
-    t = window.setTimeout(tick, 2600)
-    return () => window.clearTimeout(t)
-  }, [on, phrases])
-  return text
-}

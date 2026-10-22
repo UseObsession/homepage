@@ -672,10 +672,9 @@ export type Ways = { heading: string; line?: string; ways: Way[]; verbs: { headi
    was asked in; an example asked from code ('Code') shows only its `code`, in a window titled `file`, with no answer under it. The shared parts (`from`, `connect`, `keeps`, `notYet`, `more`) come from shared5's `askShared`. */
 export type AskExample = { where: string; q: string; a?: string[]; receipts?: string; file?: string; code?: string }
 export type Ask = {
-  /* The full sentence, with the first phrase: the h2's words for search, screen readers and llms-full.txt. */
   heading: string
-  /* What the heading shows: `lead`, then `phrases` typed in turn (the first is the one in the HTML), then `tail`. */
-  type: { lead: string; phrases: string[]; tail: string }
+  /* The areas it covers on this page, as labels under the heading, each with 1 short line. */
+  areas: { name: string; line: string }[]
   line: string
   examples: AskExample[]
   from: { label: string; items: string[] }

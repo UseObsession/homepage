@@ -22,16 +22,20 @@ Options weighed:
 
 ## The copy
 
-### The typed heading (22 Oct, James)
+### The heading and its areas (22 Oct, James)
 
-The phrase between "Ask" and ". Get the answer, with the receipts." types in turn, cycling through what you'd want to know about rivals, prospects, clients and your own store. The first phrase is the one in the HTML, for search, screen readers and llms-full.txt. Under reduced motion, the heading stays on the first phrase.
+The typed heading was tried, then dropped, for one heading about the data itself. The same heading appears on every page, with that page's areas shown as labels under it, each with a short line. The line under the labels is the same everywhere.
 
-| Page | Phrases, in order |
+**The commercial intelligence only a customer gets.**
+
+Every email, offer, price and reply a company sends its customers, kept as it arrives. None of it is on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex and ask there, or ask on our website. Every answer comes with its receipts.
+
+| Page | Areas (label: short line) |
 |---|---|
-| Home | what any company sends its customers · what your rivals send their customers · how a prospect treats its customers · what your clients' customers actually get · what your own store sends a new customer |
-| Marketing | what your rivals send their customers · what your own store sends a new customer · which rival emailed first on Black Friday · what a new subscriber gets from any brand |
-| Sales | how any account treats its customers · how fast a prospect answers support · what a rival offers in its free trial · which accounts just switched email platform |
-| Agencies | what any client or prospect sends its customers · what your clients' customers actually get · what a prospect's rivals sent this month · whose basket reminder went quiet |
+| Home | Rivals: What they send, offer and charge · Prospects: How they treat their customers, before your first call · Clients: What their customers actually get · Your own store: What a new customer gets from you |
+| Marketing | Rivals: What they send, offer and charge · Your own store: What a new customer gets from you · Any brand you name: Its emails, offers and prices, from the day you name it |
+| Sales | Prospects: How they treat their customers, before your first call · Accounts: Their support, their checkout, and the tools they switch to · Rivals: What they offer in a trial, and what they charge |
+| Agencies | Clients: What their customers actually get · Prospects: What a new customer gets, before the pitch · Their rivals: What they send, offer and charge |
 
 ### Asked from code (22 Oct, James)
 
@@ -46,7 +50,7 @@ Its tab reads "Be a customer of every brand on our list, and send each new email
 
 **Ask from:** Claude Code · Codex · Cursor · Grok · Muse · your own code · our website
 
-**What Obsession keeps, for every company it's a customer of**
+**You choose what it keeps. A few examples:** (what it keeps is the customer's setting, so these are examples, not the list; James, 22 Oct)
 - Every email and text, and the Gmail tab it landed in
 - Every offer and code, and whether the page held it
 - Prices and plans, each time they change
@@ -60,9 +64,7 @@ Its tab reads "Be a customer of every brand on our list, and send each new email
 
 ### Home
 
-**Ask what any company sends its customers. Get the answer, with the receipts.**
-
-The Black Friday email, the welcome offer, the price cut, the slow reply: none of it is on the web, so no AI can search for it. Obsession is the customer and keeps it all, so connect it once to Claude Code, Codex or whichever AI you already use and ask there, or ask on our website.
+Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
@@ -72,9 +74,7 @@ The Black Friday email, the welcome offer, the price cut, the slow reply: none o
 
 ### Marketing
 
-**Ask what your rivals send their customers. Get the answer, with the receipts.**
-
-Their welcome offer, their Black Friday email, the price cut on day 21: none of it is on the web, so no AI can search for it. Obsession is their customer and keeps it all, so connect it once to Claude Code, Codex or whichever AI you already use and ask there, or ask on our website.
+Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
@@ -84,9 +84,7 @@ Their welcome offer, their Black Friday email, the price cut on day 21: none of 
 
 ### Sales
 
-**Ask how any account treats its customers. Get the answer, with the receipts.**
-
-How fast it answers support, what its checkout offers, which email platform it just moved to: none of it is on the web, so no AI can search for it. Obsession is their customer and keeps it all, so connect it once to Claude Code, Codex or whichever AI you already use and ask there, or ask on our website.
+Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
@@ -96,9 +94,7 @@ How fast it answers support, what its checkout offers, which email platform it j
 
 ### Agencies
 
-**Ask what any client or prospect sends its customers. Get the answer, with the receipts.**
-
-What a prospect's rivals emailed this month, whose basket reminder went quiet, which welcome email lands in Promotions: none of it is on the web, so no AI can search for it. Obsession is their customer and keeps it all, so connect it once to Claude Code, Codex or whichever AI you already use and ask there, or ask on our website.
+Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
@@ -110,7 +106,7 @@ What a prospect's rivals emailed this month, whose basket reminder went quiet, w
 
 Each draft was checked against these questions, and changed where it failed.
 
-1. **Does the headline sell the data, not the plumbing?** The first draft led with the AI ("Claude can search the web. Your rivals' emails were never on it."). That puts the AI back in the spotlight, which is what James objected to. The verb is now "Ask", the object is what companies send, and the payoff is "the answer, with the receipts". The receipt is the site's device, from the hero's "Keep the receipts."
+1. **Does the headline sell the data, not the plumbing?** The first draft led with the AI ("Claude can search the web. Your rivals' emails were never on it."), which put the AI back in the spotlight. The next, "Ask what any company sends its customers", typed its middle phrase in turn and was dropped (22 Oct). The heading is now about the data itself: "The commercial intelligence only a customer gets." The labels under it show the areas, and the line says how to ask and that every answer comes with its receipts.
 2. **Does it say why an AI on its own can't answer?** Yes: "none of it is on the web, so no AI can search for it". That's the old headline's real point ("it can't be a customer for thirty days"), said in the buyer's terms.
 3. **Is it technical?** No code, no verb names and no MCP command in the section itself. The four ways in and the five verbs stay on /developers, which keeps the old section. A single small link sends builders there.
 4. **Is every claim true as designed?**

@@ -37,17 +37,20 @@ export const life: Life = {
 }
 
 /* The ask section (docs/positioning/ask-section.md): the record sold as data you ask, not as the ways to connect. Each
-   page gives its own heading, line and 3 examples; these parts are the same everywhere. The AI is named by product
+   page gives its own areas (the labels under the heading) and 3 examples; these parts are the same everywhere. The AI is named by product
    (Claude Code, Codex: the tools people work in, not the models behind them), never as "your AI agent". A chat example
    shows the 1 line that connects Obsession to that tool (`connect`), so a reader sees it takes 1 step. Every company in an answer is invented, as everywhere else. */
-export const askShared: Pick<Ask, 'from' | 'connect' | 'keeps' | 'notYet' | 'more'> = {
+export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect' | 'keeps' | 'notYet' | 'more'> = {
+  heading: 'The commercial intelligence only a customer gets.',
+  line: 'Every email, offer, price and reply a company sends its customers, kept as it arrives. None of it is on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex and ask there, or ask on our website. Every answer comes with its receipts.',
   from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
   connect: {
     'Claude Code': 'claude mcp add obsession https://mcp.useobsession.com',
     Codex: 'codex mcp add obsession --url https://mcp.useobsession.com',
   },
   keeps: {
-    heading: 'What Obsession keeps, for every company it’s a customer of',
+    /* What it keeps is the customer's setting; these are examples, not the list (James, 22 Oct). */
+    heading: 'You choose what it keeps. A few examples:',
     items: [
       'Every email and text, and the Gmail tab it landed in',
       'Every offer and code, and whether the page held it',
@@ -146,8 +149,6 @@ for fact in ob.facts("fernhollow.example", since="30d"):
   },
 } satisfies Record<string, AskExample>
 
-/* The ask line every page ends the same way: where to ask from. */
-export const askFrom = 'so connect it once to Claude Code, Codex or whichever AI you already use and ask there, or ask on our website.'
 
 export const ways: Ways = {
   heading: 'Your AI agent can think. It can’t be a customer for thirty days.',

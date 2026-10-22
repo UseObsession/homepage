@@ -1,5 +1,5 @@
 import { consoleHeading } from '../console'
-import { askExamples, askFrom, askShared, compare, life, openSource } from '../shared5'
+import { askExamples, askShared, compare, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
 /* Home (/), the October rewrite (COPY.md, "Copy deck > Home"). 1 idea: to know what a company does to its customers,
@@ -252,24 +252,17 @@ export const page: Page = {
     ],
   },
 
-  /* The ask section (docs/positioning/ask-section.md), above the comparison: the record as data you ask, 1 question
-     from each reader, each asked somewhere else. It took the place of the 4 ways in, which /developers keeps. */
+  /* The ask section (docs/positioning/ask-section.md), above the comparison: the commercial intelligence only a customer
+     gets, its 4 areas as labels, and 1 question from each reader, each asked somewhere else. It took the place of the 4
+     ways in, which /developers keeps. */
   ask: {
     ...askShared,
-    heading: 'Ask what any company sends its customers. Get the answer, with the receipts.',
-    /* The phrase types in turn: any company, then rivals, prospects, clients and your own store (James, 22 Oct). */
-    type: {
-      lead: 'Ask',
-      phrases: [
-        'what any company sends its customers',
-        'what your rivals send their customers',
-        'how a prospect treats its customers',
-        'what your clients’ customers actually get',
-        'what your own store sends a new customer',
-      ],
-      tail: '. Get the answer, with the receipts.',
-    },
-    line: `The Black Friday email, the welcome offer, the price cut, the slow reply: none of it is on the web, so no AI can search for it. Obsession is the customer and keeps it all, ${askFrom}`,
+    areas: [
+      { name: 'Rivals', line: 'What they send, offer and charge' },
+      { name: 'Prospects', line: 'How they treat their customers, before your first call' },
+      { name: 'Clients', line: 'What their customers actually get' },
+      { name: 'Your own store', line: 'What a new customer gets from you' },
+    ],
     examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
   },
 

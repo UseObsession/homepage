@@ -154,27 +154,29 @@
   to { opacity: 1; transform: none; }
 }
 
-/* The heading's typed phrase (Ask.tsx). The sizer (the longest phrase, hidden) and the shown sentence share 1 grid cell,
-   so the heading keeps the height of its longest phrase while the shown one types. The caret blinks after the phrase;
-   under reduced motion it stays still. */
-.v5-ask-type { display: grid; }
-.v5-ask-sizer,
-.v5-ask-shown { grid-area: 1 / 1; }
-.v5-ask-sizer { visibility: hidden; }
-.v5-ask-typed { color: var(--v5-stamp); }
-.v5-ask-caret {
-  display: inline-block;
-  width: 0.06em;
-  height: 0.9em;
-  margin-left: 0.04em;
-  vertical-align: -0.08em;
-  background: var(--v5-stamp);
+/* The areas under the heading (Ask.tsx): each a label in the stamp's ink with its short line beneath, in a row of up to
+   4, 2 on a tablet, 1 on a phone. */
+.v5-ask-areas {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px 20px;
+  max-width: 980px;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .v5-ask[data-live] .v5-ask-caret { animation: v5-ask-blink 1s steps(1, end) infinite; }
+.v5-ask-areas li { margin: 0; display: grid; justify-items: start; gap: 8px; }
+.v5-ask-area {
+  font: 500 13.5px / 1 var(--ob-font-sans);
+  color: var(--ob-text);
+  border: 1px solid var(--v5-stamp);
+  background: var(--v5-stamp-soft);
+  border-radius: 999px;
+  padding: 8px 13px;
 }
-@keyframes v5-ask-blink {
-  50% { opacity: 0; }
+.v5-ask-area-line { font: 400 14px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); max-width: 30ch; }
+@media (max-width: 560px) {
+  .v5-ask-areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* An example asked from code: only the code, in the window. */
