@@ -44,30 +44,40 @@ function To({ to, className, children }: { to: string; className?: string; child
 
 /* ---- The mocks: each format drawn from its data in content/sample.ts --------------------------------------------- */
 
+/* The 2 pages are drawn only once the viewer comes within a view's height of the reader. As lazy images they still
+   loaded with the page on a phone (Chrome fetches a lazy image up to 3,000px ahead), and their bytes competed with the
+   hero's first paint. The prerendered page has none; the stage keeps its own size, so nothing moves when they arrive. */
 function Pdf({ view, ui }: { view: Extract<ViewerView, { kind: 'pdf' }>; ui: Ui }) {
   const [spread, setSpread] = useState(false)
+  const [near, setNear] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !('IntersectionObserver' in window)) return setNear(true)
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setNear(true), io.disconnect()), { rootMargin: '100% 0px' })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
   const [front, back] = view.pages
   return (
-    <div className={'s-ov-pdf' + (spread ? ' is-spread' : '')}>
-      {front && (
+    <div ref={ref} className={'s-ov-pdf' + (spread ? ' is-spread' : '')}>
+      {near && front && (
         <img
           className="s-ov-page s-ov-page--front"
-          src={front.src}
+          src={front.small ?? front.src}
           alt={front.alt}
           width={front.width}
           height={front.height}
-          loading="lazy"
           decoding="async"
         />
       )}
-      {back && (
+      {near && back && (
         <img
           className="s-ov-page s-ov-page--back"
-          src={back.src}
+          src={back.small ?? back.src}
           alt={back.alt}
           width={back.width}
           height={back.height}
-          loading="lazy"
           decoding="async"
         />
       )}

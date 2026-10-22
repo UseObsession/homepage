@@ -28,12 +28,14 @@ export const outputFormats: ViewerFormat[] = [
       pages: [
         {
           src: '/report/page-1.jpg',
+          small: '/report/page-1-640.webp',
           alt: 'Page 1 of the report: the 4 journeys and their verdicts, a checkout screenshot and the test customer set up',
           width: 992,
           height: 1404,
         },
         {
           src: '/report/page-2.jpg',
+          small: '/report/page-2-640.webp',
           alt: 'Page 2 of the report: nothing followed up the shopper who left at checkout, beside the reminder we drafted',
           width: 992,
           height: 1404,
