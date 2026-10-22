@@ -36,6 +36,12 @@ the real run, and the site's own final section with the store address form for t
 site's `FinalCta`, placed after `JamesPage` rather than inside it, so the site's form keeps its own styles. Its 3
 additions to his classes are in `src/pages/RetentionAgencies.css`, written with the `.james` prefix by hand.
 
+A fourth, built the same way (22 Oct 2026): `/use-cases/leak-checks-for-ecommerce-stores`
+(`src/pages/EcommerceStores.tsx`), a store's own team checking its own store. Its words are its content file's
+(`content/usecases/leak-checks-for-ecommerce-stores.ts`; the copy and its reviews are in
+`docs/copy/leak-checks-for-ecommerce-stores.md`), it imports the agencies page's 3 additions, and its 1 own addition is
+in `src/pages/EcommerceStores.css`.
+
 How they sit in the site:
 
 - `src/pages/ProspectIntelligence.tsx` and `PriceIntelligence.tsx` are small wrappers the page glob finds (`App.tsx`). Each

@@ -36,6 +36,7 @@ const UseCase = page<{ path: string }>('UseCase', 'UseCaseAt')
 const ProspectIntelligence = page('ProspectIntelligence')
 const PriceIntelligence = page('PriceIntelligence')
 const RetentionAgencies = page('RetentionAgencies')
+const EcommerceStores = page('EcommerceStores')
 const Blog = page('Blog')
 const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
 const SampleOutput = page('SampleOutput')
@@ -64,6 +65,7 @@ const PAGES: Record<string, LazyPage> = {
   [JAMES_PATHS.prospect]: ProspectIntelligence,
   [JAMES_PATHS.price]: PriceIntelligence,
   [JAMES_PATHS.retention]: RetentionAgencies,
+  [JAMES_PATHS.stores]: EcommerceStores,
   ...(catalog.blogLive ? { '/blog': Blog } : {}),
 }
 
@@ -365,6 +367,7 @@ export function AppRoutes() {
         <Route path={JAMES_PATHS.prospect.slice(1)} element={<ProspectIntelligence />} />
         <Route path={JAMES_PATHS.price.slice(1)} element={<PriceIntelligence />} />
         <Route path={JAMES_PATHS.retention.slice(1)} element={<RetentionAgencies />} />
+        <Route path={JAMES_PATHS.stores.slice(1)} element={<EcommerceStores />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
         {catalog.blogLive && <Route path="blog" element={<Blog />} />}
         {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}

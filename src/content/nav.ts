@@ -66,6 +66,7 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
 const STUDY_FOR: Record<string, string> = {
   '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
   '/use-cases/leak-checks-for-retention-agencies': 'For retention agencies',
+  '/use-cases/leak-checks-for-ecommerce-stores': 'For ecommerce stores',
   '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
 }
 
@@ -143,6 +144,8 @@ const BAR_WORDS: Record<string, string> = {
   'Get my free report': 'Get free report',
   /* The leak checks use case: 5 stores checked free, prospects or clients (about the width of "Get free report"). */
   'Check 5 stores free': 'Check stores free',
+  /* The ecommerce stores use case: the free check of the reader's own store. */
+  'Check my store free': 'Check my store',
 }
 /* The free check of an AI agent (/verify and its recipes: "Check my support bot free" and the rest). */
 const VERIFY_BAR = 'Check mine free'
@@ -160,6 +163,8 @@ export const pageCtas: Record<string, Cta> = {
   '/sample-output': barCta({ label: 'Get one for your store', to: '#get-one' }),
   /* The leak checks use case: 5 stores checked free, prospects or clients, and the waitlist, in its final form. */
   '/use-cases/leak-checks-for-retention-agencies': barCta({ label: 'Check 5 stores free', to: '#join' }),
+  /* The ecommerce stores use case: the free check of the reader's own store, and the waitlist, in its final form. */
+  '/use-cases/leak-checks-for-ecommerce-stores': barCta({ label: 'Check my store free', to: '#join' }),
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
   '/agents': catalog.agentsCta,
 }

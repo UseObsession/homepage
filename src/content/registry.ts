@@ -68,6 +68,7 @@ export const recipeById = Object.fromEntries(recipes.map((r) => [r.id, r])) as R
 const STUDY_ORDER = [
   '/use-cases/prospect-intelligence-with-clay',
   '/use-cases/leak-checks-for-retention-agencies',
+  '/use-cases/leak-checks-for-ecommerce-stores',
   '/use-cases/member-prices-for-price-intelligence',
 ]
 const studyRank = (path: string) => {
