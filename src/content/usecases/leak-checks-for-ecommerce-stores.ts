@@ -17,7 +17,12 @@ import type { UseCaseStudy } from '../types'
    invented shops, plus the real September report. Seun's rule holds: only those shares and the store count, never how
    many stores were tried or finished. The free check is the site's free report (4 customers, 48 hours, within 4
    days). Change detection, as designed: a theme publish or a flow edit starts a check once Shopify and the email
-   platform are connected (read only); a new app or a sale, the reader says so from Slack. */
+   platform are connected (read only); a new app or a sale, the reader says so from Slack.
+   Ads, added after approval (James, 22 Oct: "lack of ads in this whole use case"): the store's own ads are where money
+   leaks first (system.md, "Your own company": an ad spending $410 a day on clicks to a sold-out page). Ad landing check
+   (/recipes/ad-landing-check) opens each live ad's page from its link every morning, so no click is paid for, and
+   drafts a pause or a new link for the reader's OK. Here: the ad accounts connect in step 1, the first check finds all
+   6 live ads fine, and step 9 catches Ad 4 sending £410 a day to a throw that sold out overnight. */
 
 export const study: UseCaseStudy = {
   name: 'Leak checks for ecommerce stores',
@@ -27,9 +32,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/leak-checks-for-ecommerce-stores',
     title: 'Leak checks for ecommerce stores, shopped by AI every week',
     description:
-      'AI agents shop your store as new customers every week and after every change to its theme, apps or flows. Each leak comes back with proof and the fix.',
+      'AI agents follow your ads and shop your store as new customers, every week and after every change. Every leak comes back with proof and the fix.',
     answer:
-      'Obsession’s AI agents shop your store as new customers every week and after every change: they sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
+      'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
     ogImage: '/og/leak-checks-for-ecommerce-stores.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,14 +47,14 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Early access',
     headline: 'Be the new customer of your own store, every week and after every change.',
-    sub: 'Obsession’s AI agents shop your store as new customers every week and after every change: they sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix. Leaks already there show up on the first check; a break from a new theme, app or flow shows up within the hour, not when sales dip.',
+    sub: 'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix. Leaks already there show up on the first check; a break from a new theme, app, flow or ad shows up within the hour, not when sales dip.',
     example: { chips: [] },
     flow: [
       {
         label: 'Your store in',
         title: 'Halden Home',
-        items: ['Signs up through the pop up', 'Leaves a basket', 'Leaves at checkout', 'Places an order'],
-        foot: '8 journeys, every Monday and after every change',
+        items: ['Follows each live ad to its page', 'Signs up through the pop up', 'Leaves a basket', 'Leaves at checkout'],
+        foot: '8 journeys every Monday, every live ad each morning',
       },
       {
         label: 'Obsession',
@@ -60,7 +65,7 @@ export const study: UseCaseStudy = {
       {
         label: 'Back to you',
         title: 'Each journey, with proof and the fix',
-        items: ['Welcome code: Rejected', 'Basket: No reminder', 'Checkout reminder: Empty basket', 'Order: Worked'],
+        items: ['Ad 4: Sold out page', 'Welcome code: Rejected', 'Basket: No reminder', 'Order: Worked'],
         foot: 'Verdict · Proof · Fix',
       },
     ],
@@ -91,13 +96,13 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'Name your store',
-            line: 'Type its web address. Connect Shopify and your email platform too, read only, and every theme publish and flow edit starts a check by itself.',
-            example: 'Halden Home types haldenhome.example and connects Shopify and its email platform.',
+            line: 'Type its web address. Connect Shopify, your email platform and your ad accounts too, read only, and every theme publish, flow edit and new ad starts a check by itself.',
+            example: 'Halden Home types haldenhome.example and connects Shopify, its email platform and its ad accounts.',
           },
           {
             title: 'Choose the journeys',
             line: 'Pick what the customer does and how long to wait. Each journey has its own deadline, so a missing email counts as a leak once its time is up.',
-            example: '8 journeys, on a phone and a laptop. Watch for 48 hours. Results to Slack, #store-checks.',
+            example: '8 journeys, on a phone and a laptop, watched for 48 hours, and every live ad each morning. Results to Slack, #store-checks.',
           },
           {
             title: 'Each journey gets its own new customer',
@@ -107,7 +112,7 @@ export const study: UseCaseStudy = {
           {
             title: 'Every journey, with a verdict',
             line: 'Each journey gets its verdict as soon as it’s known: a rejected code at once, a missing email when its deadline passes. A button that leads nowhere is a leak too.',
-            example: '8 journeys on a phone and a laptop. 5 worked. 3 leaks: the welcome code, the basket and the checkout reminder’s button.',
+            example: '8 journeys on a phone and a laptop. 5 worked. 3 leaks: the welcome code, the basket and the checkout reminder’s button. All 6 live ads’ pages were fine.',
           },
         ],
       },
@@ -130,7 +135,7 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Every week after',
-        line: 'Steps 7 to 10',
+        line: 'Steps 7 to 11',
         steps: [
           {
             title: 'A new customer every week',
@@ -143,14 +148,19 @@ export const study: UseCaseStudy = {
             example: 'Thursday 12 Nov, 10:00: the new theme goes live. At 10:20, Add to basket does nothing on a phone. Fixed before lunch.',
           },
           {
+            title: 'Every live ad, every morning',
+            line: 'Every morning, an agent opens each live ad’s page straight from the ad’s link, so no click is paid for. A page that’s sold out, broken or off the ad’s price comes back with the fix drafted for your OK.',
+            example: 'Tuesday 17 Nov, 07:04: a social ad spending £410 a day sends clicks to the Linen Throw in oat, which sold out overnight. Paused at 07:40, after Ana’s OK.',
+          },
+          {
             title: 'The morning the sale goes live',
-            line: 'Tell it when a sale or a launch goes live, and every journey runs on it: the sale code at checkout, the banner’s links, the sale prices in the basket.',
+            line: 'Tell it when a sale or a launch goes live, and every journey runs on it: the sale code at checkout, every sale ad’s page, the sale prices in the basket.',
             example: 'Black Friday, 08:00: the sale goes live. At 08:05, BF25 is rejected at checkout; it was set to start on Saturday. Fixed by 08:25.',
           },
           {
             title: 'Last week, in 1 report',
             line: 'Every Monday: last week’s verdicts, the breaks caught and fixed, and anything still open, every line linked to its proof. Ready to forward to your agency or your team.',
-            example: 'Monday 30 Nov: 8 journeys checked last week, all worked, proof attached. 2 breaks in November, both fixed within 2 hours.',
+            example: 'Monday 30 Nov: 8 journeys and every live ad checked last week, all worked, proof attached. 3 breaks in November, all fixed within 2 hours.',
           },
         ],
       },
@@ -158,7 +168,7 @@ export const study: UseCaseStudy = {
   },
 
   problem: {
-    heading: 'Your dashboards count sends and opens, not what a customer got.',
+    heading: 'Your dashboards count clicks, sends and opens, not what a customer got.',
     items: [
       {
         title: 'Silence doesn’t show up',
@@ -166,7 +176,7 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Every change can break a journey',
-        line: 'A new theme, a new app or an edited flow can break a journey overnight, and nobody notices until sales dip.',
+        line: 'A new theme, a new app, an edited flow or a sold out product can break a journey overnight. The ads keep buying clicks, and nobody notices until sales dip.',
       },
       {
         title: 'Checking by hand doesn’t happen',
@@ -183,7 +193,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         title: 'Your store',
-        line: 'Type its address. Connect Shopify and your email platform too, and a theme publish or a flow edit starts a check by itself.',
+        line: 'Type its address. Connect Shopify, your email platform and your ad accounts too, and a theme publish, a flow edit or a new ad starts a check by itself.',
       },
       { title: 'Each leak', line: 'Its proof and its fix, sent to whoever owns it.' },
       { title: 'Where you work', line: 'Email, Slack, or a link that drops into a ticket.' },
@@ -196,10 +206,10 @@ export const study: UseCaseStudy = {
       {
         items: [
           {
-            label: 'Sales',
-            title: 'Fix the leaks that cost orders',
-            line: 'Each leak names the journey it breaks: a first order, a basket, a checkout.',
-            example: 'Halden: a dead welcome code, found on the first check.',
+            label: 'Ads',
+            title: 'Stop paying for clicks to a dead page',
+            line: 'Every live ad’s page, opened from its link every morning, with the pause or new link drafted for your OK.',
+            example: 'Halden’s Ad 4: £410 a day to a sold out throw, paused 36 minutes after it was found.',
           },
           {
             label: 'Changes',
@@ -259,7 +269,7 @@ export const study: UseCaseStudy = {
     cta: { label: 'See a sample output', to: '/sample-output' },
   },
 
-  /* The 2 recipes the page runs, 1 for each half of the offer, and the 1 real run. */
+  /* The 3 recipes the page runs (every week, every morning, after every change), and the 1 real run. */
   more: {
     recipe: {
       label: 'Every week',
@@ -268,6 +278,12 @@ export const study: UseCaseStudy = {
       cta: { label: 'Learn more', to: '/recipes/mystery-shopper' },
     },
     second: {
+      label: 'Every morning',
+      title: 'Ad landing check',
+      line: 'Every live ad’s page, opened from its link, with the fix for any that can’t sell.',
+      cta: { label: 'Learn more', to: '/recipes/ad-landing-check' },
+    },
+    third: {
       label: 'After every change',
       title: 'Website audit',
       line: 'A new customer after every release, with the fix for any break.',
@@ -281,18 +297,18 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'Halden Home and haldenhome.example, Kilnworth, the people, the phone number and every figure on their screens are made up. The 93%, the 128 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
+  fine: 'Halden Home and haldenhome.example, Kilnworth, the people, the phone number, the ads and every figure on their screens are made up. The 93%, the 128 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
 
   faq: {
     heading: 'What ecommerce teams ask.',
     items: [
       {
         q: 'What does Obsession do for an ecommerce store?',
-        a: 'Obsession’s AI agents shop your store as new customers every week and after every change: they sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
+        a: 'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
       },
       {
         q: 'What counts as a leak?',
-        a: 'Anything a customer should get and doesn’t, by a deadline you set: a welcome email that never comes, a code rejected at checkout, a basket or checkout with no reminder, a button that opens an empty basket, a link to a closed store.',
+        a: 'Anything a customer should get and doesn’t, by a deadline you set: an ad sending clicks to a sold out or broken page, a welcome email that never comes, a code rejected at checkout, a basket or checkout with no reminder, a button that opens an empty basket, a link to a closed store.',
       },
       {
         q: 'What if we meant it?',
@@ -300,7 +316,11 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Which journeys can it check?',
-        a: 'Any a customer can take: the pop up and its code, the welcome email, texts, browsing, a basket, a checkout, logging in, an order and its refund, a back in stock alert, a question to support. On a phone, a laptop or both.',
+        a: 'Any a customer can take: the page behind each live ad, the pop up and its code, the welcome email, texts, browsing, a basket, a checkout, logging in, an order and its refund, a back in stock alert, a question to support. On a phone, a laptop or both.',
+      },
+      {
+        q: 'Does it check our ads?',
+        a: 'Yes. Connect your ad accounts, read only, and every morning it opens each live ad’s page straight from the ad’s link, so no click is paid for. A page that’s sold out, broken or off the ad’s offer or price comes back with the fix drafted: pause the ad or change its link, live after your OK.',
       },
       {
         q: 'How often does it check?',
@@ -308,19 +328,19 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'How does it know the store changed?',
-        a: 'Connect Shopify and your email platform, and a theme publish or a flow edit starts a check of the journeys it touches; several publishes in an hour make 1 check. For a new app or a sale, tell it from Slack. To check a theme before it’s live, give it the preview link.',
+        a: 'Connect Shopify, your email platform and your ad accounts, and a theme publish, a flow edit or a new ad starts a check of the journeys it touches; several publishes in an hour make 1 check. For a new app or a sale, tell it from Slack. To check a theme before it’s live, give it the preview link.',
       },
       {
         q: 'Do we need to share a login?',
-        a: 'No. It shops from the outside, like any customer. Connecting Shopify and your email platform, read only, is your choice: it starts a check when something changes, and lets each fix name the setting behind the leak.',
+        a: 'No. It shops from the outside, like any customer. Connecting Shopify, your email platform and your ad accounts, read only, is your choice: it starts a check when something changes, and lets each fix name the setting behind the leak.',
       },
       {
         q: 'What does our team have to do?',
-        a: 'Type the store’s address, or connect Shopify and your email platform, in a few minutes. Fund a card only if you want orders placed. After that, read the alerts.',
+        a: 'Type the store’s address, or connect Shopify, your email platform and your ad accounts, in a few minutes. Fund a card only if you want orders placed. After that, read the alerts.',
       },
       {
         q: 'Will the checks clutter our numbers?',
-        a: 'No. Every agent is labelled, so you can filter them out of your lists and reports. Every order is marked as an AI test in its order note, kept out of your ad conversions, reviews and email lists, and refunded.',
+        a: 'No. Every agent is labelled, so you can filter them out of your lists and reports. Every order is marked as an AI test in its order note, kept out of your ad conversions, reviews and email lists, and refunded. Ads are opened from their links, never clicked, so your ad numbers stay true.',
       },
       {
         q: 'Does it place real orders?',

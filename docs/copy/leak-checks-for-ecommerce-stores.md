@@ -10,6 +10,41 @@ Draft 3, 22 Oct 2026: draft 2 (revised after 3 adversarial reviews, summary and 
 
 **Proof, not receipt.** The agencies page says "receipt". To a store owner a receipt is the order email, so this page says "proof" throughout and keeps "receipt" off it.
 
+## Ads, added after approval (James, 22 Oct)
+
+James: "theres lack of ads in this whole use case, like not considered at all". Ads were missing because the 2 briefed sources frame the store check around email flows and theme or app changes. But the store's own ads are where money leaks first: system.md, "Your own company", gives the example of an ad spending $410 a day on clicks to a sold-out page. The product does it: Ad landing check (`/recipes/ad-landing-check`) opens each live ad's page from its link every morning, so no click is paid for, and drafts a pause or a new link for your OK. A new ad in the connected account starts a check (system.md, the Trigger row). James approved the plan below; the words are in `src/content/usecases/leak-checks-for-ecommerce-stores.ts`, which wins over this doc where they differ.
+
+- **Answer, hero sub and FAQ 1:** "they follow your ads, sign up, use the welcome code, leave a basket and wait". In the sub, a break comes "from a new theme, app, flow or ad".
+- **Description** (144): AI agents follow your ads and shop your store as new customers, every week and after every change. Every leak comes back with proof and the fix.
+- **Hero flow:**
+  - Your store in: Follows each live ad to its page · Signs up through the pop up · Leaves a basket · Leaves at checkout.
+  - Foot: "8 journeys every Monday, every live ad each morning".
+  - Back to you: Ad 4: **Sold out page** · Welcome code: **Rejected** · Basket: **No reminder** · Order: **Worked**.
+- **Problem:**
+  - Heading: "Your dashboards count clicks, sends and opens, not what a customer got."
+  - The change card: "A new theme, a new app, an edited flow or a sold out product can break a journey overnight. The ads keep buying clicks, and nobody notices until sales dip."
+- **Fit, Your store:** "Connect Shopify, your email platform and your ad accounts too, and a theme publish, a flow edit or a new ad starts a check by itself."
+- **Step 1:** connect the ad accounts too, read only (in the API slot of the window; a row "Ad accounts · 6 live ads · Connected"), and every new ad starts a check.
+- **Step 2:**
+  - The window adds "Every morning at 07:00: Each live ad's page, from its link: 6 ads".
+  - The leak rule: "An ad whose page is sold out, broken or off its price".
+- **Step 4:** "All 6 live ads' pages were fine."
+- **New step 9, Every live ad, every morning:**
+  - The line: "Every morning, an agent opens each live ad's page straight from the ad's link, so no click is paid for. A page that's sold out, broken or off the ad's price comes back with the fix drafted for your OK."
+  - Example: Tuesday 17 Nov, 07:04, a social ad spending £410 a day sends clicks to the Linen Throw in oat, which sold out overnight. Paused at 07:40, after Ana's OK.
+  - Window: Ad 4's verdict, the 6 ads (spend a day, page, stock), the drafted fix (pause Ad 4, or point it at the throw in sand), and the Change link and Pause Ad 4 buttons.
+- **Step 10, the sale:**
+  - Every sale ad's page is checked too.
+  - The tile reads "Sale ads 14 of 14", in place of banner links.
+- **Step 11, the report:**
+  - 3 breaks caught in November (the theme, Ad 4 and BF25), all fixed within 2 hours.
+  - A 17 Nov row in the report.
+- **Outputs:** an Ads card, "Stop paying for clicks to a dead page", takes the Sales card's place. Example: Halden's Ad 4, £410 a day to a sold out throw, paused 36 minutes after it was found.
+- **FAQ:**
+  - New: "Does it check our ads?"
+  - Ads are added to what counts as a leak, which journeys, how it knows the store changed, the login, the team's part, and clutter ("Ads are opened from their links, never clicked, so your ad numbers stay true").
+- **More:** 4 link cards: Mystery shopper (every week), Ad landing check (every morning), Website audit (after every change), Sample output.
+
 ## James's decisions (22 Oct)
 
 1. **The name:** Leak checks for ecommerce stores (James). It pairs with "Leak checks for retention agencies". "Lead leaks" stays the speed to lead recipe, `/recipes/lead-leaks`, which isn't touched.

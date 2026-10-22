@@ -39,8 +39,8 @@ additions to his classes are in `src/pages/RetentionAgencies.css`, written with 
 A fourth, built the same way (22 Oct 2026): `/use-cases/leak-checks-for-ecommerce-stores`
 (`src/pages/EcommerceStores.tsx`), a store's own team checking its own store. Its words are its content file's
 (`content/usecases/leak-checks-for-ecommerce-stores.ts`; the copy and its reviews are in
-`docs/copy/leak-checks-for-ecommerce-stores.md`), it imports the agencies page's 3 additions, and its 1 own addition is
-in `src/pages/EcommerceStores.css`.
+`docs/copy/leak-checks-for-ecommerce-stores.md`), it imports the agencies page's 3 additions, and its 2 own additions (the checkout's error line, 4 link
+cards) are in `src/pages/EcommerceStores.css`.
 
 How they sit in the site:
 

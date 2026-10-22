@@ -12,8 +12,8 @@ import './RetentionAgencies.css'
 import './EcommerceStores.css'
 
 /* /use-cases/leak-checks-for-ecommerce-stores, drawn as the retention agencies page is (RetentionAgencies.tsx): James's
-   hero flow, the problem, 10 steps in 3 phases each beside its app window, the handover with its drafted email, the
-   questions, 3 link cards and the site's final section, built from his pieces inside his wrapper. Its 3 additions to
+   hero flow, the problem, 11 steps in 3 phases each beside its app window, the handover with its drafted email, the
+   questions, 4 link cards and the site's final section, built from his pieces inside his wrapper. Its 3 additions to
    his classes are the agencies page's (RetentionAgencies.css), and 1 of its own (EcommerceStores.css). The words are
    the content file's (content/usecases); the app windows' rows and numbers are here. 1 store carries the page:
    Halden Home, from its first check to the week's report. The store, its people and every figure on their screens are
@@ -54,6 +54,16 @@ const fixes = [
   { leak: 'Welcome code', why: 'WELCOME10 ended 30 Sep; the pop up still offers it', fix: 'A live code in the pop up', who: 'Ana, in Shopify' },
   { leak: 'Basket reminder', why: 'The flow has been off since 14 Oct', fix: 'Turn it back on; reminder drafted', who: 'Kilnworth' },
   { leak: 'Checkout button', why: 'It opens the basket page, which is empty', fix: 'Use the checkout’s own return link', who: 'Kilnworth' },
+]
+
+/* Step 9: the store's live ads, each page opened from the ad's link at 07:00. */
+const ads = [
+  { ad: 'Ad 1', kind: 'Search', spend: '£120', page: '/linen-throw-sand', stock: 'In stock' },
+  { ad: 'Ad 2', kind: 'Social', spend: '£85', page: '/fig-cedar-candle', stock: 'In stock' },
+  { ad: 'Ad 3', kind: 'Search', spend: '£240', page: '/wool-blanket', stock: 'In stock' },
+  { ad: 'Ad 4', kind: 'Social', spend: '£410', page: '/linen-throw-oat', stock: 'Sold out' },
+  { ad: 'Ad 5', kind: 'Search', spend: '£64', page: '/oak-tray', stock: 'In stock' },
+  { ad: 'Ad 6', kind: 'Social', spend: '£150', page: '/linen-cushion', stock: 'In stock' },
 ]
 
 const weeks = [
@@ -192,7 +202,7 @@ export function EcommerceStores() {
                       Connect your email platform<small>Flows</small>
                     </li>
                     <li>
-                      API<small>Send changes as they happen</small>
+                      Connect your ad accounts<small>Live ads</small>
                     </li>
                   </ul>
                   <div className="uc-fld">
@@ -220,6 +230,14 @@ export function EcommerceStores() {
                           <small>Read only</small>
                         </b>
                         <span>Flows and their settings</span>
+                        <span className="tag ok">Connected</span>
+                      </li>
+                      <li style={at(3)}>
+                        <b>
+                          Ad accounts
+                          <small>Read only</small>
+                        </b>
+                        <span>6 live ads</span>
                         <span className="tag ok">Connected</span>
                       </li>
                     </ul>
@@ -266,7 +284,12 @@ export function EcommerceStores() {
                             No basket or checkout reminder within <em>24 hours</em>
                           </li>
                           <li style={at(12)}>Any link that doesn’t open the live store</li>
+                          <li style={at(13)}>An ad whose page is sold out, broken or off its price</li>
                         </ul>
+                      </div>
+                      <div className="uc-fld">
+                        <p className="uc-lab">Every morning at 07:00</p>
+                        <div className="uc-field">Each live ad’s page, from its link: 6 ads</div>
                       </div>
                       <div className="uc-fld">
                         <p className="uc-lab">Shop on</p>
@@ -425,7 +448,7 @@ export function EcommerceStores() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">16 of 16 checks done. The 2 orders were marked as AI tests and refunded.</p>
+                  <p className="uc-small">16 of 16 checks done. The 2 orders were marked as AI tests and refunded. All 6 live ads’ pages load, in stock and at the ad’s price.</p>
                 </Win>
               </Step>
 
@@ -612,6 +635,47 @@ export function EcommerceStores() {
               </Step>
 
               <Step n={9} title={step(2, 2).title} line={step(2, 2).line} pick={step(2, 2).example}>
+                <Win title="Halden Home · Ads · Tue 17 Nov, 07:00">
+                  <div className="uc-verdict">
+                    <span className="uc-lab">Ad 4</span>
+                    <b>Sends £410 a day of clicks to a sold out page.</b>
+                    <span className="uc-small">Found at 07:04. The page was opened from the ad’s link, so no click was paid for.</span>
+                  </div>
+                  <div className="uc-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Ad</th>
+                          <th>A day</th>
+                          <th>Page</th>
+                          <th>Stock</th>
+                        </tr>
+                      </thead>
+                      <tbody className="uc-seq">
+                        {ads.map((a, i) => (
+                          <tr key={a.ad} style={at(i)}>
+                            <td>
+                              <b>{a.ad}</b>
+                              <small>{a.kind}</small>
+                            </td>
+                            <td className="num">{a.spend}</td>
+                            <td className="num">{a.page}</td>
+                            <td className={a.stock === 'Sold out' ? 'zero' : ''}>{a.stock}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="uc-small">Drafted: pause Ad 4, or point it at the Linen Throw in sand, in stock.</p>
+                  <div className="uc-row uc-end">
+                    <span className="uc-btn alt">Change link</span>
+                    <span className="uc-btn">Pause Ad 4</span>
+                  </div>
+                  <p className="uc-small">Paused at 07:40, after Ana’s OK.</p>
+                </Win>
+              </Step>
+
+              <Step n={10} title={step(2, 3).title} line={step(2, 3).line} pick={step(2, 3).example}>
                 <Win title="Halden Home · Fri 27 Nov · Black Friday">
                   <ul className="uc-tiles">
                     <li>
@@ -622,12 +686,12 @@ export function EcommerceStores() {
                       </p>
                     </li>
                     <li>
-                      <small>Banner links</small>
+                      <small>Sale ads</small>
                       <p>
                         <b>
-                          <Count to={6} />
+                          <Count to={14} />
                         </b>
-                        <em>of 6</em>
+                        <em>of 14</em>
                       </p>
                     </li>
                     <li>
@@ -650,7 +714,7 @@ export function EcommerceStores() {
                   <ol className="uc-tl uc-seq">
                     {[
                       ['08:00', 'Sale live; Ana tells Obsession from Slack'],
-                      ['08:01', 'Every journey runs on the sale'],
+                      ['08:01', 'Every journey and every sale ad runs on the sale'],
                       ['08:05', 'BF25 rejected at checkout: it starts on Saturday'],
                       ['08:20', 'Start date moved to today'],
                       ['08:25', 'Checked again: BF25 takes 25% off'],
@@ -664,13 +728,13 @@ export function EcommerceStores() {
                 </Win>
               </Step>
 
-              <Step n={10} title={step(2, 3).title} line={step(2, 3).line} pick={step(2, 3).example}>
+              <Step n={11} title={step(2, 4).title} line={step(2, 4).line} pick={step(2, 4).example}>
                 <Win title="Report · Halden Home · Week of 23 Nov">
                   <ul className="uc-tiles">
                     {[
                       ['Journeys checked', 8, ''],
                       ['Worked', 8, 'of 8'],
-                      ['Breaks caught in November', 2, ''],
+                      ['Breaks caught in November', 3, ''],
                       ['Open', 0, ''],
                     ].map(([k, n, of]) => (
                       <li key={k}>
@@ -686,8 +750,9 @@ export function EcommerceStores() {
                   </ul>
                   <dl className="uc-sum uc-seq">
                     {[
-                      ['Last week', '8 journeys on a phone and a laptop, all worked'],
+                      ['Last week', '8 journeys on a phone and a laptop, and 6 live ads, all worked'],
                       ['12 Nov', 'Caught: Add to basket on a phone, after the new theme'],
+                      ['17 Nov', 'Caught: Ad 4 sending clicks to a sold out page, paused'],
                       ['27 Nov', 'Caught: BF25 set to start a day late'],
                       ['Fixed', 'Since 3 Nov: the welcome code, the basket reminder, the checkout button'],
                       ['Open', 'None'],
@@ -784,8 +849,8 @@ export function EcommerceStores() {
 
           {study.more && (
             <section className="section">
-              <div className="wrap uc-more uc-more--3">
-                {[study.more.recipe, study.more.second, study.more.sample]
+              <div className="wrap uc-more uc-more--4">
+                {[study.more.recipe, study.more.second, study.more.third, study.more.sample]
                   .filter((l) => l !== undefined)
                   .map((l) => (
                     <Reveal key={l.title} className="card">

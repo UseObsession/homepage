@@ -553,7 +553,8 @@ export type UseCaseStudy = {
   recipes?: StudyRecipes
   /* The recipe it runs and the 1 real run, as 2 link rows. An example that carries `real` and `recipes` leaves it out. */
   /* `second` is a second recipe, for a page that runs 2 (leak checks: 1 before the pitch, 1 after the win). */
-  more?: { recipe: StudyLink; second?: StudyLink; sample: StudyLink }
+  /* `third`, for a page that runs 3 (ecommerce stores: every week, every morning, after every change). */
+  more?: { recipe: StudyLink; second?: StudyLink; third?: StudyLink; sample: StudyLink }
   fine: string
   faq: Faq
   final: Final
