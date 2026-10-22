@@ -66,6 +66,7 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
 const STUDY_FOR: Record<string, string> = {
   '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
   '/use-cases/leak-checks-for-retention-agencies': 'For retention agencies',
+  '/use-cases/funnel-qa-for-cro-agencies': 'For CRO agencies',
   '/use-cases/leak-checks-for-ecommerce-stores': 'For ecommerce stores',
   '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
 }
@@ -146,6 +147,8 @@ const BAR_WORDS: Record<string, string> = {
   'Check 5 stores free': 'Check stores free',
   /* The ecommerce stores use case: the free check of the reader's own store. */
   'Check my store free': 'Check my store',
+  /* The CRO agencies use case: 5 brands checked free, 3 to pitch and 2 clients. */
+  'Check 5 brands free': 'Check brands free',
 }
 /* The free check of an AI agent (/verify and its recipes: "Check my support bot free" and the rest). */
 const VERIFY_BAR = 'Check mine free'
@@ -165,6 +168,8 @@ export const pageCtas: Record<string, Cta> = {
   '/use-cases/leak-checks-for-retention-agencies': barCta({ label: 'Check 5 stores free', to: '#join' }),
   /* The ecommerce stores use case: the free check of the reader's own store, and the waitlist, in its final form. */
   '/use-cases/leak-checks-for-ecommerce-stores': barCta({ label: 'Check my store free', to: '#join' }),
+  /* The CRO agencies use case: 5 brands checked free, 3 to pitch and 2 clients, and the waitlist, in its final form. */
+  '/use-cases/funnel-qa-for-cro-agencies': barCta({ label: 'Check 5 brands free', to: '#join' }),
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
   '/agents': catalog.agentsCta,
 }

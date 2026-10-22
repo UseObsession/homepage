@@ -42,6 +42,12 @@ A fourth, built the same way (22 Oct 2026): `/use-cases/leak-checks-for-ecommerc
 `docs/copy/leak-checks-for-ecommerce-stores.md`), it imports the agencies page's 3 additions, and its 2 own additions (the checkout's error line, 4 link
 cards) are in `src/pages/EcommerceStores.css`.
 
+A fifth, built the same way (22 Oct 2026): `/use-cases/funnel-qa-for-cro-agencies` (`src/pages/CroAgencies.tsx`), for
+CRO agencies: what happens after the pop up's sign up, before the pitch and in every test. Its words are its content
+file's (`content/usecases/funnel-qa-for-cro-agencies.ts`; the copy and its reviews are in
+`docs/copy/funnel-qa-for-cro-agencies.md`). It has no classes of its own: it imports the agencies page's 3 additions and
+the ecommerce page's 2 (`EcommerceStores.css`, for its 4 link cards).
+
 How they sit in the site:
 
 - `src/pages/ProspectIntelligence.tsx` and `PriceIntelligence.tsx` are small wrappers the page glob finds (`App.tsx`). Each
