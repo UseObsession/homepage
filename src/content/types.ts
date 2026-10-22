@@ -384,7 +384,9 @@ export type SampleVerdict = 'Delivered' | 'Silent' | 'No verdict' | 'Couldn’t 
 /* The output viewer: the 1 real run shown in every format it can arrive in. Each format carries the data its mock
    renders, so Home (and any page) can reuse it and open on its own format. */
 export type ViewerFormatId = 'pdf' | 'email' | 'slack' | 'clay' | 'webhook' | 'workflow'
-export type ViewerImage = { src: string; alt: string; width: number; height: number }
+/* `small`: a lighter copy of the same image for a viewer that only ever shows it small (the Outputs viewer's PDF pages,
+   about 260px wide at most); `src` stays the full image for a page that opens it at full size (SampleOutput). */
+export type ViewerImage = { src: string; alt: string; width: number; height: number; small?: string }
 export type ViewerView =
   | { kind: 'pdf'; to: string; pages: ViewerImage[] }
   | { kind: 'email'; from: string; to: string; subject: string; tag: string; timeline: { time: string; text: string }[]; button: string }
