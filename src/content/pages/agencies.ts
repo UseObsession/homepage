@@ -1,4 +1,4 @@
-import { life } from '../shared5'
+import { askExamples, askFrom, askShared, life } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -119,6 +119,20 @@ export const page: Page = {
   },
 
   life,
+
+  /* The ask section (docs/positioning/ask-section.md), where the comparison sits on other pages: pitch evidence,
+     Promotions across every client, and a reminder that stopped. */
+  ask: {
+    ...askShared,
+    heading: 'Ask what any client or prospect sends its customers. Get the answer, with the receipts.',
+    type: {
+      lead: 'Ask',
+      phrases: ['what any client or prospect sends its customers', 'what your clients’ customers actually get', 'what a prospect’s rivals sent this month', 'whose basket reminder went quiet'],
+      tail: '. Get the answer, with the receipts.',
+    },
+    line: `What a prospect’s rivals emailed this month, whose basket reminder went quiet, which welcome email lands in Promotions: none of it is on the web, so no AI can search for it. Obsession is their customer and keeps it all, ${askFrom}`,
+    examples: [askExamples.pitch, askExamples.promotions, askExamples.watch],
+  },
 
   proof: {
     heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',

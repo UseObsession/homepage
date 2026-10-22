@@ -82,7 +82,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 - **Value:** know what a company does to its customers, not what it publishes, without anyone signing up by hand, and prove it to a buyer, a client or a boss.
 - **Who cares most:** marketing teams at brands watching rivals' emails and offers; agencies who pitch and report on clients; sales and GTM teams who need briefs and battlecards; developers and agent builders who need a customer at any company.
 - **Market category:** the customer layer for agents. For buyers who don't build, it reads as "competitor tracking that is a customer, not an archive". The site never coins a new category word; it says what it is.
-- **Relevant trend:** teams now work through their own AI agents. Your AI agent can think; it can't be a customer for thirty days.
+- **Relevant trend:** teams now work in Claude Code, Codex and the like. Those can reason, but what a company sends its customers was never on the web, so none of them can search for it (22 Oct: the ask section sells this as data you ask, not as the ways to connect).
 
 ---
 
@@ -100,7 +100,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 | It stays | "A customer that's still there in month three." | The agent's timeline: signs up Monday 09:00, wakes at 09:09, day 2, day 21, day 47, still a customer on day 90. |
 | It proves it | "Keep the receipts." | Each receipt's DKIM line and stamp; the real September report; "Proof anyone can check" in the comparison. |
 
-**Supporting messages, in reading order:** use it from your own agent, a workflow file, code or our website (the ways in); the engine is open source and the history is the cloud; other tools read the outside (the comparison).
+**Supporting messages, in reading order:** ask what any company sends its customers from whichever AI you already use, and get the answer with its receipts (the ask section); other tools read the outside (the comparison); the engine is open source and the history is the cloud. The ways in (your own agent, a workflow file, code, our website) and the five verbs live on /developers.
 
 **Rules of voice:** British English; no dashes; plain verbs; numbers as numerals in data, words in prose where natural; every company on a screen is invented, at a `.example` address (no "Example" tag on an illustration, James 19 Oct: the `.example` addresses and the invented names carry it); the only real result is the September store check and it says so; no now, next or later labels; no "never" rules except the three lines in system.md (the record, customer privacy, the law).
 
@@ -201,14 +201,14 @@ The full words are in the content files; this is the spine of each page.
 | Proof | 93% of stores we shopped on every journey had a gap. | Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The September report in its 6 formats (PDF, Email, Slack, Sheet or Clay, JSON webhook, Workflow), kept small: the claim beside the viewer, a 400px stage; "See the full report". It replaced the formats grid on 19 Oct |
 | Readers | Pick who you are. | 4 panels |
 | Kinds | Be a customer of anyone. Rivals, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |
-| Scale | Learn it once. Run it for 1 company, 1,000 or 100,000. | The count follows 3 steps on 1 stage (learns the way in, turns it into a program, runs at any scale); 3 principles. No cost card: what it costs us to run is internal (James, 19 Oct) |
+| Ask | Ask what any company sends its customers. Get the answer, with the receipts. (The middle phrase types in turn: any company, rivals, prospects, clients, your own store.) | 3 questions, 1 per reader, each asked somewhere else (Claude Code and Codex, each showing the 1 line that connects Obsession, then code) and answered with its receipts; what Obsession keeps for each company; where you can ask from. Replaced the ways in on 22 Oct (`docs/positioning/ask-section.md`) |
 | Compare | Other tools read the outside. Obsession is the customer. | 6 columns, 7 rows, dated |
-| Ways | Your AI agent can think. It can't be a customer for thirty days. | 4 tabs and the 5 verbs |
+| Scale | Learn it once. Run it for 1 company, 1,000 or 100,000. | The count follows 3 steps on 1 stage (learns the way in, turns it into a program, runs at any scale); 3 principles. No cost card: what it costs us to run is internal (James, 19 Oct). Under the comparison since 22 Oct |
 | Open source | An open source runtime for customer agents, built to run 100,000 at once. | The engine's 8 capabilities (fan out to 100,000, durable agents that sleep for free, learns once then runs as code, better with every run, tested before it ships, a record that proves itself, any model per job, built for agents to call) beside Obsession Cloud's 5 lines |
 | FAQ | Before you join. | 7 questions |
 | Final | Name a company. See what its customers get. | Waitlist |
 
-**Shared blocks** (`src/content/shared5.ts`): the agent's life, the ways in, the comparison, open source. Written once; Home and the reader pages import them.
+**Shared blocks** (`src/content/shared5.ts`): the agent's life, the ask section's shared parts and its example questions, the ways in (/developers only), the comparison, open source. Written once; Home and the reader pages import them. The ask section sits directly above the comparison wherever the comparison shows; on Sales and Agencies, which don't show it, it sits after how it works.
 
 **Marketing** (`pages/marketing.ts`): "Every rival email, offer and price, seen as their customer." Gap: "Your dashboards show what you sent. Only a customer sees what arrived." 6 tabs: Product marketing, Performance, Brand and AI search, Partnerships, Lifecycle, Ecommerce. Final: the free store report.
 

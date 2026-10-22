@@ -1,4 +1,4 @@
-import { compare, life } from '../shared5'
+import { askExamples, askFrom, askShared, compare, life } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -129,6 +129,18 @@ export const page: Page = {
   },
 
   life,
+  /* The ask section (docs/positioning/ask-section.md), above the comparison: rivals' emails, prices and first week. */
+  ask: {
+    ...askShared,
+    heading: 'Ask what your rivals send their customers. Get the answer, with the receipts.',
+    type: {
+      lead: 'Ask',
+      phrases: ['what your rivals send their customers', 'what your own store sends a new customer', 'which rival emailed first on Black Friday', 'what a new subscriber gets from any brand'],
+      tail: '. Get the answer, with the receipts.',
+    },
+    line: `Their welcome offer, their Black Friday email, the price cut on day 21: none of it is on the web, so no AI can search for it. Obsession is their customer and keeps it all, ${askFrom}`,
+    examples: [askExamples.blackFriday, askExamples.prices, askExamples.watch],
+  },
   compare,
 
   proof: {

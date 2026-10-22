@@ -1,7 +1,7 @@
 /* The October rewrite's blocks that more than 1 page shows (COPY.md, "Shared blocks"), written once: how it works as an
-   agent's life, the ways in, the comparison and open source. A page imports the ones it shows; its own words live in
+   agent's life, the ask section, the ways in, the comparison and open source. A page imports the ones it shows; its own words live in
    its own file. Copy rules: COPY.md, "Voice". */
-import type { Compare, Life, OpenSource, Ways } from './types'
+import type { Ask, AskExample, Compare, Life, OpenSource, Ways } from './types'
 
 /* How it works, as breadth first (COPY.md, "Home > How it works"; the 3 reviews of 19 Oct): a customer of a whole list
    by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
@@ -35,6 +35,119 @@ export const life: Life = {
     { title: 'It files the receipt', line: 'The email, page or price, kept as it arrived, with its time and its signature checked.' },
   ],
 }
+
+/* The ask section (docs/positioning/ask-section.md): the record sold as data you ask, not as the ways to connect. Each
+   page gives its own heading, line and 3 examples; these parts are the same everywhere. The AI is named by product
+   (Claude Code, Codex: the tools people work in, not the models behind them), never as "your AI agent". A chat example
+   shows the 1 line that connects Obsession to that tool (`connect`), so a reader sees it takes 1 step. Every company in an answer is invented, as everywhere else. */
+export const askShared: Pick<Ask, 'from' | 'connect' | 'keeps' | 'notYet' | 'more'> = {
+  from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
+  connect: {
+    'Claude Code': 'claude mcp add obsession https://mcp.useobsession.com',
+    Codex: 'codex mcp add obsession --url https://mcp.useobsession.com',
+  },
+  keeps: {
+    heading: 'What Obsession keeps, for every company it’s a customer of',
+    items: [
+      'Every email and text, and the Gmail tab it landed in',
+      'Every offer and code, and whether the page held it',
+      'Prices and plans, each time they change',
+      'Trials, baskets and checkouts, and what followed',
+      'Support replies, and how long they took',
+      'The email platform and apps behind it all, and when they change',
+    ],
+  },
+  notYet: 'Not a customer of them yet? An agent signs up the day you ask, and the answers build from there.',
+  more: { label: 'Building on it? MCP, the API and the five verbs are in the developer guide', to: '/developers' },
+}
+
+/* The examples the pages pick from: 1 question, the answer line by line, and what stands behind it. */
+export const askExamples = {
+  blackFriday: {
+    where: 'Claude Code',
+    q: 'Compare our Black Friday emails with our five closest rivals.',
+    a: [
+      'Two rivals emailed before you did, on 20 and 21 November.',
+      'Your launch email landed in Promotions. Fern Hollow’s landed in Primary.',
+      'The deepest offer was 40% off, and Fern Hollow’s page and email both held it.',
+    ],
+    receipts: 'Receipts: 14 emails and 3 pages, linked',
+  },
+  prices: {
+    where: 'Codex',
+    q: 'Which rivals changed a price since September, and by how much?',
+    a: [
+      'Northfold cut its starter set from £24 to £19 on 21 October.',
+      'Wrenfield kept its prices but added free delivery over £30 on 3 November.',
+      'Fern Hollow raised two bundles by £5 and said nothing in its emails.',
+    ],
+    receipts: 'Receipts: 9 pages, dated and linked',
+  },
+  brief: {
+    where: 'Codex',
+    q: 'Brief me on Wrenfield before Thursday’s call.',
+    a: [
+      'A new customer gets a welcome email in 4 minutes, but the basket reminder took 26 hours.',
+      'Support took 31 hours to answer a delivery question. Their help page promises 24.',
+      'Their emails have come from a new platform since 2 October.',
+    ],
+    receipts: 'Receipts: 7 emails and 1 support thread, linked',
+  },
+  support: {
+    where: 'Codex',
+    q: 'Which of my 50 target accounts took more than a day to answer support this month?',
+    a: [
+      '11 of the 50 took more than a day, and 3 never replied.',
+      'Northfold was slowest: 4 days, after promising a reply within 24 hours.',
+      'All 11 are tagged in your CRM, each with its thread.',
+    ],
+    receipts: 'Receipts: 50 support threads, timed and linked',
+  },
+  pitch: {
+    where: 'Claude Code',
+    q: 'Show me every email our prospect’s three rivals sent since September, for Thursday’s pitch.',
+    a: [
+      '61 emails across the three, 9 of them basket and browse reminders.',
+      'Only Fern Hollow sends a welcome series. Your prospect sends none.',
+      'Fern Hollow’s emails land in Primary; the other two land in Promotions.',
+    ],
+    receipts: 'Receipts: 61 emails, linked',
+  },
+  promotions: {
+    where: 'Codex',
+    q: 'Which clients’ welcome emails landed in Promotions this month?',
+    a: [
+      '3 of 12: Northfold, Wrenfield and Larchwise.',
+      'Wrenfield’s moved from Primary to Promotions after its new sender went live on 8 October.',
+      'The other 9 landed in Primary, the same as last month.',
+    ],
+    receipts: 'Receipts: 12 welcome emails, with their Gmail tabs',
+  },
+  /* The code way in, the same on every page: James's watch.py from the old ways in, word for word, and only the code
+     (James, 22 Oct). */
+  watch: {
+    where: 'Code',
+    q: 'Be a customer of every brand on our list, and send each new email to our webhook.',
+    file: 'watch.py',
+    code: `import os
+from obsession import Obsession
+
+ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+
+# Become a customer of every brand on the list
+ob.become_customer(["fernhollow.example", "northfold.example"],
+                   how="newsletter", shared=True)
+
+# Push each new fact to your webhook as it lands
+ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")
+
+for fact in ob.facts("fernhollow.example", since="30d"):
+    print(fact.seen_at, fact.sentence, fact.receipt_url)`,
+  },
+} satisfies Record<string, AskExample>
+
+/* The ask line every page ends the same way: where to ask from. */
+export const askFrom = 'so connect it once to Claude Code, Codex or whichever AI you already use and ask there, or ask on our website.'
 
 export const ways: Ways = {
   heading: 'Your AI agent can think. It can’t be a customer for thirty days.',

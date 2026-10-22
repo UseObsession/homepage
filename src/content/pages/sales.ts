@@ -1,4 +1,4 @@
-import { life } from '../shared5'
+import { askExamples, askFrom, askShared, life } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -123,6 +123,20 @@ export const page: Page = {
   },
 
   life,
+
+  /* The ask section (docs/positioning/ask-section.md), where the comparison sits on other pages: an account brief,
+     support speed across a target list, and what changed in their stack. */
+  ask: {
+    ...askShared,
+    heading: 'Ask how any account treats its customers. Get the answer, with the receipts.',
+    type: {
+      lead: 'Ask',
+      phrases: ['how any account treats its customers', 'how fast a prospect answers support', 'what a rival offers in its free trial', 'which accounts just switched email platform'],
+      tail: '. Get the answer, with the receipts.',
+    },
+    line: `How fast it answers support, what its checkout offers, which email platform it just moved to: none of it is on the web, so no AI can search for it. Obsession is their customer and keeps it all, ${askFrom}`,
+    examples: [{ ...askExamples.brief, where: 'Claude Code' }, askExamples.support, askExamples.watch],
+  },
 
   proof: {
     heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
