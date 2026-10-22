@@ -34,6 +34,9 @@
 /recipes/software-renewals/         /recipes                        301
 /recipes/supplier-quotes            /recipes                        301
 /recipes/supplier-quotes/           /recipes                        301
+# AI checkout test, retired on 22 Oct 2026 (James: too narrow).
+/recipes/ai-checkout-test            /recipes                        301
+/recipes/ai-checkout-test/           /recipes                        301
 /founders                     /                               301
 /sample-report                /sample-output                  301
 /sample-report/               /sample-output                  301

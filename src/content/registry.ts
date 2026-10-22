@@ -40,7 +40,6 @@ const ORDER: RecipeId[] = [
   'mystery',
   'adcheck',
   'speed',
-  'checkout',
   'partners',
   'audit',
   'delivery',

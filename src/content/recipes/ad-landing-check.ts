@@ -224,7 +224,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Ad landing check buy anything?',
-        a: 'Ad landing check reads the page as a customer would. To buy through the checkout behind an ad as well, AI checkout test pays on a capped card and refunds the order.',
+        a: 'Ad landing check reads the page as a customer would. To go on through the checkout behind an ad, Mystery shopper stops before payment, or buys on a capped card and refunds the order.',
       },
       {
         q: 'How soon does Ad landing check find a break?',

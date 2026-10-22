@@ -143,7 +143,7 @@ flowchart TD
   H --> C["/compare"]
   H --> R["/recipes"]
   H --> SO["/sample-output (the real report)"]
-  R --> RP["/recipes/slug (23 recipes)"]
+  R --> RP["/recipes/slug (22 recipes)"]
   H --> V["/verify (Check your AI agents)"]
   M --> C
   S --> C
@@ -210,7 +210,7 @@ The full words are in the content files; this is the spine of each page.
 
 **Shared blocks** (`src/content/shared5.ts`): the agent's life, the ways in, the comparison, open source. Written once; Home and the reader pages import them.
 
-**Marketing** (`pages/marketing.ts`): "Every rival email, offer and price, seen as their customer." Gap: "Your dashboards show what you sent. Only a customer sees what arrived." 6 tabs: Product marketing, Performance, Brand and AI search, Partnerships, Lifecycle, Ecommerce. Final: the free store report.
+**Marketing** (`pages/marketing.ts`): "Every rival email, offer and price, seen as their customer." Gap: "Your dashboards show what you sent. Only a customer sees what arrived." 5 tabs: Product marketing, Performance, Brand and AI search, Partnerships, Lifecycle (the Ecommerce tab went with the AI checkout test recipe, retired 22 Oct: James, too narrow). Final: the free store report.
 
 **Sales** (`pages/sales.ts`): "Know what every account and rival does to its customers." Gap: "Your CRM knows what they told you. A customer knows what they do." 6 tabs: Account brief (started by the calendar), Battlecards, Lead leaks, Pilot proof, Account watch, Win back.
 

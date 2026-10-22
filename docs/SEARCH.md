@@ -110,7 +110,6 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/recipes/sales-agent-check` | AI sales agent quoting wrong prices |
 | `/recipes/resolution-check` | are AI support resolutions real |
 | `/recipes/drift-watch` | AI agent drift after an update |
-| `/recipes/ai-checkout-test` | can AI shopping agents buy from my store |
 | `/recipes/inbound-quotes` | answer every quote request in minutes |
 | `/recipes/renewal-negotiation` | renewal discount request from a buyer's AI agent |
 | `/recipes/cancellation-saves` | offer a pause before cancel |

@@ -166,7 +166,7 @@ export const page: Page = {
         line: 'Your ads, forms and checkouts, followed the way a customer does, so you see what breaks first.',
         screen: 'shop',
         to: '/recipes',
-        recipes: ['mystery', 'adcheck', 'speed', 'checkout'],
+        recipes: ['mystery', 'adcheck', 'speed', 'audit'],
       },
       {
         name: 'Your AI agents',
