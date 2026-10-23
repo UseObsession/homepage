@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { BlogBlock } from '../../content/blog/types'
 import { AppScreen } from '../AppScreen'
+import { Art } from './Art'
 import { FaqList } from '../sections/Faq'
 import { drawnFor } from '../workspace'
 import { Inline } from './Inline'
@@ -58,7 +59,7 @@ function Block({ b }: { b: BlogBlock }) {
       )
     case 'screen':
       return (
-        <figure className="s-art-fig s-art-fig--screen">
+        <figure className="s-art-fig s-art-fig--screen s-art-wide">
           <AppScreen name={b.screen} workspace={b.workspace ?? drawnFor(b.screen)} note="" />
           <figcaption className="s-art-cap">
             <span className="s-art-cap__tag">Example</span>
@@ -77,7 +78,7 @@ function Block({ b }: { b: BlogBlock }) {
       )
     case 'table':
       return (
-        <figure className="s-art-table">
+        <figure className="s-art-table s-art-wide">
           <div className="s-art-table__scroll" tabIndex={0} role="region" aria-label={b.caption}>
             <table>
               <thead>
@@ -137,11 +138,23 @@ function Block({ b }: { b: BlogBlock }) {
           </p>
         </aside>
       )
+    case 'art':
+      return (
+        <figure className="s-art-ill s-art-wide">
+          <div className="s-art-ill__stage">
+            <Art art={b.art} />
+          </div>
+          <figcaption className="s-art-cap">
+            <span className="s-art-cap__tag">Example</span>
+            <Inline text={b.caption} />
+          </figcaption>
+        </figure>
+      )
     case 'faq':
       return <FaqList items={b.items} open={[]} className="s-art-faq" />
     case 'cta':
       return (
-        <aside className="s-art-cta" aria-label={b.label}>
+        <aside className="s-art-cta ob-theme-dark" aria-label={b.label}>
           <p className="s-art-cta__x">
             <Inline text={b.text} />
           </p>

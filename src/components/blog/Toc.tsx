@@ -42,3 +42,22 @@ export function Toc({ items }: { items: { id: string; text: string }[] }) {
     </nav>
   )
 }
+
+/* The same contents on narrower screens, where the side column leaves: folded above the text, open on a tap. */
+export function TocInline({ items }: { items: { id: string; text: string }[] }) {
+  if (items.length < 2) return null
+  return (
+    <details className="s-toc-m">
+      <summary className="s-toc-m__sum">{blogUi.toc}</summary>
+      <ol className="s-toc-m__list">
+        {items.map((i) => (
+          <li key={i.id}>
+            <a className="s-toc-m__link" href={`#${i.id}`}>
+              {i.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}

@@ -1,0 +1,191 @@
+/* The blog's illustrations (components/blog/Art.tsx): the design system's product window holding the agent's view of
+   1 moment. Times and labels in Geist Mono; words in Geist. Colour only where it means something: success for what
+   arrived or passed, warning for late, danger for what never came or was wrong. Sized in em from 1 base, so a card on
+   the blog index can draw the same window smaller (Blog.css sets the base there). */
+
+.s-x {
+  --s-x-base: 15px;
+  font-size: var(--s-x-base);
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: left;
+}
+.s-x-bar { gap: .8em; min-height: 2.9em; padding: 0 1.1em; }
+.s-x-bar .ob-window-title { font-size: .8em; }
+.s-x-status { flex: none; font-size: .8em; }
+.s-x-body { display: grid; gap: .9em; padding: 1.1em 1.3em 1.3em; }
+
+.s-x-who { margin: 0; font: var(--ob-type-mono-sm); font-size: .8em; color: var(--ob-text-3); }
+.s-x-foot {
+  margin: 0;
+  padding-top: .8em;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font-size: .8em;
+  line-height: 1.45;
+  color: var(--ob-text-2);
+}
+
+/* The mark: the brand's square, filled when something arrived, hollow when it is still to come, crossed through in
+   danger when it never did. */
+.s-x-mark {
+  flex: none;
+  display: inline-block;
+  width: .55em;
+  height: .55em;
+  border-radius: 1.5px;
+  background-color: var(--ob-text-3);
+}
+.s-x-mark--ok { background-color: var(--ob-success); }
+.s-x-mark--late { background-color: var(--ob-warning); }
+.s-x-mark--fail { background-color: transparent; box-shadow: inset 0 0 0 1.5px var(--ob-danger); }
+.s-x-mark--info { background-color: var(--ob-text-3); }
+
+/* ---- The log: what happened, minute by minute ---------------------------------------------------------------------- */
+.s-x-log { display: grid; margin: 0; padding: 0; list-style: none; }
+.s-x-log__row {
+  display: grid;
+  grid-template-columns: 6.2em .55em minmax(0, 1fr);
+  align-items: baseline;
+  gap: .9em;
+  padding: .62em 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-x-log__row:first-child { border-top: 0; padding-top: .2em; }
+.s-x-log__time { font: var(--ob-type-mono-sm); font-size: .8em; color: var(--ob-text-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-x-log__row .s-x-mark { align-self: center; }
+.s-x-log__text { min-width: 0; font-size: .93em; line-height: 1.4; color: var(--ob-text); }
+.s-x-log__detail { display: block; margin-top: .15em; font-size: .86em; color: var(--ob-text-3); }
+.s-x-log__row--fail .s-x-log__text { color: var(--ob-danger); }
+.s-x-log__row--fail .s-x-log__detail { color: var(--ob-text-3); }
+
+/* ---- The chat: the customer's question, the bot's answer, and the page it should have matched -------------------- */
+.s-x-chat { display: grid; gap: .8em; margin: 0; padding: 0; list-style: none; }
+.s-x-chat__turn { display: grid; gap: .3em; max-width: 86%; }
+.s-x-chat__turn--customer { justify-self: end; justify-items: end; }
+.s-x-chat__who { display: inline-flex; gap: .6em; font: var(--ob-type-mono-sm); font-size: .74em; color: var(--ob-text-3); }
+.s-x-chat__time { color: var(--ob-text-3); opacity: .8; }
+.s-x-chat__bubble {
+  padding: .65em .9em;
+  border-radius: 1em;
+  font-size: .93em;
+  line-height: 1.4;
+  color: var(--ob-text);
+  background-color: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.s-x-chat__turn--customer .s-x-chat__bubble { border-bottom-right-radius: .3em; background-color: var(--ob-surface-hover); box-shadow: none; }
+.s-x-chat__turn--bot .s-x-chat__bubble { border-bottom-left-radius: .3em; }
+.s-x-check {
+  display: grid;
+  grid-template-columns: .55em minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: .8em;
+  row-gap: .2em;
+  padding: .8em .95em;
+  border-radius: .7em;
+  background-color: var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.s-x-check .s-x-mark { align-self: center; }
+.s-x-check__label { font: var(--ob-type-mono-sm); font-size: .76em; color: var(--ob-text-3); }
+.s-x-check__text { grid-column: 2; font-size: .93em; line-height: 1.4; color: var(--ob-text); }
+.s-x-check--fail { box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in oklab, var(--ob-danger) 55%, transparent); }
+.s-x-check--fail .s-x-check__label { color: var(--ob-danger); }
+.s-x-check--ok .s-x-check__label { color: var(--ob-success); }
+
+/* ---- The flow: a journey step by step, the broken step outlined in danger, the line into it dashed ---------------- */
+.s-x-flow {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 1.4em;
+  margin: 0;
+  padding: .2em 0;
+  list-style: none;
+}
+.s-x-flow__step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: .4em;
+  padding: .8em .85em .9em;
+  border-radius: .7em;
+  background-color: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.s-x-flow__step + .s-x-flow__step::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 1.4em;
+  border-top: var(--ob-border-hair) solid var(--ob-line-ui);
+}
+.s-x-flow__step--fail { box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ob-danger) 70%, transparent); }
+.s-x-flow__step--fail::before { border-top-style: dashed !important; border-top-color: var(--ob-danger) !important; }
+.s-x-flow__label { display: inline-flex; align-items: center; gap: .55em; font: var(--ob-type-mono-sm); font-size: .74em; color: var(--ob-text-3); text-transform: uppercase; letter-spacing: .04em; }
+.s-x-flow__detail { font-size: .88em; line-height: 1.35; color: var(--ob-text); }
+.s-x-flow__step--fail .s-x-flow__detail { color: var(--ob-danger); }
+
+/* ---- The price: the page price, each thing that changes it, and what the customer pays ----------------------------- */
+.s-x-price { display: grid; margin: 0; }
+.s-x-price__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1em;
+  padding: .62em 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-x-price__row:first-child { border-top: 0; padding-top: .1em; }
+.s-x-price dt { font-size: .93em; color: var(--ob-text); }
+.s-x-price dd { margin: 0; font: var(--ob-type-mono-sm); font-size: .9em; color: var(--ob-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-x-price__note { display: block; margin-top: .15em; font-size: .86em; color: var(--ob-text-3); }
+.s-x-price__row--total { margin-top: .3em; padding-top: .85em; border-top: 1.5px solid var(--ob-text-2); }
+.s-x-price__row--total dt { font-weight: var(--ob-weight-semibold); }
+.s-x-price__row--total dd { font-size: 1.25em; font-weight: var(--ob-weight-semibold); color: var(--ob-success); }
+
+/* ---- The report: 1 page a client reads in 2 minutes ---------------------------------------------------------------- */
+.s-x-report { display: grid; border-radius: .7em; overflow: hidden; box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.s-x-report__row {
+  display: grid;
+  gap: .8em;
+  padding: .6em .85em;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font-size: .86em;
+  line-height: 1.35;
+  color: var(--ob-text-2);
+  font-variant-numeric: tabular-nums;
+}
+.s-x-report__row--head { border-top: 0; background-color: var(--ob-bg-sunken); font: var(--ob-type-mono-sm); font-size: .72em; color: var(--ob-text-3); text-transform: uppercase; letter-spacing: .04em; }
+.s-x-report__name { display: inline-flex; align-items: center; gap: .55em; color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+.s-x-report__row--ok { background-color: color-mix(in oklab, var(--ob-success-bg) 55%, transparent); }
+.s-x-notes { display: grid; gap: .45em; margin: 0; padding: 0; list-style: none; counter-reset: s-x; }
+.s-x-notes > li { counter-increment: s-x; display: grid; grid-template-columns: 1.6em minmax(0, 1fr); font-size: .88em; line-height: 1.4; color: var(--ob-text); }
+.s-x-notes > li::before { content: counter(s-x, decimal-leading-zero); font: var(--ob-type-mono-sm); font-size: .82em; color: var(--ob-text-3); padding-top: .1em; }
+
+/* ---- Runs: the same question asked again, each answer and its verdict -------------------------------------------- */
+.s-x-prompt { display: grid; gap: .3em; margin: 0; padding: .75em .9em; border-radius: .7em; background-color: var(--ob-bg-sunken); font-size: .93em; line-height: 1.4; color: var(--ob-text); }
+.s-x-prompt__k { font: var(--ob-type-mono-sm); font-size: .76em; color: var(--ob-text-3); text-transform: uppercase; letter-spacing: .04em; }
+.s-x-runs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8em; margin: 0; padding: 0; list-style: none; }
+.s-x-runs__run {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: .5em;
+  padding: .8em .85em .9em;
+  border-radius: .7em;
+  background-color: var(--ob-surface-raised);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.s-x-runs__label { font: var(--ob-type-mono-sm); font-size: .74em; color: var(--ob-text-3); }
+.s-x-runs__answer { font-size: .86em; line-height: 1.4; color: var(--ob-text); }
+
+/* Narrow windows: the journey and the runs stack, the arrow turns down. */
+@container (max-width: 560px) {
+  .s-x-flow { grid-auto-flow: row; gap: .9em; }
+  .s-x-flow__step + .s-x-flow__step::before { top: auto; bottom: 100%; right: auto; left: 1.2em; width: 0; height: .9em; border-top: 0 !important; border-left: var(--ob-border-hair) solid var(--ob-line-ui); }
+  .s-x-flow__step--fail::before { border-left-style: dashed !important; border-left-color: var(--ob-danger) !important; }
+  .s-x-runs { grid-template-columns: minmax(0, 1fr); }
+}
