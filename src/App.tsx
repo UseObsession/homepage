@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useLayoutEffect, useRef, type ComponentType } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigationType, useParams } from 'react-router-dom'
+import { ConsentBanner } from './components/ConsentBanner'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { NavProgress } from './components/NavProgress'
@@ -315,6 +316,7 @@ function Layout() {
         </Suspense>
       </main>
       <Footer />
+      <ConsentBanner />
     </>
   )
 }

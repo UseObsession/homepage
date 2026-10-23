@@ -131,8 +131,8 @@ export const privacyPage: PrivacyPage = {
   },
 
   headline: 'We keep what you type into our forms, and never sell it.',
-  sub: 'This notice covers the waitlist, the free mystery shop and the free AI agent check on useobsession.com, under UK data protection law.',
-  updated: '6 October 2026',
+  sub: 'This notice covers the waitlist, the free mystery shop, the free AI agent check and Google Analytics on useobsession.com, under UK data protection law.',
+  updated: '23 October 2026',
 
   sections: [
     {
@@ -166,9 +166,31 @@ export const privacyPage: PrivacyPage = {
       heading: 'We add nothing about your device to your sign up.',
       lines: [
         'Our website host and form service see your device’s IP address, as they do on any website. We don’t keep it with your details.',
-        'We use no advertising or tracking cookies. Your light or dark choice is saved in your own browser.',
+        'We use no advertising cookies. Your light or dark choice, and your answer about Google Analytics, are saved in your own browser.',
         'While you answer our set up questions, your answers wait in that browser tab for up to 24 hours, so a reload doesn’t lose them. Closing the tab clears them.',
         'You don’t have to give us anything. Without an email address, we can’t add you to the waitlist.',
+      ],
+    },
+    {
+      id: 'analytics',
+      heading: 'Google Analytics counts visits, only if you allow it.',
+      lines: [
+        'The first time you visit, a card asks whether we can use Google Analytics. Until you choose Allow, nothing from Google loads and no cookie is set. If your browser sends Global Privacy Control, the card doesn’t ask.',
+        'If you allow it, Google Analytics sets 2 cookies, _ga and one starting _ga_, each kept for up to 2 years. It tells us:',
+      ],
+      list: [
+        'Which pages were read, and the page or site that sent you',
+        'Your rough location (country and city, worked out from your IP address, which Google Analytics doesn’t keep)',
+        'Your device, browser and screen size',
+        'That a form on our site was sent, and which form. Never your email or anything you type',
+      ],
+    },
+    {
+      id: 'analytics-off',
+      heading: 'Advertising features are off, and you can change your mind.',
+      lines: [
+        'We turned off Google’s advertising features: nothing is shared for ads, and Google signals is off.',
+        'Choose Cookie settings at the foot of any page to allow or decline again. Declining removes Google’s cookies from your browser.',
       ],
     },
     {
@@ -193,13 +215,14 @@ export const privacyPage: PrivacyPage = {
         'Your name, company and answers: our legitimate interest in setting up what you asked for and deciding what to build. Every answer is optional.',
         'To prepare your first run we may read your company’s website and public profile. We look up your company, not you.',
         'Keeping the forms safe: our legitimate interest in stopping spam and abuse.',
+        'Google Analytics: your consent, given on the cookie card. Withdraw it with Cookie settings at the foot of any page.',
         'We make no automated decisions about you.',
       ],
     },
     {
       id: 'how-long',
       heading: 'We delete your details 12 months after you sign up.',
-      lines: ['Or the day you ask, if that comes first.'],
+      lines: ['Or the day you ask, if that comes first. Google Analytics keeps visit data for no more than 14 months.'],
     },
     {
       id: 'who-sees',
@@ -208,6 +231,7 @@ export const privacyPage: PrivacyPage = {
       list: [
         'The spreadsheet and email service that holds the waitlist',
         'Our website host',
+        'Google, for Google Analytics, only if you allow it',
       ],
     },
     {
