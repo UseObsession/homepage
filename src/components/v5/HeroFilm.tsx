@@ -83,9 +83,8 @@ export function HeroFilm({ video }: { video: HeroVideo & { file: NonNullable<Her
           onClick={watching ? toggle : watch}
         />
         {!watching && (
-          <button type="button" className="v5-film-watch" onClick={watch}>
+          <button type="button" className="v5-film-watch" onClick={watch} aria-label={video.label}>
             <span className="v5-film-watch-dot" aria-hidden="true" />
-            <span className="v5-film-watch-label">{video.label}</span>
           </button>
         )}
         <div className="v5-film-controls">
