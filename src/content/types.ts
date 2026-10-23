@@ -602,8 +602,14 @@ export type StageReceipt = {
 }
 
 /* A hero's film (components/v5/HeroVideo), on Home and the use case pages: a YouTube video id, the line beside the
-   play button, and the title the dialog and its player are named by. */
-export type HeroVideo = { youtube: string; label: string; title: string }
+   play button, and the title the dialog and its player are named by. With `file` (Home), the film is our own copy in
+   public/film/ and plays in the page (components/v5/HeroFilm) instead of behind the button. */
+export type HeroVideo = {
+  youtube: string
+  label: string
+  title: string
+  file?: { src: string; poster: string; width: number; height: number }
+}
 
 /* The gap, as a pair (components/v5/GapPair): what a tool that reads the outside shows, beside what a customer of that
    company actually gets. */

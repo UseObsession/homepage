@@ -1,0 +1,123 @@
+/* Home's film (HeroFilm.tsx): under the form, at the hero's reading width, set into the page like a screen in a
+   bezel: a hairline ring, the kit's large radius and the deep shadow, so it reads as part of the page and not as a
+   player dropped on it. While it previews without sound, the hero's round play button sits on it under a soft light
+   wash; once it's playing with sound, a small pause and mute sit in its bottom right corner. The film is always on
+   its own light paper, so its buttons keep fixed inks rather than the page's. */
+
+.v5-film { width: min(100%, 1040px); margin: 0 auto; }
+
+.v5-film-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background: #f5f4f0;
+  box-shadow: 0 0 0 1px var(--ob-line), var(--ob-shadow-3);
+}
+.v5-film-video { display: block; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+
+/* The round play button over the preview: the hero's own button (HeroVideo.css), in the film's ink. */
+.v5-film-watch {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 0;
+  border: 0;
+  background: radial-gradient(closest-side, rgb(245 244 240 / 0.78), rgb(245 244 240 / 0.38) 62%, rgb(245 244 240 / 0.12));
+  color: #080807;
+  font: 500 15px/1.3 var(--ob-font-sans);
+  cursor: pointer;
+}
+.v5-film-watch-dot {
+  position: relative;
+  width: clamp(72px, 9vw, 112px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #080807;
+  box-shadow: 0 0 0 10px rgb(8 8 7 / 0.08), 0 18px 40px -16px rgb(8 8 7 / 0.55);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.v5-film-watch-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: 0.6em 0 0.6em 1em;
+  border-color: transparent transparent transparent #edebe5;
+  font-size: clamp(16px, 2.2vw, 24px);
+  transform: translate(-50%, -50%);
+}
+.v5-film-watch:hover .v5-film-watch-dot {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 14px rgb(8 8 7 / 0.1), 0 18px 40px -16px rgb(8 8 7 / 0.55);
+}
+.v5-film-watch:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: -6px; border-radius: var(--ob-radius-lg); }
+
+/* The corner controls: dark glass on the film's light paper, quiet until hovered. Before the button is pressed only
+   the pause shows, so a preview can always be stopped. */
+.v5-film-controls {
+  position: absolute;
+  right: clamp(10px, 1.6vw, 18px);
+  bottom: clamp(10px, 1.6vw, 18px);
+  display: flex;
+  gap: 8px;
+}
+.v5-film-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(8 8 7 / 0.62);
+  backdrop-filter: blur(8px);
+  color: #edebe5;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 160ms ease, background-color 160ms ease;
+}
+.v5-film-frame:hover .v5-film-btn,
+.v5-film-btn:focus-visible { opacity: 1; }
+.v5-film-btn:hover { background: rgb(8 8 7 / 0.82); }
+.v5-film-btn:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+
+.v5-film-svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.v5-film-svg path:first-child { fill: currentColor; }
+
+/* Pause: 2 bars. Play: a triangle. */
+.v5-film-ico { position: relative; display: block; width: 12px; height: 12px; }
+.v5-film-ico--pause::before,
+.v5-film-ico--pause::after { content: ''; position: absolute; top: 0; width: 4px; height: 12px; border-radius: 1px; background: currentColor; }
+.v5-film-ico--pause::before { left: 1px; }
+.v5-film-ico--pause::after { right: 1px; }
+.v5-film-ico--play::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+/* Phones: a smaller button and smaller corner controls on a smaller film. */
+@media (max-width: 559.98px) {
+  .v5-film-frame { border-radius: var(--ob-radius-md); }
+  .v5-film-watch { gap: 10px; font-size: 13px; }
+  .v5-film-watch-dot { width: 60px; box-shadow: 0 0 0 7px rgb(8 8 7 / 0.08), 0 12px 28px -12px rgb(8 8 7 / 0.55); }
+  .v5-film-watch-dot::after { font-size: 14px; }
+  .v5-film-controls { right: 8px; bottom: 8px; gap: 6px; }
+  .v5-film-btn { width: 30px; height: 30px; }
+  .v5-film-svg { width: 15px; height: 15px; }
+  .v5-film-ico { transform: scale(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v5-film-watch-dot,
+  .v5-film-btn { transition: none; }
+}
