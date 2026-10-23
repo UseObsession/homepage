@@ -6,8 +6,8 @@ import { Ask } from '../components/v5/Ask'
 import { Compare } from '../components/v5/Compare'
 import { GapPair } from '../components/v5/GapPair'
 import { Hero5 } from '../components/v5/Hero5'
+import { HeroVideo } from '../components/v5/HeroVideo'
 import { OpenSource } from '../components/v5/OpenSource'
-import { ReceiptStage } from '../components/v5/ReceiptStage'
 import { Scale } from '../components/v5/Scale'
 import { Targets } from '../components/v5/Targets'
 import { PersonaSection } from '../legacy/james/components/PersonaBand'
@@ -22,7 +22,7 @@ import './StoryPage.css'
 export function Home() {
   return (
     <>
-      <Hero5 hero={page.hero} visual={page.stage && <ReceiptStage stage={page.stage} />} crumbs={false} center />
+      <Hero5 hero={page.hero} visual={page.heroVideo && <HeroVideo video={page.heroVideo} />} crumbs={false} center />
       {page.gapPair && <GapPair gap={page.gapPair} id="gap" />}
       {page.life && <AgentLife life={page.life} id="how" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" compact className="v5-proof" id="proof" />}

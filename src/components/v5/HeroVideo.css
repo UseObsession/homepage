@@ -1,0 +1,94 @@
+/* Home's hero film (HeroVideo.tsx): a big round play button with its line under it, and the dialog it opens. */
+
+.v5-video { display: grid; justify-items: center; }
+
+.v5-video-play {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 8px;
+  border: 0;
+  background: none;
+  color: var(--ob-text-2);
+  font: 500 15px/1.3 var(--ob-font-sans);
+  cursor: pointer;
+}
+.v5-video-play:hover { color: var(--ob-text); }
+.v5-video-play:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 4px; border-radius: 12px; }
+
+/* The circle takes the page's ink and the triangle its ground, so the button inverts with the theme. */
+.v5-video-button {
+  position: relative;
+  width: clamp(84px, 10vw, 112px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ob-text);
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--ob-text) 8%, transparent);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.v5-video-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: 0.6em 0 0.6em 1em;
+  border-color: transparent transparent transparent var(--ob-bg);
+  font-size: clamp(18px, 2.2vw, 24px);
+  transform: translate(-50%, -50%);
+}
+.v5-video-play:hover .v5-video-button {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 14px color-mix(in srgb, var(--ob-text) 10%, transparent);
+}
+
+/* The dialog: the film at 16:9, as wide as the screen allows, over a dark wash, with the close button above it.
+   Fixed inks here, not the theme's, because the film always sits on black. */
+.v5-video-dialog {
+  width: min(1100px, 92vw, (100vh - 140px) * 16 / 9);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+.v5-video-dialog::backdrop { background: rgb(0 0 0 / 0.82); backdrop-filter: blur(4px); }
+
+.v5-video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000;
+}
+.v5-video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.v5-video-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.12);
+  cursor: pointer;
+}
+.v5-video-close::before,
+.v5-video-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+}
+.v5-video-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.v5-video-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.v5-video-close:hover { background: rgb(255 255 255 / 0.22); }
+.v5-video-close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .v5-video-button { transition: none; }
+}

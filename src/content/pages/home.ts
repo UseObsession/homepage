@@ -5,7 +5,7 @@ import type { Page } from '../types'
 /* Home (/), the October rewrite (COPY.md, "Copy deck > Home"). 1 idea: to know what a company does to its customers,
    you have to be one, and Obsession is that customer, with the receipts. Each block answers the question the last one
    leaves open, in this order:
-   1 what it is (the hero: the claim, the form, and the receipt stage playing 3 companies' journeys) >
+   1 what it is (the hero: the claim, the form, and the film behind 1 play button) >
    2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
    3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
    3b what it found (93% of stores we shopped had a gap: 1 real store's report, in every format) >
@@ -18,7 +18,7 @@ import type { Page } from '../types'
    10 questions, then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
-   stage and in the screens is invented, at a .example address. */
+   screens is invented, at a .example address. */
 
 const waitlist = {
   kind: 'waitlist',
@@ -48,68 +48,31 @@ export const page: Page = {
     consoleHeading,
   },
 
-  /* 3 invented companies, 1 journey each: an ad followed to its page, the email that came, and the receipt filed. */
-  stage: {
-    label: 'Example: 3 companies, each followed as a customer, from the ad to the email',
-    steps: ['Followed the ad', 'Signed up', 'Got the email'],
-    receipts: [
-      {
-        topic: 'Ad offer',
-        company: 'Fern Hollow',
-        domain: 'fernhollow.example',
-        monogram: 'F',
-        ad: { source: 'Meta ad', text: '40% off everything, this week only', cta: 'Shop now' },
-        page: { path: '/early-access', title: 'Early access: 40% off with EARLY40', note: 'Code applied at checkout' },
-        mail: { time: '09:12', from: 'Fern Hollow', subject: 'Your 40% code is inside', tab: 'Promotions' },
-        rows: [
-          { k: 'Ad', v: 'Meta, Monday 09:00' },
-          { k: 'Checkout', v: '40% off, applied' },
-          { k: 'Welcome', v: '9 minutes later' },
-          { k: 'Gmail tab', v: 'Promotions' },
-          { k: 'Signature', v: 'DKIM pass' },
-        ],
-        stamp: 'Held',
-        fact: 'The ad promised 40% off. The page and the email held it.',
-      },
-      {
-        topic: 'Abandoned basket',
-        company: 'Wrenfield',
-        domain: 'wrenfield.example',
-        monogram: 'W',
-        ad: { source: 'Instagram ad', text: 'Linen bedding, washed soft. Free returns.', cta: 'Shop linen' },
-        page: { path: '/products/linen-duvet-set', title: 'Linen duvet set, £120', note: 'Added to basket, then left' },
-        did: 'Left the basket',
-        mail: { time: '21:14', from: 'Wrenfield', subject: 'You left something behind: 10% off', tab: 'Promotions' },
-        rows: [
-          { k: 'Basket', v: 'Left at 20:14' },
-          { k: 'Reminder', v: '1 hour later' },
-          { k: 'Offer', v: '10% off, BACK10' },
-          { k: 'Day 3', v: 'Second reminder, no code' },
-          { k: 'Signature', v: 'DKIM pass' },
-        ],
-        stamp: 'Reminded',
-        fact: 'A basket left at 20:14 got a reminder an hour later, with 10% off.',
-      },
-      {
-        topic: 'Price drop',
-        company: 'Northfold',
-        domain: 'northfold.example',
-        monogram: 'N',
-        ad: { source: 'Google Shopping', text: 'Harbour candle, £24, free delivery', cta: 'View' },
-        page: { path: '/products/harbour-candle', title: 'Harbour candle, £24', note: 'Added to basket, then left' },
-        did: 'Left the basket',
-        mail: { time: 'Day 21', from: 'Northfold', subject: 'Still thinking? It’s now £19', tab: 'Promotions' },
-        rows: [
-          { k: 'Basket', v: 'Left on day 1' },
-          { k: 'Reminder', v: 'Day 2, 10:02' },
-          { k: 'Price', v: '£24, £19 on day 21' },
-          { k: 'Delivery', v: 'Still free' },
-          { k: 'Signature', v: 'DKIM pass' },
-        ],
-        stamp: 'Price cut',
-        fact: 'Northfold cut the price to £19 three weeks after the basket was left.',
-      },
+  /* The hero's film: why Obsession, on YouTube (useobsession channel), behind 1 big play button that opens it. */
+  heroVideo: {
+    youtube: '9oLcB0dunE4',
+    label: 'Watch why Obsession',
+    title: 'Why Obsession: AI agents that become customers of every company',
+  },
+
+  /* The share image's receipt (scripts/og.mjs): an invented company's ad followed to its page and the email that came. */
+  shareReceipt: {
+    topic: 'Ad offer',
+    company: 'Fern Hollow',
+    domain: 'fernhollow.example',
+    monogram: 'F',
+    ad: { source: 'Meta ad', text: '40% off everything, this week only', cta: 'Shop now' },
+    page: { path: '/early-access', title: 'Early access: 40% off with EARLY40', note: 'Code applied at checkout' },
+    mail: { time: '09:12', from: 'Fern Hollow', subject: 'Your 40% code is inside', tab: 'Promotions' },
+    rows: [
+      { k: 'Ad', v: 'Meta, Monday 09:00' },
+      { k: 'Checkout', v: '40% off, applied' },
+      { k: 'Welcome', v: '9 minutes later' },
+      { k: 'Gmail tab', v: 'Promotions' },
+      { k: 'Signature', v: 'DKIM pass' },
     ],
+    stamp: 'Held',
+    fact: 'The ad promised 40% off. The page and the email held it.',
   },
 
   gapPair: {
