@@ -506,6 +506,8 @@ export type UseCaseStudy = {
     capture: Capture
     /* The second path under the form (the real report, for an example whose offer is a free audit). */
     secondary?: Cta
+    /* The page's film, behind a small play button under the sub that opens it in a dialog (components/v5/HeroVideo). */
+    video?: HeroVideo
   }
   /* His phases in order. A phase plays its screen beside its numbered steps; a phase without a screen shows its chips. */
   how?: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
@@ -599,8 +601,8 @@ export type StageReceipt = {
   fact: string
 }
 
-/* Home's hero film (components/v5/HeroVideo): a YouTube video id, the line under the play button, and the title the
-   dialog and its player are named by. */
+/* A hero's film (components/v5/HeroVideo), on Home and the use case pages: a YouTube video id, the line beside the
+   play button, and the title the dialog and its player are named by. */
 export type HeroVideo = { youtube: string; label: string; title: string }
 
 /* The gap, as a pair (components/v5/GapPair): what a tool that reads the outside shows, beside what a customer of that

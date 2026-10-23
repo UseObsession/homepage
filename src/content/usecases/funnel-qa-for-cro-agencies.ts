@@ -45,6 +45,7 @@ export const study: UseCaseStudy = {
     pill: 'Early access',
     headline: 'Be the new customer behind every pop up.',
     sub: 'Your audit screenshots the pop up. Obsession’s AI agents follow the brand’s live ad as new customers, sign up through it and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown. After you win, every test variant is checked past the sign up, every morning it’s live, and the whole funnel every week.',
+    video: { youtube: 'g7w1gAbIAWc', label: 'Watch how it works', title: 'Funnel QA for CRO agencies: be the new customer behind every pop up' },
     example: { chips: [] },
     flow: [
       {

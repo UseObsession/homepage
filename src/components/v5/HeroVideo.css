@@ -1,4 +1,4 @@
-/* Home's hero film (HeroVideo.tsx): a big round play button with its line under it, and the dialog it opens. */
+/* A hero's film (HeroVideo.tsx): a round play button with its line, and the dialog it opens. */
 
 .v5-video { display: grid; justify-items: center; }
 
@@ -11,6 +11,7 @@
   background: none;
   color: var(--ob-text-2);
   font: 500 15px/1.3 var(--ob-font-sans);
+  text-decoration: none;
   cursor: pointer;
 }
 .v5-video-play:hover { color: var(--ob-text); }
@@ -40,6 +41,17 @@
 .v5-video-play:hover .v5-video-button {
   transform: scale(1.05);
   box-shadow: 0 0 0 14px color-mix(in srgb, var(--ob-text) 10%, transparent);
+}
+
+/* Compact (the use case pages): a smaller circle with its line beside it, not under it. */
+.v5-video--compact .v5-video-play { grid-auto-flow: column; align-items: center; gap: 14px; padding: 4px 8px 4px 4px; }
+.v5-video--compact .v5-video-button {
+  width: 52px;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--ob-text) 8%, transparent);
+}
+.v5-video--compact .v5-video-button::after { font-size: 13px; }
+.v5-video--compact .v5-video-play:hover .v5-video-button {
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--ob-text) 10%, transparent);
 }
 
 /* The dialog: the film at 16:9, as wide as the screen allows, over a dark wash, with the close button above it.
