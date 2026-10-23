@@ -5,7 +5,7 @@ import type { Page } from '../types'
 /* Home (/), the October rewrite (COPY.md, "Copy deck > Home"). 1 idea: to know what a company does to its customers,
    you have to be one, and Obsession is that customer, with the receipts. Each block answers the question the last one
    leaves open, in this order:
-   1 what it is (the hero: the claim, the form, and the film behind 1 play button) >
+   1 what it is (the hero: the claim, the form, and the film previewing under them behind its play button) >
    2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
    3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
    3b what it found (93% of stores we shopped had a gap: 1 real store's report, in every format) >
@@ -48,11 +48,13 @@ export const page: Page = {
     consoleHeading,
   },
 
-  /* The hero's film: why Obsession, on YouTube (useobsession channel), behind 1 big play button that opens it. */
+  /* The hero's film: why Obsession (the cut on YouTube, useobsession channel), played in the page from our own copy.
+     A new cut gets a new file name (-v2), because public/film/ is cached for a year. */
   heroVideo: {
     youtube: '9oLcB0dunE4',
     label: 'Watch why Obsession',
     title: 'Why Obsession: AI agents that become customers of every company',
+    file: { src: '/film/why-obsession-v1.mp4', poster: '/film/why-obsession-v1.jpg', width: 832, height: 464 },
   },
 
   /* The share image's receipt (scripts/og.mjs): an invented company's ad followed to its page and the email that came. */

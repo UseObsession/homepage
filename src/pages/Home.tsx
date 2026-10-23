@@ -6,6 +6,7 @@ import { Ask } from '../components/v5/Ask'
 import { Compare } from '../components/v5/Compare'
 import { GapPair } from '../components/v5/GapPair'
 import { Hero5 } from '../components/v5/Hero5'
+import { HeroFilm } from '../components/v5/HeroFilm'
 import { HeroVideo } from '../components/v5/HeroVideo'
 import { OpenSource } from '../components/v5/OpenSource'
 import { Scale } from '../components/v5/Scale'
@@ -20,9 +21,12 @@ import './StoryPage.css'
    questions, the waitlist. Every block stands on the page's own ground; the
    receipt's paper is the 1 material that changes. */
 export function Home() {
+  const video = page.heroVideo
+  /* The film plays in the page where we hold its file, else it sits behind the play button. */
+  const heroVisual = video && (video.file ? <HeroFilm video={{ ...video, file: video.file }} /> : <HeroVideo video={video} />)
   return (
     <>
-      <Hero5 hero={page.hero} visual={page.heroVideo && <HeroVideo video={page.heroVideo} />} crumbs={false} center />
+      <Hero5 hero={page.hero} visual={heroVisual} crumbs={false} center />
       {page.gapPair && <GapPair gap={page.gapPair} id="gap" />}
       {page.life && <AgentLife life={page.life} id="how" />}
       {page.outputs && <Outputs {...page.outputs} initial="pdf" compact className="v5-proof" id="proof" />}
