@@ -47,6 +47,7 @@ export const study: UseCaseStudy = {
     pill: 'Early access',
     headline: 'Be the new customer of every store you pitch, and every store you keep.',
     sub: 'Name any store. An AI agent signs up as its new customer, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its rivals compare.',
+    video: { youtube: 'Bnkm02NllPs', label: 'Watch how it works', title: 'Leak checks for retention agencies: every store’s leaks, with proof' },
     example: { chips: [] },
     flow: [
       {
