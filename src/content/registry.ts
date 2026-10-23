@@ -80,9 +80,10 @@ export const studyByPath: Record<string, UseCaseStudy | undefined> = Object.from
 /* The file each worked example came from, by its address. */
 export const studyFileOf: Record<string, string> = Object.fromEntries(Object.entries(studyFiles).map(([file, s]) => [s.meta.path, nameOf(file)]))
 
-/* Every post, newest first. A post's address is its slug, which must match its file's name (the prerender checks). */
+/* Every post, newest first; on the same day by its order, then its title. A post's address is its slug, which must
+   match its file's name (the prerender checks). */
 export const posts: BlogPost[] = Object.values(postFiles).sort((a, b) =>
-  a.published === b.published ? a.title.localeCompare(b.title) : a.published < b.published ? 1 : -1,
+  a.published === b.published ? (a.order ?? 99) - (b.order ?? 99) || a.title.localeCompare(b.title) : a.published < b.published ? 1 : -1,
 )
 /* The file each post came from, for the prerender's checks and the sitemap. */
 export const postFileOf: Record<string, string> = Object.fromEntries(Object.entries(postFiles).map(([file, p]) => [p.slug, nameOf(file)]))

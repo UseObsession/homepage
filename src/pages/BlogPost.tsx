@@ -1,15 +1,17 @@
 import { useId, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
+import { Art } from '../components/blog/Art'
 import { Blocks } from '../components/blog/Blocks'
 import { Byline } from '../components/blog/Byline'
-import { Toc } from '../components/blog/Toc'
-import { categoryId, hostOf } from '../components/blog/util'
+import { Share } from '../components/blog/Share'
+import { TocInline } from '../components/blog/Toc'
+import { categoryId, hostOf, readerOf } from '../components/blog/util'
 import { Crumbs } from '../components/Crumbs'
 import { FinalCta } from '../components/sections/FinalCta'
 import { LinkGroups, type LinkGroupRows, type LinkRow } from '../components/sections/LinkGroups'
 import { drawnFor } from '../components/workspace'
-import type { BlogPost as Post } from '../content/blog/types'
+import type { BlogBlock, BlogPost as Post } from '../content/blog/types'
 import { entryFor } from '../content/meta'
 import { nav } from '../content/nav'
 import { postBySlug, recipeBySlug } from '../content/registry'
@@ -42,36 +44,89 @@ function relatedOf(post: Post): { reads: LinkRow[]; recipes: LinkRow[] } {
   return { reads, recipes }
 }
 
-/* /blog/SLUG: 1 post (content/blog/SLUG.ts). The header on the page's axis (the breadcrumb, the post's hub, the title,
-   the dek, both founders, the date and the reading time) and the hero screen if it has one; then the text on its
-   reading measure with its contents beside it on wide screens; the sources; what to read next and the recipes that do
-   the job; the waitlist (#join). */
+/* The app screen, where a post has one, sits in the text just before its first quiet link to the product: the point
+   where the by-hand method stops and the reader may want to see the same job run. */
+function withScreen(post: Post): BlogBlock[] {
+  const screen = post.hero.screen
+  if (!screen) return post.blocks
+  const at = post.blocks.findIndex((b) => b.kind === 'cta')
+  const fig: BlogBlock = { kind: 'screen', screen, caption: blogUi.screenCaption, workspace: post.hero.workspace }
+  return at < 0 ? [...post.blocks, fig] : [...post.blocks.slice(0, at), fig, ...post.blocks.slice(at)]
+}
+
+/* A photograph ships at 1760px with an 880px twin beside it (public/blog/SLUG/hero-880.webp), so a phone loads the small one. */
+const srcSetOf = (src: string) => (src.includes('-1760.') ? `${src.replace('-1760.', '-880.')} 880w, ${src} 1760w` : undefined)
+
+/* The post's 1 picture, in 1 frame for every post: its photograph (graded, credited) or its illustration. */
+export function PostVisual({ post, eager = true }: { post: Post; eager?: boolean }) {
+  const { image, art } = post.hero
+  if (image)
+    return (
+      <figure className="s-art-visual s-art-visual--photo">
+        <img
+          src={image.src}
+          srcSet={srcSetOf(image.src)}
+          sizes="(max-width: 920px) calc(100vw - 32px), 880px"
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          decoding="async"
+          loading={eager ? 'eager' : 'lazy'}
+          fetchPriority={eager ? 'high' : undefined}
+        />
+        {image.credit && eager && (
+          <figcaption className="s-art-visual__credit">
+            {blogUi.photo}{' '}
+            <a href={image.credit.url} rel="noopener">
+              {image.credit.name}
+            </a>{' '}
+            {blogUi.onPexels}
+          </figcaption>
+        )}
+      </figure>
+    )
+  if (art)
+    return (
+      <div className="s-art-visual s-art-visual--art">
+        <Art art={art} />
+      </div>
+    )
+  return null
+}
+
 /* /blog/SLUG: the post with that slug. */
 export function BlogPostAt({ slug }: { slug: string }) {
   const post = postBySlug[slug]
   return post ? <BlogPost post={post} /> : null
 }
 
+/* A post: the header on ink in its hub's colour (the breadcrumb, the hub, the title, the dek, both founders, the date
+   and the reading time) with its 1 picture; then the text on paper, on a 680px measure with its pictures and tables
+   breaking wider: the direct answer, the contents, the text, the share row and the sources; then what to read next,
+   the recipes for the job and the waitlist (#join). */
 export function BlogPost({ post }: { post: Post }) {
   const id = useId()
   const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text }] : [])), [post])
+  const blocks = useMemo(() => withScreen(post), [post])
   const { reads, recipes } = relatedOf(post)
   const groups: LinkGroupRows[] = [
     ...(reads.length ? [{ id: 'read-next', name: blogUi.related, rows: reads }] : []),
     ...(recipes.length ? [{ id: 'recipes', name: blogUi.recipes, rows: recipes }] : []),
   ]
-  const screen = post.hero.screen
-  const image = post.hero.image
+  const hasVisual = !!(post.hero.image || post.hero.art)
 
   return (
     <>
       <article className="s-art" aria-labelledby={`${id}-h`}>
-        <header className="s-hero s-art-hero">
+        <header className="s-hero s-art-hero" data-reader={readerOf(post.category)}>
           <div className="s-wrap s-hero-wrap">
             <Crumbs />
             <div className="s-hero-head ob-anim-hero">
               <p className="s-art-kicker">
-                <Link to={`/blog#${categoryId(post.category)}`}>{post.category}</Link>
+                <Link to={`/blog#${categoryId(post.category)}`}>
+                  <span className="s-art-kicker__mark" aria-hidden="true" />
+                  {post.category}
+                </Link>
               </p>
               <h1 className="s-art-title" id={`${id}-h`}>
                 {post.title}
@@ -79,47 +134,64 @@ export function BlogPost({ post }: { post: Post }) {
               <p className="s-art-dek">{post.dek}</p>
               <Byline post={post} className="s-art-byline" />
             </div>
-            {screen && (
+            {hasVisual ? (
               <div className="s-art-heroobj ob-anim-hero-object">
-                <AppScreen name={screen} workspace={post.hero.workspace ?? drawnFor(screen)} />
+                <PostVisual post={post} />
               </div>
-            )}
-            {!screen && image && (
-              <div className="s-art-heroobj ob-anim-hero-object">
-                <img className="s-art-img" src={image.src} alt={image.alt} width={image.width} height={image.height} decoding="async" />
-              </div>
+            ) : (
+              post.hero.screen && (
+                <div className="s-art-heroobj ob-anim-hero-object">
+                  <AppScreen name={post.hero.screen} workspace={post.hero.workspace ?? drawnFor(post.hero.screen)} />
+                </div>
+              )
             )}
           </div>
         </header>
 
-        <div className="s-wrap s-art-body">
-          <aside className="s-art-side">
-            <Toc items={toc} />
-          </aside>
-          <div className="s-art-main">
-            <Blocks blocks={post.blocks} />
-            {post.sources.length > 0 && (
-              <section className="s-art-sources" aria-labelledby={`${id}-src`}>
-                <h2 className="s-art-sources__h" id={`${id}-src`}>
-                  {blogUi.sources}
-                </h2>
-                <ol className="s-art-sources__list">
-                  {post.sources.map((s) => (
-                    <li key={s.url}>
-                      <a href={s.url} rel="noopener">
-                        {s.title}
-                      </a>
-                      <span className="s-art-sources__meta">
-                        {s.publisher}
-                        {s.date ? `, ${formatDate(s.date)}` : ''} · {hostOf(s.url)}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              </section>
-            )}
+        <section className="s-art-paper ob-theme-hybrid" data-tone="paper" data-reader={readerOf(post.category)} aria-label={post.title}>
+          <div className="s-wrap s-art-body">
+            <div className="s-art-main">
+              <p className="s-art-answer">{post.answer}</p>
+              {toc.length > 1 && (
+                <nav className="s-art-toc" aria-label={blogUi.toc}>
+                  <p className="s-art-toc__label">{blogUi.toc}</p>
+                  <ol className="s-art-toc__list">
+                    {toc.map((t) => (
+                      <li key={t.id}>
+                        <a className="s-art-toc__link" href={`#${t.id}`}>
+                          {t.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              )}
+              <TocInline items={toc} />
+              <Blocks blocks={hasVisual ? blocks : post.blocks} />
+              <Share path={`/blog/${post.slug}`} title={post.title} />
+              {post.sources.length > 0 && (
+                <section className="s-art-sources" aria-labelledby={`${id}-src`}>
+                  <h2 className="s-art-sources__h" id={`${id}-src`}>
+                    {blogUi.sources}
+                  </h2>
+                  <ol className="s-art-sources__list">
+                    {post.sources.map((s) => (
+                      <li key={s.url}>
+                        <a href={s.url} rel="noopener">
+                          {s.title}
+                        </a>
+                        <span className="s-art-sources__meta">
+                          {s.publisher}
+                          {s.date ? `, ${/^\d{4}-\d{2}-\d{2}$/.test(s.date) ? formatDate(s.date) : s.date}` : ''} · {hostOf(s.url)}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              )}
+            </div>
           </div>
-        </div>
+        </section>
       </article>
       {groups.length > 0 && <LinkGroups groups={groups} className="s-lg--then-final s-art-next" />}
       <FinalCta final={blogPage.final} id="join" />
