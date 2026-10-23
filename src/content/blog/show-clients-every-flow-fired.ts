@@ -165,7 +165,7 @@ export const post: BlogPost = {
           'Left checkout with a £28 tea set, Mon 09:14',
           'Nothing at 48 hours, Wed 09:14',
           'Did not fire',
-          'Found Wed 21 Oct 09:14. Cause: a filter left from the summer sale. Approved by the client 15:10. Live 15:40. Checked again Thu 22 Oct: left at 09:00, reminder at 10:02.',
+          'Found: Wed 21 Oct, 09:14\nCause: a filter left from the summer sale\nApproved: by the client, 15:10\nLive: 15:40\nChecked again: Thu 22 Oct, left at 09:00, reminder at 10:02',
         ],
         ['Post purchase', 'No order this week', 'None expected', 'Not due', 'Next run Mon 2 Nov, with an order the client OKs'],
         ['Back in stock', 'Asked to be told about Jade Gunpowder (sold out), Mon 09:20', 'Not restocked this week', 'Not due', 'Closes when the client restocks'],

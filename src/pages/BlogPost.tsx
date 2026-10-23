@@ -1,11 +1,11 @@
-import { useId, useMemo } from 'react'
+import { useEffect, useId, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
 import { Art } from '../components/blog/Art'
 import { Blocks } from '../components/blog/Blocks'
 import { Byline } from '../components/blog/Byline'
 import { Share } from '../components/blog/Share'
-import { TocInline } from '../components/blog/Toc'
+import { Toc, TocInline } from '../components/blog/Toc'
 import { categoryId, readerOf } from '../components/blog/util'
 import { Crumbs } from '../components/Crumbs'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -101,27 +101,62 @@ export function BlogPostAt({ slug }: { slug: string }) {
   return post ? <BlogPost post={post} /> : null
 }
 
-/* A post in the hub's reader colour, on the site's own ink (or paper when the reader picks light), in 1 reading column
-   of 680px from the breadcrumb to the sources: the header (the breadcrumb, the hub, the title, the dek, both founders,
-   the date and the reading time) under the reader's light, the 1 picture, the direct answer with the contents under
-   it, the text, the share row and the sources (only those the text links to, in the order it first does, with the day
-   the links were checked). Then what to read next, the recipes for the job and the waitlist (#join). */
+/* A post in the hub's reader colour, on the site's own ink (or paper when the reader picks light), across the page's
+   width on 1 left edge. The header (the breadcrumb, the hub, the title, the dek, both founders, the date and the reading
+   time) under the reader's light, then the 1 picture across the full width. Then 2 columns: the side contents, which stay
+   in view and mark the section being read so a reader can follow the topic and jump to any part, and the text: the
+   direct answer (with a link straight to the comparison of the reader's options, where there is one), the sections, the
+   share row and the sources (only those the text links to, in the order it first
+   does, with the day the links were checked). Prose keeps a 720px measure; tables and pictures take the column's full
+   width, and a comparison the page's. Then what to read next, the recipes for the job and the waitlist (#join). */
 export function BlogPost({ post }: { post: Post }) {
   const id = useId()
-  const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text }] : [])), [post])
-  const blocks = useMemo(() => withScreen(post), [post])
+  const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text, compare: b.compare }] : [])), [post])
+  const compareAt = toc.find((t) => t.compare)
+  const hasVisual = !!(post.hero.image || post.hero.art)
+  const blocks = useMemo(() => (hasVisual ? withScreen(post) : post.blocks), [post, hasVisual])
   const sources = useMemo(() => citedSources(post), [post])
   const { reads, recipes } = relatedOf(post)
   const groups: LinkGroupRows[] = [
     ...(reads.length ? [{ id: 'read-next', name: blogUi.related, rows: reads }] : []),
     ...(recipes.length ? [{ id: 'recipes', name: blogUi.recipes, rows: recipes }] : []),
   ]
-  const hasVisual = !!(post.hero.image || post.hero.art)
   const heroScreen = !hasVisual && post.hero.screen
+
+  /* A comparison runs under the side contents (Blog.css), so the contents step aside just before a comparison reaches
+     them and come back once it has passed. */
+  const ref = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const art = ref.current
+    const rail = art?.querySelector<HTMLElement>('.s-art-rail')
+    const wide = art ? [...art.querySelectorAll<HTMLElement>('.s-art-table--compare')] : []
+    if (!art || !rail || !wide.length) return
+    let frame = 0
+    const check = () => {
+      frame = 0
+      const r = rail.getBoundingClientRect()
+      const near = wide.some((w) => {
+        const b = w.getBoundingClientRect()
+        return b.top < r.bottom + 160 && b.bottom > r.top - 40
+      })
+      art.classList.toggle('s-art--wide-in-view', near)
+    }
+    const later = () => {
+      if (!frame) frame = requestAnimationFrame(check)
+    }
+    check()
+    window.addEventListener('scroll', later, { passive: true })
+    window.addEventListener('resize', later)
+    return () => {
+      window.removeEventListener('scroll', later)
+      window.removeEventListener('resize', later)
+      cancelAnimationFrame(frame)
+    }
+  }, [post])
 
   return (
     <>
-      <article className="s-art" data-reader={readerOf(post.category)} aria-labelledby={`${id}-h`}>
+      <article ref={ref} className="s-art" data-reader={readerOf(post.category)} aria-labelledby={`${id}-h`}>
         <header className="s-art-head">
           <div className="s-wrap">
             <div className="s-art-head__in ob-anim-hero">
@@ -138,42 +173,34 @@ export function BlogPost({ post }: { post: Post }) {
               <p className="s-art-dek">{post.dek}</p>
               <Byline post={post} className="s-art-byline" />
             </div>
-          </div>
-        </header>
-        {(hasVisual || heroScreen) && (
-          <div className="s-wrap">
-            <div className={'s-art-heroobj ob-anim-hero-object' + (post.hero.image ? '' : ' s-art-stage')}>
-              {hasVisual ? (
-                <PostVisual post={post} />
-              ) : (
-                heroScreen && <AppScreen name={heroScreen} workspace={post.hero.workspace ?? drawnFor(heroScreen)} />
-              )}
-            </div>
-          </div>
-        )}
-
-        <section className="s-art-text" aria-label={post.title}>
-          <div className="s-wrap s-art-body">
-            <div className="s-art-main">
-              <div className="s-art-sum">
-                <p className="s-art-lead">{post.answer}</p>
-                {toc.length > 1 && (
-                  <nav className="s-art-toc" aria-label={blogUi.toc}>
-                    <p className="s-art-toc__label">{blogUi.toc}</p>
-                    <ol className="s-art-toc__list">
-                      {toc.map((t) => (
-                        <li key={t.id}>
-                          <a className="s-art-toc__link" href={`#${t.id}`}>
-                            {t.text}
-                          </a>
-                        </li>
-                      ))}
-                    </ol>
-                  </nav>
+            {(hasVisual || heroScreen) && (
+              <div className={'s-art-heroobj ob-anim-hero-object' + (post.hero.image ? '' : ' s-art-stage')}>
+                {hasVisual ? (
+                  <PostVisual post={post} />
+                ) : (
+                  heroScreen && <AppScreen name={heroScreen} workspace={post.hero.workspace ?? drawnFor(heroScreen)} />
                 )}
               </div>
+            )}
+          </div>
+        </header>
+
+        <section className="s-art-text" aria-label={post.title}>
+          <div className="s-wrap s-art-layout">
+            <aside className="s-art-rail">
+              <Toc items={toc} />
+            </aside>
+            <div className="s-art-main">
+              <p className="s-art-lead">{post.answer}</p>
+              {compareAt && (
+                <a className="s-art-jump" href={`#${compareAt.id}`}>
+                  <span className="s-art-jump__k">{blogUi.compareTag}</span>
+                  <span className="s-art-jump__t">{compareAt.text}</span>
+                  <span className="s-art-jump__go">{blogUi.compareJump}</span>
+                </a>
+              )}
               <TocInline items={toc} />
-              <Blocks blocks={hasVisual ? blocks : post.blocks} />
+              <Blocks blocks={blocks} />
               <Share path={`/blog/${post.slug}`} title={post.title} />
               {sources.length > 0 && (
                 <section className="s-art-sources" aria-labelledby={`${id}-src`}>

@@ -139,7 +139,7 @@ export const post: BlogPost = {
       },
     },
 
-    { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record' },
+    { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record', compare: true },
     {
       kind: 'p',
       text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { BlogBlock } from '../../content/blog/types'
+import { blogUi } from '../../content/resources'
 import { AppScreen } from '../AppScreen'
 import { Art } from './Art'
 import { FaqList } from '../sections/Faq'
@@ -15,6 +16,73 @@ function Arrow() {
     <svg className="ob-btn-glyph ob-btn-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
       <path d="M3 8h10M9 4l4 4-4 4" />
     </svg>
+  )
+}
+
+/* A cell that says a page is silent reads in the quieter ink, and a yes gets the pass square, so a grid of answers
+   scans at a glance. */
+const SILENT = /^(Not described|Not stated|Not listed|The pages? (don’t|doesn’t) (say|describe))/
+const YES = /^Yes\b/
+/* A line's label: the words (or a link) before its first ": ". */
+const LABEL = /^((?:\[[^\]]+\]\([^)\s]+\)|[^:[\n])+?):\s/
+
+/* A table cell: 1 line, or 1 line per tool where the text breaks it with \n, so several prices read as a list. */
+function Cell({ text }: { text: string }) {
+  const lines = text.split('\n')
+  const yes = YES.test(text) && <span className="s-art-cell__yes" aria-hidden="true" />
+  if (lines.length === 1)
+    return (
+      <>
+        {yes}
+        <Inline text={text} />
+      </>
+    )
+  return (
+    <>
+      {lines.map((l, i) => {
+        /* "Tool: its price" puts the tool in the quieter ink, so the values scan down the column. */
+        const m = LABEL.exec(l)
+        return (
+          <span key={i} className="s-art-cell__ln">
+            {m ? (
+              <>
+                <span className="s-art-cell__k">
+                  <Inline text={m[1]} />:
+                </span>{' '}
+                <Inline text={l.slice(m[0].length)} />
+              </>
+            ) : (
+              <>
+                {i === 0 && yes}
+                <Inline text={l} />
+              </>
+            )}
+          </span>
+        )
+      })}
+    </>
+  )
+}
+
+/* An option in a comparison, written "Name: the tools it covers". The name on its own line, a tag where the option is
+   ours ("Obsession (ours)"), and the tools under it in the quieter ink. */
+function Option({ text }: { text: string }) {
+  const plain = text.replace(/^\*\*([^*]+)\*\*/, '$1')
+  const at = plain.indexOf(': ')
+  const head = at < 0 ? plain : plain.slice(0, at)
+  const ours = / \(ours\)$/.test(head)
+  return (
+    <>
+      <span className="s-art-opt__name">
+        {ours ? head.slice(0, -7) : head}
+        {ours && <span className="s-art-opt__tag">{blogUi.oursTag}</span>}
+      </span>
+      {at >= 0 && (
+        <span className="s-art-opt__detail">
+          <Inline text={plain.slice(at + 2)} />
+        </span>
+      )}
+    </>
   )
 }
 
@@ -78,7 +146,7 @@ function Block({ b }: { b: BlogBlock }) {
       )
     case 'table':
       return (
-        <figure className="s-art-table s-art-wide">
+        <figure className={'s-art-table s-art-wide' + (b.compare ? ' s-art-table--compare' : '')}>
           <div className="s-art-table__scroll" tabIndex={0} role="region" aria-label={b.caption}>
             <table>
               <thead>
@@ -96,11 +164,12 @@ function Block({ b }: { b: BlogBlock }) {
                     {r.map((cell, ci) =>
                       ci === 0 ? (
                         <th key={ci} scope="row">
-                          <Inline text={cell} />
+                          {b.compare ? <Option text={cell} /> : <Cell text={cell} />}
                         </th>
                       ) : (
-                        <td key={ci}>
-                          <Inline text={cell} />
+                        /* Its column's name, which a phone shows above the cell when the table becomes cards. */
+                        <td key={ci} data-label={b.cols[ci]} className={SILENT.test(cell) ? 's-art-cell--silent' : undefined}>
+                          <Cell text={cell} />
                         </td>
                       ),
                     )}

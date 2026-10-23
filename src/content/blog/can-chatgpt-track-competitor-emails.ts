@@ -182,31 +182,32 @@ export const post: BlogPost = {
         ') are built for daily summaries, so the comparison can arrive as a scheduled digest. Once a week, compare the digest with the sheet and the inbox. Where the digest and the inbox disagree, use the inbox.',
     },
 
-    { kind: 'h2', id: 'what-each-does', text: 'ChatGPT competitor analysis for emails: what 5 assistants can do' },
+    { kind: 'h2', id: 'what-each-does', text: 'ChatGPT competitor analysis for emails: what 5 assistants can do', compare: true },
     {
       kind: 'p',
       text: 'All 5 assistants can fill in a sign up form in a browser, and 4 of them can read a connected Gmail inbox. None of their help pages describes an inbox or phone number of the assistant’s own.',
     },
     {
       kind: 'table',
+      compare: true,
       caption: '5 assistants, job by job, from their own help pages, read 23 October 2026',
       cols: ['Job', 'ChatGPT', 'Claude', 'Gemini', 'Perplexity', 'Copilot'],
       rows: [
         [
           'Read and summarise a connected Gmail inbox',
-          'Yes. Gmail is in its summary examples',
-          'Yes. Read only, with links to the emails used',
-          'Yes. Daily digests can include your emails',
+          'Yes\nGmail is in its summary examples',
+          'Yes\nRead only, with links to the emails used',
+          'Yes\nDaily digests can include your emails',
           'Yes, once Gmail is connected',
           'The page doesn’t say',
         ],
         [
           'Fill in a sign up form for you',
-          'Yes. Pauses for you at a login',
+          'Yes\nPauses for you at a login',
           'Yes, in your own Chrome',
-          'Yes. You take over to create an account',
-          'Yes. Comet acts on websites',
-          'Yes, in Edge. No autofill or saved passwords',
+          'Yes\nYou take over to create an account',
+          'Yes\nComet acts on websites',
+          'Yes, in Edge\nNo autofill or saved passwords',
         ],
         [
           'Own inbox and phone number for each competitor',
@@ -218,10 +219,10 @@ export const post: BlogPost = {
         ],
         [
           'Run on a schedule',
-          'Hourly at the fastest. 3 to 15 active tasks',
-          'Cloud tasks hourly at the fastest. 100 runs an hour',
-          '10 active schedules. Tasks not offered in the UK or EEA',
-          'Hourly at the fastest. 15 tasks per Computer conversation',
+          'Hourly at the fastest\n3 to 15 active tasks',
+          'Cloud tasks hourly at the fastest\n100 runs an hour',
+          '10 active schedules\nTasks not offered in the UK or EEA',
+          'Hourly at the fastest\n15 tasks per Computer conversation',
           'The page doesn’t say',
         ],
         [

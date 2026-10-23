@@ -286,7 +286,7 @@ export const post: BlogPost = {
       text: 'Run the same questions again after every change and on a fixed day each month. Close a claim when the answer is right in 3 of 3 runs.',
     },
 
-    { kind: 'h2', id: 'where-by-hand-stops', text: 'Limits of a check by hand, and what AI visibility tools offer' },
+    { kind: 'h2', id: 'where-by-hand-stops', text: 'Limits of a check by hand, and what AI visibility tools offer', compare: true },
     {
       kind: 'p',
       text: 'A check by hand covers 1 person, 1 country and 1 day. The log can’t show what an assistant tells someone in Dublin on a Tuesday when you ran it from Leeds on a Friday, and it holds only the history you keep. AI visibility tools run your questions, which they call prompts, on a schedule and keep the history.',

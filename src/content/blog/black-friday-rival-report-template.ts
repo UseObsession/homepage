@@ -114,28 +114,28 @@ export const post: BlogPost = {
           'Hartley Roast (client, hartleyroast.example)',
           'Mon 16 Nov, 08:02',
           '1.5 on average, peak of 3 on Fri 27 Nov',
-          '25% off sitewide, applied at checkout, no code. Free shipping over £35.',
+          '25% off sitewide, applied at checkout, no code\nFree shipping over £35',
           'The homepage',
         ],
         [
           'Brindle & Co (brindleandco.example)',
           'Mon 2 Nov, 07:14: early access, 10% code',
           '1.4 on average, peak of 3 on Fri 27 Nov',
-          '40% off with code BFRI40, not valid on sale prices. Free shipping over £30.',
+          '40% off with code BFRI40, not valid on sale prices\nFree shipping over £30',
           'A sale page with a countdown',
         ],
         [
           'Marrow Coffee (marrowcoffee.example)',
-          'Mon 9 Nov, 16:40: a text. The email came the next day.',
+          'Mon 9 Nov, 16:40, by text\nThe email came the next day',
           '1.9 on average, peak of 4 on Mon 30 Nov',
-          'Buy 2 get 1 free, applied at checkout. Free shipping over £25.',
+          'Buy 2 get 1 free, applied at checkout\nFree shipping over £25',
           'A collection of the 3 offer products',
         ],
         [
           'Tern Roasters (ternroasters.example)',
           'Thu 19 Nov, 09:01',
           '1.0 on average, peak of 2 on Mon 30 Nov (1 of them a text)',
-          '30% off with code TERN30, stacks with the subscription discount. No free shipping line.',
+          '30% off with code TERN30, stacks with the subscription discount\nNo free shipping line',
           'A single gift set product page',
         ],
       ],
@@ -269,7 +269,7 @@ export const post: BlogPost = {
       text: 'Multiply the minutes a day you spend on 1 rival’s log by 3 rivals, by the days from sign up to Cyber Monday and by your number of clients. 10 minutes a day is a low estimate that covers opening the email, logging it and taking 1 screenshot. At 10 minutes a day over 38 days (signing up on Friday 23 October), that comes to 19 hours for 1 client and 190 hours for 10. Use your own timesheet figure and price the hours at your strategist’s day rate.',
     },
 
-    { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up' },
+    { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up', compare: true },
     {
       kind: 'p',
       text: 'An email library can show what a rival sent before your address existed. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. [Panoramata’s pricing page](' +

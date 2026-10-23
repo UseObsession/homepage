@@ -40,6 +40,7 @@ export const footer = {
       links: [
         { label: 'Saw an Obsession agent?', to: '/agents' },
         { label: 'LinkedIn', to: 'https://www.linkedin.com/company/useobsession/' },
+        { label: 'YouTube', to: 'https://www.youtube.com/@useobsession' },
         { label: 'Privacy', to: '/privacy' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },
       ],

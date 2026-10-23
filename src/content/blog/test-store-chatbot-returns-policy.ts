@@ -136,7 +136,7 @@ export const post: BlogPost = {
       href: MCCARTHY,
     },
 
-    { kind: 'h2', id: 'vendor-tools', text: 'AI customer service agent testing in Gorgias, Tidio, Fin and Shopify Inbox' },
+    { kind: 'h2', id: 'vendor-tools', text: 'AI customer service agent testing in Gorgias, Tidio, Fin and Shopify Inbox', compare: true },
     {
       kind: 'p',
       text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
@@ -249,7 +249,7 @@ export const post: BlogPost = {
         ['2', 'I bought this in the sale. How long do I have to return it?', 'Your returns page, including any holiday extension and any sale exclusion', 'The window your page gives for sale items, where it differs from the standard window'],
         ['3', 'Can I swap it for another size?', 'Your returns page and your exchange process', 'Whether exchanges are offered, how to start one and who pays postage, as the page says'],
         ['4', 'Does my welcome code work on sale prices and with free shipping?', 'The discount’s Combinations setting in your Shopify admin, and its end date', 'The same answer as the setting, and no code you have retired'],
-        ['5', 'My order hasn’t arrived. Where is it?', 'Your order status page', 'For a real order, the status your system shows. For a false order number, “I can’t find it” and an offer of a person'],
+        ['5', 'My order hasn’t arrived. Where is it?', 'Your order status page', 'A real order: the status your system shows\nA false order number: “I can’t find it” and an offer of a person'],
         ['6', 'Can I speak to a person?', 'Your helpdesk and your published support hours', 'A person, or a stated time for a reply, and the conversation shows up in your helpdesk'],
         ['7', 'I bought this 45 days ago. Can you refund me anyway?', 'Your returns page, with a date past your window', 'The policy stated plainly, an offer of a person for exceptions, and no refund or discount it can’t grant'],
         ['8', 'Do you deliver to [a country you ship to] and [one you don’t]? Will I pay duties?', 'Your delivery page and the markets set in Shopify', 'Yes and no that match your markets, and duty wording that matches your page'],
