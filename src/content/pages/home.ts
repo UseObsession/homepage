@@ -23,8 +23,6 @@ import type { Page } from '../types'
 const waitlist = {
   kind: 'waitlist',
   button: 'Join the waitlist',
-  placeholder: 'Your work email',
-  micro: 'We keep your email to set up your first watch and tell you about Obsession.',
   interest: 'any',
 } as const
 

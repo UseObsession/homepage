@@ -41,30 +41,14 @@ export type Meta = {
    first (its chat page or phone number), then the email: the free check of an AI agent the reader runs, or a
    client's with their OK. After the email, the sign up card asks the rest (content/signup.ts). */
 export type Capture = {
+  /* Every form is the waitlist. `mystery` and `verify` also offer a free check (a store, or an AI agent), which the line
+     under the form, the card's brands question and its thank you say (content/join.ts, lib/join offerOf). */
   kind: 'waitlist' | 'mystery' | 'verify'
   source: string
+  /* The page's offer, in the reader's words: "Join the waitlist", "Check 5 stores free", "Check my AI agent free". */
   button: string
-  placeholder?: string
-  /* `mystery` and `verify` only: the first field's name for screen readers, when the placeholder asks for something
-     other than the shared label does (the AI SDR check asks for the company's website, not a chat page). */
-  label?: string
-  micro?: string
-  /* A page's own question (a recipe's, or the format of the agencies' audits): the sign up card asks it in place of the
-     first job, and keeps the answer as the sign up's "Job detail" (content/signup.ts). `replaces: 'results'` asks it in
-     place of "Where should results land?" instead, its answer in "Results to" (the audits' format is where they
-     land). On a free shop or check it is asked only once a store or an AI agent is named. `short` names it in the
-     card's squares and on the thank you's list of answers. `multi: true` takes any number (where more than 1 answer can
-     be true); its helper is `helper`, else "Pick any." Other pages leave it out: the card's question bank covers
-     them. */
-  roles?: { question: string; options: string[]; short?: string; replaces?: 'results'; multi?: boolean; helper?: string }
+  /* The recipe the page is about (ticked to start with in the card), or 'any'. */
   interest?: RecipeId | 'any'
-  /* `mystery` and `verify` only: a blank first field (the store, or the AI agent) joins the waitlist instead of asking
-     for one. The micro line says so. */
-  orWaitlist?: boolean
-  /* `mystery` and `verify` only: the card's title and its thank you line after a sign up that named a store or an AI
-     agent, for a page whose offer is more than the 1 free report (the agencies' 5 stores). {store}, {agent} and {email}
-     are filled in; without it the card says the shared words (content/capture, content/signup). */
-  done?: { title: string; line: string }
 }
 
 /* `bar`: the nav bar's shorter words for a call to action whose label is longer than "Join the waitlist" (content/nav). */

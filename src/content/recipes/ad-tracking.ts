@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Ad tracking (/recipes/ad-tracking). Watch rivals. Screen: ads.
    Rewritten from James's "Ad tracking". Kept: following every ad to the page it lands on, the ad and the page side
@@ -12,13 +12,6 @@ import type { Capture, Recipe } from '../types'
    The run and the table tell the same story as the `ads` screen and the Marketing page's "Rival ads" use case
    (Friday 07:06: Rival A's 9 new ads overnight, a gift set at £56, £2 under your £58; Rival C's ad at 41 days). Example.
    Never £40 for a gift set here: that is the real September run's basket. */
-
-const roles: Capture['roles'] = {
-  question: 'Whose ads should we follow first?',
-  options: ['Our rivals’', 'A client’s rivals’'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'ads',
@@ -59,9 +52,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'ads',
     },
   },
@@ -201,9 +191,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'ads',
     },
   },

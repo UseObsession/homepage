@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Sales agent check (/recipes/sales-agent-check). Check your AI agents. It replaces VERIFY.md 6.4's Checkout agent
@@ -24,8 +23,6 @@ import type { Recipe } from '../types'
    says €189; if every chat became an order, 27 x 1 = 27 orders a week at €89, which a daily check finds the morning
    it starts. It matches the screen's "Up to 27 orders at risk" and the final's "not 27 orders later". The €189 and
    €89 stay as facts of the example, never as a sum kept. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'sales-agent',
@@ -66,9 +63,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-sales-agent-hero',
       button: 'Check my sales agent free',
-      placeholder: 'Your store’s chat page',
-      micro: form.agent.micro,
-      roles,
       interest: 'sales-agent',
     },
   },
@@ -259,10 +253,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-sales-agent-final',
       button: 'Check my sales agent free',
-      placeholder: 'Your store’s chat page',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your sales agent’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'sales-agent',
     },
   },

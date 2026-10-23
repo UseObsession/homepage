@@ -12,8 +12,6 @@ const waitlist = (source: string): Capture => ({
   kind: 'waitlist',
   source,
   button: 'Join the waitlist',
-  placeholder: 'Your work email',
-  micro: 'We keep your email to set up your first run and tell you about Obsession.',
   interest: 'any',
 })
 

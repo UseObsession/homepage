@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Listings and AI answers (/recipes/listings-ai-answers). Win customers. Screen: listings (3 locations; Leeds on
    Monday 09:42: Maps and Directory B with the wrong hours, Review site B says closed, Review site C missing; Assistant C
@@ -18,13 +18,6 @@ import type { Capture, Recipe } from '../types'
    need a person, it drafts the request and someone at the reader's company sends it; every change to the reader's own
    facts goes live after their OK. A client's facts with the client's agreement are said once, for agencies. Sites and
    assistants are unnamed (Maps, Review site A, Assistant A). The run is an example and says so. */
-
-const roles: Capture['roles'] = {
-  question: 'What’s your role?',
-  options: ['Marketing', 'Founder or owner', 'Agency', 'Developer', 'Something else'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'listings',
@@ -65,9 +58,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-listings-ai-answers-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'listings',
     },
   },
@@ -228,9 +218,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-listings-ai-answers-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'listings',
     },
   },

@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Vendor agent check (/recipes/vendor-agent-check). Check your AI agents. Screen: vendorcheck (Your company, choosing
@@ -20,8 +19,6 @@ import type { Recipe } from '../types'
    Up-to-50 rule: the 1 modelled figure (up to 76 days sooner to a decision) carries its model in the same line:
    2 weeks of side by side checks (14 days) in place of a 90 day pilot on live customers, 90 - 14 = 76. VERIFY.md
    rounds this to "10 weeks"; 90 days is 12.9 weeks, so 76 days is the exact ceiling. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'vendor-agent',
@@ -62,8 +59,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-vendor-agent-hero',
       button: 'Check my AI agent free',
-      micro: form.agent.micro,
-      roles,
       interest: 'vendor-agent',
     },
   },
@@ -251,9 +246,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-vendor-agent-final',
       button: 'Check my AI agent free',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your AI agent’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'vendor-agent',
     },
   },

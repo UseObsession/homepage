@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Outbound agent check (/recipes/outbound-agent-check). Check your AI agents. Screen: outcheck (Your company; "Email ·
@@ -21,8 +20,6 @@ import type { Recipe } from '../types'
    AI SDR".
    Up-to-50 rule: the 1 modelled figure (up to 1,040 hours a year) carries its model in the same line: 1 person
    reading what the AI SDR sends 20 hours a week x 52 weeks = 1,040, turned into the flagged messages only. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'outbound-agent',
@@ -63,10 +60,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-outbound-agent-hero',
       button: 'Check my AI SDR free',
-      placeholder: 'Your company’s website',
-      label: 'Your company’s website',
-      micro: form.agent.micro,
-      roles,
       interest: 'outbound-agent',
     },
   },
@@ -255,11 +248,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-outbound-agent-final',
       button: 'Check my AI SDR free',
-      placeholder: 'Your company’s website',
-      label: 'Your company’s website',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your website to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'outbound-agent',
     },
   },

@@ -3,20 +3,23 @@
 
    What it takes
      - JSON sent as text/plain from the site's forms (src/lib/waitlist.ts). Every key in FIELDS below, e.g.
-         { sid, step, email, name, company, reader, first_job, ..., store, agent, source, page, website }
+         { sid, step, email, reader, name, company, site, agency_type, offer, brands, recipes, use_case, source, page,
+           interest, website }
+       `website` is the hidden bot field; the company's website is `site`.
        `agent` is the AI agent a free AI agent check runs on: its chat page or phone number.
      - A plain form post (application/x-www-form-urlencoded) with the same field names, from a form used before the
        page's script has loaded. Those get a small "You're on the list" page with a link back, instead of JSON.
    What it does
      - "website" is a hidden field people never fill in, so a value there means a bot: it answers ok and saves nothing.
-     - The sign up card (src/components/SignupSteps.tsx). Step 1 sends the email with a random sign up ID (`sid`) and
+     - The waitlist card (src/components/JoinCard.tsx). Step 1 sends the email with a random sign up ID (`sid`) and
        makes the row. Every later step sends the whole sign up so far with the same ID and email: the script finds the
        row by Sign up ID and checks the email and that the row is less than a day old, then writes every key the post
        carries (an empty value clears a cell; "Skipped" means they skipped it). It never matches a post by email alone,
        so nobody can overwrite someone else's answers. An unknown ID with a valid email makes the row, so a lost first
        post still lands.
      - "Step reached" only moves forward. Received is written once, Updated on every post, Finished when the step
-       reaches 9 (Done). The steps: 1 Email, 2 Reader, 3 First job, 4 Scale, 5 Results, 6 Last time, 7 Name, 8 Note.
+       reaches 9 (Done). The steps: 1 Email, 2 Role, 3 Name (company and website), 4 Brands, then 9 Done once they
+       pick recipes.
      - Every later step carries the time the page made it (`at`, kept in "Sent at"). A post older than the one the row
        already holds is ignored, so a slow post that lands after a newer one never blanks a newer answer.
      - Every JSON reply says the script's version (`v`, VERSION below). The site opens the sign up card only for 2 and
@@ -47,8 +50,10 @@
    authorize() once and tick every box. See README.md, "Waitlist". */
 
 const BOOK_TITLE = 'Obsession waitlist'
-/* Sent with every JSON reply. 2: the sign up card (a sign up ID, a row updated step by step). */
-const VERSION = 2
+/* Sent with every JSON reply. 2: the sign up card (a sign up ID, a row updated step by step). 3: the waitlist card
+   (Offer, Brands to check, Recipes and Use case; the site sends those to an older script as Store or Agent, First job
+   and Anything else instead, so nothing is lost whichever goes live first). */
+const VERSION = 3
 const SHEET_NAME = 'Sign ups'
 /* Header, JSON key, longest value kept. In reading order: the order of a new sheet's columns. Received, Updated and
    Finished are the script's own times. A question that takes any number sends every pick, joined with ", " in the
@@ -60,6 +65,12 @@ const FIELDS = [
   ['Email', 'email', 200],
   ['Name', 'name', 100],
   ['Company', 'company', 200],
+  ['Website', 'site', 200],
+  ['Agency type', 'agency_type', 60],
+  ['Offer', 'offer', 60],
+  ['Brands to check', 'brands', 400],
+  ['Recipes', 'recipes', 600],
+  ['Use case', 'use_case', 1000],
   ['Reader', 'reader', 200],
   ['First job', 'first_job', 400],
   ['Call first', 'call_first', 200],
@@ -95,11 +106,12 @@ const FIELDS = [
   ['Sent at', 'at', 20],
 ]
 const HEADERS = FIELDS.map((f) => f[0])
-/* Step reached, as the sheet shows it. */
-const STEPS = ['', '1 Email', '2 Reader', '3 First job', '4 Scale', '5 Results', '6 Last time', '7 Name', '8 Note', '9 Done']
+/* Step reached, as the sheet shows it: the waitlist card's steps (components/JoinCard) are 1 to 4 and 9. 5 to 8 are
+   the old card's later steps, kept for a page still open from before it. */
+const STEPS = ['', '1 Email', '2 Role', '3 Name', '4 Brands', '5 Results', '6 Last time', '7 Name', '8 Note', '9 Done']
 const DONE = 9
 /* The origin of a sign up: written on its first post, and later only when a post carries a value. */
-const ORIGIN = ['source', 'page', 'interest', 'arrived_from']
+const ORIGIN = ['source', 'page', 'interest', 'arrived_from', 'offer']
 const NOTIFY = true
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const SID = /^[A-Za-z0-9-]{16,64}$/
@@ -421,13 +433,14 @@ function when(value) {
 
 /* 1. A new sign up. */
 function notifyNew(entry, repeat, url) {
-  const what = entry.Store ? ` (${entry.Store})` : entry.Agent ? ` (AI agent: ${entry.Agent})` : entry.Company ? ` (${entry.Company})` : ''
+  const what = entry.Offer ? ` (${entry.Offer})` : entry.Store ? ` (${entry.Store})` : entry.Agent ? ` (AI agent: ${entry.Agent})` : ''
   const lines = [`Email: ${entry.Email}`]
   if (repeat) lines.push(`Repeat: this email first signed up ${when(repeat)}. This is a new row.`)
+  lines.push(`Offer: ${given(entry.Offer)}`)
+  /* A store or AI agent on the first post: a page still open from before the waitlist card. */
+  if (entry.Store) lines.push(`Store: ${entry.Store}`)
+  if (entry.Agent) lines.push(`AI agent: ${entry.Agent}`)
   lines.push(
-    `Reader: ${given(entry.Reader)}`,
-    `Store: ${given(entry.Store)}`,
-    `AI agent: ${given(entry.Agent)}`,
     `Interest: ${given(entry.Interest)}`,
     `Form: ${entry.Source}`,
     `Page: ${entry.Page}`,
@@ -440,17 +453,23 @@ function notifyNew(entry, repeat, url) {
   send(`New Obsession sign up: ${entry.Email}${what}${repeat ? ' (repeat)' : ''}`, lines)
 }
 
-/* 2. They finished: every answer, the suggested first run and Call first. The subject names the first job they ticked
-   and how many more ("Pitch packs on prospects and 2 more"); the body lists them all. */
+/* 2. They finished: every answer. The subject names the offer and the first recipe they picked and how many more
+   ("Maya Patel, Northwind Labs. 5 client stores (free check): Email and SMS tracking and 2 more"); the body lists the
+   brands to check first, then every answer. */
 function notifyAnswers(entry, url) {
   const who = [entry.Name, entry.Company].filter((v) => v && v !== 'Skipped').join(', ') || entry.Email
-  const jobs = entry['First job'] && entry['First job'] !== 'Skipped' ? picks(entry['First job']) : []
-  const job = jobs.length ? jobs[0] + (jobs.length > 1 ? ` and ${jobs.length - 1} more` : '') : 'no first job yet'
+  const picked = entry.Recipes || (entry['First job'] && entry['First job'] !== 'Skipped' ? entry['First job'] : '')
+  const list = picked ? picks(picked) : []
+  const first = list.length ? list[0] + (list.length > 1 ? ` and ${list.length - 1} more` : '') : 'no recipe yet'
   const skip = ['Received', 'Updated', 'Finished', 'Step reached', 'Sign up ID', 'Sent at', 'Role', 'Call first', 'Suggested first run']
   const answers = HEADERS.filter((h) => skip.indexOf(h) === -1 && entry[h] !== '' && entry[h] != null).map((h) => `${h}: ${entry[h]}`)
-  send(`Answers: ${who}. ${given(entry.Reader)}: ${job}`, [
-    `Suggested first run: ${given(entry['Suggested first run'])}`,
-    `Call first: ${given(entry['Call first'])}`,
+  /* The old card's rows name the reader where the offer would be. */
+  const lead = entry.Offer || (entry.Reader && entry.Reader !== 'Skipped' ? entry.Reader : '')
+  /* The old card's rows also carry its suggested first run and Call first. */
+  const old = entry['Suggested first run'] || entry['Call first'] ? [`Suggested first run: ${given(entry['Suggested first run'])}`, `Call first: ${given(entry['Call first'])}`] : []
+  send(`Answers: ${who}. ${lead ? lead + ': ' : ''}${first}`, [
+    `To check first: ${given(entry['Brands to check'] || entry.Store || entry.Agent)}`,
+    ...old,
     '',
     ...answers,
     '',

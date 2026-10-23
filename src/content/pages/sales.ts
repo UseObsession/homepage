@@ -10,7 +10,6 @@ import type { Page } from '../types'
    from first call to win back, each with its screen > how a customer agent lives > the real
    September store check > questions > early access. Every use case screen is an example (its Example tag). */
 
-const micro = 'We keep your email to set up your team’s access and tell you about Obsession.'
 
 export const page: Page = {
   meta: {
@@ -31,7 +30,7 @@ export const page: Page = {
     pill: '',
     headline: 'Know what every account and rival does to its customers.',
     sub: 'Obsession’s AI agents become a customer of each prospect, account and rival before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
-    capture: { kind: 'waitlist', source: 'sales-hero', button: 'Join the waitlist', micro, interest: 'prospect' },
+    capture: { kind: 'waitlist', source: 'sales-hero', button: 'Join the waitlist', interest: 'prospect' },
     secondary: { label: 'See how it compares', to: '/compare' },
     proof: [],
     consoleHeading,
@@ -163,6 +162,6 @@ export const page: Page = {
   final: {
     heading: 'Pick an account. See what it does.',
     sub: 'Start with the renewal you can’t lose, or the deal you’re fighting for.',
-    capture: { kind: 'waitlist', source: 'sales-final', button: 'Join the waitlist', micro, interest: 'any' },
+    capture: { kind: 'waitlist', source: 'sales-final', button: 'Join the waitlist', interest: 'any' },
   },
 }

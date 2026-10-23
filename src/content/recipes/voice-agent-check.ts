@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Voice agent check (/recipes/voice-agent-check). Check your AI agents. Screen: callcheck, drawn for an agency (Your
@@ -21,8 +20,6 @@ import type { Recipe } from '../types'
    Up-to-50 rule (no money promises, 3 Oct): the 1 modelled figure (up to 12 aligner bookings a year kept) carries its
    model in the same line: 1 aligner booking a month lost to a call that goes wrong (a wrong answer, a caller not
    understood, a handoff nobody picks up), found by the next morning's check instead, x 12 = 12. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'voice-agent',
@@ -63,9 +60,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-voice-agent-hero',
       button: 'Check my receptionist free',
-      placeholder: 'Receptionist’s number',
-      micro: form.agent.micro,
-      roles,
       interest: 'voice-agent',
     },
   },
@@ -264,10 +258,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-voice-agent-final',
       button: 'Check my receptionist free',
-      placeholder: 'Receptionist’s number',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your receptionist’s number to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'voice-agent',
     },
   },

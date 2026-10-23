@@ -39,6 +39,7 @@ export const footer = {
       label: 'Company',
       links: [
         { label: 'Saw an Obsession agent?', to: '/agents' },
+        { label: 'LinkedIn', to: 'https://www.linkedin.com/company/useobsession/' },
         { label: 'Privacy', to: '/privacy' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },
       ],

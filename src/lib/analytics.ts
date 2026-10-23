@@ -69,6 +69,6 @@ function clearCookies() {
 
 /* An event, only while analytics is on. Never an email or anything typed: the name of what happened and where. */
 export function track(event: string, params: Record<string, string> = {}) {
-  if (!window.obsGa?.on || consent() !== 'granted') return
+  if (typeof window === 'undefined' || !window.obsGa?.on || consent() !== 'granted') return
   window.gtag?.('event', event, params)
 }
