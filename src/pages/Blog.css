@@ -426,52 +426,44 @@
 @media (prefers-reduced-motion: reduce) { .s-blog-card { transition: none; } .s-blog-card:hover { transform: none; } }
 
 /* =====================================================================================================================
-   THE ARTICLE (redone 23 Oct 2026, then lit on Seun's brief: dark, in the hub's reader colour, lighter darks used with
-   intent, and 1 alignment). The page is the site's own ink (paper when the reader picks light). Depth comes from the
-   design system's own steps, never a new grey: the page (--ob-bg), a face (--ob-surface), a raised face
-   (--ob-surface-raised) and the lit room between them (tones.css D1). The hub's reader colour (styles/accents.css) is
-   used the 2 ways COLOUR.md allows, never on a word: its glow, as soft light (the header room, the summary, every stage
-   and the closing call), and its mark, as a square or a bar (the hub pill, each section's number, the answer's bar, a
-   quote's rule, a note's square). 2 widths on 1 axis: 880px for the header, the picture, the summary, tables and
-   stages; 680px for the text.
+   THE ARTICLE (23 Oct 2026, third pass on Seun's brief: dark, in the hub's reader colour, and it should flow, not sit in
+   boxes, with an alignment you can feel). 1 reading column of 680px from the breadcrumb to the sources: every word,
+   the picture, every table and every illustration start on the same left edge and end on the same right one. Parts are
+   set apart by space and type, never by frames. The marks hang in the left margin, so the text edge stays clean: the
+   answer's bar, each section's number on the reader's square, list points and numbers, a quote's rule and a note's
+   square. The hub's reader colour (styles/accents.css) is used the 2 ways COLOUR.md allows, never on a word: its glow,
+   as light that fades to nothing before any edge (the header, behind each illustration, behind a stat and the closing
+   call), and its mark (the squares and bars). Under 900px there is no margin to hang in, so the marks come inside.
    ===================================================================================================================== */
 
 .s-art {
-  --s-art-wide: 880px;
+  /* The pooled light reaches past the column; it is clipped at the page's edge so it never widens a phone's page. */
+  overflow-x: clip;
   --s-art-measure: 680px;
-  /* How far the picture reaches up into the header room. */
-  --s-art-over: 168px;
-  /* The lit room: half a face, half a raised face (#151514 on ink), as the site's ink chapters are. */
-  --s-art-room: color-mix(in oklab, var(--ob-surface) 50%, var(--ob-surface-raised));
+  /* Where a hanging mark sits: this far left of the text edge. */
+  --s-art-hang: var(--ob-space-24);
   /* The reader's light at a strength: the glow source mixed toward transparent, as COLOUR.md draws every glow. */
   --s-art-light: color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent);
-  --s-art-light-soft: color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .6), transparent);
+  --s-art-light-soft: color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent);
 }
 
-/* The column and the breakout: everything wide shares the picture's 2 edges. */
-.s-art-col { width: 100%; max-width: var(--s-art-measure); margin-inline: auto; }
-.s-art-wide {
-  width: min(var(--s-art-wide), calc(100vw - 2 * var(--ob-gutter)));
-  margin-inline: calc(50% - min(calc(var(--s-art-wide) / 2), 50vw - var(--ob-gutter)));
-}
+/* The column. Everything sits in it; nothing breaks out. */
+.s-art-col,
+.s-art-head__in,
+.s-art-heroobj,
+.s-art-text .s-art-main { width: 100%; max-width: var(--s-art-measure); margin-inline: auto; }
+.s-art-wide { width: 100%; margin-inline: 0; }
 
-/* ---- The header: a lit room, its light the reader's, falling from above ---- */
-.s-art-head {
-  position: relative;
-  isolation: isolate;
-  padding-block: var(--ob-space-56) var(--ob-space-64);
-  background: var(--s-art-room);
-  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle), inset 0 var(--ob-border-hair) 0 rgb(var(--ob-sheen-rgb) / .05);
-  overflow: hidden;
-}
+/* ---- The header: the reader's light falls from above and fades into the page, with no edge ---- */
+.s-art-head { position: relative; isolation: isolate; padding-top: var(--ob-space-56); }
 .s-art-head::before {
   content: "";
   position: absolute;
   z-index: -1;
   inset: 0 0 auto;
-  height: 620px;
+  height: 760px;
   background: radial-gradient(
-    60% 100% at 50% 0%,
+    55% 100% at 50% 0%,
     var(--s-art-light),
     color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .84), transparent) 25%,
     color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent) 50%,
@@ -480,14 +472,11 @@
   );
   pointer-events: none;
 }
-/* With a picture, the room ends partway down it. */
-.s-art-head--over { padding-bottom: calc(var(--s-art-over) + var(--ob-space-56)); }
-.s-art-head__in { width: 100%; max-width: var(--s-art-wide); margin-inline: auto; }
 .s-art-head .s-crumbs { justify-self: start; margin: 0 0 var(--ob-space-32); }
 .s-art-head .s-crumbs .ob-crumbs__list { justify-content: flex-start; }
 
 /* The hub: the design system's eyebrow pill, the reader's square inside it. */
-.s-art-kicker { margin: 0 0 var(--ob-space-20); }
+.s-art-kicker { margin: 0 0 var(--ob-space-24); }
 .s-art-kicker__pill { text-decoration: none; transition: color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out); }
 @media (hover: hover) and (pointer: fine) { .s-art-kicker__pill:hover { color: var(--ob-text); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; } }
 .s-art-kicker__pill:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
@@ -495,17 +484,15 @@
 
 .s-art-title {
   margin: 0;
-  max-width: 21ch;
   font: var(--ob-type-h1);
-  font-size: clamp(34px, 4.6vw, 58px);
-  line-height: 1.05;
+  font-size: clamp(34px, 4.4vw, 52px);
+  line-height: 1.06;
   letter-spacing: -.028em;
   color: var(--ob-text);
   text-wrap: balance;
 }
 .s-art-dek {
   margin: var(--ob-space-24) 0 0;
-  max-width: var(--s-art-measure);
   font: var(--ob-type-body-lg);
   font-size: clamp(17px, 1.5vw, 19px);
   line-height: 1.55;
@@ -513,47 +500,32 @@
   color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
-/* Who wrote it and when, across the picture's width, under a hairline. */
+/* Who wrote it and when, on 1 line under a hairline. */
 .s-art-byline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--ob-space-12) var(--ob-space-24);
-  margin-top: var(--ob-space-40);
+  margin-top: var(--ob-space-32);
   padding-top: var(--ob-space-20);
   border-top: var(--ob-border-hair) solid var(--ob-line);
 }
 .s-art-byline .s-byline__people { justify-content: flex-start; }
 
-/* ---- The 1 picture, reaching up into the room ---- */
-.s-art-heroobj {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: var(--s-art-wide);
-  margin: calc(var(--s-art-over) * -1) auto 0;
-}
+/* ---- The 1 picture, on the column ---- */
+.s-art-heroobj { position: relative; margin-top: var(--ob-space-40); }
 .s-art-visual { position: relative; width: 100%; margin: 0; }
 .s-art-visual--photo {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
-  border-radius: var(--ob-radius-xl);
+  border-radius: var(--ob-radius-lg);
   background-color: var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong), var(--ob-shadow-3);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), 0 40px 90px -40px rgb(var(--ob-shadow-rgb) / .9);
 }
 .s-art-visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-/* On ink a photograph is graded down a step and lit at its foot, so it sits in the room and never reads as a white slab. */
-.s-art-visual--photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, transparent 52%, rgb(8 8 7 / var(--s-art-photo-foot, .38)));
-  box-shadow: inset 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .08);
-  pointer-events: none;
-}
-/* The reader's light over the photograph, multiplied in, so its warm whites take the room's colour. */
+/* On ink a photograph is graded down a step and takes the reader's light, multiplied in, so its warm whites sit in the
+   page's colour and never read as a white slab. */
 .s-art-visual--photo::before {
   content: "";
   position: absolute;
@@ -564,7 +536,16 @@
   opacity: var(--s-art-photo-tint, 1);
   pointer-events: none;
 }
-.s-art-visual--photo::after { z-index: 1; }
+.s-art-visual--photo::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 55%, rgb(8 8 7 / var(--s-art-photo-foot, .32)));
+  box-shadow: inset 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .08);
+  pointer-events: none;
+}
 :root:not([data-theme="light"]) :is(.s-art-visual--photo, .s-blog-card__visual--photo) img { filter: brightness(.74) contrast(1.08) saturate(.88); }
 :root[data-theme="light"] .s-art-visual--photo { --s-art-photo-foot: 0; --s-art-photo-tint: 0; }
 @media (prefers-color-scheme: light) {
@@ -574,8 +555,8 @@
 .s-art-visual__credit {
   position: absolute;
   z-index: 2;
-  right: var(--ob-space-16);
-  bottom: var(--ob-space-16);
+  right: var(--ob-space-12);
+  bottom: var(--ob-space-12);
   padding: var(--ob-space-4) var(--ob-space-10, 10px);
   border-radius: var(--ob-radius-pill);
   background-color: rgb(8 8 7 / .6);
@@ -584,73 +565,71 @@
   color: #EDEBE5;
 }
 .s-art-visual__credit a { color: inherit; text-underline-offset: 2px; }
-.s-art-visual--art { display: grid; justify-items: center; }
 
-/* A stage: a face lit by the reader from above, a product window or screen standing on it. The header's picture when it
-   is an illustration or a screen, and every illustration in the text. */
+/* An illustration or a screen, in the header or the text: the window on the column's full width, the reader's light
+   pooled behind it and fading out well inside the page, so there is no stage to see, only light. */
 .s-art-stage,
-.s-art-text .s-art-ill__stage {
+.s-art-text .s-art-ill__stage,
+.s-art-text .s-art-fig--screen {
   position: relative;
   isolation: isolate;
   display: grid;
-  justify-items: center;
-  padding: var(--ob-space-48) var(--ob-space-40);
-  border-radius: var(--ob-radius-xl);
-  background:
-    radial-gradient(70% 90% at 50% 0%, var(--s-art-light), var(--s-art-light-soft) 35%, transparent 75%),
-    var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
+  justify-items: stretch;
 }
-.s-art-heroobj.s-art-stage { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-3); }
-.s-art-stage > .s-art-visual--art,
-.s-art-stage > .ilwrap { width: 100%; }
+.s-art-stage::before,
+.s-art-text .s-art-ill__stage::before,
+.s-art-text .s-art-fig--screen::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -12% -22% -6%;
+  background: radial-gradient(closest-side, var(--s-art-light), var(--s-art-light-soft) 45%, transparent 100%);
+  pointer-events: none;
+}
+.s-art :is(.s-art-stage, .s-art-ill__stage) .s-x { max-width: none; }
+.s-art-visual--art { display: grid; }
 
 /* ---- The text ---- */
 .s-art-text { padding-block: var(--ob-space-56) var(--ob-space-96); }
 .s-art-text .s-art-body { display: block; padding-bottom: 0; }
-.s-art-text .s-art-main { max-width: var(--s-art-measure); margin-inline: auto; counter-reset: s-sec; }
+.s-art-text .s-art-main { counter-reset: s-sec; }
+.s-art-text .s-art-main > * + * { margin-top: var(--ob-space-24); }
 .s-art-text .s-art-p,
 .s-art-text .s-art-list > li { color: var(--s-read, var(--ob-text-2)); }
 .s-art-text :is(.s-art-p, .s-art-list) strong { color: var(--ob-text); }
 .s-art-text .s-art-a { text-decoration-color: color-mix(in srgb, var(--ob-text) 35%, transparent); }
 
-/* The summary: the direct answer beside the contents, on 1 face lit by the reader from its corner. */
-.s-art-sum {
-  position: relative;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  gap: var(--ob-space-40);
-  padding: var(--ob-space-40) var(--ob-space-40) var(--ob-space-40) var(--ob-space-40);
-  border-radius: var(--ob-radius-xl);
-  background:
-    radial-gradient(80% 120% at 0% 0%, var(--s-art-light), var(--s-art-light-soft) 30%, transparent 70%),
-    var(--ob-sheen),
-    var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
-}
-.s-art-sum--solo { grid-template-columns: minmax(0, 1fr); }
-/* The direct answer, what a reader skims and an assistant quotes: the first ink, larger, on the reader's bar. */
+/* The direct answer, what a reader skims and an assistant quotes: the first ink, larger, its bar in the margin. */
+.s-art-sum { display: block; }
 .s-art-lead {
+  position: relative;
   margin: 0;
-  padding-left: var(--ob-space-20);
-  box-shadow: inset 2px 0 0 var(--s-accent, var(--ob-line-strong));
   font: var(--ob-type-body-lg);
-  font-size: clamp(17px, 1.5vw, 19px);
+  font-size: clamp(18px, 1.6vw, 20px);
   line-height: 1.6;
   letter-spacing: -.005em;
   color: var(--ob-text);
   text-wrap: pretty;
 }
-/* The contents: numbered as the sections are, in the third ink. */
-.s-art-toc { padding-left: var(--ob-space-32); border-left: var(--ob-border-hair) solid var(--ob-line); }
+.s-art-lead::before {
+  content: "";
+  position: absolute;
+  top: .3em;
+  bottom: .3em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 2px;
+  border-radius: 1px;
+  background-color: var(--s-accent, var(--ob-line-strong));
+}
+/* The contents, under the answer: numbered as the sections are, 2 columns, closed by the 1 rule the text has. */
+.s-art-toc { margin-top: var(--ob-space-40); padding-bottom: var(--ob-space-40); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
 .s-art-toc__label { margin: 0 0 var(--ob-space-12); font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
-.s-art-toc__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
-.s-art-toc__list > li { counter-increment: s-toc; }
+.s-art-toc__list { columns: 2; column-gap: var(--ob-space-40); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
+.s-art-toc__list > li { counter-increment: s-toc; break-inside: avoid; }
 .s-art-toc__link {
   display: grid;
   grid-template-columns: 2.1em minmax(0, 1fr);
-  padding: var(--ob-space-4) 0;
+  padding: var(--ob-space-6) 0;
   font: var(--ob-type-small);
   color: var(--ob-text-2);
   text-decoration: none;
@@ -667,25 +646,53 @@
 .s-toc-m .s-toc-m__sum { padding-inline: 0; }
 .s-toc-m .s-toc-m__list { padding-inline: 0; }
 
-/* Sections: a hairline, then the section's number on the reader's square (the contents' number), then its heading. */
-.s-art-text .s-art-h2 { counter-increment: s-sec; }
+/* Sections: space, not rules. Each heading's number hangs in the margin on the reader's square, on the heading's
+   first line, as the contents number it. */
+.s-art-text .s-art-h2 {
+  position: relative;
+  counter-increment: s-sec;
+  font-size: clamp(26px, 2.6vw, 34px);
+}
 .s-art-text .s-art-h2::before {
   content: counter(s-sec, decimal-leading-zero);
-  display: block;
-  margin-bottom: var(--ob-space-12);
-  padding-left: var(--ob-space-16);
-  background: linear-gradient(var(--s-accent, var(--ob-text-3)), var(--s-accent, var(--ob-text-3))) 0 50% / 8px 8px no-repeat;
+  position: absolute;
+  top: .42em;
+  right: calc(100% + var(--s-art-hang) - 8px);
+  padding-left: var(--ob-space-14, 14px);
+  background: linear-gradient(var(--s-accent, var(--ob-text-3)), var(--s-accent, var(--ob-text-3))) 0 50% / 7px 7px no-repeat;
   font: var(--ob-type-mono-sm);
   letter-spacing: 0;
+  line-height: 1;
   color: var(--ob-text-3);
+  white-space: nowrap;
 }
-.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-64); padding-top: var(--ob-space-40); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-96); padding-top: 0; border-top: 0; }
 .s-art-text .s-art-main > .s-art-sum + .s-art-h2,
-.s-art-text .s-art-main > .s-art-sum + .s-toc-m + .s-art-h2 { padding-top: 0; border-top: 0; }
+.s-art-text .s-art-main > .s-art-sum + .s-toc-m + .s-art-h2 { margin-top: var(--ob-space-56); }
+.s-art-text .s-art-main > :is(.s-art-h2, .s-art-h3) + * { margin-top: var(--ob-space-20); }
 .s-art-text .s-art-h3 { font-weight: var(--ob-weight-semibold); }
+.s-art-text .s-art-main > * + .s-art-h3 { margin-top: var(--ob-space-48); }
 
-/* Lists: the third ink's point, numbers in tabular mono. */
-.s-art-text .s-art-list > li::before { background-color: var(--ob-text-3); }
+/* Lists: the points and numbers hang, so every line of text starts on the column's edge. */
+.s-art-text .s-art-list > li { padding-left: 0; }
+.s-art-text .s-art-list > li::before {
+  top: .68em;
+  left: calc(var(--s-art-hang) * -1 + 4px);
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background-color: var(--ob-text-3);
+}
+.s-art-text .s-art-list--ol > li::before {
+  top: .22em;
+  left: auto;
+  right: calc(100% + 12px);
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  text-align: right;
+}
 
 /* Run-in labels that name a result: a pass in success, a failure in danger, as a small label the eye can scan. */
 .s-art-k {
@@ -699,78 +706,137 @@
 .s-art-k--pass { background-color: var(--ob-success-bg); color: var(--ob-success) !important; }
 .s-art-k--fail { background-color: var(--ob-danger-bg); color: var(--ob-danger) !important; }
 
-/* Tables: a face on the wide line, the head a step raised, rows on hairlines. */
-.s-art-text .s-art-table__scroll {
-  border-radius: var(--ob-radius-lg);
-  background: var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
-}
-.s-art-text .s-art-table :is(th, td) { padding: var(--ob-space-14, 14px) var(--ob-space-20); border-top-color: var(--ob-line-subtle); }
-.s-art-text .s-art-table thead th { padding-block: var(--ob-space-12); background-color: var(--ob-surface-raised); color: var(--ob-text-3); }
-.s-art-text .s-art-table td { color: var(--s-read, var(--ob-text-2)); }
+/* Tables: open, on the column's edges. The head over a firmer rule, rows on hairlines, the first column flush left. */
+.s-art-text .s-art-table__scroll { border-radius: 0; background: none; box-shadow: none; }
+.s-art-text .s-art-table :is(th, td) { padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-12) 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-art-text .s-art-table :is(th, td):last-child { padding-right: 0; }
+.s-art-text .s-art-table thead th { padding-top: 0; border-top: 0; border-bottom: var(--ob-border-hair) solid var(--ob-line-strong); background: none; color: var(--ob-text-3); }
 .s-art-text .s-art-table tbody tr:first-child :is(th, td) { border-top: 0; }
-.s-art-text .s-art-table :is(th, td):first-child:not(:only-child) { padding-left: var(--ob-space-24); }
-.s-art-cap { margin-top: var(--ob-space-16); }
+.s-art-text .s-art-table td { color: var(--s-read, var(--ob-text-2)); }
+.s-art-text .s-art-table tbody tr:last-child :is(th, td) { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* Captions sit on the column's left edge, under what they name. */
+.s-art-text .s-art-cap { margin-top: var(--ob-space-12); text-align: left; text-wrap: pretty; }
 
-/* Illustrations and screens in the text: on their stage, their caption under it. */
+/* Pictures in the text: space around them, their captions on the edge. */
 .s-art-ill { margin-block: 0; }
-.s-art-main > * + .s-art-ill, .s-art-ill + * { margin-top: var(--ob-space-48); }
-.s-art-main > * + .s-art-fig--screen, .s-art-fig--screen + * { margin-top: var(--ob-space-48); }
+.s-art-main > * + :is(.s-art-ill, .s-art-fig, .s-art-table), .s-art-main > :is(.s-art-ill, .s-art-fig, .s-art-table) + * { margin-top: var(--ob-space-56); }
 .s-art-text .s-art-fig--screen .ilwrap { cursor: default; }
+.s-art-text .s-art-fig--screen .s-art-cap { justify-self: start; }
 
-/* A stat: a face lit by the reader from its start, the number large in the first ink, its label and source beside it. */
+/* A stat: the number large on the column's edge, its label and source beside it, the reader's light pooled behind the
+   number. No frame. */
 .s-art-text .s-art-stat {
-  padding: var(--ob-space-28, 28px) var(--ob-space-32);
+  position: relative;
+  isolation: isolate;
+  grid-template-columns: 11.5rem minmax(0, 1fr);
+  column-gap: var(--ob-space-24);
+  padding: var(--ob-space-8) 0;
   border: 0;
-  border-radius: var(--ob-radius-lg);
-  background:
-    radial-gradient(60% 140% at 0% 50%, var(--s-art-light-soft), transparent 70%),
-    var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
+  background: none;
+  box-shadow: none;
+}
+.s-art-text .s-art-stat::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: -60px;
+  width: 300px;
+  height: 200px;
+  translate: 0 -50%;
+  background: radial-gradient(closest-side, var(--s-art-light), transparent);
+  pointer-events: none;
 }
 .s-art-text .s-art-stat__v { font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
 .s-art-text .s-art-stat__l { color: var(--ob-text); }
+.s-art-main > * + .s-art-stat, .s-art-stat + * { margin-top: var(--ob-space-48); }
 
-/* A quote: the reader's rule at its start. A note: a face with the reader's square by its title. */
-.s-art-text .s-art-quote { padding-block: var(--ob-space-4); box-shadow: inset 2px 0 0 var(--s-accent, var(--ob-line-strong)); }
-.s-art-text .s-art-quote blockquote p { font-weight: var(--ob-weight-regular, 400); color: var(--ob-text); }
-.s-art-text .s-art-note {
-  padding: var(--ob-space-20) var(--ob-space-24);
-  border-radius: var(--ob-radius-lg);
-  background: var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+/* A quote: larger, its rule hanging in the margin. A note: smaller, its title on the reader's square, no frame. */
+.s-art-text .s-art-quote { position: relative; padding: 0; box-shadow: none; }
+.s-art-text .s-art-quote::before {
+  content: "";
+  position: absolute;
+  top: .2em;
+  bottom: .2em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 2px;
+  border-radius: 1px;
+  background-color: var(--s-accent, var(--ob-line-strong));
 }
-.s-art-text .s-art-note__t { display: flex; align-items: center; gap: var(--ob-space-10, 10px); }
-.s-art-text .s-art-note__t::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
-.s-art-text .s-art-note__x { color: var(--ob-text-2); }
+.s-art-text .s-art-quote blockquote p { font: var(--ob-type-body-lg); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; letter-spacing: -.01em; color: var(--ob-text); }
+.s-art-main > * + .s-art-quote, .s-art-quote + * { margin-top: var(--ob-space-48); }
+.s-art-text .s-art-note { position: relative; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.s-art-text .s-art-note__t { position: relative; font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.s-art-text .s-art-note__t::before {
+  content: "";
+  position: absolute;
+  top: .45em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background-color: var(--s-accent, var(--ob-text-3));
+}
+.s-art-text .s-art-note__x { margin-top: var(--ob-space-8); font: var(--ob-type-small); line-height: 1.6; color: var(--ob-text-2); }
+.s-art-main > * + .s-art-note, .s-art-note + * { margin-top: var(--ob-space-40); }
 
-/* The link to the product: a raised face lit by the reader from its far corner, its button on the same line. */
+/* The link to the product: no frame. The reader's light pooled behind it, its words in the first ink, the button under
+   them, on the edge. */
 .s-art-text .s-art-cta {
-  padding: var(--ob-space-24) var(--ob-space-28, 28px);
-  border-radius: var(--ob-radius-lg);
-  background:
-    radial-gradient(70% 160% at 100% 0%, var(--s-art-light), var(--s-art-light-soft) 30%, transparent 70%),
-    var(--ob-sheen),
-    var(--ob-surface-raised);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: start;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-8) 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
 }
-.s-art-text .s-art-cta__x { font: var(--ob-type-body); font-size: 15px; color: var(--ob-text); }
+.s-art-text .s-art-cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -40% -18% -40% -14%;
+  background: radial-gradient(closest-side, var(--s-art-light-soft), transparent);
+  pointer-events: none;
+}
+.s-art-text .s-art-cta::after {
+  content: "";
+  position: absolute;
+  top: .55em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background-color: var(--s-accent, var(--ob-text-3));
+}
+.s-art-text .s-art-cta__x { font: var(--ob-type-body-lg); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; color: var(--ob-text); }
+.s-art-main > * + .s-art-cta, .s-art-cta + * { margin-top: var(--ob-space-48); }
 
+/* Under 900px there is no margin to hang in: the marks come inside the column. */
 @media (max-width: 899.98px) {
-  .s-art-sum { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); padding: var(--ob-space-32); }
-  .s-art-toc { padding: var(--ob-space-24) 0 0; border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
-  .s-art-toc__list { columns: 2; column-gap: var(--ob-space-32); display: block; }
-  .s-art-toc__list > li { break-inside: avoid; }
+  .s-art { --s-art-hang: 0px; }
+  .s-art-lead { padding-left: var(--ob-space-16); }
+  .s-art-lead::before { left: 0; }
+  .s-art-text .s-art-quote { padding-left: var(--ob-space-16); }
+  .s-art-text .s-art-quote::before { left: 0; }
+  .s-art-text .s-art-h2::before { position: static; display: block; margin-bottom: var(--ob-space-12); }
+  .s-art-text .s-art-list > li { padding-left: var(--ob-space-20); }
+  .s-art-text .s-art-list > li::before { left: 4px; }
+  .s-art-text .s-art-list--ol > li { padding-left: var(--ob-space-24); }
+  .s-art-text .s-art-list--ol > li::before { left: 0; right: auto; text-align: left; }
+  .s-art-text .s-art-note { padding-left: var(--ob-space-16); }
+  .s-art-text .s-art-note__t::before { left: calc(var(--ob-space-16) * -1); }
+  .s-art-text .s-art-cta { padding-left: var(--ob-space-16); }
+  .s-art-text .s-art-cta::after { left: 0; }
 }
 @media (max-width: 759.98px) {
-  .s-art { --s-art-over: 72px; }
   .s-art-head { padding-top: var(--ob-space-40); }
-  .s-art-head--over { padding-bottom: calc(var(--s-art-over) + var(--ob-space-40)); }
-  .s-art-visual--photo { border-radius: var(--ob-radius-lg); }
-  .s-art-stage, .s-art-text .s-art-ill__stage { padding: var(--ob-space-24) var(--ob-space-16); border-radius: var(--ob-radius-lg); }
+  .s-art-visual--photo { border-radius: var(--ob-radius-md); }
   .s-art-text { padding-block: var(--ob-space-40) var(--ob-space-64); }
-  .s-art-sum { padding: var(--ob-space-24); }
   .s-art-toc { display: none; }
   .s-art-byline { display: grid; justify-content: start; justify-items: start; }
-  .s-art-text .s-art-stat { padding: var(--ob-space-20); }
+  .s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-64); }
+  .s-art-text .s-art-stat { grid-template-columns: minmax(0, 1fr); }
 }

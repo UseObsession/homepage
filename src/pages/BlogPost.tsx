@@ -101,13 +101,11 @@ export function BlogPostAt({ slug }: { slug: string }) {
   return post ? <BlogPost post={post} /> : null
 }
 
-/* A post in the hub's reader colour, on the site's own ink (or paper when the reader picks light). The header is a lit
-   room a step lighter than the page, its light the reader's glow from above: the breadcrumb, the hub, the title, the
-   dek, both founders, the date and the reading time, on the picture's 880px width and left edge. The 1 picture
-   straddles the room's lower edge. Then a summary panel on the same width (the direct answer beside the contents), and
-   the text on a 680px measure, its tables and pictures back on 880px: 2 widths on 1 axis. The share row and the sources
-   (only those the text links to, in the order it first does, with the day the links were checked) close it; then what
-   to read next, the recipes for the job and the waitlist (#join). */
+/* A post in the hub's reader colour, on the site's own ink (or paper when the reader picks light), in 1 reading column
+   of 680px from the breadcrumb to the sources: the header (the breadcrumb, the hub, the title, the dek, both founders,
+   the date and the reading time) under the reader's light, the 1 picture, the direct answer with the contents under
+   it, the text, the share row and the sources (only those the text links to, in the order it first does, with the day
+   the links were checked). Then what to read next, the recipes for the job and the waitlist (#join). */
 export function BlogPost({ post }: { post: Post }) {
   const id = useId()
   const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text }] : [])), [post])
@@ -124,7 +122,7 @@ export function BlogPost({ post }: { post: Post }) {
   return (
     <>
       <article className="s-art" data-reader={readerOf(post.category)} aria-labelledby={`${id}-h`}>
-        <header className={'s-art-head' + (hasVisual || heroScreen ? ' s-art-head--over' : '')}>
+        <header className="s-art-head">
           <div className="s-wrap">
             <div className="s-art-head__in ob-anim-hero">
               <Crumbs />
@@ -157,7 +155,7 @@ export function BlogPost({ post }: { post: Post }) {
         <section className="s-art-text" aria-label={post.title}>
           <div className="s-wrap s-art-body">
             <div className="s-art-main">
-              <div className={'s-art-sum s-art-wide' + (toc.length > 1 ? '' : ' s-art-sum--solo')}>
+              <div className="s-art-sum">
                 <p className="s-art-lead">{post.answer}</p>
                 {toc.length > 1 && (
                   <nav className="s-art-toc" aria-label={blogUi.toc}>
