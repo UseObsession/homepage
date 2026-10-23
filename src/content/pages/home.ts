@@ -49,12 +49,12 @@ export const page: Page = {
   },
 
   /* The hero's film: why Obsession (the cut on YouTube, useobsession channel), played in the page from our own copy.
-     A new cut gets a new file name (-v2), because public/film/ is cached for a year. */
+     A new cut gets a new file name (-v3 next), because public/film/ is cached for a year. */
   heroVideo: {
-    youtube: '9oLcB0dunE4',
+    youtube: 'xNoG39G4twQ',
     label: 'Watch why Obsession',
     title: 'Why Obsession: AI agents that become customers of every company',
-    file: { src: '/film/why-obsession-v1.mp4', poster: '/film/why-obsession-v1.jpg', width: 832, height: 464 },
+    file: { src: '/film/why-obsession-v2.mp4', poster: '/film/why-obsession-v2.jpg', width: 960, height: 540 },
   },
 
   /* The share image's receipt (scripts/og.mjs): an invented company's ad followed to its page and the email that came. */
