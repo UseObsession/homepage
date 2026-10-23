@@ -1,18 +1,25 @@
 // The live site's Worker (Cloudflare Workers & Pages: "homepage"), active since 19 Oct: Cloudflare deploys from this file,
 // not from its own automatic setup, so `npm run build` writes dist/ directly and this file says how it is served.
-// Cloudflare Workers static assets (free plan): the built site in dist/, served as files, nothing else.
+// Cloudflare Workers static assets (free plan): the built site in dist/, served as files. The 1 exception is the films
+// (/film/*): run_worker_first sends them through worker/index.js, which answers byte-range requests, because static
+// assets don't and Safari won't play a video without them. Every other address never runs the Worker.
 // - not_found_handling "404-page": any address without a page gets dist/404.html with a real 404 status, never Home
 //   with a 200 (docs/REBUILD.md 8b, "real 404s").
 // - html_handling "auto-trailing-slash": dist/agencies.html answers /agencies; public/_redirects sends /agencies/ there
 //   for good.
 // - previews: pull request branches deploy with `npx wrangler preview`, which needs this block (it can stay empty;
 //   assets and compatibility settings stay at the top level).
-// After a deploy: curl -sI https://useobsession.com/nope should answer 404 with the 404 page.
+// After a deploy: curl -sI https://useobsession.com/nope should answer 404 with the 404 page, and
+// curl -s -o /dev/null -w "%{http_code}" -H "Range: bytes=0-1" https://useobsession.com/film/why-obsession-v1.mp4
+// should answer 206.
 {
   "name": "homepage",
   "compatibility_date": "2026-10-01",
+  "main": "./worker/index.js",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/film/*"],
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   },
