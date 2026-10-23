@@ -9,8 +9,16 @@ export const catalog = {
   /* Every recipe, in the registry's order, and the file its words are in. */
   recipes: recipes.map(({ id, slug, name, group, line }) => ({ id, slug, name, group, line, file: recipeFileOf[slug] })),
   studies: studies.map(({ name, line, meta }) => ({ name, line, path: meta.path, file: studyFileOf[meta.path] })),
-  /* Every post, newest first: what a list of posts shows. */
-  posts: posts.map(({ slug, title, dek, published, readingMinutes }) => ({ slug, title, dek, published, readingMinutes })),
+  /* Every post, newest first: what a list of posts shows, and the hub and lead the Resources menu shows. */
+  posts: posts.map(({ slug, title, dek, category, published, readingMinutes, featured }) => ({
+    slug,
+    title,
+    dek,
+    category,
+    published,
+    readingMinutes,
+    featured: !!featured,
+  })),
   blogLive,
   /* The call to action on /agents, which the nav carries there (content/nav.ts). */
   agentsCta: agentsPage.contact.cta,

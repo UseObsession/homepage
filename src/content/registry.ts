@@ -88,8 +88,8 @@ export const posts: BlogPost[] = Object.values(postFiles).sort((a, b) =>
 /* The file each post came from, for the prerender's checks and the sitemap. */
 export const postFileOf: Record<string, string> = Object.fromEntries(Object.entries(postFiles).map(([file, p]) => [p.slug, nameOf(file)]))
 export const postBySlug: Record<string, BlogPost | undefined> = Object.fromEntries(posts.map((p) => [p.slug, p]))
-/* The blog shows only while it has a live post. It is archived for now (content/blog/archive, Seun, 3 Oct 2026): no
-   /blog pages, nav or footer link, Resources group, sitemap lines or feed until a post moves back. */
+/* The blog shows only while it has a live post (it was archived in content/blog/archive from 3 to 23 Oct 2026). With
+   none: no /blog pages, nav or footer link, Resources group, sitemap lines or feed. */
 export const blogLive = posts.length > 0
 
 export { agentsPage, notFoundPage, privacyPage, recipesPage, sample }
