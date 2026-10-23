@@ -919,7 +919,15 @@
 /* A comparison takes the page's full width, out to the title's left edge, so 5 columns read in lines and not in
    fragments. The side contents step aside while the table passes them (BlogPost sets s-art--wide-in-view). */
 @media (min-width: 1000px) {
-  .s-art-main > .s-art-table--compare { width: auto; margin-left: calc(-1 * (var(--s-art-rail) + var(--s-art-gap))); }
+  /* On the page's own ground and above the side contents, so the contents slide under the table even before the
+     script that fades them has loaded. */
+  .s-art-main > .s-art-table--compare {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    margin-left: calc(-1 * (var(--s-art-rail) + var(--s-art-gap)));
+    background: var(--ob-bg);
+  }
   .s-art-rail { transition: opacity var(--ob-dur-base) var(--ob-ease-out), visibility 0s linear 0s; }
   .s-art--wide-in-view .s-art-rail { opacity: 0; visibility: hidden; transition: opacity var(--ob-dur-base) var(--ob-ease-out), visibility 0s linear var(--ob-dur-base); }
 }
