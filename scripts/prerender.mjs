@@ -58,7 +58,7 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, blogUi, blogPage, isJamesPath } = await import(
+const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, posts, sourceProblems, blogUi, blogPage, isJamesPath } = await import(
   pathToFileURL(join(server, 'entry-server.js')).href
 )
 const postEntries = entries.filter((e) => e.kind === 'post')
@@ -522,6 +522,13 @@ for (const e of postEntries) {
   const slug = e.meta.path.split('/').pop()
   if (postFileOf[slug] !== slug) fail(`${e.meta.path}: the post's slug and its file's name differ (src/content/blog/${postFileOf[slug]}.ts).`)
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) fail(`${e.meta.path}: a post's slug is lower case words joined by single hyphens.`)
+}
+
+/* A post's sources are what its text links to, each listed once with its own date (lib/sources). */
+for (const p of posts) {
+  const { fails, warns } = sourceProblems(p)
+  for (const m of fails) fail(`/blog/${p.slug}: ${m}`)
+  for (const m of warns) warn(`/blog/${p.slug}: ${m}`)
 }
 
 /* The browser never loads a screen to see whose workspace it shows, so components/workspace.ts lists the agency ones:

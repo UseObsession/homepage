@@ -122,6 +122,7 @@ export const blogUi = {
   updated: 'Updated',
   by: 'By',
   sources: 'Sources',
+  sourcesNote: (checked: string) => `In the order the article cites them. Every link was checked on ${checked}.`,
   related: 'Read next',
   recipes: 'Recipes for this',
   rss: 'RSS feed',

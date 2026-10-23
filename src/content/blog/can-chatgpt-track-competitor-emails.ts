@@ -8,8 +8,9 @@ import type { BlogPost } from './types'
    reading that inbox through its Gmail connector) is given in full and free, with the line that 1 to 3 rivals need
    nothing more. The five assistants are described job by job from their own help pages, each read at its source on
    23 Oct 2026 (OpenAI pages through a text proxy, because OpenAI blocks direct fetches). Where a page is silent the
-   table says "the pages don’t say", never "can’t". Obsession appears twice in the body, where the by hand method
-   stops (the email and SMS tracking recipe, and the developers page line), plus the 2 CTAs; every claim about it is
+   table says "the pages don’t say", never "can’t". Obsession appears in the body in the disclosure and in 1 sentence
+   where the by hand method stops (the email and SMS tracking recipe, with the developers page linked in the same
+   sentence; its quoted line was cut in the 23 Oct copy pass), plus the 2 CTAs. Every claim about it is
    worded as those pages word it (waitlist, history from the first sign up).
    Left out on purpose: archive brand counts and prices (Milled blocked automated fetches; Panoramata’s own page gives
    two different counts, and the library’s 18k+ and 2,500 brands figures did not hold up), any Gemini in Gmail or
@@ -44,13 +45,13 @@ const AGENTMAIL = 'https://docs.agentmail.to/welcome'
 
 export const post: BlogPost = {
   slug: 'can-chatgpt-track-competitor-emails',
-  title: 'Can ChatGPT or Claude watch your competitors’ emails?',
-  dek: 'A spare Gmail address, a sheet and an assistant answer what 1 to 3 rivals sent you since you subscribed. Five assistants’ own help pages show where that stops: one inbox, capped schedules, no past, no proof.',
-  metaTitle: 'Can ChatGPT track competitor emails? What it can’t do alone',
+  title: 'Can ChatGPT or Claude track your competitors’ emails?',
+  dek: 'For 1 to 3 competitors, a spare Gmail inbox, a sheet and an AI assistant show what each one has sent since you signed up. The help pages of 5 assistants set the limits: one inbox, capped schedules, no older mail and nothing on keeping each email as evidence.',
+  metaTitle: 'Can ChatGPT track competitor emails? A method and its limits',
   description:
-    'Can ChatGPT track competitor emails? A spare Gmail method for 1 to 3 rivals, and what ChatGPT, Claude, Gemini, Perplexity and Copilot can and can’t do.',
+    'ChatGPT can track competitor emails that reach a Gmail inbox you connect. A method for 1 to 3 competitors, and what 5 assistants’ help pages say.',
   answer:
-    'ChatGPT, Claude and the other assistants can read and compare the rival emails that reach a Gmail inbox you connect, which is enough for 1 to 3 rivals. They run as one person in one inbox, cap scheduled work, can’t read mail from before you subscribed, and none of the help pages read covers keeping each email as evidence.',
+    'Yes, for 1 to 3 competitors: ChatGPT, Claude, Gemini and Perplexity can read and compare the competitor emails that reach a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence.',
   primaryKeyword: 'can chatgpt track competitor emails',
   keywords: [
     'can chatgpt track competitor emails',
@@ -88,15 +89,11 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'We read the help pages of ChatGPT, Claude, Gemini, Perplexity and Copilot on 23 October 2026 against one job: following what your rivals email new subscribers. Each can read an inbox you connect or work in a browser you own. None of the pages says it keeps each email as it arrived, or tells you which Gmail tab it landed in.',
+      text: 'If you run CRM or retention for a brand, or for an agency’s clients, you can track 1 to 3 competitors’ emails with free tools. Give each competitor a spare Gmail inbox, log the mail in a sheet and connect ChatGPT, Claude, Gemini or Perplexity to that inbox. The assistant can then tell you what each competitor has sent since the day you signed up.',
     },
     {
       kind: 'p',
-      text: 'A client or a boss keeps asking what a rival just sent, and you asked an assistant first because the job looks like reading and summarising. For 1 to 3 rivals it is. A spare Gmail address for each rival, a sheet and an assistant that reads that inbox will tell you what each one has sent since the day you subscribed. You need nothing else for that.',
-    },
-    {
-      kind: 'p',
-      text: 'The limits repeat on every page: one person in one inbox, scheduled work with caps, no mail from before you subscribed, and a summary where a client needs a record.',
+      text: 'The help pages of ChatGPT, Claude, Gemini, Perplexity and Copilot, checked on 23 October 2026, show where that method stops. Each assistant works as one person, in an inbox you connect or a browser you own, and none can read mail from before you signed up. The 4 assistants whose pages describe scheduled work all cap it. None of the pages says the assistant keeps each email as it arrived or reports which Gmail tab it landed in.',
     },
     {
       kind: 'stat',
@@ -109,11 +106,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'by-hand', text: 'How to see what competitors email their customers, by hand' },
     {
       kind: 'p',
-      text: 'The method is not new. [Practical Ecommerce described a version in December 2024](' +
+      text: 'You need a spare Gmail inbox for each competitor, a sheet and any assistant with a Gmail connection. [Practical Ecommerce described a version of this method in December 2024](' +
         PRACTICAL +
         '): sign up from a Gmail address, forward the mail to a parser and have ChatGPT pull out the data. [Brian Christner’s version](' +
         CHRISTNER +
-        ') saves each email from a dedicated Gmail account into a sheet, where ChatGPT adds a summary and a category. What follows needs only an inbox, a sheet and any assistant with a Gmail connection.',
+        ') saves each email from a dedicated Gmail account into a sheet, where ChatGPT adds a summary and a category.',
     },
     {
       kind: 'stat',
@@ -124,71 +121,75 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'That is one platform’s category figure, not your rival’s. It is why you read the first week of a new subscriber’s mail before anything else.',
+      text: 'The figure covers Klaviyo’s customers as a whole. Because automated flows carry that share of revenue, start with the first week of a new subscriber’s mail, when the welcome series arrives.',
     },
 
-    { kind: 'h3', id: 'spare-inbox', text: '1. Make one Gmail address for each rival' },
+    { kind: 'h3', id: 'spare-inbox', text: '1. Open one spare Gmail inbox for each competitor' },
     {
       kind: 'p',
-      text: 'Open a new Gmail address for each rival and use it for nothing else. Each rival sees one new subscriber, the welcome series belongs to one sender, and an assistant connected to that inbox can’t mix two rivals up. One shared address works for 3 rivals if you label the mail by sender. Keep your own mail out of it: Christner set up an isolated Gmail account so his personal mail never reached ChatGPT.',
+      text: 'Open a new Gmail account for each competitor and use it for nothing else. Each competitor then sees one new subscriber, each welcome series comes from one sender, and an assistant connected to the inbox can’t confuse two competitors. One shared inbox works for 3 competitors if you label the mail by sender. Keep your own mail out of it: Christner set up an isolated Gmail account so his personal mail never reached ChatGPT.',
     },
 
     { kind: 'h3', id: 'sign-up', text: '2. Sign up the way a customer does' },
     {
       kind: 'p',
-      text: 'Use the pop up or the footer form on each rival’s site, on your phone first and then a laptop. Write down the date, the time and the offer on screen. If the first email asks you to confirm, click the link from the new inbox the same day, because a rival’s welcome series may not start until you do.',
+      text: 'Use the pop up or the footer form on each competitor’s site, on your phone first and then on a laptop. Write down the date, the time and the offer on screen. If the first email asks you to confirm, click the link from the spare inbox the same day, because a competitor’s welcome series may not start until you do.',
     },
 
     { kind: 'h3', id: 'sheet', text: '3. Log every email in one sheet' },
     {
       kind: 'p',
-      text: 'Give each email a row with these columns: **rival**, **received** (date and time), **subject**, **offer and code**, **Gmail tab** and **notes**. Fill it in within a day. After a week you can read off three things: how long each rival took to send a first email, how many welcome steps arrived in 7 days, and the day the offer changed.',
+      text: 'Give each email a row with these columns: **competitor**, **received** (date and time), **subject**, **offer and code**, **Gmail tab** and **notes**. Fill it in within a day. After a week the sheet shows 3 things: how long each competitor took to send a first email, how many welcome emails arrived in 7 days, and the day the offer changed.',
     },
 
-    { kind: 'h3', id: 'gmail-tab', text: '4. Read the Gmail tab yourself' },
+    { kind: 'h3', id: 'gmail-tab', text: '4. Record the Gmail tab yourself' },
     {
       kind: 'p',
-      text: 'Gmail shows the tab each email landed in. [Gmail’s own search help](' +
+      text: 'Gmail shows the tab each email landed in, and [Gmail’s search help](' +
         GMAIL_SEARCH +
-        ') documents **category:promotions**, so one search lists a rival’s mail by tab. Log the tab as what that inbox saw. A new address has opened and clicked nothing, so it shows one fresh subscriber’s view, not the view of a rival’s loyal customers.',
+        ') documents **category:promotions**, so one search lists a competitor’s mail by tab. Log the tab as what that one inbox saw. A spare inbox has opened and clicked nothing, so its tab shows one new subscriber’s view, which may differ from the tab a competitor’s loyal customers see.',
     },
 
-    { kind: 'h3', id: 'assistant', text: '5. Let an assistant read and compare' },
+    { kind: 'h3', id: 'assistant', text: '5. Connect an assistant to read and compare' },
     {
       kind: 'p',
       text: 'Connect only the spare inbox. [Claude’s Gmail connector](' +
         CLAUDE_GMAIL +
-        ') searches the one Google account you connect, can’t send or change mail, and links each answer to the emails it used. ChatGPT and Perplexity have Gmail connections too, and [OpenAI’s example prompts](' +
+        ') searches the one Google account you connect, can’t send or change mail, and links each answer to the emails it used. ChatGPT and Perplexity also connect to Gmail, and [OpenAI’s example prompts](' +
         OPENAI_USE +
-        ') include a summary of unread emails grouped by sender. Ask for what the sheet needs:',
+        ') include a summary of unread emails grouped by sender. These prompts fill the sheet:',
     },
     {
       kind: 'list',
       items: [
-        '“List every email in this inbox since the day I subscribed, newest first, with date, time, subject, offer and code.”',
+        '“List every email in this inbox since the day I signed up, newest first, with date, time, subject, offer and code.”',
         '“Compare the first 7 days of mail from rivala.example and rivalb.example: emails sent, first send after sign up, deepest discount.”',
         '“Mark every email whose offer differs from the one before it.”',
       ],
     },
     {
       kind: 'p',
-      text: 'Check a count against the inbox before you repeat it. A Gmail search such as **from:news@rivala.example after:2026/10/23** gives the true number, and Claude’s links open the email behind each line. The Claude connector can’t see images embedded in emails, so read any email whose offer sits in an image yourself and add it to the sheet.',
+      text: 'Check each count against the inbox before you use it. A Gmail search such as **from:news@rivala.example after:2026/10/23** gives the exact number, and Claude’s links open the email behind each line. The Claude connector can’t see images embedded in emails, so read any email whose offer is in an image yourself and add it to the sheet.',
     },
 
-    { kind: 'h3', id: 'weekly', text: '6. Run it on a schedule and match it to the inbox weekly' },
+    { kind: 'h3', id: 'weekly', text: '6. Schedule a digest and check it against the inbox weekly' },
     {
       kind: 'p',
       text: 'ChatGPT runs recurring tasks [up to once an hour on paid plans](' +
         OPENAI_TASKS +
         '), and Gemini’s [scheduled actions](' +
         GEMINI_SCHEDULE +
-        ') are built for daily summaries, so step 5 can arrive as a digest. Once a week, compare the digest with the sheet and the inbox. If the digest and the inbox disagree, trust the inbox.',
+        ') are built for daily summaries, so the comparison can arrive as a scheduled digest. Once a week, compare the digest with the sheet and the inbox. Where the digest and the inbox disagree, use the inbox.',
     },
 
-    { kind: 'h2', id: 'what-each-does', text: 'ChatGPT competitor analysis for emails: what five assistants do, job by job' },
+    { kind: 'h2', id: 'what-each-does', text: 'ChatGPT competitor analysis for emails: what 5 assistants can do' },
+    {
+      kind: 'p',
+      text: 'All 5 assistants can fill in a sign up form in a browser, and 4 of them can read a connected Gmail inbox. None of their help pages describes an inbox or phone number of the assistant’s own.',
+    },
     {
       kind: 'table',
-      caption: 'Five assistants, job by job, from their own help pages, read 23 October 2026',
+      caption: '5 assistants, job by job, from their own help pages, read 23 October 2026',
       cols: ['Job', 'ChatGPT', 'Claude', 'Gemini', 'Perplexity', 'Copilot'],
       rows: [
         [
@@ -197,7 +198,7 @@ export const post: BlogPost = {
           'Yes. Read only, with links to the emails used',
           'Yes. Daily digests can include your emails',
           'Yes, once Gmail is connected',
-          'The page read doesn’t say',
+          'The page doesn’t say',
         ],
         [
           'Fill in a sign up form for you',
@@ -208,12 +209,12 @@ export const post: BlogPost = {
           'Yes, in Edge. No autofill or saved passwords',
         ],
         [
-          'Own inbox and phone number for each rival',
+          'Own inbox and phone number for each competitor',
           'The pages don’t describe one',
           'The pages don’t describe one',
           'The pages don’t describe one',
           'The pages don’t describe one',
-          'The pages don’t describe one',
+          'The page doesn’t describe one',
         ],
         [
           'Run on a schedule',
@@ -221,7 +222,7 @@ export const post: BlogPost = {
           'Cloud tasks hourly at the fastest. 100 runs an hour',
           '10 active schedules. Tasks not offered in the UK or EEA',
           'Hourly at the fastest. 15 tasks per Computer conversation',
-          'The page doesn’t mention it',
+          'The page doesn’t say',
         ],
         [
           'Say which Gmail tab an email landed in',
@@ -240,7 +241,7 @@ export const post: BlogPost = {
           'Session screenshots, kept up to 30 days',
         ],
         [
-          'Answer from before you subscribed',
+          'Answer from before you signed up',
           'Only mail already in the inbox',
           'Only mail already in the inbox',
           'Only mail already in the inbox',
@@ -251,10 +252,14 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Copilot’s page covers browser actions in Edge, so its column is short because the page is. “The pages don’t say” means the pages read were silent, not that the assistant can’t. The last row is a fact about mailboxes: no inbox holds mail it never received.',
+      text: 'Copilot’s page covers browser actions in Edge, so its column has fewer answers. “The pages don’t say” means the pages we read were silent on that job, and the assistant may still do it. The last row is the same for all 5 because an assistant reads only the mail that reached the inbox.',
+    },
+    {
+      kind: 'p',
+      text: 'We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
     },
 
-    { kind: 'h3', id: 'good-at', text: 'What each one does well' },
+    { kind: 'h3', id: 'good-at', text: 'What each assistant offers for this job' },
     {
       kind: 'list',
       items: [
@@ -268,36 +273,36 @@ export const post: BlogPost = {
           ') keep running with the laptop closed, and [Claude in Chrome](' +
           CLAUDE_CHROME +
           ') repeats browser tasks daily, weekly, monthly or annually.',
-        '**Gemini’s** [auto browse](' +
+        '**Gemini** fills in forms in Chrome through [auto browse](' +
           GEMINI_BROWSE +
-          ') fills in forms in Chrome and hands you account creation, and its [tasks](' +
+          ') and hands account creation to you, and its [tasks](' +
           GEMINI_TASKS +
           ') ask before they submit a form or buy.',
-        '**Perplexity** queries Gmail once connected, [acts on websites in Comet](' +
+        '**Perplexity** queries Gmail once connected and [acts on websites in Comet](' +
           PPLX_COMET +
-          '), and its Computer tool runs [event triggered automations with memory of earlier runs](' +
+          '). On 29 September 2026, Perplexity added [event triggered automations with memory of earlier runs](' +
           PPLX_AUTOMATIONS +
-          '), published 29 September 2026.',
+          ') to its Computer tool.',
         '**Copilot** does short browser tasks in Edge that you [watch and can take over at any time](' +
           COPILOT +
           ').',
       ],
     },
 
-    { kind: 'h2', id: 'where-they-stop', text: 'Where every assistant stops: one person, one inbox, no past, no proof' },
+    { kind: 'h2', id: 'where-they-stop', text: 'Where the assistants stop' },
     {
       kind: 'p',
-      text: 'An assistant reads the inbox you give it. It isn’t a subscriber to anything.',
+      text: 'None of the help pages describes an assistant with an inbox or phone number of its own, so each one reads only the inbox you connect. The pages show 4 limits:',
     },
     {
       kind: 'list',
       items: [
         '**One person, one account.** Claude’s connector reaches only the Google account you connected. [Gemini’s tasks](' +
           GEMINI_TASKS +
-          ') need a personal Google Account. [Perplexity’s Gmail connection](' +
+          ') need a personal Google Account, and [Perplexity’s Gmail connection](' +
           PPLX_GMAIL +
           ') is personal too. A team that wants shared evidence copies it out by hand.',
-        '**Scheduled work has caps.** ChatGPT allows 3 to 15 active tasks. Gemini allows 10 active schedules and 15 tasks running at once, and [auto browse allows 20 requests a day on Google AI Pro](' +
+        '**Caps on scheduled work.** ChatGPT allows 3 to 15 active tasks. Gemini allows 10 active schedules and 15 tasks running at once, and [auto browse allows 20 requests a day on Google AI Pro](' +
           GEMINI_BROWSE +
           '). [Perplexity’s Computer](' +
           PPLX_COMPUTER +
@@ -308,162 +313,150 @@ export const post: BlogPost = {
           ') run only while the app is open and the computer is awake. On ChatGPT Plus, each scheduled agent run counts toward [40 agent messages a month](' +
           OPENAI_AGENT +
           ').',
-        '**No past.** The assistant reads the mail in the inbox. What a rival sent last month, to anyone but you, isn’t there.',
-        '**No evidence.** The pages read don’t describe keeping the original email, its arrival time or its sender check, or reporting the tab. Copilot keeps session screenshots for up to 30 days, which record the session and not the email.',
+        '**No older mail.** The assistant reads the mail in the inbox, so anything a competitor sent before you signed up, or sent to anyone else, isn’t there.',
+        '**No kept copy.** None of the pages describes keeping the original email, its arrival time or its sender check, or reporting the Gmail tab. Copilot keeps screenshots of its browser sessions for up to 30 days.',
       ],
     },
     {
       kind: 'p',
-      text: 'The email itself, with the time it arrived and its sender check, settles an argument with a client or a boss. A summary or a screenshot starts one.',
+      text: 'To show a client or a manager what a competitor sent, you need the original email with its arrival time and sender check, and a summary or a screenshot includes neither.',
     },
 
-    { kind: 'h2', id: 'archives', text: 'What email archives show, and what they don’t' },
+    { kind: 'h2', id: 'archives', text: 'What email archives such as Milled, MailCharts and Panoramata show' },
     {
       kind: 'p',
-      text: 'Archives hold mail already collected, so you get history on day one. [Milled](' +
+      text: 'Archives hold mail they have already collected, so you get history from day one. [Milled](' +
         MILLED +
         ') calls itself a search engine for email newsletters and ecommerce sales. [MailCharts](' +
         MAILCHARTS +
-        ') says it covers email and SMS, and collects ecommerce email journeys. Its agencies page carries the request they answer:',
-    },
-    {
-      kind: 'quote',
-      text: 'constantly be asking us to produce a competitive analysis based on email',
-      cite: 'A senior account manager at DEFINITION 6, on MailCharts’ own agencies page (vendor testimonial, undated)',
-      href: MAILCHARTS_AGENCIES,
+        ') says it covers email and SMS and collects ecommerce email journeys, and [its agencies page](' +
+        MAILCHARTS_AGENCIES +
+        ') quotes a senior account manager at DEFINITION 6, in an undated testimonial, on requests to produce a competitive analysis based on email.',
     },
     {
       kind: 'p',
       text: '[Panoramata](' +
         PANORAMATA +
-        ') says it monitors rivals’ emails and SMS or WhatsApp messages, shows welcome and abandoned checkout flows, and keeps ad and landing page history. It also publishes comparison pages of these tools, so read those as vendor writing.',
+        ') says it monitors competitors’ emails and SMS or WhatsApp messages, shows welcome and abandoned checkout flows, and keeps ad and landing page history. It also publishes comparison pages of these tools, which are vendor content.',
     },
     {
       kind: 'p',
-      text: 'An archive suits a look at many brands you didn’t subscribe to. It shows what the vendor collected for the brands it covers. You can’t choose the shopper, the basket or the day, and Panoramata’s page doesn’t say how its emails are collected.',
+      text: 'An archive suits a look at many brands you haven’t signed up to. It shows what the vendor collected for the brands it covers. You can’t choose the shopper, the basket or the day, and Panoramata’s page doesn’t say how its emails are collected.',
     },
 
-    { kind: 'h2', id: 'twenty-rivals', text: 'Competitor email tracking for 20 rivals: the sum changes' },
+    { kind: 'h2', id: 'twenty-rivals', text: 'Competitor email tracking beyond 3 competitors' },
     {
       kind: 'p',
-      text: 'Your sum: rivals × minutes a week you spend reading each rival’s mail × 4 ÷ 60 = hours a month. At 3 rivals and 20 minutes each, a figure set deliberately low, that is 4 hours. At 20 rivals it is nearly 27. Put your own minutes in.',
+      text: 'Work out the hours with your own minutes: competitors × minutes a week on each competitor’s mail × 4 ÷ 60 = hours a month. At 3 competitors and 20 minutes each, a low estimate, that is 4 hours a month, and at 20 competitors it is nearly 27.',
     },
     {
       kind: 'p',
-      text: 'Past that, the job needs an inbox and a phone number for every brand, running for weeks, kept as they arrived. Developers can build the parts. [AgentMail](' +
+      text: 'At 20 competitors, the job needs an inbox and a phone number for every brand, running for weeks, with every message kept as it arrived. Developers can build the parts. [AgentMail](' +
         AGENTMAIL +
-        ') gives each agent a mailbox, with a free tier of 3 inboxes and 100 emails a day. [Clay’s benchmark of 22 September 2026](' +
+        ') gives each agent a mailbox, with a free tier of 3 inboxes and 100 emails a day. In [Clay’s benchmark of 22 September 2026](' +
         CLAY +
-        ') had agents submit 6,346 forms across 100 countries and log replies by email and phone. Clay calls it the first in a series and lists its own caveats, so it is a snapshot of replies to demo forms, not a kept record of any store’s emails.',
+        '), agents submitted 6,346 forms across 100 countries and logged replies by email and phone. Clay calls it the first in a series and lists its own caveats. It is a single snapshot of replies to demo forms.',
     },
     {
       kind: 'p',
-      text: 'Obsession’s [email and SMS tracking](/recipes/email-sms-tracking) is built for that case. Its page describes an AI agent for each rival with its own inbox and texting number, every message kept as it arrived, and history that starts from the minute an agent first subscribes. It is open by waitlist.',
-    },
-    {
-      kind: 'p',
-      text: 'Obsession’s [developers page](/developers) puts the same gap in one line: “Your AI agent can think. It can’t be a customer for thirty days.”',
+      text: 'Obsession’s [email and SMS tracking](/recipes/email-sms-tracking), open by waitlist, is built for this case, with history that starts from the minute an agent first signs up, and its [developers page](/developers) covers the same gap for teams building their own AI agents.',
     },
     {
       kind: 'cta',
-      text: 'For more rivals than you can read by hand, email and SMS tracking gives each rival an AI agent with its own inbox and texting number, and keeps every message as it arrived.',
+      text: 'Obsession’s email and SMS tracking gives each competitor an AI agent with its own inbox and texting number, and keeps every message as it arrived.',
       to: '/recipes/email-sms-tracking',
       label: 'See email and SMS tracking',
     },
 
-    { kind: 'h2', id: 'for-agencies', text: 'For agencies: the rival report is half of the client call' },
+    { kind: 'h2', id: 'for-agencies', text: 'For agencies: running the same test on a client’s store' },
     {
       kind: 'p',
-      text: 'A rival’s welcome series is worth most beside your client’s own. A client’s dashboard shows what was sent, and only a new customer shows what arrived. Run the same method on the client’s store, with the client’s OK: a fresh address, a sign up, a basket left behind, and 48 hours of watching the inbox.',
+      text: 'Run the same method on your client’s store, with the client’s OK: a spare inbox, a sign up, a basket left behind, and 48 hours of watching the inbox. A competitor’s welcome series can then be read next to your client’s own. The client’s dashboard reports which emails were sent, and the spare inbox shows which of them reached a new customer.',
     },
     {
       kind: 'p',
-      text: 'Code freezes close about 20 November. A gap found by then is still fixable, and one found on Black Friday is not.',
+      text: 'Code freezes begin about 20 November. Run the test before then so there is time to fix what it finds.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s test customers sign up, leave a basket and stop at checkout at each client store, with each owner’s OK, then watch every inbox for 48 hours. You get what arrived, what never did, and the screenshots.',
+      text: 'Obsession checks 5 client stores free, with each owner’s OK. Its test customers sign up, leave a basket and stop at checkout, then report which emails arrived within 48 hours and which never came, with screenshots.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },
 
-    { kind: 'h2', id: 'start-now', text: 'Sign up before the teasers: the record starts the day you do' },
+    { kind: 'h2', id: 'start-now', text: 'When to sign up before Black Friday' },
     {
       kind: 'p',
-      text: 'Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. Rivals’ teasers start in late October. An address that subscribes by Friday 30 October holds 4 weeks of a rival’s mail by Black Friday. One that subscribes on Black Friday holds the sale and nothing that led to it, and no assistant can reach back for the rest.',
-    },
-    {
-      kind: 'p',
-      text: 'Make the addresses this week, and on Black Friday you read 4 weeks of each rival’s mail instead of guessing.',
+      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start in late October, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. If you sign up by Friday 30 October, the inbox holds 4 weeks of a competitor’s mail by Black Friday. If you sign up on Black Friday, it holds only the sale emails, and no assistant can retrieve the earlier ones.',
     },
 
-    { kind: 'h2', id: 'questions', text: 'Questions' },
+    { kind: 'h2', id: 'questions', text: 'Frequently asked questions' },
     {
       kind: 'faq',
       items: [
         {
           q: 'Can ChatGPT track competitor emails?',
-          a: 'ChatGPT can summarise and compare the rival emails that reach a Gmail inbox you connect, but not mail from before you subscribed, and its help pages don’t describe keeping each email as evidence.',
+          a: 'ChatGPT can summarise and compare the competitor emails that reach a Gmail inbox you connect. It can’t read mail from before you signed up, and its help pages don’t describe keeping each email as evidence.',
         },
         {
           q: 'Can Claude monitor my competitors’ emails?',
-          a: 'Claude’s Gmail connector searches the one Google account you connect, read only, and links each answer to the emails it used. It can’t see images embedded in emails, and it can’t read mail that never reached that inbox.',
+          a: 'Claude’s Gmail connector can search the competitor emails in the one Google account you connect, read only, and links each answer to the emails it used. It can’t see images embedded in emails or read mail that never reached that inbox.',
         },
         {
           q: 'How do I see what competitors email their customers?',
-          a: 'Sign up to each rival from a spare Gmail address, log every email in a sheet with its time, offer and Gmail tab, and have an assistant summarise the inbox. That suits 1 to 3 rivals and needs no paid tool.',
+          a: 'Sign up to each competitor from a spare Gmail inbox, log every email in a sheet with its time, offer and Gmail tab, and have an assistant summarise the inbox. That suits 1 to 3 competitors and needs no paid tool.',
         },
         {
-          q: 'Can ChatGPT show me what a rival emailed before I subscribed?',
-          a: 'No. It reads the mail in the inbox you connect, and that inbox holds only what arrived after you subscribed. An archive that collected the mail earlier, or an agent that subscribed earlier, can hold older mail.',
+          q: 'Can ChatGPT show me what a competitor emailed before I signed up?',
+          a: 'No. It reads the mail in the inbox you connect, and that inbox holds only what arrived after you signed up. An archive that collected the mail earlier, or an agent that signed up earlier, can hold older mail.',
         },
         {
-          q: 'Can an AI assistant tell me which Gmail tab a rival’s email landed in?',
-          a: 'The help pages read don’t say any of the five reports the tab. Gmail shows it, and Gmail search supports category:promotions. A new address shows one fresh subscriber’s view.',
+          q: 'Can an AI assistant tell me which Gmail tab a competitor’s email landed in?',
+          a: 'None of the 5 assistants’ help pages says it reports the tab. Gmail shows the tab, and a Gmail search for category:promotions lists the mail in that tab. A spare inbox shows the tab one new subscriber sees.',
         },
         {
           q: 'How many competitors can I follow by hand?',
-          a: 'Work out your own sum: rivals × minutes a week on each × 4 ÷ 60 = hours a month. At 3 rivals and 20 minutes each it is 4 hours. At 20 rivals it is nearly 27.',
+          a: 'Use this sum: competitors × minutes a week on each × 4 ÷ 60 = hours a month. At 3 competitors and 20 minutes each it is 4 hours a month, and at 20 competitors it is nearly 27.',
         },
         {
           q: 'Do email archives like Milled replace a spare inbox?',
-          a: 'They give you history on day one for the brands they cover. They don’t let you choose the shopper, the basket or the day, so they answer a different question.',
+          a: 'They cover part of the job. An archive gives you history from day one for the brands it covers, and you can’t choose the shopper, the basket or the day.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Every help page and document cited here was read at its source on 23 October 2026: OpenAI’s scheduled tasks, ChatGPT agent and connector pages (through a text proxy, because OpenAI blocks direct fetches), Claude’s Gmail connector, Claude in Chrome and scheduled tasks pages, Gemini’s tasks, scheduled actions and auto browse pages, Perplexity’s Gmail connector, Comet and Computer pages, Microsoft’s Browse with Copilot page, Gmail’s search help, Klaviyo’s benchmarks page, Clay’s post and AgentMail’s docs. Most help pages show no date, so the date given is the day they were read. Milled blocked automated fetches, so only its homepage title is used. No archive counts or prices are quoted, because Panoramata’s page gives two different counts and MailCharts’ page gives none. Where a page was silent, this piece says the pages don’t say. It is not a claim that the assistant can’t. Nothing here is legal advice.',
+      text: 'OpenAI blocks direct fetches, so its pages were read through a text proxy. Most help pages show no date, so the sources list gives none for them. Milled blocked automated fetches, so only its homepage title is used. No archive counts or prices are quoted, because Panoramata’s page gives 2 different counts and MailCharts’ page gives none. Where a page was silent, the table says so, and the assistant may still do that job. Nothing here is legal advice.',
     },
   ],
 
   sources: [
-    { title: 'Scheduled tasks in ChatGPT', publisher: 'OpenAI Help Center', url: OPENAI_TASKS, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'ChatGPT agent', publisher: 'OpenAI Help Center', url: OPENAI_AGENT, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Plugin use cases and prompts', publisher: 'OpenAI Help Center', url: OPENAI_USE, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Gmail connector', publisher: 'Claude docs', url: CLAUDE_GMAIL, date: 'Read 23 Oct 2026 (undated)' },
+    { title: 'Scheduled tasks in ChatGPT', publisher: 'OpenAI Help Center', url: OPENAI_TASKS },
+    { title: 'ChatGPT agent', publisher: 'OpenAI Help Center', url: OPENAI_AGENT },
+    { title: 'Plugin use cases and prompts', publisher: 'OpenAI Help Center', url: OPENAI_USE },
+    { title: 'Gmail connector', publisher: 'Claude docs', url: CLAUDE_GMAIL },
     { title: 'Get started with Claude in Chrome', publisher: 'Claude Help Center', url: CLAUDE_CHROME, date: '2026-08-26' },
-    { title: 'Automate work with scheduled tasks', publisher: 'Claude Code docs', url: CLAUDE_TASKS, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Schedule recurring tasks in Claude Code Desktop', publisher: 'Claude Code docs', url: CLAUDE_DESKTOP, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Manage your tasks and workflows in Gemini Apps', publisher: 'Gemini Apps Help', url: GEMINI_TASKS, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Schedule actions in Gemini Apps', publisher: 'Gemini Apps Help', url: GEMINI_SCHEDULE, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Ask Gemini in Chrome to complete tasks for you with auto browse', publisher: 'Chrome Help', url: GEMINI_BROWSE, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Connecting Perplexity with Gmail and Google Calendar', publisher: 'Perplexity Help Center', url: PPLX_GMAIL, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Assistant panel', publisher: 'Comet Browser Help Center', url: PPLX_COMET, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Scheduled tasks in Computer', publisher: 'Perplexity Help Center', url: PPLX_COMPUTER, date: 'Read 23 Oct 2026 (undated)' },
+    { title: 'Automate work with scheduled tasks', publisher: 'Claude Code docs', url: CLAUDE_TASKS },
+    { title: 'Schedule recurring tasks in Claude Code Desktop', publisher: 'Claude Code docs', url: CLAUDE_DESKTOP },
+    { title: 'Manage your tasks and workflows in Gemini Apps', publisher: 'Gemini Apps Help', url: GEMINI_TASKS },
+    { title: 'Schedule actions in Gemini Apps', publisher: 'Gemini Apps Help', url: GEMINI_SCHEDULE },
+    { title: 'Ask Gemini in Chrome to complete tasks for you with auto browse', publisher: 'Chrome Help', url: GEMINI_BROWSE },
+    { title: 'Connecting Perplexity with Gmail and Google Calendar', publisher: 'Perplexity Help Center', url: PPLX_GMAIL },
+    { title: 'Assistant panel', publisher: 'Comet Browser Help Center', url: PPLX_COMET },
+    { title: 'Scheduled tasks in Computer', publisher: 'Perplexity Help Center', url: PPLX_COMPUTER },
     { title: 'Computer adds Automations for ongoing work', publisher: 'Perplexity', url: PPLX_AUTOMATIONS, date: '2026-09-29' },
-    { title: 'Copilot Actions in Edge (Browse with Copilot)', publisher: 'Microsoft Support', url: COPILOT, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Refine searches in Gmail', publisher: 'Gmail Help', url: GMAIL_SEARCH, date: 'Read 23 Oct 2026 (undated)' },
-    { title: '2026 email marketing benchmarks', publisher: 'Klaviyo', url: KLAVIYO_BENCH, date: 'Read 23 Oct 2026 (undated)' },
+    { title: 'Copilot Actions in Edge (Browse with Copilot)', publisher: 'Microsoft Support', url: COPILOT },
+    { title: 'Refine searches in Gmail', publisher: 'Gmail Help', url: GMAIL_SEARCH },
+    { title: '2026 email marketing benchmarks', publisher: 'Klaviyo', url: KLAVIYO_BENCH },
     { title: 'How to monitor competitors’ email marketing', publisher: 'Practical Ecommerce (Armando Roggio)', url: PRACTICAL, date: '2024-12-15' },
-    { title: 'How to build a competitor analysis tool using ChatGPT', publisher: 'Brian Christner', url: CHRISTNER, date: '2024-03-28 (modified 2026-02-17)' },
+    { title: 'How to build a competitor analysis tool using ChatGPT', publisher: 'Brian Christner', url: CHRISTNER, date: '2026-02-17' },
     { title: 'Claygent experiment: speed to lead', publisher: 'Clay', url: CLAY, date: '2026-09-22' },
-    { title: 'AgentMail docs', publisher: 'AgentMail', url: AGENTMAIL, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'Milled: a search engine for email newsletters and ecommerce sales', publisher: 'Milled', url: MILLED, date: 'Title read 23 Oct 2026' },
-    { title: 'MailCharts', publisher: 'MailCharts', url: MAILCHARTS, date: 'Read 23 Oct 2026 (undated)' },
-    { title: 'MailCharts for agencies', publisher: 'MailCharts', url: MAILCHARTS_AGENCIES, date: 'Read 23 Oct 2026 (undated testimonial)' },
-    { title: 'Panoramata', publisher: 'Panoramata', url: PANORAMATA, date: 'Read 23 Oct 2026 (undated)' },
+    { title: 'AgentMail docs', publisher: 'AgentMail', url: AGENTMAIL },
+    { title: 'Milled: a search engine for email newsletters and ecommerce sales', publisher: 'Milled', url: MILLED },
+    { title: 'MailCharts', publisher: 'MailCharts', url: MAILCHARTS },
+    { title: 'MailCharts for agencies', publisher: 'MailCharts', url: MAILCHARTS_AGENCIES },
+    { title: 'Panoramata', publisher: 'Panoramata', url: PANORAMATA },
   ],
 
   related: [

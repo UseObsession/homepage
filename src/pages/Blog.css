@@ -50,7 +50,6 @@
 .s-blog-lead__screen { min-width: 0; }
 
 /* ---- A post: the header ---------------------------------------------------------------------------------------------- */
-.s-hero.s-art-hero { padding-bottom: var(--ob-space-64); }
 .s-art-kicker { margin: 0 0 var(--ob-space-20); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); }
 .s-art-kicker > a { color: var(--ob-text-2); text-decoration: none; transition: color var(--ob-dur-base) var(--ob-ease-out); }
 @media (hover: hover) and (pointer: fine) { .s-art-kicker > a:hover { color: var(--ob-text); } }
@@ -71,7 +70,6 @@
   text-wrap: balance;
 }
 .s-art-byline { margin-top: var(--ob-space-32); }
-.s-art-heroobj { width: 100%; max-width: 880px; margin-top: var(--ob-space-56); }
 .s-art-heroobj .ilwrap { cursor: pointer; }
 
 /* ---- A post: the text and its contents ------------------------------------------------------------------------------- */
@@ -225,12 +223,28 @@
 .s-art-main > * + .s-art-cta, .s-art-cta + * { margin-top: var(--ob-space-40); }
 .s-art-cta__x { flex: 1 1 28ch; margin: 0; font: var(--ob-type-small); color: var(--ob-text); text-wrap: pretty; }
 
+/* The sources: the text's links, listed in the order it cites them, quieter than the text. Numbered in mono like the
+   contents; the title is the link, then who published it and its own date. */
 .s-art-sources { margin-top: var(--ob-space-64) !important; padding-top: var(--ob-space-32); border-top: var(--ob-border-hair) solid var(--ob-line); }
-.s-art-sources__h { margin: 0 0 var(--ob-space-16); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
-.s-art-sources__list { display: grid; gap: var(--ob-space-12); margin: 0; padding: 0 0 0 var(--ob-space-24); font: var(--ob-type-small); color: var(--ob-text-3); }
-.s-art-sources__list > li::marker { font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
-.s-art-sources__list a { color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-ui); text-underline-offset: 3px; }
-.s-art-sources__meta { display: block; margin-top: var(--ob-space-2); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.s-art-sources__h { margin: 0; font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.s-art-sources__note { margin: var(--ob-space-4) 0 var(--ob-space-20); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.s-art-sources__list { display: grid; gap: var(--ob-space-10, 10px); margin: 0; padding: 0; list-style: none; counter-reset: s-src; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.s-art-sources__list > li { display: grid; grid-template-columns: 2em minmax(0, 1fr); counter-increment: s-src; text-wrap: pretty; }
+.s-art-sources__list > li::before { content: counter(s-src, decimal-leading-zero); grid-row: span 2; font: var(--ob-type-mono-sm); color: var(--ob-text-3); padding-top: .1em; }
+.s-art-sources__list a {
+  justify-self: start;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-decoration: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-decoration-color: var(--ob-line-strong);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), text-decoration-color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .s-art-sources__list a:hover { color: var(--ob-text); text-decoration-color: currentColor; } }
+.s-art-sources__list a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
+.s-art-sources__meta { grid-column: 2; }
 
 /* After the post: what to read next, then the waitlist. */
 .s-lg--then-final { padding-bottom: 0; }
@@ -243,26 +257,12 @@
   .s-blog-lead__in { grid-template-columns: minmax(0, 1fr); padding: var(--ob-space-32); }
 }
 @media (max-width: 759.98px) {
-  .s-hero.s-art-hero { padding-bottom: var(--ob-space-48); }
-  .s-art-heroobj { margin-top: var(--ob-space-40); }
   .s-blog-lead__in, .s-blog-lead__in.is-words { padding: var(--ob-space-24); }
   .s-art-stat { grid-template-columns: minmax(0, 1fr); }
   .s-byline__people > li + li { padding-left: 0; box-shadow: none; }
 }
 
-/* ---- A post: the direct answer, the folded contents on narrow screens and the share row ------------------------- */
-.s-art-answer {
-  padding: var(--ob-space-20) var(--ob-space-24);
-  border-radius: var(--ob-radius-md);
-  background: var(--ob-sheen), var(--ob-surface);
-  box-shadow: inset var(--ob-border-focus) 0 0 var(--ob-text), inset 0 0 0 var(--ob-border-hair) var(--ob-line);
-  font: var(--ob-type-body-lg);
-  letter-spacing: var(--ob-type-body-lg-tracking);
-  color: var(--ob-text);
-  text-wrap: pretty;
-}
-.s-art-main > .s-art-answer + * { margin-top: var(--ob-space-40); }
-
+/* ---- A post: the folded contents on narrow screens and the share row --------------------------------------------- */
 .s-toc-m { display: none; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
 .s-toc-m__sum {
   display: flex;
@@ -364,6 +364,19 @@
 /* The picture: 16:10, the photograph cropped to fill, the illustration drawn at a smaller base on its reader's light. */
 .s-blog-card__visual { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .s-blog-card__visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--ob-dur-slow, 400ms) var(--ob-ease-out); }
+/* On ink the card's photograph takes its hub's light, multiplied in, as the article's does (the grade is set with the
+   article's, below). */
+.s-blog-card__visual--photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(120% 110% at 50% 0%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent), transparent 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+:root[data-theme="light"] .s-blog-card__visual--photo::before { display: none; }
+@media (prefers-color-scheme: light) { :root:not([data-theme]) .s-blog-card__visual--photo::before { display: none; } }
 .s-blog-card__visual--art {
   display: grid;
   justify-items: center;
@@ -413,95 +426,209 @@
 @media (prefers-reduced-motion: reduce) { .s-blog-card { transition: none; } .s-blog-card:hover { transform: none; } }
 
 /* =====================================================================================================================
-   THE ARTICLE, 23 Oct 2026: the header on ink in its hub's colour with 1 picture, then the text on paper. One centred
-   680px measure; pictures, tables and the app screen break out to 880px so the reading line never jumps but the page
-   breathes. No side column: the contents sit at the top of the text.
+   THE ARTICLE (23 Oct 2026, third pass on Seun's brief: dark, in the hub's reader colour, and it should flow, not sit in
+   boxes, with an alignment you can feel). 1 reading column of 680px from the breadcrumb to the sources: every word,
+   the picture, every table and every illustration start on the same left edge and end on the same right one. Parts are
+   set apart by space and type, never by frames. The marks hang in the left margin, so the text edge stays clean: the
+   answer's bar, each section's number on the reader's square, list points and numbers, a quote's rule and a note's
+   square. The hub's reader colour (styles/accents.css) is used the 2 ways COLOUR.md allows, never on a word: its glow,
+   as light that fades to nothing before any edge (the header, behind each illustration, behind a stat and the closing
+   call), and its mark (the squares and bars). Under 900px there is no margin to hang in, so the marks come inside.
    ===================================================================================================================== */
 
-.s-art-hero { position: relative; isolation: isolate; }
-.s-art-kicker > a { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
-.s-art-kicker__mark { width: 9px; height: 9px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+.s-art {
+  /* The pooled light reaches past the column; it is clipped at the page's edge so it never widens a phone's page. */
+  overflow-x: clip;
+  --s-art-measure: 680px;
+  /* Where a hanging mark sits: this far left of the text edge. */
+  --s-art-hang: var(--ob-space-24);
+  /* The reader's light at a strength: the glow source mixed toward transparent, as COLOUR.md draws every glow. */
+  --s-art-light: color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent);
+  --s-art-light-soft: color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent);
+}
 
-/* The 1 picture: the same frame for a photograph and an illustration, so every post opens alike. */
-.s-art-visual { position: relative; width: 100%; margin: 0; border-radius: var(--ob-radius-xl); overflow: hidden; }
-.s-art-visual--photo { aspect-ratio: 16 / 9; background-color: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-3); }
+/* The column. Everything sits in it; nothing breaks out. */
+.s-art-col,
+.s-art-head__in,
+.s-art-heroobj,
+.s-art-text .s-art-main { width: 100%; max-width: var(--s-art-measure); margin-inline: auto; }
+.s-art-wide { width: 100%; margin-inline: 0; }
+
+/* ---- The header: the reader's light falls from above and fades into the page, with no edge ---- */
+.s-art-head { position: relative; isolation: isolate; padding-top: var(--ob-space-56); }
+.s-art-head::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 760px;
+  background: radial-gradient(
+    55% 100% at 50% 0%,
+    var(--s-art-light),
+    color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .84), transparent) 25%,
+    color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent) 50%,
+    color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .16), transparent) 75%,
+    transparent
+  );
+  pointer-events: none;
+}
+.s-art-head .s-crumbs { justify-self: start; margin: 0 0 var(--ob-space-32); }
+.s-art-head .s-crumbs .ob-crumbs__list { justify-content: flex-start; }
+
+/* The hub: the design system's eyebrow pill, the reader's square inside it. */
+.s-art-kicker { margin: 0 0 var(--ob-space-24); }
+.s-art-kicker__pill { text-decoration: none; transition: color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) { .s-art-kicker__pill:hover { color: var(--ob-text); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; } }
+.s-art-kicker__pill:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.s-art-kicker__mark { flex: none; width: 8px; height: 8px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+
+.s-art-title {
+  margin: 0;
+  font: var(--ob-type-h1);
+  font-size: clamp(34px, 4.4vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -.028em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-art-dek {
+  margin: var(--ob-space-24) 0 0;
+  font: var(--ob-type-body-lg);
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.55;
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+/* Who wrote it and when, on 1 line under a hairline. */
+.s-art-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12) var(--ob-space-24);
+  margin-top: var(--ob-space-32);
+  padding-top: var(--ob-space-20);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-art-byline .s-byline__people { justify-content: flex-start; }
+
+/* ---- The 1 picture, on the column ---- */
+.s-art-heroobj { position: relative; margin-top: var(--ob-space-40); }
+.s-art-visual { position: relative; width: 100%; margin: 0; }
+.s-art-visual--photo {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), 0 40px 90px -40px rgb(var(--ob-shadow-rgb) / .9);
+}
 .s-art-visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* On ink a photograph is graded down a step and takes the reader's light, multiplied in, so its warm whites sit in the
+   page's colour and never read as a white slab. */
+.s-art-visual--photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(120% 110% at 50% 0%, var(--s-art-light), var(--s-art-light-soft) 55%, transparent 100%);
+  mix-blend-mode: multiply;
+  opacity: var(--s-art-photo-tint, 1);
+  pointer-events: none;
+}
+.s-art-visual--photo::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 55%, rgb(8 8 7 / var(--s-art-photo-foot, .32)));
+  box-shadow: inset 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .08);
+  pointer-events: none;
+}
+:root:not([data-theme="light"]) :is(.s-art-visual--photo, .s-blog-card__visual--photo) img { filter: brightness(.74) contrast(1.08) saturate(.88); }
+:root[data-theme="light"] .s-art-visual--photo { --s-art-photo-foot: 0; --s-art-photo-tint: 0; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) :is(.s-art-visual--photo, .s-blog-card__visual--photo) img { filter: none; }
+  :root:not([data-theme]) .s-art-visual--photo { --s-art-photo-foot: 0; --s-art-photo-tint: 0; }
+}
 .s-art-visual__credit {
   position: absolute;
+  z-index: 2;
   right: var(--ob-space-12);
   bottom: var(--ob-space-12);
-  padding: var(--ob-space-4) var(--ob-space-8);
+  padding: var(--ob-space-4) var(--ob-space-10, 10px);
   border-radius: var(--ob-radius-pill);
-  background-color: rgb(8 8 7 / .62);
-  backdrop-filter: blur(6px);
+  background-color: rgb(8 8 7 / .6);
+  backdrop-filter: blur(8px);
   font: var(--ob-type-caption);
   color: #EDEBE5;
 }
 .s-art-visual__credit a { color: inherit; text-underline-offset: 2px; }
-.s-art-visual--art {
-  display: grid;
-  place-items: center;
-  padding: clamp(24px, 5vw, 56px) clamp(16px, 4vw, 48px);
-  background:
-    radial-gradient(70% 80% at 50% 0%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent), transparent 75%),
-    var(--s-ground-alt);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
-}
-.s-art-heroobj { max-width: 880px; }
 
-/* The paper: the page's reading surface, warm paper with ink type (styles/tones.css, Paper and Gloss). */
-.s-art-paper { background-color: var(--ob-bg); color: var(--ob-text); padding-block: var(--ob-space-64) var(--ob-space-96); }
-/* On the light page the text is already on paper, so it stays on the page's own ground (no deeper band). */
-:root.ob-theme-hybrid .s-art-paper[data-tone="paper"] { background-color: transparent; }
-.s-art-paper .s-art-body { display: block; padding-bottom: 0; }
-.s-art-paper .s-art-main { max-width: 680px; margin-inline: auto; }
-.s-art-paper .s-art-p,
-.s-art-paper .s-art-list > li { color: var(--s-read, var(--ob-text)); }
-.s-art-paper .s-art-p strong,
-.s-art-paper .s-art-list strong { color: var(--ob-text); }
-
-/* Breaking out: 880px wide, centred on the text's axis, never past the gutters. */
-.s-art-wide {
-  width: min(880px, calc(100vw - 2 * var(--ob-gutter)));
-  margin-inline: calc(50% - min(440px, 50vw - var(--ob-gutter)));
-}
-
-/* The direct answer: what a reader skims and an assistant quotes, set like the lead of a report. */
-.s-art-paper .s-art-answer {
+/* An illustration or a screen, in the header or the text: the window on the column's full width, the reader's light
+   pooled behind it and fading out well inside the page, so there is no stage to see, only light. */
+.s-art-stage,
+.s-art-text .s-art-ill__stage,
+.s-art-text .s-art-fig--screen {
   position: relative;
-  padding: var(--ob-space-24) var(--ob-space-28, 28px) var(--ob-space-24) var(--ob-space-32);
-  border-radius: var(--ob-radius-lg);
-  background: var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1, none);
-  font: var(--ob-type-body-lg);
-  letter-spacing: var(--ob-type-body-lg-tracking);
-  color: var(--ob-text);
+  isolation: isolate;
+  display: grid;
+  justify-items: stretch;
 }
-
-/* Its mark: a short bar in the hub's colour, inside the card's edge. */
-.s-art-paper .s-art-answer::before {
+.s-art-stage::before,
+.s-art-text .s-art-ill__stage::before,
+.s-art-text .s-art-fig--screen::before {
   content: "";
   position: absolute;
-  left: var(--ob-space-16);
-  top: var(--ob-space-24);
-  bottom: var(--ob-space-24);
-  width: 3px;
-  border-radius: 2px;
-  background-color: var(--s-accent, var(--ob-text));
+  z-index: -1;
+  inset: -12% -22% -6%;
+  background: radial-gradient(closest-side, var(--s-art-light), var(--s-art-light-soft) 45%, transparent 100%);
+  pointer-events: none;
 }
+.s-art :is(.s-art-stage, .s-art-ill__stage) .s-x { max-width: none; }
+.s-art-visual--art { display: grid; }
 
-/* The contents, at the top of the text: numbered, in 2 columns on wide screens; folded on phones. */
-.s-art-toc {
-  padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-24);
-  border-radius: var(--ob-radius-lg);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+/* ---- The text ---- */
+.s-art-text { padding-block: var(--ob-space-56) var(--ob-space-96); }
+.s-art-text .s-art-body { display: block; padding-bottom: 0; }
+.s-art-text .s-art-main { counter-reset: s-sec; }
+.s-art-text .s-art-main > * + * { margin-top: var(--ob-space-24); }
+.s-art-text .s-art-p,
+.s-art-text .s-art-list > li { color: var(--s-read, var(--ob-text-2)); }
+.s-art-text :is(.s-art-p, .s-art-list) strong { color: var(--ob-text); }
+.s-art-text .s-art-a { text-decoration-color: color-mix(in srgb, var(--ob-text) 35%, transparent); }
+
+/* The direct answer, what a reader skims and an assistant quotes: the first ink, larger, its bar in the margin. */
+.s-art-sum { display: block; }
+.s-art-lead {
+  position: relative;
+  margin: 0;
+  font: var(--ob-type-body-lg);
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.6;
+  letter-spacing: -.005em;
+  color: var(--ob-text);
+  text-wrap: pretty;
 }
+.s-art-lead::before {
+  content: "";
+  position: absolute;
+  top: .3em;
+  bottom: .3em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 2px;
+  border-radius: 1px;
+  background-color: var(--s-accent, var(--ob-line-strong));
+}
+/* The contents, under the answer: numbered as the sections are, 2 columns, closed by the 1 rule the text has. */
+.s-art-toc { margin-top: var(--ob-space-40); padding-bottom: var(--ob-space-40); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
 .s-art-toc__label { margin: 0 0 var(--ob-space-12); font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
-.s-art-toc__list { columns: 2; column-gap: var(--ob-space-32); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
+.s-art-toc__list { columns: 2; column-gap: var(--ob-space-40); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
 .s-art-toc__list > li { counter-increment: s-toc; break-inside: avoid; }
 .s-art-toc__link {
   display: grid;
-  grid-template-columns: 2em minmax(0, 1fr);
+  grid-template-columns: 2.1em minmax(0, 1fr);
   padding: var(--ob-space-6) 0;
   font: var(--ob-type-small);
   color: var(--ob-text-2);
@@ -512,15 +639,60 @@
 .s-art-toc__link::before { content: counter(s-toc, decimal-leading-zero); font: var(--ob-type-mono-sm); color: var(--ob-text-3); padding-top: .15em; }
 @media (hover: hover) and (pointer: fine) { .s-art-toc__link:hover { color: var(--ob-text); } }
 .s-art-toc__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
-.s-art-main > .s-art-toc + * { margin-top: var(--ob-space-48); }
-.s-art-main > .s-art-answer + .s-art-toc { margin-top: var(--ob-space-24) !important; }
-@media (max-width: 759.98px) { .s-art-toc { display: none; } }
+.s-art-main > .s-art-sum + * { margin-top: var(--ob-space-56); }
+.s-art-main > .s-art-sum + .s-toc-m + * { margin-top: var(--ob-space-48); }
 @media (min-width: 760px) { .s-toc-m { display: none !important; } }
+.s-toc-m { border-radius: 0; box-shadow: none; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.s-toc-m .s-toc-m__sum { padding-inline: 0; }
+.s-toc-m .s-toc-m__list { padding-inline: 0; }
 
-/* Section rhythm on paper: each h2 opens with a short rule in the hub's colour, so a skimming eye finds the next point. */
-.s-art-paper .s-art-h2 { position: relative; padding-top: var(--ob-space-24); }
-.s-art-paper .s-art-h2::before { content: ""; position: absolute; top: 0; left: 0; width: 40px; height: 3px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text)); }
-.s-art-paper .s-art-h3 { font-weight: var(--ob-weight-semibold); }
+/* Sections: space, not rules. Each heading's number hangs in the margin on the reader's square, on the heading's
+   first line, as the contents number it. */
+.s-art-text .s-art-h2 {
+  position: relative;
+  counter-increment: s-sec;
+  font-size: clamp(26px, 2.6vw, 34px);
+}
+.s-art-text .s-art-h2::before {
+  content: counter(s-sec, decimal-leading-zero);
+  position: absolute;
+  top: .42em;
+  right: calc(100% + var(--s-art-hang) - 8px);
+  padding-left: var(--ob-space-14, 14px);
+  background: linear-gradient(var(--s-accent, var(--ob-text-3)), var(--s-accent, var(--ob-text-3))) 0 50% / 7px 7px no-repeat;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--ob-text-3);
+  white-space: nowrap;
+}
+.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-96); padding-top: 0; border-top: 0; }
+.s-art-text .s-art-main > .s-art-sum + .s-art-h2,
+.s-art-text .s-art-main > .s-art-sum + .s-toc-m + .s-art-h2 { margin-top: var(--ob-space-56); }
+.s-art-text .s-art-main > :is(.s-art-h2, .s-art-h3) + * { margin-top: var(--ob-space-20); }
+.s-art-text .s-art-h3 { font-weight: var(--ob-weight-semibold); }
+.s-art-text .s-art-main > * + .s-art-h3 { margin-top: var(--ob-space-48); }
+
+/* Lists: the points and numbers hang, so every line of text starts on the column's edge. */
+.s-art-text .s-art-list > li { padding-left: 0; }
+.s-art-text .s-art-list > li::before {
+  top: .68em;
+  left: calc(var(--s-art-hang) * -1 + 4px);
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background-color: var(--ob-text-3);
+}
+.s-art-text .s-art-list--ol > li::before {
+  top: .22em;
+  left: auto;
+  right: calc(100% + 12px);
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  text-align: right;
+}
 
 /* Run-in labels that name a result: a pass in success, a failure in danger, as a small label the eye can scan. */
 .s-art-k {
@@ -534,38 +706,137 @@
 .s-art-k--pass { background-color: var(--ob-success-bg); color: var(--ob-success) !important; }
 .s-art-k--fail { background-color: var(--ob-danger-bg); color: var(--ob-danger) !important; }
 
-/* Illustrations in the text: the window on a quiet stage, its caption under it. */
+/* Tables: open, on the column's edges. The head over a firmer rule, rows on hairlines, the first column flush left. */
+.s-art-text .s-art-table__scroll { border-radius: 0; background: none; box-shadow: none; }
+.s-art-text .s-art-table :is(th, td) { padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-12) 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-art-text .s-art-table :is(th, td):last-child { padding-right: 0; }
+.s-art-text .s-art-table thead th { padding-top: 0; border-top: 0; border-bottom: var(--ob-border-hair) solid var(--ob-line-strong); background: none; color: var(--ob-text-3); }
+.s-art-text .s-art-table tbody tr:first-child :is(th, td) { border-top: 0; }
+.s-art-text .s-art-table td { color: var(--s-read, var(--ob-text-2)); }
+.s-art-text .s-art-table tbody tr:last-child :is(th, td) { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* Captions sit on the column's left edge, under what they name. */
+.s-art-text .s-art-cap { margin-top: var(--ob-space-12); text-align: left; text-wrap: pretty; }
+
+/* Pictures in the text: space around them, their captions on the edge. */
 .s-art-ill { margin-block: 0; }
-.s-art-main > * + .s-art-ill, .s-art-ill + * { margin-top: var(--ob-space-48); }
-.s-art-ill__stage {
+.s-art-main > * + :is(.s-art-ill, .s-art-fig, .s-art-table), .s-art-main > :is(.s-art-ill, .s-art-fig, .s-art-table) + * { margin-top: var(--ob-space-56); }
+.s-art-text .s-art-fig--screen .ilwrap { cursor: default; }
+.s-art-text .s-art-fig--screen .s-art-cap { justify-self: start; }
+
+/* A stat: the number large on the column's edge, its label and source beside it, the reader's light pooled behind the
+   number. No frame. */
+.s-art-text .s-art-stat {
+  position: relative;
+  isolation: isolate;
+  grid-template-columns: 11.5rem minmax(0, 1fr);
+  column-gap: var(--ob-space-24);
+  padding: var(--ob-space-8) 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.s-art-text .s-art-stat::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: -60px;
+  width: 300px;
+  height: 200px;
+  translate: 0 -50%;
+  background: radial-gradient(closest-side, var(--s-art-light), transparent);
+  pointer-events: none;
+}
+.s-art-text .s-art-stat__v { font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+.s-art-text .s-art-stat__l { color: var(--ob-text); }
+.s-art-main > * + .s-art-stat, .s-art-stat + * { margin-top: var(--ob-space-48); }
+
+/* A quote: larger, its rule hanging in the margin. A note: smaller, its title on the reader's square, no frame. */
+.s-art-text .s-art-quote { position: relative; padding: 0; box-shadow: none; }
+.s-art-text .s-art-quote::before {
+  content: "";
+  position: absolute;
+  top: .2em;
+  bottom: .2em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 2px;
+  border-radius: 1px;
+  background-color: var(--s-accent, var(--ob-line-strong));
+}
+.s-art-text .s-art-quote blockquote p { font: var(--ob-type-body-lg); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; letter-spacing: -.01em; color: var(--ob-text); }
+.s-art-main > * + .s-art-quote, .s-art-quote + * { margin-top: var(--ob-space-48); }
+.s-art-text .s-art-note { position: relative; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.s-art-text .s-art-note__t { position: relative; font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); color: var(--ob-text); }
+.s-art-text .s-art-note__t::before {
+  content: "";
+  position: absolute;
+  top: .45em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background-color: var(--s-accent, var(--ob-text-3));
+}
+.s-art-text .s-art-note__x { margin-top: var(--ob-space-8); font: var(--ob-type-small); line-height: 1.6; color: var(--ob-text-2); }
+.s-art-main > * + .s-art-note, .s-art-note + * { margin-top: var(--ob-space-40); }
+
+/* The link to the product: no frame. The reader's light pooled behind it, its words in the first ink, the button under
+   them, on the edge. */
+.s-art-text .s-art-cta {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  place-items: center;
-  padding: clamp(20px, 4vw, 44px) clamp(12px, 3vw, 40px);
-  border-radius: var(--ob-radius-xl);
-  background: radial-gradient(70% 90% at 50% 0%, var(--ob-surface), transparent 80%), var(--s-ground-alt);
+  justify-items: start;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-8) 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
 }
-.s-art-paper .s-art-fig--screen .ilwrap { cursor: default; }
-
-/* Stats on paper: a band with the number large and its source under it. */
-.s-art-paper .s-art-stat { border-block-color: var(--ob-line-strong); }
-.s-art-paper .s-art-stat__v { font-weight: var(--ob-weight-semibold); }
-
-/* The quiet link to the product: an ink card on the paper (an .ob-theme-dark scope), the sharpest thing on the page. */
-.s-art-paper .s-art-cta {
-  background: var(--ob-sheen), var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-2);
-  color: var(--ob-text);
+.s-art-text .s-art-cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -40% -18% -40% -14%;
+  background: radial-gradient(closest-side, var(--s-art-light-soft), transparent);
+  pointer-events: none;
 }
+.s-art-text .s-art-cta::after {
+  content: "";
+  position: absolute;
+  top: .55em;
+  left: calc(var(--s-art-hang) * -1);
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background-color: var(--s-accent, var(--ob-text-3));
+}
+.s-art-text .s-art-cta__x { font: var(--ob-type-body-lg); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; color: var(--ob-text); }
+.s-art-main > * + .s-art-cta, .s-art-cta + * { margin-top: var(--ob-space-48); }
 
-/* Quotes on paper: larger, with the ink rule. */
-.s-art-paper .s-art-quote { box-shadow: inset 3px 0 0 var(--ob-text); }
-.s-art-paper .s-art-quote blockquote p { font-size: clamp(19px, 1.9vw, 22px); line-height: 1.4; letter-spacing: -.012em; }
-
-/* Notes on paper: stone, with the ink type. */
-.s-art-paper .s-art-note { background-color: var(--s-ground-alt); box-shadow: none; }
-
+/* Under 900px there is no margin to hang in: the marks come inside the column. */
+@media (max-width: 899.98px) {
+  .s-art { --s-art-hang: 0px; }
+  .s-art-lead { padding-left: var(--ob-space-16); }
+  .s-art-lead::before { left: 0; }
+  .s-art-text .s-art-quote { padding-left: var(--ob-space-16); }
+  .s-art-text .s-art-quote::before { left: 0; }
+  .s-art-text .s-art-h2::before { position: static; display: block; margin-bottom: var(--ob-space-12); }
+  .s-art-text .s-art-list > li { padding-left: var(--ob-space-20); }
+  .s-art-text .s-art-list > li::before { left: 4px; }
+  .s-art-text .s-art-list--ol > li { padding-left: var(--ob-space-24); }
+  .s-art-text .s-art-list--ol > li::before { left: 0; right: auto; text-align: left; }
+  .s-art-text .s-art-note { padding-left: var(--ob-space-16); }
+  .s-art-text .s-art-note__t::before { left: calc(var(--ob-space-16) * -1); }
+  .s-art-text .s-art-cta { padding-left: var(--ob-space-16); }
+  .s-art-text .s-art-cta::after { left: 0; }
+}
 @media (max-width: 759.98px) {
-  .s-art-paper { padding-block: var(--ob-space-40) var(--ob-space-64); }
-  .s-art-visual { border-radius: var(--ob-radius-lg); }
-  .s-art-paper .s-art-answer { padding: var(--ob-space-20); }
+  .s-art-head { padding-top: var(--ob-space-40); }
+  .s-art-visual--photo { border-radius: var(--ob-radius-md); }
+  .s-art-text { padding-block: var(--ob-space-40) var(--ob-space-64); }
+  .s-art-toc { display: none; }
+  .s-art-byline { display: grid; justify-content: start; justify-items: start; }
+  .s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-64); }
+  .s-art-text .s-art-stat { grid-template-columns: minmax(0, 1fr); }
 }
