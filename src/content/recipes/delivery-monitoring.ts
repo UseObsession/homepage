@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Delivery monitoring (/recipes/delivery-monitoring). Check your own journeys. Screen: qa.
    New page (James's original recipe set had Delivery monitoring; our version's "First 14 days" use case on the
@@ -10,13 +10,6 @@ import type { Capture, Recipe } from '../types'
    spam folder placement: only what arrived, when, and whether it works.
    The run and the table tell the same story as the `qa` screen (release 4.2, 3 test customers, UK login
    codes stop on day 6, US codes in 6 seconds, the fix ticket drafted). Example. */
-
-const roles: Capture['roles'] = {
-  question: 'Whose messages should we prove first?',
-  options: ['Ours', 'A client’s, with their OK', 'Both'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'delivery',
@@ -57,9 +50,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'delivery',
     },
   },
@@ -193,9 +183,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'delivery',
     },
   },

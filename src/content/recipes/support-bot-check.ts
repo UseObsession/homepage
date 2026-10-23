@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Support bot check (/recipes/support-bot-check). Check your AI agents. Screen: botcheck (Test customer 2, AI, for
@@ -16,8 +15,6 @@ import type { Recipe } from '../types'
    bot is named with the client's agreement once, in the FAQ. No vendor or product names: "your bot", "your vendor".
    Up-to-50 rule: the 1 modelled figure (up to 780 hours a year) carries its model in the same line: 1 person reading
    bot transcripts 15 hours a week x 52 weeks = 780, turned into a short list of what failed. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'support-bot',
@@ -58,9 +55,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-support-bot-hero',
       button: 'Check my support bot free',
-      placeholder: 'Your bot’s chat page',
-      micro: form.agent.micro,
-      roles,
       interest: 'support-bot',
     },
   },
@@ -252,10 +246,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-support-bot-final',
       button: 'Check my support bot free',
-      placeholder: 'Your bot’s chat page',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your bot’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'support-bot',
     },
   },

@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Price watch (/recipes/price-watch). Watch rivals. Screen: prices.
    Rewritten from James's "Price and promotion watch". Kept: his checks (prices and sale prices, bundles per item,
@@ -11,13 +11,6 @@ import type { Capture, Recipe } from '../types'
    payment details and says it's AI when it talks to a person.
    The run and the table tell the same story as the `prices` screen (Rival B's soy candle, 4 days before Black
    Friday, 3 prices cut, the alert in #pricing). Example, and labelled so. */
-
-const roles: Capture['roles'] = {
-  question: 'Whose rivals should we watch first?',
-  options: ['Ours', 'A client’s', 'Both'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'prices',
@@ -58,9 +51,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-price-watch-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'prices',
     },
   },
@@ -214,9 +204,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-price-watch-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'prices',
     },
   },

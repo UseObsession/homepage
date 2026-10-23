@@ -574,10 +574,10 @@ const chunksOf = (key, into = new Set()) => {
   return into
 }
 const appChunks = chunksOf('index.html')
-/* The sign up card is code the app loads on demand, once a reader touches a form (lib/signupStore.ts), so it is never one
-   of a page's static imports. Its styles still have to be in the head of every page whose code can open it, or the card
-   would arrive unstyled: its class names count for each such page. */
-const cardKey = 'src/components/SignupSteps.tsx'
+/* The waitlist card is code the app loads on demand, once a reader touches a form (components/CaptureForm), so it is
+   never one of a page's static imports. Its styles still have to be in the head of every page whose code can open it,
+   or the card would arrive unstyled: its class names count for each such page. */
+const cardKey = 'src/components/JoinCard.tsx'
 const opensCard = (chunks) => Object.values(manifest).some((m) => chunks.has(m.file) && m.dynamicImports?.includes(cardKey))
 const chunkTokens = new Map()
 const tokensOfChunk = async (file) => {

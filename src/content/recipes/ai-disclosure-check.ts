@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* AI disclosure check (/recipes/ai-disclosure-check). Check your AI agents. Screen: disclosure (Your company; 4 channels,
@@ -21,8 +20,6 @@ import type { Recipe } from '../types'
    the real one. A client's agents are named with the client's agreement once, in the FAQ.
    Up-to-50 rule: the 1 figure is a deliverable, stated flat with its sum: 4 channels x 1 check a day x 365 = 1,460
    signed proofs a year. It is not a saving and makes no money claim. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'disclosure',
@@ -63,8 +60,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-disclosure-hero',
       button: 'Check my AI disclosure free',
-      micro: form.agent.micro,
-      roles,
       interest: 'disclosure',
     },
   },
@@ -255,9 +250,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-disclosure-final',
       button: 'Check my AI disclosure free',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your AI agent’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'disclosure',
     },
   },

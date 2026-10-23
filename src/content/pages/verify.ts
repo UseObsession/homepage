@@ -1,4 +1,3 @@
-import { capture } from '../capture'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
@@ -52,8 +51,6 @@ export const page: Page = {
       kind: 'verify',
       source: 'verify-hero',
       button: 'Check my AI agent free',
-      micro: capture.agent.microOrWaitlist,
-      orWaitlist: true,
     },
     proof: [
       { value: 'Every channel', label: 'chat, phone, email, text and checkout' },
@@ -374,8 +371,6 @@ export const page: Page = {
       kind: 'verify',
       source: 'verify-final',
       button: 'Check my AI agent free',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your AI agent’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
     },
   },
 }
