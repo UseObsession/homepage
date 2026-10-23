@@ -51,7 +51,7 @@ export type Entry = {
   headline: string
   /* The share image's 1 line under the headline, taken from the page's own words. */
   line: string
-  /* Home's share image only: the hero's first receipt, drawn beside the headline (scripts/og.mjs). */
+  /* Home's share image only: the receipt drawn beside the headline (home.shareReceipt, scripts/og.mjs). */
   receipt?: StageReceipt
   /* The questions the page shows, for FAQPage JSON-LD. */
   faq?: Faq
@@ -82,7 +82,7 @@ const compare = pages.compare
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
-  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, receipt: home.stage?.receipts[0], faq: home.faq, source: 'src/content/pages/home.ts' },
+  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, receipt: home.shareReceipt, faq: home.faq, source: 'src/content/pages/home.ts' },
   ...AUDIENCES.map(
     (a): Entry => ({
       kind: 'audience',

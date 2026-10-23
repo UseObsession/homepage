@@ -48,6 +48,7 @@ export const study: UseCaseStudy = {
     pill: 'Early access',
     headline: 'Be the new customer of your own store, every week and after every change.',
     sub: 'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix. Leaks already there show up on the first check; a break from a new theme, app, flow or ad shows up within the hour, not when sales dip.',
+    video: { youtube: 'ixCcU3W-a2M', label: 'Watch how it works', title: 'Leak checks for ecommerce stores: AI agents shop your store every week' },
     example: { chips: [] },
     flow: [
       {

@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { FinalCta } from '../components/sections/FinalCta'
+import { HeroVideo } from '../components/v5/HeroVideo'
 import { study } from '../content/usecases/leak-checks-for-retention-agencies'
 import { JamesPage } from '../legacy/JamesPage'
 import { Faq, SectionHead } from '../legacy/james/components/Blocks'
@@ -82,6 +83,7 @@ export function RetentionAgencies() {
                 </span>
                 <h1 className="h1">{study.hero.headline}</h1>
                 <p className="lede">{study.hero.sub}</p>
+                {study.hero.video && <HeroVideo video={study.hero.video} compact />}
               </div>
               <div className="hero-stage">
                 <div className="uc-flow">

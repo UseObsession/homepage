@@ -8,7 +8,7 @@ import './Hero5.css'
 
 /* The October hero (COPY.md, "Hero"): left aligned, the words on the left and the evidence on the right. Top to
    bottom on the left: the headline, the sub (20 words at most), the capture form, and the second path as a quiet link.
-   The right column is the page's own object: Home's receipt stage, or a reader page's screen. No pill, no proof row,
+   The right column is the page's own object: Home's film, or a reader page's screen. No pill, no proof row,
    no tagline under the form (those live in their own sections below).
    `center` (Home) stacks it all on the page's middle instead, as the first site's hero was: the tag, the headline 1
    sentence to a full line, the sub, the form, then the object under the words at the page's width.

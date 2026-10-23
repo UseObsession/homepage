@@ -314,7 +314,9 @@ export type Page = {
   faq: Faq
   final: Final
   /* The October rewrite's blocks (COPY.md). */
-  stage?: Stage
+  heroVideo?: HeroVideo
+  /* Home only: the receipt its share image draws beside the headline. */
+  shareReceipt?: StageReceipt
   gapPair?: GapPair
   life?: Life
   targets?: Targets
@@ -504,6 +506,8 @@ export type UseCaseStudy = {
     capture: Capture
     /* The second path under the form (the real report, for an example whose offer is a free audit). */
     secondary?: Cta
+    /* The page's film, behind a small play button under the sub that opens it in a dialog (components/v5/HeroVideo). */
+    video?: HeroVideo
   }
   /* His phases in order. A phase plays its screen beside its numbered steps; a phase without a screen shows its chips. */
   how?: { heading: string; sub?: string; steps: { title: string; line: string; screen?: ScreenName; chips?: string[]; steps: StudyStep[] }[] }
@@ -579,9 +583,8 @@ export type BlogIndexPage = {
    Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
    --------------------------------------------------------------------------------------------------------------------- */
 
-/* The hero's stage (components/v5/ReceiptStage): 1 company's journey as its customer, in 3 evidence cards (the ad, the
-   page, the inbox) and the receipt it ends on, with its stamp. Home cycles through `receipts`; a reader page shows its
-   own. Invented companies only, at .example addresses. */
+/* Home's share image (scripts/og.mjs): 1 company's journey as its customer, the receipt drawn beside the headline.
+   Invented companies only, at .example addresses. */
 export type StageReceipt = {
   /* What the story shows, in the buyer's words: the name on its button under the stage. */
   topic: string
@@ -597,7 +600,10 @@ export type StageReceipt = {
   stamp: string
   fact: string
 }
-export type Stage = { label: string; steps: [string, string, string]; receipts: StageReceipt[] }
+
+/* A hero's film (components/v5/HeroVideo), on Home and the use case pages: a YouTube video id, the line beside the
+   play button, and the title the dialog and its player are named by. */
+export type HeroVideo = { youtube: string; label: string; title: string }
 
 /* The gap, as a pair (components/v5/GapPair): what a tool that reads the outside shows, beside what a customer of that
    company actually gets. */
