@@ -62,15 +62,6 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
   }
 })
 
-/* Who each worked example is for (content/usecases). James sends these addresses to prospects: they always stay. */
-const STUDY_FOR: Record<string, string> = {
-  '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
-  '/use-cases/leak-checks-for-retention-agencies': 'For retention agencies',
-  '/use-cases/funnel-qa-for-cro-agencies': 'For CRO agencies',
-  '/use-cases/leak-checks-for-ecommerce-stores': 'For ecommerce stores',
-  '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
-}
-
 export const nav = {
   home: 'Obsession home',
   skip: 'Skip to content',
@@ -115,15 +106,13 @@ export const nav = {
          above its status tags, so it reads at a glance and brings no status colour into the nav. */
       image: { src: '/nav/report-peek.jpg', width: 168, height: 102 },
     },
+    /* The worked examples by name only: each name already says who it is for, and 5 cards made the menu too tall
+       (James, 23 Oct). `line` stays for the links that quote it (BlogPost). James sends these addresses to prospects:
+       they always stay. */
     useCases: {
       label: 'Use cases',
       to: '/use-cases',
-      items: catalog.studies.map(({ name, line, path }) => ({
-        kicker: STUDY_FOR[path] ?? 'Use case',
-        label: name,
-        to: path,
-        line,
-      })) satisfies NavCard[],
+      items: catalog.studies.map(({ name, line, path }) => ({ label: name, to: path, line })) satisfies (NavPage & { line: string })[],
     },
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },

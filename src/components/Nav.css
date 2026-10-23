@@ -309,9 +309,12 @@
   .s-rm__run:hover { color: var(--ob-text); }
 }
 
-/* ---- Resources: the real run first, the 2 worked examples, 1 quiet way to the hub ---- */
-.s-xm__cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
+/* ---- Resources: the real run first, the use cases by name, 1 quiet way to the hub ---- */
+.s-xm__cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-2) var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
 .s-xm__cases > li { display: grid; }
+/* A use case: 1 row, its name only; room at the end for the current page's square. */
+.ob-menu__item.s-case { grid-template-columns: minmax(0, 1fr); padding: var(--ob-space-8) var(--ob-space-32) var(--ob-space-8) var(--ob-space-12); }
+.s-case .s-menu__name { text-wrap: pretty; }
 
 /* A proof card: what it is (or who it is for), its name, what happened. */
 .ob-menu__item.s-card {
@@ -430,7 +433,7 @@
 .ob-menu__item.s-card--sheet.s-card--run { gap: var(--ob-space-12); padding: var(--ob-space-16) var(--ob-space-12) 0 var(--ob-space-16); margin-bottom: var(--ob-space-4); }
 .s-card--sheet .s-card__peek { width: 96px; height: 56px; }
 .s-card--sheet .s-card__peek > img { width: 96px; height: 58px; }
-.s-card--case.s-card--sheet { padding: var(--ob-space-12) var(--ob-control-pad-sm); }
+.ob-menu__item.s-case--sheet { min-height: var(--ob-target-touch); padding-inline-start: var(--ob-control-pad-sm); border-radius: var(--ob-radius-md); }
 
 .s-mnav .s-mnav__theme { margin-top: var(--ob-space-16); padding-inline-start: var(--ob-control-pad-sm); }
 
