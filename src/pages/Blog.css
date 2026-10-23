@@ -70,7 +70,6 @@
   text-wrap: balance;
 }
 .s-art-byline { margin-top: var(--ob-space-32); }
-.s-art-heroobj { width: 100%; max-width: 880px; margin-top: var(--ob-space-56); }
 .s-art-heroobj .ilwrap { cursor: pointer; }
 
 /* ---- A post: the text and its contents ------------------------------------------------------------------------------- */
@@ -258,7 +257,6 @@
   .s-blog-lead__in { grid-template-columns: minmax(0, 1fr); padding: var(--ob-space-32); }
 }
 @media (max-width: 759.98px) {
-  .s-art-heroobj { margin-top: var(--ob-space-40); }
   .s-blog-lead__in, .s-blog-lead__in.is-words { padding: var(--ob-space-24); }
   .s-art-stat { grid-template-columns: minmax(0, 1fr); }
   .s-byline__people > li + li { padding-left: 0; box-shadow: none; }
@@ -366,6 +364,19 @@
 /* The picture: 16:10, the photograph cropped to fill, the illustration drawn at a smaller base on its reader's light. */
 .s-blog-card__visual { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .s-blog-card__visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--ob-dur-slow, 400ms) var(--ob-ease-out); }
+/* On ink the card's photograph takes its hub's light, multiplied in, as the article's does (the grade is set with the
+   article's, below). */
+.s-blog-card__visual--photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(120% 110% at 50% 0%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent), transparent 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+:root[data-theme="light"] .s-blog-card__visual--photo::before { display: none; }
+@media (prefers-color-scheme: light) { :root:not([data-theme]) .s-blog-card__visual--photo::before { display: none; } }
 .s-blog-card__visual--art {
   display: grid;
   justify-items: center;
@@ -415,110 +426,231 @@
 @media (prefers-reduced-motion: reduce) { .s-blog-card { transition: none; } .s-blog-card:hover { transform: none; } }
 
 /* =====================================================================================================================
-   THE ARTICLE (redone 23 Oct 2026). 1 ground from the nav to the footer: the site's own, ink, or paper when the reader
-   picks light, as on the site's other reading pages (/agents, /privacy). The header sits on the text's column, left
-   aligned; the picture is set on the page with no stage behind it; the text keeps a 680px measure, and its parts are
-   divided by hairlines, never boxes. Colour only where it means something: the hub's small square and the pass and
-   fail labels.
+   THE ARTICLE (redone 23 Oct 2026, then lit on Seun's brief: dark, in the hub's reader colour, lighter darks used with
+   intent, and 1 alignment). The page is the site's own ink (paper when the reader picks light). Depth comes from the
+   design system's own steps, never a new grey: the page (--ob-bg), a face (--ob-surface), a raised face
+   (--ob-surface-raised) and the lit room between them (tones.css D1). The hub's reader colour (styles/accents.css) is
+   used the 2 ways COLOUR.md allows, never on a word: its glow, as soft light (the header room, the summary, every stage
+   and the closing call), and its mark, as a square or a bar (the hub pill, each section's number, the answer's bar, a
+   quote's rule, a note's square). 2 widths on 1 axis: 880px for the header, the picture, the summary, tables and
+   stages; 680px for the text.
    ===================================================================================================================== */
 
-/* The column: the header and the text share 1 left edge. Pictures, tables and windows break out to 880px. */
-.s-art-col { width: 100%; max-width: 680px; margin-inline: auto; }
-.s-art-wide {
-  width: min(880px, calc(100vw - 2 * var(--ob-gutter)));
-  margin-inline: calc(50% - min(440px, 50vw - var(--ob-gutter)));
+.s-art {
+  --s-art-wide: 880px;
+  --s-art-measure: 680px;
+  /* How far the picture reaches up into the header room. */
+  --s-art-over: 168px;
+  /* The lit room: half a face, half a raised face (#151514 on ink), as the site's ink chapters are. */
+  --s-art-room: color-mix(in oklab, var(--ob-surface) 50%, var(--ob-surface-raised));
+  /* The reader's light at a strength: the glow source mixed toward transparent, as COLOUR.md draws every glow. */
+  --s-art-light: color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent);
+  --s-art-light-soft: color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .6), transparent);
 }
 
-/* ---- The header ---- */
-.s-art-head { padding-top: var(--ob-space-64); }
-.s-art-head .s-crumbs { justify-self: start; margin: 0 0 var(--ob-space-40); }
+/* The column and the breakout: everything wide shares the picture's 2 edges. */
+.s-art-col { width: 100%; max-width: var(--s-art-measure); margin-inline: auto; }
+.s-art-wide {
+  width: min(var(--s-art-wide), calc(100vw - 2 * var(--ob-gutter)));
+  margin-inline: calc(50% - min(calc(var(--s-art-wide) / 2), 50vw - var(--ob-gutter)));
+}
+
+/* ---- The header: a lit room, its light the reader's, falling from above ---- */
+.s-art-head {
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--ob-space-56) var(--ob-space-64);
+  background: var(--s-art-room);
+  box-shadow: inset 0 calc(var(--ob-border-hair) * -1) 0 var(--ob-line-subtle), inset 0 var(--ob-border-hair) 0 rgb(var(--ob-sheen-rgb) / .05);
+  overflow: hidden;
+}
+.s-art-head::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 620px;
+  background: radial-gradient(
+    60% 100% at 50% 0%,
+    var(--s-art-light),
+    color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .84), transparent) 25%,
+    color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent) 50%,
+    color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .16), transparent) 75%,
+    transparent
+  );
+  pointer-events: none;
+}
+/* With a picture, the room ends partway down it. */
+.s-art-head--over { padding-bottom: calc(var(--s-art-over) + var(--ob-space-56)); }
+.s-art-head__in { width: 100%; max-width: var(--s-art-wide); margin-inline: auto; }
+.s-art-head .s-crumbs { justify-self: start; margin: 0 0 var(--ob-space-32); }
 .s-art-head .s-crumbs .ob-crumbs__list { justify-content: flex-start; }
-.s-art-kicker { margin: 0 0 var(--ob-space-16); font: var(--ob-type-label); letter-spacing: var(--ob-type-label-tracking); }
-.s-art-kicker > a { display: inline-flex; align-items: center; gap: var(--ob-space-8); color: var(--ob-text-2); text-decoration: none; transition: color var(--ob-dur-base) var(--ob-ease-out); }
-@media (hover: hover) and (pointer: fine) { .s-art-kicker > a:hover { color: var(--ob-text); } }
-.s-art-kicker > a:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
-.s-art-kicker__mark { width: 8px; height: 8px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+
+/* The hub: the design system's eyebrow pill, the reader's square inside it. */
+.s-art-kicker { margin: 0 0 var(--ob-space-20); }
+.s-art-kicker__pill { text-decoration: none; transition: color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) { .s-art-kicker__pill:hover { color: var(--ob-text); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; } }
+.s-art-kicker__pill:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.s-art-kicker__mark { flex: none; width: 8px; height: 8px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+
 .s-art-title {
   margin: 0;
-  max-width: 22ch;
+  max-width: 21ch;
   font: var(--ob-type-h1);
-  font-size: clamp(32px, 4.2vw, 50px);
-  line-height: 1.08;
-  letter-spacing: -.025em;
+  font-size: clamp(34px, 4.6vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -.028em;
   color: var(--ob-text);
   text-wrap: balance;
 }
 .s-art-dek {
-  margin: var(--ob-space-20) 0 0;
-  max-width: 60ch;
+  margin: var(--ob-space-24) 0 0;
+  max-width: var(--s-art-measure);
   font: var(--ob-type-body-lg);
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.55;
   letter-spacing: var(--ob-type-body-lg-tracking);
-  color: var(--ob-text-2);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
-/* Who wrote it and when, on 1 line under a hairline. */
+/* Who wrote it and when, across the picture's width, under a hairline. */
 .s-art-byline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--ob-space-12) var(--ob-space-24);
-  margin-top: var(--ob-space-32);
+  margin-top: var(--ob-space-40);
   padding-top: var(--ob-space-20);
   border-top: var(--ob-border-hair) solid var(--ob-line);
 }
 .s-art-byline .s-byline__people { justify-content: flex-start; }
 
-/* ---- The 1 picture: a photograph cropped 16:9, or the illustration's window, straight on the page ---- */
-.s-art-heroobj { width: 100%; max-width: 880px; margin: var(--ob-space-48) auto 0; }
+/* ---- The 1 picture, reaching up into the room ---- */
+.s-art-heroobj {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--s-art-wide);
+  margin: calc(var(--s-art-over) * -1) auto 0;
+}
 .s-art-visual { position: relative; width: 100%; margin: 0; }
-.s-art-visual--photo { aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--ob-radius-lg); background-color: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.s-art-visual--photo {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--ob-radius-xl);
+  background-color: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong), var(--ob-shadow-3);
+}
 .s-art-visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* On ink a photograph is graded down a step and lit at its foot, so it sits in the room and never reads as a white slab. */
+.s-art-visual--photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 52%, rgb(8 8 7 / var(--s-art-photo-foot, .38)));
+  box-shadow: inset 0 0 0 var(--ob-border-hair) rgb(var(--ob-sheen-rgb) / .08);
+  pointer-events: none;
+}
+/* The reader's light over the photograph, multiplied in, so its warm whites take the room's colour. */
+.s-art-visual--photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(120% 110% at 50% 0%, var(--s-art-light), var(--s-art-light-soft) 55%, transparent 100%);
+  mix-blend-mode: multiply;
+  opacity: var(--s-art-photo-tint, 1);
+  pointer-events: none;
+}
+.s-art-visual--photo::after { z-index: 1; }
+:root:not([data-theme="light"]) :is(.s-art-visual--photo, .s-blog-card__visual--photo) img { filter: brightness(.74) contrast(1.08) saturate(.88); }
+:root[data-theme="light"] .s-art-visual--photo { --s-art-photo-foot: 0; --s-art-photo-tint: 0; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) :is(.s-art-visual--photo, .s-blog-card__visual--photo) img { filter: none; }
+  :root:not([data-theme]) .s-art-visual--photo { --s-art-photo-foot: 0; --s-art-photo-tint: 0; }
+}
 .s-art-visual__credit {
   position: absolute;
-  right: var(--ob-space-12);
-  bottom: var(--ob-space-12);
-  padding: var(--ob-space-4) var(--ob-space-8);
+  z-index: 2;
+  right: var(--ob-space-16);
+  bottom: var(--ob-space-16);
+  padding: var(--ob-space-4) var(--ob-space-10, 10px);
   border-radius: var(--ob-radius-pill);
-  background-color: rgb(8 8 7 / .62);
-  backdrop-filter: blur(6px);
+  background-color: rgb(8 8 7 / .6);
+  backdrop-filter: blur(8px);
   font: var(--ob-type-caption);
   color: #EDEBE5;
 }
 .s-art-visual__credit a { color: inherit; text-underline-offset: 2px; }
 .s-art-visual--art { display: grid; justify-items: center; }
 
+/* A stage: a face lit by the reader from above, a product window or screen standing on it. The header's picture when it
+   is an illustration or a screen, and every illustration in the text. */
+.s-art-stage,
+.s-art-text .s-art-ill__stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  padding: var(--ob-space-48) var(--ob-space-40);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(70% 90% at 50% 0%, var(--s-art-light), var(--s-art-light-soft) 35%, transparent 75%),
+    var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
+}
+.s-art-heroobj.s-art-stage { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-3); }
+.s-art-stage > .s-art-visual--art,
+.s-art-stage > .ilwrap { width: 100%; }
+
 /* ---- The text ---- */
 .s-art-text { padding-block: var(--ob-space-56) var(--ob-space-96); }
 .s-art-text .s-art-body { display: block; padding-bottom: 0; }
-.s-art-text .s-art-main { max-width: 680px; margin-inline: auto; }
+.s-art-text .s-art-main { max-width: var(--s-art-measure); margin-inline: auto; counter-reset: s-sec; }
 .s-art-text .s-art-p,
-.s-art-text .s-art-list > li { color: var(--ob-text-2); }
+.s-art-text .s-art-list > li { color: var(--s-read, var(--ob-text-2)); }
 .s-art-text :is(.s-art-p, .s-art-list) strong { color: var(--ob-text); }
+.s-art-text .s-art-a { text-decoration-color: color-mix(in srgb, var(--ob-text) 35%, transparent); }
 
-/* The direct answer opens the text: what a reader skims and an assistant quotes, set larger, in the first ink. */
+/* The summary: the direct answer beside the contents, on 1 face lit by the reader from its corner. */
+.s-art-sum {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: var(--ob-space-40);
+  padding: var(--ob-space-40) var(--ob-space-40) var(--ob-space-40) var(--ob-space-40);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(80% 120% at 0% 0%, var(--s-art-light), var(--s-art-light-soft) 30%, transparent 70%),
+    var(--ob-sheen),
+    var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
+}
+.s-art-sum--solo { grid-template-columns: minmax(0, 1fr); }
+/* The direct answer, what a reader skims and an assistant quotes: the first ink, larger, on the reader's bar. */
 .s-art-lead {
   margin: 0;
-  padding-bottom: var(--ob-space-32);
-  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+  padding-left: var(--ob-space-20);
+  box-shadow: inset 2px 0 0 var(--s-accent, var(--ob-line-strong));
   font: var(--ob-type-body-lg);
-  font-size: clamp(18px, 1.6vw, 20px);
-  line-height: 1.55;
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.6;
   letter-spacing: -.005em;
   color: var(--ob-text);
   text-wrap: pretty;
 }
-
-/* The contents: numbered, 2 columns on wide screens, under its own label; folded on phones. */
-.s-art-toc { padding-block: var(--ob-space-24) var(--ob-space-32); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
-.s-art-main > .s-art-lead + .s-art-toc { margin-top: 0 !important; }
+/* The contents: numbered as the sections are, in the third ink. */
+.s-art-toc { padding-left: var(--ob-space-32); border-left: var(--ob-border-hair) solid var(--ob-line); }
 .s-art-toc__label { margin: 0 0 var(--ob-space-12); font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
-.s-art-toc__list { columns: 2; column-gap: var(--ob-space-32); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
-.s-art-toc__list > li { counter-increment: s-toc; break-inside: avoid; }
+.s-art-toc__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
+.s-art-toc__list > li { counter-increment: s-toc; }
 .s-art-toc__link {
   display: grid;
-  grid-template-columns: 2em minmax(0, 1fr);
-  padding: var(--ob-space-6) 0;
+  grid-template-columns: 2.1em minmax(0, 1fr);
+  padding: var(--ob-space-4) 0;
   font: var(--ob-type-small);
   color: var(--ob-text-2);
   text-decoration: none;
@@ -528,16 +660,32 @@
 .s-art-toc__link::before { content: counter(s-toc, decimal-leading-zero); font: var(--ob-type-mono-sm); color: var(--ob-text-3); padding-top: .15em; }
 @media (hover: hover) and (pointer: fine) { .s-art-toc__link:hover { color: var(--ob-text); } }
 .s-art-toc__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
-.s-art-main > :is(.s-art-toc, .s-toc-m) + * { margin-top: var(--ob-space-48); }
-@media (max-width: 759.98px) { .s-art-toc { display: none; } }
+.s-art-main > .s-art-sum + * { margin-top: var(--ob-space-56); }
+.s-art-main > .s-art-sum + .s-toc-m + * { margin-top: var(--ob-space-48); }
 @media (min-width: 760px) { .s-toc-m { display: none !important; } }
 .s-toc-m { border-radius: 0; box-shadow: none; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
 .s-toc-m .s-toc-m__sum { padding-inline: 0; }
 .s-toc-m .s-toc-m__list { padding-inline: 0; }
 
-/* Sections: a hairline above each, as the site's notice pages divide theirs. */
-.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-56); padding-top: var(--ob-space-40); border-top: var(--ob-border-hair) solid var(--ob-line); }
+/* Sections: a hairline, then the section's number on the reader's square (the contents' number), then its heading. */
+.s-art-text .s-art-h2 { counter-increment: s-sec; }
+.s-art-text .s-art-h2::before {
+  content: counter(s-sec, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--ob-space-12);
+  padding-left: var(--ob-space-16);
+  background: linear-gradient(var(--s-accent, var(--ob-text-3)), var(--s-accent, var(--ob-text-3))) 0 50% / 8px 8px no-repeat;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: 0;
+  color: var(--ob-text-3);
+}
+.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-64); padding-top: var(--ob-space-40); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-art-text .s-art-main > .s-art-sum + .s-art-h2,
+.s-art-text .s-art-main > .s-art-sum + .s-toc-m + .s-art-h2 { padding-top: 0; border-top: 0; }
 .s-art-text .s-art-h3 { font-weight: var(--ob-weight-semibold); }
+
+/* Lists: the third ink's point, numbers in tabular mono. */
+.s-art-text .s-art-list > li::before { background-color: var(--ob-text-3); }
 
 /* Run-in labels that name a result: a pass in success, a failure in danger, as a small label the eye can scan. */
 .s-art-k {
@@ -551,38 +699,78 @@
 .s-art-k--pass { background-color: var(--ob-success-bg); color: var(--ob-success) !important; }
 .s-art-k--fail { background-color: var(--ob-danger-bg); color: var(--ob-danger) !important; }
 
-/* Tables: rows divided by hairlines, the head in the third ink, no frame. */
-.s-art-text .s-art-table__scroll { border-radius: 0; box-shadow: none; border-top: var(--ob-border-hair) solid var(--ob-line-strong); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
-.s-art-text .s-art-table thead th { background-color: transparent; padding-top: var(--ob-space-12); }
-.s-art-text .s-art-table :is(th, td) { padding-inline: 0 var(--ob-space-20); }
+/* Tables: a face on the wide line, the head a step raised, rows on hairlines. */
+.s-art-text .s-art-table__scroll {
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
+}
+.s-art-text .s-art-table :is(th, td) { padding: var(--ob-space-14, 14px) var(--ob-space-20); border-top-color: var(--ob-line-subtle); }
+.s-art-text .s-art-table thead th { padding-block: var(--ob-space-12); background-color: var(--ob-surface-raised); color: var(--ob-text-3); }
+.s-art-text .s-art-table td { color: var(--s-read, var(--ob-text-2)); }
+.s-art-text .s-art-table tbody tr:first-child :is(th, td) { border-top: 0; }
+.s-art-text .s-art-table :is(th, td):first-child:not(:only-child) { padding-left: var(--ob-space-24); }
+.s-art-cap { margin-top: var(--ob-space-16); }
 
-/* Illustrations in the text: the window on the page, its caption under it. */
+/* Illustrations and screens in the text: on their stage, their caption under it. */
 .s-art-ill { margin-block: 0; }
 .s-art-main > * + .s-art-ill, .s-art-ill + * { margin-top: var(--ob-space-48); }
-.s-art-ill__stage { display: grid; justify-items: center; }
+.s-art-main > * + .s-art-fig--screen, .s-art-fig--screen + * { margin-top: var(--ob-space-48); }
 .s-art-text .s-art-fig--screen .ilwrap { cursor: default; }
 
-/* A stat: the number large, its label and source beside it, between 2 hairlines. */
-.s-art-text .s-art-stat__v { font-weight: var(--ob-weight-semibold); }
+/* A stat: a face lit by the reader from its start, the number large in the first ink, its label and source beside it. */
+.s-art-text .s-art-stat {
+  padding: var(--ob-space-28, 28px) var(--ob-space-32);
+  border: 0;
+  border-radius: var(--ob-radius-lg);
+  background:
+    radial-gradient(60% 140% at 0% 50%, var(--s-art-light-soft), transparent 70%),
+    var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
+}
+.s-art-text .s-art-stat__v { font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
 .s-art-text .s-art-stat__l { color: var(--ob-text); }
 
-/* A quote and a note: a rule at the start, no fill. */
-.s-art-text .s-art-quote { box-shadow: inset 2px 0 0 var(--ob-line-strong); }
+/* A quote: the reader's rule at its start. A note: a face with the reader's square by its title. */
+.s-art-text .s-art-quote { padding-block: var(--ob-space-4); box-shadow: inset 2px 0 0 var(--s-accent, var(--ob-line-strong)); }
 .s-art-text .s-art-quote blockquote p { font-weight: var(--ob-weight-regular, 400); color: var(--ob-text); }
-.s-art-text .s-art-note { padding: var(--ob-space-4) 0 var(--ob-space-4) var(--ob-space-24); border-radius: 0; background: none; box-shadow: inset 2px 0 0 var(--ob-line-strong); }
-
-/* The link to the product: the 1 raised panel in the text, quiet, with its button. */
-.s-art-text .s-art-cta {
+.s-art-text .s-art-note {
   padding: var(--ob-space-20) var(--ob-space-24);
   border-radius: var(--ob-radius-lg);
-  background: var(--ob-sheen), var(--ob-surface-raised);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.s-art-text .s-art-note__t { display: flex; align-items: center; gap: var(--ob-space-10, 10px); }
+.s-art-text .s-art-note__t::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+.s-art-text .s-art-note__x { color: var(--ob-text-2); }
+
+/* The link to the product: a raised face lit by the reader from its far corner, its button on the same line. */
+.s-art-text .s-art-cta {
+  padding: var(--ob-space-24) var(--ob-space-28, 28px);
+  border-radius: var(--ob-radius-lg);
+  background:
+    radial-gradient(70% 160% at 100% 0%, var(--s-art-light), var(--s-art-light-soft) 30%, transparent 70%),
+    var(--ob-sheen),
+    var(--ob-surface-raised);
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight);
 }
-.s-art-text .s-art-cta__x { color: var(--ob-text-2); }
+.s-art-text .s-art-cta__x { font: var(--ob-type-body); font-size: 15px; color: var(--ob-text); }
 
+@media (max-width: 899.98px) {
+  .s-art-sum { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); padding: var(--ob-space-32); }
+  .s-art-toc { padding: var(--ob-space-24) 0 0; border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
+  .s-art-toc__list { columns: 2; column-gap: var(--ob-space-32); display: block; }
+  .s-art-toc__list > li { break-inside: avoid; }
+}
 @media (max-width: 759.98px) {
+  .s-art { --s-art-over: 72px; }
   .s-art-head { padding-top: var(--ob-space-40); }
-  .s-art-heroobj { margin-top: var(--ob-space-32); }
+  .s-art-head--over { padding-bottom: calc(var(--s-art-over) + var(--ob-space-40)); }
+  .s-art-visual--photo { border-radius: var(--ob-radius-lg); }
+  .s-art-stage, .s-art-text .s-art-ill__stage { padding: var(--ob-space-24) var(--ob-space-16); border-radius: var(--ob-radius-lg); }
   .s-art-text { padding-block: var(--ob-space-40) var(--ob-space-64); }
-  .s-art-byline { display: grid; justify-content: start; }
+  .s-art-sum { padding: var(--ob-space-24); }
+  .s-art-toc { display: none; }
+  .s-art-byline { display: grid; justify-content: start; justify-items: start; }
+  .s-art-text .s-art-stat { padding: var(--ob-space-20); }
 }

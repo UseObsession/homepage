@@ -80,16 +80,16 @@ export const post: BlogPost = {
     workspace: 'company',
     art: {
       kind: 'log',
-      title: 'marrowleaf.example · stranger test with a control address',
+      title: 'marrowleaf.example · new customer test with a control address',
       who: 'Address A signs up through the pop up; address B through the footer form',
-      status: { tone: 'fail', text: '1 silent flow' },
+      status: { tone: 'fail', text: '1 flow not sending' },
       rows: [
         { time: 'Tue 09:00', text: 'A and B sign up, 1 minute apart', detail: 'Both new Gmail addresses, both with the marketing box ticked', tone: 'info' },
         { time: 'Tue 09:03', text: 'B: welcome email with 10% off', detail: 'Primary tab, 2 minutes after sign up', tone: 'ok' },
         { time: 'Thu 09:01', text: 'A: no welcome email in 48 hours', detail: 'The pop up feeds a list the welcome flow doesn’t start from', tone: 'fail' },
         { time: 'Thu 09:06', text: 'Control: a plain campaign reaches A', detail: 'Sending works, so the fault sits in the flow', tone: 'ok' },
       ],
-      foot: 'The control settles it: the address can receive mail, so the silence belongs to the flow.',
+      foot: 'A received a plain campaign, so the address works and the fault is in the welcome flow.',
     },
   },
 

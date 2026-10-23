@@ -101,12 +101,13 @@ export function BlogPostAt({ slug }: { slug: string }) {
   return post ? <BlogPost post={post} /> : null
 }
 
-/* A post, on the page's own ground from top to foot, as the site's other reading pages are (/agents, /privacy): the
-   header on the text's column, left aligned (the breadcrumb, the hub, the title, the dek, both founders, the date and
-   the reading time), its 1 picture set on the page, then the text on a 680px measure with its pictures and tables
-   breaking wider: the direct answer as the opening paragraph, the contents, the text, the share row and the sources (only
-   those the text links to, in the order it first does, with the day the links were checked);
-   then what to read next, the recipes for the job and the waitlist (#join). */
+/* A post in the hub's reader colour, on the site's own ink (or paper when the reader picks light). The header is a lit
+   room a step lighter than the page, its light the reader's glow from above: the breadcrumb, the hub, the title, the
+   dek, both founders, the date and the reading time, on the picture's 880px width and left edge. The 1 picture
+   straddles the room's lower edge. Then a summary panel on the same width (the direct answer beside the contents), and
+   the text on a 680px measure, its tables and pictures back on 880px: 2 widths on 1 axis. The share row and the sources
+   (only those the text links to, in the order it first does, with the day the links were checked) close it; then what
+   to read next, the recipes for the job and the waitlist (#join). */
 export function BlogPost({ post }: { post: Post }) {
   const id = useId()
   const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text }] : [])), [post])
@@ -118,16 +119,17 @@ export function BlogPost({ post }: { post: Post }) {
     ...(recipes.length ? [{ id: 'recipes', name: blogUi.recipes, rows: recipes }] : []),
   ]
   const hasVisual = !!(post.hero.image || post.hero.art)
+  const heroScreen = !hasVisual && post.hero.screen
 
   return (
     <>
-      <article className="s-art" aria-labelledby={`${id}-h`}>
-        <header className="s-art-head" data-reader={readerOf(post.category)}>
+      <article className="s-art" data-reader={readerOf(post.category)} aria-labelledby={`${id}-h`}>
+        <header className={'s-art-head' + (hasVisual || heroScreen ? ' s-art-head--over' : '')}>
           <div className="s-wrap">
-            <div className="s-art-col ob-anim-hero">
+            <div className="s-art-head__in ob-anim-hero">
               <Crumbs />
               <p className="s-art-kicker">
-                <Link to={`/blog#${categoryId(post.category)}`}>
+                <Link className="ob-layout-eyebrow s-art-kicker__pill" to={`/blog#${categoryId(post.category)}`}>
                   <span className="s-art-kicker__mark" aria-hidden="true" />
                   {post.category}
                 </Link>
@@ -138,38 +140,40 @@ export function BlogPost({ post }: { post: Post }) {
               <p className="s-art-dek">{post.dek}</p>
               <Byline post={post} className="s-art-byline" />
             </div>
-            {hasVisual ? (
-              <div className="s-art-heroobj ob-anim-hero-object">
-                <PostVisual post={post} />
-              </div>
-            ) : (
-              post.hero.screen && (
-                <div className="s-art-heroobj ob-anim-hero-object">
-                  <AppScreen name={post.hero.screen} workspace={post.hero.workspace ?? drawnFor(post.hero.screen)} />
-                </div>
-              )
-            )}
           </div>
         </header>
+        {(hasVisual || heroScreen) && (
+          <div className="s-wrap">
+            <div className={'s-art-heroobj ob-anim-hero-object' + (post.hero.image ? '' : ' s-art-stage')}>
+              {hasVisual ? (
+                <PostVisual post={post} />
+              ) : (
+                heroScreen && <AppScreen name={heroScreen} workspace={post.hero.workspace ?? drawnFor(heroScreen)} />
+              )}
+            </div>
+          </div>
+        )}
 
         <section className="s-art-text" aria-label={post.title}>
           <div className="s-wrap s-art-body">
             <div className="s-art-main">
-              <p className="s-art-lead">{post.answer}</p>
-              {toc.length > 1 && (
-                <nav className="s-art-toc" aria-label={blogUi.toc}>
-                  <p className="s-art-toc__label">{blogUi.toc}</p>
-                  <ol className="s-art-toc__list">
-                    {toc.map((t) => (
-                      <li key={t.id}>
-                        <a className="s-art-toc__link" href={`#${t.id}`}>
-                          {t.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ol>
-                </nav>
-              )}
+              <div className={'s-art-sum s-art-wide' + (toc.length > 1 ? '' : ' s-art-sum--solo')}>
+                <p className="s-art-lead">{post.answer}</p>
+                {toc.length > 1 && (
+                  <nav className="s-art-toc" aria-label={blogUi.toc}>
+                    <p className="s-art-toc__label">{blogUi.toc}</p>
+                    <ol className="s-art-toc__list">
+                      {toc.map((t) => (
+                        <li key={t.id}>
+                          <a className="s-art-toc__link" href={`#${t.id}`}>
+                            {t.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </nav>
+                )}
+              </div>
               <TocInline items={toc} />
               <Blocks blocks={hasVisual ? blocks : post.blocks} />
               <Share path={`/blog/${post.slug}`} title={post.title} />
