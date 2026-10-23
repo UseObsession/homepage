@@ -19,6 +19,7 @@ import {
   warmSignup,
   type Context,
 } from '../lib/signupStore'
+import { track } from '../lib/analytics'
 import { ADDRESS_PATTERN, AGENT_PATTERN, WAITLIST_URL, isAddress, isAgent, isEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import './CaptureForm.css'
@@ -208,6 +209,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       return
     }
     moved.current = true
+    /* Counted in Google Analytics if the visitor allowed it: which form, never the email. */
+    if (!res.preview) track('generate_lead', { form: shop ? (verify ? 'ai_agent_check' : 'mystery_shop') : 'waitlist' })
     /* An older script keeps the email and nothing after it: no card. */
     if (!res.preview && (res.v ?? 1) < 2) {
       sending.current = false
