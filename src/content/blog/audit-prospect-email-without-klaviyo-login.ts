@@ -48,12 +48,9 @@ export const post: BlogPost = {
   primaryKeyword: 'klaviyo flow audit',
   keywords: [
     'email flow audit',
-    'email marketing audit checklist',
     'how to win ecommerce clients',
-    'cro audit shopify',
     'free email marketing audit',
     'welcome email audit',
-    'klaviyo flow not sending',
     'audit a prospect’s email',
   ],
   category: 'For agencies',
@@ -396,6 +393,7 @@ export const post: BlogPost = {
     'recipe:email-sms-tracking',
     '/use-cases/leak-checks-for-retention-agencies',
     '/sample-output',
-    'black-friday-checklist-new-customer',
+    'email-marketing-audit',
+    'ecommerce-cro-audit-template',
   ],
 }

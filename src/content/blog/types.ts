@@ -17,7 +17,9 @@ export type ArtSpec =
 
 export type BlogBlock =
   | { kind: 'p'; text: string }
-  | { kind: 'h2'; id: string; text: string }
+  /* A section. Its text is also its name in the article's side contents, so it stays short and plain. `compare` marks
+     the section that compares the reader's options: the page links to it from the top and tags it in the contents. */
+  | { kind: 'h2'; id: string; text: string; compare?: boolean }
   | { kind: 'h3'; id: string; text: string }
   | { kind: 'list'; ordered?: boolean; items: string[] }
   | { kind: 'quote'; text: string; cite: string; href?: string }
@@ -25,7 +27,11 @@ export type BlogBlock =
   | { kind: 'screen'; screen: string; caption: string; workspace?: 'agency' | 'company' }
   /* A diagram or image in public/blog/SLUG/, drawn on the design system (SVG preferred). */
   | { kind: 'figure'; src: string; alt: string; caption: string; width: number; height: number }
-  | { kind: 'table'; caption: string; cols: string[]; rows: string[][] }
+  /* `compare` marks a table of options: its head stays in view while it scrolls past. */
+  /* A cell may break into lines with \n, 1 per tool. In a comparison (compare) every row is an option, written
+     "Name: the tools it covers" (Obsession's as "Obsession (ours): its recipes"), and the columns are always
+     Option, What it does well, Price, Where it stops, Best for. */
+  | { kind: 'table'; caption: string; cols: string[]; rows: string[][]; compare?: boolean }
   /* A sourced number: every stat on the blog links to where it came from. */
   | { kind: 'stat'; value: string; label: string; source: string; href: string }
   | { kind: 'note'; title: string; text: string }

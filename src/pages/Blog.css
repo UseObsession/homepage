@@ -426,44 +426,39 @@
 @media (prefers-reduced-motion: reduce) { .s-blog-card { transition: none; } .s-blog-card:hover { transform: none; } }
 
 /* =====================================================================================================================
-   THE ARTICLE (23 Oct 2026, third pass on Seun's brief: dark, in the hub's reader colour, and it should flow, not sit in
-   boxes, with an alignment you can feel). 1 reading column of 680px from the breadcrumb to the sources: every word,
-   the picture, every table and every illustration start on the same left edge and end on the same right one. Parts are
-   set apart by space and type, never by frames. The marks hang in the left margin, so the text edge stays clean: the
-   answer's bar, each section's number on the reader's square, list points and numbers, a quote's rule and a note's
-   square. The hub's reader colour (styles/accents.css) is used the 2 ways COLOUR.md allows, never on a word: its glow,
-   as light that fades to nothing before any edge (the header, behind each illustration, behind a stat and the closing
-   call), and its mark (the squares and bars). Under 900px there is no margin to hang in, so the marks come inside.
+   THE ARTICLE (23 Oct 2026, fourth pass on Seun's brief: dark, in the hub's reader colour, using the page's width like the
+   site's other pages, with an order a reader can follow). Everything starts on the page's 1 left edge: the header, the
+   picture across the full width, then 2 columns. The side contents stay in view and mark the section being read, so a
+   reader can follow the topic and jump to any part. The text keeps a 720px measure for prose; tables, pictures and
+   screens take the column's full width. Sections are divided by a dashed hairline, as the use case pages divide their
+   steps. The hub's reader colour (styles/accents.css) is used the 2 ways COLOUR.md allows, never on a word: its glow,
+   as light that fades to nothing, and its mark, as a square or a bar. Under 1000px the contents fold above the text.
    ===================================================================================================================== */
 
 .s-art {
   /* The pooled light reaches past the column; it is clipped at the page's edge so it never widens a phone's page. */
   overflow-x: clip;
-  --s-art-measure: 680px;
+  --s-art-measure: 720px;
+  --s-art-rail: 220px;
+  --s-art-gap: clamp(48px, 6vw, 104px);
   /* Where a hanging mark sits: this far left of the text edge. */
   --s-art-hang: var(--ob-space-24);
   /* The reader's light at a strength: the glow source mixed toward transparent, as COLOUR.md draws every glow. */
   --s-art-light: color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent);
   --s-art-light-soft: color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent);
 }
-
-/* The column. Everything sits in it; nothing breaks out. */
-.s-art-col,
-.s-art-head__in,
-.s-art-heroobj,
-.s-art-text .s-art-main { width: 100%; max-width: var(--s-art-measure); margin-inline: auto; }
 .s-art-wide { width: 100%; margin-inline: 0; }
 
-/* ---- The header: the reader's light falls from above and fades into the page, with no edge ---- */
-.s-art-head { position: relative; isolation: isolate; padding-top: var(--ob-space-56); }
+/* ---- The header: on the page's left edge, the reader's light falling from above with no edge ---- */
+.s-art-head { position: relative; isolation: isolate; padding-top: var(--ob-space-48); }
 .s-art-head::before {
   content: "";
   position: absolute;
   z-index: -1;
   inset: 0 0 auto;
-  height: 760px;
+  height: 820px;
   background: radial-gradient(
-    55% 100% at 50% 0%,
+    60% 100% at 30% 0%,
     var(--s-art-light),
     color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .84), transparent) 25%,
     color-mix(in srgb, var(--s-accent-glow, transparent) calc(var(--s-accent-glow-hero, 30%) * .5), transparent) 50%,
@@ -472,6 +467,7 @@
   );
   pointer-events: none;
 }
+.s-art-head__in { width: 100%; }
 .s-art-head .s-crumbs { justify-self: start; margin: 0 0 var(--ob-space-32); }
 .s-art-head .s-crumbs .ob-crumbs__list { justify-content: flex-start; }
 
@@ -484,42 +480,45 @@
 
 .s-art-title {
   margin: 0;
+  max-width: 19ch;
   font: var(--ob-type-h1);
-  font-size: clamp(34px, 4.4vw, 52px);
-  line-height: 1.06;
-  letter-spacing: -.028em;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -.032em;
   color: var(--ob-text);
   text-wrap: balance;
 }
 .s-art-dek {
   margin: var(--ob-space-24) 0 0;
+  max-width: 60ch;
   font: var(--ob-type-body-lg);
-  font-size: clamp(17px, 1.5vw, 19px);
+  font-size: clamp(17px, 1.5vw, 20px);
   line-height: 1.55;
   letter-spacing: var(--ob-type-body-lg-tracking);
   color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
-/* Who wrote it and when, on 1 line under a hairline. */
+/* Who wrote it and when, across the page under a hairline. */
 .s-art-byline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--ob-space-12) var(--ob-space-24);
-  margin-top: var(--ob-space-32);
+  margin-top: var(--ob-space-40);
   padding-top: var(--ob-space-20);
   border-top: var(--ob-border-hair) solid var(--ob-line);
 }
 .s-art-byline .s-byline__people { justify-content: flex-start; }
 
-/* ---- The 1 picture, on the column ---- */
-.s-art-heroobj { position: relative; margin-top: var(--ob-space-40); }
+/* ---- The 1 picture, across the full width ---- */
+.s-art-heroobj { position: relative; width: 100%; margin-top: var(--ob-space-40); }
+.s-art-heroobj .ilwrap { cursor: pointer; }
 .s-art-visual { position: relative; width: 100%; margin: 0; }
 .s-art-visual--photo {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 21 / 9;
   overflow: hidden;
-  border-radius: var(--ob-radius-lg);
+  border-radius: var(--ob-radius-xl);
   background-color: var(--ob-surface);
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line), 0 40px 90px -40px rgb(var(--ob-shadow-rgb) / .9);
 }
@@ -555,8 +554,8 @@
 .s-art-visual__credit {
   position: absolute;
   z-index: 2;
-  right: var(--ob-space-12);
-  bottom: var(--ob-space-12);
+  right: var(--ob-space-16);
+  bottom: var(--ob-space-16);
   padding: var(--ob-space-4) var(--ob-space-10, 10px);
   border-radius: var(--ob-radius-pill);
   background-color: rgb(8 8 7 / .6);
@@ -566,15 +565,14 @@
 }
 .s-art-visual__credit a { color: inherit; text-underline-offset: 2px; }
 
-/* An illustration or a screen, in the header or the text: the window on the column's full width, the reader's light
-   pooled behind it and fading out well inside the page, so there is no stage to see, only light. */
+/* An illustration or a screen, in the header or the text: the window on the reader's pooled light, no stage edges. */
 .s-art-stage,
 .s-art-text .s-art-ill__stage,
 .s-art-text .s-art-fig--screen {
   position: relative;
   isolation: isolate;
   display: grid;
-  justify-items: stretch;
+  justify-items: center;
 }
 .s-art-stage::before,
 .s-art-text .s-art-ill__stage::before,
@@ -582,30 +580,73 @@
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -12% -22% -6%;
+  inset: -12% -12% -6%;
   background: radial-gradient(closest-side, var(--s-art-light), var(--s-art-light-soft) 45%, transparent 100%);
   pointer-events: none;
 }
-.s-art :is(.s-art-stage, .s-art-ill__stage) .s-x { max-width: none; }
-.s-art-visual--art { display: grid; }
+.s-art-visual--art { display: grid; justify-items: center; width: 100%; }
+.s-art-heroobj .s-x { max-width: 760px; }
+.s-art-text .s-art-ill__stage { justify-items: stretch; }
+.s-art-text .s-art-ill__stage .s-x { max-width: none; }
+.s-art-text .s-art-fig--screen > .ilwrap { width: 100%; }
 
-/* ---- The text ---- */
-.s-art-text { padding-block: var(--ob-space-56) var(--ob-space-96); }
-.s-art-text .s-art-body { display: block; padding-bottom: 0; }
-.s-art-text .s-art-main { counter-reset: s-sec; }
-.s-art-text .s-art-main > * + * { margin-top: var(--ob-space-24); }
+/* ---- The text: the side contents and the column ---- */
+.s-art-text { padding-block: var(--ob-space-64) var(--ob-space-96); }
+.s-art-layout {
+  display: grid;
+  grid-template-columns: var(--s-art-rail) minmax(0, 1fr);
+  column-gap: var(--s-art-gap);
+  align-items: start;
+}
+.s-art-rail { position: sticky; top: calc(var(--ob-nav-h, 64px) + var(--ob-space-40)); align-self: start; }
+.s-art-main { min-width: 0; }
+.s-art-main > * + * { margin-top: var(--ob-space-24); }
+/* Prose keeps the measure; tables, pictures and screens take the column. */
+.s-art-main > :is(.s-art-lead, .s-art-p, .s-art-list, .s-art-h2, .s-art-h3, .s-art-quote, .s-art-note, .s-art-cta, .s-art-stat, .s-toc-m, .s-art-share, .s-art-sources, .s-art-faq) { max-width: var(--s-art-measure); }
 .s-art-text .s-art-p,
 .s-art-text .s-art-list > li { color: var(--s-read, var(--ob-text-2)); }
 .s-art-text :is(.s-art-p, .s-art-list) strong { color: var(--ob-text); }
 .s-art-text .s-art-a { text-decoration-color: color-mix(in srgb, var(--ob-text) 35%, transparent); }
 
+/* The side contents: every section by number and name, the one being read in the first ink on the reader's bar. */
+.s-art-rail .s-toc { position: static; display: grid; gap: var(--ob-space-12); justify-self: stretch; max-width: none; margin: 0; padding: 0; }
+.s-art-rail .s-toc__label { margin: 0; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-art-rail .s-toc__list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: s-rail;
+  box-shadow: inset var(--ob-border-hair) 0 0 var(--ob-line);
+}
+.s-art-rail .s-toc__list > li { counter-increment: s-rail; }
+.s-art-rail .s-toc__link {
+  display: grid;
+  grid-template-columns: 2em minmax(0, 1fr);
+  padding: var(--ob-space-6) 0 var(--ob-space-6) var(--ob-space-14, 14px);
+  border-radius: 0;
+  box-shadow: none;
+  font: var(--ob-type-small);
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--ob-text-3);
+  text-decoration: none;
+  text-wrap: pretty;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-art-rail .s-toc__link::before { content: counter(s-rail, decimal-leading-zero); font: var(--ob-type-mono-sm); font-size: 11px; color: var(--ob-text-3); padding-top: .2em; }
+@media (hover: hover) and (pointer: fine) { .s-art-rail .s-toc__link:hover { color: var(--ob-text); } }
+.s-art-rail .s-toc__link[aria-current] { color: var(--ob-text); box-shadow: inset 2px 0 0 var(--s-accent, var(--ob-text)); }
+.s-art-rail .s-toc__link[aria-current]::before { color: var(--s-accent, var(--ob-text-2)); }
+.s-art-rail .s-toc__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
+
 /* The direct answer, what a reader skims and an assistant quotes: the first ink, larger, its bar in the margin. */
-.s-art-sum { display: block; }
 .s-art-lead {
   position: relative;
   margin: 0;
   font: var(--ob-type-body-lg);
-  font-size: clamp(18px, 1.6vw, 20px);
+  font-size: clamp(18px, 1.6vw, 21px);
   line-height: 1.6;
   letter-spacing: -.005em;
   color: var(--ob-text);
@@ -621,54 +662,30 @@
   border-radius: 1px;
   background-color: var(--s-accent, var(--ob-line-strong));
 }
-/* The contents, under the answer: numbered as the sections are, 2 columns, closed by the 1 rule the text has. */
-.s-art-toc { margin-top: var(--ob-space-40); padding-bottom: var(--ob-space-40); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
-.s-art-toc__label { margin: 0 0 var(--ob-space-12); font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
-.s-art-toc__list { columns: 2; column-gap: var(--ob-space-40); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
-.s-art-toc__list > li { counter-increment: s-toc; break-inside: avoid; }
-.s-art-toc__link {
-  display: grid;
-  grid-template-columns: 2.1em minmax(0, 1fr);
-  padding: var(--ob-space-6) 0;
-  font: var(--ob-type-small);
-  color: var(--ob-text-2);
-  text-decoration: none;
-  text-wrap: pretty;
-  transition: color var(--ob-dur-base) var(--ob-ease-out);
-}
-.s-art-toc__link::before { content: counter(s-toc, decimal-leading-zero); font: var(--ob-type-mono-sm); color: var(--ob-text-3); padding-top: .15em; }
-@media (hover: hover) and (pointer: fine) { .s-art-toc__link:hover { color: var(--ob-text); } }
-.s-art-toc__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
-.s-art-main > .s-art-sum + * { margin-top: var(--ob-space-56); }
-.s-art-main > .s-art-sum + .s-toc-m + * { margin-top: var(--ob-space-48); }
-@media (min-width: 760px) { .s-toc-m { display: none !important; } }
+.s-art-main > .s-art-lead + * { margin-top: var(--ob-space-40); }
+@media (min-width: 1000px) { .s-toc-m { display: none !important; } }
 .s-toc-m { border-radius: 0; box-shadow: none; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
 .s-toc-m .s-toc-m__sum { padding-inline: 0; }
 .s-toc-m .s-toc-m__list { padding-inline: 0; }
 
-/* Sections: space, not rules. Each heading's number hangs in the margin on the reader's square, on the heading's
-   first line, as the contents number it. */
-.s-art-text .s-art-h2 {
-  position: relative;
-  counter-increment: s-sec;
-  font-size: clamp(26px, 2.6vw, 34px);
-}
+/* Sections: a dashed hairline, as the use case pages divide their steps; the section's number on the reader's square
+   (the contents number it the same way), then its heading. */
+.s-art-text .s-art-main { counter-reset: s-sec; }
+.s-art-text .s-art-h2 { counter-increment: s-sec; font-size: clamp(26px, 2.6vw, 34px); }
 .s-art-text .s-art-h2::before {
   content: counter(s-sec, decimal-leading-zero);
-  position: absolute;
-  top: .42em;
-  right: calc(100% + var(--s-art-hang) - 8px);
+  display: block;
+  margin-bottom: var(--ob-space-14, 14px);
   padding-left: var(--ob-space-14, 14px);
   background: linear-gradient(var(--s-accent, var(--ob-text-3)), var(--s-accent, var(--ob-text-3))) 0 50% / 7px 7px no-repeat;
   font: var(--ob-type-mono-sm);
   letter-spacing: 0;
   line-height: 1;
   color: var(--ob-text-3);
-  white-space: nowrap;
 }
-.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-96); padding-top: 0; border-top: 0; }
-.s-art-text .s-art-main > .s-art-sum + .s-art-h2,
-.s-art-text .s-art-main > .s-art-sum + .s-toc-m + .s-art-h2 { margin-top: var(--ob-space-56); }
+.s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-72, 72px); padding-top: var(--ob-space-56); border-top: var(--ob-border-hair) dashed var(--ob-line-strong); max-width: none; }
+.s-art-text .s-art-main > .s-art-lead + .s-art-h2,
+.s-art-text .s-art-main > .s-toc-m + .s-art-h2 { margin-top: var(--ob-space-48); }
 .s-art-text .s-art-main > :is(.s-art-h2, .s-art-h3) + * { margin-top: var(--ob-space-20); }
 .s-art-text .s-art-h3 { font-weight: var(--ob-weight-semibold); }
 .s-art-text .s-art-main > * + .s-art-h3 { margin-top: var(--ob-space-48); }
@@ -706,7 +723,7 @@
 .s-art-k--pass { background-color: var(--ob-success-bg); color: var(--ob-success) !important; }
 .s-art-k--fail { background-color: var(--ob-danger-bg); color: var(--ob-danger) !important; }
 
-/* Tables: open, on the column's edges. The head over a firmer rule, rows on hairlines, the first column flush left. */
+/* Tables: open, across the column. The head over a firmer rule, rows on hairlines, the first column flush left. */
 .s-art-text .s-art-table__scroll { border-radius: 0; background: none; box-shadow: none; }
 .s-art-text .s-art-table :is(th, td) { padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-12) 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
 .s-art-text .s-art-table :is(th, td):last-child { padding-right: 0; }
@@ -716,12 +733,97 @@
 .s-art-text .s-art-table tbody tr:last-child :is(th, td) { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
 /* Captions sit on the column's left edge, under what they name. */
 .s-art-text .s-art-cap { margin-top: var(--ob-space-12); text-align: left; text-wrap: pretty; }
+.s-art-text .s-art-fig--screen .s-art-cap { justify-self: start; }
 
-/* Pictures in the text: space around them, their captions on the edge. */
+/* The link straight to the comparison, under the answer: the section's name and the way there, on 1 quiet line. */
+.s-art-jump {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ob-space-4) var(--ob-space-12);
+  max-width: var(--s-art-measure);
+  padding: var(--ob-space-14, 14px) 0;
+  border-block: var(--ob-border-hair) solid var(--ob-line);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), border-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-art-main > .s-art-lead + .s-art-jump { margin-top: var(--ob-space-32); }
+.s-art-jump__k { font: var(--ob-type-mono-sm); color: var(--s-accent, var(--ob-text-3)); }
+.s-art-jump__t { flex: 1 1 18ch; font: var(--ob-type-body); font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.s-art-jump__go { font: var(--ob-type-small); color: var(--ob-text-2); }
+.s-art-jump__go::after { content: " \2193"; }
+@media (hover: hover) and (pointer: fine) { .s-art-jump:hover { border-color: var(--ob-line-strong); } .s-art-jump:hover .s-art-jump__go { color: var(--ob-text); } }
+.s-art-jump:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
+
+/* An option in a comparison: its name, the tag where it is ours, and the tools it covers under it in the quieter ink.
+   A cell with 1 line per tool keeps each on its own line. */
+.s-art-opt__name { display: block; font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+.s-art-opt__detail { display: block; margin-top: var(--ob-space-4); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.s-art-opt__detail .s-art-a { color: inherit; }
+.s-art-cell__ln { display: block; }
+.s-art-cell__ln + .s-art-cell__ln { margin-top: var(--ob-space-6); }
+.s-art-cell__k { color: var(--ob-text-3); }
+.s-art-cell__k .s-art-a { color: inherit; }
+.s-art-text .s-art-table td.s-art-cell--silent { color: var(--ob-text-3); }
+.s-art-cell__yes { display: inline-block; width: 7px; height: 7px; margin-right: var(--ob-space-8); vertical-align: 1px; background: var(--ob-success); }
+
+/* The tag beside the comparison in the contents. */
+.s-toc__tag,
+.s-art-opt__tag {
+  display: inline-block;
+  margin-left: var(--ob-space-8);
+  padding: 0 var(--ob-space-6);
+  border-radius: var(--ob-radius-xs);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
+  font: var(--ob-type-mono-sm);
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--ob-text-2);
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+/* A table of options: the head stays in view under the nav while the rows scroll past, the option names in the first
+   ink, prices in tabular figures. On wide screens nothing scrolls sideways, so the head can stick. */
+@media (min-width: 760px) {
+  .s-art-text .s-art-table--compare .s-art-table__scroll { overflow: visible; }
+  .s-art-text .s-art-table--compare thead th {
+    position: sticky;
+    z-index: 1;
+    top: var(--ob-nav-h, 64px);
+    padding-top: var(--ob-space-12);
+    background: var(--ob-bg);
+  }
+}
+@media (min-width: 760px) {
+  .s-art-text .s-art-table--compare table { table-layout: fixed; }
+  .s-art-text .s-art-table--compare thead th:first-child { width: 22%; }
+}
+.s-art-text .s-art-table--compare tbody th { font-weight: var(--ob-weight-regular); color: var(--ob-text); }
+@media (min-width: 760px) { .s-art-text .s-art-table--compare tbody :is(th, td) { padding-block: var(--ob-space-16); } }
+.s-art-text .s-art-table--compare tbody tr { transition: background-color var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) { .s-art-text .s-art-table--compare tbody tr:hover { background-color: color-mix(in srgb, var(--ob-text) 3%, transparent); } }
+
+/* Phones: every table becomes a stack of cards, 1 per row, each cell under its column's name, so nothing scrolls
+   sideways and no cell is squeezed. */
+@media (max-width: 759.98px) {
+  .s-art-text .s-art-table__scroll { overflow: visible; }
+  .s-art-text .s-art-table table { display: block; min-width: 0; }
+  .s-art-text .s-art-table thead { display: none; }
+  .s-art-text .s-art-table :is(tbody, tr) { display: block; }
+  .s-art-text .s-art-table tbody tr { padding: var(--ob-space-16) 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
+  .s-art-text .s-art-table tbody tr:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+  .s-art-text .s-art-table :is(th, td) { display: block; width: auto; padding: 0; border: 0 !important; }
+  .s-art-text .s-art-table tbody th { margin-bottom: var(--ob-space-8); font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+  .s-art-text .s-art-table td + td { margin-top: var(--ob-space-12); }
+  .s-art-text .s-art-table td::before { content: attr(data-label); display: block; margin-bottom: 2px; font: var(--ob-type-caption); color: var(--ob-text-3); }
+}
+
+/* Pictures in the text: space around them. */
 .s-art-ill { margin-block: 0; }
 .s-art-main > * + :is(.s-art-ill, .s-art-fig, .s-art-table), .s-art-main > :is(.s-art-ill, .s-art-fig, .s-art-table) + * { margin-top: var(--ob-space-56); }
 .s-art-text .s-art-fig--screen .ilwrap { cursor: default; }
-.s-art-text .s-art-fig--screen .s-art-cap { justify-self: start; }
 
 /* A stat: the number large on the column's edge, its label and source beside it, the reader's light pooled behind the
    number. No frame. */
@@ -813,6 +915,21 @@
 }
 .s-art-text .s-art-cta__x { font: var(--ob-type-body-lg); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; color: var(--ob-text); }
 .s-art-main > * + .s-art-cta, .s-art-cta + * { margin-top: var(--ob-space-48); }
+
+/* A comparison takes the page's full width, out to the title's left edge, so 5 columns read in lines and not in
+   fragments. The side contents step aside while the table passes them (BlogPost sets s-art--wide-in-view). */
+@media (min-width: 1000px) {
+  .s-art-main > .s-art-table--compare { width: auto; margin-left: calc(-1 * (var(--s-art-rail) + var(--s-art-gap))); }
+  .s-art-rail { transition: opacity var(--ob-dur-base) var(--ob-ease-out), visibility 0s linear 0s; }
+  .s-art--wide-in-view .s-art-rail { opacity: 0; visibility: hidden; transition: opacity var(--ob-dur-base) var(--ob-ease-out), visibility 0s linear var(--ob-dur-base); }
+}
+
+/* Under 1000px the side contents fold above the text (the inline contents) and the text takes the page's width. */
+@media (max-width: 999.98px) {
+  .s-art-layout { grid-template-columns: minmax(0, 1fr); }
+  .s-art-rail { display: none; }
+  .s-art-visual--photo { aspect-ratio: 16 / 9; }
+}
 
 /* Under 900px there is no margin to hang in: the marks come inside the column. */
 @media (max-width: 899.98px) {

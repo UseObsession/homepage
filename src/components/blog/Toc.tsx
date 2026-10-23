@@ -3,7 +3,9 @@ import { blogUi } from '../../content/resources'
 
 /* The article's contents on wide screens: its h2s, as jump links, sticky beside the text. The link of the section being
    read takes full ink (orientation), once the page's script runs; nothing else moves. */
-export function Toc({ items }: { items: { id: string; text: string }[] }) {
+type Item = { id: string; text: string; compare?: boolean }
+
+export function Toc({ items }: { items: Item[] }) {
   const [current, setCurrent] = useState<string | null>(null)
   useEffect(() => {
     const els = items.map((i) => document.getElementById(i.id)).filter((e): e is HTMLElement => !!e)
@@ -34,7 +36,10 @@ export function Toc({ items }: { items: { id: string; text: string }[] }) {
         {items.map((i) => (
           <li key={i.id}>
             <a className="s-toc__link" href={`#${i.id}`} aria-current={current === i.id ? 'location' : undefined}>
-              {i.text}
+              <span>
+                {i.text}
+                {i.compare && <span className="s-toc__tag">{blogUi.compareTag}</span>}
+              </span>
             </a>
           </li>
         ))}
@@ -44,7 +49,7 @@ export function Toc({ items }: { items: { id: string; text: string }[] }) {
 }
 
 /* The same contents on narrower screens, where the side column leaves: folded above the text, open on a tap. */
-export function TocInline({ items }: { items: { id: string; text: string }[] }) {
+export function TocInline({ items }: { items: Item[] }) {
   if (items.length < 2) return null
   return (
     <details className="s-toc-m">
@@ -54,6 +59,7 @@ export function TocInline({ items }: { items: { id: string; text: string }[] }) 
           <li key={i.id}>
             <a className="s-toc-m__link" href={`#${i.id}`}>
               {i.text}
+              {i.compare && <span className="s-toc__tag">{blogUi.compareTag}</span>}
             </a>
           </li>
         ))}
