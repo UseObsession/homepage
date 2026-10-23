@@ -575,6 +575,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   )
 
   const run = nav.resources.run
+  const blog = nav.resources.blog
   const peek = (
     <span className="s-card__peek" aria-hidden="true">
       <img src={run.image.src} width={run.image.width} height={run.image.height} alt="" loading="lazy" decoding="async" />
@@ -719,11 +720,27 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                       </li>
                     ))}
                   </ul>
+                  {blog && (
+                    <>
+                      <p className="s-menu__label">{blog.label}</p>
+                      <div className="s-xm__post" data-col>
+                        {card(blog.lead, 's-card--case s-card--post')}
+                      </div>
+                    </>
+                  )}
                   <hr className="ob-menu__sep" />
-                  <Link className="ob-menu__item s-menu__all" to={nav.resources.all.to} onClick={close}>
-                    {nav.resources.all.label}
-                    <Arrow />
-                  </Link>
+                  <div className="s-xm__all">
+                    <Link className="ob-menu__item s-menu__all" to={nav.resources.all.to} onClick={close}>
+                      {nav.resources.all.label}
+                      <Arrow />
+                    </Link>
+                    {blog && (
+                      <Link className="ob-menu__item s-menu__all" to={blog.all.to} onClick={close}>
+                        {blog.all.label}
+                        <Arrow />
+                      </Link>
+                    )}
+                  </div>
                 </>,
               )}
             </>,
@@ -812,6 +829,15 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             {nav.resources.useCases.items.map((c) => (
               <li key={c.to}>{card(c, 's-card--case s-card--sheet')}</li>
             ))}
+            {blog && <li className="s-mnav__wide">{card(blog.lead, 's-card--case s-card--post s-card--sheet')}</li>}
+            {blog && (
+              <li className="s-mnav__wide">
+                <Link className="ob-mnav__link s-mnav__all" to={blog.all.to} onClick={close}>
+                  {blog.all.label}
+                  <Arrow />
+                </Link>
+              </li>
+            )}
             <li>
               <Link className="ob-mnav__link s-mnav__all" to={nav.resources.all.to} onClick={close}>
                 {nav.resources.all.label}

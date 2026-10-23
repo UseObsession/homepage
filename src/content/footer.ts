@@ -31,6 +31,7 @@ export const footer = {
       links: [
         { label: nav.resources.run.kicker, to: nav.resources.run.to },
         { label: nav.resources.useCases.label, to: nav.resources.useCases.to },
+        ...(nav.resources.blog ? [{ label: nav.resources.blog.label, to: nav.resources.blog.all.to }] : []),
         { label: nav.resources.all.label, to: nav.resources.all.to },
       ],
     },

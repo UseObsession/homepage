@@ -70,6 +70,9 @@ const STUDY_FOR: Record<string, string> = {
   '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
 }
 
+/* The post the blog index leads with (content/blog: its featured post, else the newest). */
+const blogLead = catalog.blogLive ? (catalog.posts.find((p) => p.featured) ?? catalog.posts[0]) : undefined
+
 export const nav = {
   home: 'Obsession home',
   skip: 'Skip to content',
@@ -100,7 +103,7 @@ export const nav = {
     /* Check your AI agents' own page: the bar marks Recipes as current there too. */
     verify: ways.verify.to,
   },
-  /* Resources: the proof. The 1 real run first, then the worked examples, then 1 quiet way to the hub. */
+  /* Resources: the proof. The 1 real run first, then the worked examples, then the blog's lead post, then the hub. */
   resources: {
     label: 'Resources',
     to: '/resources',
@@ -124,6 +127,20 @@ export const nav = {
         line,
       })) satisfies NavCard[],
     },
+    /* The blog while it has posts: the post the blog leads with (its hub and length, its title, the start of its dek),
+       then every article. */
+    blog: blogLead
+      ? {
+          label: 'Blog',
+          lead: {
+            kicker: `${blogLead.category} · ${blogLead.readingMinutes} min read`,
+            label: blogLead.title,
+            to: `/blog/${blogLead.slug}`,
+            line: blogLead.dek,
+          } satisfies NavCard,
+          all: { label: 'Every article', to: '/blog' } satisfies NavPage,
+        }
+      : null,
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
   /* The page's call to action. Pages without their own use this one. */
