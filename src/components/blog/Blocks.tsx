@@ -154,7 +154,7 @@ function Block({ b }: { b: BlogBlock }) {
       return <FaqList items={b.items} open={[]} className="s-art-faq" />
     case 'cta':
       return (
-        <aside className="s-art-cta ob-theme-dark" aria-label={b.label}>
+        <aside className="s-art-cta" aria-label={b.label}>
           <p className="s-art-cta__x">
             <Inline text={b.text} />
           </p>

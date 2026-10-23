@@ -115,6 +115,13 @@ function posting(e: Entry): Node {
     articleSection: a.section,
     keywords: a.keywords.join(', '),
     inLanguage: 'en-GB',
+    citation: a.citations.map((c) => ({
+      '@type': 'CreativeWork',
+      name: c.name,
+      url: c.url,
+      publisher: { '@type': 'Organization', name: c.publisher },
+      ...(c.date ? { datePublished: c.date } : {}),
+    })),
   }
 }
 

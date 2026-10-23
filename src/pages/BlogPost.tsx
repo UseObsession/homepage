@@ -6,7 +6,7 @@ import { Blocks } from '../components/blog/Blocks'
 import { Byline } from '../components/blog/Byline'
 import { Share } from '../components/blog/Share'
 import { TocInline } from '../components/blog/Toc'
-import { categoryId, hostOf, readerOf } from '../components/blog/util'
+import { categoryId, readerOf } from '../components/blog/util'
 import { Crumbs } from '../components/Crumbs'
 import { FinalCta } from '../components/sections/FinalCta'
 import { LinkGroups, type LinkGroupRows, type LinkRow } from '../components/sections/LinkGroups'
@@ -16,6 +16,7 @@ import { entryFor } from '../content/meta'
 import { nav } from '../content/nav'
 import { postBySlug, recipeBySlug } from '../content/registry'
 import { blogPage, blogUi, formatDate } from '../content/resources'
+import { citedSources, sourceDate } from '../lib/sources'
 import '../components/sections/Hero.css'
 import './Blog.css'
 
@@ -100,14 +101,17 @@ export function BlogPostAt({ slug }: { slug: string }) {
   return post ? <BlogPost post={post} /> : null
 }
 
-/* A post: the header on ink in its hub's colour (the breadcrumb, the hub, the title, the dek, both founders, the date
-   and the reading time) with its 1 picture; then the text on paper, on a 680px measure with its pictures and tables
-   breaking wider: the direct answer, the contents, the text, the share row and the sources; then what to read next,
-   the recipes for the job and the waitlist (#join). */
+/* A post, on the page's own ground from top to foot, as the site's other reading pages are (/agents, /privacy): the
+   header on the text's column, left aligned (the breadcrumb, the hub, the title, the dek, both founders, the date and
+   the reading time), its 1 picture set on the page, then the text on a 680px measure with its pictures and tables
+   breaking wider: the direct answer as the opening paragraph, the contents, the text, the share row and the sources (only
+   those the text links to, in the order it first does, with the day the links were checked);
+   then what to read next, the recipes for the job and the waitlist (#join). */
 export function BlogPost({ post }: { post: Post }) {
   const id = useId()
   const toc = useMemo(() => post.blocks.flatMap((b) => (b.kind === 'h2' ? [{ id: b.id, text: b.text }] : [])), [post])
   const blocks = useMemo(() => withScreen(post), [post])
+  const sources = useMemo(() => citedSources(post), [post])
   const { reads, recipes } = relatedOf(post)
   const groups: LinkGroupRows[] = [
     ...(reads.length ? [{ id: 'read-next', name: blogUi.related, rows: reads }] : []),
@@ -118,10 +122,10 @@ export function BlogPost({ post }: { post: Post }) {
   return (
     <>
       <article className="s-art" aria-labelledby={`${id}-h`}>
-        <header className="s-hero s-art-hero" data-reader={readerOf(post.category)}>
-          <div className="s-wrap s-hero-wrap">
-            <Crumbs />
-            <div className="s-hero-head ob-anim-hero">
+        <header className="s-art-head" data-reader={readerOf(post.category)}>
+          <div className="s-wrap">
+            <div className="s-art-col ob-anim-hero">
+              <Crumbs />
               <p className="s-art-kicker">
                 <Link to={`/blog#${categoryId(post.category)}`}>
                   <span className="s-art-kicker__mark" aria-hidden="true" />
@@ -148,10 +152,10 @@ export function BlogPost({ post }: { post: Post }) {
           </div>
         </header>
 
-        <section className="s-art-paper ob-theme-hybrid" data-tone="paper" data-reader={readerOf(post.category)} aria-label={post.title}>
+        <section className="s-art-text" aria-label={post.title}>
           <div className="s-wrap s-art-body">
             <div className="s-art-main">
-              <p className="s-art-answer">{post.answer}</p>
+              <p className="s-art-lead">{post.answer}</p>
               {toc.length > 1 && (
                 <nav className="s-art-toc" aria-label={blogUi.toc}>
                   <p className="s-art-toc__label">{blogUi.toc}</p>
@@ -169,20 +173,21 @@ export function BlogPost({ post }: { post: Post }) {
               <TocInline items={toc} />
               <Blocks blocks={hasVisual ? blocks : post.blocks} />
               <Share path={`/blog/${post.slug}`} title={post.title} />
-              {post.sources.length > 0 && (
+              {sources.length > 0 && (
                 <section className="s-art-sources" aria-labelledby={`${id}-src`}>
                   <h2 className="s-art-sources__h" id={`${id}-src`}>
                     {blogUi.sources}
                   </h2>
+                  <p className="s-art-sources__note">{blogUi.sourcesNote(formatDate(post.updated || post.published))}</p>
                   <ol className="s-art-sources__list">
-                    {post.sources.map((s) => (
+                    {sources.map((s) => (
                       <li key={s.url}>
                         <a href={s.url} rel="noopener">
                           {s.title}
                         </a>
                         <span className="s-art-sources__meta">
                           {s.publisher}
-                          {s.date ? `, ${/^\d{4}-\d{2}-\d{2}$/.test(s.date) ? formatDate(s.date) : s.date}` : ''} · {hostOf(s.url)}
+                          {s.date ? `, ${sourceDate(s.date)}` : ''}
                         </span>
                       </li>
                     ))}

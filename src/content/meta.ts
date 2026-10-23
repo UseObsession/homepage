@@ -6,6 +6,7 @@ import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPa
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import type { Faq, Meta, StageReceipt } from './types'
+import { citedSources } from '../lib/sources'
 
 export { SITE, absolute, cleanPath }
 
@@ -36,6 +37,8 @@ export type Article = {
   section: string
   keywords: string[]
   authors: { name: string; role: string }[]
+  /* The sources its text links to, in the order it cites them (lib/sources), for the JSON-LD's citation. */
+  citations: { name: string; url: string; publisher: string; date?: string }[]
 }
 
 export type Entry = {
@@ -222,6 +225,7 @@ export const entries: Entry[] = [
         section: p.category,
         keywords: [p.primaryKeyword, ...p.keywords.filter((k) => k !== p.primaryKeyword)],
         authors: p.authors,
+        citations: citedSources(p).map((c) => ({ name: c.title, url: c.url, publisher: c.publisher, date: c.date })),
       },
     }
   }),
