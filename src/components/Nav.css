@@ -309,12 +309,18 @@
   .s-rm__run:hover { color: var(--ob-text); }
 }
 
-/* ---- Resources: the real run first, the use cases by name, 1 quiet way to the hub ---- */
+/* ---- Resources: the real run first, the use cases by name, the blog's lead post, then the hub and the blog ---- */
 .s-xm__cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-2) var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
 .s-xm__cases > li { display: grid; }
 /* A use case: 1 row, its name only; room at the end for the current page's square. */
 .ob-menu__item.s-case { grid-template-columns: minmax(0, 1fr); padding: var(--ob-space-8) var(--ob-space-32) var(--ob-space-8) var(--ob-space-12); }
 .s-case .s-menu__name { text-wrap: pretty; }
+/* The blog's lead post: the full width, its dek cut at 2 lines. */
+.s-xm__post { display: grid; }
+.s-card--post .s-menu__line { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* The hub and the blog, side by side on 1 quiet row. */
+.s-xm__all { display: flex; flex-wrap: wrap; gap: var(--ob-space-4); }
+.s-xm__all > .ob-menu__item { flex: 0 1 auto; width: auto; }
 
 /* A proof card: what it is (or who it is for), its name, what happened. */
 .ob-menu__item.s-card {
@@ -433,6 +439,7 @@
 .ob-menu__item.s-card--sheet.s-card--run { gap: var(--ob-space-12); padding: var(--ob-space-16) var(--ob-space-12) 0 var(--ob-space-16); margin-bottom: var(--ob-space-4); }
 .s-card--sheet .s-card__peek { width: 96px; height: 56px; }
 .s-card--sheet .s-card__peek > img { width: 96px; height: 58px; }
+.s-card--case.s-card--sheet { padding: var(--ob-space-12) var(--ob-control-pad-sm); }
 .ob-menu__item.s-case--sheet { min-height: var(--ob-target-touch); padding-inline-start: var(--ob-control-pad-sm); border-radius: var(--ob-radius-md); }
 
 .s-mnav .s-mnav__theme { margin-top: var(--ob-space-16); padding-inline-start: var(--ob-control-pad-sm); }
@@ -454,7 +461,7 @@
   .s-mnav :is(.s-mnav__readers, .s-mnav__jobs, .s-mnav__proof) { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--ob-space-4); }
   .s-mnav__readers > li:first-child,
   .s-mnav__jobs > li:last-child,
-  .s-mnav__proof > li:is(:first-child, :last-child) { grid-column: 1 / -1; }
+  .s-mnav__proof > li:is(:first-child, :last-child, .s-mnav__wide) { grid-column: 1 / -1; }
   .s-mnav__proof > li { display: grid; }
   .s-mnav .s-mnav__foot > .ob-btn { justify-self: start; width: min(100%, 400px); }
 }

@@ -55,13 +55,15 @@ if (!matchMedia(RM).matches && 'IntersectionObserver' in window) {
 }
 
 /* Nothing the boot script fetches may compete with the page's first contentful paint: it waits for it (the browser's
-   paint timing, else 2 frames), or a second after the page's load event where no paint is reported (a renderer that
-   never paints, such as a crawler's). */
+   paint timing, else 2 frames), or, where no paint is ever reported (a renderer that never paints, such as a
+   crawler's), a while after the page's load event. Where the browser reports paint timing that while is long: a slow
+   phone can paint more than a second after load, and the app fetched before it slows the paint it was waiting for. */
 const contentful = new Promise<void>((done) => {
   const shown = () => performance.getEntriesByName('first-contentful-paint').length > 0
   if (shown()) return done()
-  addEventListener('load', () => setTimeout(done, 1000), { once: true })
-  if ('PerformanceObserver' in window && PerformanceObserver.supportedEntryTypes?.includes('paint')) {
+  const timed = 'PerformanceObserver' in window && !!PerformanceObserver.supportedEntryTypes?.includes('paint')
+  addEventListener('load', () => setTimeout(done, timed ? 5000 : 1000), { once: true })
+  if (timed) {
     const po = new PerformanceObserver(() => shown() && (po.disconnect(), done()))
     po.observe({ type: 'paint', buffered: true })
   } else requestAnimationFrame(() => requestAnimationFrame(() => done()))

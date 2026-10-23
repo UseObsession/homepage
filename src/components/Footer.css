@@ -39,6 +39,22 @@
   transition: color var(--ob-dur-base) var(--ob-ease-out);
 }
 .s-foot__links a { display: inline-block; padding-block: var(--ob-space-2); }
+/* Cookie settings: a button set as the links beside it. */
+.s-foot__btn {
+  padding: var(--ob-space-2) 0;
+  border: 0;
+  border-radius: var(--ob-radius-glyph);
+  background: none;
+  font: inherit;
+  color: var(--ob-text-2);
+  text-align: start;
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-foot__btn:hover { color: var(--ob-text); }
+}
+.s-foot__btn:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 @media (hover: hover) and (pointer: fine) {
   .s-foot a:hover { color: var(--ob-text); }
 }
@@ -87,6 +103,6 @@
 /* Touch: rows grow to a comfortable 44px pitch. */
 @media (pointer: coarse) {
   .s-foot__links { gap: 0; }
-  .s-foot__links a { display: flex; align-items: center; min-height: var(--ob-target-touch); padding-block: 0; }
+  .s-foot__links :is(a, .s-foot__btn) { display: flex; align-items: center; min-height: var(--ob-target-touch); padding-block: 0; }
   .s-foot__col { gap: var(--ob-space-4); }
 }

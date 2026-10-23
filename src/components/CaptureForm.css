@@ -1,7 +1,6 @@
-/* The capture form (components/CaptureForm), on forms.css .ob-pill-form, .ob-field, .ob-chips and .ob-confirm.
-   These rules add only what the site needs on top: the privacy line, the hidden bot field, and the mystery shop's
-   email row (open without script, opened by the script after the store). Once the email is saved the form becomes
-   the sign up card: components/SignupSteps.css. */
+/* The capture form (components/CaptureForm), on forms.css .ob-pill-form, .ob-field and .ob-confirm. These rules add
+   only what the site needs on top: the privacy line and the hidden bot field. Once the email is saved the form becomes
+   the waitlist card: components/JoinCard.css. */
 
 .s-capture {
   /* The pill's typed text starts here: padding, edge, then the input's own padding (forms.css). */
@@ -56,23 +55,6 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-/* The mystery shop's email row sits inside the pill, before the action, so the screen, the Tab order and the reading
-   order run store, email, send (forms.css). With script it waits until the store is in, then opens 0fr to 1fr.
-   Without script it is open from the start, so the plain form post carries both fields. */
-:root.js .s-capture__more:not(.is-open) { display: none; }
-:root:not(.js) .s-capture__more { grid-template-rows: 1fr; visibility: visible; }
-:root:not(.js) .s-capture__more > * { opacity: 1; }
-@media (prefers-reduced-motion: no-preference) {
-  .s-capture__more.is-open { animation: s-capture-rows var(--ob-dur-moderate) var(--ob-ease-out) backwards; }
-  .s-capture__more.is-open > * { animation: ob-fade-in var(--ob-dur-base) var(--ob-ease-out) var(--ob-expand-delay, 80ms) backwards; }
-}
-@keyframes s-capture-rows { from { grid-template-rows: 0fr; } }
-.s-capture__more .ob-pill-more-in { padding: var(--ob-space-8) var(--ob-space-12) var(--ob-space-4); }
-.s-capture__more .ob-label { color: var(--ob-text-2); }
-@container ob-pill (max-width: 420px) {
-  .s-capture__more .ob-pill-more-in { padding-inline: var(--ob-space-4); }
 }
 
 /* The ring in the busy button and the mark in the card's title take the label's ink. */

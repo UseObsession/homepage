@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Website audit (/recipes/website-audit). Check your own journeys. Screen: ship.
    New page (James's original recipe set had Website audit; on 1 Oct he said QA is the right word, and the Founders
@@ -11,13 +11,6 @@ import type { Capture, Recipe } from '../types'
    (inside data only through tools the customer connects). Kept from James: "Couldn't test" as an honest verdict.
    The run tells the same story as the `ship` screen and the Founders and Developers pages (Thursday 06:02, v2.15,
    LAUNCH20 rejected, the 08:00 send held at 06:11, stopped before payment). Example. */
-
-const roles: Capture['roles'] = {
-  question: 'Where should a test customer sign up first?',
-  options: ['Our site', 'Our app', 'A client’s, with their OK'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'audit',
@@ -58,9 +51,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-website-audit-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'audit',
     },
   },
@@ -189,9 +179,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-website-audit-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'audit',
     },
   },

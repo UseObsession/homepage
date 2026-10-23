@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Partner checks (/recipes/partner-checks). Check your own journeys. For partnership and affiliate teams.
    Screen: partners (Your company / Missions / Partner checks, as a customer, Mon 07:00: 6 affiliates and partners, each
@@ -23,13 +23,6 @@ import type { Capture, Recipe } from '../types'
    specific instead: a weekly check means a dead code, link or banner is found within 7 days (within a day when the
    check runs daily in a sale). It is found, not taken down: only the partner can change their page. No sources,
    prices of Obsession or real names on the page. The run is an example and says so. */
-
-const roles: Capture['roles'] = {
-  question: 'What’s your role?',
-  options: ['Partnerships', 'Affiliate marketing', 'Ecommerce', 'Founder or owner', 'Something else'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'partners',
@@ -70,9 +63,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-partners-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'partners',
     },
   },
@@ -244,9 +234,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-partners-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'partners',
     },
   },

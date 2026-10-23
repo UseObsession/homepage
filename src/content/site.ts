@@ -105,8 +105,6 @@ export const recipesPage: RecipesIndexPage = {
       kind: 'waitlist',
       source: 'recipes-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro: 'We keep your email to set up your first watch and tell you about Obsession.',
       interest: 'any',
     },
   },
@@ -123,7 +121,7 @@ export const privacyPage: PrivacyPage = {
     description:
       'What Obsession keeps when you join the waitlist or ask for a free mystery shop, why, for how long, who sees it, and how to see, change or delete it.',
     answer:
-      'Obsession keeps the email, name, company, role and set up answers you give when you join its waitlist or ask for a free mystery shop or AI agent check, plus the page you used. It uses them to tell you about Obsession, set up what you asked for and decide what to build, never sells them, and deletes them 12 months after you sign up or the day you ask.',
+      'Obsession keeps the email, name, company, website, role, brands, recipes and use case you give when you join its waitlist, including a free mystery shop or AI agent check, plus the page you used. It uses them to tell you about Obsession, set up what you asked for and decide what to build, never sells them, and deletes them 12 months after you sign up or the day you ask.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Privacy', path: '/privacy' },
@@ -131,8 +129,8 @@ export const privacyPage: PrivacyPage = {
   },
 
   headline: 'We keep what you type into our forms, and never sell it.',
-  sub: 'This notice covers the waitlist, the free mystery shop and the free AI agent check on useobsession.com, under UK data protection law.',
-  updated: '6 October 2026',
+  sub: 'This notice covers the waitlist, the free mystery shop, the free AI agent check and Google Analytics on useobsession.com, under UK data protection law.',
+  updated: '23 October 2026',
 
   sections: [
     {
@@ -147,15 +145,13 @@ export const privacyPage: PrivacyPage = {
     {
       id: 'what',
       heading: 'We keep what you type, and the page you typed it on.',
-      lines: ['When you join the waitlist or ask for a free mystery shop or AI agent check, we keep:'],
+      lines: ['When you join the waitlist, including for a free mystery shop or AI agent check, we keep:'],
       list: [
-        'Your email address',
-        'Your name and company, if you give them',
-        'Who you are (an agency, founder, sales, marketing, developer or something else) and your answers to our set up questions, if you tap them',
-        'Anything you type in the note',
-        'Your store’s web address, if you ask for a mystery shop',
-        'Your AI agent’s chat page or phone number, if you ask for an AI agent check',
-        'The first company you name, if you name one',
+        'Your email address, name, company and its website',
+        'What you do (a brand, an agency and its kind, a marketing or sales team, a developer) and, if you tap it, how many clients or how big the team',
+        'The brands, stores or AI agents you name for us to check or watch (web addresses, or an AI agent’s phone number), if you name any',
+        'The recipes you pick',
+        'What you tell us you’d like to test, if you do',
         keepArrivedFrom
           ? 'The page and form you used, the site that sent you there, how far you got, and when'
           : 'The page and form you used, how far you got, and when',
@@ -166,9 +162,31 @@ export const privacyPage: PrivacyPage = {
       heading: 'We add nothing about your device to your sign up.',
       lines: [
         'Our website host and form service see your device’s IP address, as they do on any website. We don’t keep it with your details.',
-        'We use no advertising or tracking cookies. Your light or dark choice is saved in your own browser.',
-        'While you answer our set up questions, your answers wait in that browser tab for up to 24 hours, so a reload doesn’t lose them. Closing the tab clears them.',
+        'We use no advertising cookies. Your light or dark choice, and your answer about Google Analytics, are saved in your own browser.',
+        'While you finish signing up, your answers wait in your browser for up to 24 hours, so a reload or another page doesn’t lose them.',
         'You don’t have to give us anything. Without an email address, we can’t add you to the waitlist.',
+      ],
+    },
+    {
+      id: 'analytics',
+      heading: 'Google Analytics counts visits, only if you allow it.',
+      lines: [
+        'The first time you visit, a card asks whether we can use Google Analytics. Until you choose Allow, nothing from Google loads and no cookie is set. If your browser sends Global Privacy Control, the card doesn’t ask.',
+        'If you allow it, Google Analytics sets 2 cookies, _ga and one starting _ga_, each kept for up to 2 years. It tells us:',
+      ],
+      list: [
+        'Which pages were read, and the page or site that sent you',
+        'Your rough location (country and city, worked out from your IP address, which Google Analytics doesn’t keep)',
+        'Your device, browser and screen size',
+        'That a form on our site was sent, and which form. Never your email or anything you type',
+      ],
+    },
+    {
+      id: 'analytics-off',
+      heading: 'Advertising features are off, and you can change your mind.',
+      lines: [
+        'We turned off Google’s advertising features: nothing is shared for ads, and Google signals is off.',
+        'Choose Cookie settings at the foot of any page to allow or decline again. Declining removes Google’s cookies from your browser.',
       ],
     },
     {
@@ -190,16 +208,17 @@ export const privacyPage: PrivacyPage = {
       lines: [
         `Emails about Obsession: your consent, given when you sign up. Withdraw it whenever you like by replying to any email from us or writing to ${CONTACT_EMAIL}.`,
         'Your free mystery shop or AI agent check: you asked us for it, so we use your details to deliver it (the legal basis is contract).',
-        'Your name, company and answers: our legitimate interest in setting up what you asked for and deciding what to build. Every answer is optional.',
+        'Your name, company, website, role, brands, recipes and use case: our legitimate interest in setting up what you asked for, replying to you and deciding what to build. The sizes, brands and your use case are optional.',
         'To prepare your first run we may read your company’s website and public profile. We look up your company, not you.',
         'Keeping the forms safe: our legitimate interest in stopping spam and abuse.',
+        'Google Analytics: your consent, given on the cookie card. Withdraw it with Cookie settings at the foot of any page.',
         'We make no automated decisions about you.',
       ],
     },
     {
       id: 'how-long',
       heading: 'We delete your details 12 months after you sign up.',
-      lines: ['Or the day you ask, if that comes first.'],
+      lines: ['Or the day you ask, if that comes first. Google Analytics keeps visit data for no more than 14 months.'],
     },
     {
       id: 'who-sees',
@@ -208,6 +227,7 @@ export const privacyPage: PrivacyPage = {
       list: [
         'The spreadsheet and email service that holds the waitlist',
         'Our website host',
+        'Google, for Google Analytics, only if you allow it',
       ],
     },
     {
@@ -370,8 +390,6 @@ export const notFoundPage: NotFoundPage = {
     kind: 'waitlist',
     source: '404',
     button: 'Join the waitlist',
-    placeholder: 'Your work email',
-    micro: 'We keep your email to set up your first watch and tell you about Obsession.',
     interest: 'any',
   },
 }

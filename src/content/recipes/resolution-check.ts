@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Resolution check (/recipes/resolution-check). Check your AI agents. Screen: resolution (Your company; Vendor A,
@@ -21,8 +20,6 @@ import type { Recipe } from '../types'
    Up-to-50 rule (no money promises, 3 Oct): the modelled figures carry their model in the same line: 10,000 billed
    resolutions a month x 19 in 100 not real (the example's own rate, 19 of 100) = up to 1,900 a month to challenge,
    the count /verify states; checking all 10,000 by hand at 3 minutes each = 30,000 minutes = 500 hours a month. */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'resolution',
@@ -63,9 +60,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-resolution-hero',
       button: 'Check my resolutions free',
-      placeholder: 'Your bot’s chat page',
-      micro: form.agent.micro,
-      roles,
       interest: 'resolution',
     },
   },
@@ -253,10 +247,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-resolution-final',
       button: 'Check my resolutions free',
-      placeholder: 'Your bot’s chat page',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your bot’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'resolution',
     },
   },

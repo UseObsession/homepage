@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Account watch (/recipes/account-watch). Keep and grow customers. Screen: acctwatch (38 accounts; Inside, Outside, Lived;
    Snack brand at risk: usage down 38% in 14 days, 3 urgent tickets in 5 days, its site down twice; Payroll SaaS hiring 12
@@ -15,13 +15,6 @@ import type { Capture, Recipe } from '../types'
    Up-to-50 rule, no money promises (James and Seun, 3 Oct): the 1 modelled figure is hours, with its sum in the same
    line, the same model as /sales: 1 account manager checking the run's 38 accounts by hand at 15 minutes each a week (38 × 15 = 570 minutes, 9.5 hours a week;
    9.5 × 52 = 494 hours a year), against every account checked every morning. */
-
-const roles: Capture['roles'] = {
-  question: 'What’s your role?',
-  options: ['Customer success', 'Account management', 'Sales', 'Founder', 'Something else'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'account-watch',
@@ -62,9 +55,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-account-watch-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'account-watch',
     },
   },
@@ -225,9 +215,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-account-watch-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'account-watch',
     },
   },

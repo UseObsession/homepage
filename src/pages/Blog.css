@@ -249,3 +249,323 @@
   .s-art-stat { grid-template-columns: minmax(0, 1fr); }
   .s-byline__people > li + li { padding-left: 0; box-shadow: none; }
 }
+
+/* ---- A post: the direct answer, the folded contents on narrow screens and the share row ------------------------- */
+.s-art-answer {
+  padding: var(--ob-space-20) var(--ob-space-24);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: inset var(--ob-border-focus) 0 0 var(--ob-text), inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-art-main > .s-art-answer + * { margin-top: var(--ob-space-40); }
+
+.s-toc-m { display: none; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.s-toc-m__sum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 var(--ob-space-20);
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+  cursor: pointer;
+  list-style: none;
+}
+.s-toc-m__sum::-webkit-details-marker { display: none; }
+.s-toc-m__sum::after { content: "+"; font: var(--ob-type-mono-sm); color: var(--ob-text-3); }
+.s-toc-m[open] > .s-toc-m__sum::after { content: "\2212"; }
+.s-toc-m__sum:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-md); }
+.s-toc-m__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0 var(--ob-space-20) var(--ob-space-16); list-style: none; }
+.s-toc-m__link { display: block; padding: var(--ob-space-8) 0; font: var(--ob-type-small); color: var(--ob-text-2); text-decoration: none; text-wrap: pretty; }
+@media (hover: hover) and (pointer: fine) { .s-toc-m__link:hover { color: var(--ob-text); } }
+
+.s-art-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-8) var(--ob-space-12);
+  padding-top: var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-art-main > * + .s-art-share { margin-top: var(--ob-space-56); }
+.s-art-share__label { margin-right: var(--ob-space-4); font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-art-share + .s-art-sources { margin-top: var(--ob-space-40) !important; }
+
+@media (max-width: 1079.98px) {
+  .s-toc-m { display: block; }
+}
+
+/* ---- The index: the featured post's cue, then every article as a card, filtered by hub -------------------------- */
+.s-blog-lead__cue { margin-top: var(--ob-space-8); pointer-events: none; }
+
+.s-blog-all { padding-block: 0 var(--ob-space-96); }
+.s-blog-all__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--ob-space-16) var(--ob-space-32);
+  margin-bottom: var(--ob-space-24);
+}
+.s-blog-all__h { margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); }
+.s-blog-filter { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); }
+.s-blog-filter__b {
+  scroll-margin-top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-height: 36px;
+  padding: 0 var(--ob-space-16);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-blog-filter__n { font: var(--ob-type-mono-sm); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+@media (hover: hover) and (pointer: fine) { .s-blog-filter__b:hover { color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); } }
+.s-blog-filter__b[aria-pressed="true"] { background-color: var(--ob-text); color: var(--ob-bg); box-shadow: none; }
+.s-blog-filter__b[aria-pressed="true"] .s-blog-filter__n { color: inherit; opacity: .7; }
+.s-blog-filter__b:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+.s-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ob-space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-blog-grid > li { display: grid; scroll-margin-top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32)); }
+.s-blog-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border-radius: var(--ob-radius-lg);
+  overflow: hidden;
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1, none);
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out), transform var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-blog-card:hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-3); transform: translateY(-2px); }
+  .s-blog-card:hover .s-blog-card__visual--photo img { transform: scale(1.025); }
+}
+.s-blog-card:has(.s-blog-card__link:focus-visible) { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* The picture: 16:10, the photograph cropped to fill, the illustration drawn at a smaller base on its reader's light. */
+.s-blog-card__visual { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-blog-card__visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--ob-dur-slow, 400ms) var(--ob-ease-out); }
+.s-blog-card__visual--art {
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  padding: 18px 16px 0;
+  background:
+    radial-gradient(80% 90% at 50% 0%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent 80%),
+    var(--s-ground-alt);
+}
+.s-blog-card__visual--art .s-x { --s-x-base: 10.5px; max-width: none; width: 100%; pointer-events: none; }
+.s-blog-card__visual--art::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  background: linear-gradient(to bottom, transparent, var(--ob-surface));
+  pointer-events: none;
+}
+
+.s-blog-card__copy { display: grid; grid-template-rows: auto auto 1fr auto; gap: var(--ob-space-10, 10px); padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-24); }
+.s-blog-card__kicker { display: inline-flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-blog-card__mark { width: 8px; height: 8px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+.s-blog-card__title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-blog-card__link { color: inherit; text-decoration: none; }
+.s-blog-card__link::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.s-blog-card__link:focus-visible { outline: none; }
+.s-blog-card__dek {
+  margin: 0;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.s-blog-card__foot { margin: var(--ob-space-4) 0 0; font: var(--ob-type-caption); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+
+/* The featured post's picture, beside its words. */
+.s-blog-lead__screen .s-art-visual { border-radius: var(--ob-radius-lg); }
+
+@media (max-width: 1079.98px) { .s-blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 679.98px) {
+  .s-blog-grid { grid-template-columns: minmax(0, 1fr); }
+  .s-blog-all__head { align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) { .s-blog-card { transition: none; } .s-blog-card:hover { transform: none; } }
+
+/* =====================================================================================================================
+   THE ARTICLE, 23 Oct 2026: the header on ink in its hub's colour with 1 picture, then the text on paper. One centred
+   680px measure; pictures, tables and the app screen break out to 880px so the reading line never jumps but the page
+   breathes. No side column: the contents sit at the top of the text.
+   ===================================================================================================================== */
+
+.s-art-hero { position: relative; isolation: isolate; }
+.s-art-kicker > a { display: inline-flex; align-items: center; gap: var(--ob-space-8); }
+.s-art-kicker__mark { width: 9px; height: 9px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text-3)); }
+
+/* The 1 picture: the same frame for a photograph and an illustration, so every post opens alike. */
+.s-art-visual { position: relative; width: 100%; margin: 0; border-radius: var(--ob-radius-xl); overflow: hidden; }
+.s-art-visual--photo { aspect-ratio: 16 / 9; background-color: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-3); }
+.s-art-visual--photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.s-art-visual__credit {
+  position: absolute;
+  right: var(--ob-space-12);
+  bottom: var(--ob-space-12);
+  padding: var(--ob-space-4) var(--ob-space-8);
+  border-radius: var(--ob-radius-pill);
+  background-color: rgb(8 8 7 / .62);
+  backdrop-filter: blur(6px);
+  font: var(--ob-type-caption);
+  color: #EDEBE5;
+}
+.s-art-visual__credit a { color: inherit; text-underline-offset: 2px; }
+.s-art-visual--art {
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 5vw, 56px) clamp(16px, 4vw, 48px);
+  background:
+    radial-gradient(70% 80% at 50% 0%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hero, 30%), transparent), transparent 75%),
+    var(--s-ground-alt);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.s-art-heroobj { max-width: 880px; }
+
+/* The paper: the page's reading surface, warm paper with ink type (styles/tones.css, Paper and Gloss). */
+.s-art-paper { background-color: var(--ob-bg); color: var(--ob-text); padding-block: var(--ob-space-64) var(--ob-space-96); }
+/* On the light page the text is already on paper, so it stays on the page's own ground (no deeper band). */
+:root.ob-theme-hybrid .s-art-paper[data-tone="paper"] { background-color: transparent; }
+.s-art-paper .s-art-body { display: block; padding-bottom: 0; }
+.s-art-paper .s-art-main { max-width: 680px; margin-inline: auto; }
+.s-art-paper .s-art-p,
+.s-art-paper .s-art-list > li { color: var(--s-read, var(--ob-text)); }
+.s-art-paper .s-art-p strong,
+.s-art-paper .s-art-list strong { color: var(--ob-text); }
+
+/* Breaking out: 880px wide, centred on the text's axis, never past the gutters. */
+.s-art-wide {
+  width: min(880px, calc(100vw - 2 * var(--ob-gutter)));
+  margin-inline: calc(50% - min(440px, 50vw - var(--ob-gutter)));
+}
+
+/* The direct answer: what a reader skims and an assistant quotes, set like the lead of a report. */
+.s-art-paper .s-art-answer {
+  position: relative;
+  padding: var(--ob-space-24) var(--ob-space-28, 28px) var(--ob-space-24) var(--ob-space-32);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1, none);
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text);
+}
+
+/* Its mark: a short bar in the hub's colour, inside the card's edge. */
+.s-art-paper .s-art-answer::before {
+  content: "";
+  position: absolute;
+  left: var(--ob-space-16);
+  top: var(--ob-space-24);
+  bottom: var(--ob-space-24);
+  width: 3px;
+  border-radius: 2px;
+  background-color: var(--s-accent, var(--ob-text));
+}
+
+/* The contents, at the top of the text: numbered, in 2 columns on wide screens; folded on phones. */
+.s-art-toc {
+  padding: var(--ob-space-20) var(--ob-space-24) var(--ob-space-24);
+  border-radius: var(--ob-radius-lg);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.s-art-toc__label { margin: 0 0 var(--ob-space-12); font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-art-toc__list { columns: 2; column-gap: var(--ob-space-32); margin: 0; padding: 0; list-style: none; counter-reset: s-toc; }
+.s-art-toc__list > li { counter-increment: s-toc; break-inside: avoid; }
+.s-art-toc__link {
+  display: grid;
+  grid-template-columns: 2em minmax(0, 1fr);
+  padding: var(--ob-space-6) 0;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  text-wrap: pretty;
+  transition: color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-art-toc__link::before { content: counter(s-toc, decimal-leading-zero); font: var(--ob-type-mono-sm); color: var(--ob-text-3); padding-top: .15em; }
+@media (hover: hover) and (pointer: fine) { .s-art-toc__link:hover { color: var(--ob-text); } }
+.s-art-toc__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-xs); }
+.s-art-main > .s-art-toc + * { margin-top: var(--ob-space-48); }
+.s-art-main > .s-art-answer + .s-art-toc { margin-top: var(--ob-space-24) !important; }
+@media (max-width: 759.98px) { .s-art-toc { display: none; } }
+@media (min-width: 760px) { .s-toc-m { display: none !important; } }
+
+/* Section rhythm on paper: each h2 opens with a short rule in the hub's colour, so a skimming eye finds the next point. */
+.s-art-paper .s-art-h2 { position: relative; padding-top: var(--ob-space-24); }
+.s-art-paper .s-art-h2::before { content: ""; position: absolute; top: 0; left: 0; width: 40px; height: 3px; border-radius: 2px; background-color: var(--s-accent, var(--ob-text)); }
+.s-art-paper .s-art-h3 { font-weight: var(--ob-weight-semibold); }
+
+/* Run-in labels that name a result: a pass in success, a failure in danger, as a small label the eye can scan. */
+.s-art-k {
+  display: inline-block;
+  margin-right: -.1em;
+  padding: 0 .45em;
+  border-radius: var(--ob-radius-xs);
+  font-weight: var(--ob-weight-semibold);
+  line-height: 1.45;
+}
+.s-art-k--pass { background-color: var(--ob-success-bg); color: var(--ob-success) !important; }
+.s-art-k--fail { background-color: var(--ob-danger-bg); color: var(--ob-danger) !important; }
+
+/* Illustrations in the text: the window on a quiet stage, its caption under it. */
+.s-art-ill { margin-block: 0; }
+.s-art-main > * + .s-art-ill, .s-art-ill + * { margin-top: var(--ob-space-48); }
+.s-art-ill__stage {
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 4vw, 44px) clamp(12px, 3vw, 40px);
+  border-radius: var(--ob-radius-xl);
+  background: radial-gradient(70% 90% at 50% 0%, var(--ob-surface), transparent 80%), var(--s-ground-alt);
+}
+.s-art-paper .s-art-fig--screen .ilwrap { cursor: default; }
+
+/* Stats on paper: a band with the number large and its source under it. */
+.s-art-paper .s-art-stat { border-block-color: var(--ob-line-strong); }
+.s-art-paper .s-art-stat__v { font-weight: var(--ob-weight-semibold); }
+
+/* The quiet link to the product: an ink card on the paper (an .ob-theme-dark scope), the sharpest thing on the page. */
+.s-art-paper .s-art-cta {
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-2);
+  color: var(--ob-text);
+}
+
+/* Quotes on paper: larger, with the ink rule. */
+.s-art-paper .s-art-quote { box-shadow: inset 3px 0 0 var(--ob-text); }
+.s-art-paper .s-art-quote blockquote p { font-size: clamp(19px, 1.9vw, 22px); line-height: 1.4; letter-spacing: -.012em; }
+
+/* Notes on paper: stone, with the ink type. */
+.s-art-paper .s-art-note { background-color: var(--s-ground-alt); box-shadow: none; }
+
+@media (max-width: 759.98px) {
+  .s-art-paper { padding-block: var(--ob-space-40) var(--ob-space-64); }
+  .s-art-visual { border-radius: var(--ob-radius-lg); }
+  .s-art-paper .s-art-answer { padding: var(--ob-space-20); }
+}

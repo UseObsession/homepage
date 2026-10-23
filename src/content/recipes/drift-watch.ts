@@ -1,4 +1,3 @@
-import { capture as form } from '../capture'
 import type { Recipe } from '../types'
 
 /* Drift watch (/recipes/drift-watch). Check your AI agents. Screen: drift (Your company's support bot, 40 cases, daily;
@@ -23,8 +22,6 @@ import type { Recipe } from '../types'
    in its agent 11 days after the change that caused it; a replay every morning finds it within 1 day, 11 - 1 = 10.
    Flat facts from the example: 37, then 28, of 40 (92.5%, then 70%), 9 newly failing, found 50 minutes after the
    update (23:20 to 00:10), 80 replays (40 at 07:00 and 40 at 00:10). */
-
-const roles = form.agent.roles
 
 export const recipe: Recipe = {
   id: 'drift',
@@ -65,8 +62,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-drift-hero',
       button: 'Check my AI agent free',
-      micro: form.agent.micro,
-      roles,
       interest: 'drift',
     },
   },
@@ -254,9 +249,6 @@ export const recipe: Recipe = {
       kind: 'verify',
       source: 'recipe-drift-final',
       button: 'Check my AI agent free',
-      micro: 'Leave it blank to join the waitlist instead. We keep your email and your AI agent’s address to run the check and tell you about Obsession.',
-      orWaitlist: true,
-      roles,
       interest: 'drift',
     },
   },

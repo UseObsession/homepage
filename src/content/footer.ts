@@ -31,6 +31,7 @@ export const footer = {
       links: [
         { label: nav.resources.run.kicker, to: nav.resources.run.to },
         { label: nav.resources.useCases.label, to: nav.resources.useCases.to },
+        ...(nav.resources.blog ? [{ label: nav.resources.blog.label, to: nav.resources.blog.all.to }] : []),
         { label: nav.resources.all.label, to: nav.resources.all.to },
       ],
     },
@@ -38,6 +39,7 @@ export const footer = {
       label: 'Company',
       links: [
         { label: 'Saw an Obsession agent?', to: '/agents' },
+        { label: 'LinkedIn', to: 'https://www.linkedin.com/company/useobsession/' },
         { label: 'Privacy', to: '/privacy' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },
       ],

@@ -1,0 +1,39 @@
+/* The consent card (components/ConsentBanner): a small raised card in the start corner, above the page and under the
+   nav (--ob-z-sticky), so the phone sheet always covers it. Allow and Decline are the same button; the visitor's
+   current choice is marked in ink when Cookie settings opens it again. */
+.s-consent {
+  position: fixed;
+  inset-inline-start: var(--ob-space-16);
+  bottom: calc(var(--ob-space-16) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--ob-z-sticky);
+  display: grid;
+  gap: var(--ob-space-12);
+  width: min(380px, calc(100vw - 2 * var(--ob-space-16)));
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-sheen), var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-3);
+  color: var(--ob-text);
+  animation: s-consent-in var(--ob-dur-slow, 400ms) var(--ob-ease-out) both;
+}
+.s-consent__text { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.s-consent__more {
+  color: var(--ob-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ob-line-strong);
+  text-underline-offset: 3px;
+  border-radius: var(--ob-radius-glyph);
+}
+@media (hover: hover) and (pointer: fine) {
+  .s-consent__more:hover { text-decoration-color: currentColor; }
+}
+.s-consent__more:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.s-consent__acts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-8); }
+.s-consent__acts .ob-btn[aria-pressed="true"] { background-color: var(--ob-text); color: var(--ob-bg); box-shadow: none; }
+
+@keyframes s-consent-in {
+  from { opacity: 0; translate: 0 var(--ob-space-8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-consent { animation: none; }
+}

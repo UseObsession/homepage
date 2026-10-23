@@ -70,14 +70,6 @@ export const study: UseCaseStudy = {
       kind: 'mystery',
       source: 'usecase-cro-hero',
       button: 'Check 5 brands free',
-      label: 'A brand’s web address',
-      placeholder: 'A brand, e.g. brand.example',
-      micro: '3 brands you’re about to pitch and 2 of your clients, each with its slide within 4 days, with proof. Leave it blank to join the waitlist.',
-      orWaitlist: true,
-      done: {
-        title: 'Got it. We’ll start with {store}.',
-        line: 'We’ll email {email} to ask for the other 4, and to confirm any client’s store is checked with their OK.',
-      },
       interest: 'mystery',
     },
   },
@@ -372,26 +364,11 @@ export const study: UseCaseStudy = {
 
   final: {
     heading: 'Try it on 5 brands.',
-    sub: 'Name 3 brands you’re about to pitch and 2 of your clients, with their OK. We’ll follow each one’s live ad as a new customer and send what happened after the sign up within 4 days, with proof. Start with 1; we’ll ask for the other 4.',
+    sub: 'Name 3 brands you’re about to pitch and 2 of your clients, with their OK. We’ll follow each one’s live ad as a new customer and send what happened after the sign up within 4 days, with proof.',
     capture: {
       kind: 'mystery',
       source: 'usecase-cro-final',
       button: 'Check 5 brands free',
-      label: 'A brand’s web address',
-      placeholder: 'A brand, e.g. brand.example',
-      micro: 'Leave it blank to join the waitlist.',
-      orWaitlist: true,
-      done: {
-        title: 'Got it. We’ll start with {store}.',
-        line: 'We’ll email {email} to ask for the other 4, and to confirm any client’s store is checked with their OK.',
-      },
-      roles: {
-        short: 'Format',
-        question: 'Which format should we send it in?',
-        options: ['A slide for the teardown', 'A PDF', 'Slack', 'A sheet', 'Clay columns', 'Email'],
-        replaces: 'results',
-        multi: true,
-      },
       interest: 'mystery',
     },
     link: { label: 'See everything agents do for agencies', to: '/agencies' },

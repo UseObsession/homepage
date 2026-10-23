@@ -81,15 +81,16 @@ export const studyByPath: Record<string, UseCaseStudy | undefined> = Object.from
 /* The file each worked example came from, by its address. */
 export const studyFileOf: Record<string, string> = Object.fromEntries(Object.entries(studyFiles).map(([file, s]) => [s.meta.path, nameOf(file)]))
 
-/* Every post, newest first. A post's address is its slug, which must match its file's name (the prerender checks). */
+/* Every post, newest first; on the same day by its order, then its title. A post's address is its slug, which must
+   match its file's name (the prerender checks). */
 export const posts: BlogPost[] = Object.values(postFiles).sort((a, b) =>
-  a.published === b.published ? a.title.localeCompare(b.title) : a.published < b.published ? 1 : -1,
+  a.published === b.published ? (a.order ?? 99) - (b.order ?? 99) || a.title.localeCompare(b.title) : a.published < b.published ? 1 : -1,
 )
 /* The file each post came from, for the prerender's checks and the sitemap. */
 export const postFileOf: Record<string, string> = Object.fromEntries(Object.entries(postFiles).map(([file, p]) => [p.slug, nameOf(file)]))
 export const postBySlug: Record<string, BlogPost | undefined> = Object.fromEntries(posts.map((p) => [p.slug, p]))
-/* The blog shows only while it has a live post. It is archived for now (content/blog/archive, Seun, 3 Oct 2026): no
-   /blog pages, nav or footer link, Resources group, sitemap lines or feed until a post moves back. */
+/* The blog shows only while it has a live post (it was archived in content/blog/archive from 3 to 23 Oct 2026). With
+   none: no /blog pages, nav or footer link, Resources group, sitemap lines or feed. */
 export const blogLive = posts.length > 0
 
 export { agentsPage, notFoundPage, privacyPage, recipesPage, sample }

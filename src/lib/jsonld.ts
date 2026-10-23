@@ -20,10 +20,10 @@ const APP = `${SITE}/#software`
 type Node = Record<string, unknown>
 
 /* Profiles that are the same company or person elsewhere (schema.org sameAs: LinkedIn, X, Crunchbase, GitHub, Product
-   Hunt). TODO (founders): add each real URL once it exists and you've confirmed it is yours. None is in the repo or the
-   workspace yet (_research/seo/AI-SEARCH-FOUNDERS.md lists what to send). An empty list writes no sameAs. */
+   Hunt). Add each real URL once it exists and the founders have confirmed it is theirs (_research/seo/AI-SEARCH-FOUNDERS.md
+   lists what to send). An empty list writes no sameAs. The company page on LinkedIn: Seun, 23 Oct 2026. */
 const SAME_AS: { organization: string[]; people: Record<string, string[]> } = {
-  organization: [],
+  organization: ['https://www.linkedin.com/company/useobsession/'],
   people: { 'Seun Akinniranye': [], 'James Akinniranye': [] },
 }
 const sameAs = (urls: string[] | undefined) => (urls?.length ? { sameAs: urls } : {})

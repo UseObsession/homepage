@@ -12,8 +12,6 @@ const waitlist = (source: string): Capture => ({
   kind: 'waitlist',
   source,
   button: 'Join the waitlist',
-  placeholder: 'Your work email',
-  micro: 'We keep your email to set up your first run and tell you about Obsession.',
   interest: 'any',
 })
 
@@ -95,11 +93,11 @@ export const useCasesPage: UseCasesIndexPage = {
 export const blogPage: BlogIndexPage = {
   meta: {
     path: '/blog',
-    title: 'The Obsession blog: AI agents that do commercial legwork',
+    title: 'The Obsession blog: see what your customers actually get',
     description:
-      'Guides to mystery shopping, competitor tracking, prospect audits and speed to lead, by the founders of Obsession, with every price dated and source linked.',
+      'Checklists and tests for ecommerce stores and the agencies that run them: what a new customer actually gets, and how to check it, with every source linked.',
     answer:
-      'The Obsession blog covers the commercial legwork AI agents can do as a declared customer: mystery shopping, competitor tracking, prospect audits and speed to lead, written by both founders with every source linked.',
+      'Checklists and tests for ecommerce stores and the agencies that run them, from both founders of Obsession, with every source linked. Each shows how to see what a new customer actually gets, from the welcome email to the checkout reminder, and how to check it by hand.',
     ogImage: '/og/blog.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -108,7 +106,7 @@ export const blogPage: BlogIndexPage = {
   },
   hero: {
     headline: 'Find out what any company’s customers actually receive.',
-    sub: 'Guides to mystery shopping, competitor tracking, prospect audits and speed to lead, from both founders of Obsession, with every source linked.',
+    sub: 'Checklists and tests for ecommerce stores and the agencies that run them, from both founders of Obsession, with every source linked.',
   },
   empty: {
     heading: 'Start with the work itself.',
@@ -131,6 +129,17 @@ export const blogUi = {
   posts: (n: number) => (n === 1 ? '1 post' : `${n} posts`),
   more: 'More posts',
   feedTitle: 'The Obsession blog',
+  share: 'Share',
+  screenCaption: 'The same job, run by Obsession’s customer agents.',
+  photo: 'Photo:',
+  onPexels: 'on Pexels',
+  readPost: 'Read the article',
+  all: 'Every article',
+  everything: 'All',
+  filter: 'Show articles about',
+  shareOn: (where: string) => `Share on ${where}`,
+  copy: 'Copy link',
+  copied: 'Link copied',
 }
 
 /* Dates as the site writes them, the same on every machine: 3 Oct 2026, 28 Sep 2026. */

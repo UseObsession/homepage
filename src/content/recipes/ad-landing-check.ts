@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Ad landing check (/recipes/ad-landing-check). Check your own journeys. For performance marketing teams, and the
    agencies that run their ads.
@@ -23,13 +23,6 @@ import type { Capture, Recipe } from '../types'
    minutes = 3.5 hours a week, x 52 = 182, turned into the ads that fail. The run keeps Ad 4's $410 a day as a fact and
    ends on speed: flagged at 07:04, paused at 07:40, 36 minutes later. No sources, prices of Obsession or real names on
    the page. The run is an example and says so. */
-
-const roles: Capture['roles'] = {
-  question: 'Whose ads should we check first?',
-  options: ['Ours', 'A client’s, with their OK', 'Both'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'adcheck',
@@ -70,9 +63,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-adcheck-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'adcheck',
     },
   },
@@ -256,9 +246,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-adcheck-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'adcheck',
     },
   },

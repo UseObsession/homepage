@@ -35,6 +35,36 @@
         if (/\.html$/.test(p)) history.replaceState(history.state, '', (p.replace(/(\/index)?\.html$/, '') || '/') + location.search + location.hash)
       })()
     </script>
+    <script>
+      /* Google Analytics (Google tag, gtag.js), only after the visitor says yes on the consent card (src/lib/analytics.ts):
+         this defines the loader and runs it at once for a visitor who said yes before. Until then nothing from Google
+         loads and no cookie is set. Ads storage, ad user data, ad personalisation and Google signals stay off. */
+      ;(function () {
+        var ga = {
+          id: 'G-9CGTMVW65D',
+          on: false,
+          load: function () {
+            if (ga.on) return
+            ga.on = true
+            window.dataLayer = window.dataLayer || []
+            window.gtag = function () {
+              dataLayer.push(arguments)
+            }
+            gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' })
+            gtag('js', new Date())
+            gtag('config', ga.id, { allow_google_signals: false, allow_ad_personalization_signals: false })
+            var s = document.createElement('script')
+            s.async = true
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga.id
+            document.head.appendChild(s)
+          },
+        }
+        window.obsGa = ga
+        try {
+          if (localStorage.getItem('obs-consent') === 'granted') ga.load()
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

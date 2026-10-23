@@ -1,0 +1,136 @@
+/* The waitlist card (components/JoinCard): it takes the form's place, at the form's width, on the design system's
+   fields, chips and buttons. 1 raised surface with a quiet hairline; the header says they're on the waitlist and who
+   as; a 3 part bar fills as they go; each step is 1 question with its fields and its actions on 1 row. Imported by
+   CaptureForm, so these rules keep their place in the site's 1 sheet. */
+
+.s-join {
+  container: s-join / inline-size;
+  display: grid;
+  gap: var(--ob-space-16);
+  width: 100%;
+  padding: var(--ob-space-20) var(--ob-space-20) var(--ob-space-24);
+  border-radius: var(--ob-radius-xl, 20px);
+  background: var(--ob-sheen), var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-2, none);
+  text-align: start;
+  animation: s-join-in var(--ob-dur-slow, 400ms) var(--ob-ease-out) both;
+}
+
+/* ---- The header: the mark, "You're on the waitlist." and the email; the step count ---- */
+.s-join__head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--ob-space-12); }
+.s-join__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background-color: var(--ob-success-bg, var(--ob-fill)); color: var(--ob-success); }
+.s-join__who { display: grid; gap: 2px; min-width: 0; }
+.s-join__title { margin: 0; font: var(--ob-type-label); font-size: 15px; font-weight: var(--ob-weight-semibold); color: var(--ob-text); }
+.s-join__email { margin: 0; overflow: hidden; font: var(--ob-type-caption); color: var(--ob-text-3); text-overflow: ellipsis; white-space: nowrap; }
+.s-join__count { margin: 0; font: var(--ob-type-mono-sm); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+
+/* 1 part per step, filled up to the step they're on. */
+.s-join__bar { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
+.s-join__bar > i { height: 3px; border-radius: 2px; background-color: var(--ob-line); transition: background-color var(--ob-dur-slow, 400ms) var(--ob-ease-out); }
+.s-join__bar > i.is-on { background-color: var(--ob-text); }
+
+/* ---- A step: the question, its help, its fields, its actions ---- */
+.s-join__step { display: grid; gap: var(--ob-space-16); animation: s-join-step var(--ob-dur-base) var(--ob-ease-out) both; }
+.s-join__qhead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--ob-space-4) var(--ob-space-12); }
+.s-join__q {
+  margin: 0;
+  padding: 0;
+  font: var(--ob-type-title-sm, var(--ob-type-title));
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -.012em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-join__q:focus { outline: none; }
+.s-join__help { margin: calc(var(--ob-space-8) * -1) 0 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.s-join__set { display: grid; gap: var(--ob-space-16); min-inline-size: 0; margin: 0; padding: 0; border: 0; }
+.s-join__set > legend { float: left; width: 100%; margin-bottom: var(--ob-space-16); }
+.s-join__set > legend + * { clear: both; }
+/* The agency's kind: a quieter question that opens under the answer that asked for it. */
+.s-join__sub { float: left; width: 100%; margin: 0 0 var(--ob-space-12); padding: 0; font: var(--ob-type-label); color: var(--ob-text); }
+/* An optional size: a little space above, the Optional tag beside its question. */
+.s-join__size { margin-top: var(--ob-space-16); }
+.s-join__size .s-join__sub .ob-field-optional { margin-inline-start: var(--ob-space-8); font-weight: normal; }
+/* The suggestions: the same chips, set apart by a hairline under them. */
+.s-join__group--tips { padding-bottom: var(--ob-space-16); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-join__reveal { padding-top: var(--ob-space-16); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); animation: s-join-reveal var(--ob-dur-base) var(--ob-ease-out) both; }
+
+/* Name and company side by side once the card is wide enough. */
+.s-join__pair { display: grid; gap: var(--ob-space-12); }
+@container s-join (min-width: 440px) { .s-join__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* The brands: numbered rows, a remove on each once there are 2, and 1 quiet way to add another. */
+.s-join__brands { display: grid; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; }
+.s-join__brand { display: grid; grid-template-columns: 1.4em minmax(0, 1fr) auto; align-items: center; gap: var(--ob-space-8); }
+.s-join__n { font: var(--ob-type-mono-sm); color: var(--ob-text-3); text-align: end; font-variant-numeric: tabular-nums; }
+.s-join__brand .ob-input.is-error { box-shadow: 0 0 0 var(--ob-border-strong, 1.5px) var(--ob-danger) inset; }
+.s-join__remove,
+.s-join__add {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  border: 0;
+  background: none;
+  font: var(--ob-type-label);
+  color: var(--ob-text-2);
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-join__remove { justify-content: center; width: 32px; height: 32px; padding: 0; border-radius: var(--ob-radius-md); }
+.s-join__remove svg,
+.s-join__add svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; }
+.s-join__add { justify-self: start; min-height: 32px; padding: 0 var(--ob-space-8); margin-inline-start: calc(1.4em + var(--ob-space-8) - var(--ob-space-8)); border-radius: var(--ob-radius-md); }
+@media (hover: hover) and (pointer: fine) {
+  :is(.s-join__remove, .s-join__add):hover { color: var(--ob-text); background-color: var(--ob-state-hover); }
+}
+:is(.s-join__remove, .s-join__add):focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+
+/* The recipes: the 3 jobs, each a quiet label over its chips. */
+.s-join__group { display: grid; gap: var(--ob-space-8); }
+.s-join__glabel { margin: 0; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
+.s-join__group .ob-chips { gap: var(--ob-space-8); }
+.s-join__case .ob-textarea { min-height: 88px; resize: vertical; }
+
+/* The actions: Back to the start, the step's own button at the end. */
+.s-join__acts { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--ob-space-8); padding-top: var(--ob-space-4); }
+.s-join__acts > .ob-btn--ghost { margin-inline-end: auto; }
+
+/* ---- Done ---- */
+.s-join--done { gap: var(--ob-space-12); }
+.s-join__line { margin: 0; font: var(--ob-type-body); color: var(--ob-text-2); text-wrap: pretty; }
+.s-join__value { color: var(--ob-text); white-space: nowrap; }
+.s-join__sum { display: grid; gap: var(--ob-space-8); margin: var(--ob-space-4) 0 0; padding: var(--ob-space-12) var(--ob-space-16); border-radius: var(--ob-radius-lg); background-color: var(--ob-bg-sunken, var(--ob-fill)); }
+.s-join__sum > div { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: var(--ob-space-12); font: var(--ob-type-small); }
+.s-join__sum dt { color: var(--ob-text-3); }
+.s-join__sum dd { margin: 0; color: var(--ob-text); overflow-wrap: anywhere; }
+.s-join__link {
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-glyph);
+  background: none;
+  font: inherit;
+  color: var(--ob-text-2);
+  text-decoration: underline;
+  text-decoration-thickness: var(--ob-border-hair);
+  text-decoration-color: var(--ob-link-underline, var(--ob-line-strong));
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.s-join__edit { justify-self: start; font: var(--ob-type-caption); }
+@media (hover: hover) and (pointer: fine) { .s-join__link:hover { color: var(--ob-text); } }
+.s-join__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+.s-join__save { margin: 0; font: var(--ob-type-caption); color: var(--ob-danger); }
+
+/* Another form on the page once they've joined: 1 line, and the way back to the card. */
+.s-join-note { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8) var(--ob-space-12); margin: 0; padding: var(--ob-space-12) var(--ob-space-16); border-radius: var(--ob-radius-pill); background-color: var(--ob-surface-raised); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; font: var(--ob-type-small); color: var(--ob-text-2); }
+.s-join-note .s-join__mark { width: 24px; height: 24px; }
+
+@keyframes s-join-in { from { opacity: 0; translate: 0 var(--ob-space-8); } }
+@keyframes s-join-step { from { opacity: 0; translate: var(--ob-space-8) 0; } }
+@keyframes s-join-reveal { from { opacity: 0; translate: 0 calc(var(--ob-space-4) * -1); } }
+@media (prefers-reduced-motion: reduce) {
+  .s-join,
+  .s-join__step,
+  .s-join__reveal { animation: none; }
+}

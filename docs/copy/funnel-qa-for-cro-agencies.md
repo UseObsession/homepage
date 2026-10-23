@@ -270,7 +270,8 @@ After step 10: link **See a sample output** → `/sample-output`.
 ## Final call to action
 
 - **Heading:** Try it on 5 brands.
-- **Sub:** Name 3 brands you’re about to pitch and 2 of your clients, with their OK. We’ll follow each one’s live ad as a new customer and send what happened after the sign up within 4 days, with proof. Start with 1; we’ll ask for the other 4.
+- **Sub:** Name 3 brands you’re about to pitch and 2 of your clients, with their OK. We’ll follow each one’s live ad as a new customer and send what happened after the sign up within 4 days, with proof.
+- **Since PR 15 (23 Oct, every form is the waitlist):** the form asks for the work email first, with "Check 5 brands free" as its button, then the shared card asks for up to 5 client stores and says the rest (content/join.ts, the `clients` offer). The page's own label, placeholder, small print, done lines and format question below are gone, and so is "Start with 1; we’ll ask for the other 4.", which described the old form.
 - Button: Check 5 brands free · Label: A brand’s web address · Placeholder: A brand, e.g. brand.example · Small print: Leave it blank to join the waitlist.
 - Done: “Got it. We’ll start with {store}.” / “We’ll email {email} to ask for the other 4, and to confirm any client’s store is checked with their OK.”
 - Question: “Which format should we send it in?” (pick any): A slide for the teardown · A PDF · Slack · A sheet · Clay columns · Email

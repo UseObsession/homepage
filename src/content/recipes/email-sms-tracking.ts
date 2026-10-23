@@ -1,4 +1,4 @@
-import type { Capture, Recipe } from '../types'
+import type { Recipe } from '../types'
 
 /* Email and SMS tracking (/recipes/email-sms-tracking). Watch rivals. Screen: inbox.
    New page (our version's "Email and SMS tracking", built on James's Competitor tracking checks: the welcome series
@@ -11,13 +11,6 @@ import type { Capture, Recipe } from '../types'
    When the watch ends it texts STOP and checks the texts stop.
    The run and the table tell the same story as the `inbox` screen and the Marketing page (Rival B swaps 20% off for
    a free gift; 30 days from 3 Sep; Rival A 9 emails and 2 texts, Rival B 14 and 4, Rival C 6 and 1). Example. */
-
-const roles: Capture['roles'] = {
-  question: 'Whose rivals should we subscribe to first?',
-  options: ['Ours', 'A client’s', 'Both'],
-}
-
-const micro = 'We keep your email to set up your first run and tell you about Obsession.'
 
 export const recipe: Recipe = {
   id: 'email-sms',
@@ -58,9 +51,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-email-sms-tracking-hero',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'email-sms',
     },
   },
@@ -212,9 +202,6 @@ export const recipe: Recipe = {
       kind: 'waitlist',
       source: 'recipe-email-sms-tracking-final',
       button: 'Join the waitlist',
-      placeholder: 'Your work email',
-      micro,
-      roles,
       interest: 'email-sms',
     },
   },
