@@ -62,14 +62,6 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
   }
 })
 
-/* Who each worked example is for (content/usecases). James sends these addresses to prospects: they always stay. */
-const STUDY_FOR: Record<string, string> = {
-  '/use-cases/prospect-intelligence-with-clay': 'For outbound agencies',
-  '/use-cases/leak-checks-for-retention-agencies': 'For retention agencies',
-  '/use-cases/leak-checks-for-ecommerce-stores': 'For ecommerce stores',
-  '/use-cases/member-prices-for-price-intelligence': 'For price intelligence firms',
-}
-
 /* The post the blog index leads with (content/blog: its featured post, else the newest). */
 const blogLead = catalog.blogLive ? (catalog.posts.find((p) => p.featured) ?? catalog.posts[0]) : undefined
 
@@ -117,15 +109,13 @@ export const nav = {
          above its status tags, so it reads at a glance and brings no status colour into the nav. */
       image: { src: '/nav/report-peek.jpg', width: 168, height: 102 },
     },
+    /* The worked examples by name only: each name already says who it is for, and 5 cards made the menu too tall
+       (James, 23 Oct). `line` stays for the links that quote it (BlogPost). James sends these addresses to prospects:
+       they always stay. */
     useCases: {
       label: 'Use cases',
       to: '/use-cases',
-      items: catalog.studies.map(({ name, line, path }) => ({
-        kicker: STUDY_FOR[path] ?? 'Use case',
-        label: name,
-        to: path,
-        line,
-      })) satisfies NavCard[],
+      items: catalog.studies.map(({ name, line, path }) => ({ label: name, to: path, line })) satisfies (NavPage & { line: string })[],
     },
     /* The blog while it has posts: the post the blog leads with (its hub and length, its title, the start of its dek),
        then every article. */
@@ -163,6 +153,8 @@ const BAR_WORDS: Record<string, string> = {
   'Check 5 stores free': 'Check stores free',
   /* The ecommerce stores use case: the free check of the reader's own store. */
   'Check my store free': 'Check my store',
+  /* The CRO agencies use case: 5 brands checked free, 3 to pitch and 2 clients. */
+  'Check 5 brands free': 'Check brands free',
 }
 /* The free check of an AI agent (/verify and its recipes: "Check my support bot free" and the rest). */
 const VERIFY_BAR = 'Check mine free'
@@ -182,6 +174,8 @@ export const pageCtas: Record<string, Cta> = {
   '/use-cases/leak-checks-for-retention-agencies': barCta({ label: 'Check 5 stores free', to: '#join' }),
   /* The ecommerce stores use case: the free check of the reader's own store, and the waitlist, in its final form. */
   '/use-cases/leak-checks-for-ecommerce-stores': barCta({ label: 'Check my store free', to: '#join' }),
+  /* The CRO agencies use case: 5 brands checked free, 3 to pitch and 2 clients, and the waitlist, in its final form. */
+  '/use-cases/funnel-qa-for-cro-agencies': barCta({ label: 'Check 5 brands free', to: '#join' }),
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not the waitlist. */
   '/agents': catalog.agentsCta,
 }

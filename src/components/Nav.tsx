@@ -13,7 +13,7 @@ import {
   type RefObject,
 } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { nav, recipeJobs, type NavCard, type NavReader } from '../content/nav'
+import { nav, recipeJobs, type NavCard, type NavPage, type NavReader } from '../content/nav'
 import type { Cta } from '../content/types'
 import { Lockup, Mark } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
@@ -574,6 +574,13 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     </NavLink>
   )
 
+  // A use case is 1 row: its name, which already says who it is for.
+  const caseRow = (c: NavPage, extra = '') => (
+    <NavLink className={`ob-menu__item s-menu__item s-case${extra}`} to={c.to} end onClick={close}>
+      <span className="s-menu__name">{c.label}</span>
+    </NavLink>
+  )
+
   const run = nav.resources.run
   const blog = nav.resources.blog
   const peek = (
@@ -716,7 +723,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                   <ul className="s-xm__cases" aria-labelledby={`${ids.resources}-uc`}>
                     {nav.resources.useCases.items.map((c) => (
                       <li key={c.to} data-col>
-                        {card(c, 's-card--case')}
+                        {caseRow(c)}
                       </li>
                     ))}
                   </ul>
@@ -827,7 +834,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
           <ul className="ob-mnav__list s-mnav__proof">
             <li>{card(run, 's-card--run s-card--sheet', peek)}</li>
             {nav.resources.useCases.items.map((c) => (
-              <li key={c.to}>{card(c, 's-card--case s-card--sheet')}</li>
+              <li key={c.to}>{caseRow(c, ' s-case--sheet')}</li>
             ))}
             {blog && <li className="s-mnav__wide">{card(blog.lead, 's-card--case s-card--post s-card--sheet')}</li>}
             {blog && (
