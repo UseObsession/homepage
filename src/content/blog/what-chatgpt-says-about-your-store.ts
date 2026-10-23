@@ -399,7 +399,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Business Insider’s story on Product.ai is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. Tool prices are as listed on 23 October 2026. The r/shopify quote comes from our research notes and was not reopened at its source, because Reddit blocks automated reading. We haven’t run this check on any named store, so no store’s results appear here. We left out Shopify’s shopper agent launch of 13 October 2026, which we could confirm only on shop.md and 1 secondary report.',
+      text: 'Business Insider’s story on Product.ai is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. Tool prices are as listed on 23 October 2026. The r/shopify quote was checked at its source by hand on 23 October 2026. We haven’t run this check on any named store, so no store’s results appear here. We left out Shopify’s shopper agent launch of 13 October 2026, which we could confirm only on shop.md and 1 secondary report.',
     },
   ],
 
