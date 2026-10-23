@@ -10,7 +10,7 @@
 // - previews: pull request branches deploy with `npx wrangler preview`, which needs this block (it can stay empty;
 //   assets and compatibility settings stay at the top level).
 // After a deploy: curl -sI https://useobsession.com/nope should answer 404 with the 404 page, and
-// curl -s -o /dev/null -w "%{http_code}" -H "Range: bytes=0-1" https://useobsession.com/film/why-obsession-v1.mp4
+// curl -s -o /dev/null -w "%{http_code}" -H "Range: bytes=0-1" https://useobsession.com/film/why-obsession-v2.mp4
 // should answer 206.
 {
   "name": "homepage",
