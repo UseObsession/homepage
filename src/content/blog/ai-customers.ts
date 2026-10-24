@@ -225,7 +225,7 @@ export const post: BlogPost = {
           AI_ACT_113 +
           ').',
         '**It never uses fake payment details or places a fraudulent order.** A real order on a card its owner funds is a real purchase.',
-        '**It never gets round a CAPTCHA or a bot wall,** and never disguises itself to pass one. A block is recorded as a finding. Standards for AI agents to identify themselves to websites, such as [Cloudflare’s Web Bot Auth](' +
+        '**It never gets round a CAPTCHA or a bot wall,** and never disguises itself to pass one. The report names the step it couldn’t test. Standards for AI agents to identify themselves to websites, such as [Cloudflare’s Web Bot Auth](' +
           BOT_AUTH +
           '), point the same way.',
         '**It never clicks a rival’s paid ads at volume.** [Google’s Ads policy](' +
@@ -264,7 +264,7 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Long standing, engaged subscribers can receive different emails and different inbox placement.',
         '**It records outputs.** Why a flow didn’t send sits inside the company’s own tools, which an outside customer can’t read.',
-        '**It stops where a site says no to machines,** and records the block as a finding.',
+        '**It stops where a site says no to machines,** and names the step it couldn’t test.',
         '**Evidence is as strong as its medium.** An authenticated email shows who sent it. A page capture shows what a page displayed at a moment.',
         '**Not every company needs one.** A business that changes rarely and runs no paid traffic can check its few journeys by hand once a month.',
       ],

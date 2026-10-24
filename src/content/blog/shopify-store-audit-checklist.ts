@@ -285,7 +285,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s first store mystery shop is free: 4 AI test customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. The report comes within 4 days.',
+      text: 'Obsession’s first store mystery shop is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. The report comes within 4 days.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -445,7 +445,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Delivery monitoring](/recipes/delivery-monitoring)',
-          'AI test customers sign up after every release or each morning, open every email and link, and try every code at checkout',
+          'AI customers sign up after every release or each morning, open every email and link, and try every code at checkout',
           'Mystery shopper: first store free\nThe recipes: early access, no price listed',
           'Sees only what its own test customers receive, and stops at a CAPTCHA',
           'Stores that change often or run paid traffic, and agencies',

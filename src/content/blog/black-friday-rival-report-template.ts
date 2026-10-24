@@ -91,7 +91,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '22.7B',
       label: 'messages sent over BFCM 2025 by Klaviyo’s customers, up 25% on 2024',
-      source: 'Klaviyo (vendor data), community post, 2 December 2025',
+      source: 'Klaviyo community post, 2 December 2025',
       href: KLAVIYO_RECAP,
     },
     {
@@ -102,7 +102,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'the-page', text: 'What the report contains' },
     {
       kind: 'p',
-      text: 'Each rival gets 1 row: the first Black Friday email you received and when, the emails and texts a day, the deepest offer with its mechanics (the code, whether it stacks with sale prices, the free shipping line) and the page the main button led to. Your client gets a row too, taken from its own send log. Below the table go 2 short sections: what the client did differently, and what to decide in January.',
+      text: 'Each rival gets 1 row: the first Black Friday email you received and when, the emails and texts a day, [the deepest offer with its mechanics](/blog/competitor-price-after-welcome-code) (the code, whether it stacks with sale prices, the free shipping line) and the page the main button led to. Your client gets a row too, taken from its own send log. Below the table go 2 short sections: what the client did differently, and what to decide in January.',
     },
     {
       kind: 'table',
@@ -272,7 +272,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up', compare: true },
     {
       kind: 'p',
-      text: 'An email library can show what a rival sent before your address existed. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. [Panoramata’s pricing page](' +
+      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a rival sent before your address existed. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. [Panoramata’s pricing page](' +
         PANORAMATA +
         ') lists emails, flows, SMS and ads, says it covers more than 20,000 brands, and gives its $99 plan 20 competitors and 6 months of history, with unlimited on the $179 and $399 plans. [MailCharts says](' +
         MAILCHARTS +
@@ -290,11 +290,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI agents: each agent has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes, and the recipe has a waitlist you can join.',
+      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI agents: each agent has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes, and the recipe has a waitlist you can join. Those agents are [AI customers](/blog/ai-customers).',
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 stores free, whether prospects or clients with their OK: its AI test customers become each store’s new customer and send you what happened within 4 days, with proof.',
+      text: 'Obsession checks 5 stores free, whether prospects or clients with their OK: its AI customers become each store’s new customer and send you what happened within 4 days, with proof.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },

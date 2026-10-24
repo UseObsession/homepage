@@ -285,7 +285,7 @@ export const post: BlogPost = {
         AI_ACT +
         ') requires of AI systems that talk to people, with duties that [apply from 2 August 2026](' +
         AI_ACT_113 +
-        '). It never gets round a CAPTCHA or a bot wall, and records a block as a finding. How one signs up, sleeps and keeps its evidence is in [how AI customers work](/blog/how-ai-customers-work).',
+        '). It never gets round a CAPTCHA or a bot wall, and names the step it couldn’t test. How one signs up, sleeps and keeps its evidence is in [how AI customers work](/blog/how-ai-customers-work).',
     },
     {
       kind: 'cta',

@@ -49,10 +49,6 @@ const KL_SUNSET = 'https://help.klaviyo.com/hc/en-us/articles/360017518492'
 const GMAIL_HEADERS = 'https://support.google.com/mail/answer/29436'
 const KL_TIMING = 'https://www.klaviyo.com/blog/when-to-send-black-friday-emails'
 
-const CHATGPT = '/blog/can-chatgpt-track-competitor-emails'
-const RIVAL_REPORT = '/blog/black-friday-rival-report-template'
-const AUDIT = '/blog/email-marketing-audit'
-
 export const post: BlogPost = {
   slug: 'competitor-email-tracking-tools',
   title: 'Competitor email tracking tools compared: what 8 tools collect and cost',
@@ -123,7 +119,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '41%',
       label: 'of email revenue came from automated flows, which were 5.3% of email sends',
-      source: 'Klaviyo 2026 benchmarks (vendor data)',
+      source: 'Klaviyo 2026 benchmarks',
       href: KLAVIYO_BENCH,
     },
 
@@ -210,7 +206,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '52.9M',
       label: 'emails from 103,274 ecommerce brands in Milled’s archive, by its homepage on 23 October 2026',
-      source: 'Milled (vendor data)',
+      source: 'Milled',
       href: MILLED,
     },
 
@@ -504,9 +500,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI assistant connected to the spare inbox can summarise and compare what arrived. [What ChatGPT, Claude and 3 other assistants can do here](' +
-        CHATGPT +
-        ') covers their schedules, caps and limits, including that none can read mail from before the sign up.',
+      text: 'An AI assistant connected to the spare inbox can summarise and compare what arrived. [What ChatGPT, Claude and 3 other assistants can do here](/blog/can-chatgpt-track-competitor-emails) covers their schedules, caps and limits, including that none can read mail from before the sign up.',
     },
     {
       kind: 'p',
@@ -528,11 +522,7 @@ export const post: BlogPost = {
         '**A rival’s welcome and basket emails:** SendView or the method by hand, where you start each flow, or BadRep, MailCharts and Panoramata for rivals they already cover.',
         '**Emails, texts and ads from many rivals:** Panoramata, with up to 20 on Startup and no limit from Professional.',
         '**Up to 25 named rivals on a small budget:** Owletter.',
-        '**Client reports at an agency:** SendView’s white labelled agency accounts, Panoramata’s white label benchmark reports, sold as an add on, or MailCharts’ exports. The [Black Friday rival report template](' +
-          RIVAL_REPORT +
-          ') gives a 1 page format, and the [email marketing audit](' +
-          AUDIT +
-          ') sets the rival comparison beside the client’s own emails.',
+        '**Client reports at an agency:** SendView’s white labelled agency accounts, Panoramata’s white label benchmark reports, sold as an add on, or MailCharts’ exports. The [Black Friday rival report template](/blog/black-friday-rival-report-template) gives a 1 page format, and the [email marketing audit](/blog/email-marketing-audit) sets the rival comparison beside the client’s own emails.',
         '**1 to 3 rivals:** the method by hand, with an assistant reading the inbox.',
       ],
     },
@@ -552,7 +542,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Klaviyo’s June 2026 timing guide](' +
         KL_TIMING +
-        ') plans Black Friday teasers 2 to 4 weeks before the sale, in early November. Sign up to each rival by Friday 30 October, so every address is on the list before the teasers and holds 4 weeks of mail by Black Friday on Friday 27 November.',
+        ') plans Black Friday teasers 2 to 4 weeks before the sale, in early November. Sign up to each rival by Friday 30 October, so every address is on the list before the teasers and holds 4 weeks of mail by Black Friday on Friday 27 November. What a rival’s first order costs once its welcome code is applied is in [a competitor’s real price after the welcome code](/blog/competitor-price-after-welcome-code).',
     },
     {
       kind: 'cta',

@@ -116,7 +116,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '41%',
       label: 'of email revenue comes from automated flows, which are 5.3% of sends, across 183,000+ Klaviyo customers',
-      source: 'Klaviyo benchmarks (vendor data), 2026',
+      source: 'Klaviyo benchmarks, 2026',
       href: KLAVIYO_BENCH,
     },
     {
@@ -342,7 +342,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An archive suits a look at many brands you haven’t signed up to. It shows what the vendor collected for the brands it covers. You can’t choose the shopper, the basket or the day, and Panoramata’s page doesn’t say how its emails are collected.',
+      text: 'An archive suits [a look at many brands you haven’t signed up to](/blog/competitor-email-tracking-tools). It shows what the vendor collected for the brands it covers. You can’t choose the shopper, the basket or the day, and Panoramata’s page doesn’t say how its emails are collected.',
     },
 
     { kind: 'h2', id: 'twenty-rivals', text: 'Competitor email tracking beyond 3 competitors' },
@@ -352,7 +352,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'At 20 competitors, the job needs an inbox and a phone number for every brand, running for weeks, with every message kept as it arrived. Developers can build the parts. [AgentMail](' +
+      text: 'At 20 competitors, the job needs [an inbox and a phone number for every brand](/blog/ai-customers), running for weeks, with every message kept as it arrived. [Developers can build the parts](/blog/ai-customers-for-developers). [AgentMail](' +
         AGENTMAIL +
         ') gives each agent a mailbox, with a free tier of 3 inboxes and 100 emails a day. In [Clay’s benchmark of 22 September 2026](' +
         CLAY +
@@ -388,7 +388,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start-now', text: 'When to sign up before Black Friday' },
     {
       kind: 'p',
-      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start in late October, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. If you sign up by Friday 30 October, the inbox holds 4 weeks of a competitor’s mail by Black Friday. If you sign up on Black Friday, it holds only the sale emails, and no assistant can retrieve the earlier ones.',
+      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start in late October, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. If you sign up by Friday 30 October, the inbox holds 4 weeks of a competitor’s mail by Black Friday. If you sign up on Black Friday, it holds only the sale emails, and no assistant can retrieve the earlier ones. The [Black Friday rival email report](/blog/black-friday-rival-report-template) turns the sheet into a one page report for a client.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Frequently asked questions' },

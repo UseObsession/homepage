@@ -78,7 +78,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The design that makes it work is simple to state. An AI customer is asleep almost all the time, and the outside world wakes it: an email arrives, a text lands, a scheduled check comes due. Asleep, it costs nothing. That is why one system is built to run 100,000 companies at once, and built for millions.',
+      text: 'The design that makes it work is simple to state. An AI customer is asleep almost all the time, and the outside world wakes it: an email arrives, a text lands, a scheduled check comes due. Asleep, it costs nothing. That is why one system is built to run 100,000 companies at once, and built for millions. The term itself is defined in [what AI customers are](/blog/ai-customers).',
     },
 
     { kind: 'h2', id: 'lifecycle', text: 'The life of an AI customer' },
@@ -247,7 +247,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops it.** An AI customer never gets round one, and records the block as a finding.',
+        '**A bot wall or a CAPTCHA stops it.** An AI customer never gets round one, and names the step it couldn’t test.',
         '**A new customer sees what new customers get.** Engaged, long standing customers can receive other emails and other inbox placement.',
         '**Countries differ.** Prices, offers and delivery messages vary by market, so a watch needs a number and an address in each market it covers.',
         '**Some journeys need a real purchase.** Delivery and returns messages arrive only after an order, which needs a card the owner funds.',

@@ -1,6 +1,7 @@
 import type { BlogPost } from './types'
 
-/* The AI customers series, article 3 of 9 (24 Oct 2026): the thesis, under the invitation "Meet your first AI
+/* The AI customers series, the pillar (24 Oct 2026; retitled "Why every company needs AI customers" the same day, same
+   address, linking every audience deep dive): the thesis, under the invitation "Meet your first AI
    customers". Readers: founders, heads of growth, CX and ecommerce, agency founders, sales leaders and investors who
    want the case for the category in plain terms. It owns "why AI customers matter".
    The argument: every company has a customer side it doesn't watch (what customers receive, against what the company
@@ -27,7 +28,7 @@ const PRODUCT_AI = 'https://dnyuz.com/2026/09/25/ai-cant-take-over-your-holiday-
 
 export const post: BlogPost = {
   slug: 'why-ai-customers-matter',
-  title: 'Meet your first AI customers: why they matter now',
+  title: 'Why every company needs AI customers',
   dek: 'What a company sends and what its customers receive have drifted apart, and only a customer sees the gap. Why that gap matters more each month, what changes when AI customers watch it, and what it is worth in your own numbers.',
   metaTitle: 'Why AI customers matter: what only a customer of yours sees',
   description:
@@ -36,6 +37,7 @@ export const post: BlogPost = {
     'AI customers matter because what a company sends and what its customers receive have drifted apart, and only a customer sees the difference: the welcome email that never came, the code refused at checkout, the chatbot quoting an old policy. An AI customer sees it at any company, every day, and keeps the evidence, at a cost low enough to watch every rival, prospect and journey at once.',
   primaryKeyword: 'why ai customers matter',
   keywords: [
+    'why every company needs ai customers',
     'meet your first ai customers',
     'ai customers',
     'what customers actually receive',
@@ -207,6 +209,26 @@ export const post: BlogPost = {
       items: [
         '**It pays first** for companies that change often, buy paid traffic, compete on offers, run AI agents in front of customers, or check many companies at once, as agencies and sales teams do.',
         '**It can wait** for a business that changes rarely, runs no paid traffic and has few rivals. Signing up by hand once a month and after every change covers it.',
+      ],
+    },
+
+    { kind: 'h2', id: 'by-business', text: 'Why each kind of company needs AI customers' },
+    {
+      kind: 'p',
+      text: 'The sum changes with the business. A guide for each kind of company works through its money, its workload and its options:',
+    },
+    {
+      kind: 'list',
+      items: [
+        '**Ecommerce brands.** Most owned revenue runs through automated messages and steps that fail without an error. [Why ecommerce brands need AI customers](/blog/ai-customers-for-ecommerce-brands).',
+        '**Retention agencies.** Clients stay when they can see what their customers received. [Why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies).',
+        '**CRO and performance agencies.** Paid traffic is only as good as the page, code and emails it lands on. [Why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies).',
+        '**Shopify Plus agencies.** A launch is judged in the weeks after go-live, when the client’s customers find what broke. [Why Shopify Plus agencies need AI customers](/blog/ai-customers-for-shopify-plus-agencies).',
+        '**Companies that sell to Shopify brands.** Install data says what a store has, never whether it works. [Why companies that sell to Shopify brands need AI customers](/blog/ai-customers-for-ecommerce-vendors).',
+        '**B2B sales teams.** A demo request is worth only as much as the first reply a buyer gets. [Why B2B sales teams need AI customers](/blog/ai-customers-for-b2b-sales-teams).',
+        '**CX teams.** A company answers for its AI agent as it does for an employee. [Why CX teams need AI customers](/blog/ai-customers-for-cx-teams).',
+        '**Developers.** An agent that deals with another company has to stay its customer for months. [Why developers need AI customers](/blog/long-running-ai-agents), and [what to build with AI customers](/blog/what-to-build-with-ai-customers).',
+        '**Every team in one company.** Marketing, sales, agencies, ecommerce and CX, side by side, in [AI customers for commercial teams](/blog/ai-customers-for-commercial-teams).',
       ],
     },
 

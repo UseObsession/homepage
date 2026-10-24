@@ -60,10 +60,6 @@ const RGE = 'https://reallygoodemails.com/pricing'
 const FLOWIUM = 'https://flowium.com/audit'
 const NETALICO = 'https://netalico.com/pages/services-email-marketing'
 
-const PROSPECT = '/blog/audit-prospect-email-without-klaviyo-login'
-const SILENT = '/blog/welcome-basket-email-not-sending'
-const FLOW_LOG = '/blog/show-clients-every-flow-fired'
-
 export const post: BlogPost = {
   slug: 'email-marketing-audit',
   title: 'The email marketing audit: a checklist and template in 3 layers',
@@ -126,9 +122,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Layers 1 and 2 need the client’s login. For a prospect, run layer 3 alone, as an [outside audit without a Klaviyo login](' +
-        PROSPECT +
-        ').',
+      text: 'Layers 1 and 2 need the client’s login. For a prospect, run layer 3 alone, as an [outside audit without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login).',
     },
     {
       kind: 'p',
@@ -140,7 +134,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '5.3%',
       label: 'of email sends were flows, which earned nearly 41% of email revenue',
-      source: 'Klaviyo 2026 benchmarks (vendor data)',
+      source: 'Klaviyo 2026 benchmarks',
       href: KL_BENCH,
     },
 
@@ -219,9 +213,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Klaviyo’s March 2026 checklist](' +
         KL_CHECKLIST +
-        ') names the core flows as welcome, abandoned cart, abandoned browse, post purchase, and win back or sunset. It asks for metric triggers where possible, and for the basket flow to exclude anyone who ordered or started checkout after entering it. **A pass:** each core flow exists once and every message is Live. **If it fails,** read each message’s Skipped reasons in Recipient activity, then the causes in [why a welcome or basket email never arrives](' +
-        SILENT +
-        ').',
+        ') names the core flows as welcome, abandoned cart, abandoned browse, post purchase, and win back or sunset. It asks for metric triggers where possible, and for the basket flow to exclude anyone who ordered or started checkout after entering it. **A pass:** each core flow exists once and every message is Live. **If it fails,** read each message’s Skipped reasons in Recipient activity, then the causes in [why a welcome or basket email never arrives](/blog/welcome-basket-email-not-sending).',
     },
 
     { kind: 'h3', id: 'smart-sending', text: 'Smart Sending and SMS rules' },
@@ -335,7 +327,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'In a test of 362 ecommerce brands from new addresses, published in July 2026, [Joy Joya](' +
         JOYJOYA +
-        ') found that 158 sent no welcome email and 20 sent an offer that didn’t match the pop up. Layer 3 runs the same test at the client for 14 days, beside 2 or 3 rivals.',
+        ') found that 158 sent no welcome email and 20 sent an offer that didn’t match the pop up. Layer 3 runs the same test at the client for 14 days, beside 2 or 3 rivals. It is a form of [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
 
     { kind: 'h3', id: 'test-subscriber', text: 'Set up the test subscriber' },
@@ -352,9 +344,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'first-14-days', text: 'The first 14 days at the client' },
     {
       kind: 'p',
-      text: 'On day 1, sign up through the pop up, opt in to texts and try the welcome code on a phone. Leave a basket and a checkout from separate addresses, as in the [outside audit](' +
-        PROSPECT +
-        '). Then record every email and text for 14 days. **A pass:** every Live message arrives on time with working codes and links, and none lands in spam. **If one is missing,** go back to its flow status, Skipped reasons and Smart Sending in layer 1.',
+      text: 'On day 1, sign up through the pop up, opt in to texts and try the welcome code on a phone. Leave a basket and a checkout from separate addresses, as in the outside audit. Then record every email and text for 14 days. **A pass:** every Live message arrives on time with working codes and links, and none lands in spam. **If one is missing,** go back to its flow status, Skipped reasons and Smart Sending in layer 1.',
     },
 
     { kind: 'h3', id: 'email-competitor-analysis', text: 'Email competitor analysis: 2 or 3 rivals' },
@@ -395,7 +385,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 rivals each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession’s [delivery monitoring](/recipes/delivery-monitoring) sends AI test customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI agent to each rival’s emails and texts.',
+      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 rivals each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession’s [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI agent to each rival’s emails and texts.',
     },
     {
       kind: 'cta',
@@ -445,9 +435,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'The first audit is the baseline. Run layer 3 again after each fix and every month, and the report shows each finding as found, fixed and checked again. That answers a problem [an agency owner on r/agency](' +
         R_AGENCY +
-        ') described: losing clients who couldn’t see what they were paying for. The weekly format is in [proof that every flow fired](' +
-        FLOW_LOG +
-        '), and the rival addresses keep collecting for each monthly report.',
+        ') described: losing clients who couldn’t see what they were paying for. The weekly format is in [proof that every flow fired](/blog/show-clients-every-flow-fired), and the rival addresses keep collecting for each monthly report.',
     },
 
     { kind: 'h2', id: 'options', text: 'Email audit tools compared', compare: true },
@@ -471,7 +459,7 @@ export const post: BlogPost = {
         [
           'By hand: new Gmail addresses, a phone and a sheet',
           'What 1 subscriber received, with the tab, at the client and its rivals',
-          'Free, plus your hours\n30 minutes to 2 hours a manual flow audit, in [Aimerce’s vendor data](' + AIMERCE + ')',
+          'Free, plus your hours\n30 minutes to 2 hours a manual flow audit, in [Aimerce’s own figures](' + AIMERCE + ')',
           '1 inbox at 1 moment, no history before the sign up, more work per client',
           '1 to 5 clients, at onboarding',
         ],
@@ -519,7 +507,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
-          'AI test customers with real inboxes and numbers live the first 14 days and flag anything that never comes\nAn AI agent logs every rival email, text, offer and code on 1 timeline',
+          'AI customers with real inboxes and numbers live the first 14 days and flag anything that never comes\nAn AI agent logs every rival email, text, offer and code on 1 timeline',
           '5 stores checked free, results within 4 days\nNo price listed',
           'Only sees what its own test customers receive',
           'Layer 3 across many clients and rivals, every week',
@@ -548,7 +536,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI test customers with real inboxes and numbers live your first 14 days and flag anything that never comes.',
+      text: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days and flag anything that never comes.',
       to: '/recipes/delivery-monitoring',
       label: 'See delivery monitoring',
     },

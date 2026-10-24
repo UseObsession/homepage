@@ -89,7 +89,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/ai-customers` | AI customers, AI customer, what are AI customers |
 | `/blog/ai-customer-service-agent-vs-ai-customer` | AI customer service agent vs AI customer, what is an AI customer service agent, is HubSpot's Customer Agent an AI customer, personal AI agents |
 | `/blog/how-ai-customers-work` | how AI customers work, can an AI agent sign up, AI agent inbox and phone number |
-| `/blog/why-ai-customers-matter` | why AI customers matter, meet your first AI customers |
+| `/blog/why-ai-customers-matter` | why AI customers matter, why every company needs AI customers, meet your first AI customers (the pillar: links every audience deep dive) |
 | `/blog/customer-side-observability` | customer-side observability, CX observability, outside-in observability |
 | `/blog/hire-ai-customers` | hire an AI agent, hire AI customers, AI customers vs mystery shoppers |
 | `/blog/ai-customers-find-revenue-leaks` | customer journey testing, revenue leaks, abandoned cart email not sending |
@@ -97,6 +97,15 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/ai-customers-for-developers` | email API for AI agents, give your AI agent a phone number, MCP server for ecommerce |
 | `/blog/ai-customers-for-commercial-teams` | AI agents for marketing teams, AI for sales teams, AI for agencies |
 | `/blog/future-of-ai-customers` | machine customers, future of shopping with AI (the head term agentic commerce stays left alone, per Terms we leave alone) |
+| `/blog/ai-customers-for-ecommerce-brands` | AI agents for ecommerce, AI for Shopify store, Shopify website monitoring, Shopify flow not working |
+| `/blog/ai-customers-for-retention-agencies` | Klaviyo agency AI, AI agent for Klaviyo, retention marketing agency, email marketing reporting template |
+| `/blog/ai-customers-for-cro-agencies` | landing page monitoring, CRO tools for Shopify, AI tools for digital marketing agency |
+| `/blog/ai-customers-for-cx-teams` | AI customer service quality assurance, AI agent QA, AI chatbot testing, how to evaluate an AI chatbot (test my chatbot stays with the support bot guide and recipe) |
+| `/blog/ai-customers-for-shopify-plus-agencies` | Shopify launch checklist, Shopify go live checklist, Shopify website launch checklist, Shopify Plus migration, Shopify QA testing (Shopify store audit checklist stays with its own guide) |
+| `/blog/ai-customers-for-ecommerce-vendors` | Shopify store leads, ecommerce store leads, Shopify store lead list, find Shopify stores, Shopify app growth (how to find ecommerce clients stays with the agency guide) |
+| `/blog/ai-customers-for-b2b-sales-teams` | speed to lead, what is speed to lead, speed to lead AI, inbound lead response time, inbound lead follow up (speed to lead test stays with the lead leaks recipe; speed to lead statistics is kept for Post 4) |
+| `/blog/long-running-ai-agents` | long running AI agents, durable AI agents, building durable AI agents, durable execution AI agents, open source AI agent framework |
+| `/blog/what-to-build-with-ai-customers` | what to build with AI agents, what can you build with AI agents, AI agents in production examples, MCP server ideas |
 | `/agencies` | AI agents for agencies, prove agency value to clients |
 | `/founders` | test your own sign up and checkout as a customer, QA on every release |
 | `/sales` | account intelligence for sales teams, know each account as its customers do |

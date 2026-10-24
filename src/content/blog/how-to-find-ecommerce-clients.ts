@@ -266,7 +266,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Instantly, a cold email platform, reports in its [2026 benchmarks](' +
         INSTANTLY +
-        ') (vendor data) that 58% of replies arrive on the first email of a sequence, so put the finding in the first email.',
+        '), from its own data, that 58% of replies arrive on the first email of a sequence, so put the finding in the first email.',
     },
 
     { kind: 'h3', id: 'choose-a-page', text: '1. Choose a page paid traffic reaches' },

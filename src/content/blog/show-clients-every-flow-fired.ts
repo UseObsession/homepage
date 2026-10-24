@@ -101,7 +101,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: 'Nearly 41%',
       label: 'of email revenue comes from flows, which are 5.3% of sends, across 183,000+ Klaviyo customers',
-      source: 'Klaviyo (vendor data), 2026 benchmarks',
+      source: 'Klaviyo 2026 benchmarks',
       href: BENCH,
     },
     {
@@ -284,7 +284,7 @@ export const post: BlogPost = {
       items: [
         '**Each check covers one moment.** A pass on Monday doesn’t cover Thursday’s theme update. Run it again after any launch, rebuild or flow edit.',
         '**A missing email needs a control.** If a welcome never came, check that a second new address got the client’s newsletter. If it did, sending works and the fault is in the flow. If neither got anything, look at the form or the sending first.',
-        '**The log doesn’t show the cause.** Finding why an email is missing is diagnosis work inside the platform.',
+        '**The log doesn’t show the cause.** [Finding why an email is missing](/blog/welcome-basket-email-not-sending) is [diagnosis work inside the platform](/blog/email-marketing-audit).',
         '**A single Gmail address shows one inbox’s sorting.** A new subscriber’s tab can differ from a loyal customer’s. Seed lists test where a campaign lands across a set of test mailboxes, and Suped, a deliverability vendor, calls them [a directional diagnostic](' +
           SUPED +
           ').',
@@ -299,9 +299,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'When the checks take too long by hand, [Obsession’s AI test customers](' +
+      text: 'When the checks take too long by hand, [Obsession’s AI customers](' +
         USECASE +
-        ') can do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived.',
+        ') can do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',
@@ -317,7 +317,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name 5 client stores, and Obsession’s AI test customers sign up, opt in to texts and leave a basket at each, with each client’s OK. They report, with proof, what arrived within 48 hours and what never did, and the 5 checks are free.',
+      text: 'Name 5 client stores, and Obsession’s AI customers sign up, opt in to texts and leave a basket at each, with each client’s OK. They report, with proof, what arrived within 48 hours and what never did, and the 5 checks are free.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },

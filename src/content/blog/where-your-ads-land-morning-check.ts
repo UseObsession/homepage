@@ -99,7 +99,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '+15%',
       label: 'median Meta CPM in the week of 10 November 2025, the first week of a clear rise, against September',
-      source: 'Lebesgue (vendor data, biggest Meta spenders in its dataset), October 2026',
+      source: 'Lebesgue, biggest Meta spenders in its dataset, October 2026',
       href: LEBESGUE,
     },
 
@@ -210,7 +210,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'offer-price-code', text: 'Check the offer, the price and the code' },
     {
       kind: 'p',
-      text: 'Read the ad, then the page, then the basket. **A pass:** the same offer, end date, price and currency at every step. Enter the ad’s code at checkout and take the basket as far as the payment step, because a checkout can fail on a page that loads.',
+      text: 'Read the ad, then the page, then the basket. **A pass:** the same offer, end date, price and currency at every step. Enter the ad’s code at checkout and take the basket as far as the payment step, because [a checkout can fail on a page that loads](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'quote',
@@ -281,7 +281,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your ads don’t change and nothing in your range sells out, one pass a week is enough.',
+      text: 'If your ads don’t change and nothing in your range sells out, one pass a week is enough. After the click, the [Black Friday checklist](/blog/black-friday-checklist-new-customer) tests the sign up, the code and the basket, and the [Shopify store audit checklist](/blog/shopify-store-audit-checklist) covers the rest of the store.',
     },
 
     { kind: 'h2', id: 'where-it-stops', text: 'Limits of a morning check by hand' },
@@ -312,7 +312,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'After the ad, Obsession’s AI test customers take the next steps at each client store: they sign up, leave a basket and stop at checkout, then watch every inbox for 48 hours and report what arrived and what didn’t. Agencies can have 5 client stores checked free.',
+      text: 'After the ad, Obsession’s AI customers take the next steps at each client store: they sign up, leave a basket and stop at checkout, then watch every inbox for 48 hours and report what arrived and what didn’t. Agencies can have 5 client stores checked free.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },
@@ -354,7 +354,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Meta’s help pages on out of stock items did not load for us, so nothing here rests on them. The Google and Meta pages cited give no delay between a sell out and an ad stopping, so we give none. The quote comes from a public Shopify Community thread. We ran no live ads for this piece.',
+      text: 'Meta’s help pages on out of stock items did not load for us, so nothing here rests on them. The Google and Meta pages cited give no delay between a sell out and an ad stopping, so we give none. The quote comes from a public Shopify Community thread. We ran no live ads.',
     },
   ],
 

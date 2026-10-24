@@ -63,10 +63,6 @@ const SHOPEXPERTS = 'https://shopexperts.com/help/pricing/shopify-email-marketin
 const PROPOSIFY = 'https://www.proposify.com/state-of-proposals-2026'
 const INSTANTLY = 'https://instantly.ai/cold-email-benchmark-report-2026'
 
-const PROSPECT = '/blog/audit-prospect-email-without-klaviyo-login'
-const AUDIT = '/blog/email-marketing-audit'
-const FLOW_LOG = '/blog/show-clients-every-flow-fired'
-const SILENT = '/blog/welcome-basket-email-not-sending'
 const USE_CASE = '/use-cases/leak-checks-for-retention-agencies'
 
 export const post: BlogPost = {
@@ -186,15 +182,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Use only the sign up paths any customer has, buy nothing, and count a gap once the sign up is confirmed, the spam folder is checked and 48 hours have passed. The full method is in [how to audit a prospect’s email and SMS without a Klaviyo login](' +
-        PROSPECT +
-        ').',
+      text: 'Use only the sign up paths any customer has, buy nothing, and count a gap once the sign up is confirmed, the spam folder is checked and 48 hours have passed. The full method is in [how to audit a prospect’s email and SMS without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login).',
     },
     {
       kind: 'p',
       text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession’s [retention agency use case](' +
         USE_CASE +
-        ') runs the same check on any store you name.',
+        ') runs the same check on any store you name. The method behind that check is [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',
@@ -353,9 +347,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Speaking at events rose to 4th among sources of new business in SparkToro’s survey. In the client study inside [Agency Core 2026](' +
         AMI +
-        '), 61% of 400 clients said conference speaking shows true agency expertise, against 23% of agencies who saw it as a trust signal. Write articles that answer what store owners search when a flow breaks, such as [why a welcome or basket email isn’t sending](' +
-        SILENT +
-        ').',
+        '), 61% of 400 clients said conference speaking shows true agency expertise, against 23% of agencies who saw it as a trust signal. Write articles that answer what store owners search when a flow breaks, such as [why a welcome or basket email isn’t sending](/blog/welcome-basket-email-not-sending).',
     },
 
     { kind: 'h3', id: 'cold-outreach', text: 'Store data, contact data and cold email' },
@@ -382,7 +374,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Two example first lines are in [the outside audit guide](' + PROSPECT + ').',
+      text: 'Two example first lines are in the outside audit guide.',
     },
 
     { kind: 'h2', id: 'consent', text: 'Consent rules for cold email' },
@@ -422,13 +414,9 @@ export const post: BlogPost = {
         '**Access.** Ask for the narrowest role that covers the audit. [Klaviyo’s Analyst role](' +
           KL_ROLES +
           ') can view analytics, segments and reporting and preview flow messages without editing them, and Flowium says Analyst access works but may limit its report.',
-        '**The audit.** Run the 3 layers in [the email marketing audit](' +
-          AUDIT +
-          '): the account, deliverability, and what a new subscriber receives beside 2 or 3 rivals.',
+        '**The audit.** Run the 3 layers in [the email marketing audit](/blog/email-marketing-audit): the account, deliverability, and what a new subscriber receives beside 2 or 3 rivals.',
         '**The proposal.** Lead with the priority 1 findings and the monthly revenue each puts at risk, from the brand’s own flow report, then the scope, price, term and the date the first fix goes live.',
-        '**After the signature.** Repeat the outside check after each fix, so the monthly report shows each finding as found, fixed and checked again, in the format of [proof that every flow fired](' +
-          FLOW_LOG +
-          ').',
+        '**After the signature.** Repeat the outside check after each fix, so the monthly report shows each finding as found, fixed and checked again, in the format of [proof that every flow fired](/blog/show-clients-every-flow-fired).',
       ],
     },
 
@@ -470,7 +458,7 @@ export const post: BlogPost = {
       items: [
         '**Proposals** = new retainers ÷ your close rate. [Proposify](' +
           PROPOSIFY +
-          ') reports a 34% average across 742,137 proposals sent through its software in 2025 (vendor data).',
+          ') reports a 34% average across 742,137 proposals sent through its own software in 2025.',
         '**First calls** = proposals ÷ the share of first calls that lead to a proposal.',
         '**Conversations** = first calls ÷ the share of conversations that book a call. A conversation is a referral, a directory enquiry or a reply.',
       ],
@@ -479,7 +467,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'An agency that wants 3 retainers this quarter, closes 34% of proposals, proposes after 1 in 2 first calls and books a call from 1 in 3 conversations needs 9 proposals, 18 first calls and 54 conversations. At the 3.43% average reply rate in [Instantly’s 2025 platform data](' +
         INSTANTLY +
-        ') (vendor data), 54 conversations from cold email alone would take at least 1,575 first emails, so each referral in the mix replaces about 29 of them.',
+        '), from its own data, 54 conversations from cold email alone would take at least 1,575 first emails, so each referral in the mix replaces about 29 of them.',
     },
     {
       kind: 'art',
@@ -508,7 +496,7 @@ export const post: BlogPost = {
         '**An outside check covers 1 inbox at 1 moment.** The cause of a gap sits inside the account, which you see after the brand agrees to an audit.',
         '**Store data is estimated.** Confirm size and platform on the first call.',
         '**Partner rules change.** Klaviyo renamed its starting tier in July 2025, and Shopify updates tiers every quarter.',
-        '**The pipeline rates are averages across software users** (vendor data). After 1 quarter, use your own.',
+        '**The pipeline rates are the vendors’ own averages across their users.** After 1 quarter, use your own.',
       ],
     },
     {

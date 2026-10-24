@@ -135,7 +135,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '41%',
       label: 'of email revenue comes from automated flows, which are 5.3% of sends',
-      source: 'Klaviyo benchmarks (vendor data), 2026',
+      source: 'Klaviyo benchmarks, 2026',
       href: KLAVIYO_BENCH,
     },
     {
@@ -291,7 +291,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '$50 to $200',
       label: 'per shop for institutional quality mystery shopping, against $15 to $30 a shop from budget providers',
-      source: 'T-ROC cost guide (vendor data), 2026',
+      source: 'T-ROC cost guide, 2026',
       href: TROC,
     },
     {
@@ -336,7 +336,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'new-customer', text: '2. Give each rival a new customer' },
     {
       kind: 'p',
-      text: 'For each rival, set up a new Gmail address, a phone number that can receive texts and a private browser window. Sign up through the public pop up, record the offer on screen with the time, and confirm the first email the same day. Read each site’s terms and never place an order you won’t take delivery of. This guide is not legal advice.',
+      text: 'For each rival, set up a new Gmail address, a phone number that can receive texts and a private browser window. Sign up through the public pop up, record the offer on screen with the time, and confirm the first email the same day. Read each site’s terms and never place an order you won’t take delivery of. None of this is legal advice.',
     },
 
     { kind: 'h3', id: 'what-and-how-often', text: '3. Set what to watch and how often' },

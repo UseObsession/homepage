@@ -360,7 +360,7 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Long standing subscribers and past buyers may receive other emails.',
         '**It reports what arrived, and not why.** The cause of a missing email sits in the company’s own tools.',
-        '**It stops at a bot wall or a CAPTCHA,** and records the block as a finding.',
+        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
         '**Client stores need the client’s OK.** Rivals and prospects get only the public sign up any customer can use. This is not legal advice.',
       ],
     },

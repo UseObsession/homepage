@@ -282,7 +282,7 @@ export const post: BlogPost = {
         '**Volumes are examples.** A brand that sends 60 emails a month triples the reading line, which still rounds to cents.',
         '**Texts carry carrier fees** on top of Twilio’s rate, and sending from a US long code needs A2P 10DLC registration.',
         '**Gmail tab placement needs a Gmail inbox,** which is priced separately from an API inbox.',
-        '**Bot walls and CAPTCHAs stop an AI customer.** The block is recorded as a finding, and no cost line removes it.',
+        '**Bot walls and CAPTCHAs stop an AI customer.** The report names the step it couldn’t test, and no cost line removes the block.',
       ],
     },
 
