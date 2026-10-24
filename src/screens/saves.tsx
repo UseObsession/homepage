@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function SavesScreen() {
   return (
-    <div className="il appx-il app-saves"><div className="appx-fit"><div className="appx" role="img" aria-label="Cancellation saves for a coffee subscription, run by a declared Obsession agent: every request from a subscriber or their AI assistant gets Cancel now beside 1 offer you approved, and the choice goes through at once. Dana R.’s assistant asks to cancel, Dana picks Pause 2 months, the request lands and the month reads Saved 28 of 100.">
+    <div className="il appx-il app-saves"><div className="appx-fit"><div className="appx" role="img" aria-label="Cancellation saves for a coffee subscription, run by an Obsession agent: every request from a subscriber or their AI assistant gets Cancel now beside 1 offer you approved, and the choice goes through at once. Dana R.’s assistant asks to cancel, Dana picks Pause 2 months, the request lands and the month reads Saved 28 of 100.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Cancellation saves</span>

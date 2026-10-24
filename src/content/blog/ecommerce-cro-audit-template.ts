@@ -18,7 +18,7 @@ import type { BlogPost } from './types'
    PageSpeed Insights docs; Nielsen (2000) on 5 users; Conversion's PIE page; CXL's PXL article (read through a text copy:
    the site refuses direct requests); the Agency Core 2026 PDF (the 67%); the pricing pages of Microsoft Clarity,
    Contentsquare (hotjar.com/pricing redirects there), Lucky Orange, Intelligems, Shoplift, Convert, VWO (wingify.com),
-   Optimizely and Baymard; Intelligems' Atlas QA docs; the CRO Guru Launch Check listing; OpenAI's ChatGPT agent help page
+   Optimizely and Baymard; Intelligems' Atlas QA docs; the CRO Guru Launch Check listing; OpenAI's ChatGPT cloud browser help page (ChatGPT agent, retired in Oct 2026, was replaced on 24 Oct)
    (read through a text copy); and the site's Funnel QA, Prospect intelligence and Website audit pages and /sample-output.
    Left out on purpose: the 93% and 128 stores, any PilotX audit figure, the $410 lamp, agency audit and retainer prices
    (vendor estimates only), audit hours (vendor estimate only), Google Trends figures, "teardown", "receipt", "leak".
@@ -53,7 +53,7 @@ const VWO = 'https://wingify.com/pricing/'
 const OPTIMIZELY = 'https://www.optimizely.com/plans'
 const BAYMARD_PRICING = 'https://baymard.com/pricing'
 const CRO_GURU = 'https://apps.shopify.com/conversion-rate-optimization'
-const CHATGPT_AGENT = 'https://help.openai.com/en/articles/11752874-chatgpt-agent'
+const CHATGPT_CLOUD = 'https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt'
 
 export const post: BlogPost = {
   slug: 'ecommerce-cro-audit-template',
@@ -78,7 +78,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-24',
   readingMinutes: 11,
   order: 13,
   authors: [
@@ -447,9 +447,9 @@ export const post: BlogPost = {
           'Step 4',
         ],
         [
-          'AI tools: [CRO Guru Launch Check](' + CRO_GURU + '), [ChatGPT agent](' + CHATGPT_AGENT + ')',
-          'Launch Check: an AI checklist for 4 page types\nChatGPT agent: browses and fills in forms',
-          'Launch Check: $199 one time\nChatGPT agent: 40 messages a month on Plus, 400 on Pro',
+          'AI tools: [CRO Guru Launch Check](' + CRO_GURU + '), [ChatGPT cloud browser](' + CHATGPT_CLOUD + ')',
+          'Launch Check: an AI checklist for 4 page types\nChatGPT cloud browser: browses and fills in forms',
+          'Launch Check: $199 one time\nChatGPT cloud browser: paid plans, not Free or Go',
           'No analytics or recordings, and every finding needs checking',
           'A first draft',
         ],
@@ -557,7 +557,7 @@ export const post: BlogPost = {
     { title: 'Plans', publisher: 'Optimizely', url: OPTIMIZELY },
     { title: 'Pricing', publisher: 'Baymard Institute', url: BAYMARD_PRICING },
     { title: 'CRO Guru: Launch Check', publisher: 'Shopify App Store (ConversionAB)', url: CRO_GURU },
-    { title: 'ChatGPT agent', publisher: 'OpenAI Help Center', url: CHATGPT_AGENT },
+    { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CHATGPT_CLOUD },
   ],
 
   related: [

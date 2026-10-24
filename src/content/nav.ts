@@ -87,7 +87,7 @@ export const nav = {
     /* The featured card: the free first report, then the 1 real run. */
     feature: {
       label: 'Your first mystery shop is free',
-      line: 'Declared AI customers shop your store, or a client’s with their OK. The report comes within 4 days.',
+      line: 'AI customers shop your store, or a client’s with their OK. The report comes within 4 days.',
       action: 'Get my free report',
       to: '/recipes/mystery-shopper',
     },

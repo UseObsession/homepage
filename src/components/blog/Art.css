@@ -182,10 +182,69 @@
 .s-x-runs__label { font: var(--ob-type-mono-sm); font-size: .74em; color: var(--ob-text-3); }
 .s-x-runs__answer { font-size: .86em; line-height: 1.4; color: var(--ob-text); }
 
+/* ---- The sides: who sends each agent, the agent, and who it faces ------------------------------------------------- */
+/* Quiet hairline rows; only the actor the post is about is filled. The link's words sit above its line, so the line
+   meets each node at its middle. */
+.s-x-sides { display: grid; gap: .7em; margin: 0; padding: 0; list-style: none; }
+.s-x-side {
+  display: grid;
+  gap: .95em;
+  padding: 1em 1.05em 1.1em;
+  border-radius: .8em;
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-subtle);
+}
+.s-x-side--ours { background-color: var(--ob-surface-raised); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.s-x-side__name { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15em .75em; }
+.s-x-side__name b { font-size: .93em; font-weight: 600; letter-spacing: -.01em; color: var(--ob-text); }
+.s-x-side__name span { font: var(--ob-type-mono-sm); font-size: .72em; color: var(--ob-text-3); }
+.s-x-side__path { display: flex; align-items: center; min-width: 0; }
+.s-x-side__node {
+  flex: none;
+  padding: .5em .8em;
+  border-radius: .55em;
+  font-size: .84em;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ob-text);
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong);
+}
+.s-x-side__node--lit { color: var(--ob-text-inverse); background-color: var(--ob-text); box-shadow: none; }
+.s-x-side__link { position: relative; flex: 1 1 0; min-width: 2.6em; align-self: center; margin-inline: .45em; }
+.s-x-side__link span {
+  position: absolute;
+  inset: auto 0 .5em;
+  font: var(--ob-type-mono-sm);
+  font-size: .68em;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--ob-text-3);
+}
+.s-x-side__link i { position: relative; display: block; border-top: var(--ob-border-hair) solid var(--ob-line-ui); }
+.s-x-side__link i::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: calc(-.3em - .5px);
+  border: .3em solid transparent;
+  border-left: .45em solid var(--ob-line-ui);
+  border-right: 0;
+}
+
 /* Narrow windows: the journey and the runs stack, the arrow turns down. */
 @container (max-width: 560px) {
   .s-x-flow { grid-auto-flow: row; gap: .9em; }
   .s-x-flow__step + .s-x-flow__step::before { top: auto; bottom: 100%; right: auto; left: 1.2em; width: 0; height: .9em; border-top: 0 !important; border-left: var(--ob-border-hair) solid var(--ob-line-ui); }
   .s-x-flow__step--fail::before { border-left-style: dashed !important; border-left-color: var(--ob-danger) !important; }
   .s-x-runs { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Narrower still: each path stands up, the arrow turns down and its words sit beside it. */
+@container (max-width: 470px) {
+  .s-x-side__path { flex-direction: column; align-items: stretch; }
+  .s-x-side__node { text-align: center; white-space: normal; }
+  .s-x-side__link { flex: none; min-width: 0; height: 2em; margin: 0; }
+  .s-x-side__link i { position: absolute; top: .3em; bottom: .3em; left: 50%; border-top: 0; border-left: var(--ob-border-hair) solid var(--ob-line-ui); }
+  .s-x-side__link i::after { top: auto; right: auto; bottom: -1px; left: calc(-.3em - .5px); border: .3em solid transparent; border-top: .45em solid var(--ob-line-ui); border-bottom: 0; }
+  .s-x-side__link span { inset: 50% auto auto calc(50% + .9em); transform: translateY(-50%); text-align: left; }
 }

@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function VendorcheckScreen() {
   return (
-    <div className="il appx-il app-vendorcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Vendor agent check for Your company, choosing between Vendor B and Vendor C to replace Vendor A: with both vendors' OK, declared test customers ran the same 20 cases from your tickets on each vendor's AI agent over a 2 week run. The 9 cases a vendor failed fill row by row, 11 more passed on both, and the totals tick to Vendor B 17 of 20 and Vendor C 12 of 20. The Ask for a person case is open with both transcripts, signed, and the report is ready for procurement.">
+    <div className="il appx-il app-vendorcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Vendor agent check for Your company, choosing between Vendor B and Vendor C to replace Vendor A: with both vendors' OK, AI customers ran the same 20 cases from your tickets on each vendor's AI agent over a 2 week run. The 9 cases a vendor failed fill row by row, 11 more passed on both, and the totals tick to Vendor B 17 of 20 and Vendor C 12 of 20. The Ask for a person case is open with both transcripts, signed, and the report is ready for procurement.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Vendor agent check</span>

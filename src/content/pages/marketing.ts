@@ -13,9 +13,9 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/marketing',
-    title: 'Obsession for marketing: every rival email, offer and price',
+    title: 'AI customers for marketing: every rival’s emails and prices',
     description:
-      'Obsession’s AI agents sign up to every rival and stay their customer, so marketing teams see each email, text, offer and price the minute it lands.',
+      'Obsession’s AI customers sign up to every rival and stay on, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
     answer:
       'Obsession’s AI agents sign up to every rival on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
     ogImage: '/og/marketing.png',
@@ -145,7 +145,7 @@ export const page: Page = {
       },
       {
         q: 'Do I have to sign up to rivals myself?',
-        a: 'No. Paste the list, or ask from your own AI agent. Each rival gets its own customer agent, with its own inbox and number, and nothing lands in yours.',
+        a: 'No. Paste the list, or ask from your own AI agent. Each rival gets its own AI customer, with its own inbox and number, and nothing lands in yours.',
       },
       {
         q: 'Where do I see what they find?',

@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function PartnersScreen() {
   return (
-    <div className="il appx-il app-partners"><div className="appx-fit"><div className="appx" role="img" aria-label="Partner checks for Your company: a declared Obsession agent visits 6 partner and affiliate pages as a customer and checks that the link works, the code applies and the current offer and banner are shown. The partners tick through; Deals site still shows last season’s offer and its code SUMMER20 is rejected in the basket, so a note is drafted in JO’s thread and sent with your OK, to be checked again on Monday. Deals site’s SUMMER20 is rejected in the basket. Swap to DEALS15 sent with your OK.">
+    <div className="il appx-il app-partners"><div className="appx-fit"><div className="appx" role="img" aria-label="Partner checks for Your company: an Obsession AI customer visits 6 partner and affiliate pages as a customer and checks that the link works, the code applies and the current offer and banner are shown. The partners tick through; Deals site still shows last season’s offer and its code SUMMER20 is rejected in the basket, so a note is drafted in JO’s thread and sent with your OK, to be checked again on Monday. Deals site’s SUMMER20 is rejected in the basket. Swap to DEALS15 sent with your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Partner checks</span>

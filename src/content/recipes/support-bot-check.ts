@@ -24,7 +24,7 @@ export const recipe: Recipe = {
   line: 'Asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
   gets: 'A verdict on every check, the transcript behind it, and the right answer drafted for every wrong one.',
   kit: [
-    'An AI test customer, working for your company',
+    'An AI customer, working for your company',
     'Its own inboxes, phone number and test account',
     'Your policy pages, captured on every run',
     'Every channel your bot answers on',
@@ -36,7 +36,7 @@ export const recipe: Recipe = {
     path: '/recipes/support-bot-check',
     title: 'Support bot check: test your AI chatbot daily · Obsession',
     description:
-      'AI test customers ask your support bot what customers ask, on chat, email and your portal, every day, and check each answer against your policy.',
+      'AI customers ask your support bot what your customers ask, on chat, email and your portal, every day, and check each answer against your own policy.',
     answer:
       'Support bot check asks your support bot what customers ask, every morning: test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     ogImage: '/og/support-bot-check.png',
@@ -202,7 +202,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Support bot check say it’s AI?',
-        a: 'Yes. Every Support bot check test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Support bot check test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will our bot’s vendor bill us for the tests?',

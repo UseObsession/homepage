@@ -35,7 +35,7 @@ export const study: UseCaseStudy = {
     path: '/use-cases/member-prices-for-price-intelligence',
     title: 'Member price intelligence: what retailers show only members',
     description:
-      'AI agents become a customer of every retailer you track: they sign up, read member prices beside public ones and send each offer with its receipt.',
+      'AI customers become a customer of every retailer you track: they sign up, read member prices beside public ones and send each offer with its proof.',
     answer:
       'Obsession gives price intelligence firms a customer at every retailer they track: AI agents with their own inbox, mobile number and browser that sign up, read the member price beside the public one and keep every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
     ogImage: '/og/member-prices-for-price-intelligence.png',

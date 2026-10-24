@@ -1,8 +1,11 @@
 /* Structured data for every page (docs/REBUILD.md, section 8), written into the head by the prerender as 1
    <script type="application/ld+json"> holding a schema.org @graph:
-   - Organization and WebSite on every page.
-   - WebPage on every page; a FAQPage too wherever the page shows questions (the same words, so they match the page).
+   - Organization and WebSite on every page, with the other name people type (useobsession) and the slogan.
+   - WebPage on every page (CollectionPage on /blog); a FAQPage too wherever the page shows questions (the same words,
+     so they match the page).
    - SoftwareApplication on Home.
+   - The DefinedTerm "AI customer" (content/glossary.ts) on Home and on the 3 articles that define, explain and argue
+     for it, each page about it, so engines file Obsession under AI customers and never under customer service bots.
    - BreadcrumbList wherever the page's Meta has a breadcrumb: every page below Home, matching the breadcrumb the page
      shows (components/Crumbs reads the same list).
    - BlogPosting on every post, with both founders as its authors (docs/REBUILD.md 9c), and Blog on /blog, listing them.
@@ -11,6 +14,7 @@
    No prices, ratings or offers: the site states none. Nothing here is invented: every fact is on the site or in
    docs/REBUILD.md, and a profile link goes in only when a founder supplies it (SAME_AS below). */
 import { absolute, entries, SITE, type Entry } from '../content/meta'
+import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../content/glossary'
 import { agentsPage, CONTACT_EMAIL, llms } from '../content/site'
 
 const ORG = `${SITE}/#organization`
@@ -53,7 +57,10 @@ const organization: Node = {
   name: 'Obsession',
   url: `${SITE}/`,
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
+  alternateName: 'useobsession',
   description: llms.summary,
+  slogan: 'The first AI customers that work for you.',
+  knowsAbout: [AI_CUSTOMER.plural],
   email: CONTACT_EMAIL,
   founder: FOUNDERS.map(person),
   /* /agents: any company an agent met writes here with a question, or to keep agents off its site. */
@@ -84,11 +91,36 @@ const agentTerms = (): Node[] => [
   },
 ]
 
+/* The term Obsession owns (content/glossary.ts): defined once, on Home and on the 3 articles that explain it. */
+const TERM = `${SITE}${AI_CUSTOMER.path}#term`
+const aiCustomer: Node = {
+  '@type': 'DefinedTerm',
+  '@id': TERM,
+  name: AI_CUSTOMER.term,
+  alternateName: AI_CUSTOMER.plural,
+  description: AI_CUSTOMER.definition,
+  url: absolute(AI_CUSTOMER.path),
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': `${SITE}/#glossary`, name: 'Obsession glossary' },
+}
+/* The practice AI customers carry out, defined on its own article beside the term it builds on. */
+const CSO_TERM = `${SITE}${CUSTOMER_SIDE_OBSERVABILITY.path}#term`
+const customerSideObservability: Node = {
+  '@type': 'DefinedTerm',
+  '@id': CSO_TERM,
+  name: CUSTOMER_SIDE_OBSERVABILITY.term,
+  description: CUSTOMER_SIDE_OBSERVABILITY.definition,
+  url: absolute(CUSTOMER_SIDE_OBSERVABILITY.path),
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': `${SITE}/#glossary`, name: 'Obsession glossary' },
+}
+const definesCso = (e: Entry) => e.meta.path === CUSTOMER_SIDE_OBSERVABILITY.path
+const aboutTerm = (e: Entry) => e.kind === 'home' || (e.kind === 'post' && AI_CUSTOMER.articles.includes(e.meta.path.split('/').pop() ?? ''))
+
 const website: Node = {
   '@type': 'WebSite',
   '@id': WEBSITE,
   url: `${SITE}/`,
   name: 'Obsession',
+  alternateName: 'useobsession',
   description: llms.summary,
   inLanguage: 'en-GB',
   publisher: { '@id': ORG },
@@ -114,6 +146,7 @@ function posting(e: Entry): Node {
     publisher: { '@id': ORG },
     image: { '@type': 'ImageObject', url: absolute(e.meta.ogImage), width: 1200, height: 630 },
     articleSection: a.section,
+    ...(aboutTerm(e) ? { about: definesCso(e) ? [{ '@id': CSO_TERM }, { '@id': TERM }] : { '@id': TERM } } : {}),
     keywords: a.keywords.join(', '),
     inLanguage: 'en-GB',
     citation: a.citations.map((c) => ({
@@ -164,7 +197,8 @@ export function jsonLd(e: Entry): Node {
   const questions = e.faq?.items ?? []
 
   const page: Node = {
-    '@type': questions.length ? ['WebPage', 'FAQPage'] : 'WebPage',
+    /* /blog lists the posts, so it is a collection; a page that shows questions is also an FAQ page. */
+    '@type': [e.kind === 'blog' ? 'CollectionPage' : 'WebPage', ...(questions.length ? ['FAQPage'] : [])],
     '@id': `${url}#webpage`,
     url,
     name: e.meta.title,
@@ -174,7 +208,11 @@ export function jsonLd(e: Entry): Node {
     isPartOf: { '@id': WEBSITE },
     publisher: { '@id': ORG },
     primaryImageOfPage: { '@type': 'ImageObject', url: absolute(e.meta.ogImage), width: 1200, height: 630 },
-    ...(e.kind === 'home' ? { about: { '@id': APP } } : {}),
+    ...(e.kind === 'home'
+      ? { about: [{ '@id': APP }, { '@id': TERM }] }
+      : aboutTerm(e)
+        ? { about: definesCso(e) ? [{ '@id': CSO_TERM }, { '@id': TERM }] : { '@id': TERM } }
+        : {}),
     ...(e.kind === 'agents' ? { about: agentTerms() } : {}),
     ...(crumbs?.length ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
     ...(questions.length
@@ -190,6 +228,8 @@ export function jsonLd(e: Entry): Node {
 
   const graph: Node[] = [organization, website, page]
   if (e.kind === 'home') graph.push(software(e))
+  if (aboutTerm(e)) graph.push(aiCustomer)
+  if (definesCso(e)) graph.push(customerSideObservability)
   if (e.kind === 'blog') graph.push(blog(e))
   if (e.kind === 'post' && e.article) graph.push(posting(e))
   if (crumbs?.length)

@@ -27,7 +27,7 @@ export const ways: Record<WayId, Way> = {
     id: 'build',
     name: 'Build your own',
     who: 'For developers',
-    line: 'The same customer agents from your own agent or code: MCP, the API and SDKs, with every fact posted to your webhook.',
+    line: 'The same AI customers from your own agent or code: MCP, the API and SDKs, with every fact posted to your webhook.',
     to: '/developers',
   },
   verify: {

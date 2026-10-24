@@ -10,7 +10,7 @@ export function PackScreen({ workspace = 'agency' }: ScreenProps) {
      Rivals in the nav, its own lists. An agency's lists its clients. */
   const company = workspace === 'company'
   return (
-    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence watch for 12 prospects from Clay, run by a declared Obsession AI agent that signs up at each as a new customer, through public sign ups only. Rows land 1 by 1, each with its gap, until 10 of the 12 have one. Hobstone Coffee’s pitch fills with 3 findings and their captures, signed, and a click on Copy link copies its proof link. The lead finding is in the test inbox’s Spam folder. 10 of 12 prospects failed a new customer. Proof link Hobstone can check for itself. Hobstone’s 10% welcome code lands in spam.">
+    <div className="il appx-il app-pack"><div className="appx-fit"><div className="appx" role="img" aria-label="A prospect intelligence watch for 12 prospects from Clay, run by an Obsession AI customer that signs up at each as a new customer, through public sign ups only. Rows land 1 by 1, each with its gap, until 10 of the 12 have one. Hobstone Coffee’s pitch fills with 3 findings and their captures, signed, and a click on Copy link copies its proof link. The lead finding is in the test inbox’s Spam folder. 10 of 12 prospects failed a new customer. Proof link Hobstone can check for itself. Hobstone’s 10% welcome code lands in spam.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>Prospect intelligence</span>

@@ -19,7 +19,7 @@ export const recipe: Recipe = {
   line: 'Lives your first 14 days as test customers on real inboxes and numbers, and proves every message arrives.',
   gets: 'Every email, text and code your customers should get, timed, and anything missing flagged the day it’s due.',
   kit: [
-    'AI test customers',
+    'AI customers',
     'Real inboxes',
     'Numbers in each country you sell in',
     'iPhone, Android and desktop',
@@ -31,9 +31,9 @@ export const recipe: Recipe = {
     path: '/recipes/delivery-monitoring',
     title: 'Delivery monitoring: prove every email, text and code lands',
     description:
-      'AI test customers live your first 14 days on real inboxes and numbers in each country you sell in, and flag any email, text or code that never arrives.',
+      'AI customers live your first 14 days on real inboxes and numbers in each country you sell in, and flag any email, text or code that never arrives.',
     answer:
-      'Delivery monitoring proves every email, text and login code arrives: after every release, AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
+      'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,7 +44,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that prove every email, text and login code arrives.',
-    sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
+    sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     screen: 'qa',
     capture: {
       kind: 'waitlist',
@@ -62,7 +62,7 @@ export const recipe: Recipe = {
     journey: ['Sign up as test customers', 'Log in by text code', 'Open every email', 'Time every message'],
     schedule: 'Every release, then daily for 14 days',
     report: 'Slack alert, ticket drafted',
-    kit: ['3 AI test customers', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
+    kit: ['3 AI customers', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
     events: [
       { time: 'Day 1, 09:00', text: '3 test customers sign up: UK on iPhone, US and UK on Android.' },
       { time: 'Day 1, 09:03', text: 'Welcome emails in 2 to 3 minutes. Login codes by text in under 10 seconds.' },
@@ -151,7 +151,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I know our welcome emails and login codes actually arrive?',
-        a: 'Obsession’s Delivery monitoring has AI test customers with real inboxes and numbers live your first 14 days in each country you sell in, and flags any email, text or code that never arrives.',
+        a: 'Obsession’s Delivery monitoring has AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flags any email, text or code that never arrives.',
       },
       {
         q: 'Why 14 days?',

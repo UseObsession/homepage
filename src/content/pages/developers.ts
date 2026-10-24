@@ -1,4 +1,5 @@
 import { consoleHeading } from '../console'
+import { CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 import { life, openSource, ways } from '../shared5'
 import type { Page } from '../types'
 
@@ -13,9 +14,9 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/developers',
-    title: 'Obsession API and MCP: give your agents a customer anywhere',
+    title: 'Obsession API and MCP: AI customers your agents can call',
     description:
-      'Give your AI agents a customer at every company: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. The runtime is open source.',
+      'Give your AI agents an AI customer at any company: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. Open source runtime.',
     answer:
       'Obsession gives your AI agents a customer at every company: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
     ogImage: '/og/developers.png',
@@ -110,7 +111,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
         moment: 'Friday 15:00. A customer asks why your app missed a rival’s price rise.',
         outcome: 'Ship rival tracking in your own product, with every change dated and its proof attached.',
         line: 'Agents become a customer of every rival your users name, keep every email and text, and check their pricing pages daily. Each change posts to your app as JSON.',
-        whyOnly: 'One customer agent per company, shared across every user who watches it, so the history is there on day one.',
+        whyOnly: 'One AI customer per company, shared across every user who watches it, so the history is there on day one.',
         recipe: 'competitor',
         screen: 'rivals',
       },
@@ -154,6 +155,10 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
         a: 'Obsession gives your AI agents a customer at every company: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
       },
       {
+        q: 'What is customer-side observability?',
+        a: `${CUSTOMER_SIDE_OBSERVABILITY.definition} It’s what AI customers do, and Obsession gives your agent that view as a tool: 5 verbs over MCP, an API and an SDK.`,
+      },
+      {
         q: 'How is it different from Exa, Browserbase or a scraper?',
         a: 'Exa searches the web and Browserbase drives a browser, for as long as your code runs. Obsession is a customer that stays: it signs up, waits weeks or months, and keeps every email and page it gets, with proof.',
       },
@@ -163,7 +168,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
       },
       {
         q: 'What is open source, and what is Obsession Cloud?',
-        a: 'The runtime is open source: the customer agents, how they fan out, sleep and learn, the record, recipes, integrations and the 5 verbs. Obsession Cloud runs it for you, with inboxes and numbers in many countries and months of shared history.',
+        a: 'The runtime is open source: the AI customers, how they fan out, sleep and learn, the record, recipes, integrations and the 5 verbs. Obsession Cloud runs it for you, with inboxes and numbers in many countries and months of shared history.',
       },
       {
         q: 'How do I check a fact is real?',

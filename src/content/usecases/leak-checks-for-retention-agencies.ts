@@ -31,7 +31,7 @@ export const study: UseCaseStudy = {
     path: '/use-cases/leak-checks-for-retention-agencies',
     title: 'Leak checks for retention agencies, from pitch to renewal',
     description:
-      'AI agents become the new customer of any store you name. Before a pitch, the prospect’s leaks. After you win, the client’s leaks every week, with proof.',
+      'AI customers become the new customer of any store you name. Before a pitch, the prospect’s leaks. After you win, the client’s leaks weekly, with proof.',
     answer:
       'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its rivals compare.',
     ogImage: '/og/leak-checks-for-retention-agencies.png',

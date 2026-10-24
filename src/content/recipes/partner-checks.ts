@@ -44,7 +44,7 @@ export const recipe: Recipe = {
     path: '/recipes/partner-checks',
     title: 'Partner checks: test every partner link and code · Obsession',
     description:
-      'Each week an AI agent follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
+      'Each week an AI customer follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
     answer:
       'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     ogImage: '/og/partner-checks.png',

@@ -29,7 +29,7 @@ export const study: UseCaseStudy = {
     path: '/use-cases/funnel-qa-for-cro-agencies',
     title: 'Funnel QA for CRO agencies, from the pop up to checkout',
     description:
-      'AI agents follow a brand’s live ad as new customers and sign up through the pop up. See what comes after it before you pitch, and in every test you run.',
+      'AI customers follow a brand’s live ad as new shoppers and sign up through the pop up. See what comes after it before you pitch, and in every test you run.',
     answer:
       'Obsession’s AI agents follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown; after you win, they check every test variant past the sign up, every morning it’s live, and the whole funnel every week.',
     ogImage: '/og/funnel-qa-for-cro-agencies.png',

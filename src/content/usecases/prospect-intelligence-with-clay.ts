@@ -34,7 +34,7 @@ export const study: UseCaseStudy = {
     path: '/use-cases/prospect-intelligence-with-clay',
     title: 'Prospect intelligence with Clay: a proven gap at each brand',
     description:
-      'AI agents become a customer of every brand in your Clay view: they sign up, opt in to texts and ask support, and write each gap back with its receipt.',
+      'AI customers become a customer of every brand in your Clay view: they sign up, opt in to texts and ask support, and write each gap back with proof.',
     answer:
       'Obsession gives outbound agencies a customer at every brand in a client’s Clay view: AI agents with their own inbox, mobile number and browser that sign up, opt in to texts and ask support a question, then wait 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
     ogImage: '/og/prospect-intelligence-with-clay.png',

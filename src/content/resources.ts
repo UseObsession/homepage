@@ -16,7 +16,7 @@ const waitlist = (source: string): Capture => ({
 })
 
 const final = (source: string): Final => ({
-  heading: 'Send declared AI agents to every company on your list.',
+  heading: 'Send AI customers to every company on your list.',
   sub: 'Join the waitlist and tell us the first job to set up. We confirm the plan with you before anything runs.',
   capture: waitlist(source),
 })
@@ -26,7 +26,7 @@ export const resourcesPage: ResourcesPage = {
     path: '/resources',
     title: 'Obsession resources: worked examples and a real store check',
     description:
-      'Obsession at work: worked examples of declared AI agents from set up to proof, and the real September store check in every format it arrives in.',
+      'Obsession at work: worked examples of AI customers from set up to proof, and the real September 2026 store check in every format it arrives in.',
     answer:
       'Obsession’s resources show the work before you join: worked examples that follow 1 job from set up to proof, and the 1 real store check in every format it arrives in.',
     ogImage: '/og/resources.png',
@@ -68,9 +68,9 @@ export const useCasesPage: UseCasesIndexPage = {
     path: '/use-cases',
     title: 'Use cases: 1 job for 1 kind of customer, start to finish',
     description:
-      'Worked examples of Obsession: declared AI agents run 1 job for 1 kind of customer, from set up to the proof in their own tools. The names are made up.',
+      'Worked examples of Obsession: AI customers run 1 job for 1 kind of customer, from set up to the proof in their own tools. The names are made up.',
     answer:
-      'Obsession use cases are worked examples: declared AI agents run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
+      'Obsession use cases are worked examples: AI customers run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
     ogImage: '/og/use-cases.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -80,7 +80,7 @@ export const useCasesPage: UseCasesIndexPage = {
   },
   hero: {
     headline: 'See 1 job run from a list to proof in the tools you already use.',
-    sub: 'Obsession use cases are worked examples: declared AI agents run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
+    sub: 'Obsession use cases are worked examples: AI customers run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
   },
   group: {
     id: 'examples',
@@ -93,9 +93,9 @@ export const useCasesPage: UseCasesIndexPage = {
 export const blogPage: BlogIndexPage = {
   meta: {
     path: '/blog',
-    title: 'The Obsession blog: see what your customers actually get',
+    title: 'The Obsession blog: AI customers and what customers get',
     description:
-      'Checklists and tests for ecommerce stores and the agencies that run them: what a new customer actually gets, and how to check it, with every source linked.',
+      'Guides to AI customers and what companies send them: tests for ecommerce stores and the agencies that run them, with every source linked and dated.',
     answer:
       'Checklists and tests for ecommerce stores and the agencies that run them, from both founders of Obsession, with every source linked. Each shows how to see what a new customer actually gets, from the welcome email to the checkout reminder, and how to check it by hand.',
     ogImage: '/og/blog.png',
@@ -134,7 +134,7 @@ export const blogUi = {
   more: 'More posts',
   feedTitle: 'The Obsession blog',
   share: 'Share',
-  screenCaption: 'The same job, run by Obsession’s customer agents.',
+  screenCaption: 'The same job, run by Obsession’s AI customers.',
   photo: 'Photo:',
   onPexels: 'on Pexels',
   readPost: 'Read the article',

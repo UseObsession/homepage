@@ -13,9 +13,9 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/agencies',
-    title: 'Obsession for agencies: check every client as their customer',
+    title: 'AI customers for agencies: check every client and prospect',
     description:
-      'Obsession’s AI agents sign up, shop and ask the bot at every client and prospect, so pitches, reports and retainers open on proof, not a weekend audit.',
+      'Obsession’s AI customers sign up, shop and ask the bot at every client and prospect, so pitches, reports and retainers open on proof, not a weekend audit.',
     answer:
       'Obsession’s AI agents sign up, shop and ask the bot at every client and prospect, so your pitches, reports and retainers open on what their customers actually get, with proof.',
     ogImage: '/og/agencies.png',
@@ -54,7 +54,7 @@ export const page: Page = {
       ],
     },
     customer: {
-      label: 'What a customer agent brings back',
+      label: 'What an AI customer brings back',
       items: [
         'The prospect’s welcome email, codes and texts, before the pitch',
         'The page behind every client’s live ads, each morning',

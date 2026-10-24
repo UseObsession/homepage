@@ -41,14 +41,19 @@ Read time: about 20 minutes.
 
 ## 2. Positioning in search
 
-**The one sentence every engine should repeat** (already `llms.summary`; use it word for word on profiles, listings and author bios): *Obsession is the intelligence infrastructure for commercial teams: declared AI agents, each with its own identity, inbox, phone number and browser, that do business with other companies for you.*
+**The one sentence every engine should repeat** (`ENTITY` in `src/content/site.ts`, which is `llms.summary` and the Organization and WebSite descriptions; use it word for word on profiles, listings and author bios): *Obsession makes the first AI customers that work for you. Its AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.*
 
-"Intelligence infrastructure for commercial teams" is the brand line. Nobody searches it, so it stays the Home title and never becomes a blog keyword.
+**The category is AI customers** (Seun, 24 Oct 2026). How Obsession introduces itself: *the first AI customers that work for you*. The lockup: *AI customers* (the category), *the first AI customers that work for you* (who we are), *Meet your first AI customers* (the invitation, and the thesis article's title), *Keep the receipts* (the proof).
+
+**The "first" claim and what backs it** (an objective claim, so its evidence is kept here). It rests on the published definition: an AI agent that becomes a real customer of *any* company you name, *stays* its customer for months, and keeps what it receives as *evidence*. Searches on 24 Oct 2026 found no product that does all three or calls itself AI customers: HubSpot's Breeze Customer Agent and Sierra are AI customer service agents that work for a company; S-PRO's Mystery Shopper AI Suite runs AI shopper agents through journeys as an evaluation run; synthetic customers (Bain, PwC, Qualtrics) simulate responses; Gartner's machine customers buy on someone's behalf; consumers' own AI agents that contact companies (Lorikeet CX, 2026) act for one person once. Re-check before any paid campaign or press release uses "first", and keep "that work for you" with it.
+
+**Scale** (Seun, 24 Oct 2026, confirmed with James): Obsession can run millions of AI customers. 100,000s are shown; the line is *built for millions*. It rests on the design: each AI customer sleeps until its company acts, an idle Durable Object is not billed for duration ([Cloudflare's pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)), and most sign ups run as programs learned once per platform, with no model call. "AI customer agents" is retired as the category, because HubSpot sells Breeze Customer Agent, a support bot, and Google reads "ai customer agent" as customer service; "customer agent" stays only as the unit in developer pages and the docs. The definition, word for word wherever the site defines it (`AI_CUSTOMER` in `src/content/glossary.ts`, the DefinedTerm in the JSON-LD): *An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.* "Intelligence infrastructure for commercial teams" is retired.
 
 ### Terms we create and own
 
 | Term | Why we can own it | Owner page |
 |---|---|---|
+| **AI customers** (plus "AI customer", "what are AI customers") | No one uses it for this (24 Oct 2026: Google reads "ai customer" as customer service, and Gartner's "machine customers" means AI that buys on someone's behalf). An AI customer is a customer *of* a company, the opposite of an AI customer service agent. | `/blog/ai-customers`; the difference from support bots `/blog/ai-customer-service-agent-vs-ai-customer`; how it works `/blog/how-ai-customers-work`; why it matters `/blog/why-ai-customers-matter`; the practice `/blog/customer-side-observability` |
 | **Declared AI agent** (plus "signed record") | The market is moving to declared, signed agents (Cloudflare signed agents and Web Bot Auth, Visa Trusted Agent Protocol, the Visa, Mastercard and Ant Know-Your-Agent collaboration of Sept 2026) and fighting undeclared ones (Amazon v. Perplexity). Rivals who pose as buyers or use synthetic identities can't write this. | `/agents` now; `/blog/topics/declared-agents` when built |
 | **Prospect intelligence** (becoming the prospect's customer, not contact finding) | The term is contested (Sales-Mind, BuyerForesight, Matter and others use it for buyer data) but nobody uses it for first-hand proof. The angle is open. | `/recipes/prospect-intelligence` |
 | **Member price intelligence** | Exact phrase unused (2 searches, 0 results). A pricing vendor calls member prices "the hardest layer to see". Displayed loyalty prices (Clubcard, Nectar) are already scraped; logged-in, app-only, emailed-code and member-only prices are the gap. | `/use-cases/member-prices-for-price-intelligence` |
@@ -80,7 +85,18 @@ Two of our pages never target the same query. The non-owner links to the owner w
 
 | Page | Owns |
 |---|---|
-| `/` | Obsession (brand), AI agents that do business with other companies |
+| `/` | Obsession (brand), AI customers for every company |
+| `/blog/ai-customers` | AI customers, AI customer, what are AI customers |
+| `/blog/ai-customer-service-agent-vs-ai-customer` | AI customer service agent vs AI customer, what is an AI customer service agent, is HubSpot's Customer Agent an AI customer, personal AI agents |
+| `/blog/how-ai-customers-work` | how AI customers work, can an AI agent sign up, AI agent inbox and phone number |
+| `/blog/why-ai-customers-matter` | why AI customers matter, meet your first AI customers |
+| `/blog/customer-side-observability` | customer-side observability, CX observability, outside-in observability |
+| `/blog/hire-ai-customers` | hire an AI agent, hire AI customers, AI customers vs mystery shoppers |
+| `/blog/ai-customers-find-revenue-leaks` | customer journey testing, revenue leaks, abandoned cart email not sending |
+| `/blog/ai-customers-at-scale` | AI agent cost per month, cost of AI agents, AI agent vs human cost, mystery shopping cost |
+| `/blog/ai-customers-for-developers` | email API for AI agents, give your AI agent a phone number, MCP server for ecommerce |
+| `/blog/ai-customers-for-commercial-teams` | AI agents for marketing teams, AI for sales teams, AI for agencies |
+| `/blog/future-of-ai-customers` | machine customers, future of shopping with AI (the head term agentic commerce stays left alone, per Terms we leave alone) |
 | `/agencies` | AI agents for agencies, prove agency value to clients |
 | `/founders` | test your own sign up and checkout as a customer, QA on every release |
 | `/sales` | account intelligence for sales teams, know each account as its customers do |
@@ -691,10 +707,10 @@ Targets: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 (Google's thresholds are unc
 
 - [ ] `BlogPosting` on every post: headline, description, images in 16x9, 4x3 and 1x1 (made at build time, at least 50,000 pixels each), `datePublished` and `dateModified` in ISO 8601 with the offset, 2 `Person` authors (name, `url` to their author page, `sameAs` LinkedIn, jobTitle Cofounder), publisher `@id`, `mainEntityOfPage`, `articleSection` (the hub), `keywords`.
 - [ ] Review posts: an `ItemList` of the tools; no `Review` or `AggregateRating`.
-- [ ] `CollectionPage` with an `ItemList` on `/blog`, hub pages and `/use-cases`.
+- [ ] `CollectionPage` with an `ItemList` on `/blog`, hub pages and `/use-cases`. Done for `/blog` (24 Oct 2026: CollectionPage beside the Blog node, which lists every post).
 - [ ] `BreadcrumbList` on every page below Home.
 - [ ] `ProfilePage` with `Person` on each author page.
-- [ ] `Organization`: add `sameAs` (LinkedIn and other profiles) and `alternateName`. Done 3 Oct: `founder` (both `Person` ids) and a `contactPoint` for questions about an agent; `sameAs` waits for the founders' profile URLs (`SAME_AS` in `src/lib/jsonld.ts`).
+- [x] `Organization`: `sameAs` (LinkedIn, YouTube), `alternateName` (useobsession), `slogan` and `knowsAbout` (AI customers), 24 Oct 2026. Done 3 Oct: `founder` (both `Person` ids) and a `contactPoint` for questions about an agent; `sameAs` waits for the founders' profile URLs (`SAME_AS` in `src/lib/jsonld.ts`).
 - [ ] `FAQPage` only where questions are visible (as now). No `HowTo`.
 - [ ] Validate in the Rich Results Test and validator.schema.org; read any generated markup by hand.
 
@@ -703,7 +719,7 @@ Targets: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 (Google's thresholds are unc
 - [ ] `author` becomes `authors: { name; role; slug; sameAs }[]`, defaulting to both founders (REBUILD 9c).
 - [ ] `published` and `updated` carry a time and offset (`2026-10-12T09:00:00+01:00`); the page shows a plain date that matches. `updated` changes only with a substantive change, and review posts say what changed.
 - [ ] `category` typed as the union of the 8 hub names in section 3.
-- [ ] Posts get `og:type=article` with `article:published_time`, `article:modified_time`, `article:author`, `article:section` and `article:tag`; the prerender writes `website` everywhere today.
+- [x] Posts get `og:type=article` with `article:published_time`, `article:modified_time`, `article:author`, `article:section` and `article:tag` (24 Oct 2026).
 - [ ] `/blog/rss.xml`, linked with `<link rel="alternate" type="application/rss+xml">` from every page; submit it in Search Console as a sitemap.
 - [ ] `sitemap.xml` adds the blog, posts, hubs, authors and use cases, with `lastmod` from the last commit to each file (as now).
 - [ ] `llms.txt` and `llms-full.txt` add every post with its answer line.

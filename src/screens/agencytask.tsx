@@ -7,7 +7,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-compose app-agencytask"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to shop the agency’s 15 client stores as 4 customers each, with each client’s OK, before Black Friday, answers the agent’s 2 questions (all 15 clients, a PDF per client), and gets a 4 day plan with its kit: 60 declared agents, each with its own ID and inbox, a 48 hour watch of every inbox and 15 PDF reports. AM approves the plan, which buys nothing, and the agents start working. 1 typed line, then just 2 questions. AM’s OK starts 60 agents, nothing bought.">
+    <div className="il appx-il app-compose app-agencytask"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to shop the agency’s 15 client stores as 4 customers each, with each client’s OK, before Black Friday, answers the agent’s 2 questions (all 15 clients, a PDF per client), and gets a 4 day plan with its kit: 60 AI customers, each with its own ID and inbox, a 48 hour watch of every inbox and 15 PDF reports. AM approves the plan, which buys nothing, and the agents start working. 1 typed line, then just 2 questions. AM’s OK starts 60 agents, nothing bought.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>New watch</span>
@@ -71,7 +71,7 @@ export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
             </header>
             <ol className="cp-steps">
               <li style={{ '--d': '4.08s' }}>
-                <span className="n">1</span><span className="s">Set up 60 declared agents</span>
+                <span className="n">1</span><span className="s">Set up 60 AI customers</span>
                 <span className="ax-chip cp-kit"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1.75" y="3.25" width="12.5" height="9.5" rx="1.5" /><circle cx="5.6" cy="7.25" r="1.5" /><path d="M3.6 10.6c.4-.95 1.1-1.4 2-1.4s1.6.45 2 1.4M9.5 6.75h2.75M9.5 9.25h1.75" /></svg>60 agent IDs</span>
                 <time>Day 1</time>
               </li>

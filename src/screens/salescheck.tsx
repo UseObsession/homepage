@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function SalescheckScreen() {
   return (
-    <div className="il appx-il app-salescheck"><div className="appx-fit"><div className="appx" role="img" aria-label="The Sales agent check for Your company on WhatsApp and site chat: a declared AI test customer asks the brand’s AI sales agent for the Duo bundle’s price, and the checkout stops before payment on a €0 budget. The agent says it is AI and gets stock and delivery right, but quotes €89 where the price list says €189, so the price check fails with the excerpt and up to 27 orders at risk, signed, and goes to Needs you with a fix drafted for your OK.">
+    <div className="il appx-il app-salescheck"><div className="appx-fit"><div className="appx" role="img" aria-label="The Sales agent check for Your company on WhatsApp and site chat: an AI customer asks the brand’s AI sales agent for the Duo bundle’s price, and the checkout stops before payment on a €0 budget. The agent says it is AI and gets stock and delivery right, but quotes €89 where the price list says €189, so the price check fails with the excerpt and up to 27 orders at risk, signed, and goes to Needs you with a fix drafted for your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Sales agent check</span>
@@ -42,7 +42,7 @@ export function SalescheckScreen() {
               </div>
               <div className="slc-cv">
                 <p className="slc-dc"><span className="slc-dav"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Test customer 2 · AI · for Your company</p>
-                <p className="slc-b slc-out slc-m1">AI test customer for Your company. Duo bundle price?</p>
+                <p className="slc-b slc-out slc-m1">AI customer for Your company. Duo bundle price?</p>
                 <div className="slc-b2w">
                   <span className="slc-typ" aria-hidden="true"><i /><i /><i /></span>
                   <p className="slc-b slc-in slc-m2">I’m the AI assistant. The Duo bundle is <mark className="slc-hit">€89</mark>, in stock and arrives in 2 to 3 working days.</p>

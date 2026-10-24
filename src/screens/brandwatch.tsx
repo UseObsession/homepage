@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function BrandwatchScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-brandwatch"><div className="appx-fit"><div className="appx" role="img" aria-label="Tidewren Swim, 1 of 300 brands from Clay, watched for 48 hours by a declared Obsession agent through test shopper 4F2A, which has its own inbox, UK mobile number and browser and says it’s AI. After the 10:14 sign up the welcome email lands in 38 seconds, the control text in 4 and the chat bot’s answer in 5, the basket reminder stays locked until the brand says OK, and the playhead sweeps 48 hours with no text from the brand, so the gap is called and added to Clay.">
+    <div className="il appx-il app-brandwatch"><div className="appx-fit"><div className="appx" role="img" aria-label="Tidewren Swim, 1 of 300 brands from Clay, watched for 48 hours by an Obsession AI customer through test shopper 4F2A, which has its own inbox, UK mobile number and browser and says it’s AI. After the 10:14 sign up the welcome email lands in 38 seconds, the control text in 4 and the chat bot’s answer in 5, the basket reminder stays locked until the brand says OK, and the playhead sweeps 48 hours with no text from the brand, so the gap is called and added to Clay.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>Prospect intelligence<span>/</span>Tidewren Swim</span>

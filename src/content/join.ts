@@ -46,8 +46,8 @@ export const offers: Record<OfferId, Offer> = {
     micro: 'Join the waitlist, then name the store to start with.',
     done: 'We’ll email {email} when your spot opens, starting with {list}.',
     free: {
-      micro: 'You join the waitlist, then name your store. We shop it free as a new customer: 4 customer agents, 48 hours watched, your report within 4 days.',
-      help: 'Yours, or a client’s with their OK. We shop it free with 4 customer agents and send your report within 4 days. Add rivals to compare, up to 5 in all.',
+      micro: 'You join the waitlist, then name your store. We shop it free as a new customer: 4 AI customers, 48 hours watched, your report within 4 days.',
+      help: 'Yours, or a client’s with their OK. We shop it free with 4 AI customers and send your report within 4 days. Add rivals to compare, up to 5 in all.',
       done: 'We’ll shop {first} as a new customer and email {email} your report within 4 days.',
     },
   },

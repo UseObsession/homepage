@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function CheckoutScreen() {
   return (
-    <div className="il appx-il app-checkout"><div className="appx-fit"><div className="appx" role="img" aria-label="An AI checkout test on your own store: a declared Obsession agent places 1 real £48.20 order on each of 6 AI checkout paths, each on its own card, used once and capped at £48.20 inside a £300 monthly budget, and refunds every one. 5 paths land; 1 AI assistant’s path ends with an empty basket because sizes are hidden from agents, so the agent drafts the fix, you approve it, and a retest is booked. Added a linen shirt. Basket: 0 items. Sizes hidden from agents. Fix approved, retest 14:00.">
+    <div className="il appx-il app-checkout"><div className="appx-fit"><div className="appx" role="img" aria-label="An AI checkout test on your own store: an Obsession AI customer places 1 real £48.20 order on each of 6 AI checkout paths, each on its own card, used once and capped at £48.20 inside a £300 monthly budget, and refunds every one. 5 paths land; 1 AI assistant’s path ends with an empty basket because sizes are hidden from agents, so the agent drafts the fix, you approve it, and a retest is booked. Added a linen shirt. Basket: 0 items. Sizes hidden from agents. Fix approved, retest 14:00.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>AI checkout test</span>

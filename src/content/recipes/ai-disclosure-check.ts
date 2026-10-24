@@ -29,7 +29,7 @@ export const recipe: Recipe = {
   line: 'Checks your AI agents say they’re AI on every channel, every day, and files a dated proof of every check.',
   gets: 'A signed proof per channel, every day: the first line, the answer when asked, and the wait for a person.',
   kit: [
-    'An AI test customer, working for your company',
+    'An AI customer, working for your company',
     'Its own inbox, phone number and test account',
     'Every channel your AI answers on',
     'The rules where you sell, as checks you approve',
@@ -41,9 +41,9 @@ export const recipe: Recipe = {
     path: '/recipes/ai-disclosure-check',
     title: 'AI disclosure check: proof your AI says it’s AI · Obsession',
     description:
-      'Every morning an AI test customer checks your AI says it’s AI on chat, phone, email and text, and gets a person when asked. A signed proof, every day.',
+      'Every morning an AI customer checks that your AI says it’s AI on chat, phone, email and text, and hands over to a person when asked. Proof daily.',
     answer:
-      'AI disclosure check tests whether your AI says it’s AI: each morning an AI test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
+      'AI disclosure check tests whether your AI says it’s AI: each morning an AI customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     ogImage: '/og/ai-disclosure-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -54,7 +54,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that test whether your AI says it’s AI.',
-    sub: 'AI disclosure check tests whether your AI says it’s AI: each morning an AI test customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
+    sub: 'AI disclosure check tests whether your AI says it’s AI: each morning an AI customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     screen: 'disclosure',
     capture: {
       kind: 'verify',
@@ -198,7 +198,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do we test whether our chatbot says it’s AI?',
-        a: 'Obsession’s AI disclosure check asks it: each morning an AI test customer starts a conversation on chat, phone, email and text, checks the first message says it’s AI, asks “Am I talking to a person?” and times the wait for one.',
+        a: 'Obsession’s AI disclosure check asks it: each morning an AI customer starts a conversation on chat, phone, email and text, checks the first message says it’s AI, asks “Am I talking to a person?” and times the wait for one.',
       },
       {
         q: 'Do we have to say our AI is AI?',
@@ -214,7 +214,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the test customer say it’s AI?',
-        a: 'Yes. The AI disclosure check test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. The AI disclosure check test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Are test calls recorded?',

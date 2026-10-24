@@ -39,6 +39,8 @@ export type Article = {
   authors: { name: string; role: string }[]
   /* The sources its text links to, in the order it cites them (lib/sources), for the JSON-LD's citation. */
   citations: { name: string; url: string; publisher: string; date?: string }[]
+  /* The post's photograph, where it has one, for sitemap.xml's image entries. */
+  image?: { src: string; alt: string }
 }
 
 export type Entry = {
@@ -226,6 +228,7 @@ export const entries: Entry[] = [
         keywords: [p.primaryKeyword, ...p.keywords.filter((k) => k !== p.primaryKeyword)],
         authors: p.authors,
         citations: citedSources(p).map((c) => ({ name: c.title, url: c.url, publisher: c.publisher, date: c.date })),
+        image: p.hero.image ? { src: p.hero.image.src, alt: p.hero.image.alt } : undefined,
       },
     }
   }),

@@ -29,7 +29,7 @@ export const recipe: Recipe = {
   line: 'Calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer.',
   gets: 'A verdict on every call, the recording behind it, and the right answer drafted wherever it went wrong.',
   kit: [
-    'AI test customers, working for your business',
+    'AI customers, working for your business',
     'Their own phone numbers',
     'Different voices and accents, used with consent',
     'Your price list, hours and services, captured each run',
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
     path: '/recipes/voice-agent-check',
     title: 'Voice agent check: test your AI receptionist · Obsession',
     description:
-      'AI test customers ring your AI receptionist daily, book a real slot, ask a price and a person, and check each answer against your price list.',
+      'AI customers ring your AI receptionist every day, book a real slot, ask a price and for a person, and check each answer against your price list.',
     answer:
       'Voice agent check calls your AI receptionist every morning: test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     ogImage: '/og/voice-agent-check.png',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     recipe: 'voice-agent',
     task: 'Every morning, call Dental group’s AI receptionist as 3 new patients. Book a slot, ask a price and ask for a person, and check every answer against their price list.',
     targets: 'Dental group’s AI receptionist, on their own number',
-    journey: ['Say it’s an AI test customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against their price list'],
+    journey: ['Say it’s an AI customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against their price list'],
     schedule: 'Daily at 08:00',
     report: 'A report for Dental group by 09:00',
     kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Their calendar, connected by them'],
@@ -96,7 +96,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'Test customers ring every morning',
-      line: 'Each says at the start that it’s an AI test customer, who it works for and that the call is recorded. Different voices and accents book a real slot, ask a price and ask for a person.',
+      line: 'Each says at the start that it’s an AI customer, who it works for and that the call is recorded. Different voices and accents book a real slot, ask a price and ask for a person.',
     },
     {
       title: 'You get a verdict and the fix',
@@ -202,7 +202,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the test customer say it’s AI?',
-        a: 'Yes. At the start of every call, the Voice agent check test customer says it’s an AI test customer, who it works for and that the call is recorded.',
+        a: 'Yes. At the start of every call, the Voice agent check test customer says it’s an AI customer, who it works for and that the call is recorded.',
       },
       {
         q: 'Which numbers does Voice agent check call?',

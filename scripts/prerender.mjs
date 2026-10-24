@@ -142,7 +142,17 @@ function head(e, { noindex = false } = {}) {
   return [
     noindex ? '' : `<link rel="canonical" href="${url}" />`,
     noindex ? `<meta name="robots" content="noindex" />` : `<meta name="robots" content="index, follow, max-image-preview:large" />`,
-    `<meta property="og:type" content="website" />`,
+    /* A post is an article (docs/SEARCH.md 8E): its dates, section, authors and tags travel with every share. */
+    ...(e.article
+      ? [
+          `<meta property="og:type" content="article" />`,
+          `<meta property="article:published_time" content="${e.article.published}" />`,
+          `<meta property="article:modified_time" content="${e.article.updated}" />`,
+          `<meta property="article:section" content="${esc(e.article.section)}" />`,
+          ...e.article.authors.map((a) => `<meta property="article:author" content="${esc(a.name)}" />`),
+          ...e.article.keywords.slice(0, 6).map((k) => `<meta property="article:tag" content="${esc(k)}" />`),
+        ]
+      : [`<meta property="og:type" content="website" />`]),
     `<meta property="og:site_name" content="Obsession" />`,
     `<meta property="og:locale" content="en_GB" />`,
     /* A noindex page (404.html) has no address of its own to share. */
@@ -261,10 +271,12 @@ await writeFile(
   join(dist, 'sitemap.xml'),
   [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
     ...entries.map((e) => {
       const date = e.lastmod || lastCommit(e.source)
-      return `  <url><loc>${absolute(e.meta.path)}</loc>${date ? `<lastmod>${date}</lastmod>` : ''}</url>`
+      /* A post's photograph, so image search finds it with its page (Google's image sitemap: the location only). */
+      const image = e.article?.image ? `<image:image><image:loc>${absolute(e.article.image.src)}</image:loc></image:image>` : ''
+      return `  <url><loc>${absolute(e.meta.path)}</loc>${date ? `<lastmod>${date}</lastmod>` : ''}${image}</url>`
     }),
     '</urlset>',
     '',

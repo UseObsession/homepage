@@ -17,7 +17,7 @@ export const recipe: Recipe = {
   line: 'Becomes a customer of every prospect on your list and proves the gap you fix.',
   gets: 'A verdict and a proof link per company, back in Clay, your CRM or a sheet.',
   kit: [
-    'A customer agent per prospect',
+    'An AI customer per prospect',
     'Its own inbox and phone number',
     'A browser set to their country',
     'Watched for as long as you set',
@@ -29,7 +29,7 @@ export const recipe: Recipe = {
     path: '/recipes/prospect-intelligence',
     title: 'Prospect intelligence: proof of a real gap at every prospect',
     description:
-      'An AI agent becomes a customer of every company on your list. It signs up, opts in and asks the bot, then shows the gap you fix, with proof they can open.',
+      'An AI customer joins every company on your list. It signs up, opts in and asks the bot, then shows the gap you fix, with proof they can open.',
     answer:
       'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
     ogImage: '/og/prospect-intelligence.png',
@@ -60,7 +60,7 @@ export const recipe: Recipe = {
     journey: ['Sign up to emails', 'Opt in to texts', 'Ask the site’s chat bot', 'Wait 14 days'],
     schedule: 'Day 1, then days 7 and 14',
     report: 'Clay columns, a proof link each',
-    kit: ['142 customer agents', '142 inboxes', '142 phone numbers', '14 day watch'],
+    kit: ['142 AI customers', '142 inboxes', '142 phone numbers', '14 day watch'],
     events: [
       { time: 'Day 1, 09:00', text: 'Signs up and opts in to texts at 142 brands.' },
       { time: 'Day 1, 10:00', text: '131 welcome emails arrive within the hour.' },

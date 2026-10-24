@@ -21,7 +21,7 @@ const TEST_ORDERS = 'https://help.shopify.com/en/manual/checkout-settings/test-o
 const FINAL_URL = 'https://support.google.com/google-ads/answer/16230205'
 const GMAIL_SENDERS = 'https://support.google.com/a/answer/14229414'
 const AI_ACT_50 = 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50'
-const CHATGPT_AGENT = 'https://help.openai.com/en/articles/11752874-chatgpt-agent'
+const CHATGPT_CLOUD = 'https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt'
 const CHATGPT_TASKS = 'https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt'
 const CLAUDE_GMAIL = 'https://claude.com/docs/connectors/google/gmail'
 const IWD = 'https://www.iwdagency.com/blogs/news/ecommerce-migration-checklist/'
@@ -52,7 +52,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-24',
   readingMinutes: 9,
   order: 0,
   authors: [
@@ -308,9 +308,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI assistants can do some of the clicking. [ChatGPT’s agent](' +
-        CHATGPT_AGENT +
-        ') can fill in a form and pauses for you at a login, and [Claude can read your inbox](' +
+      text: 'AI assistants can do some of the clicking. [ChatGPT’s cloud browser](' +
+        CHATGPT_CLOUD +
+        ') can fill in a form and pauses for you at a sign in, and [Claude can read your inbox](' +
         CLAUDE_GMAIL +
         ') through its Gmail connector. Both run as you, in your browser and your inbox, and their recurring work has caps: ChatGPT allows [3 to 15 active scheduled tasks](' +
         CHATGPT_TASKS +
@@ -396,7 +396,7 @@ export const post: BlogPost = {
     { title: 'About Final URL expansion in Search', publisher: 'Google Ads Help', url: FINAL_URL },
     { title: 'Email sender guidelines FAQ', publisher: 'Google Workspace Admin Help', url: GMAIL_SENDERS },
     { title: 'Article 50: transparency obligations', publisher: 'European Commission, AI Act Service Desk', url: AI_ACT_50 },
-    { title: 'ChatGPT agent', publisher: 'OpenAI Help Center', url: CHATGPT_AGENT },
+    { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CHATGPT_CLOUD },
     { title: 'Scheduled tasks in ChatGPT', publisher: 'OpenAI Help Center', url: CHATGPT_TASKS },
     { title: 'Gmail connector', publisher: 'Claude docs', url: CLAUDE_GMAIL },
     { title: 'Ecommerce migration checklist', publisher: 'IWD Agency', url: IWD },
@@ -405,7 +405,6 @@ export const post: BlogPost = {
     { title: 'Sample output: the September store check', publisher: 'Obsession', url: SAMPLE, date: '2026-09' },
   ],
 
-  featured: true,
   related: [
     'recipe:mystery-shopper',
     'recipe:website-audit',

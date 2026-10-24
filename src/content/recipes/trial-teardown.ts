@@ -19,7 +19,7 @@ export const recipe: Recipe = {
   line: 'Starts a rival’s free trial and logs every onboarding email, prompt and offer, day by day.',
   gets: 'The whole trial on 1 page, from the welcome email to the offer at the end.',
   kit: [
-    'A customer agent per rival',
+    'An AI customer per rival',
     'Its own inbox and browser',
     'Daily sign ins, like a new user',
     'A watch to the last trial day',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     path: '/recipes/trial-teardown',
     title: 'Trial teardown: every email in a rival’s trial · Obsession',
     description:
-      'An AI agent starts each rival’s free trial and logs every onboarding email, prompt and offer, day by day, from the welcome email to the offer at the end.',
+      'An AI customer starts each rival’s free trial and logs every onboarding email, prompt and offer, day by day, from the welcome to the offer at the end.',
     answer:
       'Trial teardown logs every email, prompt and offer in a rival’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
     ogImage: '/og/trial-teardown.png',

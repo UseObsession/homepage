@@ -313,7 +313,7 @@ export const sample: SamplePage = {
       },
       {
         q: 'What would a check of my store include?',
-        a: 'An Obsession check of your store sends 4 test customers, each a declared AI agent with its own inbox, through welcome, browse, basket and checkout, watched for 48 hours, with every step signed and dated. You get each journey’s verdict, the proof, and a reminder drafted for every gap, within 4 days.',
+        a: 'An Obsession check of your store sends 4 test customers, each an AI customer with its own inbox, through welcome, browse, basket and checkout, watched for 48 hours, with every step signed and dated. You get each journey’s verdict, the proof, and a reminder drafted for every gap, within 4 days.',
       },
       {
         q: 'Can I check a client’s store?',

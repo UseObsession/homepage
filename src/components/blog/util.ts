@@ -14,8 +14,10 @@ export const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 export const categoryId = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 /* Each hub reads in the colour of the reader it serves (styles/accents.css): stores in founders' indigo, rivals in
-   marketing's violet, agencies in orchid, AI agents in developers' cobalt. Colour marks the reader, never status. */
+   marketing's violet, agencies in orchid, AI agents in developers' cobalt, and AI customers, the category every reader
+   shares, in tide, the 1 hue no other hub uses. Colour marks the reader, never status. */
 const HUB_READER: Record<string, string> = {
+  'AI customers': 'sales',
   'Check your own journeys': 'founders',
   'Watch other companies': 'marketing',
   'For agencies': 'agencies',

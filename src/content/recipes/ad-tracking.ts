@@ -21,7 +21,7 @@ export const recipe: Recipe = {
   line: 'Reads the ads your rivals run in public and follows each one to its page, price and code.',
   gets: 'Each new rival ad and its offer, every morning, side by side with the page it lands on.',
   kit: [
-    'A customer agent per rival',
+    'An AI customer per rival',
     'Phone and desktop browsers',
     'An inbox for sign up codes',
     'A check every morning',
@@ -31,9 +31,9 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/ad-tracking',
-    title: 'Ad tracking: AI agents follow your rivals’ ads to the offer',
+    title: 'Ad tracking: AI customers follow rivals’ ads to the offer',
     description:
-      'AI agents read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer arrives with its proof.',
+      'AI customers read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer arrives with proof.',
     answer:
       'Ad tracking follows your rivals’ ads to the offer behind each one: AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     ogImage: '/og/ad-tracking.png',

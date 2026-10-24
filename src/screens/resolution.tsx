@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function ResolutionScreen() {
   return (
-    <div className="il appx-il app-resolution"><div className="appx-fit"><div className="appx" role="img" aria-label="Resolution check for Your company: 100 resolutions Vendor A billed in September at $0.99 each, set against what the customer really got, from your helpdesk and payments with consent and a declared AI test customer whose tests are tagged and never billed. 19 were not real, like a refund the bot called done that was never issued, so you click Challenge with evidence and a signed dispute pack goes to the vendor.">
+    <div className="il appx-il app-resolution"><div className="appx-fit"><div className="appx" role="img" aria-label="Resolution check for Your company: 100 resolutions Vendor A billed in September at $0.99 each, set against what the customer really got, from your helpdesk and payments with consent and an AI customer whose tests are tagged and never billed. 19 were not real, like a refund the bot called done that was never issued, so you click Challenge with evidence and a signed dispute pack goes to the vendor.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Resolution check</span>

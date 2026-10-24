@@ -24,7 +24,7 @@ export const recipe: Recipe = {
   line: 'Goes through your business, or a client’s, as a customer does, from the first click to the last email.',
   gets: 'A verdict on every journey, with the proof behind each one.',
   kit: [
-    'A customer agent per journey',
+    'An AI customer per journey',
     'Its own inbox, number and browser',
     'Mobile, desktop or both',
     'A screenshot of every step',
@@ -36,7 +36,7 @@ export const recipe: Recipe = {
     path: '/recipes/mystery-shopper',
     title: 'AI mystery shopper: see what your customers get · Obsession',
     description:
-      'AI agents become new customers of your business, or a client’s: they sign up, shop, book and start trials, and time every email, text and reply that follows, with the receipts.',
+      'AI mystery shoppers for your business or a client’s: AI customers sign up, shop, book and start trials, and time every email, text and reply, with proof.',
     answer:
       'Mystery shopper is AI mystery shopping for digital journeys. AI agents become new customers of your business, or a client’s: they sign up, shop, book or start the trial, and time every email, text and reply that follows, with the receipts.',
     ogImage: '/og/mystery-shopper.png',
@@ -67,7 +67,7 @@ export const recipe: Recipe = {
     journey: ['Sign up for emails', 'Browse and leave', 'Leave a basket', 'Leave at checkout, before payment'],
     schedule: 'Once, 22 to 24 September 2026',
     report: 'A report with every screenshot and message as proof',
-    kit: ['4 customer agents', '4 inboxes, 1 per journey', 'Shopped from the UK', '48 hour watch'],
+    kit: ['4 AI customers', '4 inboxes, 1 per journey', 'Shopped from the UK', '48 hour watch'],
     events: [
       { time: '22 Sep, 02:57', text: 'The basket agent leaves a £40 gift set in the basket.' },
       { time: '22 Sep, 03:11', text: 'The checkout agent leaves a £21 deodorant at checkout, before payment.' },
@@ -204,11 +204,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'How do I test my abandoned cart and checkout emails without a dummy address?',
-        a: 'Obsession uses real inboxes. 4 customer agents sign up, browse, leave a basket and stop at checkout before payment on your store, and every inbox is watched for 48 hours, so you see which reminders came and which never did.',
+        a: 'Obsession uses real inboxes. 4 AI customers sign up, browse, leave a basket and stop at checkout before payment on your store, and every inbox is watched for 48 hours, so you see which reminders came and which never did.',
       },
       {
         q: 'Is the September run on this page real?',
-        a: 'Yes. In September 2026, 4 of Obsession’s customer agents shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
+        a: 'Yes. In September 2026, 4 of Obsession’s AI customers shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
       },
       {
         q: 'Do you need our logins?',
@@ -238,14 +238,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free report?',
-        a: 'The free report is a Mystery shopper run on a store you run, or a client’s: 4 customer agents sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
+        a: 'The free report is a Mystery shopper run on a store you run, or a client’s: 4 AI customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
       },
     ],
   },
 
   final: {
     heading: 'Your first store mystery shop is free.',
-    sub: 'Name a store you run, or a client’s. 4 customer agents become its customers, every inbox is watched for 48 hours, and your report lands within 4 days.',
+    sub: 'Name a store you run, or a client’s. 4 AI customers become its customers, every inbox is watched for 48 hours, and your report lands within 4 days.',
     capture: {
       kind: 'mystery',
       source: 'recipe-mystery-final',

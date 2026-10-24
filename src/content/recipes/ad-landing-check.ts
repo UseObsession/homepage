@@ -44,7 +44,7 @@ export const recipe: Recipe = {
     path: '/recipes/ad-landing-check',
     title: 'Ad landing check: test every ad as a customer · Obsession',
     description:
-      'Each morning an AI agent opens every live ad’s landing page as a customer, checks the offer, price and stock, and drafts the fix for your OK.',
+      'Each morning an AI customer opens every live ad’s landing page as a shopper, checks the offer, price and stock, and drafts the fix for your OK.',
     answer:
       'Ad landing check opens every live ad’s landing page as a customer each morning, straight from the ad’s link. An AI agent checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
     ogImage: '/og/ad-landing-check.png',

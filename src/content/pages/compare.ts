@@ -19,7 +19,7 @@ export const page: Page = {
     path: '/compare',
     title: 'Obsession vs Foreplay, Panoramata, MailCharts and Visualping',
     description:
-      'How Obsession compares with ad libraries, email archives, page monitors and competitive intelligence tools, by what each can see, from their own pages.',
+      'How Obsession’s AI customers compare with ad libraries, email archives, page monitors and competitive intelligence tools, by what each can see.',
     answer:
       'Other tools read the outside of a company: its ads, its archived newsletters, its pages. Obsession signs up and stays its customer, so it sees what comes after the click, with proof.',
     breadcrumb: [

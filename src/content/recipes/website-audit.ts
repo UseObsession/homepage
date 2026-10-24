@@ -20,7 +20,7 @@ export const recipe: Recipe = {
   line: 'Signs up as a fresh test customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
   gets: 'A pass or a break for every step of every release, with the screenshot and a drafted fix.',
   kit: [
-    'An AI test customer per run',
+    'An AI customer per run',
     'A fresh inbox and number',
     'Phone and desktop browsers',
     'Starts on every release',
@@ -30,11 +30,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/website-audit',
-    title: 'Website audit: AI test customers sign up after every release',
+    title: 'Website audit: AI customers sign up after every release',
     description:
-      'After every release, an AI test customer signs up, enters each code, opens every email and link, and goes through checkout. Every break comes with proof.',
+      'After every release, an AI customer signs up, enters each code, opens every email and link, and goes through checkout. Every break comes with proof.',
     answer:
-      'Website audit signs up as a new customer after every release: a fresh AI test customer enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
+      'Website audit signs up as a new customer after every release: a fresh AI customer enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
     ogImage: '/og/website-audit.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,7 +45,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that sign up as new customers after every release.',
-    sub: 'Website audit signs up as a new customer after every release: a fresh AI test customer enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
+    sub: 'Website audit signs up as a new customer after every release: a fresh AI customer enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
     screen: 'ship',
     capture: {
       kind: 'waitlist',
@@ -78,7 +78,7 @@ export const recipe: Recipe = {
 
   steps: [
     { title: 'Connect your releases', line: 'A deploy hook, a schedule, or a button you press.' },
-    { title: 'A stranger signs up', line: 'A fresh AI test customer, with a new inbox and number every run, on phone and desktop.' },
+    { title: 'A stranger signs up', line: 'A fresh AI customer, with a new inbox and number every run, on phone and desktop.' },
     { title: 'Every step is timed', line: 'Sign up, login code, emails, links, forms and every code at checkout.' },
     { title: 'Breaks reach you first', line: 'A Slack alert with the screenshot and a drafted fix, then a fresh run once the fix ships.' },
   ],
@@ -139,7 +139,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I catch a broken sign up or checkout before customers report it?',
-        a: 'Obsession’s Website audit sends a fresh AI test customer through your site after every release: it signs up, enters each login code, opens every email and link and goes through checkout, and every break reaches you with a screenshot.',
+        a: 'Obsession’s Website audit sends a fresh AI customer through your site after every release: it signs up, enters each login code, opens every email and link and goes through checkout, and every break reaches you with a screenshot.',
       },
       {
         q: 'What’s it worth?',
