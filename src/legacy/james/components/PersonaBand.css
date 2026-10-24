@@ -246,35 +246,29 @@
   }
 }
 
-/* A phone or a small tablet: the 4 are a row of cards to swipe, each most of the screen wide and snapping into place,
-   with no slants (a cut corner on a card this small reads as damage), and the next card's edge showing so the row
-   reads as more. Every line and chip shows. */
+/* A phone or a small tablet: the 4 stack as full width cards, with no slants (a cut corner on a card this small reads
+   as damage). They used to swipe, and a card cut at the screen's edge read as broken (Seun, 25 Oct 2026). Every line
+   and chip shows. */
 @media (max-width: 860px) {
   .pband {
     --slant: 0px;
+    flex-direction: column;
     flex-wrap: nowrap;
     gap: 10px;
-    row-gap: 0;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    margin-inline: -16px;
-    padding: 2px 16px 6px;
-    scroll-padding-inline: 16px;
+    row-gap: 10px;
   }
-  .pband::-webkit-scrollbar { display: none; }
 
   .pband-item,
   .pband-item:nth-child(n),
   .pband-item:first-child,
   .pband-item:last-child {
-    flex: 0 0 80%;
+    flex: 0 0 auto;
+    width: 100%;
     margin: 0;
-    padding: 24px;
-    min-height: 240px;
+    padding: 22px 24px;
+    min-height: 0;
     border-radius: var(--radius-lg);
     clip-path: none;
-    scroll-snap-align: start;
   }
 
   .pband-item:not(:first-child) .pband-n {

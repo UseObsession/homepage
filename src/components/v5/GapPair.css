@@ -48,9 +48,3 @@
 @media (max-width: 820px) {
   .v5-gap-sheet { grid-template-columns: 1fr; }
 }
-
-/* On a phone the 2 columns are 2 cards to swipe (the sheet is a rail, styles/v5.css): each keeps its own edge. */
-@media (max-width: 760px) {
-  .v5-gap-sheet.v5-rail { border: 0; border-radius: 0; }
-  .v5-gap-sheet.v5-rail > .v5-gap-col { border: 1px solid var(--ob-line-subtle); border-radius: 16px; }
-}

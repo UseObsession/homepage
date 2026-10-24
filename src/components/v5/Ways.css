@@ -164,3 +164,13 @@
 @keyframes v5-ways-line {
   from { visibility: hidden; }
 }
+
+/* A phone: the setup command wraps inside its box instead of running past it, and it fades in rather than typing
+   across 1 line that no longer fits. */
+@media (max-width: 560px) {
+  .v5-ways-typed { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
+@media (max-width: 560px) and (prefers-reduced-motion: no-preference) {
+  .v5-ways[data-live] .v5-ways-panel:not([hidden]) .v5-ways-typed { animation-name: v5-ways-in; animation-duration: 0.4s; animation-timing-function: ease-out; }
+}
+

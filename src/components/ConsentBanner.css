@@ -48,3 +48,23 @@
 @media (prefers-reduced-motion: reduce) {
   .s-consent { animation: none; }
 }
+
+/* A phone: a compact card floating over the foot of the screen, its line on the left and the 3 choices in 1 row under
+   it, so it covers about a seventh of the screen, not a quarter. Allow and Decline keep equal weight. */
+@media (max-width: 560px) {
+  .s-consent {
+    inset-inline: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    justify-content: flex-start;
+    gap: var(--ob-space-4) var(--ob-space-16);
+    padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-8);
+    border: var(--ob-border-hair) solid var(--ob-line);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  .s-consent__text { text-align: left; }
+  .s-consent__acts { justify-content: flex-start; gap: 0 var(--ob-space-8); margin-left: calc(var(--ob-space-8) * -1); }
+}
+

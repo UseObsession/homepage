@@ -175,7 +175,7 @@ export function Scale({ scale, id }: { scale: ScaleContent; id?: string }) {
               <p className="v5-line">{scale.line}</p>
             </div>
 
-            <div className="v5-scale-stage v5-rail" ref={stage}>
+            <div className="v5-scale-stage v5-rail v5-rail--swipe" ref={stage}>
               {scale.steps.map((s, k) => (
                 <div
                   className="v5-scale-step"
