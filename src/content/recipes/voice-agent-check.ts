@@ -43,7 +43,7 @@ export const recipe: Recipe = {
     description:
       'AI customers ring your AI receptionist every day, book a real slot, ask a price and for a person, and check each answer against your price list.',
     answer:
-      'Voice agent check calls your AI receptionist every morning: test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
+      'Voice agent check calls your AI receptionist every morning: AI customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     ogImage: '/og/voice-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -54,7 +54,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that call your AI receptionist every morning.',
-    sub: 'Voice agent check calls your AI receptionist every morning: test customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
+    sub: 'Voice agent check calls your AI receptionist every morning: AI customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     screen: 'callcheck',
     capture: {
       kind: 'verify',
@@ -74,8 +74,8 @@ export const recipe: Recipe = {
     report: 'A report for Dental group by 09:00',
     kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Their calendar, connected by them'],
     events: [
-      { time: 'Mon 08:00', text: '3 test customers ring Dental group’s own number as new patients.' },
-      { time: 'Call 2, 00:02', text: '“Hi, Dental group. I’m an AI assistant.” At 00:06, Test customer 2 says it’s an AI test patient for your agency, on a recorded call.' },
+      { time: 'Mon 08:00', text: '3 AI customers ring Dental group’s own number as new patients.' },
+      { time: 'Call 2, 00:02', text: '“Hi, Dental group. I’m an AI assistant.” At 00:06, AI customer 2 says it’s an AI test patient for your agency, on a recorded call.' },
       { time: 'Call 2, 00:21', text: '“You’re booked for Tuesday at 10:20.” A real slot, in their calendar, cancelled after the call.' },
       { time: 'Call 2, 00:41', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Their price list says £50.' },
       { time: 'Call 2, 00:47', text: 'Asks for a person. A person picks up after 1 minute 12 seconds on hold, inside the 3 minute limit.' },
@@ -95,7 +95,7 @@ export const recipe: Recipe = {
       line: 'Obsession writes them from your lists and the rules where you take calls: it says it’s AI in the first seconds, quotes the right price, books the right slot, puts you through to a person. Change any check, then approve.',
     },
     {
-      title: 'Test customers ring every morning',
+      title: 'AI customers ring every morning',
       line: 'Each says at the start that it’s an AI customer, who it works for and that the call is recorded. Different voices and accents book a real slot, ask a price and ask for a person.',
     },
     {
@@ -122,7 +122,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'The booking', line: 'A real slot booked, moved and cancelled, each checked in your calendar.' },
         { title: 'A person when asked', line: 'Whether it puts the caller through, how long they hold, and whether a person or voicemail answers.' },
-        { title: 'The text that follows', line: 'Every confirmation and reminder text, watched for on the test customer’s own number.' },
+        { title: 'The text that follows', line: 'Every confirmation and reminder text, watched for on the AI customer’s own number.' },
         { title: 'Within its authority', line: 'Whether it promises a free consult, a discount or a slot it can’t give.' },
       ],
     },
@@ -158,7 +158,7 @@ export const recipe: Recipe = {
   settings: [
     { k: 'Receptionist', v: 'Yours, or one you run for a client' },
     { k: 'Numbers', v: 'The numbers you give it' },
-    { k: 'Test customers', v: '3 a morning, each with a different voice and a different reason to call' },
+    { k: 'AI customers', v: '3 a morning, each with a different voice and a different reason to call' },
     { k: 'Questions', v: 'New bookings, prices, hours, the questions your callers ask most, and hard ones if you want them' },
     { k: 'Your lists', v: 'Your price list, hours and services, captured every run' },
     { k: 'What counts', v: 'For example: says it’s AI within 10 seconds, a person within 3 minutes' },
@@ -180,7 +180,7 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'Nobody on your team hears your receptionist’s calls. Test customers do, every morning.',
+    heading: 'Nobody on your team hears your receptionist’s calls. AI customers do, every morning.',
     line: 'Up to 12 aligner bookings a year kept, for a clinic that loses 1 a month to a call that goes wrong: the morning check finds the wrong answer or the missed handoff the day it starts.',
     cols: ['Today', 'With a morning check'],
     rows: [
@@ -194,15 +194,15 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Everything else is yours to set.',
+    heading: 'Every AI customer says it’s AI. Everything else is yours to set.',
     items: [
       {
         q: 'How do we test an AI receptionist before it goes live?',
-        a: 'Obsession’s Voice agent check rings its number: test customers book and cancel a real slot, ask a price and ask for a person, and check every answer against your price list and hours.',
+        a: 'Obsession’s Voice agent check rings its number: AI customers book and cancel a real slot, ask a price and ask for a person, and check every answer against your price list and hours.',
       },
       {
-        q: 'Does the test customer say it’s AI?',
-        a: 'Yes. At the start of every call, the Voice agent check test customer says it’s an AI customer, who it works for and that the call is recorded.',
+        q: 'Does the AI customer say it’s AI?',
+        a: 'Yes. At the start of every call, the Voice agent check AI customer says it’s an AI, who it works for and that the call is recorded.',
       },
       {
         q: 'Which numbers does Voice agent check call?',
@@ -218,10 +218,10 @@ export const recipe: Recipe = {
       },
       {
         q: 'Are the calls recorded?',
-        a: 'Yes, and each Voice agent check test customer says so at the start. Every recording is kept exactly as made, as your evidence.',
+        a: 'Yes, and each Voice agent check AI customer says so at the start. Every recording is kept exactly as made, as your evidence.',
       },
       {
-        q: 'Whose voices do the test customers use?',
+        q: 'Whose voices do the AI customers use?',
         a: 'Voice agent check uses different voices and accents, each used with consent, so you hear whether your receptionist understands every caller.',
       },
       {
@@ -246,14 +246,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Voice agent check on a receptionist you run for yourself or a client: 3 test customers ring 1 number, and your report lands within 4 days.',
+        a: 'The free check is a Voice agent check on a receptionist you run for yourself or a client: 3 AI customers ring 1 number, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Hear every wrong answer your AI receptionist gives, the morning it starts.',
-    sub: 'Your first check is free: 3 test customers ring your receptionist, and your report lands within 4 days. Your number, or a client’s.',
+    sub: 'Your first check is free: 3 AI customers ring your receptionist, and your report lands within 4 days. Your number, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-voice-agent-final',

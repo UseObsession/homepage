@@ -61,7 +61,7 @@ export const offers: Record<OfferId, Offer> = {
     micro: 'Join the waitlist, then name the AI agent to check first.',
     done: 'We’ll email {email} when your spot opens, starting with {list}.',
     free: {
-      micro: 'You join the waitlist, then name your AI agent. We check it free: 3 test customers, 1 channel, your report within 4 days.',
+      micro: 'You join the waitlist, then name your AI agent. We check it free: 3 AI customers, 1 channel, your report within 4 days.',
       help: 'Its chat page, phone number or website. Yours, or a client’s with their OK. We check it free with 3 test customers and send your report within 4 days.',
       done: 'We’ll check {first} with 3 test customers and email {email} your report within 4 days.',
     },

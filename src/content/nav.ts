@@ -46,7 +46,7 @@ const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: s
   'Watch other companies': { line: 'Every email, ad, price and trial, as their customer.', examples: ['competitor', 'prospect'] },
   'Check your own journeys': { line: 'Find the break before a customer does.', examples: ['adcheck', 'speed'] },
   'Check your AI agents': {
-    line: 'Test customers check the AI agents you run.',
+    line: 'AI customers check the AI agents you run.',
     examples: ['support-bot', 'voice-agent'],
     to: ways.verify.to,
   },

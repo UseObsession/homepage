@@ -46,7 +46,7 @@ export const page: Page = {
   hero: {
     pill: 'Early access',
     headline: 'AI agents that check your AI agents, as your customer.',
-    sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. Test customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with proof.',
+    sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. AI customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with proof.',
     capture: {
       kind: 'verify',
       source: 'verify-hero',
@@ -69,7 +69,7 @@ export const page: Page = {
         report: 'A Slack alert and a signed record',
         kit: ['Agent ID, declared as AI', '2 inboxes', 'A test account on your portal', 'Tagged as a test, never billed'],
         events: [
-          { time: 'Mon 07:00', text: 'Test customer 2 says it’s AI and asks to return an order after 20 days, on chat, email and your portal.' },
+          { time: 'Mon 07:00', text: 'AI customer 2 says it’s AI and asks to return an order after 20 days, on chat, email and your portal.' },
           { time: 'Mon 07:02', text: 'Chat: “Yes, you have 30 days.” Your returns page, captured at 07:00, says 14.' },
           { time: 'Mon 07:04', text: 'Asks for a person. Chat hands over in 41 seconds, the portal in 3 minutes.' },
           { time: 'Mon 07:12', text: 'Email: a person replies in 12 minutes, and says 14 days.' },
@@ -89,7 +89,7 @@ export const page: Page = {
         report: 'A report by 09:00, with every recording',
         kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Your calendar, connected by you'],
         events: [
-          { time: 'Mon 08:00', text: '3 test customers ring as new patients. Each says it’s an AI customer, who it works for and that the call is recorded.' },
+          { time: 'Mon 08:00', text: '3 AI customers ring as new patients. Each says it’s an AI, who it works for and that the call is recorded.' },
           { time: 'Mon 08:00', text: 'Call 2: the receptionist says it’s AI in its first 2 seconds, and books Tuesday at 10:20.' },
           { time: 'Mon 08:01', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Your price list says £50.' },
           { time: 'Mon 08:01', text: 'Asks for a person. A person answers after 1 minute 12 seconds on hold.' },
@@ -163,7 +163,7 @@ export const page: Page = {
   },
 
   how: {
-    heading: 'Name your AI agent and your policies. Test customers bring back the proof.',
+    heading: 'Name your AI agent and your policies. AI customers bring back the proof.',
     sub: 'There’s nothing to install. They use the same chat, phone and inbox your customers do, and run only once you approve the checks.',
     steps: [
       {
@@ -178,7 +178,7 @@ export const page: Page = {
         screen: 'salescheck',
       },
       {
-        title: 'Test customers use it',
+        title: 'AI customers use it',
         line: 'Each has its own ID, inbox, number, account and card, and says it’s AI and who it works for. Every day, and after every update. Checkouts go as far as the budget you set.',
         screen: 'callcheck',
       },
@@ -194,7 +194,7 @@ export const page: Page = {
     heading: 'Your AI vendor grades its own agent. Obsession checks it as your customer.',
     sub: 'It asks, then waits for the refund, the email and the callback, and keeps every receipt.',
     rows: [
-      { today: 'Your vendor tests its agent in its own simulator', obsession: 'Test customers use it on your real channels' },
+      { today: 'Your vendor tests its agent in its own simulator', obsession: 'AI customers use it on your real channels' },
       { today: 'You hear from a complaint, days later', obsession: 'A failed check reaches you the same morning' },
       { today: 'Transcripts show what the bot said', obsession: 'Checks follow what happened next: the refund, the email, the booking' },
       { today: 'Resolutions billed on the vendor’s own count', obsession: 'Each billed outcome checked against what the customer got' },
@@ -203,13 +203,13 @@ export const page: Page = {
   },
 
   uses: {
-    heading: 'Test customers find what your AI agent gets wrong on your real channels.',
+    heading: 'AI customers find what your AI agent gets wrong on your real channels.',
     items: [
       {
         tab: 'Support bot',
         moment: 'Monday 07:00, before your team logs on.',
         outcome: 'The wrong refund window, found at 07:02 with the transcript.',
-        line: 'Test customers ask on chat, email and your portal in the same minute, and check each answer against your policy page.',
+        line: 'AI customers ask on chat, email and your portal in the same minute, and check each answer against your policy page.',
         whyOnly: 'Each has a real inbox and portal account, so it sees whether the email the bot promised ever came.',
         recipe: 'support-bot',
         screen: 'botcheck',
@@ -227,7 +227,7 @@ export const page: Page = {
         tab: 'Before you sign',
         moment: 'The shortlist meeting, with 2 vendors left.',
         outcome: '2 vendors, the same 20 cases, signed and side by side.',
-        line: 'Test customers run your real cases on each vendor’s agent and time every handoff.',
+        line: 'AI customers run your real cases on each vendor’s agent and time every handoff.',
         whyOnly: 'The same customers, cases and channels on both, so the comparison is fair.',
         recipe: 'vendor-agent',
         screen: 'vendorcheck',
@@ -236,8 +236,8 @@ export const page: Page = {
         tab: 'After every update',
         moment: 'Your vendor ships an update at 23:20.',
         outcome: 'By 00:10 you know which 9 answers broke.',
-        line: 'Test customers replay your 40 hardest cases every morning, and again within the hour of any update.',
-        whyOnly: 'The same test customers ask the same questions every day, so any change is the agent’s.',
+        line: 'AI customers replay your 40 hardest cases every morning, and again within the hour of any update.',
+        whyOnly: 'The same AI customers ask the same questions every day, so any change is the agent’s.',
         recipe: 'drift',
         screen: 'drift',
       },
@@ -254,7 +254,7 @@ export const page: Page = {
   },
 
   kinds: {
-    heading: 'Every AI agent your customers meet gets its own test customer.',
+    heading: 'Every AI agent your customers meet gets its own AI customer.',
     label: 'Pick your AI agent',
     items: [
       {
@@ -264,7 +264,7 @@ export const page: Page = {
       },
       {
         name: 'Voice receptionists and call agents',
-        line: 'Test customers with different voices book, ask a price and ask for a person, every day.',
+        line: 'AI customers with different voices book, ask a price and ask for a person, every day.',
         recipes: ['voice-agent', 'disclosure', 'drift'],
       },
       {
@@ -301,13 +301,13 @@ export const page: Page = {
   },
 
   proof: {
-    heading: 'Our test customers already caught a store that never followed up.',
-    line: 'In September, 4 test customers shopped a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: test customers ask, then watch for what comes next.',
+    heading: 'Our AI customers already caught a store that never followed up.',
+    line: 'In September, 4 AI customers shopped a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: AI customers ask, then watch for what comes next.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Everything else is yours to set.',
+    heading: 'Every AI customer says it’s an AI. Everything else is yours to set.',
     items: [
       {
         q: 'What does Obsession check in my AI agents?',
@@ -315,11 +315,11 @@ export const page: Page = {
       },
       {
         q: 'How is this different from our vendor’s own tests?',
-        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession’s test customers use your agent on its real channels, check each answer against your policies and the law, and keep every answer with its receipt.',
+        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession’s AI customers use your agent on its real channels, check each answer against your policies and the law, and keep every answer with its receipt.',
       },
       {
         q: 'How do we find out our chatbot is giving customers wrong answers?',
-        a: 'Before customers do: Obsession’s test customers ask your bot what customers ask every day and check each answer against your policy pages, so a wrong answer shows up the morning it starts.',
+        a: 'Before customers do: Obsession’s AI customers ask your bot what customers ask every day and check each answer against your policy pages, so a wrong answer shows up the morning it starts.',
       },
       {
         q: 'Our deflection numbers look great. Are the resolutions real?',
@@ -327,7 +327,7 @@ export const page: Page = {
       },
       {
         q: 'Do you need our logins or code?',
-        a: 'No. Obsession’s test customers use your AI agent the way your customers do. A test account on your portal, or a helpdesk export, only if you give them.',
+        a: 'No. Obsession’s AI customers use your AI agent the way your customers do. A test account on your portal, or a helpdesk export, only if you give them.',
       },
       {
         q: 'Will Obsession try to break or trick our bot?',
@@ -339,7 +339,7 @@ export const page: Page = {
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. Each of Obsession’s test customers says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
+        a: 'Yes. Each of Obsession’s AI customers says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
       },
       {
         q: 'Can we check a vendor’s agent before we sign?',
@@ -351,7 +351,7 @@ export const page: Page = {
       },
       {
         q: 'Does Obsession pay or place orders?',
-        a: 'Only if you set a budget. Obsession’s test customers pay with real payment details, up to the cap you set. With no budget, every checkout stops before payment.',
+        a: 'Only if you set a budget. Obsession’s AI customers pay with real payment details, up to the cap you set. With no budget, every checkout stops before payment.',
       },
       {
         q: 'What do we get back?',
@@ -366,7 +366,7 @@ export const page: Page = {
 
   final: {
     heading: 'Your first AI agent check is free.',
-    sub: 'Name a chat page or phone number you run, for yourself or a client. 3 test customers use it, and your report lands within 4 days.',
+    sub: 'Name a chat page or phone number you run, for yourself or a client. 3 AI customers use it, and your report lands within 4 days.',
     capture: {
       kind: 'verify',
       source: 'verify-final',
