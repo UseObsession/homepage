@@ -32,7 +32,7 @@ export const study: UseCaseStudy = {
     path: '/use-cases/leak-checks-for-ecommerce-stores',
     title: 'Leak checks for ecommerce stores, shopped by AI every week',
     description:
-      'AI agents follow your ads and shop your store as new customers, every week and after every change. Every leak comes back with proof and the fix.',
+      'AI customers follow your ads and shop your store as new shoppers, every week and after every change. Every leak comes back with proof and the fix.',
     answer:
       'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
     ogImage: '/og/leak-checks-for-ecommerce-stores.png',

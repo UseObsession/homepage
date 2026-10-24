@@ -69,7 +69,7 @@ export function ComposeScreen() {
             </header>
             <ol className="cp-steps">
               <li style={{ '--d': '4.08s' }}>
-                <span className="n">1</span><span className="s">Set up a declared agent</span>
+                <span className="n">1</span><span className="s">Set up an AI customer</span>
                 <span className="ax-chip cp-kit"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1.75" y="3.25" width="12.5" height="9.5" rx="1.5" /><circle cx="5.6" cy="7.25" r="1.5" /><path d="M3.6 10.6c.4-.95 1.1-1.4 2-1.4s1.6.45 2 1.4M9.5 6.75h2.75M9.5 9.25h1.75" /></svg>1 agent ID</span>
                 <time>Day 1</time>
               </li>

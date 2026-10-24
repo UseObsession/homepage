@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function PricesScreen() {
   return (
-    <div className="il appx-il app-prices"><div className="appx-fit"><div className="appx" role="img" aria-label="Price watch for Your company: 6 products priced against Rival A, B and C, read daily at 06:00 from public pages and email lists by a declared Obsession agent. The check visits each rival, Rival B cuts 3 prices and its soy candle drops from £24 to £19 with free delivery, £5 under yours 4 days before Black Friday, so that row needs you, the before and after screenshots land with the new price outlined, and an alert goes to #pricing.">
+    <div className="il appx-il app-prices"><div className="appx-fit"><div className="appx" role="img" aria-label="Price watch for Your company: 6 products priced against Rival A, B and C, read daily at 06:00 from public pages and email lists by an Obsession AI customer. The check visits each rival, Rival B cuts 3 prices and its soy candle drops from £24 to £19 with free delivery, £5 under yours 4 days before Black Friday, so that row needs you, the before and after screenshots land with the new price outlined, and an alert goes to #pricing.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Rivals<span>/</span>Prices</span>

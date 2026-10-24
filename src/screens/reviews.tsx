@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function ReviewsScreen() {
   return (
-    <div className="il appx-il app-reviews"><div className="appx-fit"><div className="appx" role="img" aria-label="Review requests for Your company, run by a declared Obsession agent: existing customers are asked the same way at the right moment (a delivery, onboarding done, a support ticket solved), from the company’s own address with 1 ask AM approved, which says an AI agent sent it, and 1 review link for everyone. A delivery triggers a request, a reference call is agreed, then Dental group’s 5 star review lands, reviews this month reach 14, and a toast names the new review.">
+    <div className="il appx-il app-reviews"><div className="appx-fit"><div className="appx" role="img" aria-label="Review requests for Your company, run by an Obsession agent: existing customers are asked the same way at the right moment (a delivery, onboarding done, a support ticket solved), from the company’s own address with 1 ask AM approved, which says an AI agent sent it, and 1 review link for everyone. A delivery triggers a request, a reference call is agreed, then Dental group’s 5 star review lands, reviews this month reach 14, and a toast names the new review.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Review requests</span>

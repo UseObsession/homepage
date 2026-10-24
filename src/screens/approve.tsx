@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function ApproveScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-approve"><div className="appx-fit"><div className="appx" role="img" aria-label="The Needs you inbox, 4 items from a declared Obsession agent: a Coffee roaster website audit found 0 welcome emails in 48 hours after a 10% code was promised, shown with the sign up offer and an inbox that stayed empty, and the fix is drafted in the store’s email tool. AM clicks Approve, the fix goes live with the next check on Thursday 09:00, the item closes, Needs you drops to 3 and the signed approval is filed in Records. 10% code promised, 0 emails in 48 hours. Live on AM’s OK, checked again Thu 09:00.">
+    <div className="il appx-il app-approve"><div className="appx-fit"><div className="appx" role="img" aria-label="The Needs you inbox, 4 items from an Obsession AI customer: a Coffee roaster website audit found 0 welcome emails in 48 hours after a 10% code was promised, shown with the sign up offer and an inbox that stayed empty, and the fix is drafted in the store’s email tool. AM clicks Approve, the fix goes live with the next check on Thursday 09:00, the item closes, Needs you drops to 3 and the signed approval is filed in Records. 10% code promised, 0 emails in 48 hours. Live on AM’s OK, checked again Thu 09:00.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Needs you</span>

@@ -56,7 +56,7 @@ const PRODUCT_AI = 'https://dnyuz.com/2026/09/25/ai-cant-take-over-your-holiday-
 const GOOGLE_FEATURES = 'https://developers.google.com/search/docs/appearance/ai-features'
 const OPENAI_BOTS = 'https://developers.openai.com/api/docs/bots'
 const PERPLEXITY_BOTS = 'https://docs.perplexity.ai/guides/bots'
-const CHATGPT_AGENT = 'https://help.openai.com/en/articles/11752874-chatgpt-agent'
+const CHATGPT_CLOUD = 'https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt'
 const GEMINI_CHROME = 'https://support.google.com/chrome/answer/16821166?hl=en'
 const PROFOUND = 'https://www.tryprofound.com/pricing'
 const PEEC = 'https://peec.ai/pricing'
@@ -89,7 +89,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-24',
   readingMinutes: 13,
   order: 11,
   authors: [
@@ -391,9 +391,9 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'walk', text: '3. Walk an agent from search to checkout' },
     {
       kind: 'p',
-      text: 'Give an AI browser a task on your own store and watch each step. [ChatGPT agent](' +
-        CHATGPT_AGENT +
-        '), on paid plans, clicks, fills in forms and pauses for you at a login. [Gemini in Chrome’s auto browse](' +
+      text: 'Give an AI browser a task on your own store and watch each step. [ChatGPT’s cloud browser](' +
+        CHATGPT_CLOUD +
+        '), on paid plans, clicks, fills in forms and pauses for you at a sign in. [Gemini in Chrome’s auto browse](' +
         GEMINI_CHROME +
         '), for US users on Google AI Pro or Ultra, can add items to a basket, and Google warns it may complete a purchase without permission by mistake. Set a task that ends before payment: “Find the king linen duvet cover in sage on larkfield.example, add it to the basket, apply LARK10 and go to checkout. Stop before payment.”',
     },
@@ -603,7 +603,7 @@ export const post: BlogPost = {
     { title: 'AI features and your website', publisher: 'Google Search Central', url: GOOGLE_FEATURES, date: '2025-12-10' },
     { title: 'Overview of OpenAI crawlers', publisher: 'OpenAI developers', url: OPENAI_BOTS },
     { title: 'Perplexity crawlers', publisher: 'Perplexity docs', url: PERPLEXITY_BOTS },
-    { title: 'ChatGPT agent', publisher: 'OpenAI Help Center', url: CHATGPT_AGENT },
+    { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CHATGPT_CLOUD },
     { title: 'Use auto browse in Gemini in Chrome', publisher: 'Google Chrome Help', url: GEMINI_CHROME },
     { title: 'Pricing', publisher: 'Profound', url: PROFOUND },
     { title: 'Pricing', publisher: 'Peec AI', url: PEEC },

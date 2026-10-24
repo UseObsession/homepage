@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import type { ArtSpec, ArtStatus, ArtTone } from '../../content/blog/types'
 import './Art.css'
 
 /* The blog's illustrations, drawn in code on the design system's product window (.ob-window, .ob-object): glossy black
    on the paper text, lit on ink. Each is the agent's own view of a moment the post describes: its log, a chat, a
-   journey, a price worked out, a 1 page report, or 1 question asked again. Times, names and prices sit in Geist Mono,
+   journey, a price worked out, a 1 page report, 1 question asked again, or who each kind of agent works for. Times, names and prices sit in Geist Mono,
    as anything the agent logs does. Colour carries meaning only (Art.css). */
 
 const STATUS: Record<ArtTone, string> = { ok: 'ob-status--landed', late: 'ob-status--needs', fail: 'ob-status--failed', info: '' }
@@ -49,6 +49,8 @@ function labelOf(a: ArtSpec): string {
       return `${a.title}, ${a.period}. ${a.rows.map((r) => `${r.name}: ${r.cells.join(', ')}`).join('. ')}. ${a.notes.join(' ')}`
     case 'runs':
       return `${a.title}. ${a.prompt}. ${a.runs.map((r) => `${r.label}: ${r.answer} ${r.verdict.text}`).join(' ')}`
+    case 'sides':
+      return `${a.title}. ${a.rows.map((r) => `${r.name}, ${r.who}: ${r.nodes.map((n, i) => (i ? `${r.links[i - 1]} ${n}` : n)).join(' ')}`).join('. ')}.`
   }
 }
 
@@ -181,6 +183,35 @@ export function Art({ art }: { art: ArtSpec }) {
                 <span className="s-x-runs__label">{r.label}</span>
                 <span className="s-x-runs__answer">{r.answer}</span>
                 <Status s={r.verdict} />
+              </li>
+            ))}
+          </ol>
+          {art.foot && <p className="s-x-foot">{art.foot}</p>}
+        </Frame>
+      )
+    case 'sides':
+      return (
+        <Frame title={art.title} label={label}>
+          <ol className="s-x-sides">
+            {art.rows.map((r, i) => (
+              <li key={i} className={`s-x-side${r.ours ? ' s-x-side--ours' : ''}`}>
+                <span className="s-x-side__name">
+                  <b>{r.name}</b>
+                  <span>{r.who}</span>
+                </span>
+                <span className="s-x-side__path">
+                  {r.nodes.map((n, j) => (
+                    <Fragment key={j}>
+                      {j > 0 && (
+                        <span className="s-x-side__link">
+                          <span>{r.links[j - 1]}</span>
+                          <i />
+                        </span>
+                      )}
+                      <span className={`s-x-side__node${r.lit === j ? ' s-x-side__node--lit' : ''}`}>{n}</span>
+                    </Fragment>
+                  ))}
+                </span>
               </li>
             ))}
           </ol>

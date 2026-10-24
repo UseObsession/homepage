@@ -29,7 +29,7 @@ export const recipe: Recipe = {
   line: 'Checks every resolution your AI support vendor bills you for against what the customer actually got.',
   gets: 'Every billed resolution checked against the real outcome, and a signed dispute pack for the ones that weren’t real.',
   kit: [
-    'An AI test customer, working for your company',
+    'An AI customer, working for your company',
     'Its own inbox, test account and test budget',
     'Your helpdesk and payments, connected by you',
     'Your vendor’s billing terms, rule by rule',
@@ -207,7 +207,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Resolution check say it’s AI?',
-        a: 'Yes. Every Resolution check test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Resolution check test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will Resolution check try to trick our bot?',

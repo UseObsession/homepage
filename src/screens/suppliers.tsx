@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function SuppliersScreen() {
   return (
-    <div className="il appx-il app-suppliers"><div className="appx-fit"><div className="appx" role="img" aria-label="A founder's Spend page, run by a declared Obsession agent: the packaging supplier is raising prices 18% from 1 Nov, so the agent asked 16 suppliers for quotes as your declared AI buyer, buying nothing. The quotes land and sort by price, the best 3 are cited in a drafted push back, you click Send, and the supplier replies in writing, cutting the rise to 6%: $424 per 1,000 boxes instead of $472; beside it, 6 unused software plans worth $1,140 a month are being cancelled.">
+    <div className="il appx-il app-suppliers"><div className="appx-fit"><div className="appx" role="img" aria-label="A founder's Spend page, run by an Obsession agent: the packaging supplier is raising prices 18% from 1 Nov, so the agent asked 16 suppliers for quotes as your declared AI buyer, buying nothing. The quotes land and sort by price, the best 3 are cited in a drafted push back, you click Send, and the supplier replies in writing, cutting the rise to 6%: $424 per 1,000 boxes instead of $472; beside it, 6 unused software plans worth $1,140 a month are being cancelled.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Spend</span>

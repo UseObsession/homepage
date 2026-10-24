@@ -253,7 +253,6 @@
 @media (max-width: 1079.98px) {
   .s-art-body { grid-template-columns: minmax(0, 1fr); justify-items: center; }
   .s-art-side { display: none; }
-  .s-art-main { grid-column: 1; width: 100%; max-width: 680px; }
   .s-blog-lead__in { grid-template-columns: minmax(0, 1fr); padding: var(--ob-space-32); }
 }
 @media (max-width: 759.98px) {
@@ -932,9 +931,11 @@
   .s-art--wide-in-view .s-art-rail { opacity: 0; visibility: hidden; transition: opacity var(--ob-dur-base) var(--ob-ease-out), visibility 0s linear var(--ob-dur-base); }
 }
 
-/* Under 1000px the side contents fold above the text (the inline contents) and the text takes the page's width. */
+/* Under 1000px the side contents fold above the text (the inline contents) and the text takes the page's width.
+   (The text's column moves to 1 here, where the contents leave, never at a wider width while they still show.) */
 @media (max-width: 999.98px) {
   .s-art-layout { grid-template-columns: minmax(0, 1fr); }
+  .s-art-main { grid-column: 1; width: 100%; max-width: 680px; }
   .s-art-rail { display: none; }
   .s-art-visual--photo { aspect-ratio: 16 / 9; }
 }

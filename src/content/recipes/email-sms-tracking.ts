@@ -20,7 +20,7 @@ export const recipe: Recipe = {
   line: 'Subscribes to every brand on your list and sets their emails and texts side by side: who sends most, and who discounts first.',
   gets: 'Every email and text each rival sends, on 1 timeline, with the welcome series mapped.',
   kit: [
-    'A customer agent per brand',
+    'An AI customer per brand',
     'Its own inbox',
     'Its own texting number',
     'Every message kept as it arrived',
@@ -30,9 +30,9 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/email-sms-tracking',
-    title: 'Email and SMS tracking: AI agents on every rival’s list',
+    title: 'Email and SMS tracking: AI customers on every rival’s list',
     description:
-      'An AI agent subscribes to each rival’s emails and texts and logs every message, offer and code on 1 timeline, continuously, each with its receipt.',
+      'An AI customer subscribes to each rival’s emails and texts and logs every message, offer and code on 1 timeline, continuously, each with its proof.',
     answer:
       'Email and SMS tracking subscribes an AI agent to each rival’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     ogImage: '/og/email-sms-tracking.png',

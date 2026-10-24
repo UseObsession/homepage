@@ -2,7 +2,7 @@
    Inline text supports a small markdown subset: [link text](url) and **bold**. Internal links are root relative (/recipes/mystery-shopper). */
 
 /* An illustration drawn in code on the design system (components/blog/Art.tsx): the agent's log, a chat, a journey,
-   a price worked out, a one page report or the same question asked several times. Every company in one is invented,
+   a price worked out, a one page report, the same question asked several times, or who each kind of agent works for. Every company in one is invented,
    at a .example address, and its caption says it is an example. Tone carries meaning only: ok arrived or passed,
    late came late, fail never came or was wrong, info is neutral. */
 export type ArtTone = 'ok' | 'late' | 'fail' | 'info'
@@ -14,6 +14,9 @@ export type ArtSpec =
   | { kind: 'price'; title: string; rows: { label: string; value: string; note?: string }[]; total: { label: string; value: string; note?: string } }
   | { kind: 'report'; title: string; period: string; cols: string[]; rows: { name: string; cells: string[]; tone?: ArtTone }[]; notes: string[] }
   | { kind: 'runs'; title: string; prompt: string; runs: { label: string; answer: string; verdict: ArtStatus }[]; foot?: string }
+  /* Who works for whom: each row an actor and its examples, then a path from who sends it, through the agent, to who
+     it faces (links name each step). `lit` fills the node the post is about; `ours` raises its row. */
+  | { kind: 'sides'; title: string; rows: { name: string; who: string; nodes: string[]; links: string[]; lit?: number; ours?: boolean }[]; foot?: string }
 
 export type BlogBlock =
   | { kind: 'p'; text: string }

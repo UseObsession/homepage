@@ -31,11 +31,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/verify',
-    title: 'Check your AI agents as a customer, every day · Obsession',
+    title: 'Check your AI agents with AI customers daily · Obsession',
     description:
-      'AI test customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
+      'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
     answer:
-      'Obsession checks your AI agents as your customer: AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+      'Obsession checks your AI agents as your customer: AI customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     ogImage: '/og/verify.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -84,12 +84,12 @@ export const page: Page = {
         recipe: 'voice-agent',
         task: 'Every morning, call our AI receptionist as 3 new patients. Book a slot, ask a price and a person, and check every answer against our price list.',
         targets: 'Your AI receptionist, on your own number',
-        journey: ['Say it’s an AI test customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against your price list'],
+        journey: ['Say it’s an AI customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against your price list'],
         schedule: 'Daily at 08:00',
         report: 'A report by 09:00, with every recording',
         kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Your calendar, connected by you'],
         events: [
-          { time: 'Mon 08:00', text: '3 test customers ring as new patients. Each says it’s an AI test customer, who it works for and that the call is recorded.' },
+          { time: 'Mon 08:00', text: '3 test customers ring as new patients. Each says it’s an AI customer, who it works for and that the call is recorded.' },
           { time: 'Mon 08:00', text: 'Call 2: the receptionist says it’s AI in its first 2 seconds, and books Tuesday at 10:20.' },
           { time: 'Mon 08:01', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Your price list says £50.' },
           { time: 'Mon 08:01', text: 'Asks for a person. A person answers after 1 minute 12 seconds on hold.' },
@@ -124,7 +124,7 @@ export const page: Page = {
         recipe: 'vendor-agent',
         task: 'Run our 20 hardest tickets on each shortlisted vendor’s agent, set up on our policies, and compare them side by side.',
         targets: 'Vendor B and Vendor C',
-        journey: ['Set up the same 20 cases', 'Ask as declared test customers', 'Time every handoff', 'Score against your policy'],
+        journey: ['Set up the same 20 cases', 'Ask as AI customers', 'Time every handoff', 'Score against your policy'],
         schedule: '2 weeks before you sign, then monthly',
         report: 'A signed report for procurement',
         kit: ['Agent ID, declared as AI', 'An inbox and number per vendor', 'Your 20 real cases', 'Tagged as tests on both'],
@@ -311,7 +311,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession check in my AI agents?',
-        a: 'Obsession checks your AI agents as your customer: AI test customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+        a: 'Obsession checks your AI agents as your customer: AI customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
       },
       {
         q: 'How is this different from our vendor’s own tests?',

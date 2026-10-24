@@ -32,7 +32,7 @@ export const recipe: Recipe = {
   line: 'Asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and follows it to checkout.',
   gets: 'Every price, stock and delivery answer checked against your store, and the right answer drafted wherever it went wrong.',
   kit: [
-    'An AI test customer, working for your store',
+    'An AI customer, working for your store',
     'Its own inbox and WhatsApp number',
     'Your price list, stock feed and delivery page, captured each run',
     'Every channel your agent sells on',
@@ -44,7 +44,7 @@ export const recipe: Recipe = {
     path: '/recipes/sales-agent-check',
     title: 'Sales agent check: catch wrong AI prices daily · Obsession',
     description:
-      'AI test customers ask your AI sales agent about prices, stock and delivery daily, check each answer against your store and follow it to checkout.',
+      'AI customers ask your AI sales agent about prices, stock and delivery daily, check each answer against your store and follow it to checkout.',
     answer:
       'Sales agent check asks your AI sales agent what it charges, every day: test customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
     ogImage: '/og/sales-agent-check.png',
@@ -78,7 +78,7 @@ export const recipe: Recipe = {
     kit: ['Agent ID, declared as AI', 'Its own WhatsApp number', 'Your price list and stock feed', 'Budget €0, stops before payment'],
     events: [
       { time: 'Mon 07:00', text: 'Your price list, stock feed and delivery page, captured.' },
-      { time: 'Mon 07:01', text: 'Test customer 2 says it’s an AI test customer for your store and asks on WhatsApp what the Duo bundle costs.' },
+      { time: 'Mon 07:01', text: 'Test customer 2 says it’s an AI customer for your store and asks on WhatsApp what the Duo bundle costs.' },
       { time: 'Mon 07:01', text: '“I’m the AI assistant. The Duo bundle is €89, in stock and arrives in 2 to 3 working days.”' },
       { time: 'Mon 07:01', text: 'Stock and delivery match your feed and your delivery page. The price doesn’t: your price list says €189.' },
       { time: 'Mon 07:02', text: 'Checkout shows €89.00. Your budget is €0, so it stops before payment.' },
@@ -209,7 +209,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Sales agent check say it’s AI?',
-        a: 'Yes. Every Sales agent check test customer says it’s an AI test customer working for your store, so your team can see it’s a test.',
+        a: 'Yes. Every Sales agent check test customer says it’s an AI customer working for your store, so your team can see it’s a test.',
       },
       {
         q: 'Will Sales agent check haggle or trick our agent?',

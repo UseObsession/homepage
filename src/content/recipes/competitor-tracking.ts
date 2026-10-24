@@ -17,7 +17,7 @@ export const recipe: Recipe = {
   line: 'Signs up to every rival and logs each email, text, offer, price change and public ad.',
   gets: 'A timeline per rival, and a note of what changed, as often as you choose.',
   kit: [
-    'A customer agent per rival',
+    'An AI customer per rival',
     'Its own inbox and phone number',
     'An isolated browser for each rival',
     'Page and price checks on your schedule',
@@ -29,7 +29,7 @@ export const recipe: Recipe = {
     path: '/recipes/competitor-tracking',
     title: 'Competitor tracking: see every rival as its customers do',
     description:
-      'An AI agent signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with proof.',
+      'An AI customer signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with proof.',
     answer:
       'Competitor tracking signs an AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     ogImage: '/og/competitor-tracking.png',

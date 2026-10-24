@@ -234,7 +234,7 @@ for fact in ob.facts("fernhollow.example", since="30d"):
       { name: 'lookup', line: 'Which companies the shared record already covers, and since when.' },
       { name: 'facts', line: 'What a company did, as facts, each with its receipt.' },
       { name: 'evidence', line: 'The raw email, page or transcript behind a fact.' },
-      { name: 'become_customer', line: 'Start customer agents, or join ones already there.' },
+      { name: 'become_customer', line: 'Start AI customers, or join ones already there.' },
       { name: 'notify', line: 'New facts pushed to your webhook, Slack or CRM as they land.' },
     ],
   },
@@ -272,7 +272,7 @@ export const compare: Compare = {
    underneath it. The cloud is what code can't give you: months of history and the presences
    run for you. */
 export const openSource: OpenSource = {
-  heading: 'An open source runtime for customer agents, built to run 100,000 at once.',
+  heading: 'An open source runtime for AI customers, built to run 100,000 at once.',
   line: 'The runtime behind every Obsession agent is open: it fans out to 100,000 companies, sleeps them for free, learns each job once and runs it as code, and keeps a record that proves itself. Run it yourself, or use Obsession Cloud, where agents have been customers for months.',
   core: {
     title: 'Open source: the runtime',
@@ -291,7 +291,7 @@ export const openSource: OpenSource = {
     title: 'Obsession Cloud: the history',
     items: [
       'Inboxes, phone numbers and browsers in many countries, run for you',
-      'Customer agents that have been watching for months',
+      'AI customers that have been watching for months',
       'A shared record your agent can look up on day one',
       'About 250 integrations, connected and kept working',
       'Our website, and the agent that plans each watch',

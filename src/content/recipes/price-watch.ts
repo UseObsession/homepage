@@ -20,7 +20,7 @@ export const recipe: Recipe = {
   line: 'Checks every rival’s prices, offers and delivery each morning, plus the codes they only send subscribers.',
   gets: 'Every rival price cut and sale before your day starts, and every subscriber code the minute it lands.',
   kit: [
-    'A customer agent per rival',
+    'An AI customer per rival',
     'A browser set to your country',
     'An inbox on each rival’s list',
     'A check every morning',
@@ -30,9 +30,9 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/price-watch',
-    title: 'Price watch: AI agents that catch every rival price cut',
+    title: 'Price watch: AI customers that catch every rival price cut',
     description:
-      'AI agents check every rival’s prices, offers and delivery each morning, and join their lists for subscriber codes. Every change arrives with its proof.',
+      'AI customers check every rival’s prices, offers and delivery each morning, and join their lists for subscriber codes. Every change arrives with proof.',
     answer:
       'Price watch catches every rival price cut and the codes only subscribers get: AI agents check every rival’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     ogImage: '/og/price-watch.png',

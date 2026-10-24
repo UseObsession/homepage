@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function BattlecardScreen() {
   return (
-    <div className="il appx-il app-battlecard"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: a battlecard built from 3 rivals' 14 day trials that need no card, each run by an AI customer agent. Day by day the cells fill with onboarding emails, time to a first report, the trial end offer and the 40 seat price, each linked to a signed capture; Rival B's trial closes on day 6 when its rep writes. A 3 line talk track is drafted, Push to CRM is clicked and the battlecard goes live for 14 reps. Rival A offers 20% off on day 13. Pushed to the CRM for all 14 reps.">
+    <div className="il appx-il app-battlecard"><div className="appx-fit"><div className="appx" role="img" aria-label="The Rivals page: a battlecard built from 3 rivals' 14 day trials that need no card, each run by an AI customer. Day by day the cells fill with onboarding emails, time to a first report, the trial end offer and the 40 seat price, each linked to a signed capture; Rival B's trial closes on day 6 when its rep writes. A 3 line talk track is drafted, Push to CRM is clicked and the battlecard goes live for 14 reps. Rival A offers 20% off on day 13. Pushed to the CRM for all 14 reps.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Rivals<span>/</span>Battlecard</span>

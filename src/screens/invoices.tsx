@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function InvoicesScreen() {
   return (
-    <div className="il appx-il app-invoices"><div className="appx-fit"><div className="appx" role="img" aria-label="The Get paid page: $48,200 overdue across 14 invoices, each chased by email and phone from a declared Obsession agent for Your company. A $6,400 payment lands and the month's collected total counts up to $31,600, then a disputed invoice turns to needs you with a polite reply drafted from the customer's own usage, sent only after your OK.">
+    <div className="il appx-il app-invoices"><div className="appx-fit"><div className="appx" role="img" aria-label="The Get paid page: $48,200 overdue across 14 invoices, each chased by email and phone from an Obsession agent for Your company. A $6,400 payment lands and the month's collected total counts up to $31,600, then a disputed invoice turns to needs you with a polite reply drafted from the customer's own usage, sent only after your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Get paid</span>

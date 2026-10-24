@@ -24,7 +24,7 @@ export const recipe: Recipe = {
   line: 'Stays a customer of every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
   gets: 'Every morning: who’s at risk, who’s ready to grow, and the play for each.',
   kit: [
-    'A customer agent per account',
+    'An AI customer per account',
     'An inbox per account, and its own number',
     'Your CRM, helpdesk and calls, read only',
     'Each account’s news and hiring, read daily',
@@ -36,7 +36,7 @@ export const recipe: Recipe = {
     path: '/recipes/account-watch',
     title: 'Account watch: churn and upsell in every account · Obsession',
     description:
-      'With consent, AI agents read the CRM, tickets and calls you connect, track each account’s news and stay its customer, then flag churn and upsell.',
+      'With consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and stay its customer, then flag churn and upsell.',
     answer:
       'Account watch flags churn and upsell in every account: with consent, AI agents read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
     ogImage: '/og/account-watch.png',
@@ -160,7 +160,7 @@ export const recipe: Recipe = {
       { label: 'Their emails and texts', values: ['An AI agent joins their list', 'None: the sign up any customer uses'] },
       {
         label: 'Their sign up, basket or booking',
-        values: ['A customer agent, as far as you choose', 'Yours, in your settings'],
+        values: ['An AI customer, as far as you choose', 'Yours, in your settings'],
       },
     ],
   },

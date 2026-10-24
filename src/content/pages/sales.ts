@@ -14,9 +14,9 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/sales',
-    title: 'Obsession for sales: see what each account does to customers',
+    title: 'AI customers for sales: what each account does to customers',
     description:
-      'Obsession’s AI agents become a customer of each prospect, account and rival before you call, so every brief and battlecard opens on what they really do.',
+      'Obsession’s AI customers join each prospect, account and rival before you call, so every brief and battlecard opens on what their customers get.',
     answer:
       'Obsession’s AI agents become a customer of each prospect, account and rival before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
     ogImage: '/og/sales.png',
@@ -66,7 +66,7 @@ export const page: Page = {
     items: [
       {
         tab: 'Account brief',
-        moment: 'Friday 16:00. A first call books for next Friday, and the calendar invite starts a customer agent at the account.',
+        moment: 'Friday 16:00. A first call books for next Friday, and the calendar invite starts an AI customer at the account.',
         outcome: 'Know what each account does before you call: 7 days as their customer.',
         line: 'An agent joins their newsletter, starts a trial, asks their help bot and reads their news, and the brief is ready the morning of the call.',
         whyOnly: 'A welcome email or a trial nudge only reaches an inbox that signed up. Each agent has its own, at every account on your list.',

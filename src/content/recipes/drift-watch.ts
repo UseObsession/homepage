@@ -31,7 +31,7 @@ export const recipe: Recipe = {
   line: 'Replays your hardest cases on your AI agent every morning and after every update, and flags every answer that changed.',
   gets: 'Every answer that changed, found the day it changed, with its before and after as proof.',
   kit: [
-    'An AI test customer, working for your company',
+    'An AI customer, working for your company',
     'Its own inbox and test account',
     'Your hardest cases, each with its rule',
     'Your vendor’s updates, watched',
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
     path: '/recipes/drift-watch',
     title: 'Drift watch: catch the answers an update breaks · Obsession',
     description:
-      'An AI test customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
+      'An AI customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
     answer:
       'Drift watch catches what each update breaks in your AI agent: a test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
     ogImage: '/og/drift-watch.png',
@@ -213,7 +213,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Drift watch say it’s AI?',
-        a: 'Yes. Every Drift watch test customer says it’s an AI test customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Drift watch test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will our vendor bill us for the replays?',

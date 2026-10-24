@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function AdcheckScreen() {
   return (
-    <div className="il appx-il app-adcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Ad landing check for Your company: every morning a declared Obsession agent opens each of 6 live search and social ads’ landing pages as a customer and checks it loads, the offer and price match the ad, and the item is in stock. Ad 4 sends clicks to a sold out lamp at $410 a day, so a fix is drafted; AM approves the pause and Ad 4 is paused, 36 minutes after it was flagged. $410 a day on a sold out lamp. Paused by AM, 36 min after the flag.">
+    <div className="il appx-il app-adcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Ad landing check for Your company: every morning an Obsession AI customer opens each of 6 live search and social ads’ landing pages as a customer and checks it loads, the offer and price match the ad, and the item is in stock. Ad 4 sends clicks to a sold out lamp at $410 a day, so a fix is drafted; AM approves the pause and Ad 4 is paused, 36 minutes after it was flagged. $410 a day on a sold out lamp. Paused by AM, 36 min after the flag.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Ad landing check</span>

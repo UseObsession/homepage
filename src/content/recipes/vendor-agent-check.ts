@@ -28,7 +28,7 @@ export const recipe: Recipe = {
   line: 'Runs the same real cases on every shortlisted vendor’s AI agent and compares them side by side before you sign.',
   gets: 'Every shortlisted agent on your own cases, side by side, with every answer and handoff kept as proof.',
   kit: [
-    'AI test customers, working for your company',
+    'AI customers, working for your company',
     'Their own inboxes and numbers on every agent',
     'Your hardest cases, each with its policy',
     'Each vendor’s agent, set up on your policies',
@@ -40,7 +40,7 @@ export const recipe: Recipe = {
     path: '/recipes/vendor-agent-check',
     title: 'Vendor agent check: compare AI agents on your own cases',
     description:
-      'Before you sign, AI test customers run your real cases on each shortlisted vendor’s AI agent and compare every answer side by side, each with its receipt.',
+      'Before you sign, AI customers run your real cases on each shortlisted vendor’s AI agent and compare every answer side by side, each with its receipt.',
     answer:
       'Vendor agent check compares AI agents on your own cases before you sign: test customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose with proof, not a demo.',
     ogImage: '/og/vendor-agent-check.png',
@@ -182,7 +182,7 @@ export const recipe: Recipe = {
     rows: [
       { label: 'Evidence', values: ['A demo, a deck and a live pilot', 'Your own cases, run on every agent'] },
       { label: 'Time to decide', values: ['A 90 day pilot', '2 weeks'] },
-      { label: 'Who it’s tested on', values: ['Your customers, during the pilot', 'AI test customers'] },
+      { label: 'Who it’s tested on', values: ['Your customers, during the pilot', 'AI customers'] },
       { label: 'A fair comparison', values: ['Each vendor on different weeks and customers', 'The same cases, customers and channels on each'] },
       { label: 'A person when asked', values: ['Found when a customer complains', 'Timed on every case'] },
       { label: 'Proof for procurement', values: ['Notes and screenshots', 'Every answer and handoff kept with its receipt'] },
@@ -202,7 +202,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Vendor agent check say it’s AI?',
-        a: 'Yes. Every Vendor agent check test customer says it’s an AI test customer working for your company, so every vendor can see it’s a test.',
+        a: 'Yes. Every Vendor agent check test customer says it’s an AI customer working for your company, so every vendor can see it’s a test.',
       },
       {
         q: 'Will Vendor agent check try to trick the agents?',

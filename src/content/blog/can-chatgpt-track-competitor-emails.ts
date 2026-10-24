@@ -18,7 +18,7 @@ import type { BlogPost } from './types'
    Not legal advice and no legal claims. Buyer words (sign up, welcome email, Promotions tab); no dashes. */
 
 const OPENAI_TASKS = 'https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt'
-const OPENAI_AGENT = 'https://help.openai.com/en/articles/11752874-chatgpt-agent'
+const OPENAI_CLOUD = 'https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt'
 const OPENAI_USE = 'https://help.openai.com/en/articles/12084614-connector-use-cases-and-prompts'
 const CLAUDE_GMAIL = 'https://claude.com/docs/connectors/google/gmail'
 const CLAUDE_CHROME = 'https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome'
@@ -65,7 +65,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-24',
   readingMinutes: 8,
   order: 3,
   authors: [
@@ -266,8 +266,8 @@ export const post: BlogPost = {
       items: [
         '**ChatGPT** summarises a connected Gmail inbox, can start a task when a [new Gmail message arrives](' +
           OPENAI_TASKS +
-          '), and [hands you the browser at a login](' +
-          OPENAI_AGENT +
+          '), and its [cloud browser pauses for you at a sign in](' +
+          OPENAI_CLOUD +
           ').',
         '**Claude** searches your inbox and cites the emails it used. Its [cloud scheduled tasks](' +
           CLAUDE_TASKS +
@@ -311,9 +311,9 @@ export const post: BlogPost = {
           CLAUDE_TASKS +
           ') per account, and its [Desktop tasks](' +
           CLAUDE_DESKTOP +
-          ') run only while the app is open and the computer is awake. On ChatGPT Plus, each scheduled agent run counts toward [40 agent messages a month](' +
-          OPENAI_AGENT +
-          ').',
+          ') run only while the app is open and the computer is awake. ChatGPT’s [cloud browser](' +
+          OPENAI_CLOUD +
+          ') runs only on paid plans, excluding Free and Go.',
         '**No older mail.** The assistant reads the mail in the inbox, so anything a competitor sent before you signed up, or sent to anyone else, isn’t there.',
         '**No kept copy.** None of the pages describes keeping the original email, its arrival time or its sender check, or reporting the Gmail tab. Copilot keeps screenshots of its browser sessions for up to 30 days.',
       ],
@@ -434,7 +434,7 @@ export const post: BlogPost = {
 
   sources: [
     { title: 'Scheduled tasks in ChatGPT', publisher: 'OpenAI Help Center', url: OPENAI_TASKS },
-    { title: 'ChatGPT agent', publisher: 'OpenAI Help Center', url: OPENAI_AGENT },
+    { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: OPENAI_CLOUD },
     { title: 'Plugin use cases and prompts', publisher: 'OpenAI Help Center', url: OPENAI_USE },
     { title: 'Gmail connector', publisher: 'Claude docs', url: CLAUDE_GMAIL },
     { title: 'Get started with Claude in Chrome', publisher: 'Claude Help Center', url: CLAUDE_CHROME, date: '2026-08-26' },

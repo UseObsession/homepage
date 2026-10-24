@@ -39,7 +39,7 @@ export const recipe: Recipe = {
     path: '/recipes/listings-ai-answers',
     title: 'Listings and AI answers, fixed at the source · Obsession',
     description:
-      'When an AI assistant or a listing gets a fact about you wrong, an AI agent fixes it at the source and asks again every Monday until the answer changes.',
+      'When an AI assistant or a listing gets a fact about you wrong, an AI customer fixes it at the source and asks again every Monday until it changes.',
     answer:
       'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     ogImage: '/og/listings-ai-answers.png',

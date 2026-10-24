@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function VendorScreen() {
   return (
-    <div className="il appx-il app-vendor"><div className="appx-fit"><div className="appx" role="img" aria-label="Onboarding for a new customer, Veymoor Health, signed 18 Sep on Net 30: a declared Obsession agent registers your company in their supplier portal, your finance team enters the bank details, JO signs the W-9, and the agent files the 82 question security questionnaire from your approved library on day 3. The buyer reviews it, the PO arrives and the invoice is accepted on day 12, against an average of 41 days, with the first payment due 30 Oct.">
+    <div className="il appx-il app-vendor"><div className="appx-fit"><div className="appx" role="img" aria-label="Onboarding for a new customer, Veymoor Health, signed 18 Sep on Net 30: an Obsession agent registers your company in their supplier portal, your finance team enters the bank details, JO signs the W-9, and the agent files the 82 question security questionnaire from your approved library on day 3. The buyer reviews it, the PO arrives and the invoice is accepted on day 12, against an average of 41 days, with the first payment due 30 Oct.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Accounts<span>/</span>Onboarding</span>

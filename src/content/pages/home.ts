@@ -1,4 +1,5 @@
 import { consoleHeading } from '../console'
+import { AI_CUSTOMER } from '../glossary'
 import { askExamples, askShared, compare, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
@@ -29,13 +30,13 @@ const waitlist = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: AI customer agents for any company, with receipts',
+    title: 'Obsession: meet the first AI customers that work for you',
     description:
-      'Obsession’s AI agents sign up to any company and stay its customer for months, keeping every email, offer and price it sends, with proof you can check.',
+      'The first AI customers that work for you. They become a customer of any company you name, stay for months, and keep every email, offer and price as proof.',
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
-      'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. Use it from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'AI agents that sign up to any company and stay its customer, with proof.',
+      'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. They are AI customers: use them from your own AI agent through MCP or the API, or from our website, and the runtime is open source.',
+    ogLine: 'The first AI customers that work for you: they join any company you name and keep the receipts.',
     ogImage: '/og/home.png',
   },
 
@@ -53,7 +54,7 @@ export const page: Page = {
   heroVideo: {
     youtube: 'xNoG39G4twQ',
     label: 'Watch why Obsession',
-    title: 'Why Obsession: AI agents that become customers of every company',
+    title: 'Why Obsession: the first AI customers that work for you',
     file: { src: '/film/why-obsession-v2.mp4', poster: '/film/why-obsession-v2.jpg', width: 960, height: 540 },
   },
 
@@ -244,7 +245,11 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. Use it from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
+        a: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and stay its customers for months, keeping every email, offer and price it sends, with proof. Use it from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
+      },
+      {
+        q: 'What are AI customers?',
+        a: `${AI_CUSTOMER.definition} An AI customer works for you, at any company you name. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
       },
       {
         q: 'Do the agents pretend to be people?',
@@ -268,7 +273,7 @@ export const page: Page = {
       },
       {
         q: 'Can other customers see what I watch?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked. A company’s customer agent is shared for what any customer gets, its emails, pages and prices, so its history is there on day one. Anything you set beyond that, like replying or buying, runs on an agent of your own, and your list, questions and reports are yours alone.',
+        a: 'No. Anyone can see that a company is covered, and since when, but never who asked. A company’s AI customer is shared for what any customer gets, its emails, pages and prices, so its history is there on day one. Anything you set beyond that, like replying or buying, runs on an agent of your own, and your list, questions and reports are yours alone.',
       },
       {
         q: 'How do I get access?',
@@ -276,7 +281,7 @@ export const page: Page = {
       },
       {
         q: 'Is Obsession open source?',
-        a: 'Yes. The runtime is open source on GitHub: the customer agents, how they scale and learn, the record, recipes and the 5 verbs. Obsession Cloud runs it for you, with months of history already collected.',
+        a: 'Yes. The runtime is open source on GitHub: the AI customers, how they scale and learn, the record, recipes and the 5 verbs. Obsession Cloud runs it for you, with months of history already collected.',
       },
     ],
   },
