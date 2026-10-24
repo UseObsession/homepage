@@ -166,7 +166,7 @@ export const post: BlogPost = {
         BOT_AUTH +
         ') lets bots and agents sign their requests with HTTP message signatures, and [Shopify’s Storefront API](' +
         SHOPIFY_STOREFRONT +
-        ') gives signed traffic higher rate limits than unsigned bots. An AI customer never gets round a CAPTCHA or a bot wall. It records the block as a finding.',
+        ') gives signed traffic higher rate limits than unsigned bots. An AI customer never gets round a CAPTCHA or a bot wall. The report names the step it couldn’t test.',
     },
 
     { kind: 'h3', id: 'waiting', text: 'Durable waiting' },
@@ -210,7 +210,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'hard-parts', text: 'The hard parts at scale' },
     {
       kind: 'p',
-      text: 'For 5 companies, a developer can join these parts in a few days. At thousands, most of the work sits in 7 places.',
+      text: 'For 5 companies, a developer can join these parts in a few days. At thousands, most of the work sits in 7 places. The engineering of each, and the durable execution engines that handle the waiting, is in [long running AI agents](/blog/long-running-ai-agents), and 10 systems to build on them are in [what to build with AI customers](/blog/what-to-build-with-ai-customers).',
     },
     {
       kind: 'list',
@@ -365,7 +365,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops it,** and the block is recorded as a finding.',
+        '**A bot wall or a CAPTCHA stops it,** and the report names the step it couldn’t test.',
         '**A new customer sees what new customers get.** Long standing customers may receive other emails and other inbox placement.',
         '**It records outputs.** Why a company sent something sits in that company’s own systems.',
         '**Some journeys need a real purchase,** on a card its owner funds.',

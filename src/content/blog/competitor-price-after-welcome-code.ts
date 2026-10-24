@@ -100,7 +100,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '14%',
       label: 'highest markdown Adobe forecasts for early November 2026, rising to 21% shortly before Thanksgiving and 30% in Cyber Week',
-      source: 'Adobe forecast of 28 September 2026, as reported by PPC Land (vendor data)',
+      source: 'Adobe forecast of 28 September 2026, as reported by PPC Land',
       href: ADOBE,
     },
 
@@ -174,7 +174,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The price monitoring apps’ pages do not list the welcome code, whether it stacks, the text offer, the member price or the emails that follow, all of which appear only to a customer who signs up. Panoramata lists competitors’ emails and flows, and the Apify scraper reads promotion wording from public store pages. Reading the page covers list prices across hundreds of products and many competitors.',
+      text: 'The price monitoring apps’ pages do not list the welcome code, whether it stacks, the text offer, the member price or the emails that follow, all of which appear only to a customer who signs up. Panoramata lists competitors’ emails and flows, and the Apify scraper reads promotion wording from public store pages. Reading the page covers list prices across hundreds of products and many competitors. The tools that collect rivals’ emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
     },
 
     { kind: 'h2', id: 'set-up', text: 'Setting up a new mailbox, phone number, browser and sheet' },
@@ -268,17 +268,17 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Log every email for the first 48 hours, then weekly until Black Friday, with its arrival time, sender, subject, offer, code, expiry and Gmail tab. Then leave a basket, begin checkout and stop before paying. The reminder that follows is another offer, and its code may differ from the welcome code. Klaviyo’s guide describes an early access discount in the first week of November and a November offer that one brand [sent exclusively to email subscribers](' +
         KLAVIYO_BF +
-        '), so a competitor’s first Black Friday offer may reach your inbox before its site shows it.',
+        '), so [a competitor’s first Black Friday offer](/blog/black-friday-rival-report-template) may reach your inbox before its site shows it.',
     },
 
     { kind: 'h2', id: 'your-row', text: 'Adding your own store to the sheet' },
     {
       kind: 'p',
-      text: 'Run the same steps on your own store and put it in the first row, so each competitor is compared with what a new customer gets from you. Sign up with a new address, enter the welcome code on a sale item and record the shipping charge. Your row can show problems no competitor caused, such as a code at its usage limit or a welcome email that never arrives. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) covers every step a new customer takes at your store.',
+      text: 'Run the same steps on your own store and put it in the first row, so each competitor is compared with what a new customer gets from you. Sign up with a new address, enter the welcome code on a sale item and record the shipping charge. Your row can show problems no competitor caused, such as a code at its usage limit or [a welcome email that never arrives](/blog/welcome-basket-email-not-sending). The [Black Friday checklist](/blog/black-friday-checklist-new-customer) covers every step a new customer takes at your store.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI test customers sign up at your store, use the welcome code at checkout, leave a basket and watch every inbox for 48 hours. The check is free, and the result lists every message that arrived and every one that didn’t.',
+      text: 'Obsession’s AI customers sign up at your store, use the welcome code at checkout, leave a basket and watch every inbox for 48 hours. The check is free, and the result lists every message that arrived and every one that didn’t.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -367,7 +367,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Each tool’s features, plans and prices are as its own page showed them on 23 October 2026. Adobe’s forecast is cited from PPC Land’s report of 28 September 2026, because Adobe’s own release would not open. The store owner’s quote comes from a Reddit thread read on 3 October 2026, as Reddit could not be reopened on 23 October. The stores in the table are invented and their sums are exact. We installed none of the apps and ran no competitor sign up for this piece. Nothing here is legal advice.',
+      text: 'Each tool’s features, plans and prices are as its own page showed them on 23 October 2026. Adobe’s forecast is cited from PPC Land’s report of 28 September 2026, because Adobe’s own release would not open. The store owner’s quote comes from a Reddit thread read on 3 October 2026, as Reddit could not be reopened on 23 October. The stores in the table are invented and their sums are exact. We installed none of the apps and ran no competitor sign up. Nothing here is legal advice.',
     },
   ],
 

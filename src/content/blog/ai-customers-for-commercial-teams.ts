@@ -164,7 +164,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**That week:** open each first email with the fact and a link the prospect can open, fix the routing rule behind a slow reply, and update the battlecard. Use prospects’ public sign ups only, because a test demo request to a prospect takes up a seller’s time.',
+      text: '**That week:** open each first email with the fact and a link the prospect can open, fix the routing rule behind a slow reply, and update the battlecard. Use prospects’ public sign ups only, because a test demo request to a prospect takes up a seller’s time. The full case is in [why B2B sales teams need AI customers](/blog/ai-customers-for-b2b-sales-teams), on speed to lead, and [why companies that sell to Shopify brands need AI customers](/blog/ai-customers-for-ecommerce-vendors), on Shopify store leads.',
     },
 
     { kind: 'h2', id: 'agencies', text: 'AI for agencies' },
@@ -188,7 +188,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**That week:** fix a broken flow before the client sees it, add a page on what customers received to each report, and open the pitch with the prospect’s finding. A retainer runs from $3,000 to $10,000 a month or more in [Darkroom’s October 2026 cost guide](' +
         DARKROOM +
-        '), so 1 client kept for a year is worth $36,000 to $120,000. The first 2 checks are set out by hand in [show clients every flow fired](/blog/show-clients-every-flow-fired) and [audit a prospect’s email without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login).',
+        '), so 1 client kept for a year is worth $36,000 to $120,000. The first 2 checks are set out by hand in [show clients every flow fired](/blog/show-clients-every-flow-fired) and [audit a prospect’s email without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login). The full case for each kind of agency is in [why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies), [why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies) and [why Shopify Plus agencies need AI customers](/blog/ai-customers-for-shopify-plus-agencies).',
     },
     {
       kind: 'cta',
@@ -220,7 +220,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**That week:** send each fail to its owner (the flow to whoever runs the email platform, the code to the promotions lead, the bot’s answer to whoever edits its sources), test again the same day, and keep the evidence for the review after the sale. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) gives the 12 tests in full, and [how AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks) puts a price on a missing message.',
+      text: '**That week:** send each fail to its owner (the flow to whoever runs the email platform, the code to the promotions lead, the bot’s answer to whoever edits its sources), test again the same day, and keep the evidence for the review after the sale. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) gives the 12 tests in full, and [how AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks) puts a price on a missing message. The full case for each is in [why ecommerce brands need AI customers](/blog/ai-customers-for-ecommerce-brands) and [why CX teams need AI customers](/blog/ai-customers-for-cx-teams).',
     },
     {
       kind: 'cta',
@@ -252,7 +252,7 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Engaged subscribers and past buyers may receive other emails.',
         '**It records what arrived, and not why.** The cause sits in the company’s own tools.',
-        '**It stops at a bot wall or a CAPTCHA,** and records the block as a finding.',
+        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
         '**Some teams can wait.** A team with few rivals, no paid traffic and rare changes covers its questions by hand once a month.',
         '**Client stores need the client’s OK, and prospects get only the public sign up.** This is not legal advice.',
       ],

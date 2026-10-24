@@ -87,7 +87,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Most store chatbots were set up in a quieter month, from the policy pages as they read that week. In November customers ask different questions: the last day to order for Christmas, how long a gift can come back, and whether the Black Friday code works on sale prices. A chatbot that was right in September can give last year’s answer now.',
+      text: 'Most store chatbots were set up in a quieter month, from the policy pages as they read that week. In November customers ask different questions: the last day to order for Christmas, how long a gift can come back, and [whether the Black Friday code works on sale prices](/blog/black-friday-checklist-new-customer). A chatbot that was right in September can give last year’s answer now.',
     },
     {
       kind: 'p',
@@ -97,7 +97,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '$275.1B',
       label: 'forecast US online spend from 1 November to 31 December 2026, up 6.7% on last year',
-      source: 'Adobe (vendor data, a forecast), 28 September 2026',
+      source: 'Adobe forecast, 28 September 2026',
       href: ADOBE,
     },
 
@@ -307,11 +307,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For checks that run every day, see [Check your AI agents](/verify).',
+      text: 'For checks that run every day, see [Check your AI agents](/verify). [Customer journey testing](/blog/ai-customers-find-revenue-leaks) covers the rest of a customer’s path, and [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store) covers the assistants outside your site.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI test customers say they’re AI, ask your chatbot what customers ask on each channel every morning and after each update, and keep every answer beside the policy page as it read that minute, with every test tagged and agreed with your vendor first. Your first check is free: 3 test customers, 1 channel and a report within 4 days.',
+      text: 'Obsession’s AI customers say they’re AI, ask your chatbot what customers ask on each channel every morning and after each update, and keep every answer beside the policy page as it read that minute, with every test tagged and agreed with your vendor first. Your first check is free: 3 test customers, 1 channel and a report within 4 days.',
       to: '/recipes/support-bot-check',
       label: 'Check my support bot free',
     },
@@ -327,7 +327,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI test customers also sign up, leave a basket and stop at checkout at your store, then watch every inbox and report what arrived and what didn’t. Your first store check is free.',
+      text: 'Obsession’s AI customers also sign up, leave a basket and stop at checkout at your store, then watch every inbox and report what arrived and what didn’t. Your first store check is free.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -365,7 +365,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'The decision in Moffatt v Air Canada would not load for us, so the amounts come from Dentons Data’s summary, which itemises them, and Fox Business, which gives the total. The two agree at CA$812.02. The tribunal’s wording is as McCarthy Tétrault quotes it. Tidio’s help centre blocked us, so Tidio is described from its own page only. We tested no chatbot for this article, and the 8 questions are a method with no results attached. Vendor performance figures and the share of tickets about orders are left out because the sources conflict.',
+      text: 'The decision in Moffatt v Air Canada would not load for us, so the amounts come from Dentons Data’s summary, which itemises them, and Fox Business, which gives the total. The two agree at CA$812.02. The tribunal’s wording is as McCarthy Tétrault quotes it. Tidio’s help centre blocked us, so Tidio is described from its own page only. We tested no chatbot, and the 8 questions are a method with no results attached. Vendor performance figures and the share of tickets about orders are left out because the sources conflict.',
     },
   ],
 

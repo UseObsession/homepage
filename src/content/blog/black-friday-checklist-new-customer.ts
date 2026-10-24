@@ -85,18 +85,18 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[A check of a UK skincare store](' +
         SAMPLE +
-        ') begun on 22 September 2026 found no reminder within 48 hours for either a £40 gift set left in the basket or a £21 deodorant left at checkout. A dashboard reports the flows you set up and the emails you sent, so it would show neither gap.',
+        ') begun on 22 September 2026 found no reminder within 48 hours for either a £40 gift set left in the basket or a £21 deodorant left at checkout. A dashboard reports the flows you set up and the emails you sent, so it would show neither gap. [Customer journey testing](/blog/ai-customers-find-revenue-leaks) looks for gaps like these.',
     },
     {
       kind: 'stat',
       value: '+59%',
       label: 'median Meta CPM in Black Friday week 2025 against September, across $22.6M of ad spend',
-      source: 'Lebesgue (vendor data), October 2026',
+      source: 'Lebesgue, October 2026',
       href: LEBESGUE,
     },
     {
       kind: 'p',
-      text: 'Higher click prices make every broken step in the path more expensive. A welcome email that fails to send raises no error. The flow report shows a zero, which is easy to miss until the month’s numbers come in.',
+      text: 'Higher click prices make every broken step in the path more expensive. [A welcome email that fails to send](/blog/welcome-basket-email-not-sending) raises no error. The flow report shows a zero, which is easy to miss until the month’s numbers come in.',
     },
     {
       kind: 'p',
@@ -140,7 +140,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'the-tests', text: 'The 12 tests, in the order a shopper meets them' },
     {
       kind: 'table',
-      caption: 'The 12 tests at a glance',
+      caption: 'The 12 tests',
       cols: ['#', 'Test', 'A pass looks like', 'Wait for'],
       rows: [
         ['1', 'Sign up through the pop up', 'The form submits on your phone and shows its offer', 'Seconds'],
@@ -244,7 +244,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'On your phone, open the link of each live ad in turn. **A pass:** the page loads, the product is in stock and the offer matches the ad. Ads can keep running after a product sells out, until your feed or catalogue catches up. If you run Google’s AI Max, [Final URL expansion is on by default](' +
         FINAL_URL +
-        ') and can send clicks to other pages on your site. The landing pages report shows which pages Google chose, and URL exclusions limit them. An [ad landing check](/recipes/ad-landing-check) runs this test every morning.',
+        ') and can send clicks to other pages on your site. [The landing pages report shows which pages Google chose](/blog/where-your-ads-land-morning-check), and URL exclusions limit them. An [ad landing check](/recipes/ad-landing-check) runs this test every morning.',
     },
 
     { kind: 'h3', id: 'test-order', text: '10. Place a test order' },
@@ -258,7 +258,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'chat', text: '11. Ask your chat what customers will ask this month' },
     {
       kind: 'p',
-      text: 'Ask it 3 questions: the last day to order for delivery before Christmas, how long a customer has to return a sale item, and whether the welcome code works on sale prices. **A pass:** every answer matches this season’s policy pages. A bot set up last year can still quote last year’s dates. If your chat is an AI, it should say so: the EU AI Act’s [transparency duties for chatbots](' +
+      text: 'Ask it 3 questions: the last day to order for delivery before Christmas, how long a customer has to return a sale item, and whether the welcome code works on sale prices. **A pass:** every answer matches this season’s policy pages. [A bot set up last year can still quote last year’s dates](/blog/test-store-chatbot-returns-policy). If your chat is an AI, it should say so: the EU AI Act’s [transparency duties for chatbots](' +
         AI_ACT_50 +
         ') have applied since 2 August 2026. A [support bot check](/recipes/support-bot-check) asks these questions every day.',
     },
@@ -322,7 +322,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI test customers run all 12 tests as new customers every week and after every change, and keep every email as it arrived. Start with a free check of your store.',
+      text: 'Obsession’s AI customers run all 12 tests as new customers every week and after every change, and keep every email as it arrived. Start with a free check of your store.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -340,7 +340,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 client stores free: its AI test customers sign up, leave a basket and stop at checkout at each store, then watch every inbox for 48 hours and report what arrived and what did not.',
+      text: 'Obsession checks 5 client stores free: its AI customers sign up, leave a basket and stop at checkout at each store, then watch every inbox for 48 hours and report what arrived and what did not.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },

@@ -132,7 +132,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'The ecommerce CRO audit template at a glance',
+      caption: 'The ecommerce CRO audit template',
       cols: ['Step', 'What you check', 'What goes in the report'],
       rows: [
         ['1. Scope and data access', 'The goal, metric, period, change log and logins', 'Scope and data notes'],

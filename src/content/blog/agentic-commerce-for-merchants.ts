@@ -131,7 +131,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '+130%',
       label: 'forecast rise in traffic from AI assistants to US retail sites over the 2026 holiday season, against 2025',
-      source: 'Adobe (vendor data, from Adobe Analytics), 28 Sep 2026',
+      source: 'Adobe Analytics, 28 Sep 2026',
       href: ADOBE,
     },
 
@@ -296,7 +296,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Fees, chargebacks and the rules for agents acting for a shopper differ by provider and country, so read each provider’s terms. This guide is not legal advice.',
+      text: 'Fees, chargebacks and the rules for agents acting for a shopper differ by provider and country, so read each provider’s terms. None of this is legal advice.',
     },
 
     { kind: 'h2', id: 'shopify-settings', text: 'Shopify settings to check' },
@@ -344,7 +344,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**A pass:** every answer matches your live pages, and the last question names your store. In [a vendor study by Product.ai](' +
+      text: '**A pass:** every answer matches your live pages, and the last question names your store. In [a study by Product.ai](' +
         PRODUCT_AI +
         '), a startup that checks product claims, reported by Business Insider on 25 September 2026, 85% of 913 verifiable price answers matched the current or listed price, and the wrong ones were off by a median of $300. Our guide to [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store) sets out the full scoring method.',
     },
@@ -518,7 +518,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Run the test before your code freeze, around 20 November, and on the morning of Black Friday, Friday 27 November 2026, because prices, codes and delivery cut offs change for the sale. Run it again after any change to prices, policies, apps or Agentic settings. Agencies can run the same test on a client’s store, with the client’s OK, and hand over the dated sheet.',
+      text: 'Run the test before your code freeze, around 20 November, and on the morning of Black Friday, Friday 27 November 2026, because prices, codes and delivery cut offs change for the sale. Run it again after any change to prices, policies, apps or Agentic settings. Agencies can run the same test on a client’s store, with the client’s OK, and hand over the dated sheet. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) has 12 tests for the store itself, and [how to test a chatbot on your store](/blog/test-store-chatbot-returns-policy) covers its chat.',
     },
     {
       kind: 'cta',

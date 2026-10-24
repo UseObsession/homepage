@@ -107,7 +107,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'inside-audit-after-the-yes', text: 'What an outside audit and an inside audit each cover' },
     {
       kind: 'p',
-      text: 'An outside audit records what a new customer receives: what arrived, when it arrived and where it landed. It finds each gap, meaning a message that never arrived, arrived late or carried a different offer from the one promised. An inside audit, run in the prospect’s Klaviyo account, can show why. [Klaviyo Academy’s lesson](' +
+      text: 'An outside audit records what a new customer receives: what arrived, when it arrived and where it landed. It finds each gap, meaning a message that never arrived, arrived late or carried a different offer from the one promised. [An inside audit](/blog/email-marketing-audit), run in the prospect’s Klaviyo account, can show why. [Klaviyo Academy’s lesson](' +
         ACADEMY +
         ') starts from the flow performance report and the benchmarks page, and [Klaviyo’s March 2026 checklist](' +
         KL_CHECKLIST +
@@ -136,7 +136,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'The inside audit reads the flows, filters and delays that explain a gap. Aimerce, a flow audit vendor, puts a manual audit at [30 minutes to 2 hours](' +
         AIMERCE +
-        ') (vendor data, July 2025). The outside audit shows whether a gap exists, which a dashboard can miss: [Klaviyo’s help centre](' +
+        '), in its own July 2025 figures. The outside audit shows whether a gap exists, which a dashboard can miss: [Klaviyo’s help centre](' +
         DELIVERY +
         ') counts a message as delivered once the recipient’s mail server accepts it, even if it goes to spam.',
     },
@@ -260,7 +260,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Store owners run the same test on their own flows when one looks wrong, so the owner can repeat your check in a minute.',
+      text: 'Store owners [run the same test on their own flows when one looks wrong](/blog/welcome-basket-email-not-sending), so the owner can repeat your check in a minute.',
     },
     {
       kind: 'quote',
@@ -305,13 +305,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s AI test customers](' +
+      text: '[Obsession’s AI customers](' +
         USE_CASE +
         ') run the same sign up at any store you name, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open.',
     },
     {
       kind: 'cta',
-      text: 'Name 5 stores, prospects or clients (a client’s with their OK), and Obsession checks them free. Its AI test customers sign up, opt in to texts and leave a basket at each, watch every inbox for 48 hours and send back what arrived and what didn’t, with proof, within 4 days.',
+      text: 'Name 5 stores, prospects or clients (a client’s with their OK), and Obsession checks them free. Its AI customers sign up, opt in to texts and leave a basket at each, watch every inbox for 48 hours and send back what arrived and what didn’t, with proof, within 4 days.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },
@@ -319,11 +319,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'five-prospects-this-week', text: 'Next steps: audit 5 prospects in one week' },
     {
       kind: 'p',
-      text: 'Pick the 5 stores you most want to win. Sign each one up on Monday morning, write the time beside every step and read the inboxes on Wednesday. Write first to the owners whose store has a gap you can name, and ask for the login once they agree to work with you.',
+      text: 'Pick the 5 stores you most want to win. Sign each one up on Monday morning, write the time beside every step and read the inboxes on Wednesday. Write first to the owners whose store has a gap you can name, and ask for the login once they agree to work with you. The route from that first message to a signed retainer is in [how to get email marketing clients](/blog/how-to-get-email-marketing-clients).',
     },
     {
       kind: 'p',
-      text: 'Once a prospect becomes a client, the first outside audit is the baseline. Run the same sign up after each fix, and the monthly report can show each flow before and after.',
+      text: 'Once a prospect becomes a client, the first outside audit is the baseline. Run the same sign up after each fix, and [the monthly report can show each flow before and after](/blog/show-clients-every-flow-fired).',
     },
     {
       kind: 'cta',

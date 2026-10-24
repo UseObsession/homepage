@@ -42,7 +42,6 @@ const SH_AUTO_CREATE = 'https://help.shopify.com/en/manual/promoting-marketing/c
 const SH_DISCOUNT = 'https://help.shopify.com/en/manual/discounts/discount-types/percentage-fixed-amount'
 const SH_FAQ = 'https://help.shopify.com/en/manual/discounts/discounts-faq'
 const SAMPLE = 'https://useobsession.com/sample-output'
-const CHECKLIST = '/blog/black-friday-checklist-new-customer'
 const LEAKS = '/use-cases/leak-checks-for-ecommerce-stores'
 const DELIVERY = '/recipes/delivery-monitoring'
 
@@ -123,7 +122,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '41%',
       label: 'of email revenue comes from flows, on 5.3% of sends',
-      source: 'Klaviyo benchmarks (vendor data, 183,000+ customers), 2026',
+      source: 'Klaviyo benchmarks across 183,000+ customers, 2026',
       href: BENCH,
     },
 
@@ -147,9 +146,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'stranger-test', text: 'How to test a flow as a new customer' },
     {
       kind: 'p',
-      text: 'Test with 2 new addresses that have never subscribed or bought: a test address and a control address. Your own login won’t work, because your store already knows you. The test address goes through the journey: it signs up through the pop up, or leaves a basket with the marketing box ticked and stops before paying. The control address signs up the same way. The [Black Friday checklist](' +
-        CHECKLIST +
-        ') lists the other journeys to test.',
+      text: 'Test with 2 new addresses that have never subscribed or bought: a test address and a control address. Your own login won’t work, because your store already knows you. The test address goes through the journey: it signs up through the pop up, or leaves a basket with the marketing box ticked and stops before paying. The control address signs up the same way. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) lists the other journeys to test.',
     },
     {
       kind: 'p',
@@ -214,7 +211,7 @@ export const post: BlogPost = {
         SH_AUTO_CREATE +
         ') send only to customers subscribed to email marketing by default. A shopper who left the marketing box unticked gets nothing from a flow that sends to subscribers only. Shopify lets you [edit an abandoned checkout automation’s To field](' +
         SH_MIGRATE +
-        ') to include all customers. Whether you may do that depends on your market’s consent rules, and this article isn’t legal advice.',
+        ') to include all customers. Whether you may do that depends on your market’s consent rules, and none of this is legal advice.',
     },
 
     { kind: 'h3', id: 'filters', text: '4. A flow filter or a draft message drops the shopper' },
@@ -355,16 +352,16 @@ export const post: BlogPost = {
         'Check every message’s status: Live, Manual or Draft.',
         'Open Recipient activity on each message and read the Skipped reasons.',
         'Run the new customer test on 3 journeys (sign up, basket and checkout) with a control address.',
-        'Send the client the emails as they arrived, with their times, and list the journeys where nothing came.',
+        '[Send the client the emails as they arrived, with their times](/blog/show-clients-every-flow-fired), and list the journeys where nothing came.',
       ],
     },
     {
       kind: 'p',
-      text: 'Run the test on a client’s store with the client’s OK, and on a prospect’s store only through the public sign up any customer can use.',
+      text: 'Run the test on a client’s store with the client’s OK, and on [a prospect’s store only through the public sign up any customer can use](/blog/audit-prospect-email-without-klaviyo-login).',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s test customers shop each client’s store with the client’s OK and report what arrived and what never did, with screenshots, within 4 days. 5 client stores are checked free.',
+      text: 'Obsession’s AI customers shop each client’s store with the client’s OK and report what arrived and what never did, with screenshots, within 4 days. 5 client stores are checked free.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },
@@ -389,7 +386,7 @@ export const post: BlogPost = {
         LEAKS +
         ') every week and after every change, and its [delivery monitoring](' +
         DELIVERY +
-        ') checks that every email, text and login code arrives.',
+        ') checks that every email, text and login code arrives. A silent flow is one of the failures that [customer journey testing](/blog/ai-customers-find-revenue-leaks) looks for.',
     },
     {
       kind: 'cta',

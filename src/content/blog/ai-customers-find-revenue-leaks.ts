@@ -481,7 +481,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Business Insider’s report of the Product.ai study is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. The store in the illustrations and every figure in the cost example are invented. We ran none of these tests for this article, and the only result of our own is the September store check on our sample output page. For legal questions about AI agents, take advice for your own case.',
+      text: 'Business Insider’s report of the Product.ai study is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. The store in the illustrations and every figure in the cost example are invented. We ran none of these tests, and the only result of our own is the September store check on our sample output page. For legal questions about AI agents, take advice for your own case.',
     },
   ],
 

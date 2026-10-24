@@ -142,7 +142,7 @@ export const post: BlogPost = {
       kind: 'stat',
       value: '85%',
       label: 'of 913 verifiable price answers matched the current or listed price, and when one was wrong, the median gap was $300',
-      source: 'Product.ai, reported by Business Insider, 25 Sep 2026 (a vendor study)',
+      source: 'Product.ai study, reported by Business Insider',
       href: PRODUCT_AI,
     },
     {
@@ -254,7 +254,7 @@ export const post: BlogPost = {
         SHOPIFY_DEV +
         '). On Shopify, [agentic storefronts are active by default for eligible stores](' +
         SHOPIFY_HELP +
-        '), and your products reach AI channels through Shopify Catalog. ChatGPT is discovery focused, and buyers check out on your own store. Google AI Mode and Gemini can also receive products through the Google & YouTube channel or Google Merchant Center. You choose which AI channels you sell on under Sales channels, then Agentic.',
+        '), and your products reach AI channels through Shopify Catalog. ChatGPT is discovery focused, and buyers check out on your own store. Google AI Mode and Gemini can also receive products through the Google & YouTube channel or Google Merchant Center. You choose [which AI channels you sell on](/blog/agentic-commerce-for-merchants) under Sales channels, then Agentic.',
     },
     { kind: 'h3', id: 'policy-pages', text: 'Your policy and delivery pages' },
     {
@@ -332,13 +332,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'no-tool-yet', text: 'Before you add an AI visibility tool' },
     {
       kind: 'p',
-      text: 'Fix the wrong claims your first check finds before you add a tool, because a daily tracker would report the same wrong price every day until the page changes. If the first check finds no wrong claim and your store is named in most discovery answers, repeat the check monthly and after any change to a price, a policy or your product data.',
+      text: 'Fix the wrong claims your first check finds before you add a tool, because a daily tracker would report the same wrong price every day until the page changes. If the first check finds no wrong claim and your store is named in most discovery answers, repeat the check monthly and after any change to a price, a policy or your product data. The same method applies to a store’s own chatbot, in [how to test a chatbot on your store](/blog/test-store-chatbot-returns-policy), and [customer journey testing](/blog/ai-customers-find-revenue-leaks) covers the rest of a customer’s path.',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'For agencies: what to put in an AI visibility report' },
     {
       kind: 'p',
-      text: 'In a vendor survey of 494 agency professionals run by AgencyAnalytics between February and April 2026, [66% reported increased demand for AEO and SEO for AI driven search](' +
+      text: 'In a survey of 494 agency professionals that AgencyAnalytics ran between February and April 2026, [66% reported increased demand for AEO and SEO for AI driven search](' +
         AGENCY_ANALYTICS +
         '), the top new service clients requested in 2026. Clients will ask what changed, and January is when they decide which agencies to keep. A report that answers that question includes:',
     },

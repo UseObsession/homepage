@@ -122,7 +122,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `The instrument is the AI customer. ${AI_CUSTOMER.definition} It is asleep almost all the time and wakes only when the company sends something or a check is due, so it can watch for months at almost no cost.`,
+      text: `The instrument is the [AI customer](/blog/ai-customers). ${AI_CUSTOMER.definition} It is asleep almost all the time and wakes only when the company sends something or a check is due, so it can watch for months at almost no cost.`,
     },
 
     { kind: 'h2', id: 'how-it-differs', text: 'How it differs from the observability you already run' },
@@ -259,7 +259,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'AI test customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
+      text: 'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
       to: '/verify',
       label: 'Check your AI agents',
     },
@@ -288,7 +288,7 @@ export const post: BlogPost = {
       items: [
         '**It sees what customers receive, and not why.** The cause of a missing email sits in the company’s own tools and its own observability.',
         '**A new customer sees what new customers get.** Engaged, long standing customers can receive other emails and other placement.',
-        '**It stops at a bot wall or a CAPTCHA,** and records the block as a finding.',
+        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
         '**It complements system observability.** Uptime, errors and performance stay with the tools built for them.',
       ],
     },
