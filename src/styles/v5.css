@@ -132,16 +132,17 @@
 /* What you get (Home): the close of how it works, on the same ground, straight under its steps. */
 .v5-section:has(+ .v5-formats) { padding-bottom: clamp(36px, 4vw, 56px); }
 
-/* Rails (phones only): a list that would stack into a long column becomes a row of cards to swipe, each most of the
-   screen wide and snapping into place, the next one's edge showing so the row reads as more. The row runs to the
-   screen's edges (out of the page's gutter) and starts on the gutter. .v5-rail--cards gives plain items a card of their
-   own; lists whose items are already cards leave it off. !important: a section's own phone rules stack the same list
-   into 1 column, and the rail wins over them. */
+/* Rails (phones only, opt in with .v5-rail--swipe): a row of cards to swipe, each most of the screen wide and snapping
+   into place, the next one's edge showing so the row reads as more. The row runs to the screen's edges (out of the
+   page's gutter) and starts on the gutter. Only the scale story's stage swipes (Scale.tsx reads which card is in view).
+   Every other .v5-rail list stacks into its own section's 1 column on a phone (Seun, 25 Oct 2026: cards cut at the
+   screen's edge read as broken), and .v5-rail--cards keeps each of its items a card. !important: a section's own
+   phone rules would otherwise win. */
 @media (max-width: 760px) {
-  .v5-rail {
+  .v5-rail--swipe {
     display: grid !important;
     grid-auto-flow: column !important;
-    grid-auto-columns: 82% !important;
+    grid-auto-columns: 86% !important;
     grid-template-columns: none !important;
     grid-template-rows: none !important;
     align-items: stretch !important;
@@ -154,13 +155,20 @@
     padding: 2px var(--s-gutter, 16px) 10px !important;
     scroll-padding-inline: var(--s-gutter, 16px);
   }
-  .v5-rail::-webkit-scrollbar { display: none; }
-  .v5-rail > * { scroll-snap-align: start; min-width: 0; }
+  .v5-rail--swipe::-webkit-scrollbar { display: none; }
+  .v5-rail--swipe > * { scroll-snap-align: start; min-width: 0; }
+  .v5-rail--cards {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    border-top: 0 !important;
+  }
   .v5-rail--cards > * {
     background: var(--ob-surface);
     border: 1px solid var(--ob-line-subtle) !important;
     border-radius: 14px;
     padding: 16px !important;
+    margin: 0 !important;
   }
   /* Home's open source section waits for a wider screen. */
   .v5-deskonly { display: none !important; }

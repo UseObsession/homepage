@@ -88,3 +88,25 @@
     .appx-fit .ax-bar:has(+ .ax-body > .ax-side) .ax-team { margin-left: auto; }
   }
 }
+
+/* Phones (Seun, 25 Oct 2026: the site must work and feel premium on a phone).
+   Pill tabs wrap into a row of chips, so every choice shows and none is cut at the screen's edge. They lose the track
+   behind them (a wrapped track reads as a box), and the ones not chosen get a hairline of their own.
+   Underline tabs keep scrolling, as a strip that runs to the screen's edges, with a longer fade so the cut label reads
+   as more to swipe rather than as a break. */
+@media (max-width: 560px) {
+  .ob-ptabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ob-space-8);
+    padding: 0;
+    overflow: visible;
+    background: none;
+    box-shadow: none;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .ob-ptab:not([aria-selected="true"], .is-selected) { box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+  .ob-utabs.is-scrollable:not(.is-scroll-end) { --ob-fade-e: 56px; }
+  .ob-utabs.is-scrollable:not(.is-scroll-start) { --ob-fade-s: 40px; }
+}

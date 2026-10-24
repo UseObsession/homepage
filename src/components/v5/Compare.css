@@ -72,8 +72,14 @@ thead .v5-compare-us .v5-compare-who { color: color-mix(in srgb, var(--ob-bg) 72
   border: 0;
 }
 
-/* On a phone the row names take less room, so 2 columns show beside them before the table scrolls. */
+/* On a phone the row names take less room, so 2 columns show beside them before the table scrolls. The frame fades
+   its right edge, so the next column reads as more to swipe rather than as cut off. */
 @media (max-width: 560px) {
   .v5-compare-table { min-width: 640px; font-size: 13.5px; }
   .v5-compare-table tbody th { min-width: 128px; max-width: 140px; }
+  .v5-compare-table tr > :last-child { padding-right: 58px; }
+  .v5-compare-frame {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+  }
 }
