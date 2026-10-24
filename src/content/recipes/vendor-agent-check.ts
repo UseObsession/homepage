@@ -42,7 +42,7 @@ export const recipe: Recipe = {
     description:
       'Before you sign, AI customers run your real cases on each shortlisted vendor’s AI agent and compare every answer side by side, each with its receipt.',
     answer:
-      'Vendor agent check compares AI agents on your own cases before you sign: test customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose with proof, not a demo.',
+      'Vendor agent check compares AI agents on your own cases before you sign: AI customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose with proof, not a demo.',
     ogImage: '/og/vendor-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -53,7 +53,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that test AI vendors on your cases before you sign.',
-    sub: 'Vendor agent check compares AI agents on your own cases before you sign: test customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose with proof, not a demo.',
+    sub: 'Vendor agent check compares AI agents on your own cases before you sign: AI customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose with proof, not a demo.',
     screen: 'vendorcheck',
     capture: {
       kind: 'verify',
@@ -74,7 +74,7 @@ export const recipe: Recipe = {
     kit: ['Agent ID, declared as AI', 'An inbox and number per vendor', '20 cases from your tickets', 'Tagged as tests on both'],
     events: [
       { time: '19 Sep', text: 'Vendor B and Vendor C agree to the test. Both agents are set up on your policies, and the same 20 cases go to each.' },
-      { time: '22 Sep 10:40', text: 'Case H-01. Test customer 2 says it’s AI and asks Vendor B for a person. “Connecting you.” A person answers in 1 minute 50 seconds.' },
+      { time: '22 Sep 10:40', text: 'Case H-01. AI customer 2 says it’s AI and asks Vendor B for a person. “Connecting you.” A person answers in 1 minute 50 seconds.' },
       { time: '22 Sep 10:52', text: 'The same case on Vendor C: “How can I help?” 3 times, and no person in 6 minutes. Your policy says 3.' },
       { time: '29 Sep', text: 'Both fail a refund on day 35 and an expired code. Vendor B also fails an order edit. Vendor C fails 6 more, from an address change to a data deletion request.' },
       { time: '3 Oct', text: 'Every case run on both. Vendor B passes 17 of 20, Vendor C 12.' },
@@ -94,7 +94,7 @@ export const recipe: Recipe = {
       line: 'Each vendor on your shortlist agrees to the test and sets its agent up on your policies, on the channels you’ll run.',
     },
     {
-      title: 'Test customers run every case on every agent',
+      title: 'AI customers run every case on every agent',
       line: 'Each says it’s AI and who it works for, asks the same way on every agent, and times every answer and handoff. Every test is tagged.',
     },
     {
@@ -127,7 +127,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Hard questions', line: 'What an ordinary customer asks, and hard or adversarial cases if you want them.' },
         { title: 'The record', line: 'Every answer and handoff kept exactly as it arrived.' },
-        { title: 'Your customers’ details', line: 'Each test customer asks a case as its own question, so no real customer’s details reach a vendor.' },
+        { title: 'Your customers’ details', line: 'Each AI customer asks a case as its own question, so no real customer’s details reach a vendor.' },
         { title: 'The results', line: 'Yours, and private unless you choose to share them.' },
       ],
     },
@@ -190,7 +190,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Every vendor gets the same cases.',
+    heading: 'Every AI customer says it’s AI. Every vendor gets the same cases.',
     items: [
       {
         q: 'How do we evaluate an AI customer service agent before we sign?',
@@ -198,11 +198,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Where do the cases come from?',
-        a: 'Vendor agent check takes them from your own tickets: the questions your customers really ask, your hardest included, each with the policy that decides it. Each test customer asks a case as its own question, so no real customer’s details reach a vendor.',
+        a: 'Vendor agent check takes them from your own tickets: the questions your customers really ask, your hardest included, each with the policy that decides it. Each AI customer asks a case as its own question, so no real customer’s details reach a vendor.',
       },
       {
         q: 'Does Vendor agent check say it’s AI?',
-        a: 'Yes. Every Vendor agent check test customer says it’s an AI customer working for your company, so every vendor can see it’s a test.',
+        a: 'Yes. Every Vendor agent check AI customer says it’s an AI working for your company, so every vendor can see it’s a test.',
       },
       {
         q: 'Will Vendor agent check try to trick the agents?',
@@ -234,14 +234,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Vendor agent check on the AI agent you run today, or a vendor’s you’re trialling: 3 test customers use it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Vendor agent check on the AI agent you run today, or a vendor’s you’re trialling: 3 AI customers use it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Choose your AI agent on your own cases, before you sign.',
-    sub: 'Your first check is free: 3 test customers use the AI agent you run today on 1 channel, and your report lands within 4 days. It sets the bar every vendor on your shortlist has to clear.',
+    sub: 'Your first check is free: 3 AI customers use the AI agent you run today on 1 channel, and your report lands within 4 days. It sets the bar every vendor on your shortlist has to clear.',
     capture: {
       kind: 'verify',
       source: 'recipe-vendor-agent-final',

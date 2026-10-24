@@ -45,7 +45,7 @@ export const recipe: Recipe = {
     description:
       'An AI customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
     answer:
-      'Drift watch catches what each update breaks in your AI agent: a test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
+      'Drift watch catches what each update breaks in your AI agent: an AI customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,7 +56,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that catch what each update breaks in your AI agent.',
-    sub: 'Drift watch catches what each update breaks in your AI agent: a test customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
+    sub: 'Drift watch catches what each update breaks in your AI agent: an AI customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
     screen: 'drift',
     capture: {
       kind: 'verify',
@@ -98,7 +98,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'It replays every morning, and after any update',
-      line: 'A test customer asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
+      line: 'An AI customer asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
     },
     {
       title: 'You see what changed',
@@ -193,7 +193,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. Every replay is tagged and agreed with your vendor.',
+    heading: 'Every AI customer says it’s AI. Every replay is tagged and agreed with your vendor.',
     items: [
       {
         q: 'What is drift in an AI agent?',
@@ -213,7 +213,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Drift watch say it’s AI?',
-        a: 'Yes. Every Drift watch test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Drift watch AI customer says it’s an AI working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will our vendor bill us for the replays?',
@@ -237,14 +237,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Drift watch run: 3 test customers use your AI agent on 1 channel, and your report lands within 4 days. It’s the first point on your baseline.',
+        a: 'The free check is a Drift watch run: 3 AI customers use your AI agent on 1 channel, and your report lands within 4 days. It’s the first point on your baseline.',
       },
     ],
   },
 
   final: {
     heading: 'Know which answers an update changed within the hour.',
-    sub: 'Your first check is free: 3 test customers use your AI agent on 1 channel, and your report lands within 4 days. Your agent, or a client’s.',
+    sub: 'Your first check is free: 3 AI customers use your AI agent on 1 channel, and your report lands within 4 days. Your agent, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-drift-final',

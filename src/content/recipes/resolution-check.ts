@@ -43,7 +43,7 @@ export const recipe: Recipe = {
     description:
       'Check each resolution your AI support vendor bills against what the customer really got: the refund, the cancellation, the order change. Then challenge it.',
     answer:
-      'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
+      'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while AI customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     ogImage: '/og/resolution-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -54,7 +54,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that check every resolution your AI vendor bills.',
-    sub: 'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while test customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
+    sub: 'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while AI customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     screen: 'resolution',
     capture: {
       kind: 'verify',
@@ -77,7 +77,7 @@ export const recipe: Recipe = {
       { time: '1 Oct 09:00', text: '100 of the resolutions Vendor A billed in September, $0.99 each, taken from the helpdesk export you connected.' },
       { time: '1 Oct 09:06', text: 'H-4471, a broken mug. On 24 Sep at 10:03 the bot told the customer: “Done. $24 is on its way.” Vendor A billed it as resolved.' },
       { time: '1 Oct 09:07', text: 'Your payments, connected with consent: 7 days on, no refund has been issued.' },
-      { time: '2 Oct 10:00', text: 'Test customer 2 says it’s AI and asks for the same refund on a test order, paid from a $40 test budget on your store. 24 hours on, no refund.' },
+      { time: '2 Oct 10:00', text: 'AI customer 2 says it’s AI and asks for the same refund on a test order, paid from a $40 test budget on your store. 24 hours on, no refund.' },
       { time: '3 Oct 10:10', text: '19 of the 100 weren’t real: refunds never made and customers who came back. $18.81 of the $99 billed.' },
     ],
     finding: '19 of the 100 resolutions Vendor A billed in September weren’t real: $18.81 of $99, where its own terms bill only what’s solved.',
@@ -95,7 +95,7 @@ export const recipe: Recipe = {
       line: 'Each one against what really happened: the refund in your payments, the cancelled plan, the changed order, or the customer who came back.',
     },
     {
-      title: 'Test customers make the same asks',
+      title: 'AI customers make the same asks',
       line: 'Declared as AI, they ask for refunds, cancellations and order changes on your live channels, on a test budget you set, and see what really happens.',
     },
     {
@@ -118,7 +118,7 @@ export const recipe: Recipe = {
       group: 'What the bot promised',
       items: [
         { title: '“Done” that wasn’t', line: 'A refund or cancellation the bot confirmed and nobody carried out.' },
-        { title: 'The same ask, as a test', line: 'A test customer makes it on your live channel and sees what really happens.' },
+        { title: 'The same ask, as a test', line: 'An AI customer makes it on your live channel and sees what really happens.' },
         { title: 'Against the contract', line: 'Each resolution against your vendor’s own rule for what it may bill.' },
         { title: 'Month by month', line: 'How many billed resolutions weren’t real, and whether that’s rising or falling.' },
       ],
@@ -139,7 +139,7 @@ export const recipe: Recipe = {
     items: [
       { format: 'A verdict per resolution', line: 'Real or not, with the evidence beside it: the payment, the ticket or the order.' },
       { format: 'The bot’s own words', line: 'What it told the customer, timed, beside what really happened.' },
-      { format: 'The test customer’s result', line: 'The same ask, made on your live channel, and what came of it.' },
+      { format: 'The AI customer’s result', line: 'The same ask, made on your live channel, and what came of it.' },
       { format: 'The monthly count', line: 'How many billed resolutions weren’t real, by reason: a refund never made, a customer gone quiet or back, a case a person finished.' },
       { format: 'The dispute pack', line: 'Every case under your vendor’s own terms, with its receipt. Sent when you approve it.' },
       {
@@ -187,7 +187,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI, and no test is billed.',
+    heading: 'Every AI customer says it’s AI, and no test is billed.',
     items: [
       {
         q: 'Our deflection numbers look great. Are the resolutions real?',
@@ -199,7 +199,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Do you need our logins?',
-        a: 'No. Resolution check reads your helpdesk export and payments tool if you connect them. Test customers use your live channels the way your customers do.',
+        a: 'No. Resolution check reads your helpdesk export and payments tool if you connect them. AI customers use your live channels the way your customers do.',
       },
       {
         q: 'Will our vendor bill us for the tests?',
@@ -207,7 +207,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Resolution check say it’s AI?',
-        a: 'Yes. Every Resolution check test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Resolution check AI customer says it’s an AI working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will Resolution check try to trick our bot?',
@@ -215,7 +215,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Resolution check spend our money?',
-        a: 'Only inside the test budget you set, with real payment details, so a test customer can ask for a refund on a real order.',
+        a: 'Only inside the test budget you set, with real payment details, so an AI customer can ask for a refund on a real order.',
       },
       {
         q: 'Will our vendor credit what we challenge?',
@@ -235,14 +235,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free Resolution check has 3 test customers make the asks your bot most often marks as resolved, on 1 channel, tagged so none is billed, and see what really happens. Your report lands within 4 days.',
+        a: 'The free Resolution check has 3 AI customers make the asks your bot most often marks as resolved, on 1 channel, tagged so none is billed, and see what really happens. Your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Check what your AI vendor billed before you pay for it.',
-    sub: 'Your first check is free: 3 test customers use your support bot on 1 channel, tagged so none is billed, and your report lands within 4 days. Your bot, or a client’s.',
+    sub: 'Your first check is free: 3 AI customers use your support bot on 1 channel, tagged so none is billed, and your report lands within 4 days. Your bot, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-resolution-final',

@@ -38,7 +38,7 @@ export const recipe: Recipe = {
     description:
       'AI customers ask your support bot what your customers ask, on chat, email and your portal, every day, and check each answer against your own policy.',
     answer:
-      'Support bot check asks your support bot what customers ask, every morning: test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
+      'Support bot check asks your support bot what customers ask, every morning: AI customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     ogImage: '/og/support-bot-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +49,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask your support bot what customers ask.',
-    sub: 'Support bot check asks your support bot what customers ask, every morning: test customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
+    sub: 'Support bot check asks your support bot what customers ask, every morning: AI customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     screen: 'botcheck',
     capture: {
       kind: 'verify',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     report: 'A Slack alert and a signed record',
     kit: ['Agent ID, declared as AI', '2 inboxes', 'A test account on your portal', 'Tagged as a test, never billed'],
     events: [
-      { time: 'Mon 07:00', text: 'Test customer 2 says it’s AI and asks to return an order after 20 days, on chat, email and your portal.' },
+      { time: 'Mon 07:00', text: 'AI customer 2 says it’s AI and asks to return an order after 20 days, on chat, email and your portal.' },
       { time: 'Mon 07:02', text: 'Chat: “Yes, you have 30 days.” Your returns page, captured at 07:00, says 14. Email and the portal say 14.' },
       { time: 'Mon 07:04', text: 'Asks for a person. Chat hands over in 41 seconds, the portal in 3 minutes.' },
       { time: 'Mon 07:12', text: 'By email, a person replies in 12 minutes.' },
@@ -90,7 +90,7 @@ export const recipe: Recipe = {
       line: 'Obsession writes them from your policies and the rules where you sell: it says it’s AI, gives the right refund window, gets you a person, stops after “No”. Change any check, then approve.',
     },
     {
-      title: 'Test customers ask, then wait',
+      title: 'AI customers ask, then wait',
       line: 'Each says it’s AI and who it works for, asks on every channel in the same minute, asks for a person, and watches its inbox for the email the bot promised. Every morning, and after every update.',
     },
     {
@@ -186,7 +186,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI. You set the rest.',
+    heading: 'Every AI customer says it’s AI. You set the rest.',
     items: [
       {
         q: 'How do we find out our chatbot is giving customers wrong answers?',
@@ -194,7 +194,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Do you need our logins or code?',
-        a: 'No. Support bot check’s test customers use your bot the way your customers do. A portal test account or a helpdesk export only if you give them.',
+        a: 'No. Support bot check’s AI customers use your bot the way your customers do. A portal test account or a helpdesk export only if you give them.',
       },
       {
         q: 'Will Support bot check try to trick our bot?',
@@ -202,7 +202,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Support bot check say it’s AI?',
-        a: 'Yes. Every Support bot check test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Support bot check AI customer says it’s an AI working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will our bot’s vendor bill us for the tests?',
@@ -234,14 +234,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Support bot check on a bot you run for yourself or a client: 3 test customers use it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Support bot check on a bot you run for yourself or a client: 3 AI customers use it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Hear what your support bot tells customers, before they tell you.',
-    sub: 'Your first check is free: 3 test customers ask your bot on 1 channel, and your report lands within 4 days. Your bot, or one you run for a client.',
+    sub: 'Your first check is free: 3 AI customers ask your bot on 1 channel, and your report lands within 4 days. Your bot, or one you run for a client.',
     capture: {
       kind: 'verify',
       source: 'recipe-support-bot-final',

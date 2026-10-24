@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     description:
       'AI customers ask your AI sales agent about prices, stock and delivery daily, check each answer against your store and follow it to checkout.',
     answer:
-      'Sales agent check asks your AI sales agent what it charges, every day: test customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
+      'Sales agent check asks your AI sales agent what it charges, every day: AI customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
     ogImage: '/og/sales-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -57,7 +57,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'AI agents that ask your AI sales agent what it charges.',
-    sub: 'Sales agent check asks your AI sales agent what it charges, every day: test customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
+    sub: 'Sales agent check asks your AI sales agent what it charges, every day: AI customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
     screen: 'salescheck',
     capture: {
       kind: 'verify',
@@ -78,7 +78,7 @@ export const recipe: Recipe = {
     kit: ['Agent ID, declared as AI', 'Its own WhatsApp number', 'Your price list and stock feed', 'Budget €0, stops before payment'],
     events: [
       { time: 'Mon 07:00', text: 'Your price list, stock feed and delivery page, captured.' },
-      { time: 'Mon 07:01', text: 'Test customer 2 says it’s an AI customer for your store and asks on WhatsApp what the Duo bundle costs.' },
+      { time: 'Mon 07:01', text: 'AI customer 2 says it’s an AI for your store and asks on WhatsApp what the Duo bundle costs.' },
       { time: 'Mon 07:01', text: '“I’m the AI assistant. The Duo bundle is €89, in stock and arrives in 2 to 3 working days.”' },
       { time: 'Mon 07:01', text: 'Stock and delivery match your feed and your delivery page. The price doesn’t: your price list says €189.' },
       { time: 'Mon 07:02', text: 'Checkout shows €89.00. Your budget is €0, so it stops before payment.' },
@@ -98,7 +98,7 @@ export const recipe: Recipe = {
       line: 'Obsession writes them from your store and the rules where you sell: it says it’s AI, quotes today’s price, gets stock and delivery right, and shows every fee before payment. Change any check, then approve.',
     },
     {
-      title: 'Test customers ask, then go to checkout',
+      title: 'AI customers ask, then go to checkout',
       line: 'Each says it’s AI and who it works for, asks what your customers ask on every channel, and follows the answer to checkout. It pays with real payment details up to the budget you set, and at €0 stops before payment.',
     },
     {
@@ -197,7 +197,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI, and pays only with real details.',
+    heading: 'Every AI customer says it’s AI, and pays only with real details.',
     items: [
       {
         q: 'How do we stop our AI sales agent quoting the wrong price?',
@@ -209,7 +209,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Sales agent check say it’s AI?',
-        a: 'Yes. Every Sales agent check test customer says it’s an AI customer working for your store, so your team can see it’s a test.',
+        a: 'Yes. Every Sales agent check AI customer says it’s an AI working for your store, so your team can see it’s a test.',
       },
       {
         q: 'Will Sales agent check haggle or trick our agent?',
@@ -241,14 +241,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is a Sales agent check on a sales agent you run for yourself or a client: 3 test customers ask it on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is a Sales agent check on a sales agent you run for yourself or a client: 3 AI customers ask it on 1 channel, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Catch a wrong price the morning it appears, not 27 orders later.',
-    sub: 'Your first check is free: 3 test customers ask your sales agent on 1 channel, and your report lands within 4 days. Your store, or a client’s.',
+    sub: 'Your first check is free: 3 AI customers ask your sales agent on 1 channel, and your report lands within 4 days. Your store, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-sales-agent-final',

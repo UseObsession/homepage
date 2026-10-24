@@ -95,7 +95,7 @@ export const recipe: Recipe = {
       line: 'Obsession writes them from the rules where you sell: an AI notice in the first message, a truthful answer when asked, a person within the time you set. Change any check, then approve.',
     },
     {
-      title: 'A test customer asks every morning',
+      title: 'An AI customer asks every morning',
       line: 'It says it’s AI and who it works for, keeps the first line on every channel, asks if it’s talking to a person, and times the wait for one.',
     },
     {
@@ -194,7 +194,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test customer says it’s AI, and checks that yours does too.',
+    heading: 'Every AI customer says it’s AI, and checks that yours does too.',
     items: [
       {
         q: 'How do we test whether our chatbot says it’s AI?',
@@ -213,12 +213,12 @@ export const recipe: Recipe = {
         a: 'AI disclosure check covers site chat, phone, email, text and your portal: wherever your AI agents talk to customers.',
       },
       {
-        q: 'Does the test customer say it’s AI?',
-        a: 'Yes. The AI disclosure check test customer says it’s an AI customer working for your company, so your team can see it’s a test.',
+        q: 'Does the AI customer say it’s AI?',
+        a: 'Yes. The AI disclosure check AI customer says it’s an AI working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Are test calls recorded?',
-        a: 'Yes. The AI disclosure check test customer says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
+        a: 'Yes. The AI disclosure check AI customer says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
       },
       {
         q: 'Will AI disclosure check skew our wait times?',
@@ -238,14 +238,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free AI disclosure check sends 3 test customers to 1 channel of your AI agent, or a client’s, to ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
+        a: 'The free AI disclosure check sends 3 AI customers to 1 channel of your AI agent, or a client’s, to ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Keep a dated proof that your AI says it’s AI.',
-    sub: 'Your first check is free: 3 test customers use 1 channel, ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
+    sub: 'Your first check is free: 3 AI customers use 1 channel, ask if they’re talking to a person and time the wait for one. Your report lands within 4 days.',
     capture: {
       kind: 'verify',
       source: 'recipe-disclosure-final',

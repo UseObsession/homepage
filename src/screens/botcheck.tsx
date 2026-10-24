@@ -5,7 +5,7 @@ import { PartnerWord } from '../components/PartnerMark'
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function BotcheckScreen() {
   return (
-    <div className="il appx-il app-botcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="The Support bot check for Your company: at 07:00 Test customer 2, declared as AI, asks the support bot the same questions on chat, email and the portal, and 20 checks tick in channel by channel. 18 pass and 2 need you. On chat the bot says 30 days when your policy says 14, at 07:02, and a fix is suggested for your OK. On the portal it promised a confirmation email at 07:03, and none arrived in 6 hours. Chat quotes 30 days. Your policy says 14. Caught at 07:02. Fix ready for your OK.">
+    <div className="il appx-il app-botcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="The Support bot check for Your company: at 07:00 AI customer 2 asks the support bot the same questions on chat, email and the portal, and 20 checks tick in channel by channel. 18 pass and 2 need you. On chat the bot says 30 days when your policy says 14, at 07:02, and a fix is suggested for your OK. On the portal it promised a confirmation email at 07:03, and none arrived in 6 hours. Chat quotes 30 days. Your policy says 14. Caught at 07:02. Fix ready for your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Support bot check</span>
@@ -37,7 +37,7 @@ export function BotcheckScreen() {
           </header>
           <div className="bk-wrap">
             <section className="bk-g ax-fade" style={{ '--d': '.1s' }}>
-              <p className="bk-who"><span className="bk-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span><span>Test customer 2 · AI · for Your company</span></p>
+              <p className="bk-who"><span className="bk-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span><span>AI customer 2 · for Your company</span></p>
               <div className="bk-row bk-th"><span className="bk-n">Today 07:00</span><span>Chat</span><span>Email</span><span>Portal</span></div>
               <div className="bk-rows">
                 <i className="bk-scan" aria-hidden="true" />
