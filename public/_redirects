@@ -62,6 +62,12 @@
 /resources/                   /resources                      301
 /use-cases/                   /use-cases                      301
 
+# Short links. /join is the waitlist form on the home page (its #join section), the address banners, profiles and
+# posts print (Seun, 25 Oct 2026). 302, not 301, so /join can become its own page later without browsers holding on
+# to the old answer. Cloudflare keeps the fragment in the destination, so the home page opens at the form.
+/join                         /#join                          302
+/join/                        /#join                          302
+
 # Patterns. A slashed old template address goes straight to its recipe in 1 hop, never through /recipes/SLUG/.
 /templates/:slug/             /recipes/:slug                  301
 /templates/*                  /recipes/:splat                 301
