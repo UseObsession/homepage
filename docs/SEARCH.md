@@ -97,6 +97,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/ai-customers-for-developers` | email API for AI agents, give your AI agent a phone number, MCP server for ecommerce |
 | `/blog/ai-customers-for-commercial-teams` | AI agents for marketing teams, AI for sales teams, AI for agencies |
 | `/blog/future-of-ai-customers` | machine customers, future of shopping with AI (the head term agentic commerce stays left alone, per Terms we leave alone) |
+| `/blog/agent-ready-website` | agent ready website, AI agent ready website, block AI agents, should you block AI agents, Amazon block AI agents, Cloudflare block AI agents, Meta Muse AI agent (as a business question), AI agent traffic, AI shopping agent verification (agentic commerce stays with `/blog/agentic-commerce-for-merchants`; AI agent readiness checklist is left alone, its results mean deploying agents) |
 | `/blog/ai-customers-for-ecommerce-brands` | AI agents for ecommerce, AI for Shopify store, Shopify website monitoring, Shopify flow not working |
 | `/blog/ai-customers-for-retention-agencies` | Klaviyo agency AI, AI agent for Klaviyo, retention marketing agency, email marketing reporting template |
 | `/blog/ai-customers-for-cro-agencies` | landing page monitoring, CRO tools for Shopify, AI tools for digital marketing agency |
