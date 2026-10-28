@@ -70,7 +70,7 @@ export const post: BlogPost = {
   description:
     'AI agents for ecommerce that shop as customers: what AI customers check in a store, what a silent flow costs before Black Friday, and the options compared.',
   answer:
-    'Ecommerce brands need AI customers, the AI agents for ecommerce that shop as customers, because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An AI customer becomes a real customer of a store and its rivals, asks AI assistants what shoppers ask, and keeps what it receives as evidence, every week and after every change. Most other AI agents for ecommerce work for the store, answering shoppers or helping run the admin.',
+    'Ecommerce brands need AI customers, the AI agents for ecommerce that shop as customers, because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An AI customer becomes a real customer of a store and its rivals, asks AI assistants what shoppers ask, and keeps what it receives as evidence, every week and after every change. Most other AI agents for ecommerce answer shoppers or run admin for the store, while Obsession’s AI customers shop it as customers and keep every email, code and price as proof.',
   primaryKeyword: 'ai agents for ecommerce',
   keywords: [
     'ai agents for ecommerce business',
@@ -84,7 +84,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 12,
   authors: [
@@ -347,7 +347,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes the first AI customers that work for you: they sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
+      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a store, it shows what a real customer gets after the sign up, the click and the checkout, at the store and at its rivals. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -384,7 +384,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Shopify store monitoring options, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026. If your store needs to see what a real customer receives after the sign up, the code and the basket, at your store and at your rivals, use Obsession. For uptime alone a scripted monitor is enough, and a store that rarely changes can check by hand.',
     },
     {
       kind: 'table',
@@ -445,9 +445,9 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Listings and AI answers](/recipes/listings-ai-answers)',
           'AI customers of your store and its rivals, every email, code and price kept as proof',
-          'Not listed\nFirst store check free',
+          'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Stops at bot walls and CAPTCHAs',
-          'Stores that change often, buy traffic or watch rivals',
+          'What a real customer gets after sign up, click and checkout, kept as proof',
         ],
       ],
     },

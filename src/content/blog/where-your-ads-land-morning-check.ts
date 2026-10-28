@@ -39,7 +39,7 @@ export const post: BlogPost = {
   description:
     'Final URL expansion and sold out products send paid clicks to pages that can’t sell. Check where every Google and Meta ad lands each morning in 10 minutes.',
   answer:
-    'To check where your ads land, list every live Google and Meta ad with its link each morning, open each link on your phone, and confirm the page loads, the product is in stock, the offer, price and code match the ad, and the tracking doesn’t break the page. If you run AI Max or Performance Max, also read the Landing pages report or the Expanded Final URL assets tab, and add URL exclusions for pages that shouldn’t take paid traffic.',
+    'To check where your ads land, list every live Google and Meta ad with its link each morning, open each link on your phone, and confirm the page loads, the product is in stock, the offer, price and code match the ad, and the tracking doesn’t break the page. If you run AI Max or Performance Max, also read the Landing pages report or the Expanded Final URL assets tab, and add URL exclusions for pages that shouldn’t take paid traffic. Obsession’s AI customers open every live ad’s page each morning as a real customer would and keep what each page showed, with its time, as proof.',
   primaryKeyword: 'final url expansion',
   keywords: [
     'final url expansion',
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 7,
   authors: [
@@ -296,7 +296,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For the ads and hours a check by hand can’t cover, Obsession’s Ad landing check opens every live ad’s page from its link on a phone and a desktop each morning, or more often in a sale, checks that the page loads, the offer and price match and the product is in stock, and drafts the fix (a pause or a new link) for your OK.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. For the ads and hours beyond a check by hand, use Obsession’s Ad landing check. It opens every live ad’s page from its link on a phone and a desktop each morning, or more often in a sale, checks that the page loads, the offer and price match and the product is in stock, and drafts the fix (a pause or a new link) for your OK.',
     },
     {
       kind: 'cta',
@@ -312,9 +312,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'After the ad, Obsession’s AI customers take the next steps at each client store: they sign up, leave a basket and stop at checkout, then watch every inbox for 48 hours and report what arrived and what didn’t. Agencies can have 5 client stores checked free.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      text: 'After the ad, Obsession’s AI customers take the next steps: they follow each brand’s live ad as a new customer, sign up through the pop up, take the code to checkout and send what happened within 4 days, with proof. Performance and CRO agencies can have 5 brands checked free.',
+      to: '/use-cases/funnel-qa-for-cro-agencies',
+      label: 'Check 5 brands free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

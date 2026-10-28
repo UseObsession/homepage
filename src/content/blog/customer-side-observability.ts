@@ -36,7 +36,7 @@ export const post: BlogPost = {
   metaTitle: 'Customer-side observability: what it is and how to build it',
   description:
     'Customer-side observability is seeing what a company does to its customers by being one. How it differs from RUM and synthetics, and how to build it.',
-  answer: `${CUSTOMER_SIDE_OBSERVABILITY.definition} AI customers are how it is done: AI agents that become real customers of a company, wait for what arrives and keep it as evidence.`,
+  answer: `${CUSTOMER_SIDE_OBSERVABILITY.definition} AI customers are how it is done: AI agents that become real customers of a company, wait for what arrives and keep it as evidence. Obsession’s AI customers do this today at any company you name and keep the email, price, page and AI answer as each arrived.`,
   primaryKeyword: 'customer-side observability',
   keywords: [
     'customer side observability',
@@ -50,7 +50,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 8,
   order: 5,
   authors: [
@@ -255,11 +255,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI agents need the same treatment. A support bot, a voice agent or an AI SDR can change its answer after a prompt edit, a new help article or a model update. Test customers asking the same questions every day, and within the hour of any update, show what customers are told, with the transcript. The method for a store’s chatbot is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy).',
+      text: 'AI agents need the same treatment. A support bot, a voice agent or an AI SDR can change its answer after a prompt edit, a new help article or a model update. AI customers asking the same questions every day, and within the hour of any update, show what customers are told, with the transcript. The method for a store’s chatbot is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy).',
     },
     {
       kind: 'cta',
-      text: 'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
+      text: 'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
       to: '/verify',
       label: 'Check your AI agents',
     },
@@ -267,7 +267,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'every-business', text: 'For every business: your rivals and your market' },
     {
       kind: 'p',
-      text: 'Customer-side observability works on any company, so the same practice covers your market. Every rival’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)).',
+      text: 'Customer-side observability works on any company, so the same practice covers your market. Every rival’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)). For all 3, and for your own company, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
     },
 
     { kind: 'h2', id: 'plan', text: 'A 30 day plan' },

@@ -62,7 +62,7 @@ export const post: BlogPost = {
   description:
     'A Shopify store audit in 2 halves: read your conversion funnel, GA4 and speed data, then test sign up, codes, checkout and emails as a new customer.',
   answer:
-    'A Shopify store audit has 2 halves: read your own data (Shopify’s conversion rate breakdown, GA4, session recordings, PageSpeed Insights, a crawler and Search Console) to find the step, device and page where visitors stop, then shop the store as a new customer on a phone to test the sign up, welcome code, basket, checkout, payment methods, discount codes and every email. When sales drop, find the step in the data first, then reproduce it as a customer on the same device.',
+    'A Shopify store audit has 2 halves: read your own data (Shopify’s conversion rate breakdown, GA4, session recordings, PageSpeed Insights, a crawler and Search Console) to find the step, device and page where visitors stop, then shop the store as a new customer on a phone to test the sign up, welcome code, basket, checkout, payment methods, discount codes and every email. When sales drop, find the step in the data first, then reproduce it as a customer on the same device. Obsession’s AI customers run the second half as real customers of the store after every release, trying every code at checkout and keeping every email exactly as it arrived.',
   primaryKeyword: 'shopify store audit',
   keywords: [
     'shopify store audit checklist',
@@ -78,7 +78,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 12,
   authors: [
@@ -281,11 +281,11 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A test by hand covers 1 inbox, 1 device and 1 moment. A theme publish, an app update or a discount edit can break a step the day after you test it, and [Shopify Status](' +
         STATUS +
-        ') notes that issues affecting a small share of stores may not appear there. Obsession’s [website audit](/recipes/website-audit) signs up as a fresh test customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh AI customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s first store mystery shop is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. The report comes within 4 days.',
+      text: 'Obsession’s first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. The report comes within 4 days.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -446,15 +446,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Delivery monitoring](/recipes/delivery-monitoring)',
           'AI customers sign up after every release or each morning, open every email and link, and try every code at checkout',
-          'Mystery shopper: first store free\nThe recipes: early access, no price listed',
-          'Sees only what its own test customers receive, and stops at a CAPTCHA',
-          'Stores that change often or run paid traffic, and agencies',
+          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'Sees what its own AI customers receive, and stops at a CAPTCHA',
+          'What a customer gets after every change, for stores that change often or run paid traffic',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
+      text: 'If your store changes often or runs paid traffic, use Obsession to shop it as a new customer after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -472,7 +472,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s website audit signs up as a new test customer after every release or every morning, tries every welcome and launch code at checkout, and sends each break to Slack with the step, the screenshot and the time.',
+      text: 'Obsession’s website audit signs up as a new AI customer after every release or every morning, tries every welcome and launch code at checkout, and sends each break to Slack with the step, the screenshot and the time. It runs now, on credit-based plans like Claude’s.',
       to: '/recipes/website-audit',
       label: 'See the website audit',
     },
@@ -487,7 +487,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do I audit my Shopify store for free?',
-          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order.',
+          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. Obsession’s first store check is free as well: 4 AI customers sign up, use the welcome code, leave a basket and wait 48 hours.',
         },
         {
           q: 'Why is my Shopify store not getting sales?',

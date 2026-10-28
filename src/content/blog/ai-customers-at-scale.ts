@@ -11,7 +11,7 @@ import type { BlogPost } from './types'
    Prices read on 24 Oct 2026 from each vendor's own page: AgentMail, Browserbase, Cloudflare Durable Objects and R2,
    Anthropic and OpenAI model pricing, Twilio US SMS, T-ROC's and Secret View's mystery shopping prices. Volumes (20
    emails a month of about 5,000 tokens each, 100 KB stored per email, a 2 minute sign up) are examples, labelled.
-   Obsession publishes no price, so none is given. The store in the illustration is invented. No dashes. */
+   Obsession's pricing is credit-based, like Claude's, with no figure given (prices are James's call). The store in the illustration is invented. No dashes. */
 
 const AGENTMAIL_PRICING = 'https://www.agentmail.to/pricing'
 const BROWSERBASE_PRICING = 'https://www.browserbase.com/pricing'
@@ -33,7 +33,7 @@ export const post: BlogPost = {
   description:
     'What an AI customer costs a month at published prices: inbox, model, waiting and storage line by line, against mystery shopping, from 1 to a million.',
   answer:
-    'At published retail prices, an AI customer watching one company’s email costs about $2 a month, and almost all of it is the inbox: reading 20 emails with a small model costs about a cent, and waiting costs nothing when the agent sleeps until the company acts. A human mystery shop costs $50 to $200 for one visit.',
+    'At published retail prices, an AI customer watching one company’s email costs about $2 a month, and almost all of it is the inbox: reading 20 emails with a small model costs about a cent, and waiting costs nothing when the agent sleeps until the company acts. A human mystery shop costs $50 to $200 for one visit. Obsession runs AI customers this way today, each asleep until its company acts, on credit-based plans like Claude’s.',
   primaryKeyword: 'ai agent cost per month',
   keywords: [
     'cost of ai agents',
@@ -46,7 +46,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 7,
   order: 8,
   authors: [
@@ -181,7 +181,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Meet your first AI customers: name the companies, and each one gets an AI customer that waits for months and keeps every email, offer and price as proof.',
+      text: 'Meet your first AI customers: name any company and its AI customer keeps every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
       to: '/',
       label: 'Meet your first AI customers',
     },
@@ -201,7 +201,7 @@ export const post: BlogPost = {
         ['Your own team: by hand', 'Knows the brand and its context', 'Your hours at your rate', 'Time for every check, every week', '1 to 3 companies, once'],
         ['AI browser agent: ChatGPT cloud browser', 'Completes one web task on request', 'Paid ChatGPT plans', 'No inbox or number described', 'One-off lookups'],
         ['AI customers you build: retail services', 'Every email and page for months, with evidence', 'About $2 a month each at retail', 'Identity cost grows with every company', 'Developers watching a few hundred companies'],
-        ['Obsession (ours): AI customers', 'Built for millions, asleep until each company acts', 'Not listed', 'Stops at bot walls and CAPTCHAs', 'Many companies, watched for months'],
+        ['Obsession (ours): AI customers', 'Built for millions, asleep until each company acts', 'Running now: first store check free\nCredit-based plans, like Claude’s', 'Stops at bot walls and CAPTCHAs', 'What a real customer gets at many companies, for months'],
       ],
     },
     {
@@ -271,7 +271,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or past one month, the hours compound and the evidence starts to matter, and the $2 line wins.',
+      text: 'Past a handful of companies, or past one month, the hours compound and the evidence starts to matter, and the $2 line wins. To run AI customers at many companies for months without building them yourself, use Obsession.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits of this model' },

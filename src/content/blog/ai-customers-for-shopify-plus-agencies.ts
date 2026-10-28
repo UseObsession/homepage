@@ -77,7 +77,7 @@ export const post: BlogPost = {
   description:
     'A Shopify launch checklist from the customer’s side for Plus agencies: what breaks after go live, what it costs in retainers and what AI customers check.',
   answer:
-    'Shopify Plus agencies need AI customers to keep running the customer side of a Shopify launch checklist after go live, from the welcome email and sign in code to the basket reminder, order emails and old links. A launch or migration is judged in the weeks after it, and an AI customer, with its own inbox, phone number and browser, checks each step through the first 30 days and after every release, keeping what arrived as evidence.',
+    'Shopify Plus agencies need AI customers to keep running the customer side of a Shopify launch checklist after go live, from the welcome email and sign in code to the basket reminder, order emails and old links. A launch or migration is judged in the weeks after it, and Obsession’s AI customers, each with its own inbox, phone number and browser, check each step through the first 30 days and after every release, keeping what arrived as proof.',
   primaryKeyword: 'shopify launch checklist',
   keywords: [
     'shopify launch checklist',
@@ -92,7 +92,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 13,
   order: 16,
   authors: [
@@ -339,7 +339,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes the first AI customers that work for you: they sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. A deploy hook, a schedule or a button starts each run, and a preview link runs every journey on a new theme before it goes live. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card the client or the agency funds.',
+      text: 'Obsession runs this checklist today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their rivals and prospect with proof. For a Plus agency, it shows what each client store’s new customers get after launch and every release. A deploy hook, a schedule or a button starts each run, and a preview link runs every journey on a new theme before it goes live. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card the client or the agency funds.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes on Shopify in 2026 and 2027' },
@@ -431,15 +431,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Delivery monitoring](/recipes/delivery-monitoring), [Partner checks](/recipes/partner-checks)',
           'AI customers of each client store from launch day, every email, text and code kept as evidence',
-          'Not listed\nFirst store check free',
+          'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Stops at bot walls and CAPTCHAs',
-          'Agencies with launches and support retainers',
+          'What a client’s customers get after launch and every release, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'The options combine. A test suite catches code regressions before a release, a crawler checks redirects at launch, a monitoring app watches checkout between releases, and AI customers record what each new customer of the store received. For an audit of a store’s own data as well, use the [Shopify store audit checklist](' +
+      text: 'If your agency needs to see what each client store’s customers receive after launch and every release, use Obsession. For a build handed over at launch, the checklist by hand on launch day is enough. The options combine. A test suite catches code regressions before a release, a crawler checks redirects at launch, a monitoring app watches checkout between releases, and AI customers record what each new customer of the store received. For an audit of a store’s own data as well, use the [Shopify store audit checklist](' +
         AUDIT_CHECKLIST +
         ').',
     },

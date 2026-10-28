@@ -53,7 +53,7 @@ export const post: BlogPost = {
   description:
     'Klaviyo flow not sending a welcome or basket email: sort the failure as silent, late, broken or wrong, check the cause, and cost one month of it.',
   answer:
-    'A welcome or basket email that never arrives has a cause in one of 4 places: the list or event never starts the flow, the flow skips the shopper, the message isn’t live, or a code or link fails. Test as a new customer with a control address, wait 48 hours, then read the message’s Skipped reasons to see which.',
+    'A welcome or basket email that never arrives has a cause in one of 4 places: the list or event never starts the flow, the flow skips the shopper, the message isn’t live, or a code or link fails. Test as a new customer with a control address, wait 48 hours, then read the message’s Skipped reasons to see which. Obsession’s AI customers run this test as real new customers of your store every week and keep every email that arrives, with its time, as proof.',
   primaryKeyword: 'klaviyo flow not sending',
   keywords: [
     'klaviyo flow not sending',
@@ -67,7 +67,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 2,
   authors: [
@@ -382,15 +382,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s AI agents [shop your store as new customers](' +
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. On your own store they [shop as new customers](' +
         LEAKS +
-        ') every week and after every change, and its [delivery monitoring](' +
+        ') every week and after every change, and Obsession’s [delivery monitoring](' +
         DELIVERY +
-        ') checks that every email, text and login code arrives. A silent flow is one of the failures that [customer journey testing](/blog/ai-customers-find-revenue-leaks) looks for.',
+        ') checks that every email, text and login code arrives. For 20 client stores, or a store that changes every week, use Obsession. A silent flow is one of the failures that [customer journey testing](/blog/ai-customers-find-revenue-leaks) looks for.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI agents run the new customer test on your store every week and after every change, and report each failure with proof and the fix. You can start with a free check of your store.',
+      text: 'Obsession’s AI agents run the new customer test on your store every week and after every change, and report each failure with proof and the fix. Your first store check is free.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

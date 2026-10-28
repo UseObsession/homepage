@@ -53,7 +53,7 @@ export const post: BlogPost = {
   description:
     'Machine customers and agentic commerce on 24 October 2026: what is live, announced and forecast, how companies answer with agents, and what to do now.',
   answer:
-    'Machine customers are nonhuman economic actors that obtain goods or services in exchange for payment, in a definition CMSWire attributes to Gartner, and in commerce they include AI agents that search, buy and contact companies for people. On 24 October 2026 agents can already shop through Shopify, Google and ChatGPT, Visa and Mastercard are deploying payments for agents, and companies answer with AI agents of their own. AI customers stand where those agents stand: they become customers of a company and keep what it sends and shows them as evidence.',
+    'Machine customers are nonhuman economic actors that obtain goods or services in exchange for payment, in a definition CMSWire attributes to Gartner, and in commerce they include AI agents that search, buy and contact companies for people. On 24 October 2026 agents can already shop through Shopify, Google and ChatGPT, Visa and Mastercard are deploying payments for agents, and companies answer with AI agents of their own. Obsession’s AI customers stand where those agents stand: they become customers of any company you name and keep what it sends and shows them as evidence.',
   primaryKeyword: 'machine customers',
   keywords: [
     'future of shopping ai',
@@ -67,7 +67,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 10,
   order: 11,
   authors: [
@@ -317,7 +317,7 @@ export const post: BlogPost = {
         '**Put a number on your AI channel.** Count last month’s sessions from AI assistants and the orders placed inside AI checkouts, with the method in [agentic commerce for merchants](/blog/agentic-commerce-for-merchants). Revenue exposed to a wrong answer is your AI revenue a day × the days until you would notice. With invented figures, £350 a day for 21 days is £7,350 of orders placed while an answer was wrong.',
         '**Decide your channels.** In Shopify, under Sales channels, then Agentic, check which AI channels list your products and where each order is placed.',
         '**Write a rule for agent traffic.** Decide which agents may browse, build a basket and check out, and set it in your bot management. Cloudflare’s Verified bots and Shopify’s higher limits for signed traffic are 2 controls that exist today.',
-        '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy).',
+        '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy). To run it every day, use Obsession.',
         '**Make your agent say it is an AI** and hand over to a person when asked. In the EU, Article 50 transparency duties apply from 2 August 2026.',
         '**Keep what your agent said,** with the time of each turn, so a dispute about a promise can be settled from the record.',
         '**Ask the AI assistants about your store** and fix each wrong answer at its source, with the method in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
@@ -325,7 +325,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.',
+      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
       to: '/',
       label: 'Meet your first AI customers',
     },

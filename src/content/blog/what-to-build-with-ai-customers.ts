@@ -43,7 +43,7 @@ export const post: BlogPost = {
   description:
     'What to build with AI agents that are customers of other companies: 10 production builds, the calls each makes, the facts it returns and where they land.',
   answer:
-    'Developers can build 10 kinds of production system on AI customers, agents that stay customers of other companies, from sign up and login code tests on every deploy to competitor feeds, prospect facts in Clay and AI disclosure checks. Each calls a few of 5 verbs, lookup, facts, evidence, become_customer and notify, and sends dated facts with their evidence to a test run, a webhook, Slack, a CRM or Clay.',
+    'Developers can build 10 kinds of production system on AI customers, agents that stay customers of other companies, from sign up and login code tests on every deploy to competitor feeds, prospect facts in Clay and AI disclosure checks. Each calls a few of 5 verbs, lookup, facts, evidence, become_customer and notify, and sends dated facts with their evidence to a test run, a webhook, Slack, a CRM or Clay. Obsession’s AI customers already do this work as real customers of companies, keeping every email, page and transcript as proof.',
   primaryKeyword: 'what to build with ai agents',
   keywords: [
     'what to build with ai agents',
@@ -57,7 +57,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 10,
   order: 20,
   authors: [
@@ -111,7 +111,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer system exposes this as a few calls. Obsession’s [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
+      text: 'An AI customer system exposes this as a few calls. Obsession runs one today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. Its [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
     },
     {
       kind: 'list',
@@ -316,15 +316,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): 5 verbs over MCP, an API and an SDK',
           'AI customers at any company\nShared history from day one',
-          'Not listed\nPer call or per company watched',
-          'Keys open from a waitlist, a team at a time\nStops at bot walls',
-          'Products and pipelines that watch many companies',
+          'Running now for store checks\nAPI keys go to teams one at a time\nCredit-based plans, like Claude’s',
+          'Stops at bot walls and CAPTCHAs',
+          'Builds that must stay a customer of many companies, with proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code. Archives suit browsing rivals’ campaigns. Builds 3, 4, 5 and 9 need a customer at many companies for months, and the waiting and evidence they rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
+      text: 'If a build has to stay a customer of many companies for months, as builds 3, 4, 5 and 9 do, use Obsession. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing rivals’ campaigns. The waiting and evidence the longer builds rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -351,7 +351,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. Keys open from the waitlist, a team at a time.',
+      text: 'Obsession makes the first AI customers that work for you: long lived agents with their own inbox, phone number and browser. They run today behind 5 verbs over MCP, an API and an SDK.',
       to: '/developers',
       label: 'See the API and MCP',
     },

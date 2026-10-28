@@ -68,7 +68,7 @@ export const post: BlogPost = {
   description:
     'An email marketing audit template in 3 layers: the account, deliverability and what a new subscriber receives, each check with its pass mark and priority.',
   answer:
-    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 rivals). Give every failed check a priority and estimate its cost from the client’s own flow report.',
+    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 rivals). Give every failed check a priority and estimate its cost from the client’s own flow report. Obsession’s AI customers check the customer’s view as real subscribers of the brand and its rivals, keeping every email with the time it arrived.',
   primaryKeyword: 'email marketing audit',
   keywords: [
     'email marketing audit checklist',
@@ -83,7 +83,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 14,
   authors: [
@@ -385,11 +385,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 rivals each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession’s [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI agent to each rival’s emails and texts.',
+      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 rivals each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession runs layer 3 today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI customer to each rival’s emails and texts.',
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 stores free, prospects or clients (a client’s with their OK): an AI agent signs up as each store’s new customer, opts in to texts and leaves a basket, and you get what happened within 4 days, with proof.',
+      text: 'Obsession checks 5 stores free, prospects or clients (a client’s with their OK): an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, and you get what happened within 4 days, with proof.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },
@@ -507,16 +507,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
-          'AI customers with real inboxes and numbers live the first 14 days and flag anything that never comes\nAn AI agent logs every rival email, text, offer and code on 1 timeline',
-          '5 stores checked free, results within 4 days\nNo price listed',
-          'Only sees what its own test customers receive',
-          'Layer 3 across many clients and rivals, every week',
+          'AI customers with real inboxes and numbers live the first 14 days and flag anything that never comes\nAn AI customer logs every rival email, text, offer and code on 1 timeline',
+          'Running now: 5 stores checked free\nCredit-based plans, like Claude’s',
+          'Sees what its own AI customers receive',
+          'What a real subscriber gets from each client and rival, every week, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
+      text: 'For layer 3 across many clients and their rivals every week, use Obsession. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -536,7 +536,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days and flag anything that never comes.',
+      text: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days and flag anything that never comes. It runs now, on credit-based plans like Claude’s.',
       to: '/recipes/delivery-monitoring',
       label: 'See delivery monitoring',
     },

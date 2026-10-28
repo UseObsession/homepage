@@ -36,7 +36,7 @@ export const post: BlogPost = {
   description:
     'How to hire an AI agent as a customer: the jobs AI customers do, how they compare with mystery shoppers, audits and tools, a hiring brief and the payback.',
   answer:
-    'Hire AI customers for a job only a customer can do, such as checking that a welcome code arrives and works at checkout, and brief them with the companies, a pass mark for each check, how often to run and where results go. They suit jobs that need any company, weeks of waiting and the original evidence. A human mystery shopper suits service in person, and a monthly check by hand suits a business that rarely changes.',
+    'Hire AI customers for a job only a customer can do, such as checking that a welcome code arrives and works at checkout, and brief them with the companies, a pass mark for each check, how often to run and where results go. A human mystery shopper suits service in person, and a monthly check by hand suits a business that rarely changes. For jobs that need any company, weeks of waiting and the original evidence, use Obsession’s AI customers.',
   primaryKeyword: 'hire ai agent',
   keywords: [
     'hire ai customers',
@@ -50,7 +50,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 6,
   authors: [
@@ -115,7 +115,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI customers suit jobs where the answers are any company, weeks or months, and the original. Where the answers are your own site, 1 moment and an opinion, another option suits the job better.',
+      text: 'If the answers are any company, weeks or months, and the original, use Obsession. Where the answers are your own site, 1 moment and an opinion, another option suits the job better.',
     },
 
     { kind: 'h2', id: 'jobs', text: 'The jobs to hire AI customers for' },
@@ -225,9 +225,9 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence)',
           'AI customers stay at any company for months and keep every email, offer and price',
-          'Not listed\nFirst store check free',
+          'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Stops at bot walls and CAPTCHAs',
-          'Many companies, watched for months',
+          'What a real customer gets at any company, for months',
         ],
       ],
     },
@@ -280,7 +280,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes the first AI customers that work for you: they sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.',
+      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
     },
     {
       kind: 'cta',

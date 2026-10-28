@@ -33,7 +33,7 @@ export const post: BlogPost = {
   description:
     'How AI customers work: their own inbox, number and browser, a public sign up, sleep until the company acts, and evidence kept as it arrived, at any scale.',
   answer:
-    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system can hold millions of AI customers at once.',
+    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system can hold millions of AI customers at once. Obsession runs these 6 steps today, with AI customers that sign up to any company you name and keep every email, offer and price it sends.',
   primaryKeyword: 'how ai customers work',
   keywords: [
     'can ai agents sign up',
@@ -47,7 +47,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 8,
   order: 3,
   authors: [
@@ -166,7 +166,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The count of AI customers is then set by sign ups and storage; model time barely moves it. Obsession can run millions of AI customers this way, and a company another customer already watches starts with its history on day one.',
+      text: 'The count of AI customers is then set by sign ups and storage; model time barely moves it. Obsession runs AI customers this way at any company you name, so you can find revenue leaks, watch rivals and prospect with proof. Built like this, it can run millions of them, and a company another customer already watches starts with its history on day one.',
     },
 
     { kind: 'h2', id: 'wake', text: 'Waking: what it checks' },

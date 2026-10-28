@@ -45,7 +45,7 @@ export const post: BlogPost = {
   description:
     'Retention agency client reporting a client can check: a weekly log that each flow reached a new customer, the hours it takes, and what it can’t prove.',
   answer:
-    'To show a client their email flows ran, send a weekly flow log: for each flow (welcome, basket, checkout, post purchase, back in stock), what you did as a new customer, the email that arrived with its time and Gmail tab, a status of fired, late, did not fire or not due, and the dates any fix was found, approved, live and checked again. It proves delivery only, and revenue stays in the email platform’s own report.',
+    'To show a client their email flows ran, send a weekly flow log: for each flow (welcome, basket, checkout, post purchase, back in stock), what you did as a new customer, the email that arrived with its time and Gmail tab, a status of fired, late, did not fire or not due, and the dates any fix was found, approved, live and checked again. It proves delivery only, and revenue stays in the email platform’s own report. Obsession’s AI customers sign up, leave a basket and stop at checkout at each client store every week as real new customers, and keep every email as it arrived for the log.',
   primaryKeyword: 'retention agency client reporting',
   keywords: [
     'retention agency client reporting',
@@ -60,7 +60,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 8,
   authors: [
@@ -299,9 +299,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'When the checks take too long by hand, [Obsession’s AI customers](' +
+      text: 'Obsession makes [AI customers](' +
         USECASE +
-        ') can do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
+        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. When the checks take too long by hand, use Obsession. Its AI customers do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',

@@ -57,7 +57,7 @@ export const post: BlogPost = {
   description:
     'Competitor email tracking tools compared on what they collect (campaigns, flows, texts), brand choice, history and price, as listed in October 2026.',
   answer:
-    'Competitor email tracking tools differ in what they collect: galleries such as Really Good Emails and Email Love hold selected designs, archives such as Milled, MailCharts and BadRep hold emails from the brands they cover, Panoramata adds texts, ads and landing pages, and trackers such as Owletter and SendView follow the rivals you name. Choose by the job, and for 1 to 3 rivals a spare inbox for each and a sheet are enough.',
+    'Competitor email tracking tools differ in what they collect: galleries such as Really Good Emails and Email Love hold selected designs, archives such as Milled, MailCharts and BadRep hold emails from the brands they cover, Panoramata adds texts, ads and landing pages, and trackers such as Owletter and SendView follow the rivals you name. Choose by the job, and for 1 to 3 rivals a spare inbox for each and a sheet are enough. Obsession’s AI customers sign up to any rival you name as real subscribers and keep every email it sends, from the welcome series on, exactly as it arrived.',
   primaryKeyword: 'competitor email tracking',
   keywords: [
     'competitor email tracking tools',
@@ -72,7 +72,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 13,
   order: 18,
   authors: [
@@ -424,10 +424,10 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
-          'An AI agent subscribes to each rival’s emails and texts and logs every message, offer and code on 1 timeline',
-          'No price listed, early access by waitlist',
-          'History from the minute its agent first subscribed',
-          'Many rivals, emails and texts, continuously',
+          'An AI customer subscribes to each rival’s emails and texts and logs every message, offer and code on 1 timeline',
+          'Running now: first store check free\nAgencies: 5 stores checked free\nCredit-based plans, like Claude’s',
+          'History from the minute its AI customer first subscribed',
+          'Every email and text a new subscriber gets from any rival, kept as proof',
         ],
       ],
     },
@@ -504,19 +504,20 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 to 3 rivals, this method needs no paid tool. At 20 rivals it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a rival, and it still can’t recover older mail. Obsession’s [email and SMS tracking](/recipes/email-sms-tracking) is built for that case: it subscribes an AI agent to each rival’s emails and texts and logs every message, offer and code on 1 timeline, with proof.',
+      text: 'For 1 to 3 rivals, this method needs no paid tool. At 20 rivals it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a rival, and it still can’t recover older mail. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [email and SMS tracking](/recipes/email-sms-tracking) gives each rival an AI customer with its own inbox and texting number, and logs every message, offer and code on 1 timeline.',
     },
     {
       kind: 'cta',
-      text: 'Email and SMS tracking gives each rival an AI agent with its own inbox and texting number, and keeps every message as it arrived. Join the waitlist and name up to 5 companies to watch first.',
-      to: '/recipes/email-sms-tracking',
-      label: 'See email and SMS tracking',
+      text: 'Name the rivals to watch, and an AI customer joins each one’s emails and texts and keeps every message as it arrived. It runs now, on credit-based plans like Claude’s.',
+      to: '/',
+      label: 'Meet your first AI customers',
     },
 
     { kind: 'h2', id: 'by-job', text: 'Which tool fits which job' },
     {
       kind: 'list',
       items: [
+        '**Every email and text a rival sends a new subscriber, kept as proof:** use Obsession. Its AI customers sign up to any rival you name and keep each message as it arrived, from the welcome series on.',
         '**Design and copy ideas:** Really Good Emails or Email Love, both free.',
         '**What a category sent around a holiday:** Milled, with its holiday filters, or Panoramata.',
         '**A rival’s welcome and basket emails:** SendView or the method by hand, where you start each flow, or BadRep, MailCharts and Panoramata for rivals they already cover.',
@@ -546,7 +547,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 stores free, a client’s with their OK: an AI agent signs up as each store’s new customer, opts in to texts and leaves a basket, and you see what happened, with proof.',
+      text: 'Obsession checks 5 stores free, a client’s with their OK: an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, and you see what happened, with proof.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },
@@ -561,7 +562,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is the best competitor email tracking tool?',
-          a: 'It depends on the job: Milled for campaign history across many brands, Panoramata for emails, texts and ads in 1 place, SendView or Owletter for a fixed list of rivals you name, and Really Good Emails or Email Love for design examples.',
+          a: 'It depends on the job: Milled for campaign history across many brands, Panoramata for emails, texts and ads in 1 place, SendView or Owletter for a fixed list of rivals you name, and Really Good Emails or Email Love for design examples. Obsession keeps every email and text a new subscriber gets from any rival you name, each as it arrived.',
         },
         {
           q: 'Is there a free competitor email monitoring tool?',

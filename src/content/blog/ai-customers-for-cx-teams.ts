@@ -62,7 +62,7 @@ export const post: BlogPost = {
   description:
     'AI customer service quality assurance for CX teams: what QA inside the help desk misses, what a wrong answer costs, and how AI customers check each day.',
   answer:
-    'CX teams need AI customers because a company answers for its AI agent as it would for an employee, and the agent’s answers can change after any prompt edit, help article update or vendor release. AI customer service quality assurance inside the help desk scores conversations customers have already had. AI customers ask the agent what customers ask, on chat, email and phone, every day and within the hour of each update, and keep every transcript as evidence.',
+    'CX teams need AI customers because a company answers for its AI agent as it would for an employee, and the agent’s answers can change after any prompt edit, help article update or vendor release. AI customer service quality assurance inside the help desk scores conversations customers have already had. Obsession’s AI customers ask the agent what customers ask, on chat, email and phone, every day and within the hour of each update, and keep every transcript as proof.',
   primaryKeyword: 'ai customer service quality assurance',
   keywords: [
     'ai customer service quality assurance',
@@ -77,7 +77,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 15,
   authors: [
@@ -307,7 +307,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s AI customers call, chat and email a company’s AI agents as its customers do, every day, and check they answer right, hand over and say they’re AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
+      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a CX team, its AI customers call, chat and email the company’s AI agents every day, as its customers do. They check each agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
         BOT_TEST +
         ') gives the questions and a scoring sheet.',
     },
@@ -408,15 +408,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Drift watch](/recipes/drift-watch), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check), [Vendor agent check](/recipes/vendor-agent-check)',
           'AI customers ask on live channels daily and after updates, and keep each answer',
-          'No price listed\nFirst AI agent check free',
+          'Running now: first AI agent check free\nCredit-based plans, like Claude’s',
           'Sees what its own AI customers are told',
-          'AI agents on several channels that change often',
+          'What customers are told on every channel, after every update, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'A team running an AI agent at volume can combine 2 of these. A QA tool scores every real conversation, including questions no test anticipated. A customer-side check shows what the agent says now, on every channel, and what follows the conversation.',
+      text: 'If your team needs to know what its AI agents tell customers on every channel, every day and after each update, use Obsession. A team running an AI agent at volume can combine 2 of these. A QA tool scores every real conversation, including questions no test anticipated. A customer-side check shows what the agent says now, on every channel, and what follows the conversation.',
     },
     {
       kind: 'p',

@@ -15,8 +15,8 @@ import { AI_CUSTOMER } from '../glossary'
    replacement by selector), Shopify's agents docs (UCP MCP servers), Cloudflare's Verified bots docs, and the library
    in _research/seo/plan/ai-customers/facts.json (AgentMail and Browserbase docs, Mailchimp double opt in, Cloudflare
    Web Bot Auth, Shopify Storefront API, Anthropic's Haiku 5.5 price, MCP, Google Ads invalid clicks).
-   "Customer agent" appears only as the unit an API returns. The MCP address is written without its scheme, because
-   the build treats any full outside URL in the text as a source. Left out on purpose: Google Workspace prices (annual
+   "Customer agent" appears only as the unit an API returns. No MCP or API address is printed (Positioning §4).
+   Left out on purpose: Google Workspace prices (annual
    or flexible not confirmed), ChatGPT agent (retired), any Obsession price (none is listed). fernhollow.example,
    rival domains and the 200 company volumes are invented. No dashes. */
 
@@ -44,7 +44,7 @@ export const post: BlogPost = {
   description:
     'Email API for AI agents, phone numbers and browsers: how to build AI customers, the hard parts at scale, published prices, and 5 verbs over MCP and an API.',
   answer:
-    'An email API for AI agents, such as AgentMail, gives each agent its own inbox, and an AI customer needs that plus a phone number, a browser, a sign up program for each platform, waiting that costs nothing for months, and an evidence store that keeps each email with its DKIM result and a hash. You can build it from services such as AgentMail, Twilio, Browserbase and Cloudflare Durable Objects, or call a hosted system over MCP and an API.',
+    'An email API for AI agents, such as AgentMail, gives each agent its own inbox, and an AI customer needs that plus a phone number, a browser, a sign up program for each platform, waiting that costs nothing for months, and an evidence store that keeps each email with its DKIM result and a hash. You can build it from services such as AgentMail, Twilio, Browserbase and Cloudflare Durable Objects, or use Obsession’s AI customers, which come with all of it, with API keys going to teams one at a time.',
   primaryKeyword: 'email api for ai agents',
   keywords: [
     'give your ai agent a phone number',
@@ -58,7 +58,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 10,
   order: 9,
   authors: [
@@ -287,9 +287,9 @@ export const post: BlogPost = {
         [
           'Obsession (ours): 5 verbs over MCP, an API and an SDK',
           'Customer agents with an inbox, number and browser\nShared history from day one\nEvidence with its DKIM result',
-          'Not listed\nPer call or per company watched, never per token',
-          'Keys from a waitlist, a team at a time\nStops at bot walls',
-          'Agents that need a customer at many companies',
+          'Running now for store checks\nAPI keys go to teams one at a time\nCredit-based plans, like Claude’s',
+          'Stops at bot walls and CAPTCHAs',
+          'Agents that need to be a real customer at many companies',
         ],
       ],
     },
@@ -320,7 +320,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Build it when you watch a handful of companies, need the store in your own systems, or want to run an open source runtime yourself. Buy when you need thousands of companies, history from the first day, or numbers in many countries.',
+      text: 'Use Obsession when you need thousands of companies, history from the first day, or numbers in many countries. Build it when you watch a handful of companies, need the store in your own systems, or want to run an open source runtime yourself.',
     },
 
     { kind: 'h2', id: 'call-over-mcp', text: 'Calling AI customers over MCP and an API' },
@@ -334,7 +334,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession exposes AI customers as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), become_customer (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Keys open from a waitlist, priced per call or per company watched with a spending cap you set, and an agent connects to the MCP server at mcp.useobsession.com.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so your agent can find revenue leaks, watch rivals and prospect with proof. It exposes them as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), become_customer (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Obsession runs today on credit-based plans, like Claude’s, where credits pay for the work your AI customers do, and every key has a spending cap you set.',
     },
     {
       kind: 'art',
@@ -406,7 +406,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Every price comes from the company’s own page, opened on 24 October 2026. The 200 company example uses invented volumes, and real ones vary by sector. The companies in the illustrations are invented. Obsession’s verbs, runtime and pricing model are as its developers page states them.',
+      text: 'Every price comes from the company’s own page, opened on 24 October 2026. The 200 company example uses invented volumes, and real ones vary by sector. The companies in the illustrations are invented. Obsession’s verbs and runtime are as its developers page states them.',
     },
   ],
 

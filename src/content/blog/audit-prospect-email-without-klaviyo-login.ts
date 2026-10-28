@@ -44,7 +44,7 @@ export const post: BlogPost = {
   description:
     'Run a Klaviyo flow audit on a prospect without their login: sign up as a new customer, record 48 hours of email and SMS, and send the owner the result.',
   answer:
-    'To audit a prospect’s email and SMS without a Klaviyo login, sign up to their store as a new customer from an address and phone number that have never bought, then record every email and text for 48 hours with its time and Gmail tab. Send the owner the emails as they arrived, with their times, and leave the audit inside their Klaviyo account until they agree to work with you.',
+    'To audit a prospect’s email and SMS without a Klaviyo login, sign up to their store as a new customer from an address and phone number that have never bought, then record every email and text for 48 hours with its time and Gmail tab. Send the owner the emails as they arrived, with their times, and leave the audit inside their Klaviyo account until they agree to work with you. Obsession’s AI customers run this audit as real new customers of any store you name and keep every email as proof the prospect can open.',
   primaryKeyword: 'klaviyo flow audit',
   keywords: [
     'email flow audit',
@@ -55,7 +55,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 10,
   order: 6,
   authors: [
@@ -305,9 +305,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s AI customers](' +
+      text: 'Obsession makes [AI customers](' +
         USE_CASE +
-        ') run the same sign up at any store you name, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open.',
+        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
     },
     {
       kind: 'cta',
