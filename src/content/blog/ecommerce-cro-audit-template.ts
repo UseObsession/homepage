@@ -63,7 +63,7 @@ export const post: BlogPost = {
   description:
     'An ecommerce CRO audit template for agencies: data access, analytics, research, page review, the journey after the sign up, scoring and the report.',
   answer:
-    'An ecommerce CRO audit is a structured review of a store’s data, visitor behaviour and pages that ends in a ranked list of fixes and tests, each with its evidence and a value in the client’s own numbers. A complete audit runs 7 steps: scope and data access, quantitative research, qualitative research, a review by page type, the journey after the sign up and the order, prioritisation, and the report.',
+    'An ecommerce CRO audit is a structured review of a store’s data, visitor behaviour and pages that ends in a ranked list of fixes and tests, each with its evidence and a value in the client’s own numbers. A complete audit runs 7 steps: scope and data access, quantitative research, qualitative research, a review by page type, the journey after the sign up and the order, prioritisation, and the report. Obsession’s AI customers run step 5 at any store as real customers, from the live ad to the code at checkout, keeping every email and page as it arrived.',
   primaryKeyword: 'ecommerce cro audit',
   keywords: [
     'cro audit checklist',
@@ -78,7 +78,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 11,
   order: 13,
   authors: [
@@ -281,7 +281,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each run needs a new address, a phone and 48 hours per store, and each live variant needs a new run every morning. For 1 audit, a strategist can run it alongside steps 2 to 4. Across a pipeline of prospects or several live tests, the hours grow with every store and every day. Obsession’s [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI agents that follow a brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show what happened, with proof. After a client signs, they check every test variant past the sign up every morning it’s live.',
+      text: 'By hand, each run needs a new address, a phone and 48 hours per store, and each live variant needs a new run every morning. For 1 audit, a strategist can run it alongside steps 2 to 4. Across a pipeline of prospects or several live tests, the hours grow with every store and every day. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then show what happened, with proof. After a client signs, they check every test variant past the sign up every morning it’s live.',
     },
     {
       kind: 'cta',
@@ -388,9 +388,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Prospect intelligence signs up, opts in and asks the bot at every company on your list, then hands you a fact and its proof to open each pitch with. Join the waitlist and name up to 5 companies to watch first.',
-      to: '/recipes/prospect-intelligence',
-      label: 'See prospect intelligence',
+      text: 'Prospect intelligence signs up, opts in and asks the bot at every company on your list, then hands you a fact and its proof to open each pitch with. It runs now, on credit-based plans like Claude’s.',
+      to: '/',
+      label: 'Meet your first AI customers',
     },
 
     { kind: 'h2', id: 'options', text: 'CRO audit tools compared', compare: true },
@@ -455,16 +455,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies), [Prospect intelligence](/recipes/prospect-intelligence), [Website audit](/recipes/website-audit)',
-          'AI agents follow a live ad as new customers and take the pop up’s code to checkout, with proof\nEvery live test variant checked past the sign up, each morning',
-          'Funnel QA: 5 brands checked free\nThe recipes: no price listed',
+          'AI customers follow a live ad as new customers and take the pop up’s code to checkout, with proof\nEvery live test variant checked past the sign up, each morning',
+          'Running now: 5 brands checked free\nCredit-based plans, like Claude’s',
           'Covers step 5 and the pages behind ads, not analytics, research, page review or scoring',
-          'Step 5 across a pipeline, and live tests',
+          'What a real customer gets after the click and the sign up, across a pipeline and every live test',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For 1 audit, GA4, Shopify’s reports, Microsoft Clarity and a new inbox and phone cover every step at no tool cost. Contentsquare, Lucky Orange and Baymard add depth to steps 3 and 4, and the right testing platform depends on what the client tests. An agency that audits 1 store a month, with no live tests on the sign up, needs no tool for step 5.',
+      text: 'For 1 audit, GA4, Shopify’s reports, Microsoft Clarity and a new inbox and phone cover every step at no tool cost. Contentsquare, Lucky Orange and Baymard add depth to steps 3 and 4, and the right testing platform depends on what the client tests. If your agency runs step 5 across a pipeline of prospects or on live tests, use Obsession, whose AI customers check each brand after the click and the sign up every morning. An agency that audits 1 store a month, with no live tests on the sign up, needs no tool for step 5.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },

@@ -32,7 +32,7 @@ export const post: BlogPost = {
   description:
     'A Black Friday email report your client reads in 2 minutes: each rival’s first send, emails a day, deepest offer and landing page. Template and example.',
   answer:
-    'A Black Friday email report for a client is one page: for each of 3 rivals, the first Black Friday email you received and when, the emails and texts a day, the deepest offer and how it works, and the page the email sent people to, then what the client did differently and 3 decisions for January. Collect it by signing up to each rival with its own new address and logging every message as it arrives.',
+    'A Black Friday email report for a client is one page: for each of 3 rivals, the first Black Friday email you received and when, the emails and texts a day, the deepest offer and how it works, and the page the email sent people to, then what the client did differently and 3 decisions for January. Collect it by signing up to each rival with its own new address and logging every message as it arrives. Obsession’s AI customers do this as a real customer of each rival and keep every email and offer each rival sends as proof.',
   primaryKeyword: 'black friday email report',
   keywords: [
     'black friday email report',
@@ -46,7 +46,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 1,
   authors: [
@@ -272,7 +272,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up', compare: true },
     {
       kind: 'p',
-      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a rival sent before your address existed. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. [Panoramata’s pricing page](' +
+      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a rival sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. [Panoramata’s pricing page](' +
         PANORAMATA +
         ') lists emails, flows, SMS and ads, says it covers more than 20,000 brands, and gives its $99 plan 20 competitors and 6 months of history, with unlimited on the $179 and $399 plans. [MailCharts says](' +
         MAILCHARTS +
@@ -290,7 +290,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI agents: each agent has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes, and the recipe has a waitlist you can join. Those agents are [AI customers](/blog/ai-customers).',
+      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI agents: each agent has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes. Those agents are [AI customers](/blog/ai-customers). To report on rivals for every client without the hours of logging, use Obsession. For 1 client and 3 rivals, the sheet is enough.',
     },
     {
       kind: 'cta',

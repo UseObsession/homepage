@@ -77,7 +77,7 @@ export const post: BlogPost = {
   description:
     'Ecommerce competitive intelligence sorted by where the data lives: pages, ads, inboxes, checkout and AI answers, with tools, listed prices and a method.',
   answer:
-    'Ecommerce competitive intelligence is the dated record of what rival stores show, send and charge their customers. Product pages, ad libraries, tech stack and traffic estimates are covered by many tools, while welcome codes, basket and win back emails, texts and checkout totals reach only a customer, so a lasting programme signs up to each rival as a new customer, watches for months and keeps every email and page as evidence.',
+    'Ecommerce competitive intelligence is the dated record of what rival stores show, send and charge their customers. Product pages, ad libraries, tech stack and traffic estimates are covered by many tools, while welcome codes, basket and win back emails, texts and checkout totals reach only a customer, so a lasting programme signs up to each rival as a new customer, watches for months and keeps every email and page as evidence. Obsession’s AI customers do that as real customers of each rival you name, keeping every email, offer and price exactly as it arrived.',
   primaryKeyword: 'ecommerce competitive intelligence',
   keywords: [
     'competitive intelligence tools',
@@ -93,7 +93,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 14,
   order: 15,
   authors: [
@@ -392,13 +392,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, the programme holds for 1 to 3 rivals. Past that, it needs an inbox and phone number per rival for months, with every original kept. Obsession’s [competitor tracking](/recipes/competitor-tracking) signs an AI agent up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, and [price watch](/recipes/price-watch) checks rivals’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
+      text: 'By hand, the programme holds for 1 to 3 rivals. Past that, it needs an inbox and phone number per rival for months, with every original kept. Obsession runs that programme today. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your rivals and prospect with proof. For rivals, [competitor tracking](/recipes/competitor-tracking) signs an AI customer up to each one you name and logs every email, text, offer, price change and public ad on 1 timeline. [Price watch](/recipes/price-watch) checks rivals’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
     },
     {
       kind: 'cta',
-      text: 'Competitor tracking comes ready to run on the rivals you name, with every message dated from a known sign up. Join the waitlist and name up to 5 companies to watch first.',
-      to: '/recipes/competitor-tracking',
-      label: 'See competitor tracking',
+      text: 'Competitor tracking runs now on the rivals you name, with every message dated from a known sign up, on credit-based plans like Claude’s.',
+      to: '/',
+      label: 'Meet your first AI customers',
     },
 
     { kind: 'h2', id: 'tools', text: 'Competitive intelligence tools compared', compare: true },
@@ -492,15 +492,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Email and SMS tracking](/recipes/email-sms-tracking), [Ad tracking](/recipes/ad-tracking), [Trial teardown](/recipes/trial-teardown)',
           'Logs every email, text, offer, price change and public ad from each rival on 1 timeline, each kept as it arrived',
-          'No price listed, open by waitlist',
-          'History starts at an agent’s first sign up there\nNot needed for traffic, search or stack questions',
-          'Many rivals across channels, for months',
+          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'History starts at an AI customer’s first sign up there\nNot needed for traffic, search or stack questions',
+          'What a real customer gets from each rival, on every channel, for months',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Crayon and Klue are built for B2B sales teams, with battlecards and answers for deals in flight. None of the page, ad, stack or traffic tools signs up as a customer, so welcome codes, basket emails, texts and checkout totals fall outside them.',
+      text: 'Crayon and Klue are built for B2B sales teams, with battlecards and answers for deals in flight. None of the page, ad, stack or traffic tools signs up as a customer, so welcome codes, basket emails, texts and checkout totals fall outside them. If your team needs what a customer gets from each rival, use Obsession, whose AI customers stay real customers of every rival you name. Similarweb, Semrush, BuiltWith and Store Leads answer traffic, search and tech stack questions directly.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -517,7 +517,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI agents shop your own store as new customers every week and after every change. Your first mystery shop is free.',
+      text: 'Obsession’s AI customers shop your own store as new customers every week and after every change. Your first store check is free.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -532,7 +532,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are the best ecommerce competitor analysis tools?',
-          a: 'It depends on the question: Similarweb and Semrush for traffic, BuiltWith and Store Leads for tech stack, the ad libraries and Foreplay for ads, Panoramata, MailCharts and Milled for email history, and Prisync or Price2Spy for prices. A rival’s checkout total, and its emails where no library covers it, need a customer identity at that rival.',
+          a: 'It depends on the question: Similarweb and Semrush for traffic, BuiltWith and Store Leads for tech stack, the ad libraries and Foreplay for ads, Panoramata, MailCharts and Milled for email history, and Prisync or Price2Spy for prices. A rival’s checkout total, and its emails where no library covers it, need a customer identity at that rival. Obsession’s AI customers are that identity at every rival you name.',
         },
         {
           q: 'How do I do a competitor analysis on Shopify?',

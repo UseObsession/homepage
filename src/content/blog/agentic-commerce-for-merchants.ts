@@ -73,7 +73,7 @@ export const post: BlogPost = {
   description:
     'Agentic commerce for Shopify and DTC stores: what’s live in ChatGPT, Google AI Mode and Copilot, the settings to check, and a readiness test you run.',
   answer:
-    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff.',
+    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession’s AI customers run that test every week as real shoppers and follow each answer to checkout, keeping every answer as it was given.',
   primaryKeyword: 'agentic commerce',
   keywords: [
     'agentic commerce for merchants',
@@ -89,7 +89,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 13,
   order: 11,
   authors: [
@@ -409,11 +409,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession’s [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
+      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession runs that test every week. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your rivals and prospect with proof. For agentic commerce, its [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s Sales agent check asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and follows it to checkout. Your first check is free: 3 test customers ask on 1 channel, and the report lands within 4 days.',
+      text: 'Obsession’s Sales agent check asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and follows it to checkout. Your first AI agent check is free: 3 AI customers ask on 1 channel, and the report lands within 4 days.',
       to: '/recipes/sales-agent-check',
       label: 'See Sales agent check',
     },
@@ -474,9 +474,9 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Listings and AI answers](/recipes/listings-ai-answers), [Sales agent check](/recipes/sales-agent-check), [Mystery shopper](/recipes/mystery-shopper)',
           'Listings and AI answers: assistants asked every Monday\nSales agent check: your agent asked daily, each answer followed to checkout\nMystery shopper: every email, text and reply timed',
-          'Sales agent check: first check free\nMystery shopper: first store free',
+          'Running now: first store check free\nFirst AI agent check free\nCredit-based plans, like Claude’s',
           'Doesn’t change your settings or feeds\nNot needed while AI sessions are few',
-          'Questions asked on a schedule, with the proof kept',
+          'What shoppers and their AI agents get, from the answer to checkout, kept as proof',
         ],
       ],
     },
@@ -490,7 +490,7 @@ export const post: BlogPost = {
         OTTERLY +
         ') lists $29 a month for 15 prompts, $189 for 100 and $489 for 400. [Ahrefs Brand Radar](' +
         AHREFS +
-        ') starts at $50 a month for custom prompts, each checked daily, and paid Ahrefs plans include 5 or more free prompts.',
+        ') starts at $50 a month for custom prompts, each checked daily, and paid Ahrefs plans include 5 or more free prompts. Where a store needs each answer followed through the basket to checkout, every week, use Obsession.',
     },
     {
       kind: 'p',
@@ -522,7 +522,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. The first check is free: 4 customer agents, 48 hours watched, and your report within 4 days.',
+      text: 'Obsession’s AI customers shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Your first store check is free: 4 AI customers, 48 hours watched, and your report within 4 days.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

@@ -73,7 +73,7 @@ export const post: BlogPost = {
   description:
     'How to get email marketing clients for a retention agency: which brands to target, where to find them, the first message, pricing and the pipeline sum.',
   answer:
-    'To get email marketing clients, choose brands that can pay a retainer and send from a platform you work in, sign up to each as a new customer, and open with a dated finding the owner can check on their phone, such as a welcome email that never arrived. Find them through client and partner referrals, the Klaviyo and Shopify partner directories, technology partners, content and events, and cold email built on store data, then run the audit after the first call and price the proposal from it.',
+    'To get email marketing clients, choose brands that can pay a retainer and send from a platform you work in, sign up to each as a new customer, and open with a dated finding the owner can check on their phone, such as a welcome email that never arrived. Find them through client and partner referrals, the Klaviyo and Shopify partner directories, technology partners, content and events, and cold email built on store data, then run the audit after the first call and price the proposal from it. Obsession’s AI customers make that check at any store you name, signing up and leaving a basket as a real customer would.',
   primaryKeyword: 'how to get email marketing clients',
   keywords: [
     'how to find email marketing clients',
@@ -86,7 +86,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 17,
   authors: [
@@ -186,13 +186,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession’s [retention agency use case](' +
+      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession runs that check today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [retention agency use case](' +
         USE_CASE +
         ') runs the same check on any store you name. The method behind that check is [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 stores free, prospects or clients (a client’s with their OK): an AI agent signs up as each store’s new customer, opts in to texts and leaves a basket, and you get what happened within 4 days, with proof.',
+      text: 'Obsession checks 5 stores free, prospects or clients (a client’s with their OK): an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, and you get what happened within 4 days, with proof.',
       to: USE_CASE,
       label: 'Get 5 client stores checked free',
     },
@@ -277,16 +277,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking)',
-          'Leak checks: an AI agent signs up as each store’s new customer, opts in to texts and leaves a basket, with proof\nProspect intelligence: a verdict and a proof link per company\nEmail and SMS tracking: each rival’s emails and texts',
-          '5 stores checked free, within 4 days\nNo price listed',
+          'Leak checks: an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, with proof\nProspect intelligence: a verdict and a proof link per company\nEmail and SMS tracking: each rival’s emails and texts',
+          'Running now: 5 stores checked free\nCredit-based plans, like Claude’s',
           'Doesn’t find contacts or email addresses',
-          'A finding for every brand on a pitch list',
+          'What a real customer gets at every brand on a pitch list, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'An agency that wins enough work through referrals and partner agencies needs none of the paid tools in the table.',
+      text: 'If your agency needs a dated finding at every brand on a pitch list, use Obsession. An agency that wins enough work through referrals and partner agencies needs none of the paid tools in the table.',
     },
 
     { kind: 'h3', id: 'referrals', text: 'Referrals from clients and partner agencies' },
@@ -505,9 +505,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Prospect intelligence becomes a customer of every company on your pitch list and returns a verdict and a proof link for each one to Clay, your CRM or a sheet. Your own tools find the people.',
-      to: '/recipes/prospect-intelligence',
-      label: 'See prospect intelligence',
+      text: 'Prospect intelligence becomes a customer of every company on your pitch list and returns a verdict and a proof link for each one to Clay, your CRM or a sheet. Your own tools find the people. It runs now, on credit-based plans like Claude’s.',
+      to: '/',
+      label: 'Meet your first AI customers',
     },
 
     { kind: 'h2', id: 'questions', text: 'Common questions' },

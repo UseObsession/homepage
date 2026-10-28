@@ -60,7 +60,7 @@ export const post: BlogPost = {
   description:
     'Customer journey testing with AI customers: where revenue leaks hide in stores, lead forms and AI agents, what a pass looks like, and what one costs you.',
   answer:
-    'Customer journey testing with AI customers finds revenue leaks where a company’s own reports can’t: an AI customer signs up with its own inbox, phone number and browser, waits, opens every email, text and reply, and checks each one against what was promised. The leaks it finds are steps that fail without an error, such as a welcome text that never arrives, a code refused at checkout, a basket reminder hours late, a chatbot quoting the wrong policy or a demo form nobody answers.',
+    'Customer journey testing with AI customers finds revenue leaks where a company’s own reports can’t: an AI customer signs up with its own inbox, phone number and browser, waits, opens every email, text and reply, and checks each one against what was promised. The leaks it finds are steps that fail without an error, such as a welcome text that never arrives, a code refused at checkout, a basket reminder hours late, a chatbot quoting the wrong policy or a demo form nobody answers. Obsession’s AI customers run these tests on any store, lead form or AI agent you name, every week and after every change.',
   primaryKeyword: 'customer journey testing',
   keywords: [
     'revenue leaks',
@@ -75,7 +75,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 11,
   order: 7,
   authors: [
@@ -368,7 +368,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each test covers 1 moment and builds no history, the hours grow with each store or client, and the evidence is whatever someone saved. AI customers fit first where a team checks many journeys, stores or clients, changes something every week, buys paid traffic or runs AI agents in front of customers.',
+      text: 'By hand, each test covers 1 moment and builds no history, the hours grow with each store or client, and the evidence is whatever someone saved. Use Obsession where a team checks many journeys, stores or clients, changes something every week, buys paid traffic or runs AI agents in front of customers.',
     },
 
     { kind: 'h2', id: 'options', text: 'Ways to test your customer journeys', compare: true },
@@ -416,15 +416,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Lead leaks](/recipes/lead-leaks), [Support bot check](/recipes/support-bot-check)',
           'AI customers sign up, wait and keep every email, text and reply as proof',
-          'No price listed\nFirst store check free',
+          'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Sees what its own AI customers receive',
-          'Many journeys or stores, weekly and after every change',
+          'What a real customer gets, weekly and after every change',
         ],
       ],
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. The first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, every inbox is watched for 48 hours, and your report arrives within 4 days.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof. Your first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, every inbox is watched for 48 hours, and your report arrives within 4 days.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

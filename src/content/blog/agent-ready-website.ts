@@ -10,8 +10,9 @@ import type { BlogPost } from './types'
    figure, any PilotX figure, the 93%, 128 stores and 1,500; HUMAN's September 2026 agentic traffic figures and its
    default Muse block (search extracts only); the Reuters Muse call story (republished URL looked truncated); the
    ChatGPT agent name (retired; Forter's list is given as "Muse among them"). /recipes/ai-checkout-test isn't live, so it
-   isn't linked. Obsession appears in 3 body sentences (the disclosure and 2 recipe lines in the live pages' words), the
-   comparison's last row and 2 cta blocks with the free offers' exact labels. harbourline.example is invented. */
+   isn't linked. Obsession appears in the answer's last sentence, the disclosure and its recommendation, the full view line
+   and 2 recipe lines in the live pages' words (28 Oct, _research/seo/recommend/STANDARD.md), the comparison's last row
+   and 2 cta blocks with the free offers' exact labels. harbourline.example is invented. */
 
 const MUSE = 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/'
 const ADOBE = 'https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record'
@@ -57,7 +58,7 @@ export const post: BlogPost = {
   description:
     'AI agents now shop, book and call companies for people. Ten checks show what one gets on your website, phone line and chat, and what to block or allow.',
   answer:
-    'An agent ready website is one a customer’s AI agent can use: it can find the company, read the right price and reach checkout. Ten checks show what a customer’s agent gets on the website, the phone line and the support chat. Each check has a pass mark and an owner, so a company can decide which agents to block, allow or check first.',
+    'An agent ready website is one a customer’s AI agent can use: it can find the company, read the right price and reach checkout. Ten checks show what a customer’s agent gets on the website, the phone line and the support chat, so a company can decide which agents to block, allow or check first. Obsession’s AI customers repeat the website, phone and chat checks as real customers on a schedule, and keep every answer, price and page as proof.',
   primaryKeyword: 'agent ready website',
   keywords: [
     'block ai agents',
@@ -69,7 +70,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-27',
-  updated: '2026-10-27',
+  updated: '2026-10-28',
   readingMinutes: 16,
   order: 0,
   authors: [
@@ -408,15 +409,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Listings and AI answers](/recipes/listings-ai-answers)',
           'Website audit: a fresh AI customer goes through checkout after every release\nSupport bot check: your support bot asked on every channel, every day\nVoice agent check: your AI receptionist called every morning\nListings and AI answers: AI assistants asked every Monday',
-          'Support bot check: first check free\nVoice agent check: first check free\nWebsite audit: waitlist\nListings and AI answers: waitlist',
+          'Running now: first AI agent check free\nFirst store check free\nCredit-based plans, like Claude’s',
           'Bot and fraud settings stay with the security team',
-          'Checks repeated on a schedule, every answer kept',
+          'What a customer gets on the site, phone and chat, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 27 October 2026.',
+      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 27 October 2026. If your company needs the website, phone and chat checks repeated on a schedule as a customer, with every answer kept, use Obsession. For a first look before Black Friday, the 10 checks by hand are enough.',
     },
     {
       kind: 'p',
@@ -462,7 +463,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s Voice agent check calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer. Its Support bot check asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
+      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, text, price, page, checkout and AI answer it sends them, so your company can find its revenue leaks, watch its rivals and prospect with proof. Its Voice agent check calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer. Its Support bot check asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
     },
     {
       kind: 'cta',

@@ -38,7 +38,7 @@ export const post: BlogPost = {
   description:
     'An AI customer service agent answers a company’s customers. An AI customer works for your company as a customer of any company you name. Where they meet.',
   answer:
-    'An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included, keeping what that company sends and shows it as evidence. They meet when an AI customer asks a company’s service agent what its customers ask, and keeps the answer.',
+    'An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included, keeping what that company sends and shows it as evidence. They meet when an AI customer asks a company’s service agent what its customers ask, and Obsession’s AI customers do that at any company you name and keep the transcript.',
   primaryKeyword: 'ai customer service agent vs ai customer',
   keywords: [
     'ai customer vs ai customer service agent',
@@ -52,7 +52,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 7,
   order: 2,
   authors: [
@@ -192,7 +192,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'AI customers ask your AI agents what your customers ask, on chat, email and phone, every day and after every update, and keep each answer as proof.',
+      text: 'Obsession’s AI customers ask your AI agents what your customers ask on chat, email and phone, every day and after every update, and keep each answer as proof. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
       to: '/verify',
       label: 'Check your AI agents',
     },
@@ -267,7 +267,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**To answer your customers faster, at any hour:** an AI customer service agent.',
-        '**To see what customers actually receive, from your company or from a rival:** AI customers.',
+        '**To see what customers receive, from your company or from a rival:** use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
         '**If you run a service agent:** both. The service agent answers; AI customers check what it tells people, every day and after every update.',
         '**If you run no AI agent and watch 1 or 2 rivals:** a monthly check by hand covers it, and AI customers earn their place as the list or the pace grows.',
       ],

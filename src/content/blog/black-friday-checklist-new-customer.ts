@@ -37,7 +37,7 @@ export const post: BlogPost = {
   description:
     'Test your store the way a new customer meets it before Black Friday: the pop up, welcome code, texts, basket and checkout reminders, ads, chat and orders.',
   answer:
-    'To check a store before Black Friday, test it as a new customer: from an email address and phone number your store has never seen, sign up through the pop up, check that the welcome email and its code arrive and that the code works at checkout, opt in to texts, leave a basket and a checkout, and wait for each reminder. Run the 12 tests before your code freeze, again after any theme, app or flow change, and on the morning the sale goes live.',
+    'To check a store before Black Friday, test it as a new customer: from an email address and phone number your store has never seen, sign up through the pop up, check that the welcome email and its code arrive and that the code works at checkout, opt in to texts, leave a basket and a checkout, and wait for each reminder. Run the 12 tests before your code freeze, again after any theme, app or flow change, and on the morning the sale goes live. Obsession’s AI customers run these tests as real new customers of your store every week and after every change, and keep every email, code and page as proof.',
   primaryKeyword: 'black friday checklist',
   keywords: [
     'shopify black friday checklist',
@@ -52,7 +52,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 0,
   authors: [
@@ -318,11 +318,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
+      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. To run the 12 tests on many stores every week, use Obsession.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers run all 12 tests as new customers every week and after every change, and keep every email as it arrived. Start with a free check of your store.',
+      text: 'Obsession’s AI customers run all 12 tests as new customers every week and after every change, and keep every email as it arrived. Your first store check is free.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

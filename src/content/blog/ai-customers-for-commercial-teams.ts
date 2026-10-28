@@ -40,7 +40,7 @@ export const post: BlogPost = {
   description:
     'AI agents for marketing teams, sales teams, agencies and CX: the questions only a customer can answer, the checks to run and what to do that week.',
   answer:
-    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer. AI customers sign up to a rival, a prospect, a client or the team’s own company and record what it sends and shows. Marketing sees rivals’ subscriber offers, sales sees what a prospect does to its own customers, agencies see every client’s flows, and ecommerce and CX teams see every journey and chatbot answer, each with the evidence.',
+    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer. AI customers sign up to a rival, a prospect, a client or the team’s own company and record what it sends and shows. Obsession’s AI customers show marketing its rivals’ offers, sales how a prospect treats its customers, agencies every client’s flows, and ecommerce and CX teams every journey and chatbot answer.',
   primaryKeyword: 'ai agents for marketing teams',
   keywords: [
     'ai for sales teams',
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 9,
   order: 10,
   authors: [
@@ -243,7 +243,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers). Obsession makes the first AI customers that work for you, through its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes.',
+      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so your team can find revenue leaks, watch rivals and prospect with proof. They run as its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },

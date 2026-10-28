@@ -47,7 +47,7 @@ export const post: BlogPost = {
   description:
     'Competitor price monitoring apps on Shopify read the page price. Record what a first order pays: welcome code, stacking, shipping, texts and emails.',
   answer:
-    'To monitor a competitor’s real price on Shopify, record what a first order pays: the sale and compare at price, the welcome code and its terms, whether the code stacks with the sale, the free shipping threshold, bundles, member prices, texts and the emails after sign up. Price monitoring apps read the public page, and the code and the emails appear only after a customer signs up, so record them by hand before the competitor’s Black Friday offer goes live.',
+    'To monitor a competitor’s real price on Shopify, record what a first order pays: the sale and compare at price, the welcome code and its terms, whether the code stacks with the sale, the free shipping threshold, bundles, member prices, texts and the emails after sign up. Price monitoring apps read the public page, and the code and the emails appear only after a customer signs up, so record them by hand before the competitor’s Black Friday offer goes live. Obsession’s AI customers do this as a real customer of each competitor and keep every price, code and email they receive as proof.',
   primaryKeyword: 'competitor price monitoring shopify',
   keywords: [
     'competitor price monitoring shopify',
@@ -59,8 +59,8 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-23',
-  readingMinutes: 10,
+  updated: '2026-10-28',
+  readingMinutes: 11,
   order: 5,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -142,7 +142,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record', compare: true },
     {
       kind: 'p',
-      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
+      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
     },
     {
       kind: 'list',
@@ -278,7 +278,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers sign up at your store, use the welcome code at checkout, leave a basket and watch every inbox for 48 hours. The check is free, and the result lists every message that arrived and every one that didn’t.',
+      text: 'Obsession’s AI customers sign up at your store, use the welcome code at checkout, leave a basket and watch every inbox for 48 hours. Your first store check is free, and the result lists every message that arrived and every one that didn’t.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },
@@ -325,7 +325,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s [Price watch](/recipes/price-watch) is built for checks at this scale and is in early access, with a waitlist.',
+      text: 'For 10 competitors checked every morning, use Obsession’s [Price watch](/recipes/price-watch), which is built for checks at this scale.',
     },
     {
       kind: 'cta',

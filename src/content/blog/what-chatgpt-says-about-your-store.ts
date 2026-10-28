@@ -52,7 +52,7 @@ export const post: BlogPost = {
   description:
     'See what ChatGPT says about your brand: ask 15 customer questions 3 times on ChatGPT, Perplexity and Google, log each run, score appearance and accuracy.',
   answer:
-    'To check what ChatGPT says about your store, ask 10 to 20 questions in your customers’ words, 3 times on each assistant, and log the date and country. Then score 2 numbers: how often your store is named, and how many of the claims in the answers match your own pages.',
+    'To check what ChatGPT says about your store, ask 10 to 20 questions in your customers’ words, 3 times on each assistant, and log the date and country. Then score 2 numbers: how often your store is named, and how many of the claims in the answers match your own pages. Obsession’s AI customers ask the assistants your customers use the same questions every week and keep each answer, with its date and the page it cites, as proof.',
   primaryKeyword: 'what does chatgpt say about my brand',
   keywords: [
     'what does chatgpt say about my brand',
@@ -68,7 +68,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-10-23',
+  updated: '2026-10-28',
   readingMinutes: 10,
   order: 9,
   authors: [
@@ -293,7 +293,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Prices change, so confirm them on each page.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Prices change, so confirm them on each page.',
     },
     {
       kind: 'list',
@@ -320,7 +320,7 @@ export const post: BlogPost = {
         GOOGLE_GUIDE +
         '), so a tool reports what an assistant answered without access to the reasons. Rand Fishkin’s test for any provider is whether it [“shows their math”](' +
         SPARKTORO +
-        ').',
+        '). If you need each wrong answer traced to the page it cites and asked again until it changes, use Obsession. For a daily count of how often your brand is named across many prompts and countries, the visibility tools are built for that job.',
     },
     {
       kind: 'cta',
@@ -357,7 +357,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks your store free. Its AI agents shop it as new customers, from the ad to the sign up, the welcome code and the basket, and report each problem with proof and the fix.',
+      text: 'Your first store check is free. Obsession’s AI agents shop your store as new customers, from the ad to the sign up, the welcome code and the basket, and report each problem with proof and the fix.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

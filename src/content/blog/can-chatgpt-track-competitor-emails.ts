@@ -11,7 +11,7 @@ import type { BlogPost } from './types'
    table says "the pages don’t say", never "can’t". Obsession appears in the body in the disclosure and in 1 sentence
    where the by hand method stops (the email and SMS tracking recipe, with the developers page linked in the same
    sentence; its quoted line was cut in the 23 Oct copy pass), plus the 2 CTAs. Every claim about it is
-   worded as those pages word it (waitlist, history from the first sign up).
+   worded as those pages word it (history from the first sign up). Since 28 Oct it is presented as live (STANDARD.md).
    Left out on purpose: archive brand counts and prices (Milled blocked automated fetches; Panoramata’s own page gives
    two different counts, and the library’s 18k+ and 2,500 brands figures did not hold up), any Gemini in Gmail or
    Copilot Gmail claim that only a search summary supported, the 93% and 128 stores figures, any PilotX audit figure.
@@ -51,7 +51,7 @@ export const post: BlogPost = {
   description:
     'ChatGPT can track competitor emails that reach a Gmail inbox you connect. A method for 1 to 3 competitors, and what 5 assistants’ help pages say.',
   answer:
-    'Yes, for 1 to 3 competitors: ChatGPT, Claude, Gemini and Perplexity can read and compare the competitor emails that reach a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence.',
+    'Yes, for 1 to 3 competitors: ChatGPT, Claude, Gemini and Perplexity can read and compare the competitor emails that reach a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence. Obsession’s AI customers each sign up to a competitor as a real customer, with their own inbox, and keep every email that competitor sends as proof.',
   primaryKeyword: 'can chatgpt track competitor emails',
   keywords: [
     'can chatgpt track competitor emails',
@@ -65,7 +65,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 8,
   order: 3,
   authors: [
@@ -257,7 +257,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
     },
 
     { kind: 'h3', id: 'good-at', text: 'What each assistant offers for this job' },
@@ -360,7 +360,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s [email and SMS tracking](/recipes/email-sms-tracking), open by waitlist, is built for this case, with history that starts from the minute an agent first signs up, and its [developers page](/developers) covers the same gap for teams building their own AI agents.',
+      text: 'For 20 competitors, use Obsession. Its [email and SMS tracking](/recipes/email-sms-tracking) gives each competitor its own AI customer, with history that starts from the minute it first signs up, and its [developers page](/developers) covers the same gap for teams building their own AI agents. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
     },
     {
       kind: 'cta',
@@ -380,7 +380,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 client stores free, with each owner’s OK. Its test customers sign up, leave a basket and stop at checkout, then report which emails arrived within 48 hours and which never came, with screenshots.',
+      text: 'Obsession checks 5 client stores free, with each owner’s OK. Its AI customers sign up, leave a basket and stop at checkout, then report which emails arrived within 48 hours and which never came, with screenshots.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Get 5 client stores checked free',
     },

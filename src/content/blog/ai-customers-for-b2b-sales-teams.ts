@@ -64,7 +64,7 @@ export const post: BlogPost = {
   description:
     'Speed to lead for B2B sales teams: what CRM reports miss, what a slow demo request costs, and how AI customers test every form, chat and sales line.',
   answer:
-    'B2B sales teams need AI customers because speed to lead, the time from a buyer’s demo request to the company’s first reply, is usually measured inside the CRM from the moment a lead has an owner, so requests that never reach an owner go uncounted. AI customers fill in the team’s own demo form, use its chat and call its sales line as a buyer would, every day and after every routing change, and time each first reply with the evidence.',
+    'B2B sales teams need AI customers because speed to lead, the time from a buyer’s demo request to the company’s first reply, is usually measured inside the CRM from the moment a lead has an owner, so requests that never reach an owner go uncounted. Obsession’s AI customers fill in the team’s own demo form, use its chat and call its sales line as a buyer would, every day and after every routing change, and time each first reply with the evidence.',
   primaryKeyword: 'speed to lead',
   keywords: [
     'speed to lead',
@@ -79,7 +79,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 18,
   authors: [
@@ -316,7 +316,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s Lead leaks sends a test lead through a company’s own form, chat and phone, times every first reply and shows each lead the team never answered. The [speed to lead test](/recipes/lead-leaks) runs at the times the team picks, evenings and weekends included, and drafts the routing fix in the CRM the team connects, live after the team’s OK. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
+      text: 'Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a sales team, its Lead leaks check sends a test lead through the company’s own form, chat and phone, times every first reply and shows each lead left unanswered. The [speed to lead test](/recipes/lead-leaks) runs at the times the team picks, evenings and weekends included, and drafts the routing fix in the CRM the team connects, live after the team’s OK. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
         COMMERCIAL +
         '#sales).',
     },
@@ -405,15 +405,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check), [Account watch](/recipes/account-watch)',
           'Test leads use the form, chat and phone at set times and time every first reply',
-          'Not listed\nJoin the waitlist',
+          'Running now\nCredit-based plans, like Claude’s',
           'Real leads’ outcomes sit in the CRM the team connects',
-          'Several ways in, regions and routing changes',
+          'The first reply a buyer gets on every way in, timed and kept',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Many teams combine 2 of these. A router and a CRM report time every lead the system holds, and a customer-side test times the path around them, from the buyer pressing send to the first reply.',
+      text: 'If your team needs to know the first reply a buyer gets on every form, chat and sales line, timed from the moment the buyer presses send, use Obsession. For a spot check after a change, a test request by hand is enough. Many teams combine 2 of these. A router and a CRM report time every lead the system holds, and a customer-side test times the path around them, from the buyer pressing send to the first reply.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When a sales team doesn’t need AI customers' },
@@ -441,9 +441,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Join the waitlist, and Lead leaks comes ready to run on your team’s own form, chat and phone, timing every first reply and showing each lead your team never answered.',
-      to: '/recipes/lead-leaks',
-      label: 'Join the waitlist',
+      text: 'Obsession makes the first AI customers that work for you. Its Lead leaks check runs on your team’s own form, chat and phone, timing every first reply and showing each lead your team left unanswered.',
+      to: '/',
+      label: 'Meet your first AI customers',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about speed to lead' },

@@ -74,7 +74,7 @@ export const post: BlogPost = {
   description:
     'Landing page monitoring for CRO and performance agencies: what paid traffic meets past the click, what a missed fault costs, and how AI customers check it.',
   answer:
-    'CRO and performance agencies need AI customers because the traffic they buy and test converts only as well as the page, pop up, code and emails it reaches, and none of an agency’s usual tools signs up and waits to see them. For landing page monitoring, AI customers open the page behind each live ad from its own link every morning, sign up through the pop up, take the code to checkout and keep every email that follows, at each client and each prospect. Agencies use what they find to fix faults before clients see them and to open pitches with a finding the brand can check.',
+    'CRO and performance agencies need AI customers because the traffic they buy and test converts only as well as the page, pop up, code and emails it reaches, and none of an agency’s usual tools signs up and waits to see them. For landing page monitoring, AI customers open the page behind each live ad from its own link every morning, sign up through the pop up, take the code to checkout and keep every email that follows, at each client and each prospect. With Obsession’s AI customers, agencies fix faults before clients see them and open pitches with a finding the brand can check.',
   primaryKeyword: 'landing page monitoring',
   keywords: [
     'landing page monitoring',
@@ -88,7 +88,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 12,
   order: 14,
   authors: [
@@ -319,7 +319,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s AI agents follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
+      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their rivals and prospect with proof. Its AI customers follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes for agencies in 2026 and 2027' },
@@ -418,15 +418,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Ad landing check](/recipes/ad-landing-check), [Website audit](/recipes/website-audit), [Prospect intelligence](/recipes/prospect-intelligence), [Ad tracking](/recipes/ad-tracking)',
           'AI customers follow a live ad, sign up through the pop up and take the code to checkout, with proof',
-          'No price listed\n5 brands checked free',
+          'Running now: check 5 brands free\nCredit-based plans, like Claude’s',
           'Stops at bot walls and CAPTCHAs',
-          'Many clients, prospects and live tests, daily',
+          'What shoppers get after the click, sign up and checkout, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For a few clients with fixed ads and no pop up offers, Google’s own checks and a morning pass by hand cover most of the work. AI customers fit where clients, live tests or pitches outgrow a team’s hours.',
+      text: 'If your agency needs to see what shoppers get after the click, the sign up and the checkout, at every client, live test and prospect, use Obsession. For a few clients with fixed ads and no pop up offers, Google’s own checks and a morning pass by hand cover most of the work.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },

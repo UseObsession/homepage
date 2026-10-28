@@ -77,7 +77,7 @@ export const post: BlogPost = {
   description:
     'Long running AI agents need an identity that lasts, free waiting, wake ups and evidence: the 6 hard parts, what waiting costs and the options compared.',
   answer:
-    'Long running AI agents that deal with other companies have to stay their customers for weeks or months, so developers need AI customers: an inbox, phone number and browser that keep working, waiting that costs close to nothing, wake ups on outside events and evidence that holds. Durable execution engines such as Temporal, Inngest, Restate and DBOS make the waiting reliable, and an AI customer adds the identity and the evidence.',
+    'Long running AI agents that deal with other companies have to stay their customers for weeks or months, so developers need AI customers: an inbox, phone number and browser that keep working, waiting that costs close to nothing, wake ups on outside events and evidence that holds. Durable execution engines such as Temporal, Inngest, Restate and DBOS make the waiting reliable, and Obsession’s AI customers add the identity and the evidence.',
   primaryKeyword: 'long running ai agents',
   keywords: [
     'long running ai agents',
@@ -92,7 +92,7 @@ export const post: BlogPost = {
   ],
   category: 'AI customers',
   published: '2026-10-24',
-  updated: '2026-10-24',
+  updated: '2026-10-28',
   readingMinutes: 13,
   order: 19,
   authors: [
@@ -373,7 +373,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
+      text: 'Obsession runs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company’s agents can find revenue leaks, watch rivals and prospect with proof. Its open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -474,15 +474,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): 5 verbs over MCP, an API and an SDK',
           'AI customers with an inbox, number and browser\nShared history from day one\nEvidence with its DKIM result',
-          'Not listed\nPer call or per company watched',
-          'Keys open from a waitlist, a team at a time\nStops at bot walls',
-          'Agents that need a customer at many companies',
+          'Running now for store checks\nAPI keys go to teams one at a time\nCredit-based plans, like Claude’s',
+          'Stops at bot walls and CAPTCHAs',
+          'Agents that must stay a customer of many companies, with proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Most teams combine 2 rows: an engine or runtime for the waiting, and a customer layer for identities, sign up programs and evidence. The engines differ in where state lives, from [DBOS’s Postgres database](' +
+      text: 'If your agents need to stay customers of other companies for months, with an inbox, number and browser at each and evidence for what they report, use Obsession. For waiting inside your own process, one of the engines is enough. Most teams combine 2 rows: an engine or runtime for the waiting, and a customer layer for identities, sign up programs and evidence. The engines differ in where state lives, from [DBOS’s Postgres database](' +
         DBOS_ARCH +
         ') with no separate orchestration server to [one Durable Object per agent](' +
         CF_AGENT_CLASS +
@@ -521,7 +521,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. Keys open from the waitlist, a team at a time.',
+      text: 'Obsession makes the first AI customers that work for you: long lived agents with their own inbox, phone number and browser. They run today behind 5 verbs over MCP, an API and an SDK.',
       to: '/developers',
       label: 'See the API and MCP',
     },
