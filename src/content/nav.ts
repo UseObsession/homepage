@@ -107,7 +107,12 @@ export const nav = {
       line: '4 test customers shopped a real store. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x
          above its status tags, so it reads at a glance and brings no status colour into the nav. */
-      image: { src: '/nav/report-peek.jpg', width: 168, height: 102 },
+      image: {
+        src: '/nav/report-peek.jpg',
+        width: 168,
+        height: 102,
+        alt: 'The top of the September 2026 store mystery shop report on Brand G: 4 journeys shopped, 2 gaps found',
+      },
     },
     /* The worked examples by name only: each name already says who it is for, and 5 cards made the menu too tall
        (James, 23 Oct). `line` stays for the links that quote it (BlogPost). James sends these addresses to prospects:

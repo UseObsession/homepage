@@ -25,7 +25,7 @@ function CardVisual({ p }: { p: PostT }) {
   if (image)
     return (
       <div className="s-blog-card__visual s-blog-card__visual--photo">
-        <img src={image.thumb ?? image.src} alt="" width={640} height={360} loading="lazy" decoding="async" />
+        <img src={image.thumb ?? image.src} alt={image.alt} width={640} height={360} loading="lazy" decoding="async" />
       </div>
     )
   if (art)
