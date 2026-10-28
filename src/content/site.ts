@@ -11,7 +11,7 @@ import { WAYS } from './ways'
 
 /* The 1 address every notice on the site gives. The founders must confirm this mailbox exists and is read before the
    site ships (agents@ or privacy@ can be aliases that forward here). */
-export const CONTACT_EMAIL = 'hello@useobsession.com'
+export const CONTACT_EMAIL = 'seun@useobsession.com'
 
 /* The controller named in the privacy notice (UK GDPR article 13(1)(a)): the legal entity's registered name and address,
    as 'Name Ltd, 1 Street, Town, POSTCODE'. The founders supply it before the site ships. Until then the notice gives
@@ -413,7 +413,7 @@ export const llms: Llms = {
     'Recipes cover watching other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), checking your own journeys (mystery shopper, ad landing check, lead leaks, partner checks, website audit, delivery monitoring, listings and AI answers), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
     'Other tools read the outside of a company: ad libraries such as Foreplay keep the ads, email archives such as Panoramata, MailCharts and Milled keep newsletters, and page monitors such as Visualping alert on changes. Obsession is the customer, so it sees what comes after the click. The comparison is at useobsession.com/compare.',
     'The runtime is open source: the AI customers, how they fan out, sleep and learn, the record, recipes, integrations and the 5 verbs. Obsession Cloud runs it, with inboxes and numbers in many countries and months of shared history.',
-    'Every agent says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never clicks paid ads at volume, and keeps every receipt exactly as it arrived. Any company can write to hello@useobsession.com to keep the agents off its site.',
+    'Every agent says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never clicks paid ads at volume, and keeps every receipt exactly as it arrived. Any company can write to seun@useobsession.com to keep the agents off its site.',
     'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours; 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency for a client, can get a first report free.',
   ].join(' '),
 }

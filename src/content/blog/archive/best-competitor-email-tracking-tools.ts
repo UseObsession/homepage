@@ -339,7 +339,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We left out tools we couldn’t verify on their own sites in time: Competitors App, Hoppy Copy and Reyo. If you run any tool here and something is wrong or out of date, write to [hello@useobsession.com](mailto:hello@useobsession.com). We’ll correct it within 5 working days and note the change by the date at the top. We check every entry again each quarter.',
+      text: 'We left out tools we couldn’t verify on their own sites in time: Competitors App, Hoppy Copy and Reyo. If you run any tool here and something is wrong or out of date, write to [seun@useobsession.com](mailto:seun@useobsession.com). We’ll correct it within 5 working days and note the change by the date at the top. We check every entry again each quarter.',
     },
 
     { kind: 'h2', id: 'faq', text: 'Joining a rival’s list is generally lawful; seeing its flows and texts takes the right tool' },
