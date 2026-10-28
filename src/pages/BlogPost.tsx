@@ -19,6 +19,7 @@ import { blogPage, blogUi, formatDate } from '../content/resources'
 import { citedSources, sourceDate } from '../lib/sources'
 import '../components/sections/Hero.css'
 import './Blog.css'
+import { relOf } from '../lib/competitors'
 
 /* A page's 1 line where the nav gives it one (the readers and the Resources menu), else its share image's line. */
 const NAV_LINES = new Map<string, string>(
@@ -211,7 +212,7 @@ export function BlogPost({ post }: { post: Post }) {
                   <ol className="s-art-sources__list">
                     {sources.map((s) => (
                       <li key={s.url}>
-                        <a href={s.url} rel="noopener">
+                        <a href={s.url} rel={relOf(s.url)}>
                           {s.title}
                         </a>
                         <span className="s-art-sources__meta">

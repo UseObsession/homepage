@@ -7,6 +7,7 @@ import { FaqList } from '../sections/Faq'
 import { drawnFor } from '../workspace'
 import { Inline } from './Inline'
 import { hostOf } from './util'
+import { relOf } from '../../lib/competitors'
 
 /* Every block a post can hold (content/blog/types.ts), on the design system. Prose sits on the article's measure;
    screens, figures and tables keep that column too, so the reading line never jumps. */
@@ -122,7 +123,7 @@ function Block({ b }: { b: BlogBlock }) {
               <Inline text={b.text} />
             </p>
           </blockquote>
-          <figcaption>{b.href ? <a href={b.href} rel="noopener">{b.cite}</a> : b.cite}</figcaption>
+          <figcaption>{b.href ? <a href={b.href} rel={relOf(b.href)}>{b.cite}</a> : b.cite}</figcaption>
         </figure>
       )
     case 'screen':
@@ -191,7 +192,7 @@ function Block({ b }: { b: BlogBlock }) {
             <p className="s-art-stat__l">
               <Inline text={b.label} />
             </p>
-            <a className="s-art-stat__src" href={b.href} rel="noopener">
+            <a className="s-art-stat__src" href={b.href} rel={relOf(b.href)}>
               {b.source}
               <span className="s-art-stat__host">{hostOf(b.href)}</span>
             </a>
