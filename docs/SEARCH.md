@@ -682,9 +682,9 @@ Run a recurring **Obsession Field Report** from these: small, dated, signed runs
 
 ### A. Hosting fixes (do first; all free)
 
-- [ ] **Real 404s.** Unknown URLs return the home page with a 200 today (a soft 404). On Workers static assets set `assets.not_found_handling: "404-page"` (never `"single-page-application"`) so `dist/404.html` is served with a 404; on Pages, a root `404.html` does this once deployed. Check: `curl -I https://useobsession.com/nope` returns 404.
-- [ ] **Always Use HTTPS** on, so `http://` 301s to `https://`.
-- [ ] **www:** `www.useobsession.com` has no DNS record (NXDOMAIN). Add a proxied `www` record, then a Single Redirect (1 of the 10 free rules) from `www` to the apex, 301, keeping path and query.
+- [x] **Real 404s** (checked live 28 Oct 2026: `/nope-xyz` answers 404). Unknown URLs returned the home page with a 200 (a soft 404). On Workers static assets set `assets.not_found_handling: "404-page"` (never `"single-page-application"`) so `dist/404.html` is served with a 404; on Pages, a root `404.html` does this once deployed. Check: `curl -I https://useobsession.com/nope` returns 404.
+- [x] **Always Use HTTPS** on, so `http://` 301s to `https://` (25 Oct; checked live 28 Oct).
+- [x] **www** (25 Oct; checked live 28 Oct: `https://www.useobsession.com/blog` 301s to `https://useobsession.com/blog`). It had no DNS record (NXDOMAIN). Add a proxied `www` record, then a Single Redirect (1 of the 10 free rules) from `www` to the apex, 301, keeping path and query.
 - [x] **HSTS**: 6 months (`max-age=15552000`) in `public/_headers` (3 Oct), sent only over HTTPS and without `includeSubDomains`, so it is safe before the 3 above. Add `includeSubDomains` and `preload` only once they are verified; never also turn it on in the dashboard.
 - [ ] **Cloudflare AI controls:** Search, Training and Agent all Allow; Block AI bots, AI Labyrinth and managed robots.txt off; check Bot Fight Mode lets verified bots through (curl as GPTBot and ClaudeBot returns 200).
 - [ ] **Crawler Hints** on (free IndexNow pings). Done in code 3 Oct: the IndexNow key file (`public/`) and `npm run indexnow`, run after each deploy (README, Hosting). The founders' click paths: `_research/seo/AI-SEARCH-FOUNDERS.md`.
@@ -731,7 +731,7 @@ Targets: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 (Google's thresholds are unc
 - [ ] `category` typed as the union of the 8 hub names in section 3.
 - [x] Posts get `og:type=article` with `article:published_time`, `article:modified_time`, `article:author`, `article:section` and `article:tag` (24 Oct 2026).
 - [ ] `/blog/rss.xml`, linked with `<link rel="alternate" type="application/rss+xml">` from every page; submit it in Search Console as a sitemap.
-- [ ] `sitemap.xml` adds the blog, posts, hubs, authors and use cases, with `lastmod` from the last commit to each file (as now).
+- [ ] `sitemap.xml` adds the blog, posts, hubs, authors and use cases, with `lastmod` from the last commit to each file (as now). Cloudflare's build is a shallow clone, which dated every page by the newest commit until the prerender began fetching the history first (28 Oct 2026).
 - [ ] `llms.txt` and `llms-full.txt` add every post with its answer line.
 - [ ] The `answer` field renders visibly under the title, not only in meta.
 - [ ] H2 ids give jump links; a short contents list on posts over 1,500 words.
