@@ -585,7 +585,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const blog = nav.resources.blog
   const peek = (
     <span className="s-card__peek" aria-hidden="true">
-      <img src={run.image.src} width={run.image.width} height={run.image.height} alt="" loading="lazy" decoding="async" />
+      <img src={run.image.src} width={run.image.width} height={run.image.height} alt={run.image.alt} loading="lazy" decoding="async" />
     </span>
   )
 

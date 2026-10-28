@@ -699,7 +699,7 @@ Templates: Home, audience, Developers, Recipes, recipe, use cases index, use cas
 - [ ] `http-status-code`: 200 on every real page.
 - [ ] `link-text`: no blocklisted anchors, including a bare "Start".
 - [ ] `crawlable-anchors`: every `<a>` has a real `href`; menu triggers are buttons.
-- [ ] `robots-txt`: valid; `image-alt`: every `<img>` has alt (decorative ones `alt=""`); `hreflang`: none (1 language, `en-GB`); `canonical`: 1 absolute canonical.
+- [ ] `robots-txt`: valid; `image-alt`: every `<img>` has alt text that says what it shows, never `alt=""` (Bing's Site Scan counts an empty alt as missing: on 28 Oct 2026 it flagged the nav card's on 79 pages; the prerender now fails the build on one); `hreflang`: none (1 language, `en-GB`); `canonical`: 1 absolute canonical.
 - [ ] **Make it a build gate:** the prerender fails the build on a missing or duplicate title or description, a length outside the range, a blocklisted anchor, an `<a>` without `href`, or an `<img>` without alt. Add Lighthouse CI (`@lhci/cli`, free on GitHub Actions) asserting SEO = 1 on 1 page per template.
 
 ### C. Core Web Vitals (75th percentile, mobile and desktop)

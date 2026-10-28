@@ -15,7 +15,7 @@
    - screens/WORKSPACE/NAME.html: every app screen's HTML in both workspaces, drawn from its component, for a page
      reached client side to fetch (components/screens.ts). Parts of pages, never pages: public/_headers keeps them
      out of search.
-   Then it checks what it wrote: 1 h1 per page, unique titles and descriptions, every share image present, the JSON-LD
+   Then it checks what it wrote: 1 h1 per page, alt text on every image, unique titles and descriptions, every share image present, the JSON-LD
    parses, and every internal link lands on a page or a file. Broken promises fail the build; style notes only warn.
 
    It builds its own server bundle with a fixed config instead of reading vite.config.ts. Without wrangler.jsonc,
@@ -524,6 +524,10 @@ for (const { e, app } of rendered) {
   const where = e.meta.path
   const h1s = app.match(/<h1[\s>]/g)?.length ?? 0
   if (h1s !== 1) warn(`${where}: ${h1s} h1 elements (the page should have exactly 1).`)
+  /* Every image says what it shows: search engines and AI answers read the alt text, not the picture. An empty alt
+     counts as missing (Bing's Site Scan flagged the nav card's alt="" on 79 pages, 28 Oct 2026). */
+  for (const img of app.match(/<img\b[^>]*>/g) ?? [])
+    if (!/\salt="[^"]*\S[^"]*"/.test(img)) fail(`${where}: an image has no alt text (${img.match(/\ssrc="([^"]*)"/)?.[1] ?? 'no src'}). Say what it shows.`)
   const t = e.meta.title.length
   const d = e.meta.description.length
   if (t < 55 || t > 60) warn(`${where}: title is ${t} characters (55 to 60).`)

@@ -120,7 +120,7 @@ function Pages() {
                 aria-label={UI.open(i + 1)}
                 onClick={() => setOpen((o) => (o === i ? null : i))}
               >
-                <img src={p.src} alt="" width={p.width} height={p.height} loading="lazy" decoding="async" />
+                <img src={p.src} alt={p.alt} width={p.width} height={p.height} loading="lazy" decoding="async" />
               </button>
               <p className="s-so-pages__n">{UI.page(i + 1)}</p>
             </li>
