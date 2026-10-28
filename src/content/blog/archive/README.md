@@ -1,6 +1,6 @@
 # Archived blog posts
 
-The blog is archived for now (Seun, 3 Oct 2026): these 5 posts are kept, checked by the type checker, and never built
+The blog is archived for now (Seun, 3 Oct 2026): these 4 posts are kept, checked by the type checker, and never built
 or published. With no live post the site shows no blog at all: no /blog or /blog/SLUG pages, no Blog link in the nav,
 footer or Resources, nothing in the sitemap, llms.txt or the feed.
 

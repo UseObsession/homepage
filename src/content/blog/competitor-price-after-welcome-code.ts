@@ -55,7 +55,6 @@ export const post: BlogPost = {
     'competitor pricing analysis ecommerce',
     'competitor discount codes',
     'shopify competitors pricing',
-    'best competitor price tracking tool',
   ],
   category: 'Watch other companies',
   published: '2026-10-23',

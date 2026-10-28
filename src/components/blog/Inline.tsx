@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { relOf } from '../../lib/competitors'
 import { tie } from './util'
 
 /* The blog's inline text (content/blog/types.ts): plain words with [link text](url) and **bold** (which may hold a link). Root relative links
@@ -16,7 +17,7 @@ function linkOf(label: string, href: string, key: string | number) {
       {tie(label)}
     </Link>
   ) : (
-    <a key={key} className="s-art-a" href={href} rel="noopener">
+    <a key={key} className="s-art-a" href={href} rel={relOf(href)}>
       {tie(label)}
     </a>
   )
