@@ -2,9 +2,16 @@
    Internet Archive and Amazonbot) that pages changed, so they are crawled again within hours instead of weeks.
    Run it by hand after every deploy, never before: IndexNow checks the key file on the live site.
 
-     npx wrangler deploy && npm run indexnow          every page in dist/sitemap.xml
-     npm run indexnow -- /agencies /recipes/lead-leaks  only the pages that changed
+     npm run indexnow                                  the pages the newest change touched: those whose lastmod in
+                                                       dist/sitemap.xml is its newest date
+     npm run indexnow -- /agencies /recipes/lead-leaks  only the pages named
+     npm run indexnow -- --all                         every page in dist/sitemap.xml (a new site, or after a fix
+                                                       that touched every page)
      npm run indexnow -- --dry-run                     print what would be sent, send nothing
+
+   Bing asks for changed pages as they change, not the whole site in batches (Bing Webmaster Guidelines 4, read
+   28 Oct 2026), so a plain run sends only what changed. It needs a build with full git history, so each page's lastmod
+   is the day its words changed (scripts/prerender.mjs).
 
    The key is public/KEY.txt (32 hex characters, the file holding only its own name), served at
    https://useobsession.com/KEY.txt. It is not a secret: anyone can read it, and it only proves we own the host.
@@ -30,6 +37,7 @@ const stop = (message) => {
 }
 const args = process.argv.slice(2)
 const dry = args.includes('--dry-run')
+const all = args.includes('--all')
 const paths = args.filter((a) => !a.startsWith('--'))
 
 const keys = readdirSync(join(root, 'public')).filter((f) => {
@@ -40,7 +48,7 @@ if (keys.length !== 1) stop(`expected 1 key file in public/, found ${keys.length
 const key = keys[0].slice(0, -4)
 const keyLocation = `${SITE}/${key}.txt`
 
-/* The pages: the ones named, or every page in the built sitemap. */
+/* The pages: the ones named; with --all, every page in the built sitemap; else the pages dated its newest lastmod. */
 let urlList
 if (paths.length) {
   urlList = paths.map((p) => (p.startsWith('http') ? p : SITE + (p.startsWith('/') ? p : `/${p}`)))
@@ -51,7 +59,14 @@ if (paths.length) {
   } catch {
     stop('no dist/sitemap.xml. Run npm run build first, or name the pages.')
   }
-  urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+  const pages = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>(?:<lastmod>([^<]+)<\/lastmod>)?/g)].map((m) => ({ url: m[1], date: m[2] ?? '' }))
+  const newest = pages.reduce((d, p) => (p.date > d ? p.date : d), '')
+  if (all || !newest) {
+    urlList = pages.map((p) => p.url)
+  } else {
+    urlList = pages.filter((p) => p.date === newest).map((p) => p.url)
+    console.log(`IndexNow: the ${urlList.length} page${urlList.length > 1 ? 's' : ''} dated ${newest}, the newest lastmod (--all sends all ${pages.length}).`)
+  }
 }
 const foreign = urlList.filter((u) => new URL(u).host !== HOST)
 if (foreign.length) stop(`not on ${HOST}: ${foreign.join(', ')}`)

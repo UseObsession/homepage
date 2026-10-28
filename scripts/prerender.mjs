@@ -260,10 +260,22 @@ function lastCommit(file) {
   }
 }
 /* A shallow clone (a CI build that fetched only the newest commit) has no older commits, so every page would be dated
-   the day of the build and the dates would stop meaning a change. Said, not failed: the build still ships. */
+   by that commit and the dates would stop meaning a change. Cloudflare's build clones that way: on 28 Oct 2026 the
+   live sitemap dated 40 of its 80 pages 27 Oct, the day of the newest commit, though their words last changed on 23 or
+   24 Oct. Bing reads lastmod to choose what to crawl again (Bing Webmaster Guidelines 3), so the build fetches the
+   rest of the history first (about 15 MB). If that fails it says so and still ships. */
+const shallow = () =>
+  execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim() === 'true'
 try {
-  if (execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim() === 'true')
-    warn('sitemap.xml: this is a shallow git clone, so every lastmod is the newest commit\'s date. Build with full history (git fetch --unshallow, then npm run build).')
+  if (shallow()) {
+    try {
+      execFileSync('git', ['fetch', '--unshallow', '--quiet'], { cwd: root, stdio: 'ignore', timeout: 120000 })
+    } catch {
+      /* No remote or no network: the warning below says what the dates are. */
+    }
+    if (shallow())
+      warn('sitemap.xml: this is a shallow git clone and fetching its history failed, so every lastmod is the newest commit\'s date. Build with full history (git fetch --unshallow, then npm run build).')
+  }
 } catch {
   /* Not a git checkout: lastCommit gives no dates either. */
 }
