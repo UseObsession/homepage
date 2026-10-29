@@ -194,7 +194,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For a proposal on a Klaviyo job, the opening and template are in [Klaviyo jobs on Upwork](/blog/upwork-klaviyo-jobs). For the full email method, step by step, see the [Klaviyo flow audit without a login](/blog/audit-prospect-email-without-klaviyo-login).',
+      text: 'For a proposal on a Klaviyo job, the opening and template are in [how Klaviyo experts win Upwork jobs](/blog/upwork-klaviyo-jobs). For the full email method, step by step, see the [Klaviyo flow audit without a login](/blog/audit-prospect-email-without-klaviyo-login).',
     },
     { kind: 'p', text: '**Pass:** the brand can check the finding on its own phone in a minute.' },
 
