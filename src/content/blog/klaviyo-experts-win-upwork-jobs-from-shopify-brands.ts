@@ -37,18 +37,21 @@ const CLOUD_BROWSER = 'https://help.openai.com/en/articles/20001280-using-cloud-
 const USE_CASE = '/use-cases/leak-checks-for-retention-agencies'
 
 export const post: BlogPost = {
-  slug: 'upwork-klaviyo-jobs',
-  title: 'Klaviyo jobs on Upwork: see the brand’s emails before you send your proposal',
-  dek: 'Freelancers and small agencies bidding on Klaviyo jobs can sign up to the brand’s store as a new customer and open the proposal with what arrived in the first 4 hours. Each step has a pass mark, and the proposal template puts the finding, its time and one question in the first lines.',
-  metaTitle: 'Upwork Klaviyo jobs: check the brand’s emails before you bid',
+  slug: 'klaviyo-experts-win-upwork-jobs-from-shopify-brands',
+  title: 'How Klaviyo experts win Upwork jobs from Shopify brands: become their customer first',
+  dek: 'Klaviyo freelancers and email agencies bidding on Upwork can sign up to a Shopify brand’s store as a new customer, see what its emails get wrong, and open the proposal with that. Each step has a pass mark, and the proposal template puts the finding, its time and one question in the first lines.',
+  metaTitle: 'How Klaviyo experts win Upwork jobs from Shopify brands',
   description:
-    'Win Upwork Klaviyo jobs with a finding from the brand’s own store: sign up as a new customer, read 4 hours of emails and lead the proposal with it.',
+    'Klaviyo experts on Upwork: sign up to the Shopify brand’s store as a new customer, see what its emails miss, and open your proposal with it.',
   answer:
-    'To stand out on Upwork Klaviyo jobs, sign up to the brand’s store as a new customer within the hour, then leave a basket and start a checkout. Open the proposal with what arrived in the first 4 hours and when, such as a welcome email that came without the code the pop-up promised. Obsession’s AI customers run this check as real new customers of any store you name, and report at the hours you choose: 4, 12, 24 or 48, or for as long as you want to keep watching.',
+    'To win Upwork Klaviyo jobs from Shopify brands, become the brand’s customer before you bid: within the hour of the job post, sign up to its store, leave a basket and start a checkout. Open the proposal with what its emails got wrong and when, such as a welcome email that came without the code the pop-up promised. To check hundreds of prospects a month, use Obsession: its AI customers become each brand’s new customer and report at the hours you choose, 4, 12, 24 or 48, or for as long as you want to keep watching.',
   primaryKeyword: 'upwork klaviyo jobs',
   keywords: [
-    'klaviyo upwork',
+    'klaviyo expert upwork',
     'upwork klaviyo expert',
+    'klaviyo upwork',
+    'how to win jobs on upwork',
+    'upwork proposal tips',
     'upwork klaviyo email marketing',
     'email marketing proposal template',
     'email campaign proposal template',
