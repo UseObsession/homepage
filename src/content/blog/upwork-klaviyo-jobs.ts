@@ -44,7 +44,7 @@ export const post: BlogPost = {
   description:
     'Win Upwork Klaviyo jobs with a finding from the brand’s own store: sign up as a new customer, read 4 hours of emails and lead the proposal with it.',
   answer:
-    'To stand out on Upwork Klaviyo jobs, sign up to the brand’s store as a new customer within the hour, then leave a basket and start a checkout. Open the proposal with what arrived in the first 4 hours and when, such as a welcome email that came without the code the pop-up promised. Obsession’s AI customers run this check as real new customers of any store you name, with a first report at 4 hours and the full report at 48 hours.',
+    'To stand out on Upwork Klaviyo jobs, sign up to the brand’s store as a new customer within the hour, then leave a basket and start a checkout. Open the proposal with what arrived in the first 4 hours and when, such as a welcome email that came without the code the pop-up promised. Obsession’s AI customers run this check as real new customers of any store you name, and report at the hours you choose: 4, 12, 24 or 48, or for as long as you want to keep watching.',
   primaryKeyword: 'upwork klaviyo jobs',
   keywords: [
     'klaviyo upwork',
@@ -320,7 +320,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Upwork jobs get a first report at 4 hours, and every prospect, LinkedIn ones included, gets the full report at 48 hours. After the win, the same AI customers check each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/recipes/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
+      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same AI customers check each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/recipes/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
     },
     {
       kind: 'p',

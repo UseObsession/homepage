@@ -20,7 +20,7 @@ export const post: BlogPost = {
   description:
     'How to get clients as a marketing agency: become a customer of each ecommerce brand you pitch, then open with one finding, its time and a screenshot.',
   answer:
-    'To get clients as a marketing agency, become a customer of each ecommerce brand you pitch and open with one finding from its store, with its time and a screenshot. A finding the brand can check in its own inbox, such as a welcome code that never arrived, sets the pitch apart from every agency promising growth. Obsession’s AI customers do this at 300 to 5,000 brands a month, with a first report at 4 hours and the full report at 48 hours.',
+    'To get clients as a marketing agency, become a customer of each ecommerce brand you pitch and open with one finding from its store, with its time and a screenshot. A finding the brand can check in its own inbox, such as a welcome code that never arrived, sets the pitch apart from every agency promising growth. Obsession’s AI customers do this at 300 to 5,000 brands a month, with reports at the hours the agency chooses: 4, 12, 24 or 48, or for as long as it wants to keep watching.',
   primaryKeyword: 'how to get clients as a marketing agency',
   keywords: [
     'how to get clients as a creative agency',
@@ -46,10 +46,10 @@ export const post: BlogPost = {
       steps: [
         { label: 'Pick', detail: '300 brands with a reason to buy now', tone: 'info' },
         { label: 'Shop', detail: 'An AI customer for each job: sign-up, basket, checkout', tone: 'ok' },
-        { label: '4 hours', detail: 'What each brand’s store sent, and when', tone: 'ok' },
+        { label: 'Read', detail: 'At 4, 12, 24 or 48 hours: what each store sent', tone: 'ok' },
         { label: 'Pitch', detail: 'Each proposal opens with that brand’s finding', tone: 'ok' },
       ],
-      foot: 'An example on an invented agency. The full report on each brand follows at 48 hours, and the same AI customers keep checking the brands that sign.',
+      foot: 'An example on an invented agency. Read each brand at the hour that suits the pitch, and the same AI customers keep checking the brands that sign.',
     },
   },
 
@@ -164,10 +164,10 @@ export const post: BlogPost = {
     },
     { kind: 'p', text: '**Pass:** 4 addresses, 4 start times and a screenshot of the pop-up’s offer.' },
 
-    { kind: 'h3', id: 'four-then-48', text: '3. Read at 4 hours, then at 48' },
+    { kind: 'h3', id: 'four-then-48', text: '3. Read early, judge when the window closes' },
     {
       kind: 'p',
-      text: 'Read every inbox at 4 hours for a brand that is hiring now, then again at 48 hours, and check the spam folder each time. In Obsession’s October pilot, the timing looked like this:',
+      text: 'Read every inbox as early as the pitch needs, at 4, 12 or 24 hours for a brand that is hiring now, and check the spam folder each time. Call an email missing only once the window you chose has closed, 48 hours for most flows. In Obsession’s October pilot, the timing looked like this:',
     },
     {
       kind: 'list',
@@ -311,7 +311,7 @@ export const post: BlogPost = {
         '**As many AI customers as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
         '**A shopper from the right country.** Each AI customer shops from the US or the UK, to match the brand’s market.',
         '**CAPTCHAs, the puzzles that check a visitor is a person.** In the October pilot, most stores put a CAPTCHA or bot check in front of at least one step. Now, when a store asks a visitor to prove it’s human, a person on the Obsession team completes that step and the AI customer carries on.',
-        '**Reports on the agency’s clock.** A first report at 4 hours for brands hiring now, the full report at 48 hours, then weekly or monthly checks once a brand becomes a client.',
+        '**Reports on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep the AI customers on for weeks or months. A brand hiring now can get its first finding within hours, and a client gets weekly or monthly checks.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for the brands it serves.',
         '**Scale.** It runs at 300 brands a month, 1,000 or 5,000, and it is built for millions. The first agency to finish the October pilot is moving to 300 brands a month.',
         '**Pricing.** Credit-based plans, like Claude’s.',
@@ -439,7 +439,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start with 5 brands this week' },
     {
       kind: 'p',
-      text: 'Pick 5 brands with a dated reason to buy: a job post, a new hire, a launch or Black Friday. Sign each one up by hand on Monday morning, or name them to Obsession, and send the first finding before the brand hires someone else. The Obsession team helps each agency set up its first batch: the brands, the journeys at each and where the reports go. The free check below reports within 4 days. Once your own list runs, the first report comes at 4 hours and the full report at 48.',
+      text: 'Pick 5 brands with a dated reason to buy: a job post, a new hire, a launch or Black Friday. Sign each one up by hand on Monday morning, or name them to Obsession, and send the first finding before the brand hires someone else. The Obsession team helps each agency set up its first batch: the brands, the journeys at each and where the reports go. The free check below reports within 4 days. Once your own list runs, you choose when to read: 4, 12, 24 or 48 hours, or as long as you want to keep watching.',
     },
     {
       kind: 'cta',
@@ -472,7 +472,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What does a good agency prospecting process look like?',
-          a: 'Pick brands with a reason to buy now and become their customer. Read what arrives at 4 hours and at 48 hours, then open with one finding and take the call through the rest. Once the brand signs, the 48-hour report is the baseline. Write a pass mark for each step so anyone on the team runs it the same way.',
+          a: 'Pick brands with a reason to buy now and become their customer. Read what arrives at the hours that suit the pitch, judge once the window closes, then open with one finding and take the call through the rest. Once the brand signs, that report is the baseline. Write a pass mark for each step so anyone on the team runs it the same way.',
         },
         {
           q: 'How many prospects can an agency check by hand?',
