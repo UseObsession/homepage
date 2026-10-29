@@ -223,7 +223,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession recipe behind it.',
+      text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession recipe behind it: a ready-made check with its steps, its schedule and what it reports.',
     },
 
     { kind: 'h3', id: 'retention', text: 'Retention and email agencies' },
