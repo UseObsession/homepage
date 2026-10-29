@@ -57,12 +57,12 @@ const CLOUD_BROWSER = 'https://help.openai.com/en/articles/20001280-using-cloud-
 export const post: BlogPost = {
   slug: 'ai-customers-for-retention-agencies',
   title: 'Why retention agencies need AI customers',
-  dek: 'What a retention agency can’t see from inside a client’s account, what that costs in retainers, the weekly routine that covers it, and the jobs AI customers do for every client, rival and prospect.',
+  dek: 'What a retention agency can’t see from inside a client’s account, what that costs in retainers, the weekly routine that covers it, and the jobs AI customers do for every client, competitor and prospect.',
   metaTitle: 'Klaviyo agency AI: why retention agencies need AI customers',
   description:
-    'Klaviyo agency AI for proof: how AI customers show each client what its customers received, watch rivals and open pitches, with the payback in retainers.',
+    'Klaviyo agency AI for proof: AI customers show each client what its customers received, watch competitors and open pitches, with the payback in retainers.',
   answer:
-    'Retention agencies that run Klaviyo, Postscript or Attentive for ecommerce brands need AI customers to show each client what its customers received, from the welcome email to the basket reminder, checked as a new customer every week and kept exactly as it arrived. The platforms report what was sent, and Obsession’s AI customers, each with its own inbox, phone number and browser, keep what arrived at each client store, at its rivals and at the agency’s prospects as proof.',
+    'Retention agencies that run Klaviyo, Postscript or Attentive for ecommerce brands need AI customers to show each client what its customers received, from the welcome email to the basket reminder, checked as a new customer every week and kept exactly as it arrived. The platforms report what was sent, and Obsession’s AI customers, each with its own inbox, phone number and browser, keep what arrived at each client store, at its competitors and at the agency’s prospects as proof.',
   primaryKeyword: 'klaviyo agency ai',
   keywords: [
     'klaviyo agency ai',
@@ -95,10 +95,10 @@ export const post: BlogPost = {
         { name: 'Basket reminder', cells: ['After 1 hour', '4 hours, no photo'], tone: 'late' },
         { name: 'Checkout reminder', cells: ['After 1 hour', '58 minutes'], tone: 'ok' },
         { name: 'Code at checkout', cells: ['Works on all items', 'Refused on gift sets'], tone: 'fail' },
-        { name: 'Rival: hartwick', cells: ['A welcome offer', '20% off, in 2 minutes'], tone: 'info' },
+        { name: 'Competitor: hartwick', cells: ['A welcome offer', '20% off, in 2 minutes'], tone: 'info' },
       ],
       notes: [
-        'An example page of a client report, for an invented store and an invented rival.',
+        'An example page of a client report, for an invented store and an invented competitor.',
         'Checked weekly as a new customer, with each email and text kept as it arrived.',
       ],
     },
@@ -166,7 +166,7 @@ export const post: BlogPost = {
           '), 158 never sent a new subscriber a welcome email. Klaviyo’s own [2026 benchmarks](' +
           KLAVIYO_BENCH +
           ') show flows earning nearly 41% of email revenue from 5.3% of sends.',
-        '**What rivals sent the client’s customers.** A senior account manager quoted on [MailCharts’ agencies page](' +
+        '**What competitors sent the client’s customers.** A senior account manager quoted on [MailCharts’ agencies page](' +
           MAILCHARTS +
           ') says “Our clients would constantly be asking us to produce a competitive analysis based on email”.',
         '**What the customer saw.** Which Gmail tab an email reached, whether its offer matched the pop up and whether its code worked at checkout show only on the customer’s side. Joy Joya’s test found 20 brands whose welcome offer didn’t match their pop up.',
@@ -220,7 +220,7 @@ export const post: BlogPost = {
         kind: 'price',
         title: 'An agency with 20 clients · the routine by hand',
         rows: [
-          { label: 'Each client, each week', value: '48 minutes', note: '3 journeys at 6, 3 rivals at 10' },
+          { label: 'Each client, each week', value: '48 minutes', note: '3 journeys at 6, 3 competitors at 10' },
           { label: 'A year, 20 clients', value: '832 hours', note: '16 hours a week × 52' },
           { label: 'Cost of the hours', value: '$31,508', note: '× $37.87, the BLS median wage' },
           { label: '1 client, high case', value: '$10,000', note: 'A month, top of Darkroom’s range' },
@@ -237,7 +237,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'workload', text: 'The workload of checking by hand' },
     {
       kind: 'p',
-      text: 'By hand, the hours are checks × clients × minutes × how often. Each week a strategist runs the welcome, basket and checkout journeys as a new customer at every client store, logs what arrived within 48 hours, then logs each rival’s emails. At example timings of 6 minutes a journey and 10 minutes a rival, 3 journeys and 3 rivals take 48 minutes a client each week: 4 hours for 5 clients, 16 for 20 and 32 for 40.',
+      text: 'By hand, the hours are checks × clients × minutes × how often. Each week a strategist runs the welcome, basket and checkout journeys as a new customer at every client store, logs what arrived within 48 hours, then logs each competitor’s emails. At example timings of 6 minutes a journey and 10 minutes a competitor, 3 journeys and 3 competitors take 48 minutes a client each week: 4 hours for 5 clients, 16 for 20 and 32 for 40.',
     },
     {
       kind: 'list',
@@ -246,7 +246,7 @@ export const post: BlogPost = {
           KL_LISTFLOW +
           '), so a subscriber who had the welcome series won’t get it again. 3 journeys at 20 clients need 60 new addresses a week.',
         '**Changes don’t wait for the weekly run.** A theme, app, form or flow edit can stop a message on any day, and the next run is the first to see it.',
-        '**History starts on the first run.** A rival joined after its first Black Friday teaser has no record of it, and a skipped week can’t be logged afterwards.',
+        '**History starts on the first run.** A competitor joined after its first Black Friday teaser has no record of it, and a skipped week can’t be logged afterwards.',
       ],
     },
     {
@@ -261,7 +261,7 @@ export const post: BlogPost = {
         ['Welcome email and code', 'Within 5 minutes, code works', 'Weekly, and after form edits', 'Strategist'],
         ['Welcome text', 'Arrives after the opt in', 'Weekly', 'Strategist'],
         ['Basket and checkout reminders', 'Flow delay plus 1 hour, product shown', 'Weekly, and after theme or app changes', 'Strategist\nDeveloper for the theme'],
-        ['Rivals’ emails and texts', 'Every send logged with its offer', 'As they arrive', 'Account lead'],
+        ['Competitors’ emails and texts', 'Every send logged with its offer', 'As they arrive', 'Account lead'],
         ['AI replies by text or chat', 'Match the client’s policy pages', 'Weekly, and after prompt edits', 'Account lead'],
       ],
     },
@@ -270,7 +270,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'An agency gives each client store, each rival and each prospect its own AI customer, with the client’s OK for its store. Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their rivals and prospect with proof. For a retention agency, it shows what each client’s customers received, from the pop up to the basket reminder.',
+      text: 'An agency gives each client store, each competitor and each prospect its own AI customer, with the client’s OK for its store. Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a retention agency, it shows what each client’s customers received, from the pop up to the basket reminder.',
     },
     { kind: 'h3', id: 'client-flows', text: '1. Every client’s flows, every week' },
     {
@@ -282,10 +282,10 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**The check:** the month’s runs gathered on one page of the client report, every email and text linked as it arrived. **A pass:** every flow fired, or each break is listed with its fix. **That week:** the account lead sends it beside the platform’s revenue report, before the client asks what the retainer buys. [Proof that every flow fired](/blog/show-clients-every-flow-fired) sets out that page as an email marketing reporting template.',
     },
-    { kind: 'h3', id: 'rivals', text: '3. Every rival, before Black Friday' },
+    { kind: 'h3', id: 'competitors', text: '3. Every competitor, before Black Friday' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on the list of each rival a client names, logging every email, text, offer and code from the day it joins. **A pass:** each rival’s first Black Friday send is dated, with its offer. **That week:** the account lead collects 3 rivals per client before early November, and after Cyber Monday sends [a one page Black Friday rival report](/blog/black-friday-rival-report-template). [Email and SMS tracking](/recipes/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side.',
+      text: '**The check:** an AI customer on the list of each competitor a client names, logging every email, text, offer and code from the day it joins. **A pass:** each competitor’s first Black Friday send is dated, with its offer. **That week:** the account lead collects 3 competitors per client before early November, and after Cyber Monday sends [a one page Black Friday competitor report](/blog/black-friday-competitor-email-report-template). [Email and SMS tracking](/recipes/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side.',
     },
     { kind: 'h3', id: 'prospects', text: '4. Every prospect, before the pitch' },
     {
@@ -343,7 +343,7 @@ export const post: BlogPost = {
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         ['Doing nothing', 'Costs no time', 'Free', 'The client finds a break first', 'Clients whose flows rarely change'],
-        ['By hand: a new address, a phone and a sheet', 'Any store, with the team’s judgement', 'Your team’s hours', 'Hours grow with every client and rival', 'Up to about 5 clients'],
+        ['By hand: a new address, a phone and a sheet', 'Any store, with the team’s judgement', 'Your team’s hours', 'Hours grow with every client and competitor', 'Up to about 5 clients'],
         [
           'Platform reports: [Klaviyo flow analytics](' + KL_FLOWS + ')',
           'What was sent, and what it earned',
@@ -366,11 +366,11 @@ export const post: BlogPost = {
           'Deliverability before a big send',
         ],
         [
-          'Rival libraries: [Panoramata](' + PANORAMATA + '), [MailCharts](' + MAILCHARTS + ')',
-          'Rivals’ emails, texts, flows and ads, with history',
+          'Competitor libraries: [Panoramata](' + PANORAMATA + '), [MailCharts](' + MAILCHARTS + ')',
+          'Competitors’ emails, texts, flows and ads, with history',
           'Panoramata: $99, $179 or $399 a month\nMailCharts: Not listed',
-          'Panoramata Startup: 20 rivals, 6 months',
-          'Rival research and creative ideas',
+          'Panoramata Startup: 20 competitors, 6 months',
+          'Competitor research and creative ideas',
         ],
         [
           'AI browser agent: [ChatGPT’s cloud browser](' + CLOUD_BROWSER + ')',
@@ -381,16 +381,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence)',
-          'AI customers at clients, rivals and prospects, every email and text kept',
+          'AI customers at clients, competitors and prospects, every email and text kept',
           'Running now: check 5 stores free\nCredit-based plans, like Claude’s',
           'Stops at bot walls and CAPTCHAs',
-          'What customers get at every client, rival and prospect, kept as proof',
+          'What customers get at every client, competitor and prospect, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agency needs to show every client what its customers received, watch their rivals and open pitches with proof, use Obsession. For a handful of clients whose flows rarely change, a sheet and a new address are enough. The options combine: the platform reports revenue, the audit finds causes, a placement test checks a big send, and AI customers record what each new customer received. [Hiring AI customers](/blog/hire-ai-customers) sets out how to brief them.',
+      text: 'If your agency needs to show every client what its customers received, watch their competitors and open pitches with proof, use Obsession. For a handful of clients whose flows rarely change, a sheet and a new address are enough. The options combine: the platform reports revenue, the audit finds causes, a placement test checks a big send, and AI customers record what each new customer received. [Hiring AI customers](/blog/hire-ai-customers) sets out how to brief them.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
@@ -399,9 +399,9 @@ export const post: BlogPost = {
       items: [
         '**A handful of clients whose flows rarely change.** At 5 clients the weekly routine takes about 4 hours, and a sheet and a new address cover it.',
         '**The question is why a flow failed.** The cause sits inside the account, where an audit finds it.',
-        '**Last year’s rival emails.** An AI customer holds what arrives from the day it joins, so an earlier Black Friday needs a library that already covered the brand.',
+        '**Last year’s competitor emails.** An AI customer holds what arrives from the day it joins, so an earlier Black Friday needs a library that already covered the brand.',
         '**Placement across mailbox providers before a big send.** A seed test, which sends to mailboxes the vendor controls, answers it.',
-        '**A client that hasn’t agreed to tests on its store.** Its rivals can be watched until it does.',
+        '**A client that hasn’t agreed to tests on its store.** Its competitors can be watched until it does.',
       ],
     },
 
@@ -412,7 +412,7 @@ export const post: BlogPost = {
       items: [
         'Pick the 3 clients whose retainers come up for review next, and write a pass mark for the welcome, basket and checkout messages from each flow’s own delay.',
         'Run each journey once as a new customer, with a new address for each, and log what arrived after 48 hours.',
-        'Ask each client for 3 rivals and sign up to them now, before the teasers and early access sends of early November.',
+        'Ask each client for 3 competitors and sign up to them now, before the teasers and early access sends of early November.',
         'Add a page called “What your customers received” to the next monthly report, with every email linked as it arrived.',
         'Time the hours, multiply by the client list, and put the total into the payback sum.',
       ],
@@ -442,7 +442,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What AI tools can an email marketing agency use?',
-          a: 'For building and sending, the platform’s own agents, such as Klaviyo’s Composer and Postscript’s Shopper, and AI assistants for drafting. For checking, AI customers, which sign up to each client store, rival and prospect and keep every email and text as it arrived.',
+          a: 'For building and sending, the platform’s own agents, such as Klaviyo’s Composer and Postscript’s Shopper, and AI assistants for drafting. For checking, AI customers, which sign up to each client store, competitor and prospect and keep every email and text as it arrived.',
         },
         {
           q: 'How much does a Klaviyo agency cost?',
@@ -450,14 +450,14 @@ export const post: BlogPost = {
         },
         {
           q: 'Does an agency need a client’s OK to test its store?',
-          a: 'Yes. Get each client’s OK before checking its store, and keep the test sign ups out of its reporting. For rivals and prospects, use only the public sign up any customer can use. This is not legal advice.',
+          a: 'Yes. Get each client’s OK before checking its store, and keep the test sign ups out of its reporting. For competitors and prospects, use only the public sign up any customer can use. This is not legal advice.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'The r/agency posts are public threads, opened on 3 October 2026. CallRail’s survey covers US marketing agencies of every kind. The store, the rival, the 20 client agency and the timings in the illustrations are invented examples. This is not legal advice.',
+      text: 'The r/agency posts are public threads, opened on 3 October 2026. CallRail’s survey covers US marketing agencies of every kind. The store, the competitor, the 20 client agency and the timings in the illustrations are invented examples. This is not legal advice.',
     },
   ],
 

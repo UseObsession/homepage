@@ -463,7 +463,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, text, price, page, checkout and AI answer it sends them, so your company can find its revenue leaks, watch its rivals and prospect with proof. Its Voice agent check calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer. Its Support bot check asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
+      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, text, price, page, checkout and AI answer it sends them, so your company can find its revenue leaks, watch its competitors and prospect with proof. Its Voice agent check calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer. Its Support bot check asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
     },
     {
       kind: 'cta',

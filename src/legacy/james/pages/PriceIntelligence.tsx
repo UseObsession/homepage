@@ -15,7 +15,7 @@ const basket = [
   { product: 'Brand A macinato 250 g', ean: '80…0417', pub: '3,19 €', member: '2,69 €', gap: '−16%' },
   { product: 'Brand A grani 1 kg', ean: '80…0424', pub: '12,90 €', member: '12,90 €', gap: '' },
   { product: 'Brand A capsule x10', ean: '80…0431', pub: '3,49 €', member: '2,99 €', gap: '−14%' },
-  { product: 'Rival B macinato 250 g', ean: '80…1185', pub: '2,89 €', member: '2,29 €', gap: '−21%' },
+  { product: 'Competitor B macinato 250 g', ean: '80…1185', pub: '2,89 €', member: '2,29 €', gap: '−21%' },
 ]
 
 const inbox = [
@@ -632,7 +632,7 @@ export function PriceIntelligence() {
                 roles: 'Trade marketing, category and sales',
                 items: [
                   ['Check member promotions ran', 'Turn agreed loyalty promotions into evidence, as you already do for flyers.', 'The 20% coffee offer reached Corvalle members, 5 to 11 October.'],
-                  ['See who discounts you to members', 'Member price against public price, per retailer and per item.', 'Rival B is 21% cheaper for Corvalle members.'],
+                  ['See who discounts you to members', 'Member price against public price, per retailer and per item.', 'Competitor B is 21% cheaper for Corvalle members.'],
                   ['Price erosion behind the login', 'Which retailer goes below a threshold first, for members only.', 'Brand A macinato: 2,49 € for Corvalle members on 14 October.'],
                 ],
               },
@@ -640,9 +640,9 @@ export function PriceIntelligence() {
                 who: 'For retailers',
                 roles: 'Pricing, loyalty and CRM',
                 items: [
-                  ['Benchmark the welcome offer', 'What each rival gives a new member, and what it takes to use it.', 'Corvalle: 5 € off a 30 € shop, valid 14 days.'],
-                  ['Rivals’ member prices on your basket', 'Your tracking basket, read as a member at each rival.', '14 of 40 items carry a member price at Corvalle.'],
-                  ['The sequence after sign up', 'Every email and text a rival sends new members, by day.', '9 messages in 30 days, 3 with a coupon.'],
+                  ['Benchmark the welcome offer', 'What each competitor gives a new member, and what it takes to use it.', 'Corvalle: 5 € off a 30 € shop, valid 14 days.'],
+                  ['Competitors’ member prices on your basket', 'Your tracking basket, read as a member at each competitor.', '14 of 40 items carry a member price at Corvalle.'],
+                  ['The sequence after sign up', 'Every email and text a competitor sends new members, by day.', '9 messages in 30 days, 3 with a coupon.'],
                 ],
               },
             ].map((g) => (

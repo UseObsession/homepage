@@ -181,7 +181,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Meet your first AI customers: name any company and its AI customer keeps every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
+      text: 'Meet your first AI customers: name any company and its AI customer keeps every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
       to: '/',
       label: 'Meet your first AI customers',
     },
@@ -242,9 +242,9 @@ export const post: BlogPost = {
       kind: 'art',
       art: {
         kind: 'price',
-        title: 'Watching 25 rivals’ email for a month',
+        title: 'Watching 25 competitors’ email for a month',
         rows: [
-          { label: 'By hand: 25 rivals × 15 minutes', value: '6.25 hours', note: 'Each week' },
+          { label: 'By hand: 25 competitors × 15 minutes', value: '6.25 hours', note: 'Each week' },
           { label: '× 4.3 weeks', value: '27 hours', note: 'A month' },
           { label: '× $37.87 an hour', value: '$1,022', note: 'US median wage, market research analysts' },
           { label: '25 AI customers at retail', value: '$50.50', note: '$2.02 each' },
@@ -315,7 +315,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Each price is the vendor’s own list price as of 24 October 2026. The volumes (20 emails a month of about 5,000 tokens, 100 KB stored per email, a 2 minute sign up, 10 texts) and the 25 rival example are illustrations, not measurements. The store in the illustration is invented.',
+      text: 'Each price is the vendor’s own list price as of 24 October 2026. The volumes (20 emails a month of about 5,000 tokens, 100 KB stored per email, a 2 minute sign up, 10 texts) and the 25 competitor example are illustrations, not measurements. The store in the illustration is invented.',
     },
   ],
 

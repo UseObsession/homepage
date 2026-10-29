@@ -277,7 +277,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI customers fit in that gap. An AI customer becomes a customer of a company, so it can ask the questions a shopper’s agent asks, wait for the emails and texts that follow, and keep every answer and message as it arrived. Its owner can be the company itself, checking its own agents and checkout, or a team watching rivals, partners and what AI assistants say about them.',
+      text: 'AI customers fit in that gap. An AI customer becomes a customer of a company, so it can ask the questions a shopper’s agent asks, wait for the emails and texts that follow, and keep every answer and message as it arrived. Its owner can be the company itself, checking its own agents and checkout, or a team watching competitors, partners and what AI assistants say about them.',
     },
     {
       kind: 'p',
@@ -325,7 +325,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
       to: '/',
       label: 'Meet your first AI customers',
     },

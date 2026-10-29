@@ -397,7 +397,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same AI customers sign up to any company your team names and keep every email, offer and price it sends, so your company can also find its revenue leaks, watch its rivals and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
+      text: 'The same AI customers sign up to any company your team names and keep every email, offer and price it sends, so your company can also find its revenue leaks, watch its competitors and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
     },
     {
       kind: 'list',

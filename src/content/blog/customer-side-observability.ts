@@ -224,7 +224,7 @@ export const post: BlogPost = {
       art: {
         kind: 'log',
         title: 'An AI agent calls Obsession over MCP',
-        who: 'A Claude agent comparing a client’s welcome series with 5 rivals',
+        who: 'A Claude agent comparing a client’s welcome series with 5 competitors',
         status: { tone: 'ok', text: 'Facts with evidence, then the agent’s own write up' },
         rows: [
           { time: '09:00', text: 'lookup: 6 domains', detail: '4 already covered, with history since August', tone: 'ok' },
@@ -264,10 +264,10 @@ export const post: BlogPost = {
       label: 'Check your AI agents',
     },
 
-    { kind: 'h2', id: 'every-business', text: 'For every business: your rivals and your market' },
+    { kind: 'h2', id: 'every-business', text: 'For every business: your competitors and your market' },
     {
       kind: 'p',
-      text: 'Customer-side observability works on any company, so the same practice covers your market. Every rival’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)). For all 3, and for your own company, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
+      text: 'Customer-side observability works on any company, so the same practice covers your market. Every competitor’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)). For all 3, and for your own company, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
     },
 
     { kind: 'h2', id: 'plan', text: 'A 30 day plan' },
@@ -275,7 +275,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Week 1.** List 5 journeys that earn or lose money (welcome, basket, checkout, delivery, support) and 5 rivals. Write a pass mark for each journey.',
+        '**Week 1.** List 5 journeys that earn or lose money (welcome, basket, checkout, delivery, support) and 5 competitors. Write a pass mark for each journey.',
         '**Week 2.** Run each journey once as a new customer, by hand or with AI customers, and record what arrived and when.',
         '**Week 3.** Send each result to where the team works: a Slack channel, the CRM or your own agent. Add the check after every release.',
         '**Week 4.** Review what failed, what it was worth (the flow’s revenue a day × the days it was silent) and which checks to run daily.',

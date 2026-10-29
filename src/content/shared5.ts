@@ -68,9 +68,9 @@ export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect' | 'kee
 export const askExamples = {
   blackFriday: {
     where: 'Claude Code',
-    q: 'Compare our Black Friday emails with our five closest rivals.',
+    q: 'Compare our Black Friday emails with our five closest competitors.',
     a: [
-      'Two rivals emailed before you did, on 20 and 21 November.',
+      'Two competitors emailed before you did, on 20 and 21 November.',
       'Your launch email landed in Promotions. Fern Hollow’s landed in Primary.',
       'The deepest offer was 40% off, and Fern Hollow’s page and email both held it.',
     ],
@@ -78,7 +78,7 @@ export const askExamples = {
   },
   prices: {
     where: 'Codex',
-    q: 'Which rivals changed a price since September, and by how much?',
+    q: 'Which competitors changed a price since September, and by how much?',
     a: [
       'Northfold cut its starter set from £24 to £19 on 21 October.',
       'Wrenfield kept its prices but added free delivery over £30 on 3 November.',
@@ -108,7 +108,7 @@ export const askExamples = {
   },
   pitch: {
     where: 'Claude Code',
-    q: 'Show me every email our prospect’s three rivals sent since September, for Thursday’s pitch.',
+    q: 'Show me every email our prospect’s three competitors sent since September, for Thursday’s pitch.',
     a: [
       '61 emails across the three, 9 of them basket and browse reminders.',
       'Only Fern Hollow sends a welcome series. Your prospect sends none.',
@@ -161,10 +161,10 @@ export const ways: Ways = {
       line: 'Connect Obsession once to Claude, ChatGPT, Codex or Cursor. Your agent does the thinking, and calls Obsession for what only a customer sees.',
       who: 'For anyone who already works with an AI agent.',
       setup: 'claude mcp add obsession https://mcp.useobsession.com',
-      you: 'Compare our Black Friday emails with our five closest rivals.',
+      you: 'Compare our Black Friday emails with our five closest competitors.',
       calls: ['obsession.lookup(6 companies)', 'obsession.facts(since 1 Nov)', 'obsession.evidence(3 emails)'],
       reply: [
-        'Two rivals emailed before you did, on 20 and 21 November.',
+        'Two competitors emailed before you did, on 20 and 21 November.',
         'Your launch email landed in Promotions. Fern Hollow’s landed in Primary.',
         'The deepest offer was 40% off, and Fern Hollow’s page and email both held it.',
       ],
@@ -176,12 +176,12 @@ export const ways: Ways = {
       title: 'Type what you want to know',
       line: 'Or start from a recipe. Our agent plans the watch, you approve it, and the facts arrive with their receipts.',
       who: 'For anyone without an agent of their own.',
-      ask: 'Start a free trial with our five closest rivals and tell me every offer they send until it ends.',
+      ask: 'Start a free trial with our five closest competitors and tell me every offer they send until it ends.',
       recipes: ['Trial teardown', 'Competitor tracking', 'Ad landing check', 'Price watch'],
       plan: [
-        { k: 'Agents', v: '5, one customer of each rival' },
+        { k: 'Agents', v: '5, one customer of each competitor' },
         { k: 'Runs', v: 'Until each trial ends, pages checked every Monday' },
-        { k: 'Facts to', v: '#rivals in Slack, and a battlecard' },
+        { k: 'Facts to', v: '#competitors in Slack, and a battlecard' },
       ],
     },
     {
@@ -190,20 +190,20 @@ export const ways: Ways = {
       title: 'Write the playbook once',
       line: 'A plain file your agent or scheduler runs every week. The file is the playbook; Obsession is the part your agent can’t do on its own.',
       who: 'For RevOps, GTM engineers and marketing ops.',
-      file: 'playbooks/rival-trials.md',
-      code: `# Rival trial watch
+      file: 'playbooks/competitor-trials.md',
+      code: `# Competitor trial watch
 # Runs every Monday at 08:00
 
 1. obsession.become_customer(
-     ["rival-a.example", "rival-b.example", "rival-c.example"],
+     ["competitor-a.example", "competitor-b.example", "competitor-c.example"],
      how="trial", shared=True)
 
-2. For each rival: obsession.facts(since="last Monday")
+2. For each competitor: obsession.facts(since="last Monday")
 
 3. Update battlecard.md with new offers, onboarding
    changes and price moves. Link every claim to its receipt.
 
-4. Post what changed to #rivals.`,
+4. Post what changed to #competitors.`,
     },
     {
       kind: 'code',

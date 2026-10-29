@@ -301,7 +301,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Obsession makes [AI customers](' +
         USECASE +
-        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. When the checks take too long by hand, use Obsession. Its AI customers do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
+        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. When the checks take too long by hand, use Obsession. Its AI customers do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',

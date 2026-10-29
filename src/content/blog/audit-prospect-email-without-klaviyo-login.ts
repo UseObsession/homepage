@@ -307,7 +307,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Obsession makes [AI customers](' +
         USE_CASE +
-        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
+        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
     },
     {
       kind: 'cta',

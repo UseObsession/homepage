@@ -6,4 +6,4 @@ Every photograph on the blog is from Pexels under the Pexels licence (https://ww
 |---|---|---|---|
 | black-friday-checklist-new-customer | Hands smoothing tissue into an order box | Ron Lach (https://www.pexels.com/@ron-lach) | 9594502 |
 | competitor-price-after-welcome-code | A blank price tag on a red garment in low sun | Anastasiya Doicheva (https://www.pexels.com/@anastasiya-doicheva-21177406) | 18978674 |
-| black-friday-rival-report-template | Hands on a printed bar chart report at a wooden table | RDNE Stock project (https://www.pexels.com/@rdne) | 9034783 |
+| black-friday-competitor-email-report-template | Hands on a printed bar chart report at a wooden table | RDNE Stock project (https://www.pexels.com/@rdne) | 9034783 |

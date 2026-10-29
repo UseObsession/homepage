@@ -431,7 +431,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: `Yes, though the evidence is thinner than the folklore. Harvard Business Review’s 1.25 million leads included 13 B2B companies, and every test lead audit here since 2017 is B2B. The buyer has changed: [Gartner’s survey of 646 B2B buyers](${GARTNER}), run in August and September 2025 and published in March 2026, found 67% prefer to buy without a sales rep, and 45% had used AI in a recent purchase. A buyer who’d rather skip the rep still wants an answer, so time the first useful answer as well as the first reply.`,
     },
-    { kind: 'h2', id: 'questions', text: 'Time your own leads, never a rival’s staff' },
+    { kind: 'h2', id: 'questions', text: 'Time your own leads, never a competitor’s staff' },
     {
       kind: 'faq',
       items: [

@@ -166,7 +166,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The count of AI customers is then set by sign ups and storage; model time barely moves it. Obsession runs AI customers this way at any company you name, so you can find revenue leaks, watch rivals and prospect with proof. Built like this, it can run millions of them, and a company another customer already watches starts with its history on day one.',
+      text: 'The count of AI customers is then set by sign ups and storage; model time barely moves it. Obsession runs AI customers this way at any company you name, so you can find revenue leaks, watch competitors and prospect with proof. Built like this, it can run millions of them, and a company another customer already watches starts with its history on day one.',
     },
 
     { kind: 'h2', id: 'wake', text: 'Waking: what it checks' },

@@ -186,7 +186,7 @@ export const study: UseCaseStudy = {
           {
             title: 'See whose products get the member price',
             line: 'Member price against public price, per retailer and per item.',
-            example: 'At Corvalle, members get Rival B’s macinato 21% off and Brand A’s 16% off.',
+            example: 'At Corvalle, members get Competitor B’s macinato 21% off and Brand A’s 16% off.',
           },
           {
             title: 'Catch price erosion behind the login',
@@ -201,17 +201,17 @@ export const study: UseCaseStudy = {
         items: [
           {
             title: 'Benchmark the welcome offer',
-            line: 'What each rival gives a new member, and what it takes to use it.',
+            line: 'What each competitor gives a new member, and what it takes to use it.',
             example: 'Corvalle: 5 € off a 30 € shop, valid 14 days.',
           },
           {
-            title: 'Read rivals’ member prices on your basket',
-            line: 'Your tracking basket, read as a member at each rival.',
+            title: 'Read competitors’ member prices on your basket',
+            line: 'Your tracking basket, read as a member at each competitor.',
             example: '14 of 40 items carry a member price at Corvalle.',
           },
           {
             title: 'Map the sequence after sign up',
-            line: 'Every email and text a rival sends new members, by day.',
+            line: 'Every email and text a competitor sends new members, by day.',
             example: '9 messages in 30 days, 3 with a coupon.',
           },
         ],

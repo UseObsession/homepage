@@ -307,7 +307,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a CX team, its AI customers call, chat and email the company’s AI agents every day, as its customers do. They check each agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
+      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a CX team, its AI customers call, chat and email the company’s AI agents every day, as its customers do. They check each agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
         BOT_TEST +
         ') gives the questions and a scoring sheet.',
     },

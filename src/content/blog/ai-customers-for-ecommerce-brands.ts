@@ -70,7 +70,7 @@ export const post: BlogPost = {
   description:
     'AI agents for ecommerce that shop as customers: what AI customers check in a store, what a silent flow costs before Black Friday, and the options compared.',
   answer:
-    'Ecommerce brands need AI customers, the AI agents for ecommerce that shop as customers, because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An AI customer becomes a real customer of a store and its rivals, asks AI assistants what shoppers ask, and keeps what it receives as evidence, every week and after every change. Most other AI agents for ecommerce answer shoppers or run admin for the store, while Obsession’s AI customers shop it as customers and keep every email, code and price as proof.',
+    'Ecommerce brands need AI customers, the AI agents for ecommerce that shop as customers, because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An AI customer becomes a real customer of a store and its competitors, asks AI assistants what shoppers ask, and keeps what it receives as evidence, every week and after every change. Most other AI agents for ecommerce answer shoppers or run admin for the store, while Obsession’s AI customers shop it as customers and keep every email, code and price as proof.',
   primaryKeyword: 'ai agents for ecommerce',
   keywords: [
     'ai agents for ecommerce business',
@@ -95,17 +95,17 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'oakhaven.example · the run up to Black Friday',
-      who: 'The store’s AI customer, and 1 at a rival, 17 to 25 November',
+      who: 'The store’s AI customer, and 1 at a competitor, 17 to 25 November',
       status: { tone: 'fail', text: '2 failed, 1 late' },
       rows: [
         { time: 'Tue 17 Nov', text: 'Teaser email arrives', detail: 'Early access from Thursday, Promotions tab', tone: 'ok' },
         { time: 'Thu 19 Nov', text: 'Early access code EARLY25', detail: 'Arrives at 08:02, as planned', tone: 'ok' },
         { time: 'Thu 19 Nov', text: 'EARLY25 refused at checkout', detail: 'On a $64 throw already in the sale', tone: 'fail' },
         { time: 'Fri 20 Nov', text: 'Basket reminder arrives', detail: '26 hours after the basket, against 1 hour', tone: 'late' },
-        { time: 'Mon 23 Nov', text: 'Rival offers 30% off', detail: 'To its new subscribers only, 5 points deeper', tone: 'info' },
+        { time: 'Mon 23 Nov', text: 'Competitor offers 30% off', detail: 'To its new subscribers only, 5 points deeper', tone: 'info' },
         { time: 'Wed 25 Nov', text: 'AI assistant quotes $79', detail: 'The product page says $64 until Monday', tone: 'fail' },
       ],
-      foot: 'An example on an invented store and rival. The store’s own reports showed every email sent and the code active.',
+      foot: 'An example on an invented store and competitor. The store’s own reports showed every email sent and the code active.',
     },
   },
 
@@ -211,7 +211,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Rivals’ offers sit outside every report as well. A rival’s welcome code, early access price and Black Friday teaser go only to its subscribers, so they never appear on its product pages ([a competitor’s real price is the price after the welcome code](' +
+      text: 'Competitors’ offers sit outside every report as well. A competitor’s welcome code, early access price and Black Friday teaser go only to its subscribers, so they never appear on its product pages ([a competitor’s real price is the price after the welcome code](' +
         RIVAL_PRICE +
         ')).',
     },
@@ -263,7 +263,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'workload', text: 'Shopify website monitoring by hand' },
     {
       kind: 'p',
-      text: 'By hand, the hours a week are checks × stores or rivals × minutes each × runs a week, divided by 60. A November week at 1 store, with example inputs to replace with your own:',
+      text: 'By hand, the hours a week are checks × stores or competitors × minutes each × runs a week, divided by 60. A November week at 1 store, with example inputs to replace with your own:',
     },
     {
       kind: 'list',
@@ -271,7 +271,7 @@ export const post: BlogPost = {
         '**Your own journeys:** the 12 tests in the [Black Friday checklist](' +
           CHECKLIST +
           ') at about 10 minutes each, run weekly and after 2 changes, take 6 hours.',
-        '**5 rivals:** 15 minutes each to read what arrived and check prices, every weekday, take 6.25 hours.',
+        '**5 competitors:** 15 minutes each to read what arrived and check prices, every weekday, take 6.25 hours.',
         '**AI answers:** 15 questions, asked 3 times on 3 assistants, take an afternoon of about 4 hours.',
       ],
     },
@@ -306,7 +306,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-ai-customers-do', text: 'AI agents for ecommerce: what AI customers do' },
     {
       kind: 'p',
-      text: `**${AI_CUSTOMER.definition}** It receives what any new customer receives, at the store and at every rival. AI customers working for your company do 5 jobs for a store, each with a check, a pass mark and an action for that week.`,
+      text: `**${AI_CUSTOMER.definition}** It receives what any new customer receives, at the store and at every competitor. AI customers working for your company do 5 jobs for a store, each with a check, a pass mark and an action for that week.`,
     },
     {
       kind: 'table',
@@ -326,15 +326,15 @@ export const post: BlogPost = {
           'Fails ranked by revenue a day',
         ],
         [
-          'Rivals’ emails and offers: [Competitor tracking](/recipes/competitor-tracking)',
-          'Subscribed to each rival, every email and text logged',
-          'Each rival’s new offer dated the day it arrives',
+          'Competitors’ emails and offers: [Competitor tracking](/recipes/competitor-tracking)',
+          'Subscribed to each competitor, every email and text logged',
+          'Each competitor’s new offer dated the day it arrives',
           'Set or hold your own offer',
         ],
         [
-          'Rivals’ prices after codes: [Price watch](/recipes/price-watch)',
+          'Competitors’ prices after codes: [Price watch](/recipes/price-watch)',
           'Prices, offers and delivery each morning, with subscriber codes',
-          'Your price after codes, set against each rival’s',
+          'Your price after codes, set against each competitor’s',
           'Choose where to match and where to hold',
         ],
         [
@@ -347,7 +347,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a store, it shows what a real customer gets after the sign up, the click and the checkout, at the store and at its rivals. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
+      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a store, it shows what a real customer gets after the sign up, the click and the checkout, at the store and at its competitors. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -384,20 +384,20 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Shopify store monitoring options, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026. If your store needs to see what a real customer receives after the sign up, the code and the basket, at your store and at your rivals, use Obsession. For uptime alone a scripted monitor is enough, and a store that rarely changes can check by hand.',
+      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026. If your store needs to see what a real customer receives after the sign up, the code and the basket, at your store and at your competitors, use Obsession. For uptime alone a scripted monitor is enough, and a store that rarely changes can check by hand.',
     },
     {
       kind: 'table',
       compare: true,
-      caption: 'Ways to watch a store, its rivals and its AI answers. Prices from each provider’s own pages, 24 October 2026. Otterly.AI’s prices are billed monthly',
+      caption: 'Ways to watch a store, its competitors and its AI answers. Prices from each provider’s own pages, 24 October 2026. Otterly.AI’s prices are billed monthly',
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         ['Doing nothing', 'Costs no time', 'Free', 'A fault runs until sales dip or a customer writes', 'A store that rarely changes'],
         [
           'By hand: a new address, a phone and a sheet',
-          'Any journey or rival, with your own judgement',
+          'Any journey or competitor, with your own judgement',
           'Your hours\nUS median pay: $37.87 an hour',
-          'Hours grow with every market, rival and change',
+          'Hours grow with every market, competitor and change',
           '1 store, monthly and after changes',
         ],
         [
@@ -423,10 +423,10 @@ export const post: BlogPost = {
         ],
         [
           'Competitor tracking: [Panoramata](' + PANORAMATA + ')',
-          'Rivals’ emails, ads and pages, with history',
+          'Competitors’ emails, ads and pages, with history',
           '$99, $179 or $399 a month',
-          'Startup: 20 rivals and 6 months of history',
-          'Rival research across channels',
+          'Startup: 20 competitors and 6 months of history',
+          'Competitor research across channels',
         ],
         [
           'AI visibility tracking: [Otterly.AI](' + OTTERLY + ')',
@@ -444,7 +444,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Listings and AI answers](/recipes/listings-ai-answers)',
-          'AI customers of your store and its rivals, every email, code and price kept as proof',
+          'AI customers of your store and its competitors, every email, code and price kept as proof',
           'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Stops at bot walls and CAPTCHAs',
           'What a real customer gets after sign up, click and checkout, kept as proof',
@@ -459,7 +459,7 @@ export const post: BlogPost = {
         '**A store that rarely changes,** runs no paid traffic and has 1 or 2 flows. A new address, a phone and a sheet, once a month and after every change, cover it.',
         '**Uptime at every hour.** A scripted monitor alerts within minutes when a page or the cart goes down.',
         '**A brand that sells mainly through marketplaces or wholesale** and sends no flows of its own. Its customers’ messages come from someone else’s systems.',
-        '**Last year’s rival campaigns.** An AI customer holds what arrives from the day it joins, so earlier emails need an archive that already covered the brand.',
+        '**Last year’s competitor campaigns.** An AI customer holds what arrives from the day it joins, so earlier emails need an archive that already covered the brand.',
       ],
     },
 
@@ -490,11 +490,11 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What are AI agents for ecommerce?',
-          a: 'AI agents for ecommerce are AI systems that do work for or around an online store. Most work for the store, such as support agents that answer shoppers. AI customers work on the customer’s side, shopping the store and its rivals as new customers and keeping what arrives as evidence.',
+          a: 'AI agents for ecommerce are AI systems that do work for or around an online store. Most work for the store, such as support agents that answer shoppers. AI customers work on the customer’s side, shopping the store and its competitors as new customers and keeping what arrives as evidence.',
         },
         {
           q: 'How can AI agents help an ecommerce business?',
-          a: 'They answer shoppers, draft campaigns and handle admin. AI customers add the customer’s view: whether each email, text, code and reminder arrives as promised, what rivals offer and what AI assistants say.',
+          a: 'They answer shoppers, draft campaigns and handle admin. AI customers add the customer’s view: whether each email, text, code and reminder arrives as promised, what competitors offer and what AI assistants say.',
         },
         {
           q: 'What AI tools should a Shopify store use?',
@@ -515,7 +515,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the examples',
-      text: 'oakhaven.example, its rival, its revenue and both illustrations are invented. The half the gap rule assumes a break is as likely to start on any day. Nothing here is legal advice.',
+      text: 'oakhaven.example, its competitor, its revenue and both illustrations are invented. The half the gap rule assumes a break is as likely to start on any day. Nothing here is legal advice.',
     },
   ],
 

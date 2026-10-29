@@ -72,12 +72,12 @@ const KLUE = 'https://klue.com/'
 export const post: BlogPost = {
   slug: 'ecommerce-competitive-intelligence',
   title: 'Ecommerce competitive intelligence: what each source can see',
-  dek: 'What rival stores show anyone, what only their customers see, the tools that read each source with their listed prices, and a programme you can start this week.',
+  dek: 'What competitor stores show anyone, what only their customers see, the tools that read each source with their listed prices, and a programme you can start this week.',
   metaTitle: 'Ecommerce competitive intelligence: sources, tools, limits',
   description:
     'Ecommerce competitive intelligence sorted by where the data lives: pages, ads, inboxes, checkout and AI answers, with tools, listed prices and a method.',
   answer:
-    'Ecommerce competitive intelligence is the dated record of what rival stores show, send and charge their customers. Product pages, ad libraries, tech stack and traffic estimates are covered by many tools, while welcome codes, basket and win back emails, texts and checkout totals reach only a customer, so a lasting programme signs up to each rival as a new customer, watches for months and keeps every email and page as evidence. Obsession’s AI customers do that as real customers of each rival you name, keeping every email, offer and price exactly as it arrived.',
+    'Ecommerce competitive intelligence is the dated record of what competitor stores show, send and charge their customers. Product pages, ad libraries, tech stack and traffic estimates are covered by many tools, while welcome codes, basket and win back emails, texts and checkout totals reach only a customer, so a lasting programme signs up to each competitor as a new customer, watches for months and keeps every email and page as evidence. Obsession’s AI customers do that as real customers of each competitor you name, keeping every email, offer and price exactly as it arrived.',
   primaryKeyword: 'ecommerce competitive intelligence',
   keywords: [
     'competitive intelligence tools',
@@ -123,7 +123,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'A rival store’s list prices, ads and technology are on show to anyone with the right tool. Its welcome code, basket emails, texts and checkout total reach only its customers, and those decide many shoppers’ choices.',
+      text: 'A competitor store’s list prices, ads and technology are on show to anyone with the right tool. Its welcome code, basket emails, texts and checkout total reach only its customers, and those decide many shoppers’ choices.',
     },
     {
       kind: 'p',
@@ -148,7 +148,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-it-covers', text: 'What ecommerce competitive intelligence covers' },
     {
       kind: 'p',
-      text: 'Ecommerce competitive intelligence is the dated record of what rival stores show, send and charge their customers, and how each of those changes over time.',
+      text: 'Ecommerce competitive intelligence is the dated record of what competitor stores show, send and charge their customers, and how each of those changes over time.',
     },
     {
       kind: 'p',
@@ -191,13 +191,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'These sources answer questions of reach and position. Their traffic and sales figures are modelled estimates, best used to compare rivals and spot changes.',
+      text: 'These sources answer questions of reach and position. Their traffic and sales figures are modelled estimates, best used to compare competitors and spot changes.',
     },
 
     { kind: 'h2', id: 'customer-only', text: 'What only a customer sees' },
     {
       kind: 'p',
-      text: 'What decides a shopper’s choice between 2 stores often sits in private channels. A rival’s list price can match yours while its first order costs 15% less after the welcome code. Only a customer of the rival sees:',
+      text: 'What decides a shopper’s choice between 2 stores often sits in private channels. A competitor’s list price can match yours while its first order costs 15% less after the welcome code. Only a customer of the competitor sees:',
     },
     {
       kind: 'list',
@@ -208,12 +208,12 @@ export const post: BlogPost = {
         '**Subscriber only prices and early access.**',
         '**The checkout price** after the code, stacking and delivery, which the guide to [a competitor’s price after the welcome code](/blog/competitor-price-after-welcome-code) covers.',
         '**Delivery and returns,** from the dispatch email to the steps to send something back.',
-        '**Support answers,** what a rival’s chat or support bot tells a shopper about delivery, returns and codes.',
+        '**Support answers,** what a competitor’s chat or support bot tells a shopper about delivery, returns and codes.',
       ],
     },
     {
       kind: 'p',
-      text: 'Software that reads public pages can’t reach any of these, because each appears only after a sign up, a basket or a conversation. AI assistants’ answers about a rival sit between the two: anyone can ask, and an answer becomes a record only once someone asks and saves it. The guide to [what ChatGPT says about a store](/blog/what-chatgpt-says-about-your-store) sets out a method.',
+      text: 'Software that reads public pages can’t reach any of these, because each appears only after a sign up, a basket or a conversation. AI assistants’ answers about a competitor sit between the two: anyone can ask, and an answer becomes a record only once someone asks and saves it. The guide to [what ChatGPT says about a store](/blog/what-chatgpt-says-about-your-store) sets out a method.',
     },
 
     { kind: 'h2', id: 'history-and-evidence', text: 'History and evidence' },
@@ -223,7 +223,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**History can’t be recovered later.** An inbox holds only mail sent after it subscribed, so a rival’s September welcome series is out of reach for anyone who signed up in October. A competitor view for Black Friday, on Friday 27 November 2026, has to begin weeks before it.',
+      text: '**History can’t be recovered later.** An inbox holds only mail sent after it subscribed, so a competitor’s September welcome series is out of reach for anyone who signed up in October. A competitor view for Black Friday, on Friday 27 November 2026, has to begin weeks before it.',
     },
     {
       kind: 'p',
@@ -237,7 +237,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**One identity throughout.** Keep the same new customer at each rival from the first sign up, so every later email traces back to a known date and offer.',
+      text: '**One identity throughout.** Keep the same new customer at each competitor from the first sign up, so every later email traces back to a known date and offer.',
     },
 
     { kind: 'h2', id: 'synthetic-customers', text: 'Synthetic customers and digital twins' },
@@ -279,7 +279,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Synthetic research suits concept, message and price tests before fieldwork. No model received the email a rival sent its new subscribers on 3 November, so a synthetic customer can’t report what a company did.',
+      text: 'Synthetic research suits concept, message and price tests before fieldwork. No model received the email a competitor sent its new subscribers on 3 November, so a synthetic customer can’t report what a company did.',
     },
 
     { kind: 'h2', id: 'mystery-shoppers', text: 'Human and AI mystery shoppers' },
@@ -302,7 +302,7 @@ export const post: BlogPost = {
         SHEPPER +
         ') says it has over 300,000 shoppers in the UK and Ireland. [T-ROC’s guide](' +
         TROC +
-        ') puts basic retail shops at $40 to $65. At $50 a shop, a monthly visit to 10 rivals costs $6,000 a year, and each visit reports 1 moment.',
+        ') puts basic retail shops at $40 to $65. At $50 a shop, a monthly visit to 10 competitors costs $6,000 a year, and each visit reports 1 moment.',
     },
     {
       kind: 'p',
@@ -314,11 +314,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-assistants', text: 'What AI assistants can do' },
     {
       kind: 'p',
-      text: 'ChatGPT and Claude are good at the reasoning side of this work: researching rivals, comparing pages and summarising the emails in an inbox you connect. [ChatGPT](' +
+      text: 'ChatGPT and Claude are good at the reasoning side of this work: researching competitors, comparing pages and summarising the emails in an inbox you connect. [ChatGPT](' +
         OPENAI_TASKS +
         ') allows 3 to 15 active scheduled tasks, by plan, and [Claude’s Gmail connector](' +
         CLAUDE_GMAIL +
-        ') reads only the account you connect and can’t see images inside emails. An assistant can say what a rival sent in the last 30 days only if that mail already sits in a connected inbox. The guide [Can ChatGPT or Claude track your competitors’ emails?](/blog/can-chatgpt-track-competitor-emails) compares 5 assistants job by job.',
+        ') reads only the account you connect and can’t see images inside emails. An assistant can say what a competitor sent in the last 30 days only if that mail already sits in a connected inbox. The guide [Can ChatGPT or Claude track your competitors’ emails?](/blog/can-chatgpt-track-competitor-emails) compares 5 assistants job by job.',
     },
 
     { kind: 'h2', id: 'programme', text: 'A durable competitive intelligence programme' },
@@ -327,16 +327,16 @@ export const post: BlogPost = {
       text: 'A lasting programme watches the channels behind your offers at a steady rhythm, keeps every item as evidence and reports each change. It can start this week with free tools.',
     },
 
-    { kind: 'h3', id: 'rivals-and-decisions', text: '1. Choose the rivals and the decisions' },
+    { kind: 'h3', id: 'competitors-and-decisions', text: '1. Choose the competitors and the decisions' },
     {
       kind: 'p',
-      text: 'List the 3 to 10 rivals your customers compare you with, then the decisions the programme feeds, such as your Black Friday offer, your welcome code and your delivery threshold.',
+      text: 'List the 3 to 10 competitors your customers compare you with, then the decisions the programme feeds, such as your Black Friday offer, your welcome code and your delivery threshold.',
     },
 
-    { kind: 'h3', id: 'new-customer', text: '2. Give each rival a new customer' },
+    { kind: 'h3', id: 'new-customer', text: '2. Give each competitor a new customer' },
     {
       kind: 'p',
-      text: 'For each rival, set up a new Gmail address, a phone number that can receive texts and a private browser window. Sign up through the public pop up, record the offer on screen with the time, and confirm the first email the same day. Read each site’s terms and never place an order you won’t take delivery of. None of this is legal advice.',
+      text: 'For each competitor, set up a new Gmail address, a phone number that can receive texts and a private browser window. Sign up through the public pop up, record the offer on screen with the time, and confirm the first email the same day. Read each site’s terms and never place an order you won’t take delivery of. None of this is legal advice.',
     },
 
     { kind: 'h3', id: 'what-and-how-often', text: '3. Set what to watch and how often' },
@@ -346,7 +346,7 @@ export const post: BlogPost = {
         '**Daily in sale weeks, weekly otherwise:** list prices, sitewide banners, delivery thresholds and the pop up offer.',
         '**As it arrives:** every email and text, logged within a day with its time, subject, offer, code and Gmail tab.',
         '**Weekly:** new ads in the Meta and Google libraries, each opened to its page.',
-        '**Monthly, and before each sale:** a basket and checkout at each rival for the price after the code and delivery, then the basket email, plus 3 questions about prices, delivery and returns, put to its support bot and to 2 AI assistants.',
+        '**Monthly, and before each sale:** a basket and checkout at each competitor for the price after the code and delivery, then the basket email, plus 3 questions about prices, delivery and returns, put to its support bot and to 2 AI assistants.',
         '**Quarterly:** tech stack and traffic estimates.',
       ],
     },
@@ -354,19 +354,19 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'keep-evidence', text: '4. Keep every item as evidence' },
     {
       kind: 'p',
-      text: 'Keep the original of every email with its full header, and a timed screenshot of every page and checkout. Log each item in a sheet with the rival, channel, time, what you saw, the offer and a link to the original, so anyone can check a row against its source.',
+      text: 'Keep the original of every email with its full header, and a timed screenshot of every page and checkout. Log each item in a sheet with the competitor, channel, time, what you saw, the offer and a link to the original, so anyone can check a row against its source.',
     },
 
     { kind: 'h3', id: 'report', text: '5. Report each change with its evidence' },
     {
       kind: 'p',
-      text: 'Send 1 page a week: what changed at each rival, when, the evidence link and the decision it affects. In sale weeks, send changes the same morning. The [Black Friday rival report template](/blog/black-friday-rival-report-template) gives a layout for clients.',
+      text: 'Send 1 page a week: what changed at each competitor, when, the evidence link and the decision it affects. In sale weeks, send changes the same morning. The [Black Friday competitor report template](/blog/black-friday-competitor-email-report-template) gives a layout for clients.',
     },
 
     { kind: 'h3', id: 'cost', text: '6. Work out the cost by hand' },
     {
       kind: 'p',
-      text: 'Use your own numbers: rivals × channels × minutes a week on each ÷ 60 = hours a week. Multiply by your team’s cost an hour and by 52.',
+      text: 'Use your own numbers: competitors × channels × minutes a week on each ÷ 60 = hours a week. Multiply by your team’s cost an hour and by 52.',
     },
     {
       kind: 'art',
@@ -375,8 +375,8 @@ export const post: BlogPost = {
         kind: 'price',
         title: 'A by hand programme, example figures',
         rows: [
-          { label: 'Rivals watched', value: '5' },
-          { label: 'Channels for each rival', value: '4', note: 'Email, texts, prices, ads' },
+          { label: 'Competitors watched', value: '5' },
+          { label: 'Channels for each competitor', value: '4', note: 'Email, texts, prices, ads' },
           { label: 'Minutes a week on each channel', value: '15' },
           { label: 'Hours a week', value: '5', note: '5 × 4 × 15 ÷ 60' },
           { label: 'Your team’s cost an hour', value: '$40' },
@@ -392,11 +392,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, the programme holds for 1 to 3 rivals. Past that, it needs an inbox and phone number per rival for months, with every original kept. Obsession runs that programme today. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your rivals and prospect with proof. For rivals, [competitor tracking](/recipes/competitor-tracking) signs an AI customer up to each one you name and logs every email, text, offer, price change and public ad on 1 timeline. [Price watch](/recipes/price-watch) checks rivals’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
+      text: 'By hand, the programme holds for 1 to 3 competitors. Past that, it needs an inbox and phone number per competitor for months, with every original kept. Obsession runs that programme today. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your competitors and prospect with proof. For competitors, [competitor tracking](/recipes/competitor-tracking) signs an AI customer up to each one you name and logs every email, text, offer, price change and public ad on 1 timeline. [Price watch](/recipes/price-watch) checks competitors’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
     },
     {
       kind: 'cta',
-      text: 'Competitor tracking runs now on the rivals you name, with every message dated from a known sign up, on credit-based plans like Claude’s.',
+      text: 'Competitor tracking runs now on the competitors you name, with every message dated from a known sign up, on credit-based plans like Claude’s.',
       to: '/',
       label: 'Meet your first AI customers',
     },
@@ -416,15 +416,15 @@ export const post: BlogPost = {
           'Doing nothing',
           'Costs no time',
           'Free',
-          'Rival moves show up first in your own sales',
+          'Competitor moves show up first in your own sales',
           'Markets where offers rarely change',
         ],
         [
-          'By hand: an inbox, phone and sheet per rival',
-          'Sees what a new customer sees, at any rival',
+          'By hand: an inbox, phone and sheet per competitor',
+          'Sees what a new customer sees, at any competitor',
           'Free, plus your team’s hours',
-          'History starts at sign up, and hours grow with each rival',
-          '1 to 3 rivals',
+          'History starts at sign up, and hours grow with each competitor',
+          '1 to 3 competitors',
         ],
         [
           'Traffic and SEO: [Similarweb](' + SIMILARWEB_PRICING + '), [Semrush](' + SEMRUSH + ')',
@@ -487,33 +487,33 @@ export const post: BlogPost = {
           'Research, and summaries of a connected inbox',
           'Free and paid plans',
           'One inbox, capped schedules, no older mail',
-          '1 to 3 rivals',
+          '1 to 3 competitors',
         ],
         [
           'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Email and SMS tracking](/recipes/email-sms-tracking), [Ad tracking](/recipes/ad-tracking), [Trial teardown](/recipes/trial-teardown)',
-          'Logs every email, text, offer, price change and public ad from each rival on 1 timeline, each kept as it arrived',
+          'Logs every email, text, offer, price change and public ad from each competitor on 1 timeline, each kept as it arrived',
           'Running now: first store check free\nCredit-based plans, like Claude’s',
           'History starts at an AI customer’s first sign up there\nNot needed for traffic, search or stack questions',
-          'What a real customer gets from each rival, on every channel, for months',
+          'What a real customer gets from each competitor, on every channel, for months',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Crayon and Klue are built for B2B sales teams, with battlecards and answers for deals in flight. None of the page, ad, stack or traffic tools signs up as a customer, so welcome codes, basket emails, texts and checkout totals fall outside them. If your team needs what a customer gets from each rival, use Obsession, whose AI customers stay real customers of every rival you name. Similarweb, Semrush, BuiltWith and Store Leads answer traffic, search and tech stack questions directly.',
+      text: 'Crayon and Klue are built for B2B sales teams, with battlecards and answers for deals in flight. None of the page, ad, stack or traffic tools signs up as a customer, so welcome codes, basket emails, texts and checkout totals fall outside them. If your team needs what a customer gets from each competitor, use Obsession, whose AI customers stay real customers of every competitor you name. Similarweb, Semrush, BuiltWith and Store Leads answer traffic, search and tech stack questions directly.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
     {
       kind: 'list',
       items: [
-        '**1 identity sees 1 customer’s view.** A new subscriber sees what rivals send new subscribers. Offers for loyal customers, other markets and other devices need identities of their own, so record the market and device with every item.',
+        '**1 identity sees 1 customer’s view.** A new subscriber sees what competitors send new subscribers. Offers for loyal customers, other markets and other devices need identities of their own, so record the market and device with every item.',
         '**Third party figures are estimates.** Use traffic and sales figures from these tools for direction and relative size.',
       ],
     },
     {
       kind: 'p',
-      text: 'Start the sign ups this week. Rivals’ Black Friday teasers begin in late October, and an inbox that signs up by Friday 30 October holds 4 weeks of a rival’s mail by Black Friday on 27 November. Before code freezes, about 20 November, run the same new customer tests on your own store.',
+      text: 'Start the sign ups this week. Competitors’ Black Friday teasers begin in late October, and an inbox that signs up by Friday 30 October holds 4 weeks of a competitor’s mail by Black Friday on 27 November. Before code freezes, about 20 November, run the same new customer tests on your own store.',
     },
     {
       kind: 'cta',
@@ -528,15 +528,15 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is ecommerce competitive intelligence?',
-          a: 'It is the dated record of what rival stores show, send and charge their customers, from list prices and ads to welcome codes, basket emails and checkout totals.',
+          a: 'It is the dated record of what competitor stores show, send and charge their customers, from list prices and ads to welcome codes, basket emails and checkout totals.',
         },
         {
           q: 'What are the best ecommerce competitor analysis tools?',
-          a: 'It depends on the question: Similarweb and Semrush for traffic, BuiltWith and Store Leads for tech stack, the ad libraries and Foreplay for ads, Panoramata, MailCharts and Milled for email history, and Prisync or Price2Spy for prices. A rival’s checkout total, and its emails where no library covers it, need a customer identity at that rival. Obsession’s AI customers are that identity at every rival you name.',
+          a: 'It depends on the question: Similarweb and Semrush for traffic, BuiltWith and Store Leads for tech stack, the ad libraries and Foreplay for ads, Panoramata, MailCharts and Milled for email history, and Prisync or Price2Spy for prices. A competitor’s checkout total, and its emails where no library covers it, need a customer identity at that competitor. Obsession’s AI customers are that identity at every competitor you name.',
         },
         {
           q: 'How do I do a competitor analysis on Shopify?',
-          a: 'Read apps in Store Leads or BuiltWith, live ads in the ad libraries and list prices in a price tracker, then sign up to each rival from a new address and phone, leave a basket, and record the price after the code and every email that follows.',
+          a: 'Read apps in Store Leads or BuiltWith, live ads in the ad libraries and list prices in a price tracker, then sign up to each competitor from a new address and phone, leave a basket, and record the price after the code and every email that follows.',
         },
         {
           q: 'What are synthetic customers?',
@@ -625,6 +625,6 @@ export const post: BlogPost = {
     'recipe:ad-tracking',
     'can-chatgpt-track-competitor-emails',
     'competitor-price-after-welcome-code',
-    'black-friday-rival-report-template',
+    'black-friday-competitor-email-report-template',
   ],
 }

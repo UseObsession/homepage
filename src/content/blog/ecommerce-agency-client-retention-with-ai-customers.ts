@@ -39,7 +39,7 @@ export const post: BlogPost = {
   description:
     'Agency client retention for ecommerce agencies: show each brand what its customers got each week, with the services to sell and the case in your numbers.',
   answer:
-    'Agency client retention comes down to what a brand can see, so the ecommerce agencies that stand out show each client what its customers got this week, before the client finds a problem. AI customers make that a service an agency can sell: they sign up, shop and wait at every client’s store, its rivals and the pages behind its ads, and keep each email and screenshot with its time. To run it across every client, use Obsession: its AI customers report what each store sends, from every email to every price, at the hours the agency chooses.',
+    'Agency client retention comes down to what a brand can see, so the ecommerce agencies that stand out show each client what its customers got this week, before the client finds a problem. AI customers make that a service an agency can sell: they sign up, shop and wait at every client’s store, its competitors and the pages behind its ads, and keep each email and screenshot with its time. To run it across every client, use Obsession: its AI customers report what each store sends, from every email to every price, at the hours the agency chooses.',
   primaryKeyword: 'agency client retention',
   keywords: [
     'marketing agency client management',
@@ -72,7 +72,7 @@ export const post: BlogPost = {
         { name: 'Wrenfold', cells: ['Basket email 10 h late', 'Watching'], tone: 'late' },
         { name: 'Brightmoor', cells: ['Ad page sold out', 'Ad paused'], tone: 'fail' },
         { name: 'Halden', cells: ['Chatbot wrong on refunds', 'Fix drafted'], tone: 'fail' },
-        { name: 'Pennant', cells: ['Rival: 25% off Friday', 'Brief sent'], tone: 'info' },
+        { name: 'Pennant', cells: ['Competitor: 25% off Friday', 'Brief sent'], tone: 'info' },
       ],
       notes: [
         'Each finding opens to its email or screenshot and the time it was seen.',
@@ -193,7 +193,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'services-menu', text: 'Productized agency services, by agency type' },
     {
       kind: 'p',
-      text: 'A productized agency service is a fixed piece of work with a set scope, schedule and price, sold the same way to every client. Each service here is a check run as a new customer of the client’s store, its rivals or the pages behind its ads. The work is done by AI customers. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)).',
+      text: 'A productized agency service is a fixed piece of work with a set scope, schedule and price, sold the same way to every client. Each service here is a check run as a new customer of the client’s store, its competitors or the pages behind its ads. The work is done by AI customers. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)).',
     },
     {
       kind: 'p',
@@ -205,19 +205,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Services an ecommerce agency can sell to the brands it keeps. Each runs as a new customer of the client’s store, its rivals or its ads',
+      caption: 'Services an ecommerce agency can sell to the brands it keeps. Each runs as a new customer of the client’s store, its competitors or its ads',
       cols: ['Service', 'What it checks', 'How often', 'What the client sees'],
       rows: [
         ['Weekly flow log', 'Every email after sign-up, basket and checkout', 'Weekly, and after each launch', 'What arrived, when, and what never came'],
         ['Code check', 'The pop-up code and each sale code at checkout', 'Before and during each sale', 'Each code accepted or refused'],
-        ['Rival watch', 'Every email and offer a rival sends', 'As each one arrives', 'Rival offers, dated, beside the client’s'],
-        ['Price and offer watch', 'Rival prices, offers and delivery terms', 'Every morning', 'Each change, before and after'],
+        ['Competitor watch', 'Every email and offer a competitor sends', 'As each one arrives', 'Competitor offers, dated, beside the client’s'],
+        ['Price and offer watch', 'Competitor prices, offers and delivery terms', 'Every morning', 'Each change, before and after'],
         ['Release check', 'Sign-up, forms, emails and checkout', 'After every release', 'Pass or break, with the screenshot'],
         ['Ad landing check', 'The page behind every live ad', 'Every morning', 'Ads sending clicks to a page that can’t sell'],
         ['Partner check', 'Affiliate links and codes, tried in the basket', 'Every Monday', 'Out-of-date codes, with a note drafted'],
         ['AI answers check', 'What AI assistants tell shoppers', 'Every Monday', 'Wrong facts, traced to their page'],
         ['Chatbot check', 'The store’s chat on refunds, prices and stock', 'Daily, and after each update', 'Wrong answers, set against the policy'],
-        ['Renewal check', 'The full journey, and the 2 closest rivals', 'Before each review', 'What changed since the last review'],
+        ['Renewal check', 'The full journey, and the 2 closest competitors', 'Before each review', 'What changed since the last review'],
         ['Monthly check', 'Sign-up, basket and checkout', 'Once a month', 'A short note of what changed'],
       ],
     },
@@ -232,7 +232,7 @@ export const post: BlogPost = {
       items: [
         '**A weekly flow log** ([Mystery shopper](/recipes/mystery-shopper)). A new customer signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
         '**Welcome and Black Friday code checks** ([Website audit](/recipes/website-audit)). The pop-up code and each sale code are tried at checkout on the days that matter, Friday 27 November 2026 included. The client sees each code accepted or refused, with the screenshot.',
-        '**A rival watch** ([Email and SMS tracking](/recipes/email-sms-tracking)). An AI customer on each rival’s list keeps every email and offer it sends. The client sees its rivals’ Black Friday plans as they land, beside its own.',
+        '**A competitor watch** ([Email and SMS tracking](/recipes/email-sms-tracking)). An AI customer on each competitor’s list keeps every email and offer it sends. The client sees its competitors’ Black Friday plans as they land, beside its own.',
         '**What AI assistants tell shoppers** ([Listings and AI answers](/recipes/listings-ai-answers)). Every Monday, the questions shoppers ask ChatGPT and other assistants about the brand, with each wrong answer traced to the page it came from. The method is in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
       ],
     },
@@ -247,8 +247,8 @@ export const post: BlogPost = {
       items: [
         '**Release checks** ([Website audit](/recipes/website-audit)). After every release, a fresh customer signs up, fills in each form, opens every email and link, and goes through checkout. The client sees a pass or a break for each step, with the screenshot.',
         '**The pop-up and the code at checkout** ([Website audit](/recipes/website-audit)). Each test variant’s pop-up is signed up through and its code tried at checkout, every morning the test runs. A variant that stops sending its code is found before anyone calls the test, as step 5 of the [ecommerce CRO audit template](/blog/ecommerce-cro-audit-template) describes.',
-        '**Offers and prices after each deadline** ([Price watch](/recipes/price-watch)). Every rival’s prices, offers and delivery terms are checked each morning beside the client’s own, so the morning after a sale ends shows who moved first.',
-        '**Rival offers** ([Competitor tracking](/recipes/competitor-tracking)). Each rival’s emails, offers, price changes and public ads on one timeline per rival, for the next round of test ideas.',
+        '**Offers and prices after each deadline** ([Price watch](/recipes/price-watch)). Every competitor’s prices, offers and delivery terms are checked each morning beside the client’s own, so the morning after a sale ends shows who moved first.',
+        '**Competitor offers** ([Competitor tracking](/recipes/competitor-tracking)). Each competitor’s emails, offers, price changes and public ads on one timeline per competitor, for the next round of test ideas.',
       ],
     },
 
@@ -257,7 +257,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**The page behind every live ad, each morning** ([Ad landing check](/recipes/ad-landing-check)). Each page is opened from the ad’s own link on a phone and a desktop, so no click is paid for. It is checked for loading, offer, price and stock. The client sees every ad sending clicks to a page that can’t sell, with the fix drafted. The routine by hand is the [10-minute morning check of where ads land](/blog/where-your-ads-land-morning-check).',
-        '**Rival ads and their pages** ([Ad tracking](/recipes/ad-tracking)). The ads a client’s rivals run in public, read each morning and opened to their page, price and code. The client sees each new rival offer beside its own.',
+        '**Competitor ads and their pages** ([Ad tracking](/recipes/ad-tracking)). The ads a client’s competitors run in public, read each morning and opened to their page, price and code. The client sees each new competitor offer beside its own.',
         '**Affiliate and partner links and codes** ([Partner checks](/recipes/partner-checks)). Every partner’s link is followed to the client’s store each Monday and its code tried in the basket. The client sees each out-of-date code or banner, with a note to the partner drafted.',
       ],
     },
@@ -280,7 +280,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A renewal check before each review** ([Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking)). A week before a client’s review or renewal, AI customers take the store’s full journey again and shop its 2 closest rivals. The account lead walks into the call with what changed for the client’s customers since the last review, what was fixed, and what its rivals now offer. A slipping account shows up here before the client says so.',
+        '**A renewal check before each review** ([Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking)). A week before a client’s review or renewal, AI customers take the store’s full journey again and shop its 2 closest competitors. The account lead walks into the call with what changed for the client’s customers since the last review, what was fixed, and what its competitors now offer. A slipping account shows up here before the client says so.',
         '**A monthly check for brands that won’t pay a full retainer.** The same sign-up, basket and checkout once a month, with a short note of what changed. It keeps a smaller brand on the books and makes the step up to a retainer an easy one.',
       ],
     },
@@ -338,7 +338,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. For an agency, every client store, rival and live ad runs on one routine:',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, every client store, competitor and live ad runs on one routine:',
     },
     {
       kind: 'list',
@@ -360,8 +360,8 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Clients kept.** Low: 1 client who would have left stays on at $3,000 a month. High: 2 clients stay on at $6,000. That is $3,000 or $12,000 a month kept.',
-        '**Add-ons sold, at the agency’s own prices.** Low: 5 clients add a weekly flow log at $400 a month. High: 10 clients add a package at $800 a month: the flow log, a rival watch and an ad landing check. That is $2,000 or $8,000 a month added.',
-        '**Hours back.** By hand, a flow log and one rival check take 30 to 45 minutes a client each week. Across 20 clients that is 10 to 15 hours a week, or 520 to 780 hours a year, back for account work.',
+        '**Add-ons sold, at the agency’s own prices.** Low: 5 clients add a weekly flow log at $400 a month. High: 10 clients add a package at $800 a month: the flow log, a competitor watch and an ad landing check. That is $2,000 or $8,000 a month added.',
+        '**Hours back.** By hand, a flow log and one competitor check take 30 to 45 minutes a client each week. Across 20 clients that is 10 to 15 hours a week, or 520 to 780 hours a year, back for account work.',
       ],
     },
     {
@@ -421,7 +421,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Ad landing check](/recipes/ad-landing-check), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch)',
-          'AI customers sign up, shop and wait at every client store, its rivals and its ads, and keep what arrives',
+          'AI customers sign up, shop and wait at every client store, its competitors and its ads, and keep what arrives',
           'Running now: 5 stores or 5 brands checked free\nCredit-based plans, like Claude’s',
           'Leaves the fix and the client call to the agency',
           'Every client checked as a customer each week, with proof the client can open',
@@ -430,7 +430,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency wants every client’s store checked as a customer each week, use Obsession. Each finding comes with the email or screenshot and its time, and each fix with a before and after. The same AI customers watch each client’s rivals and open the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
+      text: 'If your agency wants every client’s store checked as a customer each week, use Obsession. Each finding comes with the email or screenshot and its time, and each fix with a before and after. The same AI customers watch each client’s competitors and open the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
@@ -441,7 +441,7 @@ export const post: BlogPost = {
         '**The question is why something broke.** The cause sits inside the client’s accounts, where [an email marketing audit](/blog/email-marketing-audit) finds it.',
         '**Work a customer never sees,** such as a rebrand, a data project or bookkeeping for the store.',
         '**Uptime minute by minute.** A synthetic monitor, which runs a scripted visit to a page around the clock, alerts within minutes when a page goes down.',
-        '**A client that won’t agree to checks of its store.** Watch its rivals through the public sign-up until it does.',
+        '**A client that won’t agree to checks of its store.** Watch its competitors through the public sign-up until it does.',
       ],
     },
 
@@ -484,7 +484,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What services should an ecommerce agency offer?',
-          a: 'Services the client can see working. A retention agency can add a weekly flow log, code checks before each sale, a rival watch and a check of what AI assistants say about the brand. A CRO agency can add release checks and a price and offer watch. A paid ads agency can check the page behind every live ad each morning, and a Shopify Plus agency can check every release and the store’s chatbot.',
+          a: 'Services the client can see working. A retention agency can add a weekly flow log, code checks before each sale, a competitor watch and a check of what AI assistants say about the brand. A CRO agency can add release checks and a price and offer watch. A paid ads agency can check the page behind every live ad each morning, and a Shopify Plus agency can check every release and the store’s chatbot.',
         },
         {
           q: 'What is a productized agency service?',
@@ -492,7 +492,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What should marketing agency packages include?',
-          a: 'A core retainer for the main work, plus add-ons the client can check, each with a clear scope and schedule. A weekly flow log, a rival watch and an ad landing check are examples. A smaller monthly check suits brands that won’t pay a full retainer.',
+          a: 'A core retainer for the main work, plus add-ons the client can check, each with a clear scope and schedule. A weekly flow log, a competitor watch and an ad landing check are examples. A smaller monthly check suits brands that won’t pay a full retainer.',
         },
         {
           q: 'What are white label services for agencies?',
@@ -504,7 +504,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Does an agency need a client’s OK to check its store?',
-          a: 'Yes. Get each client’s OK before checking its store, and keep the test sign-ups out of its reporting. For rivals, use only the public sign-up any customer can use. This is not legal advice.',
+          a: 'Yes. Get each client’s OK before checking its store, and keep the test sign-ups out of its reporting. For competitors, use only the public sign-up any customer can use. This is not legal advice.',
         },
       ],
     },

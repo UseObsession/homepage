@@ -32,10 +32,10 @@ Every email, offer, price and reply a company sends its customers, kept as it ar
 
 | Page | Label above the heading |
 |---|---|
-| Home | Rivals · Prospects · Clients · Your own business |
-| Marketing | Rivals · Your own business · Any brand you name |
-| Sales | Prospects · Accounts · Rivals |
-| Agencies | Clients · Prospects · Their rivals |
+| Home | Competitors · Prospects · Clients · Your own business |
+| Marketing | Competitors · Your own business · Any brand you name |
+| Sales | Prospects · Accounts · Competitors |
+| Agencies | Clients · Prospects · Their competitors |
 
 ### Asked from code (22 Oct, James)
 
@@ -68,7 +68,7 @@ Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
-| Claude Code | Compare our Black Friday emails with our five closest rivals. | Two rivals emailed before you did, on 20 and 21 November. / Your launch email landed in Promotions. Fern Hollow's landed in Primary. / The deepest offer was 40% off, and Fern Hollow's page and email both held it. | 14 emails and 3 pages, linked |
+| Claude Code | Compare our Black Friday emails with our five closest competitors. | Two competitors emailed before you did, on 20 and 21 November. / Your launch email landed in Promotions. Fern Hollow's landed in Primary. / The deepest offer was 40% off, and Fern Hollow's page and email both held it. | 14 emails and 3 pages, linked |
 | Codex | Brief me on Wrenfield before Thursday's call. | A new customer gets a welcome email in 4 minutes, but the basket reminder took 26 hours. / Support took 31 hours to answer a delivery question. Their help page promises 24. / Their emails have come from a new platform since 2 October. | 7 emails and 1 support thread, linked |
 | Code (watch.py) | Be a customer of every brand on our list, and send each new email to our webhook. | The code only, no output | |
 
@@ -78,8 +78,8 @@ Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
-| Claude Code | Compare our Black Friday emails with our five closest rivals. | (as Home) | 14 emails and 3 pages, linked |
-| Codex | Which rivals changed a price since September, and by how much? | Northfold cut its starter set from £24 to £19 on 21 October. / Wrenfield kept its prices but added free delivery over £30 on 3 November. / Fern Hollow raised two bundles by £5 and said nothing in its emails. | 9 pages, dated and linked |
+| Claude Code | Compare our Black Friday emails with our five closest competitors. | (as Home) | 14 emails and 3 pages, linked |
+| Codex | Which competitors changed a price since September, and by how much? | Northfold cut its starter set from £24 to £19 on 21 October. / Wrenfield kept its prices but added free delivery over £30 on 3 November. / Fern Hollow raised two bundles by £5 and said nothing in its emails. | 9 pages, dated and linked |
 | Code (watch.py) | Be a customer of every brand on our list, and send each new email to our webhook. | The code only, no output | |
 
 ### Sales
@@ -98,7 +98,7 @@ Heading, areas and line as above. The questions:
 
 | Asked in | Question | Answer | Receipts |
 |---|---|---|---|
-| Claude Code | Show me every email our prospect's three rivals sent since September, for Thursday's pitch. | 61 emails across the three, 9 of them basket and browse reminders. / Only Fern Hollow sends a welcome series. Your prospect sends none. / Fern Hollow's emails land in Primary; the other two land in Promotions. | 61 emails, linked |
+| Claude Code | Show me every email our prospect's three competitors sent since September, for Thursday's pitch. | 61 emails across the three, 9 of them basket and browse reminders. / Only Fern Hollow sends a welcome series. Your prospect sends none. / Fern Hollow's emails land in Primary; the other two land in Promotions. | 61 emails, linked |
 | Codex | Which clients' welcome emails landed in Promotions this month? | 3 of 12: Northfold, Wrenfield and Larchwise. / Wrenfield's moved from Primary to Promotions after its new sender went live on 8 October. / The other 9 landed in Primary, the same as last month. | 12 welcome emails, with their Gmail tabs |
 | Code (watch.py) | Be a customer of every brand on our list, and send each new email to our webhook. | The code only, no output | |
 
@@ -115,7 +115,7 @@ Each draft was checked against these questions, and changed where it failed.
    - Every company in the examples is invented (Fern Hollow, Wrenfield, Northfold, Larchwise), as on the rest of the site.
    - Stack changes, support reply times, the Gmail tab and checkout offers are all in system.md.
 5. **Does each page speak to its reader?**
-   - Marketing asks about rivals' emails, prices and welcome series.
+   - Marketing asks about competitors' emails, prices and welcome series.
    - Sales asks for an account brief, support speed across a target list, and stack changes.
    - Agencies asks about pitch evidence, Promotions placement across clients, and a broken reminder.
    - Home mixes one question from each.

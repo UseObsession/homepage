@@ -33,7 +33,7 @@ export const study: UseCaseStudy = {
     description:
       'AI customers become the new customer of any store you name. Before a pitch, the prospect’s leaks. After you win, the client’s leaks weekly, with proof.',
     answer:
-      'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its rivals compare.',
+      'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
     ogImage: '/og/leak-checks-for-retention-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -46,7 +46,7 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Early access',
     headline: 'Be the new customer of every store you pitch, and every store you keep.',
-    sub: 'Name any store. An AI agent signs up as its new customer, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its rivals compare.',
+    sub: 'Name any store. An AI agent signs up as its new customer, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its competitors compare.',
     video: { youtube: 'Bnkm02NllPs', label: 'Watch how it works', title: 'Leak checks for retention agencies: every store’s leaks, with proof' },
     example: { chips: [] },
     flow: [
@@ -141,13 +141,13 @@ export const study: UseCaseStudy = {
             example: 'Tuesday 1 Dec, after a theme update: the pop up takes the email but sends no code. Fixed the same day. Larch & Lye never saw it.',
           },
           {
-            title: 'The client beside its rivals',
-            line: 'Name the rivals once. Each gets its own customer, so you can show what Larch & Lye’s customers get next to theirs.',
-            example: 'Welcome in 40 seconds against a 6 hour rival average. The only 1 of 6 that reminds a basket.',
+            title: 'The client beside its competitors',
+            line: 'Name the competitors once. Each gets its own customer, so you can show what Larch & Lye’s customers get next to theirs.',
+            example: 'Welcome in 40 seconds against a 6 hour competitor average. The only 1 of 6 that reminds a basket.',
           },
           {
             title: 'The month, in 1 report',
-            line: 'Leaks fixed, leaks open and the rivals, every value linked to its email. Ready for the review call.',
+            line: 'Leaks fixed, leaks open and the competitors, every value linked to its email. Ready for the review call.',
             example: 'December: 3 leaks fixed, 1 caught and fixed the same day, none open.',
           },
         ],
@@ -204,7 +204,7 @@ export const study: UseCaseStudy = {
           },
           {
             label: 'Reporting',
-            title: 'Show the client beside its rivals',
+            title: 'Show the client beside its competitors',
             line: 'Every value linked to its email, ready for the review call.',
             example: 'Larch & Lye: the fastest welcome email of 6 skincare brands.',
           },
@@ -283,7 +283,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for retention agencies?',
-        a: 'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its rivals compare.',
+        a: 'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
       },
       {
         q: 'Is this mystery shopping?',

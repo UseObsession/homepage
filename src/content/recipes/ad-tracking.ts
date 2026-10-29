@@ -18,10 +18,10 @@ export const recipe: Recipe = {
   slug: 'ad-tracking',
   name: 'Ad tracking',
   group: 'Watch other companies',
-  line: 'Reads the ads your rivals run in public and follows each one to its page, price and code.',
-  gets: 'Each new rival ad and its offer, every morning, side by side with the page it lands on.',
+  line: 'Reads the ads your competitors run in public and follows each one to its page, price and code.',
+  gets: 'Each new competitor ad and its offer, every morning, side by side with the page it lands on.',
   kit: [
-    'An AI customer per rival',
+    'An AI customer per competitor',
     'Phone and desktop browsers',
     'An inbox for sign up codes',
     'A check every morning',
@@ -31,11 +31,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/ad-tracking',
-    title: 'Ad tracking: AI customers follow rivals’ ads to the offer',
+    title: 'Ad tracking: AI customers follow competitor ads to the offer',
     description:
-      'AI customers read the ads your rivals run in public each morning and follow each one to its page, price and code. Every new offer arrives with proof.',
+      'AI customers read the ads your competitors run in public each morning and follow each one to its page, price and code. Every new offer arrives with proof.',
     answer:
-      'Ad tracking follows your rivals’ ads to the offer behind each one: AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
+      'Ad tracking follows your competitors’ ads to the offer behind each one: AI agents read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,8 +45,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that follow your rivals’ ads to the offer behind each one.',
-    sub: 'Ad tracking follows your rivals’ ads to the offer behind each one: AI agents read the ads your rivals run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
+    headline: 'AI agents that follow your competitors’ ads to the offer behind each one.',
+    sub: 'Ad tracking follows your competitors’ ads to the offer behind each one: AI agents read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     screen: 'ads',
     capture: {
       kind: 'waitlist',
@@ -59,20 +59,20 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: Friday’s new ads',
     recipe: 'ads',
-    task: 'Every morning, read the ads our 3 rivals run in public. Follow each to its page and flag any offer that undercuts us.',
-    targets: 'rival-a.example, rival-b.example, rival-c.example',
+    task: 'Every morning, read the ads our 3 competitors run in public. Follow each to its page and flag any offer that undercuts us.',
+    targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
     journey: ['Read the ads they run in public', 'Open each page on phone and desktop', 'Sign up where an ad offers a code', 'Compare the offer with yours'],
     schedule: 'Every morning at 07:00',
     report: 'Slack alert, weekly PDF',
     kit: ['Agent ID', 'Phone and desktop browsers', '3 inboxes, for sign up codes', 'Screenshots of every ad and page'],
     events: [
-      { time: 'Fri 07:00', text: 'Read the ads 3 rivals run in public. Rival A started 9 overnight.' },
-      { time: 'Fri 07:04', text: 'Opened the page behind Rival A’s “Free gift over £40” ad, on phone and desktop.' },
+      { time: 'Fri 07:00', text: 'Read the ads 3 competitors run in public. Competitor A started 9 overnight.' },
+      { time: 'Fri 07:04', text: 'Opened the page behind Competitor A’s “Free gift over £40” ad, on phone and desktop.' },
       { time: 'Fri 07:06', text: 'That page shows code GIFT40 and a gift set at £56, £2 under yours.' },
-      { time: 'Fri 07:09', text: 'Rival B’s ad offers 15% off for signing up. The agent signs up, and the code arrives in 2 minutes.' },
-      { time: 'Fri 07:12', text: 'Rival C’s free UK delivery ad has run 41 days, unchanged.' },
+      { time: 'Fri 07:09', text: 'Competitor B’s ad offers 15% off for signing up. The agent signs up, and the code arrives in 2 minutes.' },
+      { time: 'Fri 07:12', text: 'Competitor C’s free UK delivery ad has run 41 days, unchanged.' },
     ],
-    finding: 'Rival A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
+    finding: 'Competitor A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
     fix: 'A reply for your £58 gift set, as an ad and an email, drafted for your OK.',
     ledger: 'Example run. Every ad and page screenshotted on phone and desktop, and signed. Each page opened directly, so nobody paid for a click.',
   },
@@ -80,7 +80,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add the brands',
-      line: 'Your rivals, or a client’s rivals. Paste a list, upload a CSV, connect Clay or use the API.',
+      line: 'Your competitors, or a client’s competitors. Paste a list, upload a CSV, connect Clay or use the API.',
     },
     {
       title: 'An agent reads their ads',
@@ -92,7 +92,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'You get the offer next to yours',
-      line: 'An alert each morning a rival has a new offer, with the ad and its page side by side.',
+      line: 'An alert each morning a competitor has a new offer, with the ad and its page side by side.',
     },
   ],
 
@@ -101,7 +101,7 @@ export const recipe: Recipe = {
       group: 'The ads they run in public',
       items: [
         { title: 'New and stopped ads', line: 'The words, the image or video, and the day each starts and stops.' },
-        { title: 'How long each runs', line: 'The ads a rival keeps paying for, and the ones it drops in a week.' },
+        { title: 'How long each runs', line: 'The ads a competitor keeps paying for, and the ones it drops in a week.' },
         { title: 'The offer it leads with', line: 'Every discount, gift, free delivery line and code.' },
       ],
     },
@@ -115,38 +115,38 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every new rival offer reaches you with its ad and its page.',
+    heading: 'Every new competitor offer reaches you with its ad and its page.',
     items: [
-      { format: 'Slack or email alert', line: 'Each morning a rival has a new offer, with the ad and the page side by side.' },
-      { format: 'Ad timeline', line: 'Every ad each rival starts and stops, and how long it ran.' },
-      { format: 'Weekly PDF', line: 'What every rival is pushing, and the ads they keep running.' },
+      { format: 'Slack or email alert', line: 'Each morning a competitor has a new offer, with the ad and the page side by side.' },
+      { format: 'Ad timeline', line: 'Every ad each competitor starts and stops, and how long it ran.' },
+      { format: 'Weekly PDF', line: 'What every competitor is pushing, and the ads they keep running.' },
       { format: 'Sheet, Clay or webhook', line: 'Each ad, page and offer as a row, a column or JSON.' },
     ],
   },
 
   settings: [
-    { k: 'Brands', v: 'Any rival you name, or a client’s rivals' },
+    { k: 'Brands', v: 'Any competitor you name, or a client’s competitors' },
     { k: 'Devices', v: 'Phone, desktop or both' },
     { k: 'How often', v: 'Every morning, or more often in a sale week' },
     { k: 'Alerts', v: 'New offers only, or every new ad' },
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'See every ad each client’s rivals run in public, followed to its page, price and code.' },
-    { audience: 'marketing', line: 'See the offer behind every rival ad the morning it starts.' },
-    { audience: 'founders', line: 'See what your rivals are pushing this week, and the price behind it.' },
+    { audience: 'agencies', line: 'See every ad each client’s competitors run in public, followed to its page, price and code.' },
+    { audience: 'marketing', line: 'See the offer behind every competitor ad the morning it starts.' },
+    { audience: 'founders', line: 'See what your competitors are pushing this week, and the price behind it.' },
   ],
 
   table: {
-    heading: 'Rival A started 9 ads overnight. Rival C’s free delivery ad has run 41 days.',
-    line: 'Example: the ads 3 rivals were running in public on Friday at 07:00.',
-    cols: ['Rival', 'Running', 'Lands on', 'Offer on the page'],
+    heading: 'Competitor A started 9 ads overnight. Competitor C’s free delivery ad has run 41 days.',
+    line: 'Example: the ads 3 competitors were running in public on Friday at 07:00.',
+    cols: ['Competitor', 'Running', 'Lands on', 'Offer on the page'],
     rows: [
-      { label: 'Free gift over £40', values: ['Rival A', '1 day', 'Offers page', 'GIFT40, gift set at £56'] },
-      { label: 'Shop bestsellers', values: ['Rival A', '1 day', 'Bestsellers', 'No offer'] },
-      { label: 'New travel size', values: ['Rival B', '7 days', 'Travel tin', '£12, sign up for 15% off'] },
-      { label: '2 for £30', values: ['Rival B', '15 days', 'Bundle page', '2 candles for £30'] },
-      { label: 'Free UK delivery', values: ['Rival C', '41 days', 'Home page', 'Free delivery, no minimum'] },
+      { label: 'Free gift over £40', values: ['Competitor A', '1 day', 'Offers page', 'GIFT40, gift set at £56'] },
+      { label: 'Shop bestsellers', values: ['Competitor A', '1 day', 'Bestsellers', 'No offer'] },
+      { label: 'New travel size', values: ['Competitor B', '7 days', 'Travel tin', '£12, sign up for 15% off'] },
+      { label: '2 for £30', values: ['Competitor B', '15 days', 'Bundle page', '2 candles for £30'] },
+      { label: 'Free UK delivery', values: ['Competitor C', '41 days', 'Home page', 'Free delivery, no minimum'] },
     ],
   },
 
@@ -159,7 +159,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Ad tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 rivals. The agents do the checking, and you read what changed.',
+        a: 'Ad tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The agents do the checking, and you read what changed.',
       },
       {
         q: 'Does Ad tracking click on paid ads?',
@@ -167,15 +167,15 @@ export const recipe: Recipe = {
       },
       {
         q: 'Which ads does Ad tracking read?',
-        a: 'Ad tracking reads the ads your rivals run in public, and opens the page each one points to, on phone and desktop.',
+        a: 'Ad tracking reads the ads your competitors run in public, and opens the page each one points to, on phone and desktop.',
       },
       {
-        q: 'Does Ad tracking sign up at rivals?',
+        q: 'Does Ad tracking sign up at competitors?',
         a: 'Yes, where an ad offers a code for signing up, so you see what a new customer gets. You stay private unless you choose to be named. When an agent talks to a person, it says it’s an AI.',
       },
       {
         q: 'Can Ad tracking check our own ads, or a client’s?',
-        a: 'That’s Obsession’s Ad landing check: each morning it opens the page every live ad of yours points to, as a customer, and drafts the fix for your OK. Ad tracking follows the ads rivals run in public.',
+        a: 'That’s Obsession’s Ad landing check: each morning it opens the page every live ad of yours points to, as a customer, and drafts the fix for your OK. Ad tracking follows the ads competitors run in public.',
       },
       {
         q: 'How many brands can Ad tracking follow?',
@@ -185,8 +185,8 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'See the offer behind your rivals’ ads.',
-    sub: 'Join the waitlist. Ad tracking comes ready to run on the rivals you name.',
+    heading: 'See the offer behind your competitors’ ads.',
+    sub: 'Join the waitlist. Ad tracking comes ready to run on the competitors you name.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-final',

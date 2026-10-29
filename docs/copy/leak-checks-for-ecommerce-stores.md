@@ -313,7 +313,7 @@ After step 10: link **See a sample output** → `/sample-output`.
 - **One deadline.** The basket deadline is 24 hours everywhere, still watched to 48.
 - **Verdicts as soon as they're known.** A rejected code shows at once, a missing email at its deadline.
 - **Inside the time.** The Monday report covers last week, since this week's verdicts can't land on Monday. Black Friday no longer shows a basket reminder 25 minutes after launch.
-- **Change detection, plainly.** A theme publish or a flow edit starts a check; a new app or a sale, tell it from Slack. Several publishes in an hour make 1 check. A preview link checks a theme before it's live: a new output card, in place of Rivals.
+- **Change detection, plainly.** A theme publish or a flow edit starts a check; a new app or a sale, tell it from Slack. Several publishes in an hour make 1 check. A preview link checks a theme before it's live: a new output card, in place of Competitors.
 - **What connecting adds.** The "why" (code ended 30 Sep, flow off since 14 Oct) needs Shopify and the email platform connected, read only, and the page now says so. From the address alone, you get what happened and the fix to try.
 - **False alarms.** New question: "What if we meant it?" Mark it intended. Connected, it reads the flow's filters first.
 - **Clutter.** The answer now matches the site's existing recipes: agents labelled, test orders marked in the order note, kept out of ad conversions, reviews and lists, then refunded. "A little" is gone.
@@ -336,7 +336,7 @@ After step 10: link **See a sample output** → `/sample-output`.
 **Rejected, and why**
 - **Name Klaviyo instead of "your email platform"** (operator). The site keeps platforms unnamed (COPY.md, 19 Oct; Home dropped Klaviyo), and the page works on any email platform.
 - **Cut to about 6 steps, drop Fit** (operator). The brief is the agencies page's structure: 10 steps in 3 phases, with fit.
-- **"A check of your own store isn't private"** (style editor, citing shared watches). system.md line 37 makes your own company "private by default"; shared watches are for watching rivals. The answer keeps "private by default" and adds "never who asked".
+- **"A check of your own store isn't private"** (style editor, citing shared watches). system.md line 37 makes your own company "private by default"; shared watches are for watching competitors. The answer keeps "private by default" and adds "never who asked".
 - **Hide the test.useobsession.com addresses** (truth checker: a store could filter the agents out). The real sample output already shows them. The page no longer says "filter by this domain"; it says "every agent is labelled", as Website audit does.
 - **Describe the 128 stores' size and Plus share** (operator). There's no source for it.
 - **"Says it's AI" spoils a support test** (operator). It's one of the three lines (the law) and stays.

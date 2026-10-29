@@ -329,7 +329,7 @@ export const post: BlogPost = {
         'Time to the first message, and every message received, with its offer.',
         'Anything that broke: a dead link in a text, a code that expired early, an ad landing on a sold out page.',
         'Every fix, found, approved, live, then checked again by a fresh test customer.',
-        'What a few rivals sent the same kind of customer, from their public sign ups.',
+        'What a few competitors sent the same kind of customer, from their public sign ups.',
       ],
     },
     {
@@ -338,13 +338,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks on a schedule, with every step signed and dated, so each line in the report links to proof the client can open. Its [rival email and text tracking](/recipes/email-sms-tracking) fills the last row, and [Obsession for agencies](/agencies) runs the same checks across every client you have.',
+      text: 'Obsession runs these checks on a schedule, with every step signed and dated, so each line in the report links to proof the client can open. Its [competitor email and text tracking](/recipes/email-sms-tracking) fills the last row, and [Obsession for agencies](/agencies) runs the same checks across every client you have.',
     },
     {
       kind: 'screen',
       screen: 'report',
       workspace: 'agency',
-      caption: 'Example: a monthly report in the agency’s own brand, setting a client’s emails and texts beside 3 rivals’, ready to send.',
+      caption: 'Example: a monthly report in the agency’s own brand, setting a client’s emails and texts beside 3 competitors’, ready to send.',
     },
     {
       kind: 'p',

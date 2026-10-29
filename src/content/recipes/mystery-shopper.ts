@@ -166,7 +166,7 @@ export const recipe: Recipe = {
     { k: 'What counts', v: 'For example: no basket reminder within 24 hours, no booking confirmation within 10 minutes' },
     { k: 'Device', v: 'Mobile, desktop or both' },
     { k: 'Payment', v: 'On your own store, stop before payment or buy on a capped card and refund, as you choose' },
-    { k: 'Rivals', v: 'The same steps at your competitors, to compare' },
+    { k: 'Competitors', v: 'The same steps at your competitors, to compare' },
     { k: 'How often', v: 'Once, weekly, monthly or after every release' },
   ],
 
@@ -179,9 +179,9 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'Rival A welcomes new customers 5 minutes faster, with a bigger offer.',
-    line: 'The same steps as a customer of each rival: sign up, texts and the site’s chat bot.',
-    cols: ['You', 'Rival A', 'Rival B'],
+    heading: 'Competitor A welcomes new customers 5 minutes faster, with a bigger offer.',
+    line: 'The same steps as a customer of each competitor: sign up, texts and the site’s chat bot.',
+    cols: ['You', 'Competitor A', 'Competitor B'],
     rows: [
       { label: 'Time to welcome email', values: ['6 min', '1 min', 'None in 24 h'] },
       { label: 'Welcome offer', values: ['10% off', '15% off', 'Free delivery'] },

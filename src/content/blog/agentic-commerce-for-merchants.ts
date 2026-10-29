@@ -409,7 +409,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession runs that test every week. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your rivals and prospect with proof. For agentic commerce, its [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
+      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession runs that test every week. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your competitors and prospect with proof. For agentic commerce, its [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
     },
     {
       kind: 'cta',

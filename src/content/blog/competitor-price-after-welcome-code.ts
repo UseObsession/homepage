@@ -141,7 +141,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record', compare: true },
     {
       kind: 'p',
-      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
     {
       kind: 'list',
@@ -173,7 +173,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The price monitoring apps’ pages do not list the welcome code, whether it stacks, the text offer, the member price or the emails that follow, all of which appear only to a customer who signs up. Panoramata lists competitors’ emails and flows, and the Apify scraper reads promotion wording from public store pages. Reading the page covers list prices across hundreds of products and many competitors. The tools that collect rivals’ emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
+      text: 'The price monitoring apps’ pages do not list the welcome code, whether it stacks, the text offer, the member price or the emails that follow, all of which appear only to a customer who signs up. Panoramata lists competitors’ emails and flows, and the Apify scraper reads promotion wording from public store pages. Reading the page covers list prices across hundreds of products and many competitors. The tools that collect competitors’ emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
     },
 
     { kind: 'h2', id: 'set-up', text: 'Setting up a new mailbox, phone number, browser and sheet' },
@@ -267,7 +267,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Log every email for the first 48 hours, then weekly until Black Friday, with its arrival time, sender, subject, offer, code, expiry and Gmail tab. Then leave a basket, begin checkout and stop before paying. The reminder that follows is another offer, and its code may differ from the welcome code. Klaviyo’s guide describes an early access discount in the first week of November and a November offer that one brand [sent exclusively to email subscribers](' +
         KLAVIYO_BF +
-        '), so [a competitor’s first Black Friday offer](/blog/black-friday-rival-report-template) may reach your inbox before its site shows it.',
+        '), so [a competitor’s first Black Friday offer](/blog/black-friday-competitor-email-report-template) may reach your inbox before its site shows it.',
     },
 
     { kind: 'h2', id: 'your-row', text: 'Adding your own store to the sheet' },

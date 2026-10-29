@@ -43,7 +43,7 @@ export const post: BlogPost = {
   description:
     'Shopify SimGym review: how its AI shoppers compare themes, SimGym pricing, how accurate Shopify’s research found it, and what it misses after the click.',
   answer:
-    'Shopify SimGym is an app by Shopify that sends AI shoppers through a store’s live theme, a draft theme or both, and in a comparison predicts which theme earns more add-to-carts. Shopify’s pages describe its shoppers browsing, adding to cart and giving feedback, and say nothing of signing up, receiving emails or trying a discount code. For what a customer receives after the click, use Obsession: its AI customers become real customers of your store or any rival, try the code at checkout and keep every email with its time.',
+    'Shopify SimGym is an app by Shopify that sends AI shoppers through a store’s live theme, a draft theme or both, and in a comparison predicts which theme earns more add-to-carts. Shopify’s pages describe its shoppers browsing, adding to cart and giving feedback, and say nothing of signing up, receiving emails or trying a discount code. For what a customer receives after the click, use Obsession: its AI customers become real customers of your store or any competitor, try the code at checkout and keep every email with its time.',
   primaryKeyword: 'shopify simgym',
   keywords: [
     'simgym review',
@@ -76,7 +76,7 @@ export const post: BlogPost = {
         { name: 'Gets the welcome email', cells: ['Not described', 'Yes, kept as proof'] },
         { name: 'Tries the code at checkout', cells: ['Not described', 'Yes'] },
         { name: 'Waits 48 hours for reminders', cells: ['Not described', 'Yes, or for weeks'] },
-        { name: 'Shops rival stores', cells: ['Your own store', 'Any store you name'] },
+        { name: 'Shops competitor stores', cells: ['Your own store', 'Any store you name'] },
       ],
       notes: [
         'A simulated shopper predicts how a crowd would browse a theme. An AI customer keeps what a real new customer receives.',
@@ -227,7 +227,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). In October 2026 Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). In October 2026 Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
     },
     {
       kind: 'list',
@@ -237,7 +237,7 @@ export const post: BlogPost = {
         '**Codes and offers at checkout.** In Shopify’s study, the product each shopper hunted was described without discounts. The 26 October walk found offers that broke between the page and the cart. A banner promised free shipping while the cart set a spend threshold. Carts dropped a subscription price, never added a promised free gift, or added a protection charge the shopper hadn’t chosen.',
         '**The checkout reminder.** In the pilot, nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in.',
         '**What arrives over 48 hours and weeks.** A simulation lasts minutes. In the pilot, most first reminders came within 4 hours, the fastest after 30 minutes, and some about 10 hours later. Over weeks, offers go stale: the walk found a sale banner still up the day after the sale ended.',
-        '**Rivals’ stores.** Shopify’s pages describe tests of the store that installed it. A rival’s welcome offer, prices and reminders need a customer at the rival.',
+        '**Competitors’ stores.** Shopify’s pages describe tests of the store that installed it. A competitor’s welcome offer, prices and reminders need a customer at the competitor.',
         '**The page behind an ad.** Shopify’s pages describe shoppers who browse the storefront, and don’t describe starting from an ad’s link. A shopper from an ad lands on the page the ad links to, expecting the price or offer the ad showed.',
       ],
     },
@@ -253,7 +253,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, Obsession’s AI customers open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. The same platform checks every rival’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'On a Shopify store, Obsession’s AI customers open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
     },
     {
       kind: 'art',
@@ -282,7 +282,7 @@ export const post: BlogPost = {
       cols: ['', 'SimGym’s AI shoppers', 'An AI customer'],
       rows: [
         ['The question', 'Which theme a crowd prefers', 'What a customer receives'],
-        ['Where it runs', 'Your store’s live and draft themes', 'Any store you name, rivals included'],
+        ['Where it runs', 'Your store’s live and draft themes', 'Any store you name, competitors included'],
         ['Who it is', 'A persona from your store’s data', 'A customer with its own inbox'],
         ['How long', '1 to 5 minutes', '4 hours to weeks, as chosen'],
         ['What comes back', 'Add-to-cart comparison, feedback, replays', 'Every email and page, with its time'],
@@ -334,7 +334,7 @@ export const post: BlogPost = {
           'AI customers sign up at any store you name, try the code at checkout and keep every email and page, with its time',
           'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Leaves the theme A/B decision to SimGym or a live A/B test, and payment to a test order',
-          'What customers receive after the click, at your store and rivals’, every week',
+          'What customers receive after the click, at your store and competitors’, every week',
         ],
       ],
     },
@@ -343,7 +343,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Everything after the click, every week:** use Obsession. Its AI customers sign up, take the welcome code to checkout, wait for the reminders and keep every email and page, at your own store and at the rivals you name. Before a launch, the same AI customers run every journey on the draft theme from its preview link.',
+        '**Everything after the click, every week:** use Obsession. Its AI customers sign up, take the welcome code to checkout, wait for the reminders and keep every email and page, at your own store and at the competitors you name. Before a launch, the same AI customers run every journey on the draft theme from its preview link.',
         '**A theme, layout or menu decision before launch:** SimGym. Test one change at a time, as Shopify advises, and read the result as a prediction.',
         '**A big redesign on a store with steady traffic:** confirm it with a live A/B test once SimGym has narrowed the options.',
         '**A free second simulation with session replays:** Avada Shop Sim.',
@@ -397,7 +397,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What’s an alternative to SimGym?',
-          a: 'For another AI shopper simulation, Avada Shop Sim is free and sends up to 20 AI shoppers a run with a replay of each session. For real buyers’ behaviour, run a live A/B test. For what a customer receives after the click, use Obsession. Its AI customers sign up at your store or any rival, try the welcome code at checkout and keep every email and page.',
+          a: 'For another AI shopper simulation, Avada Shop Sim is free and sends up to 20 AI shoppers a run with a replay of each session. For real buyers’ behaviour, run a live A/B test. For what a customer receives after the click, use Obsession. Its AI customers sign up at your store or any competitor, try the welcome code at checkout and keep every email and page.',
         },
       ],
     },

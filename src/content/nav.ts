@@ -71,7 +71,7 @@ export const nav = {
   label: 'Main',
   /* The readers, as plain links: who it is for comes first (COPY.md, "One taxonomy": 4 readers, by role). */
   readers: [
-    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every rival ad, email and offer, seen as their customer.' },
+    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every competitor ad, email and offer, seen as their customer.' },
     { id: 'sales', label: 'Sales', to: '/sales', line: 'Know what each account does to its customers.' },
     { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client and prospect, checked as a customer.' },
     { id: 'developers', label: 'Developers', to: '/developers', line: 'A customer at every company, for your agents.' },

@@ -63,7 +63,7 @@ export const post: BlogPost = {
   description:
     'Competitor price tracking tools compared by job: public prices at scale, small stores, cart and login prices. Prices as listed on 28 October 2026.',
   answer:
-    'Competitor price tracking tools read rival stores’ product pages on a schedule and alert your company when a price changes. By job, Prisync or PriceMole track public prices at scale, Pricefy or Visualping suit small stores, Price2Spy or Priceva say they read login and cart prices, and Particl or Omnia Retail cover marketplace data. Obsession’s AI customers sign up to each rival as a new customer and record the price after the welcome code, in the cart and in every email offer, with proof.',
+    'Competitor price tracking tools read competitor stores’ product pages on a schedule and alert your company when a price changes. By job, Prisync or PriceMole track public prices at scale, Pricefy or Visualping suit small stores, Price2Spy or Priceva say they read login and cart prices, and Particl or Omnia Retail cover marketplace data. Obsession’s AI customers sign up to each competitor as a new customer and record the price after the welcome code, in the cart and in every email offer, with proof.',
   primaryKeyword: 'competitor price tracking tools',
   keywords: [
     'competitor price tracking software',
@@ -104,13 +104,13 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Store owners, pricing and ecommerce teams, and the agencies that set a client’s prices use competitor price tracking software to see when a rival changes a price. It spares them opening every rival’s site each morning. The 14 tools here are grouped by the job they do best, each with its listed price, where it stops and who it suits.',
+      text: 'Store owners, pricing and ecommerce teams, and the agencies that set a client’s prices use competitor price tracking software to see when a competitor changes a price. It spares them opening every competitor’s site each morning. The 14 tools here are grouped by the job they do best, each with its listed price, where it stops and who it suits.',
     },
 
     { kind: 'h2', id: 'what-they-do', text: 'What competitor price tracking tools do' },
     {
       kind: 'p',
-      text: 'A competitor price tracking tool reads the product pages of the rival stores your company names and matches each rival product to one of yours. It reads each page again on a schedule, from once a day to several times a day. When a price, a sale or the stock level changes, it sends an alert. Many can also change your own prices to follow a rule you set, which the tools call repricing.',
+      text: 'A competitor price tracking tool reads the product pages of the competitor stores your company names and matches each competitor product to one of yours. It reads each page again on a schedule, from once a day to several times a day. When a price, a sale or the stock level changes, it sends an alert. Many can also change your own prices to follow a rule you set, which the tools call repricing.',
     },
     {
       kind: 'p',
@@ -143,7 +143,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'None of these 14 tools’ pages said it signs up to a rival as a new customer, takes the welcome code to checkout and records the price that results. Recording that price, the one a first order pays, takes a customer of each rival who signs up and waits for the emails.',
+      text: 'None of these 14 tools’ pages said it signs up to a competitor as a new customer, takes the welcome code to checkout and records the price that results. Recording that price, the one a first order pays, takes a customer of each competitor who signs up and waits for the emails.',
     },
 
     { kind: 'h2', id: 'how-compared', text: 'How the tools were compared' },
@@ -169,7 +169,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'at-scale', text: 'Trackers for public prices at scale' },
     {
       kind: 'p',
-      text: 'These read rival product pages across hundreds or thousands of products, match them to your catalogue and alert your team to every change. They suit a store or brand watching list prices across many rivals every day.',
+      text: 'These read competitor product pages across hundreds or thousands of products, match them to your catalogue and alert your team to every change. They suit a store or brand watching list prices across many competitors every day.',
     },
 
     { kind: 'h3', id: 'pricemole', text: 'PriceMole' },
@@ -178,14 +178,14 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [PriceMole](' +
           PRICEMOLE +
-          ') tracks rival prices and stock across websites and Google Shopping, and reprices your products. It finds and matches rival product pages from its own data, says it tracks 100,000+ sites, and checks prices 4 times a day. It connects to Shopify and BigCommerce.',
+          ') tracks competitor prices and stock across websites and Google Shopping, and reprices your products. It finds and matches competitor product pages from its own data, says it tracks 100,000+ sites, and checks prices 4 times a day. It connects to Shopify and BigCommerce.',
         '**Price as listed:** [$99 a month](' +
           PRICEMOLE_PRICING +
           ') for 100 SKUs and 5 competitors, rising to $499 for 5,000 SKUs, with plans at $199 and $299 between. Billing is every 30 days with no commitment, after a 14 day free trial. Its [Shopify App Store listing](' +
           PRICEMOLE_SHOPIFY +
           ') shows a different middle plan at $249.',
         '**Where it stops:** login support is listed only on its Shopify listing, on the $499 plan. Its own site doesn’t mention coupon codes or member prices.',
-        '**Best for:** a Shopify or BigCommerce store that wants rival products matched and repriced automatically.',
+        '**Best for:** a Shopify or BigCommerce store that wants competitor products matched and repriced automatically.',
       ],
     },
 
@@ -195,12 +195,12 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Prisync](' +
           PRISYNC +
-          ') tracks rival prices and stock, shows where your price sits against each rival, and checks MAP. It says its customers range from small businesses to Fortune 500 brands, and it imports a Shopify catalogue in one click.',
+          ') tracks competitor prices and stock, shows where your price sits against each competitor, and checks MAP. It says its customers range from small businesses to Fortune 500 brands, and it imports a Shopify catalogue in one click.',
         '**Price as listed:** [$99 a month](' +
           PRISYNC_PRICING +
           ') for up to 100 products and 3 updates a day, $199 for 1,000 and $399 for 5,000. Plans priced by sales channel cost more. A 14 day free trial with no credit card.',
         '**Where it stops:** price history comes on the $399 plan, and marketplaces and variants from $199. Its pages don’t mention login, member or coupon prices.',
-        '**Best for:** a store with 100 to 5,000 products that wants scheduled price alerts across many rivals.',
+        '**Best for:** a store with 100 to 5,000 products that wants scheduled price alerts across many competitors.',
       ],
     },
 
@@ -216,11 +216,11 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Pricefy](' +
           PRICEFY +
-          ') tracks rival prices for each variant on rival sites, Amazon, eBay and Google Shopping, and reprices from its $99 plan. It matches products by barcode first, then by comparing text and images with AI, and your team can correct a match by hand. It imports a Shopify catalogue in one click and pushes new prices back. It says it has 10,000+ ecommerce customers.',
+          ') tracks competitor prices for each variant on competitor sites, Amazon, eBay and Google Shopping, and reprices from its $99 plan. It matches products by barcode first, then by comparing text and images with AI, and your team can correct a match by hand. It imports a Shopify catalogue in one click and pushes new prices back. It says it has 10,000+ ecommerce customers.',
         '**Price as listed:** [free](' +
           PRICEFY_PRICING +
           ') for 50 SKUs, 5 competitors and 1 update a day. Paid plans run from $49 a month for 100 SKUs and unlimited competitors to $499 for 25,000 SKUs, and paying yearly saves 25%.',
-        '**Where it stops:** its pages describe public rival pages, with no mention of login, member or coupon prices. The free plan updates once a day.',
+        '**Where it stops:** its pages describe public competitor pages, with no mention of login, member or coupon prices. The free plan updates once a day.',
         '**Best for:** a small Shopify store that wants to start free with up to 50 products.',
       ],
     },
@@ -237,15 +237,15 @@ export const post: BlogPost = {
         '**Price as listed:** [free](' +
           VISUALPING_PRICING +
           ') for 5 pages and 150 checks a month. Personal plans run from $14 a month for 10 pages to $70 for 40, and Business plans from $140 a month for 200 pages to $350 for 500.',
-        '**Where it stops:** your team sets up every page by hand, and it reports each change to a page with no table of matched rival prices. It won’t solve CAPTCHAs, the puzzles that block automated visitors.',
-        '**Best for:** a small store watching a handful of rival product pages for under $15 a month.',
+        '**Where it stops:** your team sets up every page by hand, and it reports each change to a page with no table of matched competitor prices. It won’t solve CAPTCHAs, the puzzles that block automated visitors.',
+        '**Best for:** a small store watching a handful of competitor product pages for under $15 a month.',
       ],
     },
 
     { kind: 'h2', id: 'login-cart', text: 'Tools for prices behind a login or in the cart' },
     {
       kind: 'p',
-      text: 'Some prices appear only after a step: in the cart, once delivery and add-ons are counted, or behind a customer login. These 2 tools say they read past the product page. Before tracking prices behind a rival’s login, read that store’s terms. [Priceva’s own FAQ](' +
+      text: 'Some prices appear only after a step: in the cart, once delivery and add-ons are counted, or behind a customer login. These 2 tools say they read past the product page. Before tracking prices behind a competitor’s login, read that store’s terms. [Priceva’s own FAQ](' +
         PRICEVA +
         ') says price tracking is legal when it uses publicly available data with no unauthorised access. [Skuuudle’s guide to price scraping](' +
         SKUUUDLE_BLOG +
@@ -258,7 +258,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Price2Spy](' +
           PRICE2SPY +
-          ') collects rival prices and stock from online stores and marketplaces, and says brands, retailers and distributors in over 40 countries use it. Its pages say it monitors [stores that need a step before they show a price](' +
+          ') collects competitor prices and stock from online stores and marketplaces, and says brands, retailers and distributors in over 40 countries use it. Its pages say it monitors [stores that need a step before they show a price](' +
           PRICE2SPY_WHY +
           '), such as adding the product to the cart or logging in, and [prices behind logins](' +
           PRICE2SPY_ECOM +
@@ -269,7 +269,7 @@ export const post: BlogPost = {
           PRICE2SPY_PRICING +
           '). Starter and Basic show a free trial button, Premium is priced on request, and the home page offers 14 days free with no credit card.',
         '**Where it stops:** with no published prices, a small store can’t size the cost before a conversation. Its pricing page lists capturing additional details under Premium, and its help centre names promotional codes among those extra fields. Add-ons are priced separately.',
-        '**Best for:** stores and brands that need prices from rival sites that hide them behind a login or a cart step.',
+        '**Best for:** stores and brands that need prices from competitor sites that hide them behind a login or a cart step.',
       ],
     },
 
@@ -289,7 +289,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'brands', text: 'Market and retail intelligence for brands' },
     {
       kind: 'p',
-      text: 'These tools track more than price, such as a rival’s discounts, sales estimates, emails, texts and ads beside its catalogue prices. [Ecommerce competitive intelligence](/blog/ecommerce-competitive-intelligence) sorts every source of rival data by where it lives, and [competitor email tracking tools](/blog/competitor-email-tracking-tools) compares the tools that collect rivals’ emails.',
+      text: 'These tools track more than price, such as a competitor’s discounts, sales estimates, emails, texts and ads beside its catalogue prices. [Ecommerce competitive intelligence](/blog/ecommerce-competitive-intelligence) sorts every source of competitor data by where it lives, and [competitor email tracking tools](/blog/competitor-email-tracking-tools) compares the tools that collect competitors’ emails.',
     },
 
     { kind: 'h3', id: 'panoramata', text: 'Panoramata' },
@@ -298,14 +298,14 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Panoramata](' +
           PANORAMATA +
-          ') tracks rivals’ emails, texts and WhatsApp messages, flows, ads, landing pages and website changes. It also tracks their [catalogues, prices, promotions and discounts](' +
+          ') tracks competitors’ emails, texts and WhatsApp messages, flows, ads, landing pages and website changes. It also tracks their [catalogues, prices, promotions and discounts](' +
           PANORAMATA_CATALOGS +
           '), and says it covers 100,000+ companies in 150 countries.',
         '**Price as listed:** [$99 a month](' +
           PANORAMATA_PRICING +
           ') ($990 a year) for up to 20 competitors, then $179 and $399, which adds a catalogue tracker by SKU, and Enterprise on request. A sign-up with no credit card gives limited access.',
         '**Where it stops:** its pages don’t say how often prices refresh, which sites the catalogue tracker covers or how it collects emails. The $99 plan keeps 6 months of history.',
-        '**Best for:** brands that want rivals’ emails, texts, ads and catalogue prices in one tool.',
+        '**Best for:** brands that want competitors’ emails, texts, ads and catalogue prices in one tool.',
       ],
     },
 
@@ -322,7 +322,7 @@ export const post: BlogPost = {
           PARTICL_PRICING +
           ') for 5 competitors and 3 months of history, $500 and $1,000 for 10 competitors with 6 and 12 months, and Custom on request. A 14 day free trial.',
         '**Where it stops:** its pages don’t say how it collects emails or whether it sees member prices, and they don’t mention Shopify.',
-        '**Best for:** a funded brand that wants rivals’ prices, discounts and sales estimates in one place.',
+        '**Best for:** a funded brand that wants competitors’ prices, discounts and sales estimates in one place.',
       ],
     },
 
@@ -338,10 +338,10 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Competera](' +
           COMPETERA +
-          ') sells rival price data to large retailers in grocery, beauty, electronics and home, with AI that recommends their own prices. Its competitive data page lists promo mechanics, discount depth, coupon codes and multi-buy offers among the data to capture beside prices.',
-        '**Price as listed:** not listed. Rival data is billed per SKU delivered on time, and prepaid balances don’t expire.',
+          ') sells competitor price data to large retailers in grocery, beauty, electronics and home, with AI that recommends their own prices. Its competitive data page lists promo mechanics, discount depth, coupon codes and multi-buy offers among the data to capture beside prices.',
+        '**Price as listed:** not listed. Competitor data is billed per SKU delivered on time, and prepaid balances don’t expire.',
         '**Where it stops:** built for large retailers and sold through its team. Its pages don’t mention member or login prices.',
-        '**Best for:** a large retailer that wants managed rival data and AI price recommendations.',
+        '**Best for:** a large retailer that wants managed competitor data and AI price recommendations.',
       ],
     },
 
@@ -351,9 +351,9 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Minderest](' +
           MINDEREST +
-          ') tracks prices, promotions and stock daily across rivals’ whole catalogues and marketplaces, for customers it names such as eBay, Sony and Decathlon. Its [InSite Analytics extension](' +
+          ') tracks prices, promotions and stock daily across competitors’ whole catalogues and marketplaces, for customers it names such as eBay, Sony and Decathlon. Its [InSite Analytics extension](' +
           MINDEREST_INSITE +
-          ') for Chrome and Firefox shows a rival’s prices, promotions, stock and delivery costs against your own while you browse its site.',
+          ') for Chrome and Firefox shows a competitor’s prices, promotions, stock and delivery costs against your own while you browse its site.',
         '**Price as listed:** not listed, with a demo on request.',
         '**Where it stops:** no published prices or trial. Its pages don’t say the extension shows logged-in prices.',
         '**Best for:** a larger retailer that wants whole-catalogue monitoring and a check in the browser.',
@@ -366,7 +366,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** Lengow’s [NetRivals](' +
           NETRIVALS +
-          ') tracks rival prices, assortments and promotions across marketplaces and retailer sites, with automated repricing and sales data from Google Analytics. Its page states its scope plainly: “If it’s public, it’s trackable.”',
+          ') tracks competitor prices, assortments and promotions across marketplaces and retailer sites, with automated repricing and sales data from Google Analytics. Its page states its scope plainly: “If it’s public, it’s trackable.”',
         '**Price as listed:** not listed, with a demo on request.',
         '**Where it stops:** public prices, by its own words.',
         '**Best for:** brands and retailers already selling through marketplaces and product feeds.',
@@ -379,7 +379,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Omnia Retail](' +
           OMNIA +
-          ') combines price monitoring with AI dynamic pricing for retailers and brands, including those that sell direct. It reads marketplaces such as Google Shopping, Amazon, eBay, bol.com, Kaufland and idealo, as well as rival sites. It connects to Shopify, Shopware, Plentymarkets and JTL.',
+          ') combines price monitoring with AI dynamic pricing for retailers and brands, including those that sell direct. It reads marketplaces such as Google Shopping, Amazon, eBay, bol.com, Kaufland and idealo, as well as competitor sites. It connects to Shopify, Shopware, Plentymarkets and JTL.',
         '**Price as listed:** not listed. Its cost depends on assortment size, number of markets, business size and needs, with a free demo after a first call.',
         '**Where it stops:** most of the marketplaces it names are European. Its pages don’t mention login, member or coupon prices.',
         '**Best for:** a retailer or a brand selling direct that wants pricing rules and is happy to talk to sales.',
@@ -392,7 +392,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Skuuudle](' +
           SKUUUDLE +
-          ') runs rival price collection as a managed service for pricing, buying and merchandising teams. Its customers are mainly in the US, UK, Europe and Canada. It collects base, shelf and promo prices, delivery fees and stock. It also collects prices that differ by region, down to the zip code or store.',
+          ') runs competitor price collection as a managed service for pricing, buying and merchandising teams. Its customers are mainly in the US, UK, Europe and Canada. It collects base, shelf and promo prices, delivery fees and stock. It also collects prices that differ by region, down to the zip code or store.',
         '**Price as listed:** between $10,000 and $1 million a year by its own page, with first-time customers typically spending in the low tens of thousands a year.',
         '**Where it stops:** no self-serve plan or trial. Its pages don’t say it sees member or login prices.',
         '**Best for:** a retailer or brand with tens of thousands a year to spend on price data.',
@@ -415,7 +415,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-saw', text: 'What a new customer was shown' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Two of Obsession’s October runs show the prices a new customer met past the product page.',
+      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Two of Obsession’s October runs show the prices a new customer met past the product page.',
     },
 
     { kind: 'h3', id: 'reminders', text: 'Prices in the reminder emails' },
@@ -467,23 +467,23 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor price tracking tool to choose' },
     {
       kind: 'p',
-      text: 'A public price tracker is the right pick for a store watching list prices across many rivals every day. Use Obsession when your company needs the price a new customer pays at each rival. That means the price after the welcome code, the cart total and every offer emailed to subscribers, each recorded as a new customer and kept with a dated screenshot.',
+      text: 'A public price tracker is the right pick for a store watching list prices across many competitors every day. Use Obsession when your company needs the price a new customer pays at each competitor. That means the price after the welcome code, the cart total and every offer emailed to subscribers, each recorded as a new customer and kept with a dated screenshot.',
     },
     {
       kind: 'list',
       items: [
-        '**The price a new customer pays at each rival:** Obsession’s [Price watch](/recipes/price-watch) checks every rival’s prices, offers and delivery each morning, plus the codes each rival emails its subscribers. Each change arrives with a before and after screenshot.',
+        '**The price a new customer pays at each competitor:** Obsession’s [Price watch](/recipes/price-watch) checks every competitor’s prices, offers and delivery each morning, plus the codes each competitor emails its subscribers. Each change arrives with a before and after screenshot.',
         '**List prices across hundreds or thousands of products:** Prisync or PriceMole, or Pricefy from $49 a month for 100 products.',
-        '**A small store watching a few rivals:** Pricefy’s free plan for up to 50 products, or Visualping from $14 a month for a handful of pages.',
-        '**Prices in the cart or behind a login:** Price2Spy or Priceva, after reading each rival’s terms.',
-        '**Rivals’ discounts, emails and sales estimates beside their prices:** Particl or Panoramata.',
+        '**A small store watching a few competitors:** Pricefy’s free plan for up to 50 products, or Visualping from $14 a month for a handful of pages.',
+        '**Prices in the cart or behind a login:** Price2Spy or Priceva, after reading each competitor’s terms.',
+        '**Competitors’ discounts, emails and sales estimates beside their prices:** Particl or Panoramata.',
         '**A large catalogue across marketplaces, with the data collected for you:** a competitor price monitoring service such as Skuuudle, Competera, Omnia Retail, Minderest, Wiser or NetRivals.',
-        '**A few rivals, checked once before a sale:** by hand, with the steps in [a competitor’s real price is the price after the welcome code](/blog/competitor-price-after-welcome-code).',
+        '**A few competitors, checked once before a sale:** by hand, with the steps in [a competitor’s real price is the price after the welcome code](/blog/competitor-price-after-welcome-code).',
       ],
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers become new customers of any company your team names: a rival, a prospect or your own store. They keep every email, offer and price they receive, exactly as it arrived.',
+      text: 'Obsession’s AI customers become new customers of any company your team names: a competitor, a prospect or your own store. They keep every email, offer and price they receive, exactly as it arrived.',
       to: '/',
       label: 'Meet your first AI customers',
     },
@@ -499,23 +499,23 @@ export const post: BlogPost = {
       caption: 'Competitor price tracking tools by job, from each provider’s own pages on 28 October 2026. Prices as listed, in US dollars',
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
-        ['Doing nothing', 'Costs no time', 'Free', 'A rival’s price cut shows up as lost sales', 'Months with no sale or launch'],
+        ['Doing nothing', 'Costs no time', 'Free', 'A competitor’s price cut shows up as lost sales', 'Months with no sale or launch'],
         [
           'By hand: a sheet, a new inbox and a weekly check',
-          'Any rival, the welcome code and emails included',
+          'Any competitor, the welcome code and emails included',
           'Free, plus staff hours',
-          'Hours grow with every rival and product',
-          '1 to 3 rivals before a sale',
+          'Hours grow with every competitor and product',
+          '1 to 3 competitors before a sale',
         ],
-        ['PriceMole', 'Matches rival products from its own data and reprices', '$99 to $499 a month\n14 days free', 'Login support on the top plan, per its Shopify listing', 'Shopify and BigCommerce stores that reprice'],
-        ['Prisync', 'Scheduled price and stock alerts, MAP checks', '$99 to $399 a month\n14 days free', 'Price history on the $399 plan', '100 to 5,000 products, many rivals'],
+        ['PriceMole', 'Matches competitor products from its own data and reprices', '$99 to $499 a month\n14 days free', 'Login support on the top plan, per its Shopify listing', 'Shopify and BigCommerce stores that reprice'],
+        ['Prisync', 'Scheduled price and stock alerts, MAP checks', '$99 to $399 a month\n14 days free', 'Price history on the $399 plan', '100 to 5,000 products, many competitors'],
         ['Pricefy', 'Barcode and AI product matching, repricing', 'Free for 50 SKUs\n$49 to $499 a month', 'Free plan updates once a day', 'A small store starting free'],
-        ['Visualping', 'Alerts when any page changes, logins included', 'Free for 5 pages\n$14 to $350 a month', 'Every page set up by hand', 'A handful of rival pages'],
-        ['Price2Spy', 'Prices behind logins and cart steps, promo codes as a field', 'Not listed\n14 days free', 'Extra details listed under Premium', 'Rival prices behind a login or cart step'],
+        ['Visualping', 'Alerts when any page changes, logins included', 'Free for 5 pages\n$14 to $350 a month', 'Every page set up by hand', 'A handful of competitor pages'],
+        ['Price2Spy', 'Prices behind logins and cart steps, promo codes as a field', 'Not listed\n14 days free', 'Extra details listed under Premium', 'Competitor prices behind a login or cart step'],
         ['Priceva', 'Cart prices and prices behind a login on paid plans', 'Free for 20 products\n$99 or $199 a month', 'Shopify connection not stated', 'A free start, cart prices later'],
-        ['Panoramata', 'Rivals’ emails, texts, ads and catalogue prices', '$99 to $399 a month', 'Price refresh rate not stated', 'Brands watching rivals’ marketing and prices'],
+        ['Panoramata', 'Competitors’ emails, texts, ads and catalogue prices', '$99 to $399 a month', 'Price refresh rate not stated', 'Brands watching competitors’ marketing and prices'],
         ['Particl', 'Prices, discounts and sales estimates across 20,000+ retailers', '$250 to $1,000 a month\n14 days free', 'Collection method not stated', 'Funded brands'],
-        ['Competera', 'Rival price data, with coupon codes on its list', 'Billed per SKU delivered', 'Built for large retailers', 'Large retailers'],
+        ['Competera', 'Competitor price data, with coupon codes on its list', 'Billed per SKU delivered', 'Built for large retailers', 'Large retailers'],
         ['Minderest', 'Whole-catalogue monitoring and a browser extension', 'Demo on request', 'No published prices or trial', 'Larger retailers'],
         ['NetRivals (Lengow)', 'Prices, assortments and promotions across marketplaces', 'Demo on request', 'Public prices, by its own words', 'Marketplace sellers'],
         ['Omnia Retail', 'Dynamic pricing with marketplace and site monitoring', 'Quoted after a first call', 'Mostly European marketplaces', 'Retailers that want pricing rules'],
@@ -523,10 +523,10 @@ export const post: BlogPost = {
         ['Wiser', 'Marketplace price and MAP monitoring, free snapshot', 'Not listed\nFree snapshot', 'Sold through its team', 'A free first look, then a quote'],
         [
           'Obsession (ours): [Price watch](/recipes/price-watch), [Competitor tracking](/recipes/competitor-tracking), [Member prices](/use-cases/member-prices-for-price-intelligence)',
-          'AI customers sign up to each rival and record the price after the welcome code, in the cart and in every emailed offer',
+          'AI customers sign up to each competitor and record the price after the welcome code, in the cart and in every emailed offer',
           'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Reports each change, with repricing left to your own tools',
-          'The price a new customer pays at each rival, kept as proof',
+          'The price a new customer pays at each competitor, kept as proof',
         ],
       ],
     },
@@ -537,11 +537,11 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is the best competitor price tracking software for ecommerce?',
-          a: 'It depends on the job. On 28 October 2026, Prisync and PriceMole listed plans from $99 a month for public prices across hundreds to thousands of products. Pricefy and Visualping had free plans for a small store. Price2Spy and Priceva said they read prices behind a login or in the cart. For the price a new customer pays after the welcome code, Obsession’s AI customers sign up to each rival and record it.',
+          a: 'It depends on the job. On 28 October 2026, Prisync and PriceMole listed plans from $99 a month for public prices across hundreds to thousands of products. Pricefy and Visualping had free plans for a small store. Price2Spy and Priceva said they read prices behind a login or in the cart. For the price a new customer pays after the welcome code, Obsession’s AI customers sign up to each competitor and record it.',
         },
         {
           q: 'What is a good competitor price tracker for small ecommerce stores?',
-          a: 'Pricefy’s free plan covers 50 products and 5 competitors with 1 update a day, and its next plan is $49 a month. Visualping watches 5 pages free, or 10 for $14 a month. Priceva is free for up to 20 products. For a few rivals before a sale, a sheet kept by hand costs nothing but time.',
+          a: 'Pricefy’s free plan covers 50 products and 5 competitors with 1 update a day, and its next plan is $49 a month. Visualping watches 5 pages free, or 10 for $14 a month. Priceva is free for up to 20 products. For a few competitors before a sale, a sheet kept by hand costs nothing but time.',
         },
         {
           q: 'Can competitor price tracking tools see discount codes and member prices?',
@@ -549,7 +549,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are competitor price monitoring services?',
-          a: 'They are companies that collect rivals’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add [AI customers at every retailer they track](/use-cases/member-prices-for-price-intelligence).',
+          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add [AI customers at every retailer they track](/use-cases/member-prices-for-price-intelligence).',
         },
         {
           q: 'How much does competitor price tracking software cost?',
@@ -557,11 +557,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to track competitor prices?',
-          a: 'Priceva’s FAQ says price tracking is legal when it uses publicly available data with no unauthorised access. For prices behind a login, Skuuudle’s guide says to stay within the site’s terms. Read each rival’s terms and take advice where your company trades, as nothing here is legal advice.',
+          a: 'Priceva’s FAQ says price tracking is legal when it uses publicly available data with no unauthorised access. For prices behind a login, Skuuudle’s guide says to stay within the site’s terms. Read each competitor’s terms and take advice where your company trades, as nothing here is legal advice.',
         },
         {
           q: 'How does Obsession track competitor prices?',
-          a: 'Obsession’s AI customers sign up to each rival as a new customer, each with its own inbox. They record the price after the welcome code, the cart total and every offer emailed to subscribers. Its Price watch checks every rival’s prices, offers and delivery each morning and reports each change with a before and after screenshot. Your first store check is free, and plans are credit-based, like Claude’s.',
+          a: 'Obsession’s AI customers sign up to each competitor as a new customer, each with its own inbox. They record the price after the welcome code, the cart total and every offer emailed to subscribers. Its Price watch checks every competitor’s prices, offers and delivery each morning and reports each change with a before and after screenshot. Your first store check is free, and plans are credit-based, like Claude’s.',
         },
       ],
     },

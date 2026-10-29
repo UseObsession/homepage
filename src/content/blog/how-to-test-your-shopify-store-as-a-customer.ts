@@ -45,7 +45,7 @@ export const post: BlogPost = {
   description:
     'How do I test my Shopify store? Place a free test order in test mode, then run 10 checks on a phone as a new customer, from the ad to the reminder emails.',
   answer:
-    'To test your Shopify store, place a free test order with test card numbers in Shopify’s test mode, then shop the store on a phone as a new customer. Check each step against a pass mark, from the buttons and codes to the welcome and reminder emails over the next 48 hours. To check the sign-up, basket and checkout every week and after every change, use Obsession: its AI customers shop your store and your rivals’ as real customers and keep every email, code and page.',
+    'To test your Shopify store, place a free test order with test card numbers in Shopify’s test mode, then shop the store on a phone as a new customer. Check each step against a pass mark, from the buttons and codes to the welcome and reminder emails over the next 48 hours. To check the sign-up, basket and checkout every week and after every change, use Obsession: its AI customers shop your store and your competitors’ as real customers and keep every email, code and page.',
   primaryKeyword: 'how do i test my shopify store',
   keywords: [
     'test my shopify store',
@@ -348,7 +348,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'misses', text: 'What one test by hand misses' },
     {
       kind: 'p',
-      text: 'A test by hand covers 1 phone, 1 set of inboxes and 1 moment. A code edited on Wednesday or an app updated on Thursday stays unseen until the next test. It also shows nothing of what rivals send their new customers: the welcome offer, the reminder timing, the Black Friday code.',
+      text: 'A test by hand covers 1 phone, 1 set of inboxes and 1 moment. A code edited on Wednesday or an app updated on Thursday stays unseen until the next test. It also shows nothing of what competitors send their new customers: the welcome offer, the reminder timing, the Black Friday code.',
     },
     {
       kind: 'p',
@@ -364,7 +364,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'AI customers that keep checking' },
     {
       kind: 'p',
-      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.',
+      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.',
     },
     {
       kind: 'p',
@@ -372,7 +372,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same AI customers shop rivals’ stores, so your team sees every welcome offer, price and reminder a rival sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'The same AI customers shop competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
     },
     {
       kind: 'p',
@@ -421,16 +421,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Store leak checks](' + LEAKS + '), [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit)',
-          'AI customers sign up, use the codes and leave baskets and checkouts at the store and its rivals, keeping every email, code and page with its time',
+          'AI customers sign up, use the codes and leave baskets and checkouts at the store and its competitors, keeping every email, code and page with its time',
           'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Leaves the payment step to Shopify’s test mode',
-          'Sign-up to checkout, every week and after every change, at the store and its rivals',
+          'Sign-up to checkout, every week and after every change, at the store and its competitors',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your store needs the sign-up, basket and checkout checked every week and after every change, at your store and your rivals’, with every email, code and page kept as it arrived, use Obsession. Keep placing a test order in test mode before launch and after payment changes, because it tests the payment step itself. SimGym fits a choice between two themes. Shoptest fits an alert within hours when a set checkout path breaks. A store with steady orders and few changes can run the 10 checks by hand each week.',
+      text: 'If your store needs the sign-up, basket and checkout checked every week and after every change, at your store and your competitors’, with every email, code and page kept as it arrived, use Obsession. Keep placing a test order in test mode before launch and after payment changes, because it tests the payment step itself. SimGym fits a choice between two themes. Shoptest fits an alert within hours when a set checkout path breaks. A store with steady orders and few changes can run the 10 checks by hand each week.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When a test by hand is enough' },
@@ -447,7 +447,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start tonight' },
     {
       kind: 'p',
-      text: 'Place the test order, run the 10 checks and write pass or fail beside each, then turn test mode off. For the same checks every week, at the store and its rivals, start with the free store check.',
+      text: 'Place the test order, run the 10 checks and write pass or fail beside each, then turn test mode off. For the same checks every week, at the store and its competitors, start with the free store check.',
     },
     {
       kind: 'cta',

@@ -281,7 +281,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each run needs a new address, a phone and 48 hours per store, and each live variant needs a new run every morning. For 1 audit, a strategist can run it alongside steps 2 to 4. Across a pipeline of prospects or several live tests, the hours grow with every store and every day. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then show what happened, with proof. After a client signs, they check every test variant past the sign up every morning it’s live.',
+      text: 'By hand, each run needs a new address, a phone and 48 hours per store, and each live variant needs a new run every morning. For 1 audit, a strategist can run it alongside steps 2 to 4. Across a pipeline of prospects or several live tests, the hours grow with every store and every day. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then show what happened, with proof. After a client signs, they check every test variant past the sign up every morning it’s live.',
     },
     {
       kind: 'cta',

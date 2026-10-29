@@ -186,7 +186,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession runs that check today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [retention agency use case](' +
+      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession runs that check today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [retention agency use case](' +
         USE_CASE +
         ') runs the same check on any store you name. The method behind that check is [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
@@ -277,7 +277,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking)',
-          'Leak checks: an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, with proof\nProspect intelligence: a verdict and a proof link per company\nEmail and SMS tracking: each rival’s emails and texts',
+          'Leak checks: an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, with proof\nProspect intelligence: a verdict and a proof link per company\nEmail and SMS tracking: each competitor’s emails and texts',
           'Running now: 5 stores checked free\nCredit-based plans, like Claude’s',
           'Doesn’t find contacts or email addresses',
           'What a real customer gets at every brand on a pitch list, kept as proof',
@@ -414,7 +414,7 @@ export const post: BlogPost = {
         '**Access.** Ask for the narrowest role that covers the audit. [Klaviyo’s Analyst role](' +
           KL_ROLES +
           ') can view analytics, segments and reporting and preview flow messages without editing them, and Flowium says Analyst access works but may limit its report.',
-        '**The audit.** Run the 3 layers in [the email marketing audit](/blog/email-marketing-audit): the account, deliverability, and what a new subscriber receives beside 2 or 3 rivals.',
+        '**The audit.** Run the 3 layers in [the email marketing audit](/blog/email-marketing-audit): the account, deliverability, and what a new subscriber receives beside 2 or 3 competitors.',
         '**The proposal.** Lead with the priority 1 findings and the monthly revenue each puts at risk, from the brand’s own flow report, then the scope, price, term and the date the first fix goes live.',
         '**After the signature.** Repeat the outside check after each fix, so the monthly report shows each finding as found, fixed and checked again, in the format of [proof that every flow fired](/blog/show-clients-every-flow-fired).',
       ],

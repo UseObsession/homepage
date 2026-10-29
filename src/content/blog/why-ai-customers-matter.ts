@@ -34,7 +34,7 @@ export const post: BlogPost = {
   description:
     'Why AI customers matter: what a company sends and what customers receive have drifted apart. Why it matters now, what changes, and your number.',
   answer:
-    'AI customers matter because what a company sends and what its customers receive have drifted apart, and only a customer sees the difference: the welcome email that never came, the code refused at checkout, the chatbot quoting an old policy. An AI customer sees it at any company, every day, and keeps the evidence, at a cost low enough to watch every rival, prospect and journey at once. Obsession’s AI customers do this today at any company you name, such as your own store, a rival or a prospect.',
+    'AI customers matter because what a company sends and what its customers receive have drifted apart, and only a customer sees the difference: the welcome email that never came, the code refused at checkout, the chatbot quoting an old policy. An AI customer sees it at any company, every day, and keeps the evidence, at a cost low enough to watch every competitor, prospect and journey at once. Obsession’s AI customers do this today at any company you name, such as your own store, a competitor or a prospect.',
   primaryKeyword: 'why ai customers matter',
   keywords: [
     'why every company needs ai customers',
@@ -141,7 +141,7 @@ export const post: BlogPost = {
       text: 'As more writing, reports and screenshots are produced by AI, the scarce thing is a record that something happened. An email kept exactly as it arrived, with its time and the sender’s signature checked on arrival, is a record anyone can open and test. That is the kind of evidence a client, a board or a court can rely on. For an agency, it ends the argument about whether a client’s flow fired ([showing clients every flow that fired](/blog/show-clients-every-flow-fired)).',
     },
 
-    { kind: 'h2', id: 'three-sides', text: 'Your company, your rivals and your partners' },
+    { kind: 'h2', id: 'three-sides', text: 'Your company, your competitors and your partners' },
     {
       kind: 'p',
       text: 'The customer side exists at every company, so AI customers point 3 ways, and each answers a question the other 2 can’t.',
@@ -150,7 +150,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Your own company.** Does every journey still work after this week’s release: the pop up, the welcome, the basket reminder, the code, the support bot? A silent fault here costs money every day, so a check after each change pays first. The method is in [how AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks).',
-        '**Your rivals and prospects.** What does a rival offer a new customer this week, and how fast does a prospect answer a demo request? When [Clay’s agents submitted 6,346 demo and contact forms](' +
+        '**Your competitors and prospects.** What does a competitor offer a new customer this week, and how fast does a prospect answer a demo request? When [Clay’s agents submitted 6,346 demo and contact forms](' +
           CLAY +
           '), two thirds of the companies never replied: the kind of fact a sales team can open a conversation with.',
         '**Your partners and AI assistants.** Does a deals site still show an expired code, and what do AI assistants tell shoppers about your prices? In a study Product.ai ran and Business Insider reported, [85% of the 913 AI shopping answers it could verify matched the current or listed price](' +
@@ -170,7 +170,7 @@ export const post: BlogPost = {
       cols: ['Question', 'How it is answered today', 'With AI customers'],
       rows: [
         ['Did the welcome email arrive?', 'Someone signs up by hand now and then', 'Every day, at every store, with the email kept'],
-        ['What are rivals offering subscribers?', 'A spare inbox per rival, read when someone remembers', 'Every rival’s emails, texts and prices on 1 timeline'],
+        ['What are competitors offering subscribers?', 'A spare inbox per competitor, read when someone remembers', 'Every competitor’s emails, texts and prices on 1 timeline'],
         ['Does our chatbot quote the right policy?', 'A test before launch', 'The same questions every day and after every update'],
         ['What does this prospect’s customer get?', 'A guess from its website', 'A dated finding the prospect can open'],
         ['How many companies can we check?', 'As many as people have hours for', '100,000 at once, built for millions'],
@@ -208,7 +208,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**It pays first** for companies that change often, buy paid traffic, compete on offers, run AI agents in front of customers, or check many companies at once, as agencies and sales teams do.',
-        '**It can wait** for a business that changes rarely, runs no paid traffic and has few rivals. Signing up by hand once a month and after every change covers it.',
+        '**It can wait** for a business that changes rarely, runs no paid traffic and has few competitors. Signing up by hand once a month and after every change covers it.',
       ],
     },
 
@@ -235,11 +235,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'meet', text: 'Meet your first AI customers' },
     {
       kind: 'p',
-      text: 'If your company needs to see what customers receive from it, its rivals or its prospects, use Obsession. Start where the money is: your own store’s journeys, 5 client stores for an agency, or your 5 closest rivals. A store’s [first check is free](/use-cases/leak-checks-for-ecommerce-stores), and an agency can [check 5 stores free](/use-cases/leak-checks-for-retention-agencies). Within days, each AI customer has signed up, waited and kept what arrived, and you read the first findings with their evidence. How they do it is in [how AI customers work](/blog/how-ai-customers-work), and what the term means is in [AI customers](/blog/ai-customers).',
+      text: 'If your company needs to see what customers receive from it, its competitors or its prospects, use Obsession. Start where the money is: your own store’s journeys, 5 client stores for an agency, or your 5 closest competitors. A store’s [first check is free](/use-cases/leak-checks-for-ecommerce-stores), and an agency can [check 5 stores free](/use-cases/leak-checks-for-retention-agencies). Within days, each AI customer has signed up, waited and kept what arrived, and you read the first findings with their evidence. How they do it is in [how AI customers work](/blog/how-ai-customers-work), and what the term means is in [AI customers](/blog/ai-customers).',
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
       to: '/',
       label: 'Meet your first AI customers',
     },
@@ -250,7 +250,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'Why do AI customers matter?',
-          a: 'They see what a company’s customers actually receive, which the company’s own reports can’t show, and they keep the evidence. They do it at any company, every day, at a cost that makes checking every rival and journey practical.',
+          a: 'They see what a company’s customers actually receive, which the company’s own reports can’t show, and they keep the evidence. They do it at any company, every day, at a cost that makes checking every competitor and journey practical.',
         },
         {
           q: 'Can’t my analytics show me this?',

@@ -74,7 +74,7 @@ export const post: BlogPost = {
         { name: 'Deploy 4.18', cells: ['Sign up test', 'CI: passed'], tone: 'ok' },
         { name: 'Help article edit', cells: ['Support bot test', 'Slack: 1 wrong answer'], tone: 'fail' },
         { name: 'Mon 07:00', cells: ['AI notice check', 'Compliance log'], tone: 'ok' },
-        { name: 'A rival’s email', cells: ['Price agent', 'Pricing: Pro now $39'], tone: 'info' },
+        { name: 'A competitor’s email', cells: ['Price agent', 'Pricing: Pro now $39'], tone: 'info' },
         { name: 'New Clay row', cells: ['Prospect facts', 'Clay: no welcome'], tone: 'info' },
         { name: 'Own newsletter', cells: ['Inbox placement', 'Dashboard: Promotions tab'], tone: 'info' },
         { name: 'Trial, day 3', cells: ['Trial log', 'Battlecard: 20% off'], tone: 'info' },
@@ -111,7 +111,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer system exposes this as a few calls. Obsession runs one today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. Its [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
+      text: 'An AI customer system exposes this as a few calls. Obsession runs one today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. Its [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
     },
     {
       kind: 'list',
@@ -138,13 +138,13 @@ export const post: BlogPost = {
       rows: [
         ['1. Sign up and login tests', 'A deploy', 'become_customer, facts, notify', 'The CI run'],
         ['2. Shopping agent readiness', 'Each morning', 'become_customer, facts, evidence', 'A weekly sheet'],
-        ['3. Price and offer agents', 'Each morning, a rival’s email', 'lookup, become_customer, notify', 'The pricing agent'],
-        ['4. Competitor feeds', 'A rival’s email or text', 'lookup, facts, become_customer, notify', 'Your app, as JSON'],
+        ['3. Price and offer agents', 'Each morning, a competitor’s email', 'lookup, become_customer, notify', 'The pricing agent'],
+        ['4. Competitor feeds', 'A competitor’s email or text', 'lookup, facts, become_customer, notify', 'Your app, as JSON'],
         ['5. Prospect facts', 'A new row in Clay or a CRM', 'lookup, become_customer, facts, evidence', 'Clay or the CRM'],
         ['6. Support bot tests', 'Each morning, each edit', 'become_customer, facts, evidence', 'The article’s owner'],
         ['7. Inbox placement', 'Each of your own sends', 'become_customer, facts, notify', 'A deliverability dashboard'],
         ['8. Partner code checks', 'Each Monday', 'become_customer, facts, evidence', 'The partnerships tracker'],
-        ['9. Trial teardowns', 'A rival’s trial emails', 'lookup, become_customer, facts', 'A battlecard'],
+        ['9. Trial teardowns', 'A competitor’s trial emails', 'lookup, become_customer, facts', 'A battlecard'],
         ['10. AI disclosure checks', 'Each morning', 'become_customer, evidence, notify', 'A compliance log'],
       ],
     },
@@ -178,7 +178,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'price-offer', text: '3. Price and offer agents' },
     {
       kind: 'p',
-      text: 'A pricing agent that responds to rivals needs what rivals show customers, including the codes they send only to subscribers. Each morning the build checks each rival’s prices, offers and delivery, and the AI customer on each rival’s list wakes when a code arrives. The agent drafts a response and a person approves it, and each proposal carries the email or page that prompted it.',
+      text: 'A pricing agent that responds to competitors needs what competitors show customers, including the codes they send only to subscribers. Each morning the build checks each competitor’s prices, offers and delivery, and the AI customer on each competitor’s list wakes when a code arrives. The agent drafts a response and a person approves it, and each proposal carries the email or page that prompted it.',
     },
     {
       kind: 'p',
@@ -188,7 +188,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'competitor-feeds', text: '4. Competitor feeds in a marketing tool' },
     {
       kind: 'p',
-      text: 'In a marketing tool, rival tracking becomes a product feature. Users name their rivals, and the app shows every email, text, offer and price change those rivals send. One AI customer per rival, shared across every user who watches it, gives a new user the history on day one. The app asks lookup first, reads facts for the history, and starts AI customers for the rivals nobody watches yet. A notify webhook then posts each new fact as JSON, keyed so a redelivered event is stored once.',
+      text: 'In a marketing tool, competitor tracking becomes a product feature. Users name their competitors, and the app shows every email, text, offer and price change those competitors send. One AI customer per competitor, shared across every user who watches it, gives a new user the history on day one. The app asks lookup first, reads facts for the history, and starts AI customers for the competitors nobody watches yet. A notify webhook then posts each new fact as JSON, keyed so a redelivered event is stored once.',
     },
     {
       kind: 'p',
@@ -251,7 +251,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'trials', text: '9. Trial teardowns' },
     {
       kind: 'p',
-      text: 'Product and sales teams want to see how a rival brings a new user in. The build starts each rival’s free trial with its own inbox and browser, signs in like a new user and logs every onboarding email, prompt and offer until the trial ends. Where a trial asks for a card, it uses one the team funds.',
+      text: 'Product and sales teams want to see how a competitor brings a new user in. The build starts each competitor’s free trial with its own inbox and browser, signs in like a new user and logs every onboarding email, prompt and offer until the trial ends. Where a trial asks for a card, it uses one the team funds.',
     },
     {
       kind: 'p',
@@ -304,7 +304,7 @@ export const post: BlogPost = {
           'Emails and ads from over 20,000 brands',
           'Startup: $99 a month, 20 competitors\nProfessional: $179 a month',
           'Brands in its library or added on request',
-          'Browsing rivals’ campaigns',
+          'Browsing competitors’ campaigns',
         ],
         [
           'Parts: [AgentMail](' + AGENTMAIL_PRICING + '), [Twilio](' + TWILIO + '), [Browserbase](' + BB_PRICING + ')',
@@ -324,7 +324,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If a build has to stay a customer of many companies for months, as builds 3, 4, 5 and 9 do, use Obsession. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing rivals’ campaigns. The waiting and evidence the longer builds rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
+      text: 'If a build has to stay a customer of many companies for months, as builds 3, 4, 5 and 9 do, use Obsession. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing competitors’ campaigns. The waiting and evidence the longer builds rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -343,7 +343,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Pick the build closest to a decision someone makes every week,** such as holding a release or answering a rival’s price.',
+        '**Pick the build closest to a decision someone makes every week,** such as holding a release or answering a competitor’s price.',
         '**Write its pass mark before the first run.**',
         '**Decide where its facts land:** the CI run, a webhook, Slack, a CRM or Clay.',
         '**Start with 5 to 10 companies and 1 channel,** then widen it once the pass marks hold.',
@@ -362,15 +362,15 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What can you build with AI agents?',
-          a: 'Anything where an agent has to act as a customer over time: release tests of your own sign up, rival price and offer feeds, prospect facts in Clay, support bot tests, inbox placement, partner code checks, trial logs and AI disclosure checks. Each needs an inbox, a number, a browser and time.',
+          a: 'Anything where an agent has to act as a customer over time: release tests of your own sign up, competitor price and offer feeds, prospect facts in Clay, support bot tests, inbox placement, partner code checks, trial logs and AI disclosure checks. Each needs an inbox, a number, a browser and time.',
         },
         {
           q: 'What are examples of AI agents in production?',
-          a: 'Examples include a release test that holds a deploy when a login code stops arriving, a pricing agent that responds to a rival’s subscriber code, and a sales agent that opens with a fact about the prospect’s own sign up. Each runs for months, so each needs an identity, waiting and evidence.',
+          a: 'Examples include a release test that holds a deploy when a login code stops arriving, a pricing agent that responds to a competitor’s subscriber code, and a sales agent that opens with a fact about the prospect’s own sign up. Each runs for months, so each needs an identity, waiting and evidence.',
         },
         {
           q: 'What are good MCP server ideas?',
-          a: 'Good MCP servers give an agent something it can’t find on the web, such as what companies send their customers. An AI customer server answers lookup, facts and evidence calls, so an agent in Claude or Cursor can ask what a rival emailed this week and get the email itself.',
+          a: 'Good MCP servers give an agent something it can’t find on the web, such as what companies send their customers. An AI customer server answers lookup, facts and evidence calls, so an agent in Claude or Cursor can ask what a competitor emailed this week and get the email itself.',
         },
         {
           q: 'What is an AI customer?',
