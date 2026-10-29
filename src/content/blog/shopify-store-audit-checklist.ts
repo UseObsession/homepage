@@ -554,6 +554,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    'how-to-test-your-shopify-store-as-a-customer',
     'black-friday-checklist-new-customer',
     'welcome-basket-email-not-sending',
     'test-store-chatbot-returns-policy',

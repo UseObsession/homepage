@@ -424,7 +424,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can I test checkout without placing an order?',
-          a: 'Yes. Go as far as the payment page and stop. That covers the cart, the address, shipping, tax, codes and the payment methods on offer. The payment step itself needs a test order, which the [Shopify store audit checklist](/blog/shopify-store-audit-checklist) sets out.',
+          a: 'Yes. Go as far as the payment page and stop. That covers the cart, the address, shipping, tax, codes and the payment methods on offer. The payment step itself needs a test order, and [how to place a test order on Shopify](/blog/how-to-test-your-shopify-store-as-a-customer) sets out each way to place one.',
         },
       ],
     },
@@ -451,5 +451,5 @@ export const post: BlogPost = {
     { title: 'Shoptest', publisher: 'Shopify App Store', url: SHOPTEST_APP, date: '2026-04-14' },
   ],
 
-  related: ['shopify-store-audit-checklist', 'where-your-ads-land-morning-check', 'black-friday-checklist-new-customer', 'recipe:mystery-shopper'],
+  related: ['how-to-test-your-shopify-store-as-a-customer', 'shopify-store-audit-checklist', 'where-your-ads-land-morning-check', 'black-friday-checklist-new-customer', 'shopify-simgym-review-ai-shoppers-vs-ai-customers', 'recipe:mystery-shopper'],
 }

@@ -406,6 +406,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    'how-to-test-your-shopify-store-as-a-customer',
     'recipe:mystery-shopper',
     'recipe:website-audit',
     'recipe:ad-landing-check',
