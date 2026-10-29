@@ -341,7 +341,12 @@ const llmsSections = [
   ['Pages', ofKind('home', 'audience', 'developers', 'compare', 'verify', 'recipes', 'sample', 'resources')],
   ['Recipes', ofKind('recipe')],
   ['Use cases', ofKind('use-cases', 'use-case')],
-  ['Blog', ofKind('blog', 'post')],
+  ['Blog', ofKind('blog')],
+  /* The guides, by the reader they serve (each post's hub), so an assistant reads the structure as well as the lines. */
+  ...[...new Set(entries.filter((e) => e.kind === 'post').map((e) => e.article?.section).filter(Boolean))].map((hub) => [
+    `Guides: ${hub}`,
+    entries.filter((e) => e.kind === 'post' && e.article?.section === hub).map(link),
+  ]),
   ['Trust', ofKind('agents', 'privacy')],
   ['Optional', [`- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`]],
 ]

@@ -1,4 +1,6 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { Mark, type Status } from '../components/Logo'
 import { StillMark } from '../components/StillMark'
 import { Crumbs } from '../components/Crumbs'
@@ -368,6 +370,7 @@ export function SampleOutput() {
         <Gap key={g.n} g={g} />
       ))}
       <Outputs id="formats" heading={sample.formats.heading} line={sample.formats.line} initial={sample.formats.start} className="s-so-formats" />
+      <LinkGroups groups={connectionsFor('/sample-output', 'page')} />
       <Faq faq={sample.faq} id="questions" />
       <FinalCta final={sample.final} id="get-one" />
     </>

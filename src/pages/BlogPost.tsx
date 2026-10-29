@@ -20,6 +20,7 @@ import { citedSources, sourceDate } from '../lib/sources'
 import '../components/sections/Hero.css'
 import './Blog.css'
 import { relOf } from '../lib/competitors'
+import { howItWorksGroup } from '../lib/connections'
 
 /* A page's 1 line where the nav gives it one (the readers and the Resources menu), else its share image's line. */
 const NAV_LINES = new Map<string, string>(
@@ -121,6 +122,7 @@ export function BlogPost({ post }: { post: Post }) {
   const groups: LinkGroupRows[] = [
     ...(reads.length ? [{ id: 'read-next', name: blogUi.related, rows: reads }] : []),
     ...(recipes.length ? [{ id: 'recipes', name: blogUi.recipes, rows: recipes }] : []),
+    howItWorksGroup(`/blog/${post.slug}`),
   ]
   const heroScreen = !hasVisual && post.hero.screen
 

@@ -1,4 +1,6 @@
 import { Fragment } from 'react'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { Link } from 'react-router-dom'
 import { FinalCta } from '../components/sections/FinalCta'
 import { HeroVideo } from '../components/v5/HeroVideo'
@@ -870,6 +872,7 @@ export function EcommerceStores() {
           )}
         </div>
       </JamesPage>
+      <LinkGroups groups={connectionsFor(study.meta.path, 'useCase')} className="s-lg--then-final" />
       <FinalCta final={study.final} />
     </>
   )

@@ -1,4 +1,6 @@
 import { AppScreen, type Workspace } from '../components/AppScreen'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Proof } from '../components/sections/Proof'
@@ -29,6 +31,7 @@ export function AudiencePage({ page, workspace, reader }: { page: Page; workspac
       {page.ask && <Ask ask={page.ask} id="ask" />}
       {page.compare && <Compare compare={page.compare} id="compare" />}
       {page.proof && <Proof proof={page.proof} id="proof" />}
+      <LinkGroups groups={connectionsFor(page.meta.path, 'reader')} />
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

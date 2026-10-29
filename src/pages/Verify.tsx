@@ -1,4 +1,6 @@
 import { Faq } from '../components/sections/Faq'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Gap } from '../components/sections/Gap'
 import { Hero } from '../components/sections/Hero'
@@ -29,6 +31,7 @@ export function Verify() {
       {page.kinds && <Kinds kinds={page.kinds} id="kinds" />}
       {page.recipes && <RecipeGrid heading={page.recipes.heading} ids={page.recipes.ids} id="recipes" />}
       {page.proof && <Proof proof={page.proof} id="proof" />}
+      <LinkGroups groups={connectionsFor('/verify', 'reader')} />
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

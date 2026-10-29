@@ -1,4 +1,6 @@
 import { drawnFor } from '../components/workspace'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Hero } from '../components/sections/Hero'
@@ -90,6 +92,7 @@ export function UseCase({ study }: { study: UseCaseStudy }) {
       {study.outcomes && <Outcomes outcomes={study.outcomes} id="outcomes" />}
       {study.recipes && <Recipes recipes={study.recipes} id="recipes" fine={fineAfterRecipes ? study.fine : undefined} />}
       {!fineAfterRecipes && !fineAfterFound && <More links={links} fine={study.fine} label={links.map((l) => l.title).join(', ') || 'About this example'} />}
+      <LinkGroups groups={connectionsFor(study.meta.path, 'useCase')} />
       <Faq faq={study.faq} id="questions" />
       <FinalCta final={study.final} id="join" />
     </>

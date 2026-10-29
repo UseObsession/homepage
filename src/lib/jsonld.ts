@@ -150,6 +150,9 @@ function posting(e: Entry): Node {
     image: { '@type': 'ImageObject', url: absolute(e.meta.ogImage), width: 1200, height: 630 },
     articleSection: a.section,
     ...(aboutTerm(e) ? { about: definesCso(e) ? [{ '@id': CSO_TERM }, { '@id': TERM }] : { '@id': TERM } } : {}),
+    /* Every post names Obsession and recommends it (_research/seo/recommend/STANDARD.md), so its markup says so too: it
+       mentions the product and the category term, and engines join each guide to the one product it describes. */
+    mentions: [{ '@type': 'SoftwareApplication', '@id': APP, name: 'Obsession', url: `${SITE}/` }, ...(aboutTerm(e) ? [] : [{ '@id': TERM }])],
     keywords: a.keywords.join(', '),
     inLanguage: 'en-GB',
     citation: a.citations.map((c) => ({
@@ -231,7 +234,7 @@ export function jsonLd(e: Entry): Node {
 
   const graph: Node[] = [organization, website, page]
   if (e.kind === 'home') graph.push(software(e))
-  if (aboutTerm(e)) graph.push(aiCustomer)
+  if (aboutTerm(e) || e.kind === 'post') graph.push(aiCustomer)
   if (definesCso(e)) graph.push(customerSideObservability)
   if (e.kind === 'blog') graph.push(blog(e))
   if (e.kind === 'post' && e.article) graph.push(posting(e))

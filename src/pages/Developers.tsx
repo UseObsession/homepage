@@ -1,4 +1,6 @@
 import { AppScreen } from '../components/AppScreen'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { DevSection } from '../components/sections/DevSection'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -27,6 +29,7 @@ export function Developers() {
       {page.developers && <DevSection developers={page.developers} workspace={workspace} id="code" />}
       {page.uses && <UseCases uses={page.uses} workspace={workspace} reader="developers" id="uses" />}
       {page.openSource && <OpenSource open={page.openSource} id="open-source" />}
+      <LinkGroups groups={connectionsFor('/developers', 'reader')} />
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>
