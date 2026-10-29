@@ -1,4 +1,6 @@
 import { useId, type ReactNode } from 'react'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
 import { CaptureForm } from '../components/CaptureForm'
@@ -301,6 +303,8 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
           <Table table={r.table} />
         </Section>
       )}
+
+      <LinkGroups groups={connectionsFor(`/recipes/${r.slug}`, 'recipe')} />
 
       <Faq faq={r.faq} id="questions" />
 

@@ -1,4 +1,6 @@
 import { Faq } from '../components/sections/Faq'
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Crumbs } from '../components/Crumbs'
 import { Compare as CompareTable } from '../components/v5/Compare'
@@ -25,6 +27,7 @@ export function Compare() {
       </section>
       {page.compare && <CompareTable compare={page.compare} id="table" />}
       {page.parity && <Parity parity={page.parity} id="tools" />}
+      <LinkGroups groups={connectionsFor('/compare', 'page')} />
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

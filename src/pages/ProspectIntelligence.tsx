@@ -1,4 +1,6 @@
+import { LinkGroups } from '../components/sections/LinkGroups'
 import { JamesPage } from '../legacy/JamesPage'
+import { connectionsFor } from '../lib/connections'
 import { ProspectIntelligence as Page } from '../legacy/james/pages/ProspectIntelligence'
 
 /* /use-cases/prospect-intelligence-with-clay: James's page, as he built it (src/legacy/james), inside the site's nav and
@@ -7,6 +9,7 @@ export function ProspectIntelligence() {
   return (
     <JamesPage>
       <Page />
+      <LinkGroups groups={connectionsFor('/use-cases/prospect-intelligence-with-clay', 'useCase')} className="s-lg--then-final" />
     </JamesPage>
   )
 }
