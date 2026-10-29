@@ -310,7 +310,7 @@ export const post: BlogPost = {
       items: [
         '**As many AI customers as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
         '**A shopper from the right country.** Each AI customer shops from the US or the UK, to match the brand’s market.',
-        '**CAPTCHAs, the puzzles that check a visitor is a person.** In the October pilot, most stores put a CAPTCHA or bot check in front of at least one step. Now, when a store asks a visitor to prove it’s human, a person on the Obsession team completes that step and the AI customer carries on.',
+        '**CAPTCHAs, the puzzles that check a visitor is a person.** In the October pilot, most stores put a CAPTCHA or bot check in front of at least one step. Each report names any step a CAPTCHA kept it from testing, so the agency knows exactly what to check by hand.',
         '**Reports on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep the AI customers on for weeks or months. A brand hiring now can get its first finding within hours, and a client gets weekly or monthly checks.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for the brands it serves.',
         '**Scale.** It runs at 300 brands a month, 1,000 or 5,000, and it is built for millions. The first agency to finish the October pilot is moving to 300 brands a month.',
@@ -439,7 +439,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start with 5 brands this week' },
     {
       kind: 'p',
-      text: 'Pick 5 brands with a dated reason to buy: a job post, a new hire, a launch or Black Friday. Sign each one up by hand on Monday morning, or name them to Obsession, and send the first finding before the brand hires someone else. The Obsession team helps each agency set up its first batch: the brands, the journeys at each and where the reports go. The free check below reports within 4 days. Once your own list runs, you choose when to read: 4, 12, 24 or 48 hours, or as long as you want to keep watching.',
+      text: 'Pick 5 brands with a dated reason to buy: a job post, a new hire, a launch or Black Friday. Sign each one up by hand on Monday morning, or name them to Obsession, and send the first finding before the brand hires someone else. The Obsession team helps each agency set up its first batch: the brands, the journeys at each and where the reports go. The free check reports within 4 days. Once your own list runs, you choose when to read: 4, 12, 24 or 48 hours, or as long as you want to keep watching.',
     },
     {
       kind: 'cta',

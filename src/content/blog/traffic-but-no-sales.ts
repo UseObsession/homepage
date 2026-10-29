@@ -371,7 +371,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
-          'AI customers open the pages behind the ads, sign up, use the code, leave a basket and keep every page and email. A person on the team completes any CAPTCHA',
+          'AI customers open the pages behind the ads, sign up, use the code, leave a basket and keep every page and email. A step behind a CAPTCHA is named as untested',
           'Running now: first store check free\nCredit-based plans, like Claude’s',
           'Stops before payment, so the payment step needs a test order',
           'What a new customer meets and receives, every week and after every change',
