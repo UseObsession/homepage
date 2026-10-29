@@ -93,7 +93,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: `In 2014 an employee at a consultancy was sent a spreadsheet comparing his firm’s health record software with a rival’s, Epic’s, function by function. The comparison drew on files downloaded through a login a colleague had got, at an earlier job, by claiming to work for an Epic customer. A jury later valued what that comparison was worth to the consultancy at $140 million ([US Court of Appeals, Seventh Circuit](${EPIC})).`,
+      text: `In 2014 an employee at a consultancy was sent a spreadsheet comparing his firm’s health record software with a competitor’s, Epic’s, function by function. The comparison drew on files downloaded through a login a colleague had got, at an earlier job, by claiming to work for an Epic customer. A jury later valued what that comparison was worth to the consultancy at $140 million ([US Court of Appeals, Seventh Circuit](${EPIC})).`,
     },
     {
       kind: 'p',
@@ -128,7 +128,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        `**Did you deceive a person?** SCIP’s code asks practitioners “to accurately disclose all relevant information, including one’s identity and organization, prior to all interviews”. On staff who call rivals posing as customers, it adds that the misrepresentation “may be illegal”, depending on where you are ([SCIP](${SCIP})).`,
+        `**Did you deceive a person?** SCIP’s code asks practitioners “to accurately disclose all relevant information, including one’s identity and organization, prior to all interviews”. On staff who call competitors posing as customers, it adds that the misrepresentation “may be illegal”, depending on where you are ([SCIP](${SCIP})).`,
         '**Did you break terms you accepted?** A free trial’s sign up box is a contract. Many ban competitors outright, and many require true registration details.',
         `**Did you take a trade secret?** That’s information that’s secret, valuable because it’s secret, and guarded with reasonable steps ([Trade Secrets Regulations 2018](${UK_TSR})). US federal law lists “misrepresentation” beside theft, bribery and espionage as improper means of getting one ([18 U.S.C. § 1839](${DTSA})).`,
         `**Did you get past a door that was shut?** In the UK, making a computer give you access you know is unauthorised is a crime ([Computer Misuse Act 1990, section 1](${CMA})). SCIP is blunt about one version: getting a password to a competitor’s site without authorisation “is illegal” ([SCIP](${SCIP})).`,
@@ -136,11 +136,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Under all 4 sits personal data. A rival’s staff have names, voices and faces, and the UK’s Market Research Society says that when you shop a competitor, “personal information about employees cannot be collected” ([MRS, March 2020](${MRS})).`,
+      text: `Under all 4 sits personal data. A competitor’s staff have names, voices and faces, and the UK’s Market Research Society says that when you shop a competitor, “personal information about employees cannot be collected” ([MRS, March 2020](${MRS})).`,
     },
     {
       kind: 'p',
-      text: `Competition law mostly cuts the other way. The European Commission’s own example of a harmless disclosure is a petrol station advertising its prices: it “benefits consumers”, even though rivals see it too. The risk is a rival sharing what it hasn’t published. In the EU, a business that receives commercially sensitive information from a competitor, such as its pricing plans, is presumed to act on it unless it publicly distances itself, for example by saying clearly that it doesn’t want it ([European Commission, Horizontal Guidelines, 2023](${EU_HG})). If a rival ever sends you its plans, tell it in writing that you don’t want them.`,
+      text: `Competition law mostly cuts the other way. The European Commission’s own example of a harmless disclosure is a petrol station advertising its prices: it “benefits consumers”, even though competitors see it too. The risk is a competitor sharing what it hasn’t published. In the EU, a business that receives commercially sensitive information from a competitor, such as its pricing plans, is presumed to act on it unless it publicly distances itself, for example by saying clearly that it doesn’t want it ([European Commission, Horizontal Guidelines, 2023](${EU_HG})). If a competitor ever sends you its plans, tell it in writing that you don’t want them.`,
     },
     {
       kind: 'table',
@@ -201,7 +201,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `The clause to look for is short. Salesforce’s main services agreement, which also governs its free trials, says its services “may not be accessed for purposes of monitoring their availability, performance or functionality, or for any other benchmarking or competitive purposes”, and that direct competitors need written consent ([Salesforce MSA, updated 1 September 2026](${SFDC})). Near identical wording runs through other vendors’ agreements, such as [BMC’s](${BMC}) and [Cerbos’s](${CERBOS}). Click through one of those as a rival and you’re in breach from the first minute.`,
+      text: `The clause to look for is short. Salesforce’s main services agreement, which also governs its free trials, says its services “may not be accessed for purposes of monitoring their availability, performance or functionality, or for any other benchmarking or competitive purposes”, and that direct competitors need written consent ([Salesforce MSA, updated 1 September 2026](${SFDC})). Near identical wording runs through other vendors’ agreements, such as [BMC’s](${BMC}) and [Cerbos’s](${CERBOS}). Click through one of those as a competitor and you’re in breach from the first minute.`,
     },
     {
       kind: 'p',
@@ -213,13 +213,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A clean trial teardown is dull by design, and it’s how our [trial teardown recipe](/recipes/trial-teardown) runs. 1 sign up per rival, under an identity that says what it is. No card, so there’s nothing to bill. No replies to the sales team. If a rep writes or calls, you stop and note the time. Trials that need a card or a sales call get skipped: the first risks a bill, the second means talking to staff.',
+      text: 'A clean trial teardown is dull by design, and it’s how our [trial teardown recipe](/recipes/trial-teardown) runs. 1 sign up per competitor, under an identity that says what it is. No card, so there’s nothing to bill. No replies to the sales team. If a rep writes or calls, you stop and note the time. Trials that need a card or a sales call get skipped: the first risks a bill, the second means talking to staff.',
     },
     {
       kind: 'screen',
       screen: 'battlecard',
       workspace: 'company',
-      caption: 'Example: 3 rivals’ 14 day trials side by side. Rival B’s closed on day 6, the moment its rep wrote.',
+      caption: 'Example: 3 competitors’ 14 day trials side by side. Competitor B’s closed on day 6, the moment its rep wrote.',
     },
 
     { kind: 'h2', id: 'pretend-buyers', text: 'Where do fake companies and pretend buyers cross the line?' },
@@ -233,11 +233,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Firms that sell this work describe it in 2 ways. Some say plainly that their analysts pose as prospective buyers and go through a rival’s whole sales process. Others say they never pretend to be someone else: their consultants are real, and only the story around the purchase is built for the occasion. Both kinds say their work is legal.',
+      text: 'Firms that sell this work describe it in 2 ways. Some say plainly that their analysts pose as prospective buyers and go through a competitor’s whole sales process. Others say they never pretend to be someone else: their consultants are real, and only the story around the purchase is built for the occasion. Both kinds say their work is legal.',
     },
     {
       kind: 'p',
-      text: 'Where either sits against SCIP’s disclosure rule is for you and your lawyer to judge. Our agents sidestep the question: at a rival they never talk to staff at all.',
+      text: 'Where either sits against SCIP’s disclosure rule is for you and your lawyer to judge. Our agents sidestep the question: at a competitor they never talk to staff at all.',
     },
     {
       kind: 'p',
@@ -345,10 +345,10 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Say it’s AI, and who answers for it.** Name the operator and link to a page that explains the agent (ours is [how our agents identify themselves](/agents)). At a rival or a prospect, ours name Obsession but not the customer they work for, the way a research agency keeps its client private. Answer truthfully if anyone asks whether it’s human.',
+        '**Say it’s AI, and who answers for it.** Name the operator and link to a page that explains the agent (ours is [how our agents identify themselves](/agents)). At a competitor or a prospect, ours name Obsession but not the customer they work for, the way a research agency keeps its client private. Answer truthfully if anyone asks whether it’s human.',
         '**Use only the doors any customer uses.** Sign ups, newsletters, texts, public pages, public ads, the chat bot and trials that need no card. Nothing behind a login you weren’t given, and a CAPTCHA or a block is an answer.',
         '**Ask the bot, never the staff.** If a person picks up the chat, the step ends. SCIP’s disclosure rule is about interviews, and the simplest way to keep it is to hold none.',
-        '**No card and no basket at a rival.** Skip any trial that needs a card or a sales call.',
+        '**No card and no basket at a competitor.** Skip any trial that needs a card or a sales call.',
         '**Leave when a rep writes.** Never reply. Close the trial and record when it happened.',
         '**Stop before payment on anyone else’s store.** Real orders run only on your own store, on a budget you set.',
         '**Touch a client’s journeys only with the owner’s OK.** Baskets, checkouts and bookings on a client’s business need the owner’s permission in writing.',
@@ -364,11 +364,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Rules like these cost you something. You won’t hear a rival’s sales pitch, and you won’t see a checkout past the payment page. What you get back is a record you could hand to the company you studied, or to a judge, with nothing in it you’d need to explain.',
+      text: 'Rules like these cost you something. You won’t hear a competitor’s sales pitch, and you won’t see a checkout past the payment page. What you get back is a record you could hand to the company you studied, or to a judge, with nothing in it you’d need to explain.',
     },
     {
       kind: 'p',
-      text: 'The same rules hold at a prospect, where an agent becomes a customer ([prospect intelligence](/recipes/prospect-intelligence)), and on a rival’s inbox ([email and SMS tracking](/recipes/email-sms-tracking)). On your own business, or a client’s with their OK, a [mystery shopper](/recipes/mystery-shopper) can go further, into baskets and checkouts.',
+      text: 'The same rules hold at a prospect, where an agent becomes a customer ([prospect intelligence](/recipes/prospect-intelligence)), and on a competitor’s inbox ([email and SMS tracking](/recipes/email-sms-tracking)). On your own business, or a client’s with their OK, a [mystery shopper](/recipes/mystery-shopper) can go further, into baskets and checkouts.',
     },
     {
       kind: 'p',
@@ -376,7 +376,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Competitor tracking runs on these 8 rules. A declared AI agent joins each rival’s emails and texts, reads their public pages and ads, and logs every offer, continuously.',
+      text: 'Competitor tracking runs on these 8 rules. A declared AI agent joins each competitor’s emails and texts, reads their public pages and ads, and logs every offer, continuously.',
       to: '/recipes/competitor-tracking',
       label: 'How competitor tracking works',
     },
@@ -391,7 +391,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can a competitor sign up for my product?',
-          a: `Unless your terms forbid it, yes, and nobody can stop a rival reading your public site. If you want competitors out of your trial, say so in your terms, as many software firms do (“direct competitors are prohibited from accessing the Services” is [common wording](${SFDC})), then enforce it when you spot one.`,
+          a: `Unless your terms forbid it, yes, and nobody can stop a competitor reading your public site. If you want competitors out of your trial, say so in your terms, as many software firms do (“direct competitors are prohibited from accessing the Services” is [common wording](${SFDC})), then enforce it when you spot one.`,
         },
         {
           q: 'Can I call a competitor’s sales team pretending to be a customer?',
@@ -410,7 +410,7 @@ export const post: BlogPost = {
           a: 'Technically, yes. Legally, it depends on whose account it is and what the site’s terms say. An agent using your own account at your request is close to the Perplexity case, where the Ninth Circuit treated the user as the one accessing, for computer fraud purposes. An agent using a login it wasn’t given is unauthorised access, whoever wrote the code. Check the terms, name the agent, and stop at a CAPTCHA. If you build your own, give each agent its own identity, as our [API](/developers) does.',
         },
         {
-          q: 'Can I use a burner email to sign up for a rival’s trial?',
+          q: 'Can I use a burner email to sign up for a competitor’s trial?',
           a: 'A second inbox is fine, and keeping trial mail out of your work inbox is sensible. What matters is the name and company you attach to it. Many terms require accurate registration details, and fake accounts were enough for a breach finding in hiQ v. LinkedIn. Use a separate inbox under an identity that says who it is.',
         },
         {

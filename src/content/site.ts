@@ -37,7 +37,7 @@ export const recipesPage: RecipesIndexPage = {
     path: '/recipes',
     title: 'Obsession recipes: AI customers ready to run for each job',
     description:
-      'Pick a recipe and Obsession’s AI customers are set up for it: inboxes, numbers, browsers, waits and checks. Watch rivals, your own journeys or your AI.',
+      'Pick a recipe and Obsession’s AI customers are set up for it: inboxes, numbers, browsers, waits and checks. Watch competitors, your journeys or your AI.',
     answer:
       'Obsession recipes are watches ready to run: each comes with its AI customers, inboxes, phone numbers, browsers and schedule set up. Add your companies, or type any other job.',
     ogImage: '/og/recipes.png',
@@ -55,7 +55,7 @@ export const recipesPage: RecipesIndexPage = {
   groups: [
     {
       group: 'Watch other companies',
-      line: 'Every email, text, price, ad and trial step from rivals, prospects and accounts, kept the day it lands.',
+      line: 'Every email, text, price, ad and trial step from competitors, prospects and accounts, kept the day it lands.',
     },
     {
       group: 'Check your own journeys',

@@ -16,9 +16,9 @@ export const page: Page = {
     path: '/sales',
     title: 'AI customers for sales: what each account does to customers',
     description:
-      'Obsession’s AI customers join each prospect, account and rival before you call, so every brief and battlecard opens on what their customers get.',
+      'Obsession’s AI customers join each prospect, account and competitor before you call, so every brief and battlecard opens on what their customers get.',
     answer:
-      'Obsession’s AI agents become a customer of each prospect, account and rival before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
+      'Obsession’s AI agents become a customer of each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
     ogImage: '/og/sales.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -28,8 +28,8 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Know what every account and rival does to its customers.',
-    sub: 'Obsession’s AI agents become a customer of each prospect, account and rival before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
+    headline: 'Know what every account and competitor does to its customers.',
+    sub: 'Obsession’s AI agents become a customer of each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
     capture: { kind: 'waitlist', source: 'sales-hero', button: 'Join the waitlist', interest: 'prospect' },
     secondary: { label: 'See how it compares', to: '/compare' },
     proof: [],
@@ -39,7 +39,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Your CRM knows what they told you. A customer knows what they do.',
-    line: 'Intent data says an account is shopping. It can’t say that their trial goes quiet on day 3, or that a rival just cut its price by 20%. Only a customer gets that.',
+    line: 'Intent data says an account is shopping. It can’t say that their trial goes quiet on day 3, or that a competitor just cut its price by 20%. Only a customer gets that.',
     tools: {
       label: 'What you can see today',
       items: [
@@ -54,7 +54,7 @@ export const page: Page = {
       items: [
         'How fast they answer a new lead, by form, chat and phone',
         'What their trial sends, and when it goes quiet',
-        'Every price and discount a rival offers',
+        'Every price and discount a competitor offers',
         'The welcome email that never came',
         'What their support bot tells a customer',
       ],
@@ -75,10 +75,10 @@ export const page: Page = {
       },
       {
         tab: 'Battlecards',
-        moment: 'Wednesday 15:00. A buyer says the rival is cheaper.',
-        outcome: 'Know every rival’s discount before your buyer quotes it.',
-        line: 'Agents start each rival’s trial and keep every email, price and offer until it ends, then check the rival’s pages every Monday.',
-        whyOnly: 'Rival A’s 20% off only reaches trials still open on day 13. Each agent stays in its trial to the last day.',
+        moment: 'Wednesday 15:00. A buyer says the competitor is cheaper.',
+        outcome: 'Know every competitor’s discount before your buyer quotes it.',
+        line: 'Agents start each competitor’s trial and keep every email, price and offer until it ends, then check the competitor’s pages every Monday.',
+        whyOnly: 'Competitor A’s 20% off only reaches trials still open on day 13. Each agent stays in its trial to the last day.',
         recipe: 'trial',
         screen: 'battlecard',
       },
@@ -127,7 +127,7 @@ export const page: Page = {
      support speed across a target list, and what changed in their stack. */
   ask: {
     ...askShared,
-    areas: ['Prospects', 'Accounts', 'Rivals'],
+    areas: ['Prospects', 'Accounts', 'Competitors'],
     examples: [{ ...askExamples.brief, where: 'Claude Code' }, askExamples.support, askExamples.watch],
   },
 
@@ -142,7 +142,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a sales team?',
-        a: 'Obsession’s AI agents become a customer of each prospect, account and rival before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
+        a: 'Obsession’s AI agents become a customer of each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
       },
       {
         q: 'Can it start when a meeting is booked?',

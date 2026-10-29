@@ -257,7 +257,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
 
     { kind: 'h3', id: 'good-at', text: 'What each assistant offers for this job' },
@@ -345,7 +345,7 @@ export const post: BlogPost = {
       text: 'An archive suits [a look at many brands you haven’t signed up to](/blog/competitor-email-tracking-tools). It shows what the vendor collected for the brands it covers. You can’t choose the shopper, the basket or the day, and Panoramata’s page doesn’t say how its emails are collected.',
     },
 
-    { kind: 'h2', id: 'twenty-rivals', text: 'Competitor email tracking beyond 3 competitors' },
+    { kind: 'h2', id: 'twenty-competitors', text: 'Competitor email tracking beyond 3 competitors' },
     {
       kind: 'p',
       text: 'Work out the hours with your own minutes: competitors × minutes a week on each competitor’s mail × 4 ÷ 60 = hours a month. At 3 competitors and 20 minutes each, a low estimate, that is 4 hours a month, and at 20 competitors it is nearly 27.',
@@ -388,7 +388,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start-now', text: 'When to sign up before Black Friday' },
     {
       kind: 'p',
-      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start in late October, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. If you sign up by Friday 30 October, the inbox holds 4 weeks of a competitor’s mail by Black Friday. If you sign up on Black Friday, it holds only the sale emails, and no assistant can retrieve the earlier ones. The [Black Friday rival email report](/blog/black-friday-rival-report-template) turns the sheet into a one page report for a client.',
+      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start in late October, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. If you sign up by Friday 30 October, the inbox holds 4 weeks of a competitor’s mail by Black Friday. If you sign up on Black Friday, it holds only the sale emails, and no assistant can retrieve the earlier ones. The [Black Friday competitor email report](/blog/black-friday-competitor-email-report-template) turns the sheet into a one page report for a client.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Frequently asked questions' },

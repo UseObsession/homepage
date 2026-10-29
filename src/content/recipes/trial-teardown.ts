@@ -16,10 +16,10 @@ export const recipe: Recipe = {
   slug: 'trial-teardown',
   name: 'Trial teardown',
   group: 'Watch other companies',
-  line: 'Starts a rival’s free trial and logs every onboarding email, prompt and offer, day by day.',
+  line: 'Starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
   gets: 'The whole trial on 1 page, from the welcome email to the offer at the end.',
   kit: [
-    'An AI customer per rival',
+    'An AI customer per competitor',
     'Its own inbox and browser',
     'Daily sign ins, like a new user',
     'A watch to the last trial day',
@@ -29,11 +29,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/trial-teardown',
-    title: 'Trial teardown: every email in a rival’s trial · Obsession',
+    title: 'Trial teardown: every email in a competitor’s free trial',
     description:
-      'An AI customer starts each rival’s free trial and logs every onboarding email, prompt and offer, day by day, from the welcome to the offer at the end.',
+      'An AI customer starts each competitor’s free trial and logs every onboarding email, prompt and offer, day by day, from the welcome to the offer at the end.',
     answer:
-      'Trial teardown logs every email, prompt and offer in a rival’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
+      'Trial teardown logs every email, prompt and offer in a competitor’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,8 +43,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that log every email, prompt and offer in a rival’s free trial.',
-    sub: 'Trial teardown logs every email, prompt and offer in a rival’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
+    headline: 'AI agents that log every email, prompt and offer in a competitor’s free trial.',
+    sub: 'Trial teardown logs every email, prompt and offer in a competitor’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
     screen: 'battlecard',
     capture: {
       kind: 'waitlist',
@@ -55,10 +55,10 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: Rival A’s 14 day trial',
+    tab: 'Example: Competitor A’s 14 day trial',
     recipe: 'trial',
-    task: 'Start Rival A’s free trial with no card. Log every email, prompt and offer until it ends.',
-    targets: 'rival-a.example, reporting software',
+    task: 'Start Competitor A’s free trial with no card. Log every email, prompt and offer until it ends.',
+    targets: 'competitor-a.example, reporting software',
     journey: ['Start the trial, no card', 'Sign in daily like a new user', 'Log every email and prompt', 'Watch to the last day'],
     schedule: 'Daily, until the trial ends',
     report: 'A battlecard in your CRM, the trial as a PDF',
@@ -70,14 +70,14 @@ export const recipe: Recipe = {
       { time: 'Day 12, 09:00', text: 'Reminder: 2 days left, with an upgrade link.' },
       { time: 'Day 13, 11:00', text: 'Offer: 20% off the first year if you upgrade before the trial ends.' },
     ],
-    finding: '11 emails, 4 in app prompts and 1 offer in 14 days. Rival A saves its 20% off for day 13.',
+    finding: '11 emails, 4 in app prompts and 1 offer in 14 days. Competitor A saves its 20% off for day 13.',
     fix: 'A talk track drafted for your reps: plan for the 20% on day 13. In your CRM after your OK.',
     ledger: 'Example run. No rep got in touch, so the trial ran to the end.',
   },
 
   steps: [
     {
-      title: 'Add your rivals',
+      title: 'Add your competitors',
       line: 'Any software with a free trial. Where a trial asks for a card, the agent uses one you fund.',
     },
     {
@@ -90,7 +90,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'You get the teardown',
-      line: 'The trial day by day, a battlecard your reps can use, and an alert when a rival changes its trial.',
+      line: 'The trial day by day, a battlecard your reps can use, and an alert when a competitor changes its trial.',
     },
   ],
 
@@ -127,33 +127,33 @@ export const recipe: Recipe = {
       { format: 'The proof', line: 'Screenshots of each step, and the emails themselves.' },
       {
         format: 'A battlecard',
-        line: 'Offers, timings and claims for each rival, with a talk track drafted, in your CRM or Slack.',
+        line: 'Offers, timings and claims for each competitor, with a talk track drafted, in your CRM or Slack.',
       },
-      { format: 'Rivals side by side', line: 'Run it on several rivals and compare their trials.' },
-      { format: 'Alerts', line: 'When a rival changes its trial, its emails or its offer, the next run shows what moved.' },
+      { format: 'Competitors side by side', line: 'Run it on several competitors and compare their trials.' },
+      { format: 'Alerts', line: 'When a competitor changes its trial, its emails or its offer, the next run shows what moved.' },
     ],
   },
 
   settings: [
-    { k: 'Rivals', v: 'Any software with a free trial' },
+    { k: 'Competitors', v: 'Any software with a free trial' },
     { k: 'Length', v: 'To the last day of the trial' },
     { k: 'Activity', v: 'Signs in daily, or goes quiet after day 1' },
     { k: 'Country', v: 'For the browser, and a number only if the sign up asks for one' },
-    { k: 'How often', v: 'Once, or a fresh trial whenever a rival changes its plans' },
+    { k: 'How often', v: 'Once, or a fresh trial whenever a competitor changes its plans' },
     { k: 'If a rep gets in touch', v: 'Close the trial, carry on, or reply and say it’s an AI' },
   ],
 
   forWho: [
-    { audience: 'sales', line: 'Battlecards from what a rival’s trial really looks like.' },
-    { audience: 'marketing', line: 'Compare your nurture emails with a rival’s, day by day.' },
-    { audience: 'founders', line: 'See how rivals onboard, then run the same teardown on your own trial.' },
+    { audience: 'sales', line: 'Battlecards from what a competitor’s trial really looks like.' },
+    { audience: 'marketing', line: 'Compare your nurture emails with a competitor’s, day by day.' },
+    { audience: 'founders', line: 'See how competitors onboard, then run the same teardown on your own trial.' },
     { audience: 'developers', line: 'See your own onboarding the way a new user sees it, from your code.' },
   ],
 
   table: {
-    heading: 'Rival A offers 20% off on day 13. Rival C offers 30% off once the trial ends.',
-    line: 'Example, set to close a trial when a rep writes. Rival B’s closed on day 6.',
-    cols: ['Rival A', 'Rival B', 'Rival C'],
+    heading: 'Competitor A offers 20% off on day 13. Competitor C offers 30% off once the trial ends.',
+    line: 'Example, set to close a trial when a rep writes. Competitor B’s closed on day 6.',
+    cols: ['Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Trial length', values: ['14 days', '14 days', '14 days'] },
       { label: 'Time to a first report', values: ['20 min', '3 days', '45 min'] },
@@ -172,7 +172,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Trial teardown gives your team up to 18 hours a month back, if it walks 3 rivals’ trials for 90 minutes a week each.',
+        a: 'Trial teardown gives your team up to 18 hours a month back, if it walks 3 competitors’ trials for 90 minutes a week each.',
       },
       {
         q: 'Will Trial teardown talk to a sales rep?',
@@ -180,7 +180,7 @@ export const recipe: Recipe = {
       },
       { q: 'What about trials that need a card?', a: 'Trial teardown starts them on a card you fund. It never uses fake payment details.' },
       {
-        q: 'Will the rival know?',
+        q: 'Will the competitor know?',
         a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
@@ -199,8 +199,8 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'Know every rival’s trial offer before your buyer quotes it.',
-    sub: 'Join the waitlist. Trial teardown comes ready to run on the rivals you name.',
+    heading: 'Know every competitor’s trial offer before your buyer quotes it.',
+    sub: 'Join the waitlist. Trial teardown comes ready to run on the competitors you name.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-trial-final',

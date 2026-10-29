@@ -339,7 +339,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs this checklist today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their rivals and prospect with proof. For a Plus agency, it shows what each client store’s new customers get after launch and every release. A deploy hook, a schedule or a button starts each run, and a preview link runs every journey on a new theme before it goes live. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card the client or the agency funds.',
+      text: 'Obsession runs this checklist today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a Plus agency, it shows what each client store’s new customers get after launch and every release. A deploy hook, a schedule or a button starts each run, and a preview link runs every journey on a new theme before it goes live. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card the client or the agency funds.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes on Shopify in 2026 and 2027' },

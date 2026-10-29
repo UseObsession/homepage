@@ -6,7 +6,7 @@
 
 export const howItWorks = {
   name: 'How Obsession works',
-  line: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+  line: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
   rows: [
     {
       label: 'What an AI customer is',

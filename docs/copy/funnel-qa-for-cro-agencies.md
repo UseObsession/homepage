@@ -146,21 +146,21 @@ Draft 3, 22 Oct 2026: draft 2 (revised after 3 adversarial reviews, summary and 
 - Example: Ferrow Coffee: the ad said 20% off, the pop up 15%. The welcome email came 7 hours later, and FERROW15 was rejected at checkout on a subscription.
 - Screen, “Teardown slide · Ferrow Coffee · After the sign up”: label “3 leaks”, verdict “The ad promised 20% and the pop up 15%. The code came 7 hours later and was rejected on a subscription.” Small: “Every step dated; the email kept as it arrived, with its headers.” Timeline: Mon 2 Nov 10:12 Opened the page behind the 20% ad · Mon 2 Nov 10:12 The pop up offered 15%; signed up on mobile, “Check your inbox” shown · Mon 2 Nov 11:12 No email after 1 hour (marked bad) · Mon 2 Nov 17:24 Welcome email with FERROW15, sent at 17:23 by Ferrow’s email platform, by its own headers · Mon 2 Nov 17:26 FERROW15 rejected on a subscription (marked bad). Screenshots: Ad, 20% off (10:12) · Pop up, 15% off (10:12, marked bad) · Checkout, code rejected (17:26, marked bad). Buttons: Add to the teardown · Copy proof link.
 
-**6. The prospect beside its rivals**
-- Line: Name its rivals with the list. Each gets its own new customer, so the pitch shows the brand’s sign up next to theirs.
-- Example: Wednesday’s pitch prep: Ferrow’s first email came after 7 hours, and the 5 rivals named on Monday averaged 4 minutes. Of the 6, only Ferrow’s code fails on a subscription, and none shows its code on screen.
-- Screen, “Pipeline · Ferrow Coffee · Beside 5 rivals”: tiles First email **7 h**, rivals 4 min · Message match with the ad **4** of 6 brands · Code works on a subscription **5** of 6 brands · Code shown on screen after the sign up **0** of 6 brands. Table, Brand / Offer / First email / Code:
+**6. The prospect beside its competitors**
+- Line: Name its competitors with the list. Each gets its own new customer, so the pitch shows the brand’s sign up next to theirs.
+- Example: Wednesday’s pitch prep: Ferrow’s first email came after 7 hours, and the 5 competitors named on Monday averaged 4 minutes. Of the 6, only Ferrow’s code fails on a subscription, and none shows its code on screen.
+- Screen, “Ferrow Coffee · beside 5 competitors”: tiles First email **7 h**, competitors 4 min · Message match with the ad **4** of 6 brands · Code works on a subscription **5** of 6 brands · Code shown on screen after the sign up **0** of 6 brands. Table, Brand / Offer / First email / Code:
 
 | Brand | Offer | First email | Code |
 |---|---|---|---|
 | Ferrow Coffee · Prospect | 15%, ad 20% | 7 h | Rejected |
-| Wendlow Coffee · Rival | Matches | 2 min | Works |
-| Gorsedale Roasters · Rival | Matches | 6 min | Works |
-| Linnet Roast · Rival | Matches | 1 min | Works |
-| Mallin & Crane · Rival | 10%, ad 15% | 9 min | Works |
-| Abberly Coffee · Rival | Matches | 2 min | Works |
+| Wendlow Coffee · Competitor | Matches | 2 min | Works |
+| Gorsedale Roasters · Competitor | Matches | 6 min | Works |
+| Linnet Roast · Competitor | Matches | 1 min | Works |
+| Mallin & Crane · Competitor | 10%, ad 15% | 9 min | Works |
+| Abberly Coffee · Competitor | Matches | 2 min | Works |
 
-  Slack, #new-business: “Ferrow Coffee is ready for Thursday: 3 leaks after the sign up, each with proof, beside 5 rivals. The slide is in the teardown.”
+  Slack, #new-business: “Ferrow Coffee is ready for Thursday: 3 leaks after the sign up, each with proof, beside 5 competitors. The slide is in the teardown.”
 
 ### Phase 3: After you win (steps 7 to 10)
 
@@ -197,7 +197,7 @@ Draft 3, 22 Oct 2026: draft 2 (revised after 3 adversarial reviews, summary and 
 **10. The month, in 1 readout**
 - Line: Every variant as a customer got it, the breaks caught and the before and after, every value linked to its proof. Ready for the monthly readout.
 - Example: November: 3 quick wins shipped, both variants of test 1 checked every morning, 1 break caught and fixed the same morning, none open.
-- Screen, “Readout · Ferrow Coffee · November”: tiles Quick wins shipped **3** · Variants checked every morning **2** · Caught and fixed the same morning **1** · Leaks open **0**. Summary: Fixed, The pop up matches the ad; the welcome email sends at once; the code works on a subscription · Caught, Test 1: B gave no code after an overnight app update, fixed the same morning · Open, None · Against 5 rivals, The fastest first email of the 6 · Before and after, 2 Nov: first email after 7 hours, code rejected. 30 Nov: 38 seconds, code works. Buttons: Add to the readout · Copy readout link.
+- Screen, “Readout · Ferrow Coffee · November”: tiles Quick wins shipped **3** · Variants checked every morning **2** · Caught and fixed the same morning **1** · Leaks open **0**. Summary: Fixed, The pop up matches the ad; the welcome email sends at once; the code works on a subscription · Caught, Test 1: B gave no code after an overnight app update, fixed the same morning · Open, None · Against 5 competitors, The fastest first email of the 6 · Before and after, 2 Nov: first email after 7 hours, code rejected. 30 Nov: 38 seconds, code works. Buttons: Add to the readout · Copy readout link.
 
 After step 10: link **See a sample output** → `/sample-output`.
 
@@ -319,7 +319,7 @@ After step 10: link **See a sample output** → `/sample-output`.
 - **FAQ answers rewritten:**
   - "We do conversion, not email" now answers in CVR and revenue per visitor.
   - The spare inbox answer no longer pretends a VA can't do 12.
-- **Rivals:** step 6's retention number (emails in 48 hours) is now "code shown on screen after the sign up, 0 of 6", which sets up test 1. The rivals are named with the list on Monday, so they have their 48 hours by Wednesday's prep.
+- **Competitors:** step 6's retention number (emails in 48 hours) is now "code shown on screen after the sign up, 0 of 6", which sets up test 1. The competitors are named with the list on Monday, so they have their 48 hours by Wednesday's prep.
 - **Truth fixes:**
   - the subject line said "20% pop up" for a 15% pop up;
   - step 10 gave 40 and 38 seconds for 1 fact;
@@ -342,7 +342,7 @@ After step 10: link **See a sample output** → `/sample-output`.
   - the description now has a verb (152 characters);
   - "same morning" everywhere;
   - the step 4 line follows the table's order.
-- **Names:** Thornquist Coffee (close to Törnqvist, a Hamburg coffee shop) became Wendlow Coffee; Cobbold & Crane (Cobbold is an Ipswich brewing family, and this rival shows a leak) became Mallin & Crane. Both were searched with no company found.
+- **Names:** Thornquist Coffee (close to Törnqvist, a Hamburg coffee shop) became Wendlow Coffee; Cobbold & Crane (Cobbold is an Ipswich brewing family, and this competitor shows a leak) became Mallin & Crane. Both were searched with no company found.
 
 **Rejected, and why**
 - **"post-submit" and "submit" throughout** (founder). COPY.md: buyers say "sign up", so the lines do, and "submit" stays where it's the testing tool's word.

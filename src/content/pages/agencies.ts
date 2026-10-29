@@ -43,14 +43,14 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Clients pay for what you find. Finding it is the unpaid part.',
-    line: 'A weekend audit before each pitch, screenshots in a shared drive, a rival report that takes a week. The work that wins and keeps clients is the work nobody bills for.',
+    line: 'A weekend audit before each pitch, screenshots in a shared drive, a competitor report that takes a week. The work that wins and keeps clients is the work nobody bills for.',
     tools: {
       label: 'What you have today',
       items: [
         'A weekend audit before each pitch',
         'Screenshots in a folder per client',
         'Ad dashboards that stop at the click',
-        'A rival report that takes a week by hand',
+        'A competitor report that takes a week by hand',
       ],
     },
     customer: {
@@ -58,7 +58,7 @@ export const page: Page = {
       items: [
         'The prospect’s welcome email, codes and texts, before the pitch',
         'The page behind every client’s live ads, each morning',
-        'Every client’s rivals on 1 timeline',
+        'Every client’s competitors on 1 timeline',
         'The basket left and the reminder that never came',
         'Every fix found, made and checked again after it went live',
       ],
@@ -97,10 +97,10 @@ export const page: Page = {
       },
       {
         tab: 'Sell a new service',
-        moment: 'A client asks what their rivals send. You’d charge for the answer if it didn’t take a week.',
-        outcome: 'A research service you sell: a monthly rival report, in your brand.',
-        line: 'Agents join each client’s rivals’ emails and texts and keep every offer, then send the report under your name.',
-        whyOnly: 'Rivals save their best offers for subscribers. Agents subscribe to every rival of every client, so the report shows what their customers get.',
+        moment: 'A client asks what their competitors send. You’d charge for the answer if it didn’t take a week.',
+        outcome: 'A research service you sell: a monthly competitor report, in your brand.',
+        line: 'Agents join each client’s competitors’ emails and texts and keep every offer, then send the report under your name.',
+        whyOnly: 'Competitors save their best offers for subscribers. Agents subscribe to every competitor of every client, so the report shows what their customers get.',
         recipe: 'email-sms',
         screen: 'report',
       },
@@ -122,7 +122,7 @@ export const page: Page = {
      Promotions across every client, and a reminder that stopped. */
   ask: {
     ...askShared,
-    areas: ['Clients', 'Prospects', 'Their rivals'],
+    areas: ['Clients', 'Prospects', 'Their competitors'],
     examples: [askExamples.pitch, askExamples.promotions, askExamples.watch],
   },
 

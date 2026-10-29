@@ -85,7 +85,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Engineers who build agents to track rivals, research prospects or test their own sign up flow need the agent to be a customer: to receive the welcome email, the login code by text and the price change 3 weeks later, and to show what arrived in a form anyone can check.',
+      text: 'Engineers who build agents to track competitors, research prospects or test their own sign up flow need the agent to be a customer: to receive the welcome email, the login code by text and the price change 3 weeks later, and to show what arrived in a form anyone can check.',
     },
     {
       kind: 'p',
@@ -226,7 +226,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The rules hold at any scale. An AI customer says it is an AI whenever it talks to a person, uses no fake payment details, never gets round a bot wall and never clicks a rival’s paid ads at volume, because [Google Ads treats automated clicks as invalid](' +
+      text: 'The rules hold at any scale. An AI customer says it is an AI whenever it talks to a person, uses no fake payment details, never gets round a bot wall and never clicks a competitor’s paid ads at volume, because [Google Ads treats automated clicks as invalid](' +
         INVALID_CLICKS +
         ').',
     },
@@ -334,18 +334,18 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so your agent can find revenue leaks, watch rivals and prospect with proof. It exposes them as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), become_customer (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Obsession runs today on credit-based plans, like Claude’s, where credits pay for the work your AI customers do, and every key has a spending cap you set.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so your agent can find revenue leaks, watch competitors and prospect with proof. It exposes them as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), become_customer (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Obsession runs today on credit-based plans, like Claude’s, where credits pay for the work your AI customers do, and every key has a spending cap you set.',
     },
     {
       kind: 'art',
       art: {
         kind: 'log',
-        title: 'A rival tracking app’s agent calls Obsession',
-        who: 'An agent adding 3 rivals a user named, over MCP',
+        title: 'A competitor tracking app’s agent calls Obsession',
+        who: 'An agent adding 3 competitors a user named, over MCP',
         status: { tone: 'ok', text: 'Facts with evidence, then a webhook' },
         rows: [
           { time: '09:00', text: 'lookup: 3 domains', detail: '2 covered since July, 1 not yet', tone: 'ok' },
-          { time: '09:00', text: 'facts: since 24 September', detail: 'The covered rivals’ facts, each linked to its evidence', tone: 'ok' },
+          { time: '09:00', text: 'facts: since 24 September', detail: 'The covered competitors’ facts, each linked to its evidence', tone: 'ok' },
           { time: '09:01', text: 'evidence: 1 price email', detail: 'The raw email, its DKIM result and its hash', tone: 'ok' },
           { time: '09:01', text: 'become_customer: 1 domain', detail: 'An AI customer starts a trial as a new customer', tone: 'info' },
           { time: '11:42', text: 'notify: fact.created', detail: 'quillery.example cut Pro from $49 to $39 a month', tone: 'ok' },

@@ -424,7 +424,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof. Your first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, every inbox is watched for 48 hours, and your report arrives within 4 days.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof. Your first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, every inbox is watched for 48 hours, and your report arrives within 4 days.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

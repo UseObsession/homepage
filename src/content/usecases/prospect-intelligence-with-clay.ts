@@ -103,7 +103,7 @@ export const study: UseCaseStudy = {
             title: 'Pick a recipe',
             line: 'A recipe comes with the checks for 1 job already set up. Launch it as it is, change anything you like, or skip it and describe what you want to know in your own words.',
             example:
-              'The agency picks Prospect intelligence. It proves a gap at companies you’re about to write to. Competitor tracking is for watching rivals over time.',
+              'The agency picks Prospect intelligence. It proves a gap at companies you’re about to write to. Competitor tracking is for watching competitors over time.',
           },
           {
             title: 'Configure it',

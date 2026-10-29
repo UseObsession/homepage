@@ -139,7 +139,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'vendor-tools', text: 'AI customer service agent testing in Gorgias, Tidio, Fin and Shopify Inbox', compare: true },
     {
       kind: 'p',
-      text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+      text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
     {
       kind: 'p',

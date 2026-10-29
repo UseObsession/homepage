@@ -68,7 +68,7 @@ export const post: BlogPost = {
   description:
     'The best competitor email tracking tools by job, priced as listed in October 2026, beside what Obsession’s AI customers received as new subscribers.',
   answer:
-    'By job, the best competitor email tracking tools are Milled or BadRep for campaigns rivals already sent, and Panoramata for many rivals’ emails, texts and ads. SendView, Sendsitive or Owletter follow a list of rivals you name, and for 1 to 3 rivals a spare inbox for each is enough. Obsession’s AI customers sign up to any rival you name as real subscribers and keep every email it sends, welcome series and basket reminders included, exactly as it arrived.',
+    'By job, the best competitor email tracking tools are Milled or BadRep for campaigns competitors already sent, and Panoramata for many competitors’ emails, texts and ads. SendView, Sendsitive or Owletter follow a list of competitors you name, and for 1 to 3 competitors a spare inbox for each is enough. Obsession’s AI customers sign up to any competitor you name as real subscribers and keep every email it sends, welcome series and basket reminders included, exactly as it arrived.',
   primaryKeyword: 'competitor email tracking tools',
   keywords: [
     'competitor email tracking',
@@ -98,8 +98,8 @@ export const post: BlogPost = {
     workspace: 'company',
     art: {
       kind: 'report',
-      title: 'larkmoor.example · 1 rival, 14 days, 3 sources',
-      period: 'What each source held for the same rival, 1 to 14 October',
+      title: 'larkmoor.example · 1 competitor, 3 sources',
+      period: 'What each source held for the same competitor, 1 to 14 October',
       cols: ['Source', 'Campaigns', 'Welcome series', 'Basket emails', 'Texts'],
       rows: [
         { name: 'Curated gallery', cells: ['1 chosen', 'None', 'None', 'None'], tone: 'info' },
@@ -117,17 +117,17 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Retention agencies, brand CRM leads and founders track rivals’ emails and texts to time their own offers, plan Black Friday and show clients what the market sends. Eleven dedicated tools do the job, and they differ most in what they collect.',
+      text: 'Retention agencies, brand CRM leads and founders track competitors’ emails and texts to time their own offers, plan Black Friday and show clients what the market sends. Eleven dedicated tools do the job, and they differ most in what they collect.',
     },
     {
       kind: 'p',
-      text: 'A gallery holds designs its editors chose. An archive holds what its own addresses received from the brands it covers. A tracker holds what reaches addresses pointed at the rivals you name. Listed prices run from free to $399 a month, and 1 tool lists no price.',
+      text: 'A gallery holds designs its editors chose. An archive holds what its own addresses received from the brands it covers. A tracker holds what reaches addresses pointed at the competitors you name. Listed prices run from free to $399 a month, and 1 tool lists no price.',
     },
     {
       kind: 'p',
       text: 'Triggered flows earn a large share of email revenue. In [Klaviyo’s 2026 benchmarks](' +
         KLAVIYO_BENCH +
-        '), automated flows were 5.3% of email sends and earned nearly 41% of email revenue, so a rival’s welcome and basket emails carry much of its email strategy.',
+        '), automated flows were 5.3% of email sends and earned nearly 41% of email revenue, so a competitor’s welcome and basket emails carry much of its email strategy.',
     },
     {
       kind: 'stat',
@@ -140,15 +140,15 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-it-is', text: 'What competitor email tracking is' },
     {
       kind: 'p',
-      text: 'Competitor email tracking is recording the emails, and often the texts, that rival brands send their subscribers. Each record keeps the date, the offer and the message’s place in its sequence. Teams use it for 5 jobs:',
+      text: 'Competitor email tracking is recording the emails, and often the texts, that competitor brands send their subscribers. Each record keeps the date, the offer and the message’s place in its sequence. Teams use it for 5 jobs:',
     },
     {
       kind: 'list',
       items: [
-        '**Offer timing:** when a rival discounts, how deep, and how the offer grows for subscribers who haven’t bought.',
-        '**Calendars and frequency:** the days and hours rivals send, and how often in a sale week.',
+        '**Offer timing:** when a competitor discounts, how deep, and how the offer grows for subscribers who haven’t bought.',
+        '**Calendars and frequency:** the days and hours competitors send, and how often in a sale week.',
         '**Flows:** the welcome series, basket and browse reminders and win back emails, with the delay before each step.',
-        '**Black Friday planning:** when rivals start their teasers and early access emails, and what they repeat each year.',
+        '**Black Friday planning:** when competitors start their teasers and early access emails, and what they repeat each year.',
         '**Client reporting:** a comparison an agency’s client can check. [MailCharts’ agencies page](' +
           MC_AGENCIES +
           ') quotes an account manager whose clients would “constantly be asking us to produce a competitive analysis based on email”.',
@@ -207,7 +207,7 @@ export const post: BlogPost = {
       items: [
         '**Collects:** selected emails with a written breakdown, plus journeys, trend reports and brand insights with a free account. Its team adds an email or a brand on request by email.',
         '**Best at:** examples that explain how each email works.',
-        '**Where it stops:** it holds emails chosen as the best, and its pages describe no alerts, texts or tracking of a set list of rivals.',
+        '**Where it stops:** it holds emails chosen as the best, and its pages describe no alerts, texts or tracking of a set list of competitors.',
         '**Price as listed:** free with an account, which [its pricing page](' +
           EL_PRICING +
           ') says includes its REST API and its MCP, the standard way AI assistants such as Claude connect to a tool. Its paid plans are for its Figma plugin and builder, from $19 per user a month.',
@@ -276,7 +276,7 @@ export const post: BlogPost = {
         '**Best at:** comparing many emails at once. Since 6 October 2026 its plan includes MCP access, so an AI assistant can search the archive, as [BadRep’s announcement](' +
           BADREP_MCP +
           ') describes.',
-        '**Where it stops:** its 1,918 brands span many sectors, so check that your rivals are indexed. Subscribers can request brands, and its pages describe no texts.',
+        '**Where it stops:** its 1,918 brands span many sectors, so check that your competitors are indexed. Subscribers can request brands, and its pages describe no texts.',
         '**Price as listed:** $29 a month, cancel any time. The page says all sales are final.',
         '**Best for:** copy and offer research at $29 a month.',
       ],
@@ -320,14 +320,14 @@ export const post: BlogPost = {
         '**Best at:** 1 view across channels. Plans include 3, 10 or 20 users, and 300, 1,000 or 3,000 credits for its AI assistant and MCP connection.',
         '**Where it stops:** alerts start on Professional, Startup covers 20 competitors and 6 months of history, and its pages don’t say how it collects emails or texts.',
         '**Price as listed:** Startup $99, Professional $179 and Advanced $399 a month, or $990, $1,790 and $3,990 a year. Enterprise is on request, and signing up without payment details gives limited access. The same page also shows euro prices of €99, €149 and €379 a month.',
-        '**Best for:** emails, texts and ads from many rivals in 1 tool.',
+        '**Best for:** emails, texts and ads from many competitors in 1 tool.',
       ],
     },
 
-    { kind: 'h2', id: 'trackers', text: 'Trackers for rivals you name' },
+    { kind: 'h2', id: 'trackers', text: 'Trackers for competitors you name' },
     {
       kind: 'p',
-      text: 'A tracker follows the websites or companies you name, so the list of brands is yours. Its history starts on the day its address joins each rival’s list.',
+      text: 'A tracker follows the websites or companies you name, so the list of brands is yours. Its history starts on the day its address joins each competitor’s list.',
     },
 
     { kind: 'h3', id: 'owletter', text: 'Owletter' },
@@ -341,12 +341,12 @@ export const post: BlogPost = {
         '**Collects:** mailing list emails from the websites you monitor, with [analytics on send days, seasonal frequency and spam reputation](' +
           OWL_RETAILERS +
           ').',
-        '**Best at:** an archive of a fixed set of rivals’ emails, shared with the team, with roundups and keyword alerts.',
+        '**Best at:** an archive of a fixed set of competitors’ emails, shared with the team, with roundups and keyword alerts.',
         '**Where it stops:** its pages don’t say how it receives emails, and don’t mention flows, texts or exports. Starter holds 1 alert and 1 roundup.',
         '**Price as listed:** [Starter $29 a month](' +
           OWLETTER +
           ') for 10 websites with 12 months’ storage, Pro $49 for 25 and Unlimited $99, both with lifetime storage. Paying yearly gives 2 months free, and each plan has a 14 day free trial.',
-        '**Best for:** small teams watching up to 25 named rivals.',
+        '**Best for:** small teams watching up to 25 named competitors.',
       ],
     },
 
@@ -362,14 +362,14 @@ export const post: BlogPost = {
         '**Best at:** 20 trend reports and side by side dashboards. The trend reports cover send day and time, spam score and dark mode. They also score DKIM, SPF and DMARC (the checks mail providers run to confirm an email came from the domain it claims). Every plan adds AI insights and a weekly digest.',
         '**Where it stops:** you do the sign ups, history starts at your sign up, and its pages mention no texts, alerts or exports.',
         '**Price as listed:** Standard $69 a month for 10 companies, Pro $99 for 25 and Ultimate $169 for 50, each with unlimited users and no contract. Paying yearly saves 14%, and each plan has a 10 day free trial.',
-        '**Best for:** named rivals’ welcome and basket sequences, for teams and agencies.',
+        '**Best for:** named competitors’ welcome and basket sequences, for teams and agencies.',
       ],
     },
 
     { kind: 'h3', id: 'sendsitive', text: 'Sendsitive' },
     {
       kind: 'p',
-      text: '[Sendsitive](' + SENDSITIVE + ') tracks competitors’ emails and texts for retention marketers. It gives each rival’s website a private capture address, and once that address is subscribed, each campaign lands in your archive.',
+      text: '[Sendsitive](' + SENDSITIVE + ') tracks competitors’ emails and texts for retention marketers. It gives each competitor’s website a private capture address, and once that address is subscribed, each campaign lands in your archive.',
     },
     {
       kind: 'list',
@@ -379,17 +379,17 @@ export const post: BlogPost = {
           ') says a dedicated US number goes into each brand’s text sign-up form once, and Sendsitive answers the double opt in and keeps every text.',
         '**Best at:** emails and texts in 1 archive, with send pattern heatmaps and a public archive of campaigns. Alerts, its AI answers and a read-only MCP connector start on Pro.',
         '**Where it stops:** texts cover US programmes only and start on Starter, and capture starts when the address subscribes.',
-        '**Price as listed:** a free plan, then email plans of Basic $14.50 a month for 5 rivals, Starter $24.50 for 10, Pro $49.50 for 25 and Business $99.50 for 50. [Its pricing page](' +
+        '**Price as listed:** a free plan, then email plans of Basic $14.50 a month for 5 competitors, Starter $24.50 for 10, Pro $49.50 for 25 and Business $99.50 for 50. [Its pricing page](' +
           SENDSITIVE_PRICING +
           ') also has an Email + SMS view, where US texts start on Starter at $49 a month, with Pro $99 and Business $199. Basic has a 14 day free trial without payment details.',
-        '**Best for:** rivals’ emails and US texts, for retention teams and agencies.',
+        '**Best for:** competitors’ emails and US texts, for retention teams and agencies.',
       ],
     },
 
     { kind: 'h3', id: 'competitor-inbox', text: 'Competitor Inbox' },
     {
       kind: 'p',
-      text: '[Competitor Inbox](' + COMP_INBOX + ') gives each rival you add a unique tracking address. Once that address is subscribed, every email lands in a dashboard that analyses it.',
+      text: '[Competitor Inbox](' + COMP_INBOX + ') gives each competitor you add a unique tracking address. Once that address is subscribed, every email lands in a dashboard that analyses it.',
     },
     {
       kind: 'list',
@@ -397,19 +397,19 @@ export const post: BlogPost = {
         '**Collects:** newsletters, promotions and sequences sent to its addresses, and [sorts them into 16 kinds of flow](' +
           COMP_INBOX_FLOWS +
           ') once about 3 emails form a pattern. Its pages describe email only.',
-        '**Best at:** analysis of each email: send times, calendar heatmaps, subject lines, calls to action and links. It scores the sender checks and names the sending platform among 100+ providers, with an alert when a rival switches. Real time alerts and a report per rival come with it.',
-        '**Where it stops:** history starts on the day a rival is added, and its pages state no trial length or retention period.',
-        '**Price as listed:** Starter $15 a month for 1 rival, Growth $49 for 3, Pro+ $99 for 10 and Business $249 for 25, on [its pricing page](' +
+        '**Best at:** analysis of each email: send times, calendar heatmaps, subject lines, calls to action and links. It scores the sender checks and names the sending platform among 100+ providers, with an alert when a competitor switches. Real time alerts and a report per competitor come with it.',
+        '**Where it stops:** history starts on the day a competitor is added, and its pages state no trial length or retention period.',
+        '**Price as listed:** Starter $15 a month for 1 competitor, Growth $49 for 3, Pro+ $99 for 10 and Business $249 for 25, on [its pricing page](' +
           COMP_INBOX_PRICING +
-          '). Agency, with unlimited rivals, an API and white label, is priced on request.',
-        '**Best for:** email analytics and flow detection for 1 to 25 named rivals.',
+          '). Agency, with unlimited competitors, an API and white label, is priced on request.',
+        '**Best for:** email analytics and flow detection for 1 to 25 named competitors.',
       ],
     },
 
     { kind: 'h2', id: 'what-a-subscriber-got', text: 'What a new subscriber actually got' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its October store checks show which emails a new subscriber received, and which never came.',
+      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its October store checks show which emails a new subscriber received, and which never came.',
     },
     {
       kind: 'p',
@@ -449,7 +449,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each of these results needed a customer to act first: sign up, leave a basket or leave a checkout. Galleries and campaign archives show a rival’s newsletters well, and BadRep, MailCharts and Panoramata also hold flow emails for the brands they track. A reminder that never came is visible only to a customer who knows when it left the checkout. Seeing that takes an address that left the checkout itself: a spare inbox, a tracker address such as SendView’s, or an AI customer.',
+      text: 'Each of these results needed a customer to act first: sign up, leave a basket or leave a checkout. Galleries and campaign archives show a competitor’s newsletters well, and BadRep, MailCharts and Panoramata also hold flow emails for the brands they track. A reminder that never came is visible only to a customer who knows when it left the checkout. Seeing that takes an address that left the checkout itself: a spare inbox, a tracker address such as SendView’s, or an AI customer.',
     },
     {
       kind: 'p',
@@ -476,8 +476,8 @@ export const post: BlogPost = {
         ['Panoramata', 'Yes', 'Yes', 'Yes', 'Yes', '20 on Startup, then unlimited', '6 months on Startup, then unlimited'],
         ['Owletter', 'Mailing list emails', 'Not described', 'Not described', 'Not described', '10, 25 or unlimited sites', '12 months, or lifetime'],
         ['SendView', 'Yes', 'The ones you start', 'Not described', 'Not described', '10, 25 or 50 companies', 'From your sign up'],
-        ['Sendsitive', 'Yes', 'Not described', 'US texts, from Starter', 'Not described', '5, 10, 25 or 50 rivals', 'From your sign up'],
-        ['Competitor Inbox', 'Yes', 'Sorted into 16 kinds', 'Not described', 'Not described', '1, 3, 10 or 25 rivals', 'From the day a rival is added'],
+        ['Sendsitive', 'Yes', 'Not described', 'US texts, from Starter', 'Not described', '5, 10, 25 or 50 competitors', 'From your sign up'],
+        ['Competitor Inbox', 'Yes', 'Sorted into 16 kinds', 'Not described', 'Not described', '1, 3, 10 or 25 competitors', 'From the day a competitor is added'],
         ['By hand', 'Yes', 'The ones you start', 'With a spare phone', 'You open each link', 'Any brand', 'From your sign up'],
       ],
     },
@@ -491,15 +491,15 @@ export const post: BlogPost = {
           'Doing nothing',
           'Costs no time',
           'Free',
-          'You hear of a rival’s offer after it ran',
+          'You hear of a competitor’s offer after it ran',
           'Months with no sale planned',
         ],
         [
-          'By hand: an address per rival, a phone, a sheet',
+          'By hand: an address per competitor, a phone, a sheet',
           'Any brand, the flows you start, and texts',
           'Free, plus your hours',
-          'History from your sign up, and hours grow with each rival',
-          '1 to 3 rivals',
+          'History from your sign up, and hours grow with each competitor',
+          '1 to 3 competitors',
         ],
         [
           'AI assistant: reading the spare inbox',
@@ -547,43 +547,43 @@ export const post: BlogPost = {
           'Panoramata: monitoring platform',
           'Emails, texts, flows, ads and landing pages',
           '$99, $179 or $399 a month',
-          '20 rivals and 6 months of history on Startup',
-          'Many rivals across channels',
+          '20 competitors and 6 months of history on Startup',
+          'Many competitors across channels',
         ],
         [
-          'Owletter: rival tracker',
-          'An archive of named rivals’ mailing list emails',
+          'Owletter: competitor tracker',
+          'An archive of named competitors’ mailing list emails',
           '$29, $49 or $99 a month',
           'No texts or flows on its pages',
-          'Up to 25 named rivals',
+          'Up to 25 named competitors',
         ],
         [
-          'SendView: rival tracker',
+          'SendView: competitor tracker',
           'Any company, with trend reports and side by side dashboards',
           '$69, $99 or $169 a month',
           'You do the sign ups',
-          'Named rivals’ welcome and basket emails',
+          'Named competitors’ welcome and basket emails',
         ],
         [
-          'Sendsitive: rival tracker',
+          'Sendsitive: competitor tracker',
           'Emails and US texts in 1 archive',
           'Free plan\nEmail: $14.50 to $99.50 a month\nWith US texts: $49 to $199 a month',
           'Texts in the US only, from Starter',
-          'Rivals’ emails and US texts',
+          'Competitors’ emails and US texts',
         ],
         [
-          'Competitor Inbox: rival tracker',
+          'Competitor Inbox: competitor tracker',
           'Flow detection and analysis of each email',
           '$15, $49, $99 or $249 a month',
           'Email only on its pages',
-          '1 to 25 named rivals, with analytics',
+          '1 to 25 named competitors, with analytics',
         ],
         [
           'Obsession (ours): [Email tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
-          'An AI customer signs up to each rival as a real subscriber, leaves a basket, and keeps every email as it arrived',
+          'An AI customer signs up to each competitor as a real subscriber, leaves a basket, and keeps every email as it arrived',
           'Running now: first store check free\nAgencies: 5 stores checked free\nCredit-based plans, like Claude’s',
           'History from the minute its AI customer first subscribed',
-          'Every email a new subscriber gets from any rival, and the reminders that never came',
+          'Every email a new subscriber gets from any competitor, and the reminders that never came',
         ],
       ],
     },
@@ -591,13 +591,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'by-hand', text: 'Track competitor emails by hand' },
     {
       kind: 'p',
-      text: 'The method needs a new address for each rival, a spare phone for texts, a Gmail filter and a sheet. It records the flows you start yourself, and it holds nothing sent before your sign up.',
+      text: 'The method needs a new address for each competitor, a spare phone for texts, a Gmail filter and a sheet. It records the flows you start yourself, and it holds nothing sent before your sign up.',
     },
 
-    { kind: 'h3', id: 'addresses', text: '1. Open 1 address for each rival' },
+    { kind: 'h3', id: 'addresses', text: '1. Open 1 address for each competitor' },
     {
       kind: 'p',
-      text: 'A new Gmail address for each rival keeps each welcome series apart and shows the tab Gmail chose. Past a handful of rivals, Google Workspace saves time. You can add [up to 30 aliases for each user](' +
+      text: 'A new Gmail address for each competitor keeps each welcome series apart and shows the tab Gmail chose. Past a handful of competitors, Google Workspace saves time. You can add [up to 30 aliases for each user](' +
         WORKSPACE_ALIAS +
         ') at no extra cost, all arriving in 1 inbox. The **deliveredto:** operator in [Gmail’s search help](' +
         GMAIL_SEARCH +
@@ -607,21 +607,21 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'sign-up', text: '2. Sign up the way a customer does' },
     {
       kind: 'p',
-      text: 'Sign up through each rival’s pop up on a phone, note the time and the offer on screen, and confirm the first email if it asks. For basket emails, sign up a second address, add a product to the basket in the same browser and leave. For texts, opt in with a number that has never joined the rival’s list. Use only the public sign up any customer can use.',
+      text: 'Sign up through each competitor’s pop up on a phone, note the time and the offer on screen, and confirm the first email if it asks. For basket emails, sign up a second address, add a product to the basket in the same browser and leave. For texts, opt in with a number that has never joined the competitor’s list. Use only the public sign up any customer can use.',
     },
 
     { kind: 'h3', id: 'log', text: '3. Label each email and log it' },
     {
       kind: 'p',
-      text: 'In Gmail, open the search options and enter the rival’s sender address or the alias. Choose Create filter and send the mail to a label, as [Gmail’s filter help](' +
+      text: 'In Gmail, open the search options and enter the competitor’s sender address or the alias. Choose Create filter and send the mail to a label, as [Gmail’s filter help](' +
         GMAIL_FILTERS +
-        ') describes. Log each email in a sheet: rival, time received, subject, offer and code, campaign or flow step, Gmail tab, and a link. A search for **category:promotions** lists the mail Gmail placed in that tab.',
+        ') describes. Log each email in a sheet: competitor, time received, subject, offer and code, campaign or flow step, Gmail tab, and a link. A search for **category:promotions** lists the mail Gmail placed in that tab.',
     },
 
     { kind: 'h3', id: 'stay-active', text: '4. Keep each address active' },
     {
       kind: 'p',
-      text: 'Open and click an email from each rival every few weeks, because brands remove subscribers who never engage. [Klaviyo’s help centre](' +
+      text: 'Open and click an email from each competitor every few weeks, because brands remove subscribers who never engage. [Klaviyo’s help centre](' +
         KL_SUNSET +
         ') recommends a sunset segment: profiles created at least 180 days ago that received at least 5 emails in the last 72 weeks and never opened or clicked. It suggests suppressing those who stay unengaged.',
     },
@@ -637,21 +637,21 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'hours', text: '6. Count the hours' },
     {
       kind: 'p',
-      text: 'Use your own minutes: rivals × minutes a week on each rival × 4 ÷ 60 = hours a month. Add time for each new rival’s first week, when its welcome series arrives.',
+      text: 'Use your own minutes: competitors × minutes a week on each competitor × 4 ÷ 60 = hours a month. Add time for each new competitor’s first week, when its welcome series arrives.',
     },
     {
       kind: 'art',
       caption: 'An example sum with invented minutes. Put your own minutes a week in place of 15.',
       art: {
         kind: 'price',
-        title: 'Hours a month to track 8 rivals by hand',
+        title: 'Hours a month to track 8 competitors by hand',
         rows: [
-          { label: 'Rivals', value: '8' },
-          { label: 'Minutes a week on each rival', value: '15', note: 'Reading, logging and a screenshot' },
+          { label: 'Competitors', value: '8' },
+          { label: 'Minutes a week on each competitor', value: '15', note: 'Reading, logging and a screenshot' },
           { label: 'Weeks a month', value: '× 4' },
           { label: 'Minutes to hours', value: '÷ 60' },
         ],
-        total: { label: 'Hours a month', value: '8', note: 'Before each new rival’s first week, when its welcome series arrives' },
+        total: { label: 'Hours a month', value: '8', note: 'Before each new competitor’s first week, when its welcome series arrives' },
       },
     },
     {
@@ -660,11 +660,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 to 3 rivals, this method needs no paid tool. At 20 rivals it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a rival, and it still can’t recover older mail. Obsession runs that work today. Its [competitor tracking](/recipes/competitor-tracking) gives each rival an AI customer with its own inbox, which signs up as a real subscriber and logs every email, offer and code on 1 timeline.',
+      text: 'For 1 to 3 competitors, this method needs no paid tool. At 20 competitors it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a competitor, and it still can’t recover older mail. Obsession runs that work today. Its [competitor tracking](/recipes/competitor-tracking) gives each competitor an AI customer with its own inbox, which signs up as a real subscriber and logs every email, offer and code on 1 timeline.',
     },
     {
       kind: 'cta',
-      text: 'Name the rivals to watch, and an AI customer joins each one’s list as a real subscriber and keeps every email as it arrived. It runs now, on credit-based plans like Claude’s.',
+      text: 'Name the competitors to watch, and an AI customer joins each one’s list as a real subscriber and keeps every email as it arrived. It runs now, on credit-based plans like Claude’s.',
       to: '/',
       label: 'Meet your first AI customers',
     },
@@ -672,7 +672,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'by-job', text: 'Which tool fits which job' },
     {
       kind: 'p',
-      text: 'Use Obsession when your team needs every email a rival sends a new subscriber, kept exactly as it arrived, for any rival you name. Its AI customers start the welcome series and the basket and checkout reminders, and show the ones that never came. A gallery is enough for design ideas, an archive for campaigns rivals already sent, and a spare inbox for 1 to 3 rivals.',
+      text: 'Use Obsession when your team needs every email a competitor sends a new subscriber, kept exactly as it arrived, for any competitor you name. Its AI customers start the welcome series and the basket and checkout reminders, and show the ones that never came. A gallery is enough for design ideas, an archive for campaigns competitors already sent, and a spare inbox for 1 to 3 competitors.',
     },
     {
       kind: 'list',
@@ -681,13 +681,13 @@ export const post: BlogPost = {
         '**What a category sent around a holiday:** Milled, with its holiday filters, or MailCharts, with its holiday examples.',
         '**Free browsing of a small set of brands, with promo codes shown:** Inbox Archive.',
         '**Copy and offer research:** BadRep, at $29 a month with MCP access.',
-        '**A rival’s welcome and basket emails:** SendView or the method by hand, where you start each flow, or BadRep, MailCharts and Panoramata for rivals they already cover.',
-        '**Analysis of each email and flow detection for 1 to 25 named rivals:** Competitor Inbox.',
-        '**Emails and US texts from named rivals:** Sendsitive, with texts from $49 a month.',
-        '**Emails, texts and ads from many rivals:** Panoramata, with up to 20 on Startup and no limit from Professional.',
-        '**Up to 25 named rivals:** Owletter, from $29 a month.',
-        '**Client reports at an agency:** MailCharts’ CSV exports and ready-made screenshots, or Competitor Inbox’s Agency plan with white label and an API. The [Black Friday rival report template](/blog/black-friday-rival-report-template) gives a 1 page format, and the [email marketing audit](/blog/email-marketing-audit) sets the rival comparison beside the client’s own emails.',
-        '**1 to 3 rivals:** the method by hand, with an assistant reading the inbox.',
+        '**A competitor’s welcome and basket emails:** SendView or the method by hand, where you start each flow, or BadRep, MailCharts and Panoramata for competitors they already cover.',
+        '**Analysis of each email and flow detection for 1 to 25 named competitors:** Competitor Inbox.',
+        '**Emails and US texts from named competitors:** Sendsitive, with texts from $49 a month.',
+        '**Emails, texts and ads from many competitors:** Panoramata, with up to 20 on Startup and no limit from Professional.',
+        '**Up to 25 named competitors:** Owletter, from $29 a month.',
+        '**Client reports at an agency:** MailCharts’ CSV exports and ready-made screenshots, or Competitor Inbox’s Agency plan with white label and an API. The [Black Friday competitor report template](/blog/black-friday-competitor-email-report-template) gives a 1 page format, and the [email marketing audit](/blog/email-marketing-audit) sets the competitor comparison beside the client’s own emails.',
+        '**1 to 3 competitors:** the method by hand, with an assistant reading the inbox.',
       ],
     },
 
@@ -706,7 +706,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Klaviyo’s June 2026 timing guide](' +
         KL_TIMING +
-        ') plans Black Friday teasers 2 to 4 weeks before the sale, in early November. Sign up to each rival by Friday 30 October, so every address is on the list before the teasers and holds 4 weeks of mail by Black Friday on Friday 27 November. What a rival’s first order costs once its welcome code is applied is in [a competitor’s real price after the welcome code](/blog/competitor-price-after-welcome-code).',
+        ') plans Black Friday teasers 2 to 4 weeks before the sale, in early November. Sign up to each competitor by Friday 30 October, so every address is on the list before the teasers and holds 4 weeks of mail by Black Friday on Friday 27 November. What a competitor’s first order costs once its welcome code is applied is in [a competitor’s real price after the welcome code](/blog/competitor-price-after-welcome-code).',
     },
     {
       kind: 'cta',
@@ -721,11 +721,11 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is competitor email tracking?',
-          a: 'Competitor email tracking is recording the emails, and often the texts, that rival brands send their subscribers. Each record keeps the date, the offer and the place in the sequence, so a team can plan its own calendar and offers against them.',
+          a: 'Competitor email tracking is recording the emails, and often the texts, that competitor brands send their subscribers. Each record keeps the date, the offer and the place in the sequence, so a team can plan its own calendar and offers against them.',
         },
         {
           q: 'What is the best competitor email tracking tool?',
-          a: 'It depends on the job. Milled covers campaign history across many brands, and Panoramata puts emails, texts and ads in 1 place. SendView, Sendsitive, Competitor Inbox or Owletter follow a fixed list of rivals you name, and Really Good Emails or Email Love give design examples. Obsession is the pick for every email a new subscriber gets from any rival you name, from the welcome series to the basket reminders, kept exactly as it arrived.',
+          a: 'It depends on the job. Milled covers campaign history across many brands, and Panoramata puts emails, texts and ads in 1 place. SendView, Sendsitive, Competitor Inbox or Owletter follow a fixed list of competitors you name, and Really Good Emails or Email Love give design examples. Obsession is the pick for every email a new subscriber gets from any competitor you name, from the welcome series to the basket reminders, kept exactly as it arrived.',
         },
         {
           q: 'Is there a free competitor email monitoring tool?',
@@ -733,7 +733,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is a good Milled alternative?',
-          a: 'Panoramata adds flows, texts and ads, and SendView, Sendsitive, Competitor Inbox and Owletter track the rivals you name. BadRep is a searchable database at $29 a month, and Inbox Archive is a free archive of 231 brands.',
+          a: 'Panoramata adds flows, texts and ads, and SendView, Sendsitive, Competitor Inbox and Owletter track the competitors you name. BadRep is a searchable database at $29 a month, and Inbox Archive is a free archive of 231 brands.',
         },
         {
           q: 'What is a good MailCharts alternative?',
@@ -794,7 +794,7 @@ export const post: BlogPost = {
 
   related: [
     'can-chatgpt-track-competitor-emails',
-    'black-friday-rival-report-template',
+    'black-friday-competitor-email-report-template',
     'email-marketing-audit',
     'recipe:email-sms-tracking',
     'recipe:competitor-tracking',

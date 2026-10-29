@@ -39,15 +39,15 @@ export const offers: Record<OfferId, Offer> = {
   store: {
     ask: {
       title: 'Which store should we shop?',
-      help: 'Yours, or a client’s with their OK. Add rivals to compare, up to 5 in all.',
+      help: 'Yours, or a client’s with their OK. Add competitors to compare, up to 5 in all.',
       placeholder: 'your-store.com',
-      add: 'Add a rival',
+      add: 'Add a competitor',
     },
     micro: 'Join the waitlist, then name the store to start with.',
     done: 'We’ll email {email} when your spot opens, starting with {list}.',
     free: {
       micro: 'You join the waitlist, then name your store. We shop it free as a new customer: 4 AI customers, 48 hours watched, your report within 4 days.',
-      help: 'Yours, or a client’s with their OK. We shop it free with 4 AI customers and send your report within 4 days. Add rivals to compare, up to 5 in all.',
+      help: 'Yours, or a client’s with their OK. We shop it free with 4 AI customers and send your report within 4 days. Add competitors to compare, up to 5 in all.',
       done: 'We’ll shop {first} as a new customer and email {email} your report within 4 days.',
     },
   },
@@ -69,9 +69,9 @@ export const offers: Record<OfferId, Offer> = {
   own: {
     ask: {
       title: 'Which site should we check first?',
-      help: 'Yours, or a client’s with their OK. Add rivals to compare, up to 5 in all.',
+      help: 'Yours, or a client’s with their OK. Add competitors to compare, up to 5 in all.',
       placeholder: 'your-site.com',
-      add: 'Add a rival',
+      add: 'Add a competitor',
     },
     micro: 'Join the waitlist, then name the site to check first.',
     done: 'We’ll email {email} when your spot opens, starting with {list}.',
@@ -79,8 +79,8 @@ export const offers: Record<OfferId, Offer> = {
   companies: {
     ask: {
       title: 'Which companies should we watch first?',
-      help: 'Rivals, prospects or accounts. Up to 5.',
-      placeholder: 'rival.com',
+      help: 'Competitors, prospects or accounts. Up to 5.',
+      placeholder: 'competitor.com',
       add: 'Add a company',
     },
     micro: 'Join the waitlist, then name up to 5 companies to watch first.',
@@ -111,7 +111,7 @@ export const offers: Record<OfferId, Offer> = {
   any: {
     ask: {
       title: 'Which brands should we check first?',
-      help: 'Yours or your rivals’. Up to 5.',
+      help: 'Yours or your competitors’. Up to 5.',
       placeholder: 'brand.com',
       add: 'Add a brand',
     },

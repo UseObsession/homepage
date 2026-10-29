@@ -54,12 +54,12 @@ Read time: about 20 minutes.
 | Term | Why we can own it | Owner page |
 |---|---|---|
 | **AI customers** (plus "AI customer", "what are AI customers") | No one uses it for this (24 Oct 2026: Google reads "ai customer" as customer service, and Gartner's "machine customers" means AI that buys on someone's behalf). An AI customer is a customer *of* a company, the opposite of an AI customer service agent. | `/blog/ai-customers`; the difference from support bots `/blog/ai-customer-service-agent-vs-ai-customer`; how it works `/blog/how-ai-customers-work`; why it matters `/blog/why-ai-customers-matter`; the practice `/blog/customer-side-observability` |
-| **Declared AI agent** (plus "signed record") | The market is moving to declared, signed agents (Cloudflare signed agents and Web Bot Auth, Visa Trusted Agent Protocol, the Visa, Mastercard and Ant Know-Your-Agent collaboration of Sept 2026) and fighting undeclared ones (Amazon v. Perplexity). Rivals who pose as buyers or use synthetic identities can't write this. | `/agents` now; `/blog/topics/declared-agents` when built |
+| **Declared AI agent** (plus "signed record") | The market is moving to declared, signed agents (Cloudflare signed agents and Web Bot Auth, Visa Trusted Agent Protocol, the Visa, Mastercard and Ant Know-Your-Agent collaboration of Sept 2026) and fighting undeclared ones (Amazon v. Perplexity). Competitors who pose as buyers or use synthetic identities can't write this. | `/agents` now; `/blog/topics/declared-agents` when built |
 | **Prospect intelligence** (becoming the prospect's customer, not contact finding) | The term is contested (Sales-Mind, BuyerForesight, Matter and others use it for buyer data) but nobody uses it for first-hand proof. The angle is open. | `/recipes/prospect-intelligence` |
 | **Member price intelligence** | Exact phrase unused (2 searches, 0 results). A pricing vendor calls member prices "the hardest layer to see". Displayed loyalty prices (Clubcard, Nectar) are already scraped; logged-in, app-only, emailed-code and member-only prices are the gap. | `/use-cases/member-prices-for-price-intelligence` |
 | **Outside-in audit** | A Forbes Agency Council piece (8 May 2026) names it; no product owns it. The Klaviyo audit tools we found need account access. | Post 2 |
 | **AI mystery shopping for digital journeys** | The 2026 wave of AI mystery shoppers mostly calls staff or tests your own bots. Nobody owns "a labelled test customer lives the online journey, every message timed". | `/recipes/mystery-shopper` |
-| **Trial teardown** | Onboarding teardowns are hand-made one-offs; PageCrawl says a rival's trial "needs a human to walk it once a quarter". | `/recipes/trial-teardown` |
+| **Trial teardown** | Onboarding teardowns are hand-made one-offs; PageCrawl says a competitor's trial "needs a human to walk it once a quarter". | `/recipes/trial-teardown` |
 
 ### Terms we compete for (long tail, winnable)
 
@@ -76,7 +76,7 @@ Method: AI mystery shopper · SaaS and B2B mystery shopping · mystery shopper r
 | customer health score, customer success software ($12.50 CPC) | Gainsight, ChurnZero, Totango, Planhat | Outside-in churn signals for agencies |
 | price monitoring software | Prisync, Price2Spy, Visualping, Bright Data | Member price intelligence |
 | agentic commerce | Wikipedia, Salesforce, PayPal, Mastercard | Later: how your buyers' agents will judge you (B2B) |
-| facebook ad library, best ad spy tool | Ad-intelligence vendors, YouTube tutorials | Following a rival's ad past the click |
+| facebook ad library, best ad spy tool | Ad-intelligence vendors, YouTube tutorials | Following a competitor's ad past the click |
 | Other firms' coined terms | Direct Communication Intelligence (Axess), Synthetic Customers (Cresta), customer journey intelligence (Alterian), competitive enablement (Klue) | Never as headline terms |
 
 ### One owner per query
@@ -107,6 +107,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/ecommerce-agency-client-retention-with-ai-customers` | agency client retention, marketing agency client management, agency account management, productized agency services, marketing agency packages, agency retainer model, white label services for agencies, ecommerce retention agency (winning clients stays with `/blog/get-clients-as-a-marketing-agency`; retention marketing agency with `/blog/ai-customers-for-retention-agencies`; prove agency value to clients with `/agencies`) |
 | `/blog/how-to-test-your-shopify-store-as-a-customer` | how do i test my shopify store, test my shopify store, how to test shopify checkout, how to make a test purchase on shopify, how to place a test order on shopify, how to view shopify store as customer, shopify store checker, how to test klaviyo flows, shopify checkout not working, shopify bogus gateway (the store audit stays with `/blog/shopify-store-audit-checklist`, traffic but no sales with `/blog/traffic-but-no-sales`, SimGym with its review) |
 | `/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers` | shopify simgym, simgym review, simgym shopify review, simgym pricing, simgym app, ai shoppers shopify, ai customer simulation, simgym alternative (testing a store by hand stays with `/blog/how-to-test-your-shopify-store-as-a-customer`; AI mystery shopping tools with `/blog/best-ai-mystery-shopping-tools`) |
+| `/blog/black-friday-competitor-email-report-template` | black friday email report, black friday competitor email report, bfcm post mortem, black friday recap report, klaviyo bfcm report, when do brands start black friday emails (renamed from `/blog/black-friday-rival-report-template` on 29 Oct 2026, with a 301; competitor email tracking tools stay with `/blog/competitor-email-tracking-tools`) |
 | `/blog/ai-customers-for-ecommerce-brands` | AI agents for ecommerce, AI for Shopify store, Shopify website monitoring, Shopify flow not working |
 | `/blog/ai-customers-for-retention-agencies` | Klaviyo agency AI, AI agent for Klaviyo, retention marketing agency, email marketing reporting template |
 | `/blog/ai-customers-for-cro-agencies` | landing page monitoring, CRO tools for Shopify, AI tools for digital marketing agency |
@@ -119,7 +120,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/agencies` | AI agents for agencies, prove agency value to clients |
 | `/founders` | test your own sign up and checkout as a customer, QA on every release |
 | `/sales` | account intelligence for sales teams, know each account as its customers do |
-| `/marketing` | check every ad, launch and rival as a customer; see competitors' emails, ads and prices as a customer |
+| `/marketing` | check every ad, launch and competitor as a customer; see competitors' emails, ads and prices as a customer |
 | `/developers` | AI agent API with its own inbox, phone number and browser; give an AI agent an email address and phone number |
 | `/verify` | check your AI agent as a customer; Customer-Side Assurance |
 | `/recipes` | AI agent recipes for commercial teams |
@@ -177,8 +178,8 @@ The blog `category` field takes the hub name exactly as written here.
 |---|---|---|---|---|
 | Declared agents | `declared-agents` | declared AI agent | (all) | Post 1 |
 | Mystery shopping | `mystery-shopping` | online mystery shopping | Check your own journeys | Post 3 |
-| Competitor intelligence | `competitor-intelligence` | how to track competitors | Watch rivals | Post 5 |
-| Price intelligence | `price-intelligence` | member price intelligence | Watch rivals | (wave 2) |
+| Competitor intelligence | `competitor-intelligence` | how to track competitors | Watch competitors | Post 5 |
+| Price intelligence | `price-intelligence` | member price intelligence | Watch competitors | (wave 2) |
 | Prospect intelligence | `prospect-intelligence` | how to research a prospect before a sales call | Win customers | Post 2 |
 | Speed to lead | `speed-to-lead` | speed to lead | Win customers | Post 4 |
 | Account intelligence | `account-intelligence` | customer churn signals | Keep and grow customers | (wave 2) |
@@ -201,9 +202,9 @@ Get paid and Supplier quotes stay on their recipe pages until there is demand ev
 
 ### Competitor intelligence
 
-- **Own:** what rivals do to customers, not what their pages say. Every competitor monitor on Product Hunt diffs pages.
+- **Own:** what competitors do to customers, not what their pages say. Every competitor monitor on Product Hunt diffs pages.
 - **Queries:** how to track competitors · competitor monitoring · competitor tracking software · competitor email tracking · competitor email monitoring free · track competitor SMS · competitor newsletter monitoring · competitor welcome email examples · competitor trial teardown · competitor onboarding emails · competitor free trial monitoring · how to see competitor ads on facebook / meta / linkedin / tiktok / google · see competitor ads in ChatGPT (contested: at least 6 third-party libraries exist) · what happens when you text STOP.
-- **Pages:** `/recipes/competitor-tracking`, `/recipes/email-sms-tracking`, `/recipes/trial-teardown`, `/recipes/ad-tracking`, `/marketing`, Post 5. Later: What 14 days inside a rival's free trial shows; What ad libraries can't show you; What happens when you text STOP (field report).
+- **Pages:** `/recipes/competitor-tracking`, `/recipes/email-sms-tracking`, `/recipes/trial-teardown`, `/recipes/ad-tracking`, `/marketing`, Post 5. Later: What 14 days inside a competitor's free trial shows; What ad libraries can't show you; What happens when you text STOP (field report).
 
 ### Price intelligence
 
@@ -320,7 +321,7 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 
 ### Internal linking rules
 
-1. **Every post links** up to its hub (crumb, plus 1 link in the body), out to the 1 recipe that does the job (the `cta` block, once, plus in-text), across to 2 or 3 sibling posts (`related`), to `/sample-output` wherever it talks about proof, and to Post 1 wherever it mentions agents at rivals or prospects.
+1. **Every post links** up to its hub (crumb, plus 1 link in the body), out to the 1 recipe that does the job (the `cta` block, once, plus in-text), across to 2 or 3 sibling posts (`related`), to `/sample-output` wherever it talks about proof, and to Post 1 wherever it mentions agents at competitors or prospects.
 2. **Every recipe page links** to the most relevant post (and its hub page once built) in its questions answers. A link to our own guide is not a citation, so the no-sources rule holds.
 3. **Every audience page links** to 1 or 2 posts for its reader in its questions block: Agencies to Post 2, Founders to Post 3, Sales to Post 4, Marketing to Post 5. `/agents` links to Post 1.
 4. **Anchors describe the destination**, using its query naturally ("our AI mystery shopper recipe", "is it legal to mystery shop competitors"). Never the Lighthouse blocklist: click here, click this, go, here, information, learn more, more, more info, more information, right here, read more, see more, **start**, this. Blog cards link their title.
@@ -370,14 +371,14 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 | Category | Declared agents |
 | Reader | Founders, marketing, sales and agencies (and their clients' legal teams) |
 | Meta title | Is it legal to mystery shop your competitors? 2026 guide (56) |
-| Description | Mystery shopping rivals is usually lawful through public paths, as yourself. How deception, terms and trade secrets change that, for people and AI agents. (154) |
+| Description | Mystery shopping competitors is usually lawful through public paths, as yourself. How deception, terms and trade secrets change that, for people and AI agents. (154) |
 | Primary | is it legal to mystery shop competitors |
 | Secondary | is mystery shopping competitors legal · mystery shopping competition law · is competitive intelligence legal · competitive intelligence vs industrial espionage · is mystery shopping ethical · is it legal to sign up for a competitor's free trial · is free trial abuse illegal · can AI agents log in to websites · declared AI agent · is mystery shopping legal in the UK |
 | Intent | Informational: a risk check before running or buying competitor research |
 
 **Draft answer (lawyer to review):** Mystery shopping a competitor is generally lawful when you use the same public paths any customer can, as yourself, and stop short of deceiving staff, breaking terms you agreed to or taking trade secrets. The risk comes from deception and access, not from looking, and it now applies to AI agents too: in August 2026 the Ninth Circuit called a shopping agent "a tool, not a person" but left terms of service open.
 
-**Why it will be searched:** all of these autocomplete live: "is mystery shopping competitors legal", "mystery shopping competition law", "is competitive intelligence legal/illegal", "competitive intelligence vs industrial espionage", "is free trial abuse illegal", "can ai agents login to websites", "is mystery shopping legal in uk", "is mystery shopping ethical". The results are a 2021 Medium post, JustAnswer, Experts-Exchange, a 2013 law blog and one Jan 2025 legal guide (Scout Insights); CI legality is held by vendors (Kompyte, Crayon). Buyers ask unprompted: an AE's post on a head of research who "created a fake company with a fake website" drew 79 comments ("This *feels* super illegal"), and founders spot undisclosed rival sign ups ("Our competitor's CEO just signed up", 301 points). The agent version is live news: Amazon v. Perplexity, Cloudflare's signed agents, the Know-Your-Agent collaboration (Sept 2026). Score 9/10, the best opportunity in the research.
+**Why it will be searched:** all of these autocomplete live: "is mystery shopping competitors legal", "mystery shopping competition law", "is competitive intelligence legal/illegal", "competitive intelligence vs industrial espionage", "is free trial abuse illegal", "can ai agents login to websites", "is mystery shopping legal in uk", "is mystery shopping ethical". The results are a 2021 Medium post, JustAnswer, Experts-Exchange, a 2013 law blog and one Jan 2025 legal guide (Scout Insights); CI legality is held by vendors (Kompyte, Crayon). Buyers ask unprompted: an AE's post on a head of research who "created a fake company with a fake website" drew 79 comments ("This *feels* super illegal"), and founders spot undisclosed competitor sign ups ("Our competitor's CEO just signed up", 301 points). The agent version is live news: Amazon v. Perplexity, Cloudflare's signed agents, the Know-Your-Agent collaboration (Sept 2026). Score 9/10, the best opportunity in the research.
 
 **Angle:** the only page that answers both the old question (people posing as buyers) and the new one (AI agents doing the shopping) from primary sources dated 2025 and 2026. A method-by-method table (read public pages; join a newsletter; start a no-card trial; ask the chat bot; book a demo as a made-up company; call staff as a pretend buyer; log in with someone else's account; get past a CAPTCHA) with the risk each carries and why. It closes with our red lines published as a standard anyone can adopt.
 
@@ -388,10 +389,10 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 4. Where do fake companies and pretend buyers cross the line? (SCIP's disclosure rule; Octopus Intelligence's own words, "We pose as genuine prospective buyers"; frame Mystery Demo carefully: it says "We never pretend to be someone else" and builds "a believable company profile, use case, and buying scenario")
 5. Do the rules change when an AI agent does the shopping? (Amazon v. Perplexity; Cloudflare's Agent category and signed agents; DataDome's spoofing numbers)
 6. Is mystery shopping regulated anywhere? (Nevada's PI board treats staff-evaluating mystery shopping as PI work, with a public-information exclusion; MRS 2020 and MSPA Europe 2023 are silent on AI; ICC/ESOMAR's 2025 revision adds AI duties for research in general)
-7. Declare the agent, use public paths, stop before payment (our 8 rules: say it's AI and who it works for; public self serve paths only at rivals and prospects; ask the bot, never staff; no card, no basket at rivals; close the trial when a rep writes; stop before payment on anyone's store; a client's journeys only with the owner's OK; keep a signed record)
-8. Competitor sign ups, staff calls and burner emails, answered (FAQ: Is mystery shopping legal in the UK? Can a competitor sign up for my product? Is competitive intelligence the same as industrial espionage? Can AI agents log in to websites? Can I use a burner email to sign up for a rival's trial?)
+7. Declare the agent, use public paths, stop before payment (our 8 rules: say it's AI and who it works for; public self serve paths only at competitors and prospects; ask the bot, never staff; no card, no basket at competitors; close the trial when a rep writes; stop before payment on anyone's store; a client's journeys only with the owner's OK; keep a signed record)
+8. Competitor sign ups, staff calls and burner emails, answered (FAQ: Is mystery shopping legal in the UK? Can a competitor sign up for my product? Is competitive intelligence the same as industrial espionage? Can AI agents log in to websites? Can I use a burner email to sign up for a competitor's trial?)
 
-**Screens:** `kit` (a declared identity, field by field, card capped at £0), `battlecard` (Rival B's trial closes on day 6 when its rep writes), `run` (a signed record, verified).
+**Screens:** `kit` (a declared identity, field by field, card capped at £0), `battlecard` (Competitor B's trial closes on day 6 when its rep writes), `run` (a signed record, verified).
 
 **Sources to cite:**
 - SCIP, Code of Ethics ("disclose ... one's identity and organization, prior to all interviews"): https://www.scip.org/page/Ethical-Intelligence
@@ -492,12 +493,12 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 | Group | Tool | Verified facts |
 |---|---|---|
 | Calls your staff as a customer | AdStack AI Secret Shopping | CX monitoring; "Your staff never knows it's a test" |
-| | Implement AI | Feb 2026 page: "Called 47 competing insurance brokers" in 3 days (rivals' staff) |
+| | Implement AI | Feb 2026 page: "Called 47 competing insurance brokers" in 3 days (competitors' staff) |
 | | PressTwo AI Shadow Caller | "dials your phone reps posing as a real customer"; $149 a month for 100 tests |
 | Tests your own AI agents | Cresta Synthetic Customers | 28 May 2026; a model of your customer base to test your own agents |
 | | LivePerson Syntrix | Mar 2026; "60% faster" is labelled an estimate |
 | Walks a website or trial journey | mocktomer | Personas shop your site; "never places real orders" |
-| | Obsession (ours) | Declared agents with their own inbox, number and browser; your own journeys with your OK (baskets stop before payment); at rivals public paths and the bot only; signed record; the September store check; in early access |
+| | Obsession (ours) | Declared agents with their own inbox, number and browser; your own journeys with your OK (baskets stop before payment); at competitors public paths and the bot only; signed record; the September store check; in early access |
 | | Qualified, Test My Response Time | Free; a "secret shopper experiment" on response time |
 | | S-PRO Mystery Shopper AI Suite | 29 Jul 2026; "autonomous shopper agents" with personas across email, forms, chat, phone and advisor booking; competitor benchmarks; "90% cost reduction target"; no disclosure language found |
 | Human benchmark | IBISWorld | $209 per shop, US, 2026 |
@@ -506,7 +507,7 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 | | Intouch Insight | Human online shoppers, including member prices "hidden from public view" |
 | Verify before including | DeepCall, Evalyn, Firecoach, Gen.QA, TokenSurf, UndercoverAgent (launched Feb 2024, not part of the 2026 wave), Pulse (undated page, may be dormant) | |
 
-**Obsession's limits, stated in its entry:** it never calls staff, so it can't grade a salesperson's phone manner; it stops before payment, so it can't test a paid order or delivery; at rivals it never fills a basket; it's in early access.
+**Obsession's limits, stated in its entry:** it never calls staff, so it can't grade a salesperson's phone manner; it stops before payment, so it can't test a paid order or delivery; at competitors it never fills a basket; it's in early access.
 
 **Outline (H2s):**
 1. What is AI mystery shopping?
@@ -606,11 +607,11 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 | Secondary | track competitor emails · competitor email monitoring free · track competitor SMS · competitor newsletter monitoring · how to see competitors' email campaigns · competitor welcome email examples · competitor onboarding emails · Mailcharts alternative · Panoramata alternative |
 | Intent | Commercial investigation |
 
-**Draft answer:** Competitor email and SMS tracking tools collect rivals' messages in 3 ways: curated archives, consumer panels and subscriber inboxes you control. Archives and panels show campaigns and common flows across thousands of brands; to see one specific journey, such as a B2B trial's onboarding or what happens after you reply STOP, you need a subscriber that lives it.
+**Draft answer:** Competitor email and SMS tracking tools collect competitors' messages in 3 ways: curated archives, consumer panels and subscriber inboxes you control. Archives and panels show campaigns and common flows across thousands of brands; to see one specific journey, such as a B2B trial's onboarding or what happens after you reply STOP, you need a subscriber that lives it.
 
-**Why it will be searched:** small but high-intent ("competitor email tracking", "competitor email monitoring free"); the results are vendors ranking themselves first (Panoramata's "7 Top Tools", Reyo, CompetitorTrack, Competitors App) and how-tos that tell readers to subscribe by hand. The market just consolidated (Mailcharts is now a Litmus enterprise add-on; Bird and Axess read from consumer panels), so buyers are re-shopping. The money is in flows (Klaviyo: about 41% of email revenue from 5.3% of sends) and PMMs say rival research tells you "what a company wants prospects to believe, but not necessarily what customers actually experience". Score 7/10.
+**Why it will be searched:** small but high-intent ("competitor email tracking", "competitor email monitoring free"); the results are vendors ranking themselves first (Panoramata's "7 Top Tools", Reyo, CompetitorTrack, Competitors App) and how-tos that tell readers to subscribe by hand. The market just consolidated (Mailcharts is now a Litmus enterprise add-on; Bird and Axess read from consumer panels), so buyers are re-shopping. The money is in flows (Klaviyo: about 41% of email revenue from 5.3% of sends) and PMMs say competitor research tells you "what a company wants prospects to believe, but not necessarily what customers actually experience". Score 7/10.
 
-**Angle:** grade every tool on what it can see (broadcast campaigns, welcome series, cart and browse flows, SMS, B2B trial and onboarding sequences, the reply to STOP, whether the offer matches the pop-up), with dated prices. Include the free do-it-yourself method fairly. Be honest about our own gap: by our own rule Obsession never fills a basket at a rival, so it can't see a rival's abandoned cart flow, which archives and panels can.
+**Angle:** grade every tool on what it can see (broadcast campaigns, welcome series, cart and browse flows, SMS, B2B trial and onboarding sequences, the reply to STOP, whether the offer matches the pop-up), with dated prices. Include the free do-it-yourself method fairly. Be honest about our own gap: by our own rule Obsession never fills a basket at a competitor, so it can't see a competitor's abandoned cart flow, which archives and panels can.
 
 **Tools (verified facts; re-check all before publishing):**
 
@@ -623,13 +624,13 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 | Panels | Axess Intelligence | 5,000+ brands from "privacy-compliant panel apps"; email, SMS, push and in-app; sign up journeys compared on days 1, 2, 3 and 7 |
 | | Bird Competitive Tracker | A "measurement panel"; in 2020 a persona network subscribed with a fresh address per list |
 | Live subscriber | Do it yourself | A dedicated inbox and number, a calendar and a sheet; free, slow, misses timing |
-| | Obsession (ours) | A declared subscriber per rival with its own inbox and number, signed captures, the journeys you pick (welcome, texts, no-card trials, STOP); no back catalogue, only the companies on your list, no rival baskets; in early access |
+| | Obsession (ours) | A declared subscriber per competitor with its own inbox and number, signed captures, the journeys you pick (welcome, texts, no-card trials, STOP); no back catalogue, only the companies on your list, no competitor baskets; in early access |
 | Verify before including | SendView, Competitor Inbox, Reyo, CompetitorTrack, Competitors App, Hoppy Copy | |
 
 **Outline (H2s):**
 1. How do you track a competitor's emails and texts?
 2. Which competitor email tracking tool fits your team? (the grid)
-3. Which tools give you a library of rivals' campaigns?
+3. Which tools give you a library of competitors' campaigns?
 4. Which tools read from consumer panels?
 5. What do archives and panels miss? (a chosen journey on a fresh identity: B2B trial onboarding, which PageCrawl says "needs a human to walk it once a quarter"; the reply to STOP, after the FCC adopted its revised revocation order on 30 Sep 2026 and the FTC fined Experian $650,000 and Verkada $2.95m; no outside-in SMS STOP study exists, though email unsubscribe audits ran from 2014 to 2018)
 6. Can you track competitor emails for free?
@@ -637,7 +638,7 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 8. Every price and feature checked between [dates] on each vendor's own pages (method and disclosure)
 9. Legality, cart flows and SMS, answered (FAQ: Is it legal to sign up for a competitor's emails? Can I see a competitor's abandoned cart emails? How do I track competitor texts? What's the difference between campaign and flow tracking?)
 
-**Screens:** `inbox` (3 rivals' emails and texts on 1 timeline), `report` (the monthly report an agency sends), `battlecard` (3 rivals' no-card trials, day by day), `winback` (a text unsubscribe ignored, captured).
+**Screens:** `inbox` (3 competitors' emails and texts on 1 timeline), `report` (the monthly report an agency sends), `battlecard` (3 competitors' no-card trials, day by day), `winback` (a text unsubscribe ignored, captured).
 
 **Sources to cite:**
 - Panoramata, pricing: https://www.panoramata.co/pricing and its listicle: https://www.panoramata.co/benchmark-marketing/tools-track-competitors-emails
@@ -665,7 +666,7 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 |---|---|---|---|
 | Mystery shopping for SaaS without pretending to be a buyer | Mystery shopping | Founders, PMMs | A dated benchmark of what no-card SaaS trials send in 14 days |
 | The prices most monitors can't see: member price intelligence | Price intelligence | Pricing teams, price intelligence firms | Member against public prices, joined through public sign ups |
-| What ad libraries can't show you: a rival's ad, followed to the offer | Competitor intelligence | Marketing | Ad to sign up to follow up, timed (no Meta or TikTok collection claims until access is confirmed) |
+| What ad libraries can't show you: a competitor's ad, followed to the offer | Competitor intelligence | Marketing | Ad to sign up to follow up, timed (no Meta or TikTok collection claims until access is confirmed) |
 | What happens when you text STOP: a 2026 field report | Competitor intelligence | Marketing, compliance | The first outside-in SMS opt-out study |
 | Competitive intelligence vs industrial espionage | Declared agents | PMMs, sales | The line, from primary sources |
 | Can AI agents sign up, log in, call and email? | Declared agents | Developers, founders | What works, what shouldn't, and how declared agents do it |

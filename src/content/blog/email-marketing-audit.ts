@@ -63,12 +63,12 @@ const NETALICO = 'https://netalico.com/pages/services-email-marketing'
 export const post: BlogPost = {
   slug: 'email-marketing-audit',
   title: 'The email marketing audit: a checklist and template in 3 layers',
-  dek: 'One audit template for retention agencies and brand CRM leads: the checks inside the email platform, the deliverability checks, and the first 14 days a new subscriber receives beside 2 or 3 rivals. Each check has a pass mark, where to look when it fails and a priority.',
+  dek: 'One audit template for retention agencies and brand CRM leads: the checks inside the email platform, the deliverability checks, and the first 14 days a new subscriber receives beside 2 or 3 competitors. Each check has a pass mark, where to look when it fails and a priority.',
   metaTitle: 'Email marketing audit: a checklist and template in 3 layers',
   description:
     'An email marketing audit template in 3 layers: the account, deliverability and what a new subscriber receives, each check with its pass mark and priority.',
   answer:
-    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 rivals). Give every failed check a priority and estimate its cost from the client’s own flow report. Obsession’s AI customers check the customer’s view as real subscribers of the brand and its rivals, keeping every email with the time it arrived.',
+    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 competitors). Give every failed check a priority and estimate its cost from the client’s own flow report. Obsession’s AI customers check the customer’s view as real subscribers of the brand and its competitors, keeping every email with the time it arrived.',
   primaryKeyword: 'email marketing audit',
   keywords: [
     'email marketing audit checklist',
@@ -96,7 +96,7 @@ export const post: BlogPost = {
     art: {
       kind: 'report',
       title: 'harbourline.example · email marketing audit, 3 layers',
-      period: 'Account read Monday · new subscriber and 2 rivals signed up Monday 09:00',
+      period: 'Account read Monday · new subscriber and 2 competitors signed up Monday 09:00',
       cols: ['Check', 'Found', 'Priority'],
       rows: [
         { name: 'Basket reminder', cells: ['31% of entries skipped by Smart Sending', '1'], tone: 'fail' },
@@ -104,7 +104,7 @@ export const post: BlogPost = {
         { name: 'Gmail spam rate', cells: ['0.14% in Postmaster Tools', '2'], tone: 'late' },
         { name: 'Welcome email', cells: ['4 min, Promotions tab, code works', 'Pass'], tone: 'ok' },
         { name: 'Text opt in', cells: ['No confirmation text in 48 h', '1'], tone: 'fail' },
-        { name: 'Rivals, 14 days', cells: ['9 and 12 emails, against 5', 'Info'], tone: 'info' },
+        { name: 'Competitors, 14 days', cells: ['9 and 12 emails, against 5', 'Info'], tone: 'info' },
       ],
       notes: [
         'Fix first: the text confirmation, then Smart Sending on the basket reminder.',
@@ -144,7 +144,7 @@ export const post: BlogPost = {
       items: [
         '**Inside the account:** how the programme is built and what it earns, from the platform’s settings and reports.',
         '**Deliverability:** whether mailbox providers accept and trust the mail, from DNS records, Google Postmaster Tools and the platform’s deliverability reports.',
-        '**The customer’s view:** what a new subscriber receives over 14 days, when and in which tab, beside 2 or 3 rivals, from the emails and texts themselves.',
+        '**The customer’s view:** what a new subscriber receives over 14 days, when and in which tab, beside 2 or 3 competitors, from the emails and texts themselves.',
       ],
     },
     {
@@ -188,7 +188,7 @@ export const post: BlogPost = {
         ['Customer view', 'Welcome code', 'Works at checkout on a phone, as planned', '1'],
         ['Customer view', 'Basket and checkout reminders', 'Each arrives once, with product, photo and price', '1'],
         ['Customer view', 'Spam folder', 'Nothing from the brand in spam, with the tab recorded for each email', '1'],
-        ['Customer view', 'Rivals, same 14 days', 'Counts, timing and first discount set beside 2 or 3 rivals', 'Input to the plan'],
+        ['Customer view', 'Competitors, same 14 days', 'Counts, timing and first discount set beside 2 or 3 competitors', 'Input to the plan'],
       ],
     },
 
@@ -327,14 +327,14 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'In a test of 362 ecommerce brands from new addresses, published in July 2026, [Joy Joya](' +
         JOYJOYA +
-        ') found that 158 sent no welcome email and 20 sent an offer that didn’t match the pop up. Layer 3 runs the same test at the client for 14 days, beside 2 or 3 rivals. It is a form of [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
+        ') found that 158 sent no welcome email and 20 sent an offer that didn’t match the pop up. Layer 3 runs the same test at the client for 14 days, beside 2 or 3 competitors. It is a form of [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
 
     { kind: 'h3', id: 'test-subscriber', text: 'Set up the test subscriber' },
     {
       kind: 'list',
       items: [
-        '**A new Gmail address for the client and for each rival,** so Gmail shows the tab, plus a control address at the client, signed up through the footer form in the same minute.',
+        '**A new Gmail address for the client and for each competitor,** so Gmail shows the tab, plus a control address at the client, signed up through the footer form in the same minute.',
         '**A phone number that has never opted in,** and a private browser window on a phone.',
         '**A sheet** with the day, time, sender, subject, offer, code and tab, and a screenshot. Save each email itself too, since it carries its arrival time.',
         '**The client’s OK,** and the test addresses sent to whoever reports their numbers.',
@@ -347,21 +347,21 @@ export const post: BlogPost = {
       text: 'On day 1, sign up through the pop up, opt in to texts and try the welcome code on a phone. Leave a basket and a checkout from separate addresses, as in the outside audit. Then record every email and text for 14 days. **A pass:** every Live message arrives on time with working codes and links, and none lands in spam. **If one is missing,** go back to its flow status, Skipped reasons and Smart Sending in layer 1.',
     },
 
-    { kind: 'h3', id: 'email-competitor-analysis', text: 'Email competitor analysis: 2 or 3 rivals' },
+    { kind: 'h3', id: 'email-competitor-analysis', text: 'Email competitor analysis: 2 or 3 competitors' },
     {
       kind: 'p',
-      text: 'Sign the rival addresses up in the same minute, through the public sign up any customer can use. A Klaviyo Community guide to [competitor research](' +
+      text: 'Sign the competitor addresses up in the same minute, through the public sign up any customer can use. A Klaviyo Community guide to [competitor research](' +
         K_RIVALS +
-        ') suggests 3 to 5 rivals, a separate inbox and a sheet kept over a few weeks. For an audit report, 2 or 3 rivals keep the comparison readable.',
+        ') suggests 3 to 5 competitors, a separate inbox and a sheet kept over a few weeks. For an audit report, 2 or 3 competitors keep the comparison readable.',
     },
     {
       kind: 'art',
-      caption: 'An invented store and 2 invented rivals, signed up in the same minute: the comparison the client reads in the audit report.',
+      caption: 'An invented store and 2 invented competitors, signed up in the same minute: the comparison the client reads in the audit report.',
       art: {
         kind: 'report',
-        title: 'harbourline.example and 2 rivals · a new subscriber’s first 14 days',
-        period: 'Signed up the same Monday at 09:00, 1 new Gmail address and 1 phone each',
-        cols: ['Measure', 'Harbourline', 'Rival A', 'Rival B'],
+        title: 'harbourline.example and 2 competitors',
+        period: 'A new subscriber’s first 14 days, signed up the same Monday at 09:00, with 1 new Gmail address and 1 phone each',
+        cols: ['Measure', 'Harbourline', 'Competitor A', 'Competitor B'],
         rows: [
           { name: 'Welcome email', cells: ['4 min', '2 min', '11 min'], tone: 'info' },
           { name: 'Welcome tab', cells: ['Promotions', 'Promotions', 'Primary'], tone: 'info' },
@@ -371,8 +371,8 @@ export const post: BlogPost = {
           { name: 'First discount', cells: ['Day 9, 15%', 'Day 3, 20%', 'Day 6, free delivery'], tone: 'late' },
         ],
         notes: [
-          'Rival A sent its first discount 6 days before the client.',
-          'Rival B’s welcome reached Primary in this 1 inbox, recorded as what that inbox showed.',
+          'Competitor A sent its first discount 6 days before the client.',
+          'Competitor B’s welcome reached Primary in this 1 inbox, recorded as what that inbox showed.',
           'Every cell links to the email or text it came from.',
         ],
       },
@@ -385,7 +385,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 rivals each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession runs layer 3 today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI customer to each rival’s emails and texts.',
+      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession runs layer 3 today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI customer to each competitor’s emails and texts.',
     },
     {
       kind: 'cta',
@@ -435,7 +435,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'The first audit is the baseline. Run layer 3 again after each fix and every month, and the report shows each finding as found, fixed and checked again. That answers a problem [an agency owner on r/agency](' +
         R_AGENCY +
-        ') described: losing clients who couldn’t see what they were paying for. The weekly format is in [proof that every flow fired](/blog/show-clients-every-flow-fired), and the rival addresses keep collecting for each monthly report.',
+        ') described: losing clients who couldn’t see what they were paying for. The weekly format is in [proof that every flow fired](/blog/show-clients-every-flow-fired), and the competitor addresses keep collecting for each monthly report.',
     },
 
     { kind: 'h2', id: 'options', text: 'Email audit tools compared', compare: true },
@@ -458,7 +458,7 @@ export const post: BlogPost = {
         ],
         [
           'By hand: new Gmail addresses, a phone and a sheet',
-          'What 1 subscriber received, with the tab, at the client and its rivals',
+          'What 1 subscriber received, with the tab, at the client and its competitors',
           'Free, plus your hours\n30 minutes to 2 hours a manual flow audit, in [Aimerce’s own figures](' + AIMERCE + ')',
           '1 inbox at 1 moment, no history before the sign up, more work per client',
           '1 to 5 clients, at onboarding',
@@ -507,16 +507,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
-          'AI customers with real inboxes and numbers live the first 14 days and flag anything that never comes\nAn AI customer logs every rival email, text, offer and code on 1 timeline',
+          'AI customers with real inboxes and numbers live the first 14 days and flag anything that never comes\nAn AI customer logs every competitor email, text, offer and code on 1 timeline',
           'Running now: 5 stores checked free\nCredit-based plans, like Claude’s',
           'Sees what its own AI customers receive',
-          'What a real subscriber gets from each client and rival, every week, kept as proof',
+          'What a real subscriber gets from each client and competitor, every week, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For layer 3 across many clients and their rivals every week, use Obsession. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
+      text: 'For layer 3 across many clients and their competitors every week, use Obsession. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -527,12 +527,12 @@ export const post: BlogPost = {
         '**A missing email shows that nothing arrived.** The cause sits in layer 1 or layer 2.',
         '**Seed tests and Postmaster Tools describe providers in aggregate.** Neither shows what a particular subscriber received.',
         '**Every revenue figure is an estimate,** halved because attribution includes orders that would have happened anyway.',
-        '**Rival history starts on the day you subscribe.** Earlier emails can’t be recovered from a new address.',
+        '**Competitor history starts on the day you subscribe.** Earlier emails can’t be recovered from a new address.',
       ],
     },
     {
       kind: 'p',
-      text: 'Black Friday is Friday 27 November 2026. Run the audit on each client before their code freeze, around 20 November for many stores, and sign the rival addresses up this week, so that 14 days of rival mail exist before the first Black Friday sends.',
+      text: 'Black Friday is Friday 27 November 2026. Run the audit on each client before their code freeze, around 20 November for many stores, and sign the competitor addresses up this week, so that 14 days of competitor mail exist before the first Black Friday sends.',
     },
     {
       kind: 'cta',
@@ -551,7 +551,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What should an email marketing audit include?',
-          a: 'Checks inside the account (forms, flows, Smart Sending, SMS rules, segments, campaigns and attribution), deliverability checks (authentication, sender rules, Postmaster Tools, bounces, complaints, a seed test), and a 14 day test as a new subscriber beside 2 or 3 rivals. They work on any email platform.',
+          a: 'Checks inside the account (forms, flows, Smart Sending, SMS rules, segments, campaigns and attribution), deliverability checks (authentication, sender rules, Postmaster Tools, bounces, complaints, a seed test), and a 14 day test as a new subscriber beside 2 or 3 competitors. They work on any email platform.',
         },
         {
           q: 'What is an email deliverability audit?',
@@ -571,14 +571,14 @@ export const post: BlogPost = {
         },
         {
           q: 'How do you do an email competitor analysis?',
-          a: 'Sign up to 2 or 3 rivals from new addresses in the same minute as the client, and record every email and text for 14 days: the time, offer, code, first discount and Gmail tab. Libraries such as Milled and Panoramata add history for the brands they collect.',
+          a: 'Sign up to 2 or 3 competitors from new addresses in the same minute as the client, and record every email and text for 14 days: the time, offer, code, first discount and Gmail tab. Libraries such as Milled and Panoramata add history for the brands they collect.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Microsoft’s post would not load directly, so we read it through a text reader. Milled’s pricing page showed a bot check on 23 October, so its prices are as the search result for that page showed them that day, and the Internet Archive’s copy of the page from 10 February 2026 shows them as the monthly cost of a yearly plan. MailCharts’ pricing link now leads to Litmus’s contact sales page, and Validity’s Everest page now presents Validity Engage. Netalico’s page marked its $1,000 audit as sold out. The r/Klaviyo and r/agency threads were checked live on 3 October 2026. We did not run any of the tools in the table. harbourline.example, its rivals and every figure in the 2 illustrations and the worked example are invented.',
+      text: 'Microsoft’s post would not load directly, so we read it through a text reader. Milled’s pricing page showed a bot check on 23 October, so its prices are as the search result for that page showed them that day, and the Internet Archive’s copy of the page from 10 February 2026 shows them as the monthly cost of a yearly plan. MailCharts’ pricing link now leads to Litmus’s contact sales page, and Validity’s Everest page now presents Validity Engage. Netalico’s page marked its $1,000 audit as sold out. The r/Klaviyo and r/agency threads were checked live on 3 October 2026. We did not run any of the tools in the table. harbourline.example, its competitors and every figure in the 2 illustrations and the worked example are invented.',
     },
   ],
 

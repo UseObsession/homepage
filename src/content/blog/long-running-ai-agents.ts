@@ -225,7 +225,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'fan-out', text: '4. Fan out' },
     {
       kind: 'p',
-      text: 'One request often becomes thousands of customers: every rival a user names, every account on a list, every merchant on a platform. Each needs its own identity, clock and evidence, and they start together. Platforms publish their ceilings: Vercel Workflows allows 1,000 run creations a second, and [Restate’s Starter plan](' +
+      text: 'One request often becomes thousands of customers: every competitor a user names, every account on a list, every merchant on a platform. Each needs its own identity, clock and evidence, and they start together. Platforms publish their ceilings: Vercel Workflows allows 1,000 run creations a second, and [Restate’s Starter plan](' +
         RESTATE_PRICING +
         ') runs 50 actions a second with bursts to 500.',
     },
@@ -249,7 +249,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'evidence', text: '6. Evidence that holds' },
     {
       kind: 'p',
-      text: 'An agent that reports a rival’s price cut has to show the email. Store each message as it arrived, in an append only store: raw bytes, headers, arrival time and a content hash. [RFC 6376](' +
+      text: 'An agent that reports a competitor’s price cut has to show the email. Store each message as it arrived, in an append only store: raw bytes, headers, arrival time and a content hash. [RFC 6376](' +
         RFC_DKIM +
         ') lets the domain that signs a message claim responsibility for it, checked against a public key the domain publishes, and domains replace their keys over time. A DKIM signature is checked on arrival and kept with its key.',
     },
@@ -342,8 +342,8 @@ export const post: BlogPost = {
           'A failing release held',
         ],
         [
-          'Rival tracking: [Competitor tracking](/recipes/competitor-tracking)',
-          'A customer of each rival a user names',
+          'Competitor tracking: [Competitor tracking](/recipes/competitor-tracking)',
+          'A customer of each competitor a user names',
           'Every change dated, with its evidence',
           'Changes posted to your app as JSON',
         ],
@@ -373,7 +373,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company’s agents can find revenue leaks, watch rivals and prospect with proof. Its open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
+      text: 'Obsession runs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company’s agents can find revenue leaks, watch competitors and prospect with proof. Its open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },

@@ -20,13 +20,13 @@ const brands = [
 ]
 
 const shortLine: Record<RecipeId, string> = {
-  competitor: 'Rivals’ sign ups, emails, offers and launches, over time',
+  competitor: 'Competitors’ sign ups, emails, offers and launches, over time',
   prospect: 'Proof of a real gap at each company on your list',
   mystery: 'Your own or a client’s store, journey by journey',
   speed: 'How fast and how well companies answer',
   prices: 'Prices, offers and terms as a customer sees them',
-  ads: 'Rivals’ ads, and where each click lands',
-  trial: 'A rival’s whole onboarding, on one page',
+  ads: 'Competitors’ ads, and where each click lands',
+  trial: 'A competitor’s whole onboarding, on one page',
 }
 
 const columns = ['Gap', 'Seen', 'What happened', 'Proof']
@@ -239,7 +239,7 @@ export function ProspectIntelligence() {
             pick={
               <>
                 <b>The agency picks Prospect intelligence.</b> It proves a gap at companies you’re about to write to. Competitor tracking is for
-                watching rivals over time.
+                watching competitors over time.
               </>
             }
           >

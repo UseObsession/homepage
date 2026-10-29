@@ -306,7 +306,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each brand needs a phone, a new email address for any sign up, a sheet and up to 48 hours of checking the inbox, so the hours grow with every brand on the list. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then report what happened, with proof.',
+      text: 'By hand, each brand needs a phone, a new email address for any sign up, a sheet and up to 48 hours of checking the inbox, so the hours grow with every brand on the list. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then report what happened, with proof.',
     },
     {
       kind: 'cta',

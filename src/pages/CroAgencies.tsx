@@ -47,11 +47,11 @@ const results = [
 
 const rivals = [
   { brand: 'Ferrow Coffee', role: 'Prospect', offer: '15%, ad 20%', email: '7 h', code: 'Rejected' },
-  { brand: 'Wendlow Coffee', role: 'Rival', offer: 'Matches', email: '2 min', code: 'Works' },
-  { brand: 'Gorsedale Roasters', role: 'Rival', offer: 'Matches', email: '6 min', code: 'Works' },
-  { brand: 'Linnet Roast', role: 'Rival', offer: 'Matches', email: '1 min', code: 'Works' },
-  { brand: 'Mallin & Crane', role: 'Rival', offer: '10%, ad 15%', email: '9 min', code: 'Works' },
-  { brand: 'Abberly Coffee', role: 'Rival', offer: 'Matches', email: '2 min', code: 'Works' },
+  { brand: 'Wendlow Coffee', role: 'Competitor', offer: 'Matches', email: '2 min', code: 'Works' },
+  { brand: 'Gorsedale Roasters', role: 'Competitor', offer: 'Matches', email: '6 min', code: 'Works' },
+  { brand: 'Linnet Roast', role: 'Competitor', offer: 'Matches', email: '1 min', code: 'Works' },
+  { brand: 'Mallin & Crane', role: 'Competitor', offer: '10%, ad 15%', email: '9 min', code: 'Works' },
+  { brand: 'Abberly Coffee', role: 'Competitor', offer: 'Matches', email: '2 min', code: 'Works' },
 ]
 
 const variants = [
@@ -487,13 +487,13 @@ export function CroAgencies() {
               </Step>
 
               <Step n={6} title={step(1, 1).title} line={step(1, 1).line} pick={step(1, 1).example}>
-                <Win title="Pipeline · Ferrow Coffee · Beside 5 rivals">
+                <Win title="Ferrow Coffee · beside 5 competitors">
                   <ul className="uc-tiles">
                     <li className="bad">
                       <small>First email</small>
                       <p>
                         <b>7 h</b>
-                        <em>rivals 4 min</em>
+                        <em>competitors 4 min</em>
                       </p>
                     </li>
                     <li>
@@ -558,7 +558,7 @@ export function CroAgencies() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#new-business</span>
                       <br />
-                      Ferrow Coffee is ready for Thursday: <b>3</b> leaks after the sign up, each with proof, beside 5 rivals. The slide is in
+                      Ferrow Coffee is ready for Thursday: <b>3</b> leaks after the sign up, each with proof, beside 5 competitors. The slide is in
                       the teardown.
                     </p>
                   </div>
@@ -702,7 +702,7 @@ export function CroAgencies() {
                       ['Fixed', 'The pop up matches the ad; the welcome email sends at once; the code works on a subscription'],
                       ['Caught', 'Test 1: B gave no code after an overnight app update, fixed the same morning'],
                       ['Open', 'None'],
-                      ['Against 5 rivals', 'The fastest first email of the 6'],
+                      ['Against 5 competitors', 'The fastest first email of the 6'],
                       ['Before and after', '2 Nov: first email after 7 hours, code rejected. 30 Nov: 38 seconds, code works'],
                     ].map(([k, v], i) => (
                       <div key={k} style={at(i)}>

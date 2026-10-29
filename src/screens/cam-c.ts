@@ -35,7 +35,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
       move: 0.7,
       on: '.wb-tl',
       lit: 0,
-      note: { text: 'Rival A broke 3 times in 9 months', side: 'below', cover: '.wb-lock', cue: 1.7, dock: 'bottom' },
+      note: { text: 'Competitor A broke 3 times in 9 months', side: 'below', cover: '.wb-lock', cue: 1.7, dock: 'bottom' },
     },
     {
       at: 5.15,
@@ -111,7 +111,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
       at: 0.9,
       move: 0.6,
       on: '.apr-chart',
-      note: { text: 'Candles sent 12 messages. Rival A sent 52.', side: 'right', from: '.apr-row.me .apr-bar', cue: 1.25, dock: 'top' },
+      note: { text: 'Candles sent 12 messages. Competitor A sent 52.', side: 'right', from: '.apr-row.me .apr-bar', cue: 1.25, dock: 'top' },
     },
     {
       at: 4.65,

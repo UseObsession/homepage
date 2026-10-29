@@ -296,7 +296,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. For the ads and hours beyond a check by hand, use Obsession’s Ad landing check. It opens every live ad’s page from its link on a phone and a desktop each morning, or more often in a sale, checks that the page loads, the offer and price match and the product is in stock, and drafts the fix (a pause or a new link) for your OK.',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For the ads and hours beyond a check by hand, use Obsession’s Ad landing check. It opens every live ad’s page from its link on a phone and a desktop each morning, or more often in a sale, checks that the page loads, the offer and price match and the product is in stock, and drafts the fix (a pause or a new link) for your OK.',
     },
     {
       kind: 'cta',

@@ -57,7 +57,7 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.22s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.75 8.1h2.9l5.6-3.6v11l-5.6-3.6h-2.9Z" /><path d="M6.65 11.9 7.6 16h1.9" /><path d="M14.9 7.6a3.3 3.3 0 0 1 0 4.8" /></svg></span>
-              <p className="tp-tx"><b>Ad tracking</b><span>Follows rivals’ public ads daily</span></p>
+              <p className="tp-tx"><b>Ad tracking</b><span>Follows competitors’ public ads daily</span></p>
               <span className="tp-use">4 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.26s' }}><div className="tp-cin">
@@ -77,12 +77,12 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.38s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.25 4.5v5.2a1 1 0 0 0 .3.7l6.3 6.3a1 1 0 0 0 1.4 0l5.2-5.2a1 1 0 0 0 0-1.4l-6.3-6.3a1 1 0 0 0-.7-.3H4.5a1.25 1.25 0 0 0-1.25 1Z" /><circle cx="7" cy="7" r="1.2" /></svg></span>
-              <p className="tp-tx"><b>Price watch</b><span>Flags rivals’ price changes</span></p>
+              <p className="tp-tx"><b>Price watch</b><span>Flags competitors’ price changes</span></p>
               <span className="tp-use">1 watch</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.42s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2.25 10s2.8-5.25 7.75-5.25S17.75 10 17.75 10 14.95 15.25 10 15.25 2.25 10 2.25 10Z" /><circle cx="10" cy="10" r="2.4" /></svg></span>
-              <p className="tp-tx"><b>Competitor tracking</b><span>Logs every rival email, text and ad</span></p>
+              <p className="tp-tx"><b>Competitor tracking</b><span>Logs every competitor email, text and ad</span></p>
               <span className="tp-use">1 watch</span>
             </div></div>
           </div>

@@ -59,11 +59,11 @@ const sorted = [
 
 const rivals = [
   { store: 'Larch & Lye', role: 'Client', welcome: '40 s', reminder: '1 h', text: '2 min', emails: '3' },
-  { store: 'Ashgrove Skin', role: 'Rival', welcome: '4 h', reminder: 'none', text: 'none', emails: '6' },
-  { store: 'Ceril Botanics', role: 'Rival', welcome: '11 h', reminder: 'none', text: '5 min', emails: '5' },
-  { store: 'Hollin & Pine', role: 'Rival', welcome: '2 h', reminder: 'none', text: 'none', emails: '4' },
-  { store: 'Wrenmoor', role: 'Rival', welcome: '9 h', reminder: 'none', text: '1 day', emails: '7' },
-  { store: 'Sallow & Co', role: 'Rival', welcome: '6 h', reminder: 'none', text: 'none', emails: '4' },
+  { store: 'Ashgrove Skin', role: 'Competitor', welcome: '4 h', reminder: 'none', text: 'none', emails: '6' },
+  { store: 'Ceril Botanics', role: 'Competitor', welcome: '11 h', reminder: 'none', text: '5 min', emails: '5' },
+  { store: 'Hollin & Pine', role: 'Competitor', welcome: '2 h', reminder: 'none', text: 'none', emails: '4' },
+  { store: 'Wrenmoor', role: 'Competitor', welcome: '9 h', reminder: 'none', text: '1 day', emails: '7' },
+  { store: 'Sallow & Co', role: 'Competitor', welcome: '6 h', reminder: 'none', text: 'none', emails: '4' },
 ]
 
 /* The answer under the problem, its opening clause in bold, as on his. */
@@ -639,13 +639,13 @@ export function RetentionAgencies() {
               </Step>
 
               <Step n={9} title={step(2, 2).title} line={step(2, 2).line} pick={step(2, 2).example}>
-                <Win title="Clients · Larch & Lye · Beside 5 rivals">
+                <Win title="Larch & Lye · beside 5 competitors">
                   <ul className="uc-tiles">
                     <li>
                       <small>Welcome email</small>
                       <p>
                         <b>40 s</b>
-                        <em>rivals 6 h</em>
+                        <em>competitors 6 h</em>
                       </p>
                     </li>
                     <li>
@@ -661,7 +661,7 @@ export function RetentionAgencies() {
                       <small>Text after opting in</small>
                       <p>
                         <b>2 min</b>
-                        <em>3 rivals never</em>
+                        <em>3 competitors never</em>
                       </p>
                     </li>
                     <li>
@@ -670,7 +670,7 @@ export function RetentionAgencies() {
                         <b>
                           <Count to={3} />
                         </b>
-                        <em>rivals 5</em>
+                        <em>competitors 5</em>
                       </p>
                     </li>
                   </ul>
@@ -711,7 +711,7 @@ export function RetentionAgencies() {
                       ['Leaks fixed', 3, ''],
                       ['Caught and fixed the same day', 1, ''],
                       ['Leaks open', 0, ''],
-                      ['Faster welcome than', 5, 'of 5 rivals'],
+                      ['Faster welcome than', 5, 'of 5 competitors'],
                     ].map(([k, n, of]) => (
                       <li key={k}>
                         <small>{k}</small>
@@ -729,7 +729,7 @@ export function RetentionAgencies() {
                       ['Fixed', 'The 15% code, the text opt in, the basket reminder'],
                       ['Caught', 'Code stopped after the 1 Dec theme update, fixed the same morning'],
                       ['Open', 'None'],
-                      ['Against 5 rivals', 'Fastest welcome email; the only basket reminder'],
+                      ['Against 5 competitors', 'Fastest welcome email; the only basket reminder'],
                       ['Before and after', '2 Nov: 1 email, no code. 1 Dec: code in 39 seconds'],
                     ].map(([k, v], i) => (
                       <div key={k} style={at(i)}>

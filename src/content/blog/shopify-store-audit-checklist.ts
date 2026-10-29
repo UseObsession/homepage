@@ -281,7 +281,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A test by hand covers 1 inbox, 1 device and 1 moment. A theme publish, an app update or a discount edit can break a step the day after you test it, and [Shopify Status](' +
         STATUS +
-        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh AI customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh AI customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
     },
     {
       kind: 'cta',

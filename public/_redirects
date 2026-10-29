@@ -7,6 +7,13 @@
 # The Upwork guide, renamed on 29 Oct 2026 so its address says who, whom and where, like its title.
 /blog/upwork-klaviyo-jobs     /blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands  301
 /blog/upwork-klaviyo-jobs/    /blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands  301
+# The Black Friday report, renamed on 29 Oct 2026: the site says competitor, never rival (Seun: "rival is AI speak"),
+# and its images moved with it, so an indexed picture still finds its file.
+/blog/black-friday-rival-report-template     /blog/black-friday-competitor-email-report-template  301
+/blog/black-friday-rival-report-template/    /blog/black-friday-competitor-email-report-template  301
+/blog/black-friday-rival-report-template/hero-1760.webp  /blog/black-friday-competitor-email-report-template/hero-1760.webp  301
+/blog/black-friday-rival-report-template/hero-880.webp   /blog/black-friday-competitor-email-report-template/hero-880.webp   301
+/blog/black-friday-rival-report-template/thumb-640.webp  /blog/black-friday-competitor-email-report-template/thumb-640.webp  301
 /recipes/prospect-research    /recipes/prospect-intelligence  301
 /recipes/prospect-research/   /recipes/prospect-intelligence  301
 /recipes/speed-to-lead        /recipes/lead-leaks             301

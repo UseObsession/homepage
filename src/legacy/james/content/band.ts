@@ -20,14 +20,14 @@ export const bandRoles: BandRole[] = [
   {
     id: 'marketing',
     bandName: 'Marketing teams',
-    bandLine: 'Every rival ad, email and offer, and your own funnel, seen as a customer.',
+    bandLine: 'Every competitor ad, email and offer, and your own funnel, seen as a customer.',
     page: '/marketing',
     ways: ['Recipes', 'Your own agent'],
   },
   {
     id: 'sales',
     bandName: 'Sales teams',
-    bandLine: 'Know what each account and rival does to its customers before you call.',
+    bandLine: 'Know what each account and competitor does to its customers before you call.',
     page: '/sales',
     ways: ['Recipes', 'Your own agent'],
   },

@@ -111,7 +111,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Staff, your own or a rival’s.** An AI voice agent calls or messages as a customer and scores the reply.',
+        '**Staff, your own or a competitor’s.** An AI voice agent calls or messages as a customer and scores the reply.',
         '**Your own AI agents and chatbots.** Synthetic customers, software personas built to act like real ones, put the bot through many test conversations, mostly before real customers reach it.',
         '**Your website or store.** A browser agent walks from the home page towards checkout and reports where it got stuck.',
       ],
@@ -129,7 +129,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What it tests:** staff, an AI agent, a website, or what arrives afterwards, at your own business or a rival’s.',
+        '**What it tests:** staff, an AI agent, a website, or what arrives afterwards, at your own business or a competitor’s.',
         '**Live or simulated:** whether it contacts a real phone line, chatbot or store, or runs inside a test environment.',
         '**Whether it says it’s AI,** as its pages state.',
         '**What it hands over:** recordings, transcripts, screenshots or scores.',
@@ -148,7 +148,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'call-staff', text: 'Tools that call or message staff as a customer' },
     {
       kind: 'p',
-      text: 'These are closest to a classic mystery shop. An AI voice agent calls or messages a sales line or front desk with a scenario, then scores what the person on the other end did. AdStack, PressTwo and Qualified test your own team. Dealer Driven Data and LocalSpy AI contact rivals’ staff as a buyer.',
+      text: 'These are closest to a classic mystery shop. An AI voice agent calls or messages a sales line or front desk with a scenario, then scores what the person on the other end did. AdStack, PressTwo and Qualified test your own team. Dealer Driven Data and LocalSpy AI contact competitors’ staff as a buyer.',
     },
 
     { kind: 'h3', id: 'adstack', text: 'AdStack AI Secret Shopping' },
@@ -170,10 +170,10 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** built for car dealers. [Its AI](' +
           DDD +
-          ') shops rival dealerships by text, email and phone, keeps every reply on a timeline and logs the prices they quote. Weekly price reports and price sheets set those prices against the dealer’s own.',
+          ') shops competitor dealerships by text, email and phone, keeps every reply on a timeline and logs the prices they quote. Weekly price reports and price sheets set those prices against the dealer’s own.',
         '**Price as listed:** $499 a month, month to month, with a free 7 day mystery shop.',
-        '**Where it stops:** car dealers only. Its page doesn’t say whether rival staff are told the buyer is AI.',
-        '**Best for:** car dealers watching what rival dealers reply and quote.',
+        '**Where it stops:** car dealers only. Its page doesn’t say whether competitor staff are told the buyer is AI.',
+        '**Best for:** car dealers watching what competitor dealers reply and quote.',
       ],
     },
 
@@ -194,11 +194,11 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What it does well:** research on local rivals. [LocalSpy AI](' +
+        '**What it does well:** research on local competitors. [LocalSpy AI](' +
           LOCALSPY +
-          ') finds nearby competitors through Google Maps and scans their ads, reviews and prices. Its AI Phone Caller rings a rival as a potential customer, records the call and grades it.',
+          ') finds nearby competitors through Google Maps and scans their ads, reviews and prices. Its AI Phone Caller rings a competitor as a potential customer, records the call and grades it.',
         '**Price as listed:** Starter is free, with no calls. Pro is $29 a month and Agency $79. A call costs 2 credits and a mystery shopper report 3, with packs from $29 for 8 credits.',
-        '**Where it stops:** its pages don’t say how many calls each plan includes. It tests rivals and leaves your own channels untested.',
+        '**Where it stops:** its pages don’t say how many calls each plan includes. It tests competitors and leaves your own channels untested.',
         '**Best for:** local businesses sizing up nearby competitors by phone.',
       ],
     },
@@ -368,7 +368,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [S-PRO’s suite](' +
           SPRO +
-          ') sends persona agents across many channels, from search and reviews to the website, email, chat, phone and adviser booking. It returns transcripts, screenshots and timestamps, sets rivals as benchmarks, and repeats runs on a schedule and after each release.',
+          ') sends persona agents across many channels, from search and reviews to the website, email, chat, phone and adviser booking. It returns transcripts, screenshots and timestamps, sets competitors as benchmarks, and repeats runs on a schedule and after each release.',
         '**Price as listed:** not listed. Buyers book a walkthrough.',
         '**Where it stops:** its first phase covers public surfaces. Onboarding and loyalty tests need connected internal systems.',
         '**Best for:** large CX programmes in banking, insurance or retail.',
@@ -442,7 +442,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-got', text: 'What a customer actually got' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Two of its October runs show what a customer got, and which group of tools can see each result.',
+      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Two of its October runs show what a customer got, and which group of tools can see each result.',
     },
 
     { kind: 'h3', id: 'october-pilot', text: 'A pilot for 4 agencies, every inbox watched for 48 hours' },
@@ -508,13 +508,13 @@ export const post: BlogPost = {
       items: [
         '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/recipes/mystery-shopper) gives each journey its own AI customer and inbox, and watches every inbox to the end of the wait.',
         '**Phone staff:** PressTwo SpotCheck for a listed monthly price, AdStack to have the programme run for you, Implement AI for multi-site gyms.',
-        '**Rivals’ sales and phone teams:** Dealer Driven Data for car dealers, LocalSpy AI for local businesses.',
+        '**Competitors’ sales and phone teams:** Dealer Driven Data for car dealers, LocalSpy AI for local businesses.',
         '**How fast reps answer a new lead:** Qualified’s free test.',
         '**Your own AI agent before launch:** Cresta for Cresta customers, LivePerson Syntrix for enterprise contact centres, TokenSurf or UndercoverAgent for a public chatbot, MerchantGuard to vet another company’s agent.',
         '**Whether AI shopping agents can buy from your store:** Convertica for a free look, AI Store Shopper for a graded US report and weekly re-walks.',
         '**An alert when a Shopify checkout breaks:** Shoptest, or Checkout UX Analyst on a small budget.',
         '**A site or app before a release:** Gen.QA.',
-        '**Many channels with rival benchmarks, for a large programme:** S-PRO.',
+        '**Many channels with competitor benchmarks, for a large programme:** S-PRO.',
         '**A shop floor, a counter check or a real order:** a human panel, with T-ROC for multi-location retail, CustomerOptix from $45, and Intouch Insight for prices shown only to members.',
         '**One store, checked once:** by hand. A new email address for each journey, a sign-up, a left basket and a 48 hour wait cost nothing but staff time.',
       ],
@@ -546,9 +546,9 @@ export const post: BlogPost = {
           '1 or 2 stores, checked once',
         ],
         ['AdStack AI Secret Shopping', 'Scored test calls and a fix list, run for you', 'Not listed', 'Conversations only', 'Owners who want phone shops run for them'],
-        ['Dealer Driven Data', 'Shops rival dealers by text, email and phone, and logs their prices', '$499 a month\nFree 7 day shop', 'Car dealers only', 'Car dealers watching rivals’ quotes'],
+        ['Dealer Driven Data', 'Shops competitor dealers by text, email and phone, and logs their prices', '$499 a month\nFree 7 day shop', 'Car dealers only', 'Car dealers watching competitors’ quotes'],
         ['Implement AI', 'Scored enquiry calls to each location', 'Free diagnostic for gym operators\nFull report: not listed', 'Its pages describe gyms only', 'Multi-site gym operators'],
-        ['LocalSpy AI', 'Calls local rivals as a customer and grades the call', 'Starter: free, no calls\nPro: $29 a month\nAgency: $79 a month', 'Calls per plan not stated', 'Local businesses sizing up nearby rivals'],
+        ['LocalSpy AI', 'Calls local competitors as a customer and grades the call', 'Starter: free, no calls\nPro: $29 a month\nAgency: $79 a month', 'Calls per plan not stated', 'Local businesses sizing up nearby competitors'],
         ['PressTwo SpotCheck', 'Scored test calls with a coaching note per rep', '$149 a month for 100 calls\n3 days free', 'Phone calls only', 'Phone teams wanting a listed monthly price'],
         ['Qualified Test My Response Time', 'Times how fast reps answer a new lead', 'Free', 'Method and report not stated', 'Lead response time'],
         ['Cresta Synthetic Customers', 'Personas from your own conversations, ranked by traffic', 'Not listed', 'Starts from your conversation history on Cresta', 'Cresta customers testing AI agents'],
@@ -560,7 +560,7 @@ export const post: BlogPost = {
         ['Checkout UX Analyst (StoreSpark)', 'An AI first-time shopper scores checkout, with screenshots', '$5 or $15 a month', 'Shopify checkout, 1 or 10 analyses a month', 'Small Shopify stores'],
         ['Convertica AI Agent Checkout Test', 'Watch an AI agent try to buy, step by step', 'Free, 3 runs a day', 'Ends at checkout, a login page or a CAPTCHA', 'A quick free look'],
         ['Gen.QA', 'Generated personas test a site or app, with a fix per finding', 'Free plan\nPaid: not listed', 'Nothing on inboxes', 'Product teams before a release'],
-        ['S-PRO Mystery Shopper AI Suite', 'Persona agents across many channels, with rival benchmarks', 'Not listed', 'First phase covers public surfaces', 'Large banking, insurance and retail programmes'],
+        ['S-PRO Mystery Shopper AI Suite', 'Persona agents across many channels, with competitor benchmarks', 'Not listed', 'First phase covers public surfaces', 'Large banking, insurance and retail programmes'],
         ['Shoptest', 'Scheduled cart and checkout journeys, with alerts', '$99, $249 or $499 a month\n30 days free', 'Shopify only, stops before payment', 'Alerts when a Shopify checkout breaks'],
         ['CustomerOptix (IntelliShop)', 'Human shoppers visit, call or check a website', 'From $45', 'North America', 'A low-priced human shop'],
         ['Intouch Insight', 'Human shoppers across websites and apps', 'Quoted for each programme', 'No published prices for online shops', 'Real purchases and members’ prices'],
@@ -597,7 +597,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do AI mystery shopping tools say they are AI?',
-          a: 'Some do. AI Store Shopper publishes the name its agent uses when it visits a store, and Convertica’s browser identifies itself as Convertica’s audit. AdStack leaves it to the buyer whether staff are told, and the other AI tools’ pages don’t say. Where a test reaches a rival’s staff, as Dealer Driven Data’s and LocalSpy AI’s calls do, take advice on disclosure where your company operates.',
+          a: 'Some do. AI Store Shopper publishes the name its agent uses when it visits a store, and Convertica’s browser identifies itself as Convertica’s audit. AdStack leaves it to the buyer whether staff are told, and the other AI tools’ pages don’t say. Where a test reaches a competitor’s staff, as Dealer Driven Data’s and LocalSpy AI’s calls do, take advice on disclosure where your company operates.',
         },
         {
           q: 'Can AI mystery shopping tools test the emails a store sends?',

@@ -38,7 +38,7 @@ export const post: BlogPost = {
   metaTitle: 'AI customers: what they are and how they differ from bots',
   description:
     'AI customers are AI agents that become real customers of a company and keep what it sends as evidence. What they see, the rules, and how they differ.',
-  answer: `${AI_CUSTOMER.definition} It is a customer of the company and works for whoever sent it, the opposite of an AI customer service agent, which works for the company and answers its customers. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.`,
+  answer: `${AI_CUSTOMER.definition} It is a customer of the company and works for whoever sent it, the opposite of an AI customer service agent, which works for the company and answers its customers. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.`,
   primaryKeyword: 'ai customers',
   keywords: [
     'what are ai customers',
@@ -105,7 +105,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'The term says where the agent stands and who it works for. It is a customer of the company, and it works for whoever sent it: a brand watching its rivals, an agency checking a client’s store, a sales team researching a prospect, or a company testing its own checkout and support bot.',
+      text: 'The term says where the agent stands and who it works for. It is a customer of the company, and it works for whoever sent it: a brand watching its competitors, an agency checking a client’s store, a sales team researching a prospect, or a company testing its own checkout and support bot.',
     },
     { kind: 'h3', id: 'identity', text: 'A real identity' },
     {
@@ -157,7 +157,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Rivals and the market.** Every email, text, offer, price and ad a competitor sends its customers, on 1 timeline.',
+        '**Competitors and the market.** Every email, text, offer, price and ad a competitor sends its customers, on 1 timeline.',
         '**Your own company.** Your ads’ landing pages, sign up forms, checkout, codes, delivery messages and support bot, checked the way your customers meet them, every week and after every change.',
         '**Partners and AI assistants.** The deals and affiliate sites showing your codes, and what ChatGPT and other assistants tell people about you.',
       ],
@@ -228,7 +228,7 @@ export const post: BlogPost = {
         '**It never gets round a CAPTCHA or a bot wall,** and never disguises itself to pass one. The report names the step it couldn’t test. Standards for AI agents to identify themselves to websites, such as [Cloudflare’s Web Bot Auth](' +
           BOT_AUTH +
           '), point the same way.',
-        '**It never clicks a rival’s paid ads at volume.** [Google’s Ads policy](' +
+        '**It never clicks a competitor’s paid ads at volume.** [Google’s Ads policy](' +
           INVALID_CLICKS +
           ') counts clicks from automated tools as invalid traffic.',
         '**It keeps every piece of evidence exactly as it arrived.**',
@@ -239,7 +239,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Marketing teams** see every rival’s emails, texts, offers and prices the day they land ([Competitor tracking](/recipes/competitor-tracking)).',
+        '**Marketing teams** see every competitor’s emails, texts, offers and prices the day they land ([Competitor tracking](/recipes/competitor-tracking)).',
         '**Sales teams** open each call on what the prospect does to its own customers ([Prospect intelligence](/recipes/prospect-intelligence)).',
         '**Agencies** bring a finding to every pitch and check every client’s store weekly ([Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies)).',
         '**Store and CX teams** shop their own journeys after every change ([Mystery shopper](/recipes/mystery-shopper)).',
@@ -253,7 +253,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof.',
+      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
       to: '/',
       label: 'Meet your first AI customers',
     },

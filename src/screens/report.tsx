@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function ReportScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-report"><div className="appx-fit"><div className="appx" role="img" aria-label="A monthly email and SMS report for the Candles client, in the agency’s brand, gathered by an Obsession AI customer through public sign ups only: the counts fill in and 3 rivals’ message bars run 4 times longer than the client’s. The agency sends it, and the button reads Sent, in your brand. Candles sent 12 messages. Rival A sent 52. Sent to Candles, signed, in your brand.">
+    <div className="il appx-il app-report"><div className="appx-fit"><div className="appx" role="img" aria-label="A monthly email and SMS report for the Candles client, in the agency’s brand, gathered by an Obsession AI customer through public sign ups only: the counts fill in and 3 competitors’ message bars run 4 times longer than the client’s. The agency sends it, and the button reads Sent, in your brand. Candles sent 12 messages. Competitor A sent 52. Sent to Candles, signed, in your brand.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Records<span>/</span>Email and SMS tracking</span>
@@ -38,20 +38,20 @@ export function ReportScreen({ workspace = 'agency' }: ScreenProps) {
             <div className="apr-brand"><i>Y</i><span>{ws.org}</span><span className="apr-date">October 2026</span></div>
             <div className="apr-kpis">
               <div className="apr-kpi"><b className="apr-cnt" style={{ '--apr-n': '160', '--d': '.35s' }} /><span className="ax-k">Messages captured</span></div>
-              <div className="apr-kpi"><b className="apr-cnt" style={{ '--apr-n': '11', '--d': '.45s' }} /><span className="ax-k">Rival offers logged</span></div>
-              <div className="apr-kpi"><b className="apr-cnt apr-pct" style={{ '--apr-n': '20', '--d': '.55s' }} /><span className="ax-k">Biggest rival discount</span></div>
+              <div className="apr-kpi"><b className="apr-cnt" style={{ '--apr-n': '11', '--d': '.45s' }} /><span className="ax-k">Competitor offers logged</span></div>
+              <div className="apr-kpi"><b className="apr-cnt apr-pct" style={{ '--apr-n': '20', '--d': '.55s' }} /><span className="ax-k">Biggest competitor discount</span></div>
             </div>
             <section className="apr-chart">
               <div className="apr-ch"><b>Messages sent</b><span className="apr-key"><i />Message<i className="o" />Offer</span></div>
               <div className="apr-rows">
                 <div className="apr-row me" style={{ '--r': '0' }}><span className="apr-nm">You</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '12' }} /></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '12' }} /></div>
-                <div className="apr-row" style={{ '--r': '1' }}><span className="apr-nm">Rival A</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '52' }}><i style={{ '--i': '9' }} /><i style={{ '--i': '27' }} /><i style={{ '--i': '44' }} /></span></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '52' }} /></div>
-                <div className="apr-row" style={{ '--r': '2' }}><span className="apr-nm">Rival B</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '49' }}><i style={{ '--i': '4' }} /><i style={{ '--i': '13' }} /><i style={{ '--i': '22' }} /><i style={{ '--i': '33' }} /><i style={{ '--i': '45' }} /></span></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '49' }} /></div>
-                <div className="apr-row" style={{ '--r': '3' }}><span className="apr-nm">Rival C</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '47' }}><i style={{ '--i': '16' }} /><i style={{ '--i': '31' }} /><i style={{ '--i': '40' }} /></span></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '47' }} /></div>
+                <div className="apr-row" style={{ '--r': '1' }}><span className="apr-nm">Competitor A</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '52' }}><i style={{ '--i': '9' }} /><i style={{ '--i': '27' }} /><i style={{ '--i': '44' }} /></span></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '52' }} /></div>
+                <div className="apr-row" style={{ '--r': '2' }}><span className="apr-nm">Competitor B</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '49' }}><i style={{ '--i': '4' }} /><i style={{ '--i': '13' }} /><i style={{ '--i': '22' }} /><i style={{ '--i': '33' }} /><i style={{ '--i': '45' }} /></span></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '49' }} /></div>
+                <div className="apr-row" style={{ '--r': '3' }}><span className="apr-nm">Competitor C</span><span className="apr-trk"><span className="apr-bar" style={{ '--n': '47' }}><i style={{ '--i': '16' }} /><i style={{ '--i': '31' }} /><i style={{ '--i': '40' }} /></span></span><b className="apr-cnt apr-ct" style={{ '--apr-n': '47' }} /></div>
               </div>
             </section>
             <footer className="apr-read">
-              <p className="apr-ins">Rivals sent 4 times your messages.</p>
+              <p className="apr-ins">Competitors sent 4 times your messages.</p>
               <p className="apr-sign"><span>Signed</span>ed25519 · 7f3a 91c2 … c91e</p>
             </footer>
           </article>

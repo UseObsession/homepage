@@ -47,7 +47,7 @@ export function ApproveScreen({ workspace = 'agency' }: ScreenProps) {
               </li>
               <li className="ax-in" style={{ '--d': '.16s' }}>
                 <svg className="sig st-needs" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg>
-                <div><p className="apx-t">Rival B −£5, ships free</p><p className="apx-m">Candles · Price watch</p></div>
+                <div><p className="apx-t">Competitor B −£5, ships free</p><p className="apx-m">Candles · Price watch</p></div>
               </li>
               <li className="ax-in" style={{ '--d': '.22s' }}>
                 <svg className="sig st-needs" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg>

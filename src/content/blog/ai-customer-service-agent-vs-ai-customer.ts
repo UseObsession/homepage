@@ -91,7 +91,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer service agent is deployed by a company to answer the people who buy from it. An AI customer is hired by a company, or a team inside one, to be a customer: of its own business, to see what its customers get, or of a rival, a prospect or a partner. The full definition is in [what AI customers are](/blog/ai-customers).',
+      text: 'An AI customer service agent is deployed by a company to answer the people who buy from it. An AI customer is hired by a company, or a team inside one, to be a customer: of its own business, to see what its customers get, or of a competitor, a prospect or a partner. The full definition is in [what AI customers are](/blog/ai-customers).',
     },
 
     { kind: 'h2', id: 'difference', text: 'The difference, line by line' },
@@ -101,7 +101,7 @@ export const post: BlogPost = {
       cols: ['Compared on', 'AI customer service agent', 'AI customer'],
       rows: [
         ['Works for', 'The company that deploys it', 'Your company, or a team in it'],
-        ['Faces', 'That company’s customers', 'A company you name: yours, a rival, a prospect'],
+        ['Faces', 'That company’s customers', 'A company you name: yours, a competitor, a prospect'],
         ['Starts when', 'A customer writes or calls', 'Your team names a company'],
         ['Lasts', 'One conversation', 'Months, asleep between events'],
         ['Lives in', 'The company’s site, app and help desk', 'Its own inbox, phone number and browser'],
@@ -251,7 +251,7 @@ export const post: BlogPost = {
       rows: [
         ['CX and support', 'Resolutions, handle time, deflection', 'Whether answers match policy, daily and after updates'],
         ['Ecommerce', 'Chats about orders', 'Whether the welcome, reminder and code arrive as promised'],
-        ['Marketing', 'Not covered', 'Every rival’s emails, offers and prices as a customer gets them'],
+        ['Marketing', 'Not covered', 'Every competitor’s emails, offers and prices as a customer gets them'],
         ['Sales', 'Not covered', 'How each prospect treats its own customers before the call'],
         ['Agencies', 'Only what clients share', 'Every client’s journeys, checked as a customer, with evidence'],
         ['Developers', 'Their own agent’s traces', 'Customer-side facts as a tool for their own agent'],
@@ -267,9 +267,9 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**To answer your customers faster, at any hour:** an AI customer service agent.',
-        '**To see what customers receive, from your company or from a rival:** use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
+        '**To see what customers receive, from your company or from a competitor:** use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
         '**If you run a service agent:** both. The service agent answers; AI customers check what it tells people, every day and after every update.',
-        '**If you run no AI agent and watch 1 or 2 rivals:** a monthly check by hand covers it, and AI customers earn their place as the list or the pace grows.',
+        '**If you run no AI agent and watch 1 or 2 competitors:** a monthly check by hand covers it, and AI customers earn their place as the list or the pace grows.',
       ],
     },
 
@@ -277,7 +277,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A service agent sees the conversations that reach it.** The welcome email that never arrived, the code refused at checkout and every rival sit outside its view.',
+        '**A service agent sees the conversations that reach it.** The welcome email that never arrived, the code refused at checkout and every competitor sit outside its view.',
         '**An AI customer sees what any customer sees.** Why the company sent something sits inside the company’s own systems, and a bot wall or a CAPTCHA stops it, with the step it couldn’t test named in the report.',
         '**Neither replaces the other.** One answers for the company; the other watches it as a customer.',
       ],

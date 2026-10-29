@@ -182,7 +182,7 @@ export const post: BlogPost = {
           ATLAS_QA +
           ') browses a test’s preview as a shopper would, across 9 finding categories from test setup to checkout. None of the 9 names emails, so a variant that stops sending its code can still count every sign up in the test’s results.',
         '**What a prospect’s customers get.** Recordings and testing tools run only on a site that installs them, so before a pitch an agency sees a prospect’s ads and pages and nothing after the sign up.',
-        '**What a rival offers after its ad.** Ad libraries and Foreplay hold the ad. A rival’s welcome code and first emails reach its subscribers, and email archives such as Panoramata hold them for the brands they collect.',
+        '**What a competitor offers after its ad.** Ad libraries and Foreplay hold the ad. A competitor’s welcome code and first emails reach its subscribers, and email archives such as Panoramata hold them for the brands they collect.',
       ],
     },
     {
@@ -298,7 +298,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'Working for an agency, each AI customer becomes a customer of 1 client, prospect or rival, and the agency reads what it found. The stretch after the click comes down to 5 jobs.',
+      text: 'Working for an agency, each AI customer becomes a customer of 1 client, prospect or competitor, and the agency reads what it found. The stretch after the click comes down to 5 jobs.',
     },
     {
       kind: 'list',
@@ -312,14 +312,14 @@ export const post: BlogPost = {
         '**Each prospect before the pitch** ([Prospect intelligence](/recipes/prospect-intelligence)). The check: become a customer of each brand on the pipeline list, from the page behind its live ad. A pass: each step works as the brand promises, and every fail becomes a finding with its evidence. That week: the 3 strongest findings open the pitch, as [how to find ecommerce clients](' +
           FIND_CLIENTS +
           ') describes.',
-        '**Rivals’ offers past the ad** ([Ad tracking](/recipes/ad-tracking)). The check: read the ads a client’s rivals run in public each morning, open each page and sign up where an ad offers a code. A pass: no rival undercuts the client’s offer. That week: the creative strategist briefs against the rival’s real offer ([ecommerce competitive intelligence](' +
+        '**Competitors’ offers past the ad** ([Ad tracking](/recipes/ad-tracking)). The check: read the ads a client’s competitors run in public each morning, open each page and sign up where an ad offers a code. A pass: no competitor undercuts the client’s offer. That week: the creative strategist briefs against the competitor’s real offer ([ecommerce competitive intelligence](' +
           COMPETITIVE +
           ') compares other sources).',
       ],
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their rivals and prospect with proof. Its AI customers follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
+      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. Its AI customers follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes for agencies in 2026 and 2027' },
@@ -389,10 +389,10 @@ export const post: BlogPost = {
         ],
         [
           'Ad research: [Foreplay](' + FOREPLAY_PRICING + '), [Panoramata](' + PANORAMATA + ')',
-          'Rivals’ ads saved and tracked, plus emails, SMS and landing pages at Panoramata',
+          'Competitors’ ads saved and tracked, plus emails, SMS and landing pages at Panoramata',
           'Foreplay: $59, $175 or $459 a month\nPanoramata: $99, $179 or $399 a month',
-          'Foreplay: the ad itself\nPanoramata Startup: 20 rivals, 6 months',
-          'Creative research and rival boards',
+          'Foreplay: the ad itself\nPanoramata Startup: 20 competitors, 6 months',
+          'Creative research and competitor boards',
         ],
         [
           'Testing QA: [Intelligems](' + INTELLIGEMS + ') Atlas QA',
@@ -436,7 +436,7 @@ export const post: BlogPost = {
         '**A creative only studio** that never touches the client’s pages or store.',
         '**Accounts that rarely change,** with a few evergreen ads and no pop up offer. A morning pass by hand covers them.',
         '**Uptime of a client’s own pages around the clock.** Synthetic monitoring alerts within minutes when a scripted path fails.',
-        '**A client that won’t agree to checks of its store.** The agency then checks only prospects and rivals, through the public sign up.',
+        '**A client that won’t agree to checks of its store.** The agency then checks only prospects and competitors, through the public sign up.',
       ],
     },
 
@@ -481,7 +481,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What AI tools help a digital marketing agency?',
-          a: 'AI already runs inside many agency tools: Google’s AI Max chooses landing pages, Clarity summarises recordings and Atlas QA browses test previews. AI customers add the customer’s side of each client, prospect and rival.',
+          a: 'AI already runs inside many agency tools: Google’s AI Max chooses landing pages, Clarity summarises recordings and Atlas QA browses test previews. AI customers add the customer’s side of each client, prospect and competitor.',
         },
         {
           q: 'Do AI customers click a client’s ads?',

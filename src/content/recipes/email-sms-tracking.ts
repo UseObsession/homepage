@@ -18,7 +18,7 @@ export const recipe: Recipe = {
   name: 'Email and SMS tracking',
   group: 'Watch other companies',
   line: 'Subscribes to every brand on your list and sets their emails and texts side by side: who sends most, and who discounts first.',
-  gets: 'Every email and text each rival sends, on 1 timeline, with the welcome series mapped.',
+  gets: 'Every email and text each competitor sends, on 1 timeline, with the welcome series mapped.',
   kit: [
     'An AI customer per brand',
     'Its own inbox',
@@ -30,11 +30,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/email-sms-tracking',
-    title: 'Email and SMS tracking: AI customers on every rival’s list',
+    title: 'Email and SMS tracking: AI customers on competitors’ lists',
     description:
-      'An AI customer subscribes to each rival’s emails and texts and logs every message, offer and code on 1 timeline, continuously, each with its proof.',
+      'An AI customer subscribes to each competitor’s emails and texts and logs every message, offer and code on 1 timeline, continuously, each with its proof.',
     answer:
-      'Email and SMS tracking subscribes an AI agent to each rival’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
+      'Email and SMS tracking subscribes an AI agent to each competitor’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     ogImage: '/og/email-sms-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,8 +44,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that join every rival’s emails and texts and log every offer.',
-    sub: 'Email and SMS tracking subscribes an AI agent to each rival’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
+    headline: 'AI agents that join every competitor’s emails and texts and log every offer.',
+    sub: 'Email and SMS tracking subscribes an AI agent to each competitor’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     screen: 'inbox',
     capture: {
       kind: 'waitlist',
@@ -56,22 +56,22 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 3 rivals, 30 days',
+    tab: 'Example: 3 competitors, 30 days',
     recipe: 'email-sms',
-    task: 'Subscribe to our 3 rivals’ emails and texts. Log every message and flag every new offer.',
-    targets: 'rival-a.example, rival-b.example, rival-c.example',
+    task: 'Subscribe to our 3 competitors’ emails and texts. Log every message and flag every new offer.',
+    targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
     journey: ['Sign up to emails', 'Opt in to texts', 'Log every message', 'Flag every new offer'],
     schedule: 'Continuously, digest Mondays at 08:00',
     report: 'Slack alerts, weekly digest',
     kit: ['Agent ID', '3 inboxes', '3 texting numbers', 'Every message kept as it arrived'],
     events: [
-      { time: 'Thu 08:30', text: 'Rival A email: “The autumn edit is here”, no offer.' },
-      { time: 'Thu 10:00', text: 'Rival B text: last day for 20% off everything.' },
-      { time: 'Thu 12:30', text: 'Rival C email: free delivery, all week.' },
-      { time: 'Thu 19:02', text: 'Rival B email: “Ends tonight”, its 2nd 20% reminder in 24 hours.' },
-      { time: 'Fri 09:14', text: 'Rival B text: the 20% is gone. Now a free gift over £40, this weekend only.' },
+      { time: 'Thu 08:30', text: 'Competitor A email: “The autumn edit is here”, no offer.' },
+      { time: 'Thu 10:00', text: 'Competitor B text: last day for 20% off everything.' },
+      { time: 'Thu 12:30', text: 'Competitor C email: free delivery, all week.' },
+      { time: 'Thu 19:02', text: 'Competitor B email: “Ends tonight”, its 2nd 20% reminder in 24 hours.' },
+      { time: 'Fri 09:14', text: 'Competitor B text: the 20% is gone. Now a free gift over £40, this weekend only.' },
     ],
-    finding: 'Rival B swapped 20% off for a free gift over £40 the morning after its sale ended.',
+    finding: 'Competitor B swapped 20% off for a free gift over £40 the morning after its sale ended.',
     fix: 'A weekend email for your list that answers it, drafted for your OK.',
     ledger: 'Example run. Every message kept as it arrived, dated and signed.',
   },
@@ -79,7 +79,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add the brands',
-      line: 'Your rivals, a whole category, or a list of accounts. Paste them, upload a CSV, connect Clay or use the API.',
+      line: 'Your competitors, a whole category, or a list of accounts. Paste them, upload a CSV, connect Clay or use the API.',
     },
     {
       title: 'An agent subscribes to each',
@@ -91,7 +91,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'You get what changed',
-      line: 'An alert when a rival starts a new offer, and a weekly digest of everything sent.',
+      line: 'An alert when a competitor starts a new offer, and a weekly digest of everything sent.',
     },
   ],
 
@@ -123,18 +123,18 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every rival message on 1 timeline the minute it lands, and every new offer in Slack.',
+    heading: 'Every competitor message on 1 timeline the minute it lands, and every new offer in Slack.',
     items: [
-      { format: 'Slack alert', line: 'When a rival starts a new offer, with the message attached.' },
+      { format: 'Slack alert', line: 'When a competitor starts a new offer, with the message attached.' },
       { format: 'Timeline', line: 'Every email and text from every brand, in date order, each with its proof.' },
       { format: 'Weekly digest', line: 'What changed since last week, in a few lines. A quiet week stays quiet.' },
-      { format: 'PDF teardown', line: 'A rival’s welcome series and offers, mapped, in your name.' },
+      { format: 'PDF teardown', line: 'A competitor’s welcome series and offers, mapped, in your name.' },
       { format: 'Sheet, Clay or webhook', line: 'Each message as a row, a column or JSON.' },
     ],
   },
 
   settings: [
-    { k: 'Brands', v: 'Rivals, a whole category, or a list of accounts' },
+    { k: 'Brands', v: 'Competitors, a whole category, or a list of accounts' },
     { k: 'Channels', v: 'Email, texts or both' },
     { k: 'Country', v: 'Where each agent subscribes from' },
     { k: 'Alerts', v: 'New offers only, or every message' },
@@ -142,16 +142,16 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'marketing', line: 'Every offer your rivals send, the minute it lands.' },
-    { audience: 'agencies', line: 'A rival teardown for every client, in your name. A research service you sell.' },
-    { audience: 'founders', line: 'See what each rival sends a new customer in the first month.' },
+    { audience: 'marketing', line: 'Every offer your competitors send, the minute it lands.' },
+    { audience: 'agencies', line: 'A competitor teardown for every client, in your name. A research service you sell.' },
+    { audience: 'founders', line: 'See what each competitor sends a new customer in the first month.' },
     { audience: 'sales', line: 'Join every lost account’s list and know the day something changes.' },
   ],
 
   table: {
-    heading: 'In 30 days, Rival B sent 18 messages. Rival C sent 7.',
-    line: 'Example: 3 rivals, counted from the day the agent subscribed.',
-    cols: ['Rival A', 'Rival B', 'Rival C'],
+    heading: 'In 30 days, Competitor B sent 18 messages. Competitor C sent 7.',
+    line: 'Example: 3 competitors, counted from the day the agent subscribed.',
+    cols: ['Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Emails', values: ['9', '14', '6'] },
       { label: 'Texts', values: ['2', '4', '1'] },
@@ -166,14 +166,14 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
-        a: 'Email and SMS tracking subscribes an AI agent with its own inbox and texting number to each rival. It logs every welcome email, text, offer and code with its time and its receipt.',
+        a: 'Email and SMS tracking subscribes an AI agent with its own inbox and texting number to each competitor. It logs every welcome email, text, offer and code with its time and its receipt.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Email and SMS tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 rivals. The agents do the checking, and you read what changed.',
+        a: 'Email and SMS tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The agents do the checking, and you read what changed.',
       },
       {
-        q: 'Do rivals know it’s an AI agent?',
+        q: 'Do competitors know it’s an AI agent?',
         a: 'Signing up needs no conversation. When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
@@ -186,7 +186,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Email and SMS tracking follow our own emails and texts too?',
-        a: 'Yes. Email and SMS tracking joins your own list, or a client’s, so your messages sit next to every rival’s.',
+        a: 'Yes. Email and SMS tracking joins your own list, or a client’s, so your messages sit next to every competitor’s.',
       },
       {
         q: 'How many brands can Email and SMS tracking follow?',
@@ -196,8 +196,8 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'Get every rival’s emails and texts without signing up yourself.',
-    sub: 'Join the waitlist. Email and SMS tracking comes ready to run on the rivals you name.',
+    heading: 'Get every competitor’s emails and texts without signing up yourself.',
+    sub: 'Join the waitlist. Email and SMS tracking comes ready to run on the competitors you name.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-email-sms-tracking-final',

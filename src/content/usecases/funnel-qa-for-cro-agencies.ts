@@ -118,10 +118,10 @@ export const study: UseCaseStudy = {
               'Ferrow Coffee: the ad said 20% off, the pop up 15%. The welcome email came 7 hours later, and FERROW15 was rejected at checkout on a subscription.',
           },
           {
-            title: 'The prospect beside its rivals',
-            line: 'Name its rivals with the list. Each gets its own new customer, so the pitch shows the brand’s sign up next to theirs.',
+            title: 'The prospect beside its competitors',
+            line: 'Name its competitors with the list. Each gets its own new customer, so the pitch shows the brand’s sign up next to theirs.',
             example:
-              'Wednesday’s pitch prep: Ferrow’s first email came after 7 hours, and the 5 rivals named on Monday averaged 4 minutes. Of the 6, only Ferrow’s code fails on a subscription, and none shows its code on screen.',
+              'Wednesday’s pitch prep: Ferrow’s first email came after 7 hours, and the 5 competitors named on Monday averaged 4 minutes. Of the 6, only Ferrow’s code fails on a subscription, and none shows its code on screen.',
           },
         ],
       },

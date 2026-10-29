@@ -242,7 +242,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies) sets out the weekly routine across clients, their rivals and the agency’s prospects.',
+      text: '[Why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies) sets out the weekly routine across clients, their competitors and the agency’s prospects.',
     },
 
     { kind: 'h2', id: 'your-sum', text: 'Your sum: hours by hand against one client won' },
@@ -315,7 +315,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. This month it ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
+      text: 'An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. This month it ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
     },
     {
       kind: 'p',

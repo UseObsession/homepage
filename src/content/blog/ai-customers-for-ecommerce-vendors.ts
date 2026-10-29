@@ -114,7 +114,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Brands move between rivals, and the install counts show it. Store Leads’ figures, updated on 16 October 2026, show [Klaviyo on 587,883 ecommerce stores, up 24.0% in a year](' +
+      text: 'Brands move between competitors, and the install counts show it. Store Leads’ figures, updated on 16 October 2026, show [Klaviyo on 587,883 ecommerce stores, up 24.0% in a year](' +
         SL_KLAVIYO +
         '), while installs of [Omnisend fell 18.5%](' +
         SL_OMNISEND +
@@ -149,7 +149,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The sales week starts from a list. A store lead provider such as Store Leads or BuiltWith filters stores by platform, country, estimated sales and installed apps, often down to the stores running a rival’s tool. Revenue operations (RevOps) loads the export into Clay or the CRM, SDRs (sales development reps, who book first meetings) run the sequences, and account executives take the meetings. [The Bridge Group’s 2025 report](' +
+      text: 'The sales week starts from a list. A store lead provider such as Store Leads or BuiltWith filters stores by platform, country, estimated sales and installed apps, often down to the stores running a competitor’s tool. Revenue operations (RevOps) loads the export into Clay or the CRM, SDRs (sales development reps, who book first meetings) run the sequences, and account executives take the meetings. [The Bridge Group’s 2025 report](' +
         BRIDGE +
         ') puts the median monthly SDR quota at 10 meetings held, with 60% of reps reaching it, the lowest share in the study’s history.',
     },
@@ -183,7 +183,7 @@ export const post: BlogPost = {
         '**Where the store’s mail lands.** [Gmail’s sender guidelines](' +
           GMAIL_RULES +
           ') require every sender to keep spam rates below 0.3%, recommend below 0.10%, and warn that messages that aren’t authenticated “might be marked as spam or rejected”. Placement tests measure the email a sender sends to the test, so a deliverability vendor sees a prospect’s placement once the prospect runs one or grants access.',
-        '**A reason the store would answer.** Every vendor in a category can buy the same filter, such as stores running a rival’s app, so those stores hear the same reason to switch from several vendors. Omnisend’s page for brands on Klaviyo leads with price, “[Why pay more for the same emails?](' +
+        '**A reason the store would answer.** Every vendor in a category can buy the same filter, such as stores running a competitor’s app, so those stores hear the same reason to switch from several vendors. Omnisend’s page for brands on Klaviyo leads with price, “[Why pay more for the same emails?](' +
           OMNISEND_SWITCH +
           ')”, and [Modern Inbound’s 2026 guide for Shopify app developers](' +
           MODERN_INBOUND +
@@ -277,17 +277,17 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'Each store on the list and each customer account gets its own AI customer, through the sign up any customer can use. Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a vendor, it shows what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
+      text: 'Each store on the list and each customer account gets its own AI customer, through the sign up any customer can use. Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a vendor, it shows what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
     },
     { kind: 'h3', id: 'before-first-touch', text: '1. A fact for every store before the first touch' },
     {
       kind: 'p',
       text: '**The check:** a sign up, a text opt in and, where the product needs it, a basket left at every store in the next sequence, then 48 hours of waiting. **A pass:** a dated verdict for each store against the gap the product closes, such as no text within 24 hours of the opt in, with the email or text as evidence. **That week:** SDRs write to the stores with the gap, opening with a fact the store can check in its own inbox, and drop the rest from the sequence. [Prospect intelligence](/recipes/prospect-intelligence) becomes a customer of every prospect on a list and proves the gap a company fixes.',
     },
-    { kind: 'h3', id: 'rival-stores', text: '2. Stores on a rival’s platform, sorted by what they send' },
+    { kind: 'h3', id: 'competitor-stores', text: '2. Stores on a competitor’s platform, sorted by what they send' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on the list of each store running a rival’s email, SMS or loyalty tool, logging every email and text from the day it joins. **A pass:** each store’s sends dated, with how often it sends and what it offers. **That week:** RevOps sorts the territory by what stores do, the account executive brings a store’s own emails to discovery, and product marketing adds what a rival’s customers send to the battlecard. [Email and SMS tracking](/recipes/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side. Archives of brands’ past emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
+      text: '**The check:** an AI customer on the list of each store running a competitor’s email, SMS or loyalty tool, logging every email and text from the day it joins. **A pass:** each store’s sends dated, with how often it sends and what it offers. **That week:** RevOps sorts the territory by what stores do, the account executive brings a store’s own emails to discovery, and product marketing adds what a competitor’s customers send to the battlecard. [Email and SMS tracking](/recipes/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side. Archives of brands’ past emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
     },
     { kind: 'h3', id: 'placement', text: '3. Where a prospect’s mail lands' },
     {
@@ -343,7 +343,7 @@ export const post: BlogPost = {
       caption: 'Ways a sales team can qualify stores and open with a fact. Prices from each provider’s own page, 24 October 2026. Store Leads offers 15% off a yearly plan, and BuiltWith’s prices are its monthly plans',
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
-        ['Doing nothing', 'Costs no time', 'Free', 'Every rival writes to the same stores', 'Growth from App Store search alone'],
+        ['Doing nothing', 'Costs no time', 'Free', 'Every competitor writes to the same stores', 'Growth from App Store search alone'],
         [
           'By hand: a new address, a phone and a sheet',
           'Any store, with the rep’s judgement',
@@ -370,7 +370,7 @@ export const post: BlogPost = {
           'Brands’ emails, texts, flows and ads, with history',
           '$99, $179 or $399 a month, billed monthly',
           'Startup: 20 competitors and 6 months',
-          'Battlecards and rival research',
+          'Battlecards and competitor research',
         ],
         [
           'Inbox placement tests: [GlockApps](' + GLOCKAPPS + ')',
@@ -449,7 +449,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What drives Shopify app growth?',
-          a: 'A Shopify app marketing strategy usually combines App Store search and reviews, partners, and outbound to stores that fit, often those running a rival app. Modern Inbound’s 2026 guide calls a 4% to 8% cold email reply rate healthy for a Shopify app. A fact about the store’s own customers gives that outbound a reason the merchant can check.',
+          a: 'A Shopify app marketing strategy usually combines App Store search and reviews, partners, and outbound to stores that fit, often those running a competitor app. Modern Inbound’s 2026 guide calls a 4% to 8% cold email reply rate healthy for a Shopify app. A fact about the store’s own customers gives that outbound a reason the merchant can check.',
         },
         {
           q: 'What do email deliverability tools do?',

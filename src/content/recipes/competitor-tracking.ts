@@ -14,12 +14,12 @@ export const recipe: Recipe = {
   slug: 'competitor-tracking',
   name: 'Competitor tracking',
   group: 'Watch other companies',
-  line: 'Signs up to every rival and logs each email, text, offer, price change and public ad.',
-  gets: 'A timeline per rival, and a note of what changed, as often as you choose.',
+  line: 'Signs up to every competitor and logs each email, text, offer, price change and public ad.',
+  gets: 'A timeline per competitor, and a note of what changed, as often as you choose.',
   kit: [
-    'An AI customer per rival',
+    'An AI customer per competitor',
     'Its own inbox and phone number',
-    'An isolated browser for each rival',
+    'An isolated browser for each competitor',
     'Page and price checks on your schedule',
     'The ads they run in public, followed to each page',
     'Every step signed and dated',
@@ -27,11 +27,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/competitor-tracking',
-    title: 'Competitor tracking: see every rival as its customers do',
+    title: 'Competitor tracking: see competitors as their customers do',
     description:
-      'An AI customer signs up to each rival you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with proof.',
+      'An AI customer signs up to each competitor you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with proof.',
     answer:
-      'Competitor tracking signs an AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
+      'Competitor tracking signs an AI agent up to each competitor you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     ogImage: '/og/competitor-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,8 +41,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'Every email, text, ad and offer your rivals send, on 1 timeline.',
-    sub: 'Competitor tracking signs an AI agent up to each rival you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
+    headline: 'Every email, text, ad and offer your competitors send, on 1 timeline.',
+    sub: 'Competitor tracking signs an AI agent up to each competitor you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     screen: 'rivals',
     capture: {
       kind: 'waitlist',
@@ -53,10 +53,10 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: a skincare rival, week 1',
+    tab: 'Example: a skincare competitor, week 1',
     recipe: 'competitor',
-    task: 'Sign up to this rival’s emails and texts. Log every offer, price change and public ad, and send me what changed each Monday.',
-    targets: 'skincare-rival.example, a skincare store',
+    task: 'Sign up to this competitor’s emails and texts. Log every offer, price change and public ad, and send me what changed each Monday.',
+    targets: 'skincare-competitor.example, a skincare store',
     journey: ['Sign up from the pop up', 'Opt in to texts', 'Ask the site’s chat bot', 'Check pages, prices and ads daily'],
     schedule: 'Daily checks, a note every Monday',
     report: 'A Monday note by email, Slack when anything changes',
@@ -69,14 +69,14 @@ export const recipe: Recipe = {
       { time: 'Thu 08:15', text: 'Free delivery now starts at £35, down from £50.' },
       { time: 'Fri 11:40', text: '14 new public ads, 9 of them leading with the free gift.' },
     ],
-    finding: 'The rival is leading with a free gift over £40, by text and in 9 of its 14 new ads, and cut free delivery to £35.',
+    finding: 'The competitor is leading with a free gift over £40, by text and in 9 of its 14 new ads, and cut free delivery to £35.',
     fix: 'A matching offer drafted for your next email, with the 9 ads attached. It goes out only after your OK.',
     ledger: 'Example run. Week 1: 5 emails, 2 texts, 1 price change, 14 new ads, each kept raw, dated and signed.',
   },
 
   steps: [
     {
-      title: 'Add your rivals',
+      title: 'Add your competitors',
       line: 'Paste their web addresses, upload a CSV, connect Clay or use the API. Any company you name, with no directory to check first.',
     },
     {
@@ -135,7 +135,7 @@ export const recipe: Recipe = {
         },
         {
           title: 'Trial offers',
-          line: 'On software rivals, every email in a free trial and the offer at its end. If the agent talks to a rep, it says it’s an AI.',
+          line: 'On software competitors, every email in a free trial and the offer at its end. If the agent talks to a rep, it says it’s an AI.',
         },
       ],
     },
@@ -144,7 +144,7 @@ export const recipe: Recipe = {
   outputs: {
     heading: 'What changed this week, with the proof behind every line.',
     items: [
-      { format: 'A timeline per rival', line: 'Every email, text, ad and change in date order, each with its proof. As a page, a PDF or JSON.' },
+      { format: 'A timeline per competitor', line: 'Every email, text, ad and change in date order, each with its proof. As a page, a PDF or JSON.' },
       { format: 'The welcome series, mapped', line: 'Each step, the delay before it and the offer it carries, counted from the sign up.' },
       {
         format: 'A regular note',
@@ -154,13 +154,13 @@ export const recipe: Recipe = {
         format: 'Alerts',
         line: 'A batch of new ads, a price drop, a new code, a changed welcome offer or a flow that stops, by email, Slack or webhook.',
       },
-      { format: 'Side by side', line: 'How often each rival emails and texts, and which offers it repeats, counted from what arrived.' },
+      { format: 'Side by side', line: 'How often each competitor emails and texts, and which offers it repeats, counted from what arrived.' },
       { format: 'Exports', line: 'Every record as JSON or CSV, or straight into Clay, your CRM, a sheet or your own tools.' },
     ],
   },
 
   settings: [
-    { k: 'Rivals', v: 'Any companies you name, by web address' },
+    { k: 'Competitors', v: 'Any companies you name, by web address' },
     { k: 'Journeys', v: 'Email sign up, text opt in, a free trial, a basket, questions to the site’s chat bot' },
     { k: 'Channels', v: 'Email, texts, public ads, pages and prices' },
     { k: 'How often', v: 'Daily, weekly or monthly, set for each channel' },
@@ -170,18 +170,18 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'marketing', line: 'See what rivals send before a sale, and plan your own calendar around it.' },
+    { audience: 'marketing', line: 'See what competitors send before a sale, and plan your own calendar around it.' },
     {
       audience: 'agencies',
-      line: 'A rival report for every client, built on what rivals actually sent. A research service you sell.',
+      line: 'A competitor report for every client, built on what competitors actually sent. A research service you sell.',
     },
-    { audience: 'sales', line: 'Battlecards built from what a rival’s customers really receive.' },
-    { audience: 'founders', line: 'Answer every rival move the week it lands.' },
-    { audience: 'developers', line: 'Feed rivals’ messages and prices into your own product through the API.' },
+    { audience: 'sales', line: 'Battlecards built from what a competitor’s customers really receive.' },
+    { audience: 'founders', line: 'Answer every competitor move the week it lands.' },
+    { audience: 'developers', line: 'Feed competitors’ messages and prices into your own product through the API.' },
   ],
 
   table: {
-    heading: 'A new customer of this rival gets 5 emails and 2 texts in its first 7 days.',
+    heading: 'A new customer of this competitor gets 5 emails and 2 texts in its first 7 days.',
     line: 'Example. Every message is placed by the time since the agent signed up, so you see the sequence and its rhythm, not a pile of emails.',
     cols: ['Channel', 'What arrived'],
     rows: [
@@ -201,23 +201,23 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I keep track of competitors without checking 10 tabs a day?',
-        a: 'Add each rival to Competitor tracking once: it logs what changed on 1 timeline each day, emails, texts, offers, prices and public ads, so nobody has to open the tabs.',
+        a: 'Add each competitor to Competitor tracking once: it logs what changed on 1 timeline each day, emails, texts, offers, prices and public ads, so nobody has to open the tabs.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Competitor tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 rivals. The agents do the checking, and you read what changed.',
+        a: 'Competitor tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The agents do the checking, and you read what changed.',
       },
       {
         q: 'How is Competitor tracking different from a monitoring tool?',
-        a: 'Competitor tracking goes through each rival as a customer, where most tools read what it publishes: it signs up, gets the emails and texts, and sees the offers a new customer sees.',
+        a: 'Competitor tracking goes through each competitor as a customer, where most tools read what it publishes: it signs up, gets the emails and texts, and sees the offers a new customer sees.',
       },
       {
         q: 'Can you show their past emails?',
         a: 'From the day an Obsession agent first signed up there. If one already has, its history is there the moment you ask; if not, the record starts today. Every message is dated from a known sign up, for any company you name.',
       },
       {
-        q: 'Will the rival know?',
-        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named. If that changes what a rival sends, the record shows it.',
+        q: 'Will the competitor know?',
+        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named. If that changes what a competitor sends, the record shows it.',
       },
       {
         q: 'Does Competitor tracking talk to their staff?',
@@ -228,7 +228,7 @@ export const recipe: Recipe = {
         a: 'Yes, if you choose: Competitor tracking fills a basket and leaves it, and keeps every reminder that follows with its receipt. It never uses fake payment details.',
       },
       {
-        q: 'How many rivals can Competitor tracking follow?',
+        q: 'How many competitors can Competitor tracking follow?',
         a: 'Competitor tracking follows as many as you add. Each gets its own agent, inbox and number, and you can add one at any time.',
       },
       {
@@ -240,8 +240,8 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'See your rivals’ next offer the day it lands.',
-    sub: 'Join the waitlist. Competitor tracking comes ready to run on the rivals you name.',
+    heading: 'See your competitors’ next offer the day it lands.',
+    sub: 'Join the waitlist. Competitor tracking comes ready to run on the competitors you name.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-competitor-final',

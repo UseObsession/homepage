@@ -78,10 +78,10 @@ export const page: Page = {
 const ob = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
 // What the shared record already covers, and since when
-const known = await ob.lookup(['rival-a.example', 'rival-b.example'])
+const known = await ob.lookup(['competitor-a.example', 'competitor-b.example'])
 
 // Become a customer of the rest, or join agents already there
-await ob.becomeCustomer(['rival-c.example'], { how: 'trial', shared: true })
+await ob.becomeCustomer(['competitor-c.example'], { how: 'trial', shared: true })
 
 // Every new fact, pushed as it lands
 await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hooks/obsession' })
@@ -89,8 +89,8 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
 // Example: POST https://your-app.example/hooks/obsession
 {
   "event": "fact.created",
-  "company": "rival-c.example",
-  "sentence": "Rival C cut its Pro plan from $49 to $39 a month.",
+  "company": "competitor-c.example",
+  "sentence": "Competitor C cut its Pro plan from $49 to $39 a month.",
   "seen_at": "2026-10-14T09:12:31+01:00",
   "receipt": {
     "kind": "email",
@@ -107,10 +107,10 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
     heading: 'What developers build on it.',
     items: [
       {
-        tab: 'Rival tracking as a feature',
-        moment: 'Friday 15:00. A customer asks why your app missed a rival’s price rise.',
-        outcome: 'Ship rival tracking in your own product, with every change dated and its proof attached.',
-        line: 'Agents become a customer of every rival your users name, keep every email and text, and check their pricing pages daily. Each change posts to your app as JSON.',
+        tab: 'Competitor tracking as a feature',
+        moment: 'Friday 15:00. A customer asks why your app missed a competitor’s price rise.',
+        outcome: 'Ship competitor tracking in your own product, with every change dated and its proof attached.',
+        line: 'Agents become a customer of every competitor your users name, keep every email and text, and check their pricing pages daily. Each change posts to your app as JSON.',
         whyOnly: 'One AI customer per company, shared across every user who watches it, so the history is there on day one.',
         recipe: 'competitor',
         screen: 'rivals',

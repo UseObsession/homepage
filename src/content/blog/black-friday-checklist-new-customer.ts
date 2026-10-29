@@ -318,7 +318,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. To run the 12 tests on many stores every week, use Obsession.',
+      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. To run the 12 tests on many stores every week, use Obsession.',
     },
     {
       kind: 'cta',

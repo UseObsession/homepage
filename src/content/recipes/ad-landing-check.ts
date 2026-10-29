@@ -225,8 +225,8 @@ export const recipe: Recipe = {
         a: 'Ad landing check keeps checking the page. The morning the product is back in stock, it tells you, and the ad goes live again after your OK.',
       },
       {
-        q: 'Can Ad landing check follow a rival’s ads?',
-        a: 'That’s Obsession’s Ad tracking: it reads the ads your rivals run in public and follows each one to its page, price and code. Ad landing check works from the ad accounts you connect.',
+        q: 'Can Ad landing check follow a competitor’s ads?',
+        a: 'That’s Obsession’s Ad tracking: it reads the ads your competitors run in public and follows each one to its page, price and code. Ad landing check works from the ad accounts you connect.',
       },
       {
         q: 'What’s it worth?',

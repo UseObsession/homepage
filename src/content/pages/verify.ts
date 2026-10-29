@@ -346,8 +346,8 @@ export const page: Page = {
         a: 'Yes, with the vendor’s agreement: Obsession’s Vendor agent check runs the same cases on every vendor on your shortlist.',
       },
       {
-        q: 'Can you check a rival’s bot?',
-        a: 'Yes, as its customer: Competitor tracking asks a rival’s chat bot what any customer can ask, and keeps every answer exactly as it arrived.',
+        q: 'Can you check a competitor’s bot?',
+        a: 'Yes, as its customer: Competitor tracking asks a competitor’s chat bot what any customer can ask, and keeps every answer exactly as it arrived.',
       },
       {
         q: 'Does Obsession pay or place orders?',

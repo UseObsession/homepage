@@ -15,12 +15,12 @@ import type { BlogPost } from '../types'
 export const post: BlogPost = {
   slug: 'best-competitor-email-tracking-tools',
   title: 'The best competitor email and SMS tracking tools in 2026',
-  dek: '13 tools and the free method, sorted by where each one gets a rival’s messages and graded on what it can actually see. Every price checked on the vendor’s own site on 3 October 2026.',
+  dek: '13 tools and the free method, sorted by where each one gets a competitor’s messages and graded on what it can actually see. Every price checked on the vendor’s own site on 3 October 2026.',
   metaTitle: 'The best competitor email and SMS tracking tools in 2026',
   description:
     'Competitor email tracking tools compared on what each can see: campaigns, flows, texts, trials and STOP. 13 tools and the free method, prices checked.',
   answer:
-    'Competitor email and SMS tracking tools collect rivals’ messages in 3 ways: vendor archives, consumer panels and subscriber inboxes you control. Archives and panels show campaigns and common flows across thousands of brands; to see one specific journey, such as a B2B trial’s onboarding or what happens after you text STOP, you need a subscriber that lives it.',
+    'Competitor email and SMS tracking tools collect competitors’ messages in 3 ways: vendor archives, consumer panels and subscriber inboxes you control. Archives and panels show campaigns and common flows across thousands of brands; to see one specific journey, such as a B2B trial’s onboarding or what happens after you text STOP, you need a subscriber that lives it.',
   primaryKeyword: 'competitor email tracking',
   keywords: [
     'track competitor emails',
@@ -56,7 +56,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'how-to-track', text: 'How do you track a competitor’s emails and texts?' },
     {
       kind: 'p',
-      text: 'Every tool we found gets a rival’s messages in 1 of 3 ways, or a mix of them.',
+      text: 'Every tool we found gets a competitor’s messages in 1 of 3 ways, or a mix of them.',
     },
     {
       kind: 'list',
@@ -99,11 +99,11 @@ export const post: BlogPost = {
         ['Validity Engage and MailCharts', '1.2M+ campaigns; MailCharts signs up and triggers journeys', 'Ecommerce journeys', 'SMS examples', 'No', 'Through sales'],
         ['Axess Intelligence', 'Panel apps on opted in consumers’ phones', 'Onboarding, retention, win back', 'Yes, plus push and in app', 'No', 'Through a demo'],
         ['Bird Competitive Tracker', 'A permissioned panel and persona addresses (2020)', 'Welcome, cart recovery, reengagement', 'Not listed', 'No', 'Not published'],
-        ['Competitor Inbox', 'A tracking address per rival that you sign up with', 'Sequences you trigger', 'Not listed', 'Email journeys you start', '$15 to $249 a month'],
-        ['CompetitorTrack', 'A tracking address per rival that you sign up with', 'Sequences you trigger', 'Not listed', 'Email journeys you start', 'First competitor free; then $10 a competitor a month'],
+        ['Competitor Inbox', 'A tracking address per competitor that you sign up with', 'Sequences you trigger', 'Not listed', 'Email journeys you start', '$15 to $249 a month'],
+        ['CompetitorTrack', 'A tracking address per competitor that you sign up with', 'Sequences you trigger', 'Not listed', 'Email journeys you start', 'First competitor free; then $10 a competitor a month'],
         ['Do it yourself', 'Your own inboxes and phone number', 'What you trigger', 'Yes', 'Yes, by hand', 'Free, plus your time'],
         ['Newsletrix', 'A forwarding address you sign up with', 'Not listed', 'Not listed', 'Email journeys you start', 'Free plan; then $9 to $69 a month'],
-        ['Obsession (ours)', 'A declared AI agent per rival, with its own inbox and number', 'Welcome; never a rival’s basket', 'Yes, STOP included', 'Yes: trials that need no card, STOP', 'Not public; waitlist'],
+        ['Obsession (ours)', 'A declared AI agent per competitor, with its own inbox and number', 'Welcome; never a competitor’s basket', 'Yes, STOP included', 'Yes: trials that need no card, STOP', 'Not public; waitlist'],
         ['Owletter', 'Captures what the websites you name send', 'Not listed', 'Not listed', 'No', '$29, $49 or $99 a month'],
         ['SendView', 'Tracking addresses, several per brand if you want', 'Cart flow, on an address you trigger it with', 'Not listed', 'Email journeys you start', '$69, $99 or $169 a month'],
       ],
@@ -112,13 +112,13 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**A DTC lifecycle team after ideas and benchmarks:** an archive. BadRep if your category is in its catalogue and the budget is small; Panoramata if you want ads and texts in the same feed; Recart’s free library if texts are all you need.',
-        '**A retention agency reporting to several clients:** an archive for breadth, plus a tracking inbox on each client’s 3 closest rivals, so the monthly report shows dated sequences, not just screenshots.',
-        '**A large B2C brand that needs to know how rivals treat VIPs and lapsed customers:** a panel, the only kind of tool here that reads real customers’ inboxes.',
-        '**A B2B product marketer:** a subscriber you control. A rival’s trial emails only arrive for someone who starts the trial.',
+        '**A retention agency reporting to several clients:** an archive for breadth, plus a tracking inbox on each client’s 3 closest competitors, so the monthly report shows dated sequences, not just screenshots.',
+        '**A large B2C brand that needs to know how competitors treat VIPs and lapsed customers:** a panel, the only kind of tool here that reads real customers’ inboxes.',
+        '**A B2B product marketer:** a subscriber you control. A competitor’s trial emails only arrive for someone who starts the trial.',
       ],
     },
 
-    { kind: 'h2', id: 'archives', text: 'Which tools give you a library of rivals’ campaigns?' },
+    { kind: 'h2', id: 'archives', text: 'Which tools give you a library of competitors’ campaigns?' },
     {
       kind: 'p',
       text: 'Archives are the fastest way in: search a brand, see months or years of sends. You see what the vendor’s own addresses received, which is mostly campaigns plus whichever flows the vendor chose to trigger.',
@@ -130,7 +130,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Suits** a small team that wants to search by angle or offer across many brands. **Falls short** on texts, which it doesn’t list, and on any rival outside its catalogue.',
+      text: '**Suits** a small team that wants to search by angle or offer across many brands. **Falls short** on texts, which it doesn’t list, and on any competitor outside its catalogue.',
     },
     { kind: 'h3', id: 'milled', text: 'Milled' },
     {
@@ -140,7 +140,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'panoramata', text: 'Panoramata' },
     {
       kind: 'p',
-      text: 'Panoramata puts emails and ads in one place, and lists SMS, flows and landing pages among what it monitors. [Plans](https://www.panoramata.co/pricing) are $99 a month for 20 competitors and 6 months of history, $179 for unlimited access with library searches of texts and flows, and $399 for teams covering 10+ markets, which adds detection of CRM segments and A/B tests. Its pricing page puts coverage at 20,000+ brands. It adds a missing rival on request, and its [help pages](https://www.panoramata.co/help-faq/flows-access-collect) say it adds a missing flow on request too. It doesn’t say how it collects messages.',
+      text: 'Panoramata puts emails and ads in one place, and lists SMS, flows and landing pages among what it monitors. [Plans](https://www.panoramata.co/pricing) are $99 a month for 20 competitors and 6 months of history, $179 for unlimited access with library searches of texts and flows, and $399 for teams covering 10+ markets, which adds detection of CRM segments and A/B tests. Its pricing page puts coverage at 20,000+ brands. It adds a missing competitor on request, and its [help pages](https://www.panoramata.co/help-faq/flows-access-collect) say it adds a missing flow on request too. It doesn’t say how it collects messages.',
     },
     {
       kind: 'p',
@@ -169,7 +169,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'axess', text: 'Axess Intelligence' },
     {
       kind: 'p',
-      text: '[Axess](https://www.axessintelligence.com/), based in Cologne, captures email, SMS, push and in app messages through what it calls “privacy-compliant panel apps” on the phones of opted in consumers: 10M+ messages, 5,000+ brands, 50+ markets. Its sign up view compares brands on days 1, 2, 3 and 7 and flags gaps, and it offers to show how rivals treat VIPs against customers about to leave, which is a panel’s real edge. [Pricing](https://www.axessintelligence.com/pricing) is modular, through a demo.',
+      text: '[Axess](https://www.axessintelligence.com/), based in Cologne, captures email, SMS, push and in app messages through what it calls “privacy-compliant panel apps” on the phones of opted in consumers: 10M+ messages, 5,000+ brands, 50+ markets. Its sign up view compares brands on days 1, 2, 3 and 7 and flags gaps, and it offers to show how competitors treat VIPs against customers about to leave, which is a panel’s real edge. [Pricing](https://www.axessintelligence.com/pricing) is modular, through a demo.',
     },
     {
       kind: 'p',
@@ -178,23 +178,23 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'bird', text: 'Bird Competitive Tracker' },
     {
       kind: 'p',
-      text: 'Bird says its tracker follows [millions of domains across 250,000 brands](https://bird.com/en-us/products/email/competitive-tracker), including rivals’ welcome series, cart recovery and reengagement, plus their inbox placement. The [latest public account of its data we found](https://bird.com/en-us/blog/sparkposts-data-sources-explained), a 2020 SparkPost post on Bird’s blog, names a permissioned panel of people who share their commercial email and a persona network that subscribes with a fresh address for every list. No price is published. **Suits** a high volume sender who cares about rivals’ inbox placement as much as their content. **Falls short** on texts and on journeys you choose.',
+      text: 'Bird says its tracker follows [millions of domains across 250,000 brands](https://bird.com/en-us/products/email/competitive-tracker), including competitors’ welcome series, cart recovery and reengagement, plus their inbox placement. The [latest public account of its data we found](https://bird.com/en-us/blog/sparkposts-data-sources-explained), a 2020 SparkPost post on Bird’s blog, names a permissioned panel of people who share their commercial email and a persona network that subscribes with a fresh address for every list. No price is published. **Suits** a high volume sender who cares about competitors’ inbox placement as much as their content. **Falls short** on texts and on journeys you choose.',
     },
 
-    { kind: 'h2', id: 'tracking-inboxes', text: 'Which tools give each rival its own tracking address?' },
+    { kind: 'h2', id: 'tracking-inboxes', text: 'Which tools give each competitor its own tracking address?' },
     {
       kind: 'p',
-      text: 'These give each rival its own address and collect what arrives in a dashboard built for comparison, not your own inbox. With most, you sign up with the address yourself, so you control the moment and the path. Owletter says it captures what each website you name sends.',
+      text: 'These give each competitor its own address and collect what arrives in a dashboard built for comparison, not your own inbox. With most, you sign up with the address yourself, so you control the moment and the path. Owletter says it captures what each website you name sends.',
     },
     { kind: 'h3', id: 'competitor-inbox', text: 'Competitor Inbox' },
     {
       kind: 'p',
-      text: '[Competitor Inbox](https://competitorinbox.com/) gives each rival a unique tracking address and analyses what arrives: send patterns, subject lines, ESP switches, and each sender’s SPF, DKIM and DMARC. [Plans](https://competitorinbox.com/pricing) run from $15 a month for 1 competitor to $249 for 25. Email only.',
+      text: '[Competitor Inbox](https://competitorinbox.com/) gives each competitor a unique tracking address and analyses what arrives: send patterns, subject lines, ESP switches, and each sender’s SPF, DKIM and DMARC. [Plans](https://competitorinbox.com/pricing) run from $15 a month for 1 competitor to $249 for 25. Email only.',
     },
     { kind: 'h3', id: 'competitortrack', text: 'CompetitorTrack' },
     {
       kind: 'p',
-      text: '[CompetitorTrack](https://competitortrack.io/) gives each rival a tracking address you subscribe with, and keeps website, social and review changes beside the emails. [The first competitor is free](https://competitortrack.io/pricing), with a live 7 day window of history; after that it’s $10 a competitor a month with the full archive. Email only.',
+      text: '[CompetitorTrack](https://competitortrack.io/) gives each competitor a tracking address you subscribe with, and keeps website, social and review changes beside the emails. [The first competitor is free](https://competitortrack.io/pricing), with a live 7 day window of history; after that it’s $10 a competitor a month with the full archive. Email only.',
     },
     { kind: 'h3', id: 'newsletrix', text: 'Newsletrix' },
     {
@@ -213,7 +213,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**These suit** a team that knows its rivals and wants clean, timed sequences. **They fall short** on texts, on everything outside the inbox such as a trial’s in app prompts, and on history: the record starts when the address signs up, unless the vendor already holds that brand. Competitor Inbox says it keeps a growing archive you can search by date.',
+      text: '**These suit** a team that knows its competitors and wants clean, timed sequences. **They fall short** on texts, on everything outside the inbox such as a trial’s in app prompts, and on history: the record starts when the address signs up, unless the vendor already holds that brand. Competitor Inbox says it keeps a growing archive you can search by date.',
     },
 
     { kind: 'h2', id: 'what-they-miss', text: 'What do archives and panels miss?' },
@@ -234,7 +234,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**A journey you choose.** Archives and panels see the journeys their addresses or panellists happen to take. A software rival’s onboarding emails, its reminder before the trial ends and its last day discount only reach someone who starts the trial, and none of the archives or panels above say they start trials. PageCrawl, which sells page monitoring, says the same of its own kind of tool:',
+      text: '**A journey you choose.** Archives and panels see the journeys their addresses or panellists happen to take. A software competitor’s onboarding emails, its reminder before the trial ends and its last day discount only reach someone who starts the trial, and none of the archives or panels above say they start trials. PageCrawl, which sells page monitoring, says the same of its own kind of tool:',
     },
     {
       kind: 'quote',
@@ -244,7 +244,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Once a quarter is a long gap when the trial is where a rival tests its offer. For a software rival, the full view takes a subscriber you control who starts the trial. Read the trial’s terms first: a common clause in software contracts, [Salesforce’s among them](https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/Salesforce_MSA.pdf), bars access “for any other benchmarking or competitive purposes”.',
+      text: 'Once a quarter is a long gap when the trial is where a competitor tests its offer. For a software competitor, the full view takes a subscriber you control who starts the trial. Read the trial’s terms first: a common clause in software contracts, [Salesforce’s among them](https://www.salesforce.com/content/dam/web/en_us/www/documents/legal/Salesforce_MSA.pdf), bars access “for any other benchmarking or competitive purposes”.',
     },
     {
       kind: 'p',
@@ -269,65 +269,65 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'free', text: 'Can you track competitor emails for free?' },
     {
       kind: 'p',
-      text: 'Yes, for a few rivals, if you’ll trade time for money. Milled is free to search, BadRep’s vault is free to browse and Recart’s library of texts is free to search. CompetitorTrack tracks 1 competitor free, Newsletrix gives you 1 tracking address free, and Panoramata’s free sign up gives limited access. For timed sequences and texts across more rivals, you need a subscriber of your own. The usual advice is a burner Gmail and an abandoned cart ([Retainful’s 2026 guide](https://www.retainful.com/blog/checking-competitors-campaigns) is typical). A tracker that holds up for 3 rivals looks more like this:',
+      text: 'Yes, for a few competitors, if you’ll trade time for money. Milled is free to search, BadRep’s vault is free to browse and Recart’s library of texts is free to search. CompetitorTrack tracks 1 competitor free, Newsletrix gives you 1 tracking address free, and Panoramata’s free sign up gives limited access. For timed sequences and texts across more competitors, you need a subscriber of your own. The usual advice is a burner Gmail and an abandoned cart ([Retainful’s 2026 guide](https://www.retainful.com/blog/checking-competitors-campaigns) is typical). A tracker that holds up for 3 competitors looks more like this:',
     },
     {
       kind: 'list',
       ordered: true,
       items: [
-        '**1 inbox per rival.** Separate inboxes keep each brand’s timings clean. Sign up under your real name or a plain role name, never an invented persona: posing as someone you’re not is where research turns into a legal problem ([is it legal to mystery shop competitors?](/blog/is-it-legal-to-mystery-shop-competitors)).',
-        '**1 phone number for texts, in the rival’s country.** Each brand texts from its own sender, so 1 number can serve every rival.',
+        '**1 inbox per competitor.** Separate inboxes keep each brand’s timings clean. Sign up under your real name or a plain role name, never an invented persona: posing as someone you’re not is where research turns into a legal problem ([is it legal to mystery shop competitors?](/blog/is-it-legal-to-mystery-shop-competitors)).',
+        '**1 phone number for texts, in the competitor’s country.** Each brand texts from its own sender, so 1 number can serve every competitor.',
         '**Sign up from the main pop-up, and write down the minute.** Screenshot the offer. The time lets you say the welcome came 2 minutes later; the screenshot lets you say it offered 10% when the pop-up promised 15%.',
-        '**Pick 1 behaviour and keep it.** Flows can branch on whether you open or click, and some lists drop inactive addresses, which is why SendView offers automatic opens. Open everything or nothing, the same at every rival, or the comparison measures you.',
-        '**Log every message in a sheet:** rival, channel, received at, hours since sign up, subject or first line, offer, code, and where the link goes.',
+        '**Pick 1 behaviour and keep it.** Flows can branch on whether you open or click, and some lists drop inactive addresses, which is why SendView offers automatic opens. Open everything or nothing, the same at every competitor, or the comparison measures you.',
+        '**Log every message in a sheet:** competitor, channel, received at, hours since sign up, subject or first line, offer, code, and where the link goes.',
         '**End with STOP and unsubscribe, and keep logging.** A well run programme sends 1 confirmation, then nothing.',
       ],
     },
     {
       kind: 'p',
-      text: 'Say Rival B’s pop-up promised 15%, its welcome email 2 minutes later offered 10%, and day 3 brought 15% to anyone who hadn’t bought. That gap is the finding: Rival B pays its full discount only to people who wait, and your next welcome offer can answer it.',
+      text: 'Say Competitor B’s pop-up promised 15%, its welcome email 2 minutes later offered 10%, and day 3 brought 15% to anyone who hadn’t bought. That gap is the finding: Competitor B pays its full discount only to people who wait, and your next welcome offer can answer it.',
     },
     {
       kind: 'p',
-      text: '**After 30 days, a good log shows** each rival’s welcome series in hours from sign up, every offer next to the promise that earned the sign up, and a line per rival on what changed. **The usual mistakes:** 1 inbox for every brand, no sign up time, a personal Gmail that files rivals’ messages under Promotions or spam, and nobody opting out at the end.',
+      text: '**After 30 days, a good log shows** each competitor’s welcome series in hours from sign up, every offer next to the promise that earned the sign up, and a line per competitor on what changed. **The usual mistakes:** 1 inbox for every brand, no sign up time, a personal Gmail that files competitors’ messages under Promotions or spam, and nobody opting out at the end.',
     },
     {
       kind: 'p',
-      text: 'The cost is attention. Someone has to log every message for every rival, every day, and it’s the first job to slip when the team gets busy. That’s the case for paying for any tool in this review.',
+      text: 'The cost is attention. Someone has to log every message for every competitor, every day, and it’s the first job to slip when the team gets busy. That’s the case for paying for any tool in this review.',
     },
 
     { kind: 'h2', id: 'obsession', text: 'Obsession lives the journey you choose, as a declared subscriber' },
     {
       kind: 'p',
-      text: 'Obsession is ours. It’s a subscriber you control, run by a declared AI agent: 1 per rival, each with its own inbox, phone number and browser, joining through the public sign up any customer uses. It says it’s an AI agent, links to [a page explaining Obsession](/agents) and never names you. It never answers a message; the only text it sends is STOP, when the watch ends. You pick the journeys: the welcome series, the text club and a B2B trial that needs no card. Every message is kept as it arrived, dated and signed.',
+      text: 'Obsession is ours. It’s a subscriber you control, run by a declared AI agent: 1 per competitor, each with its own inbox, phone number and browser, joining through the public sign up any customer uses. It says it’s an AI agent, links to [a page explaining Obsession](/agents) and never names you. It never answers a message; the only text it sends is STOP, when the watch ends. You pick the journeys: the welcome series, the text club and a B2B trial that needs no card. Every message is kept as it arrived, dated and signed.',
     },
     {
       kind: 'screen',
       screen: 'inbox',
       workspace: 'company',
-      caption: 'Obsession, our product: 3 rivals’ emails and texts on 1 timeline over 30 days. Example data.',
+      caption: 'Obsession, our product: 3 competitors’ emails and texts on 1 timeline over 30 days. Example data.',
     },
     {
       kind: 'p',
-      text: 'It starts a rival’s trial as any new user would, logs every email, prompt and offer by trial day, and closes the trial the moment a rep writes or calls ([trial teardown](/recipes/trial-teardown)).',
+      text: 'It starts a competitor’s trial as any new user would, logs every email, prompt and offer by trial day, and closes the trial the moment a rep writes or calls ([trial teardown](/recipes/trial-teardown)).',
     },
     {
       kind: 'screen',
       screen: 'battlecard',
       workspace: 'company',
-      caption: 'Obsession, our product: 3 rivals’ 14 day trials that need no card, day by day. Rival B’s trial closed on day 6, when its rep wrote. Example data.',
+      caption: 'Obsession, our product: 3 competitors’ 14 day trials that need no card, day by day. Competitor B’s trial closed on day 6, when its rep wrote. Example data.',
     },
     {
       kind: 'p',
-      text: '**Where it falls short.** No back catalogue: the record starts when the agent signs up. Only the companies on your list, so it’s no use for browsing a category for ideas. It never fills a basket at a rival (our rule, not the law), so it can’t show a rival’s abandoned cart flow; archives and panels can. As a fresh subscriber it never sees what a rival sends its buyers. And it isn’t generally available: there’s a waitlist and no public price.',
+      text: '**Where it falls short.** No back catalogue: the record starts when the agent signs up. Only the companies on your list, so it’s no use for browsing a category for ideas. It never fills a basket at a competitor (our rule, not the law), so it can’t show a competitor’s abandoned cart flow; archives and panels can. As a fresh subscriber it never sees what a competitor sends its buyers. And it isn’t generally available: there’s a waitlist and no public price.',
     },
     {
       kind: 'p',
-      text: '**Suits** [agencies](/agencies) and B2B teams who need a dated record of a specific journey at named rivals, and [marketing teams](/marketing) who want texts and emails on 1 timeline. **Doesn’t suit** a team that wants ideas from thousands of brands or years of history. [Competitor tracking](/recipes/competitor-tracking) adds rivals’ prices, ads and pages to the same record, and agencies use the same outside-in view to [win clients with a free audit](/blog/free-audit-agency-clients).',
+      text: '**Suits** [agencies](/agencies) and B2B teams who need a dated record of a specific journey at named competitors, and [marketing teams](/marketing) who want texts and emails on 1 timeline. **Doesn’t suit** a team that wants ideas from thousands of brands or years of history. [Competitor tracking](/recipes/competitor-tracking) adds competitors’ prices, ads and pages to the same record, and agencies use the same outside-in view to [win clients with a free audit](/blog/free-audit-agency-clients).',
     },
     {
       kind: 'cta',
-      text: 'A declared AI subscriber on each rival’s list, every email and text on 1 timeline, continuously.',
+      text: 'A declared AI subscriber on each competitor’s list, every email and text on 1 timeline, continuously.',
       to: '/recipes/email-sms-tracking',
       label: 'The email and SMS tracking recipe',
     },
@@ -342,7 +342,7 @@ export const post: BlogPost = {
       text: 'We left out tools we couldn’t verify on their own sites in time: Competitors App, Hoppy Copy and Reyo. If you run any tool here and something is wrong or out of date, write to [seun@useobsession.com](mailto:seun@useobsession.com). We’ll correct it within 5 working days and note the change by the date at the top. We check every entry again each quarter.',
     },
 
-    { kind: 'h2', id: 'faq', text: 'Joining a rival’s list is generally lawful; seeing its flows and texts takes the right tool' },
+    { kind: 'h2', id: 'faq', text: 'Joining a competitor’s list is generally lawful; seeing its flows and texts takes the right tool' },
     {
       kind: 'faq',
       items: [
@@ -356,7 +356,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do I track competitor texts?',
-          a: 'Opt in to each rival’s text club with a number you control and log every message, or use a tool that lists SMS: Panoramata, Axess or MailCharts, or Recart’s free library of texts. Follow each short link and log the offer on the page it opens.',
+          a: 'Opt in to each competitor’s text club with a number you control and log every message, or use a tool that lists SMS: Panoramata, Axess or MailCharts, or Recart’s free library of texts. Follow each short link and log the offer on the page it opens.',
         },
         {
           q: 'What’s the difference between campaign and flow tracking?',
@@ -368,7 +368,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there a cheaper alternative to Panoramata?',
-          a: 'For email alone, BadRep is an archive at $19 a month, and CompetitorTrack (first competitor free, then $10 each a month), Competitor Inbox (from $15 a month) and Owletter (from $29 a month) are tracking inboxes. For texts, Recart’s campaign library is free to search. None of them lists rivals’ ads beside the emails, which is Panoramata’s draw. The grid above has each price as of 3 October 2026.',
+          a: 'For email alone, BadRep is an archive at $19 a month, and CompetitorTrack (first competitor free, then $10 each a month), Competitor Inbox (from $15 a month) and Owletter (from $29 a month) are tracking inboxes. For texts, Recart’s campaign library is free to search. None of them lists competitors’ ads beside the emails, which is Panoramata’s draw. The grid above has each price as of 3 October 2026.',
         },
       ],
     },

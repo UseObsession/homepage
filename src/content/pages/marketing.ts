@@ -13,11 +13,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/marketing',
-    title: 'AI customers for marketing: every rival’s emails and prices',
+    title: 'AI customers for marketing: competitors’ emails and prices',
     description:
-      'Obsession’s AI customers sign up to every rival and stay on, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
+      'Obsession’s AI customers sign up to every competitor and stay on, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
     answer:
-      'Obsession’s AI agents sign up to every rival on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
+      'Obsession’s AI agents sign up to every competitor on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,8 +27,8 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Every rival email, offer and price, seen as their customer.',
-    sub: 'Obsession’s AI agents sign up to every rival on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
+    headline: 'Every competitor email, offer and price, seen as their customer.',
+    sub: 'Obsession’s AI agents sign up to every competitor on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -39,23 +39,23 @@ export const page: Page = {
     proof: [],
     consoleHeading,
     /* The hero's object: the first use case's screen. */
-    screens: [{ tab: 'Rivals', screen: 'rivals', recipe: 'competitor', line: '' }],
+    screens: [{ tab: 'Competitors', screen: 'rivals', recipe: 'competitor', line: '' }],
   },
 
   gapPair: {
     heading: 'Your dashboards show what you sent. Only a customer sees what arrived.',
-    line: 'Rivals save their best offers for subscribers: the welcome code, the basket reminder, the text the morning after a sale ends. Keeping up by hand means a spare inbox, screenshots and a spreadsheet nobody updates.',
+    line: 'Competitors save their best offers for subscribers: the welcome code, the basket reminder, the text the morning after a sale ends. Keeping up by hand means a spare inbox, screenshots and a spreadsheet nobody updates.',
     tools: {
       label: 'What you can see today',
       items: [
-        'Rival ads in the Meta Ad Library',
+        'Competitor ads in the Meta Ad Library',
         'Their homepage and pricing page',
         'The newsletters someone remembered to forward',
         'Your own sends, opens and clicks',
       ],
     },
     customer: {
-      label: 'What a customer of each rival gets',
+      label: 'What a customer of each competitor gets',
       items: [
         'Every email and text the minute it lands, with its Gmail tab',
         'The welcome code and the basket reminder',
@@ -71,10 +71,10 @@ export const page: Page = {
     items: [
       {
         tab: 'Product marketing',
-        moment: 'Friday, 09:14. Rival B texts its subscribers a free gift over £40, the morning after its 20% off ended. Your team hears about it next week.',
-        outcome: 'Every rival’s emails, texts and offers on 1 timeline, the minute they land.',
-        line: 'An agent signs up to each rival with its own inbox and number, and keeps every message, offer and code, with the Gmail tab each email landed in.',
-        whyOnly: 'Texts and subscriber codes only reach subscribers. Agents subscribe at every rival on your list at once, and stay.',
+        moment: 'Friday, 09:14. Competitor B texts its subscribers a free gift over £40, the morning after its 20% off ended. Your team hears about it next week.',
+        outcome: 'Every competitor’s emails, texts and offers on 1 timeline, the minute they land.',
+        line: 'An agent signs up to each competitor with its own inbox and number, and keeps every message, offer and code, with the Gmail tab each email landed in.',
+        whyOnly: 'Texts and subscriber codes only reach subscribers. Agents subscribe at every competitor on your list at once, and stay.',
         recipe: 'email-sms',
         screen: 'inbox',
       },
@@ -89,7 +89,7 @@ export const page: Page = {
       },
       {
         tab: 'Brand and AI search',
-        moment: 'Monday, 09:00. A buyer asks an AI assistant for the best in your category. It names 3 rivals and says your Leeds branch has closed.',
+        moment: 'Monday, 09:00. A buyer asks an AI assistant for the best in your category. It names 3 competitors and says your Leeds branch has closed.',
         outcome: 'Every wrong fact AI assistants tell your buyers, traced to its source and asked again every Monday until the answer changes.',
         line: 'Agents ask the assistants your buyers use the same questions each week and trace each wrong answer to the page it cites.',
         whyOnly: 'A visibility score counts how often AI names you. An agent asks as a buyer would and keeps the answer word for word.',
@@ -121,7 +121,7 @@ export const page: Page = {
   /* The ask section (docs/positioning/ask-section.md), above the comparison: rivals' emails, prices and first week. */
   ask: {
     ...askShared,
-    areas: ['Rivals', 'Your own business', 'Any brand you name'],
+    areas: ['Competitors', 'Your own business', 'Any brand you name'],
     examples: [askExamples.blackFriday, askExamples.prices, askExamples.watch],
   },
   compare,
@@ -137,15 +137,15 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a marketing team?',
-        a: 'Obsession’s AI agents sign up to every rival on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
+        a: 'Obsession’s AI agents sign up to every competitor on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
       },
       {
         q: 'How is this different from Panoramata, MailCharts or Milled?',
         a: 'They keep what a brand sends to its list, for the brands they cover. Obsession becomes a customer of any company you name, follows the ad, the trial or the basket, and keeps each email with its Gmail tab and its signature checked.',
       },
       {
-        q: 'Do I have to sign up to rivals myself?',
-        a: 'No. Paste the list, or ask from your own AI agent. Each rival gets its own AI customer, with its own inbox and number, and nothing lands in yours.',
+        q: 'Do I have to sign up to competitors myself?',
+        a: 'No. Paste the list, or ask from your own AI agent. Each competitor gets its own AI customer, with its own inbox and number, and nothing lands in yours.',
       },
       {
         q: 'Where do I see what they find?',

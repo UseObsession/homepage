@@ -108,11 +108,11 @@ export const page: Page = {
   /* 4 kinds of company, 2 by 2, each beside its own screen: the headline names them (rivals, prospects, yourself), and
      your AI agents are the 4th. The recipe menus keep their 3 groups; these cards answer whose customer you can be. */
   targets: {
-    heading: 'Be a customer of anyone. Rivals, prospects, or yourself.',
+    heading: 'Be a customer of anyone. Competitors, prospects, or yourself.',
     line: 'Most watches start with other companies. The same agents follow your own ads and checkouts, and test your own AI agents.',
     items: [
       {
-        name: 'Rivals',
+        name: 'Competitors',
         line: 'Every email, text, offer, price and ad, the day it lands, seen as their customer.',
         screen: 'rivals',
         to: '/recipes',
@@ -221,7 +221,7 @@ export const page: Page = {
      ways in, which /developers keeps. */
   ask: {
     ...askShared,
-    areas: ['Rivals', 'Prospects', 'Clients', 'Your own business'],
+    areas: ['Competitors', 'Prospects', 'Clients', 'Your own business'],
     examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
   },
 
@@ -256,7 +256,7 @@ export const page: Page = {
         a: 'No. When an agent talks to a person, it says it’s an AI. Signing up, reading emails and following ads needs no conversation at all.',
       },
       {
-        q: 'Is it legal to be a rival’s customer?',
+        q: 'Is it legal to be a competitor’s customer?',
         a: 'Signing up to a newsletter, starting a trial or filling a basket is what any customer can do. Our agents do the same, say they’re AI when they talk to a person, and never use fake payment details.',
       },
       {

@@ -99,7 +99,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Usage', line: 'Logins, seats and the features an account stops using, week on week.' },
         { title: 'Tickets', line: 'Urgent and repeat tickets, and how long they stay open.' },
-        { title: 'Calls', line: 'Notes that name a rival, a budget cut or a new boss.' },
+        { title: 'Calls', line: 'Notes that name a competitor, a budget cut or a new boss.' },
       ],
     },
     {

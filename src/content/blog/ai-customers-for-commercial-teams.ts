@@ -40,7 +40,7 @@ export const post: BlogPost = {
   description:
     'AI agents for marketing teams, sales teams, agencies and CX: the questions only a customer can answer, the checks to run and what to do that week.',
   answer:
-    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer. AI customers sign up to a rival, a prospect, a client or the team’s own company and record what it sends and shows. Obsession’s AI customers show marketing its rivals’ offers, sales how a prospect treats its customers, agencies every client’s flows, and ecommerce and CX teams every journey and chatbot answer.',
+    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer. AI customers sign up to a competitor, a prospect, a client or the team’s own company and record what it sends and shows. Obsession’s AI customers show marketing its competitors’ offers, sales how a prospect treats its customers, agencies every client’s flows, and ecommerce and CX teams every journey and chatbot answer.',
   primaryKeyword: 'ai agents for marketing teams',
   keywords: [
     'ai for sales teams',
@@ -84,7 +84,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Marketing, sales, agency, ecommerce and CX teams each need answers that only a customer has: what a rival sent its subscribers, what a prospect’s new customers receive, whether a client’s flows fired, what the chatbot told a shopper. Each team answers them today with proxies, because its tools report the company’s own actions or signals gathered from outside.',
+      text: 'Marketing, sales, agency, ecommerce and CX teams each need answers that only a customer has: what a competitor sent its subscribers, what a prospect’s new customers receive, whether a client’s flows fired, what the chatbot told a shopper. Each team answers them today with proxies, because its tools report the company’s own actions or signals gathered from outside.',
     },
     {
       kind: 'p',
@@ -110,7 +110,7 @@ export const post: BlogPost = {
       caption: 'Each team’s customer question, the proxy it uses today, and what an AI customer brings back',
       cols: ['Team', 'The question', 'Answered today with', 'An AI customer brings back'],
       rows: [
-        ['Marketing', 'What rivals send their subscribers', 'Ad libraries and forwarded newsletters', 'Every email, text and code, dated'],
+        ['Marketing', 'What competitors send their subscribers', 'Ad libraries and forwarded newsletters', 'Every email, text and code, dated'],
         ['Sales', 'What a prospect does to its customers', 'Install data and intent signals', 'A dated fact the prospect can open'],
         ['Agencies', 'What a prospect’s store sends', 'An audit after a login', 'The prospect’s own emails, before the call'],
         ['Ecommerce and CX', 'What a new customer receives', 'Flow reports and ticket counts', 'Each message as it arrived, with its time'],
@@ -126,12 +126,12 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'In late October a marketing team is locking its Black Friday calendar. [Klaviyo’s June 2026 timing guide](' +
         KL_TIMING +
-        ') advises teaser campaigns 2 to 4 weeks before the sale, which would put a rival following it in early November. The team’s tools show its own sends and results and rivals’ public ads. What rivals send their subscribers, and what a new customer of the team’s own brand receives, sits in inboxes the team doesn’t hold.',
+        ') advises teaser campaigns 2 to 4 weeks before the sale, which would put a competitor following it in early November. The team’s tools show its own sends and results and competitors’ public ads. What competitors send their subscribers, and what a new customer of the team’s own brand receives, sits in inboxes the team doesn’t hold.',
     },
     {
       kind: 'list',
       items: [
-        '**When each rival’s Black Friday offer reaches subscribers, and how deep it goes.** Sign up to your 5 closest rivals this week, each with a new address and phone number, before their teasers start. A pass: every address holds the welcome series and each campaign from the first teaser on.',
+        '**When each competitor’s Black Friday offer reaches subscribers, and how deep it goes.** Sign up to your 5 closest competitors this week, each with a new address and phone number, before their teasers start. A pass: every address holds the welcome series and each campaign from the first teaser on.',
         '**Whether your own launch offer works for a new customer.** Open each live ad’s landing page, sign up through the pop up and take the code to checkout on a sale item. A pass: the same offer and price at every step, and the code applies as planned.',
         '**What AI assistants tell shoppers about your company.** Ask 3 assistants the 5 questions shoppers ask before they buy. A pass: prices, delivery dates and returns match your pages. In a study Product.ai ran and [Business Insider reported](' +
           PRODUCT_AI +
@@ -140,7 +140,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**That week:** move a send date or adjust an offer before a rival’s lands, fix any page or code that doesn’t match its ad, and send the CMO the rivals’ emails themselves, dated. The tools for the first check are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools), and the third check is set out in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
+      text: '**That week:** move a send date or adjust an offer before a competitor’s lands, fix any page or code that doesn’t match its ad, and send the CMO the competitors’ emails themselves, dated. The tools for the first check are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools), and the third check is set out in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
     },
 
     { kind: 'h2', id: 'sales', text: 'AI for sales teams' },
@@ -159,7 +159,7 @@ export const post: BlogPost = {
           ') for a study it published in March 2024, 365 replied, after 1 day, 5 hours and 17 minutes on average. In [Clay’s test of 6,346 forms](' +
           CLAY +
           '), published in September 2026, two thirds of companies never replied.',
-        '**What a rival’s free trial sends.** Start each rival’s trial where it needs no card and keep every email for 14 days. A pass: the battlecard shows what each rival sent and when.',
+        '**What a competitor’s free trial sends.** Start each competitor’s trial where it needs no card and keep every email for 14 days. A pass: the battlecard shows what each competitor sent and when.',
       ],
     },
     {
@@ -170,7 +170,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'agencies', text: 'AI for agencies' },
     {
       kind: 'p',
-      text: 'An agency’s week runs on client calls, monthly reports and pitches, and each one asks for evidence of what customers received. Clients forward a rival’s email and ask what the agency is doing about it. An account manager quoted on [MailCharts’ agencies page](' +
+      text: 'An agency’s week runs on client calls, monthly reports and pitches, and each one asks for evidence of what customers received. Clients forward a competitor’s email and ask what the agency is doing about it. An account manager quoted on [MailCharts’ agencies page](' +
         MC_AGENCIES +
         ') says: “Our clients would constantly be asking us to produce a competitive analysis based on email”. A pitch audit can wait on access: [Flowium’s free audit](' +
         FLOWIUM +
@@ -181,7 +181,7 @@ export const post: BlogPost = {
       items: [
         '**What a prospect’s store sends a new customer, before the pitch.** Sign up through its public pop up, opt in to texts and leave a basket, with no login. A pass: you open the call with the prospect’s own emails and their times.',
         '**Whether every client’s flows fired this week.** With each client’s OK, run a new customer through every client store each week and after every theme, app or flow change. A pass: each flow arrives within its delay, with its content filled in.',
-        '**What every client’s rivals sent.** Keep an AI customer on each rival’s list. A pass: the month’s rival emails sit in the client report, dated.',
+        '**What every client’s competitors sent.** Keep an AI customer on each competitor’s list. A pass: the month’s competitor emails sit in the client report, dated.',
       ],
     },
     {
@@ -236,14 +236,14 @@ export const post: BlogPost = {
       items: [
         '**Pick 1 team and its 3 questions.** The team with a deadline goes first. Before Black Friday, that is usually marketing or ecommerce.',
         '**Write a pass mark for each,** so every result is a pass or a fail.',
-        '**Name 5 companies:** rivals, prospects, client stores with their OK, or your own store.',
+        '**Name 5 companies:** competitors, prospects, client stores with their OK, or your own store.',
         '**Run each check once by hand,** from a new address and phone number, and record what arrived and when.',
         '**Send each result where the team works:** a Slack channel, the CRM or the client report.',
       ],
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so your team can find revenue leaks, watch rivals and prospect with proof. They run as its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
+      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so your team can find revenue leaks, watch competitors and prospect with proof. They run as its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -253,7 +253,7 @@ export const post: BlogPost = {
         '**A new customer sees what new customers get.** Engaged subscribers and past buyers may receive other emails.',
         '**It records what arrived, and not why.** The cause sits in the company’s own tools.',
         '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
-        '**Some teams can wait.** A team with few rivals, no paid traffic and rare changes covers its questions by hand once a month.',
+        '**Some teams can wait.** A team with few competitors, no paid traffic and rare changes covers its questions by hand once a month.',
         '**Client stores need the client’s OK, and prospects get only the public sign up.** This is not legal advice.',
       ],
     },
@@ -264,7 +264,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What can AI agents do for marketing teams?',
-          a: 'AI agents can watch every rival as a customer, check that the team’s own launch codes and pages work for a new customer, and ask AI assistants what they tell shoppers, keeping each email, page and answer as evidence.',
+          a: 'AI agents can watch every competitor as a customer, check that the team’s own launch codes and pages work for a new customer, and ask AI assistants what they tell shoppers, keeping each email, page and answer as evidence.',
         },
         {
           q: 'How can AI help sales teams?',
@@ -272,7 +272,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do agencies use AI agents?',
-          a: 'Agencies use AI customers to see a prospect’s emails before a pitch without a login, to check every client’s flows each week with the client’s OK, and to put rivals’ emails in client reports.',
+          a: 'Agencies use AI customers to see a prospect’s emails before a pitch without a login, to check every client’s flows each week with the client’s OK, and to put competitors’ emails in client reports.',
         },
         {
           q: 'Can AI agents test our customer journey?',

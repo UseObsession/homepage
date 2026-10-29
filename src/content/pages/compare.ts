@@ -109,7 +109,7 @@ export const page: Page = {
   },
 
   final: {
-    heading: 'Name a rival. See what its customers get.',
+    heading: 'Name a competitor. See what its customers get.',
     capture: { ...waitlist, source: 'compare-final' },
   },
 }

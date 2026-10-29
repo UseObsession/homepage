@@ -11,7 +11,7 @@ export const SHOTS_B: Record<string, Shot[]> = {
       at: 1.3,
       move: 0.7,
       on: '.ibx-new .ibx-m',
-      note: { text: 'Rival B texts a free gift over £40', side: 'below', at: '.ibx-new .ibx-tags', align: 'end', cue: 2.45, dock: 'bottom', phone: { align: 'start' } },
+      note: { text: 'Competitor B texts a free gift over £40', side: 'below', at: '.ibx-new .ibx-tags', align: 'end', cue: 2.45, dock: 'bottom', phone: { align: 'start' } },
     },
     {
       at: 5.9,
@@ -159,7 +159,7 @@ export const SHOTS_B: Record<string, Shot[]> = {
       at: 2.5,
       move: 0.7,
       on: '.bc-r.tall',
-      note: { text: 'Rival A offers 20% off on day 13', side: 'below', at: '.bc-r.tall .bc-c:nth-child(2)', cue: 2.9, dock: 'top' },
+      note: { text: 'Competitor A offers 20% off on day 13', side: 'below', at: '.bc-r.tall .bc-c:nth-child(2)', cue: 2.9, dock: 'top' },
     },
     {
       at: 6.35,

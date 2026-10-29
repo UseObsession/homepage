@@ -80,7 +80,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Teams that need a customer’s view of their own company, a client, a rival or a prospect can hire for it in 9 ways, from doing nothing to AI customers. Each suits a different job, and how often the job runs decides what each one costs.',
+      text: 'Teams that need a customer’s view of their own company, a client, a competitor or a prospect can hire for it in 9 ways, from doing nothing to AI customers. Each suits a different job, and how often the job runs decides what each one costs.',
     },
     {
       kind: 'p',
@@ -108,7 +108,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Whose customer must it be?** Your own company, a client with their OK, a rival, a prospect or a partner. Audits read your own account, and synthetic monitoring scripts your own site. Mystery shoppers and AI customers can be customers of any company.',
+        '**Whose customer must it be?** Your own company, a client with their OK, a competitor, a prospect or a partner. Audits read your own account, and synthetic monitoring scripts your own site. Mystery shoppers and AI customers can be customers of any company.',
         '**How long must it stay?** A visit or a page load answers questions about 1 moment. Welcome series, reminders, price changes and renewals arrive over days or weeks, and only a customer that stays receives them.',
         '**What must it keep?** An opinion, a pass or fail, or the original email and page. A client, a manager or a prospect can open the original and check it.',
       ],
@@ -124,7 +124,7 @@ export const post: BlogPost = {
       items: [
         '**Your own company:** the welcome code arrives and works at checkout, each reminder arrives on time with the product, the chatbot quotes the current policy, and a demo request gets a reply inside your target.',
         '**Clients, with their OK:** every flow fires each week and after each theme, app or flow change.',
-        '**Rivals:** every email, text, offer and price, from the day the AI customer joins.',
+        '**Competitors:** every email, text, offer and price, from the day the AI customer joins.',
         '**Prospects:** what each one sends its own customers, through its public sign up, before the first call.',
         '**Partners and AI assistants:** the codes deals sites show, and what assistants tell shoppers about your company.',
       ],
@@ -203,10 +203,10 @@ export const post: BlogPost = {
         ],
         [
           'Competitor monitoring: Panoramata',
-          'Rivals’ emails, texts, ads and pages, with history',
+          'Competitors’ emails, texts, ads and pages, with history',
           '$99, $179 or $399 a month',
-          '20 rivals and 6 months on Startup',
-          'Rival research across channels',
+          '20 competitors and 6 months on Startup',
+          'Competitor research across channels',
         ],
         [
           'AI browser agent: ChatGPT cloud browser',
@@ -246,7 +246,7 @@ export const post: BlogPost = {
           ') describes simulated requests and actions from around the globe. Each test follows a path someone scripted, and the scripts need upkeep as the site changes.',
         '**Competitor monitoring** such as [Panoramata](' +
           PANORAMATA +
-          ') collects rivals’ emails, texts, ads and landing pages, from $99 a month for 20 competitors and 6 months of history. Your own journeys and your prospects need another tool.',
+          ') collects competitors’ emails, texts, ads and landing pages, from $99 a month for 20 competitors and 6 months of history. Your own journeys and your prospects need another tool.',
         '**AI browser agents** such as [ChatGPT’s cloud browser](' +
           CLOUD_BROWSER +
           ') read pages, click buttons and fill in forms on paid plans, and pause when they need your input or a sign in. Each works on 1 task for you, and the help page describes no inbox or phone number of its own.',
@@ -264,7 +264,7 @@ export const post: BlogPost = {
       cols: ['Field', 'What to write', 'Example: ashgrove.example'],
       rows: [
         ['The job', '1 question only a customer can answer', 'Does the basket reminder arrive on time?'],
-        ['Companies', 'Your own, clients with their OK, rivals, prospects', 'Ashgrove and 5 rivals'],
+        ['Companies', 'Your own, clients with their OK, competitors, prospects', 'Ashgrove and 5 competitors'],
         ['Journeys', 'What the customer does', 'Sign up, leave a basket, use the code'],
         ['Pass marks', 'What arrives, by when, with what', 'Reminder within 2 hours, with the product'],
         ['Cadence', 'How often, and which changes trigger a run', 'Daily, and after every theme or flow edit'],
@@ -280,7 +280,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch rivals and prospect with proof.',
+      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
     },
     {
       kind: 'cta',
@@ -345,10 +345,10 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A business that rarely changes,** runs no paid traffic and has few rivals. A new address, a phone and a sheet once a month cover it.',
+        '**A business that rarely changes,** runs no paid traffic and has few competitors. A new address, a phone and a sheet once a month cover it.',
         '**Service in person.** A human mystery shopper judges a shop floor, a phone call and the staff.',
         '**Uptime of your own pages at every hour.** Synthetic monitoring alerts within minutes when a scripted path fails.',
-        '**Last year’s rival campaigns.** An AI customer holds what arrives from the day it joins, so earlier mail needs an archive that already covered the brand.',
+        '**Last year’s competitor campaigns.** An AI customer holds what arrives from the day it joins, so earlier mail needs an archive that already covered the brand.',
         '**A single lookup.** An AI browser agent answers it in 1 session.',
         '**A strategy reset.** An agency audit reads the setup from inside the account and brings a plan.',
       ],
@@ -361,7 +361,7 @@ export const post: BlogPost = {
         '**A new customer sees what new customers get.** Long standing subscribers and past buyers may receive other emails.',
         '**It reports what arrived, and not why.** The cause of a missing email sits in the company’s own tools.',
         '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
-        '**Client stores need the client’s OK.** Rivals and prospects get only the public sign up any customer can use. This is not legal advice.',
+        '**Client stores need the client’s OK.** Competitors and prospects get only the public sign up any customer can use. This is not legal advice.',
       ],
     },
     {
@@ -401,7 +401,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do I need permission to use AI customers on a client’s store?',
-          a: 'Get the client’s OK before checking its store. For rivals and prospects, use only the public sign up any customer can use, and take legal advice for your own case.',
+          a: 'Get the client’s OK before checking its store. For competitors and prospects, use only the public sign up any customer can use, and take legal advice for your own case.',
         },
       ],
     },

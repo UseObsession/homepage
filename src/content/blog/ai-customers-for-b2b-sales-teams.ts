@@ -316,7 +316,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its rivals and prospect with proof. For a sales team, its Lead leaks check sends a test lead through the company’s own form, chat and phone, times every first reply and shows each lead left unanswered. The [speed to lead test](/recipes/lead-leaks) runs at the times the team picks, evenings and weekends included, and drafts the routing fix in the CRM the team connects, live after the team’s OK. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
+      text: 'Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a sales team, its Lead leaks check sends a test lead through the company’s own form, chat and phone, times every first reply and shows each lead left unanswered. The [speed to lead test](/recipes/lead-leaks) runs at the times the team picks, evenings and weekends included, and drafts the routing fix in the CRM the team connects, live after the team’s OK. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
         COMMERCIAL +
         '#sales).',
     },

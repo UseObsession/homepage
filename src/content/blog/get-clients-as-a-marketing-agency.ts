@@ -303,7 +303,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. For an agency, Obsession’s [prospect intelligence](/recipes/prospect-intelligence) does the prospecting with proof:',
+      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, Obsession’s [prospect intelligence](/recipes/prospect-intelligence) does the prospecting with proof:',
     },
     {
       kind: 'list',
@@ -362,14 +362,14 @@ export const post: BlogPost = {
       items: [
         '**A weekly check before the client report.** Every flow checked as a customer, so the Monday report shows what fired. The format is in [a weekly flow log for clients](/blog/show-clients-every-flow-fired).',
         '**A Black Friday code check.** The pop-up code and each sale code tried at checkout on the days that matter, Friday 27 November 2026 included.',
-        '**A rival watch.** Every email, offer and price the client’s rivals send a new customer.',
+        '**A competitor watch.** Every email, offer and price the client’s competitors send a new customer.',
         '**Ad landing checks.** The page behind each live ad, followed to checkout after every launch.',
         '**What AI assistants say about the brand,** checked against the live store.',
       ],
     },
     {
       kind: 'p',
-      text: 'For brands that won’t pay a full retainer, sell a smaller service: a monthly check. It runs the same sign-up, basket and checkout once a month, with a short note of what changed. The same AI customers that opened the pitch go on to find the client’s revenue leaks and watch its rivals.',
+      text: 'For brands that won’t pay a full retainer, sell a smaller service: a monthly check. It runs the same sign-up, basket and checkout once a month, with a short note of what changed. The same AI customers that opened the pitch go on to find the client’s revenue leaks and watch its competitors.',
     },
 
     { kind: 'h2', id: 'options', text: 'Ways to check prospects, compared', compare: true },
