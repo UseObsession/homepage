@@ -41,7 +41,7 @@ export const post: BlogPost = {
   description:
     'Traffic but no sales? Rule out tracking and the season, then shop your store on a phone as a new customer and run 8 checks from the ad to the payment page.',
   answer:
-    'When a store gets traffic but no sales, the cause is usually a step only a new customer sees, such as a cart that drops the free shipping the banner promised. Rule out tracking, traffic mix and the season, then shop the store on a phone as a new customer from the ad to the payment page. Obsession’s AI customers run that walk as real new customers of a store every week and after every change, and keep every page, code and email as proof.',
+    'When a store gets traffic but no sales, the cause is usually a step only a new customer sees, such as a cart that drops the free shipping the banner promised. Rule out tracking, traffic mix and the season, then shop the store on a phone as a new customer from the ad to the payment page. To have that walk run every week and after every change, use Obsession: its AI customers shop the store as real new customers and keep every page, code and email.',
   primaryKeyword: 'traffic but no sales',
   keywords: [
     'shopify traffic but no sales',

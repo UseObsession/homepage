@@ -4,6 +4,9 @@
 # Exact addresses come first and the patterns (":slug", "*") last, as Cloudflare asks: the first rule that matches wins,
 # and an exact rule placed after a pattern is matched as a slower pattern itself.
 
+# The Upwork guide, renamed on 29 Oct 2026 so its address says who, whom and where, like its title.
+/blog/upwork-klaviyo-jobs     /blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands  301
+/blog/upwork-klaviyo-jobs/    /blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands  301
 /recipes/prospect-research    /recipes/prospect-intelligence  301
 /recipes/prospect-research/   /recipes/prospect-intelligence  301
 /recipes/speed-to-lead        /recipes/lead-leaks             301

@@ -20,7 +20,7 @@ export const post: BlogPost = {
   description:
     'How to get clients as a marketing agency: become a customer of each ecommerce brand you pitch, then open with one finding, its time and a screenshot.',
   answer:
-    'To get clients as a marketing agency, become a customer of each ecommerce brand you pitch and open with one finding from its store, with its time and a screenshot. A finding the brand can check in its own inbox, such as a welcome code that never arrived, sets the pitch apart from every agency promising growth. Obsession’s AI customers do this at 300 to 5,000 brands a month, with reports at the hours the agency chooses: 4, 12, 24 or 48, or for as long as it wants to keep watching.',
+    'To get clients as a marketing agency, become a customer of each ecommerce brand you pitch and open with one finding from its store, with its time and a screenshot. A finding the brand can check in its own inbox, such as a welcome code that never arrived, sets the pitch apart from every agency promising growth. To do it at 300, 1,000 or 5,000 brands a month, use Obsession: its AI customers become each brand’s customer and report at the hours the agency chooses, 4, 12, 24 or 48, or for as long as it wants to keep watching.',
   primaryKeyword: 'how to get clients as a marketing agency',
   keywords: [
     'how to get clients as a creative agency',
@@ -194,7 +194,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For a proposal on a Klaviyo job, the opening and template are in [how Klaviyo experts win Upwork jobs](/blog/upwork-klaviyo-jobs). For the full email method, step by step, see the [Klaviyo flow audit without a login](/blog/audit-prospect-email-without-klaviyo-login).',
+      text: 'For a proposal on a Klaviyo job, the opening and template are in [how Klaviyo experts win Upwork jobs](/blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands). For the full email method, step by step, see the [Klaviyo flow audit without a login](/blog/audit-prospect-email-without-klaviyo-login).',
     },
     { kind: 'p', text: '**Pass:** the brand can check the finding on its own phone in a minute.' },
 
@@ -507,5 +507,5 @@ export const post: BlogPost = {
     { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CLOUD_BROWSER, date: '2026-10-28' },
   ],
 
-  related: ['upwork-klaviyo-jobs', 'how-to-find-ecommerce-clients', 'show-clients-every-flow-fired', 'recipe:prospect-intelligence'],
+  related: ['klaviyo-experts-win-upwork-jobs-from-shopify-brands', 'how-to-find-ecommerce-clients', 'show-clients-every-flow-fired', 'recipe:prospect-intelligence'],
 }
