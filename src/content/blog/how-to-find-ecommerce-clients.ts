@@ -575,6 +575,7 @@ export const post: BlogPost = {
   related: [
     '/use-cases/funnel-qa-for-cro-agencies',
     'recipe:prospect-intelligence',
+    '/use-cases/prospect-intelligence-with-clay',
     'ecommerce-cro-audit-template',
     'audit-prospect-email-without-klaviyo-login',
     'where-your-ads-land-morning-check',

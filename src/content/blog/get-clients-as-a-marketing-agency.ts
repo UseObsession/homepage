@@ -507,5 +507,5 @@ export const post: BlogPost = {
     { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CLOUD_BROWSER, date: '2026-10-28' },
   ],
 
-  related: ['klaviyo-experts-win-upwork-jobs-from-shopify-brands', 'how-to-find-ecommerce-clients', 'show-clients-every-flow-fired', 'recipe:prospect-intelligence'],
+  related: ['klaviyo-experts-win-upwork-jobs-from-shopify-brands', 'how-to-find-ecommerce-clients', 'show-clients-every-flow-fired', 'recipe:prospect-intelligence', '/use-cases/prospect-intelligence-with-clay'],
 }

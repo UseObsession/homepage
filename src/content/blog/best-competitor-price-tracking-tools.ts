@@ -418,23 +418,23 @@ export const post: BlogPost = {
       text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Two of Obsession’s October runs show the prices a new customer met past the product page.',
     },
 
-    { kind: 'h3', id: 'reminders', text: 'Prices in 15 reminder emails' },
+    { kind: 'h3', id: 'reminders', text: 'Prices in the reminder emails' },
     {
       kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession’s AI customers checked 14 online stores for 4 agencies. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours. The reports were issued on 27 October 2026.',
+      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
     },
     {
       kind: 'p',
-      text: 'Of the 15 cart and checkout reminders received, 7 showed the item and price the store showed. Five showed no price. Three showed a different one, such as a pound price printed in dollars.',
+      text: 'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
     },
     {
       kind: 'table',
-      caption: 'What 15 cart and checkout reminder emails showed, from 14 online stores checked as a new customer, 21 to 24 October 2026',
-      cols: ['What the reminder showed', 'Reminders'],
+      caption: 'What cart and checkout reminder emails showed in Obsession’s October pilot for 4 agencies, 21 to 24 October 2026',
+      cols: ['What the reminder showed', 'Share of reminders'],
       rows: [
-        ['The item at the store’s price', '7'],
-        ['No price', '5'],
-        ['A different price or currency', '3'],
+        ['The item at the store’s price', 'Fewer than half'],
+        ['No price', 'About a third'],
+        ['A different price or currency', 'One in five'],
       ],
     },
     {
@@ -445,14 +445,14 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'offers', text: 'Offers the cart didn’t honour' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an AI agent working for Obsession walked stores that 30 Shopify agencies and freelance experts list as clients. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. It found a visible problem in a store listed by 13 of the 30.',
+      text: 'On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
       items: [
-        'Six of the 13 problems found on 26 October 2026 were about an offer. Five were an offer on the page or top bar that the cart or checkout did not honour: free shipping or delivery (3), a subscription price (1) and a free gift (1). The sixth was a sale banner still showing the day after it ended.',
-        'Two more of the 13 were a charge in the cart the shopper had not chosen. One was a shipping protection line already switched on. The other was a package protection line that appeared after the shopper went to checkout and came back.',
-        'In 3 of the 24 other stores it walked, the agent saw prices or free-delivery thresholds in mixed currencies for a visitor in the United States. These depend on where the visitor is, so a price read from one country is one view of it.',
+        'The most common problem was an offer on the page or top bar that the cart or checkout did not honour: free shipping or delivery, a subscription price or a free gift. One store still showed a sale banner the day after the sale ended.',
+        'Some carts added a charge the shopper had not chosen: a shipping protection line already switched on, or a package protection line that appeared after the shopper went to checkout and came back.',
+        'In some of the other stores it walked, the agent saw prices or free-delivery thresholds in mixed currencies for a visitor in the United States. These depend on where the visitor is, so a price read from one country is one view of it.',
       ],
     },
     {
@@ -461,7 +461,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Both runs are small and neither sample is random: 4 agencies chose the 14 stores, and the 30 agencies and experts listed their own clients. Each store was checked from one country and stopped before payment. The counts describe these stores. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
+      text: 'In both runs the agencies chose the stores, so the patterns describe the stores they pitch, serve and show. Each store was checked from one country and stopped before payment. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor price tracking tool to choose' },

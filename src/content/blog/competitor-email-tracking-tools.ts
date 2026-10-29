@@ -63,10 +63,10 @@ const KL_TIMING = 'https://www.klaviyo.com/blog/when-to-send-black-friday-emails
 export const post: BlogPost = {
   slug: 'competitor-email-tracking-tools',
   title: 'The best competitor email tracking tools in 2026, compared',
-  dek: 'Eleven tools grouped by what they collect, each read on its own pages on 28 October 2026 (Milled’s on 23 October, with its prices from a February copy). Beside them, what 14 online stores sent a new customer in the 48 hours after a sign-up, a left basket or a left checkout.',
+  dek: 'Eleven tools grouped by what they collect, each read on its own pages on 28 October 2026 (Milled’s on 23 October, with its prices from a February copy). Beside them, what stores in Obsession’s October pilot sent a new customer in the 48 hours after a sign-up, a left basket or a left checkout.',
   metaTitle: 'The best competitor email tracking tools in 2026, compared',
   description:
-    'The best competitor email tracking tools by job, priced as listed in October 2026, beside what 14 online stores sent a new subscriber within 48 hours.',
+    'The best competitor email tracking tools by job, priced as listed in October 2026, beside what Obsession’s AI customers received as new subscribers.',
   answer:
     'By job, the best competitor email tracking tools are Milled or BadRep for campaigns rivals already sent, and Panoramata for many rivals’ emails, texts and ads. SendView, Sendsitive or Owletter follow a list of rivals you name, and for 1 to 3 rivals a spare inbox for each is enough. Obsession’s AI customers sign up to any rival you name as real subscribers and keep every email it sends, welcome series and basket reminders included, exactly as it arrived.',
   primaryKeyword: 'competitor email tracking tools',
@@ -174,7 +174,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Beside the tools, Obsession’s AI customers checked what 14 online stores sent a new customer in October 2026.',
+      text: 'Beside the tools, Obsession’s AI customers checked what stores sent a new customer in its October 2026 pilot for 4 agencies.',
     },
 
     { kind: 'h2', id: 'galleries', text: 'Curated email galleries' },
@@ -413,21 +413,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession’s AI customers checked 14 online stores for 4 agencies. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours. The reports were issued on 27 October 2026.',
+      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
     },
     {
       kind: 'list',
       items: [
-        'Seven of the 8 stores whose welcome journey could be assessed sent their first email within 6 minutes of sign-up. The eighth sent nothing in 48 hours.',
-        'Four stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. All four then sent nothing in the 48 hours after a checkout was left.',
-        'In 6 of those 14 stores, no email arrived within 48 hours of the shopper leaving a checkout after typing an email address.',
-        'Eight of the 14 stores sent a checkout reminder. Six sent it within 4 hours, the fastest after 30 minutes, and two took about 10 hours. Only 3 of the 8 sent a second reminder inside 48 hours.',
-        'Of the 15 cart and checkout reminders received, 7 showed the item and price the store showed. Five showed no price. Three showed a different one, such as a pound price printed in dollars.',
+        'Almost every store whose welcome journey could be checked sent its first email within 6 minutes of sign-up.',
+        'Some stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. Each of those stores then sent nothing in the 48 hours after a checkout was left.',
+        'Every store in the pilot had at least one gap. Nearly half sent no email in the 48 hours after the shopper left a checkout, with an email address already typed.',
+        'Most first checkout reminders came within 4 hours, the fastest after 30 minutes and the slowest after about 10 hours. Fewer than half of the stores that sent one followed it with a second reminder inside 48 hours.',
+        'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
       ],
     },
     {
       kind: 'art',
-      caption: 'An example on an invented store of the pattern 4 of the 14 stores showed: a complete welcome series, then nothing in the 48 hours after a checkout was left.',
+      caption: 'A pattern from the October pilot, drawn on an invented store: a complete welcome series, then nothing in the 48 hours after a checkout was left.',
       art: {
         kind: 'log',
         title: 'wrenfield.example · 1 new subscriber, 4 days',
@@ -445,7 +445,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The 4 agencies chose the stores, so they are not a random sample. Each journey had one 48 hour watch, and no shopper paid or gave a phone number, so order emails and texts were not part of the check. Of 56 possible journeys, 38 could be assessed. Of the other 18, 15 were blocked or skipped because of a CAPTCHA or bot check, a puzzle that blocks automated visitors.',
+      text: 'The 4 agencies chose the stores, so the patterns describe the stores they pitch and serve. The pilot read each inbox at 48 hours, and no shopper paid or gave a phone number, so order emails and texts were outside it. A store check can read at 4, 12, 24 or 48 hours, or keep watching for as long as you want. Where a store put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the report names the step it couldn’t test.',
     },
     {
       kind: 'p',
@@ -695,7 +695,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Each tool is described from its own pages.** Obsession’s AI customers ran the 14 store checks, and every brand and email count for a tool is that tool’s own.',
+        '**Each tool is described from its own pages.** Obsession’s AI customers ran the store checks in the October pilot, and every brand and email count for a tool is that tool’s own.',
         '**An archive holds what its own addresses received.** A buyer, a long time subscriber or a subscriber in another country may receive different emails.',
         '**A new address starts empty.** Mail sent before the sign up exists only in an archive that already covered the brand.',
         '**A Gmail tab is 1 inbox’s view.** Gmail can sort the same email differently for an engaged customer.',

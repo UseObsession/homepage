@@ -212,7 +212,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Shopify’s Catalog page says store policies also appear in files written for agents: yourstore.com/agents.md, /llms.txt and /llms-full.txt. On 2 of the 3 Shopify stores we opened on 23 October 2026, /agents.md linked to the store’s policies and pointed agents to a UCP profile at /.well-known/ucp.',
+      text: 'Shopify’s Catalog page says store policies also appear in files written for agents: yourstore.com/agents.md, /llms.txt and /llms-full.txt. On most of the Shopify stores we opened on 23 October 2026, /agents.md linked to the store’s policies and pointed agents to a UCP profile at /.well-known/ucp.',
     },
 
     { kind: 'h2', id: 'whats-live', text: 'What is live on 23 October 2026' },
