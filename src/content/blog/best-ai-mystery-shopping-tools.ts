@@ -50,7 +50,7 @@ const EVALYN = 'https://www.evalyn.ai/'
 export const post: BlogPost = {
   slug: 'best-ai-mystery-shopping-tools',
   title: 'The best AI mystery shopping tools in 2026, by what they test',
-  dek: '20 tools grouped by what they test: phone staff, AI agents and chatbots, or a website and store, with human shopper panels beside them. Every price is as each company listed it on 28 October 2026, next to what a new customer got at 14 online stores.',
+  dek: '20 tools grouped by what they test: phone staff, AI agents and chatbots, or a website and store, with human shopper panels beside them. Every price is as each company listed it on 28 October 2026, next to what a new customer got in Obsession’s October pilot for 4 agencies.',
   metaTitle: 'Best AI mystery shopping tools in 2026, by what they test',
   description:
     'AI mystery shopping tools compared by what they test: phone staff, AI agents, stores and inboxes. Prices as listed on 28 Oct 2026, beside a real store run.',
@@ -445,21 +445,21 @@ export const post: BlogPost = {
       text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your rivals and prospect with proof. Two of its October runs show what a customer got, and which group of tools can see each result.',
     },
 
-    { kind: 'h3', id: 'fourteen-stores', text: '14 online stores, every inbox watched for 48 hours' },
+    { kind: 'h3', id: 'october-pilot', text: 'A pilot for 4 agencies, every inbox watched for 48 hours' },
     {
       kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession’s AI customers checked 14 online stores for 4 agencies. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours. The reports were issued on 27 October 2026.',
+      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
     },
     {
       kind: 'table',
       caption:
-        'What arrived within 48 hours, by journey, at 14 online stores checked as a new customer, 21 to 24 October 2026. A journey stopped by a CAPTCHA, at a store with no sign-up form, or spoiled by our own test could not be checked',
-      cols: ['Journey', 'Could be checked', 'No email in 48 hours', 'An email arrived'],
+        'What arrived within 48 hours, by journey, in Obsession’s October pilot for 4 agencies, 21 to 24 October 2026. A journey stopped by a CAPTCHA, at a store with no sign-up form, or spoiled by our own test is left out',
+      cols: ['Journey', 'Within 48 hours'],
       rows: [
-        ['Sign up for emails', '8 of 14 stores', '1', '7'],
-        ['Browse and leave', '3 of 14 stores', '2', '1'],
-        ['Leave an item in the cart', '13 of 14 stores', '6', '7'],
-        ['Leave a checkout before paying', '14 of 14 stores', '6', '8'],
+        ['Sign up for emails', 'Almost every store sent a welcome email'],
+        ['Browse and leave', 'Most sent nothing'],
+        ['Leave an item in the cart', 'Nearly half sent nothing'],
+        ['Leave a checkout before paying', 'Nearly half sent nothing'],
       ],
     },
     {
@@ -469,11 +469,11 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        'In 6 of those 14 stores, no email arrived within 48 hours of the shopper leaving a checkout after typing an email address.',
-        'Four stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. All four then sent nothing in the 48 hours after a checkout was left.',
-        'Eight of the 14 stores sent a checkout reminder. Six sent it within 4 hours, the fastest after 30 minutes, and two took about 10 hours. Only 3 of the 8 sent a second reminder inside 48 hours.',
-        'Of the 15 cart and checkout reminders received, 7 showed the item and price the store showed. Five showed no price. Three showed a different one, such as a pound price printed in dollars.',
-        'Of 56 possible journeys, 38 could be assessed. Of the other 18, 15 were blocked or skipped because of a CAPTCHA or bot check, a puzzle that blocks automated visitors. Two were at a store with no sign-up form, and 1 was spoiled by our own test. At least one journey was stopped this way in 9 of the 14 stores.',
+        'Every store in the pilot had at least one gap. Nearly half sent no email in the 48 hours after the shopper left a checkout, with an email address already typed.',
+        'Some stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. Each of those stores then sent nothing in the 48 hours after a checkout was left.',
+        'Most first checkout reminders came within 4 hours, the fastest after 30 minutes and the slowest after about 10 hours. Fewer than half of the stores that sent one followed it with a second reminder inside 48 hours.',
+        'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
+        'Most stores put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of at least one step. The report names each step a CAPTCHA kept the AI customer from testing.',
       ],
     },
     {
@@ -481,16 +481,16 @@ export const post: BlogPost = {
       text: 'Each of these email results could only be seen after the shopper signed up or left. A tool that ends its run at the checkout page records the checkout and nothing that follows.',
     },
 
-    { kind: 'h3', id: 'thirty-agencies', text: 'Stores listed by 30 agencies, walked on a phone' },
+    { kind: 'h3', id: 'client-stores', text: 'Stores agencies show as clients, walked on a phone' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an AI agent working for Obsession walked stores that 30 Shopify agencies and freelance experts list as clients. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. It found a visible problem in a store listed by 13 of the 30.',
+      text: 'On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
       items: [
-        'Six of the 13 problems found on 26 October 2026 were about an offer. Five were an offer on the page or top bar that the cart or checkout did not honour: free shipping or delivery (3), a subscription price (1) and a free gift (1). The sixth was a sale banner still showing the day after it ended.',
-        'Three of the 13 problems affected the Check out button on a phone. A help button sat over it in one store. A chat prompt sat over it in another. In a third, the button was faded and did nothing until a small terms box was ticked. Two more problems were a charge in the cart the shopper had not chosen.',
+        'The most common problem was an offer on the page or top bar that the cart or checkout did not honour: free shipping or delivery, a subscription price or a free gift. One store still showed a sale banner the day after the sale ended.',
+        'Others blocked the Check out button on a phone. A help button sat over it in one store and a chat prompt in another. In a third, the button was faded and did nothing until a small terms box was ticked. Some carts added a charge the shopper had not chosen.',
       ],
     },
     {
@@ -499,7 +499,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Both runs are small and neither sample is random: 4 agencies chose the 14 stores, and the 30 agencies and experts listed their own clients. In the first run each journey had one shopper and one 48 hour window, so a reminder sent on day 3 wasn’t seen. In both runs the shopper stopped before payment. The counts describe these stores. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
+      text: 'In both runs the agencies chose the stores, so the patterns describe the stores they pitch, serve and show. The pilot read each inbox at 48 hours, and both runs stopped before payment. A store check can read at 4, 12, 24 or 48 hours, or keep watching for as long as you want. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which AI mystery shopping tool to choose, by job' },
@@ -601,11 +601,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI mystery shopping tools test the emails a store sends?',
-          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession’s AI customers each keep their own inbox and watch it to the end of the wait. In Obsession’s October check, 6 of 14 online stores sent nothing within 48 hours of a shopper leaving a checkout.',
+          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession’s AI customers each keep their own inbox and watch it to the end of the wait. In Obsession’s October pilot for 4 agencies, nearly half the stores sent nothing within 48 hours of a shopper leaving a checkout.',
         },
         {
           q: 'Can an AI mystery shopper get past a CAPTCHA?',
-          a: 'None of these tools’ pages says it solves one. Convertica’s runs end at a CAPTCHA, and AI Store Shopper can’t check stores behind Cloudflare’s bot protection. In Obsession’s October check of 14 online stores, a CAPTCHA or bot check stopped at least one journey at 9 of them, and those journeys were left unscored.',
+          a: 'None of these tools’ pages says it solves one. Convertica’s runs end at a CAPTCHA, and AI Store Shopper can’t check stores behind Cloudflare’s bot protection. In Obsession’s October pilot, most stores put a CAPTCHA or bot check in front of at least one step, and each report named the step it couldn’t test.',
         },
       ],
     },

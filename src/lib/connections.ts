@@ -24,10 +24,10 @@ const links = (p: BlogPost, path: string) => {
   return s.includes(`](${path})`) || s.includes(`"to":"${path}"`)
 }
 
-/* The guides for a recipe or a use case: posts that name the recipe, then posts that link the page. */
+/* The guides for a recipe or a use case: posts that name the recipe or the page in `related`, then posts that link the page. */
 export function guidesFor(path: string): LinkRow[] {
   const recipe = path.startsWith('/recipes/') ? `recipe:${path.slice('/recipes/'.length)}` : ''
-  const named = recipe ? posts.filter((p) => p.related.includes(recipe)) : []
+  const named = posts.filter((p) => p.related.includes(path) || (recipe !== '' && p.related.includes(recipe)))
   const linked = posts.filter((p) => !named.includes(p) && links(p, path))
   return [...named, ...linked].slice(0, MAX_GUIDES).map(asRow)
 }

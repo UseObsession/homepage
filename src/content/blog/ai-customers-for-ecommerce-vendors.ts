@@ -506,6 +506,7 @@ export const post: BlogPost = {
     'ai-customers-for-commercial-teams',
     'customer-side-observability',
     'recipe:prospect-intelligence',
+    '/use-cases/prospect-intelligence-with-clay',
     'recipe:email-sms-tracking',
     'recipe:delivery-monitoring',
     'recipe:account-watch',

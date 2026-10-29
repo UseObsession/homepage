@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "indexnow": "node scripts/indexnow.mjs",
-    "build": "tsc -b && oxlint && node scripts/og.mjs && vite build && node scripts/prerender.mjs",
+    "build": "tsc -b && oxlint && node scripts/og.mjs && vite build && node scripts/prerender.mjs && node scripts/check-network.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "og": "node scripts/og.mjs",
     "screens:html": "node scripts/screens-html.mjs",
     "check:screens": "node scripts/check-screens.mjs",
+    "check:network": "node scripts/check-network.mjs",
     "partners": "node scripts/sync-partners.mjs"
   },
   "dependencies": {

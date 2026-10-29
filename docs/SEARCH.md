@@ -326,6 +326,13 @@ On the centred heroes the crumbs sit centred above the pill, on the hero's axis 
 6. **Use cases** are linked from the matching recipe and posts: the Clay example from every prospect intelligence post, member prices from every price post.
 7. **External links:** every number links to its primary source (the `stat` block's `href`) and the post ends with its `sources`. No affiliate links, no paid placement, ever.
 8. **1 quiet CTA per post**, never in the first screen. The waitlist form at the foot carries the post's recipe as its interest, so the sheet's Page column shows which posts sign people up.
+9. **The build checks the network** (`scripts/check-network.mjs`, run by `npm run build` after the prerender, 29 Oct 2026). A build fails when:
+   - a guide, recipe, use case or reader page doesn't end on "How Obsession works" (`lib/connections.ts`);
+   - a recipe or use case lists no guides (they come from posts that name it in `related` or link it);
+   - a page has no link in from another page's text;
+   - a page lacks 1 h1, a title, a description or a canonical to itself;
+   - a post's BlogPosting doesn't mention the Obsession app and the term "AI customer";
+   - llms.txt or the sitemap leaves a page out.
 
 ---
 
