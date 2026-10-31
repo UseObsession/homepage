@@ -231,6 +231,10 @@ export const post: BlogPost = {
         '**Every team in one company.** Marketing, sales, agencies, ecommerce and CX, side by side, in [AI customers for commercial teams](/blog/ai-customers-for-commercial-teams).',
       ],
     },
+    {
+      kind: 'p',
+      text: 'Every job an AI customer does, with the page that runs each one, is set out in [AI customer use cases](/blog/ai-agent-use-cases-for-business), and for online stores and their agencies in [AI customer use cases in ecommerce](/blog/agentic-ai-use-cases-in-ecommerce).',
+    },
 
     { kind: 'h2', id: 'meet', text: 'Meet your first AI customers' },
     {

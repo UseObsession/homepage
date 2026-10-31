@@ -419,7 +419,7 @@ export type RecipesIndexPage = {
   meta: Meta
   hero: { headline: string; sub: string }
   groups: { group: RecipeGroup; line: string }[]
-  hub: { heading: string; line: string; inputs: string[]; outputs: string[] }
+  hub: { heading: string; line: string; inputs: string[]; outputs: string[]; guide: { label: string; to: string } }
   faq: Faq
   final: Final
 }
@@ -569,7 +569,14 @@ export type ResourcesPage = {
   }
   final: Final
 }
-export type UseCasesIndexPage = { meta: Meta; hero: IndexHero; group: LinkGroup; final: Final }
+export type UseCasesIndexPage = {
+  meta: Meta
+  hero: IndexHero
+  group: LinkGroup
+  /* The two guides that set out every job an AI customer does, each row linking the guide. */
+  guides: LinkGroup & { rows: { label: string; to: string; line: string }[] }
+  final: Final
+}
 export type BlogIndexPage = {
   meta: Meta
   hero: IndexHero
