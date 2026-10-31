@@ -256,7 +256,7 @@ export type Kinds = { heading: string; label: string; items: { name: string; lin
 /* The claim beside its object. Without `screen` the object is the real September report (story beat 8); with it, the
    object is that app screen, under its Example tag (Home's short section on the AI agent checks). */
 export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
-export type Faq = { heading: string; items: { q: string; a: string }[] }
+export type Faq = { heading: string; items: { q: string; a: string; link?: Cta }[] }
 /* The rules every run follows (James's "Built to behave.", docs/REBUILD.md 1d): the trust beat before the questions. A
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
    agent meets can read (/agents). Never "it follows robots.txt". */
@@ -563,7 +563,7 @@ export type ResourcesPage = {
   meta: Meta
   hero: IndexHero
   groups: {
-    useCases: LinkGroup
+    useCases: LinkGroup & { all: Cta }
     sample: LinkGroup & { link: Cta & { line: string } }
     blog: LinkGroup & { all: Cta; empty: { label: string; line: string } }
   }

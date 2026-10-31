@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { Faq as FaqContent } from '../../content/types'
 import './Faq.css'
 
@@ -77,6 +78,14 @@ export function FaqList({ items, open, className = '' }: { items: FaqContent['it
             <div className={'ob-disclose' + (isOpen ? ' is-open' : '')} id={`${base}-a${i}`}>
               <div>
                 <p className="ob-faq-a">{item.a}</p>
+                {item.link && (
+                  <Link className="ob-btn ob-btn--link s-faq__link" to={item.link.to}>
+                    <span className="ob-btn-label">{item.link.label}</span>
+                    <svg className="ob-btn-glyph ob-btn-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                      <path d="M3.5 8h9M9 4.5 12.5 8 9 11.5" />
+                    </svg>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

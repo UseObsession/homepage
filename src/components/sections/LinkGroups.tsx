@@ -48,6 +48,7 @@ export function LinkGroups({
   className?: string
   as?: 'h2' | 'h3'
 }) {
+  if (!groups.length) return null
   return (
     <div className={`s-wrap s-lg ${className}`}>
       {groups.map((g) => (

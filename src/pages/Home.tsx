@@ -1,6 +1,4 @@
 import { Faq } from '../components/sections/Faq'
-import { LinkGroups } from '../components/sections/LinkGroups'
-import { connectionsFor } from '../lib/connections'
 import { FinalCta } from '../components/sections/FinalCta'
 import { Outputs } from '../components/sections/Outputs'
 import { AgentLife } from '../components/v5/AgentLife'
@@ -40,7 +38,6 @@ export function Home() {
       {page.compare && <Compare compare={page.compare} id="compare" />}
       {page.scale && <Scale scale={page.scale} id="scale" />}
       {page.openSource && <OpenSource open={page.openSource} id="open-source" deskOnly />}
-      <LinkGroups groups={connectionsFor('/', 'page')} />
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

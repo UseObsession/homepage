@@ -22,7 +22,7 @@ export function Resources() {
         groups={[
           {
             ...g.useCases,
-            rows: catalog.studies.map((s) => ({ label: s.name, to: s.path, line: s.line })),
+            rows: [...catalog.studies.map((s) => ({ label: s.name, to: s.path, line: s.line })), { label: g.useCases.all.label, to: g.useCases.all.to }],
           },
           { ...g.sample, rows: [{ label: g.sample.link.label, to: g.sample.link.to, line: g.sample.link.line }] },
           ...(catalog.blogLive ? [{ ...g.blog, rows: [...latest, { label: g.blog.all.label, to: g.blog.all.to }] }] : []),
