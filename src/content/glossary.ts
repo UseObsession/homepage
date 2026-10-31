@@ -40,5 +40,7 @@ export const AI_CUSTOMER = {
     'ai-customers-for-b2b-sales-teams',
     'long-running-ai-agents',
     'what-to-build-with-ai-customers',
+    'ai-agent-use-cases-for-business',
+    'agentic-ai-use-cases-in-ecommerce',
   ],
 }

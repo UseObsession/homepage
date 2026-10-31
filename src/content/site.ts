@@ -72,6 +72,7 @@ export const recipesPage: RecipesIndexPage = {
     line: 'What the agents find comes back wherever your team already works.',
     inputs: ['Paste a list', 'Upload a CSV', 'Connect Clay', 'Your own agent', 'The API'],
     outputs: ['Email', 'PDF', 'Slack', 'A sheet', 'Clay', 'Your CRM', 'A webhook'],
+    guide: { label: 'Every AI customer use case, explained', to: '/blog/ai-agent-use-cases-for-business' },
   },
 
   faq: {

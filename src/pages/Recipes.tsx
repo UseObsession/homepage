@@ -106,6 +106,11 @@ export function Recipes() {
               <span className="ob-btn-label">{recipePage.outputs.cta.label}</span>
               <Arrow className="ob-btn-glyph ob-btn-arrow" />
             </Link>
+            {/* The guide that sets out every job, so the catalogue links to its own explainer. */}
+            <Link className="ob-btn ob-btn--link s-ri-hub__cta" to={page.hub.guide.to}>
+              <span className="ob-btn-label">{page.hub.guide.label}</span>
+              <Arrow className="ob-btn-glyph ob-btn-arrow" />
+            </Link>
           </header>
           <div className="s-ri-flow">
             <ul className="s-ri-flow__col s-ri-flow__col--in" aria-label={UI.inputs}>
