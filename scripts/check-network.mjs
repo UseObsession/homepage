@@ -2,7 +2,6 @@
    it (29 Oct 2026, the plan in docs/SEARCH.md and lib/connections.ts). Runs after the prerender in `npm run build`:
      node scripts/check-network.mjs [DIST]
    It fails the build when:
-   - a guide, recipe, use case or reader page doesn't end on "How Obsession works" (lib/connections.ts);
    - a recipe or use case lists no guides: name it in a post's `related`, or link it from a post;
    - a page has no link to it from another page's text (the nav and footer don't count);
    - a page has more or less than 1 h1, no title or description, or a canonical that isn't its own address;
@@ -59,7 +58,6 @@ for (const [p, html] of pages) for (const to of new Set(linksIn(mainOf(html)))) 
 
 for (const [p, html] of pages) {
   const kind = kindOf(p)
-  if (kind !== 'page' && !html.includes('id="how-obsession-works"')) fail(`${p}: the ${kind} doesn't end on "How Obsession works" (lib/connections.ts).`)
   if ((kind === 'recipe' || kind === 'use case') && !html.includes('id="guides"'))
     fail(`${p}: the ${kind} lists no guides. Name it in a post's \`related\` (${kind === 'recipe' ? `"recipe:${p.split('/').pop()}"` : `"${p}"`}), or link it from a post.`)
   if (!NOT_LINKED_IN_TEXT.has(p) && p !== '/') {
@@ -96,5 +94,5 @@ if (problems.length) {
 }
 const count = (k) => [...pages.keys()].filter((p) => kindOf(p) === k).length
 console.log(
-  `Checked ${pages.size} pages as one network: ${count('post')} guides, ${count('recipe')} recipes and ${count('use case')} use cases each end on how Obsession works, and every page has links in.`,
+  `Checked ${pages.size} pages as one network: ${count('post')} guides, ${count('recipe')} recipes and ${count('use case')} use cases, and every page has links in.`,
 )

@@ -44,6 +44,7 @@ export const resourcesPage: ResourcesPage = {
       id: 'use-cases',
       name: 'Use cases',
       line: '1 job, start to finish, for 1 kind of customer. The names and numbers are made up.',
+      all: { label: 'Every use case', to: '/use-cases' },
     },
     sample: {
       id: 'sample-output',

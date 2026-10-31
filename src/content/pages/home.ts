@@ -250,10 +250,12 @@ export const page: Page = {
       {
         q: 'What are AI customers?',
         a: `${AI_CUSTOMER.definition} An AI customer works for you, at any company you name. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
+        link: { label: 'Read the full guide to AI customers', to: AI_CUSTOMER.path },
       },
       {
-        q: 'Do the agents pretend to be people?',
-        a: 'No. When an agent talks to a person, it says it’s an AI. Signing up, reading emails and following ads needs no conversation at all.',
+        q: 'What will and won’t every AI customer do?',
+        a: 'When an agent talks to a person, it says it’s an AI; signing up, reading emails and following ads needs no conversation at all. It never uses fake payment details, gets round a CAPTCHA, clicks paid ads at volume or changes a receipt, and 1 email opts any site out.',
+        link: { label: 'What every AI customer will and won’t do', to: '/agents' },
       },
       {
         q: 'Is it legal to be a competitor’s customer?',

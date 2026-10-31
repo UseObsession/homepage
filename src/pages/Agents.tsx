@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom'
-import { LinkGroups } from '../components/sections/LinkGroups'
-import { connectionsFor } from '../lib/connections'
 import { Faq } from '../components/sections/Faq'
 import { agentsPage as p } from '../content/site'
 import { NoticeHero, NoticeSections } from './Notice'
@@ -14,7 +12,6 @@ export function Agents() {
     <>
       <NoticeHero pill={p.pill} headline={p.headline} sub={p.sub} />
       <NoticeSections sections={p.sections} className={p.faq ? undefined : 's-notice--then-final'} />
-      <LinkGroups groups={connectionsFor('/agents', 'page')} />
       {p.faq && <Faq faq={p.faq} id="questions" />}
       <section className="ob-layout-final s-notice-final" aria-labelledby="agents-contact">
         <h2 className="ob-layout-final-title" id="agents-contact">
