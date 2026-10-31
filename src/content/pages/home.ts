@@ -80,7 +80,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Every tool shows you the ad. None of them is the customer.',
-    line: 'Today it’s a spare inbox, screenshots and a spreadsheet, kept up by hand, or a tool that saves the page, or archives newsletters from its own list of brands. What happens after the click only reaches a customer of the company you name.',
+    line: 'Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or an AI customer at every company you name.',
     tools: {
       label: 'What other tools keep',
       items: [
