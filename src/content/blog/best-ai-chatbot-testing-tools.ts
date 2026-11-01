@@ -67,7 +67,6 @@ export const post: BlogPost = {
     'what is chatbot testing',
     'ai chatbot testing',
     'bot testing tools',
-    'voice agent testing',
   ],
   category: 'Check your AI agents',
   published: '2026-10-28',

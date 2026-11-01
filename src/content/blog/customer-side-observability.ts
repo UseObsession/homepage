@@ -43,7 +43,6 @@ export const post: BlogPost = {
     'observability for customer experience',
     'cx observability',
     'outside-in observability',
-    'ai agent observability',
     'real user monitoring vs synthetic monitoring',
     'business observability',
     'ai customers',

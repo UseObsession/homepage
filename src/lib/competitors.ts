@@ -8,12 +8,14 @@ const COMPETITOR_HOSTS = new Set([
   'adstack.com', 'aistoreshopper.com', 'competitive-compass.com', 'convertica.org', 'cresta.com', 'customeroptix.com',
   'dealerdrivendata.com', 'gen.qa', 'implementai.io', 'intouchinsight.com', 'liveperson.com', 'localspyai.com',
   'merchantguard.ai', 'ottom.io', 'presstwo.ai', 'qualified.com', 's-pro.io', 'shoptest.ai', 'tokensurf.io',
-  'trocglobal.com', 'undercoveragent.ai',
+  'trocglobal.com', 'undercoveragent.ai', 'servicemonitor.co.uk',
   // Store, checkout and website monitoring
   'checklyhq.com',
   // AI chatbot and AI agent testing
   'braintrust.dev', 'cekura.ai', 'coval.ai', 'cyara.com', 'getmaxim.ai', 'hamming.ai', 'langchain.com', 'langfuse.com',
   'promptfoo.dev', 'roark.ai',
+  // AI agent observability and voice agent platforms
+  'arize.com', 'datadoghq.com', 'helicone.ai', 'retellai.com', 'vapi.ai',
   // Competitor email tracking
   'badrep.email', 'bird.com', 'competiscan.com', 'competitorinbox.com', 'emaillove.com', 'inboxarchive.org',
   'mailcharts.com', 'milled.com', 'owletter.com', 'panoramata.co', 'reallygoodemails.com', 'sendsitive.com',
