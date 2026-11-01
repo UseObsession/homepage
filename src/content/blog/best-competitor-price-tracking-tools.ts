@@ -549,7 +549,8 @@ export const post: BlogPost = {
         },
         {
           q: 'What are competitor price monitoring services?',
-          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add [AI customers at every retailer they track](/use-cases/member-prices-for-price-intelligence).',
+          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add AI customers at every retailer they track.',
+          link: { label: 'Member price intelligence', to: '/use-cases/member-prices-for-price-intelligence' },
         },
         {
           q: 'How much does competitor price tracking software cost?',

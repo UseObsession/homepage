@@ -54,7 +54,6 @@ const CHECKOUT_DOCTOR = 'https://apps.shopify.com/checkout-doctor-store-alerts'
 const PANORAMATA = 'https://www.panoramata.co/pricing'
 const OTTERLY = 'https://otterly.ai/pricing'
 const CLOUD_BROWSER = 'https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt'
-const FLOW_RUNS = 'https://help.shopify.com/en/manual/shopify-flow/manage/monitor'
 
 const CHECKLIST = '/blog/black-friday-checklist-new-customer'
 const CAUSES = '/blog/welcome-basket-email-not-sending'
@@ -506,9 +505,8 @@ export const post: BlogPost = {
         },
         {
           q: 'Why is my Shopify Flow not working?',
-          a: 'In your Shopify admin, open Apps, then Flow, then Recent runs, and filter by errors or by runs that took no action. [Shopify’s help centre](' +
-            FLOW_RUNS +
-            ') says runs are kept for 14 days after they complete. A completed run shows the workflow ran. Whether its email or text arrived shows in a test from a new address and phone.',
+          a: 'In your Shopify admin, open Apps, then Flow, then Recent runs, and filter by errors or by runs that took no action. A completed run shows the workflow ran. Whether its email or text arrived shows in a test from a new address and phone.',
+          link: { label: 'Klaviyo flow not sending', to: '/blog/welcome-basket-email-not-sending' },
         },
       ],
     },
@@ -547,7 +545,6 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Panoramata', url: PANORAMATA },
     { title: 'Pricing', publisher: 'Otterly.AI', url: OTTERLY },
     { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CLOUD_BROWSER },
-    { title: 'Finding and monitoring workflow runs', publisher: 'Shopify Help Center', url: FLOW_RUNS },
   ],
   related: [
     'why-ai-customers-matter',

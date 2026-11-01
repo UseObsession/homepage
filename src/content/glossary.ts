@@ -42,5 +42,6 @@ export const AI_CUSTOMER = {
     'what-to-build-with-ai-customers',
     'ai-agent-use-cases-for-business',
     'agentic-ai-use-cases-in-ecommerce',
+    'speed-to-lead-statistics',
   ],
 }
