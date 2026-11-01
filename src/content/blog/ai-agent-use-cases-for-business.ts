@@ -683,11 +683,13 @@ export const post: BlogPost = {
       items: [
         {
           q: 'How is an AI customer different from an AI customer service agent?',
-          a: 'An AI customer service agent works for a company and answers its customers. An AI customer works for your company and becomes a customer of any company your company names, its own included, so it sees what each one sends and shows. [AI customer service agent vs AI customer](/blog/ai-customer-service-agent-vs-ai-customer) compares the two point by point.',
+          a: 'An AI customer service agent works for a company and answers its customers. An AI customer works for your company and becomes a customer of any company your company names, its own included, so it sees what each one sends and shows.',
+          link: { label: 'AI customer service agents vs AI customers', to: '/blog/ai-customer-service-agent-vs-ai-customer' },
         },
         {
           q: 'How is it different from AI shoppers like Shopify’s SimGym?',
-          a: 'SimGym sends AI shoppers through a Shopify store’s theme before a change is published, and they browse, add to cart and describe what they found. An AI customer signs up, waits and keeps what arrives after the click, at any company, competitors included. The [Shopify SimGym](/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers) review sets the two side by side.',
+          a: 'SimGym sends AI shoppers through a Shopify store’s theme before a change is published, and they browse, add to cart and describe what they found. An AI customer signs up, waits and keeps what arrives after the click, at any company, competitors included.',
+          link: { label: 'Shopify SimGym review', to: '/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers' },
         },
         {
           q: 'Do AI customers place orders?',

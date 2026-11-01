@@ -622,11 +622,13 @@ export const post: BlogPost = {
       items: [
         {
           q: 'How is an AI customer different from a store’s AI chat?',
-          a: 'A store’s AI chat works for the store and answers its shoppers. An AI customer works for a brand or its agency and is one of those shoppers. It asks the chat the hard questions and checks each answer against the store’s policy. [How to test a chatbot](/blog/test-store-chatbot-returns-policy) sets out the questions to ask.',
+          a: 'A store’s AI chat works for the store and answers its shoppers. An AI customer works for a brand or its agency and is one of those shoppers. It asks the chat the hard questions and checks each answer against the store’s policy.',
+          link: { label: 'How to test a chatbot on your store', to: '/blog/test-store-chatbot-returns-policy' },
         },
         {
           q: 'How is it different from Shopify’s SimGym?',
-          a: 'SimGym’s AI shoppers browse a Shopify theme, add to cart and describe what they found, before a theme change is published. An AI customer signs up, takes the code to checkout and keeps every email that follows, at any store, competitors included. The [Shopify SimGym](/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers) review compares the two.',
+          a: 'SimGym’s AI shoppers browse a Shopify theme, add to cart and describe what they found, before a theme change is published. An AI customer signs up, takes the code to checkout and keeps every email that follows, at any store, competitors included.',
+          link: { label: 'Shopify SimGym review', to: '/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers' },
         },
         {
           q: 'How is it different from a shopper’s own AI agent?',
@@ -646,7 +648,8 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI customer check a competitor’s store?',
-          a: 'Yes. It joins through the public sign-up any shopper can use and keeps every email, code and price the competitor sends a new customer. [Competitor email tracking tools](/blog/competitor-email-tracking-tools) compares the other ways to watch a competitor’s emails.',
+          a: 'Yes. It joins through the public sign-up any shopper can use and keeps every email, code and price the competitor sends a new customer.',
+          link: { label: 'Competitor email tracking tools compared', to: '/blog/competitor-email-tracking-tools' },
         },
       ],
     },

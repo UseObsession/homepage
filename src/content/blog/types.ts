@@ -38,7 +38,8 @@ export type BlogBlock =
   /* A sourced number: every stat on the blog links to where it came from. */
   | { kind: 'stat'; value: string; label: string; source: string; href: string }
   | { kind: 'note'; title: string; text: string }
-  | { kind: 'faq'; items: { q: string; a: string }[] }
+  /* Answers are plain text (they also feed the FAQPage data); a link goes in `link`, shown under the answer. */
+  | { kind: 'faq'; items: { q: string; a: string; link?: { label: string; to: string } }[] }
   /* The quiet link back to the product: a recipe or page that does what the post describes. */
   | { kind: 'cta'; text: string; to: string; label: string }
   /* An illustration (ArtSpec), on the article's wide measure, with its caption. */
