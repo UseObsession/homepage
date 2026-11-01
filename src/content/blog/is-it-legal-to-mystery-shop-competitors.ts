@@ -372,7 +372,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Your company chooses which competitors and which trials its AI customers join, so checking each trial’s terms first stays with your company. If your company needs to see what competitors send their customers, every email, offer and price as it arrived, use Obsession.',
+      text: '[Worked examples](/use-cases) show one job run end to end for a store, an agency or a sales team. Your company chooses which competitors and which trials its AI customers join, so checking each trial’s terms first stays with your company. If your company needs to see what competitors send their customers, every email, offer and price as it arrived, use Obsession.',
     },
     {
       kind: 'cta',
