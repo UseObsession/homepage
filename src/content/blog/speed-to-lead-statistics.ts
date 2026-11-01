@@ -69,6 +69,7 @@ export const post: BlogPost = {
   published: '2026-11-01',
   updated: '2026-11-01',
   readingMinutes: 14,
+  order: 5,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
     { name: 'James Akinniranye', role: 'Cofounder' },
@@ -78,7 +79,6 @@ export const post: BlogPost = {
       kind: 'log',
       title: 'corrivale.example · 1 test lead at 09:00',
       who: 'Demo form, site chat and sales line, on a Tuesday',
-      status: { tone: 'fail', text: '1 missed, 1 late' },
       rows: [
         { time: '09:00', text: 'Test lead uses 3 ways in', detail: 'Fills the demo form, opens the chat, calls sales', tone: 'info' },
         { time: '09:00', text: 'Chat answers in 38 seconds', detail: 'The lead lands in the CRM with an owner', tone: 'ok' },
@@ -151,7 +151,7 @@ export const post: BlogPost = {
           'Holds up, for business hours in 2013',
         ],
         [
-          'Prospects called within 1 minute were 391% more likely to convert',
+          'Prospects called within 1 minute were 391% more likely to convert than those called later',
           '[Velocify](' + VELOCIFY + '), May 2016',
           'Millions of its clients’ lead records',
           'Directional: no counts or dates',
@@ -169,7 +169,7 @@ export const post: BlogPost = {
           'Holds up, for 2024',
         ],
         [
-          'Two thirds never replied, and 96% never phoned',
+          'Two thirds never replied, and only 100 companies phoned',
           '[Clay](' + CLAY + '), published September 2026',
           '6,346 demo and contact forms in 100 countries',
           'Holds up, with Clay’s own caveats',
@@ -182,7 +182,7 @@ export const post: BlogPost = {
         ],
         ['64% of replies were automated', 'Clay, published September 2026', 'The 2,013 replies', 'Directional: an AI judged the split'],
         [
-          'Average reply of 47 hours, and 23% within 5 minutes',
+          'Average reply of 47 hours, and 23% of companies within 5 minutes',
           '[Optifai](' + OPTIFAI + '), updated April 2026',
           'CRM data from 939 B2B companies',
           'Directional: selection not published',
@@ -207,7 +207,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Both figures describe phone calls. A contact meant a call that reached a live person for a set number of seconds, and each company used its own definition of a qualified lead. The study’s page states, “This study did not address close ratios.” It measured no email or chat replies and no closed deals.',
+      text: 'Both figures describe phone calls. A contact meant a call that reached a live person for a set number of seconds, and each company used its own definition of a qualified lead. The study’s page states, “This study did not address close ratios.”',
     },
     {
       kind: 'p',
@@ -297,7 +297,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Email replies came to 2,013 forms, 32% of the total, and 96% of companies never called. The calls that did come arrived 34.5 hours after the form on average. About 7% of the forms got a reply from a salesperson, and 5% of replies arrived within 5 minutes.',
+      text: 'Email replies came to 2,013 forms, 32% of the total. Only 100 companies phoned, about 5% of those that replied, and their calls arrived 34.5 hours after the form on average. About 7% of the forms got a reply from a salesperson, and 5% of replies arrived within 5 minutes.',
     },
     {
       kind: 'p',
@@ -307,7 +307,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Optifai](' +
         OPTIFAI +
-        '), a sales software company, reports an average of 47 hours on a page updated in April 2026, with 23% of leads answered within 5 minutes. Its figures come from CRM and marketing automation data at 939 B2B companies, from the second quarter of 2025 to the first of 2026. It times from the lead’s creation in the CRM to the first sales activity, and its page doesn’t say how the companies were chosen.',
+        '), a sales software company, reports an average of 47 hours on a page updated in April 2026, with 23% of companies responding within 5 minutes. Its figures come from CRM and marketing automation data at 939 B2B companies, from the second quarter of 2025 to the first of 2026. It times from the lead’s creation in the CRM to the first sales activity, and its page doesn’t say how the companies were chosen.',
     },
     {
       kind: 'p',
@@ -405,7 +405,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same AI customers check the team’s own AI agents. [Sales agent check](/recipes/sales-agent-check) asks the AI agent in the site chat the price and plan questions buyers ask and checks each answer against the price list. [Outbound agent check](/recipes/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
+      text: 'The same AI customers check the team’s own AI agents. [Sales agent check](/recipes/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/recipes/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
     },
     {
       kind: 'p',
@@ -455,15 +455,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check)',
           'AI customers use the form, chat and phone at set times and time every first reply',
-          'Running now: Meet your first AI customers\nCredit-based plans, like Claude’s',
+          'Running now\nCredit-based plans, like Claude’s',
           'Why a lead was misrouted sits in the CRM the team connects',
-          'The first reply a buyer gets on every way in, at every hour',
+          'The first reply a buyer gets on every way in, at the times the team picks',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your team needs to know the first reply a buyer gets on every form, chat and sales line, at every hour it takes leads, use Obsession. A CRM report suits coaching reps once a lead has an owner. A form monitor catches a form that breaks outright, and a test by hand suits a spot check after a change.',
+      text: 'If your team needs to know the first reply a buyer gets on every form, chat and sales line, at the times it picks, evenings and weekends included, use Obsession. A CRM report suits coaching reps once a lead has an owner. A form monitor catches a form that breaks outright, and a test by hand suits a spot check after a change.',
     },
     {
       kind: 'cta',
@@ -486,7 +486,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do faster lead responses close more deals?',
-          a: 'The strongest studies stop at contact and qualification. The 2007 study did not address close rates, and Harvard Business Review measured qualified conversations. Velocify reported in 2016 that prospects called within 1 minute were 391% more likely to convert, from its clients’ call data, without publishing counts or dates.',
+          a: 'The strongest studies stop at contact and qualification. The 2007 study did not address close rates, and Harvard Business Review measured qualified conversations. Velocify reported in 2016 that prospects called within 1 minute were 391% more likely to convert than those called any time after that, from its clients’ call data, without publishing counts or dates.',
         },
         {
           q: 'Does an automatic reply count for speed to lead?',

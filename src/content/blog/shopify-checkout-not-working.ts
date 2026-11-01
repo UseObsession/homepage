@@ -85,7 +85,7 @@ export const post: BlogPost = {
   published: '2026-11-01',
   updated: '2026-11-01',
   readingMinutes: 15,
-  order: 1,
+  order: 0,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
     { name: 'James Akinniranye', role: 'Cofounder' },
@@ -117,16 +117,16 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'october', text: 'What happened to Shopify checkouts in October 2026' },
     {
       kind: 'p',
-      text: 'In October 2026, the developers of 3 Shopify apps confirmed that an attacker had added code to stores through their app. The code sent some shoppers who pressed Checkout to a page on another website. Each developer set out what happened on its own page.',
+      text: 'In October 2026, the developers of 3 Shopify apps said an attacker had added code to stores through their app, code that could send shoppers who pressed Checkout to a page on another website. Each developer set out what happened on its own page.',
     },
     {
       kind: 'table',
-      caption: 'The 3 apps whose developers confirmed checkout redirects in October 2026, each from its developer’s own statement. Times in UTC',
+      caption: 'The 3 apps whose developers said in October 2026 that code added through their app could send shoppers to another website at checkout, each row from its developer’s own statement. Times in UTC',
       cols: ['App', 'Statement', 'When', 'What shoppers met'],
       rows: [
         ['Hulk Product Options', '[HulkApps](' + HULK + '), 15 October', '10 October', 'Some checkouts sent to a fake checkout page'],
         ['Selleasy', '[Logbase](' + LOGBASE + '), updated 28 October', '13 October, 07:47 to 12:22', 'Some shoppers sent to an outside website at checkout'],
-        ['Swym Wishlist Plus', '[Swym](' + SWYM_SEC + '), 16 October', '14 October, 10:06 to 16:32', 'A page made to look like checkout, to collect card details'],
+        ['Swym Wishlist Plus', '[Swym](' + SWYM_SEC + '), 16 October', '14 October, 10:06 to 16:32', 'Some shoppers may have been sent to a website imitating checkout'],
       ],
     },
     {
@@ -182,9 +182,9 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 6 checks, from the cart to the order email' },
     {
       kind: 'p',
-      text: 'Use a phone, plus a second phone with the other operating system if possible, because wallet buttons such as Apple Pay depend on the device. Open a new private window for every run, signed out of the admin. A private window is also the first step on [Shopify’s theme troubleshooting page](' +
+      text: 'Use a phone, plus a second phone with the other operating system if possible, because wallet buttons such as Apple Pay depend on the device. Open a new private window for every run, signed out of the admin, a step [Shopify’s theme troubleshooting page](' +
         THEME_TROUBLE +
-        '). Use a real address in the store’s main market, screenshot each step with the time showing, and stop at the payment page.',
+        ') also suggests. Use a real address in the store’s main market, screenshot each step with the time showing, and stop at the payment page.',
     },
 
     { kind: 'h3', id: 'opens', text: '1. Checkout opens from the cart and from Buy it now' },
@@ -192,7 +192,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Add an in-stock product, open the cart and tap Checkout. Then go back to the product page and, where the store shows one, tap Buy it now, which [Shopify says](' +
         ACCELERATED +
-        ') skips the cart and goes straight to checkout. **A pass:** both open checkout within seconds, and nothing such as a chat button or a pop-up sits over either button. Branded buttons such as Shop Pay or PayPal depend on the payment methods switched on and on the shopper’s device, browser and payment history. A missing one on a single phone can be normal.',
+        ') skips the cart and goes straight to checkout. **A pass:** both open checkout within seconds, and nothing such as a chat button or a pop-up sits over either button. Branded buttons such as Shop Pay or PayPal depend on the payment methods switched on and on the shopper’s device, browser and payment history, so check a missing one on a second device before calling it a fault.',
     },
 
     { kind: 'h3', id: 'address', text: '2. Checkout stays on the store’s own web address' },
@@ -200,13 +200,13 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Read the address bar the moment checkout opens. A store’s [primary domain](' +
         PRIMARY_DOMAIN +
-        ') is the web address Shopify shows in the address bar for its online store, and checkout runs on the same address. A store with a custom storefront built on Hydrogen, Shopify’s framework for building one, runs checkout on a subdomain such as checkout.example.com, as [Shopify’s Hydrogen guide](' +
+        ') is the web address Shopify shows in the address bar for its online store. A store with a custom storefront built on Hydrogen, Shopify’s framework for building one, runs checkout on a subdomain such as checkout.example.com, as [Shopify’s legacy Hydrogen guide](' +
         HYDROGEN +
         ') sets out.',
     },
     {
       kind: 'p',
-      text: '**A pass:** the address bar shows the store’s own domain from the cart to the payment page, or the page of a payment provider the shopper picked, such as PayPal’s. A block or a confirmation message from Shopify after tapping Checkout means something on the page is sending shoppers off the store. Stop there and go to what changed last. Most outside websites open with no message at all, so the address bar is the check to rely on.',
+      text: '**A pass:** from the cart to the payment page, the address bar shows the store’s own domain or a checkout subdomain of it, or the page of a payment provider the shopper picked, such as PayPal’s. A block or a confirmation message from Shopify after tapping Checkout means something on the page is sending shoppers off the store. Stop there and go to what changed last. Most outside websites open with no message at all, so the address bar is the check to rely on.',
     },
 
     { kind: 'h3', id: 'codes', text: '3. Every code applies' },
@@ -290,11 +290,11 @@ export const post: BlogPost = {
         '**Checkout apps.** In Settings > Checkout, the checkout editor’s Apps panel lists every app block in checkout. [An app allowed to block checkout](' +
           CHECKOUT_APPS +
           ') rejects an order when the shopper leaves its required field, such as a checkbox, incomplete.',
-        '**The theme.** Add a free Shopify theme and preview the store with it, as Shopify’s theme troubleshooting page suggests. If the break disappears, it sits in the current theme. The [code editor’s Timeline](' +
+        '**The theme.** Shopify’s theme troubleshooting page suggests installing a different theme. Add a free Shopify theme to the theme library without publishing it, and preview the store with it. If the break disappears, it sits in the current theme. The [code editor’s Timeline](' +
           EDIT_CODE +
           ') restores an earlier version of a file, replacing the whole file, so copy its current contents first.',
         '**Theme files an app changed.** Swym’s FAQ asks merchants to look in the code editor for theme file edits made by its app. It also asks them to search the theme for the web addresses used in the October attacks, which it lists.',
-        '**Discounts.** A code past its end date stops applying, and so does one that isn’t set to combine with another discount, as Shopify’s discount codes FAQ explains.',
+        '**Discounts.** A code expires at the end date and time set for it. When a shopper enters codes that can’t be combined, checkout says “Some discount codes couldn’t be used together. We applied the best combination”, as Shopify’s discount codes FAQ explains.',
         '**Markets.** Shopify’s page on checkout payment problems links wrong prices or currency to market settings. Check each market’s currency, and that the shopper’s country sits in the market expected.',
         '**Payments.** Any change in Settings > Payments, test mode included.',
       ],
@@ -403,7 +403,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Store leak checks](' + LEAKS + ')',
           'A fresh AI customer signs up, tries each code at checkout and stops before payment, at the store and its competitors',
           'Running now: Check my store free\nCredit-based plans, like Claude’s',
-          'Stops before payment, so the payment step needs a test order',
+          'Stops before payment unless the store chooses a capped, refunded order',
           'A new customer through checkout after every change, each step screenshotted',
         ],
       ],
@@ -457,7 +457,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Why does my Shopify checkout send customers to another website?',
-          a: 'If it isn’t a payment provider the shopper picked, such as PayPal, something on the store is redirecting them. In October 2026, the developers of Hulk Product Options, Selleasy and Swym Wishlist Plus confirmed that code delivered through their apps sent some shoppers to another website at checkout. Turn off app embeds, check theme file edits in the code editor’s Timeline, and send the page and the time to the app’s developer and to Shopify Support.',
+          a: 'If it isn’t a payment provider the shopper picked, such as PayPal, something on the store is redirecting them. In October 2026, the developers of Hulk Product Options, Selleasy and Swym Wishlist Plus said code added through their apps could send shoppers to another website at checkout. Turn off app embeds, check theme file edits in the code editor’s Timeline, and send the page and the time to the app’s developer and to Shopify Support.',
         },
         {
           q: 'Who do I contact when my Shopify checkout is broken?',
