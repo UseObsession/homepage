@@ -60,7 +60,6 @@ export const post: BlogPost = {
     'how to check what chatgpt says about my store',
     'how to get my shopify store recommended by chatgpt',
     'how to get recommended by chatgpt',
-    'chatgpt shopping',
     'ai visibility',
     'ai visibility tools',
     'ai search visibility',

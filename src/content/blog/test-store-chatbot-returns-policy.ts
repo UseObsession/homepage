@@ -182,7 +182,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Use the vendor’s test panel before a change goes live, and test the live chatbot as a customer after it does. To test the live chatbot every day on every channel, with each answer kept as proof, use Obsession.',
+      text: 'Use the vendor’s test panel before a change goes live, and test the live chatbot as a customer after it does. To test the live chatbot every day on every channel, with each answer kept as proof, use Obsession: its [AI customers](/blog/ai-customers) ask what your customers ask, and say they’re AI when they talk to a person.',
     },
 
     { kind: 'h2', id: 'how-to-test', text: 'How to test a chatbot as a customer' },

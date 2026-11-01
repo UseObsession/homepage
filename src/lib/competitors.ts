@@ -23,6 +23,8 @@ const COMPETITOR_HOSTS = new Set([
   'pricemole.io', 'priceva.com', 'prisync.com', 'skuuudle.com', 'visualping.io', 'wiser.com',
   // Ad libraries (/compare)
   'foreplay.co',
+  // AI visibility tracking (what AI assistants say about a brand)
+  'otterly.ai', 'peec.ai', 'tryprofound.com',
 ])
 
 /* A host and its parents: help.sendview.io matches sendview.io. */
