@@ -88,6 +88,23 @@ export const useCasesPage: UseCasesIndexPage = {
     name: 'Worked examples',
     line: 'Every agent says it’s AI, and every step is signed.',
   },
+  guides: {
+    id: 'every-job',
+    name: 'Every job, explained',
+    line: 'Two guides set out every job an AI customer does, with the page that runs each one.',
+    rows: [
+      {
+        label: 'AI agent use cases for business',
+        to: '/blog/ai-agent-use-cases-for-business',
+        line: 'The jobs AI customers do at your own company, competitors, prospects and partners, for every industry.',
+      },
+      {
+        label: 'Agentic AI use cases in ecommerce',
+        to: '/blog/agentic-ai-use-cases-in-ecommerce',
+        line: 'The jobs AI customers do for ecommerce brands and the agencies that serve them.',
+      },
+    ],
+  },
   final: final('use-cases-final'),
 }
 
