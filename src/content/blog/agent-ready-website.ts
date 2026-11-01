@@ -473,7 +473,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Your first store check is free: 4 AI customers sign up, use the welcome code, leave a basket and wait 48 hours, and your report arrives within 4 days.',
+      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check my store free',
     },

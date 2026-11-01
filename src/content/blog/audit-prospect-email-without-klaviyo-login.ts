@@ -34,7 +34,6 @@ const AIMERCE = 'https://newsletter.aimerce.ai/p/we-audited-500-klaviyo-accounts
 const AGENCY_CORE = 'https://agencymanagementinstitute.com/wp-content/uploads/2026/05/Agency-Core-2026_Executive-Summary.pdf'
 const R_DUMMY = 'https://www.reddit.com/r/Klaviyo/comments/1rawe00/klaviyo_not_sending_welcome_series_emails_from_flow/'
 const SAMPLE = 'https://useobsession.com/sample-output'
-const USE_CASE = 'https://useobsession.com/use-cases/leak-checks-for-retention-agencies'
 
 export const post: BlogPost = {
   slug: 'audit-prospect-email-without-klaviyo-login',
@@ -305,9 +304,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes [AI customers](' +
-        USE_CASE +
-        ') that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
+      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
     },
     {
       kind: 'cta',

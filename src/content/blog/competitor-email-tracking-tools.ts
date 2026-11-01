@@ -453,7 +453,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same check runs on a brand’s own store. [Your first store check is free](/use-cases/leak-checks-for-ecommerce-stores): 4 AI customers sign up, use the welcome code, leave a basket and wait 48 hours, and your report arrives within 4 days.',
+      text: 'The same check runs on a brand’s own store. [Check your store free](/use-cases/leak-checks-for-ecommerce-stores): 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
     },
 
     { kind: 'h2', id: 'side-by-side', text: 'The 11 tools compared', compare: true },

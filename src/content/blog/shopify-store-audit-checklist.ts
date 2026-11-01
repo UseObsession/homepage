@@ -487,7 +487,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do I audit my Shopify store for free?',
-          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. Obsession’s first store check is free as well: 4 AI customers sign up, use the welcome code, leave a basket and wait 48 hours.',
+          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. Obsession’s store check is free as well: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours.',
         },
         {
           q: 'Why is my Shopify store not getting sales?',

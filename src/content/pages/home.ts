@@ -260,6 +260,7 @@ export const page: Page = {
       {
         q: 'Is it legal to be a competitor’s customer?',
         a: 'Signing up to a newsletter, starting a trial or filling a basket is what any customer can do. Our agents do the same, say they’re AI when they talk to a person, and never use fake payment details.',
+        link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
         q: 'Do I need to connect anything?',
