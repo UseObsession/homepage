@@ -127,7 +127,7 @@ export const post: BlogPost = {
         ['Shopping research', 'A buyer’s guide after clarifying questions', 'Its help article redirects'],
         ['Instant Checkout', 'Payment inside the chat', 'OpenAI is moving away from it'],
         ['Ads', 'One labelled ad unit under an answer', 'Free and Go plans, in some countries'],
-        ['Cloud browser', 'Steps on websites, with a check before paying', 'Paid plans other than Go'],
+        ['[Cloud browser](' + CLOUD + ')', 'Steps on websites, with a check before paying', 'Paid plans other than Go'],
       ],
     },
     { kind: 'h3', id: 'shopping-research', text: 'ChatGPT shopping research' },
@@ -414,9 +414,8 @@ export const post: BlogPost = {
         },
         {
           q: 'Does ChatGPT have a shopping agent?',
-          a: 'The nearest is the [cloud browser in ChatGPT Work](' +
-            CLOUD +
-            '), on paid plans other than Go. It can compare product availability and local stock on websites, and it asks for confirmation before a payment. OpenAI says it can’t finish every transaction. The 10 checks for an [agent ready website](/blog/agent-ready-website) set out what such agents meet on a store.',
+          a: 'The nearest is the cloud browser in ChatGPT Work, on paid plans other than Go. It can compare product availability and local stock on websites, and it asks for confirmation before a payment. OpenAI says it can’t finish every transaction.',
+          link: { label: 'The 10 checks for an agent ready website', to: '/blog/agent-ready-website' },
         },
         {
           q: 'Is there a ChatGPT shopping mode?',

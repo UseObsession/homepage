@@ -589,7 +589,8 @@ export const post: BlogPost = {
         },
         {
           q: 'How much do AI mystery shopping tools cost?',
-          a: 'On 28 October 2026, Qualified’s response test and Convertica were free, and LocalSpy AI, MerchantGuard, Gen.QA and AI Store Shopper had free plans or scans. UndercoverAgent listed $500 a week and TokenSurf $1,500 a month for weekly monitoring, and several tools list no price. Human shops cost $40 to $150 a store visit at T-ROC and start from $45 at CustomerOptix. [AI customers at scale](/blog/ai-customers-at-scale) works out the cost of each AI customer.',
+          a: 'On 28 October 2026, Qualified’s response test and Convertica were free, and LocalSpy AI, MerchantGuard, Gen.QA and AI Store Shopper had free plans or scans. UndercoverAgent listed $500 a week and TokenSurf $1,500 a month for weekly monitoring, and several tools list no price. Human shops cost $40 to $150 a store visit at T-ROC and start from $45 at CustomerOptix.',
+          link: { label: 'What one AI customer costs at scale', to: '/blog/ai-customers-at-scale' },
         },
         {
           q: 'Can an AI mystery shopper replace a human one?',

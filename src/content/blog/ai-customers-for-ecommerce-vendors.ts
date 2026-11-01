@@ -437,7 +437,8 @@ export const post: BlogPost = {
       items: [
         {
           q: 'How do I find Shopify store leads?',
-          a: 'Filter a store database such as Store Leads or BuiltWith by platform, country, estimated sales and installed apps, then add the people in Clay, Apollo or the CRM. [How to find ecommerce clients](/blog/how-to-find-ecommerce-clients) sets out the method for agencies.',
+          a: 'Filter a store database such as Store Leads or BuiltWith by platform, country, estimated sales and installed apps, then add the people in Clay, Apollo or the CRM.',
+          link: { label: 'How to find ecommerce clients', to: '/blog/how-to-find-ecommerce-clients' },
         },
         {
           q: 'What is a Shopify store lead list?',

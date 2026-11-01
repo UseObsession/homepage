@@ -28,9 +28,6 @@ const ARS = 'https://arstechnica.com/ai/2025/04/cursor-ai-support-bot-invents-fa
 const BBC_TACO = 'https://www.bbc.com/news/articles/ckgyk2p55g8o'
 const CMA = 'https://www.gov.uk/government/publications/complying-with-consumer-law-when-using-ai-agents/complying-with-consumer-law-when-using-ai-agents'
 const UTAH_102 = 'https://le.utah.gov/xcode/Title13/Chapter77/13-77-S102.html'
-const EU_AI_ACT = 'https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02024R1689-20260727'
-const MAINE = 'https://legislature.maine.gov/statutes/10/title10sec1500-DD-1.html'
-const UTAH_103 = 'https://le.utah.gov/xcode/Title13/Chapter77/13-77-S103.html'
 
 export const post: BlogPost = {
   slug: 'ai-chatbot-fails',
@@ -301,17 +298,13 @@ export const post: BlogPost = {
         },
         {
           q: 'How can a CX team find AI chatbot problems before customers do?',
-          a: 'Ask the live chat, email and phone line the questions with money or rights attached, logged out and as a customer, and check each answer against the policy page. Ask for a person, then repeat after every update and keep each answer with its time. Obsession’s [Support bot check](/recipes/support-bot-check) asks a support bot what customers ask every morning, on chat, email and the customer portal.',
+          a: 'Ask the live chat, email and phone line the questions with money or rights attached, logged out and as a customer, and check each answer against the policy page. Ask for a person, then repeat after every update and keep each answer with its time. Obsession’s Support bot check asks a support bot what customers ask every morning, on chat, email and the customer portal.',
+          link: { label: 'Support bot check', to: '/recipes/support-bot-check' },
         },
         {
           q: 'Does an AI chatbot have to say it’s an AI?',
-          a: 'In the EU, [Article 50 of the AI Act](' +
-            EU_AI_ACT +
-            ') requires providers to design chatbots so people are told they are dealing with an AI, unless that’s obvious, from 2 August 2026. In the US, [Maine’s law](' +
-            MAINE +
-            ') requires a clear notice wherever a chatbot could lead a consumer to think it’s human, and [Utah’s](' +
-            UTAH_103 +
-            ') requires a truthful answer when a consumer clearly asks. [Chatbot disclosure laws](/blog/chatbot-disclosure-laws) quotes each rule from its official text.',
+          a: 'In the EU, Article 50 of the AI Act requires providers to design chatbots so people are told they are dealing with an AI, unless that’s obvious, from 2 August 2026. In the US, Maine’s law requires a clear notice wherever a chatbot could lead a consumer to think it’s human, and Utah’s requires a truthful answer when a consumer clearly asks.',
+          link: { label: 'Chatbot disclosure laws', to: '/blog/chatbot-disclosure-laws' },
         },
       ],
     },
@@ -332,9 +325,6 @@ export const post: BlogPost = {
     { title: 'Taco Bell rethinks AI drive-through after man orders 18,000 waters', publisher: 'BBC News', url: BBC_TACO, date: '2025-08-29' },
     { title: 'Complying with consumer law when using AI agents', publisher: 'UK Competition and Markets Authority (GOV.UK)', url: CMA, date: '2026-10-30' },
     { title: 'Utah Code section 13-77-102: liability for violation of consumer protection law', publisher: 'Utah State Legislature', url: UTAH_102, date: '2026-05-06' },
-    { title: 'Regulation (EU) 2024/1689, the AI Act, consolidated text', publisher: 'EUR-Lex', url: EU_AI_ACT, date: '2026-07-27' },
-    { title: 'Title 10, §1500-DD: required disclosure of use of artificial intelligence chatbot to engage in trade and commerce', publisher: 'Maine Legislature, Office of the Revisor of Statutes', url: MAINE, date: '2025' },
-    { title: 'Utah Code section 13-77-103: required disclosures', publisher: 'Utah State Legislature', url: UTAH_103, date: '2025-05-07' },
   ],
 
   related: [

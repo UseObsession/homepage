@@ -424,7 +424,8 @@ export const post: BlogPost = {
         },
         {
           q: 'Can I test checkout without placing an order?',
-          a: 'Yes. Go as far as the payment page and stop. That covers the cart, the address, shipping, tax, codes and the payment methods on offer. The payment step itself needs a test order, and [how to place a test order on Shopify](/blog/how-to-test-your-shopify-store-as-a-customer) sets out each way to place one.',
+          a: 'Yes. Go as far as the payment page and stop. That covers the cart, the address, shipping, tax, codes and the payment methods on offer. The payment step itself needs a test order.',
+          link: { label: 'How to place a test order on Shopify', to: '/blog/how-to-test-your-shopify-store-as-a-customer' },
         },
       ],
     },
