@@ -336,7 +336,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'new-customer', text: '2. Give each competitor a new customer' },
     {
       kind: 'p',
-      text: 'For each competitor, set up a new Gmail address, a phone number that can receive texts and a private browser window. Sign up through the public pop up, record the offer on screen with the time, and confirm the first email the same day. Read each site’s terms and never place an order you won’t take delivery of. None of this is legal advice.',
+      text: 'For each competitor, set up a new Gmail address, a phone number that can receive texts and a private browser window. Sign up through the public pop up, record the offer on screen with the time, and confirm the first email the same day. Read each site’s terms, never place an order you won’t take delivery of, and see [is it legal to mystery shop competitors](/blog/is-it-legal-to-mystery-shop-competitors) for what decides whether a method is allowed. None of this is legal advice.',
     },
 
     { kind: 'h3', id: 'what-and-how-often', text: '3. Set what to watch and how often' },

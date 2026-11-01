@@ -33,6 +33,7 @@ const SHOPIFY_Q2 = 'https://transcripts.platformaeronaut.com/transcripts/SHOP-2Q
 const SHOPIFY_GOOGLE = 'https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/google'
 const SHOPIFY_PRODUCTS = 'https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/products'
 const OPENAI_SHOPPING = 'https://help.openai.com/en/articles/11128490'
+const OPENAI_MERCHANTS = 'https://chatgpt.com/merchants/'
 const SHOPIFY_DEV = 'https://shopify.dev/docs/agents'
 const DC360 = 'https://www.digitalcommerce360.com/2026/03/06/openai-shifts-checkout-plans-agentic-commerce-strategy/'
 const SHOPIFY_CHATGPT = 'https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/chatgpt'
@@ -89,7 +90,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-10-28',
+  updated: '2026-11-01',
   readingMinutes: 13,
   order: 11,
   authors: [
@@ -247,7 +248,9 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**ChatGPT.** [Digital Commerce 360 reported on 6 March 2026](' +
         DC360 +
-        ') that OpenAI was sidelining Instant Checkout in favour of checkout through merchants’ ChatGPT apps, with ACP continuing underneath. OpenAI’s help page still says an Instant Checkout option may show for eligible products.',
+        ') that OpenAI was sidelining Instant Checkout in favour of checkout through merchants’ ChatGPT apps, with ACP continuing underneath. By 1 November 2026, [OpenAI’s merchant page](' +
+        OPENAI_MERCHANTS +
+        ') said it was “moving away from a standalone Instant Checkout experience”, with purchases finished on merchants’ own websites or apps.',
     },
     {
       kind: 'p',
@@ -549,7 +552,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is ChatGPT Instant Checkout still available?',
-          a: 'OpenAI said in March 2026 that Instant Checkout was moving to merchants’ ChatGPT apps, and its help page says the option may still show for eligible products. Shopify stores sell in ChatGPT through their own checkout, opened in ChatGPT’s browser.',
+          a: 'OpenAI says it is moving away from a standalone Instant Checkout. In March 2026 it began letting merchants use their own checkout instead, and its merchant page says purchases are completed on merchant-owned websites or apps. Shopify stores sell in ChatGPT through their own checkout, opened in ChatGPT’s browser.',
         },
         {
           q: 'Can shoppers buy directly in Google AI Mode?',
@@ -569,6 +572,7 @@ export const post: BlogPost = {
   ],
 
   sources: [
+    { title: 'Power product discovery in ChatGPT', publisher: 'OpenAI', url: OPENAI_MERCHANTS },
     { title: 'Shopify agentic storefronts', publisher: 'Shopify Help Center', url: SHOPIFY_HELP },
     { title: 'Adobe forecasts U.S. holiday shopping season to hit a record $275.1 billion online', publisher: 'Adobe', url: ADOBE, date: '2026-09-28' },
     { title: 'Agentic Commerce Protocol', publisher: 'OpenAI and Stripe', url: ACP },
