@@ -70,7 +70,6 @@ export const post: BlogPost = {
     'ai agent quality assurance',
     'ai chatbot testing',
     'how to evaluate an ai chatbot',
-    'ai voice agent testing',
     'ai agent monitoring',
     'chatbot quality assurance',
     'ai customers',
