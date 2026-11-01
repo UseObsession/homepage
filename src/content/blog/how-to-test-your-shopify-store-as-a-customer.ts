@@ -55,7 +55,6 @@ export const post: BlogPost = {
     'how to view shopify store as customer',
     'shopify store checker',
     'how to test klaviyo flows',
-    'shopify checkout not working',
   ],
   category: 'Check your own journeys',
   published: '2026-10-29',
@@ -221,7 +220,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 10 customer checks, in the order a shopper meets them' },
     {
       kind: 'p',
-      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
+      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
     },
 
     { kind: 'h3', id: 'ad-link', text: '1. The ad’s link lands on a live product' },

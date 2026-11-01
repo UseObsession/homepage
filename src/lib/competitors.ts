@@ -9,6 +9,8 @@ const COMPETITOR_HOSTS = new Set([
   'dealerdrivendata.com', 'gen.qa', 'implementai.io', 'intouchinsight.com', 'liveperson.com', 'localspyai.com',
   'merchantguard.ai', 'ottom.io', 'presstwo.ai', 'qualified.com', 's-pro.io', 'shoptest.ai', 'tokensurf.io',
   'trocglobal.com', 'undercoveragent.ai',
+  // Store, checkout and website monitoring
+  'checklyhq.com',
   // AI chatbot and AI agent testing
   'braintrust.dev', 'cekura.ai', 'coval.ai', 'cyara.com', 'getmaxim.ai', 'hamming.ai', 'langchain.com', 'langfuse.com',
   'promptfoo.dev', 'roark.ai',
