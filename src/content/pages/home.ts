@@ -1,6 +1,6 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
-import { askExamples, askShared, compare, life, openSource } from '../shared5'
+import { askExamples, askShared, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
@@ -155,7 +155,24 @@ export const page: Page = {
     examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
   },
 
-  compare,
+  /* The comparison as 1 journey (4 Nov, option 1 of 5 in obsession/compare-options.html). The full table stays on
+     /compare and the reader pages. By hand reaches every step, so its line runs the whole way and thins out: what fails
+     is how many companies and for how long, not a step (James, 4 Nov). */
+  stopTrack: {
+    heading: 'Follow one customer. See where every tool stops.',
+    line: 'Every other tool’s view ends somewhere along the journey. Your AI customers stay to the end, and keep the receipts.',
+    steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
+    rows: [
+      { name: 'Ad libraries', who: 'Foreplay, Meta Ad Library', stop: 1, note: 'Stops at the ad' },
+      { name: 'Page monitors', who: 'Visualping', stop: 2, note: 'Stops at the page' },
+      { name: 'Your own AI agent', who: 'A browser for one session', stop: 3, note: 'Its session ends before the first email' },
+      { name: 'Email archives', who: 'Panoramata, MailCharts, Milled', stop: 4, note: 'Stops at the newsletter, for its own list of brands' },
+      { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
+      { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step, at every company you name, with the receipt' },
+    ],
+    foot: 'Where each kind of tool stops, from its own pages in October 2026.',
+    more: { label: 'See the full comparison', to: '/compare' },
+  },
 
   /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
      those stores' report in every format it arrives in. Only the share with a gap shows, never how many stores were

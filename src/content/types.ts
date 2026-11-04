@@ -323,6 +323,7 @@ export type Page = {
   life?: Life
   targets?: Targets
   compare?: Compare
+  stopTrack?: StopTrack
   /* The ask section (components/v5/Ask): the record as something to ask, on Home, Marketing, Sales and Agencies. */
   ask?: Ask
   ways?: Ways
@@ -658,6 +659,18 @@ export type Targets = {
 
 /* The comparison (components/v5/Compare). `cells` follow `cols` in order; the first column is Obsession. */
 export type CompareMark = 'yes' | 'part' | 'no'
+/* Home's comparison as 1 journey (components/v5/StopTrack, 4 Nov): the same customer's steps across the top, and each
+   kind of tool a line that stops where its view stops. `stop` counts the steps a line reaches; `fade` draws a line that
+   reaches every step but thins out (by hand: every step, for a few companies, until someone stops checking). */
+export type StopTrack = {
+  heading: string
+  line?: string
+  steps: string[]
+  rows: { name: string; who: string; note: string; stop?: number; fade?: boolean; ours?: boolean }[]
+  foot?: string
+  more?: Cta
+}
+
 export type Compare = {
   heading: string
   line?: string
