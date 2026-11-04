@@ -34,6 +34,14 @@
   text-wrap: balance;
 }
 
+.v5-hero-note {
+  margin: 0;
+  max-width: 52ch;
+  font: 400 13.5px / 1.5 var(--ob-font-sans);
+  color: var(--ob-text-3, var(--ob-text-2));
+}
+.v5-hero--center .v5-hero-note { margin-inline: auto; text-align: center; }
+
 .v5-hero-sub {
   margin: 0;
   max-width: 44ch;

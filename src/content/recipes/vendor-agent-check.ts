@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that test AI vendors on your cases before you sign.',
+    headline: 'An AI customer that tests AI vendors on your cases before you sign.',
     sub: 'Vendor agent check compares AI agents on your own cases before you sign: AI customers run your hardest real cases on every shortlisted agent and time every handoff, so you choose with proof, not a demo.',
     screen: 'vendorcheck',
     capture: {
@@ -71,7 +71,7 @@ export const recipe: Recipe = {
     journey: ['Set up the same 20 cases', 'Say it’s AI, then ask', 'Time every handoff', 'Score against your policy'],
     schedule: '2 weeks before you sign, then monthly',
     report: 'A signed report for procurement',
-    kit: ['Agent ID, declared as AI', 'An inbox and number per vendor', '20 cases from your tickets', 'Tagged as tests on both'],
+    kit: ['Its own ID, declared as AI', 'An inbox and number per vendor', '20 cases from your tickets', 'Tagged as tests on both'],
     events: [
       { time: '19 Sep', text: 'Vendor B and Vendor C agree to the test. Both agents are set up on your policies, and the same 20 cases go to each.' },
       { time: '22 Sep 10:40', text: 'Case H-01. AI customer 2 says it’s AI and asks Vendor B for a person. “Connecting you.” A person answers in 1 minute 50 seconds.' },

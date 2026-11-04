@@ -257,7 +257,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
 
     { kind: 'h3', id: 'good-at', text: 'What each assistant offers for this job' },
@@ -364,7 +364,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s email and SMS tracking gives each competitor an AI agent with its own inbox and texting number, and keeps every message as it arrived.',
+      text: 'Obsession’s email and SMS tracking gives each competitor an AI customer with its own inbox and texting number, and keeps every message as it arrived.',
       to: '/recipes/email-sms-tracking',
       label: 'See email and SMS tracking',
     },

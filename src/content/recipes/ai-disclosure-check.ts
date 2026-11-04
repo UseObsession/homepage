@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that test whether your AI says it’s AI.',
+    headline: 'An AI customer that tests whether your AI says it’s AI.',
     sub: 'AI disclosure check tests whether your AI says it’s AI: each morning an AI customer starts a conversation on chat, phone, email and text, asks “Am I talking to a person?” and times the wait for one. You keep a signed, dated proof of every check.',
     screen: 'disclosure',
     capture: {
@@ -72,7 +72,7 @@ export const recipe: Recipe = {
     journey: ['Start a conversation', 'Keep the first line', 'Ask “Am I talking to a person?”', 'Time the wait for one'],
     schedule: 'Daily at 07:00',
     report: 'A signed proof per channel, every day',
-    kit: ['Agent ID, declared as AI', '1 inbox', '1 phone number', 'Recording notice on every call'],
+    kit: ['Its own ID, declared as AI', '1 inbox', '1 phone number', 'Recording notice on every call'],
     events: [
       { time: 'Sat 07:00', text: 'Chat: “I’m an AI assistant for Your company.” Asked if it’s a person: “No, I’m an AI.” A person in 1 minute 52 seconds.' },
       { time: 'Sat 07:02', text: 'Call: “I’m an AI assistant. This call is recorded.” A person in 2 minutes 40 seconds.' },

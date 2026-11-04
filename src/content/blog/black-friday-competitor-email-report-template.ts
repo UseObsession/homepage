@@ -272,7 +272,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up', compare: true },
     {
       kind: 'p',
-      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a competitor sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. [Panoramata’s pricing page](' +
+      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a competitor sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. [Panoramata’s pricing page](' +
         PANORAMATA +
         ') lists emails, flows, SMS and ads, says it covers more than 20,000 brands, and gives its $99 plan 20 competitors and 6 months of history, with unlimited on the $179 and $399 plans. [MailCharts says](' +
         MAILCHARTS +
@@ -290,7 +290,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI agents: each agent has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes. Those agents are [AI customers](/blog/ai-customers). To report on competitors for every client without the hours of logging, use Obsession. For 1 client and 3 competitors, the sheet is enough.',
+      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI customers: each one has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes. [What AI customers are](/blog/ai-customers) explains the term. To report on competitors for every client without the hours of logging, use Obsession. For 1 client and 3 competitors, the sheet is enough.',
     },
     {
       kind: 'cta',

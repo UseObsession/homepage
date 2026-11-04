@@ -21,7 +21,7 @@ export const page: Page = {
     description:
       'How Obsession’s AI customers compare with ad libraries, email archives, page monitors and competitive intelligence tools, by what each can see.',
     answer:
-      'Other tools read the outside of a company: its ads, its archived newsletters, its pages. Obsession signs up and stays its customer, so it sees what comes after the click, with proof.',
+      'Other tools read the outside of a company: its ads, its archived newsletters, its pages. Obsession sends an AI customer that signs up and stays, so it sees what comes after the click, with proof.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Compare', path: '/compare' },
@@ -31,7 +31,7 @@ export const page: Page = {
   hero: {
     pill: '',
     headline: 'Obsession compared with ad libraries, email archives and page monitors',
-    sub: 'Other tools read the outside of a company: its ads, its archived newsletters, its pages. Obsession signs up and stays its customer, so it sees what comes after the click, with proof.',
+    sub: 'Other tools read the outside of a company: its ads, its archived newsletters, its pages. Obsession sends an AI customer that signs up and stays, so it sees what comes after the click, with proof.',
     capture: { ...waitlist, source: 'compare-hero' },
     proof: [],
     consoleHeading,
@@ -91,15 +91,15 @@ export const page: Page = {
     items: [
       {
         q: 'How is Obsession different from Panoramata or MailCharts?',
-        a: 'They keep what a company sends to its list, for the brands on their index or your plan. Obsession becomes a customer of any company you name, follows the ad, the trial or the basket, and keeps every email with the Gmail tab it landed in and its signature checked.',
+        a: 'They keep what a company sends to its list, for the brands on their index or your plan. Obsession sends an AI customer to any company you name. It follows the ad, the trial or the basket, and keeps every email with the Gmail tab it landed in and its signature checked.',
       },
       {
         q: 'How is it different from Foreplay?',
-        a: 'Foreplay saves and searches ads, with a picture of the page behind each one. Obsession follows the ad’s link as a customer and keeps going: the sign up, the emails, the offer at checkout.',
+        a: 'Foreplay saves and searches ads, with a picture of the page behind each one. Obsession’s AI customer follows the ad’s link and keeps going: the sign up, the emails, the offer at checkout.',
       },
       {
         q: 'Does Obsession replace Exa or Browserbase?',
-        a: 'No, it sits beside them. Exa searches the web and Browserbase drives a browser; Obsession is a customer that stays for months, with its own inbox, phone number and record. Your agent can call all 3.',
+        a: 'No, it sits beside them. Exa searches the web and Browserbase drives a browser; Obsession is an AI customer that stays for months, with its own inbox, phone number and record. Your agent can call all 3.',
       },
       {
         q: 'Is this comparison fair?',
@@ -109,7 +109,7 @@ export const page: Page = {
   },
 
   final: {
-    heading: 'Name a competitor. See what its customers get.',
+    heading: 'Name a competitor. Send it an AI customer.',
     capture: { ...waitlist, source: 'compare-final' },
   },
 }

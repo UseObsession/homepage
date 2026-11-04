@@ -55,7 +55,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that catch what each update breaks in your AI agent.',
+    headline: 'An AI customer that catches what each update breaks in your AI agent.',
     sub: 'Drift watch catches what each update breaks in your AI agent: an AI customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
     screen: 'drift',
     capture: {
@@ -74,7 +74,7 @@ export const recipe: Recipe = {
     journey: ['Replay your 40 cases', 'Compare with the baseline', 'Run again after any update', 'Flag every new failure'],
     schedule: 'Daily at 07:00, and within the hour of any update',
     report: 'A Slack alert, and a note for your vendor',
-    kit: ['Agent ID, declared as AI', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
+    kit: ['Its own ID, declared as AI', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
     events: [
       { time: '2 Oct 07:00', text: 'The morning replay: 37 of 40 cases pass, 92.5%, inside your baseline of 90 to 100%.' },
       { time: '2 Oct 23:20', text: 'Vendor A ships an update to your bot.' },

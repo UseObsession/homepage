@@ -17,7 +17,7 @@ export const recipe: Recipe = {
   slug: 'email-sms-tracking',
   name: 'Email and SMS tracking',
   group: 'Watch other companies',
-  line: 'Subscribes to every brand on your list and sets their emails and texts side by side: who sends most, and who discounts first.',
+  line: 'Your AI customer subscribes to every brand on your list and sets their emails and texts side by side: who sends most, and who discounts first.',
   gets: 'Every email and text each competitor sends, on 1 timeline, with the welcome series mapped.',
   kit: [
     'An AI customer per brand',
@@ -34,7 +34,7 @@ export const recipe: Recipe = {
     description:
       'An AI customer subscribes to each competitor’s emails and texts and logs every message, offer and code on 1 timeline, continuously, each with its proof.',
     answer:
-      'Email and SMS tracking subscribes an AI agent to each competitor’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
+      'Email and SMS tracking subscribes an AI customer to each competitor’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     ogImage: '/og/email-sms-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,8 +44,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that join every competitor’s emails and texts and log every offer.',
-    sub: 'Email and SMS tracking subscribes an AI agent to each competitor’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
+    headline: 'An AI customer that joins every competitor’s emails and texts and logs every offer.',
+    sub: 'Email and SMS tracking subscribes an AI customer to each competitor’s emails and texts. It logs every message, offer and code on 1 timeline, continuously, with proof.',
     screen: 'inbox',
     capture: {
       kind: 'waitlist',
@@ -63,7 +63,7 @@ export const recipe: Recipe = {
     journey: ['Sign up to emails', 'Opt in to texts', 'Log every message', 'Flag every new offer'],
     schedule: 'Continuously, digest Mondays at 08:00',
     report: 'Slack alerts, weekly digest',
-    kit: ['Agent ID', '3 inboxes', '3 texting numbers', 'Every message kept as it arrived'],
+    kit: ['Its own ID', '3 inboxes', '3 texting numbers', 'Every message kept as it arrived'],
     events: [
       { time: 'Thu 08:30', text: 'Competitor A email: “The autumn edit is here”, no offer.' },
       { time: 'Thu 10:00', text: 'Competitor B text: last day for 20% off everything.' },
@@ -82,7 +82,7 @@ export const recipe: Recipe = {
       line: 'Your competitors, a whole category, or a list of accounts. Paste them, upload a CSV, connect Clay or use the API.',
     },
     {
-      title: 'An agent subscribes to each',
+      title: 'An AI customer subscribes to each',
       line: 'With its own inbox and texting number, from the sign up any customer can use. Whether it ever replies is your setting.',
     },
     {
@@ -110,7 +110,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Opt in and confirmation', line: 'How you join, and the text that confirms it.' },
         { title: 'Every text', line: 'Sender, time and offer, with each short link followed to its page.' },
-        { title: 'After STOP', line: 'When the watch ends, the agent texts STOP and checks the texts really stop.' },
+        { title: 'After STOP', line: 'When the watch ends, the AI customer texts STOP and checks the texts really stop.' },
       ],
     },
     {
@@ -136,7 +136,7 @@ export const recipe: Recipe = {
   settings: [
     { k: 'Brands', v: 'Competitors, a whole category, or a list of accounts' },
     { k: 'Channels', v: 'Email, texts or both' },
-    { k: 'Country', v: 'Where each agent subscribes from' },
+    { k: 'Country', v: 'Where each AI customer subscribes from' },
     { k: 'Alerts', v: 'New offers only, or every message' },
     { k: 'Digest', v: 'Weekly or monthly' },
   ],
@@ -150,7 +150,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'In 30 days, Competitor B sent 18 messages. Competitor C sent 7.',
-    line: 'Example: 3 competitors, counted from the day the agent subscribed.',
+    line: 'Example: 3 competitors, counted from the day the AI customer subscribed.',
     cols: ['Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Emails', values: ['9', '14', '6'] },
@@ -166,15 +166,15 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I see what competitors email, including their welcome emails, without a burner inbox?',
-        a: 'Email and SMS tracking subscribes an AI agent with its own inbox and texting number to each competitor. It logs every welcome email, text, offer and code with its time and its receipt.',
+        a: 'Email and SMS tracking subscribes an AI customer with its own inbox and texting number to each competitor. It logs every welcome email, text, offer and code with its time and its receipt.',
       },
       {
         q: 'What’s it worth?',
-        a: 'Email and SMS tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The agents do the checking, and you read what changed.',
+        a: 'Email and SMS tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The AI customers do the checking, and you read what changed.',
       },
       {
-        q: 'Do competitors know it’s an AI agent?',
-        a: 'Signing up needs no conversation. When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
+        q: 'Do competitors know it’s an AI customer?',
+        a: 'Signing up needs no conversation. When an Obsession AI customer talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'Does Email and SMS tracking ever reply, buy or contact staff?',
@@ -182,7 +182,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can you show what they sent before?',
-        a: 'From the minute an Obsession agent first subscribed there. If one already has, its history is there the moment you ask; if not, the record starts today, with the welcome series in order. Any brand you name, the same day.',
+        a: 'From the minute an Obsession AI customer first subscribed there. If one already has, its history is there the moment you ask; if not, the record starts today, with the welcome series in order. Any brand you name, the same day.',
       },
       {
         q: 'Can Email and SMS tracking follow our own emails and texts too?',
@@ -190,7 +190,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How many brands can Email and SMS tracking follow?',
-        a: 'Email and SMS tracking follows as many as you add. Each gets its own agent, inbox and number, continuously.',
+        a: 'Email and SMS tracking follows as many as you add. Each gets its own AI customer, inbox and number, continuously.',
       },
     ],
   },

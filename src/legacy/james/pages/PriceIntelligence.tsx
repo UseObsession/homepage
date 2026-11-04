@@ -142,7 +142,7 @@ export function PriceIntelligence() {
               ['Member prices', 'The price shown once you’re signed in, or with the loyalty card linked to the account.'],
               ['Welcome coupons', 'The code or credit that lands after joining, and what it takes to use it.'],
               ['Offers that arrive later', 'The email on day 3, the text on day 7, the win back coupon after three weeks.'],
-              ['Prices by store', 'Online prices change once you pick a store or a postcode. Each member shops from the city you choose.'],
+              ['Prices by store', 'Online prices change once you pick a store or a postcode. Each AI customer shops from the city you choose.'],
             ].map(([h, p]) => (
               <Reveal as="li" key={h} className="card">
                 <h3 className="h3">{h}</h3>
@@ -169,9 +169,9 @@ export function PriceIntelligence() {
             </div>
             <div className="ours">
               <p className="kicker">Obsession runs</p>
-              <h3 className="h3">The members, the inboxes and the waiting.</h3>
+              <h3 className="h3">The AI customers, the inboxes and the waiting.</h3>
               <ul>
-                <li>An AI member per retailer and city, with its own inbox, Italian mobile number and browser</li>
+                <li>An AI customer per retailer and city, with its own inbox, Italian mobile number and browser</li>
                 <li>The sign ups, the store choice and the readings on your basket</li>
                 <li>Inboxes and phones kept open for as long as you watch</li>
                 <li>A screenshot or the message behind every observation</li>
@@ -369,7 +369,7 @@ export function PriceIntelligence() {
 
           <Step
             n={4}
-            title="Each retailer gets its own member"
+            title="Each retailer gets its own AI customer"
             line="A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI."
           >
             <Win title="Corvalle · Milano">

@@ -217,7 +217,7 @@ export function RetentionAgencies() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to check<small>Each store gets its own customer</small>
+                      Ready to check<small>Each store gets its own AI customer</small>
                     </span>
                     <b>
                       <Count to={40} /> stores
@@ -231,7 +231,7 @@ export function RetentionAgencies() {
                   <div className="uc-cfg">
                     <div>
                       <div className="uc-fld">
-                        <p className="uc-lab">At each store, the customer</p>
+                        <p className="uc-lab">At each store, the AI customer</p>
                         <ul className="uc-checks">
                           <li>
                             <span className="uc-cb on" style={at(0)} />
@@ -308,7 +308,7 @@ export function RetentionAgencies() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Larch & Lye</span>
-                        <span className="tag idle">Customer 3E9A</span>
+                        <span className="tag idle">AI customer 3E9A</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>

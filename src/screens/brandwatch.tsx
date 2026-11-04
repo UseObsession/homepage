@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function BrandwatchScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-brandwatch"><div className="appx-fit"><div className="appx" role="img" aria-label="Tidewren Swim, 1 of 300 brands from Clay, watched for 48 hours by an Obsession AI customer through test shopper 4F2A, which has its own inbox, UK mobile number and browser and says it’s AI. After the 10:14 sign up the welcome email lands in 38 seconds, the control text in 4 and the chat bot’s answer in 5, the basket reminder stays locked until the brand says OK, and the playhead sweeps 48 hours with no text from the brand, so the gap is called and added to Clay.">
+    <div className="il appx-il app-brandwatch"><div className="appx-fit"><div className="appx" role="img" aria-label="Tidewren Swim, 1 of 300 brands from Clay, watched for 48 hours by Obsession AI customer 4F2A, which has its own inbox, UK mobile number and browser and says it’s AI. After the 10:14 sign up the welcome email lands in 38 seconds, the control text in 4 and the chat bot’s answer in 5, the basket reminder stays locked until the brand says OK, and the playhead sweeps 48 hours with no text from the brand, so the gap is called and added to Clay.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>Prospect intelligence<span>/</span>Tidewren Swim</span>
@@ -27,7 +27,7 @@ export function BrandwatchScreen({ workspace = 'agency' }: ScreenProps) {
             <p className="ax-side-h">{ws.lists}</p>
             <a role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
         </aside>
         <div className="ax-main">
           <header className="bw-h ax-fade">
@@ -62,7 +62,7 @@ export function BrandwatchScreen({ workspace = 'agency' }: ScreenProps) {
             </div>
           </section>
           <section className="bw-who ax-card ax-in" style={{ '--d': '.14s' }}>
-            <div className="bw-wh"><b>Test shopper <span>4F2A</span></b><span className="ax-chip">Says it’s AI</span></div>
+            <div className="bw-wh"><b>AI customer <span>4F2A</span></b><span className="ax-chip">Says it’s AI</span></div>
             <dl className="bw-kv">
               <div><dt><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="2.25" y="3.75" width="11.5" height="8.5" rx="1.5" /><path d="m2.75 4.75 5.25 4 5.25-4" /></svg>Own inbox</dt><dd className="m">4f2a@obsession.example</dd></div>
               <div><dt><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="4.75" y="1.75" width="6.5" height="12.5" rx="1.5" /><path d="M7.25 11.75h1.5" strokeLinecap="round" /></svg>UK mobile</dt><dd className="m">+44 7700 900418</dd></div>

@@ -281,11 +281,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each run needs a new address, a phone and 48 hours per store, and each live variant needs a new run every morning. For 1 audit, a strategist can run it alongside steps 2 to 4. Across a pipeline of prospects or several live tests, the hours grow with every store and every day. Obsession runs that work today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then show what happened, with proof. After a client signs, they check every test variant past the sign up every morning it’s live.',
+      text: 'By hand, each run needs a new address, a phone and 48 hours per store, and each live variant needs a new run every morning. For 1 audit, a strategist can run it alongside steps 2 to 4. Across a pipeline of prospects or several live tests, the hours grow with every store and every day. Obsession runs that work today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then show what happened, with proof. After a client signs, they check every test variant past the sign up every morning it’s live.',
     },
     {
       kind: 'cta',
-      text: 'Name 3 brands you’re about to pitch and 2 clients, with their OK. Obsession follows each brand’s live ad as a new customer and sends what happened after the sign up within 4 days, with proof, free.',
+      text: 'Name 3 brands you’re about to pitch and 2 clients, with their OK. Obsession sends an AI customer through each brand’s live ad and sends what happened after the sign up within 4 days, with proof, free.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
       label: 'Check 5 brands free',
     },
@@ -390,7 +390,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Prospect intelligence signs up, opts in and asks the bot at every company on your list, then hands you a fact and its proof to open each pitch with. It runs now, on credit-based plans like Claude’s.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'options', text: 'CRO audit tools compared', compare: true },

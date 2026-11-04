@@ -13,11 +13,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/marketing',
-    title: 'AI customers for marketing: competitors’ emails and prices',
+    title: 'Send an AI customer to every competitor · Obsession',
     description:
-      'Obsession’s AI customers sign up to every competitor and stay on, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
+      'Send an AI customer to every competitor. It signs up and stays, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
     answer:
-      'Obsession’s AI agents sign up to every competitor on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
+      'Obsession sends an AI customer to every competitor on your list. It signs up and stays, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,8 +27,8 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Every competitor email, offer and price, seen as their customer.',
-    sub: 'Obsession’s AI agents sign up to every competitor on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
+    headline: 'Send an AI customer to every competitor. See every offer it gets.',
+    sub: 'Obsession sends an AI customer to every competitor on your list. It signs up and stays, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -55,7 +55,7 @@ export const page: Page = {
       ],
     },
     customer: {
-      label: 'What a customer of each competitor gets',
+      label: 'What your AI customer at each competitor gets',
       items: [
         'Every email and text the minute it lands, with its Gmail tab',
         'The welcome code and the basket reminder',
@@ -73,8 +73,8 @@ export const page: Page = {
         tab: 'Product marketing',
         moment: 'Friday, 09:14. Competitor B texts its subscribers a free gift over £40, the morning after its 20% off ended. Your team hears about it next week.',
         outcome: 'Every competitor’s emails, texts and offers on 1 timeline, the minute they land.',
-        line: 'An agent signs up to each competitor with its own inbox and number, and keeps every message, offer and code, with the Gmail tab each email landed in.',
-        whyOnly: 'Texts and subscriber codes only reach subscribers. Agents subscribe at every competitor on your list at once, and stay.',
+        line: 'An AI customer signs up to each competitor with its own inbox and number, and keeps every message, offer and code, with the Gmail tab each email landed in.',
+        whyOnly: 'Texts and subscriber codes only reach subscribers. Your AI customers subscribe at every competitor on your list at once, and stay.',
         recipe: 'email-sms',
         screen: 'inbox',
       },
@@ -82,8 +82,8 @@ export const page: Page = {
         tab: 'Performance',
         moment: 'Monday, 07:04. Ad 4 is spending $410 a day sending clicks to a table lamp that’s sold out.',
         outcome: 'Every live ad checked against the page it lands on, each morning, and the one that can’t sell flagged before the day’s spend.',
-        line: 'Each morning, an agent opens the landing page of every live ad on a phone and a desktop, and checks the page loads, the offer and price match, and the product is in stock.',
-        whyOnly: 'The sold out sign only shows on the page itself. Your ad dashboard stops at the click; the agent keeps going.',
+        line: 'Each morning, an AI customer opens the landing page of every live ad on a phone and a desktop, and checks the page loads, the offer and price match, and the product is in stock.',
+        whyOnly: 'The sold out sign only shows on the page itself. Your ad dashboard stops at the click; the AI customer keeps going.',
         recipe: 'adcheck',
         screen: 'adcheck',
       },
@@ -91,8 +91,8 @@ export const page: Page = {
         tab: 'Brand and AI search',
         moment: 'Monday, 09:00. A buyer asks an AI assistant for the best in your category. It names 3 competitors and says your Leeds branch has closed.',
         outcome: 'Every wrong fact AI assistants tell your buyers, traced to its source and asked again every Monday until the answer changes.',
-        line: 'Agents ask the assistants your buyers use the same questions each week and trace each wrong answer to the page it cites.',
-        whyOnly: 'A visibility score counts how often AI names you. An agent asks as a buyer would and keeps the answer word for word.',
+        line: 'AI customers ask the assistants your buyers use the same questions each week and trace each wrong answer to the page it cites.',
+        whyOnly: 'A visibility score counts how often AI names you. An AI customer asks as a buyer would and keeps the answer word for word.',
         recipe: 'listings',
         screen: 'listings',
       },
@@ -100,7 +100,7 @@ export const page: Page = {
         tab: 'Partnerships',
         moment: 'Monday, 07:12. A deals site still shows your summer sale. Its code, SUMMER20, ended on 31 Aug.',
         outcome: 'Every partner’s link, code and banner tried as a customer each week, with a note ready for any that’s out of date.',
-        line: 'An agent visits each partner’s page, follows your link to your store and tries their code in your basket.',
+        line: 'An AI customer visits each partner’s page, follows your link to your store and tries their code in your basket.',
         whyOnly: 'Partner reports show the sales that came through. Only a customer’s visit shows the code that turned the rest away.',
         recipe: 'partners',
         screen: 'partners',
@@ -109,8 +109,8 @@ export const page: Page = {
         tab: 'Lifecycle',
         moment: 'Tuesday, 08:00. The autumn launch goes out, and LAUNCH20 only works for customers who’ve bought before.',
         outcome: 'Broken codes, links and texts caught in the first minutes, then tested again after the fix.',
-        line: 'Test customers on your own list get the launch on phone and desktop, with UK and US numbers. They open every link and try every code.',
-        whyOnly: 'A test send only reaches your own team. Agents join your list as new customers, so they catch the US text that never came and the code that refused them.',
+        line: 'AI customers on your own list get the launch on phone and desktop, with UK and US numbers. They open every link and try every code.',
+        whyOnly: 'A test send only reaches your own team. AI customers join your list as new customers, so they catch the US text that never came and the code that refused them.',
         recipe: 'delivery',
         screen: 'campaign',
       },
@@ -127,8 +127,8 @@ export const page: Page = {
   compare,
 
   proof: {
-    heading: 'On a real store, 1 shopper left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
-    line: 'A skincare store in September 2026, name hidden: 4 test customers, every inbox watched for 48 hours, 15 screenshots. A free report on your own store comes back the same way.',
+    heading: 'On a real store, 1 AI customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
+    line: 'A skincare store in September 2026, name hidden: 4 AI customers, every inbox watched for 48 hours, 15 screenshots. A free report on your own store comes back the same way.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
 
@@ -137,11 +137,11 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a marketing team?',
-        a: 'Obsession’s AI agents sign up to every competitor on your list and stay their customer, so you see each email, text, offer and price the minute it lands. The same agents check your own ads, launches and checkout the way a customer does.',
+        a: 'Obsession sends an AI customer to every competitor on your list. It signs up and stays, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
       },
       {
         q: 'How is this different from Panoramata, MailCharts or Milled?',
-        a: 'They keep what a brand sends to its list, for the brands they cover. Obsession becomes a customer of any company you name, follows the ad, the trial or the basket, and keeps each email with its Gmail tab and its signature checked.',
+        a: 'They keep what a brand sends to its list, for the brands they cover. Obsession sends an AI customer to any company you name. It follows the ad, the trial or the basket, and keeps each email with its Gmail tab and its signature checked.',
       },
       {
         q: 'Do I have to sign up to competitors myself?',
@@ -153,14 +153,14 @@ export const page: Page = {
       },
       {
         q: 'What is in the free report?',
-        a: 'Test customers shop a store you run: they sign up, leave a basket and stop at checkout, and every inbox is watched for 48 hours. You get what arrived, what never did, and the screenshots.',
+        a: '4 AI customers go to a store you run: they sign up, leave a basket and stop at checkout, and every inbox is watched for 48 hours. You get what arrived, what never did, and the screenshots.',
       },
     ],
   },
 
   final: {
-    heading: 'See what your own customers get. The first report is free.',
-    sub: 'Name a store you run. 4 test customers shop it, every inbox is watched for 48 hours, and your report arrives within 4 days.',
+    heading: 'Send an AI customer to your own store. The first report is free.',
+    sub: 'Name a store you run. 4 AI customers go through it, every inbox is watched for 48 hours, and your report arrives within 4 days.',
     capture: {
       kind: 'mystery',
       source: 'marketing-final',

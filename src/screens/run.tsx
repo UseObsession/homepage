@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function RunScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-run"><div className="appx-fit"><div className="appx" role="img" aria-label="The signed record of an example mystery shop for the Candles client: the run log lists each step the test shoppers took, with screenshots, and receipt 4 of 9, the checkout stopped before payment, is open. The account manager clicks Verify, the signature checks out with the chain intact, and a link to share the record with the client appears. 0 basket emails in 48 hours. All 9 receipts check out, chain intact.">
+    <div className="il appx-il app-run"><div className="appx-fit"><div className="appx" role="img" aria-label="The signed record of an example mystery shop for the Candles client: the run log lists each step the AI customers took, with screenshots, and receipt 4 of 9, the checkout stopped before payment, is open. The account manager clicks Verify, the signature checks out with the chain intact, and a link to share the record with the client appears. 0 basket emails in 48 hours. All 9 receipts check out, chain intact.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Records<span>/</span>Mystery shopper</span>
@@ -27,7 +27,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
             <p className="ax-side-h">{ws.lists}</p>
             <a role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a className="on" role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
         </aside>
         <div className="ax-main">
           <header className="ax-h rn-h ax-fade">
@@ -40,8 +40,8 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
             <section className="ax-card rn-log ax-fade" style={{ '--d': '.08s' }}>
               <div className="rn-hd"><b>Run log</b><span>Day 1 to 4 · signed</span></div>
               <ol>
-                <li className="rn-r r1 ax-in" style={{ '--d': '.3s' }}><time>21:02</time><i className="nd" /><div className="tx"><p>4 test shoppers sign up</p></div></li>
-                <li className="rn-r r2 ax-in" style={{ '--d': '.5s' }}><time>21:09</time><i className="nd" /><div className="tx"><p>Shopper 2 browses, leaves</p></div></li>
+                <li className="rn-r r1 ax-in" style={{ '--d': '.3s' }}><time>21:02</time><i className="nd" /><div className="tx"><p>4 AI customers sign up</p></div></li>
+                <li className="rn-r r2 ax-in" style={{ '--d': '.5s' }}><time>21:09</time><i className="nd" /><div className="tx"><p>Customer 2 browses, leaves</p></div></li>
                 <li className="rn-r r3 ax-in" style={{ '--d': '.7s' }}><time>21:14</time><i className="nd" /><div className="tx">
                   <p>Gift box £36 in basket</p>
                   <span className="ax-shot rn-cap cap-bag" aria-hidden="true"><span className="cb"><span className="pg"><i className="im" /><i className="t1" /><i className="t2" /></span><span className="dr"><i className="th" /><i className="ln" /><i className="ln s" /><i className="bt" /></span></span></span>
@@ -63,7 +63,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
               <dl className="rc-dl">
                 <div className="fl" style={{ '--d': '2.74s' }}><dt>Step</dt><dd><span className="v">Left at checkout, stopped before payment</span><i className="sk" style={{ width: '90%' }} /></dd></div>
                 <div className="fl" style={{ '--d': '2.82s' }}><dt>When</dt><dd><span className="v">Day 1, 21:30:07 UTC</span><i className="sk" style={{ width: '72%' }} /></dd></div>
-                <div className="fl" style={{ '--d': '2.9s' }}><dt>Agent</dt><dd><span className="v">Test customer 3 of 4</span><i className="sk" style={{ width: '66%' }} /></dd></div>
+                <div className="fl" style={{ '--d': '2.9s' }}><dt>Agent</dt><dd><span className="v">AI customer 3 of 4</span><i className="sk" style={{ width: '66%' }} /></dd></div>
                 <div className="fl" style={{ '--d': '2.98s' }}><dt>Evidence</dt><dd><span className="v"><span className="nw">Screenshot 4 of 9 ·</span> <span className="nw">raw page ·</span> <span className="nw">network log</span></span><i className="sk" style={{ width: '80%' }} /></dd></div>
               </dl>
               <div className="rc-ft">

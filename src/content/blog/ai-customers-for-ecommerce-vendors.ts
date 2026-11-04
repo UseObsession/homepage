@@ -277,7 +277,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'Each store on the list and each customer account gets its own AI customer, through the sign up any customer can use. Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a vendor, it shows what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
+      text: 'Each store on the list and each customer account gets its own AI customer, through the sign up any customer can use. Obsession runs this today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a vendor, it shows what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
     },
     { kind: 'h3', id: 'before-first-touch', text: '1. A fact for every store before the first touch' },
     {
@@ -426,9 +426,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Prospect intelligence with Clay puts a customer at every brand on a list and brings each gap back to the same rows with its proof, ready for the first email.',
+      text: 'Send an AI customer to any company. Prospect intelligence with Clay puts a customer at every brand on a list and brings each gap back to the same rows with its proof, ready for the first email.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify store leads' },

@@ -398,7 +398,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Competitor tracking runs now on the competitors you name, with every message dated from a known sign up, on credit-based plans like Claude’s.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'tools', text: 'Competitive intelligence tools compared', compare: true },

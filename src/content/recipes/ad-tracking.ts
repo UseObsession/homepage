@@ -35,7 +35,7 @@ export const recipe: Recipe = {
     description:
       'AI customers read the ads your competitors run in public each morning and follow each one to its page, price and code. Every new offer arrives with proof.',
     answer:
-      'Ad tracking follows your competitors’ ads to the offer behind each one: AI agents read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
+      'Ad tracking follows your competitors’ ads to the offer behind each one: AI customers read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,8 +45,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that follow your competitors’ ads to the offer behind each one.',
-    sub: 'Ad tracking follows your competitors’ ads to the offer behind each one: AI agents read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
+    headline: 'An AI customer that follows your competitors’ ads to the offer behind each one.',
+    sub: 'Ad tracking follows your competitors’ ads to the offer behind each one: AI customers read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
     screen: 'ads',
     capture: {
       kind: 'waitlist',
@@ -64,12 +64,12 @@ export const recipe: Recipe = {
     journey: ['Read the ads they run in public', 'Open each page on phone and desktop', 'Sign up where an ad offers a code', 'Compare the offer with yours'],
     schedule: 'Every morning at 07:00',
     report: 'Slack alert, weekly PDF',
-    kit: ['Agent ID', 'Phone and desktop browsers', '3 inboxes, for sign up codes', 'Screenshots of every ad and page'],
+    kit: ['Its own ID', 'Phone and desktop browsers', '3 inboxes, for sign up codes', 'Screenshots of every ad and page'],
     events: [
       { time: 'Fri 07:00', text: 'Read the ads 3 competitors run in public. Competitor A started 9 overnight.' },
       { time: 'Fri 07:04', text: 'Opened the page behind Competitor A’s “Free gift over £40” ad, on phone and desktop.' },
       { time: 'Fri 07:06', text: 'That page shows code GIFT40 and a gift set at £56, £2 under yours.' },
-      { time: 'Fri 07:09', text: 'Competitor B’s ad offers 15% off for signing up. The agent signs up, and the code arrives in 2 minutes.' },
+      { time: 'Fri 07:09', text: 'Competitor B’s ad offers 15% off for signing up. The AI customer signs up, and the code arrives in 2 minutes.' },
       { time: 'Fri 07:12', text: 'Competitor C’s free UK delivery ad has run 41 days, unchanged.' },
     ],
     finding: 'Competitor A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
@@ -83,7 +83,7 @@ export const recipe: Recipe = {
       line: 'Your competitors, or a client’s competitors. Paste a list, upload a CSV, connect Clay or use the API.',
     },
     {
-      title: 'An agent reads their ads',
+      title: 'An AI customer reads their ads',
       line: 'The ads they run in public, each morning: the words, the image or video, and the day each started.',
     },
     {
@@ -109,7 +109,7 @@ export const recipe: Recipe = {
       group: 'Where each ad lands',
       items: [
         { title: 'The page', line: 'Opened directly on phone and desktop, with the price, stock and offer it shows.' },
-        { title: 'Sign up offers', line: 'Where an ad offers a code for signing up, the agent signs up and records what arrives, and when.' },
+        { title: 'Sign up offers', line: 'Where an ad offers a code for signing up, the AI customer signs up and records what arrives, and when.' },
       ],
     },
   ],
@@ -159,7 +159,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Ad tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The agents do the checking, and you read what changed.',
+        a: 'Ad tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The AI customers do the checking, and you read what changed.',
       },
       {
         q: 'Does Ad tracking click on paid ads?',
@@ -171,11 +171,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Ad tracking sign up at competitors?',
-        a: 'Yes, where an ad offers a code for signing up, so you see what a new customer gets. You stay private unless you choose to be named. When an agent talks to a person, it says it’s an AI.',
+        a: 'Yes, where an ad offers a code for signing up, so you see what a new customer gets. You stay private unless you choose to be named. When an AI customer talks to a person, it says it’s an AI.',
       },
       {
         q: 'Can Ad tracking check our own ads, or a client’s?',
-        a: 'That’s Obsession’s Ad landing check: each morning it opens the page every live ad of yours points to, as a customer, and drafts the fix for your OK. Ad tracking follows the ads competitors run in public.',
+        a: 'That’s Obsession’s Ad landing check: each morning an AI customer opens the page every live ad of yours points to, and drafts the fix for your OK. Ad tracking follows the ads competitors run in public.',
       },
       {
         q: 'How many brands can Ad tracking follow?',

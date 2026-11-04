@@ -85,6 +85,8 @@ export type Hero = {
   sub: string
   capture: Capture
   secondary?: Cta
+  /* One quiet line under the form (Home: what the AI customer will always do). */
+  note?: string
   proof: { value: string; label: string }[]
   consoleHeading: string[]
   screens?: HeroScreen[]

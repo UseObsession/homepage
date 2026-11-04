@@ -51,6 +51,9 @@ const RULES = [
   },
   { id: 'retired', re: /\btemplates?\b/gi, why: 'say recipe, not template' },
   { id: 'retired', re: /\/founders\b/g, why: 'Founders is no longer a reader page' },
+  { id: 'retired', re: /be a customer of (every|any)/gi, why: 'the retired hero (3 Nov): send an AI customer to any company' },
+  { id: 'retired', re: /first AI customers that work for you/gi, why: 'the retired tagline (3 Nov)' },
+  { id: 'retired', re: /\bstores we shopped\b/gi, why: 'say our AI customers, not we shopped (3 Nov)' },
   { id: 'contradiction', re: /click(s|ing)? (on )?your ads/gi, why: 'agents open an ad’s page; they never click your ads' },
   {
     id: 'spelling',

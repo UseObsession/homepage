@@ -323,7 +323,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**' +
         AI_CUSTOMER.definition +
-        '** [What AI customers are](/blog/ai-customers) explains the term in full. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+        '** [What AI customers are](/blog/ai-customers) explains the term in full. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
     {
       kind: 'p',
@@ -331,7 +331,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Every AI customer says it’s an AI when it talks to a person and never gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Every AI customer says it’s an AI when it talks to a person and never gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
     },
     {
       kind: 'cta',

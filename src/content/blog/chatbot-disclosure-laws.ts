@@ -322,7 +322,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a CX or legal team, its AI disclosure check starts a conversation on the company’s chat, email and phone line each morning. It keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a CX or legal team, its AI disclosure check starts a conversation on the company’s chat, email and phone line each morning. It keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
     },
     {
       kind: 'p',

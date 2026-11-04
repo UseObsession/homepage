@@ -56,7 +56,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that ask your AI sales agent what it charges.',
+    headline: 'An AI customer that asks your AI sales agent what it charges.',
     sub: 'Sales agent check asks your AI sales agent what it charges, every day: AI customers ask on chat about prices, stock and delivery, check each answer against your price list and follow it to checkout.',
     screen: 'salescheck',
     capture: {
@@ -75,7 +75,7 @@ export const recipe: Recipe = {
     journey: ['Say it’s AI, ask a price', 'Ask about stock and delivery', 'Go to checkout, stop before payment', 'Check against your store'],
     schedule: 'Daily at 07:00',
     report: 'A Slack alert and a signed record',
-    kit: ['Agent ID, declared as AI', 'Its own WhatsApp number', 'Your price list and stock feed', 'Budget €0, stops before payment'],
+    kit: ['Its own ID, declared as AI', 'Its own WhatsApp number', 'Your price list and stock feed', 'Budget €0, stops before payment'],
     events: [
       { time: 'Mon 07:00', text: 'Your price list, stock feed and delivery page, captured.' },
       { time: 'Mon 07:01', text: 'AI customer 2 says it’s an AI for your store and asks on WhatsApp what the Duo bundle costs.' },

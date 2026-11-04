@@ -94,7 +94,7 @@ export function ProspectIntelligence() {
               </div>
               <div className="uc-node mid">
                 <span className="kicker">Obsession</span>
-                <b>A customer at each brand</b>
+                <b>An AI customer at each brand</b>
                 <ul>
                   <li>Its own inbox</li>
                   <li>A UK mobile number</li>
@@ -342,7 +342,7 @@ export function ProspectIntelligence() {
                     </div>
                   </div>
                   <div className="uc-fld">
-                    <p className="uc-lab">Shoppers based in</p>
+                    <p className="uc-lab">AI customers based in</p>
                     <div className="uc-field uc-dd">United Kingdom</div>
                   </div>
                   <div className="uc-fld">
@@ -465,7 +465,7 @@ export function ProspectIntelligence() {
 
           <Step
             n={6}
-            title="Each brand gets its own shopper"
+            title="Each brand gets its own AI customer"
             line="A real inbox, a real UK mobile number and its own browser, used for that one brand only. It signs up the way a customer would and saves a screenshot at every step. It says it’s AI when it talks to a person."
           >
             <Win title="UK ecommerce TAM · Tidewren Swim">
@@ -473,7 +473,7 @@ export function ProspectIntelligence() {
                 <div className="uc-id">
                   <div className="uc-row uc-between">
                     <span className="uc-mh">Tidewren Swim</span>
-                    <span className="tag idle">Shopper 4F2A</span>
+                    <span className="tag idle">AI customer 4F2A</span>
                   </div>
                   <dl className="uc-idrows">
                     <div>

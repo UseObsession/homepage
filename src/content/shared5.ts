@@ -7,8 +7,8 @@ import type { Ask, AskExample, Compare, Life, OpenSource, Ways } from './types'
    by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
    stage's companies, so the 2 pictures tell 1 story. */
 export const life: Life = {
-  heading: 'To know what 10,000 companies do, you have to be a customer of all 10,000.',
-  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an agent signs up to each, the first welcome emails land within minutes, and it stays on as their customer, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
+  heading: 'To know what 10,000 companies do, send an AI customer to all 10,000.',
+  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an AI customer signs up to each, the first welcome emails land within minutes, and it stays on, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
   list: 'brands.csv · 10,000 companies',
   axis: {
     start: 'Monday 09:00',
@@ -30,7 +30,7 @@ export const life: Life = {
   },
   phases: [
     { title: 'Name them', lead: 'Any input:', line: 'paste a list, connect Clay or your CRM, or just ask from your own agent.' },
-    { title: 'Each one, a customer', line: 'An agent per company signs up, follows the ad, starts the trial or fills the basket, as you choose.' },
+    { title: 'An AI customer each', line: 'One AI customer per company signs up, follows the ad, starts the trial or fills the basket, as you choose.' },
     { title: 'It stays a customer', line: 'Nothing for you to check. Each agent sleeps until its company does something.' },
     { title: 'It files the receipt', line: 'The email, page or price, kept as it arrived, with its time and its signature checked.' },
   ],
@@ -60,7 +60,7 @@ export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect' | 'kee
       'The email platform and apps behind it all, and when they change',
     ],
   },
-  notYet: 'Not a customer of them yet? An agent signs up the day you ask, and the answers build from there.',
+  notYet: 'No AI customer there yet? One signs up the day you ask, and the answers build from there.',
   more: { label: 'Building on it? MCP, the API and the five verbs are in the developer guide', to: '/developers' },
 }
 
@@ -130,14 +130,14 @@ export const askExamples = {
      (James, 22 Oct). */
   watch: {
     where: 'Code',
-    q: 'Be a customer of every brand on our list, and send each new email to our webhook.',
+    q: 'Send an AI customer to every brand on our list, and send each new email to our webhook.',
     file: 'watch.py',
     code: `import os
 from obsession import Obsession
 
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
-# Become a customer of every brand on the list
+# Send an AI customer to every brand on the list
 ob.become_customer(["fernhollow.example", "northfold.example"],
                    how="newsletter", shared=True)
 
@@ -158,7 +158,7 @@ export const ways: Ways = {
       kind: 'chat',
       tab: 'In your agent',
       title: 'Ask your own agent',
-      line: 'Connect Obsession once to Claude, ChatGPT, Codex or Cursor. Your agent does the thinking, and calls Obsession for what only a customer sees.',
+      line: 'Connect Obsession once to Claude, ChatGPT, Codex or Cursor. Your agent does the thinking, and calls Obsession’s AI customers for what only a customer sees.',
       who: 'For anyone who already works with an AI agent.',
       setup: 'claude mcp add obsession https://mcp.useobsession.com',
       you: 'Compare our Black Friday emails with our five closest competitors.',
@@ -174,7 +174,7 @@ export const ways: Ways = {
       kind: 'platform',
       tab: 'On our website',
       title: 'Type what you want to know',
-      line: 'Or start from a recipe. Our agent plans the watch, you approve it, and the facts arrive with their receipts.',
+      line: 'Or start from a recipe. Our planner sets up your AI customers, you approve it, and the facts arrive with their receipts.',
       who: 'For anyone without an agent of their own.',
       ask: 'Start a free trial with our five closest competitors and tell me every offer they send until it ends.',
       recipes: ['Trial teardown', 'Competitor tracking', 'Ad landing check', 'Price watch'],
@@ -217,7 +217,7 @@ from obsession import Obsession
 
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
-# Become a customer of every brand on the list
+# Send an AI customer to every brand on the list
 ob.become_customer(["fernhollow.example", "northfold.example"],
                    how="newsletter", shared=True)
 
@@ -246,7 +246,7 @@ export const compare: Compare = {
   heading: 'Other tools read the outside. Obsession is the customer.',
   line: 'What each kind of tool can see, from their own pages in October 2026. They hold the archives; Obsession goes past the page.',
   cols: [
-    { name: 'Obsession', who: 'A customer of every company' },
+    { name: 'Obsession', who: 'An AI customer at any company' },
     { name: 'Ad libraries', who: 'Foreplay, Meta Ad Library' },
     { name: 'Email archives', who: 'Panoramata, MailCharts, Milled' },
     { name: 'Page monitors', who: 'Visualping' },
@@ -277,7 +277,7 @@ export const openSource: OpenSource = {
   core: {
     title: 'Open source: the runtime',
     items: [
-      { name: 'Fan out to 100,000 at once', line: 'One call starts an agent for every company on a list, in parallel, each with its own inbox, number and browser.' },
+      { name: 'Fan out to 100,000 at once', line: 'One call sends an AI customer to every company on a list, in parallel, each with its own inbox, number and browser.' },
       { name: 'Durable agents that sleep for free', line: 'Each agent hibernates between events and wakes on mail, a reply or a clock. Months of waiting run no process.' },
       { name: 'Learns once, then runs as code', line: 'The first run on a platform is an agent’s. Its trace compiles into a program of code, typed questions and small agents.' },
       { name: 'Better with every run', line: 'A case a program can’t settle goes to a stronger agent, then becomes the program’s next version. Cost falls with each one.' },

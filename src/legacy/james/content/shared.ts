@@ -9,7 +9,7 @@ export const pricingAnswer =
 export const watchedAll = ['Sign ups', 'Baskets', 'Support', 'Emails', 'Texts', 'Ads', 'TikTok', 'Prices', 'Pages']
 
 export const defaultRules = [
-  { title: 'It says what it is', line: 'Every test customer is marked as automated. It never pretends to be a person.' },
+  { title: 'It says what it is', line: 'Every AI customer is marked as automated. It never pretends to be a person.' },
   { title: 'It stops before paying', line: 'Checkouts end before payment. Nothing is bought on anyone else’s store.' },
   { title: 'Public journeys only', line: 'Sign ups, pages, ads and contact forms that anyone can use. Nothing behind a login it wasn’t given.' },
   { title: 'It backs off', line: 'It follows robots.txt and stops at CAPTCHAs instead of trying to get round them.' },

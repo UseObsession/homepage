@@ -34,7 +34,7 @@ export const recipe: Recipe = {
     description:
       'AI customers check every competitor’s prices, offers and delivery each morning, and join their lists for subscriber codes. Every change arrives with proof.',
     answer:
-      'Price watch catches every competitor price cut and the codes only subscribers get: AI agents check every competitor’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
+      'Price watch catches every competitor price cut and the codes only subscribers get: AI customers check every competitor’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     ogImage: '/og/price-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,8 +44,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that catch every competitor price cut, and the codes only subscribers get.',
-    sub: 'Price watch catches every competitor price cut and the codes only subscribers get: AI agents check every competitor’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
+    headline: 'An AI customer that catches every competitor price cut, and the codes only subscribers get.',
+    sub: 'Price watch catches every competitor price cut and the codes only subscribers get: AI customers check every competitor’s prices, offers and delivery each morning and join their email lists. Every change arrives with a before and after.',
     screen: 'prices',
     capture: {
       kind: 'waitlist',
@@ -63,9 +63,9 @@ export const recipe: Recipe = {
     journey: ['Open each product page', 'Read price, offer and delivery', 'Read the codes sent to subscribers', 'Compare with yesterday and with you'],
     schedule: 'Every morning at 06:00',
     report: 'Slack alert to #pricing, weekly PDF',
-    kit: ['Agent ID', '3 browsers, set to the UK', '3 inboxes on competitors’ lists', 'Before and after screenshots'],
+    kit: ['Its own ID', '3 browsers, set to the UK', '3 inboxes on competitors’ lists', 'Before and after screenshots'],
     events: [
-      { time: 'Mon 06:00', text: 'Morning check: 6 products at 3 competitors, priced as a UK shopper.' },
+      { time: 'Mon 06:00', text: 'Morning check: 6 products at 3 competitors, priced as a UK customer.' },
       { time: 'Mon 06:04', text: 'Competitor B: soy candle now £19 and ships free. On Sunday it was £24 plus £3.95 delivery.' },
       { time: 'Mon 06:05', text: 'Competitor B also cut its reed diffuser to £28 and its wax melts to £9. Competitors A and C unchanged.' },
       { time: 'Mon 06:06', text: 'Alert in #pricing, with the before and after screenshots.' },
@@ -73,7 +73,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Competitor B now sells its soy candle £5 under yours and ships it free, 4 days before Black Friday.',
     fix: 'Free delivery on your soy candle for Black Friday week, drafted for your next email. Live after your OK.',
-    ledger: 'Example run. Every price read from a public page or the agent’s own inbox, screenshotted before and after, and signed.',
+    ledger: 'Example run. Every price read from a public page or the AI customer’s own inbox, screenshotted before and after, and signed.',
   },
 
   steps: [
@@ -82,7 +82,7 @@ export const recipe: Recipe = {
       line: 'Paste single pages or whole collections, upload a CSV, connect Clay or use the API.',
     },
     {
-      title: 'Each competitor gets its own agent',
+      title: 'Each competitor gets its own AI customer',
       line: 'A browser set to your country and currency, and an inbox on the competitor’s email list.',
     },
     {
@@ -113,7 +113,7 @@ export const recipe: Recipe = {
       ],
     },
     {
-      group: 'In the agent’s inbox',
+      group: 'In the AI customer’s inbox',
       items: [
         { title: 'Subscriber codes', line: 'The codes a competitor only sends its list, so you see the price a new customer is really offered.' },
         { title: 'Sales told to the list first', line: 'The sale a competitor emails its subscribers before its site shows it.' },
@@ -133,7 +133,7 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Competitors and products', v: 'Single pages or whole collections' },
-    { k: 'Country', v: 'Sets the prices, currency and delivery the agent sees' },
+    { k: 'Country', v: 'Sets the prices, currency and delivery the AI customer sees' },
     { k: 'How often', v: 'Every morning, or every hour in a sale week' },
     { k: 'Alerts', v: 'Only changes above an amount you set' },
     { k: 'Compared with', v: 'Your own prices and codes, from your pages and your own list' },
@@ -148,7 +148,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Competitor B cut 3 prices overnight. Its soy candle is now £5 under yours.',
-    line: 'Example: Monday, 4 days before Black Friday, priced as a UK shopper.',
+    line: 'Example: Monday, 4 days before Black Friday, priced as a UK customer.',
     cols: ['You', 'Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Soy candle 200g', values: ['£24', '£26', '£19, was £24', '£25'] },
@@ -160,11 +160,11 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'It sees what any shopper sees, with a before and after for every change.',
+    heading: 'It sees what any customer sees, with a before and after for every change.',
     items: [
       {
         q: 'How do I track competitor prices without checking every day by hand?',
-        a: 'Obsession’s Price watch checks every competitor’s prices, offers, stock and delivery each morning as a shopper in your country, and sends each change with a before and after screenshot beside your own price.',
+        a: 'Obsession’s Price watch checks every competitor’s prices, offers, stock and delivery each morning as an AI customer in your country, and sends each change with a before and after screenshot beside your own price.',
       },
       {
         q: 'What’s it worth?',
@@ -172,7 +172,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is Price watch different from a price tracker?',
-        a: 'Price watch goes through each competitor as a customer, where most tools read what it publishes: the agent is on each competitor’s email list too, so it sees the code a new customer is sent and the price they really pay.',
+        a: 'Price watch sends an AI customer through each competitor, where most tools read what it publishes: it’s on each competitor’s email list too, so it sees the code a new customer is sent and the price they really pay.',
       },
       {
         q: 'Does Price watch buy anything or use a competitor’s basket?',
@@ -183,16 +183,16 @@ export const recipe: Recipe = {
         a: 'Yes. Price watch tries the code at checkout and keeps what the checkout showed. It also records every code on show or sent to subscribers.',
       },
       {
-        q: 'Do competitors know it’s an AI agent?',
-        a: 'Signing up and reading prices needs no conversation. When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
+        q: 'Do competitors know it’s an AI customer?',
+        a: 'Signing up and reading prices needs no conversation. When an Obsession AI customer talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'Which countries can Price watch check prices in?',
-        a: 'Price watch checks the ones you sell in. Each agent’s browser is set to that country, so it sees the prices, currency and delivery your customers see.',
+        a: 'Price watch checks the ones you sell in. Each AI customer’s browser is set to that country, so it sees the prices, currency and delivery your customers see.',
       },
       {
         q: 'How many competitors can Price watch cover?',
-        a: 'Price watch covers as many as you add. Each gets its own agent and inbox, and every change is kept with the morning it moved.',
+        a: 'Price watch covers as many as you add. Each gets its own AI customer and inbox, and every change is kept with the morning it moved.',
       },
     ],
   },

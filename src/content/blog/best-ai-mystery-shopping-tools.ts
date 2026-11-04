@@ -442,7 +442,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-got', text: 'What a customer actually got' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Two of its October runs show what a customer got, and which group of tools can see each result.',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Two of its October runs show what a customer got, and which group of tools can see each result.',
     },
 
     { kind: 'h3', id: 'october-pilot', text: 'A pilot for 4 agencies, every inbox watched for 48 hours' },
@@ -484,7 +484,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'client-stores', text: 'Stores agencies show as clients, walked on a phone' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
+      text: 'On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
@@ -602,7 +602,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI mystery shopping tools test the emails a store sends?',
-          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession’s AI customers each keep their own inbox and watch it to the end of the wait. In Obsession’s October pilot for 4 agencies, nearly half the stores sent nothing within 48 hours of a shopper leaving a checkout.',
+          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession’s AI customers each keep their own inbox and watch it to the end of the wait. In Obsession’s October pilot for 4 agencies, nearly half the stores sent nothing within 48 hours of an AI customer leaving a checkout.',
         },
         {
           q: 'Can an AI mystery shopper get past a CAPTCHA?',

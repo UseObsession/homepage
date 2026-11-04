@@ -3,15 +3,15 @@ import { AI_CUSTOMER } from '../glossary'
 import { askExamples, askShared, compare, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
-/* Home (/), the October rewrite (COPY.md, "Copy deck > Home"). 1 idea: to know what a company does to its customers,
-   you have to be one, and Obsession is that customer, with the receipts. Each block answers the question the last one
+/* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
+   sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
    leaves open, in this order:
-   1 what it is (the hero: the claim, the form, and the film previewing under them behind its play button) >
+   1 what it is (the hero: send an AI customer to any company, the form, and the film behind its play button) >
    2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
    3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   3b what it found (93% of stores we shopped had a gap: 1 real store's report, in every format) >
+   3b what it found (our AI customers found a gap at 93% of stores: 1 real store's report, in every format) >
    4 who you are (James's reader band: each reader's own page) >
-   5 who you can be a customer of (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
+   5 who you can send an AI customer to (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
    6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
    7 how it compares (6 kinds of tool, 7 rows, dated, linking /compare) >
    8 how far it goes (1 company, 1,000, 100,000: learned once, run as a program, asleep for free) >
@@ -30,21 +30,22 @@ const waitlist = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: meet the first AI customers that work for you',
+    title: 'Obsession: send an AI customer to any company',
     description:
-      'The first AI customers that work for you. They become a customer of any company you name, stay for months, and keep every email, offer and price as proof.',
+      'Send an AI customer to any company. It signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply as proof.',
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
-      'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. They are AI customers: use them from your own AI agent through MCP or the API, or from our website, and the runtime is open source.',
-    ogLine: 'The first AI customers that work for you: they join any company you name and keep the receipts.',
+      'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
+    ogLine: 'Send an AI customer to any company. It does what a real customer does and keeps the receipts.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
-    headline: 'Be a customer of every company. Keep the receipts.',
-    sub: 'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.',
+    headline: 'Send an AI customer to any company.',
+    sub: 'From the first ad to the last refund, it does what a real customer does and keeps a record of how the company treats it.',
     capture: { ...waitlist, source: 'home-hero' },
+    note: 'It says it’s an AI when it talks to a person, and every finding comes with its receipt.',
     proof: [],
     consoleHeading,
   },
@@ -54,7 +55,7 @@ export const page: Page = {
   heroVideo: {
     youtube: 'xNoG39G4twQ',
     label: 'Watch why Obsession',
-    title: 'Why Obsession: the first AI customers that work for you',
+    title: 'Why Obsession: send an AI customer to any company',
     file: { src: '/film/why-obsession-v2.mp4', poster: '/film/why-obsession-v2.jpg', width: 960, height: 540 },
   },
 
@@ -80,7 +81,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Every tool shows you the ad. None of them is the customer.',
-    line: 'Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or an AI customer at every company you name.',
+    line: 'Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or the AI customer you send.',
     tools: {
       label: 'What other tools keep',
       items: [
@@ -91,7 +92,7 @@ export const page: Page = {
       ],
     },
     customer: {
-      label: 'What a customer gets',
+      label: 'What your AI customer gets',
       items: [
         'Whether the offer held at checkout',
         'The welcome 9 minutes later, the basket reminder on day 2',
@@ -106,14 +107,14 @@ export const page: Page = {
   life,
 
   /* 4 kinds of company, 2 by 2, each beside its own screen: the headline names them (rivals, prospects, yourself), and
-     your AI agents are the 4th. The recipe menus keep their 3 groups; these cards answer whose customer you can be. */
+     your AI agents are the 4th. The recipe menus keep their 3 groups; these cards answer who you can send an AI customer to. */
   targets: {
-    heading: 'Be a customer of anyone. Competitors, prospects, or yourself.',
-    line: 'Most watches start with other companies. The same agents follow your own ads and checkouts, and test your own AI agents.',
+    heading: 'Send an AI customer to anyone. Competitors, prospects, or yourself.',
+    line: 'Most start with other companies. The same AI customers follow your own ads and checkouts, and test your own AI agents.',
     items: [
       {
         name: 'Competitors',
-        line: 'Every email, text, offer, price and ad, the day it lands, seen as their customer.',
+        line: 'Every email, text, offer, price and ad, the day it lands, seen by your AI customer.',
         screen: 'rivals',
         to: '/recipes',
         recipes: ['competitor', 'email-sms', 'prices', 'ads'],
@@ -127,14 +128,14 @@ export const page: Page = {
       },
       {
         name: 'Your own journeys',
-        line: 'Your ads, forms and checkouts, followed the way a customer does, so you see what breaks first.',
+        line: 'Your ads, forms and checkouts, used the way a real customer does, so you see what breaks first.',
         screen: 'shop',
         to: '/recipes',
         recipes: ['mystery', 'adcheck', 'speed', 'audit'],
       },
       {
         name: 'Your AI agents',
-        line: 'Test customers talk to your support bot, voice agent and AI SDR, and check every answer.',
+        line: 'AI customers talk to your support bot, voice agent and AI SDR, and check every answer.',
         screen: 'botcheck',
         to: '/verify',
         recipes: ['support-bot', 'voice-agent'],
@@ -151,12 +152,12 @@ export const page: Page = {
     heading: 'Learn it once. Run it for 1 company, 1,000 or 100,000.',
     lead: 'Learn it once. Run it for',
     counts: ['1 company.', '1,000 companies.', '100,000 companies.'],
-    line: 'The first sign up at a company teaches the agent the way in. Every company after it runs that way in as a program: in seconds, the same way every time, and cheaper with each company you add.',
+    line: 'The first sign up at a company teaches the AI customer the way in. Every company after it runs that way in as a program: in seconds, the same way every time, and cheaper with each company you add.',
     steps: [
       {
         title: 'Learns the way in',
-        line: 'An agent signs up at the first company step by step, and keeps every action as a trace.',
-        label: 'An agent signs up at the first company: it opens the newsletter page, finds the sign up form, types its own email, ticks marketing emails, submits, then clicks the confirm link. Each action lands in a trace, saved as the newsletter sign up, version 1.',
+        line: 'An AI customer signs up at the first company step by step, and keeps every action as a trace.',
+        label: 'An AI customer signs up at the first company: it opens the newsletter page, finds the sign up form, types its own email, ticks marketing emails, submits, then clicks the confirm link. Each action lands in a trace, saved as the newsletter sign up, version 1.',
       },
       {
         title: 'Turns it into a program',
@@ -228,10 +229,10 @@ export const page: Page = {
   compare,
 
   /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
-     those stores' report in every format it arrives in. Only the share with a gap shows, never how many were shopped
-     (the 50 rule); "every journey" is joined by a non breaking space so it never breaks inside it. */
+     those stores' report in every format it arrives in. Only the share with a gap shows, never how many stores were
+     joined (the 50 rule); "every journey" is joined by a non breaking space so it never breaks inside it. */
   outputs: {
-    heading: '93% of stores we shopped on every\u00a0journey had a gap.',
+    heading: 'Our AI customers found a gap at 93% of the stores where they ran every\u00a0journey.',
     line: 'Here is 1 of them: a basket and a checkout left, and no email in 48 hours. Every step has its receipt, in whatever your team reads.',
     facts: [],
     cta: { label: 'See the full report', to: '/sample-output' },
@@ -245,7 +246,7 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and stay its customers for months, keeping every email, offer and price it sends, with proof. Use it from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
+        a: 'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
       },
       {
         q: 'What are AI customers?',
@@ -254,17 +255,17 @@ export const page: Page = {
       },
       {
         q: 'What will and won’t every AI customer do?',
-        a: 'When an agent talks to a person, it says it’s an AI; signing up, reading emails and following ads needs no conversation at all. It never uses fake payment details, gets round a CAPTCHA, clicks paid ads at volume or changes a receipt, and 1 email opts any site out.',
+        a: 'When an AI customer talks to a person, it says it’s an AI; signing up, reading emails and following ads needs no conversation at all. It never uses fake payment details, gets round a CAPTCHA, clicks paid ads at volume or changes a receipt, and 1 email opts any site out.',
         link: { label: 'What every AI customer will and won’t do', to: '/agents' },
       },
       {
-        q: 'Is it legal to be a competitor’s customer?',
-        a: 'Signing up to a newsletter, starting a trial or filling a basket is what any customer can do. Our agents do the same, say they’re AI when they talk to a person, and never use fake payment details.',
+        q: 'Is it legal to send an AI customer to a competitor?',
+        a: 'Signing up to a newsletter, starting a trial or filling a basket is what any customer can do. Your AI customer does the same, says it’s an AI when it talks to a person, and never uses fake payment details.',
         link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
         q: 'Do I need to connect anything?',
-        a: 'No. Name the companies and the agents start. Connect Clay, Slack or your CRM only if you want what they find to land there.',
+        a: 'No. Name the companies and your AI customers start. Connect Clay, Slack or your CRM only if you want what they find to land there.',
       },
       {
         q: 'What do I get back?',
@@ -272,11 +273,11 @@ export const page: Page = {
       },
       {
         q: 'How soon do I see something?',
-        a: 'Most companies send a welcome email within minutes. If an agent is already a customer of a company, its history is there the moment you ask.',
+        a: 'Most companies send a welcome email within minutes. If an AI customer is already at a company, its history is there the moment you ask.',
       },
       {
         q: 'Can other customers see what I watch?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked. A company’s AI customer is shared for what any customer gets, its emails, pages and prices, so its history is there on day one. Anything you set beyond that, like replying or buying, runs on an agent of your own, and your list, questions and reports are yours alone.',
+        a: 'No. Anyone can see that a company is covered, and since when, but never who asked. A company’s AI customer is shared for what any customer gets, its emails, pages and prices, so its history is there on day one. Anything you set beyond that, like replying or buying, runs on an AI customer of your own, and your list, questions and reports are yours alone.',
       },
       {
         q: 'How do I get access?',
@@ -290,7 +291,7 @@ export const page: Page = {
   },
 
   final: {
-    heading: 'Name a company. See what its customers get.',
+    heading: 'Name a company. Send it an AI customer.',
     capture: { ...waitlist, source: 'home-final' },
     link: { label: 'Agency? Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
   },

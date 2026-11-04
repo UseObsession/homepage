@@ -16,10 +16,10 @@ export const recipe: Recipe = {
   slug: 'lead-leaks',
   name: 'Lead leaks',
   group: 'Check your own journeys',
-  line: 'Sends a test lead through your own form, chat and phone, and finds where leads leak.',
+  line: 'Sends an AI customer through your own form, chat and phone as a test lead, and finds where leads leak.',
   gets: 'Your speed to lead on every channel, who picked each lead up, and every lead that slipped through.',
   kit: [
-    'A test lead that says it’s AI',
+    'An AI customer as your test lead',
     'Its own inbox and phone number',
     'A timer on every enquiry',
     'Tests at the times you pick',
@@ -31,9 +31,9 @@ export const recipe: Recipe = {
     path: '/recipes/lead-leaks',
     title: 'Lead leaks: test your speed to lead every day · Obsession',
     description:
-      'Speed to lead, tested: an AI test lead uses your own form, chat and phone, times every first reply and finds the leads your team never answered.',
+      'Speed to lead, tested: an AI customer, as a test lead, uses your own form, chat and phone, times every first reply and finds the leads your team never answered.',
     answer:
-      'Lead leaks is a speed to lead test for your own funnel: an AI test lead uses your form, chat and phone, times every first reply and shows you each lead your team never answered.',
+      'Lead leaks is a speed to lead test for your own funnel: an AI customer, as a test lead, uses your form, chat and phone, times every first reply and shows you each lead your team never answered.',
     ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,7 +44,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Find every lead your form, chat and phone let slip.',
-    sub: 'Lead leaks is a speed to lead test for your own funnel: an AI test lead uses your form, chat and phone, times every first reply and shows you each lead your team never answered.',
+    sub: 'Lead leaks is a speed to lead test for your own funnel: an AI customer, as a test lead, uses your form, chat and phone, times every first reply and shows you each lead your team never answered.',
     screen: 'inbound',
     capture: {
       kind: 'waitlist',
@@ -62,9 +62,9 @@ export const recipe: Recipe = {
     journey: ['Fill the demo form', 'Open the site chat', 'Call the sales line', 'Time each first reply'],
     schedule: 'Daily at 09:00, 13:00 and 17:00',
     report: 'A Slack alert, a daily line in your CRM',
-    kit: ['Test lead that says it’s AI', 'Own inbox', 'Own phone number', 'Your CRM, connected by you'],
+    kit: ['AI customer as test lead', 'Own inbox', 'Own phone number', 'Your CRM, connected by you'],
     events: [
-      { time: '09:00', text: 'The test lead fills the demo form, opens the site chat and calls the sales line.' },
+      { time: '09:00', text: 'The AI customer fills the demo form, opens the site chat and calls the sales line.' },
       { time: '09:01', text: 'Site chat answers in 38 seconds. The lead lands in your CRM with an owner.' },
       { time: '09:01', text: 'The sales line rings out. No voicemail, and no callback yet.' },
       { time: '13:12', text: 'Demo form: first reply after 4 hours 12 minutes. In your CRM with no owner.' },
@@ -81,7 +81,7 @@ export const recipe: Recipe = {
       line: 'Your forms, chat, phone lines and inbox, or a client’s with the client’s agreement.',
     },
     {
-      title: 'A test lead gets in touch',
+      title: 'Your AI customer gets in touch',
       line: 'It uses each channel the way a buyer does, at the times you pick, and says it’s AI to anyone who talks to it.',
     },
     {
@@ -138,7 +138,7 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Channels', v: 'Your own forms, chat, phone and inbox, or a client’s' },
-    { k: 'The enquiry', v: 'What the test lead asks, in your buyers’ words, and whether it says it’s a test from you' },
+    { k: 'The enquiry', v: 'What the AI customer asks, in your buyers’ words, and whether it says it’s a test from you' },
     { k: 'When', v: 'The times you pick, evenings and weekends included' },
     { k: 'Target', v: 'For example: a first reply within 5 minutes' },
     { k: 'Window', v: 'How long to wait for a reply' },
@@ -174,7 +174,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How fast do we actually answer a lead, including after 5pm and at weekends?',
-        a: 'Lead leaks finds out: a test lead arrives on your form, chat and phone at the times you pick, evenings and weekends included, and every first reply is timed, with who picked it up.',
+        a: 'Lead leaks finds out: an AI customer arrives as a lead on your form, chat and phone at the times you pick, evenings and weekends included, and every first reply is timed, with who picked it up.',
       },
       {
         q: 'Why test speed to lead?',
@@ -182,9 +182,9 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does my team know it’s a test?',
-        a: 'Your team knows it’s AI: every Lead leaks test lead says so to anyone who talks to it. Whether it also says it’s a test from you is your setting.',
+        a: 'Your team knows it’s AI: every Lead leaks AI customer says so to anyone who talks to it. Whether it also says it’s a test from you is your setting.',
       },
-      { q: 'Do callbacks count?', a: 'Yes. Each Lead leaks test lead has its own number, so callbacks and texts are logged as replies.' },
+      { q: 'Do callbacks count?', a: 'Yes. Each Lead leaks AI customer has its own number, so callbacks and texts are logged as replies.' },
       { q: 'What counts as a reply?', a: 'Lead leaks counts the first answer on any channel. Automatic replies are logged separately.' },
       { q: 'Does Lead leaks need our CRM?', a: 'No. Connect it to Lead leaks if you want to see who got each lead and whether anyone owns it.' },
       {

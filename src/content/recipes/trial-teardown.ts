@@ -16,7 +16,7 @@ export const recipe: Recipe = {
   slug: 'trial-teardown',
   name: 'Trial teardown',
   group: 'Watch other companies',
-  line: 'Starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
+  line: 'Your AI customer starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
   gets: 'The whole trial on 1 page, from the welcome email to the offer at the end.',
   kit: [
     'An AI customer per competitor',
@@ -33,7 +33,7 @@ export const recipe: Recipe = {
     description:
       'An AI customer starts each competitor’s free trial and logs every onboarding email, prompt and offer, day by day, from the welcome to the offer at the end.',
     answer:
-      'Trial teardown logs every email, prompt and offer in a competitor’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
+      'Trial teardown logs every email, prompt and offer in a competitor’s free trial: an AI customer starts each trial, signs in like a new user, and keeps every email with its receipt.',
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,8 +43,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that log every email, prompt and offer in a competitor’s free trial.',
-    sub: 'Trial teardown logs every email, prompt and offer in a competitor’s free trial: an AI agent starts each trial, signs in like a new user, and keeps every email with its receipt.',
+    headline: 'An AI customer that logs every email, prompt and offer in a competitor’s free trial.',
+    sub: 'Trial teardown logs every email, prompt and offer in a competitor’s free trial: an AI customer starts each trial, signs in like a new user, and keeps every email with its receipt.',
     screen: 'battlecard',
     capture: {
       kind: 'waitlist',
@@ -62,7 +62,7 @@ export const recipe: Recipe = {
     journey: ['Start the trial, no card', 'Sign in daily like a new user', 'Log every email and prompt', 'Watch to the last day'],
     schedule: 'Daily, until the trial ends',
     report: 'A battlecard in your CRM, the trial as a PDF',
-    kit: ['Agent ID', 'Own inbox', 'Own browser', '14 day watch'],
+    kit: ['Its own ID', 'Own inbox', 'Own browser', '14 day watch'],
     events: [
       { time: 'Day 0, 10:00', text: 'Starts a free trial with no card.' },
       { time: 'Day 0, 10:01', text: 'Welcome email with a 6 step setup checklist.' },
@@ -78,10 +78,10 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add your competitors',
-      line: 'Any software with a free trial. Where a trial asks for a card, the agent uses one you fund.',
+      line: 'Any software with a free trial. Where a trial asks for a card, the AI customer uses one you fund.',
     },
     {
-      title: 'An agent starts each trial',
+      title: 'An AI customer starts each trial',
       line: 'With its own inbox and browser. It signs in and follows onboarding like a new user.',
     },
     {
@@ -115,7 +115,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Before it ends', line: 'The reminders, and how many days before the end each one comes.' },
         { title: 'The offer', line: 'The discount or extension at the end, and how long it lasts.' },
-        { title: 'If a rep gets in touch', line: 'When it happens, what the rep says, and what the agent did next.' },
+        { title: 'If a rep gets in touch', line: 'When it happens, what the rep says, and what the AI customer did next.' },
       ],
     },
   ],
@@ -168,7 +168,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Is it ethical to sign up for a competitor’s free trial to compare onboarding?',
-        a: 'Starting a free trial is what any customer can do, and Obsession’s Trial teardown does the same. When the agent talks to a person, it says it’s an AI. It never uses fake payment details, and every email is kept exactly as it arrived.',
+        a: 'Starting a free trial is what any customer can do, and Obsession’s Trial teardown does the same. When the AI customer talks to a person, it says it’s an AI. It never uses fake payment details, and every email is kept exactly as it arrived.',
       },
       {
         q: 'What’s it worth?',
@@ -181,7 +181,7 @@ export const recipe: Recipe = {
       { q: 'What about trials that need a card?', a: 'Trial teardown starts them on a card you fund. It never uses fake payment details.' },
       {
         q: 'Will the competitor know?',
-        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
+        a: 'When an Obsession AI customer talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'Does Trial teardown use the product?',

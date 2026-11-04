@@ -22,13 +22,13 @@ export const CONTROLLER: string | null = null
    the Organization JSON-LD, Home's hero, its "What is Obsession?" and /agents). The footer carries its core in 1 short
    line (content/footer.ts). */
 const SENTENCE =
-  'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.'
+  'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.'
 
 /* What Obsession is, as an entity: the category (AI customers) and then the sentence. The line every engine and profile
    repeats (llms.txt's summary, the Organization and WebSite JSON-LD, docs/SEARCH.md 2), so assistants file Obsession
    under AI customers and never under customer service bots. */
 export const ENTITY =
-  'Obsession makes the first AI customers that work for you. Its AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.'
+  'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.'
 
 /* /recipes. James's index (1 job each, everything set up, the add-companies hub), grouped by job as in the nav.
    The groups render the recipes whose `group` matches, in this order. */
@@ -63,7 +63,7 @@ export const recipesPage: RecipesIndexPage = {
     },
     {
       group: 'Check your AI agents',
-      line: 'Test customers call, chat, email and shop the AI agents you run every day, and keep what they find.',
+      line: 'AI customers call, chat, email and shop the AI agents you run every day, and keep what they find.',
     },
   ],
 
@@ -380,13 +380,13 @@ export const agentsPage: AgentsPage = {
 export const notFoundPage: NotFoundPage = {
   meta: {
     path: '/404',
-    title: 'Page not found · Obsession, a customer of every company',
+    title: 'Page not found · Obsession, an AI customer for any company',
     description:
-      'There’s no page at this address. Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, with proof.',
+      'There’s no page at this address. Obsession sends AI customers to any company you name, and they keep every email, with proof.',
     answer: `There’s no page at this address on useobsession.com. ${SENTENCE}`,
   },
   headline: 'There’s no page at this address.',
-  sub: 'The link may be old or mistyped. Obsession’s AI agents sign up to any company you name and stay its customer. If an agent sent you here, start at useobsession.com/agents.',
+  sub: 'The link may be old or mistyped. Obsession sends AI customers to any company you name. If one of them sent you here, start at useobsession.com/agents.',
   links: [
     { label: 'Home', to: '/' },
     { label: 'Recipes', to: '/recipes' },
@@ -414,7 +414,7 @@ export const llms: Llms = {
     'Recipes cover watching other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), checking your own journeys (mystery shopper, ad landing check, lead leaks, partner checks, website audit, delivery monitoring, listings and AI answers), and checking the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
     'Other tools read the outside of a company: ad libraries such as Foreplay keep the ads, email archives such as Panoramata, MailCharts and Milled keep newsletters, and page monitors such as Visualping alert on changes. Obsession is the customer, so it sees what comes after the click. The comparison is at useobsession.com/compare.',
     'The runtime is open source: the AI customers, how they fan out, sleep and learn, the record, recipes, integrations and the 5 verbs. Obsession Cloud runs it, with inboxes and numbers in many countries and months of shared history.',
-    'Every agent says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never clicks paid ads at volume, and keeps every receipt exactly as it arrived. Any company can write to seun@useobsession.com to keep the agents off its site.',
-    'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 test customers, every inbox watched for 48 hours; 1 shopper left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency for a client, can get a first report free.',
+    'Every AI customer says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never clicks paid ads at volume, and keeps every receipt exactly as it arrived. Any company can write to seun@useobsession.com to keep the agents off its site.',
+    'The sample output at useobsession.com/sample-output is a real September 2026 check of a skincare store: 4 AI customers, every inbox watched for 48 hours; 1 left a basket, 1 stopped at checkout, and neither got a reminder. A store owner, or an agency for a client, can get a first report free.',
   ].join(' '),
 }

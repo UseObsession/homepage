@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that check every resolution your AI vendor bills.',
+    headline: 'An AI customer that checks every resolution your AI vendor bills.',
     sub: 'Resolution check tests every resolution your AI vendor bills: each one is matched against your payments and helpdesk while AI customers make the same asks on your live channels. You get the refunds promised and never made, with proof to challenge the bill.',
     screen: 'resolution',
     capture: {
@@ -72,7 +72,7 @@ export const recipe: Recipe = {
     journey: ['Take the billed resolutions', 'Check payments and the helpdesk', 'Make the same ask as a test', 'Build the challenge'],
     schedule: 'Monthly, before you pay the bill',
     report: 'A signed dispute pack, sent after your OK',
-    kit: ['Agent ID, declared as AI', 'A $40 test budget', 'Payments, connected by you', 'Tagged as tests, never billed'],
+    kit: ['Its own ID, declared as AI', 'A $40 test budget', 'Payments, connected by you', 'Tagged as tests, never billed'],
     events: [
       { time: '1 Oct 09:00', text: '100 of the resolutions Vendor A billed in September, $0.99 each, taken from the helpdesk export you connected.' },
       { time: '1 Oct 09:06', text: 'H-4471, a broken mug. On 24 Sep at 10:03 the bot told the customer: “Done. $24 is on its way.” Vendor A billed it as resolved.' },

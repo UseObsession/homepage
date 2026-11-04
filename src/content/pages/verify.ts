@@ -35,7 +35,7 @@ export const page: Page = {
     description:
       'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
     answer:
-      'Obsession checks your AI agents as your customer: AI customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+      'Obsession sends AI customers to every AI agent you run. Each has its own inbox, phone number and card, and uses your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
     ogImage: '/og/verify.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,7 +45,7 @@ export const page: Page = {
 
   hero: {
     pill: 'Early access',
-    headline: 'AI agents that check your AI agents, as your customer.',
+    headline: 'Send an AI customer to every AI agent you run.',
     sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. AI customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with proof.',
     capture: {
       kind: 'verify',
@@ -102,18 +102,18 @@ export const page: Page = {
       {
         tab: 'AI SDR',
         recipe: 'outbound-agent',
-        task: 'Add 2 test prospects to our AI SDR’s lists. Read every email, text and call it sends them, and check each one against our rules.',
+        task: 'Add 2 AI customers to our AI SDR’s lists as prospects. Read every email, text and call it sends them, and check each one against our rules.',
         targets: 'Your AI SDR: email, text and calls',
         journey: ['Join its lists', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
         schedule: 'Every message, as it lands',
         report: 'A Slack flag, and a weekly signed record',
-        kit: ['2 test prospects, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
+        kit: ['2 AI customers, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
         events: [
-          { time: 'Mon 08:31', text: 'Test prospects 1 and 2 get the first email. Its claims match your list.' },
+          { time: 'Mon 08:31', text: 'AI customers 1 and 2 get the first email. Its claims match your list.' },
           { time: 'Tue 11:26', text: 'Email: “30% off if you sign today.” Your rule allows up to 15%.' },
           { time: 'Wed 03:12', text: 'A text at 03:12. Your quiet hours run from 21:00 to 08:00.' },
           { time: 'Wed 09:14', text: 'Email: it names a customer you don’t have.' },
-          { time: 'Wed 10:02', text: 'Test prospect 2 replies STOP. “You’re unsubscribed.” Nothing follows.' },
+          { time: 'Wed 10:02', text: 'AI customer 2 replies STOP. “You’re unsubscribed.” Nothing follows.' },
         ],
         finding: '3 of 40 messages broke your rules: a discount over its limit, a text at 03:12 and a customer you don’t have.',
         fix: 'Your AI SDR paused by your rule, and 3 rule changes drafted for its settings. Live after your OK.',
@@ -217,8 +217,8 @@ export const page: Page = {
       {
         tab: 'AI SDR',
         moment: 'Monday, as the week’s sequences go out.',
-        outcome: 'Every claim, discount and send time your test prospects receive, checked against your rules.',
-        line: 'Test prospects on its lists read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
+        outcome: 'Every claim, discount and send time your AI customers receive, checked against your rules.',
+        line: 'AI customers on its lists read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
         whyOnly: 'Real inboxes and numbers on the receiving end, so you see each message as a prospect does.',
         recipe: 'outbound-agent',
         screen: 'outcheck',
@@ -274,7 +274,7 @@ export const page: Page = {
       },
       {
         name: 'AI SDRs and outbound callers',
-        line: 'Every email, text and call its test prospects receive, checked against your claims, limits and quiet hours.',
+        line: 'Every email, text and call your AI customers receive from it, checked against your claims, limits and quiet hours.',
         recipes: ['outbound-agent', 'disclosure'],
       },
       {
@@ -302,7 +302,7 @@ export const page: Page = {
 
   proof: {
     heading: 'Our AI customers already caught a store that never followed up.',
-    line: 'In September, 4 AI customers shopped a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: AI customers ask, then watch for what comes next.',
+    line: 'In September, 4 AI customers joined a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: AI customers ask, then watch for what comes next.',
     cta: { label: 'Read the full report', to: '/sample-output' },
   },
 
@@ -311,7 +311,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession check in my AI agents?',
-        a: 'Obsession checks your AI agents as your customer: AI customers, each with its own inbox, phone number and card, use your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+        a: 'Obsession sends AI customers to every AI agent you run. Each has its own inbox, phone number and card, and uses your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
       },
       {
         q: 'How is this different from our vendor’s own tests?',

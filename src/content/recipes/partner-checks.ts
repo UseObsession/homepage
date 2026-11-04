@@ -29,10 +29,10 @@ export const recipe: Recipe = {
   slug: 'partner-checks',
   name: 'Partner checks',
   group: 'Check your own journeys',
-  line: 'Follows every partner’s link and code to your basket as a customer each week, and drafts a note when one is out of date.',
-  gets: 'Every partner’s link, code and banner checked as a customer each Monday, and a note drafted for any that’s out of date.',
+  line: 'Your AI customer follows every partner’s link and code to your basket each week, and drafts a note when one is out of date.',
+  gets: 'Every partner’s link, code and banner checked by an AI customer each Monday, and a note drafted for any that’s out of date.',
   kit: [
-    'An AI agent with its own ID',
+    'An AI customer with its own ID',
     'Your partner list, codes and banners',
     'A browser to visit every partner',
     'A basket on your own store',
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     description:
       'Each week an AI customer follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
     answer:
-      'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
+      'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI customer follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,8 +56,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that catch every partner still sharing an expired code or an old banner.',
-    sub: 'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI agent follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
+    headline: 'An AI customer that catches every partner still sharing an expired code or an old banner.',
+    sub: 'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI customer follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
     screen: 'partners',
     capture: {
       kind: 'waitlist',
@@ -75,9 +75,9 @@ export const recipe: Recipe = {
     journey: ['Visit each partner’s page', 'Follow the link to your store', 'Try the code in your basket', 'Draft the note for your OK'],
     schedule: 'Every Monday at 07:00',
     report: 'A Monday note, and drafts ready to approve',
-    kit: ['Its own agent ID', 'Your partner list', 'A basket on your store', 'Your team’s thread'],
+    kit: ['Its own ID', 'Your partner list', 'A basket on your store', 'Your team’s thread'],
     events: [
-      { time: 'Mon 07:00', text: '6 partners visited as a customer: 3 affiliates and 3 partners, each with its own link and code.' },
+      { time: 'Mon 07:00', text: '6 partners visited by your AI customer: 3 affiliates and 3 partners, each with its own link and code.' },
       { time: 'Mon 07:08', text: 'Hiking blog and Run club pass. The links land, and HIKE15 and RUN15 take 15% off in your basket.' },
       {
         time: 'Mon 07:12',
@@ -97,7 +97,7 @@ export const recipe: Recipe = {
 
   steps: [
     {
-      title: 'Visit every partner as a customer',
+      title: 'Your AI customer visits every partner',
       line: 'Each Monday it opens each partner’s page, finds your link, code and banner, and notes the offer it shows. It reads what any visitor can see.',
     },
     {
@@ -194,7 +194,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I check my affiliates’ links and codes still work?',
-        a: 'Partner checks tries them every Monday: an AI agent follows each partner’s link to your store, applies their code to a basket on your own store and checks the discount, then drafts a note for your OK when a link, code or banner is out of date.',
+        a: 'Partner checks tries them every Monday: an AI customer follows each partner’s link to your store, applies their code to a basket on your own store and checks the discount, then drafts a note for your OK when a link, code or banner is out of date.',
       },
       {
         q: 'Does Partner checks contact our partners?',

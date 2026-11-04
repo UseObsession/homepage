@@ -17,7 +17,7 @@ export const recipe: Recipe = {
   slug: 'website-audit',
   name: 'Website audit',
   group: 'Check your own journeys',
-  line: 'Signs up as a fresh test customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+  line: 'Your AI customer signs up fresh after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
   gets: 'A pass or a break for every step of every release, with the screenshot and a drafted fix.',
   kit: [
     'An AI customer per run',
@@ -34,7 +34,7 @@ export const recipe: Recipe = {
     description:
       'After every release, an AI customer signs up, enters each code, opens every email and link, and goes through checkout. Every break comes with proof.',
     answer:
-      'Website audit signs up as a new customer after every release: a fresh AI customer enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
+      'In Website audit, a fresh AI customer signs up after every release, enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
     ogImage: '/og/website-audit.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,8 +44,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that sign up as new customers after every release.',
-    sub: 'Website audit signs up as a new customer after every release: a fresh AI customer enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
+    headline: 'An AI customer that signs up fresh after every release.',
+    sub: 'In Website audit, a fresh AI customer signs up after every release, enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
     screen: 'ship',
     capture: {
       kind: 'waitlist',
@@ -63,16 +63,16 @@ export const recipe: Recipe = {
     journey: ['Sign up with a fresh inbox', 'Enter the code from the text', 'Open every email and link', 'Stop before payment'],
     schedule: 'After every release',
     report: 'Slack alert per release',
-    kit: ['Its own agent ID', 'Fresh inbox', 'Fresh UK number', 'Starts on every release'],
+    kit: ['Its own ID', 'Fresh inbox', 'Fresh UK number', 'Starts on every release'],
     events: [
-      { time: 'Thu 06:02', text: 'v2.15 ships. A fresh test customer starts on a phone, with its own inbox and UK number.' },
+      { time: 'Thu 06:02', text: 'v2.15 ships. A fresh AI customer starts on a phone, with its own inbox and UK number.' },
       { time: 'Thu 06:04', text: 'Sign up done in 14 seconds.' },
       { time: 'Thu 06:05', text: 'Login code by text in 8 seconds. It works.' },
       { time: 'Thu 06:07', text: 'Welcome email in 2 minutes. Every link opens.' },
       { time: 'Thu 06:09', text: 'LAUNCH20 rejected at checkout. Your 08:00 email promises it.' },
     ],
     finding: 'The code your 08:00 launch email promises is turned away at checkout.',
-    fix: 'You held the 08:00 send at 06:11. The code fix is drafted, and a fresh test customer tries it once it’s live.',
+    fix: 'You held the 08:00 send at 06:11. The code fix is drafted, and a fresh AI customer tries it once it’s live.',
     ledger: 'Example run. Every step timed and screenshotted, with proof. Stopped before payment, as asked.',
   },
 
@@ -158,8 +158,8 @@ export const recipe: Recipe = {
         a: 'If you choose. Website audit stops before payment, or buys on a capped card and refunds the order.',
       },
       {
-        q: 'Will test customers clutter our data?',
-        a: 'No. Every Website audit test customer is labelled, so you can filter them out of your lists and reports.',
+        q: 'Will AI customers clutter our data?',
+        a: 'No. Every Website audit AI customer is labelled, so you can filter them out of your lists and reports.',
       },
       {
         q: 'What if Website audit hits a CAPTCHA or a block?',

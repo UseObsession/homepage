@@ -347,7 +347,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'AI customers that go through checkout after every change' },
     {
       kind: 'p',
-      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. **' +
+      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. **' +
         AI_CUSTOMER.definition +
         '**',
     },
@@ -363,7 +363,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every AI customer says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'Every AI customer says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to catch a broken Shopify checkout, compared', compare: true },
@@ -410,7 +410,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your store needs a new customer to go through checkout after every app, theme or discount change, with every step kept as a screenshot, use Obsession. Shopify’s status page settles whether an outage is Shopify’s, and a test order tests the payment step itself. Shoptest or Checkly fit an alert at any hour on a checkout path that rarely changes. A store with steady orders and few changes can run the 6 checks by hand after each change.',
+      text: 'If your store needs an AI customer to go through checkout after every app, theme or discount change, with every step kept as a screenshot, use Obsession. Shopify’s status page settles whether an outage is Shopify’s, and a test order tests the payment step itself. Shoptest or Checkly fit an alert at any hour on a checkout path that rarely changes. A store with steady orders and few changes can run the 6 checks by hand after each change.',
     },
 
     { kind: 'h2', id: 'start', text: 'Start tonight' },

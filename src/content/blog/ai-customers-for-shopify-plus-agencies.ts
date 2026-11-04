@@ -339,7 +339,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs this checklist today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a Plus agency, it shows what each client store’s new customers get after launch and every release. A deploy hook, a schedule or a button starts each run, and a preview link runs every journey on a new theme before it goes live. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card the client or the agency funds.',
+      text: 'Obsession runs this checklist today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a Plus agency, it shows what each client store’s new customers get after launch and every release. A deploy hook, a schedule or a button starts each run, and a preview link runs every journey on a new theme before it goes live. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card the client or the agency funds.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes on Shopify in 2026 and 2027' },
@@ -470,7 +470,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Name a client store that has just launched or migrated, with the client’s OK. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Send an AI customer to any company. Name a client store that has just launched or migrated, with the client’s OK. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check my store free',
     },

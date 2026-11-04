@@ -34,9 +34,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/prospect-intelligence-with-clay',
     title: 'Prospect intelligence with Clay: a proven gap at each brand',
     description:
-      'AI customers become a customer of every brand in your Clay view: they sign up, opt in to texts and ask support, and write each gap back with proof.',
+      'Send an AI customer to every brand in your Clay view: it signs up, opts in to texts, asks support and writes each gap back with proof.',
     answer:
-      'Obsession gives outbound agencies a customer at every brand in a client’s Clay view: AI agents with their own inbox, mobile number and browser that sign up, opt in to texts and ask support a question, then wait 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
+      'Obsession sends an AI customer to every brand in a client’s Clay view, each with its own inbox, mobile number and browser. Each signs up, opts in to texts and asks support a question, then waits 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
     ogImage: '/og/prospect-intelligence-with-clay.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,8 +48,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Be a customer of every brand your client wants to win.',
-    sub: 'Every agency buys the same install data, so every brand hears the same opener. AI agents sign up at each brand in your client’s Clay view, opt in to texts and ask support a question. Each gap comes back to the same rows with its receipt, ready for the first email.',
+    headline: 'Send an AI customer to every brand your client wants to win.',
+    sub: 'Every agency buys the same install data, so every brand hears the same opener. An AI customer signs up at each brand in your client’s Clay view, opts in to texts and asks support a question. Each gap comes back to the same rows with its receipt, ready for the first email.',
     example: { chips: [] },
     flow: [
       {
@@ -80,7 +80,7 @@ export const study: UseCaseStudy = {
   },
 
   how: {
-    heading: 'You pick the gap and the Clay view. An AI shopper watches each brand.',
+    heading: 'You pick the gap and the Clay view. An AI customer watches each brand.',
     sub: 'An outbound agency runs it for 1 client, an SMS app, across 300 UK ecommerce brands.',
     steps: [
       {
@@ -126,15 +126,15 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Obsession does the watching',
-        line: '48 hours in this example. Each brand gets its own AI shopper, and a miss counts only once the recheck confirms it.',
+        line: '48 hours in this example. Each brand gets its own AI customer, and a miss counts only once the recheck confirms it.',
         screen: 'brandwatch',
         chips: ['Its own inbox', 'A UK mobile number', 'Its own browser', 'Says it’s AI'],
         steps: [
           {
-            title: 'Each brand gets its own shopper',
+            title: 'Each brand gets its own AI customer',
             line: 'A real inbox, a real UK mobile number and its own browser, used for that 1 brand only. It signs up the way a customer would and saves a screenshot at every step. It says it’s AI when it talks to a person.',
             example:
-              'Tidewren Swim, shopper 4F2A: signed up and ticked text consent at 10:14. The welcome email came in 38 seconds, the control text in 4.',
+              'Tidewren Swim, AI customer 4F2A: signed up and ticked text consent at 10:14. The welcome email came in 38 seconds, the control text in 4.',
           },
           {
             title: 'It waits, up to 48 hours',
@@ -169,7 +169,7 @@ export const study: UseCaseStudy = {
         line: 'Signing up, giving a number, waiting for replies and checking every inbox and phone, at 300 brands per client, is weeks of work for a small team.',
       },
     ],
-    answer: 'Obsession gets you a dated fact about each brand, collected as a customer, about the exact problem your client’s product fixes.',
+    answer: 'Obsession gets you a dated fact about each brand, collected by an AI customer, about the exact problem your client’s product fixes.',
   },
 
   fit: {
@@ -285,7 +285,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for outbound agencies that use Clay?',
-        a: 'Obsession gives outbound agencies a customer at every brand in a client’s Clay view: AI agents with their own inbox, mobile number and browser that sign up, opt in to texts and ask support a question, then wait 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
+        a: 'Obsession sends an AI customer to every brand in a client’s Clay view, each with its own inbox, mobile number and browser. Each signs up, opts in to texts and asks support a question, then waits 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
       },
       {
         q: 'Does it contact anyone at the brand?',

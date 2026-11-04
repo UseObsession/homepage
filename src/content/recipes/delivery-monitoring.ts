@@ -16,7 +16,7 @@ export const recipe: Recipe = {
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
   group: 'Check your own journeys',
-  line: 'Lives your first 14 days as test customers on real inboxes and numbers, and proves every message arrives.',
+  line: 'AI customers live your first 14 days on real inboxes and numbers, and prove every message arrives.',
   gets: 'Every email, text and code your customers should get, timed, and anything missing flagged the day it’s due.',
   kit: [
     'AI customers',
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that prove every email, text and login code arrives.',
+    headline: 'An AI customer that proves every email, text and login code arrives.',
     sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
     screen: 'qa',
     capture: {
@@ -57,14 +57,14 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: release 4.2',
     recipe: 'delivery',
-    task: 'After release 4.2, start 3 test customers in the UK and US. Live our first 14 days and flag anything that never arrives.',
+    task: 'After release 4.2, start 3 AI customers in the UK and US. Live our first 14 days and flag anything that never arrives.',
     targets: 'Your app, UK and US',
-    journey: ['Sign up as test customers', 'Log in by text code', 'Open every email', 'Time every message'],
+    journey: ['Sign up as AI customers', 'Log in by text code', 'Open every email', 'Time every message'],
     schedule: 'Every release, then daily for 14 days',
     report: 'Slack alert, ticket drafted',
     kit: ['3 AI customers', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
     events: [
-      { time: 'Day 1, 09:00', text: '3 test customers sign up: UK on iPhone, US and UK on Android.' },
+      { time: 'Day 1, 09:00', text: '3 AI customers sign up: UK on iPhone, US and UK on Android.' },
       { time: 'Day 1, 09:03', text: 'Welcome emails in 2 to 3 minutes. Login codes by text in under 10 seconds.' },
       { time: 'Day 3, 10:00', text: 'Setup tips email arrives for all 3. Every link opens.' },
       { time: 'Day 6, 09:12', text: 'Login code by text: the US customer gets it in 6 seconds.' },
@@ -77,8 +77,8 @@ export const recipe: Recipe = {
 
   steps: [
     { title: 'Pick the journeys', line: 'Sign up, onboarding, trial, a launch: every message a customer should get.' },
-    { title: 'Test customers join', line: 'Each has a real inbox and number in the countries you sell in, and says it’s AI to any person it talks to.' },
-    { title: 'They live it for 14 days', line: 'Every email, text and code timed against when it should arrive. A new test customer starts every week.' },
+    { title: 'AI customers join', line: 'Each has a real inbox and number in the countries you sell in, and says it’s AI to any person it talks to.' },
+    { title: 'They live it for 14 days', line: 'Every email, text and code timed against when it should arrive. A new AI customer starts every week.' },
     { title: 'What never arrives reaches you', line: 'The day it was due, with the screenshot, the log and a ticket drafted.' },
   ],
 
@@ -112,7 +112,7 @@ export const recipe: Recipe = {
     items: [
       { format: 'Slack alert', line: 'The day a message doesn’t arrive, with the log attached.' },
       { format: 'Ticket', line: 'Drafted for your tracker, with the screenshots and the text log.' },
-      { format: '14 day timeline', line: 'Every message each test customer got, and when.' },
+      { format: '14 day timeline', line: 'Every message each AI customer got, and when.' },
       { format: 'PDF', line: 'For your team or a client, ready to forward.' },
       { format: 'Webhook', line: 'Each arrival and each miss as JSON.' },
     ],
@@ -120,7 +120,7 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Journeys', v: 'Sign up, onboarding, trial, renewals and launches' },
-    { k: 'Test customers', v: 'A new one every release, or every week' },
+    { k: 'AI customers', v: 'A new one every release, or every week' },
     { k: 'Countries', v: 'A real number in each country you sell in' },
     { k: 'Devices', v: 'iPhone, Android and desktop' },
     { k: 'Window', v: '14 days, or as long as your journey runs' },
@@ -135,7 +135,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Day 1 passed. On day 6, UK login codes stopped arriving.',
-    line: 'Example: release 4.2, 3 test customers.',
+    line: 'Example: release 4.2, 3 AI customers.',
     cols: ['UK, iPhone', 'US, Android', 'UK, Android'],
     rows: [
       { label: 'Day 1, welcome email', values: ['2 min', '2 min', '3 min'] },
@@ -159,19 +159,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'Are the inboxes and numbers real?',
-        a: 'Yes. Each Delivery monitoring test customer has its own inbox and a real number in the country you pick, so a text a network blocks never reaches it either.',
+        a: 'Yes. Each Delivery monitoring AI customer has its own inbox and a real number in the country you pick, so a text a network blocks never reaches it either.',
       },
       {
         q: 'Can Delivery monitoring check our launch emails and texts?',
-        a: 'Yes. Delivery monitoring’s test customers on your list get every send, open every link and try every code at checkout, stopping before payment or buying on a capped card, as you choose.',
+        a: 'Yes. Delivery monitoring’s AI customers on your list get every send, open every link and try every code at checkout, stopping before payment or buying on a capped card, as you choose.',
       },
       {
         q: 'Does Delivery monitoring see our real customers’ data?',
-        a: 'No. Delivery monitoring only sees what its own test customers receive.',
+        a: 'No. Delivery monitoring only sees what its own AI customers receive.',
       },
       {
         q: 'Can agencies run Delivery monitoring for clients?',
-        a: 'Yes, with each client’s OK: Delivery monitoring gives every client its own test customers and its own log to forward.',
+        a: 'Yes, with each client’s OK: Delivery monitoring gives every client its own AI customers and its own log to forward.',
       },
     ],
   },

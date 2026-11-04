@@ -3,7 +3,7 @@
    its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function ShipScreen() {
   return (
-    <div className="il appx-il app-ship"><div className="appx-fit"><div className="appx" role="img" aria-label="Launch morning for release v2.15, live at 06:02 with the launch email due at 08:00: a labelled test customer on a fresh UK number and inbox runs the release checklist, and the first order code LAUNCH20 is rejected at checkout. You click Hold the 08:00 send, and the email waits while a fix is drafted for your OK. 08:00 email held. Fix drafted for your OK.">
+    <div className="il appx-il app-ship"><div className="appx-fit"><div className="appx" role="img" aria-label="Launch morning for release v2.15, live at 06:02 with the launch email due at 08:00: a labelled AI customer on a fresh UK number and inbox runs the release checklist, and the first order code LAUNCH20 is rejected at checkout. You click Hold the 08:00 send, and the email waits while a fix is drafted for your OK. 08:00 email held. Fix drafted for your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Release v2.15</span>
@@ -26,7 +26,7 @@ export function ShipScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
         </aside>
         <div className="ax-main">
           <header className="ax-h sh-h ax-fade">
@@ -37,7 +37,7 @@ export function ShipScreen() {
           <section className="ax-card sh-card ax-fade" style={{ '--d': '.08s' }}>
             <header className="sh-ch">
               <span className="sh-av"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="8" cy="5.75" r="2.5" /><path d="M3.5 13.25c.6-2.5 2.4-3.85 4.5-3.85s3.9 1.35 4.5 3.85" /></svg></span>
-              <div className="sh-who"><b>Test customer</b><span>Fresh number and inbox</span></div>
+              <div className="sh-who"><b>AI customer</b><span>Fresh number and inbox</span></div>
               <span className="ax-chip sh-cp"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="4.5" y="1.75" width="7" height="12.5" rx="1.75" /><path d="M7 11.75h2" strokeLinecap="round" /></svg>+44 ···· 418</span>
               <span className="ax-chip sh-cp"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="2.25" y="3.5" width="11.5" height="9" rx="1.5" /><path d="m2.75 4.5 5.25 4 5.25-4" /></svg>t1@useobsession.com</span>
             </header>

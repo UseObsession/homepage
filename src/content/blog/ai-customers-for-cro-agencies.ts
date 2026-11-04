@@ -319,7 +319,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. Its AI customers follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
+      text: 'Obsession runs these jobs today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. Its AI customers follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes for agencies in 2026 and 2027' },

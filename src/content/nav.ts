@@ -74,7 +74,7 @@ export const nav = {
     { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every competitor ad, email and offer, seen as their customer.' },
     { id: 'sales', label: 'Sales', to: '/sales', line: 'Know what each account does to its customers.' },
     { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client and prospect, checked as a customer.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'A customer at every company, for your agents.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'An AI customer at any company, for your agents.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
@@ -104,7 +104,7 @@ export const nav = {
       kicker: 'Sample output',
       label: 'The September store check',
       to: '/sample-output',
-      line: '4 test customers shopped a real store. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
+      line: '4 AI customers joined a real store. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x
          above its status tags, so it reads at a glance and brings no status colour into the nav. */
       image: {

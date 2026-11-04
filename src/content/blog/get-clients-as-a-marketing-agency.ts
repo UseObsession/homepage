@@ -89,7 +89,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. This month Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. This month Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
     },
     {
       kind: 'p',
@@ -215,7 +215,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'agency-types', text: 'What each agency type checks first' },
     {
       kind: 'p',
-      text: 'Every agency type follows the same workflow and starts from the part of the store it is paid to fix. The findings in the table come from Obsession’s October checks. On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts list on their own sites. These are the stores the agencies chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page.',
+      text: 'Every agency type follows the same workflow and starts from the part of the store it is paid to fix. The findings in the table come from Obsession’s October checks. On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts list on their own sites. These are the stores the agencies chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page.',
     },
     {
       kind: 'table',
@@ -303,13 +303,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, Obsession’s [prospect intelligence](/recipes/prospect-intelligence) does the prospecting with proof:',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, Obsession’s [prospect intelligence](/recipes/prospect-intelligence) does the prospecting with proof:',
     },
     {
       kind: 'list',
       items: [
         '**As many AI customers as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
-        '**A shopper from the right country.** Each AI customer shops from the US or the UK, to match the brand’s market.',
+        '**An AI customer from the right country.** Each one shops from the US or the UK, to match the brand’s market.',
         '**CAPTCHAs, the puzzles that check a visitor is a person.** In the October pilot, most stores put a CAPTCHA or bot check in front of at least one step. Each report names any step a CAPTCHA kept it from testing, so the agency knows exactly what to check by hand.',
         '**Reports on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep the AI customers on for weeks or months. A brand hiring now can get its first finding within hours, and a client gets weekly or monthly checks.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for the brands it serves.',
@@ -487,7 +487,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own new customer, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an AI agent working for Obsession walked client stores that Shopify agencies and freelance experts list on their own sites, as far as the first checkout page. No store, brand or agency is named. The agency, the brand, the times and the retainer in the examples are invented.',
+      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own AI customer, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an Obsession AI customer walked client stores that Shopify agencies and freelance experts list on their own sites, as far as the first checkout page. No store, brand or agency is named. The agency, the brand, the times and the retainer in the examples are invented.',
     },
   ],
 

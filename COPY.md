@@ -1,4 +1,6 @@
-# Obsession website: the October rewrite
+# Obsession website: the October rewrite, and the AI customer (3 Nov)
+
+**3 Nov 2026, the AI customer.** James: "the whole shopper thing is a disservice and lack of understanding of the product". What Obsession sells is an **AI customer**: you send one to any company, it does what a real customer does (signs up, buys, talks to support, cancels, asks for the refund), and it keeps the receipts. Mystery shopping is one job it does, not the product. The hero moved from "Be a customer of every company. Keep the receipts." to **"Send an AI customer to any company."** (option B of 3 drafts), and every page, recipe and post was rewritten to it. The rules are in `docs/copy/ai-customer-voice.md`; where this file still shows an October line, the content files and that guide win.
 
 This file is the plan behind the copy and the design of useobsession.com after the October 2026 rewrite. The words themselves live in `src/content` (one file per page, plus `src/content/shared5.ts` for the blocks more than one page shows). When this file and a content file disagree, the content file is what ships; fix this file.
 
@@ -88,9 +90,9 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 
 ## 4. Message hierarchy
 
-**The one claim:** Be a customer of every company. Keep the receipts.
+**The one claim:** Send an AI customer to any company. (Until 3 Nov: Be a customer of every company. Keep the receipts.)
 
-**The one sentence** (word for word on Home, llms.txt, the Organization JSON-LD and /agents): Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.
+**The one sentence** (word for word on Home, llms.txt, the Organization JSON-LD and /agents): Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.
 
 **Three pillars, each with its proof on the page**
 
@@ -195,19 +197,19 @@ The full words are in the content files; this is the spine of each page.
 
 | Block | Headline | Line |
 |---|---|---|
-| Hero | Be a customer of every company. Keep the receipts. | Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. |
+| Hero | Send an AI customer to any company. | From the first ad to the last refund, it does what a real customer does and keeps a record of how the company treats it. Under the form, 1 quiet line: It says it’s an AI when it talks to a person, and every finding comes with its receipt. |
 | Stage | 3 examples: Fern Hollow (offer held), Larchwise (trial went quiet), Northfold (price cut on day 21) | Each: the ad, the page, the email, the receipt and its stamp |
 | Gap | Every tool shows you the ad. None of them is the customer. | Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or an AI customer at every company you name. |
-| How | To know what 10,000 companies do, you have to be a customer of all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
-| Proof | 93% of stores we shopped on every journey had a gap. | Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The September report in its 6 formats (PDF, Email, Slack, Sheet or Clay, JSON webhook, Workflow), kept small: the claim beside the viewer, a 400px stage; "See the full report". It replaced the formats grid on 19 Oct |
+| How | To know what 10,000 companies do, send an AI customer to all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
+| Proof | Our AI customers found a gap at 93% of the stores where they ran every journey. | Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The September report in its 6 formats (PDF, Email, Slack, Sheet or Clay, JSON webhook, Workflow), kept small: the claim beside the viewer, a 400px stage; "See the full report". It replaced the formats grid on 19 Oct |
 | Readers | Pick who you are. | 4 panels |
-| Kinds | Be a customer of anyone. Rivals, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |
+| Kinds | Send an AI customer to anyone. Competitors, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |
 | Ask | The commercial intelligence only a customer gets. (A small label above it: Rivals · Prospects · Clients · Your own business.) | 3 questions, 1 per reader, each asked somewhere else (Claude Code and Codex, each showing the 1 line that connects Obsession, then code) and answered with its receipts; what Obsession keeps for each company; where you can ask from. Replaced the ways in on 22 Oct (`docs/positioning/ask-section.md`) |
 | Compare | Other tools read the outside. Obsession is the customer. | 6 columns, 7 rows, dated |
 | Scale | Learn it once. Run it for 1 company, 1,000 or 100,000. | The count follows 3 steps on 1 stage (learns the way in, turns it into a program, runs at any scale); 3 principles. No cost card: what it costs us to run is internal (James, 19 Oct). Under the comparison since 22 Oct |
 | Open source | An open source runtime for customer agents, built to run 100,000 at once. | The engine's 8 capabilities (fan out to 100,000, durable agents that sleep for free, learns once then runs as code, better with every run, tested before it ships, a record that proves itself, any model per job, built for agents to call) beside Obsession Cloud's 5 lines |
 | FAQ | Before you join. | 7 questions |
-| Final | Name a company. See what its customers get. | Waitlist |
+| Final | Name a company. Send it an AI customer. | Waitlist |
 
 **Shared blocks** (`src/content/shared5.ts`): the agent's life, the ask section's shared parts and its example questions, the ways in (/developers only), the comparison, open source. Written once; Home and the reader pages import them. The ask section sits directly above the comparison wherever the comparison shows; on Sales and Agencies, which don't show it, it sits after how it works.
 
@@ -244,7 +246,7 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 | The runtime is open source (a runtime for customer agents, not a general harness); github.com/UseObsession | Open source, footer, developers | system.md, "Open source core, Obsession Cloud" | As built; the org and licence to set up (open question in system.md) |
 | The engine's 8 capabilities: fan out to 100,000; hibernate and wake on mail, reply or clock; trace compiled to code, typed questions and small agents; escalations become the next program version; versions replayed on frozen evidence, facts re-derived; evidence by content hash, DKIM key kept; a model per job; typed verbs, webhooks, idempotency keys, spending caps | Open source (Home, developers) | system.md: the customer agent, Design rules for the engine, the compile and replay steps, the first build's boxes, What an agent needs that a human forgives | As built |
 | 6¢ a company to sign up once, 1.4¢ a company a month to keep, at 100,000 | Removed from Home on 19 Oct (internal) | `docs/positioning/scale_model.py`: our modelled cost to run, not a price | Modelled; internal, not on the site |
-| 93% of stores shopped on every journey had a gap | Home proof (back on 19 Oct, in the formats grid's place) | Real audits (Seun, 7 Oct) | Real |
+| Our AI customers found a gap at 93% of the stores where they ran every journey | Home proof (back on 19 Oct, in the formats grid's place) | Real audits (Seun, 7 Oct) | Real |
 | One program per platform; learned, compiled, replayed; code, typed questions, small agents, escalation | Home scale | system.md, Program row and the 4 kinds of step | As built |
 | Sign ups 70% plain request, 25% replayed script, 5% agent; about 140,000 wakes a day; about 2 awake at once | Home scale stage | `docs/positioning/scale_model.py`, modelled on Cloudflare, Archil, Steel, Workspace and model prices read 19 Oct 2026 | Modelled; swap in measured numbers when system.md's evals report them |
 | The September skincare store report: 4 test customers, 48 hours, 1 basket and 1 checkout left, 0 reminders | Proof on every reader page, llms.txt | The real run, /sample-output | Real |

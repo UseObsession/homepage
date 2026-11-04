@@ -63,7 +63,7 @@ export const post: BlogPost = {
     art: {
       kind: 'report',
       title: 'northgate.example · Monday sweep',
-      period: 'Week of 26 October · each store shopped as a new customer',
+      period: 'Week of 26 October · an AI customer at each store',
       cols: ['Client', 'Customers got', 'Status'],
       rows: [
         { name: 'Fernhill', cells: ['Every email on time', 'Pass'], tone: 'ok' },
@@ -159,7 +159,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'There is almost always something to bring. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. This month Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
+      text: 'There is almost always something to bring. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. This month Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
     },
     {
       kind: 'list',
@@ -172,7 +172,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The page and the cart break too. On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. Shopping on a phone as a signed-out new customer, it found problems such as these:',
+      text: 'The page and the cart break too. On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. Shopping on a phone as a signed-out new customer, it found problems such as these:',
     },
     {
       kind: 'list',
@@ -230,7 +230,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A weekly flow log** ([Mystery shopper](/recipes/mystery-shopper)). A new customer signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
+        '**A weekly flow log** ([Mystery shopper](/recipes/mystery-shopper)). An AI customer signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
         '**Welcome and Black Friday code checks** ([Website audit](/recipes/website-audit)). The pop-up code and each sale code are tried at checkout on the days that matter, Friday 27 November 2026 included. The client sees each code accepted or refused, with the screenshot.',
         '**A competitor watch** ([Email and SMS tracking](/recipes/email-sms-tracking)). An AI customer on each competitor’s list keeps every email and offer it sends. The client sees its competitors’ Black Friday plans as they land, beside its own.',
         '**What AI assistants tell shoppers** ([Listings and AI answers](/recipes/listings-ai-answers)). Every Monday, the questions shoppers ask ChatGPT and other assistants about the brand, with each wrong answer traced to the page it came from. The method is in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
@@ -297,7 +297,7 @@ export const post: BlogPost = {
         kind: 'flow',
         title: 'northgate.example · weekly routine',
         steps: [
-          { label: 'Sweep', detail: 'Each client store shopped as a new customer', tone: 'info' },
+          { label: 'Sweep', detail: 'An AI customer at each client store', tone: 'info' },
           { label: 'Report', detail: 'Monday: each finding with its email, screenshot and time', tone: 'info' },
           { label: 'Fix', detail: 'The owner fixes it, with the client’s OK', tone: 'info' },
           { label: 'Re-check', detail: 'The same check again, for the before and after', tone: 'ok' },
@@ -338,7 +338,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, every client store, competitor and live ad runs on one routine:',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, every client store, competitor and live ad runs on one routine:',
     },
     {
       kind: 'list',
@@ -430,7 +430,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency wants every client’s store checked as a customer each week, use Obsession. Each finding comes with the email or screenshot and its time, and each fix with a before and after. The same AI customers watch each client’s competitors and open the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
+      text: 'If your agency wants an AI customer at every client’s store each week, use Obsession. Each finding comes with the email or screenshot and its time, and each fix with a before and after. The same AI customers watch each client’s competitors and open the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
@@ -511,7 +511,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own new customer, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an AI agent working for Obsession walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
+      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own AI customer, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an Obsession AI customer walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
     },
   ],
 

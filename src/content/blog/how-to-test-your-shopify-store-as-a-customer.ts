@@ -220,7 +220,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 10 customer checks, in the order a shopper meets them' },
     {
       kind: 'p',
-      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
+      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
     },
 
     { kind: 'h3', id: 'ad-link', text: '1. The ad’s link lands on a live product' },
@@ -363,7 +363,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'AI customers that keep checking' },
     {
       kind: 'p',
-      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.',
+      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.',
     },
     {
       kind: 'p',
@@ -371,7 +371,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same AI customers shop competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'The same AI customers shop competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
     },
     {
       kind: 'p',
@@ -492,7 +492,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. Obsession’s pilot for 4 agencies ran between 21 and 24 October 2026 on the stores each agency sent in. No store or agency is named. Larkfield and everything in both pictures is invented.',
+      text: 'On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. Obsession’s pilot for 4 agencies ran between 21 and 24 October 2026 on the stores each agency sent in. No store or agency is named. Larkfield and everything in both pictures is invented.',
     },
   ],
 

@@ -386,7 +386,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'obsession', text: 'Obsession' },
     {
       kind: 'p',
-      text: 'Obsession makes the first AI customers that work for you. **' +
+      text: 'Send an AI customer to any company. **' +
         AI_CUSTOMER.definition +
         '** A chatbot is an AI customer service agent, which answers customers for a company. An AI customer is one of those customers, as [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out, and [what AI customers are](/blog/ai-customers) explains the term in full.',
     },
@@ -396,7 +396,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same AI customers sign up to any company your team names and keep every email, offer and price it sends, so your company can also find its revenue leaks, watch its competitors and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
+      text: 'The same AI customers sign up to any company your team names and keep every email, offer and price it sends, so your company can also find its revenue leaks, watch its competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
     },
     {
       kind: 'list',
@@ -534,7 +534,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'Send an AI customer to any company. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
       to: '/verify',
       label: 'Check your AI agents',
     },

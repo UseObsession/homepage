@@ -20,7 +20,7 @@ export const bandRoles: BandRole[] = [
   {
     id: 'marketing',
     bandName: 'Marketing teams',
-    bandLine: 'Every competitor ad, email and offer, and your own funnel, seen as a customer.',
+    bandLine: 'Send an AI customer to every competitor, and through your own funnel.',
     page: '/marketing',
     ways: ['Recipes', 'Your own agent'],
   },
@@ -34,14 +34,14 @@ export const bandRoles: BandRole[] = [
   {
     id: 'agencies',
     bandName: 'Agencies',
-    bandLine: 'Check every client and prospect as a customer would.',
+    bandLine: 'Send an AI customer to every client and prospect.',
     page: '/agencies',
     ways: ['Recipes', 'Your own agent'],
   },
   {
     id: 'developers',
     bandName: 'Developers',
-    bandLine: 'Give your agents a customer at every company: MCP, API and an open source core.',
+    bandLine: 'Give your agents an AI customer at every company: MCP, API and an open source core.',
     page: '/developers',
     ways: ['MCP and API', 'Open source'],
   },

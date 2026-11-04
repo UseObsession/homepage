@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'competitor-tracking',
   name: 'Competitor tracking',
   group: 'Watch other companies',
-  line: 'Signs up to every competitor and logs each email, text, offer, price change and public ad.',
+  line: 'Your AI customer signs up to every competitor and logs each email, text, offer, price change and public ad.',
   gets: 'A timeline per competitor, and a note of what changed, as often as you choose.',
   kit: [
     'An AI customer per competitor',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'An AI customer signs up to each competitor you name and logs every email, text, offer, price change and public ad on 1 timeline, continuously, with proof.',
     answer:
-      'Competitor tracking signs an AI agent up to each competitor you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
+      'Competitor tracking signs an AI customer up to each competitor you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     ogImage: '/og/competitor-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email, text, ad and offer your competitors send, on 1 timeline.',
-    sub: 'Competitor tracking signs an AI agent up to each competitor you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
+    sub: 'Competitor tracking signs an AI customer up to each competitor you name, so you see what its customers get: every email, text, offer, price change and public ad, on 1 timeline, continuously.',
     screen: 'rivals',
     capture: {
       kind: 'waitlist',
@@ -60,7 +60,7 @@ export const recipe: Recipe = {
     journey: ['Sign up from the pop up', 'Opt in to texts', 'Ask the site’s chat bot', 'Check pages, prices and ads daily'],
     schedule: 'Daily checks, a note every Monday',
     report: 'A Monday note by email, Slack when anything changes',
-    kit: ['Agent ID', 'Own inbox', 'Own phone number', 'Browser set to the UK'],
+    kit: ['Its own ID', 'Own inbox', 'Own phone number', 'Browser set to the UK'],
     events: [
       { time: 'Mon 07:02', text: 'Signs up from the pop up, with its own inbox and number.' },
       { time: 'Mon 07:04', text: 'Welcome email: 15% off your first order.' },
@@ -80,7 +80,7 @@ export const recipe: Recipe = {
       line: 'Paste their web addresses, upload a CSV, connect Clay or use the API. Any company you name, with no directory to check first.',
     },
     {
-      title: 'An agent signs up to each one',
+      title: 'An AI customer signs up to each one',
       line: 'It joins the emails and texts from the pop up, as any customer can. You stay private unless you choose to be named.',
     },
     {
@@ -111,7 +111,7 @@ export const recipe: Recipe = {
         },
         {
           title: 'The site’s chat bot',
-          line: 'The questions you choose, each answer and how long it took. If a person picks it up, the agent says it’s an AI.',
+          line: 'The questions you choose, each answer and how long it took. If a person picks it up, the AI customer says it’s an AI.',
         },
       ],
     },
@@ -135,7 +135,7 @@ export const recipe: Recipe = {
         },
         {
           title: 'Trial offers',
-          line: 'On software competitors, every email in a free trial and the offer at its end. If the agent talks to a rep, it says it’s an AI.',
+          line: 'On software competitors, every email in a free trial and the offer at its end. If the AI customer talks to a rep, it says it’s an AI.',
         },
       ],
     },
@@ -182,7 +182,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'A new customer of this competitor gets 5 emails and 2 texts in its first 7 days.',
-    line: 'Example. Every message is placed by the time since the agent signed up, so you see the sequence and its rhythm, not a pile of emails.',
+    line: 'Example. Every message is placed by the time since the AI customer signed up, so you see the sequence and its rhythm, not a pile of emails.',
     cols: ['Channel', 'What arrived'],
     rows: [
       { label: '0 min', values: ['Pop up', 'Signed up'] },
@@ -205,19 +205,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Competitor tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The agents do the checking, and you read what changed.',
+        a: 'Competitor tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The AI customers do the checking, and you read what changed.',
       },
       {
         q: 'How is Competitor tracking different from a monitoring tool?',
-        a: 'Competitor tracking goes through each competitor as a customer, where most tools read what it publishes: it signs up, gets the emails and texts, and sees the offers a new customer sees.',
+        a: 'Competitor tracking sends an AI customer through each competitor, where most tools read what it publishes: it signs up, gets the emails and texts, and sees the offers a new customer sees.',
       },
       {
         q: 'Can you show their past emails?',
-        a: 'From the day an Obsession agent first signed up there. If one already has, its history is there the moment you ask; if not, the record starts today. Every message is dated from a known sign up, for any company you name.',
+        a: 'From the day an Obsession AI customer first signed up there. If one already has, its history is there the moment you ask; if not, the record starts today. Every message is dated from a known sign up, for any company you name.',
       },
       {
         q: 'Will the competitor know?',
-        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named. If that changes what a competitor sends, the record shows it.',
+        a: 'When an Obsession AI customer talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named. If that changes what a competitor sends, the record shows it.',
       },
       {
         q: 'Does Competitor tracking talk to their staff?',
@@ -229,7 +229,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How many competitors can Competitor tracking follow?',
-        a: 'Competitor tracking follows as many as you add. Each gets its own agent, inbox and number, and you can add one at any time.',
+        a: 'Competitor tracking follows as many as you add. Each gets its own AI customer, inbox and number, and you can add one at any time.',
       },
       {
         q: 'How fast is Competitor tracking?',

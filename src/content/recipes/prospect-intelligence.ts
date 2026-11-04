@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'prospect-intelligence',
   name: 'Prospect intelligence',
   group: 'Watch other companies',
-  line: 'Becomes a customer of every prospect on your list and proves the gap you fix.',
+  line: 'Sends an AI customer to every prospect on your list and proves the gap you fix.',
   gets: 'A verdict and a proof link per company, back in Clay, your CRM or a sheet.',
   kit: [
     'An AI customer per prospect',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'An AI customer joins every company on your list. It signs up, opts in and asks the bot, then shows the gap you fix, with proof they can open.',
     answer:
-      'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
+      'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI customer signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
     ogImage: '/og/prospect-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Prove a real gap at every company on your list.',
-    sub: 'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI agent signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
+    sub: 'Prospect intelligence is proof of what a prospect does to its own customers, found by becoming one. An AI customer signs up, opts in and asks the bot at every company on your list, then hands you a fact and its receipt to open each pitch with.',
     screen: 'pack',
     capture: {
       kind: 'waitlist',
@@ -64,7 +64,7 @@ export const recipe: Recipe = {
     events: [
       { time: 'Day 1, 09:00', text: 'Signs up and opts in to texts at 142 brands.' },
       { time: 'Day 1, 10:00', text: '131 welcome emails arrive within the hour.' },
-      { time: 'Day 1, 11:00', text: 'Asks each site’s chat bot 1 question. 9 hand over to a person, and the agent says it’s an AI.' },
+      { time: 'Day 1, 11:00', text: 'Asks each site’s chat bot 1 question. 9 hand over to a person, and the AI customer says it’s an AI.' },
       { time: 'Day 7', text: '88 brands have sent a text. 54 are still silent.' },
       { time: 'Day 14', text: 'Still silent at day 14: 54 brands. Each one gets its proof page.' },
     ],
@@ -76,10 +76,10 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add your list',
-      line: 'Paste it, upload a CSV, connect Clay or use the API. You bring the contacts. The agents find the gap.',
+      line: 'Paste it, upload a CSV, connect Clay or use the API. You bring the contacts. The AI customers find the gap.',
     },
     {
-      title: 'An agent becomes their customer',
+      title: 'An AI customer signs up to each',
       line: 'It signs up, opts in to texts, reads their pages and the ads they run in public, and asks the site’s chat bot, as you choose.',
     },
     {
@@ -101,7 +101,7 @@ export const recipe: Recipe = {
         { title: 'Sign up form', line: 'Whether it works on a phone and a desktop, and the step where it breaks.' },
         {
           title: 'Free trials',
-          line: 'Every onboarding email by trial day, and what a rep sends. If the agent talks to a rep, it says it’s an AI.',
+          line: 'Every onboarding email by trial day, and what a rep sends. If the AI customer talks to a rep, it says it’s an AI.',
         },
       ],
     },
@@ -158,7 +158,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Everything a customer can do. How far it goes is your setting.',
-    line: 'When an agent talks to a person, it says it’s an AI and links to useobsession.com/agents. You stay private unless you choose to be named.',
+    line: 'When an AI customer talks to a person, it says it’s an AI and links to useobsession.com/agents. You stay private unless you choose to be named.',
     cols: ['At a prospect', 'Yours, or a client’s'],
     rows: [
       { label: 'Sign up, newsletters and texts', values: ['Yes', 'Yes'] },
@@ -184,7 +184,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How do I research prospects without spending 30 minutes on each one?',
-        a: 'Add the list to Prospect intelligence once: an Obsession agent per prospect signs up, opts in to texts and asks the site’s chat bot at every company at once, and you get back the companies with the gap you fix.',
+        a: 'Add the list to Prospect intelligence once: an Obsession AI customer per prospect signs up, opts in to texts and asks the site’s chat bot at every company at once, and you get back the companies with the gap you fix.',
       },
       {
         q: 'What’s it worth?',
@@ -200,7 +200,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will the prospect know?',
-        a: 'When an Obsession agent talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
+        a: 'When an Obsession AI customer talks to a person, it says it’s an AI and links to useobsession.com/agents, a page explaining Obsession. You stay private unless you choose to be named.',
       },
       {
         q: 'How do I know a gap is real?',

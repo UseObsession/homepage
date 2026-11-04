@@ -299,7 +299,7 @@ export const post: BlogPost = {
         { q: 'What is customer-side observability?', a: CUSTOMER_SIDE_OBSERVABILITY.definition },
         {
           q: 'How is it different from observability?',
-          a: 'Observability shows what the systems you run are doing, from their logs, metrics and traces. Customer-side observability shows what customers actually receive, at your company and any other, by being a customer.',
+          a: 'Observability shows what the systems you run are doing, from their logs, metrics and traces. Customer-side observability shows what customers actually receive, at your company and any other, by sending an AI customer to each.',
         },
         {
           q: 'How is it different from real user monitoring?',
