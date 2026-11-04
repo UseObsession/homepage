@@ -11,6 +11,7 @@
 
 .v5-ask-qs { display: grid; gap: 8px; }
 .v5-ask-tab {
+  position: relative;
   display: grid;
   gap: 6px;
   text-align: left;
@@ -199,3 +200,26 @@
 
 /* Only where you can ask from (no examples of what it keeps): 1 column. */
 .v5-ask-foot--from { grid-template-columns: 1fr; }
+
+/* The questions take turns until someone picks 1 (Ask.tsx): a line fills under the chosen question, and its end opens
+   the next. It holds while the pointer is over the questions or the section is off screen. */
+@media (prefers-reduced-motion: no-preference) {
+  .v5-ask[data-live][data-auto] .v5-ask-tab[aria-selected='true']::after {
+    content: '';
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--v5-stamp);
+    transform-origin: left;
+    animation: v5-ask-turn 9s linear both;
+  }
+  .v5-ask:not([data-seen]) .v5-ask-tab::after,
+  .v5-ask-qs:hover .v5-ask-tab::after { animation-play-state: paused; }
+}
+@keyframes v5-ask-turn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
