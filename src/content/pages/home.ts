@@ -80,26 +80,24 @@ export const page: Page = {
   },
 
   gapPair: {
-    heading: 'Every tool shows you the ad. None of them is the customer.',
-    line: 'Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or the AI customer you send.',
+    heading: 'Other tools read what companies publish. Your AI customers see what they do.',
+    line: 'Ad libraries, email archives, page monitors and tech lookups stop at what a company shows the public. The money is lost after that: in the checkout that breaks, the code that leaks and the rival offer you never saw. Only someone on the inside catches it: you with a spare inbox, or your AI customers.',
     tools: {
-      label: 'What other tools keep',
+      label: 'What other tools see',
       items: [
         'The ad, and how long it ran',
-        'A picture of the landing page',
-        'The newsletter, if someone archived it',
+        'The pages anyone can open',
+        'Newsletters someone archived',
         'An alert that a page changed',
       ],
     },
     customer: {
-      label: 'What your AI customer gets',
+      label: 'What your AI customers catch',
       items: [
-        'Whether the offer held at checkout',
-        'The welcome 9 minutes later, the basket reminder on day 2',
-        'Which Gmail tab each email landed in',
-        'The trial that went quiet after day 3',
-        'What the support bot actually said',
-        'The email itself, with its signature checked',
+        'The checkout, code or landing page that breaks mid campaign, as it happens',
+        'A rival’s price cut or new offer, and your counter brief the same day',
+        'Your private codes leaking to coupon sites and resellers',
+        'Where a prospect’s journey loses money, before you pitch',
       ],
     },
   },
