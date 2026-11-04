@@ -137,7 +137,7 @@ export const sample: SamplePage = {
     description:
       'A real September 2026 check of a skincare store: 4 AI customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders. As a PDF, email or Slack.',
     answer:
-      'Obsession’s sample output is a real mystery shopper report from September 2026: 4 labelled AI customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours. 1 AI customer left a basket, 1 stopped at checkout, and neither got a reminder.',
+      'A sample run from September 2026: 4 labelled AI customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours. 1 AI customer left a basket, 1 stopped at checkout, and neither got a reminder. Its findings come as a PDF report, an email, a Slack message, a sheet or Clay, a JSON webhook or a workflow.',
     ogImage: '/og/sample-output.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
