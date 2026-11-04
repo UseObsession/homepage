@@ -81,23 +81,25 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Other tools read what companies publish. Your AI customers see what they do.',
-    line: 'Ad libraries, email archives, page monitors and tech lookups stop at what a company shows the public. The money is lost after that: in the checkout that breaks, the code that leaks and the rival offer you never saw. Only someone on the inside catches it: you with a spare inbox, or your AI customers.',
+    line: 'Ad libraries, email archives, page monitors and tech lookups stop at what a company shows the public. The money is lost after that, and only someone on the inside catches it: you with a spare inbox, or your AI customers.',
     tools: {
       label: 'What other tools see',
       items: [
         'The ad, and how long it ran',
-        'The pages anyone can open',
-        'Newsletters someone archived',
+        'A picture of the landing page',
+        'The newsletter, if someone archived it',
         'An alert that a page changed',
       ],
     },
     customer: {
       label: 'What your AI customers catch',
       items: [
-        'The checkout, code or landing page that breaks mid campaign, as it happens',
-        'A rival’s price cut or new offer, and your counter brief the same day',
-        'Your private codes leaking to coupon sites and resellers',
-        'Where a prospect’s journey loses money, before you pitch',
+        'The checkout that broke mid campaign',
+        'The promo code that stopped working',
+        'Your private code on a coupon site',
+        'A rival’s price cut, the day it lands',
+        'The prospect’s lead nobody answered',
+        'The email itself, with its signature checked',
       ],
     },
   },
