@@ -44,3 +44,7 @@
 @media (max-width: 640px) {
   .v5-os-caps { grid-template-columns: 1fr; }
 }
+
+/* Names only (Home): even columns, and each cloud line held to 1 line on a wide screen. */
+.v5-os--brief .v5-os-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (min-width: 1081px) { .v5-os--brief .v5-os-cloud li { white-space: nowrap; } }

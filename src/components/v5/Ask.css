@@ -196,3 +196,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .v5-ask[data-live] .v5-ask-panel:not([hidden]) .v5-ask-connect { animation: v5-ask-in 0.35s ease-out 0.05s both; }
 }
+
+/* Only where you can ask from (no examples of what it keeps): 1 column. */
+.v5-ask-foot--from { grid-template-columns: 1fr; }

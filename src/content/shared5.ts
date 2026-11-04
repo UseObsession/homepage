@@ -40,7 +40,7 @@ export const life: Life = {
    page gives its own areas (the labels under the heading) and 3 examples; these parts are the same everywhere. The AI is named by product
    (Claude Code, Codex: the tools people work in, not the models behind them), never as "your AI agent". A chat example
    shows the 1 line that connects Obsession to that tool (`connect`), so a reader sees it takes 1 step. Every company in an answer is invented, as everywhere else. */
-export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect' | 'keeps' | 'notYet' | 'more'> = {
+export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect'> = {
   heading: 'Give your AI agents customer intelligence.',
   line: 'Every email, offer, price and reply a company sends its customers, kept as it arrives. None of it is on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex and ask there, or ask on our website. Every answer comes with its receipts.',
   from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
@@ -48,20 +48,6 @@ export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect' | 'kee
     'Claude Code': 'claude mcp add obsession https://mcp.useobsession.com',
     Codex: 'codex mcp add obsession --url https://mcp.useobsession.com',
   },
-  keeps: {
-    /* What it keeps is the customer's setting; these are examples, not the list (James, 22 Oct). */
-    heading: 'You choose what it keeps. A few examples:',
-    items: [
-      'Every email and text, and the Gmail tab it landed in',
-      'Every offer and code, and whether the page held it',
-      'Prices and plans, each time they change',
-      'Trials, baskets and checkouts, and what followed',
-      'Support replies, and how long they took',
-      'The email platform and apps behind it all, and when they change',
-    ],
-  },
-  notYet: 'No AI customer there yet? One signs up the day you ask, and the answers build from there.',
-  more: { label: 'Building on it? MCP, the API and the five verbs are in the developer guide', to: '/developers' },
 }
 
 /* The examples the pages pick from: 1 question, the answer line by line, and what stands behind it. */

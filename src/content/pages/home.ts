@@ -44,7 +44,6 @@ export const page: Page = {
     headline: 'Intelligence on any company, from inside it.',
     sub: 'Send your AI customers to your rivals, prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back every email, offer, price and reply, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
-    note: 'It says it’s an AI when it talks to a person, and every finding comes with its receipt.',
     proof: [],
     consoleHeading,
   },
@@ -185,7 +184,18 @@ export const page: Page = {
     cta: { label: 'See one of our runs and its results', to: '/sample-output' },
   },
 
-  openSource,
+  /* Open source, names only (4 Nov, James: too many descriptions). Each capability's line, and the rest, live on
+     /developers. Each cloud line fits 1 line. */
+  openSource: {
+    ...openSource,
+    heading: 'An open source runtime for 100,000 AI customers.',
+    line: undefined,
+    core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
+    cloud: {
+      title: openSource.cloud.title,
+      items: ['Inboxes, phones and browsers', 'Months of history already kept', 'A shared record from day one', 'About 250 integrations', 'Our website and watch planner'],
+    },
+  },
 
   /* The questions a reader asks before joining. The first answer is meta.answer, word for word. */
   faq: {

@@ -712,17 +712,17 @@ export type Ask = {
   from: { label: string; items: string[] }
   /* The 1 line that connects Obsession to each tool an example is asked in, keyed by `where`. */
   connect: Record<string, string>
-  keeps: { heading: string; items: string[] }
-  notYet: string
-  more: Cta
+  keeps?: { heading: string; items: string[] }
+  notYet?: string
+  more?: Cta
 }
 
 /* Open source (components/v5/OpenSource): what is in the code, what is the cloud. */
 /* `core.items` are the engine's capabilities, each a name and 1 technical line; `cloud.items` are short lines. */
 export type OpenSource = {
   heading: string
-  line: string
-  core: { title: string; items: { name: string; line: string }[] }
+  line?: string
+  core: { title: string; items: { name: string; line?: string }[] }
   cloud: { title: string; items: string[] }
   cta: Cta
   secondary?: Cta

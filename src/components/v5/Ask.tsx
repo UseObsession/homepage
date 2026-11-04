@@ -123,15 +123,17 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
             ))}
           </div>
         </div>
-        <div className="v5-ask-foot">
-          <div className="v5-ask-keeps">
-            <h3 className="v5-ask-h3">{ask.keeps.heading}</h3>
-            <ul>
-              {ask.keeps.items.map((i) => (
-                <li key={i}>{i}</li>
-              ))}
-            </ul>
-          </div>
+        <div className={ask.keeps ? 'v5-ask-foot' : 'v5-ask-foot v5-ask-foot--from'}>
+          {ask.keeps && (
+            <div className="v5-ask-keeps">
+              <h3 className="v5-ask-h3">{ask.keeps.heading}</h3>
+              <ul>
+                {ask.keeps.items.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="v5-ask-from">
             <h3 className="v5-ask-h3">{ask.from.label}</h3>
             <ul className="v5-ask-chips">
@@ -139,10 +141,12 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
                 <li key={i}>{i}</li>
               ))}
             </ul>
-            <p className="v5-ask-note">{ask.notYet}</p>
-            <Link className="v5-link v5-ask-more" to={ask.more.to}>
-              {ask.more.label}
-            </Link>
+            {ask.notYet && <p className="v5-ask-note">{ask.notYet}</p>}
+            {ask.more && (
+              <Link className="v5-link v5-ask-more" to={ask.more.to}>
+                {ask.more.label}
+              </Link>
+            )}
           </div>
         </div>
       </div>
