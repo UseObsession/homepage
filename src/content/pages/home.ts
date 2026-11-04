@@ -87,14 +87,24 @@ export const page: Page = {
     cta: { label: 'See the skincare store’s report', to: '/sample-output' },
   },
 
-  /* The shared block, with Home's own heading and line (4 Nov): the mystery shopper who never goes home (from Seun's
-     draft of 4 Nov), and the 10,000 explained by how an agent sleeps, in place of "No spare inbox, no VA, no
-     spreadsheet" (the comparison's By hand row names the spare inbox). */
+  /* The shared block, with Home's own heading, line and last step (4 Nov). The heading is breadth and time, what the
+     lanes show, and never a shopper: "An AI customer is a mystery shopper who never goes home" (Seun's draft) made it a
+     better mystery shopper, the frame the product exists to leave (James); mystery shopping stays in the questions, as
+     the reader's own search term. The line explains the 10,000 by how an agent sleeps, in place of "No spare inbox, no
+     VA, no spreadsheet" (the comparison's By hand row names the spare inbox). The last step files findings, not only a
+     receipt, so it leads into Where do the findings go. */
   life: {
     ...life,
     kicker: 'How does it work?',
-    heading: 'An AI customer is a mystery shopper who never goes home.',
-    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay for months and tell you about every break, leak, price cut and new offer the day it happens.',
+    heading: 'A customer of every company on your list, for months.',
+    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay as long as you need and tell you about every break, leak, price cut and new offer the day it happens.',
+    phases: [
+      ...life.phases.slice(0, 3),
+      {
+        title: 'It files its findings',
+        line: 'From a broken checkout to a price cut, each with its proof, its time and its sender checked.',
+      },
+    ],
   },
 
   /* The Kinds section ("Send an AI customer anywhere. A rival, a prospect, or your own company.", 4 cards over their
@@ -149,7 +159,6 @@ export const page: Page = {
   runReports: {
     kicker: 'Where do the findings go?',
     heading: 'Every run, in the format your team reads.',
-    line: 'Each finding is 1 plain sentence, with the email, page or price behind it and the time it arrived.',
     node: { title: 'Obsession run', line: 'Any company, any job' },
     label: 'Ways to use it',
     /* The ask section's 2 chat questions as 1 thread in Claude Code, each answer cut to its first 2 lines so the window
