@@ -327,8 +327,8 @@ export type Page = {
   final: Final
   /* The October rewrite's blocks (COPY.md). */
   heroVideo?: HeroVideo
-  /* Home only: the receipt its share image draws beside the headline. */
-  shareReceipt?: StageReceipt
+  /* Home only: the findings card its share image draws beside the headline. */
+  shareFindings?: ShareFindings
   gapPair?: GapPair
   life?: Life
   targets?: Targets
@@ -603,22 +603,14 @@ export type BlogIndexPage = {
    Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
    --------------------------------------------------------------------------------------------------------------------- */
 
-/* Home's share image (scripts/og.mjs): 1 company's journey as its customer, the receipt drawn beside the headline.
-   Invented companies only, at .example addresses. */
-export type StageReceipt = {
-  /* What the story shows, in the buyer's words: the name on its button under the stage. */
-  topic: string
-  company: string
-  domain: string
-  monogram: string
-  ad: { source: string; text: string; cta: string }
-  page: { path: string; title: string; note: string }
-  /* The hop from the page to the inbox when the agent did something other than sign up, such as leaving a basket. */
-  did?: string
-  mail: { time: string; from: string; subject: string; tab: string }
-  rows: { k: string; v: string }[]
-  stamp: string
-  fact: string
+/* Home's share image (scripts/og.mjs): what AI customers caught inside a few companies this month, the card drawn
+   beside the headline. Each row: the company, what was caught, the day. Invented companies only (Company 1, 2, 3, as in
+   the how it works lanes). */
+export type ShareFindings = {
+  title: string
+  aside: string
+  rows: { company: string; finding: string; when: string }[]
+  foot: string
 }
 
 /* A hero's film (components/v5/HeroVideo), on Home and the use case pages: a YouTube video id, the line beside the

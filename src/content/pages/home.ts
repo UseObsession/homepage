@@ -35,7 +35,7 @@ export const page: Page = {
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
       'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'Intelligence on any company, from inside it.',
+    ogLine: 'Send AI customers to your prospects, your clients and rivals.',
     ogImage: '/og/home.png',
   },
 
@@ -57,24 +57,18 @@ export const page: Page = {
     file: { src: '/film/why-obsession-v2.mp4', poster: '/film/why-obsession-v2.jpg', width: 960, height: 540 },
   },
 
-  /* The share image's receipt (scripts/og.mjs): an invented company's ad followed to its page and the email that came. */
-  shareReceipt: {
-    topic: 'Ad offer',
-    company: 'Fern Hollow',
-    domain: 'fernhollow.example',
-    monogram: 'F',
-    ad: { source: 'Meta ad', text: '40% off everything, this week only', cta: 'Shop now' },
-    page: { path: '/early-access', title: 'Early access: 40% off with EARLY40', note: 'Code applied at checkout' },
-    mail: { time: '09:12', from: 'Fern Hollow', subject: 'Your 40% code is inside', tab: 'Promotions' },
+  /* The share image's card (scripts/og.mjs): what AI customers caught inside 3 companies this month, the gap section's
+     catches (a broken checkout, a dead code, a leaked code, a rival's price cut) at Company 1, 2 and 3. */
+  shareFindings: {
+    title: 'Your AI customers caught',
+    aside: 'This month',
     rows: [
-      { k: 'Ad', v: 'Meta, Monday 09:00' },
-      { k: 'Checkout', v: '40% off, applied' },
-      { k: 'Welcome', v: '9 minutes later' },
-      { k: 'Gmail tab', v: 'Promotions' },
-      { k: 'Signature', v: 'DKIM pass' },
+      { company: 'Company 1', finding: 'The checkout broke mid campaign', when: 'Day 3' },
+      { company: 'Company 2', finding: 'The promo code stopped working', when: 'Day 9' },
+      { company: 'Company 3', finding: 'Price cut from £24 to £19', when: 'Day 21' },
+      { company: 'Company 1', finding: 'A private code on a coupon site', when: 'Day 30' },
     ],
-    stamp: 'Held',
-    fact: 'The ad promised 40% off. The page and the email held it.',
+    foot: 'Each one with proof',
   },
 
   gapPair: {

@@ -9,9 +9,9 @@
    A long headline first widens its measure, then steps down the scale, so the copy always keeps 64px of air under
    the lockup.
 
-   Home's card carries the site's 1 memorable object beside the headline: the hero's first receipt, on its paper, with
-   its rows, its fact and its stamp, tilted a little and torn at the foot (src/styles/v5.css .v5-receipt). Its headline
-   and line keep to the left 600px.
+   Home's card carries what the site sells beside the headline (4 Nov): a card on the paper of what AI customers caught
+   inside 3 companies this month, each row the company, the catch and the day (home.shareFindings). Its headline and
+   line keep to the left 600px.
 
    The words come from the content (src/content/meta.ts `entries`), loaded through Vite so the TypeScript content needs
    no build of its own. Unchanged cards are not drawn again (node_modules/.cache/og.json). */
@@ -80,12 +80,12 @@ const HEADLINE_STEPS = [
   [52, 22],
 ]
 
-/* A card with a receipt keeps its words to the left of it. */
+/* A card with findings keeps its words to the left of them. */
 const BESIDE = 600
 
 async function layout(card) {
   const room = H - 2 * PAD - LOCKUP_H - FOOT - COPY_BOTTOM - AIR
-  const cap = card.receipt ? BESIDE : Infinity
+  const cap = card.findings ? BESIDE : Infinity
   const lineStyle = { size: 28, weight: 400, leading: 1.35, width: Math.min(cap - 40, Math.round(40 * CH.sans400 * 28)) }
   let line = card.line
   let lineH = await heightOf(line, lineStyle)
@@ -101,37 +101,46 @@ async function layout(card) {
   throw new Error(`The headline "${card.headline}" does not fit a share card.`)
 }
 
-/* The receipt's paper and inks (src/styles/v5.css, the dark theme's --v5-paper and --v5-paper-ink). */
+/* The paper and its inks (src/styles/v5.css, the dark theme's --v5-paper and --v5-paper-ink). */
 const PAPER = { bg: '#f1efe8', ink: '#17160f', ink2: '#5d5a51', line: '#d6d2c6' }
-const RECEIPT_W = 408
-/* The torn foot: a zigzag of the paper, 10px deep. */
-const TEAR = (() => {
-  const step = 12
-  const pts = [`0,0`, `${RECEIPT_W},0`]
-  for (let x = RECEIPT_W, k = 0; x >= 0; x -= step / 2, k++) pts.push(`${x},${k % 2 ? 10 : 2}`)
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${RECEIPT_W}" height="10" viewBox="0 0 ${RECEIPT_W} 10"><polygon points="${pts.join(' ')}" fill="${PAPER.bg}"/></svg>`
-  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
-})()
+const FINDINGS_W = 452
 
-function receiptTree(r) {
-  const rule = el('div', { display: 'flex', height: 0, borderTop: `2px dashed ${PAPER.line}`, margin: '14px 0' }, [])
-  return el('div', { position: 'absolute', right: 76, top: 112, display: 'flex', flexDirection: 'column', width: RECEIPT_W, transform: 'rotate(-2deg)' }, [
-    el(
-      'div',
-      { display: 'flex', flexDirection: 'column', backgroundColor: PAPER.bg, color: PAPER.ink, padding: '24px 28px 20px', fontFamily: 'Geist Mono', fontWeight: 500, fontSize: 16, lineHeight: 1.55 },
-      [
-        el('div', { display: 'flex', justifyContent: 'space-between', fontSize: 15 }, [el('span', {}, 'Record'), el('span', {}, r.domain)]),
-        rule,
-        ...r.rows.map((row) => el('div', { display: 'flex' }, [el('span', { width: 118, color: PAPER.ink2 }, row.k), el('span', {}, row.v)])),
-        rule,
-        el('div', { display: 'flex', fontSize: 17, lineHeight: 1.45 }, r.fact),
-        el('div', { display: 'flex', justifyContent: 'flex-end', marginTop: 14 }, [
-          el('span', { display: 'flex', border: `2px solid ${PAPER.ink}`, borderRadius: 4, padding: '3px 12px', fontSize: 16, transform: 'rotate(-6deg)' }, r.stamp),
+function findingsTree(f) {
+  const mono = { fontFamily: 'Geist Mono', fontWeight: 500, fontSize: 14, lineHeight: 1, color: PAPER.ink2 }
+  return el(
+    'div',
+    {
+      position: 'absolute',
+      right: PAD,
+      top: 104,
+      width: FINDINGS_W,
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '24px 28px 22px',
+      borderRadius: 18,
+      backgroundColor: PAPER.bg,
+      color: PAPER.ink,
+    },
+    [
+      el('div', { display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 16, borderBottom: `1px solid ${PAPER.line}` }, [
+        el('span', { fontSize: 19, fontWeight: 600, letterSpacing: -0.3 }, f.title),
+        el('span', mono, f.aside),
+      ]),
+      ...f.rows.map((r) =>
+        el('div', { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '14px 0', borderBottom: `1px solid ${PAPER.line}` }, [
+          el('div', { display: 'flex', flexDirection: 'column', width: 320 }, [
+            el('span', { ...mono, fontSize: 13, marginBottom: 7 }, r.company),
+            el('span', { fontSize: 19, fontWeight: 600, lineHeight: 1.2, letterSpacing: -0.3 }, r.finding),
+          ]),
+          el('span', { ...mono, marginTop: 1 }, r.when),
         ]),
-      ],
-    ),
-    { type: 'img', props: { src: TEAR, width: RECEIPT_W, height: 10, style: { width: RECEIPT_W, height: 10 } } },
-  ])
+      ),
+      el('div', { display: 'flex', alignItems: 'center', marginTop: 16 }, [
+        el('div', { display: 'flex', width: 8, height: 8, borderRadius: 4, backgroundColor: PAPER.ink, marginRight: 10 }, []),
+        el('span', mono, f.foot),
+      ]),
+    ],
+  )
 }
 
 function cardTree(card, fit) {
@@ -175,7 +184,7 @@ function cardTree(card, fit) {
         },
         [el('span', {}, DOMAIN), el('span', {}, card.place)],
       ),
-      ...(card.receipt ? [receiptTree(card.receipt)] : []),
+      ...(card.findings ? [findingsTree(card.findings)] : []),
     ],
   )
 }
@@ -205,7 +214,7 @@ async function loadCards() {
       line: e.line,
       /* Where the page sits: its own place (a post's "Blog / Mystery shopping"), else its breadcrumb after Home. */
       place: e.place ?? (e.meta.breadcrumb ?? []).filter((c) => c.path !== '/').map((c) => c.name).join(' / '),
-      receipt: e.receipt,
+      findings: e.findings,
       alt: '',
     }))
   } finally {
@@ -214,7 +223,7 @@ async function loadCards() {
 }
 
 const self = createHash('sha1').update(readFileSync(fileURLToPath(import.meta.url))).digest('hex')
-const keyOf = (card) => createHash('sha1').update(self).update(JSON.stringify([card.headline, card.line, card.place, card.receipt ?? null])).digest('hex')
+const keyOf = (card) => createHash('sha1').update(self).update(JSON.stringify([card.headline, card.line, card.place, card.findings ?? null])).digest('hex')
 
 async function main() {
   const started = Date.now()
