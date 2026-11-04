@@ -14,9 +14,8 @@ import type { Page } from '../types'
    5 who you can send an AI customer to (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
    6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
    7 how it compares (6 kinds of tool, 7 rows, dated, linking /compare) >
-   8 how far it goes (1 company, 1,000, 100,000: learned once, run as a program, asleep for free) >
-   9 what is open (the engine on GitHub, the history in Obsession Cloud) >
-   10 questions, then the waitlist.
+   8 what is open (the engine on GitHub, the history in Obsession Cloud) >
+   9 questions, then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
@@ -144,78 +143,8 @@ export const page: Page = {
     all: { label: 'See every recipe', to: '/recipes' },
   },
 
-  /* Scale (COPY.md, "Scale"), after the kinds of company: anyone, then 1,000, then 100,000. The facts are system.md's:
-     one program per platform, not per site; learned, compiled, replayed; code, typed questions, small agents and
-     escalation; asleep costs nothing; the shared record. The numbers on the stage and in the card come from
-     docs/positioning/scale_model.py, modelled on public prices, and say so (COPY.md, claims register). */
-  scale: {
-    heading: 'Learn it once. Run it for 1 company, 1,000 or 100,000.',
-    lead: 'Learn it once. Run it for',
-    counts: ['1 company.', '1,000 companies.', '100,000 companies.'],
-    line: 'The first sign up at a company teaches the AI customer the way in. Every company after it runs that way in as a program: in seconds, the same way every time, and cheaper with each company you add.',
-    steps: [
-      {
-        title: 'Learns the way in',
-        line: 'An AI customer signs up at the first company step by step, and keeps every action as a trace.',
-        label: 'An AI customer signs up at the first company: it opens the newsletter page, finds the sign up form, types its own email, ticks marketing emails, submits, then clicks the confirm link. Each action lands in a trace, saved as the newsletter sign up, version 1.',
-      },
-      {
-        title: 'Turns it into a program',
-        line: 'One program per platform, not per site. Code does the steps that never change; agents take only the odd ones.',
-        label: 'The trace becomes a program of 6 steps: 4 in code, 1 typed question, 1 small agent, and a stop that hands anything new to a person. Once a platform is learned, 70 in 100 sign ups are a plain request, 25 a replayed script, and 5 need an agent.',
-      },
-      {
-        title: 'Runs at any scale',
-        line: 'Hand it 100,000 companies. The ones another customer already watches have their history on day one.',
-        label: 'A list of 100,000 companies goes in through 1 API call, and the field of companies fills square by square, each square 250 companies, as the count reaches 100,000 customers kept. Then they sleep: about 140,000 wake a day, and about 2 are awake at any moment.',
-      },
-    ],
-    learn: {
-      url: 'fernhollow.example/pages/newsletter',
-      field: 'a1.fernhollow@inbox.example',
-      trace: [
-        'Open /pages/newsletter',
-        'Find the sign up form',
-        'Type its own email',
-        'Tick “marketing emails”',
-        'Submit',
-        'Click the confirm link',
-      ],
-      saved: 'Saved: newsletter sign up, v1',
-    },
-    program: {
-      kinds: { code: 'Code', question: 'Question', agent: 'Small agent', escalate: 'Person' },
-      steps: [
-        { kind: 'code', label: 'Find the form on the page' },
-        { kind: 'code', label: 'Post the sign up' },
-        { kind: 'question', label: 'Does it ask to confirm?' },
-        { kind: 'code', label: 'Open the confirm link' },
-        { kind: 'agent', label: 'An extra field? Fill it in' },
-        { kind: 'escalate', label: 'Anything new? Stop and ask' },
-      ],
-      routes: {
-        heading: 'How a sign up runs, once its platform is learned',
-        items: [
-          { label: 'A plain request', share: 70, line: 'No browser, no model' },
-          { label: 'A replayed script', share: 25, line: 'A browser for under a minute' },
-          { label: 'An agent', share: 5, line: 'A new kind of form, or the odd one out' },
-        ],
-      },
-    },
-    run: {
-      total: 100000,
-      unit: 'customers kept',
-      call: 'ob.become_customer("brands.csv")',
-      covered: 'Companies another customer already watches come with their history.',
-      square: 'Each square is 250 companies',
-      toast: 'About 2 awake right now · 140,000 wakes a day',
-    },
-    principles: [
-      { title: 'Learn once per platform', line: 'Most companies sign customers up on the same few platforms, so a sign up learned at one company runs at every company built the same way.' },
-      { title: 'Code where it can, judgement where it must', line: 'A stronger agent sees only the cases a program can’t settle, then the program learns them too.' },
-      { title: 'Asleep costs nothing', line: 'Agents wait for weeks or months without running, and wake only when the company acts.' },
-    ],
-  },
+  /* The scale section ("Learn it once. Run it for 1 company, 1,000 or 100,000.") was cut on 4 Nov: it explained a
+     mechanism with modelled numbers instead of showing a result. A measured benchmark may take its place later. */
 
   /* The ask section (docs/positioning/ask-section.md), above the comparison: the commercial intelligence only a customer
      gets, its 4 areas in a small label above the heading, and 1 question from each reader, each asked somewhere else. It took the place of the 4
