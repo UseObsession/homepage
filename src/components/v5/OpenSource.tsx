@@ -34,6 +34,7 @@ export function OpenSource({ open, id, deskOnly }: { open: OpenSourceContent; id
     <section className={cls} id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="v5-head">
+          {open.kicker && <p className="v5-kicker">{open.kicker}</p>}
           <h2 className="v5-h2" id={`${hid}-h`}>
             {open.heading}
           </h2>

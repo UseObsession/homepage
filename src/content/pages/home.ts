@@ -1,11 +1,11 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
-import { askExamples, askShared, life } from '../shared5'
+import { askExamples, askShared, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
-   leaves open, in this order (4 Nov: 8 blocks, from 11). Every block from 2 to 7 is labelled with the reader's own
+   leaves open, in this order (4 Nov: 9 blocks, from 11). Every block from 2 to 8 is labelled with the reader's own
    question, so the labels read as the page's argument (COPY.md's reading path):
    1 what it is (the hero: intelligence on any company, from inside it; the form; the film) >
    2 Does it find anything? (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
@@ -13,8 +13,8 @@ import type { Page } from '../types'
    4 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
    5 Why can't my tools do this? (where each kind of tool's view ends on 1 journey, and what only a customer catches) >
    6 Who do I send it to? (James's reader band: each reader, where it sends its AI customers, its recipes) >
-   7 Questions, then the waitlist.
-   Open source is the hero's tag (a link to the code) and 1 question; its section lives on /developers.
+   7 Can I run it myself? (the open source runtime beside what Obsession Cloud adds; on a wide screen only) >
+   8 What else would I ask? (the questions), then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
@@ -170,11 +170,22 @@ export const page: Page = {
     },
   },
 
-  /* The open source section ("An open source runtime for 100,000 AI customers.") left Home on 4 Nov: /developers shows it
-     in full, and Home keeps the hero's tag, which links to the code, and 1 question. */
+  /* Open source, names only (4 Nov, James: too many descriptions). Each capability's line, and the rest, live on
+     /developers. Each cloud line fits 1 line. It left Home and came back the same day (James), under its own question. */
+  openSource: {
+    ...openSource,
+    kicker: 'Can I run it myself?',
+    heading: 'An open source runtime for 100,000 AI customers.',
+    line: undefined,
+    core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
+    cloud: {
+      title: openSource.cloud.title,
+      items: ['Inboxes, phones and browsers', 'Months of history already kept', 'A shared record from day one', 'About 250 integrations', 'Our website and watch planner'],
+    },
+  },
 
-  /* The questions a reader asks before joining (4 Nov): Seun's 6 from his draft of 4 Nov, reworded, in place of Home's
-     own 11, so all 6 show and none hide behind a button. The first answer opens with meta.answer's first sentence, which
+  /* The questions a reader asks before joining (4 Nov): Seun's draft of 4 Nov, reworded, in place of Home's own 11, so
+     all 5 show and none hide behind a button (his 6th, How much does it cost?, went: James). The first answer opens with meta.answer's first sentence, which
      the page must show (scripts/prerender.mjs). How soon is answered as an AI customer, not a mystery shopper: when it
      reports is the job's setting (James, 4 Nov). */
   faq: {
@@ -202,11 +213,6 @@ export const page: Page = {
       {
         q: 'Can anyone else see what I watch?',
         a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into a shared record, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an AI customer that works only for you.',
-      },
-      {
-        q: 'How much does it cost?',
-        a: 'Plans run on credits: you buy credits, and your AI customers spend them as they work. Your store’s first check is free, and agencies get 5 client stores checked free.',
-        link: { label: 'Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
       },
     ],
   },

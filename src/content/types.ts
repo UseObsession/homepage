@@ -742,6 +742,7 @@ export type Ask = {
 /* Open source (components/v5/OpenSource): what is in the code, what is the cloud. */
 /* `core.items` are the engine's capabilities, each a name and 1 technical line; `cloud.items` are short lines. */
 export type OpenSource = {
+  kicker?: string
   heading: string
   line?: string
   core: { title: string; items: { name: string; line?: string }[] }

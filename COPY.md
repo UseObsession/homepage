@@ -158,7 +158,7 @@ flowchart TD
   X["11 cut recipe slugs"] -. 301 .-> R
 ```
 
-**Home, top to bottom, each block answering the question the last one leaves** (8 blocks since 4 Nov, from 11; every block from the finding to the questions is labelled with the reader's own question, set as the readers band's label is, so the labels read as the page's argument):
+**Home, top to bottom, each block answering the question the last one leaves** (9 blocks since 4 Nov, from 11; every block from the finding to the questions is labelled with the reader's own question, set as the readers band's label is, so the labels read as the page's argument):
 
 ```mermaid
 flowchart LR
@@ -167,7 +167,8 @@ flowchart LR
   c --> c2["Where do the findings go? Your AI agent, every format, your own code"]
   c2 --> d["Why can't my tools do this? Where each tool stops, what only a customer catches"]
   d --> e["Who do I send it to? Each reader and its recipes"]
-  e --> j["Questions"] --> k["Join"]
+  e --> o["Can I run it myself? Open source"]
+  o --> j["What else would I ask? Questions"] --> k["Join"]
 ```
 
 **Scale, after grep.ai's two sections** ("Run it once. Run it 1,000 times. Run it 100,000 times." and "Learn once. Improve every run."), combined into one:
@@ -205,8 +206,8 @@ The full words are in the content files; this is the spine of each page.
 | Kinds | Cut 4 Nov (option 5 of obsession/targets-options.html): at 1,713px the page's longest section, naming places the hero, the readers and the ask section already name. Its heading and its 13 recipe links moved into Readers | |
 | Ask | Folded into Formats 4 Nov (James): asking in your own AI agent is 1 more place the findings go. Its 2 chat questions are 1 thread on the agent tile, its code example is the code tile, its Ask from list sits under the thread as pills. The reader pages keep the full section (Make your agent see what customers see.) | |
 | Scale | Cut 4 Nov (James: the heading never landed, and the section explained a mechanism with modelled numbers instead of showing a result). A measured benchmark, as Exa shows one, may replace it. |
-| Open source | Left Home 4 Nov; /developers shows it in full (An open source runtime for 100,000 AI customers.). Home keeps the hero's Open source tag, which links to the code, and the question Is Obsession open source?, which links to /developers#open-source | |
-| FAQ | Before you join. (Label: What else would I ask? Until 4 Nov: Questions.) | Since 4 Nov Seun's 6 questions from his draft, reworded, all shown (no Show more): What is an AI customer? (opens with meta.answer's first sentence, which the page must show); Is this AI mystery shopping?; Is it legal to mystery shop a competitor? (the guide covers the US, the UK and the EU); How soon do I see something? (answered as an AI customer, not a mystery shopper: the moment something happens, at the times you set, like 4 hours after sign up and again at 48, or for as long as it stays; James); Can anyone else see what I watch?; How much does it cost? (credits, from Seun's draft: not yet in system.md; the first store check free, 5 client stores free for agencies). Home's own 11 questions were dropped |
+| Open source | An open source runtime for 100,000 AI customers. (Label: Can I run it myself?) | After the readers, before the questions, on a wide screen only. Left Home and came back on 4 Nov (James), names only as before: the runtime's 8 capabilities beside Obsession Cloud's 5 lines, Star it on GitHub and Read the developer guide. The detail lives on /developers |
+| FAQ | Before you join. (Label: What else would I ask? Until 4 Nov: Questions.) | Since 4 Nov 5 of Seun's 6 questions from his draft, reworded, all shown (no Show more): What is an AI customer? (opens with meta.answer's first sentence, which the page must show); Is this AI mystery shopping?; Is it legal to mystery shop a competitor? (the guide covers the US, the UK and the EU); How soon do I see something? (answered as an AI customer, not a mystery shopper: the moment something happens, at the times you set, like 4 hours after sign up and again at 48, or for as long as it stays; James); Can anyone else see what I watch?. His How much does it cost? was left out (James). Home's own 11 questions were dropped |
 | Final | Name a company. Send it an AI customer. | Waitlist. The agency link (Agency? Get 5 client stores checked free) left 4 Nov: beside the form's own line it was a second version of the same offer |
 
 **Shared blocks** (`src/content/shared5.ts`): the agent's life, the ask section's shared parts and its example questions, the ways in (/developers only), the comparison, open source. Written once; Home and the reader pages import them. The ask section sits directly above the comparison wherever the comparison shows; on Sales and Agencies, which don't show it, it sits after how it works.
