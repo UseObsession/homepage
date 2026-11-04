@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'prospect-intelligence',
   name: 'Prospect intelligence',
   group: 'Watch other companies',
-  line: 'Sends an AI customer to every prospect on your list and proves the gap you fix.',
+  line: 'Sends AI customers to every prospect on your list and proves the gap you fix.',
   gets: 'A verdict and a proof link per company, back in Clay, your CRM or a sheet.',
   kit: [
     'An AI customer per prospect',

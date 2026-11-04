@@ -241,7 +241,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Know every ad you pay for lands on a page that can sell.',
-    sub: 'Join the waitlist. Ad landing check comes ready to read your live ads, send an AI customer to every landing page each morning, and wait for your OK before any change.',
+    sub: 'Join the waitlist. Ad landing check comes ready to read your live ads, send AI customers to every landing page each morning, and wait for your OK before any change.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-final',

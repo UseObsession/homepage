@@ -25,7 +25,7 @@ import type { UseCaseStudy } from '../types'
 
 export const study: UseCaseStudy = {
   name: 'Leak checks for retention agencies',
-  line: 'Send an AI customer to every store you pitch or keep, and see what it gets, with proof.',
+  line: 'Send AI customers to every store you pitch or keep, and see what each one gets, with proof.',
 
   meta: {
     path: '/use-cases/leak-checks-for-retention-agencies',
@@ -45,7 +45,7 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Send an AI customer to every store you pitch, and every store you keep.',
+    headline: 'Send AI customers to every store you pitch, and every store you keep.',
     sub: 'Name any store. An AI customer signs up there, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its competitors compare.',
     video: { youtube: 'Bnkm02NllPs', label: 'Watch how it works', title: 'Leak checks for retention agencies: every store’s leaks, with proof' },
     example: { chips: [] },
@@ -172,7 +172,7 @@ export const study: UseCaseStudy = {
       },
     ],
     answer:
-      'Obsession sends an AI customer to every store, so you see what each one does to the people who sign up, with proof, before anyone hands you a login.',
+      'Obsession sends AI customers to every store, so you see what each one does to the people who sign up, with proof, before anyone hands you a login.',
   },
 
   fit: {

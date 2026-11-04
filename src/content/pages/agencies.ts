@@ -13,11 +13,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/agencies',
-    title: 'Send an AI customer to every client · Obsession',
+    title: 'Send AI customers to every client · Obsession',
     description:
-      'Send an AI customer to every client and prospect. It signs up, buys and asks the bot, so pitches and reports open on proof, not a weekend audit.',
+      'Send AI customers to every client and prospect. They sign up, buy and ask the bot, so pitches and reports open on proof, not a weekend audit.',
     answer:
-      'Obsession sends an AI customer to every client and prospect. It signs up, buys and asks the bot, so your pitches, reports and retainers open on what their customers actually get, with proof.',
+      'Obsession sends AI customers to every client and prospect. They sign up, buy and ask the bot, so your pitches, reports and retainers open on what their customers actually get, with proof.',
     ogImage: '/og/agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,8 +27,8 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Send an AI customer to every client and prospect.',
-    sub: 'Obsession sends an AI customer to every client and prospect. It signs up, buys and asks the bot, so your pitches, reports and retainers open on what their customers actually get, with proof.',
+    headline: 'Send AI customers to every client and prospect.',
+    sub: 'Obsession sends AI customers to every client and prospect. They sign up, buy and ask the bot, so your pitches, reports and retainers open on what their customers actually get, with proof.',
     capture: {
       kind: 'waitlist',
       source: 'agencies-hero',
@@ -137,7 +137,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for an agency?',
-        a: 'Obsession sends an AI customer to every client and prospect. It signs up, buys and asks the bot, so your pitches, reports and retainers open on what their customers actually get, with proof.',
+        a: 'Obsession sends AI customers to every client and prospect. They sign up, buy and ask the bot, so your pitches, reports and retainers open on what their customers actually get, with proof.',
       },
       {
         q: 'Can reports go out under our brand?',

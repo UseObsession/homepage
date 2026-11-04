@@ -7,8 +7,8 @@ import type { Ask, AskExample, Compare, Life, OpenSource, Ways } from './types'
    by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
    stage's companies, so the 2 pictures tell 1 story. */
 export const life: Life = {
-  heading: 'To know what 10,000 companies do, send an AI customer to all 10,000.',
-  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an AI customer joins each one and stays for months, so every break, leak, price cut and new offer reaches you the day it happens.',
+  heading: 'To know what 10,000 companies do, give each one its own AI customer.',
+  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: each gets its own AI customer, which stays for months, so every break, leak, price cut and new offer reaches you the day it happens.',
   list: 'brands.csv · 10,000 companies',
   axis: {
     start: 'Monday 09:00',
@@ -130,14 +130,14 @@ export const askExamples = {
      (James, 22 Oct). */
   watch: {
     where: 'Code',
-    q: 'Send an AI customer to every brand on our list, and send each new email to our webhook.',
+    q: 'Send AI customers to every brand on our list, and send each new email to our webhook.',
     file: 'watch.py',
     code: `import os
 from obsession import Obsession
 
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
-# Send an AI customer to every brand on the list
+# Send AI customers to every brand on the list
 ob.become_customer(["fernhollow.example", "northfold.example"],
                    how="newsletter", shared=True)
 
@@ -217,7 +217,7 @@ from obsession import Obsession
 
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
-# Send an AI customer to every brand on the list
+# Send AI customers to every brand on the list
 ob.become_customer(["fernhollow.example", "northfold.example"],
                    how="newsletter", shared=True)
 
@@ -277,7 +277,7 @@ export const openSource: OpenSource = {
   core: {
     title: 'Open source: the runtime',
     items: [
-      { name: 'Fan out to 100,000 at once', line: 'One call sends an AI customer to every company on a list, in parallel, each with its own inbox, number and browser.' },
+      { name: 'Fan out to 100,000 at once', line: 'One call gives every company on a list its own AI customer, in parallel, each with its own inbox, number and browser.' },
       { name: 'Durable agents that sleep for free', line: 'Each agent hibernates between events and wakes on mail, a reply or a clock. Months of waiting run no process.' },
       { name: 'Learns once, then runs as code', line: 'The first run on a platform is an agent’s. Its trace compiles into a program of code, typed questions and small agents.' },
       { name: 'Better with every run', line: 'A case a program can’t settle goes to a stronger agent, then becomes the program’s next version. Cost falls with each one.' },

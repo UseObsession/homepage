@@ -14,7 +14,7 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/sales',
-    title: 'Send an AI customer to every account · Obsession',
+    title: 'Send AI customers to every account · Obsession',
     description:
       'Send an AI customer to each prospect, account and competitor before you call, so every brief and battlecard opens on what their customers get.',
     answer:
@@ -28,7 +28,7 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Send an AI customer to every account and competitor.',
+    headline: 'Send AI customers to every account and competitor.',
     sub: 'Obsession sends an AI customer to each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
     capture: { kind: 'waitlist', source: 'sales-hero', button: 'Join the waitlist', interest: 'prospect' },
     secondary: { label: 'See how it compares', to: '/compare' },

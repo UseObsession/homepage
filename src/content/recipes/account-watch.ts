@@ -21,7 +21,7 @@ export const recipe: Recipe = {
   slug: 'account-watch',
   name: 'Account watch',
   group: 'Watch other companies',
-  line: 'Sends an AI customer to every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
+  line: 'Sends AI customers to every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
   gets: 'Every morning: who’s at risk, who’s ready to grow, and the play for each.',
   kit: [
     'An AI customer per account',

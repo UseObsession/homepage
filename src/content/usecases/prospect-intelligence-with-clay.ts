@@ -34,9 +34,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/prospect-intelligence-with-clay',
     title: 'Prospect intelligence with Clay: a proven gap at each brand',
     description:
-      'Send an AI customer to every brand in your Clay view: it signs up, opts in to texts, asks support and writes each gap back with proof.',
+      'Send AI customers to every brand in your Clay view: each signs up, opts in to texts, asks support and writes each gap back with proof.',
     answer:
-      'Obsession sends an AI customer to every brand in a client’s Clay view, each with its own inbox, mobile number and browser. Each signs up, opts in to texts and asks support a question, then waits 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
+      'Obsession sends AI customers to every brand in a client’s Clay view, each with its own inbox, mobile number and browser. Each signs up, opts in to texts and asks support a question, then waits 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
     ogImage: '/og/prospect-intelligence-with-clay.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,7 +48,7 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Send an AI customer to every brand your client wants to win.',
+    headline: 'Send AI customers to every brand your client wants to win.',
     sub: 'Every agency buys the same install data, so every brand hears the same opener. An AI customer signs up at each brand in your client’s Clay view, opts in to texts and asks support a question. Each gap comes back to the same rows with its receipt, ready for the first email.',
     example: { chips: [] },
     flow: [
@@ -285,7 +285,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for outbound agencies that use Clay?',
-        a: 'Obsession sends an AI customer to every brand in a client’s Clay view, each with its own inbox, mobile number and browser. Each signs up, opts in to texts and asks support a question, then waits 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
+        a: 'Obsession sends AI customers to every brand in a client’s Clay view, each with its own inbox, mobile number and browser. Each signs up, opts in to texts and asks support a question, then waits 48 hours. Each gap comes back to the same Clay rows with its receipt, a proof link anyone can open.',
       },
       {
         q: 'Does it contact anyone at the brand?',

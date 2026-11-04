@@ -13,11 +13,11 @@ import type { Page } from '../types'
 export const page: Page = {
   meta: {
     path: '/marketing',
-    title: 'Send an AI customer to every competitor · Obsession',
+    title: 'Send AI customers to every competitor · Obsession',
     description:
-      'Send an AI customer to every competitor. It signs up and stays, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
+      'Send AI customers to every competitor. They sign up and stay, so marketing teams see each email, text, offer and price the minute it lands, with proof.',
     answer:
-      'Obsession sends an AI customer to every competitor on your list. It signs up and stays, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
+      'Obsession sends AI customers to every competitor on your list. They sign up and stay, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,8 +27,8 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Send an AI customer to every competitor. See every offer it gets.',
-    sub: 'Obsession sends an AI customer to every competitor on your list. It signs up and stays, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
+    headline: 'Send AI customers to every competitor. See every offer they get.',
+    sub: 'Obsession sends AI customers to every competitor on your list. They sign up and stay, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
     capture: {
       kind: 'waitlist',
       source: 'marketing-hero',
@@ -137,7 +137,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a marketing team?',
-        a: 'Obsession sends an AI customer to every competitor on your list. It signs up and stays, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
+        a: 'Obsession sends AI customers to every competitor on your list. They sign up and stay, so you see each email, text, offer and price the minute it lands. The same AI customers check your own ads, launches and checkout.',
       },
       {
         q: 'How is this different from Panoramata, MailCharts or Milled?',

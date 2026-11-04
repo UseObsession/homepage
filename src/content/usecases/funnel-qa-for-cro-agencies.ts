@@ -173,7 +173,7 @@ export const study: UseCaseStudy = {
       },
     ],
     answer:
-      'Obsession sends an AI customer to every brand, from the page behind its live ads, so you see what happens after the sign up, with proof, before anyone hands you a login.',
+      'Obsession sends AI customers to every brand, from the page behind its live ads, so you see what happens after the sign up, with proof, before anyone hands you a login.',
   },
 
   fit: {

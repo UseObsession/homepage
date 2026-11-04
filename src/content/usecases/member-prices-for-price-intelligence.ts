@@ -35,9 +35,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/member-prices-for-price-intelligence',
     title: 'Member price intelligence: what retailers show only members',
     description:
-      'Send an AI customer to every retailer you track: it signs up, reads member prices beside public ones and sends each offer with its proof.',
+      'Send AI customers to every retailer you track: each signs up, reads member prices beside public ones and sends each offer with its proof.',
     answer:
-      'Obsession sends an AI customer to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
+      'Obsession sends AI customers to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +49,7 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Send an AI customer to every retailer you track.',
+    headline: 'Send AI customers to every retailer you track.',
     sub: 'You already collect flyers, shelves, online prices and newsletters. An AI customer signs up at every retailer you track and brings back what only members see: member prices, welcome coupons and the offers that arrive days later. Each one lands in your platform with its receipt.',
     example: { chips: [] },
     flow: [
@@ -261,7 +261,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for price intelligence firms?',
-        a: 'Obsession sends an AI customer to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
+        a: 'Obsession sends AI customers to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
       },
       {
         q: 'Do you need access to our platform?',

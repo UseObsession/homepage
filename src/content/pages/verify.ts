@@ -45,7 +45,7 @@ export const page: Page = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Send an AI customer to every AI agent you run.',
+    headline: 'Send AI customers to every AI agent you run.',
     sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. AI customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with proof.',
     capture: {
       kind: 'verify',
