@@ -97,13 +97,14 @@ export function PersonaBand() {
 }
 
 /* His Home section around it, the head and the band each revealing as they scroll into view. Since 4 Nov it also does
-   the Kinds section's job, so its head is where you send an AI customer, not who you are (COPY.md, "Readers"). */
+   the Kinds section's job, so its head is where you send an AI customer, not who you are (COPY.md, "Readers"). Its label
+   is the reader's question, as every Home label is since 4 Nov. */
 export function PersonaSection({ id = 'for' }: { id?: string }) {
   return (
     <section className="section" id={id}>
       <div className="wrap">
         <Reveal className="head">
-          <p className="kicker">Who you send it to</p>
+          <p className="kicker">Who do I send it to?</p>
           <h2 className="h2">Send an AI customer anywhere. A rival, a prospect, or your own company.</h2>
         </Reveal>
         <Reveal>

@@ -292,8 +292,21 @@ export type Outputs = {
 export type RunReports = {
   kicker?: string
   heading: string
+  line?: string
   node: { title: string; line: string }
   label: string
+  /* Home (4 Nov), where this section took in the ask section: a tile above the formats for asking in your own AI agent
+     (1 chat thread, the line that connects it, and where else you can ask from, as pills), and a tile after Sheet or
+     Clay for your own code. */
+  agent?: {
+    label: string
+    line: string
+    where: string
+    connect: string
+    thread: { q: string; a: string[]; receipts: string }[]
+    from: { label: string; items: string[] }
+  }
+  code?: { label: string; line: string; file: string; code: string }
   /* The study and its link at the foot. Home leaves both out since 4 Nov: the study is its own callout (Finding). */
   study?: { value: string; text: string }
   cta?: Cta
@@ -713,15 +726,12 @@ export type Ways = { heading: string; line?: string; ways: Way[]; verbs: { headi
    was asked in; an example asked from code ('Code') shows only its `code`, in a window titled `file`, with no answer under it. The shared parts (`from`, `connect`, `keeps`, `notYet`, `more`) come from shared5's `askShared`. */
 export type AskExample = { where: string; q: string; a?: string[]; receipts?: string; file?: string; code?: string }
 export type Ask = {
-  /* Home's section label, in place of `areas`. */
-  kicker?: string
   heading: string
   /* The areas it covers on this page, shown in a small label above the heading. */
-  areas?: string[]
+  areas: string[]
   line: string
   examples: AskExample[]
-  /* Where you can ask from, under the stage. Home leaves it out (4 Nov). */
-  from?: { label: string; items: string[] }
+  from: { label: string; items: string[] }
   /* The 1 line that connects Obsession to each tool an example is asked in, keyed by `where`. */
   connect: Record<string, string>
   keeps?: { heading: string; items: string[] }

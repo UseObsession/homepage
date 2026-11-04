@@ -5,16 +5,15 @@ import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
-   leaves open, in this order (4 Nov: 9 blocks, from 11; every block from 2 to 8 names itself in a small label, as the
-   readers band's "Who you send it to" does):
+   leaves open, in this order (4 Nov: 8 blocks, from 11). Every block from 2 to 7 is labelled with the reader's own
+   question, so the labels read as the page's argument (COPY.md's reading path):
    1 what it is (the hero: intelligence on any company, from inside it; the form; the film) >
-   2 what we found (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
-   3 how it works (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   4 how to use it (1 Obsession run wired to every format it arrives in) >
-   5 how it compares (where each kind of tool's view ends on 1 journey, and what only a customer catches under it) >
-   6 who you send it to (James's reader band: each reader, where it sends its AI customers, its recipes) >
-   7 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
-   8 questions, then the waitlist.
+   2 Does it find anything? (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
+   3 How does it work? (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
+   4 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
+   5 Why can't my tools do this? (where each kind of tool's view ends on 1 journey, and what only a customer catches) >
+   6 Who do I send it to? (James's reader band: each reader, where it sends its AI customers, its recipes) >
+   7 Questions, then the waitlist.
    Open source is the hero's tag (a link to the code) and 1 question; its section lives on /developers.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
@@ -80,20 +79,22 @@ export const page: Page = {
      the use case pages' real ones (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of
      the stores shopped on every journey, 77% of those leaks silence, 128 stores joined so far. */
   finding: {
-    kicker: 'What we found',
+    kicker: 'Does it find anything?',
     value: '93%',
     heading: 'of the stores where our AI customers ran every journey had a leak.',
     also: { value: '77%', text: 'of those leaks were silence: an email that never came.' },
     source: 'Source: our own runs at real stores, 128 joined so far.',
-    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
+    cta: { label: 'See the skincare store’s report', to: '/sample-output' },
   },
 
-  /* The shared block, with its line on Home in the heading's own numbers (5 or 5,000 beside 10,000) and without the
-     spare inbox, which the comparison's By hand row already names. */
+  /* The shared block, with Home's own heading and line (4 Nov): the mystery shopper who never goes home (from Seun's
+     draft of 4 Nov), and the 10,000 explained by how an agent sleeps, in place of "No spare inbox, no VA, no
+     spreadsheet" (the comparison's By hand row names the spare inbox). */
   life: {
     ...life,
-    kicker: 'How it works',
-    line: 'Name 5 companies or 10,000: each gets its own AI customer, which stays for months, so every break, leak, price cut and new offer reaches you the day it happens.',
+    kicker: 'How does it work?',
+    heading: 'An AI customer is a mystery shopper who never goes home.',
+    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay for months and tell you about every break, leak, price cut and new offer the day it happens.',
   },
 
   /* The Kinds section ("Send an AI customer anywhere. A rival, a prospect, or your own company.", 4 cards over their
@@ -104,34 +105,29 @@ export const page: Page = {
   /* The scale section ("Learn it once. Run it for 1 company, 1,000 or 100,000.") was cut on 4 Nov: it explained a
      mechanism with modelled numbers instead of showing a result. A measured benchmark may take its place later. */
 
-  /* The ask section (docs/positioning/ask-section.md), above the comparison: the commercial intelligence only a customer
-     gets, its 4 areas in a small label above the heading, and 1 question from each reader, each asked somewhere else. It took the place of the 4
-     ways in, which /developers keeps. */
-  ask: {
-    ...askShared,
-    kicker: 'Ask from your agent',
-    /* Home's line leaves out the list the hero already gives (every email, offer, price and reply). The areas label and
-       the Ask from list are gone (4 Nov): the label named the readers band's places again, the list named 7 places. */
-    line: 'What a company sends its customers is not on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex, or ask on our website, and every answer comes with its receipts.',
-    from: undefined,
-    examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
-  },
+  /* The ask section ("Make your agent see what customers see.", 3 questions taking turns, the Ask from list) folded
+     into the run section on 4 Nov (James): asking in your own AI agent is 1 more place the findings go. Its Claude Code
+     and Codex questions are 1 thread there, its code example is the Use from your code tile, and its Ask from list sits
+     under the thread as pills. The reader pages keep the full section. */
 
   /* The comparison as 1 journey (4 Nov, option 1 of 5 in obsession/compare-options.html). The full table stays on
      /compare and the reader pages. By hand reaches every step, so its line runs the whole way and thins out: what fails
      is how many companies and for how long, not a step (James, 4 Nov). */
   stopTrack: {
-    kicker: 'How it compares',
+    kicker: 'Why can’t my tools do this?',
     heading: 'Other tools read what a company says. AI customers see what it does.',
-    line: 'Each line ends where that tool stops seeing. Your AI customers stay to the end, and keep the receipts.',
+    line: 'The code at checkout, the reminder after a basket, the reply from support: each reaches only the customer it was meant for. Your AI customers stay to the end, and keep the receipts.',
     steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
     rows: [
       { name: 'Ad libraries', who: 'Foreplay, Meta Ad Library', stop: 1, note: 'Stops at the ad' },
       { name: 'Page monitors', who: 'Visualping', stop: 2, note: 'Stops at the page' },
+      /* The tools marketing and sales teams already own (Seun's draft, 4 Nov). They collect pages, prices, news and job
+         posts; no source describes them signing up for a rival's emails. */
+      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 2, note: 'Collects what rivals publish, not what they send customers' },
       { name: 'Your own AI agent', who: 'A browser for one session', stop: 3, note: 'Its session ends before the first email' },
       { name: 'Email archives', who: 'Panoramata, MailCharts, Milled', stop: 4, note: 'Stops at the newsletter, for its own list of brands' },
       { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
-      { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step, at every company you name, with the receipt' },
+      { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step short of paying, at every company you name, with the receipt' },
     ],
     catches: {
       label: 'What your AI customers catch',
@@ -151,10 +147,27 @@ export const page: Page = {
      Obsession run wired to the 6 formats, the chosen format's view beside them. The formats are delivery options, not
      separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
   runReports: {
-    kicker: 'How to use it',
+    kicker: 'Where do the findings go?',
     heading: 'Every run, in the format your team reads.',
+    line: 'Each finding is 1 plain sentence, with the email, page or price behind it and the time it arrived.',
     node: { title: 'Obsession run', line: 'Any company, any job' },
-    label: 'Arrives as',
+    label: 'Ways to use it',
+    /* The ask section's 2 chat questions as 1 thread in Claude Code, each answer cut to its first 2 lines so the window
+       fits the stage every tile shares, and its Ask from list as pills under it. */
+    agent: {
+      label: 'Asked in your AI agent',
+      line: 'None of it is on the web, so no AI can search for it. Connect Obsession once, then ask in plain words.',
+      where: 'Claude Code',
+      connect: askShared.connect['Claude Code'],
+      thread: [askExamples.blackFriday, askExamples.brief].map((x) => ({ ...x, a: x.a.slice(0, 2) })),
+      from: askShared.from,
+    },
+    code: {
+      label: 'Use from your code',
+      line: 'Send AI customers to every company on your list, and get each new finding at your webhook.',
+      file: askExamples.watch.file,
+      code: askExamples.watch.code,
+    },
   },
 
   /* The open source section ("An open source runtime for 100,000 AI customers.") left Home on 4 Nov: /developers shows it
@@ -173,6 +186,10 @@ export const page: Page = {
         q: 'What are AI customers?',
         a: `${AI_CUSTOMER.definition} An AI customer works for you, at any company you name. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
         link: { label: 'Read the full guide to AI customers', to: AI_CUSTOMER.path },
+      },
+      {
+        q: 'Is this AI mystery shopping?',
+        a: 'Mystery shopping is 1 job an AI customer does. A mystery shopper visits once; an AI customer stays for months. It also watches competitors and prospects, and tests support bots and phone lines.',
       },
       {
         q: 'What will and won’t every AI customer do?',
