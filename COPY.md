@@ -200,6 +200,14 @@ The full words are in the content files; this is the spine of each page.
 4. **Abstract, not empty:** the sub line explains it, but it still needs 1 hook a reader can picture.
 5. **Force from difference, not size:** it says what no rival can, which is what a company shows only its customers.
 
+**Judged: "See what any company sends its customers."** (4 Nov, not taken: clear, but it describes a view, not a position)
+
+1. **8 words or fewer:** 7 words, but it opens with a verb, so it reads as a pitch, not a position.
+2. **A position, not a feature:** "sends" shrinks the system to emails and offers, and leaves out what breaks, what support says and what happens when you cancel.
+3. **Never a shopper or a shop:** passes, since "company" and "customers" fit a bank or an airline as well as a store.
+4. **Abstract, not empty:** so literal it leaves the sub line nothing to unfold, and it promises a look, not a new world.
+5. **Force from difference, not size:** email archive tools could sign it word for word, and without "only" nothing says that no one else sees this.
+
 | Block | Headline | Line |
 |---|---|---|
 | Hero | Intelligence on any company, from inside it. | Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof. (4 Nov: no line under the form.) |
