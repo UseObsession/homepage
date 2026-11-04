@@ -6,7 +6,7 @@ import type { Page } from '../types'
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
    leaves open, in this order:
-   1 what it is (the hero: send an AI customer to any company, the form, and the film behind its play button) >
+   1 what it is (the hero: intelligence on any company, from your AI customers inside it; the form; the film) >
    2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
    3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
    3b what it found (our AI customers found a gap at 93% of stores: 1 real store's report, in every format) >
@@ -30,20 +30,20 @@ const waitlist = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: send an AI customer to any company',
+    title: 'Obsession: intelligence on any company, from AI customers',
     description:
-      'Send an AI customer to any company. It signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply as proof.',
+      'Intelligence on any company, from AI customers inside it. They sign up, buy, talk to support and stay for months, keeping every email, offer, price and reply.',
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
       'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'Send an AI customer to any company. It does what a real customer does and keeps the receipts.',
+    ogLine: 'Intelligence on any company, from your AI customers inside it.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
-    headline: 'Send an AI customer to any company.',
-    sub: 'From the first ad to the last refund, it does what a real customer does and keeps a record of how the company treats it.',
+    headline: 'Intelligence on any company, from your AI customers inside it.',
+    sub: 'Send them to your rivals, your prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back what each one got: every email, offer, price and reply, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     note: 'It says it’s an AI when it talks to a person, and every finding comes with its receipt.',
     proof: [],

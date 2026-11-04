@@ -1,6 +1,6 @@
 # Obsession website: the October rewrite, and the AI customer (3 Nov)
 
-**3 Nov 2026, the AI customer.** James: "the whole shopper thing is a disservice and lack of understanding of the product". What Obsession sells is an **AI customer**: you send one to any company, it does what a real customer does (signs up, buys, talks to support, cancels, asks for the refund), and it keeps the receipts. Mystery shopping is one job it does, not the product. The hero moved from "Be a customer of every company. Keep the receipts." to **"Send an AI customer to any company."** (option B of 3 drafts), and every page, recipe and post was rewritten to it. The rules are in `docs/copy/ai-customer-voice.md`; where this file still shows an October line, the content files and that guide win.
+**3 Nov 2026, the AI customer.** James: "the whole shopper thing is a disservice and lack of understanding of the product". What Obsession sells is an **AI customer**: you send one to any company, it does what a real customer does (signs up, buys, talks to support, cancels, asks for the refund), and it keeps the receipts. Mystery shopping is one job it does, not the product. The hero moved from "Be a customer of every company. Keep the receipts." to **"Intelligence on any company, from your AI customers inside it."** (4 Nov, after "Send an AI customer to any company." read as too passive about the outcome), and every page, recipe and post was rewritten to the AI customer. The rules are in `docs/copy/ai-customer-voice.md`; where this file still shows an October line, the content files and that guide win.
 
 This file is the plan behind the copy and the design of useobsession.com after the October 2026 rewrite. The words themselves live in `src/content` (one file per page, plus `src/content/shared5.ts` for the blocks more than one page shows). When this file and a content file disagree, the content file is what ships; fix this file.
 
@@ -90,7 +90,7 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 
 ## 4. Message hierarchy
 
-**The one claim:** Send an AI customer to any company. (Until 3 Nov: Be a customer of every company. Keep the receipts.)
+**The one claim:** Intelligence on any company, from your AI customers inside it. (Until 3 Nov: Be a customer of every company. Keep the receipts.)
 
 **The one sentence** (word for word on Home, llms.txt, the Organization JSON-LD and /agents): Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.
 
@@ -197,7 +197,7 @@ The full words are in the content files; this is the spine of each page.
 
 | Block | Headline | Line |
 |---|---|---|
-| Hero | Send an AI customer to any company. | From the first ad to the last refund, it does what a real customer does and keeps a record of how the company treats it. Under the form, 1 quiet line: It says it’s an AI when it talks to a person, and every finding comes with its receipt. |
+| Hero | Intelligence on any company, from your AI customers inside it. | Send them to your rivals, your prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back what each one got: every email, offer, price and reply, with proof. Under the form, 1 quiet line: It says it’s an AI when it talks to a person, and every finding comes with its receipt. |
 | Stage | 3 examples: Fern Hollow (offer held), Larchwise (trial went quiet), Northfold (price cut on day 21) | Each: the ad, the page, the email, the receipt and its stamp |
 | Gap | Every tool shows you the ad. None of them is the customer. | Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or an AI customer at every company you name. |
 | How | To know what 10,000 companies do, send an AI customer to all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
