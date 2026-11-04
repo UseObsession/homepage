@@ -103,15 +103,23 @@
 .v5-runs-foot {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 10px 24px;
-  margin-top: 28px;
-  padding-top: 20px;
+  gap: 16px 32px;
+  margin-top: 32px;
+  padding-top: 28px;
   border-top: 1px solid var(--ob-line-subtle);
 }
-.v5-runs-study { margin: 0; max-width: 62ch; font: 400 14.5px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
-.v5-runs-study b { color: var(--ob-text); font-weight: 700; }
+/* The study is the section's 1 number: as large as a heading, its sentence beside it in ink. */
+.v5-runs-study { margin: 0; display: flex; align-items: center; gap: 20px; }
+.v5-runs-study b {
+  flex: none;
+  font: 600 clamp(56px, 7vw, 88px) / 0.9 var(--ob-font-sans);
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.v5-runs-study span { max-width: 30ch; font: 500 clamp(17px, 1.6vw, 20px) / 1.35 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); text-wrap: balance; }
 
 @media (max-width: 1080px) {
   .v5-runs-row { grid-template-columns: minmax(0, 1fr) 48px 184px; }

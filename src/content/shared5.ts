@@ -4,8 +4,8 @@
 import type { Ask, AskExample, Compare, Life, OpenSource, Ways } from './types'
 
 /* How it works, as breadth first (COPY.md, "Home > How it works"; the 3 reviews of 19 Oct): a customer of a whole list
-   by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 named lanes are the hero
-   stage's companies, so the 2 pictures tell 1 story. */
+   by lunch on Monday, the first emails within minutes, then every move after, for months. The 3 lanes are Company 1, 2
+   and 3 (4 Nov: plain numbers, not invented names). */
 export const life: Life = {
   heading: 'To know what 10,000 companies do, give each one its own AI customer.',
   line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: each gets its own AI customer, which stays for months, so every break, leak, price cut and new offer reaches you the day it happens.',
@@ -20,9 +20,9 @@ export const life: Life = {
     end: 'Day 90: still inside all 10,000',
   },
   lanes: [
-    { name: 'Fern Hollow', wakes: [{ day: 0.006, label: '09:09 · welcome' }, { day: 30, label: 'Day 30 · sale' }] },
-    { name: 'Wrenfield', wakes: [{ day: 0.51, label: '21:14 · basket, 10% off' }, { day: 3, label: 'Day 3 · second reminder' }] },
-    { name: 'Northfold', wakes: [{ day: 2, label: 'Day 2 · basket' }, { day: 21, label: 'Day 21 · £19' }, { day: 47, label: 'Day 47 · 30% off' }] },
+    { name: 'Company 1', wakes: [{ day: 0.006, label: '09:09 · welcome' }, { day: 30, label: 'Day 30 · sale' }] },
+    { name: 'Company 2', wakes: [{ day: 0.51, label: '21:14 · basket, 10% off' }, { day: 3, label: 'Day 3 · second reminder' }] },
+    { name: 'Company 3', wakes: [{ day: 2, label: 'Day 2 · basket' }, { day: 21, label: 'Day 21 · £19' }, { day: 47, label: 'Day 47 · 30% off' }] },
   ],
   more: {
     name: '+ 9,997 more',

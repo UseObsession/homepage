@@ -92,7 +92,6 @@ export function PersonaSection({ id = 'for' }: { id?: string }) {
         <Reveal className="head">
           <p className="kicker">Who it’s for</p>
           <h2 className="h2">Pick who you are.</h2>
-          <p className="lede">From our website, your own agent or the API. Each page shows the parts that fit your team.</p>
         </Reveal>
         <Reveal>
           <PersonaBand />

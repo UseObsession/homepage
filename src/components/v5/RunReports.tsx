@@ -8,7 +8,7 @@ import './RunReports.css'
 
 /* Home's run section (COPY.md, "Proof"; 4 Nov). 1 Obsession run on the left, wired to the 6 formats a run's findings
    arrive in, and the chosen format's view beside them on the same row (the same stage /sample-output draws). The study
-   and the link to the sample run sit at the foot. The wires are drawn from the measured positions once the app runs;
+   and the link to the sample run sit at the foot, the study's number set as large as a heading. The wires are drawn from the measured positions once the app runs;
    at rest the row reads without them. Below 900px it stacks and the wires go. */
 const GLYPH: Record<string, string> = { pdf: 'PDF', email: '@', slack: '#', clay: 'CSV', webhook: '{ }', workflow: '→' }
 
@@ -126,7 +126,7 @@ export function RunReports({ runs, id }: { runs: RunReportsContent; id?: string 
         </div>
         <div className="v5-runs-foot">
           <p className="v5-runs-study">
-            <b>{runs.study.value}</b> {runs.study.text}
+            <b>{runs.study.value}</b> <span>{runs.study.text}</span>
           </p>
           <Link className="v5-link" to={runs.cta.to}>
             {runs.cta.label}

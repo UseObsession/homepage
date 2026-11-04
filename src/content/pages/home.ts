@@ -42,7 +42,7 @@ export const page: Page = {
   hero: {
     pill: 'Open source',
     headline: 'Intelligence on any company, from inside it.',
-    sub: 'Send your AI customers to your rivals, prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back every email, offer, price and reply, with proof.',
+    sub: 'Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     proof: [],
     consoleHeading,
@@ -78,7 +78,7 @@ export const page: Page = {
   },
 
   gapPair: {
-    heading: 'Other tools read what companies publish. Your AI customers see what they do.',
+    heading: 'Other tools read what a company says. AI customers see what it does.',
     line: 'Ad libraries, email archives, page monitors and tech lookups stop at what a company shows the public. The money is lost after that, and only someone on the inside catches it: you with a spare inbox, or your AI customers.',
     tools: {
       label: 'What other tools see',
