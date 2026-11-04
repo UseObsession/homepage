@@ -41,7 +41,7 @@ export const page: Page = {
   hero: {
     pill: 'Open source',
     headline: 'See what any company shows only its customers.',
-    sub: 'Obsession sends AI customers to prospects, clients and competitors. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
+    sub: 'Obsession sends AI customers to prospects, clients and competitors. They sign up, shop and talk to support, then bring back every email, text, offer and reply, plus what broke or never came, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     proof: [],
     consoleHeading,
