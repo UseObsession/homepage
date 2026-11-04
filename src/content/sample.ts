@@ -149,7 +149,7 @@ export const sample: SamplePage = {
   hero: {
     pill: 'Real run · September 2026 · name hidden',
     headline: '1 AI customer left a basket, 1 stopped at checkout. Neither heard a thing in 48 hours.',
-    sub: 'Obsession’s sample output is a real mystery shopper report from September 2026: 4 labelled AI customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours.',
+    sub: 'A sample run from September 2026: 4 labelled AI customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours. Below are its findings, then every report type you can get them as.',
     figures: [
       { value: '4', label: 'AI customers, 1 inbox each' },
       { value: '5', label: 'messages, all on welcome and browse' },
@@ -159,8 +159,8 @@ export const sample: SamplePage = {
   },
 
   formats: {
-    heading: 'The same run reaches you however you work.',
-    line: 'The PDF is the real report. The other tabs show its verdict the way you’d get it: email, Slack, Clay or a sheet, your app, or a workflow.',
+    heading: 'Every report type, from the same run.',
+    line: 'A run’s findings reach you in 6 ways: a PDF report, an email, a Slack message, columns in a sheet or Clay, a JSON webhook, or a workflow. The PDF is this run’s real report; the other tabs show its verdicts as each would arrive.',
     start: 'pdf',
   },
 

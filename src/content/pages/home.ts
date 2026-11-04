@@ -175,13 +175,14 @@ export const page: Page = {
   },
 
   /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
-     those stores' report in every format it arrives in. Only the share with a gap shows, never how many stores were
+     those stores' runs in each report type it can reach you as (the tabs are delivery options, not separate reports;
+     James, 4 Nov). Only the share with a gap shows, never how many stores were
      joined (the 50 rule); "every journey" is joined by a non breaking space so it never breaks inside it. */
   outputs: {
     heading: 'Our AI customers found a gap at 93% of the stores where they ran every\u00a0journey.',
-    line: 'Here is 1 of them: a basket and a checkout left, and no email in 48 hours. Every step has its receipt, in whatever your team reads.',
+    line: 'Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The tabs are the ways a run’s findings reach you: a PDF report, email, Slack, a sheet or Clay, a webhook, or a workflow.',
     facts: [],
-    cta: { label: 'See the full report', to: '/sample-output' },
+    cta: { label: 'See the sample run and its report types', to: '/sample-output' },
   },
 
   openSource,

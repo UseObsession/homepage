@@ -18,7 +18,7 @@ import './Outputs.css'
 
 /* The words the controls need. They are chrome, not copy; a page can pass its own. */
 const outputsUi = {
-  tabs: 'Output formats',
+  tabs: 'Report types',
   spread: 'Show page 2 of the report',
   report: 'Read the full report',
   from: 'From',
