@@ -1,22 +1,20 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
-import { askExamples, askShared, compare, life, openSource } from '../shared5'
+import { askExamples, askShared, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
-/* Home (/), the October rewrite (COPY.md, "Copy deck > Home"). 1 idea: to know what a company does to its customers,
-   you have to be one, and Obsession is that customer, with the receipts. Each block answers the question the last one
-   leaves open, in this order:
-   1 what it is (the hero: the claim, the form, and the film previewing under them behind its play button) >
-   2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
-   3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   3b what it found (93% of stores we shopped had a gap: 1 real store's report, in every format) >
-   4 who you are (James's reader band: each reader's own page) >
-   5 who you can be a customer of (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
-   6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
-   7 how it compares (6 kinds of tool, 7 rows, dated, linking /compare) >
-   8 how far it goes (1 company, 1,000, 100,000: learned once, run as a program, asleep for free) >
-   9 what is open (the engine on GitHub, the history in Obsession Cloud) >
-   10 questions, then the waitlist.
+/* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
+   sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
+   leaves open, in this order (4 Nov: 9 blocks, from 11). Every block from 2 to 8 is labelled with the reader's own
+   question, so the labels read as the page's argument (COPY.md's reading path):
+   1 what it is (the hero: intelligence on any company, from inside it; the form; the film) >
+   2 Does it find anything? (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
+   3 How does it work? (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
+   4 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
+   5 Why can't my tools do this? (where each kind of tool's view ends on 1 journey, and what only a customer catches) >
+   6 Who do I send it to? (James's reader band: each reader, where it sends its AI customers, its recipes) >
+   7 Can I run it myself? (the open source runtime beside what Obsession Cloud adds; on a wide screen only) >
+   8 What else would I ask? (the questions), then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
@@ -30,20 +28,20 @@ const waitlist = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: meet the first AI customers that work for you',
+    title: 'Obsession: intelligence on any company, from AI customers',
     description:
-      'The first AI customers that work for you. They become a customer of any company you name, stay for months, and keep every email, offer and price as proof.',
+      'Intelligence on any company, from AI customers inside it. They sign up, buy, talk to support and stay for months, keeping every email, offer, price and reply.',
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
-      'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. They are AI customers: use them from your own AI agent through MCP or the API, or from our website, and the runtime is open source.',
-    ogLine: 'The first AI customers that work for you: they join any company you name and keep the receipts.',
+      'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
+    ogLine: 'Send AI customers to your prospects, your clients and rivals.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
-    headline: 'Be a customer of every company. Keep the receipts.',
-    sub: 'Obsession’s AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.',
+    headline: 'Intelligence on any company, from inside it.',
+    sub: 'Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     proof: [],
     consoleHeading,
@@ -54,244 +52,176 @@ export const page: Page = {
   heroVideo: {
     youtube: 'xNoG39G4twQ',
     label: 'Watch why Obsession',
-    title: 'Why Obsession: the first AI customers that work for you',
+    title: 'Why Obsession: send an AI customer to any company',
     file: { src: '/film/why-obsession-v2.mp4', poster: '/film/why-obsession-v2.jpg', width: 960, height: 540 },
   },
 
-  /* The share image's receipt (scripts/og.mjs): an invented company's ad followed to its page and the email that came. */
-  shareReceipt: {
-    topic: 'Ad offer',
-    company: 'Fern Hollow',
-    domain: 'fernhollow.example',
-    monogram: 'F',
-    ad: { source: 'Meta ad', text: '40% off everything, this week only', cta: 'Shop now' },
-    page: { path: '/early-access', title: 'Early access: 40% off with EARLY40', note: 'Code applied at checkout' },
-    mail: { time: '09:12', from: 'Fern Hollow', subject: 'Your 40% code is inside', tab: 'Promotions' },
+  /* The share image's card (scripts/og.mjs): what AI customers caught inside 3 companies this month, the gap section's
+     catches (a broken checkout, a dead code, a leaked code, a rival's price cut) at Company 1, 2 and 3. */
+  shareFindings: {
+    title: 'Your AI customers caught',
+    aside: 'This month',
     rows: [
-      { k: 'Ad', v: 'Meta, Monday 09:00' },
-      { k: 'Checkout', v: '40% off, applied' },
-      { k: 'Welcome', v: '9 minutes later' },
-      { k: 'Gmail tab', v: 'Promotions' },
-      { k: 'Signature', v: 'DKIM pass' },
+      { company: 'Company 1', finding: 'The checkout broke mid campaign', when: 'Day 3' },
+      { company: 'Company 2', finding: 'The promo code stopped working', when: 'Day 9' },
+      { company: 'Company 3', finding: 'Price cut from £24 to £19', when: 'Day 21' },
+      { company: 'Company 1', finding: 'A private code on a coupon site', when: 'Day 30' },
     ],
-    stamp: 'Held',
-    fact: 'The ad promised 40% off. The page and the email held it.',
+    foot: 'Each one with proof',
   },
 
-  gapPair: {
-    heading: 'Every tool shows you the ad. None of them is the customer.',
-    line: 'Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or an AI customer at every company you name.',
-    tools: {
-      label: 'What other tools keep',
+  /* The gap section ("Other tools read what a company says. AI customers see what it does.", 2 lists) folded into the
+     comparison on 4 Nov: both made 1 argument with 2 "Other tools" headings. Its heading and its catches moved there
+     (stopTrack); its "What other tools see" list is what the track's lines already show. */
+
+  /* What we found (4 Nov): the study first, so the page shows a result before it explains anything, set as a research
+     note, apart from what a run arrives as (James: the 2 were 1 sentence, and the study is not a format). The figures are
+     the use case pages' real ones (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of
+     the stores shopped on every journey, 77% of those leaks silence, 128 stores joined so far. */
+  finding: {
+    kicker: 'Does it find anything?',
+    value: '93%',
+    heading: 'of the stores where our AI customers ran every journey had a leak.',
+    also: { value: '77%', text: 'of those leaks were silence: an email that never came.' },
+    source: 'Source: our own runs at real stores, 128 joined so far.',
+    cta: { label: 'See the skincare store’s report', to: '/sample-output' },
+  },
+
+  /* The shared block, with Home's own heading and line (4 Nov): the mystery shopper who never goes home (from Seun's
+     draft of 4 Nov), and the 10,000 explained by how an agent sleeps, in place of "No spare inbox, no VA, no
+     spreadsheet" (the comparison's By hand row names the spare inbox). */
+  life: {
+    ...life,
+    kicker: 'How does it work?',
+    heading: 'An AI customer is a mystery shopper who never goes home.',
+    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay for months and tell you about every break, leak, price cut and new offer the day it happens.',
+  },
+
+  /* The Kinds section ("Send an AI customer anywhere. A rival, a prospect, or your own company.", 4 cards over their
+     filmed screens) was cut on 4 Nov: at 1,713px it was the page's longest section and named the places the hero, the
+     readers and the ask section already name. Its heading and its 13 recipe links moved into the readers band (option 5
+     of obsession/targets-options.html, legacy/james/content/band.ts). components/v5/Targets stays in place. */
+
+  /* The scale section ("Learn it once. Run it for 1 company, 1,000 or 100,000.") was cut on 4 Nov: it explained a
+     mechanism with modelled numbers instead of showing a result. A measured benchmark may take its place later. */
+
+  /* The ask section ("Make your agent see what customers see.", 3 questions taking turns, the Ask from list) folded
+     into the run section on 4 Nov (James): asking in your own AI agent is 1 more place the findings go. Its Claude Code
+     and Codex questions are 1 thread there, its code example is the Use from your code tile, and its Ask from list sits
+     under the thread as pills. The reader pages keep the full section. */
+
+  /* The comparison as 1 journey (4 Nov, option 1 of 5 in obsession/compare-options.html). The full table stays on
+     /compare and the reader pages. By hand reaches every step, so its line runs the whole way and thins out: what fails
+     is how many companies and for how long, not a step (James, 4 Nov). */
+  stopTrack: {
+    kicker: 'Why can’t my tools do this?',
+    heading: 'Other tools read what a company says. AI customers see what it does.',
+    line: 'The code at checkout, the reminder after a basket, the reply from support: each reaches only the customer it was meant for. Your AI customers stay to the end, and keep the receipts.',
+    steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
+    rows: [
+      { name: 'Ad libraries', who: 'Foreplay, Meta Ad Library', stop: 1, note: 'Stops at the ad' },
+      { name: 'Page monitors', who: 'Visualping', stop: 2, note: 'Stops at the page' },
+      /* The tools marketing and sales teams already own (Seun's draft, 4 Nov). They collect pages, prices, news and job
+         posts; no source describes them signing up for a rival's emails. */
+      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 2, note: 'Collects what rivals publish, not what they send customers' },
+      { name: 'Your own AI agent', who: 'A browser for one session', stop: 3, note: 'Its session ends before the first email' },
+      { name: 'Email archives', who: 'Panoramata, MailCharts, Milled', stop: 4, note: 'Stops at the newsletter, for its own list of brands' },
+      { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
+      { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step short of paying, at every company you name, with the receipt' },
+    ],
+    catches: {
+      label: 'What your AI customers catch',
       items: [
-        'The ad, and how long it ran',
-        'A picture of the landing page',
-        'The newsletter, if someone archived it',
-        'An alert that a page changed',
+        'The checkout that broke mid campaign',
+        'The promo code that stopped working',
+        'Your private codes leaking to resellers and coupon sites',
+        'A rival’s price cut or new offer',
+        'Where a prospect’s journey loses money',
+        'What the support bot got wrong',
       ],
     },
-    customer: {
-      label: 'What a customer gets',
-      items: [
-        'Whether the offer held at checkout',
-        'The welcome 9 minutes later, the basket reminder on day 2',
-        'Which Gmail tab each email landed in',
-        'The trial that went quiet after day 3',
-        'What the support bot actually said',
-        'The email itself, with its signature checked',
-      ],
+    more: { label: 'See the full comparison', to: '/compare' },
+  },
+
+  /* How to use it: what a run arrives as (revision 2 of obsession/proof-section-design.html), after how it works. 1
+     Obsession run wired to the 6 formats, the chosen format's view beside them. The formats are delivery options, not
+     separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
+  runReports: {
+    kicker: 'Where do the findings go?',
+    heading: 'Every run, in the format your team reads.',
+    line: 'Each finding is 1 plain sentence, with the email, page or price behind it and the time it arrived.',
+    node: { title: 'Obsession run', line: 'Any company, any job' },
+    label: 'Ways to use it',
+    /* The ask section's 2 chat questions as 1 thread in Claude Code, each answer cut to its first 2 lines so the window
+       fits the stage every tile shares, and its Ask from list as pills under it. */
+    agent: {
+      label: 'Asked in your AI agent',
+      line: 'None of it is on the web, so no AI can search for it. Connect Obsession once, then ask in plain words.',
+      where: 'Claude Code',
+      connect: askShared.connect['Claude Code'],
+      thread: [askExamples.blackFriday, askExamples.brief].map((x) => ({ ...x, a: x.a.slice(0, 2) })),
+      from: askShared.from,
+    },
+    code: {
+      label: 'Use from your code',
+      line: 'Send AI customers to every company on your list, and get each new finding at your webhook.',
+      file: askExamples.watch.file,
+      code: askExamples.watch.code,
     },
   },
 
-  life,
-
-  /* 4 kinds of company, 2 by 2, each beside its own screen: the headline names them (rivals, prospects, yourself), and
-     your AI agents are the 4th. The recipe menus keep their 3 groups; these cards answer whose customer you can be. */
-  targets: {
-    heading: 'Be a customer of anyone. Competitors, prospects, or yourself.',
-    line: 'Most watches start with other companies. The same agents follow your own ads and checkouts, and test your own AI agents.',
-    items: [
-      {
-        name: 'Competitors',
-        line: 'Every email, text, offer, price and ad, the day it lands, seen as their customer.',
-        screen: 'rivals',
-        to: '/recipes',
-        recipes: ['competitor', 'email-sms', 'prices', 'ads'],
-      },
-      {
-        name: 'Prospects and accounts',
-        line: 'What each one does to its own customers, before you pitch, call or renew.',
-        screen: 'pack',
-        to: '/recipes',
-        recipes: ['prospect', 'account-watch', 'trial'],
-      },
-      {
-        name: 'Your own journeys',
-        line: 'Your ads, forms and checkouts, followed the way a customer does, so you see what breaks first.',
-        screen: 'shop',
-        to: '/recipes',
-        recipes: ['mystery', 'adcheck', 'speed', 'audit'],
-      },
-      {
-        name: 'Your AI agents',
-        line: 'Test customers talk to your support bot, voice agent and AI SDR, and check every answer.',
-        screen: 'botcheck',
-        to: '/verify',
-        recipes: ['support-bot', 'voice-agent'],
-      },
-    ],
-    all: { label: 'See every recipe', to: '/recipes' },
-  },
-
-  /* Scale (COPY.md, "Scale"), after the kinds of company: anyone, then 1,000, then 100,000. The facts are system.md's:
-     one program per platform, not per site; learned, compiled, replayed; code, typed questions, small agents and
-     escalation; asleep costs nothing; the shared record. The numbers on the stage and in the card come from
-     docs/positioning/scale_model.py, modelled on public prices, and say so (COPY.md, claims register). */
-  scale: {
-    heading: 'Learn it once. Run it for 1 company, 1,000 or 100,000.',
-    lead: 'Learn it once. Run it for',
-    counts: ['1 company.', '1,000 companies.', '100,000 companies.'],
-    line: 'The first sign up at a company teaches the agent the way in. Every company after it runs that way in as a program: in seconds, the same way every time, and cheaper with each company you add.',
-    steps: [
-      {
-        title: 'Learns the way in',
-        line: 'An agent signs up at the first company step by step, and keeps every action as a trace.',
-        label: 'An agent signs up at the first company: it opens the newsletter page, finds the sign up form, types its own email, ticks marketing emails, submits, then clicks the confirm link. Each action lands in a trace, saved as the newsletter sign up, version 1.',
-      },
-      {
-        title: 'Turns it into a program',
-        line: 'One program per platform, not per site. Code does the steps that never change; agents take only the odd ones.',
-        label: 'The trace becomes a program of 6 steps: 4 in code, 1 typed question, 1 small agent, and a stop that hands anything new to a person. Once a platform is learned, 70 in 100 sign ups are a plain request, 25 a replayed script, and 5 need an agent.',
-      },
-      {
-        title: 'Runs at any scale',
-        line: 'Hand it 100,000 companies. The ones another customer already watches have their history on day one.',
-        label: 'A list of 100,000 companies goes in through 1 API call, and the field of companies fills square by square, each square 250 companies, as the count reaches 100,000 customers kept. Then they sleep: about 140,000 wake a day, and about 2 are awake at any moment.',
-      },
-    ],
-    learn: {
-      url: 'fernhollow.example/pages/newsletter',
-      field: 'a1.fernhollow@inbox.example',
-      trace: [
-        'Open /pages/newsletter',
-        'Find the sign up form',
-        'Type its own email',
-        'Tick “marketing emails”',
-        'Submit',
-        'Click the confirm link',
-      ],
-      saved: 'Saved: newsletter sign up, v1',
+  /* Open source, names only (4 Nov, James: too many descriptions). Each capability's line, and the rest, live on
+     /developers. Each cloud line fits 1 line. It left Home and came back the same day (James), under its own question. */
+  openSource: {
+    ...openSource,
+    kicker: 'Can I run it myself?',
+    heading: 'An open source runtime for 100,000 AI customers.',
+    line: undefined,
+    core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
+    cloud: {
+      title: openSource.cloud.title,
+      items: ['Inboxes, phones and browsers', 'Months of history already kept', 'A shared record from day one', 'About 250 integrations', 'Our website and watch planner'],
     },
-    program: {
-      kinds: { code: 'Code', question: 'Question', agent: 'Small agent', escalate: 'Person' },
-      steps: [
-        { kind: 'code', label: 'Find the form on the page' },
-        { kind: 'code', label: 'Post the sign up' },
-        { kind: 'question', label: 'Does it ask to confirm?' },
-        { kind: 'code', label: 'Open the confirm link' },
-        { kind: 'agent', label: 'An extra field? Fill it in' },
-        { kind: 'escalate', label: 'Anything new? Stop and ask' },
-      ],
-      routes: {
-        heading: 'How a sign up runs, once its platform is learned',
-        items: [
-          { label: 'A plain request', share: 70, line: 'No browser, no model' },
-          { label: 'A replayed script', share: 25, line: 'A browser for under a minute' },
-          { label: 'An agent', share: 5, line: 'A new kind of form, or the odd one out' },
-        ],
-      },
-    },
-    run: {
-      total: 100000,
-      unit: 'customers kept',
-      call: 'ob.become_customer("brands.csv")',
-      covered: 'Companies another customer already watches come with their history.',
-      square: 'Each square is 250 companies',
-      toast: 'About 2 awake right now · 140,000 wakes a day',
-    },
-    principles: [
-      { title: 'Learn once per platform', line: 'Most companies sign customers up on the same few platforms, so a sign up learned at one company runs at every company built the same way.' },
-      { title: 'Code where it can, judgement where it must', line: 'A stronger agent sees only the cases a program can’t settle, then the program learns them too.' },
-      { title: 'Asleep costs nothing', line: 'Agents wait for weeks or months without running, and wake only when the company acts.' },
-    ],
   },
 
-  /* The ask section (docs/positioning/ask-section.md), above the comparison: the commercial intelligence only a customer
-     gets, its 4 areas in a small label above the heading, and 1 question from each reader, each asked somewhere else. It took the place of the 4
-     ways in, which /developers keeps. */
-  ask: {
-    ...askShared,
-    areas: ['Competitors', 'Prospects', 'Clients', 'Your own business'],
-    examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
-  },
-
-  compare,
-
-  /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
-     those stores' report in every format it arrives in. Only the share with a gap shows, never how many were shopped
-     (the 50 rule); "every journey" is joined by a non breaking space so it never breaks inside it. */
-  outputs: {
-    heading: '93% of stores we shopped on every\u00a0journey had a gap.',
-    line: 'Here is 1 of them: a basket and a checkout left, and no email in 48 hours. Every step has its receipt, in whatever your team reads.',
-    facts: [],
-    cta: { label: 'See the full report', to: '/sample-output' },
-  },
-
-  openSource,
-
-  /* The questions a reader asks before joining. The first answer is meta.answer, word for word. */
+  /* The questions a reader asks before joining (4 Nov): Seun's draft of 4 Nov, reworded, in place of Home's own 11, so
+     all 5 show and none hide behind a button (his 6th, How much does it cost?, went: James). The first answer opens with meta.answer's first sentence, which
+     the page must show (scripts/prerender.mjs). How soon is answered as an AI customer, not a mystery shopper: when it
+     reports is the job's setting (James, 4 Nov). */
   faq: {
+    kicker: 'What else would I ask?',
     heading: 'Before you join.',
     items: [
       {
-        q: 'What is Obsession?',
-        a: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and stay its customers for months, keeping every email, offer and price it sends, with proof. Use it from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-      },
-      {
-        q: 'What are AI customers?',
-        a: `${AI_CUSTOMER.definition} An AI customer works for you, at any company you name. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
+        q: 'What is an AI customer?',
+        a: `Obsession sends AI customers to any company you name. ${AI_CUSTOMER.definition} It works for you. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
         link: { label: 'Read the full guide to AI customers', to: AI_CUSTOMER.path },
       },
       {
-        q: 'What will and won’t every AI customer do?',
-        a: 'When an agent talks to a person, it says it’s an AI; signing up, reading emails and following ads needs no conversation at all. It never uses fake payment details, gets round a CAPTCHA, clicks paid ads at volume or changes a receipt, and 1 email opts any site out.',
-        link: { label: 'What every AI customer will and won’t do', to: '/agents' },
+        q: 'Is this AI mystery shopping?',
+        a: 'Mystery shopping is 1 job an AI customer does. A mystery shopper visits once; an AI customer stays for months. It also watches competitors and prospects, and tests support bots and phone lines.',
       },
       {
-        q: 'Is it legal to be a competitor’s customer?',
-        a: 'Signing up to a newsletter, starting a trial or filling a basket is what any customer can do. Our agents do the same, say they’re AI when they talk to a person, and never use fake payment details.',
+        q: 'Is it legal to mystery shop a competitor?',
+        a: 'Usually, yes. An AI customer does only what any customer can, on the pages and forms anyone can use, and says it’s an AI when it talks to a person. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
         link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
-        q: 'Do I need to connect anything?',
-        a: 'No. Name the companies and the agents start. Connect Clay, Slack or your CRM only if you want what they find to land there.',
-      },
-      {
-        q: 'What do I get back?',
-        a: 'Each thing a company did, in 1 sentence, with its receipt: the email, page or price behind it, exactly as it arrived, and when. In your agent, Slack, Clay, your CRM, a sheet, a report or a webhook.',
-      },
-      {
         q: 'How soon do I see something?',
-        a: 'Most companies send a welcome email within minutes. If an agent is already a customer of a company, its history is there the moment you ask.',
+        a: 'It depends on the job you give it. An AI customer can tell you the moment something happens, like a reminder that arrives or a gap it finds; report at the times you set, like 4 hours after it signs up and again at 48; or keep watching for as long as you keep it there. If one is already a customer of that company, its history is there the moment you ask.',
       },
       {
-        q: 'Can other customers see what I watch?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked. A company’s AI customer is shared for what any customer gets, its emails, pages and prices, so its history is there on day one. Anything you set beyond that, like replying or buying, runs on an agent of your own, and your list, questions and reports are yours alone.',
-      },
-      {
-        q: 'How do I get access?',
-        a: 'Access opens from the waitlist, a team at a time. Join, and we set up your first watch with you.',
-      },
-      {
-        q: 'Is Obsession open source?',
-        a: 'Yes. The runtime is open source on GitHub: the AI customers, how they scale and learn, the record, recipes and the 5 verbs. Obsession Cloud runs it for you, with months of history already collected.',
+        q: 'Can anyone else see what I watch?',
+        a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into a shared record, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an AI customer that works only for you.',
       },
     ],
   },
 
+  /* The claim and the form. The agency link ("Agency? Get 5 client stores checked free") went on 4 Nov: beside the
+     form's own line (name up to 5 brands to check first) it was a second version of the same offer. Agencies reach
+     their page from the readers band. */
   final: {
-    heading: 'Name a company. See what its customers get.',
+    heading: 'Name a company. Send it an AI customer.',
     capture: { ...waitlist, source: 'home-final' },
-    link: { label: 'Agency? Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
   },
 }

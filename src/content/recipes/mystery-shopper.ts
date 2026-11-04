@@ -21,7 +21,7 @@ export const recipe: Recipe = {
   slug: 'mystery-shopper',
   name: 'Mystery shopper',
   group: 'Check your own journeys',
-  line: 'Goes through your business, or a client’s, as a customer does, from the first click to the last email.',
+  line: 'Your AI customer mystery shops your business, or a client’s, from the first click to the last email.',
   gets: 'A verdict on every journey, with the proof behind each one.',
   kit: [
     'An AI customer per journey',
@@ -36,9 +36,9 @@ export const recipe: Recipe = {
     path: '/recipes/mystery-shopper',
     title: 'AI mystery shopper: see what your customers get · Obsession',
     description:
-      'AI mystery shoppers for your business or a client’s: AI customers sign up, shop, book and start trials, and time every email, text and reply, with proof.',
+      'Mystery shopping is one job an AI customer does: it signs up, shops, books and starts trials, and times every email, text and reply, with proof.',
     answer:
-      'Mystery shopper is AI mystery shopping for digital journeys. AI agents become new customers of your business, or a client’s: they sign up, shop, book or start the trial, and time every email, text and reply that follows, with the receipts.',
+      'Mystery shopper sends AI customers to mystery shop your digital journeys. Each joins your business, or a client’s, as a new customer: it signs up, shops, books or starts the trial, and times every email, text and reply that follows, with the receipts.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,8 +48,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'See what a customer actually gets after they show up.',
-    sub: 'Mystery shopper is AI mystery shopping for digital journeys. AI agents become new customers of your business, or a client’s: they sign up, shop, book or start the trial, and time every email, text and reply that follows, with the receipts.',
+    headline: 'Send an AI customer to mystery shop your journeys.',
+    sub: 'Mystery shopper sends AI customers to mystery shop your digital journeys. Each joins your business, or a client’s, as a new customer: it signs up, shops, books or starts the trial, and times every email, text and reply that follows, with the receipts.',
     screen: 'shop',
     capture: {
       kind: 'mystery',
@@ -62,20 +62,20 @@ export const recipe: Recipe = {
   run: {
     tab: 'Real run, September 2026',
     recipe: 'mystery',
-    task: 'Be 4 customers of a skincare store: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
+    task: 'Send 4 AI customers to a skincare store: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
     targets: 'A skincare store, name hidden',
     journey: ['Sign up for emails', 'Browse and leave', 'Leave a basket', 'Leave at checkout, before payment'],
     schedule: 'Once, 22 to 24 September 2026',
     report: 'A report with every screenshot and message as proof',
     kit: ['4 AI customers', '4 inboxes, 1 per journey', 'Shopped from the UK', '48 hour watch'],
     events: [
-      { time: '22 Sep, 02:57', text: 'The basket agent leaves a £40 gift set in the basket.' },
-      { time: '22 Sep, 03:11', text: 'The checkout agent leaves a £21 deodorant at checkout, before payment.' },
+      { time: '22 Sep, 02:57', text: 'The basket AI customer leaves a £40 gift set in the basket.' },
+      { time: '22 Sep, 03:11', text: 'The checkout AI customer leaves a £21 deodorant at checkout, before payment.' },
       { time: '22 to 24 Sep', text: 'Browse: 3 messages arrive. Welcome: 2, too few to call.' },
       { time: '24 Sep, 02:57', text: '48 hours on. No reminder for the £40 basket.' },
       { time: '24 Sep, 03:11', text: '48 hours on. No reminder for the £21 checkout.' },
     ],
-    finding: '1 agent left £40 in the basket and 1 stopped at checkout with £21. No reminder reached either in 48 hours.',
+    finding: '1 AI customer left £40 in the basket and 1 stopped at checkout with £21. No reminder reached either in 48 hours.',
     fix: 'The 2 missing reminders drafted in the report, ready for the store to approve.',
     ledger: 'Real run, September 2026. Store name hidden. 15 screenshots and 5 messages kept as proof.',
   },
@@ -86,7 +86,7 @@ export const recipe: Recipe = {
       line: 'A store’s basket and checkout, a software trial, a demo request, a booking or a quote. Yours, or a client’s with their OK.',
     },
     {
-      title: 'An agent becomes the customer',
+      title: 'An AI customer takes each journey',
       line: 'One per journey, each with its own inbox, number and browser. It signs up, books, starts the trial or fills the basket, and keeps a screenshot of every step.',
     },
     {
@@ -173,14 +173,14 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'agencies', line: 'Pick a client. See what their customers get. A check on every client store, and a report to show for it.' },
     { audience: 'marketing', line: 'Know your own journeys still work after every launch and change.' },
-    { audience: 'founders', line: 'Test your sign up, trial and checkout as a new customer after every release.' },
+    { audience: 'founders', line: 'Send an AI customer through your sign up, trial and checkout after every release.' },
     { audience: 'sales', line: 'Show an account what its customers get on day 0 and day 28 of a pilot.' },
-    { audience: 'developers', line: 'Run your own sign up or checkout as a new customer, from your code, on a schedule.' },
+    { audience: 'developers', line: 'Send an AI customer through your own sign up or checkout, from your code, on a schedule.' },
   ],
 
   table: {
     heading: 'Competitor A welcomes new customers 5 minutes faster, with a bigger offer.',
-    line: 'The same steps as a customer of each competitor: sign up, texts and the site’s chat bot.',
+    line: 'The same steps, by an AI customer at each competitor: sign up, texts and the site’s chat bot.',
     cols: ['You', 'Competitor A', 'Competitor B'],
     rows: [
       { label: 'Time to welcome email', values: ['6 min', '1 min', 'None in 24 h'] },
@@ -192,15 +192,15 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every agent says it’s AI when it talks to a person.',
+    heading: 'Every AI customer says it’s AI when it talks to a person.',
     items: [
       {
         q: 'What is AI mystery shopping?',
-        a: 'AI mystery shopping for digital journeys means an AI agent becomes a new customer of your online business, from sign up to the last email, and every message that follows is timed and kept. It says it’s AI when it talks to a person.',
+        a: 'AI mystery shopping for digital journeys is one job an AI customer does: it joins your online business as a new customer, from sign up to the last email, and every message that follows is timed and kept. It says it’s AI when it talks to a person.',
       },
       {
         q: 'Can you do mystery shopping online?',
-        a: 'Yes. Obsession’s Mystery shopper runs your online journeys, a store’s basket and checkout, a software trial, a demo request or a booking, each lived by an AI agent with its own inbox, number and browser.',
+        a: 'Yes. Obsession’s Mystery shopper runs your online journeys, a store’s basket and checkout, a software trial, a demo request or a booking, each lived by an AI customer with its own inbox, number and browser.',
       },
       {
         q: 'How do I test my abandoned cart and checkout emails without a dummy address?',
@@ -212,7 +212,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Do you need our logins?',
-        a: 'No. Mystery shopper’s agents use your business the way a customer does, with their own inboxes, numbers and browsers.',
+        a: 'No. Mystery shopper’s AI customers use your business the way a customer does, with their own inboxes, numbers and browsers.',
       },
       {
         q: 'Do you place real orders?',
@@ -220,7 +220,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Mystery shopper pretend to be a person?',
-        a: 'No. Every Obsession agent says it’s an AI agent when it talks to a person. Who it works for stays private unless you choose to be named.',
+        a: 'No. Every Obsession AI customer says it’s an AI when it talks to a person. Who it works for stays private unless you choose to be named.',
       },
       {
         q: 'Can Mystery shopper test a software trial or a booking?',

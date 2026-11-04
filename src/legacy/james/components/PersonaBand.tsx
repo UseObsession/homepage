@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { catalog, type CatalogRecipe } from '../../../content/catalog'
+import type { RecipeId } from '../../../content/types'
 import { bandRoles } from '../content/band'
 import '../styles/tokens.css'
 import '../styles/base.css'
@@ -40,59 +42,70 @@ function Reveal({ children, className = '' }: { children: ReactNode; className?:
   )
 }
 
-/* 4 audiences, cut on the diagonal in 2 rows of 2. Each one opens its own page. James's band (his first commit,
-   src/components/PersonaBand), with his markup and classes as he wrote them: only the data (content/band.ts) and the
-   colours (PersonaBand.css, the site's reader palette) are the site's. The sr-only stops are one addition, so a
-   panel reads as sentences to a screen reader; the other is .pband-more around the line and chips, the 1 block the
-   reveal folds. */
+/* 4 audiences, cut on the diagonal in 1 row. Each one opens its own page. James's band (his first commit,
+   src/components/PersonaBand), with his classes as he wrote them: only the data (content/band.ts) and the colours
+   (PersonaBand.css, the site's reader palette) are the site's. Since 4 Nov a panel also says where that reader sends its
+   AI customers and links the recipes that start there, so a panel is an article whose name is the link, stretched over
+   the panel, instead of 1 link around everything (a recipe link can't sit inside another link). .pband-more around the
+   line, the places and the recipes is the 1 block the reveal folds. Each recipe ends on a small arrow up and to the right
+   (James, 4 Nov), so it reads as a link to its own page; it opens in the same tab. */
+const byId = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
+
 export function PersonaBand() {
   return (
-    <nav className="pband" aria-label="Who it's for">
+    <div className="pband">
       {bandRoles.map((r, i) => (
-        <Link key={r.id} to={r.page} className="pband-item" data-reader={r.id}>
+        <article key={r.id} className="pband-item" data-reader={r.id}>
           <span className="pband-n" aria-hidden="true">
             {String(i + 1).padStart(2, '0')}
           </span>
-          <span className="pband-name">
-            {r.bandName}
-            <span className="sr-only">. </span>
-          </span>
-          <span className="pband-more">
-            <span className="pband-more-in">
-              <span className="pband-line">
-                {r.bandLine}
-                <span className="sr-only">. </span>
-              </span>
-              <span className="pband-ways">
-                {r.ways.map((w, wi) => (
-                  <span key={w}>
-                    {w}
-                    {wi < r.ways.length - 1 && <span className="sr-only">, </span>}
-                  </span>
-                ))}
-              </span>
-            </span>
-          </span>
+          <h3 className="pband-name">
+            <Link to={r.page}>{r.bandName}</Link>
+          </h3>
+          <div className="pband-more">
+            <div className="pband-more-in">
+              <p className="pband-line">{r.bandLine}</p>
+              <p className="pband-to">
+                <span>Sends AI customers to</span> {r.sendsTo}
+              </p>
+              <ul className="pband-ways">
+                {r.recipes
+                  .map((id) => byId[id])
+                  .filter(Boolean)
+                  .map((rec) => (
+                    <li key={rec.id}>
+                      <Link to={`/recipes/${rec.slug}`}>
+                        {rec.name}
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+                          <path d="M3.5 8.5l5-5M4.5 3.5h4v4" />
+                        </svg>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
           <span className="pband-go" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </span>
-        </Link>
+        </article>
       ))}
-    </nav>
+    </div>
   )
 }
 
-/* His Home section around it ("Who it's for"), the head and the band each revealing as they scroll into view. */
+/* His Home section around it, the head and the band each revealing as they scroll into view. Since 4 Nov it also does
+   the Kinds section's job, so its head is where you send an AI customer, not who you are (COPY.md, "Readers"). Its label
+   is the reader's question, as every Home label is since 4 Nov. */
 export function PersonaSection({ id = 'for' }: { id?: string }) {
   return (
     <section className="section" id={id}>
       <div className="wrap">
         <Reveal className="head">
-          <p className="kicker">Who it’s for</p>
-          <h2 className="h2">Pick who you are.</h2>
-          <p className="lede">From our website, your own agent or the API. Each page shows the parts that fit your team.</p>
+          <p className="kicker">Who do I send it to?</p>
+          <h2 className="h2">Send an AI customer anywhere. A rival, a prospect, or your own company.</h2>
         </Reveal>
         <Reveal>
           <PersonaBand />

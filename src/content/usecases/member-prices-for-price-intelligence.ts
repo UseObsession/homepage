@@ -35,9 +35,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/member-prices-for-price-intelligence',
     title: 'Member price intelligence: what retailers show only members',
     description:
-      'AI customers become a customer of every retailer you track: they sign up, read member prices beside public ones and send each offer with its proof.',
+      'Send AI customers to every retailer you track: each signs up, reads member prices beside public ones and sends each offer with its proof.',
     answer:
-      'Obsession gives price intelligence firms a customer at every retailer they track: AI agents with their own inbox, mobile number and browser that sign up, read the member price beside the public one and keep every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
+      'Obsession sends AI customers to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,8 +49,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Be a customer of every retailer you track.',
-    sub: 'You already collect flyers, shelves, online prices and newsletters. AI agents sign up at every retailer you track and bring back what only members see: member prices, welcome coupons and the offers that arrive days later. Each one lands in your platform with its receipt.',
+    headline: 'Send AI customers to every retailer you track.',
+    sub: 'You already collect flyers, shelves, online prices and newsletters. An AI customer signs up at every retailer you track and brings back what only members see: member prices, welcome coupons and the offers that arrive days later. Each one lands in your platform with its receipt.',
     example: { chips: [] },
     flow: [
       {
@@ -81,7 +81,7 @@ export const study: UseCaseStudy = {
   },
 
   how: {
-    heading: 'You choose the retailers and the basket. An AI member joins each one.',
+    heading: 'You choose the retailers and the basket. An AI customer joins each one.',
     sub: 'A price intelligence firm adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers.',
     steps: [
       {
@@ -108,12 +108,12 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Obsession does the collecting',
-        line: '30 days in this example. Each retailer gets its own AI member, and every reading has its screenshot.',
+        line: '30 days in this example. Each retailer gets its own AI customer, and every reading has its screenshot.',
         screen: 'members',
         chips: ['Its own inbox', 'An Italian mobile number', 'A browser set to the city', 'Says it’s AI'],
         steps: [
           {
-            title: 'Each retailer gets its own member',
+            title: 'Each retailer gets its own AI customer',
             line: 'A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI.',
             example:
               'Corvalle, Milano Centro: joined with the newsletter and texts ticked at 09:03, the welcome email and its coupon came at 09:04, and all 40 basket items were read signed out and in by 09:06.',
@@ -142,7 +142,7 @@ export const study: UseCaseStudy = {
       { title: 'Member prices', line: 'The price shown once you’re signed in, or with the loyalty card linked to the account.' },
       { title: 'Welcome coupons', line: 'The code or credit that lands after joining, and what it takes to use it.' },
       { title: 'Offers that arrive later', line: 'The email on day 3, the text on day 7, the win back coupon after 3 weeks.' },
-      { title: 'Prices by store', line: 'Online prices change once you pick a store or a postcode. Each member shops from the city you choose.' },
+      { title: 'Prices by store', line: 'Online prices change once you pick a store or a postcode. Each AI customer shops from the city you choose.' },
     ],
     answer:
       'Each observation is dated and tied to a retailer and a store, with the screenshot or the message itself, like the flyer pages and newsletters you already collect.',
@@ -161,9 +161,9 @@ export const study: UseCaseStudy = {
     },
     ours: {
       label: 'Obsession runs',
-      heading: 'The members, the inboxes and the waiting.',
+      heading: 'The AI customers, the inboxes and the waiting.',
       items: [
-        'An AI member per retailer and city, with its own inbox, Italian mobile number and browser',
+        'An AI customer per retailer and city, with its own inbox, Italian mobile number and browser',
         'The sign ups, the store choice and the readings on your basket',
         'Inboxes and phones kept open for as long as you watch',
         'A screenshot or the message behind every observation',
@@ -261,7 +261,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for price intelligence firms?',
-        a: 'Obsession gives price intelligence firms a customer at every retailer they track: AI agents with their own inbox, mobile number and browser that sign up, read the member price beside the public one and keep every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
+        a: 'Obsession sends AI customers to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
       },
       {
         q: 'Do you need access to our platform?',
@@ -273,11 +273,11 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What about loyalty cards that need a tax code or a card from the store?',
-        a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, the member stops there and reports it, so you know exactly where the wall is.',
+        a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, the AI customer stops there and reports it, so you know exactly where the wall is.',
       },
       {
-        q: 'Do the members buy anything?',
-        a: 'Not in this example. Obsession’s members sign up, choose a store and read what members see. If you choose, a member fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
+        q: 'Do the AI customers buy anything?',
+        a: 'Not in this example. Obsession’s AI customers sign up, choose a store and read what members see. If you choose, an AI customer fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
       },
       {
         q: 'How often does Obsession run it?',

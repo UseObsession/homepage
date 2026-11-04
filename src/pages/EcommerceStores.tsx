@@ -248,7 +248,7 @@ export function EcommerceStores() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to check<small>Each journey gets its own customer</small>
+                      Ready to check<small>Each journey gets its own AI customer</small>
                     </span>
                     <b>
                       <Count to={8} /> journeys
@@ -262,7 +262,7 @@ export function EcommerceStores() {
                   <div className="uc-cfg">
                     <div>
                       <div className="uc-fld">
-                        <p className="uc-lab">At your store, the customer</p>
+                        <p className="uc-lab">At your store, the AI customer</p>
                         <ul className="uc-checks">
                           {journeys.map(([j, on], i) => (
                             <li key={j}>
@@ -333,7 +333,7 @@ export function EcommerceStores() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Halden Home</span>
-                        <span className="tag idle">Customer 7C21</span>
+                        <span className="tag idle">AI customer 7C21</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>

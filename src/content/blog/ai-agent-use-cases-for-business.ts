@@ -550,8 +550,8 @@ export const post: BlogPost = {
         ['Retention agency', '5 stores you pitch or keep', '[Check 5 stores free](/use-cases/leak-checks-for-retention-agencies)'],
         ['CRO or performance agency', 'The pop-up and code behind 5 brands’ live ads', '[Check 5 brands free](/use-cases/funnel-qa-for-cro-agencies)'],
         ['Shopify Plus agency', 'A client store, after its next release', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Software company marketing lead', 'A competitor’s free trial, from first email to last', '[Meet your first AI customers](/)'],
-        ['B2B sales leader', 'Your speed to lead on form, chat and phone', '[Meet your first AI customers](/)'],
+        ['Software company marketing lead', 'A competitor’s free trial, from first email to last', '[Send an AI customer](/)'],
+        ['B2B sales leader', 'Your speed to lead on form, chat and phone', '[Send an AI customer](/)'],
         ['CX lead', 'Your support chatbot, asked what customers ask', '[Check your AI agents](/verify)'],
         ['Local business with an AI receptionist', 'The calls new customers make each morning', '[Check your AI agents](/verify)'],
         ['Developer', 'An AI customer your own agent can call', '[See the API and MCP](/developers)'],
@@ -584,7 +584,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. In October the same team ran a pilot for 4 agencies, and the first is moving to 300 brands a month.',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. In October the same team ran a pilot for 4 agencies, and the first is moving to 300 brands a month.',
     },
     { kind: 'p', text: 'Plans are credit-based, like Claude’s.' },
 
@@ -672,9 +672,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Name the first company to send one to: your own, a competitor or a prospect.',
+      text: 'Send an AI customer to any company: it signs up and keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Name the first company to send one to: your own, a competitor or a prospect.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agent use cases' },

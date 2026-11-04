@@ -186,7 +186,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession runs that check today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [retention agency use case](' +
+      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession runs that check today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [retention agency use case](' +
         USE_CASE +
         ') runs the same check on any store you name. The method behind that check is [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
@@ -507,7 +507,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Prospect intelligence becomes a customer of every company on your pitch list and returns a verdict and a proof link for each one to Clay, your CRM or a sheet. Your own tools find the people. It runs now, on credit-based plans like Claude’s.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'questions', text: 'Common questions' },

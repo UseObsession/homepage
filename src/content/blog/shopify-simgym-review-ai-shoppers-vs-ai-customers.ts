@@ -67,7 +67,7 @@ export const post: BlogPost = {
     art: {
       kind: 'report',
       title: 'brightfern.example',
-      period: 'Two kinds of AI shopper at one store',
+      period: 'An AI shopper and an AI customer at one store',
       cols: ['What it does', 'Simulated shopper', 'AI customer'],
       rows: [
         { name: 'Browses a draft theme', cells: ['Yes, its main use', 'Yes, via preview link'] },
@@ -227,7 +227,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). In October 2026 Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). In October 2026 Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
     },
     {
       kind: 'list',
@@ -243,7 +243,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Both kinds of AI shopper meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. In Obsession’s pilot, most stores put a CAPTCHA or bot check in front of at least one step. A CAPTCHA is a puzzle that blocks automated visitors. Each Obsession store check ends in a report on every journey. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test.',
+      text: 'SimGym’s shoppers and AI customers both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. In Obsession’s pilot, most stores put a CAPTCHA or bot check in front of at least one step. A CAPTCHA is a puzzle that blocks automated visitors. Each Obsession store check ends in a report on every journey. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test.',
     },
 
     { kind: 'h2', id: 'side-by-side', text: 'Simulated shoppers and AI customers, side by side' },
@@ -253,7 +253,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, Obsession’s AI customers open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'On a Shopify store, Obsession’s AI customers open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
     },
     {
       kind: 'art',
@@ -366,7 +366,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name 3 brands your agency is about to pitch and 2 of its clients, with their OK. Obsession follows each one’s live ad as a new customer and sends what happened after the sign up within 4 days, with proof, free.',
+      text: 'Name 3 brands your agency is about to pitch and 2 of its clients, with their OK. Obsession sends an AI customer through each one’s live ad and sends what happened after the sign up within 4 days, with proof, free.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
       label: 'Check 5 brands free',
     },
@@ -404,7 +404,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'In Obsession’s pilot for 4 agencies, each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave. Each journey had its own inbox, watched for 48 hours. The 26 October walk shopped each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
+      text: 'In Obsession’s pilot for 4 agencies, each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave. Each journey had its own inbox, watched for 48 hours. In the 26 October walk, an AI customer went through each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
     },
   ],
 

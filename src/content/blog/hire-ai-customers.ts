@@ -280,13 +280,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
+      text: 'Send an AI customer to any company you name, and it keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof.',
     },
     {
       kind: 'cta',
       text: 'Name the companies and the job. Each company gets an AI customer that waits for months and keeps every email, offer and price as proof.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'payback', text: 'The payback, in your numbers' },

@@ -4,8 +4,8 @@ import { useInView } from './useInView'
 import './AgentLife.css'
 
 /* How it works, breadth first (COPY.md, "Home > How it works"): a list fans out to many companies at once, each lane a
-   customer agent of 1 company, on 1 axis from Monday 09:00 to day 90. The 3 named lanes are the hero's companies, each
-   wake labelled where it lands; the faded lane under them is the rest of the list, its dots only. Under the axis, the
+   customer agent of 1 company, on 1 axis from Monday 09:00 to day 90. The 3 lanes are Company 1, 2 and 3, each wake
+   labelled where it lands; the faded lane under them is the rest of the list. Under the axis, the
    4 phases, in order (a real sequence, so they are numbered).
    The axis is logarithmic in days, so the first minutes and days have room beside the months. Drawn once in view: the
    lanes run out from the list in turn, the wakes land in time order, the rest of the list fills in. Under reduced
@@ -22,6 +22,7 @@ export function AgentLife({ life, id }: { life: Life; id?: string }) {
     <section className="v5-section v5-life" id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="v5-head">
+          {life.kicker && <p className="v5-kicker">{life.kicker}</p>}
           <h2 className="v5-h2" id={`${hid}-h`}>
             {life.heading}
           </h2>

@@ -16,9 +16,9 @@ export const page: Page = {
     path: '/developers',
     title: 'Obsession API and MCP: AI customers your agents can call',
     description:
-      'Give your AI agents an AI customer at any company: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. Open source runtime.',
+      'Send an AI customer to any company from your own agent: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. Open source runtime.',
     answer:
-      'Obsession gives your AI agents a customer at every company: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
+      'Obsession lets your agents send an AI customer (an agent with its own inbox, phone number and browser) to any company, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
     ogImage: '/og/developers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -28,8 +28,8 @@ export const page: Page = {
 
   hero: {
     pill: '',
-    headline: 'Give your agents a customer at every company.',
-    sub: 'Obsession gives your AI agents a customer at every company: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
+    headline: 'Let your agents send an AI customer to any company.',
+    sub: 'Obsession lets your agents send an AI customer (an agent with its own inbox, phone number and browser) to any company, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
     capture: {
       kind: 'waitlist',
       source: 'developers-hero',
@@ -58,8 +58,8 @@ export const page: Page = {
     customer: {
       label: 'What Obsession runs for you',
       items: [
-        'An inbox, number and browser for each agent, in many countries',
-        'Agents that sleep for free and wake when the company acts',
+        'An inbox, number and browser for each AI customer, in many countries',
+        'AI customers that sleep for free and wake when the company acts',
         'Every message turned into 1 sentence, a fact',
         'DKIM checked and timestamped, every time',
         'Per site programs, rewritten when a page changes',
@@ -71,7 +71,7 @@ export const page: Page = {
   ways,
 
   developers: {
-    heading: 'Become a customer in 1 call. Facts arrive on your webhook.',
+    heading: 'Send an AI customer in 1 call. Facts arrive on your webhook.',
     line: 'TypeScript and Python SDKs on a plain HTTP API. Each fact comes with its receipt: the raw email or page, when it arrived, and its signature checked.',
     code: `import { Obsession } from '@useobsession/sdk'
 
@@ -80,7 +80,7 @@ const ob = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 // What the shared record already covers, and since when
 const known = await ob.lookup(['competitor-a.example', 'competitor-b.example'])
 
-// Become a customer of the rest, or join agents already there
+// Send an AI customer to the rest, or join ones already there
 await ob.becomeCustomer(['competitor-c.example'], { how: 'trial', shared: true })
 
 // Every new fact, pushed as it lands
@@ -110,7 +110,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
         tab: 'Competitor tracking as a feature',
         moment: 'Friday 15:00. A customer asks why your app missed a competitor’s price rise.',
         outcome: 'Ship competitor tracking in your own product, with every change dated and its proof attached.',
-        line: 'Agents become a customer of every competitor your users name, keep every email and text, and check their pricing pages daily. Each change posts to your app as JSON.',
+        line: 'AI customers go to every competitor your users name, keep every email and text, and check their pricing pages daily. Each change posts to your app as JSON.',
         whyOnly: 'One AI customer per company, shared across every user who watches it, so the history is there on day one.',
         recipe: 'competitor',
         screen: 'rivals',
@@ -119,8 +119,8 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
         tab: 'Prospect intelligence',
         moment: 'Monday 09:00. Your users import 50 accounts, and every one looks the same.',
         outcome: 'Show each user which accounts have the gap their product fixes, with proof.',
-        line: 'For each account your users add, an agent joins the newsletter or starts a trial and keeps what arrives. The gap lands on the account record.',
-        whyOnly: 'Contact data says who to email. Agents show what each company actually sends its customers.',
+        line: 'For each account your users add, an AI customer joins the newsletter or starts a trial and keeps what arrives. The gap lands on the account record.',
+        whyOnly: 'Contact data says who to email. AI customers show what each company actually sends its customers.',
         recipe: 'prospect',
         screen: 'leads',
       },
@@ -128,7 +128,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
         tab: 'Every deploy',
         moment: 'Thursday 06:02. Release 2.15 is green. The launch email goes at 08:00.',
         outcome: 'Hold the launch email when a real sign up breaks, before customers find it.',
-        line: 'Your deploy calls 1 endpoint. A fresh test user signs up, enters the login code from a real text and opens every email. The verdict reaches your webhook before the 08:00 send.',
+        line: 'Your deploy calls 1 endpoint. A fresh AI customer signs up, enters the login code from a real text and opens every email. The verdict reaches your webhook before the 08:00 send.',
         whyOnly: 'A fresh inbox and a real number every run, so your app sees a stranger, not your team’s test account.',
         recipe: 'audit',
         screen: 'ship',
@@ -137,7 +137,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
         tab: 'Merchant checks',
         moment: 'Sunday 22:00. A merchant says your basket emails stopped. Your logs say sent.',
         outcome: 'Prove your app works on every merchant’s store, every week.',
-        line: 'Each merchant who opts in gets shopped every Monday by an agent working for your app. It leaves a basket and watches its inbox for 48 hours.',
+        line: 'Each merchant who opts in gets an AI customer every Monday, working for your app. It leaves a basket and watches its inbox for 48 hours.',
         whyOnly: 'What a real customer gets at every store at once, not what your logs say, with the proof attached.',
         recipe: 'mystery',
         screen: 'shop',
@@ -152,7 +152,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
     items: [
       {
         q: 'What does Obsession give my agent?',
-        a: 'Obsession gives your AI agents a customer at every company: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
+        a: 'Obsession lets your agents send an AI customer (an agent with its own inbox, phone number and browser) to any company, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
       },
       {
         q: 'What is customer-side observability?',
@@ -160,7 +160,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
       },
       {
         q: 'How is it different from Exa, Browserbase or a scraper?',
-        a: 'Exa searches the web and Browserbase drives a browser, for as long as your code runs. Obsession is a customer that stays: it signs up, waits weeks or months, and keeps every email and page it gets, with proof.',
+        a: 'Exa searches the web and Browserbase drives a browser, for as long as your code runs. Obsession is an AI customer that stays: it signs up, waits weeks or months, and keeps every email and page it gets, with proof.',
       },
       {
         q: 'How do I connect it to Claude or Cursor?',
@@ -186,7 +186,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
   },
 
   final: {
-    heading: 'Give your agent its first customer.',
+    heading: 'Send your agent’s first AI customer.',
     sub: 'Keys open from the waitlist, a team at a time. Tell us what you’ll build and we send yours.',
     capture: {
       kind: 'waitlist',

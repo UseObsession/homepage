@@ -48,7 +48,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that ask your support bot what customers ask.',
+    headline: 'An AI customer that asks your support bot what customers ask.',
     sub: 'Support bot check asks your support bot what customers ask, every morning: AI customers ask on chat, email and your portal in the same minute and check each answer against your policy page. You see each wrong answer, slow handoff and missing email, with the proof.',
     screen: 'botcheck',
     capture: {
@@ -67,7 +67,7 @@ export const recipe: Recipe = {
     journey: ['Say it’s AI, ask about a return', 'Ask for a person', 'Wait for the promised email', 'Check against your policy'],
     schedule: 'Daily at 07:00, and after every update',
     report: 'A Slack alert and a signed record',
-    kit: ['Agent ID, declared as AI', '2 inboxes', 'A test account on your portal', 'Tagged as a test, never billed'],
+    kit: ['Its own ID, declared as AI', '2 inboxes', 'A test account on your portal', 'Tagged as a test, never billed'],
     events: [
       { time: 'Mon 07:00', text: 'AI customer 2 says it’s AI and asks to return an order after 20 days, on chat, email and your portal.' },
       { time: 'Mon 07:02', text: 'Chat: “Yes, you have 30 days.” Your returns page, captured at 07:00, says 14. Email and the portal say 14.' },

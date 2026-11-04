@@ -140,7 +140,7 @@ export function SampleTeaser({ start }: { start?: FormatId }) {
         <p className="kicker">Sample output</p>
         <h2 className="h2">One real run. The output, however you work.</h2>
         <p className="lede">
-          Four test customers shopped a UK store in September, name hidden. Two left a basket or stopped at checkout, and in 48 hours
+          Four AI customers joined a UK store in September, name hidden. Two left a basket or stopped at checkout, and in 48 hours
           nobody wrote to them. Here’s that run as a report, an email, a Slack message, Clay columns, a webhook or a workflow.
         </p>
         <ul className="sample-facts">

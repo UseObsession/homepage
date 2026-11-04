@@ -1,25 +1,25 @@
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
-import { Outputs } from '../components/sections/Outputs'
 import { AgentLife } from '../components/v5/AgentLife'
-import { Ask } from '../components/v5/Ask'
-import { Compare } from '../components/v5/Compare'
-import { GapPair } from '../components/v5/GapPair'
+import { Finding } from '../components/v5/Finding'
 import { Hero5 } from '../components/v5/Hero5'
 import { HeroFilm } from '../components/v5/HeroFilm'
 import { HeroVideo } from '../components/v5/HeroVideo'
 import { OpenSource } from '../components/v5/OpenSource'
-import { Scale } from '../components/v5/Scale'
-import { Targets } from '../components/v5/Targets'
+import { RunReports } from '../components/v5/RunReports'
+import { StopTrack } from '../components/v5/StopTrack'
 import { PersonaSection } from '../legacy/james/components/PersonaBand'
 import { page } from '../content/pages/home'
 import './StoryPage.css'
 
-/* Home (/), composed from content/pages/home.ts in the order its comment gives: what it is, why other tools can't, how
-   (closing on what it found: 93% of stores had a gap, 1 store's report in every format), who you are, who you can be a
-   customer of, what you can ask it from the AI you already use, how it compares, how far it goes, what is open,
-   questions, the waitlist. Every block stands on the page's own ground; the
-   receipt's paper is the 1 material that changes. */
+/* Home (/), composed from content/pages/home.ts in the order its comment gives (9 blocks since 4 Nov): what it is,
+   what we found (93% of stores had a leak, as a research note), how it works, where the findings go (1 run wired to
+   your AI agent, every format and your own code; the ask section folded into it on 4 Nov), why other tools can't
+   (where every other tool stops, and what only a customer catches), who you send it to (each reader and where it sends
+   its AI customers; the Kinds section folded into it on 4 Nov), what is open (the runtime beside Obsession Cloud, on a
+   wide screen only), questions, the waitlist. Every block from the finding to the questions is labelled with the
+   reader's own question. Every block stands on the page's own
+   ground; the receipt's paper is the 1 material that changes. */
 export function Home() {
   const video = page.heroVideo
   /* The film plays in the page where we hold its file, else it sits behind the play button. */
@@ -27,16 +27,13 @@ export function Home() {
   return (
     <>
       <Hero5 hero={page.hero} visual={heroVisual} crumbs={false} center />
-      {page.gapPair && <GapPair gap={page.gapPair} id="gap" />}
+      {page.finding && <Finding finding={page.finding} id="found" />}
       {page.life && <AgentLife life={page.life} id="how" />}
-      {page.outputs && <Outputs {...page.outputs} initial="pdf" compact className="v5-proof" id="proof" />}
+      {page.runReports && <RunReports runs={page.runReports} id="formats" />}
+      {page.stopTrack && <StopTrack track={page.stopTrack} id="compare" />}
       <div className="james">
         <PersonaSection id="for" />
       </div>
-      {page.targets && <Targets targets={page.targets} id="recipes" />}
-      {page.ask && <Ask ask={page.ask} id="ask" />}
-      {page.compare && <Compare compare={page.compare} id="compare" />}
-      {page.scale && <Scale scale={page.scale} id="scale" />}
       {page.openSource && <OpenSource open={page.openSource} id="open-source" deskOnly />}
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />

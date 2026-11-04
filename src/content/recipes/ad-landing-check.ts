@@ -29,10 +29,10 @@ export const recipe: Recipe = {
   slug: 'ad-landing-check',
   name: 'Ad landing check',
   group: 'Check your own journeys',
-  line: 'Opens every live ad’s landing page as a customer each morning, and drafts the fix for any that’s broken, wrong or sold out.',
-  gets: 'Every live ad checked as a customer each morning, and the fix ready for any that sends clicks to a page that can’t sell.',
+  line: 'Your AI customer opens every live ad’s landing page each morning, and drafts the fix for any that’s broken, wrong or sold out.',
+  gets: 'Every live ad checked by an AI customer each morning, and the fix ready for any that sends clicks to a page that can’t sell.',
   kit: [
-    'An AI agent with its own ID',
+    'An AI customer with its own ID',
     'Your ad accounts, connected by you',
     'A phone and a desktop browser',
     'A check every morning at 07:00',
@@ -42,11 +42,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/ad-landing-check',
-    title: 'Ad landing check: test every ad as a customer · Obsession',
+    title: 'Ad landing check: an AI customer on every ad · Obsession',
     description:
-      'Each morning an AI customer opens every live ad’s landing page as a shopper, checks the offer, price and stock, and drafts the fix for your OK.',
+      'Each morning an AI customer opens every live ad’s landing page, checks the offer, price and stock, and drafts the fix for your OK.',
     answer:
-      'Ad landing check opens every live ad’s landing page as a customer each morning, straight from the ad’s link. An AI agent checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
+      'In Ad landing check, an AI customer opens every live ad’s landing page each morning, straight from the ad’s link. It checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
     ogImage: '/og/ad-landing-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,8 +56,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that catch every ad sending clicks to a broken or sold out page.',
-    sub: 'Ad landing check opens every live ad’s landing page as a customer each morning, straight from the ad’s link. An AI agent checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
+    headline: 'An AI customer that catches every ad sending clicks to a broken or sold out page.',
+    sub: 'In Ad landing check, an AI customer opens every live ad’s landing page each morning, straight from the ad’s link. It checks the page loads, the offer and price match and the product is in stock, then drafts the fix for your OK.',
     screen: 'adcheck',
     capture: {
       kind: 'waitlist',
@@ -75,7 +75,7 @@ export const recipe: Recipe = {
     journey: ['Read every live ad', 'Open its page as a customer', 'Check offer, price and stock', 'Draft the fix for your OK'],
     schedule: 'Every morning at 07:00',
     report: 'A morning note, and Slack when an ad fails',
-    kit: ['Its own agent ID', 'Your ad accounts', 'Phone and desktop', 'Opens each ad’s page'],
+    kit: ['Its own ID', 'Your ad accounts', 'Phone and desktop', 'Opens each ad’s page'],
     events: [
       { time: 'Mon 07:00', text: '6 live ads read from your ad accounts: 3 search and 3 social, $1,069 a day between them.' },
       {
@@ -91,7 +91,7 @@ export const recipe: Recipe = {
       { time: 'Tue 07:00', text: '5 live ads pass. The lamp is still sold out, so Ad 4 stays paused until you say otherwise.' },
     ],
     finding: 'Ad 4 spends $410 a day sending clicks to a table lamp that’s sold out.',
-    fix: 'Ad 4 paused after your ads lead’s OK. The agent flags the morning the lamp is back, and the ad goes live again after your OK.',
+    fix: 'Ad 4 paused after your ads lead’s OK. Your AI customer flags the morning the lamp is back, and the ad goes live again after your OK.',
     ledger: 'Example run. Every check, screenshot and OK kept with its receipt.',
   },
 
@@ -180,9 +180,9 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'The agent checks every ad you pay for, not the few someone remembers.',
+    heading: 'Your AI customer checks every ad you pay for, not the few someone remembers.',
     line: 'Up to 182 hours a year back for 1 person who checks 6 ads’ landing pages by hand every morning, 5 minutes each: 3.5 hours a week. You read only the ads that fail.',
-    cols: ['By hand', 'The agent'],
+    cols: ['By hand', 'The AI customer'],
     rows: [
       { label: 'Which ads', values: ['The few someone opens when there’s time', 'Every live ad, every morning'] },
       { label: 'How', values: ['Clicking the ad, which can cost a click', 'Opening its page directly, so no click is paid for'] },
@@ -194,11 +194,11 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every ad’s page opened as a customer. Every fix waits for your OK.',
+    heading: 'Every ad’s page opened by an AI customer. Every fix waits for your OK.',
     items: [
       {
         q: 'How do I stop my ads sending clicks to a sold out page?',
-        a: 'Ad landing check finds it the same morning: at 07:00 an AI agent opens every live ad’s landing page as a customer, straight from the ad’s link, checks the product is in stock and the offer and price match, and drafts the pause or a new link for your OK.',
+        a: 'Ad landing check finds it the same morning: at 07:00 an AI customer opens every live ad’s landing page, straight from the ad’s link, checks the product is in stock and the offer and price match, and drafts the pause or a new link for your OK.',
       },
       {
         q: 'How does Ad landing check open each page?',
@@ -214,7 +214,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does Ad landing check buy anything?',
-        a: 'Ad landing check reads the page as a customer would. To go on through the checkout behind an ad, Mystery shopper stops before payment, or buys on a capped card and refunds the order.',
+        a: 'In Ad landing check, your AI customer reads the page as any customer would. To go on through the checkout behind an ad, Mystery shopper stops before payment, or buys on a capped card and refunds the order.',
       },
       {
         q: 'How soon does Ad landing check find a break?',
@@ -234,14 +234,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is Ad landing check different from Mystery shopper?',
-        a: 'Ad landing check opens the exact page each live ad points to, every morning, and drafts the fix for any that fails. Mystery shopper goes through your whole journey as a customer and watches what follows.',
+        a: 'Ad landing check opens the exact page each live ad points to, every morning, and drafts the fix for any that fails. In Mystery shopper, your AI customer goes through your whole journey and watches what follows.',
       },
     ],
   },
 
   final: {
     heading: 'Know every ad you pay for lands on a page that can sell.',
-    sub: 'Join the waitlist. Ad landing check comes ready to read your live ads, open every landing page as a customer each morning, and wait for your OK before any change.',
+    sub: 'Join the waitlist. Ad landing check comes ready to read your live ads, send AI customers to every landing page each morning, and wait for your OK before any change.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-final',

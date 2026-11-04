@@ -42,7 +42,7 @@ export const mysteryRun: Run = {
   cadence: 'Once',
   label: 'Real run, September 2026',
   events: [
-    { time: 'Day 0, 03:11', text: '4 test customers start: welcome, browse, cart and checkout', tag: 'Started', tone: 'idle' },
+    { time: 'Day 0, 03:11', text: '4 AI customers start: welcome, browse, cart and checkout', tag: 'Started', tone: 'idle' },
     { time: 'Day 0 to 2', text: 'Welcome journey: 2 messages arrive', tag: 'Arrived', tone: 'ok' },
     { time: 'Day 0 to 2', text: 'Browse journey: 3 messages arrive', tag: 'Arrived', tone: 'ok' },
     { time: 'Day 2, 02:57', text: 'Left a full basket: nothing in 48 hours', tag: 'Silent', tone: 'bad' },
@@ -76,7 +76,7 @@ export const prospectRun: Run = {
   cadence: '48 hours, then weekly',
   label: 'Example',
   events: [
-    { time: 'Day 0, 09:00', text: '300 shoppers sign up, opt in to texts and ask a support question', tag: 'Started', tone: 'idle' },
+    { time: 'Day 0, 09:00', text: '300 AI customers sign up, opt in to texts and ask a support question', tag: 'Started', tone: 'idle' },
     { time: 'Day 0, 09:05', text: 'Control texts confirm every number works', tag: 'Checked', tone: 'idle' },
     { time: 'Day 0, 10:00', text: '271 welcome emails arrive within the hour', tag: 'Arrived', tone: 'ok' },
     { time: 'Day 1, 09:00', text: 'No text after 24 hours at 61 brands, so a second run starts from a fresh number', tag: 'Rechecking', tone: 'warn' },

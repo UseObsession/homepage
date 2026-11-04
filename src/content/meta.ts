@@ -5,7 +5,7 @@ import { nav } from './nav'
 import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
-import type { Faq, Meta, StageReceipt } from './types'
+import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
 
 export { SITE, absolute, cleanPath }
@@ -53,8 +53,8 @@ export type Entry = {
   headline: string
   /* The share image's 1 line under the headline, taken from the page's own words. */
   line: string
-  /* Home's share image only: the receipt drawn beside the headline (home.shareReceipt, scripts/og.mjs). */
-  receipt?: StageReceipt
+  /* Home's share image only: the findings card drawn beside the headline (home.shareFindings, scripts/og.mjs). */
+  findings?: ShareFindings
   /* The questions the page shows, for FAQPage JSON-LD. */
   faq?: Faq
   /* The content file the page's words live in, for the sitemap's lastmod. */
@@ -84,7 +84,7 @@ const compare = pages.compare
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
-  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, receipt: home.shareReceipt, faq: home.faq, source: 'src/content/pages/home.ts' },
+  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
   ...AUDIENCES.map(
     (a): Entry => ({
       kind: 'audience',

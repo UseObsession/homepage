@@ -1,0 +1,208 @@
+/* Home's run section (RunReports.tsx). 1 row: the run, its wires, the formats, the chosen format's stage. Ink and
+   paper only; the run's mark is the 1 filled object. */
+
+.v5-runs-row {
+  display: grid;
+  grid-template-columns: 180px 56px 184px minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.v5-runs-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 24px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--ob-line-subtle);
+  background: var(--ob-surface);
+}
+.v5-runs-logo {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 10px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: var(--ob-text);
+  color: var(--ob-bg);
+}
+.v5-runs-node b { font: 600 15px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.v5-runs-node > span:last-child { font: 400 11.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); }
+@media (prefers-reduced-motion: no-preference) {
+  .v5-runs-logo::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 26px;
+    border: 1px solid var(--ob-text);
+    opacity: 0;
+    animation: v5-runs-ping 2.4s ease-out infinite;
+  }
+}
+@keyframes v5-runs-ping {
+  0% { opacity: 0.5; transform: scale(0.94); }
+  100% { opacity: 0; transform: scale(1.18); }
+}
+
+.v5-runs-wirebox { position: relative; }
+.v5-runs-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.v5-runs-wires path { fill: none; stroke: var(--ob-line); stroke-width: 1.5; transition: stroke 0.2s; }
+.v5-runs-wires path.is-on { stroke: var(--ob-text); stroke-width: 2; }
+.v5-runs-wires circle { fill: var(--ob-text); }
+@media (prefers-reduced-motion: no-preference) {
+  .v5-runs-wires path:not(.is-on) { stroke-dasharray: 4 5; animation: v5-runs-flow 1.4s linear infinite; }
+}
+@keyframes v5-runs-flow { to { stroke-dashoffset: -18; } }
+
+.v5-runs-formats { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.v5-runs-label {
+  margin: 0;
+  font: 500 11px / 1.3 var(--ob-font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.v5-runs-tiles { flex: 1; display: grid; grid-auto-rows: 1fr; gap: 8px; }
+.v5-runs-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--ob-line-subtle);
+  background: var(--ob-surface);
+  color: var(--ob-text);
+  font: 500 13.5px / 1.25 var(--ob-font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.v5-runs-tile:hover { border-color: var(--ob-text); }
+.v5-runs-tile[aria-selected="true"] { background: var(--ob-text); color: var(--ob-bg); border-color: var(--ob-text); }
+.v5-runs-tile:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+.v5-runs-glyph {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid currentColor;
+  display: grid;
+  place-items: center;
+  font: 600 9.5px / 1 var(--ob-font-mono);
+  opacity: 0.8;
+}
+
+.v5-runs-panel { display: flex; flex-direction: column; gap: 10px; min-width: 0; margin-left: 20px; }
+.v5-runs-line { margin: 0; font: 400 13.5px / 1.4 var(--ob-font-sans); color: var(--ob-text-2); min-height: 19px; }
+/* Every tile's view is the same height (the agent's window, the tallest), so the row never jumps as the tiles take
+   turns. */
+.v5-runs-panel .v5-runs-stage { flex: 1; height: auto; min-height: 580px; padding: var(--ob-space-24); }
+
+.v5-runs-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--ob-line-subtle);
+}
+/* The study is the section's 1 number: as large as a heading, its sentence beside it in ink. */
+.v5-runs-study { margin: 0; display: flex; align-items: center; gap: 20px; }
+.v5-runs-study b {
+  flex: none;
+  font: 600 clamp(56px, 7vw, 88px) / 0.9 var(--ob-font-sans);
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.v5-runs-study span { max-width: 30ch; font: 500 clamp(17px, 1.6vw, 20px) / 1.35 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); text-wrap: balance; }
+
+@media (max-width: 1080px) {
+  .v5-runs-row { grid-template-columns: minmax(0, 1fr) 48px 184px; }
+  .v5-runs-panel { grid-column: 1 / -1; margin: 20px 0 0; }
+  .v5-runs-panel .v5-runs-stage { min-height: 580px; }
+}
+@media (max-width: 720px) {
+  .v5-runs-row { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .v5-runs-wirebox { display: none; }
+  .v5-runs-node { display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 14px; row-gap: 2px; align-items: center; padding: 14px 16px; text-align: left; }
+  .v5-runs-node b { align-self: end; }
+  .v5-runs-node > span:last-child { align-self: start; }
+  .v5-runs-logo { grid-row: span 2; width: 48px; height: 48px; margin: 0; border-radius: 14px; }
+  .v5-runs-logo::after { border-radius: 18px; }
+  /* 8 tiles, 2 to a row, each its glyph beside its name. */
+  .v5-runs-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v5-runs-tile { gap: 8px; padding: 8px; font-size: 12.5px; }
+  .v5-runs-glyph { width: 24px; height: 24px; border-radius: 7px; font-size: 8.5px; }
+  .v5-runs-panel { margin: 0; }
+  .v5-runs-panel .v5-runs-stage { min-height: 560px; padding: var(--ob-space-16); }
+  .v5-runs-x + .v5-runs-x { display: none; }
+}
+
+/* Asked in your AI agent and Use from your code (RunReports.tsx AgentStage, CodeStage): a window on the stage's glass,
+   as the other formats' objects sit on it, built from the ask section's bubbles (Ask.css). Under the agent's window,
+   where else you can ask from, as pills. Both sit in the middle of the stage, together. */
+.s-ov__stage--agent,
+.s-ov__stage--code { align-content: center; gap: 16px; }
+.v5-runs-chat {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  max-width: 680px;
+  min-width: 0;
+  padding: clamp(14px, 1.8vw, 20px);
+  border-radius: 16px;
+  border: 1px solid var(--v5-stage-line);
+  background: var(--v5-stage);
+  text-align: left;
+}
+.v5-runs-chat .v5-ask-app { margin: 0; }
+/* 1 question and its answer: its parts sit in the window's own column. */
+.v5-runs-x { display: contents; }
+.v5-runs-chat .v5-ask-you,
+.v5-runs-chat .v5-ask-reply { font-size: 14px; }
+.v5-runs-chat .v5-ask-reply { gap: 6px; }
+/* Ask from, then its pills, on 1 line where they fit. */
+.v5-runs-from { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; width: 100%; max-width: 680px; }
+.v5-runs-from .v5-runs-label { margin: 0; }
+.v5-runs-from .v5-ask-chips { margin: 0; justify-content: center; }
+.v5-runs-from .v5-ask-chips li { padding: 7px 11px; font-size: 12.5px; background: var(--ob-surface); }
+
+/* The thread plays once the section is on screen, and again each time its tile opens (the window is drawn anew): each
+   part starts at its own --at, so the second question follows the first answer. Under reduced motion it shows finished. */
+@media (prefers-reduced-motion: no-preference) {
+  .v5-runs[data-live] .v5-runs-chat :is(.v5-ask-connect, .v5-ask-you, .v5-ask-reply, .v5-ask-reply p, .v5-ask-code) {
+    animation: v5-ask-in 0.35s ease-out var(--at, 0s) both;
+  }
+}
+
+/* The tiles take turns until someone picks 1: a line fills along the foot of the chosen tile, and its end opens the next
+   (RunReports.tsx onTurn). It holds while the pointer is over the row or the section is off screen. */
+@media (prefers-reduced-motion: no-preference) {
+  .v5-runs[data-live][data-auto] .v5-runs-tile[aria-selected='true']::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 4px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--ob-bg);
+    opacity: 0.75;
+    transform-origin: left;
+    animation: v5-runs-turn var(--turn, 6s) linear both;
+  }
+  .v5-runs:not([data-seen]) .v5-runs-tile::after,
+  .v5-runs-row:hover .v5-runs-tile::after { animation-play-state: paused; }
+}
+@keyframes v5-runs-turn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}

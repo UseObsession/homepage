@@ -85,6 +85,8 @@ export type Hero = {
   sub: string
   capture: Capture
   secondary?: Cta
+  /* One quiet line under the form (Home: what the AI customer will always do). */
+  note?: string
   proof: { value: string; label: string }[]
   consoleHeading: string[]
   screens?: HeroScreen[]
@@ -256,13 +258,13 @@ export type Kinds = { heading: string; label: string; items: { name: string; lin
 /* The claim beside its object. Without `screen` the object is the real September report (story beat 8); with it, the
    object is that app screen, under its Example tag (Home's short section on the AI agent checks). */
 export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
-export type Faq = { heading: string; items: { q: string; a: string; link?: Cta }[] }
+export type Faq = { kicker?: string; heading: string; items: { q: string; a: string; link?: Cta }[] }
 /* The rules every run follows (James's "Built to behave.", docs/REBUILD.md 1d): the trust beat before the questions. A
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
    agent meets can read (/agents). Never "it follows robots.txt". */
 export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
 /* `link` is the quiet second path under the form (the sample report, on a page whose offer is a free audit). Home's
-   closing call has no `sub`: the claim, the form and the link. */
+   closing call has no `sub` and, since 4 Nov, no link: the claim and the form. */
 export type Final = { heading: string; sub?: string; capture: Capture; link?: Cta }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
@@ -284,6 +286,40 @@ export type Outputs = {
   formats?: { format: string; line: string }[]
   cta: Cta
   behave?: { heading: string; items: string[] }
+}
+/* Home's run section (components/v5/RunReports, 4 Nov): 1 Obsession run wired to every format it arrives in, the
+   format's view beside them, and the study with its link at the foot. */
+export type RunReports = {
+  kicker?: string
+  heading: string
+  line?: string
+  node: { title: string; line: string }
+  label: string
+  /* Home (4 Nov), where this section took in the ask section: a tile above the formats for asking in your own AI agent
+     (1 chat thread, the line that connects it, and where else you can ask from, as pills), and a tile after Sheet or
+     Clay for your own code. */
+  agent?: {
+    label: string
+    line: string
+    where: string
+    connect: string
+    thread: { q: string; a: string[]; receipts: string }[]
+    from: { label: string; items: string[] }
+  }
+  code?: { label: string; line: string; file: string; code: string }
+  /* The study and its link at the foot. Home leaves both out since 4 Nov: the study is its own callout (Finding). */
+  study?: { value: string; text: string }
+  cta?: Cta
+}
+/* Home's finding (components/v5/Finding, 4 Nov): 1 result set as a research note, its number large beside the claim,
+   1 supporting share under it, where the figures come from, and a link to 1 real run. No report image. */
+export type Finding = {
+  kicker?: string
+  value: string
+  heading: string
+  also: { value: string; text: string }
+  source: string
+  cta: Cta
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
@@ -307,6 +343,8 @@ export type Page = {
   jobs?: Jobs
   audiences?: Audiences
   outputs?: Outputs
+  runReports?: RunReports
+  finding?: Finding
   developers?: Developers
   /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */
   verify?: Proof
@@ -315,12 +353,13 @@ export type Page = {
   final: Final
   /* The October rewrite's blocks (COPY.md). */
   heroVideo?: HeroVideo
-  /* Home only: the receipt its share image draws beside the headline. */
-  shareReceipt?: StageReceipt
+  /* Home only: the findings card its share image draws beside the headline. */
+  shareFindings?: ShareFindings
   gapPair?: GapPair
   life?: Life
   targets?: Targets
   compare?: Compare
+  stopTrack?: StopTrack
   /* The ask section (components/v5/Ask): the record as something to ask, on Home, Marketing, Sales and Agencies. */
   ask?: Ask
   ways?: Ways
@@ -590,22 +629,14 @@ export type BlogIndexPage = {
    Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
    --------------------------------------------------------------------------------------------------------------------- */
 
-/* Home's share image (scripts/og.mjs): 1 company's journey as its customer, the receipt drawn beside the headline.
-   Invented companies only, at .example addresses. */
-export type StageReceipt = {
-  /* What the story shows, in the buyer's words: the name on its button under the stage. */
-  topic: string
-  company: string
-  domain: string
-  monogram: string
-  ad: { source: string; text: string; cta: string }
-  page: { path: string; title: string; note: string }
-  /* The hop from the page to the inbox when the agent did something other than sign up, such as leaving a basket. */
-  did?: string
-  mail: { time: string; from: string; subject: string; tab: string }
-  rows: { k: string; v: string }[]
-  stamp: string
-  fact: string
+/* Home's share image (scripts/og.mjs): what AI customers caught inside a few companies this month, the card drawn
+   beside the headline. Each row: the company, what was caught, the day. Invented companies only (Company 1, 2, 3, as in
+   the how it works lanes). */
+export type ShareFindings = {
+  title: string
+  aside: string
+  rows: { company: string; finding: string; when: string }[]
+  foot: string
 }
 
 /* A hero's film (components/v5/HeroVideo), on Home and the use case pages: a YouTube video id, the line beside the
@@ -636,6 +667,7 @@ export type GapPair = {
    4 steps under the axis, in order; a phase's `lead` opens its line in bold. */
 export type LifeLane = { name: string; wakes: { day: number; label: string }[] }
 export type Life = {
+  kicker?: string
   heading: string
   line?: string
   list: string
@@ -656,6 +688,21 @@ export type Targets = {
 
 /* The comparison (components/v5/Compare). `cells` follow `cols` in order; the first column is Obsession. */
 export type CompareMark = 'yes' | 'part' | 'no'
+/* Home's comparison as 1 journey (components/v5/StopTrack, 4 Nov): the same customer's steps across the top, and each
+   kind of tool a line that stops where its view stops. `stop` counts the steps a line reaches; `fade` draws a line that
+   reaches every step but thins out (by hand: every step, for a few companies, until someone stops checking). `catches`
+   (Home, 4 Nov): what only a customer catches, under the track, from the gap section it took the place of. */
+export type StopTrack = {
+  kicker?: string
+  heading: string
+  line?: string
+  steps: string[]
+  rows: { name: string; who: string; note: string; stop?: number; fade?: boolean; ours?: boolean }[]
+  catches?: { label: string; items: string[] }
+  foot?: string
+  more?: Cta
+}
+
 export type Compare = {
   heading: string
   line?: string
@@ -687,17 +734,18 @@ export type Ask = {
   from: { label: string; items: string[] }
   /* The 1 line that connects Obsession to each tool an example is asked in, keyed by `where`. */
   connect: Record<string, string>
-  keeps: { heading: string; items: string[] }
-  notYet: string
-  more: Cta
+  keeps?: { heading: string; items: string[] }
+  notYet?: string
+  more?: Cta
 }
 
 /* Open source (components/v5/OpenSource): what is in the code, what is the cloud. */
 /* `core.items` are the engine's capabilities, each a name and 1 technical line; `cloud.items` are short lines. */
 export type OpenSource = {
+  kicker?: string
   heading: string
-  line: string
-  core: { title: string; items: { name: string; line: string }[] }
+  line?: string
+  core: { title: string; items: { name: string; line?: string }[] }
   cloud: { title: string; items: string[] }
   cta: Cta
   secondary?: Cta

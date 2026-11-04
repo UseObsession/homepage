@@ -1,4 +1,6 @@
-# Obsession website: the October rewrite
+# Obsession website: the October rewrite, and the AI customer (3 Nov)
+
+**3 Nov 2026, the AI customer.** James: "the whole shopper thing is a disservice and lack of understanding of the product". What Obsession sells is an **AI customer**: you send one to any company, it does what a real customer does (signs up, buys, talks to support, cancels, asks for the refund), and it keeps the receipts. Mystery shopping is one job it does, not the product. The hero moved from "Be a customer of every company. Keep the receipts." to **"Intelligence on any company, from inside it."** (4 Nov, after "Send an AI customer to any company." read as too passive about the outcome), and every page, recipe and post was rewritten to the AI customer. The rules are in `docs/copy/ai-customer-voice.md`; where this file still shows an October line, the content files and that guide win.
 
 This file is the plan behind the copy and the design of useobsession.com after the October 2026 rewrite. The words themselves live in `src/content` (one file per page, plus `src/content/shared5.ts` for the blocks more than one page shows). When this file and a content file disagree, the content file is what ships; fix this file.
 
@@ -88,9 +90,9 @@ From `docs/positioning/competitors.md`, 18 Oct 2026. Their own words, then the l
 
 ## 4. Message hierarchy
 
-**The one claim:** Be a customer of every company. Keep the receipts.
+**The one claim:** Intelligence on any company, from inside it. (Until 3 Nov: Be a customer of every company. Keep the receipts.)
 
-**The one sentence** (word for word on Home, llms.txt, the Organization JSON-LD and /agents): Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.
+**The one sentence** (word for word on Home, llms.txt, the Organization JSON-LD and /agents): Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.
 
 **Three pillars, each with its proof on the page**
 
@@ -156,20 +158,17 @@ flowchart TD
   X["11 cut recipe slugs"] -. 301 .-> R
 ```
 
-**Home, top to bottom, each block answering the question the last one leaves:**
+**Home, top to bottom, each block answering the question the last one leaves** (9 blocks since 4 Nov, from 11; every block from the finding to the questions is labelled with the reader's own question, set as the readers band's label is, so the labels read as the page's argument):
 
 ```mermaid
 flowchart LR
-  a["What is it? Hero and receipt stage"] --> b["Why can't my tools? The gap"]
-  b --> c["How many, how soon? To know what 10,000 companies do, you have to be a customer of all 10,000"]
-  c --> c2["Does it find anything? 93% of stores had a gap, 1 report in every format"]
-  c2 --> d["Is it for me? Pick who you are"]
-  d --> e["Of whom? Rivals, prospects, yourself, your AI"]
-  e --> s["How does it scale? Learn it once, run it for 100,000"]
-  s --> f["Versus what? The comparison"]
-  f --> g["Where do I use it? The ways in"]
-  g --> i["Can I trust it? Open source"]
-  i --> j["Questions"] --> k["Join"]
+  a["What is it? Hero and film"] --> b["Does it find anything? A leak at 93% of stores"]
+  b --> c["How does it work? A mystery shopper who never goes home"]
+  c --> c2["Where do the findings go? Your AI agent, every format, your own code"]
+  c2 --> d["Why can't my tools do this? Where each tool stops, what only a customer catches"]
+  d --> e["Who do I send it to? Each reader and its recipes"]
+  e --> o["Can I run it myself? Open source"]
+  o --> j["What else would I ask? Questions"] --> k["Join"]
 ```
 
 **Scale, after grep.ai's two sections** ("Run it once. Run it 1,000 times. Run it 100,000 times." and "Learn once. Improve every run."), combined into one:
@@ -195,19 +194,21 @@ The full words are in the content files; this is the spine of each page.
 
 | Block | Headline | Line |
 |---|---|---|
-| Hero | Be a customer of every company. Keep the receipts. | Obsession's AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof. |
+| Hero | Intelligence on any company, from inside it. | Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof. (4 Nov: no line under the form.) |
+| Share image | Intelligence on any company, from inside it. | Line: Send AI customers to your prospects, your clients and rivals. Beside it, on the paper, "Your AI customers caught · This month": Company 1, the checkout broke mid campaign (day 3); Company 2, the promo code stopped working (day 9); Company 3, price cut from £24 to £19 (day 21); Company 1, a private code on a coupon site (day 30); each one with proof. Replaced the Fern Hollow ad receipt on 4 Nov (`home.shareFindings`, `scripts/og.mjs`) |
 | Stage | 3 examples: Fern Hollow (offer held), Larchwise (trial went quiet), Northfold (price cut on day 21) | Each: the ad, the page, the email, the receipt and its stamp |
-| Gap | Every tool shows you the ad. None of them is the customer. | Tools stop at what is public, or archive newsletters from their own list of brands. What happens after the click only reaches a customer: either you with a spare inbox, screenshots and a spreadsheet, or an AI customer at every company you name. |
-| How | To know what 10,000 companies do, you have to be a customer of all 10,000. | A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (the hero's 3 companies named, "+ 9,997 more" faded), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
-| Proof | 93% of stores we shopped on every journey had a gap. | Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The September report in its 6 formats (PDF, Email, Slack, Sheet or Clay, JSON webhook, Workflow), kept small: the claim beside the viewer, a 400px stage; "See the full report". It replaced the formats grid on 19 Oct |
-| Readers | Pick who you are. | 4 panels |
-| Kinds | Be a customer of anyone. Rivals, prospects, or yourself. | 4 cards, 2 by 2: Rivals, Prospects and accounts, Your own journeys, Your AI agents |
-| Ask | The commercial intelligence only a customer gets. (A small label above it: Rivals · Prospects · Clients · Your own business.) | 3 questions, 1 per reader, each asked somewhere else (Claude Code and Codex, each showing the 1 line that connects Obsession, then code) and answered with its receipts; what Obsession keeps for each company; where you can ask from. Replaced the ways in on 22 Oct (`docs/positioning/ask-section.md`) |
-| Compare | Other tools read the outside. Obsession is the customer. | 6 columns, 7 rows, dated |
-| Scale | Learn it once. Run it for 1 company, 1,000 or 100,000. | The count follows 3 steps on 1 stage (learns the way in, turns it into a program, runs at any scale); 3 principles. No cost card: what it costs us to run is internal (James, 19 Oct). Under the comparison since 22 Oct |
-| Open source | An open source runtime for customer agents, built to run 100,000 at once. | The engine's 8 capabilities (fan out to 100,000, durable agents that sleep for free, learns once then runs as code, better with every run, tested before it ships, a record that proves itself, any model per job, built for agents to call) beside Obsession Cloud's 5 lines |
-| FAQ | Before you join. | 7 questions |
-| Final | Name a company. See what its customers get. | Waitlist |
+| Finding | 93% of the stores where our AI customers ran every journey had a leak. (Label: Does it find anything?) | 4 Nov, second on the page, so it shows a result before it explains anything, set as a research note: a rule across the top, the 93% large beside its claim, then 77% of those leaks were silence: an email that never came. Source: our own runs at real stores, 128 joined so far. See the skincare store’s report. No report image and no formats (James: the study is not a format). The figures are the use case pages' real ones (`components/v5/Finding`) |
+| How | An AI customer is a mystery shopper who never goes home. (Label: How does it work? Until 4 Nov: To know what 10,000 companies do, give each one its own AI customer; the mystery shopper is from Seun's draft of 4 Nov.) | Home's line: Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay for months and tell you about every break, leak, price cut and new offer the day it happens. (The shared line's "No spare inbox, no VA, no spreadsheet" and "5 or 5,000" stay on the reader pages.) A list fanning out to many lanes on 1 axis from Monday 09:00 to day 90 (Company 1, Company 2 and Company 3 on plain hairlines, "+ 9,997 more" faded, no dots), then 4 phases; phase 1 opens on **Any input:**. Breadth first, months as the payoff (3 reviews, 19 Oct) |
+| Formats | Every run, in the format your team reads. (Label: Where do the findings go?) | Each finding is 1 plain sentence, with the email, page or price behind it and the time it arrived. 1 Obsession run (the mark) wired to 8 tiles, the chosen one's view beside them (revision 2 of obsession/proof-section-design.html): Asked in your AI agent, PDF report, Email, Slack, Sheet or Clay, Use from your code, JSON webhook, Workflow. Since 4 Nov it holds the ask section: the agent tile is 1 Claude Code thread (the line that connects it, then the Black Friday question and the Wrenfield brief, each answer's first 2 lines, with receipts; on a phone the first question only), with Ask from and its 7 pills under the window (Claude Code, Codex, Cursor, Grok, Muse, Your own code, Our website); the code tile is watch.py. Until someone picks a tile, the tiles take turns (14 seconds on the agent, 8 on the code, 6 on a format), a line filling under the chosen one; the pointer over the row holds it, a click stops it. Every view is the same height, so the row never jumps. The formats keep /sample-output's real run (`components/v5/RunReports`) |
+| Compare | Other tools read what a company says. AI customers see what it does. (Label: Why can’t my tools do this? Until 4 Nov: Other tools read the outside. Obsession is the customer.) | The code at checkout, the reminder after a basket, the reply from support: each reaches only the customer it was meant for. Your AI customers stay to the end, and keep the receipts. 7 steps from the ad to month 3, each kind of tool a line that stops where its view stops (ad libraries at the ad, page monitors at the page, competitive intelligence tools such as Klue and Crayon at the page, since they collect what rivals publish (Seun's draft, 4 Nov), your own AI agent before the first email, email archives at the newsletter for their own list). By hand runs every step and thins out, because what fails is how many companies and for how long, not a step (James). Your AI customers' line runs to the end with a mark on every step: every step short of paying. Under it, on the receipt's paper, What your AI customers catch: the 6 lines from the gap block. The full table stays on /compare and the reader pages (`components/v5/StopTrack`) |
+| Gap | Folded into Compare 4 Nov: the 2 blocks made 1 argument under 2 "Other tools" headings. Its heading and its 6 catches moved there; its "What other tools see" list is what the track's lines show | |
+| Readers | Send an AI customer anywhere. A rival, a prospect, or your own company. (Small label above it: Who do I send it to? Until 4 Nov: Who you send it to; before that, Who it’s for, Pick who you are.) | 4 panels, no line under the heading. Since 4 Nov each panel also names where that reader sends its AI customers, under a small "Sends AI customers to" label, and links the recipes that start there: Marketing teams, rivals and your own funnel (Competitor tracking, Email and SMS tracking, Price watch, Ad tracking, Ad landing check); Sales teams, prospects and accounts (Prospect intelligence, Account watch, Trial teardown, Lead leaks); Agencies, clients and prospects (Mystery shopper, Website audit, Prospect intelligence); Developers, any company and your own AI agents (Support bot check, Voice agent check, Outbound agent check). The panel's name is its link; each recipe ends on a small arrow up and to the right (4 Nov) and opens its page in the same tab |
+| Kinds | Cut 4 Nov (option 5 of obsession/targets-options.html): at 1,713px the page's longest section, naming places the hero, the readers and the ask section already name. Its heading and its 13 recipe links moved into Readers | |
+| Ask | Folded into Formats 4 Nov (James): asking in your own AI agent is 1 more place the findings go. Its 2 chat questions are 1 thread on the agent tile, its code example is the code tile, its Ask from list sits under the thread as pills. The reader pages keep the full section (Make your agent see what customers see.) | |
+| Scale | Cut 4 Nov (James: the heading never landed, and the section explained a mechanism with modelled numbers instead of showing a result). A measured benchmark, as Exa shows one, may replace it. |
+| Open source | An open source runtime for 100,000 AI customers. (Label: Can I run it myself?) | After the readers, before the questions, on a wide screen only. Left Home and came back on 4 Nov (James), names only as before: the runtime's 8 capabilities beside Obsession Cloud's 5 lines, Star it on GitHub and Read the developer guide. The detail lives on /developers |
+| FAQ | Before you join. (Label: What else would I ask? Until 4 Nov: Questions.) | Since 4 Nov 5 of Seun's 6 questions from his draft, reworded, all shown (no Show more): What is an AI customer? (opens with meta.answer's first sentence, which the page must show); Is this AI mystery shopping?; Is it legal to mystery shop a competitor? (the guide covers the US, the UK and the EU); How soon do I see something? (answered as an AI customer, not a mystery shopper: the moment something happens, at the times you set, like 4 hours after sign up and again at 48, or for as long as it stays; James); Can anyone else see what I watch?. His How much does it cost? was left out (James). Home's own 11 questions were dropped |
+| Final | Name a company. Send it an AI customer. | Waitlist. The agency link (Agency? Get 5 client stores checked free) left 4 Nov: beside the form's own line it was a second version of the same offer |
 
 **Shared blocks** (`src/content/shared5.ts`): the agent's life, the ask section's shared parts and its example questions, the ways in (/developers only), the comparison, open source. Written once; Home and the reader pages import them. The ask section sits directly above the comparison wherever the comparison shows; on Sales and Agencies, which don't show it, it sits after how it works.
 
@@ -244,7 +245,7 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 | The runtime is open source (a runtime for customer agents, not a general harness); github.com/UseObsession | Open source, footer, developers | system.md, "Open source core, Obsession Cloud" | As built; the org and licence to set up (open question in system.md) |
 | The engine's 8 capabilities: fan out to 100,000; hibernate and wake on mail, reply or clock; trace compiled to code, typed questions and small agents; escalations become the next program version; versions replayed on frozen evidence, facts re-derived; evidence by content hash, DKIM key kept; a model per job; typed verbs, webhooks, idempotency keys, spending caps | Open source (Home, developers) | system.md: the customer agent, Design rules for the engine, the compile and replay steps, the first build's boxes, What an agent needs that a human forgives | As built |
 | 6¢ a company to sign up once, 1.4¢ a company a month to keep, at 100,000 | Removed from Home on 19 Oct (internal) | `docs/positioning/scale_model.py`: our modelled cost to run, not a price | Modelled; internal, not on the site |
-| 93% of stores shopped on every journey had a gap | Home proof (back on 19 Oct, in the formats grid's place) | Real audits (Seun, 7 Oct) | Real |
+| Our AI customers found a gap at 93% of the stores where they ran every journey | Home proof (back on 19 Oct, in the formats grid's place) | Real audits (Seun, 7 Oct) | Real |
 | One program per platform; learned, compiled, replayed; code, typed questions, small agents, escalation | Home scale | system.md, Program row and the 4 kinds of step | As built |
 | Sign ups 70% plain request, 25% replayed script, 5% agent; about 140,000 wakes a day; about 2 awake at once | Home scale stage | `docs/positioning/scale_model.py`, modelled on Cloudflare, Archil, Steel, Workspace and model prices read 19 Oct 2026 | Modelled; swap in measured numbers when system.md's evals report them |
 | The September skincare store report: 4 test customers, 48 hours, 1 basket and 1 checkout left, 0 reminders | Proof on every reader page, llms.txt | The real run, /sample-output | Real |

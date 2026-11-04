@@ -40,7 +40,9 @@
   position: relative;
   height: 2px;
   align-self: center;
-  background: repeating-linear-gradient(90deg, var(--ob-line-strong) 0 5px, transparent 5px 10px);
+  /* 1 solid hairline (4 Nov: the dashed lanes read as clutter). */
+  height: 1px;
+  background: var(--ob-line-strong);
 }
 .v5-life-track::before {
   content: '';
@@ -71,7 +73,7 @@
 }
 .v5-life-lane--more .v5-life-name { font-weight: 500; color: var(--ob-text-3); }
 .v5-life-lane--more .v5-life-track { opacity: 0.7; }
-.v5-life-lane--more .v5-life-dot { width: 6px; height: 6px; box-shadow: none; background: var(--ob-text-3); }
+.v5-life-lane--more .v5-life-wake { display: none; }
 .v5-life-end {
   margin: 14px 0 0;
   text-align: right;

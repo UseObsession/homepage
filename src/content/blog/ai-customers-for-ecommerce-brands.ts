@@ -346,7 +346,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a store, it shows what a real customer gets after the sign up, the click and the checkout, at the store and at its competitors. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
+      text: 'Obsession runs these jobs today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a store, it shows what a real customer gets after the sign up, the click and the checkout, at the store and at its competitors. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -478,7 +478,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Send an AI customer to any company. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check my store free',
     },

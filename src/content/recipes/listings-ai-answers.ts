@@ -27,7 +27,7 @@ export const recipe: Recipe = {
   line: 'Corrects the source when a listing or an AI assistant gets a fact about you wrong, and asks again until the answer changes.',
   gets: 'Each wrong fact about you corrected where AI assistants read it, and the question asked again every Monday until the answer is right.',
   kit: [
-    'An AI agent for your company',
+    'An AI customer, working for you',
     'Your facts, approved by you once',
     'Listings claimed through your own number or domain',
     'Each AI assistant asked the official way',
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
     description:
       'When an AI assistant or a listing gets a fact about you wrong, an AI customer fixes it at the source and asks again every Monday until it changes.',
     answer:
-      'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
+      'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI customers ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     ogImage: '/og/listings-ai-answers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'When AI gets a fact about you wrong, fix the page it read.',
-    sub: 'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI agents ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
+    sub: 'Listings and AI answers fixes wrong facts about you at the source: every Monday, AI customers ask AI assistants what your buyers ask and check every map, directory and review site, then ask again until each wrong answer changes.',
     screen: 'listings',
     capture: {
       kind: 'waitlist',
@@ -70,11 +70,11 @@ export const recipe: Recipe = {
     journey: ['Ask what buyers ask', 'Trace each wrong answer', 'Fix it at the source', 'Ask again until it changes'],
     schedule: 'Every Monday, and after any price change',
     report: 'A Monday email and a sheet',
-    kit: ['Agent ID for your company', 'Your number or domain', 'Clean AI history', 'Every Monday'],
+    kit: ['Its own ID, for your company', 'Your number or domain', 'Clean AI history', 'Every Monday'],
     events: [
       { time: 'Mon 09:00', text: '4 AI assistants asked what buyers ask. Assistant C says Leeds opens at 9. It opens at 8.' },
       { time: 'Mon 09:05', text: 'The source: Assistant C cites Directory B, which still lists the old hours.' },
-      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its edit form, after your OK, as your AI agent.' },
+      { time: 'Mon 09:40', text: '1 correction sent to Directory B through its edit form, after your OK, by your AI customer.' },
       { time: 'Mon 09:42', text: 'Your own listings fixed after your OK, claimed with a code to your listed number. Review site B no longer says closed.' },
       { time: 'Week 2, Mon', text: 'Directory B unchanged. 1 polite chase.' },
       { time: 'Week 3, Mon', text: 'Directory B updated. Asked again, Assistant C says Leeds opens at 8.' },
@@ -90,7 +90,7 @@ export const recipe: Recipe = {
       line: 'Hours, prices, plans, locations and what you sell, built from your site and the tools you connect.',
     },
     {
-      title: 'Agents ask what your buyers ask',
+      title: 'AI customers ask what your buyers ask',
       line: 'Every Monday, and within a day of any price change, launch or rename, they ask the AI assistants your buyers use and check every map, directory and review site.',
     },
     {
@@ -126,7 +126,7 @@ export const recipe: Recipe = {
       group: 'The fix',
       items: [
         { title: 'Your own pages first', line: 'Your site and the profiles you run, corrected through the logins you connect, after your OK.' },
-        { title: 'Other sites', line: '1 correction with the evidence to each site’s owner, from an AI agent that says it works for you. Chased as often as you set.' },
+        { title: 'Other sites', line: '1 correction with the evidence to each site’s owner, from an AI customer that says it works for you. Chased as often as you set.' },
         { title: 'After every change', line: 'A new price, a launch or a rename sends the questions out again within a day.' },
         { title: 'Asked until it changes', line: 'Every Monday, so you see the day each answer turns right.' },
       ],
@@ -198,7 +198,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Who does it contact?',
-        a: 'Listings and AI answers contacts each site showing a wrong fact about you: 1 correction with the evidence, from an AI agent that says it works for you, then the chases you set. The first message to each new site goes after your OK.',
+        a: 'Listings and AI answers contacts each site showing a wrong fact about you: 1 correction with the evidence, from an AI customer that says it works for you, then the chases you set. The first message to each new site goes after your OK.',
       },
       {
         q: 'How does Listings and AI answers claim our listings?',

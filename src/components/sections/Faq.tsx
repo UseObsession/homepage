@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Faq as FaqContent } from '../../content/types'
 import './Faq.css'
@@ -36,14 +36,32 @@ type Props = {
   faq: FaqContent
   /* The questions open at first, by index. None, unless a page says otherwise. */
   open?: number[]
+  /* Show only the first `limit` questions, with a button for the rest (Home: 4, James 4 Nov). Every question stays in
+     the prerendered HTML and the JSON-LD; without script all of them show. */
+  limit?: number
   id?: string
   className?: string
 }
 
 /* The accordion on its own (surfaces.css .ob-faq), for the questions inside a blog post too. */
-export function FaqList({ items, open, className = '' }: { items: FaqContent['items']; open?: number[]; className?: string }) {
+export function FaqList({
+  items,
+  open,
+  limit,
+  className = '',
+}: {
+  items: FaqContent['items']
+  open?: number[]
+  limit?: number
+  className?: string
+}) {
   const base = useId()
   const [shown, setShown] = useState<ReadonlySet<number>>(() => new Set(open ?? []))
+  const [all, setAll] = useState(false)
+  /* Set once the app runs, so the extra questions hide even where the boot script's v5-js class is absent (dev). */
+  const [ready, setReady] = useState(false)
+  useEffect(() => setReady(true), [])
+  const rest = limit && items.length > limit ? items.length - limit : 0
 
   const toggle = (i: number) =>
     setShown((prev) => {
@@ -54,11 +72,11 @@ export function FaqList({ items, open, className = '' }: { items: FaqContent['it
     })
 
   return (
-    <div className={'ob-faq ' + className}>
+    <div className={'ob-faq ' + className} data-all={all || !rest ? '' : undefined} data-ready={ready ? '' : undefined}>
       {items.map((item, i) => {
         const isOpen = shown.has(i)
         return (
-          <div key={item.q} className="ob-faq-item">
+          <div key={item.q} className="ob-faq-item" data-more={rest && limit !== undefined && i >= limit ? '' : undefined}>
             <h3 className="ob-faq-h">
               <button
                 type="button"
@@ -91,21 +109,27 @@ export function FaqList({ items, open, className = '' }: { items: FaqContent['it
           </div>
         )
       })}
+      {rest > 0 && !all && (
+        <button type="button" className="ob-faq-more" onClick={() => setAll(true)}>
+          Show {rest} more {rest === 1 ? 'question' : 'questions'}
+        </button>
+      )}
     </div>
   )
 }
 
-export function Faq({ faq, open, id, className }: Props) {
+export function Faq({ faq, open, limit, id, className }: Props) {
   const base = useId()
   return (
     <section id={id} className={'s-section s-faq' + (className ? ' ' + className : '')} aria-labelledby={`${base}-h`}>
       <div className="s-wrap s-faq__grid">
         <div className="s-faq__head">
+          {faq.kicker && <p className="v5-kicker">{faq.kicker}</p>}
           <h2 id={`${base}-h`} className={'ob-type-h2 s-faq__h' + (faq.heading.length > LONG ? ' s-faq__h--long' : '')}>
             {keepNumerals(faq.heading)}
           </h2>
         </div>
-        <FaqList items={faq.items} open={open} className="s-faq__list" />
+        <FaqList items={faq.items} open={open} limit={limit} className="s-faq__list" />
       </div>
     </section>
   )

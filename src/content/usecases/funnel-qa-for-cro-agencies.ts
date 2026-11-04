@@ -2,7 +2,7 @@ import type { UseCaseStudy } from '../types'
 
 /* Funnel QA for CRO agencies (/use-cases/funnel-qa-for-cro-agencies). Written 22 Oct 2026 for the founder or CRO audit
    lead at a conversion rate optimisation shop serving Shopify brands, the next group after retention agencies (Seun,
-   22 Oct: 1,135 reachable people at 673 agencies). Their words: pop up, opt-in rate, message match, CVR, revenue per
+   22 Oct: 1,135 reachable people at 673 agencies). Their words: pop up, opt in rate, message match, CVR, revenue per
    visitor, variant, QA, readout, mobile and desktop.
    The hook: their audit screenshots the pop up; nobody signs up through it. The offer, in James's framing (22 Oct): name
    3 brands you're about to pitch and get what happened after the sign up for each, with proof, in 4 days; the 5 stores
@@ -23,15 +23,15 @@ import type { UseCaseStudy } from '../types'
 
 export const study: UseCaseStudy = {
   name: 'Funnel QA for CRO agencies',
-  line: 'Every pop up you pitch or test, checked past the sign up as a new customer, with proof.',
+  line: 'Send an AI customer past every pop up you pitch or test, and see what comes after, with proof.',
 
   meta: {
     path: '/use-cases/funnel-qa-for-cro-agencies',
     title: 'Funnel QA for CRO agencies, from the pop up to checkout',
     description:
-      'AI customers follow a brand’s live ad as new shoppers and sign up through the pop up. See what comes after it before you pitch, and in every test you run.',
+      'Send an AI customer from a brand’s live ad through its pop up. See what comes after it before you pitch, and in every test you run.',
     answer:
-      'Obsession’s AI agents follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown; after you win, they check every test variant past the sign up, every morning it’s live, and the whole funnel every week.',
+      'Obsession sends an AI customer from any brand’s live ad to sign up through the pop up and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown; after you win, they check every test variant past the sign up, every morning it’s live, and the whole funnel every week.',
     ogImage: '/og/funnel-qa-for-cro-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,9 +43,9 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Be the new customer behind every pop up.',
-    sub: 'Your audit screenshots the pop up. Obsession’s AI agents follow the brand’s live ad as new customers, sign up through it and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown. After you win, every test variant is checked past the sign up, every morning it’s live, and the whole funnel every week.',
-    video: { youtube: 'g7w1gAbIAWc', label: 'Watch how it works', title: 'Funnel QA for CRO agencies: be the new customer behind every pop up' },
+    headline: 'Send an AI customer through every pop up.',
+    sub: 'Your audit screenshots the pop up. Obsession sends an AI customer from the brand’s live ad to sign up through it and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown. After you win, every test variant is checked past the sign up, every morning it’s live, and the whole funnel every week.',
+    video: { youtube: 'g7w1gAbIAWc', label: 'Watch how it works', title: 'Funnel QA for CRO agencies: send an AI customer through every pop up' },
     example: { chips: [] },
     flow: [
       {
@@ -56,7 +56,7 @@ export const study: UseCaseStudy = {
       },
       {
         label: 'Obsession',
-        title: 'A new customer at each brand',
+        title: 'An AI customer at each brand',
         items: ['From the page behind a live ad', 'Its own inbox', 'Its own browser, on mobile', 'Says it’s AI'],
         foot: 'Watching for 48 hours',
       },
@@ -95,7 +95,7 @@ export const study: UseCaseStudy = {
             example: 'Start from the page behind each brand’s live ad. Sign up through the pop up on mobile, take the code to checkout and watch for 48 hours. Results to Slack, #new-business.',
           },
           {
-            title: 'Each brand gets its own new customer',
+            title: 'Each brand gets its own AI customer',
             line: 'A real inbox, a real mobile number and its own browser, used for that brand only. It opens the page behind the brand’s live ad from the ad’s own link, so no click is paid for, then signs up and shops the way anyone would, saving a screenshot at every step. It says it’s AI when it talks to a person.',
             example: 'Ferrow Coffee, 10:12 on Monday 2 Nov: opened the page behind its “20% off your first bag” ad, then signed up through the pop up on mobile. The pop up offered 15%.',
           },
@@ -119,7 +119,7 @@ export const study: UseCaseStudy = {
           },
           {
             title: 'The prospect beside its competitors',
-            line: 'Name its competitors with the list. Each gets its own new customer, so the pitch shows the brand’s sign up next to theirs.',
+            line: 'Name its competitors with the list. Each gets its own AI customer, so the pitch shows the brand’s sign up next to theirs.',
             example:
               'Wednesday’s pitch prep: Ferrow’s first email came after 7 hours, and the 5 competitors named on Monday averaged 4 minutes. Of the 6, only Ferrow’s code fails on a subscription, and none shows its code on screen.',
           },
@@ -131,19 +131,19 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'Every variant, checked before launch',
-            line: 'Give it each variant’s preview link. Before a test goes live, a new customer signs up through every variant on mobile and desktop, waits for the email and takes the code to checkout.',
+            line: 'Give it each variant’s preview link. Before a test goes live, an AI customer signs up through every variant on mobile and desktop, waits for the email and takes the code to checkout.',
             example:
               'Ferrow signs, and 3 quick wins ship that week: the pop up matches the ad, the welcome email sends at once and the code works on a subscription. Test 1 shows the code on screen after the sign up. The night before launch, both variants sign up, both emails come within a minute and both codes work.',
           },
           {
             title: 'A variant that stops working mid test',
-            line: 'While a test is live, a new customer signs up through every variant each morning, so a silent app update is caught that morning, with the proof, before anyone calls a winner.',
+            line: 'While a test is live, an AI customer signs up through every variant each morning, so a silent app update is caught that morning, with the proof, before anyone calls a winner.',
             example:
-              'Friday 20 Nov, day 5 of test 1: B is ahead on opt-in rate, not yet significant. After an overnight update to the pop up app, B takes the email and gives no code. Fixed by 09:00, and the 26 hours since the last good check are left out of both arms.',
+              'Friday 20 Nov, day 5 of test 1: B is ahead on opt in rate, not yet significant. After an overnight update to the pop up app, B takes the email and gives no code. Fixed by 09:00, and the 26 hours since the last good check are left out of both arms.',
           },
           {
             title: 'The whole funnel, every week',
-            line: 'Every Monday, a new customer runs the client’s funnel from the page behind its live ads: the pop up, the email and the code at checkout. The check from the pitch stays on record, so the before is there from day 1.',
+            line: 'Every Monday, an AI customer runs the client’s funnel from the page behind its live ads: the pop up, the email and the code at checkout. The check from the pitch stays on record, so the before is there from day 1.',
             example: 'Ferrow, from the pitch to Cyber Monday: the first email from 7 hours to 38 seconds, and a code that works on a subscription.',
           },
           {
@@ -173,7 +173,7 @@ export const study: UseCaseStudy = {
       },
     ],
     answer:
-      'Obsession’s AI agents sign up as new customers at every brand, from the page behind its live ads, so you see what happens after the sign up, with proof, before anyone hands you a login.',
+      'Obsession sends AI customers to every brand, from the page behind its live ads, so you see what happens after the sign up, with proof, before anyone hands you a login.',
   },
 
   fit: {
@@ -201,7 +201,7 @@ export const study: UseCaseStudy = {
             label: 'Testing',
             title: 'Check every variant past the submit',
             line: 'Each variant’s sign up, email and code, before launch and every morning it’s live.',
-            example: 'Test 1, B: ahead on opt-in rate and giving no code, caught that morning.',
+            example: 'Test 1, B: ahead on opt in rate and giving no code, caught that morning.',
           },
           {
             label: 'Paid traffic',
@@ -224,8 +224,8 @@ export const study: UseCaseStudy = {
      finding after a sign up (the 2 shares are of the stores shopped on every journey and of the leaks they had; the 4
      findings are real, retold at invented shops, content/shops.ts). Only email was watched in those checks. */
   found: {
-    heading: '93% of stores we shopped on every journey had a leak. 77% of the leaks were silence.',
-    line: '128 stores shopped so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak a testing tool can’t see: the email that never came.',
+    heading: 'Our AI customers found a leak at 93% of stores where they ran every journey. 77% were silence.',
+    line: 'Our AI customers have joined 128 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak a testing tool can’t see: the email that never came.',
     items: [
       {
         label: 'Drinks store · New subscriber',
@@ -266,7 +266,7 @@ export const study: UseCaseStudy = {
     second: {
       label: 'Every test',
       title: 'Website audit',
-      line: 'A new customer after every release or every morning, with a screenshot of any break.',
+      line: 'An AI customer after every release or every morning, with a screenshot of any break.',
       cta: { label: 'Learn more', to: '/recipes/website-audit' },
     },
     third: {
@@ -290,7 +290,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for CRO agencies?',
-        a: 'Obsession’s AI agents follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown; after you win, they check every test variant past the sign up, every morning it’s live, and the whole funnel every week.',
+        a: 'Obsession sends an AI customer from any brand’s live ad to sign up through the pop up and take the code to checkout, then show you what happened, with proof. Before a pitch, you get a slide for your teardown; after you win, they check every test variant past the sign up, every morning it’s live, and the whole funnel every week.',
       },
       {
         q: 'We do conversion, not email. Why does this matter to us?',
@@ -298,7 +298,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Our audit already covers pop ups. What does this add?',
-        a: 'Your audit reviews the pop up as it looks. Obsession signs up through it as a new customer from the brand’s own ad, then records what arrives, when, and whether the code works at checkout, with proof the brand can open.',
+        a: 'Your audit reviews the pop up as it looks. Obsession sends an AI customer from the brand’s own ad to sign up through it, then records what arrives, when, and whether the code works at checkout, with proof the brand can open.',
       },
       {
         q: 'Can’t we sign up with a spare inbox?',
@@ -306,7 +306,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What do the 5 free checks cover?',
-        a: '3 brands you’re about to pitch and 2 of your clients, with their OK. At each, an AI agent follows a live ad as a new customer, signs up through the pop up, takes the code to checkout and watches the inbox for 48 hours. You get each brand’s slide within 4 days, with proof, in any format.',
+        a: '3 brands you’re about to pitch and 2 of your clients, with their OK. At each, an AI customer follows a live ad, signs up through the pop up, takes the code to checkout and watches the inbox for 48 hours. You get each brand’s slide within 4 days, with proof, in any format.',
       },
       {
         q: 'Do our clients have to agree?',
@@ -318,7 +318,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'How does it reach each variant?',
-        a: 'Through your testing tool’s preview link for each one. A new customer signs up through every variant before launch and every morning while the test is live, so a silent app update is caught that morning.',
+        a: 'Through your testing tool’s preview link for each one. An AI customer signs up through every variant before launch and every morning while the test is live, so a silent app update is caught that morning.',
       },
       {
         q: 'Will it skew the test?',
@@ -334,7 +334,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Do we need the brand’s login?',
-        a: 'No. It arrives the way any shopper would, from the brand’s own ad or page. Your testing tool and heatmaps still run inside, after the yes.',
+        a: 'No. It arrives the way any customer would, from the brand’s own ad or page. Your testing tool and heatmaps still run inside, after the yes.',
       },
       {
         q: 'Does it buy anything?',
@@ -358,20 +358,20 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Is it legal?',
-        a: 'Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
+        a: 'Every AI customer does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
       },
     ],
   },
 
   final: {
     heading: 'Try it on 5 brands.',
-    sub: 'Name 3 brands you’re about to pitch and 2 of your clients, with their OK. We’ll follow each one’s live ad as a new customer and send what happened after the sign up within 4 days, with proof.',
+    sub: 'Name 3 brands you’re about to pitch and 2 of your clients, with their OK. We’ll send an AI customer from each one’s live ad and send what happened after the sign up within 4 days, with proof.',
     capture: {
       kind: 'mystery',
       source: 'usecase-cro-final',
       button: 'Check 5 brands free',
       interest: 'mystery',
     },
-    link: { label: 'See everything agents do for agencies', to: '/agencies' },
+    link: { label: 'See everything AI customers do for agencies', to: '/agencies' },
   },
 }

@@ -26,15 +26,15 @@ import type { UseCaseStudy } from '../types'
 
 export const study: UseCaseStudy = {
   name: 'Leak checks for ecommerce stores',
-  line: 'Your own store, shopped as a new customer every week and after every change.',
+  line: 'Send an AI customer to your own store every week and after every change.',
 
   meta: {
     path: '/use-cases/leak-checks-for-ecommerce-stores',
-    title: 'Leak checks for ecommerce stores, shopped by AI every week',
+    title: 'Leak checks for ecommerce stores, by an AI customer weekly',
     description:
-      'AI customers follow your ads and shop your store as new shoppers, every week and after every change. Every leak comes back with proof and the fix.',
+      'Send an AI customer from your ads into your own store, every week and after every change. Every leak comes back with proof and the fix.',
     answer:
-      'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
+      'Obsession sends AI customers to your store every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
     ogImage: '/og/leak-checks-for-ecommerce-stores.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -46,9 +46,9 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Be the new customer of your own store, every week and after every change.',
-    sub: 'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix. Leaks already there show up on the first check; a break from a new theme, app, flow or ad shows up within the hour, not when sales dip.',
-    video: { youtube: 'ixCcU3W-a2M', label: 'Watch how it works', title: 'Leak checks for ecommerce stores: AI agents shop your store every week' },
+    headline: 'Send an AI customer to your own store, every week and after every change.',
+    sub: 'Obsession sends AI customers to your store every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix. Leaks already there show up on the first check; a break from a new theme, app, flow or ad shows up within the hour, not when sales dip.',
+    video: { youtube: 'ixCcU3W-a2M', label: 'Watch how it works', title: 'Leak checks for ecommerce stores: an AI customer at your store every week' },
     example: { chips: [] },
     flow: [
       {
@@ -59,7 +59,7 @@ export const study: UseCaseStudy = {
       },
       {
         label: 'Obsession',
-        title: 'A new customer for each journey',
+        title: 'An AI customer for each journey',
         items: ['Its own inbox', 'A UK mobile number', 'Its own browser, on a phone and a laptop', 'Says it’s AI'],
         foot: 'Watching for 48 hours',
       },
@@ -98,7 +98,7 @@ export const study: UseCaseStudy = {
             example: '8 journeys, on a phone and a laptop, watched for 48 hours, and every live ad each morning. Results to Slack, #store-checks.',
           },
           {
-            title: 'Each journey gets its own new customer',
+            title: 'Each journey gets its own AI customer',
             line: 'A real inbox, a real mobile number and its own browser, used for your store only. It shops the way anyone would and saves a screenshot at every step. It says it’s AI when it talks to a person.',
             example: 'Halden Home, 09:02 on Tuesday 3 Nov: signed up through the “10% off your first order” pop up, then took WELCOME10 to checkout.',
           },
@@ -131,8 +131,8 @@ export const study: UseCaseStudy = {
         line: 'Steps 7 to 11',
         steps: [
           {
-            title: 'A new customer every week',
-            line: 'Every Monday, a new customer runs every journey, since a welcome only comes once. The first check stays on record, so the before is there from day 1.',
+            title: 'A new AI customer every week',
+            line: 'Every Monday, a new AI customer runs every journey, since a welcome only comes once. The first check stays on record, so the before is there from day 1.',
             example: 'Monday 9 Nov, after the fixes: the code works, the basket reminder comes in 1 hour and the checkout button brings the basket back.',
           },
           {
@@ -142,7 +142,7 @@ export const study: UseCaseStudy = {
           },
           {
             title: 'Every live ad, every morning',
-            line: 'Every morning, an agent opens each live ad’s page straight from the ad’s link, so no click is paid for. A page that’s sold out, broken or off the ad’s price comes back with the fix drafted for your OK.',
+            line: 'Every morning, an AI customer opens each live ad’s page straight from the ad’s link, so no click is paid for. A page that’s sold out, broken or off the ad’s price comes back with the fix drafted for your OK.',
             example: 'Tuesday 17 Nov, 07:04: a social ad spending £410 a day sends clicks to the Linen Throw in oat, which sold out overnight. Paused at 07:40, after Ana’s OK.',
           },
           {
@@ -207,7 +207,7 @@ export const study: UseCaseStudy = {
           {
             label: 'Changes',
             title: 'Ship a change, then see it checked',
-            line: 'A theme publish or a flow edit, checked by a new customer within the hour.',
+            line: 'A theme publish or a flow edit, checked by an AI customer within the hour.',
             example: 'Halden’s new theme: a phone basket break, found in 20 minutes.',
           },
           {
@@ -231,8 +231,8 @@ export const study: UseCaseStudy = {
      shares are of the stores shopped on every journey and of the leaks they had; the 4 findings are real, retold at
      invented shops, content/shops.ts). Only email was watched in those checks, so the line says so. */
   found: {
-    heading: '93% of stores we shopped on every journey had a leak. 77% of the leaks were silence.',
-    line: '128 stores shopped so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak your dashboards can’t show: the email that never came.',
+    heading: 'Our AI customers found a leak at 93% of stores where they ran every journey. 77% were silence.',
+    line: 'Our AI customers have joined 128 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak your dashboards can’t show: the email that never came.',
     items: [
       {
         label: 'Fashion store · Basket left',
@@ -279,7 +279,7 @@ export const study: UseCaseStudy = {
     third: {
       label: 'After every change',
       title: 'Website audit',
-      line: 'A new customer after every release, with the fix for any break.',
+      line: 'An AI customer after every release, with the fix for any break.',
       cta: { label: 'Learn more', to: '/recipes/website-audit' },
     },
     sample: {
@@ -297,7 +297,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for an ecommerce store?',
-        a: 'Obsession’s AI agents shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
+        a: 'Obsession sends AI customers to your store every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Every leak comes back with proof and the fix.',
       },
       {
         q: 'What counts as a leak?',
@@ -333,7 +333,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Will the checks clutter our numbers?',
-        a: 'No. Every agent is labelled, so you can filter them out of your lists and reports. Every order is marked as an AI test in its order note, kept out of your ad conversions, reviews and email lists, and refunded. Ads are opened from their links, never clicked, so your ad numbers stay true.',
+        a: 'No. Every AI customer is labelled, so you can filter them out of your lists and reports. Every order is marked as an AI test in its order note, kept out of your ad conversions, reviews and email lists, and refunded. Ads are opened from their links, never clicked, so your ad numbers stay true.',
       },
       {
         q: 'Does it place real orders?',
@@ -368,13 +368,13 @@ export const study: UseCaseStudy = {
 
   final: {
     heading: 'Check your store free.',
-    sub: 'Name your store. 4 new customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+    sub: 'Name your store. 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
     capture: {
       kind: 'mystery',
       source: 'usecase-store-leaks-final',
       button: 'Check my store free',
       interest: 'mystery',
     },
-    link: { label: 'See everything agents do for marketing teams', to: '/marketing' },
+    link: { label: 'See everything AI customers do for marketing teams', to: '/marketing' },
   },
 }

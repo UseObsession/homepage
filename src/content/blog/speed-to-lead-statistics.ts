@@ -401,7 +401,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Lead leaks, its [speed to lead test](/recipes/lead-leaks), times the first reply to every enquiry on the form, chat and phone the team owns. It shows each lead nobody answered and drafts the routing fix in the CRM the team connects, for the team to approve. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Lead leaks, its [speed to lead test](/recipes/lead-leaks), times the first reply to every enquiry on the form, chat and phone the team owns. It shows each lead nobody answered and drafts the routing fix in the CRM the team connects, for the team to approve. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
     },
     {
       kind: 'p',
@@ -469,7 +469,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Obsession’s AI customers send a test lead through a sales team’s own form, chat and phone at the hours it picks, evenings and weekends included, and time every first reply.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about speed to lead statistics' },

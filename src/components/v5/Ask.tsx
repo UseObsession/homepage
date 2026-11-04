@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useId, useRef, useState, type AnimationEvent, type KeyboardEvent } from 'react'
 import { Link } from 'react-router-dom'
 import type { Ask as AskContent } from '../../content/types'
 import './Ask.css'
@@ -10,11 +10,17 @@ import './Ask.css'
    page for search and llms-full.txt (data-llms="keep"); only the chosen one shows. An example asked from code shows only
    its code. Under the stage, what Obsession
    keeps for each company, and where you can ask from. The answer plays once the section is on screen, and again when
-   its question is chosen; under reduced motion it shows finished. */
+   its question is chosen; under reduced motion it shows finished.
+   Until someone picks a question, the questions take turns (4 Nov): a line fills under the chosen one, and when it is
+   full the next one opens, so a reader sees each question has its own answer. The line is a CSS animation (Ask.css),
+   paused while the pointer is over the questions or the section is off screen; its end moves to the next question. A
+   click or a key stops the turns for good. Under reduced motion there is no line, so nothing moves on its own. */
 export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
   const hid = useId()
   const [cur, setCur] = useState(0)
   const [live, setLive] = useState(false)
+  const [seen, setSeen] = useState(false)
+  const [auto, setAuto] = useState(true)
   const ref = useRef<HTMLElement>(null)
   const tabs = useRef<(HTMLButtonElement | null)[]>([])
   useEffect(() => {
@@ -22,9 +28,8 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
     if (!el || !('IntersectionObserver' in window)) return
     const io = new IntersectionObserver(
       ([e]) => {
-        if (!e.isIntersecting) return
-        setLive(true)
-        io.disconnect()
+        setSeen(e.isIntersecting)
+        if (e.isIntersecting) setLive(true)
       },
       { threshold: 0.35 },
     )
@@ -40,11 +45,15 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
     else if (e.key === 'End') next = n - 1
     if (next < 0) return
     e.preventDefault()
+    setAuto(false)
     setCur(next)
     tabs.current[next]?.focus()
   }
+  const onTurn = (e: AnimationEvent<HTMLDivElement>) => {
+    if (e.animationName === 'v5-ask-turn') setCur((c) => (c + 1) % ask.examples.length)
+  }
   return (
-    <section ref={ref} className="v5-section v5-ask" id={id} aria-labelledby={`${hid}-h`} data-live={live ? '' : undefined}>
+    <section ref={ref} className="v5-section v5-ask" id={id} aria-labelledby={`${hid}-h`} data-live={live ? '' : undefined} data-seen={seen ? '' : undefined} data-auto={auto ? '' : undefined}>
       <div className="s-wrap">
         <div className="v5-head">
           <p className="v5-ask-areas">{ask.areas.join(' · ')}</p>
@@ -54,7 +63,7 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
           <p className="v5-line">{ask.line}</p>
         </div>
         <div className="v5-ask-grid">
-          <div className="v5-ask-qs" role="tablist" aria-label="Questions you could ask" aria-orientation="vertical" onKeyDown={onKey}>
+          <div className="v5-ask-qs" role="tablist" aria-label="Questions you could ask" aria-orientation="vertical" onKeyDown={onKey} onAnimationEnd={onTurn}>
             {ask.examples.map((x, k) => (
               <button
                 key={x.q}
@@ -68,7 +77,10 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
                 aria-controls={`${hid}-p${k}`}
                 tabIndex={k === cur ? 0 : -1}
                 className="v5-ask-tab"
-                onClick={() => setCur(k)}
+                onClick={() => {
+                  setAuto(false)
+                  setCur(k)
+                }}
               >
                 <span className="v5-ask-where">{x.code ? 'Asked from code' : `Asked in ${x.where}`}</span>
                 <span className="v5-ask-q">{x.q}</span>
@@ -123,15 +135,17 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
             ))}
           </div>
         </div>
-        <div className="v5-ask-foot">
-          <div className="v5-ask-keeps">
-            <h3 className="v5-ask-h3">{ask.keeps.heading}</h3>
-            <ul>
-              {ask.keeps.items.map((i) => (
-                <li key={i}>{i}</li>
-              ))}
-            </ul>
-          </div>
+        <div className={ask.keeps ? 'v5-ask-foot' : 'v5-ask-foot v5-ask-foot--from'}>
+          {ask.keeps && (
+            <div className="v5-ask-keeps">
+              <h3 className="v5-ask-h3">{ask.keeps.heading}</h3>
+              <ul>
+                {ask.keeps.items.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="v5-ask-from">
             <h3 className="v5-ask-h3">{ask.from.label}</h3>
             <ul className="v5-ask-chips">
@@ -139,10 +153,12 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
                 <li key={i}>{i}</li>
               ))}
             </ul>
-            <p className="v5-ask-note">{ask.notYet}</p>
-            <Link className="v5-link v5-ask-more" to={ask.more.to}>
-              {ask.more.label}
-            </Link>
+            {ask.notYet && <p className="v5-ask-note">{ask.notYet}</p>}
+            {ask.more && (
+              <Link className="v5-link v5-ask-more" to={ask.more.to}>
+                {ask.more.label}
+              </Link>
+            )}
           </div>
         </div>
       </div>

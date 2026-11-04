@@ -306,7 +306,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a CX team, its AI customers call, chat and email the company’s AI agents every day, as its customers do. They check each agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
+      text: 'Obsession runs these checks today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a CX team, its AI customers call, chat and email the company’s AI agents every day, as its customers do. They check each agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
         BOT_TEST +
         ') gives the questions and a scoring sheet.',
     },
@@ -452,7 +452,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Your first AI agent check is free: name a chat page or phone number your company runs, 3 AI customers use it, and your report lands within 4 days.',
+      text: 'Send an AI customer to any company. Your first AI agent check is free: name a chat page or phone number your company runs, 3 AI customers use it, and your report lands within 4 days.',
       to: '/verify',
       label: 'Check your AI agents',
     },

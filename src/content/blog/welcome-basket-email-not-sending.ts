@@ -382,7 +382,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store they [shop as new customers](' +
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store they [shop as new customers](' +
         LEAKS +
         ') every week and after every change, and Obsession’s [delivery monitoring](' +
         DELIVERY +
@@ -390,7 +390,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI agents run the new customer test on your store every week and after every change, and report each failure with proof and the fix. Your first store check is free.',
+      text: 'Obsession’s AI customers run the new customer test on your store every week and after every change, and report each failure with proof and the fix. Your first store check is free.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

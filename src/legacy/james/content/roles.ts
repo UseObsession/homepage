@@ -51,7 +51,7 @@ export const roles: Role[] = [
     label: 'Agency',
     plural: 'agencies',
     bandName: 'Agencies',
-    bandLine: 'Check every client and prospect as a customer would.',
+    bandLine: 'Send an AI customer to every client and prospect.',
     page: '/agencies',
     ways: ['recipes', 'task'],
     recipes: ['prospect', 'mystery', 'competitor', 'ads'],

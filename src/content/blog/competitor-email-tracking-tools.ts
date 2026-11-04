@@ -409,18 +409,18 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-subscriber-got', text: 'What a new subscriber actually got' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its October store checks show which emails a new subscriber received, and which never came.',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its October store checks show which emails a new subscriber received, and which never came.',
     },
     {
       kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
+      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new AI customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
     },
     {
       kind: 'list',
       items: [
         'Almost every store whose welcome journey could be checked sent its first email within 6 minutes of sign-up.',
         'Some stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. Each of those stores then sent nothing in the 48 hours after a checkout was left.',
-        'Every store in the pilot had at least one gap. Nearly half sent no email in the 48 hours after the shopper left a checkout, with an email address already typed.',
+        'Every store in the pilot had at least one gap. Nearly half sent no email in the 48 hours after the AI customer left a checkout, with an email address already typed.',
         'Most first checkout reminders came within 4 hours, the fastest after 30 minutes and the slowest after about 10 hours. Fewer than half of the stores that sent one followed it with a second reminder inside 48 hours.',
         'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
       ],
@@ -445,7 +445,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The 4 agencies chose the stores, so the patterns describe the stores they pitch and serve. The pilot read each inbox at 48 hours, and no shopper paid or gave a phone number, so order emails and texts were outside it. A store check can read at 4, 12, 24 or 48 hours, or keep watching for as long as you want. Where a store put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the report names the step it couldn’t test.',
+      text: 'The 4 agencies chose the stores, so the patterns describe the stores they pitch and serve. The pilot read each inbox at 48 hours, and no AI customer paid or gave a phone number, so order emails and texts were outside it. A store check can read at 4, 12, 24 or 48 hours, or keep watching for as long as you want. Where a store put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the report names the step it couldn’t test.',
     },
     {
       kind: 'p',
@@ -666,7 +666,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Name the competitors to watch, and an AI customer joins each one’s list as a real subscriber and keeps every email as it arrived. It runs now, on credit-based plans like Claude’s.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'by-job', text: 'Which tool fits which job' },

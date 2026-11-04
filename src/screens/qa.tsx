@@ -3,7 +3,7 @@
    HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function QaScreen() {
   return (
-    <div className="il appx-il app-qa"><div className="appx-fit"><div className="appx" role="img" aria-label="A release check after version 4.2 ships: 3 labelled test customers live the product's first 14 days on real UK and US phones and inboxes, and their lanes fill day by day. On day 6 the login code by text never reaches either UK number while the US number gets it in 6 seconds, the check needs you, and a fix ticket is drafted for your tracker, sent only after your OK.">
+    <div className="il appx-il app-qa"><div className="appx-fit"><div className="appx" role="img" aria-label="A release check after version 4.2 ships: 3 labelled AI customers live the product's first 14 days on real UK and US phones and inboxes, and their lanes fill day by day. On day 6 the login code by text never reaches either UK number while the US number gets it in 6 seconds, the check needs you, and a fix ticket is drafted for your tracker, sent only after your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>First 14 days</span>
@@ -26,7 +26,7 @@ export function QaScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
         </aside>
         <div className="ax-main">
           <header className="ax-h qa-h ax-fade">

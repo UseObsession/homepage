@@ -271,7 +271,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'An example from the September store check in our [sample output](' +
         SAMPLE +
-        '): on Tuesday 22 September a test customer left a £40 Body Care Gift Set in a UK skincare store’s basket at 02:57, and another stopped at checkout with a £21 deodorant at 03:11. No email reached either inbox in the 48 hours that followed. The check used 4 test customers with 1 inbox each, at 1 store in 1 run, so it records what arrived and can’t say why.',
+        '): on Tuesday 22 September an AI customer left a £40 Body Care Gift Set in a UK skincare store’s basket at 02:57, and another stopped at checkout with a £21 deodorant at 03:11. No email reached either inbox in the 48 hours that followed. The check used 4 AI customers with 1 inbox each, at 1 store in 1 run, so it records what arrived and can’t say why.',
     },
     {
       kind: 'note',
@@ -304,7 +304,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
+      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
     },
     {
       kind: 'cta',

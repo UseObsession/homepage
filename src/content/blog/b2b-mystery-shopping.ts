@@ -233,13 +233,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
     },
     {
       kind: 'cta',
       text: 'Name your company’s demo form, chat and sales line, and AI customers become its buyers. They ask for the demo, wait for the reply and keep every email, chat and call log exactly as it arrived, with its time.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to mystery shop a B2B sales funnel, compared', compare: true },

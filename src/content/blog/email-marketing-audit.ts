@@ -385,7 +385,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession runs layer 3 today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI customer to each competitor’s emails and texts.',
+      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession runs layer 3 today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [delivery monitoring](/recipes/delivery-monitoring) sends AI customers with real inboxes and numbers through the first 14 days and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) subscribes an AI customer to each competitor’s emails and texts.',
     },
     {
       kind: 'cta',

@@ -38,7 +38,7 @@ export const post: BlogPost = {
   metaTitle: 'AI customers: what they are and how they differ from bots',
   description:
     'AI customers are AI agents that become real customers of a company and keep what it sends as evidence. What they see, the rules, and how they differ.',
-  answer: `${AI_CUSTOMER.definition} It is a customer of the company and works for whoever sent it, the opposite of an AI customer service agent, which works for the company and answers its customers. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.`,
+  answer: `${AI_CUSTOMER.definition} It is a customer of the company and works for whoever sent it, the opposite of an AI customer service agent, which works for the company and answers its customers. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof.`,
   primaryKeyword: 'ai customers',
   keywords: [
     'what are ai customers',
@@ -253,9 +253,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'Send an AI customer to any company. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },

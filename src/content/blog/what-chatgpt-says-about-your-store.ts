@@ -292,7 +292,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Prices change, so confirm them on each page.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Prices change, so confirm them on each page.',
     },
     {
       kind: 'list',
@@ -323,7 +323,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s Listings and AI answers recipe runs this check every Monday: its AI agents ask the assistants your customers use, trace each wrong answer to the page it cites, and ask again until the answer changes.',
+      text: 'Obsession’s Listings and AI answers recipe runs this check every Monday: its AI customers ask the assistants your customers use, trace each wrong answer to the page it cites, and ask again until the answer changes.',
       to: '/recipes/listings-ai-answers',
       label: 'See Listings and AI answers',
     },
@@ -356,7 +356,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Your first store check is free. Obsession’s AI agents shop your store as new customers, from the ad to the sign up, the welcome code and the basket, and report each problem with proof and the fix.',
+      text: 'Your first store check is free. Obsession’s AI customers shop your store as new customers, from the ad to the sign up, the welcome code and the basket, and report each problem with proof and the fix.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

@@ -255,7 +255,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[AI customers](/blog/ai-customers) run the same checks as a customer would. **' +
         AI_CUSTOMER.definition +
-        '** Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+        '** Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
     {
       kind: 'p',
@@ -263,7 +263,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each AI customer says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
+      text: 'Each AI customer says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
     },
     {
       kind: 'p',

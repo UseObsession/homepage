@@ -74,12 +74,12 @@
 }
 
 .pband-item:hover,
-.pband-item:focus-visible {
+.pband-item:focus-within {
   flex-grow: 2.1;
   --pband-glow: var(--s-accent-glow-hover, 0%);
 }
 
-.pband-item:focus-visible {
+.pband-name a:focus-visible {
   outline: none;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .pband-item[data-reader="verify"]:hover,
-.pband-item[data-reader="verify"]:focus-visible {
+.pband-item[data-reader="verify"]:focus-within {
   --pband-glow: 9%;
 }
 
@@ -119,6 +119,26 @@
   line-height: 1;
   letter-spacing: -.045em;
   text-wrap: balance;
+}
+
+/* The name is the panel's link, stretched over the whole panel. The folded block sits above it but lets the pointer
+   through, so a click anywhere on the panel opens its page, except on a recipe, which opens the recipe. */
+.pband-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pband-name a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.pband-more {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .pband-line {
@@ -142,15 +162,59 @@
   gap: 6px;
 }
 
-.pband-ways span {
+/* Where the reader sends its AI customers: a small label, then the places. */
+.pband-to {
+  display: grid;
+  gap: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+
+.pband-to span {
+  font: 500 11px/1.2 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--s-read, var(--text-2));
+}
+
+.pband-ways a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   height: 26px;
   padding: 0 10px;
   border-radius: var(--radius-pill);
   font: 500 12px/26px var(--font-sans);
   color: var(--text);
+  text-decoration: none;
   white-space: nowrap;
+  pointer-events: auto;
   background: color-mix(in srgb, var(--text) 9%, transparent);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--text) 26%, transparent) inset;
+  transition: background 200ms var(--ease);
+}
+
+.pband-ways a:hover {
+  background: color-mix(in srgb, var(--text) 18%, transparent);
+}
+
+.pband-ways a svg {
+  flex: none;
+  opacity: .7;
+  transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.pband-ways a:hover svg {
+  opacity: 1;
+  transform: translate(1px, -1px);
+}
+
+/* An inset ring: the folded block clips anything drawn outside a chip. */
+.pband-ways a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--text) inset;
 }
 
 .pband-go {
@@ -193,20 +257,24 @@
   .pband-more-in {
     min-height: 0;
     overflow: hidden;
-    width: calc((100cqi + 3 * (var(--slant) - var(--seam))) * var(--pband-open) - var(--slant) * 1.55 - 30px);
+    /* An open panel's content box is its share of the row's free space: the band less every panel's fixed padding and
+       overlap (1.65 slants, 3 seams and 154px for 4 panels), times the open panel's share. Until 4 Nov this took the
+       share of the whole row and then the padding, which came out about 50px wider than the panel; the 2 short chips
+       never reached the edge, the recipe links do. */
+    width: calc((100cqi - 1.65 * var(--slant) - 3 * var(--seam) - 154px) * var(--pband-open));
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 180ms ease-out, transform 260ms ease-out;
   }
 
   .pband-item:hover .pband-more,
-  .pband-item:focus-visible .pband-more {
+  .pband-item:focus-within .pband-more {
     grid-template-rows: 1fr;
     transition: grid-template-rows 520ms var(--ease) 60ms;
   }
 
   .pband-item:hover .pband-more-in,
-  .pband-item:focus-visible .pband-more-in {
+  .pband-item:focus-within .pband-more-in {
     opacity: 1;
     transform: none;
     transition: opacity 420ms var(--ease) 240ms, transform 560ms var(--ease) 180ms;
@@ -218,30 +286,36 @@
 @media (hover: hover) and (min-width: 861px) and (prefers-reduced-motion: reduce) {
   .pband-more,
   .pband-item:hover .pband-more,
-  .pband-item:focus-visible .pband-more { transition: none; }
+  .pband-item:focus-within .pband-more { transition: none; }
   .pband-more-in,
   .pband-item:hover .pband-more-in,
-  .pband-item:focus-visible .pband-more-in { transform: none; transition: opacity 200ms linear; }
+  .pband-item:focus-within .pband-more-in { transform: none; transition: opacity 200ms linear; }
 }
 
 .pband-item:hover .pband-go,
-.pband-item:focus-visible .pband-go {
+.pband-item:focus-within .pband-go {
   color: var(--bg);
   background: var(--accent);
   box-shadow: none;
   transform: rotate(-45deg);
 }
 
-/* Keyboard focus: the lit state above, and a ring on the arrow (an outline on the panel would be cut by its slant). */
-.pband-item:focus-visible .pband-go {
+/* Keyboard focus on the panel's name: the lit state above, and a ring on the arrow (an outline on the panel would be
+   cut by its slant). */
+.pband-item:has(.pband-name a:focus-visible) .pband-go {
   outline: 2px solid var(--text);
   outline-offset: 3px;
 }
 
-/* Narrower than his full width, the one under the pointer grows less, so its neighbours keep room for their names. */
+/* Narrower than his full width, the one under the pointer grows less, so its neighbours keep room for their names, and
+   every panel is taller, so an open panel's recipes, which wrap to 4 rows here, keep its name clear of the arrow. */
 @media (max-width: 1100px) {
+  .pband-item {
+    min-height: 450px;
+  }
+
   .pband-item:hover,
-  .pband-item:focus-visible {
+  .pband-item:focus-within {
     flex-grow: 1.5;
   }
 }
@@ -290,7 +364,7 @@
   }
 
   .pband-item:hover,
-  .pband-item:focus-visible {
+  .pband-item:focus-within {
     flex-grow: 0;
   }
 }

@@ -415,7 +415,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-saw', text: 'What a new customer was shown' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Two of Obsession’s October runs show the prices a new customer met past the product page.',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Two of Obsession’s October runs show the prices a new customer met past the product page.',
     },
 
     { kind: 'h3', id: 'reminders', text: 'Prices in the reminder emails' },
@@ -445,7 +445,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'offers', text: 'Offers the cart didn’t honour' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
+      text: 'On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
@@ -485,7 +485,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Obsession’s AI customers become new customers of any company your team names: a competitor, a prospect or your own store. They keep every email, offer and price they receive, exactly as it arrived.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 14 tools and Obsession, side by side', compare: true },

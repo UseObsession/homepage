@@ -373,7 +373,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company’s agents can find revenue leaks, watch competitors and prospect with proof. Its open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
+      text: 'Obsession runs today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company’s agents can find revenue leaks, watch competitors and prospect with proof. Its open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -521,7 +521,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you: long lived agents with their own inbox, phone number and browser. They run today behind 5 verbs over MCP, an API and an SDK.',
+      text: 'Send an AI customer to any company. Each is a long lived agent with its own inbox, phone number and browser, and they run today behind 5 verbs over MCP, an API and an SDK.',
       to: '/developers',
       label: 'See the API and MCP',
     },

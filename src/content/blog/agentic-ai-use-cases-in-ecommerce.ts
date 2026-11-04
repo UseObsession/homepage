@@ -520,7 +520,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. In October the same team ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
+      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. In October the same team ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
     },
     {
       kind: 'list',
@@ -605,7 +605,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Send an AI customer to any company: it signs up and keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check my store free',
     },

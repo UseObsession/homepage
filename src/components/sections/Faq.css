@@ -7,6 +7,8 @@
   row-gap: var(--ob-space-block);
 }
 .s-faq__h { max-width: 20ch; margin: 0; }
+/* The label over the claim keeps the gap a v5 section's head gives it (styles/v5.css .v5-head). */
+.s-faq__head > .v5-kicker { margin-bottom: 16px; }
 /* A long claim steps down to the h3 size, so the claim that stays in view never runs past 3 lines. */
 .s-faq__h--long.ob-type-h2 {
   max-width: 24ch;
@@ -53,3 +55,23 @@
 :root:not(.js) .ob-faq .ob-disclose { grid-template-rows: 1fr; visibility: visible; }
 :root:not(.js) .ob-faq .ob-disclose > * { opacity: 1; translate: none; }
 :root:not(.js) .ob-faq .ob-faq-icon { display: none; }
+
+/* Only the first few questions (Faq `limit`): the rest hide once the page is scripted, until "Show more". Without
+   script every question shows and the button stays hidden. */
+.v5-js .ob-faq:not([data-all]) > .ob-faq-item[data-more],
+.ob-faq[data-ready]:not([data-all]) > .ob-faq-item[data-more] { display: none; }
+.ob-faq-more { display: none; }
+.v5-js .ob-faq-more,
+.ob-faq[data-ready] > .ob-faq-more {
+  display: inline-flex;
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--ob-line);
+  background: none;
+  color: var(--ob-text);
+  font: 500 14.5px / 1.5 var(--ob-font-sans);
+  cursor: pointer;
+}
+.ob-faq-more:hover { border-color: var(--ob-text); }
+.ob-faq-more:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 4px; border-radius: 2px; }

@@ -21,7 +21,7 @@ export const recipe: Recipe = {
   slug: 'account-watch',
   name: 'Account watch',
   group: 'Watch other companies',
-  line: 'Stays a customer of every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
+  line: 'Sends AI customers to every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
   gets: 'Every morning: who’s at risk, who’s ready to grow, and the play for each.',
   kit: [
     'An AI customer per account',
@@ -38,7 +38,7 @@ export const recipe: Recipe = {
     description:
       'With consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and stay its customer, then flag churn and upsell.',
     answer:
-      'Account watch flags churn and upsell in every account: with consent, AI agents read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
+      'Account watch flags churn and upsell in every account: with consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
     ogImage: '/og/account-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,8 +48,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that spot churn and upsell in every account.',
-    sub: 'Account watch flags churn and upsell in every account: with consent, AI agents read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
+    headline: 'An AI customer that spots churn and upsell in every account.',
+    sub: 'Account watch flags churn and upsell in every account: with consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
     screen: 'acctwatch',
     capture: {
       kind: 'waitlist',
@@ -67,10 +67,10 @@ export const recipe: Recipe = {
     journey: ['Read the tools you connect', 'Track news and hiring', 'Stay a customer', 'Flag risk and growth'],
     schedule: 'Every morning at 07:00',
     report: 'A Slack alert, the play in your CRM',
-    kit: ['Agent ID', 'An inbox per account', 'Its own number', 'Tools you connect'],
+    kit: ['Its own ID', 'An inbox per account', 'Its own number', 'Tools you connect'],
     events: [
       { time: 'Mon 07:00', text: '38 accounts read from your CRM, helpdesk and call notes, with consent.' },
-      { time: 'Mon 07:04', text: 'An AI agent joins each account’s emails and texts, the way its customers do.' },
+      { time: 'Mon 07:04', text: 'An AI customer joins each account’s emails and texts, the way its customers do.' },
       { time: 'Tue 07:00', text: 'Payroll SaaS posts 12 sales roles. Its seats are 92% used.' },
       { time: 'Thu 07:00', text: 'Snack brand: usage down 38% in 14 days, and 3 urgent tickets in 5.' },
       { time: 'Thu 07:05', text: 'Snack brand’s site goes down for the 2nd time this week, seen the way its own customers see it.' },
@@ -84,7 +84,7 @@ export const recipe: Recipe = {
     { title: 'Connect your tools', line: 'Your CRM, helpdesk and call notes, read only, with consent.' },
     { title: 'Add the accounts', line: 'Every account on your book, from your CRM, a CSV, Clay or the API.' },
     {
-      title: 'Agents watch each one',
+      title: 'AI customers watch each one',
       line: 'In your tools, in the account’s public news and hiring, and on its own emails and texts, as its customer.',
     },
     {
@@ -115,7 +115,7 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Their emails and texts',
-          line: 'An AI agent on each account’s list sees the day its emails stop, its links break or its texts go quiet.',
+          line: 'An AI customer on each account’s list sees the day its emails stop, its links break or its texts go quiet.',
         },
         {
           title: 'Their journeys',
@@ -157,7 +157,7 @@ export const recipe: Recipe = {
     rows: [
       { label: 'Usage, tickets and calls', values: ['The tools you connect, read only', 'Yours, with consent'] },
       { label: 'News, hiring and their site', values: ['Public pages anyone can read', 'None needed'] },
-      { label: 'Their emails and texts', values: ['An AI agent joins their list', 'None: the sign up any customer uses'] },
+      { label: 'Their emails and texts', values: ['An AI customer joins their list', 'None: the sign up any customer uses'] },
       {
         label: 'Their sign up, basket or booking',
         values: ['An AI customer, as far as you choose', 'Yours, in your settings'],
@@ -178,7 +178,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s it worth?',
-        a: 'Account watch gives up to 494 hours a year back for 1 account manager who checks 38 accounts by hand, 15 minutes each a week: 9.5 hours a week (9.5 × 52 = 494). Its agents check every one every morning, and you read only the accounts that need you.',
+        a: 'Account watch gives up to 494 hours a year back for 1 account manager who checks 38 accounts by hand, 15 minutes each a week: 9.5 hours a week (9.5 × 52 = 494). Its AI customers check every one every morning, and you read only the accounts that need you.',
       },
       {
         q: 'Does Account watch read our customers’ data?',
@@ -186,11 +186,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will our accounts know?',
-        a: 'When the Account watch agent talks to a person at an account, it says it’s an AI. You stay private unless you choose to be named.',
+        a: 'When the Account watch AI customer talks to a person at an account, it says it’s an AI. You stay private unless you choose to be named.',
       },
       {
         q: 'How is Account watch different from a health score?',
-        a: 'Account watch’s agents live as each account’s customer, so they see what breaks for them before usage drops. A health score reads only your own data.',
+        a: 'Account watch’s AI customers live as each account’s customer, so they see what breaks for them before usage drops. A health score reads only your own data.',
       },
       {
         q: 'Does Account watch fit what we sell?',

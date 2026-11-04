@@ -6,7 +6,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-templates"><div className="appx-fit"><div className="appx" role="img" aria-label="The Recipes page: a typed line for any task above the recipes, among them a Support bot check for your own AI agent. A person picks Mystery shopper, its setup sheet slides in with 2 client stores, a 4 step journey that stops before payment, weekly runs and the report, and Approve and run starts setting up 8 agents.">
+    <div className="il appx-il app-templates"><div className="appx-fit"><div className="appx" role="img" aria-label="The Recipes page: a typed line for any task above the recipes, among them a Support bot check for your own AI agent. A person picks Mystery shopper, its setup sheet slides in with 2 client stores, a 4 step journey that stops before payment, weekly runs and the report, and Approve and run starts setting up 8 AI customers.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Recipes</span>
@@ -27,7 +27,7 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
             <p className="ax-side-h">{ws.lists}</p>
             <a role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> agents working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
         </aside>
         <div className="ax-main">
           {/* page head: the title and the declared agent */}
@@ -46,13 +46,13 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
           <div className="tp-grid">
             <div className="tp-card is-pick ax-in" style={{ '--d': '.14s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.6 7.25h10.8l-.85 8.6a1.5 1.5 0 0 1-1.5 1.35H6.95a1.5 1.5 0 0 1-1.5-1.35Z" /><path d="M7.5 9.6V6.25a2.5 2.5 0 0 1 5 0V9.6" /></svg><span className="tp-tile-on" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.6 7.25h10.8l-.85 8.6a1.5 1.5 0 0 1-1.5 1.35H6.95a1.5 1.5 0 0 1-1.5-1.35Z" /><path d="M7.5 9.6V6.25a2.5 2.5 0 0 1 5 0V9.6" /></svg></span></span>
-              <p className="tp-tx"><b>Mystery shopper</b><span>4 test customers shop a store</span></p>
+              <p className="tp-tx"><b>Mystery shopper</b><span>4 AI customers shop a store</span></p>
               <span className="tp-use">6 watches</span>
               <i className="tp-ring" aria-hidden="true" />
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.18s' }}><div className="tp-cin">
               <span className="tp-tile"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="8.75" cy="8.75" r="5" /><path d="m12.4 12.4 4.35 4.35" /></svg></span>
-              <p className="tp-tx"><b>Prospect intelligence</b><span>Joins prospects as a customer</span></p>
+              <p className="tp-tx"><b>Prospect intelligence</b><span>Sends prospects an AI customer</span></p>
               <span className="tp-use">5 watches</span>
             </div></div>
             <div className="tp-card ax-in" style={{ '--d': '.22s' }}><div className="tp-cin">
@@ -113,10 +113,10 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
               <div className="tp-v tp-rep"><span className="tp-ck"><i className="ax-tick" />PDF</span><span className="tp-ck"><i className="ax-tick" />Email</span><span className="tp-ck"><i className="ax-tick" />Client link</span><span className="tp-when">By day 4</span></div>
             </div>
             <footer className="tp-foot">
-              <p className="tp-sum"><b>2 stores</b> · 4 test customers each</p>
+              <p className="tp-sum"><b>2 stores</b> · 4 AI customers each</p>
               <span className="ax-btn tp-go">Approve and run</span>
               <div className="tp-run">
-                <svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><b>Setting up 8 agents</b>
+                <svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><b>Setting up 8 AI customers</b>
                 <span className="tp-q"><i className="on" style={{ '--d': '4.78s' }} /><i className="on" style={{ '--d': '4.96s' }} /><i className="on" style={{ '--d': '5.14s' }} /><i className="on" style={{ '--d': '5.32s' }} /><i className="on" style={{ '--d': '5.5s' }} /><i /><i /><i /></span>
               </div>
             </footer>

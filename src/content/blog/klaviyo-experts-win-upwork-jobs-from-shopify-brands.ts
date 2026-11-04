@@ -315,7 +315,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. This month it ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
+      text: 'An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. This month it ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
     },
     {
       kind: 'p',
@@ -375,7 +375,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How long should I wait before saying a store sends no abandoned cart email?',
-          a: '48 hours, with the spam folder checked. In Obsession’s October pilot for 4 agencies, some stores sent their first reminder about 10 hours after the shopper left. Until the 48 hours are up, say “nothing yet at 4 hours”.',
+          a: '48 hours, with the spam folder checked. In Obsession’s October pilot for 4 agencies, some stores sent their first reminder about 10 hours after the AI customer left. Until the 48 hours are up, say “nothing yet at 4 hours”.',
         },
         {
           q: 'Does this work if the brand isn’t on Klaviyo?',

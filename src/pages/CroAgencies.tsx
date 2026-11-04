@@ -216,7 +216,7 @@ export function CroAgencies() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to check<small>Each brand gets its own new customer</small>
+                      Ready to check<small>Each brand gets its own AI customer</small>
                     </span>
                     <b>
                       <Count to={12} /> brands
@@ -234,7 +234,7 @@ export function CroAgencies() {
                         <div className="uc-field uc-dd">The page behind a live ad</div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">At each brand, the customer</p>
+                        <p className="uc-lab">At each brand, the AI customer</p>
                         <ul className="uc-checks">
                           <li>
                             <span className="uc-cb on" style={at(0)} />
@@ -314,7 +314,7 @@ export function CroAgencies() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Ferrow Coffee</span>
-                        <span className="tag idle">Customer 5B2C</span>
+                        <span className="tag idle">AI customer 5B2C</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
@@ -614,7 +614,7 @@ export function CroAgencies() {
                   </div>
                   <ol className="uc-tl uc-seq">
                     {[
-                      ['07:00', 'The morning check: a new customer signs up through A and B on mobile'],
+                      ['07:00', 'The morning check: an AI customer signs up through A and B on mobile'],
                       ['07:01', 'A: the code by email in 40 seconds'],
                       ['07:01', 'B: a blank where the code should be; alert sent with the proof'],
                       ['08:01', 'B: no email after 1 hour either'],

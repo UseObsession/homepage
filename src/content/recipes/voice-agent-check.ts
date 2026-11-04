@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   slug: 'voice-agent-check',
   name: 'Voice agent check',
   group: 'Check your AI agents',
-  line: 'Calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer.',
+  line: 'AI customers call your AI receptionist every morning, book a slot, ask a price and a person, and check every answer.',
   gets: 'A verdict on every call, the recording behind it, and the right answer drafted wherever it went wrong.',
   kit: [
     'AI customers, working for your business',
@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that call your AI receptionist every morning.',
+    headline: 'An AI customer that calls your AI receptionist every morning.',
     sub: 'Voice agent check calls your AI receptionist every morning: AI customers ring your number, book a real slot, ask a price and ask for a person, then check each answer against your price list. You hear each wrong answer by 09:00, with the recording.',
     screen: 'callcheck',
     capture: {
@@ -72,7 +72,7 @@ export const recipe: Recipe = {
     journey: ['Say it’s an AI customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against their price list'],
     schedule: 'Daily at 08:00',
     report: 'A report for Dental group by 09:00',
-    kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Their calendar, connected by them'],
+    kit: ['Its own ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Their calendar, connected by them'],
     events: [
       { time: 'Mon 08:00', text: '3 AI customers ring Dental group’s own number as new patients.' },
       { time: 'Call 2, 00:02', text: '“Hi, Dental group. I’m an AI assistant.” At 00:06, AI customer 2 says it’s an AI test patient for your agency, on a recorded call.' },

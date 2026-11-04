@@ -8,12 +8,12 @@ import './Hero5.css'
 
 /* The October hero (COPY.md, "Hero"): left aligned, the words on the left and the evidence on the right. Top to
    bottom on the left: the headline, the sub (20 words at most), the capture form, and the second path as a quiet link.
-   The right column is the page's own object: Home's film, or a reader page's screen. No pill, no proof row,
-   no tagline under the form (those live in their own sections below).
+   The right column is the page's own object: Home's film, or a reader page's screen. No proof row; Home alone
+   carries 1 quiet line under the form (`note`: the AI customer says it's an AI, and every finding has its receipt).
    `center` (Home) stacks it all on the page's middle instead, as the first site's hero was: the tag, the headline 1
    sentence to a full line, the sub, the form, then the object under the words at the page's width.
    `reader` gives a reader page its hue on the hero's 1 soft glow (styles/accents.css), as before. */
-type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary'> & { pill?: string }
+type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary' | 'note'> & { pill?: string }
 
 function Secondary({ cta }: { cta: Cta }) {
   return cta.to.startsWith('/') ? (
@@ -73,6 +73,7 @@ export function Hero5({
               <CaptureForm capture={hero.capture} className="v5-hero-form" />
               {hero.secondary && <Secondary cta={hero.secondary} />}
             </div>
+            {hero.note && <p className="v5-hero-note">{hero.note}</p>}
           </div>
           <div className="v5-hero-visual ob-anim-hero-object">{visual}</div>
         </div>

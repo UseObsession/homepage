@@ -74,7 +74,7 @@ export const post: BlogPost = {
   description:
     'Agentic commerce for Shopify and DTC stores: what’s live in ChatGPT, Google AI Mode and Copilot, the settings to check, and a readiness test you run.',
   answer:
-    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession’s AI customers run that test every week as real shoppers and follow each answer to checkout, keeping every answer as it was given.',
+    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession’s AI customers run that test every week as real customers and follow each answer to checkout, keeping every answer as it was given.',
   primaryKeyword: 'agentic commerce',
   keywords: [
     'agentic commerce for merchants',
@@ -525,7 +525,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers shop your store as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Your first store check is free: 4 AI customers, 48 hours watched, and your report within 4 days.',
+      text: 'Send an AI customer to your store. Obsession’s AI customers join it as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Your first store check is free: 4 AI customers, 48 hours watched, and your report within 4 days.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
       label: 'Check your store free',
     },

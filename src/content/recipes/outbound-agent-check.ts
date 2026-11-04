@@ -26,10 +26,10 @@ export const recipe: Recipe = {
   slug: 'outbound-agent-check',
   name: 'Outbound agent check',
   group: 'Check your AI agents',
-  line: 'Puts AI test prospects on your AI SDR’s lists and checks every email, text and call it sends them.',
+  line: 'Puts AI customers on your AI SDR’s lists as test prospects and checks every email, text and call it sends them.',
   gets: 'Every message your AI SDR sends your test prospects, checked against your rules, with the ones that broke them flagged.',
   kit: [
-    'AI test prospects, added by you',
+    'AI customers as test prospects, added by you',
     'Their own inboxes and phone numbers',
     'Your approved claims, prices and discount limit',
     'Your quiet hours and contact limits',
@@ -41,9 +41,9 @@ export const recipe: Recipe = {
     path: '/recipes/outbound-agent-check',
     title: 'Outbound agent check: see what your AI SDR sends · Obsession',
     description:
-      'AI test prospects join your AI SDR’s lists, read every email, text and call sent to them, and check each one against your claims, prices and limits.',
+      'AI customers join your AI SDR’s lists as test prospects, read every email, text and call sent to them, and check each one against your claims, prices and limits.',
     answer:
-      'Outbound agent check shows you what your AI SDR sends prospects: AI test prospects join its lists, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
+      'Outbound agent check shows you what your AI SDR sends prospects: AI customers join its lists as test prospects, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
     ogImage: '/og/outbound-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -53,8 +53,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'AI agents that check what your AI SDR sends prospects.',
-    sub: 'Outbound agent check shows you what your AI SDR sends prospects: AI test prospects join its lists, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
+    headline: 'An AI customer that checks what your AI SDR sends prospects.',
+    sub: 'Outbound agent check shows you what your AI SDR sends prospects: AI customers join its lists as test prospects, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
     screen: 'outcheck',
     capture: {
       kind: 'verify',
@@ -72,7 +72,7 @@ export const recipe: Recipe = {
     journey: ['Join its lists', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
     schedule: 'Every message, as it lands',
     report: 'A Slack flag, and a weekly signed record',
-    kit: ['2 test prospects, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
+    kit: ['2 AI customers, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
     events: [
       { time: 'Mon 08:31', text: 'The first email to test prospects 1 and 2: “Used by 2,000 teams.” It matches your approved list.' },
       { time: 'Tue 11:26', text: 'Email: “30% off if you sign today.” Your limit is 15%.' },
@@ -95,7 +95,7 @@ export const recipe: Recipe = {
       line: 'Obsession writes them from your rules and the law where you sell: it says it’s AI and who it’s for, claims only real customers, keeps to your discount limit and quiet hours, and stops on STOP. Change any check, then approve.',
     },
     {
-      title: 'Test prospects receive, and reply',
+      title: 'AI customers receive, and reply',
       line: 'Each reads every email, text and call as a prospect would, and replies as prospects do: yes, not now, no or STOP. Harder replies too, if you want them.',
     },
     {
@@ -152,7 +152,7 @@ export const recipe: Recipe = {
   settings: [
     { k: 'AI SDR', v: 'Yours, or one you run for a client' },
     { k: 'Channels', v: 'Email, text and calls' },
-    { k: 'Test prospects', v: '2 or more AI test prospects, added to its lists by you' },
+    { k: 'Test prospects', v: '2 or more AI customers as test prospects, added by you' },
     { k: 'Claims', v: 'Your approved customers, results and figures' },
     { k: 'Prices and offers', v: 'Your price list, and a discount limit such as 15%' },
     { k: 'Quiet hours', v: 'For example 21:00 to 08:00, in the prospect’s own time zone' },
@@ -188,23 +188,23 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every test prospect says it’s AI. You set the rest.',
+    heading: 'Every AI customer says it’s AI. You set the rest.',
     items: [
       {
         q: 'Are AI SDRs worth it, or do they just send more spam?',
-        a: 'Outbound agent check shows you what yours sends: AI test prospects join its lists and flag every claim, discount and send time that breaks your rules, with the message as proof.',
+        a: 'Outbound agent check shows you what yours sends: AI customers join its lists as test prospects and flag every claim, discount and send time that breaks your rules, with the message as proof.',
       },
       {
         q: 'Does Outbound agent check contact anyone?',
-        a: 'Only your AI SDR. Outbound agent check’s test prospects receive what it sends them and reply as you set, and each says it’s AI when it talks to a person.',
+        a: 'Only your AI SDR. Outbound agent check’s AI customers receive what it sends them and reply as you set, and each says it’s AI when it talks to a person.',
       },
       {
         q: 'How do test prospects get on our lists?',
-        a: 'You add Outbound agent check’s test prospects, or your client does. Each has its own inbox and number.',
+        a: 'You add Outbound agent check’s AI customers, or your client does. Each has its own inbox and number.',
       },
       {
         q: 'Does Outbound agent check say it’s AI?',
-        a: 'Yes. Every Outbound agent check test prospect is named as an AI test prospect working for your company, so your team can see it’s a test.',
+        a: 'Yes. Every Outbound agent check AI customer is named as an AI test prospect working for your company, so your team can see it’s a test.',
       },
       {
         q: 'Will Outbound agent check try to trick our AI SDR?',
@@ -216,7 +216,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will test prospects skew our numbers?',
-        a: 'No. Each Outbound agent check test prospect is marked as a test in your list, so it stays out of your reply rates and your pipeline.',
+        a: 'No. Each Outbound agent check AI customer is marked as a test in your list, so it stays out of your reply rates and your pipeline.',
       },
       {
         q: 'Can Outbound agent check pause our AI SDR?',
@@ -236,14 +236,14 @@ export const recipe: Recipe = {
       },
       {
         q: 'What’s in the free check?',
-        a: 'The free check is an Outbound agent check on an AI SDR you run for yourself or a client: 3 test prospects join its list on 1 channel, and your report lands within 4 days.',
+        a: 'The free check is an Outbound agent check on an AI SDR you run for yourself or a client: 3 AI customers join its list on 1 channel, and your report lands within 4 days.',
       },
     ],
   },
 
   final: {
     heading: 'Read what your AI SDR sends, the way your prospects read it.',
-    sub: 'Your first check is free: 3 test prospects join its list on 1 channel, and your report lands within 4 days. Your AI SDR, or a client’s.',
+    sub: 'Your first check is free: 3 AI customers join its list on 1 channel, and your report lands within 4 days. Your AI SDR, or a client’s.',
     capture: {
       kind: 'verify',
       source: 'recipe-outbound-agent-final',

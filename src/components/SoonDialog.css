@@ -1,0 +1,8 @@
+/* Coming soon (SoonDialog.tsx): the design system's dialog (surfaces.css .ob-dialog), centred as a native modal is, and
+   wide enough for the waitlist form's email and button on 1 line. */
+.s-soon {
+  margin: auto;
+  width: min(100% - 32px, 480px);
+}
+/* .ob-dialog sets display: grid, which would show a closed <dialog>; closed, it stays hidden. */
+.s-soon:not([open]) { display: none; }

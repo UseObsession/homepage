@@ -111,7 +111,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer system exposes this as a few calls. Obsession runs one today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. Its [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
+      text: 'An AI customer system exposes this as a few calls. Obsession runs one today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. Its [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
     },
     {
       kind: 'list',
@@ -351,7 +351,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you: long lived agents with their own inbox, phone number and browser. They run today behind 5 verbs over MCP, an API and an SDK.',
+      text: 'Send an AI customer to any company. Each is a long lived agent with its own inbox, phone number and browser, and they run today behind 5 verbs over MCP, an API and an SDK.',
       to: '/developers',
       label: 'See the API and MCP',
     },

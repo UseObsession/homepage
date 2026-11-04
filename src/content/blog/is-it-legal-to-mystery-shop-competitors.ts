@@ -358,7 +358,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026.',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
     },
     {
       kind: 'list',
@@ -367,7 +367,7 @@ export const post: BlogPost = {
         '[Price watch](/recipes/price-watch) checks every competitor’s prices, offers and delivery each morning, plus the codes they only send subscribers.',
         '[Trial teardown](/recipes/trial-teardown) starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
         'To [track competitor emails](/recipes/email-sms-tracking), AI customers subscribe to every brand on your list and set their emails side by side: who sends most, and who discounts first.',
-        'The [AI mystery shopper](/recipes/mystery-shopper) goes through your own business, or a client’s, as a customer does, from the first click to the last email.',
+        'An AI customer on the [Mystery shopper](/recipes/mystery-shopper) recipe goes through your own business, or a client’s, as a customer does, from the first click to the last email.',
       ],
     },
     {
@@ -378,7 +378,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Name any company, your own, a competitor or a prospect, and an AI customer signs up there as a real customer, with its own inbox, phone number and browser. It stays for months and keeps every email, offer, price and page exactly as it arrived.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'ask-a-lawyer', text: 'When to ask a lawyer' },

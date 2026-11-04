@@ -181,9 +181,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Meet your first AI customers: name any company and its AI customer keeps every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
+      text: 'Send an AI customer to any company you name: it keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof.',
       to: '/',
-      label: 'Meet your first AI customers',
+      label: 'Send an AI customer',
     },
 
     { kind: 'h2', id: 'vs-human', text: 'AI agent cost vs a human', compare: true },

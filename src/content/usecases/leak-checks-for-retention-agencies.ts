@@ -25,15 +25,15 @@ import type { UseCaseStudy } from '../types'
 
 export const study: UseCaseStudy = {
   name: 'Leak checks for retention agencies',
-  line: 'Every store you pitch or keep, checked as its new customer, with proof.',
+  line: 'Send AI customers to every store you pitch or keep, and see what each one gets, with proof.',
 
   meta: {
     path: '/use-cases/leak-checks-for-retention-agencies',
     title: 'Leak checks for retention agencies, from pitch to renewal',
     description:
-      'AI customers become the new customer of any store you name. Before a pitch, the prospect’s leaks. After you win, the client’s leaks weekly, with proof.',
+      'Send an AI customer to any store you name. Before a pitch, the prospect’s leaks. After you win, the client’s leaks weekly, with proof.',
     answer:
-      'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
+      'Obsession sends an AI customer to any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
     ogImage: '/og/leak-checks-for-retention-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,8 +45,8 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Be the new customer of every store you pitch, and every store you keep.',
-    sub: 'Name any store. An AI agent signs up as its new customer, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its competitors compare.',
+    headline: 'Send AI customers to every store you pitch, and every store you keep.',
+    sub: 'Name any store. An AI customer signs up there, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its competitors compare.',
     video: { youtube: 'Bnkm02NllPs', label: 'Watch how it works', title: 'Leak checks for retention agencies: every store’s leaks, with proof' },
     example: { chips: [] },
     flow: [
@@ -58,7 +58,7 @@ export const study: UseCaseStudy = {
       },
       {
         label: 'Obsession',
-        title: 'A new customer at each store',
+        title: 'An AI customer at each store',
         items: ['Its own inbox', 'A US mobile number', 'Its own browser', 'Says it’s AI'],
         foot: 'Watching for 48 hours',
       },
@@ -97,7 +97,7 @@ export const study: UseCaseStudy = {
             example: 'Sign up through the pop up, opt in to texts, browse a product, leave a basket. Wait 48 hours.',
           },
           {
-            title: 'Each store gets its own new customer',
+            title: 'Each store gets its own AI customer',
             line: 'A real inbox, a real mobile number and its own browser, used for that store only. It signs up the way anyone would and saves a screenshot at every step. It says it’s AI when it talks to a person.',
             example: 'Larch & Lye, 10:14 on 2 Nov: signed up through the “15% off your first order” pop up and ticked text consent.',
           },
@@ -131,7 +131,7 @@ export const study: UseCaseStudy = {
         line: 'Steps 7 to 10',
         steps: [
           {
-            title: 'The same customer, every week',
+            title: 'The same AI customer, every week',
             line: 'Once a store signs, its check keeps running: a fresh sign up every week, and after every launch, rebuild or theme update you tell it about.',
             example: 'Larch & Lye signs. The agency rebuilds its welcome series. Week 1: the code arrives in 40 seconds, the basket reminder after an hour.',
           },
@@ -142,7 +142,7 @@ export const study: UseCaseStudy = {
           },
           {
             title: 'The client beside its competitors',
-            line: 'Name the competitors once. Each gets its own customer, so you can show what Larch & Lye’s customers get next to theirs.',
+            line: 'Name the competitors once. Each gets its own AI customer, so you can show what Larch & Lye’s customers get next to theirs.',
             example: 'Welcome in 40 seconds against a 6 hour competitor average. The only 1 of 6 that reminds a basket.',
           },
           {
@@ -172,7 +172,7 @@ export const study: UseCaseStudy = {
       },
     ],
     answer:
-      'Obsession’s AI agents act as new customers at every store, so you see what each one does to the people who sign up, with proof, before anyone hands you a login.',
+      'Obsession sends AI customers to every store, so you see what each one does to the people who sign up, with proof, before anyone hands you a login.',
   },
 
   fit: {
@@ -180,7 +180,7 @@ export const study: UseCaseStudy = {
     line: 'Nothing changes in how you sell or deliver. Obsession shows what a new customer gets; your team still owns the diagnosis, the plan and the fix.',
     items: [
       { title: 'Before the pitch', line: 'Paste your pitch list. Each store comes back with its leaks and a receipt.' },
-      { title: 'After you win', line: 'The same customer signs up again every week, and after every launch.' },
+      { title: 'After you win', line: 'The same AI customer signs up again every week, and after every launch.' },
       { title: 'Where you work', line: 'Slack, your Clay table, or a link that drops into the deck.' },
     ],
   },
@@ -223,8 +223,8 @@ export const study: UseCaseStudy = {
      2 shares are of the stores shopped on every journey and of the leaks they had; the 4 findings are real, retold at
      invented shops (content/shops.ts). Only email was watched in those checks: "no email", never "no message". */
   found: {
-    heading: '93% of stores we shopped on every\u00a0journey had a leak. 77% of the leaks were silence.',
-    line: '128 stores shopped so far. Silence is the leak an audit inside the account can’t see: the email that never came.',
+    heading: 'Our AI customers found a leak at 93% of stores where they ran every\u00a0journey. 77% were silence.',
+    line: 'Our AI customers have joined 128 stores so far. Silence is the leak an audit inside the account can’t see: the email that never came.',
     items: [
       {
         label: 'Fashion store · Basket left',
@@ -283,15 +283,15 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for retention agencies?',
-        a: 'Obsession becomes the new customer of any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
+        a: 'Obsession sends an AI customer to any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
       },
       {
         q: 'Is this mystery shopping?',
-        a: 'Yes, of what a new customer gets: the emails, the texts and the basket reminders, at any store you name, every week. An AI agent does the shopping, so it runs on 40 stores as easily as 1, and keeps every message as proof.',
+        a: 'Yes, of what a new customer gets: the emails, the texts and the basket reminders, at any store you name, every week. It’s one of the jobs an AI customer does, and it runs on 40 stores as easily as 1, and keeps every message as proof.',
       },
       {
         q: 'What do the 5 free checks cover?',
-        a: '5 stores you name, prospects or clients, each with an AI agent as its new customer for 48 hours: the pop up and its code, the welcome email, texts and a basket. You get what happened within 4 days, with proof, in any format.',
+        a: '5 stores you name, prospects or clients, each with its own AI customer for 48 hours: the pop up and its code, the welcome email, texts and a basket. You get what happened within 4 days, with proof, in any format.',
       },
       {
         q: 'Do our clients have to agree?',
@@ -331,20 +331,20 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Is it legal?',
-        a: 'Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
+        a: 'Every AI customer does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
       },
     ],
   },
 
   final: {
     heading: 'Try it on 5 stores.',
-    sub: 'Name a store, a prospect or a client with their OK. We’ll become its new customer and send you what happened within 4 days, with proof, then ask for the other 4.',
+    sub: 'Name a store, a prospect or a client with their OK. We’ll send it an AI customer and send you what happened within 4 days, with proof, then ask for the other 4.',
     capture: {
       kind: 'mystery',
       source: 'usecase-leaks-final',
       button: 'Check 5 stores free',
       interest: 'mystery',
     },
-    link: { label: 'See everything agents do for agencies', to: '/agencies' },
+    link: { label: 'See everything AI customers do for agencies', to: '/agencies' },
   },
 }

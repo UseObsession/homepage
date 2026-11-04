@@ -281,7 +281,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A test by hand covers 1 inbox, 1 device and 1 moment. A theme publish, an app update or a discount edit can break a step the day after you test it, and [Shopify Status](' +
         STATUS +
-        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh AI customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh AI customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
     },
     {
       kind: 'cta',
@@ -454,7 +454,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your store changes often or runs paid traffic, use Obsession to shop it as a new customer after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
+      text: 'If your store changes often or runs paid traffic, use Obsession to send an AI customer through it after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },

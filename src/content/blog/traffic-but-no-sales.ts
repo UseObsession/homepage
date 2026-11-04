@@ -132,7 +132,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 8 checks, in the order a shopper meets them' },
     {
       kind: 'p',
-      text: 'Run the checks in this order, on a phone, as a new customer. The examples come from 26 October 2026, when an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts show on their own websites. It shopped each one on a phone as a signed-out new customer, page by page, as far as the first checkout page. These are the stores the agencies chose to show on their own websites, and a shopper could still see the problems below.',
+      text: 'Run the checks in this order, on a phone, as a new customer. The examples come from 26 October 2026, when an Obsession AI customer walked the client stores that Shopify agencies and freelance experts show on their own websites. It shopped each one on a phone as a signed-out new customer, page by page, as far as the first checkout page. These are the stores the agencies chose to show on their own websites, and a shopper could still see the problems below.',
     },
 
     { kind: 'h3', id: 'ad-lands', text: 'The ad lands on a live page with the product in stock' },
@@ -327,7 +327,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes [AI customers](/blog/ai-customers) that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On a store’s own site, its AI customers open the pages behind the live ads, sign up, take the welcome code to checkout and leave a basket. The store’s team reads the results at the hours it chooses, 4, 12, 24 or 48, or keeps the AI customers watching for as long as it wants. They then check again every week or every month and after every change, and agencies run the same checks for the brands they serve. The team behind Obsession has mystery shopped 1,500 ecommerce stores as a new customer since September 2026. This month it ran a pilot for 4 agencies, and the first is moving to 300 brands a month. Obsession runs the same checks at 1,000 or 5,000 a month, and it’s built for millions. [Why ecommerce brands need AI customers](/blog/ai-customers-for-ecommerce-brands) sets out the weekly routine for a brand’s own store, its competitors and the AI assistants that answer about it.',
+      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On a store’s own site, its AI customers open the pages behind the live ads, sign up, take the welcome code to checkout and leave a basket. The store’s team reads the results at the hours it chooses, 4, 12, 24 or 48, or keeps the AI customers watching for as long as it wants. They then check again every week or every month and after every change, and agencies run the same checks for the brands they serve. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. This month it ran a pilot for 4 agencies, and the first is moving to 300 brands a month. Obsession runs the same checks at 1,000 or 5,000 a month, and it’s built for millions. [Why ecommerce brands need AI customers](/blog/ai-customers-for-ecommerce-brands) sets out the weekly routine for a brand’s own store, its competitors and the AI assistants that answer about it.',
     },
     {
       kind: 'cta',
@@ -408,7 +408,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Why do shoppers add to cart but not purchase on Shopify?',
-          a: 'Check the cart on a phone first: nothing covering Checkout, no charge the shopper didn’t choose, and the banner’s free shipping or gift still applied. Then go to the payment page with a real address and read the total. When an AI agent working for Obsession walked the client stores that Shopify agencies show on their own websites on 26 October 2026, the cart problems included promises the cart dropped, a covered Checkout button and charges the shopper hadn’t chosen.',
+          a: 'Check the cart on a phone first: nothing covering Checkout, no charge the shopper didn’t choose, and the banner’s free shipping or gift still applied. Then go to the payment page with a real address and read the total. When an Obsession AI customer walked the client stores that Shopify agencies show on their own websites on 26 October 2026, the cart problems included promises the cart dropped, a covered Checkout button and charges the shopper hadn’t chosen.',
         },
         {
           q: 'Why do my Shopify sessions look normal when sales have dropped?',
@@ -432,7 +432,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'Obsession’s pilot for 4 agencies ran between 21 and 24 October 2026 on the stores each agency sent in. Each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave, with every inbox watched for 48 hours. On 26 October 2026, an AI agent working for Obsession walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, stopping at the first checkout page. No store or agency is named. Larkmoor and the figures in the cost table are invented.',
+      text: 'Obsession’s pilot for 4 agencies ran between 21 and 24 October 2026 on the stores each agency sent in. Each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave, with every inbox watched for 48 hours. On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, stopping at the first checkout page. No store or agency is named. Larkmoor and the figures in the cost table are invented.',
     },
   ],
 

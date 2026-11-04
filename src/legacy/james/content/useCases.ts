@@ -8,7 +8,7 @@ export const useCasePages: UseCasePage[] = [
     line: 'Proof of a real gap at each brand, back in Clay.',
     title: 'Prospect intelligence with Clay · Obsession',
     description:
-      'An illustrated example: an outbound agency sends a client’s list from Clay, Obsession becomes a customer of each brand and watches for 48 hours, and the facts and proof come back as columns on the same rows.',
+      'An illustrated example: an outbound agency sends a client’s list from Clay, Obsession sends an AI customer to each brand and watches for 48 hours, and the facts and proof come back as columns on the same rows.',
   },
   {
     path: '/use-cases/member-prices-for-price-intelligence',

@@ -270,7 +270,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'An agency gives each client store, each competitor and each prospect its own AI customer, with the client’s OK for its store. Obsession runs this today. It makes AI customers that sign up to any company and keep every email, offer and price it sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a retention agency, it shows what each client’s customers received, from the pop up to the basket reminder.',
+      text: 'An agency gives each client store, each competitor and each prospect its own AI customer, with the client’s OK for its store. Obsession runs this today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a retention agency, it shows what each client’s customers received, from the pop up to the basket reminder.',
     },
     { kind: 'h3', id: 'client-flows', text: '1. Every client’s flows, every week' },
     {
@@ -419,7 +419,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession makes the first AI customers that work for you. Name 5 stores, prospects or clients with their OK: an AI customer becomes each one’s new customer for 48 hours, covering the pop up and its code, the welcome email, texts and a basket, and your agency sees what happened within 4 days, with proof.',
+      text: 'Send an AI customer to any company. Name 5 stores, prospects or clients with their OK: an AI customer becomes each one’s new customer for 48 hours, covering the pop up and its code, the welcome email, texts and a basket, and your agency sees what happened within 4 days, with proof.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Check 5 stores free',
     },

@@ -141,7 +141,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record', compare: true },
     {
       kind: 'p',
-      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession makes AI customers that sign up to any company and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
     },
     {
       kind: 'list',
@@ -328,7 +328,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Price watch sends an AI agent to each competitor every morning and joins their email lists for the codes only subscribers get. Each change is reported with a before and after.',
+      text: 'Price watch sends an AI customer to each competitor every morning and joins their email lists for the codes only subscribers get. Each change is reported with a before and after.',
       to: '/recipes/price-watch',
       label: 'See how Price watch works',
     },
