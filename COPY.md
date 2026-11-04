@@ -192,6 +192,14 @@ The full words are in the content files; this is the spine of each page.
 
 **Home** (`src/content/pages/home.ts`)
 
+**What our hero should be** (4 Nov, James; every candidate headline is judged against these):
+
+1. **8 words or fewer:** it names a position, so it needs no verb and no pitch.
+2. **A position, not a feature:** it carries the whole system, never one job, recipe or reader.
+3. **Never a shopper or a shop:** it works as well for a bank, an app or an airline as for a store.
+4. **Abstract, not empty:** the sub line explains it, but it still needs 1 hook a reader can picture.
+5. **Force from difference, not size:** it says what no rival can, which is what a company shows only its customers.
+
 | Block | Headline | Line |
 |---|---|---|
 | Hero | Intelligence on any company, from inside it. | Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof. (4 Nov: no line under the form.) |
