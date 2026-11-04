@@ -107,7 +107,7 @@ export const page: Page = {
   /* 4 kinds of company, 2 by 2, each beside its own screen: the headline names them (rivals, prospects, yourself), and
      your AI agents are the 4th. The recipe menus keep their 3 groups; these cards answer who you can send an AI customer to. */
   targets: {
-    heading: 'Send an AI customer to anyone. Competitors, prospects, or yourself.',
+    heading: 'Send an AI customer anywhere. A rival, a prospect, or your own company.',
     line: 'Most start with other companies. The same AI customers follow your own ads and checkouts, and test your own AI agents.',
     items: [
       {
@@ -169,7 +169,6 @@ export const page: Page = {
       { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
       { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step, at every company you name, with the receipt' },
     ],
-    foot: 'Where each kind of tool stops, from its own pages in October 2026.',
     more: { label: 'See the full comparison', to: '/compare' },
   },
 
