@@ -94,7 +94,7 @@ textarea {
   align-items: center;
   gap: 8px;
   font: 500 13px/1.2 var(--font-mono);
-  color: var(--text-3);
+  color: var(--text-2);
   text-transform: uppercase;
   letter-spacing: .04em;
 }

@@ -7,7 +7,7 @@ import type { Page } from '../types'
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
    leaves open, in this order (4 Nov: 9 blocks, from 11). Every block from 2 to 8 is labelled with the reader's own
    question, so the labels read as the page's argument (COPY.md's reading path):
-   1 what it is (the hero: intelligence on any company, from inside it; the form; the film) >
+   1 what it is (the hero: see what any company shows only its customers; the form; the film) >
    2 Does it find anything? (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
    3 How does it work? (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
    4 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
@@ -28,20 +28,20 @@ const waitlist = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: intelligence on any company, from AI customers',
+    title: 'Obsession: see what any company shows only its customers',
     description:
-      'Intelligence on any company, from AI customers inside it. They sign up, buy, talk to support and stay for months, keeping every email, offer, price and reply.',
+      'Obsession sends AI customers to prospects, clients and competitors. They sign up, shop and talk to support, then bring back every email, offer and reply.',
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
       'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'Send AI customers to your prospects, your clients and rivals.',
+    ogLine: 'Obsession sends AI customers to prospects, clients and competitors.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
-    headline: 'Intelligence on any company, from inside it.',
-    sub: 'Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
+    headline: 'See what any company shows only its customers.',
+    sub: 'Obsession sends AI customers to prospects, clients and competitors. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     proof: [],
     consoleHeading,
@@ -133,7 +133,7 @@ export const page: Page = {
       { name: 'Page monitors', who: 'Visualping', stop: 2, note: 'Stops at the page' },
       /* The tools marketing and sales teams already own (Seun's draft, 4 Nov). They collect pages, prices, news and job
          posts; no source describes them signing up for a rival's emails. */
-      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 2, note: 'Collects what rivals publish, not what they send customers' },
+      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 2, note: 'Collects what competitors publish, not what they send customers' },
       { name: 'Your own AI agent', who: 'A browser for one session', stop: 3, note: 'Its session ends before the first email' },
       { name: 'Email archives', who: 'Panoramata, MailCharts, Milled', stop: 4, note: 'Stops at the newsletter, for its own list of brands' },
       { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
@@ -145,7 +145,7 @@ export const page: Page = {
         'The checkout that broke mid campaign',
         'The promo code that stopped working',
         'Your private codes leaking to resellers and coupon sites',
-        'A rival’s price cut or new offer',
+        'A competitor’s price cut or new offer',
         'Where a prospect’s journey loses money',
         'What the support bot got wrong',
       ],
@@ -158,7 +158,7 @@ export const page: Page = {
      separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
   runReports: {
     kicker: 'Where do the findings go?',
-    heading: 'Every run, in the format your team reads.',
+    heading: 'Every finding, wherever your team works.',
     node: { title: 'Obsession run', line: 'Any company, any job' },
     label: 'Ways to use it',
     /* The ask section's 2 chat questions as 1 thread in Claude Code, each answer cut to its first 2 lines so the window

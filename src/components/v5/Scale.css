@@ -41,7 +41,7 @@
   padding: 9px 12px;
   border-bottom: 1px solid var(--ob-line-subtle);
   font: 400 12px / 1.3 var(--ob-font-mono);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
 }
 .v5-scale-form { display: grid; gap: 12px; padding: 22px 20px 24px; }
 .v5-scale-form-t { margin: 0; font: 600 18px / 1.2 var(--ob-font-sans); color: var(--ob-text); }
@@ -84,7 +84,7 @@
   background: var(--ob-solid);
   color: var(--ob-text-inverse);
 }
-.v5-scale-trace-h { margin: 0 0 10px; font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-scale-trace-h { margin: 0 0 10px; font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-2); }
 .v5-scale-trace ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: v5t; }
 .v5-scale-trace li {
   counter-increment: v5t;

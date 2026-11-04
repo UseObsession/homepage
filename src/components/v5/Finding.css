@@ -39,7 +39,7 @@
   color: var(--ob-text-2);
 }
 .v5-found-also b { font-weight: 600; color: var(--ob-text); }
-.v5-found-source { margin: 0; font: 400 12.5px / 1.5 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-3); }
+.v5-found-source { margin: 0; font: 400 12.5px / 1.5 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-2); }
 
 @media (max-width: 720px) {
   .v5-found-note { grid-template-columns: minmax(0, 1fr); }

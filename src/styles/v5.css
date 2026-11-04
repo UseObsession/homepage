@@ -51,17 +51,38 @@
 }
 
 /* Section rhythm: the design system's section space, the page's own ground. */
+/* Tightened on 4 Nov: at 1440px Home ran about 8,500px tall with 144px above and below each section; now at most 96px,
+   and 1 gap between sections, never 2 sections' padding added together. */
 .v5-section {
-  padding-block: clamp(80px, 11vw, 144px);
+  padding-block: clamp(64px, 6.5vw, 96px);
   position: relative;
 }
-.v5-section--tight { padding-block: clamp(56px, 7vw, 96px); }
+.v5-section--tight { padding-block: clamp(48px, 5vw, 72px); }
 .v5-section + .v5-section { padding-top: 0; }
 .v5-section--rule { border-top: 1px solid var(--ob-line-subtle); }
-.v5-section--rule + .v5-section { padding-top: clamp(80px, 11vw, 144px); }
+.v5-section--rule + .v5-section { padding-top: clamp(64px, 6.5vw, 96px); }
+/* Home's readers band and questions sit between v5 sections: the section before them already gave the gap. */
+.v5-section + .james > .section,
+.v5-section + .s-section { padding-top: 0; }
+.v5-section + .james > .section { padding-bottom: clamp(64px, 6.5vw, 96px); }
+.james + .v5-section { padding-top: 0; }
 
-/* A section's head: the claim, then at most 1 line under it, stacked (never a split header). */
-.v5-head { max-width: 760px; display: grid; gap: 16px; margin-bottom: clamp(36px, 5vw, 56px); }
+/* A section's head: its label, then the claim and at most 1 line. Stacked on a phone and a tablet; from 1024px the line
+   sits beside the claim, at its foot, so the head fills the row instead of leaving its right half empty (4 Nov). A head
+   with no line lets the claim run the full row. */
+.v5-head { max-width: 760px; display: grid; gap: 16px; margin-bottom: clamp(32px, 4vw, 48px); }
+@media (min-width: 1024px) {
+  .v5-head {
+    max-width: none;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: clamp(40px, 5vw, 80px);
+    align-items: end;
+  }
+  .v5-head > * { grid-column: 1 / -1; }
+  .v5-head > .v5-h2 { grid-column: 1; }
+  .v5-head > .v5-line { grid-column: 2; }
+  .v5-head:not(:has(> .v5-line)) > .v5-h2 { grid-column: 1 / -1; max-width: 22em; }
+}
 .v5-h2 {
   margin: 0;
   font: 600 clamp(30px, 3.6vw, 46px) / 1.06 var(--ob-font-sans);
@@ -76,7 +97,7 @@
   font: 500 13px / 1.2 var(--ob-font-mono);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
 }
 .v5-line {
   margin: 0;
