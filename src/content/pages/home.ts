@@ -140,7 +140,7 @@ export const page: Page = {
       { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step short of paying, at every company you name, with the receipt' },
     ],
     catches: {
-      label: 'What your AI customers catch',
+      label: 'Some of what your AI customers catch',
       items: [
         'The checkout that broke mid campaign',
         'The promo code that stopped working',
