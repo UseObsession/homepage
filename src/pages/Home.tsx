@@ -32,7 +32,7 @@ export function Home() {
       <div className="james">
         <PersonaSection id="for" />
       </div>
-      <Faq faq={page.faq} limit={4} id="questions" />
+      <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>
   )

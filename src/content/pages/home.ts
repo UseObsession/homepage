@@ -173,18 +173,17 @@ export const page: Page = {
   /* The open source section ("An open source runtime for 100,000 AI customers.") left Home on 4 Nov: /developers shows it
      in full, and Home keeps the hero's tag, which links to the code, and 1 question. */
 
-  /* The questions a reader asks before joining. The first answer is meta.answer, word for word. */
+  /* The questions a reader asks before joining (4 Nov): Seun's 6 from his draft of 4 Nov, reworded, in place of Home's
+     own 11, so all 6 show and none hide behind a button. The first answer opens with meta.answer's first sentence, which
+     the page must show (scripts/prerender.mjs). How soon is answered as an AI customer, not a mystery shopper: when it
+     reports is the job's setting (James, 4 Nov). */
   faq: {
-    kicker: 'Questions',
+    kicker: 'What else would I ask?',
     heading: 'Before you join.',
     items: [
       {
-        q: 'What is Obsession?',
-        a: 'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-      },
-      {
-        q: 'What are AI customers?',
-        a: `${AI_CUSTOMER.definition} An AI customer works for you, at any company you name. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
+        q: 'What is an AI customer?',
+        a: `Obsession sends AI customers to any company you name. ${AI_CUSTOMER.definition} It works for you. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
         link: { label: 'Read the full guide to AI customers', to: AI_CUSTOMER.path },
       },
       {
@@ -192,39 +191,22 @@ export const page: Page = {
         a: 'Mystery shopping is 1 job an AI customer does. A mystery shopper visits once; an AI customer stays for months. It also watches competitors and prospects, and tests support bots and phone lines.',
       },
       {
-        q: 'What will and won’t every AI customer do?',
-        a: 'When an AI customer talks to a person, it says it’s an AI; signing up, reading emails and following ads needs no conversation at all. It never uses fake payment details, gets round a CAPTCHA, clicks paid ads at volume or changes a receipt, and 1 email opts any site out.',
-        link: { label: 'What every AI customer will and won’t do', to: '/agents' },
-      },
-      {
-        q: 'Is it legal to send an AI customer to a competitor?',
-        a: 'Signing up to a newsletter, starting a trial or filling a basket is what any customer can do. Your AI customer does the same, says it’s an AI when it talks to a person, and never uses fake payment details.',
+        q: 'Is it legal to mystery shop a competitor?',
+        a: 'Usually, yes. An AI customer does only what any customer can, on the pages and forms anyone can use, and says it’s an AI when it talks to a person. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
         link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
-        q: 'Do I need to connect anything?',
-        a: 'No. Name the companies and your AI customers start. Connect Clay, Slack or your CRM only if you want what they find to land there.',
-      },
-      {
-        q: 'What do I get back?',
-        a: 'Each thing a company did, in 1 sentence, with its receipt: the email, page or price behind it, exactly as it arrived, and when. In your agent, Slack, Clay, your CRM, a sheet, a report or a webhook.',
-      },
-      {
         q: 'How soon do I see something?',
-        a: 'Most companies send a welcome email within minutes. If an AI customer is already at a company, its history is there the moment you ask.',
+        a: 'It depends on the job you give it. An AI customer can tell you the moment something happens, like a reminder that arrives or a gap it finds; report at the times you set, like 4 hours after it signs up and again at 48; or keep watching for as long as you keep it there. If one is already a customer of that company, its history is there the moment you ask.',
       },
       {
-        q: 'Can other customers see what I watch?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked. A company’s AI customer is shared for what any customer gets, its emails, pages and prices, so its history is there on day one. Anything you set beyond that, like replying or buying, runs on an AI customer of your own, and your list, questions and reports are yours alone.',
+        q: 'Can anyone else see what I watch?',
+        a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into a shared record, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an AI customer that works only for you.',
       },
       {
-        q: 'How do I get access?',
-        a: 'Access opens from the waitlist, a team at a time. Join, and we set up your first watch with you.',
-      },
-      {
-        q: 'Is Obsession open source?',
-        a: 'Yes. The runtime is open source on GitHub: the AI customers, how they scale and learn, the record, recipes and the 5 verbs. Obsession Cloud runs it for you, with months of history already collected.',
-        link: { label: 'What is open, and what the cloud adds', to: '/developers#open-source' },
+        q: 'How much does it cost?',
+        a: 'Plans run on credits: you buy credits, and your AI customers spend them as they work. Your store’s first check is free, and agencies get 5 client stores checked free.',
+        link: { label: 'Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
       },
     ],
   },
