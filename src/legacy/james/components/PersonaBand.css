@@ -180,7 +180,9 @@
 }
 
 .pband-ways a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   height: 26px;
   padding: 0 10px;
   border-radius: var(--radius-pill);
@@ -196,6 +198,17 @@
 
 .pband-ways a:hover {
   background: color-mix(in srgb, var(--text) 18%, transparent);
+}
+
+.pband-ways a svg {
+  flex: none;
+  opacity: .7;
+  transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.pband-ways a:hover svg {
+  opacity: 1;
+  transform: translate(1px, -1px);
 }
 
 /* An inset ring: the folded block clips anything drawn outside a chip. */

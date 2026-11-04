@@ -1,0 +1,48 @@
+/* What we found (Finding.tsx): a research note. A rule across the top, as a journal sets off a finding; the share large
+   beside its claim; the supporting share, the source and the link under the claim. Below 720px it stacks. */
+.v5-found-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(24px, 4vw, 56px);
+  row-gap: 20px;
+  padding-top: clamp(18px, 2.2vw, 26px);
+  border-top: 2px solid var(--ob-text);
+}
+.v5-found-note > .v5-kicker { grid-column: 1 / -1; }
+.v5-found-h {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: end;
+  margin: 0;
+}
+.v5-found-n {
+  font: 600 clamp(88px, 12vw, 168px) / 0.8 var(--ob-font-sans);
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.v5-found-claim {
+  max-width: 24ch;
+  font: 600 clamp(24px, 2.6vw, 34px) / 1.15 var(--ob-font-sans);
+  letter-spacing: -0.025em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.v5-found-rest { grid-column: 2; display: grid; gap: 14px; justify-items: start; }
+.v5-found-also {
+  margin: 0;
+  padding-top: 16px;
+  max-width: 52ch;
+  border-top: 1px solid var(--ob-line-subtle);
+  font: 400 clamp(16px, 1.3vw, 18px) / 1.5 var(--ob-font-sans);
+  color: var(--ob-text-2);
+}
+.v5-found-also b { font-weight: 600; color: var(--ob-text); }
+.v5-found-source { margin: 0; font: 400 12.5px / 1.5 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-3); }
+
+@media (max-width: 720px) {
+  .v5-found-note { grid-template-columns: minmax(0, 1fr); }
+  .v5-found-h { row-gap: 12px; }
+  .v5-found-rest { grid-column: 1; }
+}

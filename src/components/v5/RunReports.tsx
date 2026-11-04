@@ -8,7 +8,8 @@ import './RunReports.css'
 
 /* Home's run section (COPY.md, "Proof"; 4 Nov). 1 Obsession run on the left, wired to the 6 formats a run's findings
    arrive in, and the chosen format's view beside them on the same row (the same stage /sample-output draws). The study
-   and the link to the sample run sit at the foot, the study's number set as large as a heading. The wires are drawn from the measured positions once the app runs;
+   and the link to the sample run sit at the foot, the study's number set as large as a heading (Home leaves the foot out
+   since 4 Nov: its study is the Finding callout above how it works). The wires are drawn from the measured positions once the app runs;
    at rest the row reads without them. Below 900px it stacks and the wires go. */
 const GLYPH: Record<string, string> = { pdf: 'PDF', email: '@', slack: '#', clay: 'CSV', webhook: '{ }', workflow: '→' }
 
@@ -71,6 +72,7 @@ export function RunReports({ runs, id }: { runs: RunReportsContent; id?: string 
     <section className="v5-section v5-runs" id={id} aria-labelledby={`${base}-h`}>
       <div className="s-wrap">
         <div className="v5-head">
+          {runs.kicker && <p className="v5-kicker">{runs.kicker}</p>}
           <h2 className="v5-h2" id={`${base}-h`}>
             {runs.heading}
           </h2>
@@ -124,14 +126,20 @@ export function RunReports({ runs, id }: { runs: RunReportsContent; id?: string 
             <FormatStage format={f} picked={picked} className="v5-runs-stage" />
           </div>
         </div>
-        <div className="v5-runs-foot">
-          <p className="v5-runs-study">
-            <b>{runs.study.value}</b> <span>{runs.study.text}</span>
-          </p>
-          <Link className="v5-link" to={runs.cta.to}>
-            {runs.cta.label}
-          </Link>
-        </div>
+        {(runs.study || runs.cta) && (
+          <div className="v5-runs-foot">
+            {runs.study && (
+              <p className="v5-runs-study">
+                <b>{runs.study.value}</b> <span>{runs.study.text}</span>
+              </p>
+            )}
+            {runs.cta && (
+              <Link className="v5-link" to={runs.cta.to}>
+                {runs.cta.label}
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </section>
   )

@@ -5,15 +5,16 @@ import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
-   leaves open, in this order (4 Nov: 8 blocks, from 11; every block from 2 to 7 names itself in a small label, as the
+   leaves open, in this order (4 Nov: 9 blocks, from 11; every block from 2 to 8 names itself in a small label, as the
    readers band's "Who you send it to" does):
    1 what it is (the hero: intelligence on any company, from inside it; the form; the film) >
-   2 what we found (the 93% study, the real report beside it, the formats a run arrives in as 1 line) >
+   2 what we found (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
    3 how it works (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   4 how it compares (where each kind of tool's view ends on 1 journey, and what only a customer catches under it) >
-   5 who you send it to (James's reader band: each reader, where it sends its AI customers, its recipes) >
-   6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
-   7 questions, then the waitlist.
+   4 how to use it (1 Obsession run wired to every format it arrives in) >
+   5 how it compares (where each kind of tool's view ends on 1 journey, and what only a customer catches under it) >
+   6 who you send it to (James's reader band: each reader, where it sends its AI customers, its recipes) >
+   7 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
+   8 questions, then the waitlist.
    Open source is the hero's tag (a link to the code) and 1 question; its section lives on /developers.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
@@ -74,12 +75,16 @@ export const page: Page = {
      comparison on 4 Nov: both made 1 argument with 2 "Other tools" headings. Its heading and its catches moved there
      (stopTrack); its "What other tools see" list is what the track's lines already show. */
 
-  /* What we found (4 Nov): the study and 1 real run, first, so the page shows a result before it explains anything. The
-     run section's 6 formats are 1 line here; the formats themselves are on /sample-output. */
-  proof: {
+  /* What we found (4 Nov): the study first, so the page shows a result before it explains anything, set as a research
+     note, apart from what a run arrives as (James: the 2 were 1 sentence, and the study is not a format). The figures are
+     the use case pages' real ones (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of
+     the stores shopped on every journey, 77% of those leaks silence, 128 stores joined so far. */
+  finding: {
     kicker: 'What we found',
-    heading: '93% of stores in our study had a gap.',
-    line: 'Our AI customers ran every journey at each store. Every run arrives as a PDF report, an email, a Slack message, a sheet, a webhook or a workflow.',
+    value: '93%',
+    heading: 'of the stores where our AI customers ran every journey had a leak.',
+    also: { value: '77%', text: 'of those leaks were silence: an email that never came.' },
+    source: 'Source: our own runs at real stores, 128 joined so far.',
     cta: { label: 'See one of our runs and its results', to: '/sample-output' },
   },
 
@@ -142,10 +147,18 @@ export const page: Page = {
     more: { label: 'See the full comparison', to: '/compare' },
   },
 
-  /* The run section ("Every run, in the format your team reads.", 1 run wired to 6 formats) left Home on 4 Nov: its study
-     and sample run lead the page as the proof, its formats are 1 line there. components/v5/RunReports stays in place.
-     The open source section ("An open source runtime for 100,000 AI customers.") left too: /developers shows it in full,
-     and Home keeps the hero's tag, which links to the code, and 1 question. */
+  /* How to use it: what a run arrives as (revision 2 of obsession/proof-section-design.html), after how it works. 1
+     Obsession run wired to the 6 formats, the chosen format's view beside them. The formats are delivery options, not
+     separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
+  runReports: {
+    kicker: 'How to use it',
+    heading: 'Every run, in the format your team reads.',
+    node: { title: 'Obsession run', line: 'Any company, any job' },
+    label: 'Arrives as',
+  },
+
+  /* The open source section ("An open source runtime for 100,000 AI customers.") left Home on 4 Nov: /developers shows it
+     in full, and Home keeps the hero's tag, which links to the code, and 1 question. */
 
   /* The questions a reader asks before joining. The first answer is meta.answer, word for word. */
   faq: {

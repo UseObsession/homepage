@@ -39,7 +39,6 @@ export function Proof({
     <section className={`s-section s-proof ${className}`} data-tone={tone} id={id} aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-proof__in">
         <div className="s-proof__copy">
-          {proof.kicker && <p className="v5-kicker">{proof.kicker}</p>}
           <h2 className={'ob-type-h2 s-proof__h' + (proof.heading.length > LONG ? ' s-proof__h--long' : '')} id={`${id}-h`}>
             {tie(proof.heading)}
           </h2>

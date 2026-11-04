@@ -257,9 +257,7 @@ export type Outcomes = { heading: string; sub?: string; items: { value: string; 
 export type Kinds = { heading: string; label: string; items: { name: string; line: string; recipes: RecipeId[] }[] }
 /* The claim beside its object. Without `screen` the object is the real September report (story beat 8); with it, the
    object is that app screen, under its Example tag (Home's short section on the AI agent checks). */
-/* `kicker`: the small label over a section's heading (Home, 4 Nov: every section from the proof to the questions names
-   itself, as the readers band's "Who you send it to" does). */
-export type Proof = { kicker?: string; heading: string; line: string; cta: Cta; screen?: ScreenName }
+export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
 export type Faq = { kicker?: string; heading: string; items: { q: string; a: string; link?: Cta }[] }
 /* The rules every run follows (James's "Built to behave.", docs/REBUILD.md 1d): the trust beat before the questions. A
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
@@ -292,10 +290,22 @@ export type Outputs = {
 /* Home's run section (components/v5/RunReports, 4 Nov): 1 Obsession run wired to every format it arrives in, the
    format's view beside them, and the study with its link at the foot. */
 export type RunReports = {
+  kicker?: string
   heading: string
   node: { title: string; line: string }
   label: string
-  study: { value: string; text: string }
+  /* The study and its link at the foot. Home leaves both out since 4 Nov: the study is its own callout (Finding). */
+  study?: { value: string; text: string }
+  cta?: Cta
+}
+/* Home's finding (components/v5/Finding, 4 Nov): 1 result set as a research note, its number large beside the claim,
+   1 supporting share under it, where the figures come from, and a link to 1 real run. No report image. */
+export type Finding = {
+  kicker?: string
+  value: string
+  heading: string
+  also: { value: string; text: string }
+  source: string
   cta: Cta
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
@@ -321,6 +331,7 @@ export type Page = {
   audiences?: Audiences
   outputs?: Outputs
   runReports?: RunReports
+  finding?: Finding
   developers?: Developers
   /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */
   verify?: Proof

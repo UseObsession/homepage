@@ -47,7 +47,8 @@ function Reveal({ children, className = '' }: { children: ReactNode; className?:
    (PersonaBand.css, the site's reader palette) are the site's. Since 4 Nov a panel also says where that reader sends its
    AI customers and links the recipes that start there, so a panel is an article whose name is the link, stretched over
    the panel, instead of 1 link around everything (a recipe link can't sit inside another link). .pband-more around the
-   line, the places and the recipes is the 1 block the reveal folds. */
+   line, the places and the recipes is the 1 block the reveal folds. Each recipe ends on a small arrow up and to the right
+   (James, 4 Nov), so it reads as a link to its own page; it opens in the same tab. */
 const byId = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 export function PersonaBand() {
@@ -73,7 +74,12 @@ export function PersonaBand() {
                   .filter(Boolean)
                   .map((rec) => (
                     <li key={rec.id}>
-                      <Link to={`/recipes/${rec.slug}`}>{rec.name}</Link>
+                      <Link to={`/recipes/${rec.slug}`}>
+                        {rec.name}
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+                          <path d="M3.5 8.5l5-5M4.5 3.5h4v4" />
+                        </svg>
+                      </Link>
                     </li>
                   ))}
               </ul>
