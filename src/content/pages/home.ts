@@ -34,14 +34,14 @@ export const page: Page = {
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
       'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'Send AI customers to your prospects, your clients and rivals.',
+    ogLine: 'Send AI customers to prospects, clients and competitors.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
     headline: 'Intelligence on any company, from inside it.',
-    sub: 'Send AI customers to your prospects, your clients and rivals. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
+    sub: 'Send AI customers to prospects, clients and competitors. They sign up, shop, leave a cart and talk to support, then bring back every email, text, offer and reply, plus what broke, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     proof: [],
     consoleHeading,
@@ -133,7 +133,7 @@ export const page: Page = {
       { name: 'Page monitors', who: 'Visualping', stop: 2, note: 'Stops at the page' },
       /* The tools marketing and sales teams already own (Seun's draft, 4 Nov). They collect pages, prices, news and job
          posts; no source describes them signing up for a rival's emails. */
-      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 2, note: 'Collects what rivals publish, not what they send customers' },
+      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 2, note: 'Collects what competitors publish, not what they send customers' },
       { name: 'Your own AI agent', who: 'A browser for one session', stop: 3, note: 'Its session ends before the first email' },
       { name: 'Email archives', who: 'Panoramata, MailCharts, Milled', stop: 4, note: 'Stops at the newsletter, for its own list of brands' },
       { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
@@ -145,7 +145,7 @@ export const page: Page = {
         'The checkout that broke mid campaign',
         'The promo code that stopped working',
         'Your private codes leaking to resellers and coupon sites',
-        'A rival’s price cut or new offer',
+        'A competitor’s price cut or new offer',
         'Where a prospect’s journey loses money',
         'What the support bot got wrong',
       ],
@@ -158,7 +158,7 @@ export const page: Page = {
      separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
   runReports: {
     kicker: 'Where do the findings go?',
-    heading: 'Every run, in the format your team reads.',
+    heading: 'Every finding, wherever your team works.',
     node: { title: 'Obsession run', line: 'Any company, any job' },
     label: 'Ways to use it',
     /* The ask section's 2 chat questions as 1 thread in Claude Code, each answer cut to its first 2 lines so the window

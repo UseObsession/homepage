@@ -8,7 +8,7 @@ import './StopTrack.css'
    tool is a line that stops at the last step it reaches, with a dot and a short note there. By hand reaches every step,
    so its line runs the whole way and thins out. Your AI customers' line runs to the end, with a mark on every step.
    The lines draw in once in view (data-v5-play, src/boot.ts); at rest, and under reduced motion, they are drawn. Below
-   760px the track scrolls inside its own frame, the tool names held at the left. Under it on Home (4 Nov), what only a
+   840px it stacks: the journey wraps across the top and each tool's line runs the full width, its note under it. Under it on Home (4 Nov), what only a
    customer catches, on the receipt's paper, from the gap section this one took the place of: the track shows where
    each tool's view ends, the list what is found past that point. */
 export function StopTrack({ track, id }: { track: StopTrackContent; id?: string }) {

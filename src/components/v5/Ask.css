@@ -26,7 +26,7 @@
 .v5-ask-tab:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
 .v5-ask-tab[aria-selected='true'] { color: var(--ob-text); border-color: var(--v5-stamp); background: var(--v5-stamp-soft); }
 .v5-ask-tab:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
-.v5-ask-where { font: 500 12px / 1 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-3); }
+.v5-ask-where { font: 500 12px / 1 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-2); }
 .v5-ask-tab[aria-selected='true'] .v5-ask-where { color: var(--v5-stamp); }
 .v5-ask-q { font: 500 16px / 1.4 var(--ob-font-sans); }
 
@@ -182,7 +182,7 @@
 
 /* The 1 line that connected Obsession to the tool, above the question: a reader sees it takes 1 step. */
 .v5-ask-connect { display: grid; gap: 6px; margin: 0; }
-.v5-ask-connect-label { font: 500 11.5px / 1 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-3); }
+.v5-ask-connect-label { font: 500 11.5px / 1 var(--ob-font-mono); letter-spacing: 0.02em; color: var(--ob-text-2); }
 .v5-ask-connect code {
   display: block;
   padding: 9px 12px;

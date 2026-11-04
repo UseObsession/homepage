@@ -105,7 +105,7 @@ export function PersonaSection({ id = 'for' }: { id?: string }) {
       <div className="wrap">
         <Reveal className="head">
           <p className="kicker">Who do I send it to?</p>
-          <h2 className="h2">Send an AI customer anywhere. A rival, a prospect, or your own company.</h2>
+          <h2 className="h2">Send an AI customer anywhere. A competitor, a prospect, or your own company.</h2>
         </Reveal>
         <Reveal>
           <PersonaBand />

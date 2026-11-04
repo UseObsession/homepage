@@ -19,7 +19,7 @@
   top: 0;
   transform: translateX(-50%);
   font: 400 11.5px / 1.4 var(--ob-font-mono);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
   white-space: nowrap;
 }
 .v5-life-tick:first-child { transform: none; left: 0 !important; }
@@ -94,7 +94,7 @@
 .v5-life-steps li::before {
   content: counter(v5step);
   font: 500 13px / 1 var(--ob-font-mono);
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
 }
 .v5-life-steps h3 { margin: 0; font: 600 17px / 1.25 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
 .v5-life-steps p { margin: 0; font: 400 14.5px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }

@@ -28,7 +28,7 @@ export const bandRoles: BandRole[] = [
     bandName: 'Marketing teams',
     bandLine: 'Send an AI customer to every competitor, and through your own funnel.',
     page: '/marketing',
-    sendsTo: 'Rivals and your own funnel',
+    sendsTo: 'Competitors and your own funnel',
     recipes: ['competitor', 'email-sms', 'prices', 'ads', 'adcheck'],
   },
   {

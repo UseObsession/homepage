@@ -106,11 +106,11 @@
   color: var(--ob-text);
 }
 .v5-ways-reply p { margin: 0; }
-.v5-ways-proof { font: 400 12.5px / 1.4 var(--ob-font-mono) !important; color: var(--ob-text-3); }
+.v5-ways-proof { font: 400 12.5px / 1.4 var(--ob-font-mono) !important; color: var(--ob-text-2); }
 
 /* A file or a script */
 .v5-ways-code { display: grid; gap: 8px; }
-.v5-ways-file { margin: 0; font: 400 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-ways-file { margin: 0; font: 400 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-2); }
 .v5-ways-code pre { white-space: pre; }
 
 /* The 5 verbs */
