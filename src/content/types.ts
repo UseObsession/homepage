@@ -287,6 +287,15 @@ export type Outputs = {
   cta: Cta
   behave?: { heading: string; items: string[] }
 }
+/* Home's run section (components/v5/RunReports, 4 Nov): 1 Obsession run wired to every format it arrives in, the
+   format's view beside them, and the study with its link at the foot. */
+export type RunReports = {
+  heading: string
+  node: { title: string; line: string }
+  label: string
+  study: { value: string; text: string }
+  cta: Cta
+}
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
 export type Page = {
@@ -309,6 +318,7 @@ export type Page = {
   jobs?: Jobs
   audiences?: Audiences
   outputs?: Outputs
+  runReports?: RunReports
   developers?: Developers
   /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */
   verify?: Proof

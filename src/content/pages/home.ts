@@ -9,7 +9,7 @@ import type { Page } from '../types'
    1 what it is (the hero: intelligence on any company, from your AI customers inside it; the form; the film) >
    2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
    3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   3b what it found (our AI customers found a gap at 93% of stores: 1 real store's report, in every format) >
+   3b what a run arrives as (1 Obsession run wired to every format; the 93% study and the sample run at the foot) >
    4 who you are (James's reader band: each reader's own page) >
    5 who you can send an AI customer to (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
    6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
@@ -159,7 +159,7 @@ export const page: Page = {
      /compare and the reader pages. By hand reaches every step, so its line runs the whole way and thins out: what fails
      is how many companies and for how long, not a step (James, 4 Nov). */
   stopTrack: {
-    heading: 'Follow one customer. See where every tool stops.',
+    heading: 'Other tools read the outside. Obsession is the customer.',
     line: 'Every other tool’s view ends somewhere along the journey. Your AI customers stay to the end, and keep the receipts.',
     steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
     rows: [
@@ -174,15 +174,15 @@ export const page: Page = {
     more: { label: 'See the full comparison', to: '/compare' },
   },
 
-  /* The close of how it works: what real audits found (Seun, 7 Oct, the same claim as the agencies use case), and 1 of
-     those stores' runs in each report type it can reach you as (the tabs are delivery options, not separate reports;
-     James, 4 Nov). Only the share with a gap shows, never how many stores were
-     joined (the 50 rule); "every journey" is joined by a non breaking space so it never breaks inside it. */
-  outputs: {
-    heading: 'Our AI customers found a gap at 93% of the stores where they ran every\u00a0journey.',
-    line: 'Here is 1 of them: a basket and a checkout left, and no email in 48 hours. The tabs are the ways a run’s findings reach you: a PDF report, email, Slack, a sheet or Clay, a webhook, or a workflow.',
-    facts: [],
-    cta: { label: 'See the sample run and its report types', to: '/sample-output' },
+  /* What a run arrives as (4 Nov, revision 2 of obsession/proof-section-design.html): 1 Obsession run wired to the 6
+     formats, the chosen format's view beside them. The formats are delivery options, not separate reports; the study
+     (real audits, Seun, 7 Oct) and the sample run sit at the foot (James, 4 Nov). */
+  runReports: {
+    heading: 'Every run, in the format your team reads.',
+    node: { title: 'Obsession run', line: 'Any company, any job' },
+    label: 'Arrives as',
+    study: { value: '93%', text: 'of stores in our study had a gap, where our AI customers ran every journey.' },
+    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
   },
 
   openSource,

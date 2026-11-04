@@ -1,6 +1,5 @@
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
-import { Outputs } from '../components/sections/Outputs'
 import { AgentLife } from '../components/v5/AgentLife'
 import { Ask } from '../components/v5/Ask'
 import { GapPair } from '../components/v5/GapPair'
@@ -8,6 +7,7 @@ import { Hero5 } from '../components/v5/Hero5'
 import { HeroFilm } from '../components/v5/HeroFilm'
 import { HeroVideo } from '../components/v5/HeroVideo'
 import { OpenSource } from '../components/v5/OpenSource'
+import { RunReports } from '../components/v5/RunReports'
 import { StopTrack } from '../components/v5/StopTrack'
 import { Targets } from '../components/v5/Targets'
 import { PersonaSection } from '../legacy/james/components/PersonaBand'
@@ -28,7 +28,7 @@ export function Home() {
       <Hero5 hero={page.hero} visual={heroVisual} crumbs={false} center />
       {page.gapPair && <GapPair gap={page.gapPair} id="gap" />}
       {page.life && <AgentLife life={page.life} id="how" />}
-      {page.outputs && <Outputs {...page.outputs} initial="pdf" compact className="v5-proof" id="proof" />}
+      {page.runReports && <RunReports runs={page.runReports} id="proof" />}
       <div className="james">
         <PersonaSection id="for" />
       </div>

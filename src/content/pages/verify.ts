@@ -303,7 +303,7 @@ export const page: Page = {
   proof: {
     heading: 'Our AI customers already caught a store that never followed up.',
     line: 'In September, 4 AI customers joined a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: AI customers ask, then watch for what comes next.',
-    cta: { label: 'See the sample run and its report types', to: '/sample-output' },
+    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
   },
 
   faq: {

@@ -17,7 +17,7 @@ export const life: Life = {
       { day: 7, label: 'Day 7' },
       { day: 30, label: 'Day 30' },
     ],
-    end: 'Day 90: still a customer of all 10,000',
+    end: 'Day 90: still inside all 10,000',
   },
   lanes: [
     { name: 'Fern Hollow', wakes: [{ day: 0.006, label: '09:09 · welcome' }, { day: 30, label: 'Day 30 · sale' }] },

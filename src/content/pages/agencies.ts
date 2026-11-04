@@ -129,7 +129,7 @@ export const page: Page = {
   proof: {
     heading: 'On a real store, 1 AI customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
     line: 'A real September check of a skincare store, name hidden: 4 AI customers, every inbox watched for 48 hours, 15 screenshots and a follow up drafted for each gap. Run the same check on any client.',
-    cta: { label: 'See the sample run and its report types', to: '/sample-output' },
+    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
   },
 
   faq: {

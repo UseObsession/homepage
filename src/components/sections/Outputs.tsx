@@ -17,7 +17,7 @@ import './Outputs.css'
    the rest is. */
 
 /* The words the controls need. They are chrome, not copy; a page can pass its own. */
-const outputsUi = {
+export const outputsUi = {
   tabs: 'Report types',
   spread: 'Show page 2 of the report',
   report: 'Read the full report',
@@ -282,6 +282,35 @@ const dest = (id: ViewerFormatId) => {
   return d && d.ids.some(hasPartner) ? d : undefined
 }
 
+/* 1 format on its stage: the well, the object, and the tool's mark when its tab names one. The viewer below and Home's
+   run section (components/v5/RunReports) both draw a format with it, so the 2 always look the same. */
+export function FormatStage({
+  format: f,
+  ui = outputsUi,
+  picked = false,
+  className = '',
+}: {
+  format: ViewerFormat
+  ui?: Ui
+  picked?: boolean
+  className?: string
+}) {
+  return (
+    <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object` + (className ? ' ' + className : '')}>
+      <div className={'s-ov__mock' + (picked ? ' ob-anim-rise' : '')} key={f.id}>
+        {dest(f.id) ? (
+          <div className={`s-ov__obj s-ov__obj--${f.view.kind}`}>
+            <PartnerRow ids={dest(f.id)?.ids} label={`${ui.lands} ${f.label}`} note={dest(f.id)?.note} className="s-ov__dest" />
+            <Mock format={f} ui={ui} />
+          </div>
+        ) : (
+          <Mock format={f} ui={ui} />
+        )}
+      </div>
+    </div>
+  )
+}
+
 type ViewerProps = {
   /* The run, in each format (content/sample.ts). */
   views?: ViewerFormat[]
@@ -409,18 +438,7 @@ export function OutputViewer({ views = outputFormats, lines, initial, compact, u
           {/* The stage stays still between tabs; only what is on it rises in, and only once the reader picks. A format
               whose tab names a tool carries that tool's mark over its object's top left edge, as part of the object
               (content/partners.ts); the stage keeps its height, so moving between tabs never shifts the page. */}
-          <div className={`s-ov__stage s-ov__stage--${f.view.kind} ob-object`}>
-            <div className={'s-ov__mock' + (picked ? ' ob-anim-rise' : '')}>
-              {dest(f.id) ? (
-                <div className={`s-ov__obj s-ov__obj--${f.view.kind}`}>
-                  <PartnerRow ids={dest(f.id)?.ids} label={`${ui.lands} ${f.label}`} note={dest(f.id)?.note} className="s-ov__dest" />
-                  <Mock format={f} ui={ui} />
-                </div>
-              ) : (
-                <Mock format={f} ui={ui} />
-              )}
-            </div>
-          </div>
+          <FormatStage format={f} ui={ui} picked={picked} />
           {!compact && (
             <div className={'s-ov__caption' + (picked ? ' ob-anim-fade' : '')}>
               <p className="s-ov__line">{f.line}</p>
