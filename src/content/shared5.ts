@@ -41,7 +41,7 @@ export const life: Life = {
    (Claude Code, Codex: the tools people work in, not the models behind them), never as "your AI agent". A chat example
    shows the 1 line that connects Obsession to that tool (`connect`), so a reader sees it takes 1 step. Every company in an answer is invented, as everywhere else. */
 export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect'> = {
-  heading: 'Give your AI agents customer intelligence.',
+  heading: 'Make your agent see what customers see.',
   line: 'Every email, offer, price and reply a company sends its customers, kept as it arrives. None of it is on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex and ask there, or ask on our website. Every answer comes with its receipts.',
   from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
   connect: {
