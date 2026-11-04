@@ -8,7 +8,7 @@ import type { Ask, AskExample, Compare, Life, OpenSource, Ways } from './types'
    stage's companies, so the 2 pictures tell 1 story. */
 export const life: Life = {
   heading: 'To know what 10,000 companies do, send an AI customer to all 10,000.',
-  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an AI customer signs up to each, the first welcome emails land within minutes, and it stays on, so the basket reminder, the price cut and the win back arrive the day they’re sent.',
+  line: 'No spare inbox, no VA, no spreadsheet. Name 5 companies or 5,000: an AI customer joins each one and stays for months, so every break, leak, price cut and new offer reaches you the day it happens.',
   list: 'brands.csv · 10,000 companies',
   axis: {
     start: 'Monday 09:00',
@@ -41,7 +41,7 @@ export const life: Life = {
    (Claude Code, Codex: the tools people work in, not the models behind them), never as "your AI agent". A chat example
    shows the 1 line that connects Obsession to that tool (`connect`), so a reader sees it takes 1 step. Every company in an answer is invented, as everywhere else. */
 export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect' | 'keeps' | 'notYet' | 'more'> = {
-  heading: 'The commercial intelligence only a customer gets.',
+  heading: 'Ask your AI agent what only a customer knows.',
   line: 'Every email, offer, price and reply a company sends its customers, kept as it arrives. None of it is on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex and ask there, or ask on our website. Every answer comes with its receipts.',
   from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
   connect: {
