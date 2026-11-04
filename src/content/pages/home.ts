@@ -98,43 +98,10 @@ export const page: Page = {
 
   life,
 
-  /* 4 kinds of company, 2 by 2, each beside its own screen: the headline names them (rivals, prospects, yourself), and
-     your AI agents are the 4th. The recipe menus keep their 3 groups; these cards answer who you can send an AI customer to. */
-  targets: {
-    heading: 'Send an AI customer anywhere. A rival, a prospect, or your own company.',
-    line: 'Most start with other companies. The same AI customers follow your own ads and checkouts, and test your own AI agents.',
-    items: [
-      {
-        name: 'Competitors',
-        line: 'Every email, text, offer, price and ad, the day it lands, seen by your AI customer.',
-        screen: 'rivals',
-        to: '/recipes',
-        recipes: ['competitor', 'email-sms', 'prices', 'ads'],
-      },
-      {
-        name: 'Prospects and accounts',
-        line: 'What each one does to its own customers, before you pitch, call or renew.',
-        screen: 'pack',
-        to: '/recipes',
-        recipes: ['prospect', 'account-watch', 'trial'],
-      },
-      {
-        name: 'Your own journeys',
-        line: 'Your ads, forms and checkouts, used the way a real customer does, so you see what breaks first.',
-        screen: 'shop',
-        to: '/recipes',
-        recipes: ['mystery', 'adcheck', 'speed', 'audit'],
-      },
-      {
-        name: 'Your AI agents',
-        line: 'AI customers talk to your support bot, voice agent and AI SDR, and check every answer.',
-        screen: 'botcheck',
-        to: '/verify',
-        recipes: ['support-bot', 'voice-agent'],
-      },
-    ],
-    all: { label: 'See every recipe', to: '/recipes' },
-  },
+  /* The Kinds section ("Send an AI customer anywhere. A rival, a prospect, or your own company.", 4 cards over their
+     filmed screens) was cut on 4 Nov: at 1,713px it was the page's longest section and named the places the hero, the
+     readers and the ask section already name. Its heading and its 13 recipe links moved into the readers band (option 5
+     of obsession/targets-options.html, legacy/james/content/band.ts). components/v5/Targets stays in place. */
 
   /* The scale section ("Learn it once. Run it for 1 company, 1,000 or 100,000.") was cut on 4 Nov: it explained a
      mechanism with modelled numbers instead of showing a result. A measured benchmark may take its place later. */

@@ -5,7 +5,12 @@
    and the chips along its foot. `reader` picks the panel's colour from the site's reader palette (styles/accents.css):
    the 5 readers each have their hue, and the product's own panel, Check your AI agents, is neutral (bone on ink, ink on
    paper), never a hue of its own. His four lines for Agencies, Sales teams and Marketing teams are kept as he wrote them;
-   his Founders and developers line is now Developers' alone. */
+   his Founders and developers line is now Developers' alone. Since 4 Nov each panel also says where that reader sends
+   its AI customers and links the recipes that start there, in place of the chips naming the ways in: the Kinds section
+   ("Send an AI customer anywhere") folded into the band (option 5 of obsession/targets-options.html), so the 13 recipes
+   it linked are filed here under the reader who uses them. */
+import type { RecipeId } from '../../../content/types'
+
 export type BandReader = 'agencies' | 'founders' | 'sales' | 'marketing' | 'developers' | 'verify'
 
 export type BandRole = {
@@ -13,7 +18,8 @@ export type BandRole = {
   bandName: string
   bandLine: string
   page: string
-  ways: string[]
+  sendsTo: string
+  recipes: RecipeId[]
 }
 
 export const bandRoles: BandRole[] = [
@@ -22,27 +28,31 @@ export const bandRoles: BandRole[] = [
     bandName: 'Marketing teams',
     bandLine: 'Send an AI customer to every competitor, and through your own funnel.',
     page: '/marketing',
-    ways: ['Recipes', 'Your own agent'],
+    sendsTo: 'Rivals and your own funnel',
+    recipes: ['competitor', 'email-sms', 'prices', 'ads', 'adcheck'],
   },
   {
     id: 'sales',
     bandName: 'Sales teams',
     bandLine: 'Know what each account and competitor does to its customers before you call.',
     page: '/sales',
-    ways: ['Recipes', 'Your own agent'],
+    sendsTo: 'Prospects and accounts',
+    recipes: ['prospect', 'account-watch', 'trial', 'speed'],
   },
   {
     id: 'agencies',
     bandName: 'Agencies',
     bandLine: 'Send an AI customer to every client and prospect.',
     page: '/agencies',
-    ways: ['Recipes', 'Your own agent'],
+    sendsTo: 'Clients and prospects',
+    recipes: ['mystery', 'audit', 'prospect'],
   },
   {
     id: 'developers',
     bandName: 'Developers',
     bandLine: 'Give your agents an AI customer at every company: MCP, API and an open source core.',
     page: '/developers',
-    ways: ['MCP and API', 'Open source'],
+    sendsTo: 'Any company, and your own AI agents',
+    recipes: ['support-bot', 'voice-agent', 'outbound-agent'],
   },
 ]

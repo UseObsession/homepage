@@ -9,14 +9,14 @@ import { HeroVideo } from '../components/v5/HeroVideo'
 import { OpenSource } from '../components/v5/OpenSource'
 import { RunReports } from '../components/v5/RunReports'
 import { StopTrack } from '../components/v5/StopTrack'
-import { Targets } from '../components/v5/Targets'
 import { PersonaSection } from '../legacy/james/components/PersonaBand'
 import { page } from '../content/pages/home'
 import './StoryPage.css'
 
 /* Home (/), composed from content/pages/home.ts in the order its comment gives: what it is, why other tools can't, how
-   (closing on what it found: 93% of stores had a gap, 1 store's report in every format), who you are, who you can be a
-   customer of, what you can ask it from the AI you already use, where every other tool stops, what is open,
+   (closing on what it found: 93% of stores had a gap, 1 store's report in every format), who you send it to (each reader
+   and where it sends its AI customers; the Kinds section folded into it on 4 Nov), what you can ask it from the AI you
+   already use, where every other tool stops, what is open,
    questions, the waitlist. Every block stands on the page's own ground; the
    receipt's paper is the 1 material that changes. */
 export function Home() {
@@ -32,7 +32,6 @@ export function Home() {
       <div className="james">
         <PersonaSection id="for" />
       </div>
-      {page.targets && <Targets targets={page.targets} id="recipes" />}
       {page.ask && <Ask ask={page.ask} id="ask" />}
       {page.stopTrack && <StopTrack track={page.stopTrack} id="compare" />}
       {page.openSource && <OpenSource open={page.openSource} id="open-source" deskOnly />}
