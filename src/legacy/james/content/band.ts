@@ -1,7 +1,9 @@
 /* The panels of Home's band, James's band (src/legacy/james/components/PersonaBand). Since 4 Nov evening (Seun's order,
    "What would I use it for?") a panel is a use, not a reader: the 3 places the hero's sub names, in its order
    (prospects, clients, competitors), each named by what you do there. Your own company sits with clients, since finding
-   the leaks is the same job in both. Before that the band had 4 readers (Marketing, Sales, Agencies, Developers), each
+   the leaks is the same job in both. The names and lines are Seun's from his Home draft (4 Nov), the prospect and leaks
+   lines cut to the length of the competitors line; their examples (a basket with no email after it, support 31 hours
+   late against a promised 24) are already on the receipt above the band. Before that the band had 4 readers (Marketing, Sales, Agencies, Developers), each
    saying where it sends its AI customers; before 4 Nov, 6 readers.
    Same fields as before where they still apply: the panel's name, its 1 line, its page (the use's main recipe) and the
    recipes it links. `reader` picks the panel's colour from the site's reader palette (styles/accents.css), the hue of
@@ -25,7 +27,7 @@ export const bandRoles: BandRole[] = [
     id: 'prospects',
     reader: 'sales',
     bandName: 'Prospect with proof',
-    bandLine: 'Open with what a prospect’s own customers get, before anyone hands you a login.',
+    bandLine: 'Before you pitch a company, see what its new customers get, and open with the email or page that shows the problem.',
     page: '/recipes/prospect-intelligence',
     readers: [
       { name: 'Sales teams', page: '/sales' },
@@ -36,8 +38,8 @@ export const bandRoles: BandRole[] = [
   {
     id: 'leaks',
     reader: 'agencies',
-    bandName: 'Find the leaks',
-    bandLine: 'Catch the broken code, the silent reminder and the unanswered request, at your own company or a client’s, before customers do.',
+    bandName: 'Find your revenue leaks',
+    bandLine: 'Sales lost to a welcome code that fails, a basket reminder that stops or a demo request nobody answers. Find them before more customers do.',
     page: '/recipes/mystery-shopper',
     readers: [
       { name: 'Agencies', page: '/agencies' },
@@ -49,8 +51,8 @@ export const bandRoles: BandRole[] = [
   {
     id: 'competitors',
     reader: 'marketing',
-    bandName: 'Watch competitors',
-    bandLine: 'See the emails, offers and prices competitors give new customers, including the ones not on their website.',
+    bandName: 'Watch your competitors',
+    bandLine: 'See the emails, offers and prices your competitors give a new customer, including offers that never appear on their websites.',
     page: '/recipes/competitor-tracking',
     readers: [
       { name: 'Marketing teams', page: '/marketing' },
