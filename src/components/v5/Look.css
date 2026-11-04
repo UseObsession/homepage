@@ -1,0 +1,101 @@
+/* What does that look like (Look.tsx): the tabs, then the receipt on the left and what it found on the right, at
+   7 to 5 from 900px; below that the findings sit under the receipt. The receipt is styles/v5.css's .v5-receipt; this
+   file only lays out its rows. Ink only: the marks are the stamp's ink, on the paper and on the page. */
+
+.v5-look-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.v5-look-tab {
+  font: 500 14.5px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  background: transparent;
+  border: 1px solid var(--ob-line);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+.v5-look-tab:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.v5-look-tab[aria-selected='true'] { color: var(--ob-text); border-color: var(--v5-stamp); background: var(--v5-stamp-soft); }
+.v5-look-tab:focus-visible { outline: 2px solid var(--ob-focus); outline-offset: 2px; }
+
+.v5-look-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+.v5-look-panel[hidden] { display: none; }
+
+/* The receipt. */
+.v5-look-receipt { padding: 22px 22px 30px; }
+.v5-look-top { display: flex; justify-content: space-between; align-items: start; gap: 16px; margin-bottom: 14px; }
+.v5-look-site { margin: 0; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.v5-look-co { margin: 2px 0 0; color: var(--v5-paper-ink-2); }
+.v5-look-top .v5-stamp { flex: none; margin-top: 2px; }
+
+.v5-look-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.v5-look-row {
+  display: grid;
+  grid-template-columns: 12.5ch 7.5ch minmax(0, 1fr) 22px;
+  column-gap: 10px;
+  align-items: baseline;
+}
+.v5-look-when { color: var(--v5-paper-ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.v5-look-kind { color: var(--v5-paper-ink-2); text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; }
+.v5-look-text { grid-column: 3; overflow-wrap: anywhere; }
+/* The AI customer's own steps are quieter than what the company sent; a stretch with nothing in it is set in italics. */
+.v5-look-row[data-kind='action'] .v5-look-text { color: var(--v5-paper-ink-2); }
+.v5-look-row[data-kind='nothing'] .v5-look-text { font-style: italic; }
+.v5-look-row[data-found] .v5-look-text { font-weight: 600; }
+.v5-look-row .v5-look-mark { grid-column: 4; justify-self: end; align-self: start; }
+.v5-look-tally { margin: 0; color: var(--v5-paper-ink-2); }
+
+/* A finding's number: a small outlined circle in the stamp's ink, on the paper and beside it. */
+.v5-look-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font: 600 11px / 1 var(--ob-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.v5-look-receipt .v5-look-mark { color: var(--v5-paper-ink); }
+
+/* What it found, on the page's own ground. */
+.v5-look-found { display: grid; gap: 14px; padding-top: 6px; }
+.v5-look-found-h {
+  margin: 0;
+  font: 500 13px / 1.2 var(--ob-font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ob-text-2);
+}
+.v5-look-found ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--ob-line-subtle); }
+.v5-look-found li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ob-line-subtle);
+  font: 400 clamp(16px, 1.25vw, 17px) / 1.45 var(--ob-font-sans);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.v5-look-found .v5-look-mark { color: var(--v5-stamp); margin-top: 1px; }
+
+@media (max-width: 900px) {
+  .v5-look-panel { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* A phone: a row's time and kind over its line, the mark beside both. */
+@media (max-width: 560px) {
+  .v5-look-receipt { padding: 18px 16px 26px; }
+  .v5-look-rows { gap: 12px; }
+  .v5-look-row { grid-template-columns: auto minmax(0, 1fr) 22px; row-gap: 2px; }
+  .v5-look-when { grid-column: 1; }
+  .v5-look-kind { grid-column: 2; }
+  .v5-look-text { grid-column: 1 / 3; grid-row: 2; }
+  .v5-look-row .v5-look-mark { grid-column: 3; grid-row: 1 / 3; }
+}

@@ -42,20 +42,21 @@ function Reveal({ children, className = '' }: { children: ReactNode; className?:
   )
 }
 
-/* 4 audiences, cut on the diagonal in 1 row. Each one opens its own page. James's band (his first commit,
-   src/components/PersonaBand), with his classes as he wrote them: only the data (content/band.ts) and the colours
-   (PersonaBand.css, the site's reader palette) are the site's. Since 4 Nov a panel also says where that reader sends its
-   AI customers and links the recipes that start there, so a panel is an article whose name is the link, stretched over
-   the panel, instead of 1 link around everything (a recipe link can't sit inside another link). .pband-more around the
-   line, the places and the recipes is the 1 block the reveal folds. Each recipe ends on a small arrow up and to the right
-   (James, 4 Nov), so it reads as a link to its own page; it opens in the same tab. */
+/* 3 uses, cut on the diagonal in 1 row (4 Nov evening, Seun's order: What would I use it for?). Each one opens its
+   use's main recipe. James's band (his first commit, src/components/PersonaBand), with his classes as he wrote them:
+   only the data (content/band.ts) and the colours (PersonaBand.css, the site's reader palette) are the site's. A panel
+   is an article whose name is the link, stretched over the panel; under its line, the readers who use it (each a link
+   to that reader's page) and the recipes that start there, since a link can't sit inside another link. .pband-more
+   around the line, the readers and the recipes is the 1 block the reveal folds. Each recipe ends on a small arrow up
+   and to the right (James, 4 Nov), so it reads as a link to its own page; it opens in the same tab. Before 4 Nov
+   evening a panel was a reader, saying where it sends its AI customers. */
 const byId = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 export function PersonaBand() {
   return (
     <div className="pband">
       {bandRoles.map((r, i) => (
-        <article key={r.id} className="pband-item" data-reader={r.id}>
+        <article key={r.id} className="pband-item" data-reader={r.reader}>
           <span className="pband-n" aria-hidden="true">
             {String(i + 1).padStart(2, '0')}
           </span>
@@ -66,7 +67,15 @@ export function PersonaBand() {
             <div className="pband-more-in">
               <p className="pband-line">{r.bandLine}</p>
               <p className="pband-to">
-                <span>Sends AI customers to</span> {r.sendsTo}
+                <span>For</span>
+                <span className="pband-readers">
+                  {r.readers.map((x, n) => (
+                    <span key={x.page}>
+                      {n > 0 && ', '}
+                      <Link to={x.page}>{x.name}</Link>
+                    </span>
+                  ))}
+                </span>
               </p>
               <ul className="pband-ways">
                 {r.recipes
@@ -96,16 +105,16 @@ export function PersonaBand() {
   )
 }
 
-/* His Home section around it, the head and the band each revealing as they scroll into view. Since 4 Nov it also does
-   the Kinds section's job, so its head is where you send an AI customer, not who you are (COPY.md, "Readers"). Its label
-   is the reader's question, as every Home label is since 4 Nov. */
+/* His Home section around it, the head and the band each revealing as they scroll into view. Since 4 Nov evening it
+   answers What would I use it for? (Seun's order), so its head names the places the uses go, in the sub's order. Its
+   label is the reader's question, as every Home label is since 4 Nov. */
 export function PersonaSection({ id = 'for' }: { id?: string }) {
   return (
     <section className="section" id={id}>
       <div className="wrap">
         <Reveal className="head">
-          <p className="kicker">Who do I send it to?</p>
-          <h2 className="h2">Send an AI customer anywhere. A competitor, a prospect, or your own company.</h2>
+          <p className="kicker">What would I use it for?</p>
+          <h2 className="h2">Send an AI customer to a prospect, a client or a competitor.</h2>
         </Reveal>
         <Reveal>
           <PersonaBand />

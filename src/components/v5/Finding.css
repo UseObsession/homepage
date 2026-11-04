@@ -32,7 +32,10 @@
 .v5-found-rest { grid-column: 2; display: grid; gap: 14px; justify-items: start; }
 .v5-found-also {
   margin: 0;
-  padding-top: 16px;
+  padding: 16px 0 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
   max-width: 52ch;
   border-top: 1px solid var(--ob-line-subtle);
   font: 400 clamp(16px, 1.3vw, 18px) / 1.5 var(--ob-font-sans);

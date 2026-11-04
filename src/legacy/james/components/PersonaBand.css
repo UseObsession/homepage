@@ -1,4 +1,4 @@
-/* James's persona band: the 4 readers in 1 row, as his single row was, each panel taller than his and revealing: at
+/* James's persona band: since 4 Nov evening 3 uses (content/band.ts), before that 4 readers, in 1 row, as his single row was, each panel taller than his and revealing: at
    rest the number, the name and the arrow; under the pointer or keyboard focus the panel widens and its line and chips
    rise in. Without hover (a touch screen) everything shows. On a phone the 4 are a row of cards to swipe.
    His layout language and motion are kept as he wrote them: the slanted panels cut with a clip path, the 5px seam, the
@@ -162,7 +162,7 @@
   gap: 6px;
 }
 
-/* Where the reader sends its AI customers: a small label, then the places. */
+/* Who uses it: a small label, then the readers, each a link to its page. */
 .pband-to {
   display: grid;
   gap: 4px;
@@ -172,11 +172,24 @@
   letter-spacing: -.01em;
 }
 
-.pband-to span {
+.pband-to > span:first-child {
   font: 500 11px/1.2 var(--font-mono);
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--s-read, var(--text-2));
+}
+
+.pband-readers a {
+  color: inherit;
+  pointer-events: auto;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--text) 40%, transparent);
+}
+
+.pband-readers a:hover {
+  text-decoration-color: currentColor;
 }
 
 .pband-ways a {
@@ -242,7 +255,8 @@
    share of the row), so its words never re-wrap while the panel's width moves. */
 @media (hover: hover) and (min-width: 861px) {
   .pband {
-    --pband-open: 0.41;
+    /* The open panel's share of the row: 2.1 of 4.1 for 3 panels (2.1 of 5.1 when there were 4). */
+    --pband-open: 0.512;
     container-type: inline-size;
   }
 
@@ -258,10 +272,10 @@
     min-height: 0;
     overflow: hidden;
     /* An open panel's content box is its share of the row's free space: the band less every panel's fixed padding and
-       overlap (1.65 slants, 3 seams and 154px for 4 panels), times the open panel's share. Until 4 Nov this took the
-       share of the whole row and then the padding, which came out about 50px wider than the panel; the 2 short chips
-       never reached the edge, the recipe links do. */
-    width: calc((100cqi - 1.65 * var(--slant) - 3 * var(--seam) - 154px) * var(--pband-open));
+       overlap (1.1 slants, 2 seams and 124px for 3 panels; it was 1.65, 3 and 154px for 4), times the open panel's
+       share. Until 4 Nov this took the share of the whole row and then the padding, which came out about 50px wider
+       than the panel; the 2 short chips never reached the edge, the recipe links do. */
+    width: calc((100cqi - 1.1 * var(--slant) - 2 * var(--seam) - 124px) * var(--pband-open));
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 180ms ease-out, transform 260ms ease-out;
@@ -281,7 +295,8 @@
   }
 }
 @media (hover: hover) and (min-width: 861px) and (max-width: 1100px) {
-  .pband { --pband-open: 0.333; }
+  /* 1.5 of 3.5. */
+  .pband { --pband-open: 0.429; }
 }
 @media (hover: hover) and (min-width: 861px) and (prefers-reduced-motion: reduce) {
   .pband-more,

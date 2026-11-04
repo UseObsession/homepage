@@ -312,14 +312,39 @@ export type RunReports = {
   cta?: Cta
 }
 /* Home's finding (components/v5/Finding, 4 Nov): 1 result set as a research note, its number large beside the claim,
-   1 supporting share under it, where the figures come from, and a link to 1 real run. No report image. */
+   the shares that back it under it, where the figures come from, and a link to 1 real run. No report image. */
 export type Finding = {
   kicker?: string
   value: string
   heading: string
-  also: { value: string; text: string }
+  also: { value: string; text: string }[]
   source: string
   cta: Cta
+}
+
+/* What does that look like (components/v5/Look, 4 Nov): 1 AI customer at 1 invented company, as the receipt it keeps.
+   1 tab per company. Each row is what came or what the AI customer did, in order; `found` numbers the row as the
+   receipt for that finding (1 based, into the story's `found`). `nothing` is a stretch where something was due and
+   nothing came. */
+export type LookKind = 'action' | 'email' | 'text' | 'offer' | 'reply' | 'page' | 'nothing'
+export type LookStory = {
+  tab: string
+  company: string
+  site: string
+  path: string
+  kept: string
+  rows: { when: string; kind: LookKind; text: string; found?: number }[]
+  found: string[]
+}
+export type Look = {
+  kicker?: string
+  heading: string
+  line?: string
+  stamp: string
+  foundLabel: string
+  /* The receipt's last line; {n} is the story's number of findings. */
+  tally: string
+  stories: LookStory[]
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
@@ -344,6 +369,7 @@ export type Page = {
   audiences?: Audiences
   outputs?: Outputs
   runReports?: RunReports
+  look?: Look
   finding?: Finding
   developers?: Developers
   /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */

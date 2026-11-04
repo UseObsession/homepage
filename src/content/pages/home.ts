@@ -5,16 +5,18 @@ import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
-   leaves open, in this order (4 Nov: 9 blocks, from 11). Every block from 2 to 8 is labelled with the reader's own
-   question, so the labels read as the page's argument (COPY.md's reading path):
+   leaves open, in this order (Seun's order of 4 Nov evening, from his Home draft: a picture, then proof, then uses,
+   then the objection, then how). Every block from 2 to 9 is labelled with the reader's own question, so the labels
+   read as the page's argument (COPY.md's reading path):
    1 what it is (the hero: see what any company shows only its customers; the form; the film) >
-   2 Does it find anything? (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
-   3 How does it work? (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   4 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
+   2 What does that look like? (1 AI customer's receipt at a shop, a software company or a bank, findings numbered) >
+   3 Is this real? (our own runs as a research note: the store count, the 2 shares, its source, 1 real report) >
+   4 What would I use it for? (James's band as 3 uses in the sub's order: prospects, clients, competitors) >
    5 Why can't my tools do this? (where each kind of tool's view ends on 1 journey, and what only a customer catches) >
-   6 Who do I send it to? (James's reader band: each reader, where it sends its AI customers, its recipes) >
-   7 Can I run it myself? (the open source runtime beside what Obsession Cloud adds; on a wide screen only) >
-   8 What else would I ask? (the questions), then the waitlist.
+   6 How does it work? (breadth: a list fans out to 10,000 companies, each lane wakes when its company acts) >
+   7 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
+   8 Can I run it myself? (the open source runtime beside what Obsession Cloud adds; on a wide screen only) >
+   9 What else would I ask? (the questions), then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
@@ -74,16 +76,104 @@ export const page: Page = {
      comparison on 4 Nov: both made 1 argument with 2 "Other tools" headings. Its heading and its catches moved there
      (stopTrack); its "What other tools see" list is what the track's lines already show. */
 
-  /* What we found (4 Nov): the study first, so the page shows a result before it explains anything, set as a research
-     note, apart from what a run arrives as (James: the 2 were 1 sentence, and the study is not a format). The figures are
-     the use case pages' real ones (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of
-     the stores shopped on every journey, 77% of those leaks silence, 128 stores joined so far. */
+  /* What does that look like (4 Nov evening, Seun's order): the hero's "what any company shows only its customers",
+     drawn as 1 AI customer's receipt. 3 kinds of company, so the picture is never only a shop (hero goal 3): Seun's
+     Fern Hollow and Wrenfield, from his Home draft, and a bank of our own. Between them the rows show every kind the
+     sub names (an email, a text, an offer, a reply) and both kinds of finding it names (what broke, what never came),
+     plus an offer only customers get. Every company, time and price is invented, and the receipt is stamped Example.
+     Not "a mystery shopper who never goes home" (Seun's heading): James rejected that frame on 4 Nov. */
+  look: {
+    kicker: 'What does that look like?',
+    heading: '1 company, as only its customers see it.',
+    line: 'Every email, text, offer and reply, kept as it arrived, with what broke or never came numbered on it. Pick a company. All 3 are examples.',
+    stamp: 'Example',
+    foundLabel: 'What it found',
+    tally: '{n} findings, each kept as it arrived',
+    stories: [
+      {
+        tab: 'A shop',
+        company: 'Fern Hollow',
+        site: 'fernhollow.example',
+        path: 'Signs up, fills a basket, stops at checkout',
+        kept: 'Day 1 to day 68',
+        rows: [
+          { when: 'Day 1 09:00', kind: 'action', text: 'Signs up for emails.' },
+          { when: 'Day 1 09:02', kind: 'email', text: 'Welcome, with a 10% code.' },
+          { when: 'Day 1 09:15', kind: 'action', text: 'Puts a £120 jacket in the basket and goes to checkout.' },
+          { when: 'Day 1 09:16', kind: 'page', text: 'Checkout refuses the 10% code.', found: 1 },
+          { when: 'Day 2 14:15', kind: 'email', text: 'The basket reminder, 29 hours later.', found: 2 },
+          { when: 'Day 3 10:40', kind: 'text', text: 'A second reminder. Its link opens an empty basket.', found: 3 },
+          { when: 'Day 26 08:00', kind: 'offer', text: 'Black Friday: 30% off everything. Checkout gives 20%.', found: 4 },
+          { when: 'Day 68 08:00', kind: 'email', text: 'The January sale. Still subscribed.' },
+        ],
+        found: [
+          'The welcome code fails at checkout.',
+          'The basket reminder takes 29 hours. 2 competitors on the same list send theirs in under 4.',
+          'The text’s link opens an empty basket.',
+          'The Black Friday email promises 30% off. Checkout gives 20%.',
+        ],
+      },
+      {
+        tab: 'A software company',
+        company: 'Wrenfield',
+        site: 'wrenfield.example',
+        path: 'Asks for a demo, starts a trial, asks support',
+        kept: 'Day 1 to day 9',
+        rows: [
+          { when: 'Day 1 10:00', kind: 'action', text: 'Asks for a demo on the website form.' },
+          { when: 'Day 1 10:01', kind: 'email', text: 'An automatic reply: someone will be in touch within 1 working day.' },
+          { when: 'Day 1 10:30', kind: 'action', text: 'Starts the free trial.' },
+          { when: 'Day 1 10:31', kind: 'email', text: 'Welcome to your trial.' },
+          { when: 'Day 3 12:10', kind: 'reply', text: 'The first reply from a person, 50 hours after the request.', found: 1 },
+          { when: 'Day 8 10:31', kind: 'nothing', text: 'No email since the welcome, 7 days in.', found: 2 },
+          { when: 'Day 8 10:35', kind: 'action', text: 'Asks support how to export its data.' },
+          { when: 'Day 9 17:40', kind: 'reply', text: 'Support answers, 31 hours later.', found: 3 },
+        ],
+        found: [
+          'A demo request waits 50 hours for a person, after a promise of 1 working day.',
+          'The trial goes silent after its welcome email.',
+          'Support takes 31 hours. The help page promises 24.',
+        ],
+      },
+      {
+        tab: 'A bank',
+        company: 'Kittiwake Bank',
+        site: 'kittiwake.example',
+        path: 'Signs up for rate alerts, asks the chat, books a call back',
+        kept: 'Day 1 to day 12',
+        rows: [
+          { when: 'Day 1 09:10', kind: 'action', text: 'Signs up for savings rate alerts with its own phone number.' },
+          { when: 'Day 1 09:10', kind: 'text', text: 'The sign up code, 6 seconds later.' },
+          { when: 'Day 1 09:12', kind: 'email', text: 'Welcome. The easy access saver pays 4.6%.' },
+          { when: 'Day 1 09:20', kind: 'reply', text: 'Asked if 4.6% is fixed, the chat says yes. The rate page says variable.', found: 1 },
+          { when: 'Day 1 09:30', kind: 'action', text: 'Books a mortgage call back, promised within 1 working day.' },
+          { when: 'Day 4 09:30', kind: 'nothing', text: 'No call, text or email about the mortgage.', found: 2 },
+          { when: 'Day 12 08:00', kind: 'offer', text: '£200 to switch your current account.', found: 3 },
+        ],
+        found: [
+          'The chat calls a variable rate fixed.',
+          'The mortgage call back never comes.',
+          'A £200 switching offer that is not on the website, sent only to customers.',
+        ],
+      },
+    ],
+  },
+
+  /* Is this real (4 Nov evening, Seun's order): our own runs, right after the invented receipt, so the doubt it raises
+     is answered at once. Set as a research note, as before. The count leads, because the question is whether it runs at
+     all; the 2 shares back it. The figures are the use case pages' real ones
+     (content/usecases/leak-checks-for-retention-agencies.ts, `found`): 128 stores joined so far (James's count; 1,500
+     until 22 Oct, so Seun's draft's 1,500 is not used), a leak at 93% of the stores shopped on every journey, 77% of
+     those leaks silence. */
   finding: {
-    kicker: 'Does it find anything?',
-    value: '93%',
-    heading: 'of the stores where our AI customers ran every journey had a leak.',
-    also: { value: '77%', text: 'of those leaks were silence: an email that never came.' },
-    source: 'Source: our own runs at real stores, 128 joined so far.',
+    kicker: 'Is this real?',
+    value: '128',
+    heading: 'real stores joined by our AI customers so far.',
+    also: [
+      { value: '93%', text: 'of the stores where they ran every journey had a leak.' },
+      { value: '77%', text: 'of those leaks were silence: an email that never came.' },
+    ],
+    source: 'Source: our own runs at real stores.',
     cta: { label: 'See the skincare store’s report', to: '/sample-output' },
   },
 
@@ -228,7 +318,7 @@ export const page: Page = {
 
   /* The claim and the form. The agency link ("Agency? Get 5 client stores checked free") went on 4 Nov: beside the
      form's own line (name up to 5 brands to check first) it was a second version of the same offer. Agencies reach
-     their page from the readers band. */
+     their page from the uses band, where each panel links the readers who use it. */
   final: {
     heading: 'Name a company. Send it an AI customer.',
     capture: { ...waitlist, source: 'home-final' },
