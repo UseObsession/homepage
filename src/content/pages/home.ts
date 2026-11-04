@@ -35,14 +35,14 @@ export const page: Page = {
     /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
     answer:
       'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'Intelligence on any company, from your AI customers inside it.',
+    ogLine: 'Intelligence on any company, from inside it.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
-    headline: 'Intelligence on any company, from your AI customers inside it.',
-    sub: 'Send them to your rivals, your prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back what each one got: every email, offer, price and reply, with proof.',
+    headline: 'Intelligence on any company, from inside it.',
+    sub: 'Send your AI customers to your rivals, prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back every email, offer, price and reply, with proof.',
     capture: { ...waitlist, source: 'home-hero' },
     note: 'It says it’s an AI when it talks to a person, and every finding comes with its receipt.',
     proof: [],

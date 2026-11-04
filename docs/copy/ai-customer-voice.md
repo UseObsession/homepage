@@ -17,8 +17,8 @@ James's reason: "the whole shopper thing is a disservice and lack of understandi
 
 ## The new spine
 
-- **Hero (Home):** Intelligence on any company, from your AI customers inside it.
-- **Sub (Home):** Send them to your rivals, your prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back what each one got: every email, offer, price and reply, with proof.
+- **Hero (Home):** Intelligence on any company, from inside it.
+- **Sub (Home):** Send your AI customers to your rivals, prospects and your own company. They sign up, buy, talk to support and stay for months, then bring back every email, offer, price and reply, with proof.
 - **The verb on every other page:** Send an AI customer to X (reader pages, use cases, kinds). The hero leads with the outcome; the pages lead with the act.
 - **Trust line (under the buttons):** It says it's an AI when it talks to a person, and every finding comes with its receipt.
 - **The one sentence** (llms.txt, JSON-LD, /agents, meta descriptions where a sentence is needed): Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.
