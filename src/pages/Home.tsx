@@ -36,7 +36,7 @@ export function Home() {
       {page.ask && <Ask ask={page.ask} id="ask" />}
       {page.stopTrack && <StopTrack track={page.stopTrack} id="compare" />}
       {page.openSource && <OpenSource open={page.openSource} id="open-source" deskOnly />}
-      <Faq faq={page.faq} id="questions" />
+      <Faq faq={page.faq} limit={4} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>
   )
