@@ -16,7 +16,7 @@ import type { UseCaseStudy } from '../types'
    "lifecycle" and no "facts"; every store invented at a .example address; written as designed.
    Merged 21 Oct 2026 (James): the mystery shopping page for ecommerce agencies folds into this one, and its address
    now redirects here (public/_redirects). From it, this page keeps the real proof (`found`: 93% of stores shopped on
-   every journey had a leak, 128 stores shopped (1,500 until 22 Oct; 128 is James’s count), 77% of leaks silence, 4 real findings retold at invented shops, the
+   every journey had a leak, 128 stores shopped (1,500 until 22 Oct; 128 is James’s count of stores, and 1,500 counts journeys, James 4 Nov), 77% of leaks silence, 4 real findings retold at invented shops, the
    real September report), the free 5 stores form with its client OK, the agents' capacity (up to 1,000 stores in 48
    hours) and the term itself, as the question "Is this mystery shopping?". Seun's rule on the real block still holds:
    only those 2 shares, the store count and the capacity, never how many stores were tried or finished, the run's

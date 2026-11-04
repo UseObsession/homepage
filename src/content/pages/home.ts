@@ -161,14 +161,15 @@ export const page: Page = {
 
   /* Is this real (4 Nov evening, Seun's order): our own runs, right after the invented receipt, so the doubt it raises
      is answered at once. Set as a research note, as before. The count leads, because the question is whether it runs at
-     all; the 2 shares back it. The figures are the use case pages' real ones
-     (content/usecases/leak-checks-for-retention-agencies.ts, `found`): 128 stores joined so far (James's count; 1,500
-     until 22 Oct, so Seun's draft's 1,500 is not used), a leak at 93% of the stores shopped on every journey, 77% of
-     those leaks silence. */
+     all: 1,500 journeys (Seun's draft's 1,500, which James says counts journeys, not stores), at the 128 stores our AI
+     customers have joined (James's count). The 2 shares back it, from the use case pages
+     (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of the stores shopped on every
+     journey, 77% of those leaks silence. The rest of Seun's block (the agency pilot, every store letting a customer
+     down, nearly half silent after a full basket) is not lifted. */
   finding: {
     kicker: 'Is this real?',
-    value: '128',
-    heading: 'real stores joined by our AI customers so far.',
+    value: '1,500',
+    heading: 'journeys our AI customers have run at 128 real stores so far.',
     also: [
       { value: '93%', text: 'of the stores where they ran every journey had a leak.' },
       { value: '77%', text: 'of those leaks were silence: an email that never came.' },
