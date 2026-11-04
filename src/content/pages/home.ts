@@ -1,21 +1,20 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
-import { askExamples, askShared, life, openSource } from '../shared5'
+import { askExamples, askShared, life } from '../shared5'
 import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
-   leaves open, in this order:
-   1 what it is (the hero: intelligence on any company, from your AI customers inside it; the form; the film) >
-   2 why other tools can't (the gap: what the tools keep beside what a customer gets) >
-   3 how (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   3b what a run arrives as (1 Obsession run wired to every format; the 93% study and the sample run at the foot) >
-   4 who you are (James's reader band: each reader's own page) >
-   5 who you can send an AI customer to (rivals, prospects and accounts, your own journeys, your AI agents, 2 by 2) >
+   leaves open, in this order (4 Nov: 8 blocks, from 11; every block from 2 to 7 names itself in a small label, as the
+   readers band's "Who you send it to" does):
+   1 what it is (the hero: intelligence on any company, from inside it; the form; the film) >
+   2 what we found (the 93% study, the real report beside it, the formats a run arrives in as 1 line) >
+   3 how it works (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
+   4 how it compares (where each kind of tool's view ends on 1 journey, and what only a customer catches under it) >
+   5 who you send it to (James's reader band: each reader, where it sends its AI customers, its recipes) >
    6 what you can ask it (1 question per reader, asked in Claude Code, Codex or from code, answered with receipts) >
-   7 how it compares (6 kinds of tool, 7 rows, dated, linking /compare) >
-   8 what is open (the engine on GitHub, the history in Obsession Cloud) >
-   9 questions, then the waitlist.
+   7 questions, then the waitlist.
+   Open source is the hero's tag (a link to the code) and 1 question; its section lives on /developers.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
@@ -71,32 +70,26 @@ export const page: Page = {
     foot: 'Each one with proof',
   },
 
-  gapPair: {
-    heading: 'Other tools read what a company says. AI customers see what it does.',
-    line: 'Ad libraries, email archives, page monitors and tech lookups stop at what a company shows the public. The money is lost after that, and only someone on the inside catches it: you with a spare inbox, or your AI customers.',
-    tools: {
-      label: 'What other tools see',
-      items: [
-        'The ad, and how long it ran',
-        'A picture of the landing page',
-        'The newsletter, if someone archived it',
-        'An alert that a page changed',
-      ],
-    },
-    customer: {
-      label: 'What your AI customers catch',
-      items: [
-        'The checkout that broke mid campaign',
-        'The promo code that stopped working',
-        'Your private codes leaking to resellers and coupon sites',
-        'A rival’s price cut or new offer',
-        'Where a prospect’s journey loses money',
-        'What the support bot got wrong',
-      ],
-    },
+  /* The gap section ("Other tools read what a company says. AI customers see what it does.", 2 lists) folded into the
+     comparison on 4 Nov: both made 1 argument with 2 "Other tools" headings. Its heading and its catches moved there
+     (stopTrack); its "What other tools see" list is what the track's lines already show. */
+
+  /* What we found (4 Nov): the study and 1 real run, first, so the page shows a result before it explains anything. The
+     run section's 6 formats are 1 line here; the formats themselves are on /sample-output. */
+  proof: {
+    kicker: 'What we found',
+    heading: '93% of stores in our study had a gap.',
+    line: 'Our AI customers ran every journey at each store. Every run arrives as a PDF report, an email, a Slack message, a sheet, a webhook or a workflow.',
+    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
   },
 
-  life,
+  /* The shared block, with its line on Home in the heading's own numbers (5 or 5,000 beside 10,000) and without the
+     spare inbox, which the comparison's By hand row already names. */
+  life: {
+    ...life,
+    kicker: 'How it works',
+    line: 'Name 5 companies or 10,000: each gets its own AI customer, which stays for months, so every break, leak, price cut and new offer reaches you the day it happens.',
+  },
 
   /* The Kinds section ("Send an AI customer anywhere. A rival, a prospect, or your own company.", 4 cards over their
      filmed screens) was cut on 4 Nov: at 1,713px it was the page's longest section and named the places the hero, the
@@ -111,7 +104,11 @@ export const page: Page = {
      ways in, which /developers keeps. */
   ask: {
     ...askShared,
-    areas: ['Competitors', 'Prospects', 'Clients', 'Your own business'],
+    kicker: 'Ask from your agent',
+    /* Home's line leaves out the list the hero already gives (every email, offer, price and reply). The areas label and
+       the Ask from list are gone (4 Nov): the label named the readers band's places again, the list named 7 places. */
+    line: 'What a company sends its customers is not on the web, so no AI can search for it. Connect Obsession once to Claude Code or Codex, or ask on our website, and every answer comes with its receipts.',
+    from: undefined,
     examples: [askExamples.blackFriday, askExamples.brief, askExamples.watch],
   },
 
@@ -119,8 +116,9 @@ export const page: Page = {
      /compare and the reader pages. By hand reaches every step, so its line runs the whole way and thins out: what fails
      is how many companies and for how long, not a step (James, 4 Nov). */
   stopTrack: {
-    heading: 'Other tools read the outside. Obsession is the customer.',
-    line: 'Every other tool’s view ends somewhere along the journey. Your AI customers stay to the end, and keep the receipts.',
+    kicker: 'How it compares',
+    heading: 'Other tools read what a company says. AI customers see what it does.',
+    line: 'Each line ends where that tool stops seeing. Your AI customers stay to the end, and keep the receipts.',
     steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
     rows: [
       { name: 'Ad libraries', who: 'Foreplay, Meta Ad Library', stop: 1, note: 'Stops at the ad' },
@@ -130,35 +128,28 @@ export const page: Page = {
       { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
       { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step, at every company you name, with the receipt' },
     ],
+    catches: {
+      label: 'What your AI customers catch',
+      items: [
+        'The checkout that broke mid campaign',
+        'The promo code that stopped working',
+        'Your private codes leaking to resellers and coupon sites',
+        'A rival’s price cut or new offer',
+        'Where a prospect’s journey loses money',
+        'What the support bot got wrong',
+      ],
+    },
     more: { label: 'See the full comparison', to: '/compare' },
   },
 
-  /* What a run arrives as (4 Nov, revision 2 of obsession/proof-section-design.html): 1 Obsession run wired to the 6
-     formats, the chosen format's view beside them. The formats are delivery options, not separate reports; the study
-     (real audits, Seun, 7 Oct) and the sample run sit at the foot (James, 4 Nov). */
-  runReports: {
-    heading: 'Every run, in the format your team reads.',
-    node: { title: 'Obsession run', line: 'Any company, any job' },
-    label: 'Arrives as',
-    study: { value: '93%', text: 'of stores in our study had a gap, where our AI customers ran every journey.' },
-    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
-  },
-
-  /* Open source, names only (4 Nov, James: too many descriptions). Each capability's line, and the rest, live on
-     /developers. Each cloud line fits 1 line. */
-  openSource: {
-    ...openSource,
-    heading: 'An open source runtime for 100,000 AI customers.',
-    line: undefined,
-    core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
-    cloud: {
-      title: openSource.cloud.title,
-      items: ['Inboxes, phones and browsers', 'Months of history already kept', 'A shared record from day one', 'About 250 integrations', 'Our website and watch planner'],
-    },
-  },
+  /* The run section ("Every run, in the format your team reads.", 1 run wired to 6 formats) left Home on 4 Nov: its study
+     and sample run lead the page as the proof, its formats are 1 line there. components/v5/RunReports stays in place.
+     The open source section ("An open source runtime for 100,000 AI customers.") left too: /developers shows it in full,
+     and Home keeps the hero's tag, which links to the code, and 1 question. */
 
   /* The questions a reader asks before joining. The first answer is meta.answer, word for word. */
   faq: {
+    kicker: 'Questions',
     heading: 'Before you join.',
     items: [
       {
@@ -203,13 +194,16 @@ export const page: Page = {
       {
         q: 'Is Obsession open source?',
         a: 'Yes. The runtime is open source on GitHub: the AI customers, how they scale and learn, the record, recipes and the 5 verbs. Obsession Cloud runs it for you, with months of history already collected.',
+        link: { label: 'What is open, and what the cloud adds', to: '/developers#open-source' },
       },
     ],
   },
 
+  /* The claim and the form. The agency link ("Agency? Get 5 client stores checked free") went on 4 Nov: beside the
+     form's own line (name up to 5 brands to check first) it was a second version of the same offer. Agencies reach
+     their page from the readers band. */
   final: {
     heading: 'Name a company. Send it an AI customer.',
     capture: { ...waitlist, source: 'home-final' },
-    link: { label: 'Agency? Get 5 client stores checked free', to: '/use-cases/leak-checks-for-retention-agencies' },
   },
 }

@@ -69,6 +69,15 @@
   color: var(--ob-text);
   text-wrap: balance;
 }
+/* A section's label over its heading (Home, 4 Nov), set as the readers band's "Who you send it to" is
+   (legacy/james/styles/base.css .kicker), so the 6 labels from the proof to the questions read as 1 set. */
+.v5-kicker {
+  margin: 0;
+  font: 500 13px / 1.2 var(--ob-font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
 .v5-line {
   margin: 0;
   max-width: 62ch;

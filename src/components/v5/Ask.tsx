@@ -9,7 +9,8 @@ import './Ask.css'
    the right in that place's window: the question, the answer line by line, then its receipts. Every answer stays in the
    page for search and llms-full.txt (data-llms="keep"); only the chosen one shows. An example asked from code shows only
    its code. Under the stage, what Obsession
-   keeps for each company, and where you can ask from. The answer plays once the section is on screen, and again when
+   keeps for each company, and where you can ask from (Home leaves both out, and names the section with a label in
+   place of its areas, 4 Nov). The answer plays once the section is on screen, and again when
    its question is chosen; under reduced motion it shows finished.
    Until someone picks a question, the questions take turns (4 Nov): a line fills under the chosen one, and when it is
    full the next one opens, so a reader sees each question has its own answer. The line is a CSS animation (Ask.css),
@@ -56,7 +57,7 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
     <section ref={ref} className="v5-section v5-ask" id={id} aria-labelledby={`${hid}-h`} data-live={live ? '' : undefined} data-seen={seen ? '' : undefined} data-auto={auto ? '' : undefined}>
       <div className="s-wrap">
         <div className="v5-head">
-          <p className="v5-ask-areas">{ask.areas.join(' · ')}</p>
+          {ask.kicker ? <p className="v5-kicker">{ask.kicker}</p> : ask.areas && <p className="v5-ask-areas">{ask.areas.join(' · ')}</p>}
           <h2 className="v5-h2" id={`${hid}-h`}>
             {ask.heading}
           </h2>
@@ -135,32 +136,38 @@ export function Ask({ ask, id }: { ask: AskContent; id?: string }) {
             ))}
           </div>
         </div>
-        <div className={ask.keeps ? 'v5-ask-foot' : 'v5-ask-foot v5-ask-foot--from'}>
-          {ask.keeps && (
-            <div className="v5-ask-keeps">
-              <h3 className="v5-ask-h3">{ask.keeps.heading}</h3>
-              <ul>
-                {ask.keeps.items.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          <div className="v5-ask-from">
-            <h3 className="v5-ask-h3">{ask.from.label}</h3>
-            <ul className="v5-ask-chips">
-              {ask.from.items.map((i) => (
-                <li key={i}>{i}</li>
-              ))}
-            </ul>
-            {ask.notYet && <p className="v5-ask-note">{ask.notYet}</p>}
-            {ask.more && (
-              <Link className="v5-link v5-ask-more" to={ask.more.to}>
-                {ask.more.label}
-              </Link>
+        {(ask.keeps || ask.from || ask.notYet || ask.more) && (
+          <div className={ask.keeps ? 'v5-ask-foot' : 'v5-ask-foot v5-ask-foot--from'}>
+            {ask.keeps && (
+              <div className="v5-ask-keeps">
+                <h3 className="v5-ask-h3">{ask.keeps.heading}</h3>
+                <ul>
+                  {ask.keeps.items.map((i) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
+              </div>
             )}
+            <div className="v5-ask-from">
+              {ask.from && (
+                <>
+                  <h3 className="v5-ask-h3">{ask.from.label}</h3>
+                  <ul className="v5-ask-chips">
+                    {ask.from.items.map((i) => (
+                      <li key={i}>{i}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              {ask.notYet && <p className="v5-ask-note">{ask.notYet}</p>}
+              {ask.more && (
+                <Link className="v5-link v5-ask-more" to={ask.more.to}>
+                  {ask.more.label}
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   )

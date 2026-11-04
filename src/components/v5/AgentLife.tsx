@@ -22,6 +22,7 @@ export function AgentLife({ life, id }: { life: Life; id?: string }) {
     <section className="v5-section v5-life" id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="v5-head">
+          {life.kicker && <p className="v5-kicker">{life.kicker}</p>}
           <h2 className="v5-h2" id={`${hid}-h`}>
             {life.heading}
           </h2>

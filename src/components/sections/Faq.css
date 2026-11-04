@@ -7,6 +7,8 @@
   row-gap: var(--ob-space-block);
 }
 .s-faq__h { max-width: 20ch; margin: 0; }
+/* The label over the claim keeps the gap a v5 section's head gives it (styles/v5.css .v5-head). */
+.s-faq__head > .v5-kicker { margin-bottom: 16px; }
 /* A long claim steps down to the h3 size, so the claim that stays in view never runs past 3 lines. */
 .s-faq__h--long.ob-type-h2 {
   max-width: 24ch;

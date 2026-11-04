@@ -14,6 +14,8 @@
   min-width: 0;
 }
 .s-proof__h { margin: 0; max-width: var(--ob-measure-heading); }
+/* The label over the claim keeps the gap a v5 section's head gives it (styles/v5.css .v5-head). */
+.s-proof__copy > .v5-kicker { margin-bottom: 16px; }
 .s-proof__h--long.ob-type-h2 { max-width: 24ch; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); }
 .s-proof__line {
   margin: var(--ob-space-20) 0 0;

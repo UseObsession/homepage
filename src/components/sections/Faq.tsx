@@ -124,6 +124,7 @@ export function Faq({ faq, open, limit, id, className }: Props) {
     <section id={id} className={'s-section s-faq' + (className ? ' ' + className : '')} aria-labelledby={`${base}-h`}>
       <div className="s-wrap s-faq__grid">
         <div className="s-faq__head">
+          {faq.kicker && <p className="v5-kicker">{faq.kicker}</p>}
           <h2 id={`${base}-h`} className={'ob-type-h2 s-faq__h' + (faq.heading.length > LONG ? ' s-faq__h--long' : '')}>
             {keepNumerals(faq.heading)}
           </h2>

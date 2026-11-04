@@ -257,14 +257,16 @@ export type Outcomes = { heading: string; sub?: string; items: { value: string; 
 export type Kinds = { heading: string; label: string; items: { name: string; line: string; recipes: RecipeId[] }[] }
 /* The claim beside its object. Without `screen` the object is the real September report (story beat 8); with it, the
    object is that app screen, under its Example tag (Home's short section on the AI agent checks). */
-export type Proof = { heading: string; line: string; cta: Cta; screen?: ScreenName }
-export type Faq = { heading: string; items: { q: string; a: string; link?: Cta }[] }
+/* `kicker`: the small label over a section's heading (Home, 4 Nov: every section from the proof to the questions names
+   itself, as the readers band's "Who you send it to" does). */
+export type Proof = { kicker?: string; heading: string; line: string; cta: Cta; screen?: ScreenName }
+export type Faq = { kicker?: string; heading: string; items: { q: string; a: string; link?: Cta }[] }
 /* The rules every run follows (James's "Built to behave.", docs/REBUILD.md 1d): the trust beat before the questions. A
    claim heading, 1 line, each rule as a short claim with 1 line under it, and `link` to the page every company an
    agent meets can read (/agents). Never "it follows robots.txt". */
 export type Rules = { heading: string; line?: string; items: { title: string; line: string }[]; link?: Cta }
 /* `link` is the quiet second path under the form (the sample report, on a page whose offer is a free audit). Home's
-   closing call has no `sub`: the claim, the form and the link. */
+   closing call has no `sub` and, since 4 Nov, no link: the claim and the form. */
 export type Final = { heading: string; sub?: string; capture: Capture; link?: Cta }
 
 /* Home's own beats, kept from James's Home and rebuilt. */
@@ -641,6 +643,7 @@ export type GapPair = {
    4 steps under the axis, in order; a phase's `lead` opens its line in bold. */
 export type LifeLane = { name: string; wakes: { day: number; label: string }[] }
 export type Life = {
+  kicker?: string
   heading: string
   line?: string
   list: string
@@ -663,12 +666,15 @@ export type Targets = {
 export type CompareMark = 'yes' | 'part' | 'no'
 /* Home's comparison as 1 journey (components/v5/StopTrack, 4 Nov): the same customer's steps across the top, and each
    kind of tool a line that stops where its view stops. `stop` counts the steps a line reaches; `fade` draws a line that
-   reaches every step but thins out (by hand: every step, for a few companies, until someone stops checking). */
+   reaches every step but thins out (by hand: every step, for a few companies, until someone stops checking). `catches`
+   (Home, 4 Nov): what only a customer catches, under the track, from the gap section it took the place of. */
 export type StopTrack = {
+  kicker?: string
   heading: string
   line?: string
   steps: string[]
   rows: { name: string; who: string; note: string; stop?: number; fade?: boolean; ours?: boolean }[]
+  catches?: { label: string; items: string[] }
   foot?: string
   more?: Cta
 }
@@ -696,12 +702,15 @@ export type Ways = { heading: string; line?: string; ways: Way[]; verbs: { headi
    was asked in; an example asked from code ('Code') shows only its `code`, in a window titled `file`, with no answer under it. The shared parts (`from`, `connect`, `keeps`, `notYet`, `more`) come from shared5's `askShared`. */
 export type AskExample = { where: string; q: string; a?: string[]; receipts?: string; file?: string; code?: string }
 export type Ask = {
+  /* Home's section label, in place of `areas`. */
+  kicker?: string
   heading: string
   /* The areas it covers on this page, shown in a small label above the heading. */
-  areas: string[]
+  areas?: string[]
   line: string
   examples: AskExample[]
-  from: { label: string; items: string[] }
+  /* Where you can ask from, under the stage. Home leaves it out (4 Nov). */
+  from?: { label: string; items: string[] }
   /* The 1 line that connects Obsession to each tool an example is asked in, keyed by `where`. */
   connect: Record<string, string>
   keeps?: { heading: string; items: string[] }

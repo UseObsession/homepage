@@ -8,7 +8,9 @@ import './StopTrack.css'
    tool is a line that stops at the last step it reaches, with a dot and a short note there. By hand reaches every step,
    so its line runs the whole way and thins out. Your AI customers' line runs to the end, with a mark on every step.
    The lines draw in once in view (data-v5-play, src/boot.ts); at rest, and under reduced motion, they are drawn. Below
-   760px the track scrolls inside its own frame, the tool names held at the left. */
+   760px the track scrolls inside its own frame, the tool names held at the left. Under it on Home (4 Nov), what only a
+   customer catches, on the receipt's paper, from the gap section this one took the place of: the track shows where
+   each tool's view ends, the list what is found past that point. */
 export function StopTrack({ track, id }: { track: StopTrackContent; id?: string }) {
   const hid = useId()
   const [ref, on] = useInView<HTMLDivElement>()
@@ -17,6 +19,7 @@ export function StopTrack({ track, id }: { track: StopTrackContent; id?: string 
     <section className="v5-section v5-stops" id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="v5-head">
+          {track.kicker && <p className="v5-kicker">{track.kicker}</p>}
           <h2 className="v5-h2" id={`${hid}-h`}>
             {track.heading}
           </h2>
@@ -66,6 +69,19 @@ export function StopTrack({ track, id }: { track: StopTrackContent; id?: string 
             })}
           </div>
         </div>
+        {track.catches && (
+          <div className="v5-stops-catch">
+            <h3 className="v5-stops-catch-label">{track.catches.label}</h3>
+            <ul>
+              {track.catches.items.map((t) => (
+                <li key={t}>
+                  <span>{t}</span>
+                  <span className="v5-stops-tick" aria-hidden="true" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         {(track.foot || track.more) && (
           <div className="v5-stops-foot">
             {track.foot && <p className="v5-stops-note-foot">{track.foot}</p>}
