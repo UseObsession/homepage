@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { consentCopy as copy } from '../content/consent'
 import { choose, consent, gpc, OPEN_CONSENT, type Consent } from '../lib/analytics'
 import './ConsentBanner.css'
@@ -9,7 +9,8 @@ import './ConsentBanner.css'
    on the first page a visitor opens, unless their browser sends Global Privacy Control; Cookie settings in the footer
    opens it again, with their choice marked, and moves focus into it. A spacer the strip's height ends the page, so the
    footer's last line can always scroll clear of it. It sits under the nav and its phone sheet. Nothing renders on the
-   server, so the prerendered pages carry no strip. */
+   server, so the prerendered pages carry no strip. On Home, the page holds still until the first Allow or Decline
+   (James, 5 Nov); Decline opens the page as fully as Allow, so the choice stays free. */
 export function ConsentBanner() {
   const [open, setOpen] = useState(false)
   const [current, setCurrent] = useState<Consent | null>(null)
@@ -17,6 +18,16 @@ export function ConsentBanner() {
   const [height, setHeight] = useState(0)
   const first = useRef<HTMLButtonElement>(null)
   const strip = useRef<HTMLElement>(null)
+  const { pathname } = useLocation()
+  const hold = open && current === null && pathname === '/'
+
+  /* Home doesn't scroll until the first choice. Asked again from Cookie settings, it never holds. */
+  useEffect(() => {
+    if (!hold) return
+    const html = document.documentElement
+    html.classList.add('s-consent-hold')
+    return () => html.classList.remove('s-consent-hold')
+  }, [hold])
 
   useEffect(() => {
     const now = consent()

@@ -42,6 +42,11 @@
 .s-consent__act:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 .s-consent__act[aria-pressed="true"] { font-weight: 600; text-decoration-color: currentColor; }
 
+/* Home before the first choice (ConsentBanner's hold): the page stays still, its scrollbar's room kept so nothing
+   shifts when it frees. */
+html.s-consent-hold { overflow: hidden; scrollbar-gutter: stable; }
+html.s-consent-hold body { overflow: hidden; overscroll-behavior: none; }
+
 @keyframes s-consent-in {
   from { translate: 0 100%; }
 }
