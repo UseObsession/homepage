@@ -46,7 +46,7 @@ const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: s
   'Watch other companies': { line: 'Every email, ad, price and trial, as their customer.', examples: ['competitor', 'prospect'] },
   'Check your own journeys': { line: 'Find the break before a customer does.', examples: ['adcheck', 'speed'] },
   'Check your AI agents': {
-    line: 'AI customers check the AI agents you run.',
+    line: 'Check the AI agents you run, as a customer meets them.',
     examples: ['support-bot', 'voice-agent'],
     to: ways.verify.to,
   },
@@ -74,7 +74,7 @@ export const nav = {
     { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every competitor ad, email and offer, seen as their customer.' },
     { id: 'sales', label: 'Sales', to: '/sales', line: 'Know what each account does to its customers.' },
     { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client and prospect, checked as a customer.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'An AI customer at any company, for your agents.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'The customer layer for your AI agents.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
@@ -87,7 +87,7 @@ export const nav = {
     /* The featured card: the free first report, then the 1 real run. */
     feature: {
       label: 'Your first mystery shop is free',
-      line: 'AI customers shop your store, or a client’s with their OK. The report comes within 4 days.',
+      line: 'We shop your store, or a client’s with their OK, and send the report within 4 days.',
       action: 'Get my free report',
       to: '/recipes/mystery-shopper',
     },
@@ -104,7 +104,7 @@ export const nav = {
       kicker: 'Sample output',
       label: 'The September store check',
       to: '/sample-output',
-      line: '4 AI customers joined a real store. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
+      line: 'We joined a real store 4 times. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x
          above its status tags, so it reads at a glance and brings no status colour into the nav. */
       image: {

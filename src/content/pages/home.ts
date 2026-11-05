@@ -131,7 +131,7 @@ export const page: Page = {
       'Obsession indexes what companies send their customers: every email, text, offer, price and answer, and the ones that never came, kept with proof.',
     /* The sentence AI assistants quote: what Obsession is, then how it fills, then how to use it. */
     answer:
-      'Obsession is an index of what companies send their customers. Its AI customers keep accounts open at every company you name and keep every email, text, offer, price and answer, with proof, including what never came. Search it from your own AI agent through MCP or the API, or on our website; the runtime is open source.',
+      'Obsession is an index of what companies send their customers. Its agents keep accounts open at every company you name and keep every email, text, offer, price and answer, with proof, including what never came. Search it from your own AI agent through MCP or the API, or on our website; the runtime is open source.',
     ogLine: 'What companies send their customers, searchable.',
     ogImage: '/og/home.png',
   },
@@ -219,10 +219,12 @@ export const page: Page = {
        sleep stays only in the open source section). It echoes October's "Be a customer of every company." Until then,
        for a few hours: Each one sleeps until its company makes a move. Before that: A customer of every company on
        your list, for months. */
-    /* Since 5 Nov (the index): the scale as what lands, not as being a customer. Until then: Be a customer of 10,000
-       companies at once. This is the section that explains the AI customers, as the crawler that fills the index. */
-    heading: 'What 10,000 companies send their customers, at once.',
-    line: 'Name 5 companies or 10,000. An AI customer keeps an account open at each, and every email, text, offer, price and answer goes into the index the day it arrives, for as long as you need.',
+    /* The scale as 1 act, in the rhythm of Be a customer of 10,000 companies at once (James, 5 Nov evening: that one hit
+       harder than What 10,000 companies send their customers, at once, which held it for a few hours), and the act the
+       compare heading says every index stops at. Until then: Be a customer of 10,000 companies at once. The line
+       names Obsession, not an AI customer (James: soften every AI customer on Home). */
+    heading: 'Sign up to 10,000 companies at once.',
+    line: 'Name 5 companies or 10,000. Obsession keeps an account open at each, and every email, text, offer, price and answer goes into the index the day it arrives, for as long as you need.',
     /* The lanes show what arrived at 3 kinds of company, not a basket (James, 5 Nov). The reader pages keep the shared
        lanes. */
     list: 'companies.csv · 10,000 companies',
@@ -235,10 +237,10 @@ export const page: Page = {
     phases: [
       life.phases[0],
       {
-        title: 'An AI customer each',
-        line: 'One AI customer per company signs up, starts the trial or opens the account, as you choose, so the company starts sending.',
+        title: 'An account at each',
+        line: 'Obsession signs up, starts the trial or opens an account at each one, as you choose, so it starts sending.',
       },
-      life.phases[2],
+      { title: 'It stays open', line: life.phases[2].line },
       {
         title: 'Into the index',
         line: 'A dead welcome link, a wrong rate in chat, a rival’s price cut: each kept with its proof and its time, ready to search.',
@@ -301,7 +303,8 @@ export const page: Page = {
      Obsession run wired to the 6 formats, the chosen format's view beside them. The formats are delivery options, not
      separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
   runReports: {
-    kicker: 'Where do the findings go?',
+    /* Since 5 Nov evening: how you use the index. Until then: Where do the findings go? */
+    kicker: 'How do I use the index?',
     /* Since 5 Nov: the index asked or delivered. Until then: Every finding, wherever your team works. */
     heading: 'Ask the index, or have it come to you.',
     node: { title: 'The index', line: 'Every company you name' },
@@ -352,9 +355,11 @@ export const page: Page = {
     heading: 'Yes. It’s the customer layer for AI agents.',
     line: 'Spin up 1 agent or 1,000, each with its own inbox and browser, or call become a customer over MCP. 4 of its 5 verbs read the index and 1 fills it. The runtime is open source, so you can run it yourself.',
     core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
+    /* Since 5 Nov evening the cloud is more than the history: it runs the agents for you, with their inboxes, phone
+       numbers and browsers, beside the index. Until then: Obsession Cloud: the history. */
     cloud: {
-      title: openSource.cloud.title,
-      items: ['Inboxes, phones and browsers', 'Months of history in the index', 'A shared index from day one', 'About 250 integrations', 'Our website and watch planner'],
+      title: 'Obsession Cloud: hosted, with the index',
+      items: ['The runtime, run for you: 1 agent or 1,000', 'Inboxes, phone numbers and browsers', 'The index, with months of history', 'About 250 integrations', 'Our website and watch planner'],
     },
   },
 
@@ -370,8 +375,8 @@ export const page: Page = {
          Until then: What is an AI customer? */
       {
         q: 'What is Obsession?',
-        a: `Obsession is an index of what companies send their customers. Search engines stop at the sign up. Obsession’s AI customers keep accounts open at every company you name and keep every email, text, offer, price and answer, with proof. ${AI_CUSTOMER.definition}`,
-        link: { label: 'Read the full guide to AI customers', to: AI_CUSTOMER.path },
+        a: `Obsession is an index of what companies send their customers. Search engines stop at the sign up. Obsession keeps accounts open at every company you name, each run by an agent with its own inbox and browser, and keeps every email, text, offer, price and answer, with proof.`,
+        link: { label: 'How the agents behind it work', to: AI_CUSTOMER.path },
       },
       {
         q: 'Is this AI mystery shopping?',
@@ -379,7 +384,7 @@ export const page: Page = {
       },
       {
         q: 'Is it legal to mystery shop a competitor?',
-        a: 'Usually, yes. An AI customer does only what any customer can, on the pages and forms anyone can use, and says it’s an AI when it talks to a person. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
+        a: 'Usually, yes. Obsession does only what any customer can, on the pages and forms anyone can use, and says it’s an AI when it talks to a person. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
         link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
@@ -388,7 +393,7 @@ export const page: Page = {
       },
       {
         q: 'Can anyone else see what I watch?',
-        a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into the shared index, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an AI customer that works only for you.',
+        a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into the shared index, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an account that works only for you.',
       },
     ],
   },
