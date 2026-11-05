@@ -1,5 +1,6 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
+import { look } from '../look'
 import { askExamples, askShared, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
@@ -9,7 +10,7 @@ import type { Page } from '../types'
    then the objection, then how). Every block from 2 to 9 is labelled with the reader's own question, so the labels
    read as the page's argument (COPY.md's reading path):
    1 what it is (the hero: see what any company shows only its customers; the form; the film) >
-   2 What does that look like? (1 AI customer's receipt at a shop, a software company or a bank, findings numbered) >
+   2 What does that look like? (a wall of companies, 4 AI customers each, that answers a question, a Clay table or a PDF) >
    3 Is this real? (our own runs as a research note: the store count, the 2 shares, its source, 1 real report) >
    4 What would I use it for? (James's band as 3 uses in the sub's order: prospects, clients, competitors) >
    5 Why can't my tools do this? (where each kind of tool's view ends on 1 journey, and what only a customer catches) >
@@ -76,100 +77,22 @@ export const page: Page = {
      comparison on 4 Nov: both made 1 argument with 2 "Other tools" headings. Its heading and its catches moved there
      (stopTrack); its "What other tools see" list is what the track's lines already show. */
 
-  /* What does that look like (4 Nov evening, Seun's order): the hero's "what any company shows only its customers",
-     drawn as 1 AI customer's receipt. 3 kinds of company, so the picture is never only a shop (hero goal 3): Seun's
-     Fern Hollow and Wrenfield, from his Home draft, and a bank of our own. Between them the rows show every kind the
-     sub names (an email, a text, an offer, a reply) and both kinds of finding it names (what broke, what never came),
-     plus an offer only customers get. Every company, time and price is invented, and the receipt is stamped Example.
-     Not "a mystery shopper who never goes home" (Seun's heading): James rejected that frame on 4 Nov. */
-  look: {
-    kicker: 'What does that look like?',
-    heading: '1 company, as only its customers see it.',
-    line: 'Every email, text, offer and reply, kept as it arrived, with what broke or never came numbered on it. Pick a company. All 3 are examples.',
-    stamp: 'Example',
-    foundLabel: 'What it found',
-    tally: '{n} findings, each kept as it arrived',
-    stories: [
-      {
-        tab: 'A shop',
-        company: 'Fern Hollow',
-        site: 'fernhollow.example',
-        path: 'Signs up, fills a basket, stops at checkout',
-        kept: 'Day 1 to day 68',
-        rows: [
-          { when: 'Day 1 09:00', kind: 'action', text: 'Signs up for emails.' },
-          { when: 'Day 1 09:02', kind: 'email', text: 'Welcome, with a 10% code.' },
-          { when: 'Day 1 09:15', kind: 'action', text: 'Puts a £120 jacket in the basket and goes to checkout.' },
-          { when: 'Day 1 09:16', kind: 'page', text: 'Checkout refuses the 10% code.', found: 1 },
-          { when: 'Day 2 14:15', kind: 'email', text: 'The basket reminder, 29 hours later.', found: 2 },
-          { when: 'Day 3 10:40', kind: 'text', text: 'A second reminder. Its link opens an empty basket.', found: 3 },
-          { when: 'Day 26 08:00', kind: 'offer', text: 'Black Friday: 30% off everything. Checkout gives 20%.', found: 4 },
-          { when: 'Day 68 08:00', kind: 'email', text: 'The January sale. Still subscribed.' },
-        ],
-        found: [
-          'The welcome code fails at checkout.',
-          'The basket reminder takes 29 hours. 2 competitors on the same list send theirs in under 4.',
-          'The text’s link opens an empty basket.',
-          'The Black Friday email promises 30% off. Checkout gives 20%.',
-        ],
-      },
-      {
-        tab: 'A software company',
-        company: 'Wrenfield',
-        site: 'wrenfield.example',
-        path: 'Asks for a demo, starts a trial, asks support',
-        kept: 'Day 1 to day 9',
-        rows: [
-          { when: 'Day 1 10:00', kind: 'action', text: 'Asks for a demo on the website form.' },
-          { when: 'Day 1 10:01', kind: 'email', text: 'An automatic reply: someone will be in touch within 1 working day.' },
-          { when: 'Day 1 10:30', kind: 'action', text: 'Starts the free trial.' },
-          { when: 'Day 1 10:31', kind: 'email', text: 'Welcome to your trial.' },
-          { when: 'Day 3 12:10', kind: 'reply', text: 'The first reply from a person, 50 hours after the request.', found: 1 },
-          { when: 'Day 8 10:31', kind: 'nothing', text: 'No email since the welcome, 7 days in.', found: 2 },
-          { when: 'Day 8 10:35', kind: 'action', text: 'Asks support how to export its data.' },
-          { when: 'Day 9 17:40', kind: 'reply', text: 'Support answers, 31 hours later.', found: 3 },
-        ],
-        found: [
-          'A demo request waits 50 hours for a person, after a promise of 1 working day.',
-          'The trial goes silent after its welcome email.',
-          'Support takes 31 hours. The help page promises 24.',
-        ],
-      },
-      {
-        tab: 'A bank',
-        company: 'Kittiwake Bank',
-        site: 'kittiwake.example',
-        path: 'Signs up for rate alerts, asks the chat, books a call back',
-        kept: 'Day 1 to day 12',
-        rows: [
-          { when: 'Day 1 09:10', kind: 'action', text: 'Signs up for savings rate alerts with its own phone number.' },
-          { when: 'Day 1 09:10', kind: 'text', text: 'The sign up code, 6 seconds later.' },
-          { when: 'Day 1 09:12', kind: 'email', text: 'Welcome. The easy access saver pays 4.6%.' },
-          { when: 'Day 1 09:20', kind: 'reply', text: 'Asked if 4.6% is fixed, the chat says yes. The rate page says variable.', found: 1 },
-          { when: 'Day 1 09:30', kind: 'action', text: 'Books a mortgage call back, promised within 1 working day.' },
-          { when: 'Day 4 09:30', kind: 'nothing', text: 'No call, text or email about the mortgage.', found: 2 },
-          { when: 'Day 12 08:00', kind: 'offer', text: '£200 to switch your current account.', found: 3 },
-        ],
-        found: [
-          'The chat calls a variable rate fixed.',
-          'The mortgage call back never comes.',
-          'A £200 switching offer that is not on the website, sent only to customers.',
-        ],
-      },
-    ],
-  },
+  /* What does that look like (5 Nov, James): the wall in content/look.ts, in place of 4 Nov's receipt (rejected: too much
+     to read, and the receipt object unclear). Many companies of every kind, so the picture is never only a shop (hero
+     goal 3); it shows, it doesn't tell. */
+  look,
 
   /* Is this real (4 Nov evening, Seun's order): our own runs, right after the invented receipt, so the doubt it raises
      is answered at once. Set as a research note, as before. The count leads, because the question is whether it runs at
-     all: 1,500 journeys (Seun's draft's 1,500, which James says counts journeys, not stores), at the 128 stores our AI
-     customers have joined (James's count). The 2 shares back it, from the use case pages
+     all: 1,500 journeys (Seun's draft's 1,500, which James says counts journeys, not stores), at the 376 stores our AI
+     customers have joined (James's count, 5 Nov; 128 until then). The 2 shares back it, from the use case pages
      (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of the stores shopped on every
      journey, 77% of those leaks silence. The rest of Seun's block (the agency pilot, every store letting a customer
      down, nearly half silent after a full basket) is not lifted. */
   finding: {
     kicker: 'Is this real?',
     value: '1,500',
-    heading: 'journeys our AI customers have run at 128 real stores so far.',
+    heading: 'journeys our AI customers have run at 376 real stores so far.',
     also: [
       { value: '93%', text: 'of the stores where they ran every journey had a leak.' },
       { value: '77%', text: 'of those leaks were silence: an email that never came.' },
