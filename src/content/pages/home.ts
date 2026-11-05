@@ -92,7 +92,10 @@ export const page: Page = {
   finding: {
     kicker: 'Is this real?',
     value: '1,500',
-    heading: 'journeys our AI customers have run at 376 real stores so far.',
+    /* Since 5 Nov the headings below the wall answer their questions without the words AI customer (James: they
+       stacked until they said nothing); the wall's heading is the 1 that names them. Until then: journeys our AI
+       customers have run at 376 real stores so far. */
+    heading: 'journeys run at 376 real stores so far.',
     also: [
       { value: '93%', text: 'of the stores where they ran every journey had a leak.' },
       { value: '77%', text: 'of those leaks were silence: an email that never came.' },
@@ -110,7 +113,9 @@ export const page: Page = {
   life: {
     ...life,
     kicker: 'How does it work?',
-    heading: 'A customer of every company on your list, for months.',
+    /* How it can stay for months at 10,000 companies, and why the wall's foot counts who woke (5 Nov). Until then: A
+       customer of every company on your list, for months. */
+    heading: 'Each one sleeps until its company makes a move.',
     line: 'Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay as long as you need and tell you about every break, leak, price cut and new offer the day it happens.',
     phases: [
       ...life.phases.slice(0, 3),
@@ -139,7 +144,9 @@ export const page: Page = {
      is how many companies and for how long, not a step (James, 4 Nov). */
   stopTrack: {
     kicker: 'Why can’t my tools do this?',
-    heading: 'Other tools read what a company says. AI customers see what it does.',
+    /* What the track shows: every tool's line ends before the journey does (5 Nov). Until then: Other tools read what a
+       company says. AI customers see what it does. */
+    heading: 'Every other tool stops before the customer does.',
     line: 'The code at checkout, the reminder after a basket, the reply from support: each reaches only the customer it was meant for. Your AI customers stay to the end, and keep the receipts.',
     steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
     rows: [
@@ -154,7 +161,7 @@ export const page: Page = {
       { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step short of paying, at every company you name, with the receipt' },
     ],
     catches: {
-      label: 'Some of what your AI customers catch',
+      label: 'What only a customer catches',
       items: [
         'The checkout that broke mid campaign',
         'The promo code that stopped working',
@@ -198,7 +205,8 @@ export const page: Page = {
   openSource: {
     ...openSource,
     kicker: 'Can I run it myself?',
-    heading: 'An open source runtime for 100,000 AI customers.',
+    /* The question's answer, first (5 Nov). Until then: An open source runtime for 100,000 AI customers. */
+    heading: 'Yes. The runtime is open source.',
     line: undefined,
     core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
     cloud: {
@@ -244,7 +252,8 @@ export const page: Page = {
      form's own line (name up to 5 brands to check first) it was a second version of the same offer. Agencies reach
      their page from the uses band, where each panel links the readers who use it. */
   final: {
-    heading: 'Name a company. Send it an AI customer.',
+    /* Ends on the hero's own words (5 Nov). Until then: Name a company. Send it an AI customer. */
+    heading: 'Name a company. See what its customers see.',
     capture: { ...waitlist, source: 'home-final' },
   },
 }

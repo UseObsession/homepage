@@ -107,14 +107,16 @@ export function PersonaBand() {
 
 /* His Home section around it, the head and the band each revealing as they scroll into view. Since 4 Nov evening it
    answers What would I use it for? (Seun's order), so its head names the places the uses go, in the sub's order. Its
-   label is the reader's question, as every Home label is since 4 Nov. */
+   label is the reader's question, as every Home label is since 4 Nov. Since 5 Nov its head names what each use gets you,
+   in the panels' order, in place of the hero's sub said again (Send an AI customer to a prospect, a client or a
+   competitor.). */
 export function PersonaSection({ id = 'for' }: { id?: string }) {
   return (
     <section className="section" id={id}>
       <div className="wrap">
         <Reveal className="head">
           <p className="kicker">What would I use it for?</p>
-          <h2 className="h2">Send an AI customer to a prospect, a client or a competitor.</h2>
+          <h2 className="h2">A gap to pitch, a leak to fix, a rival’s next move.</h2>
         </Reveal>
         <Reveal>
           <PersonaBand />
