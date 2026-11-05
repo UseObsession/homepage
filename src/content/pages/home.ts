@@ -343,10 +343,14 @@ export const page: Page = {
      /developers. Each cloud line fits 1 line. It left Home and came back the same day (James), under its own question. */
   openSource: {
     ...openSource,
-    kicker: 'Can I run it myself?',
-    /* The question's answer, first (5 Nov). Until then: An open source runtime for 100,000 AI customers. */
-    heading: 'Yes. The runtime is open source.',
-    line: undefined,
+    /* The developer product line under the index (5 Nov evening, James): as Google sells infrastructure through Google
+       Cloud and nobody calls Google a cloud company, developers get the customer layer for AI agents, and the company
+       is still the index. Of the 5 verbs, lookup, facts, evidence and notify read the index and become_customer fills
+       it, so it is 1 product used from 2 sides. Until then: Can I run it myself? Yes. The runtime is open source. (and
+       before that: An open source runtime for 100,000 AI customers). */
+    kicker: 'Can I build on it?',
+    heading: 'Yes. It’s the customer layer for AI agents.',
+    line: 'Spin up 1 agent or 1,000, each with its own inbox and browser, or call become a customer over MCP. 4 of its 5 verbs read the index and 1 fills it. The runtime is open source, so you can run it yourself.',
     core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
     cloud: {
       title: openSource.cloud.title,
