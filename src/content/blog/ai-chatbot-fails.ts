@@ -333,5 +333,6 @@ export const post: BlogPost = {
     'recipe:ai-disclosure-check',
     'recipe:resolution-check',
     'best-ai-chatbot-testing-tools',
+    '/use-cases/journey-checks-for-banks-and-fintechs',
   ],
 }

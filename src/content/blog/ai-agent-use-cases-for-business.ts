@@ -738,6 +738,8 @@ export const post: BlogPost = {
     '/use-cases/funnel-qa-for-cro-agencies',
     '/use-cases/prospect-intelligence-with-clay',
     '/use-cases/member-prices-for-price-intelligence',
+    '/use-cases/trial-checks-for-software-companies',
+    '/use-cases/journey-checks-for-banks-and-fintechs',
     'recipe:mystery-shopper',
     'recipe:website-audit',
     'recipe:delivery-monitoring',
