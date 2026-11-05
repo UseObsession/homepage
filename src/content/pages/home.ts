@@ -342,24 +342,34 @@ export const page: Page = {
     formats: homeFormats(),
   },
 
-  /* Open source, names only (4 Nov, James: too many descriptions). Each capability's line, and the rest, live on
-     /developers. Each cloud line fits 1 line. It left Home and came back the same day (James), under its own question. */
+  /* The runtime as a product of its own (5 Nov evening, James: the page said "customer layer" but never said what a
+     developer gets, which is what Notte sells; we build it for ourselves and open it). The heading names the 3 things
+     every agent gets, the line places it under the index (the same runtime fills it), and the left column lists what
+     each agent gets in 1 short line each, the way a developer compares it with Notte or Inkbox. The right column is the
+     hosted side. Shown on every screen since 5 Nov; until then on a wide screen only, as names only. Until then the
+     heading was: Yes. It's the customer layer for AI agents. (and before that: Yes. The runtime is open source., under
+     Can I run it myself?). The shared runtime list stays on /developers. */
   openSource: {
     ...openSource,
-    /* The developer product line under the index (5 Nov evening, James): as Google sells infrastructure through Google
-       Cloud and nobody calls Google a cloud company, developers get the customer layer for AI agents, and the company
-       is still the index. Of the 5 verbs, lookup, facts, evidence and notify read the index and become_customer fills
-       it, so it is 1 product used from 2 sides. Until then: Can I run it myself? Yes. The runtime is open source. (and
-       before that: An open source runtime for 100,000 AI customers). */
     kicker: 'Can I build on it?',
-    heading: 'Yes. It’s the customer layer for AI agents.',
-    line: 'Spin up 1 agent or 1,000, each with its own inbox and browser, or call become a customer over MCP. 4 of its 5 verbs read the index and 1 fills it. The runtime is open source, so you can run it yourself.',
-    core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
-    /* Since 5 Nov evening the cloud is more than the history: it runs the agents for you, with their inboxes, phone
-       numbers and browsers, beside the index. Until then: Obsession Cloud: the history. */
+    heading: 'Yes. Give your agents an inbox, a phone and a browser.',
+    line: 'It’s the customer layer for AI agents, and the same runtime that fills the index. Spin up 1 agent or 100,000, each with its own identity, kept for as long as you need. Use it on Obsession Cloud, or run the open source runtime yourself.',
+    core: {
+      title: 'What each agent gets',
+      items: [
+        { name: 'A browser', line: 'Its own session and cookies, kept between runs.' },
+        { name: 'An inbox', line: 'A real address. Each email arrives as an event, its signature checked.' },
+        { name: 'A phone number', line: 'Texts and calls, in the country you choose.' },
+        { name: 'An identity', line: 'A name, an address and logins, kept encrypted.' },
+        { name: 'Months, not minutes', line: 'It sleeps for free and wakes on an email, a text or a timer.' },
+        { name: '1 agent or 100,000', line: 'Fan out across a whole list in 1 call.' },
+        { name: 'Learns once, runs as code', line: 'Each flow compiles to a program, so repeat runs cost little.' },
+        { name: 'MCP, API and webhooks', line: '5 typed verbs, with a spending cap on every key.' },
+      ],
+    },
     cloud: {
       title: 'Obsession Cloud: hosted, with the index',
-      items: ['The runtime, run for you: 1 agent or 1,000', 'Inboxes, phone numbers and browsers', 'The index, with months of history', 'About 250 integrations', 'Our website and watch planner'],
+      items: ['Browsers, inboxes and numbers in many countries', 'Run for you: 1 agent or 100,000', 'The index, with months of history', 'About 250 integrations', 'Our website and watch planner'],
     },
   },
 
