@@ -18,7 +18,7 @@ import type { UseCaseStudy } from '../types'
    his pieces. Every word here; the app windows' rows and numbers in the page.
    The agent opens the page behind a brand's live ad from the ad's own link, so no click is paid for (system.md, the
    law); variants are reached through the testing tool's preview link. "Proof", never "receipt": the agent goes as far
-   as checkout, where a receipt is the order email. The real proof is the retention page's (93%, 128 stores, 77%, the 4
+   as checkout, where a receipt is the order email. The real proof is the retention page's (93%, 376 stores, 77%, the 4
    findings), led by the 1 after a sign up. */
 
 export const study: UseCaseStudy = {
@@ -225,7 +225,7 @@ export const study: UseCaseStudy = {
      findings are real, retold at invented shops, content/shops.ts). Only email was watched in those checks. */
   found: {
     heading: 'Our AI customers found a leak at 93% of stores where they ran every journey. 77% were silence.',
-    line: 'Our AI customers have joined 128 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak a testing tool can’t see: the email that never came.',
+    line: 'Our AI customers have joined 376 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak a testing tool can’t see: the email that never came.',
     items: [
       {
         label: 'Drinks store · New subscriber',
@@ -283,7 +283,7 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'The agency, the brands in the 10 steps and their .example addresses, the people, the ads, the test, the phone number and every figure on their screens are made up. The 93%, the 128 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
+  fine: 'The agency, the brands in the 10 steps and their .example addresses, the people, the ads, the test, the phone number and every figure on their screens are made up. The 93%, the 376 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
 
   faq: {
     heading: 'What CRO agencies ask.',

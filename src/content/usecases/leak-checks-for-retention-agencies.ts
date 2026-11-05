@@ -16,7 +16,7 @@ import type { UseCaseStudy } from '../types'
    "lifecycle" and no "facts"; every store invented at a .example address; written as designed.
    Merged 21 Oct 2026 (James): the mystery shopping page for ecommerce agencies folds into this one, and its address
    now redirects here (public/_redirects). From it, this page keeps the real proof (`found`: 93% of stores shopped on
-   every journey had a leak, 128 stores shopped (1,500 until 22 Oct; 128 is James’s count of stores, and 1,500 counts journeys, James 4 Nov), 77% of leaks silence, 4 real findings retold at invented shops, the
+   every journey had a leak, 376 stores shopped (1,500 until 22 Oct, 128 until 5 Nov; 376 is James’s count of stores, and 1,500 counts journeys, James 4 and 5 Nov), 77% of leaks silence, 4 real findings retold at invented shops, the
    real September report), the free 5 stores form with its client OK, the agents' capacity (up to 1,000 stores in 48
    hours) and the term itself, as the question "Is this mystery shopping?". Seun's rule on the real block still holds:
    only those 2 shares, the store count and the capacity, never how many stores were tried or finished, the run's
@@ -224,7 +224,7 @@ export const study: UseCaseStudy = {
      invented shops (content/shops.ts). Only email was watched in those checks: "no email", never "no message". */
   found: {
     heading: 'Our AI customers found a leak at 93% of stores where they ran every\u00a0journey. 77% were silence.',
-    line: 'Our AI customers have joined 128 stores so far. Silence is the leak an audit inside the account can’t see: the email that never came.',
+    line: 'Our AI customers have joined 376 stores so far. Silence is the leak an audit inside the account can’t see: the email that never came.',
     items: [
       {
         label: 'Fashion store · Basket left',
@@ -276,7 +276,7 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'The agency, the stores in the 10 steps and their .example addresses, the people, the phone number and every figure on their screens are made up. The 93%, the 128 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
+  fine: 'The agency, the stores in the 10 steps and their .example addresses, the people, the phone number and every figure on their screens are made up. The 93%, the 376 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
 
   faq: {
     heading: 'What retention agencies ask.',

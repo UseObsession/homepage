@@ -5,7 +5,7 @@ import type { UseCaseStudy } from '../types'
    system.md §5, Later revenue sources, 2 (James, 21 Oct): AI agents shop the store every week, and again after every
    change (a new theme, a new app, an edited flow), and every leak comes back with proof and its fix.
    The copy, its 3 adversarial reviews and James's decisions are in docs/copy/leak-checks-for-ecommerce-stores.md:
-   the name is his pick (not "Lead leaks", which stays the speed to lead recipe); no price; 128 stores, as on the
+   the name is his pick (not "Lead leaks", which stays the speed to lead recipe); no price; 376 stores, as on the
    agencies page; "proof", never "receipt", which a store owner reads as the order email.
    1 store carries the page, as Larch & Lye carries the agencies page: Halden Home, a UK homewares store at
    haldenhome.example, with Ana Ruiz (head of ecommerce) and Kilnworth (its Shopify agency, Kit Doyle). Its first check
@@ -13,7 +13,7 @@ import type { UseCaseStudy } from '../types'
    comes with its fix, and every week after it catches a break the hour it starts (a theme publish, a sale's code).
    Drawn in James's format (10 steps in 3 phases, each beside its app window) by src/pages/EcommerceStores.tsx from his
    pieces. Every word here; the app windows' rows and numbers in the page.
-   The real proof is the agencies page's (`found`): the 93%, the 128 stores, the 77% and the 4 findings retold at
+   The real proof is the agencies page's (`found`): the 93%, the 376 stores, the 77% and the 4 findings retold at
    invented shops, plus the real September report. Seun's rule holds: only those shares and the store count, never how
    many stores were tried or finished. The free check is the site's free report (4 customers, 48 hours, within 4
    days). Change detection, as designed: a theme publish or a flow edit starts a check once Shopify and the email
@@ -232,7 +232,7 @@ export const study: UseCaseStudy = {
      invented shops, content/shops.ts). Only email was watched in those checks, so the line says so. */
   found: {
     heading: 'Our AI customers found a leak at 93% of stores where they ran every journey. 77% were silence.',
-    line: 'Our AI customers have joined 128 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak your dashboards can’t show: the email that never came.',
+    line: 'Our AI customers have joined 376 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak your dashboards can’t show: the email that never came.',
     items: [
       {
         label: 'Fashion store · Basket left',
@@ -290,7 +290,7 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'Halden Home and haldenhome.example, Kilnworth, the people, the phone number, the ads and every figure on their screens are made up. The 93%, the 128 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
+  fine: 'Halden Home and haldenhome.example, Kilnworth, the people, the phone number, the ads and every figure on their screens are made up. The 93%, the 376 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
 
   faq: {
     heading: 'What ecommerce teams ask.',
