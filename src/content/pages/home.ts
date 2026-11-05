@@ -107,16 +107,18 @@ export const page: Page = {
   /* The shared block, with Home's own heading, line and last step (4 Nov). The heading is breadth and time, what the
      lanes show, and never a shopper: "An AI customer is a mystery shopper who never goes home" (Seun's draft) made it a
      better mystery shopper, the frame the product exists to leave (James); mystery shopping stays in the questions, as
-     the reader's own search term. The line explains the 10,000 by how an agent sleeps, in place of "No spare inbox, no
-     VA, no spreadsheet" (the comparison's By hand row names the spare inbox). The last step files findings, not only a
+     the reader's own search term. The line gives the 10,000 and the months, in place of "No spare inbox, no VA, no
+     spreadsheet" (the comparison's By hand row names the spare inbox). The last step files findings, not only a
      receipt, so it leads into Where do the findings go. */
   life: {
     ...life,
     kicker: 'How does it work?',
-    /* How it can stay for months at 10,000 companies, and why the wall's foot counts who woke (5 Nov). Until then: A
-       customer of every company on your list, for months. */
-    heading: 'Each one sleeps until its company makes a move.',
-    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which sleeps between emails and page checks, so it can stay as long as you need and tell you about every break, leak, price cut and new offer the day it happens.',
+    /* The scale the lanes draw, as the claim (James, 5 Nov: how an agent sleeps is our saving, not the buyer's value;
+       sleep stays only in the open source section). It echoes October's "Be a customer of every company." Until then,
+       for a few hours: Each one sleeps until its company makes a move. Before that: A customer of every company on
+       your list, for months. */
+    heading: 'Be a customer of 10,000 companies at once.',
+    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which stays as long as you need and tells you about every break, leak, price cut and new offer the day it happens.',
     phases: [
       ...life.phases.slice(0, 3),
       {

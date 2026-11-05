@@ -17,7 +17,7 @@ export const life: Life = {
       { day: 7, label: 'Day 7' },
       { day: 30, label: 'Day 30' },
     ],
-    end: 'Day 90: still inside all 10,000',
+    end: 'Day 90: still a customer at all 10,000',
   },
   lanes: [
     { name: 'Company 1', wakes: [{ day: 0.006, label: '09:09 · welcome' }, { day: 30, label: 'Day 30 · sale' }] },
@@ -31,7 +31,7 @@ export const life: Life = {
   phases: [
     { title: 'Name them', lead: 'Any input:', line: 'paste a list, connect Clay or your CRM, or just ask from your own agent.' },
     { title: 'An AI customer each', line: 'One AI customer per company signs up, follows the ad, starts the trial or fills the basket, as you choose.' },
-    { title: 'It stays a customer', line: 'Nothing for you to check. Each agent sleeps until its company does something.' },
+    { title: 'It stays a customer', line: 'Nothing for you to check, at 5 companies or 10,000.' },
     { title: 'It files the receipt', line: 'The email, page or price, kept as it arrived, with its time and its signature checked.' },
   ],
 }
