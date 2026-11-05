@@ -116,7 +116,7 @@ export const page: Page = {
       ...life.phases.slice(0, 3),
       {
         title: 'It files its findings',
-        line: 'From a broken checkout to a price cut, each with its proof, its time and its sender checked.',
+        line: 'A dead welcome link, a wrong rate in chat, a rival’s price cut: each with its proof, its time and its sender checked.',
       },
     ],
   },
