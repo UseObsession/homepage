@@ -312,14 +312,95 @@ export type RunReports = {
   cta?: Cta
 }
 /* Home's finding (components/v5/Finding, 4 Nov): 1 result set as a research note, its number large beside the claim,
-   1 supporting share under it, where the figures come from, and a link to 1 real run. No report image. */
+   the shares that back it under it, where the figures come from, and a link to 1 real run. No report image. */
 export type Finding = {
   kicker?: string
   value: string
   heading: string
-  also: { value: string; text: string }
+  also: { value: string; text: string }[]
   source: string
   cta: Cta
+}
+
+/* What does that look like (components/v5/Look, 5 Nov): a wall of invented companies of every kind, each card 1 company
+   with its 4 AI customers shown only as status icons. 3 ways of using it take turns on the dots under it: 1 question
+   across the wall, domains added from a Clay table, a PDF for each client every Monday. Each answer parts the wall like a
+   pair of doors and shows itself on a light panel in the middle. Every company, time and price is invented. */
+export type WallKind = 'shop' | 'bank' | 'air' | 'soft' | 'app' | 'energy' | 'hotel' | 'insure' | 'mobile' | 'gym' | 'box' | 'rail'
+/* What a company's first AI customer is doing when the page opens: waiting on a deadline (p of it gone), running,
+   talking to support, or just woken by something that came. The rest start asleep. */
+export type WallStart = { s: 'wait'; p: number } | { s: 'run' } | { s: 'chat' } | { s: 'woke'; ch: string }
+export type WallCompany = {
+  name: string
+  kind: WallKind
+  /* How it let a new customer down: the first question's answer. */
+  bad?: string
+  /* Its Black Friday offer: the second question's answer. */
+  ok?: { ch: 'Email' | 'Text'; text: string }
+  /* A client who gets a PDF on Mondays. */
+  client?: boolean
+  start?: WallStart
+}
+/* What each kind of company is to its AI customers: the 4 jobs (the store checks ran 4: welcome, browse, basket and
+   checkout), what running and done read as, what wakes them, and the latest thing kept. */
+export type WallKindWords = { label: string; jobs: [string, string, string, string]; running: string; done: string; wakes: string[]; latest: string }
+/* 1 thing an AI customer kept, drawn small on the light panel. */
+export type WallThing =
+  | { kind: 'email' | 'text'; meta: string; tag?: string; subject: string; line?: string; button?: string }
+  | { kind: 'chat'; asked: string; answer: string; wrong: string }
+  | { kind: 'page'; url: string; broken?: boolean; title: string; line?: string; mark?: string }
+/* 1 company's proof for a question: what came, the page it led to, and how it was kept. company indexes companies. */
+export type WallProof = { company: number; thing: WallThing; then: WallThing; kept: string }
+export type WallQuestion = { q: string; key: 'bad' | 'ok'; sum: string; proofs: [WallProof, WallProof] }
+export type WallAgent = 'sleep' | 'run' | 'wait' | 'chat'
+export type Look = {
+  kicker?: string
+  heading: string
+  /* The moving wall in words, for screen readers and llms-full.txt. */
+  said: string
+  companies: WallCompany[]
+  kinds: Record<WallKind, WallKindWords>
+  /* The companies the answers open on, kept beside the split so they stay in view (indexes into companies). */
+  featured: number[]
+  status: { asleep: string; talking: string; waiting: string; woke: string; kept: string }
+  foot: { woke: string; from: number }
+  card: { of: string; latest: string; kept: string; bad: string; ok: string; week: string; client: string; room: string }
+  dots: { ask: string; sheet: string; pdf: string; label: string }
+  ask: { placeholder: string; button: string; questions: WallQuestion[] }
+  sheet: {
+    name: string
+    rows: string
+    row: string
+    placeholder: string
+    button: string
+    head: [string, string, string]
+    listed: { company: number; agents: [WallAgent, WallAgent, WallAgent, WallAgent]; p?: number; finding: ['bad' | 'ok', string] }[]
+    added: { name: string; kind: WallKind; domain: string; kept: string }[]
+  }
+  pdf: {
+    when: string
+    who: string
+    clock: string[]
+    sending: string
+    sent: string
+    sum: string
+    client: number
+    file: string
+    pages: number
+    brand: string
+    week: string
+    counts: { n: string; label: string; tone?: 'bad' | 'ok' }[]
+    hit: string
+    list: { text: string; tone: 'bad' | 'ok' }[]
+    links: string
+    finding: {
+      label: string
+      title: string
+      email: { meta: string; subject: string; code: string; button: string }
+      checkout: { meta: string; error: string }
+      kept: string
+    }
+  }
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
@@ -344,6 +425,7 @@ export type Page = {
   audiences?: Audiences
   outputs?: Outputs
   runReports?: RunReports
+  look?: Look
   finding?: Finding
   developers?: Developers
   /* Home only: the short section on the 4th way in, Check your AI agents (VERIFY.md 10), after the 4 jobs. */

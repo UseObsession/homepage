@@ -1,7 +1,8 @@
-/* The consent strip (components/ConsentBanner): a raised strip across the foot of the window, its line and its 3
-   underlined choices centred on 1 row, wrapping to 2 on a narrow window. Above the page and under the nav
-   (--ob-z-sticky), so the phone sheet always covers it. The visitor's current choice is set bold when Cookie settings
-   opens it again. */
+/* The consent strip (components/ConsentBanner): an inverted band across the foot of the window, light on the dark site
+   and dark on the light one, so it can't be missed (James, 5 Nov). Its line, then Allow and Decline as 2 buttons of
+   the same size (Allow filled, Decline outlined, both plainly there and as easy to press), then the privacy notice's
+   section as a link. Above the page and under the nav (--ob-z-sticky), so the phone sheet always covers it. When Cookie
+   settings opens it again, the visitor's current choice carries a tick. */
 .s-consent {
   position: fixed;
   inset-inline: 0;
@@ -11,60 +12,88 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: var(--ob-space-8) var(--ob-space-24);
-  padding: var(--ob-space-20) var(--s-gutter, clamp(16px, 4vw, 32px))
-    calc(var(--ob-space-20) + env(safe-area-inset-bottom, 0px));
-  border-top: var(--ob-border-hair) solid var(--ob-line);
-  background: var(--ob-surface-raised);
-  color: var(--ob-text);
-  font: var(--ob-type-small);
+  gap: var(--ob-space-16) var(--ob-space-32);
+  padding: var(--ob-space-24) var(--s-gutter, clamp(16px, 4vw, 32px))
+    calc(var(--ob-space-24) + env(safe-area-inset-bottom, 0px));
+  background: var(--ob-text);
+  color: var(--ob-text-inverse);
+  font: 500 16.5px / 1.45 var(--ob-font-sans);
+  box-shadow: 0 -20px 60px rgb(0 0 0 / 0.4);
   animation: s-consent-in var(--ob-dur-slow, 400ms) var(--ob-ease-out) both;
 }
-.s-consent__text { margin: 0; text-align: center; text-wrap: pretty; }
-.s-consent__acts { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-8) var(--ob-space-16); }
+.s-consent[data-nudge] { animation: s-consent-nudge 0.6s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.s-consent__text { margin: 0; max-width: 80ch; text-align: center; text-wrap: pretty; }
+.s-consent__acts { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--ob-space-8) var(--ob-space-12); }
 
-/* Allow, Decline and the privacy notice's section: the same plain underlined words, at equal weight. */
+/* Allow and Decline: the same size and shape; Allow filled, Decline outlined in the band's own ink. */
 .s-consent__act {
-  padding: var(--ob-space-8);
-  border: 0;
-  border-radius: var(--ob-radius-glyph);
-  background: none;
+  min-width: 120px;
+  padding: 13px 22px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
   color: inherit;
-  font: inherit;
+  font: 600 15px / 1 var(--ob-font-sans);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.12s;
+}
+.s-consent__act--allow { background: var(--ob-text-inverse); border-color: var(--ob-text-inverse); color: var(--ob-text); }
+.s-consent__act:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .s-consent__act--allow:hover { background: color-mix(in srgb, var(--ob-text-inverse) 82%, var(--ob-text)); }
+  .s-consent__act--decline:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+}
+.s-consent__act[aria-pressed='true']::after { content: ' \2713'; }
+.s-consent__more {
+  padding: var(--ob-space-8);
+  border-radius: var(--ob-radius-glyph);
+  color: inherit;
+  font: 500 14.5px / 1 var(--ob-font-sans);
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
   text-underline-offset: 3px;
-  cursor: pointer;
 }
 @media (hover: hover) and (pointer: fine) {
-  .s-consent__act:hover { text-decoration-color: currentColor; }
+  .s-consent__more:hover { text-decoration-color: currentColor; }
 }
-.s-consent__act:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
-.s-consent__act[aria-pressed="true"] { font-weight: 600; text-decoration-color: currentColor; }
+.s-consent :is(.s-consent__act, .s-consent__more):focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.s-consent__act--allow:focus-visible { outline-color: var(--ob-text-inverse); }
+
+/* Home before the first choice (ConsentBanner's hold): the page stays still, its scrollbar's room kept so nothing
+   shifts when it frees. */
+html.s-consent-hold { overflow: hidden; scrollbar-gutter: stable; }
+html.s-consent-hold body { overflow: hidden; overscroll-behavior: none; }
 
 @keyframes s-consent-in {
   from { translate: 0 100%; }
 }
+/* A scroll tried while Home holds: the strip lifts and settles, so the reason is right there. */
+@keyframes s-consent-nudge {
+  0%, 100% { translate: 0 0; }
+  35% { translate: 0 -10px; }
+  65% { translate: 0 2px; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .s-consent { animation: none; }
+  .s-consent,
+  .s-consent[data-nudge] { animation: none; }
 }
 
-/* A phone: a compact card floating over the foot of the screen, its line on the left and the 3 choices in 1 row under
-   it, so it covers about a seventh of the screen, not a quarter. Allow and Decline keep equal weight. */
+/* A phone: a card floating over the foot of the screen, its line on top and Allow and Decline side by side at the
+   same width under it, the privacy link last. */
 @media (max-width: 560px) {
   .s-consent {
     inset-inline: 10px;
     bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-    justify-content: flex-start;
-    gap: var(--ob-space-4) var(--ob-space-16);
-    padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-8);
-    border: var(--ob-border-hair) solid var(--ob-line);
-    border-radius: 16px;
-    box-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
-    font-size: 13.5px;
+    display: grid;
+    gap: var(--ob-space-12);
+    padding: var(--ob-space-16) var(--ob-space-16) var(--ob-space-12);
+    border-radius: 18px;
+    box-shadow: 0 16px 44px rgb(0 0 0 / 0.5);
+    font-size: 15px;
     line-height: 1.45;
   }
   .s-consent__text { text-align: left; }
-  .s-consent__acts { justify-content: flex-start; gap: 0 var(--ob-space-8); margin-left: calc(var(--ob-space-8) * -1); }
+  .s-consent__acts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ob-space-8); }
+  .s-consent__act { min-width: 0; padding: 13px 12px; }
+  .s-consent__more { grid-column: 1 / -1; justify-self: center; font-size: 13.5px; }
 }
-

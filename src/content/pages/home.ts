@@ -1,20 +1,23 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
+import { look } from '../look'
 import { askExamples, askShared, life, openSource } from '../shared5'
 import type { Page } from '../types'
 
 /* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
    sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
-   leaves open, in this order (4 Nov: 9 blocks, from 11). Every block from 2 to 8 is labelled with the reader's own
-   question, so the labels read as the page's argument (COPY.md's reading path):
+   leaves open, in this order (Seun's order of 4 Nov evening, from his Home draft: a picture, then proof, then uses,
+   then the objection, then how). Every block from 2 to 9 is labelled with the reader's own question, so the labels
+   read as the page's argument (COPY.md's reading path):
    1 what it is (the hero: see what any company shows only its customers; the form; the film) >
-   2 Does it find anything? (the 93% study as a research note: the share, 1 supporting share, its source, 1 real run) >
-   3 How does it work? (an agent's life: it signs up, sleeps, wakes when the company does something, files the receipt) >
-   4 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
+   2 What does that look like? (a wall of companies, 4 AI customers each, that answers a question, a Clay table or a PDF) >
+   3 Is this real? (our own runs as a research note: the store count, the 2 shares, its source, 1 real report) >
+   4 What would I use it for? (James's band as 3 uses in the sub's order: prospects, clients, competitors) >
    5 Why can't my tools do this? (where each kind of tool's view ends on 1 journey, and what only a customer catches) >
-   6 Who do I send it to? (James's reader band: each reader, where it sends its AI customers, its recipes) >
-   7 Can I run it myself? (the open source runtime beside what Obsession Cloud adds; on a wide screen only) >
-   8 What else would I ask? (the questions), then the waitlist.
+   6 How does it work? (breadth: a list fans out to 10,000 companies, each lane wakes when its company acts) >
+   7 Where do the findings go? (1 run wired to your AI agent, every format and your own code; it took in the ask section) >
+   8 Can I run it myself? (the open source runtime beside what Obsession Cloud adds; on a wide screen only) >
+   9 What else would I ask? (the questions), then the waitlist.
    The words a buyer uses come first (research/voc.md: "competitor emails", "sign up", "abandoned basket", "Promotions
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
@@ -74,16 +77,27 @@ export const page: Page = {
      comparison on 4 Nov: both made 1 argument with 2 "Other tools" headings. Its heading and its catches moved there
      (stopTrack); its "What other tools see" list is what the track's lines already show. */
 
-  /* What we found (4 Nov): the study first, so the page shows a result before it explains anything, set as a research
-     note, apart from what a run arrives as (James: the 2 were 1 sentence, and the study is not a format). The figures are
-     the use case pages' real ones (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of
-     the stores shopped on every journey, 77% of those leaks silence, 128 stores joined so far. */
+  /* What does that look like (5 Nov, James): the wall in content/look.ts, in place of 4 Nov's receipt (rejected: too much
+     to read, and the receipt object unclear). Many companies of every kind, so the picture is never only a shop (hero
+     goal 3); it shows, it doesn't tell. */
+  look,
+
+  /* Is this real (4 Nov evening, Seun's order): our own runs, right after the invented receipt, so the doubt it raises
+     is answered at once. Set as a research note, as before. The count leads, because the question is whether it runs at
+     all: 1,500 journeys (Seun's draft's 1,500, which James says counts journeys, not stores), at the 376 stores our AI
+     customers have joined (James's count, 5 Nov; 128 until then). The 2 shares back it, from the use case pages
+     (content/usecases/leak-checks-for-retention-agencies.ts, `found`): a leak at 93% of the stores shopped on every
+     journey, 77% of those leaks silence. The rest of Seun's block (the agency pilot, every store letting a customer
+     down, nearly half silent after a full basket) is not lifted. */
   finding: {
-    kicker: 'Does it find anything?',
-    value: '93%',
-    heading: 'of the stores where our AI customers ran every journey had a leak.',
-    also: { value: '77%', text: 'of those leaks were silence: an email that never came.' },
-    source: 'Source: our own runs at real stores, 128 joined so far.',
+    kicker: 'Is this real?',
+    value: '1,500',
+    heading: 'journeys our AI customers have run at 376 real stores so far.',
+    also: [
+      { value: '93%', text: 'of the stores where they ran every journey had a leak.' },
+      { value: '77%', text: 'of those leaks were silence: an email that never came.' },
+    ],
+    source: 'Source: our own runs at real stores.',
     cta: { label: 'See the skincare store’s report', to: '/sample-output' },
   },
 
@@ -228,7 +242,7 @@ export const page: Page = {
 
   /* The claim and the form. The agency link ("Agency? Get 5 client stores checked free") went on 4 Nov: beside the
      form's own line (name up to 5 brands to check first) it was a second version of the same offer. Agencies reach
-     their page from the readers band. */
+     their page from the uses band, where each panel links the readers who use it. */
   final: {
     heading: 'Name a company. Send it an AI customer.',
     capture: { ...waitlist, source: 'home-final' },

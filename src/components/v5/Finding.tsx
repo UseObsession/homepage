@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import type { Finding as FindingContent } from '../../content/types'
 import './Finding.css'
 
-/* What we found (Home, 4 Nov): 1 result, set as a research note rather than as a part of the product. The share opens
-   the claim and is set large; 1 supporting share under it; where the figures come from, in the small mono of a
+/* Is this real (Home, 4 Nov): 1 result, set as a research note rather than as a part of the product. The number opens
+   the claim and is set large; the shares that back it under it; where the figures come from, in the small mono of a
    footnote; a link to 1 real run. No report image and no formats: what a run arrives as is its own section, after how
    it works. The figures are the use case pages' real ones (content/usecases, `found`). */
 export function Finding({ finding, id }: { finding: FindingContent; id?: string }) {
@@ -18,9 +18,13 @@ export function Finding({ finding, id }: { finding: FindingContent; id?: string 
             <span className="v5-found-n">{finding.value}</span> <span className="v5-found-claim">{finding.heading}</span>
           </h2>
           <div className="v5-found-rest">
-            <p className="v5-found-also">
-              <b>{finding.also.value}</b> {finding.also.text}
-            </p>
+            <ul className="v5-found-also">
+              {finding.also.map((a) => (
+                <li key={a.value}>
+                  <b>{a.value}</b> {a.text}
+                </li>
+              ))}
+            </ul>
             <p className="v5-found-source">{finding.source}</p>
             <Link className="v5-link" to={finding.cta.to}>
               {finding.cta.label}

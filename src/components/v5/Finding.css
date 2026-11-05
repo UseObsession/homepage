@@ -1,5 +1,9 @@
-/* What we found (Finding.tsx): a research note. A rule across the top, as a journal sets off a finding; the share large
-   beside its claim; the supporting share, the source and the link under the claim. Below 720px it stacks. */
+/* What we found (Finding.tsx): a research note. A rule across the top, as a journal sets off a finding; the number large
+   on the left, its claim beside it starting level with the number's top, so the 2 read as 1 line ("1,500 journeys our
+   AI customers have run..."); the supporting shares, the source and the link straight under the claim. Until 5 Nov the
+   claim sat on the number's foot, which left an empty corner once the number was 1,500 and the claim 2 lines (James).
+   The heading spans 2 rows as a subgrid: the number fills both, the claim the first; the rest sits in the second. Below
+   720px it stacks. */
 .v5-found-note {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -11,11 +15,15 @@
 .v5-found-note > .v5-kicker { grid-column: 1 / -1; }
 .v5-found-h {
   grid-column: 1 / -1;
+  grid-row: 2 / span 2;
   display: grid;
   grid-template-columns: subgrid;
-  align-items: end;
+  grid-template-rows: subgrid;
+  align-items: start;
   margin: 0;
 }
+.v5-found-h > .v5-found-n { grid-column: 1; grid-row: 1 / span 2; }
+.v5-found-h > .v5-found-claim { grid-column: 2; grid-row: 1; }
 .v5-found-n {
   font: 600 clamp(88px, 12vw, 168px) / 0.8 var(--ob-font-sans);
   letter-spacing: -0.05em;
@@ -24,15 +32,19 @@
 }
 .v5-found-claim {
   max-width: 24ch;
+  margin-top: -0.06em;
   font: 600 clamp(24px, 2.6vw, 34px) / 1.15 var(--ob-font-sans);
   letter-spacing: -0.025em;
   color: var(--ob-text);
   text-wrap: balance;
 }
-.v5-found-rest { grid-column: 2; display: grid; gap: 14px; justify-items: start; }
+.v5-found-rest { grid-column: 2; grid-row: 3; display: grid; gap: 14px; justify-items: start; }
 .v5-found-also {
   margin: 0;
-  padding-top: 16px;
+  padding: 16px 0 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
   max-width: 52ch;
   border-top: 1px solid var(--ob-line-subtle);
   font: 400 clamp(16px, 1.3vw, 18px) / 1.5 var(--ob-font-sans);
@@ -43,6 +55,8 @@
 
 @media (max-width: 720px) {
   .v5-found-note { grid-template-columns: minmax(0, 1fr); }
-  .v5-found-h { row-gap: 12px; }
-  .v5-found-rest { grid-column: 1; }
+  .v5-found-h { grid-row: auto; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 12px; }
+  .v5-found-h > :is(.v5-found-n, .v5-found-claim) { grid-column: 1; grid-row: auto; }
+  .v5-found-claim { margin-top: 0; }
+  .v5-found-rest { grid-column: 1; grid-row: auto; }
 }

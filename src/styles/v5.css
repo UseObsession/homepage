@@ -61,7 +61,7 @@
 .v5-section + .v5-section { padding-top: 0; }
 .v5-section--rule { border-top: 1px solid var(--ob-line-subtle); }
 .v5-section--rule + .v5-section { padding-top: clamp(64px, 6.5vw, 96px); }
-/* Home's readers band and questions sit between v5 sections: the section before them already gave the gap. */
+/* Home's uses band (James's readers band until 4 Nov evening) and questions sit between v5 sections: the section before them already gave the gap. */
 .v5-section + .james > .section,
 .v5-section + .s-section { padding-top: 0; }
 .v5-section + .james > .section { padding-bottom: clamp(64px, 6.5vw, 96px); }
