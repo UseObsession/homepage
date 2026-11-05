@@ -5,6 +5,9 @@
    lines cut to the length of the competitors line; their examples (a basket with no email after it, support 31 hours
    late against a promised 24) are already on the receipt above the band. Before that the band had 4 readers (Marketing, Sales, Agencies, Developers), each
    saying where it sends its AI customers; before 4 Nov, 6 readers.
+   Since 5 Nov (James: Obsession is the index, and AI customers are how it fills; COPY.md) each line says what you pull from the index, not
+   what an AI customer sees, and its examples reach past stores (a software welcome email, a bank's chat); the leaks panel
+   opens the website audit, not the mystery shopper.
    Same fields as before where they still apply: the panel's name, its 1 line, its page (the use's main recipe) and the
    recipes it links. `reader` picks the panel's colour from the site's reader palette (styles/accents.css), the hue of
    the reader who uses it most, and `readers` links each reader page, so the 4 reader pages are still 1 click from Home. */
@@ -27,7 +30,7 @@ export const bandRoles: BandRole[] = [
     id: 'prospects',
     reader: 'sales',
     bandName: 'Prospect with proof',
-    bandLine: 'Before you pitch a company, see what its new customers get, and open with the email or page that shows the problem.',
+    bandLine: 'Before you pitch a company, pull what its new customers get, and open with the email or page that shows the problem.',
     page: '/recipes/prospect-intelligence',
     readers: [
       { name: 'Sales teams', page: '/sales' },
@@ -39,20 +42,20 @@ export const bandRoles: BandRole[] = [
     id: 'leaks',
     reader: 'agencies',
     bandName: 'Find your revenue leaks',
-    bandLine: 'Sales lost to a welcome code that fails, a basket reminder that stops or a demo request nobody answers. Find them before more customers do.',
-    page: '/recipes/mystery-shopper',
+    bandLine: 'A welcome link that opens a closed site, a chat quoting the wrong rate, a reminder that never came. Know the day it starts, at your company or a client’s.',
+    page: '/recipes/website-audit',
     readers: [
       { name: 'Agencies', page: '/agencies' },
       { name: 'Marketing teams', page: '/marketing' },
       { name: 'Developers', page: '/developers' },
     ],
-    recipes: ['mystery', 'audit', 'adcheck', 'support-bot', 'voice-agent'],
+    recipes: ['audit', 'mystery', 'adcheck', 'support-bot', 'voice-agent'],
   },
   {
     id: 'competitors',
     reader: 'marketing',
     bandName: 'Watch your competitors',
-    bandLine: 'See the emails, offers and prices your competitors give a new customer, including offers that never appear on their websites.',
+    bandLine: 'Every email, offer and price your rivals give a new customer, including the ones never on their websites.',
     page: '/recipes/competitor-tracking',
     readers: [
       { name: 'Marketing teams', page: '/marketing' },

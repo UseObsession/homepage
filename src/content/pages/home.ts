@@ -1,11 +1,15 @@
 import { consoleHeading } from '../console'
 import { AI_CUSTOMER } from '../glossary'
 import { look } from '../look'
+import { outputFormats } from '../sample'
 import { askExamples, askShared, life, openSource } from '../shared5'
-import type { Page } from '../types'
+import type { Page, ViewerFormat } from '../types'
 
-/* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea: Obsession
-   sells an AI customer. You send one to any company, it does what a real customer does, and it keeps the receipts. Each block answers the question the last one
+/* Home (/), the November rewrite (COPY.md, "Copy deck > Home"; docs/copy/ai-customer-voice.md). 1 idea, since 5 Nov
+   (James): Obsession is the index of what companies send their customers, and AI customers are how it fills, as
+   Googlebot is a piece of Google. Headings and the sub name the index, never a visit (a visit reads as mystery
+   shopping); AI customers appear where the page explains how (How does it work, the questions) and on the wall, which
+   shows them at work. Until 5 Nov the idea was that Obsession sells an AI customer. Each block answers the question the last one
    leaves open, in this order (Seun's order of 4 Nov evening, from his Home draft: a picture, then proof, then uses,
    then the objection, then how). Every block from 2 to 9 is labelled with the reader's own question, so the labels
    read as the page's argument (COPY.md's reading path):
@@ -22,6 +26,95 @@ import type { Page } from '../types'
    tab", "manually"); "receipt" is the brand's 1 device, always beside the plain word for it. Every company on the
    screens is invented, at a .example address. */
 
+/* Home's code tile (5 Nov): the shared watch example, with a software company and a bank in place of 2 shops. */
+const HOME_CODE = `import os
+from obsession import Obsession
+
+ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+
+# Add every company on the list to the index
+ob.become_customer(["quillon.example", "kittiwake.example"],
+                   how="newsletter", shared=True)
+
+# Push each new fact to your webhook as it lands
+ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")
+
+for fact in ob.facts("quillon.example", since="30d"):
+    print(fact.seen_at, fact.sentence, fact.receipt_url)`
+
+/* Home's format tiles (5 Nov, James: the tiles were all a store's). The PDF stays the real store run; email, Slack,
+   Clay, webhook and workflow show the wall's invented companies (Kittiwake Bank's chat, Larkfield's welcome links,
+   Quillon's trial offer), and the Clay table keeps Brand G, the real run, as its first row. /sample-output keeps the real
+   run on every tile. */
+function homeFormats(): ViewerFormat[] {
+  const views: Partial<Record<ViewerFormat['id'], ViewerFormat['view']>> = {
+    email: {
+      kind: 'email',
+      from: 'Obsession',
+      to: 'you@your-company.example',
+      subject: 'Kittiwake Bank: chat called a variable rate fixed',
+      tag: 'Wrong answer · Chat',
+      timeline: [
+        { time: 'Tue 07:04', text: 'Asked in chat: Is the 4.6% rate fixed? Answer: Yes, fixed for 12 months.' },
+        { time: 'Tue 07:05', text: 'The Easy Access Saver page says 4.6% variable.' },
+      ],
+      button: 'Open the proof',
+    },
+    slack: {
+      kind: 'slack',
+      channel: '#growth',
+      app: 'Obsession',
+      time: '09:05',
+      title: 'Broken: Larkfield, welcome email',
+      line: 'Every link in the welcome email opens staging.larkfield.example, a closed site.',
+      buttons: ['View proof', 'All findings'],
+    },
+    clay: {
+      kind: 'clay',
+      cols: ['Company', 'Finding', 'Seen on', 'Proof'],
+      added: ['Finding', 'Seen on', 'Proof'],
+      rows: [
+        { cells: ['Brand G', 'No basket reminder', '24 Sep', 'link'], gap: true, example: false },
+        { cells: ['Larkfield', 'Dead welcome links', '3 Nov', 'link'], gap: true, example: true },
+        { cells: ['Kittiwake Bank', 'Chat: wrong rate', '4 Nov', 'link'], gap: true, example: true },
+        { cells: ['Quillon', '40% off, trial only', '5 Nov', 'link'], gap: false, example: true },
+      ],
+      note: 'Brand G is a real run. The other rows are examples.',
+    },
+    webhook: {
+      kind: 'webhook',
+      request: 'POST https://your-app.example/hooks/obsession',
+      body: `{
+  "event": "fact.created",
+  "company": "larkfield.example",
+  "sentence": "Every link in the welcome email opens a closed site.",
+  "seen_at": "2026-11-03T09:04:00+00:00",
+  "verdict": "broken",
+  "receipt": {
+    "journey": "welcome",
+    "url": "https://api.useobsession.com/v1/evidence/run_l1_1103"
+  }
+}`,
+    },
+    workflow: {
+      kind: 'workflow',
+      steps: [
+        { k: 'When', v: 'A finding comes in: Broken' },
+        { k: 'Only if', v: 'The company is Client A’s' },
+        { k: 'Then', v: 'Post to Slack', branch: true },
+        { k: 'Then', v: 'Add the finding to the Clay row', branch: true },
+        { k: 'Then', v: 'Your own step: open a ticket, draft the fix, brief the team', branch: true, custom: true },
+      ],
+      note: 'Example workflow on an example finding.',
+    },
+  }
+  /* The Clay tile's line says finding, not gap, since a rival's offer is a finding but not a gap. */
+  const lines: Partial<Record<ViewerFormat['id'], string>> = {
+    clay: 'New columns on the rows you already have: the finding, the day it was seen and a proof link.',
+  }
+  return outputFormats.map((f) => ({ ...f, line: lines[f.id] ?? f.line, view: views[f.id] ?? f.view }))
+}
+
 const waitlist = {
   kind: 'waitlist',
   button: 'Join the waitlist',
@@ -31,20 +124,27 @@ const waitlist = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: see what any company shows only its customers',
+    /* The index position (5 Nov). Until then: Obsession: see what any company shows only its customers; Obsession sends
+       AI customers to prospects, clients and competitors (description and share line). */
+    title: 'Obsession: an index of what companies send their customers',
     description:
-      'Obsession sends AI customers to prospects, clients and competitors. They sign up, shop and talk to support, then bring back every email, offer and reply.',
-    /* The sentence AI assistants quote: the hero's sub, word for word, then how to use it. */
+      'Obsession indexes what companies send their customers: every email, text, offer, price and answer, and the ones that never came, kept with proof.',
+    /* The sentence AI assistants quote: what Obsession is, then how it fills, then how to use it. */
     answer:
-      'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof. Send them from your own AI agent through MCP or the API, or from our website; the runtime is open source.',
-    ogLine: 'Obsession sends AI customers to prospects, clients and competitors.',
+      'Obsession is an index of what companies send their customers. Its AI customers keep accounts open at every company you name and keep every email, text, offer, price and answer, with proof, including what never came. Search it from your own AI agent through MCP or the API, or on our website; the runtime is open source.',
+    ogLine: 'What companies send their customers, searchable.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Open source',
-    headline: 'See what any company shows only its customers.',
-    sub: 'Obsession sends AI customers to prospects, clients and competitors. They sign up, shop and talk to support, then bring back every email, text, offer and reply, plus what broke or never came, with proof.',
+    /* The index, named by where it sits (5 Nov, James: "See what any company shows only its customers." was not enough,
+       and the sub's AI customers signing up and shopping read as a mystery shopper). The sub sets it against the
+       index everyone knows, then says what is in it. Until then the sub was: Obsession sends AI customers to
+       prospects, clients and competitors. They sign up, shop and talk to support, then bring back every email, text,
+       offer and reply, plus what broke or never came, with proof. */
+    headline: 'The web behind the sign up.',
+    sub: 'Search engines index what companies publish. Obsession indexes what they send their customers: every email, text, offer, price and answer, and the ones that never came. For any company you name, kept for months, searchable by your team and your AI agents.',
     capture: { ...waitlist, source: 'home-hero' },
     proof: [],
     consoleHeading,
@@ -61,14 +161,16 @@ export const page: Page = {
 
   /* The share image's card (scripts/og.mjs): what AI customers caught inside 3 companies this month, the gap section's
      catches (a broken checkout, a dead code, a leaked code, a rival's price cut) at Company 1, 2 and 3. */
+  /* Since 5 Nov 4 kinds of company, as the wall has: a software welcome email, a bank's chat, a shop's price, a trial
+     offer. Until then all 4 were a store's (a broken checkout, a dead code, a price cut, a leaked code). */
   shareFindings: {
-    title: 'Your AI customers caught',
+    title: 'New in the index',
     aside: 'This month',
     rows: [
-      { company: 'Company 1', finding: 'The checkout broke mid campaign', when: 'Day 3' },
-      { company: 'Company 2', finding: 'The promo code stopped working', when: 'Day 9' },
+      { company: 'Company 1', finding: 'Welcome links open a closed site', when: 'Day 3' },
+      { company: 'Company 2', finding: 'Chat called a variable rate fixed', when: 'Day 9' },
       { company: 'Company 3', finding: 'Price cut from £24 to £19', when: 'Day 21' },
-      { company: 'Company 1', finding: 'A private code on a coupon site', when: 'Day 30' },
+      { company: 'Company 4', finding: 'A private 40% off for trial users', when: 'Day 30' },
     ],
     foot: 'Each one with proof',
   },
@@ -117,13 +219,29 @@ export const page: Page = {
        sleep stays only in the open source section). It echoes October's "Be a customer of every company." Until then,
        for a few hours: Each one sleeps until its company makes a move. Before that: A customer of every company on
        your list, for months. */
-    heading: 'Be a customer of 10,000 companies at once.',
-    line: 'Name 5 companies or 10,000. Each gets its own AI customer, which stays as long as you need and tells you about every break, leak, price cut and new offer the day it happens.',
+    /* Since 5 Nov (the index): the scale as what lands, not as being a customer. Until then: Be a customer of 10,000
+       companies at once. This is the section that explains the AI customers, as the crawler that fills the index. */
+    heading: 'What 10,000 companies send their customers, at once.',
+    line: 'Name 5 companies or 10,000. An AI customer keeps an account open at each, and every email, text, offer, price and answer goes into the index the day it arrives, for as long as you need.',
+    /* The lanes show what arrived at 3 kinds of company, not a basket (James, 5 Nov). The reader pages keep the shared
+       lanes. */
+    list: 'companies.csv · 10,000 companies',
+    axis: { ...life.axis, end: 'Day 90: every message from all 10,000, kept' },
+    lanes: [
+      { name: 'An app', wakes: [{ day: 0.006, label: '09:09 · welcome email' }, { day: 12, label: 'Day 12 · 40% off, trial only' }] },
+      { name: 'A bank', wakes: [{ day: 1, label: 'Day 1 · rate 4.6%' }, { day: 30, label: 'Day 30 · rate cut to 4.3%' }] },
+      { name: 'A shop', wakes: [{ day: 2, label: 'Day 2 · 10% off' }, { day: 21, label: 'Day 21 · £24 to £19' }, { day: 47, label: 'Day 47 · 30% off' }] },
+    ],
     phases: [
-      ...life.phases.slice(0, 3),
+      life.phases[0],
       {
-        title: 'It files its findings',
-        line: 'A dead welcome link, a wrong rate in chat, a rival’s price cut: each with its proof, its time and its sender checked.',
+        title: 'An AI customer each',
+        line: 'One AI customer per company signs up, starts the trial or opens the account, as you choose, so the company starts sending.',
+      },
+      life.phases[2],
+      {
+        title: 'Into the index',
+        line: 'A dead welcome link, a wrong rate in chat, a rival’s price cut: each kept with its proof and its time, ready to search.',
       },
     ],
   },
@@ -146,13 +264,15 @@ export const page: Page = {
      is how many companies and for how long, not a step (James, 4 Nov). */
   stopTrack: {
     kicker: 'Why can’t my tools do this?',
-    /* What the track shows: every tool's line ends before the journey does (5 Nov). Until then: Other tools read what a
-       company says. AI customers see what it does. */
-    heading: 'Every other tool stops before the customer does.',
-    line: 'The code at checkout, the reminder after a basket, the reply from support: each reaches only the customer it was meant for. Your AI customers stay to the end, and keep the receipts.',
-    steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Checkout', 'Support', 'Month 3'],
+    /* What the track shows, as indexes (5 Nov, James: closer to data, with Google and Exa in it). Until then: Every other
+       tool stops before the customer does (and before that: Other tools read what a company says. AI customers see
+       what it does). Checkout became Offers and prices, so the track is not only a shop's. */
+    heading: 'Every index stops at the sign up.',
+    line: 'Google and Exa index the pages anyone can open. Ad libraries keep the ads, email archives keep the newsletters. The code at checkout, the answer from support and the reminder after sign up reach only the customer they were meant for, so no index has them. Obsession does.',
+    steps: ['Ad', 'Page', 'Sign up', 'Emails and texts', 'Offers and prices', 'Support', 'Month 3'],
     rows: [
       { name: 'Ad libraries', who: 'Foreplay, Meta Ad Library', stop: 1, note: 'Stops at the ad' },
+      { name: 'Search indexes', who: 'Google, Exa', stop: 2, note: 'Index the pages anyone can open, up to the sign up' },
       { name: 'Page monitors', who: 'Visualping', stop: 2, note: 'Stops at the page' },
       /* The tools marketing and sales teams already own (Seun's draft, 4 Nov). They collect pages, prices, news and job
          posts; no source describes them signing up for a rival's emails. */
@@ -160,17 +280,18 @@ export const page: Page = {
       { name: 'Your own AI agent', who: 'A browser for one session', stop: 3, note: 'Its session ends before the first email' },
       { name: 'Email archives', who: 'Panoramata, MailCharts, Milled', stop: 4, note: 'Stops at the newsletter, for its own list of brands' },
       { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
-      { name: 'Your AI customers', who: 'Obsession', stop: 7, ours: true, note: 'Every step short of paying, at every company you name, with the receipt' },
+      { name: 'Obsession', who: 'The index behind the sign up', stop: 7, ours: true, note: 'Every step short of paying, at every company you name, with proof' },
     ],
+    /* Until 5 Nov: What only a customer catches, with 6 catches that were mostly a store's. */
     catches: {
-      label: 'What only a customer catches',
+      label: 'What no other index holds',
       items: [
-        'The checkout that broke mid campaign',
+        'A welcome email whose links open a closed site',
+        'A chat quoting a rate the terms don’t',
         'The promo code that stopped working',
-        'Your private codes leaking to resellers and coupon sites',
-        'A competitor’s price cut or new offer',
-        'Where a prospect’s journey loses money',
-        'What the support bot got wrong',
+        'A rival’s offer that never reaches its website',
+        'The reminder that never came',
+        'Support that took 31 hours after promising 24',
       ],
     },
     more: { label: 'See the full comparison', to: '/compare' },
@@ -181,8 +302,9 @@ export const page: Page = {
      separate reports. Its foot (the 93% and the sample run) moved up into the finding on 4 Nov. */
   runReports: {
     kicker: 'Where do the findings go?',
-    heading: 'Every finding, wherever your team works.',
-    node: { title: 'Obsession run', line: 'Any company, any job' },
+    /* Since 5 Nov: the index asked or delivered. Until then: Every finding, wherever your team works. */
+    heading: 'Ask the index, or have it come to you.',
+    node: { title: 'The index', line: 'Every company you name' },
     label: 'Ways to use it',
     /* The ask section's 2 chat questions as 1 thread in Claude Code, each answer cut to its first 2 lines so the window
        fits the stage every tile shares, and its Ask from list as pills under it. */
@@ -191,15 +313,30 @@ export const page: Page = {
       line: 'None of it is on the web, so no AI can search for it. Connect Obsession once, then ask in plain words.',
       where: 'Claude Code',
       connect: askShared.connect['Claude Code'],
-      thread: [askExamples.blackFriday, askExamples.brief].map((x) => ({ ...x, a: x.a.slice(0, 2) })),
+      /* Home's own 2 questions since 5 Nov, a bank's rivals and a software company, from the wall's and the use cases'
+         invented companies (Quaystone's rate and chat, Quillon's trial offer). Until then the shared Black Friday and
+         Wrenfield questions, both a shop's. */
+      thread: [
+        {
+          q: 'Which of our rivals changed a rate this month, and what did their chat say?',
+          a: ['Quaystone raised its easy access rate to 4.75% on Thursday.', 'Its chat kept quoting 4.5% until Friday.'],
+          receipts: 'Receipts: 3 rate pages and 2 chat transcripts, linked',
+        },
+        {
+          q: 'Brief me on Quillon before Thursday’s call.',
+          a: ['Trial users get 40% off the first year on day 12. Its pricing page shows no offer.', 'Its welcome email came in 3 minutes, but support took 31 hours to answer.'],
+          receipts: 'Receipts: 6 emails, 1 page and 1 support thread, linked',
+        },
+      ],
       from: askShared.from,
     },
     code: {
       label: 'Use from your code',
-      line: 'Send AI customers to every company on your list, and get each new finding at your webhook.',
+      line: 'Add every company on your list to the index, and get each new finding at your webhook.',
       file: askExamples.watch.file,
-      code: askExamples.watch.code,
+      code: HOME_CODE,
     },
+    formats: homeFormats(),
   },
 
   /* Open source, names only (4 Nov, James: too many descriptions). Each capability's line, and the rest, live on
@@ -213,7 +350,7 @@ export const page: Page = {
     core: { title: openSource.core.title, items: openSource.core.items.map(({ name }) => ({ name })) },
     cloud: {
       title: openSource.cloud.title,
-      items: ['Inboxes, phones and browsers', 'Months of history already kept', 'A shared record from day one', 'About 250 integrations', 'Our website and watch planner'],
+      items: ['Inboxes, phones and browsers', 'Months of history in the index', 'A shared index from day one', 'About 250 integrations', 'Our website and watch planner'],
     },
   },
 
@@ -225,14 +362,16 @@ export const page: Page = {
     kicker: 'What else would I ask?',
     heading: 'Before you join.',
     items: [
+      /* Since 5 Nov the first question is what Obsession is, the index, and AI customers come in as how it fills.
+         Until then: What is an AI customer? */
       {
-        q: 'What is an AI customer?',
-        a: `Obsession sends AI customers to any company you name. ${AI_CUSTOMER.definition} It works for you. An AI customer service agent is the opposite: it works for a company and answers its customers.`,
+        q: 'What is Obsession?',
+        a: `Obsession is an index of what companies send their customers. Search engines stop at the sign up. Obsession’s AI customers keep accounts open at every company you name and keep every email, text, offer, price and answer, with proof. ${AI_CUSTOMER.definition}`,
         link: { label: 'Read the full guide to AI customers', to: AI_CUSTOMER.path },
       },
       {
         q: 'Is this AI mystery shopping?',
-        a: 'Mystery shopping is 1 job an AI customer does. A mystery shopper visits once; an AI customer stays for months. It also watches competitors and prospects, and tests support bots and phone lines.',
+        a: 'No. A mystery shopper visits one company once and writes a report. Obsession keeps accounts open at every company you name, for months, and keeps what they send in an index you can search. Checking your own company the way a mystery shopper would is 1 thing you can do with it.',
       },
       {
         q: 'Is it legal to mystery shop a competitor?',
@@ -241,11 +380,11 @@ export const page: Page = {
       },
       {
         q: 'How soon do I see something?',
-        a: 'It depends on the job you give it. An AI customer can tell you the moment something happens, like a reminder that arrives or a gap it finds; report at the times you set, like 4 hours after it signs up and again at 48; or keep watching for as long as you keep it there. If one is already a customer of that company, its history is there the moment you ask.',
+        a: 'If the company is already in the index, its history is there the moment you ask. Otherwise it depends on the job: an alert the moment something arrives or a gap shows up, a report at the times you set, like 4 hours after sign up and again at 48, or a watch that runs for as long as you keep it.',
       },
       {
         q: 'Can anyone else see what I watch?',
-        a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into a shared record, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an AI customer that works only for you.',
+        a: 'No. Your list, your questions and your reports are yours alone. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber, its emails, pages and prices, goes into the shared index, the same thing anyone gets by signing up, so its history is there on day one. Anything more, like replying to a salesperson or placing an order, runs on an AI customer that works only for you.',
       },
     ],
   },
@@ -254,8 +393,10 @@ export const page: Page = {
      form's own line (name up to 5 brands to check first) it was a second version of the same offer. Agencies reach
      their page from the uses band, where each panel links the readers who use it. */
   final: {
-    /* Ends on the hero's own words (5 Nov). Until then: Name a company. Send it an AI customer. */
-    heading: 'Name a company. See what its customers see.',
+    /* Ends on what the index holds (5 Nov). Until then: Name a company. See what its customers see. (and before that:
+       Name a company. Send it an AI customer.) */
+    heading: 'Name a company. See what it sends its customers.',
     capture: { ...waitlist, source: 'home-final' },
   },
 }
+

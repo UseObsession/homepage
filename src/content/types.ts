@@ -307,6 +307,9 @@ export type RunReports = {
     from: { label: string; items: string[] }
   }
   code?: { label: string; line: string; file: string; code: string }
+  /* Home's own examples on the format tiles (5 Nov): the PDF stays the real store run, the rest show other kinds of
+     company. Left out, the tiles show /sample-output's real run (content/sample.ts). */
+  formats?: ViewerFormat[]
   /* The study and its link at the foot. Home leaves both out since 4 Nov: the study is its own callout (Finding). */
   study?: { value: string; text: string }
   cta?: Cta
