@@ -68,15 +68,16 @@
 .james + .v5-section { padding-top: 0; }
 
 /* A section's head: its label, then the claim and at most 1 line. Stacked on a phone and a tablet; from 1024px the line
-   sits beside the claim, at its foot, so the head fills the row instead of leaving its right half empty (4 Nov). A head
-   with no line lets the claim run the full row. */
+   sits beside the claim, so the head fills the row instead of leaving its right half empty (4 Nov). Both start at the
+   top of their row (5 Nov, James): set at the claim's foot, a line taller than the claim pushed the claim down and left
+   a gap under the label. A head with no line lets the claim run the full row. */
 .v5-head { max-width: 760px; display: grid; gap: 16px; margin-bottom: clamp(32px, 4vw, 48px); }
 @media (min-width: 1024px) {
   .v5-head {
     max-width: none;
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     column-gap: clamp(40px, 5vw, 80px);
-    align-items: end;
+    align-items: start;
   }
   .v5-head > * { grid-column: 1 / -1; }
   .v5-head > .v5-h2 { grid-column: 1; }

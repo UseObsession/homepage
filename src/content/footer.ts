@@ -13,7 +13,8 @@ export const footer = {
   /* 1 short line under the logo, the 1 sentence's core (docs/SEARCH.md 2). The full sentence stays word for word where
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
-  tagline: 'Send an AI customer to any company. Keep the receipts.',
+  /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
+  tagline: 'What companies send their customers, searchable.',
   columns: [
     { label: 'Who it’s for', links: readers },
     {

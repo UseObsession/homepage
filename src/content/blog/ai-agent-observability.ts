@@ -458,7 +458,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'For developers, the same AI customers are a tool their own agents can call. [MCP](' +
         MCP_INTRO +
-        '), the Model Context Protocol, is an open source standard for connecting AI applications to outside systems. Obsession offers its AI customers over MCP, over an API that code calls directly, and through an SDK, a ready-made code library. All three expose 5 verbs: lookup, facts, evidence, become_customer and notify, and API keys go to teams one at a time. [AI customers for developers](/blog/ai-customers-for-developers) covers building on them, and [long running AI agents](/blog/long-running-ai-agents) covers agents that wait for weeks.',
+        '), the Model Context Protocol, is an open source standard for connecting AI applications to outside systems. Obsession offers its AI customers over MCP, over an API that code calls directly, and through an SDK, a ready-made code library. All three expose 5 verbs: lookup, facts, evidence, index and notify, and API keys go to teams one at a time. [AI customers for developers](/blog/ai-customers-for-developers) covers building on them, and [long running AI agents](/blog/long-running-ai-agents) covers agents that wait for weeks.',
     },
     {
       kind: 'cta',

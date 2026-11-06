@@ -232,7 +232,7 @@ export const study: UseCaseStudy = {
      invented shops, content/shops.ts). Only email was watched in those checks, so the line says so. */
   found: {
     heading: 'Our AI customers found a leak at 93% of stores where they ran every journey. 77% were silence.',
-    line: 'Our AI customers have joined 376 stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak your dashboards can’t show: the email that never came.',
+    line: 'Our AI customers have run 1,500 journeys at real stores so far, watching what came by email after a sign up, a browse, a basket and a checkout. Silence is the leak your dashboards can’t show: the email that never came.',
     items: [
       {
         label: 'Fashion store · Basket left',
@@ -290,7 +290,7 @@ export const study: UseCaseStudy = {
     },
   },
 
-  fine: 'Halden Home and haldenhome.example, Kilnworth, the people, the phone number, the ads and every figure on their screens are made up. The 93%, the 376 stores and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
+  fine: 'Halden Home and haldenhome.example, Kilnworth, the people, the phone number, the ads and every figure on their screens are made up. The 93%, the 1,500 journeys and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
 
   faq: {
     heading: 'What ecommerce teams ask.',

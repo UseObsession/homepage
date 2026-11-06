@@ -35,7 +35,7 @@ export function Home() {
       {page.stopTrack && <StopTrack track={page.stopTrack} id="compare" />}
       {page.life && <AgentLife life={page.life} id="how" />}
       {page.runReports && <RunReports runs={page.runReports} id="formats" />}
-      {page.openSource && <OpenSource open={page.openSource} id="open-source" deskOnly />}
+      {page.openSource && <OpenSource open={page.openSource} id="open-source" />}
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>

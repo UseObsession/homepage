@@ -10,8 +10,10 @@ import type { Look } from './types'
    customers a company, as the store checks ran (sample.ts: welcome, browse, basket and checkout). */
 export const look: Look = {
   kicker: 'What does that look like?',
-  heading: 'AI customers at every company you name.',
-  said: 'An example wall of invented companies: shops, banks, airlines, software, apps and more, each with 4 AI customers that sleep, run, wait on a deadline or talk to support. Asked which of them let a new customer down this week, the wall lights the ones that did and opens on the proof: Larkfield’s welcome email, whose every link opens a closed site, and Kittiwake Bank’s chat calling a variable rate fixed. Domains added from a Clay table each get their own AI customers. Every Monday at 08:00, each client gets a PDF of its week.',
+  /* The index you build, seen as a wall (5 Nov evening, James: the data behind the sign up at any company you name, not
+     the AI customers). Until then: AI customers at every company you name. */
+  heading: 'Every company you name, indexed.',
+  said: 'An example wall of invented companies: shops, banks, airlines, software, apps and more, each with 4 agents that sleep, run, wait on a deadline or talk to support. Asked which of them let a new customer down this week, the wall lights the ones that did and opens on the proof: Larkfield’s welcome email, whose every link opens a closed site, and Kittiwake Bank’s chat calling a variable rate fixed. Domains added from a Clay table join the index. Every Monday at 08:00, each client gets a PDF of its week.',
   companies: [
     { name: 'Fern Hollow', kind: 'shop', bad: 'Code fails at checkout', client: true, start: { s: 'wait', p: 0.62 } },
     { name: 'Saltmarsh', kind: 'energy' },
@@ -130,7 +132,7 @@ export const look: Look = {
     row: 'Row {n}',
     placeholder: 'Add a domain',
     button: 'Add',
-    head: ['Domain', 'AI customers', 'Finding'],
+    head: ['Domain', 'Agents', 'Finding'],
     listed: [
       { company: 0, agents: ['wait', 'sleep', 'sleep', 'sleep'], p: 0.62, finding: ['bad', 'Code fails at checkout'] },
       { company: 2, agents: ['chat', 'sleep', 'sleep', 'sleep'], finding: ['bad', 'Chat: wrong rate'] },
