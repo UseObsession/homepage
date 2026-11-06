@@ -124,8 +124,8 @@ from obsession import Obsession
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
 # Send AI customers to every brand on the list
-ob.follow(["fernhollow.example", "northfold.example"],
-          how="newsletter", shared=True)
+ob.index(["fernhollow.example", "northfold.example"],
+         how="newsletter", shared=True)
 
 # Push each new fact to your webhook as it lands
 ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")
@@ -180,7 +180,7 @@ export const ways: Ways = {
       code: `# Competitor trial watch
 # Runs every Monday at 08:00
 
-1. obsession.follow(
+1. obsession.index(
      ["competitor-a.example", "competitor-b.example", "competitor-c.example"],
      how="trial", shared=True)
 
@@ -204,8 +204,8 @@ from obsession import Obsession
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
 # Send AI customers to every brand on the list
-ob.follow(["fernhollow.example", "northfold.example"],
-          how="newsletter", shared=True)
+ob.index(["fernhollow.example", "northfold.example"],
+         how="newsletter", shared=True)
 
 # Push each new fact to your webhook as it lands
 ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")
@@ -220,7 +220,7 @@ for fact in ob.facts("fernhollow.example", since="30d"):
       { name: 'lookup', line: 'Which companies the shared record already covers, and since when.' },
       { name: 'facts', line: 'What a company did, as facts, each with its receipt.' },
       { name: 'evidence', line: 'The raw email, page or transcript behind a fact.' },
-      { name: 'follow', line: 'Start AI customers, or join ones already there.' },
+      { name: 'index', line: 'Start AI customers, or join ones already there.' },
       { name: 'notify', line: 'New facts pushed to your webhook, Slack or CRM as they land.' },
     ],
   },

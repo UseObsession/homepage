@@ -334,7 +334,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your agent can find revenue leaks, watch competitors and prospect with proof. It exposes them as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), follow (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Obsession runs today on credit-based plans, like Claude’s, where credits pay for the work your AI customers do, and every key has a spending cap you set.',
+      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your agent can find revenue leaks, watch competitors and prospect with proof. It exposes them as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), index (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Obsession runs today on credit-based plans, like Claude’s, where credits pay for the work your AI customers do, and every key has a spending cap you set.',
     },
     {
       kind: 'art',
@@ -347,7 +347,7 @@ export const post: BlogPost = {
           { time: '09:00', text: 'lookup: 3 domains', detail: '2 covered since July, 1 not yet', tone: 'ok' },
           { time: '09:00', text: 'facts: since 24 September', detail: 'The covered competitors’ facts, each linked to its evidence', tone: 'ok' },
           { time: '09:01', text: 'evidence: 1 price email', detail: 'The raw email, its DKIM result and its hash', tone: 'ok' },
-          { time: '09:01', text: 'follow: 1 domain', detail: 'An AI customer starts a trial as a new customer', tone: 'info' },
+          { time: '09:01', text: 'index: 1 domain', detail: 'An AI customer starts a trial as a new customer', tone: 'info' },
           { time: '11:42', text: 'notify: fact.created', detail: 'quillery.example cut Pro from $49 to $39 a month', tone: 'ok' },
         ],
         foot: 'An example with invented companies. The 5 calls are Obsession’s verbs. What the app shows its user is its own.',

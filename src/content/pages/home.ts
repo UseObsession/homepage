@@ -33,8 +33,8 @@ from obsession import Obsession
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
 # Add every company on the list to the index
-ob.follow(["quillon.example", "kittiwake.example"],
-          how="newsletter", shared=True)
+ob.index(["quillon.example", "kittiwake.example"],
+         how="newsletter", shared=True)
 
 # Push each new fact to your webhook as it lands
 ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")
@@ -347,7 +347,7 @@ export const page: Page = {
   /* The developer line (6 Nov, James): developers get 3 things, the open runtime, agent infrastructure to build on
      (browsers, inboxes, phone numbers: "nothing unique there") and what is ours, the MCP and API that look up the index
      or become a customer in 1 call. So the heading and the left column lead with the call (the 5 verbs, lookup and
-     follow first, worded as on /developers), and the right column is what it runs on. The guide leads, GitHub
+     index first, worded as on /developers), and the right column is what it runs on. The guide leads, GitHub
      follows. 5 Nov evening: Yes. Give your agents an inbox, a phone and a browser., with What each agent gets on the
      left and Obsession Cloud on the right. Before that: Yes. It's the customer layer for AI agents., and Yes. The
      runtime is open source., under Can I run it myself?. Shown on every screen since 5 Nov. The shared runtime list
@@ -355,16 +355,16 @@ export const page: Page = {
   openSource: {
     ...openSource,
     kicker: 'Can I build on it?',
-    /* 6 Nov, later: the verb become_customer is now follow everywhere (James: leave the customer words in names and
-       headlines), so the heading follows the company past the sign up. Until then: Yes. Look up any company, or become
-       its customer, in 1 call. */
-    heading: 'Yes. Look up any company, or follow it past the sign up, in 1 call.',
+    /* 6 Nov, later: the verb become_customer is now index everywhere (James: leave the customer words in names and
+       headlines; for a few minutes it was follow), so the heading adds the company to the index. Until then: Yes. Look
+       up any company, or become its customer, in 1 call. */
+    heading: 'Yes. Look up any company, or add it to the index, in 1 call.',
     line: 'Our MCP and API give your own agent the index. Ask what a company sends its customers and get the answer with its proof. If it isn’t in the index yet, 1 call starts an agent that becomes its customer and keeps reporting back. Underneath is the open source runtime that fills the index, with the browsers, inboxes and phone numbers to build your own agents on.',
     core: {
       title: '5 verbs over MCP and the API',
       items: [
         { name: 'lookup', line: 'Whether the index already covers a company, and since when.' },
-        { name: 'follow', line: 'Not in the index yet? An agent becomes its customer and stays for as long as you need.' },
+        { name: 'index', line: 'Not in the index yet? An agent becomes its customer and stays for as long as you need.' },
         { name: 'facts', line: 'What a company sent its customers, as typed facts: the rate, the price, the offer, each dated.' },
         { name: 'evidence', line: 'The proof behind each fact: the email with its signature checked, the page, the transcript.' },
         { name: 'notify', line: 'Each new fact at your webhook, Slack or CRM as it lands, so nothing polls.' },
