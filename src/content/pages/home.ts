@@ -342,35 +342,42 @@ export const page: Page = {
     formats: homeFormats(),
   },
 
-  /* The runtime as a product of its own (5 Nov evening, James: the page said "customer layer" but never said what a
-     developer gets, which is what Notte sells; we build it for ourselves and open it). The heading names the 3 things
-     every agent gets, the line places it under the index (the same runtime fills it), and the left column lists what
-     each agent gets in 1 short line each, the way a developer compares it with Notte or Inkbox. The right column is the
-     hosted side. Shown on every screen since 5 Nov; until then on a wide screen only, as names only. Until then the
-     heading was: Yes. It's the customer layer for AI agents. (and before that: Yes. The runtime is open source., under
-     Can I run it myself?). The shared runtime list stays on /developers. */
+  /* The developer line (6 Nov, James): developers get 3 things, the open runtime, agent infrastructure to build on
+     (browsers, inboxes, phone numbers: "nothing unique there") and what is ours, the MCP and API that look up the index
+     or become a customer in 1 call. So the heading and the left column lead with the call (the 5 verbs, lookup and
+     become_customer first, worded as on /developers), and the right column is what it runs on. The guide leads, GitHub
+     follows. 5 Nov evening: Yes. Give your agents an inbox, a phone and a browser., with What each agent gets on the
+     left and Obsession Cloud on the right. Before that: Yes. It's the customer layer for AI agents., and Yes. The
+     runtime is open source., under Can I run it myself?. Shown on every screen since 5 Nov. The shared runtime list
+     stays on /developers. */
   openSource: {
     ...openSource,
     kicker: 'Can I build on it?',
-    heading: 'Yes. Give your agents an inbox, a phone and a browser.',
-    line: 'It’s the customer layer for AI agents, and the same runtime that fills the index. Spin up 1 agent or 100,000, each with its own identity, kept for as long as you need. Use it on Obsession Cloud, or run the open source runtime yourself.',
+    heading: 'Yes. Look up any company, or become its customer, in 1 call.',
+    line: 'Our MCP and API give your own agent the index. Ask what a company sends its customers and get the answer with its proof. If it isn’t in the index yet, 1 call starts an agent that becomes its customer and keeps reporting back. Underneath is the open source runtime that fills the index, with the browsers, inboxes and phone numbers to build your own agents on.',
     core: {
-      title: 'What each agent gets',
+      title: '5 verbs over MCP and the API',
       items: [
-        { name: 'A browser', line: 'Its own session and cookies, kept between runs.' },
-        { name: 'An inbox', line: 'A real address. Each email arrives as an event, its signature checked.' },
-        { name: 'A phone number', line: 'Texts and calls, in the country you choose.' },
-        { name: 'An identity', line: 'A name, an address and logins, kept encrypted.' },
-        { name: 'Months, not minutes', line: 'It sleeps for free and wakes on an email, a text or a timer.' },
-        { name: '1 agent or 100,000', line: 'Fan out across a whole list in 1 call.' },
-        { name: 'Learns once, runs as code', line: 'Each flow compiles to a program, so repeat runs cost little.' },
-        { name: 'MCP, API and webhooks', line: '5 typed verbs, with a spending cap on every key.' },
+        { name: 'lookup', line: 'Whether the index already covers a company, and since when.' },
+        { name: 'become_customer', line: 'Not in the index yet? An agent becomes its customer and stays for as long as you need.' },
+        { name: 'facts', line: 'What a company sent its customers, as typed facts: the rate, the price, the offer, each dated.' },
+        { name: 'evidence', line: 'The proof behind each fact: the email with its signature checked, the page, the transcript.' },
+        { name: 'notify', line: 'Each new fact at your webhook, Slack or CRM as it lands, so nothing polls.' },
+        { name: '1 company or 100,000', line: 'A whole list in 1 call, with typed schemas and a spending cap on every key.' },
       ],
     },
     cloud: {
-      title: 'Obsession Cloud: hosted, with the index',
-      items: ['Browsers, inboxes and numbers in many countries', 'Run for you: 1 agent or 100,000', 'The index, with months of history', 'About 250 integrations', 'Our website and watch planner'],
+      title: 'Underneath, to build on',
+      items: [
+        'The open source runtime that fills the index',
+        'A browser, an inbox and a phone number per agent',
+        '1 agent or 100,000, each kept for months',
+        'Each flow learned once, then run as code',
+        'On Obsession Cloud, or on your own servers',
+      ],
     },
+    cta: { label: 'Read the developer guide', to: '/developers' },
+    secondary: { label: 'Star the runtime on GitHub', to: 'https://github.com/UseObsession' },
   },
 
   /* The questions a reader asks before joining (4 Nov): Seun's draft of 4 Nov, reworded, in place of Home's own 11, so
