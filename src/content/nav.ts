@@ -74,7 +74,7 @@ export const nav = {
     { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every competitor ad, email and offer, seen as their customer.' },
     { id: 'sales', label: 'Sales', to: '/sales', line: 'Know what each account does to its customers.' },
     { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client and prospect, checked as a customer.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'The customer layer for your AI agents.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'The web behind the sign up, as an API.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
