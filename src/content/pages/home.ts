@@ -223,7 +223,7 @@ export const page: Page = {
        harder than What 10,000 companies send their customers, at once, which held it for a few hours), and the act the
        compare heading says every index stops at. Until then: Be a customer of 10,000 companies at once. The line
        names Obsession, not an AI customer (James: soften every AI customer on Home). */
-    heading: 'Sign up to 10,000 companies at once.',
+    heading: 'Follow 10,000 companies past the sign up.',
     line: 'Name 5 companies or 10,000. Obsession keeps an account open at each, and every email, text, offer, price and answer goes into the index the day it arrives, for as long as you need.',
     /* The lanes show what arrived at 3 kinds of company, not a basket (James, 5 Nov). The reader pages keep the shared
        lanes. */
