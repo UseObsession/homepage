@@ -197,7 +197,9 @@ export const page: Page = {
     /* Since 5 Nov the headings below the wall answer their questions without the words AI customer (James: they
        stacked until they said nothing); the wall's heading is the 1 that names them. Until then: journeys our AI
        customers have run at 376 real stores so far. */
-    heading: 'journeys run at 376 real stores so far.',
+    /* 6 Nov, James: hide the store count, which reads small; the journeys are the biggest real count we have. Until
+       then: journeys run at 376 real stores so far. */
+    heading: 'journeys run at real stores, and counting.',
     also: [
       { value: '93%', text: 'of the stores where they ran every journey had a leak.' },
       { value: '77%', text: 'of those leaks were silence: an email that never came.' },
