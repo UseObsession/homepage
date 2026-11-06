@@ -5,7 +5,7 @@ import type { Page } from '../types'
 
 /* Developers (/developers), the October rewrite (COPY.md, "Copy deck > Developers"). Developers, agent builders and
    GTM engineers. The frame: Exa searches the web, Browserbase drives a browser, Obsession is the customer. The 5 verbs
-   are the whole surface (lookup, facts, evidence, become_customer, notify), the same as an API, an MCP server and an
+   are the whole surface (lookup, facts, evidence, follow, notify), the same as an API, an MCP server and an
    SDK. The runtime is open source; Obsession Cloud runs it, with the history.
    The story: what it is for you (a customer at every company, for your agents) > what you'd build yourself (James's
    "Signing up once is easy") > how a customer agent lives > the 4 ways in and the 5 verbs > the code and the webhook >
@@ -81,7 +81,7 @@ const ob = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 const known = await ob.lookup(['competitor-a.example', 'competitor-b.example'])
 
 // Send an AI customer to the rest, or join ones already there
-await ob.becomeCustomer(['competitor-c.example'], { how: 'trial', shared: true })
+await ob.follow(['competitor-c.example'], { how: 'trial', shared: true })
 
 // Every new fact, pushed as it lands
 await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hooks/obsession' })

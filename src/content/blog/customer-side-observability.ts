@@ -229,7 +229,7 @@ export const post: BlogPost = {
           { time: '09:00', text: 'lookup: 6 domains', detail: '4 already covered, with history since August', tone: 'ok' },
           { time: '09:00', text: 'facts: 4 domains, last 30 days', detail: '212 facts, each with a link to its evidence', tone: 'ok' },
           { time: '09:01', text: 'evidence: 1 welcome email', detail: 'The email as it arrived, its DKIM result and its hash', tone: 'ok' },
-          { time: '09:01', text: 'become_customer: 2 domains', detail: 'AI customers start; first facts expected within the hour', tone: 'info' },
+          { time: '09:01', text: 'follow: 2 domains', detail: 'AI customers start; first facts expected within the hour', tone: 'info' },
           { time: '10:12', text: 'notify: northgale.example', detail: 'Welcome email, 15% code, Promotions tab', tone: 'ok' },
         ],
         foot: 'An example with invented companies. The 5 calls are Obsession’s verbs; the comparison and the write up are the agent’s own.',
@@ -238,7 +238,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession exposes this as 5 verbs over MCP, an API and an SDK: lookup, facts, evidence, become_customer and notify. The runtime is open source, and Obsession can run millions of AI customers. More is in [AI customers for developers](/blog/ai-customers-for-developers).',
+      text: 'Obsession exposes this as 5 verbs over MCP, an API and an SDK: lookup, facts, evidence, follow and notify. The runtime is open source, and Obsession can run millions of AI customers. More is in [AI customers for developers](/blog/ai-customers-for-developers).',
     },
     {
       kind: 'cta',
