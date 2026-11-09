@@ -215,13 +215,14 @@ export const page: Page = {
     more: { label: 'See the full comparison', to: '/compare' },
   },
 
-  /* How it works, for a company not covered yet: added on request, then kept. The lanes show what arrived at 3 kinds of
-     company. */
+  /* How it works, as the 2 ends of 1 range (9 Nov, James, after Parallel's "From sub-second lookups to hour-long
+     research"): a company in the index answers at once; one that isn't is watched, and kept for months. The lanes show
+     what arrived at 3 kinds of company. */
   life: {
     ...life,
     kicker: 'How does it work?',
-    heading: 'Not covered yet? Watch it.',
-    line: 'Look up any company. If it isn’t in the index, Obsession signs up as a new customer, from the profile and country you pick, and keeps the account open. Everything it is sent goes into the index the day it arrives.',
+    heading: 'From an instant lookup to months of watching, at any company.',
+    line: 'Companies in the index answer at once. Name one that isn’t, and Obsession signs up as the customer profile and country you pick, keeps the account open, and adds everything it is sent the day it arrives.',
     list: 'companies.csv · 10,000 companies',
     axis: { ...life.axis, end: 'Day 90: every message from all 10,000, kept' },
     lanes: [
