@@ -6,9 +6,8 @@ import { Lockup } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
 import './Footer.css'
 
-/* The footer, short on every page (James's review, 6 Oct): 4 columns of links (who it's for, the product, the resources,
-   the company), then the logo and the 1 sentence, the year and the theme switch. Never a list of every recipe: the
-   Product column names their jobs. A link that leaves the site (Contact, a mailto) is a plain link. The Company column
+/* The footer, short on every page: 6 columns of links, the same as the bar's menus (content/footer), then the logo and
+   the 1 sentence, the year and the theme switch. A link that leaves the site (Contact, a mailto) is a plain link. The Company column
    ends with Cookie settings, a button that opens the consent card again.
    It is ink in both themes (.ob-theme-dark): on paper the page closes in ink, under the closing call's ink chapter
    (Paper and Gloss, styles/tones.css). */

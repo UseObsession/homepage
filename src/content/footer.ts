@@ -1,12 +1,11 @@
-/* The footer's words (components/Footer): 4 short columns (who it's for, the product, the resources, the company), then
-   the logo and 1 short line. Never every recipe: the Product column names their jobs, each linking its section of
-   /recipes. The readers, the jobs and the resources come from content/nav, so the bar, the menus, the phone sheet and
-   the footer always name the same ones. Each link appears once: Developers is a reader, so it sits under Who it's for
-   only. */
+/* The footer's words (components/Footer). Since 9 Nov it follows the bar's menus (content/nav menus), so the two never
+   name different things: Products, Integrations, the 2 Solutions columns, Resources, then the company. Names only,
+   no lines; then the logo and 1 short line. */
 import { catalog } from './catalog'
 import { nav, type NavPage } from './nav'
 
-const readers = nav.readers.map(({ label, to }) => ({ label, to }))
+const { products, solutions, resources } = nav.menus
+const names = (items: NavPage[]) => items.map(({ label, to }) => ({ label, to }))
 
 export const footer = {
   /* 1 short line under the logo, the 1 sentence's core (docs/SEARCH.md 2). The full sentence stays word for word where
@@ -15,26 +14,10 @@ export const footer = {
   /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
   tagline: 'The web behind the login, as data.',
   columns: [
-    { label: 'Who it’s for', links: readers },
-    {
-      label: 'Product',
-      links: [
-        /* Since 9 Nov the data, not the recipe jobs. */
-        { label: 'What’s in it', to: '/#data' },
-        { label: 'How it works', to: '/#how' },
-        { label: 'Compare', to: '/compare' },
-        { label: 'Open source', to: 'https://github.com/UseObsession' },
-      ],
-    },
-    {
-      label: nav.resources.label,
-      links: [
-        { label: nav.resources.run.kicker, to: nav.resources.run.to },
-        { label: nav.resources.useCases.label, to: nav.resources.useCases.to },
-        ...(nav.resources.blog ? [{ label: nav.resources.blog.label, to: nav.resources.blog.all.to }] : []),
-        { label: nav.resources.all.label, to: nav.resources.all.to },
-      ],
-    },
+    { label: products.label, links: names(products.items) },
+    { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
+    ...solutions.columns.map((c) => ({ label: c.label, links: names(c.items) })),
+    { label: resources.label, links: [...names(resources.items), resources.more.items[0]] },
     {
       label: 'Company',
       links: [

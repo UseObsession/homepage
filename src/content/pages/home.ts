@@ -11,7 +11,7 @@ import type { Page, ViewerFormat } from '../types'
    1 the hero: what it is, and the explorer in place of the film (HeroExplorer) >
    2 What's in it? (the kinds of data behind the login) >
    3 Is this real? (our real count, and the 1 real record) >
-   4 Who uses it? (4 buyers, the rest on /use-cases) >
+   4 Who uses it? (teams that sell to, compete with or invest in other companies) >
    5 Where else can I get it? (where every other source stops) >
    6 How does it work? (a company not covered yet, added and kept) >
    7 How do I use it? (your AI agent, your code, Clay, a webhook) >
@@ -146,19 +146,27 @@ export const page: Page = {
     cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
+  /* Who uses it (9 Nov, James chose): the teams whose work is about other companies, in the heading's order: sell to
+     (agencies, sales), compete with (marketing, product, intelligence, pricing), invest in (funds, research), then the
+     API for teams building AI agents. */
   users: {
     kicker: 'Who uses it?',
-    heading: 'Anyone who signs up to other companies by hand today.',
+    heading: 'Teams that sell to, compete with or invest in other companies.',
     items: [
       {
-        title: 'Teams building AI agents',
-        line: 'Give your agent what the public web can’t: a competitor’s real price, trial limit or offer, in 1 call.',
-        link: { label: 'For developers', to: '/developers' },
+        title: 'Agencies',
+        line: 'Open a pitch with the prospect’s own emails, and the ones that never came.',
+        link: { label: 'For agencies', to: '/agencies' },
       },
       {
-        title: 'Product and UX teams',
-        line: 'Any app’s sign-up, onboarding and paywall, with every email it sends after, without signing up yourself.',
-        link: { label: 'Trial checks', to: '/use-cases/trial-checks-for-software-companies' },
+        title: 'Sales teams',
+        line: 'What each account sends its own customers, ready before the call.',
+        link: { label: 'For sales', to: '/sales' },
+      },
+      {
+        title: 'Marketing and product teams',
+        line: 'Every competitor’s emails, onboarding and paywall, without signing up yourself.',
+        link: { label: 'For marketing', to: '/marketing' },
       },
       {
         title: 'Intelligence and pricing teams',
@@ -166,12 +174,17 @@ export const page: Page = {
         link: { label: 'Member prices', to: '/use-cases/member-prices-for-price-intelligence' },
       },
       {
-        title: 'Agencies',
-        line: 'Open a pitch with the prospect’s own emails, and the ones that never came.',
-        link: { label: 'For agencies', to: '/agencies' },
+        title: 'Funds and research firms',
+        line: 'Offers, prices and rates across a market, company by company, kept month after month.',
+        link: { label: 'Use cases', to: '/use-cases' },
+      },
+      {
+        title: 'Teams building AI agents',
+        line: 'Give your agent what the public web can’t: a competitor’s real price, trial limit or offer, in 1 call.',
+        link: { label: 'For developers', to: '/developers' },
       },
     ],
-    more: { text: 'Also banks, research firms, compliance teams and funds.', label: 'Every use case', to: '/use-cases' },
+    more: { text: 'Also banks and compliance teams.', label: 'Every use case', to: '/use-cases' },
   },
 
   /* Where else the data lives: every other source, and the step where it stops. The full table stays on /compare. */
@@ -202,13 +215,14 @@ export const page: Page = {
     more: { label: 'See the full comparison', to: '/compare' },
   },
 
-  /* How it works, for a company not covered yet: added on request, then kept. The lanes show what arrived at 3 kinds of
-     company. */
+  /* How it works, as the 2 ends of 1 range (9 Nov, James, after Parallel's "From sub-second lookups to hour-long
+     research"): a company in the index answers at once; one that isn't is watched, and kept for months. The lanes show
+     what arrived at 3 kinds of company. */
   life: {
     ...life,
     kicker: 'How does it work?',
-    heading: 'Not covered yet? Watch it.',
-    line: 'Look up any company. If it isn’t in the index, Obsession signs up as a new customer, from the profile and country you pick, and keeps the account open. Everything it is sent goes into the index the day it arrives.',
+    heading: 'From an instant lookup to months of watching, at any company.',
+    line: 'Companies in the index answer at once. Name one that isn’t, and Obsession signs up as the customer profile and country you pick, keeps the account open, and adds everything it is sent the day it arrives.',
     list: 'companies.csv · 10,000 companies',
     axis: { ...life.axis, end: 'Day 90: every message from all 10,000, kept' },
     lanes: [

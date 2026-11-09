@@ -1,6 +1,6 @@
-/* The site footer (components/Footer): 4 short columns of links, then the logo and the 1 sentence beside the year and
-   the theme switch. Tokens only. Labels are quiet sentence case; links rest in the second ink and take full ink on hover.
-   4 columns across the container from 860px, 2 by 2 under it. The base row sits under a hairline: the brand on the left,
+/* The site footer (components/Footer): 6 short columns of links, the bar's menus, then the logo and the 1 sentence beside
+   the year and the theme switch. Tokens only. Labels are quiet sentence case; links rest in the second ink and take full
+   ink on hover. 6 columns across the container from 1100px, 3 to a row from 860px, 2 under it. The base row sits under a hairline: the brand on the left,
    the year and the switch on the right; on a phone they stack. */
 
 .s-foot {
@@ -20,7 +20,7 @@
 
 .s-foot__map {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: var(--ob-space-32) var(--ob-space-24);
 }
 .s-foot__col { display: grid; align-content: start; gap: var(--ob-space-12); min-width: 0; }
@@ -91,6 +91,9 @@
 /* The switch's hit area reaches past its edge; pull it in so it lines up with the content edge. */
 .s-foot__end > .s-theme { margin-inline-end: calc(var(--ob-space-8) * -1); }
 
+@media (max-width: 1099.98px) {
+  .s-foot__map { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (max-width: 859.98px) {
   .s-foot__map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .s-foot__base { grid-template-columns: minmax(0, 1fr); }
