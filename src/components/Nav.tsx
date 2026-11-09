@@ -13,22 +13,24 @@ import {
   type RefObject,
 } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { nav, recipeJobs, type NavCard, type NavPage, type NavReader } from '../content/nav'
+import { nav, type NavIcon, type NavPage, type NavTool } from '../content/nav'
 import type { Cta } from '../content/types'
-import { Lockup, Mark } from './Logo'
+import { Lockup } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
 import './Nav.css'
 
 /* The site navigation, on the design system's .ob-nav, .ob-menu and .ob-mnav (docs/REBUILD.md, section 7; the spec is
    _research/nav/NAV.md in the workspace).
-   Bar: the lockup; the 5 readers as plain links (self selection first); Recipes and Resources, each a link to its page
-   plus a chevron button that opens its menu; the theme switch; the page's 1 call to action. Where the bar is too narrow
-   for the 5 readers, they fold into 1 "For" menu; under 860px the menu button opens the phone sheet.
+   Bar, since 9 Nov (James, after Exa's): the lockup; Products, Solutions and Resources, each a button that opens its
+   menu; Developers as a plain link; the theme switch, Sample data and the page's 1 call to action. Products lists the
+   ways to get the data with the integrations under them; Solutions puts the use cases beside the teams and industries;
+   Resources keeps the proof and the reading, with the rest of the company in a side column. Each tool row has an icon,
+   a name and 1 line. Under 860px the menu button opens the phone sheet, which lists the same 3 menus.
    The menus are disclosures (a button with aria-expanded and aria-controls over a panel of links), not ARIA menus. They
    open on click and keys, and on a fine pointer also on hover after a short pause; Escape closes and returns focus.
-   The sheet starts with "Who are you?", holds focus inside the nav and locks the page behind it. */
+   The sheet holds focus inside the nav and locks the page behind it. */
 
-type MenuId = 'for' | 'recipes' | 'resources'
+type MenuId = 'products' | 'solutions' | 'resources'
 type Focus = 'first' | 'last' | null
 
 /* The sheet and the folded menu belong to these widths of the bar (Nav.css). */
@@ -40,17 +42,18 @@ const HOVER_OPEN = 140
 const HOVER_CLOSE = 220
 const HOVER_SWITCH = 120
 
-const readerPaths = new Set<string>(nav.readers.map((r) => r.to))
-/* The pages under Recipes: the index, every recipe, and /verify (the Recipes menu's "Check your AI agents" leads there). */
-const isRecipe = (path: string) => path === nav.recipes.to || path.startsWith(`${nav.recipes.to}/`) || path === nav.recipes.verify
-/* The pages under Resources: the hub, the use cases, the sample output, and the blog while it has posts. */
-const isResource = (path: string) =>
-  path === nav.resources.to ||
-  path === nav.resources.useCases.to ||
-  path.startsWith(`${nav.resources.useCases.to}/`) ||
-  path === nav.resources.run.to ||
-  path === '/blog' ||
-  path.startsWith('/blog/')
+const { products, solutions, resources } = nav.menus
+/* Which menu the current page belongs to: its trigger takes the square under its name. A page any menu lists exactly
+   wins; then every recipe is a product, every worked example a solution, and the blog a resource. */
+const solutionPaths = new Set<string>(solutions.columns.flatMap((c) => c.items.map((i) => i.to)))
+const resourcePaths = new Set<string>([...resources.items, ...resources.more.items].map((i) => i.to))
+const sectionOf = (path: string): MenuId | null => {
+  if (solutionPaths.has(path)) return 'solutions'
+  if (resourcePaths.has(path) || path.startsWith('/blog/')) return 'resources'
+  if (path === '/recipes' || path.startsWith('/recipes/')) return 'products'
+  if (path.startsWith('/use-cases/')) return 'solutions'
+  return null
+}
 
 /* Keeps a closing surface on screen long enough for its leave animation (.is-leaving). */
 function usePresence(open: boolean, ms: number) {
@@ -207,6 +210,44 @@ function Arrow() {
   )
 }
 
+/* The tool icons: 1 line drawing each on a 16px grid, in a soft square tile beside the row's name (Nav.css .s-tool). */
+const ICONS: Record<NavIcon, string> = {
+  search: '<circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/>',
+  insights: '<path d="M8 1.8 9.4 6.6 14.2 8 9.4 9.4 8 14.2 6.6 9.4 1.8 8 6.6 6.6Z"/>',
+  watch: '<path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8s-2.4 4.5-6.5 4.5S1.5 8 1.5 8Z"/><circle cx="8" cy="8" r="2"/>',
+  api: '<path d="m5.5 4.5-3.5 3.5 3.5 3.5M10.5 4.5l3.5 3.5-3.5 3.5"/>',
+  recipes: '<path d="M8 2.5 14 5.5 8 8.5 2 5.5Z"/><path d="m2 8.5 6 3 6-3M2 11.2l6 3 6-3"/>',
+  table: '<rect x="2.5" y="3" width="11" height="10" rx="1.5"/><path d="M2.5 6.5h11M6.5 6.5V13"/>',
+  database: '<ellipse cx="8" cy="4" rx="5" ry="1.8"/><path d="M3 4v8c0 1 2.2 1.8 5 1.8s5-.8 5-1.8V4M3 8c0 1 2.2 1.8 5 1.8s5-.8 5-1.8"/>',
+  webhook: '<path d="M9 1.5 3.5 9H8l-1 5.5L12.5 7H8Z"/>',
+  target: '<circle cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="2.8"/><circle cx="8" cy="8" r=".6"/>',
+  mail: '<rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="m2.5 4.5 5.5 4.5 5.5-4.5"/>',
+  tag: '<path d="M2.5 2.5h5l6 6-5 5-6-6Z"/><circle cx="5.5" cy="5.5" r="1"/>',
+  clock: '<circle cx="8" cy="8" r="5.5"/><path d="M8 5v3l2 1.5"/>',
+  chat: '<path d="M3 3h10a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H7.5L4.5 13.5V11H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/>',
+  megaphone: '<path d="M2.5 6.5v3h2l5 3v-9l-5 3Z"/><path d="M11.5 6a2.5 2.5 0 0 1 0 4"/>',
+  briefcase: '<rect x="2" y="5" width="12" height="8" rx="1.5"/><path d="M6 5V3.5h4V5M2 8.5h12"/>',
+  users: '<circle cx="6" cy="5.5" r="2.2"/><path d="M2 13c.5-2.2 2-3.3 4-3.3s3.5 1.1 4 3.3M11 3.6a2 2 0 0 1 0 3.8M12 9.9c1 .4 1.7 1.4 2 3.1"/>',
+  bank: '<path d="M2 6 8 2.5 14 6M3.5 6.5v5M6.5 6.5v5M9.5 6.5v5M12.5 6.5v5M2 13.5h12"/>',
+  cart: '<path d="M1.5 2.5h2l1.6 7.5h7l1.4-5.5H4.3"/><circle cx="6.5" cy="13" r=".9"/><circle cx="11.5" cy="13" r=".9"/>',
+}
+function ToolIcon({ name }: { name: NavIcon }) {
+  return (
+    <svg
+      className="s-tool__svg"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      dangerouslySetInnerHTML={{ __html: ICONS[name] }}
+    />
+  )
+}
+
 /* A call to action is an in-page anchor (#join) or a route. An anchor the page doesn't have falls back to the page's
    form, so the button always lands somewhere. From the keyboard it also puts focus in the form's first field. */
 function CtaLink({ cta, className, label, onClick }: { cta: Cta; className: string; label?: string; onClick?: () => void }) {
@@ -253,8 +294,8 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const navRef = useRef<HTMLElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
-  const triggers = useRef<Record<MenuId, HTMLButtonElement | null>>({ for: null, recipes: null, resources: null })
-  const panels = useRef<Record<MenuId, HTMLDivElement | null>>({ for: null, recipes: null, resources: null })
+  const triggers = useRef<Record<MenuId, HTMLButtonElement | null>>({ products: null, solutions: null, resources: null })
+  const panels = useRef<Record<MenuId, HTMLDivElement | null>>({ products: null, solutions: null, resources: null })
 
   /* What is open belongs to the page it was opened on, so a new page (or a jump to #join) closes everything. */
   const here = pathname + hash
@@ -282,13 +323,13 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   const ground = useGround(navRef, path)
   const scope = ground && !sheet ? (ground === 'dark' ? ' ob-theme-dark' : ' ob-theme-light') : ''
 
-  const forMenu = usePresence(menu === 'for', 160)
-  const recipesMenu = usePresence(menu === 'recipes', 160)
+  const productsMenu = usePresence(menu === 'products', 160)
+  const solutionsMenu = usePresence(menu === 'solutions', 160)
   const resourcesMenu = usePresence(menu === 'resources', 160)
-  const presence = { for: forMenu, recipes: recipesMenu, resources: resourcesMenu }
+  const presence = { products: productsMenu, solutions: solutionsMenu, resources: resourcesMenu }
   const sheetPresence = usePresence(sheet, 260)
 
-  const ids = { for: `${uid}-for`, recipes: `${uid}-recipes`, resources: `${uid}-resources`, sheet: `${uid}-sheet` }
+  const ids = { products: `${uid}-products`, solutions: `${uid}-solutions`, resources: `${uid}-resources`, sheet: `${uid}-sheet` }
 
   /* Hover only on a mouse or trackpad: touch and pens open the menus by pressing. */
   useEffect(() => {
@@ -425,7 +466,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
   }
 
   /* A menu opened by a press changes only on a press, Escape or a press outside: the pointer crossing another item on
-     its way into the open panel (Recipes' featured card sits under Resources) never takes it away. */
+     its way into the open panel never takes it away. */
   function onEnter(e: PointerEvent<HTMLLIElement>, id: MenuId) {
     if (e.pointerType !== 'mouse' || !fine.current) return
     window.clearTimeout(hoverTimer.current)
@@ -496,10 +537,10 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     setSheet(false)
   }
 
-  /* The item that holds a menu: its trigger (and for Recipes and Resources, the page link before it) and its panel. */
-  const item = (id: MenuId, className: string, children: ReactNode) => (
+  /* The item that holds a menu: its trigger and its panel. */
+  const item = (id: MenuId, children: ReactNode) => (
     <li
-      className={`s-nav__item ${className}${menu === id ? ' is-open' : ''}`}
+      className={`s-nav__item${menu === id ? ' is-open' : ''}`}
       onBlur={onItemBlur}
       onPointerEnter={(e) => onEnter(e, id)}
       onPointerLeave={onLeave}
@@ -508,19 +549,18 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     </li>
   )
 
-  /* The chevron button of a split item, or the whole trigger of the folded readers. */
-  const trigger = (id: MenuId, props: { label?: string; name?: string; className: string; current?: boolean; reader?: string }) => (
+  /* A menu's button: its name and chevron. The square under the name marks the menu the current page belongs to. */
+  const trigger = (id: MenuId, props: { label: string; name: string }) => (
     <button
       ref={(el) => {
         triggers.current[id] = el
       }}
       type="button"
-      className={`ob-nav__link ${props.className}${props.current ? ' is-selected' : ''}`}
+      className={`ob-nav__link s-nav__trigger${sectionOf(path) === id ? ' is-selected' : ''}`}
       aria-expanded={menu === id}
       aria-controls={ids[id]}
       aria-label={props.name}
       data-menu={id}
-      data-reader={props.reader}
       onClick={() => toggle(id)}
       onKeyDown={(e) => onTriggerKey(e, id)}
     >
@@ -543,51 +583,48 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
     </div>
   )
 
-  /* A reader row: its name and 1 line. In the sheet its key square (the reader's hue) sits beside the name; in the
-     folded menu only the current page's square takes the hue (Nav.css). */
-  const readerRow = (r: NavReader, where: 'menu' | 'sheet') => (
-    <NavLink
-      className={where === 'menu' ? 'ob-menu__item s-menu__item s-menu__item--rich' : 'ob-mnav__link s-mnav__reader'}
-      to={r.to}
-      end
-      onClick={close}
-      data-reader={r.id}
-    >
-      {where === 'sheet' && <span className="s-mnav__key" aria-hidden="true" />}
-      <span className="s-menu__text">
-        <span className="s-menu__name">{r.label}</span>
-        <span className="s-menu__line">{r.line}</span>
-      </span>
-    </NavLink>
-  )
+  /* A link to a route, or to a place on Home (/#search): a place is never marked current. Email links stay plain. */
+  const go = (to: string, className: string, children: ReactNode) =>
+    to.startsWith('mailto:') ? (
+      <a className={className} href={to} onClick={close}>
+        {children}
+      </a>
+    ) : to.includes('#') ? (
+      <Link className={className} to={to} onClick={close}>
+        {children}
+      </Link>
+    ) : (
+      <NavLink className={className} to={to} end onClick={close}>
+        {children}
+      </NavLink>
+    )
 
-  /* A proof card: what it is or who it is for, its name, and what happened in 1 line. On its own page it is marked
-     current, as the Recipes menu's examples are. */
-  const card = (c: NavCard, className: string, image?: ReactNode) => (
-    <NavLink className={`ob-menu__item s-card ${className}`} to={c.to} end onClick={close}>
-      <span className="s-card__text">
-        <span className="s-card__kicker">{c.kicker}</span>
-        <span className="s-menu__name">{c.label}</span>
-        <span className="s-menu__line">{c.line}</span>
-      </span>
-      {image}
-    </NavLink>
-  )
+  /* A tool row: its icon tile, its name and 1 line. */
+  const toolRow = (t: NavTool, extra = '') =>
+    go(
+      t.to,
+      `ob-menu__item s-tool${extra}`,
+      <>
+        <span className="s-tool__ic" aria-hidden="true">
+          <ToolIcon name={t.icon} />
+        </span>
+        <span className="s-menu__text">
+          <span className="s-menu__name">{t.label}</span>
+          <span className="s-menu__line">{t.line}</span>
+        </span>
+      </>,
+    )
 
-  // A use case is 1 row: its name, which already says who it is for.
-  const caseRow = (c: NavPage, extra = '') => (
-    <NavLink className={`ob-menu__item s-menu__item s-case${extra}`} to={c.to} end onClick={close}>
-      <span className="s-menu__name">{c.label}</span>
-    </NavLink>
-  )
-
-  const run = nav.resources.run
-  const blog = nav.resources.blog
-  const peek = (
-    <span className="s-card__peek" aria-hidden="true">
-      <img src={run.image.src} width={run.image.width} height={run.image.height} alt={run.image.alt} loading="lazy" decoding="async" />
-    </span>
-  )
+  /* A resource row: its name and 1 line, no icon. */
+  const pageRow = (p: NavPage, extra = '') =>
+    go(
+      p.to,
+      `ob-menu__item s-menu__item s-menu__item--rich${extra}`,
+      <>
+        <span className="s-menu__name">{p.label}</span>
+        {p.line && <span className="s-menu__line">{p.line}</span>}
+      </>,
+    )
 
   return (
     <nav
@@ -601,157 +638,100 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
         </Link>
 
         <ul className="ob-nav__links s-nav__links">
-          {nav.readers.map((r) => (
-            <li className="s-nav__reader" key={r.to}>
-              <NavLink className="ob-nav__link" to={r.to} end data-reader={r.id} onClick={close}>
-                {r.label}
-              </NavLink>
-            </li>
-          ))}
-
           {item(
-            'for',
-            's-nav__for',
+            'products',
             <>
-              {trigger('for', {
-                label: nav.readersMenu.label,
-                name: nav.readersMenu.name,
-                className: 's-nav__trigger',
-                current: readerPaths.has(path),
-                reader: nav.readers.find((r) => r.to === path)?.id,
-              })}
+              {trigger('products', { label: products.label, name: products.button })}
               {panel(
-                'for',
-                's-menu--for',
-                <ul className="s-menu__list">
-                  {nav.readers.map((r) => (
-                    <li key={r.to}>{readerRow(r, 'menu')}</li>
-                  ))}
-                </ul>,
+                'products',
+                's-menu--products',
+                <>
+                  <ul className="s-menu__list s-tm__list" data-col>
+                    {products.items.map((t) => (
+                      <li key={t.to}>{toolRow(t)}</li>
+                    ))}
+                  </ul>
+                  <p className="s-menu__label s-menu__label--caps" id={`${ids.products}-int`}>
+                    {products.integrations.label}
+                  </p>
+                  <ul className="s-tm__grid" aria-labelledby={`${ids.products}-int`} data-col>
+                    {products.integrations.items.map((t) => (
+                      <li key={t.label}>{toolRow(t, ' s-tool--compact')}</li>
+                    ))}
+                  </ul>
+                  <hr className="ob-menu__sep" />
+                  {go(
+                    products.integrations.all.to,
+                    'ob-menu__item s-menu__all',
+                    <>
+                      {products.integrations.all.label}
+                      <Arrow />
+                    </>,
+                  )}
+                </>,
               )}
             </>,
           )}
 
           {item(
-            'recipes',
-            's-nav__split s-nav__group',
+            'solutions',
             <>
-              <NavLink
-                className={`ob-nav__link s-nav__main${isRecipe(path) && path !== nav.recipes.to ? ' is-selected' : ''}`}
-                to={nav.recipes.to}
-                end
-                onClick={close}
-              >
-                {nav.recipes.label}
-              </NavLink>
-              {trigger('recipes', { name: nav.recipes.button, className: 's-nav__more' })}
+              {trigger('solutions', { label: solutions.label, name: solutions.button })}
               {panel(
-                'recipes',
-                's-menu--recipes',
-                <>
-                  <div className="s-rm">
-                    <ul className="s-rm__jobs">
-                      {recipeJobs.map((j) => (
-                        <li className="s-rm__job" key={j.name} data-col>
-                          <Link className="ob-menu__item s-menu__item--rich s-rm__head" to={j.to} onClick={close}>
-                            <span className="s-menu__name">{j.name}</span>
-                            <span className="s-menu__line">{j.line}</span>
-                          </Link>
-                          <ul className="s-rm__eg" aria-label={j.name}>
-                            {j.examples.map((r) => (
-                              <li key={r.id}>
-                                <NavLink className="ob-menu__item s-rm__ex" to={r.to} onClick={close}>
-                                  {r.label}
-                                </NavLink>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="s-rm__side" data-col>
-                      <Link className="ob-menu__item s-feature" to={nav.recipes.feature.to} onClick={close}>
-                        <span className="s-feature__mark">
-                          <Mark size={24} />
-                        </span>
-                        <span className="s-menu__name s-feature__name">{nav.recipes.feature.label}</span>
-                        <span className="s-menu__line">{nav.recipes.feature.line}</span>
-                        <span className="s-feature__act">
-                          {nav.recipes.feature.action}
-                          <Arrow />
-                        </span>
-                      </Link>
-                      <Link className="ob-menu__item s-menu__all s-rm__run" to={nav.recipes.run.to} onClick={close}>
-                        {nav.recipes.run.label}
-                        <Arrow />
-                      </Link>
+                'solutions',
+                's-menu--solutions',
+                <div className="s-sm">
+                  {solutions.columns.map((c, k) => (
+                    <div className="s-sm__col" key={c.label} data-col>
+                      <p className="s-menu__label s-menu__label--caps" id={`${ids.solutions}-${k}`}>
+                        {c.label}
+                      </p>
+                      <ul className="s-menu__list" aria-labelledby={`${ids.solutions}-${k}`}>
+                        {c.items.map((t) => (
+                          <li key={t.to}>{toolRow(t)}</li>
+                        ))}
+                      </ul>
                     </div>
-                  </div>
-                  <hr className="ob-menu__sep" />
-                  <Link className="ob-menu__item s-menu__all" to={nav.recipes.all.to} onClick={close}>
-                    {nav.recipes.all.label}
-                    <Arrow />
-                  </Link>
-                </>,
+                  ))}
+                </div>,
               )}
             </>,
           )}
 
           {item(
             'resources',
-            's-nav__split',
             <>
-              <NavLink
-                className={`ob-nav__link s-nav__main${isResource(path) && path !== nav.resources.to ? ' is-selected' : ''}`}
-                to={nav.resources.to}
-                end
-                onClick={close}
-              >
-                {nav.resources.label}
-              </NavLink>
-              {trigger('resources', { name: nav.resources.button, className: 's-nav__more' })}
+              {trigger('resources', { label: resources.label, name: resources.button })}
               {panel(
                 'resources',
                 's-menu--resources',
-                <>
-                  <div className="s-xm__run" data-col>
-                    {card(run, 's-card--run', peek)}
+                <div className="s-xm">
+                  <div className="s-xm__main" data-col>
+                    <p className="s-menu__label s-menu__label--caps">{resources.label}</p>
+                    <ul className="s-menu__list">
+                      {resources.items.map((p) => (
+                        <li key={p.to}>{pageRow(p)}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className="s-menu__label" id={`${ids.resources}-uc`}>
-                    {nav.resources.useCases.label}
-                  </p>
-                  <ul className="s-xm__cases" aria-labelledby={`${ids.resources}-uc`}>
-                    {nav.resources.useCases.items.map((c) => (
-                      <li key={c.to} data-col>
-                        {caseRow(c)}
-                      </li>
-                    ))}
-                  </ul>
-                  {blog && (
-                    <>
-                      <p className="s-menu__label">{blog.label}</p>
-                      <div className="s-xm__post" data-col>
-                        {card(blog.lead, 's-card--case s-card--post')}
-                      </div>
-                    </>
-                  )}
-                  <hr className="ob-menu__sep" />
-                  <div className="s-xm__all">
-                    <Link className="ob-menu__item s-menu__all" to={nav.resources.all.to} onClick={close}>
-                      {nav.resources.all.label}
-                      <Arrow />
-                    </Link>
-                    {blog && (
-                      <Link className="ob-menu__item s-menu__all" to={blog.all.to} onClick={close}>
-                        {blog.all.label}
-                        <Arrow />
-                      </Link>
-                    )}
+                  <div className="s-xm__more" data-col>
+                    <p className="s-menu__label s-menu__label--caps">{resources.more.label}</p>
+                    <ul className="s-menu__list">
+                      {resources.more.items.map((p) => (
+                        <li key={p.to}>{pageRow(p, ' s-xm__link')}</li>
+                      ))}
+                    </ul>
                   </div>
-                </>,
+                </div>,
               )}
             </>,
           )}
+
+          <li className="s-nav__plain">
+            <NavLink className="ob-nav__link" to={nav.menus.developers.to} end onClick={close}>
+              {nav.menus.developers.label}
+            </NavLink>
+          </li>
         </ul>
 
         <div className="ob-nav__end">
@@ -792,65 +772,31 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
         aria-label={nav.menu.sheet}
         role="region"
       >
-        <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-who`}>
-          <p className="s-mnav__head s-mnav__ask" id={`${ids.sheet}-who`}>
-            {nav.readersMenu.ask}
-          </p>
-          <ul className="ob-mnav__list s-mnav__readers">
-            {nav.readers.map((r) => (
-              <li key={r.to}>{readerRow(r, 'sheet')}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-recipes`}>
-          <p className="s-mnav__head" id={`${ids.sheet}-recipes`}>
-            {nav.recipes.label}
-          </p>
-          <ul className="ob-mnav__list s-mnav__jobs">
-            {recipeJobs.map((j) => (
-              <li key={j.name}>
-                <Link className="ob-mnav__link s-mnav__row" to={j.to} onClick={close}>
-                  <span className="s-menu__text">
-                    <span className="s-menu__name">{j.name}</span>
-                    <span className="s-menu__line">{j.line}</span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link className="ob-mnav__link s-mnav__all" to={nav.recipes.all.to} onClick={close}>
-                {nav.recipes.all.label}
-                <Arrow />
-              </Link>
-            </li>
-          </ul>
-        </section>
+        {[
+          { id: 'products', label: products.label, rows: products.items },
+          { id: 'integrations', label: products.integrations.label, rows: products.integrations.items },
+          ...solutions.columns.map((c, k) => ({ id: `solutions-${k}`, label: c.label, rows: c.items })),
+        ].map((sec) => (
+          <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-${sec.id}`} key={sec.id}>
+            <p className="s-mnav__head" id={`${ids.sheet}-${sec.id}`}>
+              {sec.label}
+            </p>
+            <ul className="ob-mnav__list s-mnav__tools">
+              {sec.rows.map((t) => (
+                <li key={t.label}>{toolRow(t, ' s-tool--sheet')}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
         <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-resources`}>
           <p className="s-mnav__head" id={`${ids.sheet}-resources`}>
-            {nav.resources.label}
+            {resources.label}
           </p>
-          <ul className="ob-mnav__list s-mnav__proof">
-            <li>{card(run, 's-card--run s-card--sheet', peek)}</li>
-            {nav.resources.useCases.items.map((c) => (
-              <li key={c.to}>{caseRow(c, ' s-case--sheet')}</li>
+          <ul className="ob-mnav__list s-mnav__tools">
+            {[...resources.items, nav.menus.developers, ...resources.more.items].map((p) => (
+              <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
             ))}
-            {blog && <li className="s-mnav__wide">{card(blog.lead, 's-card--case s-card--post s-card--sheet')}</li>}
-            {blog && (
-              <li className="s-mnav__wide">
-                <Link className="ob-mnav__link s-mnav__all" to={blog.all.to} onClick={close}>
-                  {blog.all.label}
-                  <Arrow />
-                </Link>
-              </li>
-            )}
-            <li>
-              <Link className="ob-mnav__link s-mnav__all" to={nav.resources.all.to} onClick={close}>
-                {nav.resources.all.label}
-                <Arrow />
-              </Link>
-            </li>
           </ul>
         </section>
 

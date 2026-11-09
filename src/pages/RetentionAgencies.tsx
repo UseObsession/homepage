@@ -13,16 +13,11 @@ import { at } from '../legacy/james/components/stagger'
 import { Count, Play, Step, Win } from '../legacy/james/components/UseCase'
 import './RetentionAgencies.css'
 
-/* /use-cases/leak-checks-for-retention-agencies, drawn in James's format: his Clay page's hero flow, the problem, 10
-   steps in 3 phases each beside its app window, the opener with its mockup, the questions and the waitlist, built from
-   his pieces (src/legacy/james/components) inside his wrapper, so his styles draw it. The words are the content file's
-   (content/usecases), so the head, the JSON-LD and the page say the same thing; the app windows' rows and numbers are
-   here, as on his. 1 store carries the page, as Tidewren carries his: Larch & Lye, from the pitch list to the month's
-   report. The stores in the steps and every figure on their screens are made up; `fine` says so.
-   Since the mystery shopping page merged in (21 Oct), the page also carries the real proof right after step 4 (`found`,
-   in his 2 column block), 3 link cards (the 2 recipes and the real run), and the site's own final section, whose form
-   takes a store's address for the 5 free checks (components/sections/FinalCta, outside his wrapper, so the site's form
-   keeps its own styles). The hero has no buttons; the link to the sample output closes the 10 steps. */
+/* /use-cases/leak-checks-for-retention-agencies, drawn in James's format from his pieces (src/legacy/james/components):
+   what any store sends a new customer after a sign-up, a text opt-in and a basket, and what never comes, for the stores
+   an agency pitches and keeps. 10 steps in 3 phases, each beside its app window, follow 1 invented store, Larch & Lye,
+   from the pitch list to the month's report; the real proof (1,500 runs and Brand G) follows step 4. The words are the
+   content file's (content/usecases); the app windows' rows and numbers are here. The form is early access (FinalCta). */
 
 const phases = study.how?.steps ?? []
 const step = (phase: number, i: number) => phases[phase].steps[i]
@@ -57,7 +52,7 @@ const sorted = [
   { store: 'Fenwick Apothecary', name: 'Ruth Lin', role: 'Founder', leak: 'No leak', what: 'Code in 1 min, basket reminder in 1 hour.', none: true },
 ]
 
-const rivals = [
+const competitors = [
   { store: 'Larch & Lye', role: 'Client', welcome: '40 s', reminder: '1 h', text: '2 min', emails: '3' },
   { store: 'Ashgrove Skin', role: 'Competitor', welcome: '4 h', reminder: 'none', text: 'none', emails: '6' },
   { store: 'Ceril Botanics', role: 'Competitor', welcome: '11 h', reminder: 'none', text: '5 min', emails: '5' },
@@ -184,7 +179,7 @@ export function RetentionAgencies() {
               </div>
 
               <Step n={1} title={step(0, 0).title} line={step(0, 0).line} pick={step(0, 0).example}>
-                <Win title="New check · Add stores">
+                <Win title="New list · Add stores">
                   <ul className="uc-ins">
                     <li className="sel">
                       Paste a list<small>Names or websites</small>
@@ -217,7 +212,7 @@ export function RetentionAgencies() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to check<small>Each store gets its own AI customer</small>
+                      Ready to look up<small>Each store as New customer · US</small>
                     </span>
                     <b>
                       <Count to={40} /> stores
@@ -231,7 +226,7 @@ export function RetentionAgencies() {
                   <div className="uc-cfg">
                     <div>
                       <div className="uc-fld">
-                        <p className="uc-lab">At each store, the AI customer</p>
+                        <p className="uc-lab">At each store, New customer · US</p>
                         <ul className="uc-checks">
                           <li>
                             <span className="uc-cb on" style={at(0)} />
@@ -289,13 +284,13 @@ export function RetentionAgencies() {
                       <div className="uc-fld">
                         <p className="uc-lab">Afterwards</p>
                         <div className="uc-seg">
-                          <span className="on">Stop</span>
-                          <span>Check every week</span>
+                          <span>Close the account</span>
+                          <span className="on">Keep it open</span>
                         </div>
                       </div>
                       <div className="uc-fld">
                         <p className="uc-lab">Results</p>
-                        <div className="uc-field uc-dd">Slack #new-business</div>
+                        <div className="uc-field uc-dd">Webhook · Slack #new-business</div>
                       </div>
                     </div>
                   </div>
@@ -308,12 +303,12 @@ export function RetentionAgencies() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Larch & Lye</span>
-                        <span className="tag idle">AI customer 3E9A</span>
+                        <span className="tag idle">Account 3E9A</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
-                          <dt>Identity</dt>
-                          <dd>AI, says so to a person</dd>
+                          <dt>Profile</dt>
+                          <dd>New customer · US</dd>
                         </div>
                         <div>
                           <dt>Inbox</dt>
@@ -441,7 +436,7 @@ export function RetentionAgencies() {
               {study.found && (
                 <Reveal className="uc-inout uc-real">
                   <div>
-                    <p className="kicker">What real checks found</p>
+                    <p className="kicker">Is this real?</p>
                     <h3 className="h2">{study.found.heading}</h3>
                     <p className="muted">{study.found.line}</p>
                   </div>
@@ -464,7 +459,7 @@ export function RetentionAgencies() {
               </div>
 
               <Step n={5} title={step(1, 0).title} line={step(1, 0).line} pick={step(1, 0).example}>
-                <Win title="Receipt · Larch & Lye">
+                <Win title="Record · Larch & Lye">
                   <div className="uc-verdict">
                     <span className="uc-lab">3 leaks</span>
                     <b>The pop up promised 15% off. No code came, no text came, and the basket got no reminder.</b>
@@ -500,7 +495,7 @@ export function RetentionAgencies() {
                     </div>
                   </div>
                   <div className="uc-row uc-end">
-                    <span className="uc-btn">Copy receipt link</span>
+                    <span className="uc-btn">Copy record link</span>
                   </div>
                 </Win>
               </Step>
@@ -551,7 +546,7 @@ export function RetentionAgencies() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#new-business</span>
                       <br />
-                      Pitch list done: 40 skincare stores. <b>12</b> have 3 or more leaks, sorted to the top with their receipts. Larch & Lye
+                      Pitch list done: 40 skincare stores. <b>12</b> have 3 or more leaks, sorted to the top with their emails. Larch & Lye
                       is first.
                     </p>
                   </div>
@@ -600,7 +595,7 @@ export function RetentionAgencies() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">The first row is the check from the pitch, so the before is on record from day 1.</p>
+                  <p className="uc-small">The first row is from the pitch, so the before is on record from day 1.</p>
                 </Win>
               </Step>
 
@@ -615,7 +610,7 @@ export function RetentionAgencies() {
                     {[
                       ['09:00', 'Theme update goes live; the agency tells Obsession'],
                       ['09:20', 'A fresh sign up through the 15% pop up'],
-                      ['10:20', 'No code after 1 hour: alert sent with the receipt'],
+                      ['10:20', 'No code after 1 hour: the fact reaches the webhook'],
                       ['11:05', 'The agency reconnects the pop up to the welcome email'],
                       ['11:30', 'Checked again: code in 39 seconds'],
                     ].map(([t, e], i) => (
@@ -632,7 +627,7 @@ export function RetentionAgencies() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#larch-and-lye</span>
                       <br />
-                      After this morning’s theme update, the pop up takes the email but sends no code. Receipt attached.
+                      After this morning’s theme update, the pop up takes the email but sends no code. Record linked.
                     </p>
                   </div>
                 </Win>
@@ -686,7 +681,7 @@ export function RetentionAgencies() {
                         </tr>
                       </thead>
                       <tbody className="uc-seq">
-                        {rivals.map((r, i) => (
+                        {competitors.map((r, i) => (
                           <tr key={r.store} style={at(i + 3)}>
                             <td>
                               <b>{r.store}</b>
@@ -761,8 +756,8 @@ export function RetentionAgencies() {
               <Reveal className="uc-opener">
                 <div>
                   <p className="kicker">The opener</p>
-                  <h3 className="h2">Their own receipt and your fix, in 1 email.</h3>
-                  <p className="muted">The receipt shows what the store does to a new customer today. Your mockup shows what it would do with you.</p>
+                  <h3 className="h2">Their own emails and your fix, in 1 email.</h3>
+                  <p className="muted">The record shows what the store sends a new customer today. Your mockup shows what it would send with you.</p>
                   <div className="uc-mail">
                     <p className="uc-mail-head">
                       From <b>Maya, your agency</b> to <b>Clara Holt, Larch & Lye</b> · Subject <b>Larch & Lye’s 15% code</b>
@@ -775,11 +770,11 @@ export function RetentionAgencies() {
                     <p>I’ve mocked up the welcome email and basket reminder we’d send instead. Worth 15 minutes?</p>
                     <p>Maya</p>
                     <p className="uc-att">
-                      <span>Receipt: Larch & Lye, 2 to 4 Nov</span>
+                      <span>Record: Larch & Lye, 2 to 4 Nov</span>
                       <span>Mockup: Larch & Lye welcome</span>
                     </p>
                   </div>
-                  <p className="uc-small">Written by your strategist, from the store’s receipt.</p>
+                  <p className="uc-small">Written by your strategist, from the store’s record.</p>
                 </div>
                 <div className="uc-phone-wrap">
                   <p className="kicker">Your mockup</p>

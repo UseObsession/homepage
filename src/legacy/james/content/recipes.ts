@@ -237,7 +237,7 @@ export const recipes: Record<RecipeId, Recipe> = {
   mystery: {
     id: 'mystery',
     slug: 'mystery-shopper',
-    name: 'Mystery shopper',
+    name: 'Store sign-up and checkout',
     line: 'Goes through a store as a customer does, from the first click to the last email, and checks every step.',
     gets: 'A verdict on every journey, with the proof behind each one.',
     journey: ['Arrive', 'Sign up', 'Basket', 'Support'],
@@ -361,7 +361,7 @@ export const recipes: Record<RecipeId, Recipe> = {
   speed: {
     id: 'speed',
     slug: 'speed-to-lead',
-    name: 'Lead leaks',
+    name: 'Speed to lead',
     line: 'Sends an enquiry by form, email, chat or text and times the reply.',
     gets: 'Reply time for each company and channel, with the replies attached.',
     journey: ['Send the enquiry', 'Wait for a reply', 'Log who answered', 'Time it'],

@@ -38,7 +38,7 @@ export function RunReports({ runs, id }: { runs: RunReportsContent; id?: string 
   const [paths, setPaths] = useState<{ d: string; box: string; y0: number } | null>(null)
 
   /* The agent first, the formats, your code after Sheet or Clay. */
-  const formats: Tile[] = outputFormats.map((f) => ({ id: f.id, label: f.label, line: f.line, format: f }))
+  const formats: Tile[] = (runs.formats ?? outputFormats).map((f) => ({ id: f.id, label: f.label, line: f.line, format: f }))
   const cut = formats.findIndex((t) => t.id === 'clay') + 1
   const tiles: Tile[] = [
     ...(runs.agent ? [{ id: 'agent', label: runs.agent.label, line: runs.agent.line }] : []),

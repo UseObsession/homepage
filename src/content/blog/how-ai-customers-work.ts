@@ -234,7 +234,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession exposes 5 verbs over MCP and an API: lookup, facts, evidence, become_customer and notify. An agent asks which companies are already covered, reads their facts and evidence, starts AI customers at the companies that aren’t, and gets told when something new arrives ([AI customers for developers](/blog/ai-customers-for-developers)).',
+      text: 'Obsession exposes 5 verbs over MCP and an API: lookup, facts, evidence, index and notify. An agent asks which companies are already covered, reads their facts and evidence, starts AI customers at the companies that aren’t, and gets told when something new arrives ([AI customers for developers](/blog/ai-customers-for-developers)).',
     },
     {
       kind: 'cta',

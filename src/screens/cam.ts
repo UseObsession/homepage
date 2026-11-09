@@ -127,7 +127,7 @@ export const SHOTS: Record<string, Shot[]> = {
       },
     },
   ],
-  /* Mystery shopper. The moment and the red line: at hollin, the welcome code is rejected at checkout and the shopper
+  /* Store sign-up and checkout. The moment and the red line: at hollin, the welcome code is rejected at checkout and the shopper
      stops before payment. The proof, held: tested again on Day 3 as the light opens to the whole lane, it still fails
      for every subscriber. Paywren and Molenna play in the dimmed lanes. A phone lights hollin's lane to its wait, so its
      line stands over it. */
@@ -172,7 +172,7 @@ export const SHOTS: Record<string, Shot[]> = {
       note: { text: 'Comparison page redrafted. Live only on your OK.', side: 'below', at: '.rv-act', len: 18, align: 'end', to: '.rv-find', cue: 10.4, still: true, dock: 'bottom', phone: { align: 'start' } },
     },
   ],
-  /* Lead leaks. The finding: the 3 channels race the 5 minute line until the form lands unassigned after 4h 12m and the
+  /* Speed to lead. The finding: the 3 channels race the 5 minute line until the form lands unassigned after 4h 12m and the
      phone rings out. The next move: 1 routing rule, and the owner's OK on it (the note follows the click). The proof,
      held: the same day's retest. */
   inbound: [

@@ -17,21 +17,11 @@ import type { StudyLink, UseCaseStudy } from '../content/types'
 import { studyWords } from '../content/words'
 import './StoryPage.css'
 
-/* A worked example (/use-cases/SLUG), composed from content/usecases/SLUG.ts on the site's sections, in the story's
-   order (docs/REBUILD.md 2, and types.ts "Use case studies"):
-   the centred hero (the Early access pill, the claim, the sub, the waitlist, who the example is
-   about, and the way from the reader's list to their own tools) > how it runs, phase by phase, each beside its
-   screen > the problem > how it fits their tools, or who does what > what they do with it > the proof on its screen,
-   and the first email written from it > the recipe and the 1 real run, with the small print > questions > the
-   waitlist (#join). An example about the real report itself (mystery shopping for ecommerce agencies) shows the 1 real
-   run in its own section after its proof (`real`), its hours back with their models (`outcomes`) and the other recipes
-   that fit the reader's year (`recipes`), and leaves the 2 link rows out (`more`). Each page's screens are its own (claycols, brandwatch, proofmail; members, memberfeed), drawn in
-   the workspace they were made for.
-   Cut to 6 beats (Seun, 7 Oct), mystery shopping for ecommerce agencies runs: hero > the fix on its screen (`fix`, on
-   the alternate ground) > the 3 uses > what real audits found (`found`, the page's paper break, closed by the small
-   print) > questions > start. Every beat it leaves out (how, problem, proof) draws nothing, and the workspace comes from the
-   first screen the page does show. An example built on 1 partner (content/partners.ts) sets that tool's mark where the
-   hero's flow names it, and opens the beat where the facts come back into that tool (how it fits) with it. */
+/* A use case (/use-cases/SLUG), composed from content/usecases/SLUG.ts on the site's sections: the buyer's job and the
+   data behind the login that does it (hero) > how it runs (phases, each beside its screen) > the problem > what they
+   do with it > the 1 real run (Brand G) and the small print > questions > early access (#join). Optional beats
+   (fix, fit, split, found, real, outcomes, recipes) draw only when the content file has them; a study built on 1
+   partner (content/partners.ts) sets that tool's mark in the hero's flow and in how it fits. */
 /* A link to a recipe takes the recipe's own name, so it never drifts from the recipe's page and the nav. */
 const named = (l: StudyLink): StudyLink => {
   const r = l.cta.to.startsWith('/recipes/') ? catalog.recipes.find((x) => x.slug === l.cta.to.slice('/recipes/'.length)) : undefined

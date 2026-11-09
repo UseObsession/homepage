@@ -13,5 +13,5 @@ export const capture = {
   sending: 'Sending',
   /* The plain thank you: the email is saved, but the card can't open (its code didn't load, or the waitlist script is
      an older one that keeps the email only). The same words as the script's own page after a plain form post. */
-  joined: { title: 'You’re on the list.', line: 'We’ll email you when your spot opens.' },
+  joined: { title: 'You’re on the early access list.', line: 'We’re onboarding a limited number of teams and will email you to set up your access.' },
 }

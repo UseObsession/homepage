@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function ComposeScreen() {
   return (
-    <div className="il appx-il app-compose"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to get quotes from 40 packaging suppliers for 10,000 mailer boxes, answers the agent's 2 questions (under £0.60 a box, by 20 Oct), and gets a 5 day plan with its kit: 1 agent ID, 40 enquiries from 1 inbox, a phone number for callbacks and a spreadsheet report. AM approves the plan, which only gathers quotes and buys nothing, and the AI customer starts working.">
+    <div className="il appx-il app-compose"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to get quotes from 40 packaging suppliers for 10,000 mailer boxes, answers the agent's 2 questions (under £0.60 a box, by 20 Oct), and gets a 5 day plan with its kit: 1 agent ID, 40 enquiries from 1 inbox, a phone number for callbacks and a spreadsheet report. AM approves the plan, which only gathers quotes and buys nothing, and the enquiries go out.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>New watch</span>
@@ -26,7 +26,7 @@ export function ComposeScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="ax-h cp-h ax-fade">
@@ -69,7 +69,7 @@ export function ComposeScreen() {
             </header>
             <ol className="cp-steps">
               <li style={{ '--d': '4.08s' }}>
-                <span className="n">1</span><span className="s">Set up an AI customer</span>
+                <span className="n">1</span><span className="s">Set up 1 account</span>
                 <span className="ax-chip cp-kit"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1.75" y="3.25" width="12.5" height="9.5" rx="1.5" /><circle cx="5.6" cy="7.25" r="1.5" /><path d="M3.6 10.6c.4-.95 1.1-1.4 2-1.4s1.6.45 2 1.4M9.5 6.75h2.75M9.5 9.25h1.75" /></svg>1 agent ID</span>
                 <time>Day 1</time>
               </li>

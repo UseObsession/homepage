@@ -3,7 +3,7 @@ import type { Shot } from './cam'
 /* More shot lists for the camera (src/screens/cam.ts has the rules and the first 5): the screens the reader pages show
    (inbox, adcheck, listings, partners, campaign, checkout, claycols, brief, battlecard, pilot). Merged into SHOTS in cam.ts. */
 export const SHOTS_B: Record<string, Shot[]> = {
-  /* Rivals inbox. The moment: Rival B's new text opens on top of the list as the camera arrives, and its tags read in,
+  /* Competitors inbox. The moment: Competitor B's new text opens on top of the list as the camera arrives, and its tags read in,
      Free gift and Over £40. The finding, held: the open message beside it, Thursday's 20% off now a free gift. */
   inbox: [
     { at: 0 },
@@ -151,7 +151,7 @@ export const SHOTS_B: Record<string, Shot[]> = {
       note: { text: 'In the CRM, signed, before Friday’s 10:00 call', side: 'above', at: '.br-add', align: 'end', to: '.br-tp', cue: 5.75, still: true, dock: 'bottom' },
     },
   ],
-  /* Battlecard. The proof: the trial end offers land as the clock reaches day 14, Rival A's 20% off on day 13. The next
+  /* Battlecard. The proof: the trial end offers land as the clock reaches day 14, Competitor A's 20% off on day 13. The next
      move, held: the talk track drafted from those cells, pushed to the CRM for 14 reps. */
   battlecard: [
     { at: 0 },

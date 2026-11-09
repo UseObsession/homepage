@@ -10,12 +10,12 @@ import type { SampleGap, SampleVerdict, ViewerImage } from '../content/types'
 import '../components/sections/Hero.css'
 import './SampleOutput.css'
 
-/* /sample-output: the 1 real run, the September 2026 store check (content/sample.ts), stated exactly as the report
-   records it. In order: the centred hero with its 3 figures and the way to the form > the same run in every format
-   (the output viewer) > the report: the 4 journeys and their verdicts, the checkout capture, the set up and what
-   arrived, and the report's own pages, each opening to full size > each gap: the inbox watched for 48 hours with
-   nothing in it, what was left behind, the reminder drafted from the evidence > questions > the free mystery shop
-   (#get-one). A verdict is the ring mark and its word, never a colour.
+/* /sample-output: the sample data Home points to, Brand G's record from the 1 real run (September 2026,
+   content/sample.ts), stated exactly as the report records it. In order: the centred hero with its 3 figures and the
+   way to the form > the report: the 4 journeys and their verdicts, the checkout capture, the set up and what arrived,
+   and the report's own pages, each opening to full size > each gap: the inbox watched for 48 hours with nothing in it,
+   what was left behind, the reminder drafted from the evidence > the same record in every format (the output viewer)
+   > questions > early access (#get-one). A verdict is the ring mark and its word, never a colour.
    Its grounds (styles/tones.css, F3): the report stands on the alternate ground, its set up and what arrived a product
    record (.ob-object); the formats are the page's paper break on ink (stone on paper). */
 

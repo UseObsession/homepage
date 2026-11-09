@@ -1,60 +1,51 @@
 import type { Recipe } from '../types'
 
-/* Mystery shopper (/recipes/mystery-shopper). James's strongest page with Competitor tracking: his headline, his
-   journey checks, his verdicts, his rivals comparison and his FAQ are kept. Fixed: it shows its range (software
-   trials and demos, stores, bookings and services), on the reader's own business or a client's with the client's
-   agreement (said once, in the steps), with rivals in the comparison; on the reader's own store a checkout stops
-   before payment or buys on a capped card and refunds, as the reader chooses. Only the 3 lines in system.md are rules.
-   The run is the 1 real run, the September 2026 store check, stated exactly as the report records it (sample.ts):
-   4 test customers (welcome, browse, basket, checkout), 1 inbox each, shopped from the UK; a Body Care Gift
-   Set (£40) left in the basket at 02:57 and a Deodorant (£21) left at checkout, before payment, at 03:11 on Tuesday
-   22 September; each inbox watched for 48 hours; 0 reminders reached either; browse got 3 messages (Delivered),
-   welcome 2, too few to call (No verdict); 15 screenshots and 5 messages kept. No control message, no second run and
-   no signature are claimed on it. The final capture is the free store mystery shop.
-   Brought into the October voice on 19 Oct (James), with the agencies use case it links to: AI agents become the
-   customer ("customer agents"), never "test customers"; James's headline, the checks, the verdicts, the comparison
-   and the real run's facts are kept as they were. The comparison loses its "Example." label: Rival A and Rival B are
-   plainly invented. The app screen keeps its own words (src/screens is synced from the screens' owner). */
+/* Store sign-up and checkout (/recipes/mystery-shopper; the slug is kept, the page is retitled, 9 Nov). A ready-made
+   collection: what any store sends a new customer after a sign-up, a browse, a basket and a checkout left before
+   payment, every email and text timed, from the customer profile the reader picks. It carries the 1 real record,
+   Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body Care Gift Set left at 02:57 and a £21
+   deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0 reminders, browse 3 messages, welcome 2
+   (too few to call), 15 screenshots and 5 messages kept. No signature claimed. The comparison table is an example. */
 
 export const recipe: Recipe = {
   id: 'mystery',
   slug: 'mystery-shopper',
-  name: 'Mystery shopper',
+  name: 'Store sign-up and checkout',
   group: 'Check your own journeys',
-  line: 'Your AI customer mystery shops your business, or a client’s, from the first click to the last email.',
-  gets: 'A verdict on every journey, with the proof behind each one.',
+  line: 'What any store sends a new customer after a sign-up, a basket and a checkout, every email timed.',
+  gets: 'Every email and text a store sends a new customer, timed, and the reminders that never came.',
   kit: [
-    'An AI customer per journey',
-    'Its own inbox, number and browser',
-    'Mobile, desktop or both',
+    'An account at each store, as the profile you pick',
+    'An inbox and number for each journey',
+    'Sign-up, browse, basket and checkout',
+    'Every checkout stopped before payment',
     'A screenshot of every step',
-    'Every inbox watched to the end of the wait',
-    'Every step kept with its receipt',
+    'Every email kept with its arrival time',
   ],
 
   meta: {
     path: '/recipes/mystery-shopper',
-    title: 'AI mystery shopper: see what your customers get · Obsession',
+    title: 'Basket and checkout emails at any store, timed · Obsession',
     description:
-      'Mystery shopping is one job an AI customer does: it signs up, shops, books and starts trials, and times every email, text and reply, with proof.',
+      'What any store sends a new customer after a sign-up, a basket and a checkout left before payment: every email and text, timed, with screenshots.',
     answer:
-      'Mystery shopper sends AI customers to mystery shop your digital journeys. Each joins your business, or a client’s, as a new customer: it signs up, shops, books or starts the trial, and times every email, text and reply that follows, with the receipts.',
+      'Store sign-up and checkout records what any store sends a new customer after a sign-up, a browse, a basket and a checkout left before payment. Every email and text is kept with the time it arrived and a screenshot of each step.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Recipes', path: '/recipes' },
-      { name: 'Mystery shopper', path: '/recipes/mystery-shopper' },
+      { name: 'Store sign-up and checkout', path: '/recipes/mystery-shopper' },
     ],
   },
 
   hero: {
-    headline: 'Send an AI customer to mystery shop your journeys.',
-    sub: 'Mystery shopper sends AI customers to mystery shop your digital journeys. Each joins your business, or a client’s, as a new customer: it signs up, shops, books or starts the trial, and times every email, text and reply that follows, with the receipts.',
+    headline: 'The emails after the basket, at any store.',
+    sub: 'Store sign-up and checkout records what any store sends a new customer after a sign-up, a browse, a basket and a checkout left before payment. Every email and text is kept with the time it arrived and a screenshot of each step.',
     screen: 'shop',
     capture: {
-      kind: 'mystery',
+      kind: 'waitlist',
       source: 'recipe-mystery-hero',
-      button: 'Get my free report',
+      button: 'Request early access',
       interest: 'mystery',
     },
   },
@@ -62,194 +53,151 @@ export const recipe: Recipe = {
   run: {
     tab: 'Real run, September 2026',
     recipe: 'mystery',
-    task: 'Send 4 AI customers to a skincare store: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
-    targets: 'A skincare store, name hidden',
+    task: 'Sign up to Brand G, a skincare store, 4 ways: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
+    targets: 'Brand G, a skincare store, name hidden',
     journey: ['Sign up for emails', 'Browse and leave', 'Leave a basket', 'Leave at checkout, before payment'],
     schedule: 'Once, 22 to 24 September 2026',
-    report: 'A report with every screenshot and message as proof',
-    kit: ['4 AI customers', '4 inboxes, 1 per journey', 'Shopped from the UK', '48 hour watch'],
+    report: 'The record: every screenshot and message, timed',
+    kit: ['4 journeys', '4 inboxes, 1 per journey', 'From the UK', '48 hour watch'],
     events: [
-      { time: '22 Sep, 02:57', text: 'The basket AI customer leaves a £40 gift set in the basket.' },
-      { time: '22 Sep, 03:11', text: 'The checkout AI customer leaves a £21 deodorant at checkout, before payment.' },
+      { time: '22 Sep, 02:57', text: 'A £40 Body Care Gift Set left in the basket.' },
+      { time: '22 Sep, 03:11', text: 'A £21 deodorant left at checkout, before payment.' },
       { time: '22 to 24 Sep', text: 'Browse: 3 messages arrive. Welcome: 2, too few to call.' },
       { time: '24 Sep, 02:57', text: '48 hours on. No reminder for the £40 basket.' },
       { time: '24 Sep, 03:11', text: '48 hours on. No reminder for the £21 checkout.' },
     ],
-    finding: '1 AI customer left £40 in the basket and 1 stopped at checkout with £21. No reminder reached either in 48 hours.',
-    fix: 'The 2 missing reminders drafted in the report, ready for the store to approve.',
-    ledger: 'Real run, September 2026. Store name hidden. 15 screenshots and 5 messages kept as proof.',
+    finding: 'A £40 basket and a £21 checkout, both left on 22 Sep. No reminder reached either in 48 hours.',
+    fix: 'Both silences in the record, each with its inbox, the hours it was watched and the screenshots.',
+    ledger: 'Real run, September 2026. Store name hidden. 15 screenshots and 5 messages kept.',
   },
 
   steps: [
     {
-      title: 'Pick the journeys',
-      line: 'A store’s basket and checkout, a software trial, a demo request, a booking or a quote. Yours, or a client’s with their OK.',
+      title: 'Name the stores',
+      line: 'A competitor, a prospect, a client or your own. Paste a list, upload a CSV or call the API.',
     },
     {
-      title: 'An AI customer takes each journey',
-      line: 'One per journey, each with its own inbox, number and browser. It signs up, books, starts the trial or fills the basket, and keeps a screenshot of every step.',
+      title: 'Pick the profile',
+      line: 'A new customer in the UK, a returning one in the US, on a phone or a desktop.',
     },
     {
-      title: 'It stays, and watches',
-      line: 'Every inbox and number is watched for the window you set, so a reminder that never comes shows up too.',
+      title: 'Obsession takes each journey',
+      line: 'It signs up, browses, fills a basket and leaves at checkout before payment, with a screenshot of every step.',
     },
     {
-      title: 'You get a verdict on every journey',
-      line: 'Delivered, silent, no verdict or couldn’t test, with the proof and the missing message drafted. Run it once, or after every change.',
+      title: 'Every email lands, timed',
+      line: 'Each inbox is watched for the window you set, so a reminder that never comes is in the record too.',
     },
   ],
 
   checks: [
     {
-      group: 'Stores',
+      group: 'Sign-up',
       items: [
-        { title: 'From the ad', line: 'Whether the page an ad points to is live, in stock and shows the same offer.' },
-        {
-          title: 'Sign up and welcome',
-          line: 'Whether the form works, whether double opt in is needed, the time to the welcome email and the offer in it.',
-        },
-        {
-          title: 'Basket and checkout',
-          line: 'When delivery costs appear, every step up to payment, and whether a reminder follows a basket that’s left: when, how many, and whether the right item is named.',
-        },
-        {
-          title: 'Delivery and returns',
-          line: 'With a real order on your own store, on a budget you set: confirmation, dispatch, delivery and refund.',
-        },
+        { title: 'The pop up', line: 'Its offer, whether double opt in is needed, and the time to the welcome email.' },
+        { title: 'The welcome series', line: 'Every step, the gap between each, and the code each one carries.' },
       ],
     },
     {
-      group: 'Software',
+      group: 'Basket and checkout',
       items: [
-        { title: 'Trial sign up', line: 'The fields asked, whether a card or a code by text is needed, and the time to the first email.' },
-        { title: 'Onboarding', line: 'Every onboarding email and in app prompt, timed by trial day, and the reminder before the trial ends.' },
-        { title: 'Demo requests', line: 'Whether the booking works, and what follows: the confirmation, the invite and the reminders.' },
+        { title: 'Browse reminders', line: 'What follows a product viewed and left.' },
+        { title: 'Basket reminders', line: 'When they come, how many, and whether the right item is named.' },
+        { title: 'Checkout', line: 'When delivery costs appear, every step up to payment, and what follows a checkout left.' },
       ],
     },
     {
-      group: 'Bookings and services',
-      items: [
-        { title: 'Booking', line: 'Whether a slot can be booked on a phone, and the confirmation and reminder texts that follow.' },
-        { title: 'Quote requests', line: 'Whether the form sends, the time to the first reply, and on which channel it comes.' },
-        { title: 'Chat and phone', line: 'Whether the bot answers, whether the line picks up, and how long each one took.' },
-      ],
+      group: 'Texts',
+      items: [{ title: 'Opt in and STOP', line: 'The confirmation text, how often texts come, and whether STOP stops them.' }],
     },
     {
-      group: 'Every business',
+      group: 'Where it stops',
       items: [
-        { title: 'Texts and STOP', line: 'The opt in, the confirmation text, how often texts come, and whether STOP really stops them.' },
-        { title: 'Privacy', line: 'Whether tracking still fires after a visitor clicks reject on the cookie banner.' },
-        { title: 'Support', line: 'The same question on every channel at the same minute, timed to each reply.' },
+        { title: 'Before payment', line: 'Every checkout stops before payment.' },
+        { title: 'At a CAPTCHA', line: 'It stops, and the record says that step couldn’t be tested.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every journey ends in a verdict you can forward.',
+    heading: 'Every store’s record, where you already work.',
     items: [
-      { format: 'A verdict per journey', line: 'Delivered, silent, no verdict or couldn’t test, with the rule that decided it.' },
-      { format: 'A timed log', line: 'Every step and message with its time, from the first click to the last email.' },
-      {
-        format: 'The evidence',
-        line: 'Screenshots, the raw emails with headers, the texts as received, and the network log for the privacy check.',
-      },
-      { format: 'A report to share', line: 'A page and a PDF, like the one in the sample output, or an email, Slack, a sheet or a webhook.' },
-      { format: 'The fix, drafted', line: 'The missing email or text written for you, live only after your OK.' },
-      { format: 'What changed', line: 'On a schedule, the journeys that broke or recovered since the last run.' },
+      { format: 'The timeline', line: 'Every step and message with its time, from the sign-up to the last email.' },
+      { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
+      { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
+      { format: 'API and MCP', line: 'Look up any store’s record from your code or your AI agent.' },
+      { format: 'A table', line: 'A row per store in Clay or Google Sheets.' },
+      { format: 'A webhook', line: 'Each new email the moment it lands.' },
     ],
   },
 
   settings: [
-    { k: 'Business', v: 'Yours, or a client’s' },
-    { k: 'Journeys', v: 'Sign up, texts, basket, checkout, trial, demo, booking, quote, support, STOP' },
-    { k: 'Wait', v: '24 hours, 48 hours, 72 hours or 7 days for what follows' },
-    { k: 'What counts', v: 'For example: no basket reminder within 24 hours, no booking confirmation within 10 minutes' },
-    { k: 'Device', v: 'Mobile, desktop or both' },
-    { k: 'Payment', v: 'On your own store, stop before payment or buy on a capped card and refund, as you choose' },
-    { k: 'Competitors', v: 'The same steps at your competitors, to compare' },
-    { k: 'How often', v: 'Once, weekly, monthly or after every release' },
+    { k: 'Stores', v: 'Any store you name: a competitor, a prospect, a client or your own' },
+    { k: 'Journeys', v: 'Sign-up, browse, basket, checkout and texts' },
+    { k: 'Profile', v: 'For example: a new customer in the UK, on a phone' },
+    { k: 'Window', v: '48 hours, 7 days, or as long as the account stays open' },
+    { k: 'How often', v: 'Once, weekly, or a new account every month' },
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'Pick a client. See what their customers get. A check on every client store, and a report to show for it.' },
-    { audience: 'marketing', line: 'Know your own journeys still work after every launch and change.' },
-    { audience: 'founders', line: 'Send an AI customer through your sign up, trial and checkout after every release.' },
-    { audience: 'sales', line: 'Show an account what its customers get on day 0 and day 28 of a pilot.' },
-    { audience: 'developers', line: 'Send an AI customer through your own sign up or checkout, from your code, on a schedule.' },
+    { audience: 'agencies', line: 'Open a pitch with the prospect’s own emails, and the reminder that never came.' },
+    { audience: 'marketing', line: 'Every competitor’s welcome, basket and checkout emails, beside yours.' },
+    { audience: 'founders', line: 'See what your store, and the 3 you compete with, send a new customer.' },
+    { audience: 'sales', line: 'Know what an account’s customers get before the first call.' },
+    { audience: 'developers', line: 'Any store’s sign-up and checkout emails, from your code.' },
   ],
 
   table: {
-    heading: 'Competitor A welcomes new customers 5 minutes faster, with a bigger offer.',
-    line: 'The same steps, by an AI customer at each competitor: sign up, texts and the site’s chat bot.',
+    heading: 'Competitor A welcomes new customers 5 minutes sooner, with a bigger offer.',
+    line: 'Example: the same journeys at each store, from the same customer profile.',
     cols: ['You', 'Competitor A', 'Competitor B'],
     rows: [
       { label: 'Time to welcome email', values: ['6 min', '1 min', 'None in 24 h'] },
       { label: 'Welcome offer', values: ['10% off', '15% off', 'Free delivery'] },
+      { label: 'Basket reminder', values: ['After 1 hour', 'After 30 min', 'None in 48 h'] },
       { label: 'Text confirmation', values: ['Yes', 'Yes', 'None'] },
-      { label: 'The site’s chat bot', values: ['Answered in 4 s', 'Handed to a person', 'No bot'] },
       { label: 'STOP honoured', values: ['Yes', 'A text after STOP', 'Yes'] },
     ],
   },
 
   faq: {
-    heading: 'Every AI customer says it’s AI when it talks to a person.',
+    heading: 'Every email kept as it arrived, with its time.',
     items: [
       {
-        q: 'What is AI mystery shopping?',
-        a: 'AI mystery shopping for digital journeys is one job an AI customer does: it joins your online business as a new customer, from sign up to the last email, and every message that follows is timed and kept. It says it’s AI when it talks to a person.',
+        q: 'How do I see what a store emails after a basket is left?',
+        a: 'Name the store. Obsession signs up, fills a basket and leaves before payment, as the customer profile you pick, and every email that follows is kept with the time it arrived.',
       },
       {
-        q: 'Can you do mystery shopping online?',
-        a: 'Yes. Obsession’s Mystery shopper runs your online journeys, a store’s basket and checkout, a software trial, a demo request or a booking, each lived by an AI customer with its own inbox, number and browser.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up and shop the way any customer can, each journey with its own inbox and number, and stop before payment. They say they’re an AI when they talk to a person.',
       },
       {
-        q: 'How do I test my abandoned cart and checkout emails without a dummy address?',
-        a: 'Obsession uses real inboxes. 4 AI customers sign up, browse, leave a basket and stop at checkout before payment on your store, and every inbox is watched for 48 hours, so you see which reminders came and which never did.',
+        q: 'Is the September record real?',
+        a: 'Yes. In September 2026 Obsession took 4 journeys at Brand G, a skincare store, name hidden, and watched every inbox for 48 hours. Its whole record is the sample data.',
       },
       {
-        q: 'Is the September run on this page real?',
-        a: 'Yes. In September 2026, 4 of Obsession’s AI customers shopped a skincare store, name hidden, and every inbox was watched for 48 hours. The full report is in the sample output.',
+        q: 'Can I see a store’s past emails?',
+        a: 'If the store is already covered, its history comes back at once. If not, Watch it, and the record starts the day Obsession signs up.',
+      },
+      { q: 'Does it place real orders?', a: 'No. Every journey stops before payment.' },
+      {
+        q: 'Can I include my own store?',
+        a: 'Yes. Name it beside your competitors, and the records sit side by side.',
       },
       {
-        q: 'Do you need our logins?',
-        a: 'No. Mystery shopper’s AI customers use your business the way a customer does, with their own inboxes, numbers and browsers.',
-      },
-      {
-        q: 'Do you place real orders?',
-        a: 'On your own store, if you choose. Mystery shopper stops before payment, or buys on a capped card inside a budget you set and refunds the order.',
-      },
-      {
-        q: 'Does Mystery shopper pretend to be a person?',
-        a: 'No. Every Obsession AI customer says it’s an AI when it talks to a person. Who it works for stays private unless you choose to be named.',
-      },
-      {
-        q: 'Can Mystery shopper test a software trial or a booking?',
-        a: 'Yes. Mystery shopper starts your trial, requests a demo or books a slot like a new customer, then times every email, text and reply that follows.',
-      },
-      {
-        q: 'How is Mystery shopper different from a site audit?',
-        a: 'Mystery shopper uses the page, then waits days for what arrives afterwards: the emails, texts and replies. An audit only reads it.',
-      },
-      { q: 'How long does Mystery shopper take?', a: 'Mystery shopper checks pages in minutes and messages within hours, and gives every verdict when the wait you set ends.' },
-      { q: 'What happens at a CAPTCHA?', a: 'Mystery shopper stops. If the CAPTCHA would block real customers too, that’s a finding.' },
-      {
-        q: 'Can Mystery shopper run on a schedule?',
-        a: 'Yes. Mystery shopper runs weekly, monthly or after every release. You hear when a journey breaks, and when it’s fixed.',
-      },
-      {
-        q: 'What’s in the free report?',
-        a: 'The free report is a Mystery shopper run on a store you run, or a client’s: 4 AI customers sign up, browse and leave baskets, stopping before payment, and every inbox is watched for 48 hours. Within 4 days you get what arrived, what didn’t and the fix.',
+        q: 'Can I watch a store for longer than 48 hours?',
+        a: 'Yes. The account stays open as long as you need, and every new email joins the record the day it arrives.',
       },
     ],
   },
 
   final: {
-    heading: 'Your first store mystery shop is free.',
-    sub: 'Name a store you run, or a client’s. 4 AI customers become its customers, every inbox is watched for 48 hours, and your report lands within 4 days.',
+    heading: 'Which store should we look up first?',
+    sub: 'Early access includes every store already covered, and up to 5 added for you.',
     capture: {
-      kind: 'mystery',
+      kind: 'waitlist',
       source: 'recipe-mystery-final',
-      button: 'Get my free report',
+      button: 'Request early access',
       interest: 'mystery',
     },
   },

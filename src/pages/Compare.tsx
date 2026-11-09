@@ -8,7 +8,7 @@ import '../components/v5/Hero5.css'
 import './StoryPage.css'
 
 /* /compare, composed from content/pages/compare.ts: the claim (a plain hero, words only: the table is the page's
-   object), the table, when you might want something else, questions, the waitlist. */
+   object), the table, when you might want something else, questions, the early access form. */
 export function Compare() {
   return (
     <>

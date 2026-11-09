@@ -6,22 +6,22 @@ import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { catalog } from '../content/catalog'
-import { jobAnchor as slug } from '../content/nav'
+import { jobLabel, jobAnchor as slug } from '../content/nav'
 import { recipePage } from '../content/recipe-page'
 import { recipesPage as page } from '../content/site'
 import '../components/sections/Hero.css'
 import './Recipes.css'
 
-/* /recipes: every recipe, grouped by the 6 jobs (site.ts recipesPage). The centred hero, with the jobs as quiet jump
-   links and the product's Recipes picker under them (the page's 1 product object: glossy black on paper, lit on ink,
-   like every other page's hero object); then 1 row per job, its name and line on the left and its recipes as link rows on the right (the same rows as
-   every page's Recipes section); then where the companies come from and where the proof goes; questions; the final
-   call. Nothing moves but the hero's load sequence and the rows' hover. */
+/* /recipes: every recipe, a ready-made collection from the web behind the login, grouped by the 3 jobs (site.ts
+   recipesPage). The centred hero, with the jobs as quiet jump links and the product's Recipes picker under them (the
+   page's 1 product object); then 1 row per job, its name and line on the left and its recipes as link rows on the
+   right; then where the companies come from and where the data lands; questions; early access. Nothing moves but the
+   hero's load sequence and the rows' hover. */
 
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-rivals.
+/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-other-companies.
    It takes focus when reached that way (App.tsx ScrollManager), so the keyboard carries on from the job. */
 
 /* The jump links' name, for screen readers. */
@@ -54,7 +54,7 @@ export function Recipes() {
                 {groups.map((g) => (
                   <li key={g.group}>
                     <a className="s-ri-jump__link" href={`#${slug(g.group)}`}>
-                      {g.group}
+                      {jobLabel(g.group)}
                     </a>
                   </li>
                 ))}
@@ -72,7 +72,7 @@ export function Recipes() {
           <section className="s-ri-job" id={slug(g.group)} key={g.group} aria-labelledby={`${slug(g.group)}-h`} tabIndex={-1}>
             <header className="s-ri-job__head">
               <h2 className="s-ri-job__name" id={`${slug(g.group)}-h`}>
-                {g.group}
+                {jobLabel(g.group)}
               </h2>
               <p className="s-ri-job__line">{tie(g.line)}</p>
             </header>
@@ -101,12 +101,12 @@ export function Recipes() {
               {tie(page.hub.heading)}
             </h2>
             <p className="s-ri-hub__line">{tie(page.hub.line)}</p>
-            {/* Every page links to the 1 real report (docs/REBUILD.md 8): here, what a recipe returns. */}
+            {/* Every page links to the 1 real record (docs/REBUILD.md 8): here, what a recipe returns. */}
             <Link className="ob-btn ob-btn--link s-ri-hub__cta" to={recipePage.outputs.cta.to}>
               <span className="ob-btn-label">{recipePage.outputs.cta.label}</span>
               <Arrow className="ob-btn-glyph ob-btn-arrow" />
             </Link>
-            {/* The guide that sets out every job, so the catalogue links to its own explainer. */}
+            {/* Every use case, so the catalogue links to who uses each recipe. */}
             <Link className="ob-btn ob-btn--link s-ri-hub__cta" to={page.hub.guide.to}>
               <span className="ob-btn-label">{page.hub.guide.label}</span>
               <Arrow className="ob-btn-glyph ob-btn-arrow" />

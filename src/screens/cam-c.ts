@@ -25,7 +25,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
       note: { text: 'Save plan and QBR deck, approved by AM', side: 'left', pos: 0.95, cover: '.acw-foot span', cue: 5.15, still: true, dock: 'top', gap: '.acw-id' },
     },
   ],
-  /* Win back. The proof: Tarnfell's 9 months on Rival A draw out and its 3 dated breaks pop in with their captures; the
+  /* Win back. The proof: Tarnfell's 9 months on Competitor A draw out and its 3 dated breaks pop in with their captures; the
      note covers the lock footnote. The next move, held: the reopen note citing all 3 is drafted and Tarnfell needs you
      as the camera arrives, sent only by you. */
   winback: [
@@ -102,7 +102,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
       note: { text: 'Live on AM’s OK,\nchecked again Thu 09:00', side: 'left', at: '.apx-fix-f', cue: 4.95, still: true, dock: 'top', gap: '.apx-id' },
     },
   ],
-  /* Email and SMS report. The finding: Candles' month is 12 messages to its rivals' 47 to 52; the note sits on the empty
+  /* Email and SMS report. The finding: Candles' month is 12 messages to its competitors' 47 to 52; the note sits on the empty
      track beside its short bar. The next move, held: the report sent under your brand, signed (Send is pressed at 3.8 s,
      during the first note, so no pointer); the note covers the lock line. */
   report: [
@@ -121,7 +121,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
       note: { text: 'Sent to Candles, signed, in your brand', side: 'left', cover: '.apr-note', cue: 5, still: true, dock: 'top' },
     },
   ],
-  /* Mystery shopper record. The finding: the run log, every step dated, down to 0 basket emails in 48 hours; the note
+  /* Store check record. The finding: the run log, every step dated, down to 0 basket emails in 48 hours; the note
      covers the page's title. The proof, held: receipt 4 of 9 verified, signature valid and chain intact as the camera
      arrives (the row and Verify are clicked at 2.55 and 3.88 s, too close together for 2 notes and a pointer); the note
      sits right of the lock line. */

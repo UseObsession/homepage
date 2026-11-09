@@ -1,40 +1,35 @@
 import type { Recipe } from '../types'
 
 /* Website audit (/recipes/website-audit). Check your own journeys. Screen: ship.
-   New page (James's original recipe set had Website audit; on 1 Oct he said QA is the right word, and the Founders
-   page sells it as "Ship clean"). After every release, or every morning, a fresh AI test customer with its own inbox
-   and number signs up, enters each login code, opens every email and link, sends a test enquiry through each form and
-   tries each code at checkout, then stops before payment or buys on a capped card and refunds, as the reader chooses.
-   The reader's own site or app, or a client's with the client's agreement (said once, in the FAQ). Only the 3 lines
-   in system.md are rules.
-   Kept from our version: the agency check that a form's test lead actually reaches the inbox or CRM you connect
-   (inside data only through tools the customer connects). Kept from James: "Couldn't test" as an honest verdict.
-   The run tells the same story as the `ship` screen and the Founders and Developers pages (Thursday 06:02, v2.15,
-   LAUNCH20 rejected, the 08:00 send held at 06:11, stopped before payment). Example. */
+   The 9 Nov story: the record of what a site shows and sends a new customer, collected after every release or every
+   morning: sign-up, login codes, every email and link, forms, and every code at checkout, each step dated with its
+   screenshot. The reader's own site, a client's with their OK, or any site they name. It goes every step short of
+   paying. Results land in Slack, a ticket, a webhook a pipeline reads, or the API.
+   The run tells the `ship` screen's story (Thursday 06:02, v2.15, LAUNCH20 rejected, the 08:00 send held). Example. */
 
 export const recipe: Recipe = {
   id: 'audit',
   slug: 'website-audit',
   name: 'Website audit',
   group: 'Check your own journeys',
-  line: 'Your AI customer signs up fresh after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
-  gets: 'A pass or a break for every step of every release, with the screenshot and a drafted fix.',
+  line: 'What your site shows and sends a new customer, collected after every release: sign-up, codes, emails, links and checkout.',
+  gets: 'Every step of every release, dated, with its screenshot, and the step that changed.',
   kit: [
-    'An AI customer per run',
-    'A fresh inbox and number',
+    'A fresh account and inbox every run',
+    'A phone number for login codes',
     'Phone and desktop browsers',
-    'Starts on every release',
+    'Starts on every release, or every morning',
     'A screenshot of every step',
-    'Every step kept with its receipt',
+    'Results in Slack, a webhook or the API',
   ],
 
   meta: {
     path: '/recipes/website-audit',
-    title: 'Website audit: AI customers sign up after every release',
+    title: 'Website audit: what your site shows and sends a new customer',
     description:
-      'After every release, an AI customer signs up, enters each code, opens every email and link, and goes through checkout. Every break comes with proof.',
+      'Website audit records what your site shows and sends a new customer after every release: sign-up, login codes, emails, links, forms and checkout.',
     answer:
-      'In Website audit, a fresh AI customer signs up after every release, enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
+      'Website audit is the record of what your site shows and sends a new customer, after every release. Obsession signs up fresh, enters each login code, opens every email and link and goes to checkout, and dates each step with its screenshot.',
     ogImage: '/og/website-audit.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,13 +39,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that signs up fresh after every release.',
-    sub: 'In Website audit, a fresh AI customer signs up after every release, enters each login code, opens every email and link and goes through your checkout. Every break reaches you with its screenshot and a drafted fix.',
+    headline: 'What your site sends a new customer, after every release.',
+    sub: 'Website audit is the record of what your site shows and sends a new customer, after every release. Obsession signs up fresh, enters each login code, opens every email and link and goes to checkout, and dates each step with its screenshot.',
     screen: 'ship',
     capture: {
       kind: 'waitlist',
       source: 'recipe-website-audit-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'audit',
     },
   },
@@ -58,36 +53,42 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: release v2.15',
     recipe: 'audit',
-    task: 'After every release, sign up as a new customer, enter the code, open every email and try our launch code. Stop before payment.',
+    task: 'After every release, sign up as a new UK customer on a phone, enter the code, open every email and try our launch code. Stop before payment.',
     targets: 'your-store.example, on phone and desktop',
     journey: ['Sign up with a fresh inbox', 'Enter the code from the text', 'Open every email and link', 'Stop before payment'],
     schedule: 'After every release',
-    report: 'Slack alert per release',
-    kit: ['Its own ID', 'Fresh inbox', 'Fresh UK number', 'Starts on every release'],
+    report: 'Slack, and a pass or fail for your pipeline',
+    kit: ['New customer · UK', 'Fresh inbox', 'Fresh UK number', 'Starts on every release'],
     events: [
-      { time: 'Thu 06:02', text: 'v2.15 ships. A fresh AI customer starts on a phone, with its own inbox and UK number.' },
-      { time: 'Thu 06:04', text: 'Sign up done in 14 seconds.' },
+      { time: 'Thu 06:02', text: 'v2.15 ships. A fresh sign-up starts on a phone, with a new inbox and UK number.' },
+      { time: 'Thu 06:04', text: 'Sign-up done in 14 seconds.' },
       { time: 'Thu 06:05', text: 'Login code by text in 8 seconds. It works.' },
       { time: 'Thu 06:07', text: 'Welcome email in 2 minutes. Every link opens.' },
       { time: 'Thu 06:09', text: 'LAUNCH20 rejected at checkout. Your 08:00 email promises it.' },
     ],
     finding: 'The code your 08:00 launch email promises is turned away at checkout.',
-    fix: 'You held the 08:00 send at 06:11. The code fix is drafted, and a fresh AI customer tries it once it’s live.',
-    ledger: 'Example run. Every step timed and screenshotted, with proof. Stopped before payment, as asked.',
+    fix: 'In Slack at 06:10 with the screenshot. You held the 08:00 send at 06:11.',
+    ledger: 'Example run. Every step timed and screenshotted. Stopped before payment, as asked.',
   },
 
   steps: [
     { title: 'Connect your releases', line: 'A deploy hook, a schedule, or a button you press.' },
-    { title: 'A stranger signs up', line: 'A fresh AI customer, with a new inbox and number every run, on phone and desktop.' },
-    { title: 'Every step is timed', line: 'Sign up, login code, emails, links, forms and every code at checkout.' },
-    { title: 'Breaks reach you first', line: 'A Slack alert with the screenshot and a drafted fix, then a fresh run once the fix ships.' },
+    {
+      title: 'A new customer every run',
+      line: 'A fresh account, inbox and number each time, on phone and desktop, in the countries you sell in.',
+    },
+    { title: 'Every step recorded', line: 'Sign-up, login code, emails, links, forms and every code at checkout, each timed and screenshotted.' },
+    {
+      title: 'Results where you work',
+      line: 'Slack, a ticket, a webhook your pipeline reads, or the API, with the step that changed since the last release.',
+    },
   ],
 
   checks: [
     {
-      group: 'Sign up and login',
+      group: 'Sign-up and login',
       items: [
-        { title: 'Sign up', line: 'The form on phone and desktop, how long it takes, and every error it shows.' },
+        { title: 'Sign-up', line: 'The form on phone and desktop, how long it takes, and every error it shows.' },
         { title: 'Login codes', line: 'By text or email: how long each takes to arrive, and whether it works.' },
         { title: 'Password reset', line: 'The email arrives and its link opens.' },
       ],
@@ -96,7 +97,7 @@ export const recipe: Recipe = {
       group: 'Emails, links and forms',
       items: [
         { title: 'Welcome email', line: 'It arrives, how fast, and every link opens the right page.' },
-        { title: 'Every link', line: 'In your pages and emails, on phone and desktop. Any that error are flagged.' },
+        { title: 'Every link', line: 'In your pages and emails, on phone and desktop.' },
         { title: 'Forms', line: 'A test enquiry through each form, and whether it reaches the inbox or CRM you connect.' },
         { title: 'Booking links', line: 'Each one opens to a live calendar, stopping before a slot is taken.' },
       ],
@@ -105,80 +106,77 @@ export const recipe: Recipe = {
       group: 'Basket and checkout',
       items: [
         { title: 'Codes', line: 'Every welcome and launch code, tried at checkout.' },
-        { title: 'Checkout', line: 'Delivery, totals and every step to payment. It stops there, or buys on a capped card and refunds, as you choose.' },
+        { title: 'Checkout', line: 'Delivery, totals and every step to payment. It stops there.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Each release ends in a pass or a break, with the screenshot behind it.',
+    heading: 'Each release ends in a dated record, step by step.',
     items: [
       { format: 'Slack alert', line: 'Minutes after a release, with the step, the screenshot and the time.' },
       { format: 'Ticket', line: 'Drafted for your tracker, with the steps to repeat the break.' },
-      { format: 'Release history', line: 'Every release’s run, step by step, so you see what changed.' },
+      { format: 'Release history', line: 'Every release, step by step, so you see what changed.' },
       { format: 'Webhook', line: 'A pass or a fail your pipeline reads, so it can hold the release.' },
     ],
   },
 
   settings: [
+    { k: 'Sites', v: 'Yours, a client’s with their OK, or any site you name' },
     { k: 'Runs', v: 'After every deploy, on a schedule, or when you press run' },
-    { k: 'Journeys', v: 'Sign up, login, onboarding, forms, basket and checkout' },
+    { k: 'Steps', v: 'Sign-up, login, onboarding, forms, basket and checkout' },
     { k: 'Devices', v: 'Phone, desktop or both' },
     { k: 'Countries', v: 'A number in each country you sell in' },
-    { k: 'Alerts', v: 'Slack, email or a ticket' },
+    { k: 'Where it lands', v: 'Slack, a ticket, a webhook or the API' },
   ],
 
   forWho: [
     { audience: 'founders', line: 'Ship every day, and hear about a break before a customer does.' },
-    { audience: 'developers', line: 'A deploy hook that signs up as a stranger and posts a pass or a fail your CI can act on.' },
-    { audience: 'agencies', line: 'Check every client’s forms, booking links, sign up and checkout every morning.' },
+    { audience: 'developers', line: 'A deploy hook that signs up as a new customer and posts a pass or a fail your CI can act on.' },
+    { audience: 'agencies', line: 'Every client’s forms, booking links, sign-up and checkout, recorded every morning.' },
   ],
 
   faq: {
-    heading: 'A new customer after every release, and proof of every step.',
+    heading: 'A new customer after every release, every step dated.',
     items: [
       {
-        q: 'How do I catch a broken sign up or checkout before customers report it?',
-        a: 'Obsession’s Website audit sends a fresh AI customer through your site after every release: it signs up, enters each login code, opens every email and link and goes through checkout, and every break reaches you with a screenshot.',
-      },
-      {
-        q: 'What’s it worth?',
-        a: 'Website audit gives you up to 2 hours a week back, if you spend 2 hours a week testing releases by hand.',
+        q: 'How do I catch a broken sign-up or checkout before customers report it?',
+        a: 'Website audit signs up fresh after every release, enters each login code, opens every email and link and goes to checkout. Each step is dated with its screenshot, and a break reaches Slack in minutes.',
       },
       {
         q: 'How is Website audit different from our tests?',
-        a: 'Website audit checks what a new customer gets: the text that arrives, the email, the link and the code, on its own inbox and number. Your tests check the code.',
+        a: 'Your tests check the code. Website audit records what a new customer gets: the text that arrives, the email, the link and the code, on its own inbox and number.',
       },
       {
         q: 'Does Website audit need access to our code?',
-        a: 'No. Website audit uses your site like a customer. A deploy hook starts each run, or it runs on a schedule.',
+        a: 'No. Website audit uses your site the way a customer does. A deploy hook starts each run, or it runs on a schedule.',
       },
       {
         q: 'Does Website audit place real orders?',
-        a: 'If you choose. Website audit stops before payment, or buys on a capped card and refunds the order.',
+        a: 'No. Website audit goes every step to payment and stops there.',
       },
       {
-        q: 'Will AI customers clutter our data?',
-        a: 'No. Every Website audit AI customer is labelled, so you can filter them out of your lists and reports.',
+        q: 'Will test sign-ups clutter our data?',
+        a: 'No. Every Website audit sign-up is labelled, so you can filter it out of your lists and reports.',
       },
       {
         q: 'What if Website audit hits a CAPTCHA or a block?',
-        a: 'Website audit stops, and the run names the step it couldn’t test.',
+        a: 'Website audit stops, and the run names the step it couldn’t record.',
       },
       {
         q: 'Can an agency run Website audit on client sites?',
-        a: 'Yes, with each client’s OK: Website audit gives every client its own run, every morning or after each of their releases.',
+        a: 'Yes, with each client’s OK. Website audit gives every client its own run, every morning or after each release.',
       },
     ],
   },
 
   final: {
     heading: 'Catch the break before your 08:00 email goes.',
-    sub: 'Join the waitlist. Website audit comes ready to run on your next release.',
+    sub: 'Early access includes Website audit on your next release, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-website-audit-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'audit',
     },
   },

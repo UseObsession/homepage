@@ -4,8 +4,7 @@
    the footer always name the same ones. Each link appears once: Developers is a reader, so it sits under Who it's for
    only. */
 import { catalog } from './catalog'
-import { JOBS, jobAnchor, nav, type NavPage } from './nav'
-import { ways } from './ways'
+import { nav, type NavPage } from './nav'
 
 const readers = nav.readers.map(({ label, to }) => ({ label, to }))
 
@@ -13,15 +12,16 @@ export const footer = {
   /* 1 short line under the logo, the 1 sentence's core (docs/SEARCH.md 2). The full sentence stays word for word where
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
-  tagline: 'Send an AI customer to any company. Keep the receipts.',
+  /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
+  tagline: 'The web behind the login, as data.',
   columns: [
     { label: 'Who it’s for', links: readers },
     {
       label: 'Product',
       links: [
-        /* The recipe jobs; Check your AI agents has its own page, so it is linked by its own name. */
-        ...JOBS.filter((j) => j !== 'Check your AI agents').map((j) => ({ label: j, to: `/recipes#${jobAnchor(j)}` })),
-        { label: ways.verify.name, to: ways.verify.to },
+        /* Since 9 Nov the data, not the recipe jobs. */
+        { label: 'What’s in it', to: '/#data' },
+        { label: 'How it works', to: '/#how' },
         { label: 'Compare', to: '/compare' },
         { label: 'Open source', to: 'https://github.com/UseObsession' },
       ],

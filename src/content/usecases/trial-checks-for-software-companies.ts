@@ -1,27 +1,22 @@
 import type { UseCaseStudy } from '../types'
 
-/* Trial checks for software companies (/use-cases/trial-checks-for-software-companies), 5 Nov 2026: the first worked
-   example outside stores, so the use cases stop reading as ecommerce only (James, 5 Nov: the engine is general, the
-   proof is stores). A team calendar app's growth team starts its own 14 day trial every morning, and 5 rivals', and
-   hears the day a welcome link dies, an email stops or a rival sends a private offer.
-   The cast and its 2 findings come from Home's wall (content/look.ts): Larkfield's welcome email whose every link opens
-   a closed staging site, and Quillon's 40% off for trial users that its pricing page never shows. Every name, email and
-   figure is invented and `fine` says so; there are no real runs at software companies yet.
-   Drawn by the study system (pages/UseCase.tsx). Its 1 screen is the trial teardown's (battlecard: rivals' trials, day
-   by day). Headings carry the job, not the words "AI customer" (James, 5 Nov: Home stacked them until they said
-   nothing); the sub, the steps and the questions name them. */
+/* Trial checks for software companies (/use-cases/trial-checks-for-software-companies), 9 Nov rewrite: what software
+   companies show only to signed-up users (onboarding emails, trial limits, upgrade prompts, signed-in prices, offers to
+   stay), for a product team's own trial and its competitors', looked up in Search or Insights, a table or a webhook.
+   Larkfield's dead welcome links and Quillon's trial-only 40% off come from Home; every name and figure is invented
+   and `fine` says so. The agents appear only in the answer on where the data comes from. */
 
 export const study: UseCaseStudy = {
   name: 'Trial checks for software companies',
-  line: 'Every welcome, nudge and offer a new user gets, from your trial and your rivals’.',
+  line: 'Every email, limit, prompt and offer a trial user gets, from your app and your competitors’.',
 
   meta: {
     path: '/use-cases/trial-checks-for-software-companies',
-    title: 'Trial checks for software companies: what new users get',
+    title: 'Trial checks for software companies: behind the sign-up',
     description:
-      'Send AI customers to your trial and your rivals’: each signs up, keeps every email, nudge and offer, and flags a dead link or an email that never came.',
+      'The onboarding emails, trial limits, upgrade prompts, signed-in prices and cancel offers of your app and your competitors’, each dated with a screenshot.',
     answer:
-      'Obsession sends AI customers to a software company’s own sign up and to its rivals’, each with its own inbox, phone number and browser. Each one starts a trial, opens every email and link that follows, and stays to the end of the trial. Every dead link, missing email and rival offer comes back with its proof.',
+      'Obsession records what software companies show only to signed-up users: onboarding emails, trial limits, upgrade prompts, signed-in prices and cancel offers. Each fact is dated, with the email or a screenshot, for your own product and your competitors. Look up one app, or ask a question across many.',
     ogImage: '/og/trial-checks-for-software-companies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -33,83 +28,83 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Start your own trial every day, and your rivals’ too.',
-    sub: 'An AI customer signs up as a new user at your product and at every rival you name. It opens every welcome email, nudge and upgrade offer, clicks every link, and tells you the day one breaks, goes quiet or gets beaten.',
-    example: { chips: ['Larkfield, a team calendar app', '5 rivals', '14 day trials'] },
+    headline: 'Every competitor’s trial, from sign-up to cancel, dated.',
+    sub: 'The onboarding emails, trial limits, upgrade prompts, signed-in prices and offers to stay, at your app and every competitor you name. Each with the email or the screenshot, and the day it appeared.',
+    example: { chips: ['Larkfield, a team calendar app', '5 competitors', '14 day trials'] },
     flow: [
       {
         label: 'What you name',
-        title: 'Your trial and 5 rivals',
-        items: ['Your sign up page', 'Each rival’s free trial', 'The plan to start on'],
+        title: 'Your trial and 5 competitors',
+        items: ['Your sign-up page', 'Each competitor’s free trial', 'The customer profiles to sign up as'],
         foot: 'Web, iOS or Android',
       },
       {
-        label: 'What it keeps',
-        title: 'Every message for 14 days',
-        items: ['Welcome and onboarding emails', 'Trial ending nudges', 'Upgrade and win back offers', 'Every link, opened'],
+        label: 'What comes back',
+        title: 'Every fact, dated',
+        items: ['Onboarding emails and texts', 'Trial limits and upgrade prompts', 'Signed-in prices and offers', 'The offer to stay at cancel'],
         foot: 'Each with its screenshot',
       },
       {
         label: 'Where it lands',
         title: 'Where your team works',
-        items: ['A Slack alert the day one breaks', 'A Monday digest', 'Your own AI agent'],
+        items: ['Search: one app', 'Insights: a question across many', 'A webhook, Clay or the API'],
         foot: 'Nothing to install',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-software-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'trial',
     },
   },
 
   how: {
-    heading: 'You name the trials. A new user starts each one, every morning.',
-    sub: 'Larkfield, a team calendar app, checks its own 14 day trial and 5 rivals’.',
+    heading: 'Name the apps and who signs up. The trials stay open.',
+    sub: 'Larkfield, a team calendar app, follows its own 14 day trial and 5 competitors’.',
     steps: [
       {
         title: 'Set it up',
-        line: 'Which sign ups, how often, and what counts as a break.',
-        chips: ['A fresh sign up every morning', 'Every link opened', 'Says it’s AI to a person', 'Pays only on a card you fund'],
+        line: 'Which apps, as which users, and what a good trial looks like.',
+        chips: ['Your app and any competitor', 'Trial user · US', 'Team admin · 20 seats', 'Pays only on a card you fund'],
         steps: [
           {
-            title: 'Name the trials',
-            line: 'Your own sign up and each rival’s, on the web or in the app. Start on the free plan, or on a paid trial with a card you fund.',
-            example: 'Larkfield names its own sign up and 5 rivals: Quillon, Velloway, Hollin, Wrenfield and Fieldmark.',
+            title: 'Name the apps',
+            line: 'Your own sign-up and each competitor’s, on the web or in the app.',
+            example: 'Larkfield names its own sign-up and 5 competitors: Quillon, Velloway, Hollin, Wrenfield and Fieldmark.',
           },
           {
-            title: 'Say what a good trial looks like',
-            line: 'The emails you expect and when: a welcome in minutes, a tip on day 2, a reminder before the trial ends. Anything late, missing or broken is a finding.',
+            title: 'Pick who signs up',
+            line: 'The customer profiles and country to sign up as. A team admin and a solo user see different limits and offers.',
+            example: 'A trial user in the US, a new visitor in the UK and a team admin with 20 seats.',
+          },
+          {
+            title: 'Say what your own trial should send',
+            line: 'The emails you expect, and when. Anything late, missing or broken is a finding.',
             example: 'A welcome within 10 minutes, onboarding on days 1, 3 and 7, and a reminder 3 days before the end.',
-          },
-          {
-            title: 'Choose where it lands',
-            line: 'An alert the day something breaks, a digest of what rivals sent, or both.',
-            example: 'Breaks go to #growth in Slack. The rivals’ emails and offers go into a Monday digest.',
           },
         ],
       },
       {
         title: 'Obsession runs the trials',
-        line: '14 days in this example, with a new sign up every morning.',
+        line: 'Each account stays open to the end of the trial and after it.',
         screen: 'battlecard',
         chips: ['Its own inbox', 'Its own phone number', 'Its own browser', 'Says it’s AI'],
         steps: [
           {
-            title: 'A new user every morning',
-            line: 'Each sign up gets its own inbox, phone number and browser, and goes through the trial as a real user would: it confirms the email, follows the onboarding and comes back on the days you set.',
+            title: 'Every email, link and prompt',
+            line: 'Each account confirms its email, follows the onboarding, opens every link and comes back on the days you set.',
             example: 'Tue 09:02: signed up at Larkfield. 09:03: the welcome email. 09:04: its Open the app button leads to staging.larkfield.example, a closed site.',
           },
           {
-            title: 'Every link, opened',
-            line: 'It clicks every button and link in every email and checks where each one lands. A closed page, a login wall or a page that moved is a finding, with the email and the page side by side.',
-            example: 'All 3 links in the welcome email open the closed staging site. Every sign up since Monday got the same email.',
+            title: 'Limits, prompts and prices',
+            line: 'Where the free plan stops, when the upgrade prompt appears, and the price a signed-in user sees.',
+            example: 'Quillon: 3 projects and 1 seat free, an upgrade prompt on day 7, and Pro at $24 signed in, $29 on the public page.',
           },
           {
-            title: 'Your rivals, the same way',
-            line: 'Each rival gets its own new user too, so you see every email, discount and trial extension it sends, including the ones never on its pricing page.',
-            example: 'Day 12 at Quillon: 40% off the first year, for trial users only. Quillon’s pricing page shows no offer.',
+            title: 'Offers to stay',
+            line: 'The discount before the trial ends and the offer when someone cancels, including the ones never on the pricing page.',
+            example: 'Day 12 at Quillon: 40% off the first year, for trial users only. At cancel: 50% off for 3 months.',
           },
         ],
       },
@@ -118,58 +113,40 @@ export const study: UseCaseStudy = {
 
   problem: {
     heading: 'Your trial emails go to new users. Nobody on your team is one.',
-    sub: 'The welcome email was tested once, the day it went live. Since then a domain moved, a plan was renamed and a tool was swapped, and the only people who see what changed are the users who quietly leave.',
+    sub: 'The welcome email was tested once, the day it went live. Since then a domain moved, a plan was renamed and a tool was swapped. Competitors’ trials change the same way, out of sight.',
     items: [
       { title: 'Dead links', line: 'A button in the welcome email that opens a staging site, a login wall or a page that moved.' },
       { title: 'Emails that never come', line: 'The day 3 tip or the trial ending reminder that stopped after a tool change.' },
-      { title: 'The wrong plan', line: 'A price or a limit in an email that no longer matches the pricing page.' },
-      { title: 'Rivals’ private offers', line: 'The discount or extra week a rival sends only to its trial users.' },
+      { title: 'Limits that move', line: 'A free plan cut from 5 projects to 3, or an upgrade prompt moved to day 5.' },
+      { title: 'Competitors’ private offers', line: 'The discount or extra week a competitor sends only to its trial users.' },
     ],
     answer: 'Each finding comes back with the email as it arrived, the page it led to and the time of both.',
   },
 
-  split: {
-    yours: {
-      label: 'You keep',
-      heading: 'Your product, your emails and your fixes.',
-      items: ['Your onboarding and the tools that send it', 'What counts as a break', 'The fix, and who ships it', 'Your pricing and your offers'],
-    },
-    ours: {
-      label: 'Obsession runs',
-      heading: 'The new users, the inboxes and the waiting.',
-      items: [
-        'A new AI customer every morning, with its own inbox, phone number and browser',
-        'The sign ups, the onboarding and every link opened',
-        'Inboxes kept open to the end of each trial',
-        'The email and the page behind every finding',
-      ],
-    },
-  },
-
   outputs: {
-    heading: 'What growth teams do with it.',
+    heading: 'What product and growth teams do with it.',
     groups: [
       {
         items: [
           {
             title: 'Fix a break the day it starts',
             line: 'Not the month churn moves.',
-            example: 'The dead welcome links reached #growth at 09:05 on Tuesday, and were fixed by 11:00.',
+            example: 'The dead welcome links reached #growth through a webhook at 09:05 on Tuesday, and were fixed by 11:00.',
           },
           {
             title: 'Check a release didn’t break onboarding',
-            line: 'Run the trial from sign up again after every release.',
+            line: 'Sign up again after every release.',
             example: 'After the switch to a new email tool, the day 3 email stopped. It was back the next morning.',
           },
           {
-            title: 'Match a rival’s offer, or don’t',
-            line: 'What rivals send their trial users, by day.',
-            example: 'Quillon: 40% off the first year on day 12. Hollin: 7 more days on day 13.',
+            title: 'Match a competitor’s offer, or don’t',
+            line: 'Ask Insights what competitors send their trial users.',
+            example: '3 of 5 project management apps email a discount before the trial ends. None show it on their pricing page.',
           },
           {
             title: 'Benchmark your onboarding',
-            line: 'How many emails, how soon and what each asks for, against 5 rivals.',
-            example: 'Larkfield sends 4 emails in 14 days. Its rivals send 6 to 11.',
+            line: 'How many emails, how soon and what each asks for, against 5 competitors.',
+            example: 'Larkfield sends 4 emails in 14 days. Its competitors send 6 to 11.',
           },
         ],
       },
@@ -185,52 +162,52 @@ export const study: UseCaseStudy = {
     },
     sample: {
       label: '1 real run',
-      title: 'Sample output',
-      line: 'A UK store checked in September 2026: 1 basket and 1 checkout left, and nobody wrote to either in 48 hours.',
+      title: 'Sample data',
+      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
       cta: { label: 'See it', to: '/sample-output' },
     },
   },
 
-  fine: 'Larkfield, its rivals and their .example addresses, every email, offer and figure here are made up.',
+  fine: 'Larkfield, its competitors and their .example addresses, every email, offer and figure here are made up.',
 
   faq: {
     heading: 'What software teams ask.',
     items: [
       {
         q: 'What does Obsession do for software companies?',
-        a: 'Obsession sends AI customers to a software company’s own sign up and to its rivals’, each with its own inbox, phone number and browser. Each one starts a trial, opens every email and link that follows, and stays to the end of the trial. Every dead link, missing email and rival offer comes back with its proof.',
+        a: 'Obsession records what software companies show only to signed-up users: onboarding emails, trial limits, upgrade prompts, signed-in prices and cancel offers. Each fact is dated, with the email or a screenshot, for your own product and your competitors. Look up one app, or ask a question across many.',
       },
       {
-        q: 'Will the AI customers show up in our numbers?',
-        a: 'Only if you let them. Each one signs up from an address you can recognise, so you can leave them out of your sign ups, trials and churn.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up, start trials and cancel the way any user can, from the customer profiles and countries you choose, and keep each account open for months. Every email is kept as it arrived, with its sender checked.',
       },
       {
-        q: 'Is it allowed to start a rival’s trial?',
-        a: 'An AI customer does only what any new user can, through the sign up anyone can use, and says it’s an AI when it talks to a person. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
-        link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
+        q: 'Will these sign-ups show up in our numbers?',
+        a: 'Only if you let them. Each one signs up from an address you can recognise, so you can leave them out of your sign-ups, trials and churn.',
+      },
+      {
+        q: 'Is it allowed to start a competitor’s trial?',
+        a: 'Obsession does only what any user can, through the sign-up anyone can use. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
+        link: { label: 'Is it legal to sign up to a competitor?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
         q: 'Does it work for apps as well as websites?',
-        a: 'Yes. It signs up on the web or in your iOS or Android app, and follows every email and text that comes after.',
+        a: 'Yes. It signs up on the web or in your iOS or Android app, and keeps every email and text that comes after.',
       },
       {
         q: 'Does it pay for anything?',
         a: 'Only if you choose. A paid trial runs on a card you fund, never on fake payment details.',
       },
-      {
-        q: 'How often does it run?',
-        a: 'A new sign up every morning in this example, again after every release, or any rhythm you set.',
-      },
     ],
   },
 
   final: {
-    heading: 'Try it on your own trial.',
-    sub: 'Join the waitlist, and we’ll run your trial and 3 rivals’ for 14 days: every email, every link and every offer, with proof.',
+    heading: 'Which apps should we look up first?',
+    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-software-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'trial',
     },
   },

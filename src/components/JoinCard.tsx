@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEvent, type ReactNode } from 'react'
 import { catalog } from '../content/catalog'
 import { agencyTypes, clientAsks, join as copy, offers, roles, sizes } from '../content/join'
-import { JOBS } from '../content/nav'
+import { JOBS, jobLabel } from '../content/nav'
 import { MAX_BRANDS, askOf, brandOk, cleanBrands, go, listOf, patch, stepAfter, stepsOf, suggestionsOf, useJoin, type JoinState, type JoinStep } from '../lib/join'
 import { hostOf, isAddress } from '../lib/waitlist'
 import { retrySnapshot, saveStatus } from '../lib/waitlist'
@@ -488,7 +488,7 @@ export function JoinCard({ owner }: { owner: boolean }) {
             )}
             {JOBS.map((job) => (
               <div className="s-join__group" key={job}>
-                <p className="s-join__glabel">{job}</p>
+                <p className="s-join__glabel">{jobLabel(job)}</p>
                 <div className="ob-chips">{catalog.recipes.filter((r) => r.group === job && !tips.includes(r.id)).map(chip)}</div>
               </div>
             ))}

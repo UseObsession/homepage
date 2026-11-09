@@ -1,43 +1,23 @@
 import type { UseCaseStudy } from '../types'
 
-/* Member prices for price intelligence (/use-cases/member-prices-for-price-intelligence): James's worked example,
-   moved into typed content in the rebuild's story order (types.ts, "Use case studies"). A price intelligence firm adds
-   what retailers show only after sign up to 1 client's coffee basket, across 120 Italian grocery retailers. Every
-   name, product, price and figure is invented and the page says so.
-   Kept from James: the cast and the Italian member-price details (Corvalle, Mirtena, Milano Centro, Brand A macinato
-   250 g at 3,19 € and 2,69 €, "Solo con la Carta", the 5 to 11 October coffee offer, the codice fiscale wall), his 8
-   steps in 3 phases, the picks, the you keep and Obsession runs split, the 6 things to sell, his questions and the
-   final offer.
-   Fixed (copy rules): inboxes and phones are kept open continuously, not "for weeks"; "the identities" is "the
-   members", so nothing reads as an invented identity; numerals; no meta headings.
-   Rules (19 Oct, in line with /recipes/price-watch): only the 3 lines in obsession/system.md hold. Baskets, delivery
-   fees and real orders are the firm's setting; a member says it is AI when it talks to a person, and uses no fake
-   payment details or made up tax codes. meta.answer opens with the sub on James's page (src/legacy/james), which
-   draws this address; these words give its head, its JSON-LD and its card in the nav and on /use-cases.
-   Narrative edit (3 Oct): the hero is a complete claim and names the declared AI members; How says what the firm sends
-   and what each member does; the things to sell read as 6 jobs, each example true to the screens (Brand A's macinato
-   16% off for Corvalle members, Rival B's 21%); the proof's 2 steps say what each row holds and where it sits; the real
-   run's line states what it found.
-   Rewritten 19 Oct (James) in the site's October voice, as the agencies example was: the firm becomes a customer of
-   every retailer it tracks, and keeps the receipts. No "Example" chips and no "test customer": the retailers are
-   .example addresses and `fine` says what is made up. The hero keeps James's 3 stop flow (what you collect, your
-   platform, your clients); `flow` mirrors it.
-   James's page (src/legacy/james) draws this address. It reads its headline, its sub, its questions and its small print
-   from here, so the head, the JSON-LD and the page say the same words; meta.answer is the first answer. These words
-   also give its card in the nav and on /use-cases.
-   Screens: members (the collecting), memberfeed (what lands in the platform). The set up phase shows its chips. */
+/* Member prices for price intelligence (/use-cases/member-prices-for-price-intelligence), 9 Nov rewrite: the prices and
+   offers retailers show only signed-in members, beside the public price, per store, dated with a screenshot and fed to a
+   price intelligence firm's platform (a file, a webhook the day a price moves, the API, Search and Insights). James's
+   Italian grocery cast stays (Corvalle, Brand A macinato at 3,19 € and 2,69 €, "Solo con la Carta"); every name, price
+   and figure is invented and `fine` says so. James's page (src/legacy/james) draws this address and reads the headline,
+   sub, questions and small print from here; `hero.flow` mirrors his flow and meta.answer is the first answer. */
 
 export const study: UseCaseStudy = {
   name: 'Member prices for price intelligence',
-  line: 'What retailers show only after sign up, fed to your platform.',
+  line: 'Signed-in prices beside public ones, per competitor, over time.',
 
   meta: {
     path: '/use-cases/member-prices-for-price-intelligence',
-    title: 'Member price intelligence: what retailers show only members',
+    title: 'Member prices beside public ones, for price intelligence',
     description:
-      'Send AI customers to every retailer you track: each signs up, reads member prices beside public ones and sends each offer with its proof.',
+      'The prices and offers retailers show only signed-in members, beside the public price, per store, each dated with its screenshot. As a feed, table or API.',
     answer:
-      'Obsession sends AI customers to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
+      'Obsession collects the prices retailers show only to signed-in members, beside the public price, per store, each dated with its screenshot. Price intelligence teams get each gap and its history as a file, a table, a webhook or by API. A retailer not covered yet is added on request, from the customer profile and city they pick.',
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,19 +29,19 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Send AI customers to every retailer you track.',
-    sub: 'You already collect flyers, shelves, online prices and newsletters. An AI customer signs up at every retailer you track and brings back what only members see: member prices, welcome coupons and the offers that arrive days later. Each one lands in your platform with its receipt.',
+    headline: 'Member prices beside public ones, at every retailer you track.',
+    sub: 'The price a signed-in member sees, the welcome coupon and the offers that follow by email and text, per store, each dated with its screenshot. In your platform as one more source, with nobody signing in to 120 retailers by hand.',
     example: { chips: [] },
     flow: [
       {
         label: 'What you collect',
         title: 'Your sources',
-        items: ['Flyers', 'Shelves', 'Online prices', 'Newsletters', 'After sign up, new'],
+        items: ['Flyers', 'Shelves', 'Online prices', 'Newsletters', 'Signed in, new'],
         foot: 'Member prices · coupons · later offers',
       },
       {
         label: 'Your platform',
-        title: '1 more domain',
+        title: '1 more source',
         items: ['Matched to your product database', 'On your promo calendar', 'In your alerts and raw data'],
         foot: 'Your team, your analysis',
       },
@@ -75,58 +55,58 @@ export const study: UseCaseStudy = {
     capture: {
       kind: 'waitlist',
       source: 'usecase-price-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'prices',
     },
   },
 
   how: {
-    heading: 'You choose the retailers and the basket. An AI customer joins each one.',
+    heading: 'You name the retailers and the basket. Obsession signs in at each one.',
     sub: 'A price intelligence firm adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers.',
     steps: [
       {
         title: 'Set it up',
-        line: 'The retailers, the basket and the cities, what to capture, and how it arrives.',
-        chips: ['Every price read signed out, then signed in', 'The store and city on every price', 'Inbox and phone open for 30 days', 'Never invents identity details'],
+        line: 'The retailers, the basket, the cities and where it lands.',
+        chips: ['Every price read signed out, then signed in', 'The store and city on every price', 'Each account kept open', 'Never invents identity details'],
         steps: [
           {
-            title: 'Send the retailers and the basket',
-            line: 'The retailers to join, the products to read and the cities to shop from. Use the tracking basket you already run for the client.',
-            example: 'The firm sends 120 grocery retailers, the 40 item coffee basket it already tracks for its client, and 3 cities: Milano, Roma and Napoli.',
+            title: 'Name the retailers and the basket',
+            line: 'The retailers, the products and the cities to shop from. Use the basket you already track for the client.',
+            example: 'The firm names 120 grocery retailers, the 40 item coffee basket it tracks for its client, and 3 cities: Milano, Roma and Napoli.',
           },
           {
             title: 'Choose what to capture',
-            line: 'Public and member price on every basket item, the welcome offer, and everything that arrives after sign up. Fixed rules decide each reading, so the same page always gives the same answer.',
-            example: 'Member prices every week, to follow the promotion cycle, daily around Black Friday, and every email and text for 30 days after joining.',
+            line: 'Public and member price on every item, the welcome offer, and every email and text after sign-up. Fixed rules decide each reading, so the same page always gives the same answer.',
+            example: 'Member prices every week, daily around Black Friday, and every email and text as it arrives.',
           },
           {
-            title: 'Choose how it arrives',
-            line: 'A feed in the shape your platform already takes: 1 row per observation, with the image link. Matching to your product database stays with your team.',
-            example: 'The firm takes a daily file, plus a webhook for anything that arrives between files.',
+            title: 'Choose where it lands',
+            line: 'A file in the shape your platform takes, 1 row per observation with its screenshot, or a webhook the day a price moves. Product matching stays with your team.',
+            example: 'The firm takes a daily file, plus a webhook for anything between files.',
           },
         ],
       },
       {
         title: 'Obsession does the collecting',
-        line: '30 days in this example. Each retailer gets its own AI customer, and every reading has its screenshot.',
+        line: '30 days in this example, and each account stays open after. Every reading has its screenshot.',
         screen: 'members',
-        chips: ['Its own inbox', 'An Italian mobile number', 'A browser set to the city', 'Says it’s AI'],
+        chips: ['Member · Milano', 'Its own inbox', 'An Italian mobile number', 'Says it’s AI'],
         steps: [
           {
-            title: 'Each retailer gets its own AI customer',
-            line: 'A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI.',
+            title: 'Each retailer gets its own member account',
+            line: 'Its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person.',
             example:
               'Corvalle, Milano Centro: joined with the newsletter and texts ticked at 09:03, the welcome email and its coupon came at 09:04, and all 40 basket items were read signed out and in by 09:06.',
           },
           {
             title: 'Signed out and signed in, side by side',
-            line: 'Every basket item is read twice on the same page, minutes apart, with a screenshot of each. A member price only counts when both readings agree on the product and the store.',
+            line: 'Every item is read twice on the same page, minutes apart, with a screenshot of each. A member price counts only when both readings agree on the product and the store.',
             example:
               '14 of 40 items carry a member price at Corvalle, 11% off on average and 21% at most. Brand A macinato 250 g: 3,19 € for everyone, 2,69 € with the card.',
           },
           {
-            title: 'It keeps the inbox open',
-            line: 'Welcome offers, member emails, texts and win back coupons arrive over days and weeks. Each one is captured as it lands, with its dates and conditions.',
+            title: 'The account stays open',
+            line: 'Welcome offers, member emails, texts and win back coupons arrive over days and weeks. Each is kept as it lands, with its dates and conditions.',
             example:
               'Day 7, by text: “Solo con la Carta: −20% sul caffè fino a domenica 11/10”, 20% off coffee for card holders, 5 to 11 October. Day 21: a win back coupon, 10 € off 50 €, until Friday.',
           },
@@ -137,12 +117,12 @@ export const study: UseCaseStudy = {
 
   problem: {
     heading: 'A crawler sees the shop window. A member sees the shop.',
-    sub: 'Retailers keep their sharpest prices and offers for people who’ve joined. None of it shows on a public product page or in the flyer.',
+    sub: 'Retailers keep their sharpest prices and offers for signed-in members. None of it is on the public product page or in the flyer.',
     items: [
       { title: 'Member prices', line: 'The price shown once you’re signed in, or with the loyalty card linked to the account.' },
       { title: 'Welcome coupons', line: 'The code or credit that lands after joining, and what it takes to use it.' },
       { title: 'Offers that arrive later', line: 'The email on day 3, the text on day 7, the win back coupon after 3 weeks.' },
-      { title: 'Prices by store', line: 'Online prices change once you pick a store or a postcode. Each AI customer shops from the city you choose.' },
+      { title: 'Prices by store', line: 'Online prices change once you pick a store or a postcode. Each account shops from the city you choose.' },
     ],
     answer:
       'Each observation is dated and tied to a retailer and a store, with the screenshot or the message itself, like the flyer pages and newsletters you already collect.',
@@ -161,11 +141,11 @@ export const study: UseCaseStudy = {
     },
     ours: {
       label: 'Obsession runs',
-      heading: 'The AI customers, the inboxes and the waiting.',
+      heading: 'The accounts, the inboxes and the waiting.',
       items: [
-        'An AI customer per retailer and city, with its own inbox, Italian mobile number and browser',
-        'The sign ups, the store choice and the readings on your basket',
-        'Inboxes and phones kept open for as long as you watch',
+        'A member account per retailer and city, with its own inbox, Italian mobile number and browser',
+        'The sign-ups, the store choice and the readings on your basket',
+        'Each account kept open for as long as you track it',
         'A screenshot or the message behind every observation',
       ],
     },
@@ -210,7 +190,7 @@ export const study: UseCaseStudy = {
             example: '14 of 40 items carry a member price at Corvalle.',
           },
           {
-            title: 'Map the sequence after sign up',
+            title: 'Map the messages after sign-up',
             line: 'Every email and text a competitor sends new members, by day.',
             example: '9 messages in 30 days, 3 with a coupon.',
           },
@@ -221,18 +201,18 @@ export const study: UseCaseStudy = {
 
   proof: {
     heading: 'Member offers land in your platform, next to flyers and newsletters.',
-    line: 'Each arrives as a row with its proof, in the feed your platform already takes.',
+    line: 'Each arrives as a row with its screenshot, in the feed your platform already takes.',
     screen: 'memberfeed',
     steps: [
       {
-        title: 'A full record behind every observation',
-        line: 'Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations already do.',
+        title: 'A record behind every observation',
+        line: 'Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations.',
         example:
-          'Corvalle, SMS to members, Mon 5 Oct 2026, 11:15: 20% off coffee for card holders, valid 5 to 11 October in all stores, with the message as received.',
+          'Corvalle, text to members, Mon 5 Oct 2026, 11:15: 20% off coffee for card holders, valid 5 to 11 October in all stores, with the message as received.',
       },
       {
         title: '1 more line on your promo calendar',
-        line: 'Member offers sit beside flyers, web campaigns and newsletters, so your client sees every channel at once: did the coffee promotion reach the flyer, the website, the newsletter or only the members?',
+        line: 'Member offers sit beside flyers, web campaigns and newsletters, so your client sees whether the coffee promotion reached the flyer, the website, the newsletter or only the members.',
         example:
           'Only members saw it. 5 to 11 October: 20% off coffee for card holders. That week’s flyer had no coffee, and no web campaign or newsletter mentioned it.',
       },
@@ -248,55 +228,55 @@ export const study: UseCaseStudy = {
     },
     sample: {
       label: '1 real run',
-      title: 'Sample output',
-      line: 'A UK store checked in September 2026: 1 basket and 1 checkout left, and nobody wrote to either in 48 hours.',
+      title: 'Sample data',
+      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
       cta: { label: 'See it', to: '/sample-output' },
     },
   },
 
-  fine: 'The firm, its client, the retailers and their .example addresses, the products, the prices and every figure here are made up, and no real retailer’s prices or offers are shown.',
+  fine: 'The firm, its client, the retailers and their .example addresses, the products, the prices and every figure here are made up. No real retailer’s prices or offers are shown.',
 
   faq: {
     heading: 'What price intelligence teams ask.',
     items: [
       {
-        q: 'What does Obsession do for price intelligence firms?',
-        a: 'Obsession sends AI customers to every retailer a price intelligence firm tracks, each with its own inbox, mobile number and browser. Each signs up, reads the member price beside the public one and keeps every coupon and offer that arrives after. Each observation lands in the firm’s platform with its receipt.',
+        q: 'What does Obsession do for price intelligence teams?',
+        a: 'Obsession collects the prices retailers show only to signed-in members, beside the public price, per store, each dated with its screenshot. Price intelligence teams get each gap and its history as a file, a table, a webhook or by API. A retailer not covered yet is added on request, from the customer profile and city they pick.',
       },
       {
-        q: 'Do you need access to our platform?',
-        a: 'No. Obsession delivers a feed, by file, API or webhook, with the fields you choose. It loads into your platform like any other source.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up and sign in the way any customer can, from the customer profiles and cities you choose, and keep each account open for months. Every price is read signed out and signed in on the same page, with a screenshot of each.',
+      },
+      {
+        q: 'What if a retailer isn’t covered yet?',
+        a: 'Click Watch. Obsession signs up as the customer profile and city you pick, keeps the account open, and every price and message joins the index the day it arrives. A retailer already covered returns its history at once.',
+      },
+      {
+        q: 'Can we look up 1 retailer without a feed?',
+        a: 'Yes. Search any retailer for its member prices, its offers and the screenshot behind each. Insights asks 1 question across many, like “Which retailers show members a lower coffee price than guests?”, and answers with a row per retailer.',
       },
       {
         q: 'Who matches products to our database?',
-        a: 'Your team, as it does today: Obsession sends the product as the retailer shows it, the EAN when the page carries one, and the screenshot, so your product specialists can link it.',
+        a: 'Your team, as it does today. Obsession sends the product as the retailer shows it, the EAN when the page carries one, and the screenshot, so your product specialists can link it.',
       },
       {
         q: 'What about loyalty cards that need a tax code or a card from the store?',
-        a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, the AI customer stops there and reports it, so you know exactly where the wall is.',
+        a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, it stops there and says so, so you know where the wall is.',
       },
       {
-        q: 'Do the AI customers buy anything?',
-        a: 'Not in this example. Obsession’s AI customers sign up, choose a store and read what members see. If you choose, an AI customer fills a basket to read the delivery fee and the total. Real orders go on a card you fund, never on fake payment details.',
-      },
-      {
-        q: 'How often does Obsession run it?',
-        a: 'Obsession runs it weekly to follow promotion cycles, daily around key dates such as Black Friday, or any rhythm you set per retailer.',
-      },
-      {
-        q: 'Will our clients see Obsession?',
-        a: 'Only if you want them to: Obsession’s data comes to you, and you decide how it appears in your platform.',
+        q: 'Does it buy anything?',
+        a: 'Not in this example. If you choose, it fills a basket to read the delivery fee and the total. A real order goes on a card you fund, never on fake payment details.',
       },
     ],
   },
 
   final: {
-    heading: 'Try it on 10 retailers.',
-    sub: 'Join the waitlist, and we’ll run 10 retailers and 1 tracking basket: member prices, coupons and what arrives after sign up, as a feed.',
+    heading: 'Which retailers should we look up first?',
+    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-price-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'prices',
     },
   },

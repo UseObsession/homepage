@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function ResolutionScreen() {
   return (
-    <div className="il appx-il app-resolution"><div className="appx-fit"><div className="appx" role="img" aria-label="Resolution check for Your company: 100 resolutions Vendor A billed in September at $0.99 each, set against what the customer really got, from your helpdesk and payments with consent and an AI customer whose tests are tagged and never billed. 19 were not real, like a refund the bot called done that was never issued, so you click Challenge with evidence and a signed dispute pack goes to the vendor.">
+    <div className="il appx-il app-resolution"><div className="appx-fit"><div className="appx" role="img" aria-label="Resolution check for Your company: 100 resolutions Vendor A billed in September at $0.99 each, set against what the customer really got, from your helpdesk and payments with consent and a test persona whose tests are tagged and never billed. 19 were not real, like a refund the bot called done that was never issued, so you click Challenge with evidence and a signed dispute pack goes to the vendor.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Resolution check</span>
@@ -26,7 +26,7 @@ export function ResolutionScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="rsl-h ax-fade">
@@ -82,7 +82,7 @@ export function ResolutionScreen() {
                 <div className="ax-fade" style={{ '--d': '.42s' }}><dt>Chat</dt><dd><span className="q">“Done. $24 is on its way.”</span><span className="m">Bot · 24 Sep 10:03</span></dd></div>
                 <div className="ax-fade" style={{ '--d': '.5s' }}><dt>Rule</dt><dd><span>Billed only if solved</span><span className="m">Vendor A terms 4.2</span></dd></div>
               </dl>
-              <div className="rsl-rt ax-fade" style={{ '--d': '.58s' }}><span className="rsl-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span><b>AI customer 2 · for Your company</b><span>Same ask, $40 test budget: no refund</span></div>
+              <div className="rsl-rt ax-fade" style={{ '--d': '.58s' }}><span className="rsl-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span><b>Persona 2 · for Your company</b><span>Same ask, $40 test budget: no refund</span></div>
               <footer className="rsl-sig ax-fade" style={{ '--d': '1.35s' }}><span>Signed</span><span className="ax-mono">ed25519 · 7f3a 91c2 … c91e</span></footer>
             </aside>
           </div>

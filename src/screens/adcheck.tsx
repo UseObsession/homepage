@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function AdcheckScreen() {
   return (
-    <div className="il appx-il app-adcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Ad landing check for Your company: every morning an Obsession AI customer opens each of 6 live search and social ads’ landing pages as a customer and checks it loads, the offer and price match the ad, and the item is in stock. Ad 4 sends clicks to a sold out lamp at $410 a day, so a fix is drafted; AM approves the pause and Ad 4 is paused, 36 minutes after it was flagged. $410 a day on a sold out lamp. Paused by AM, 36 min after the flag.">
+    <div className="il appx-il app-adcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Ad landing check for Your company: every morning Obsession opens each of 6 live search and social ads’ landing pages as a customer and checks it loads, the offer and price match the ad, and the item is in stock. Ad 4 sends clicks to a sold out lamp at $410 a day, so a fix is drafted; AM approves the pause and Ad 4 is paused, 36 minutes after it was flagged. $410 a day on a sold out lamp. Paused by AM, 36 min after the flag.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Ad landing check</span>
@@ -26,7 +26,7 @@ export function AdcheckScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="adc-h ax-fade">

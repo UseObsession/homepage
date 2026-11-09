@@ -1,41 +1,34 @@
 import type { Recipe } from '../types'
 
-/* Ad tracking (/recipes/ad-tracking). Watch rivals. Screen: ads.
-   Rewritten from James's "Ad tracking". Kept: following every ad to the page it lands on, the ad and the page side
-   by side, new and stopped ads with how long each ran. Kept his line that nobody pays for a click. His checks on your
-   own (or a client's) ads, sold out, offer mismatch, dead links and slow pages, moved to Ad landing check (3 Oct),
-   so this recipe is rivals only and the 2 never sell the same job.
-   Fixed: no platform names and no claim of collecting from any ad platform ("the ads they run in public", review
-   CL-10). The kit lists only what the run uses (review P2): the inbox is real, because where an ad offers a code for
-   signing up, the agent signs up and records what arrives. No phone. Each page is opened directly, because paid
-   clicks at volume on a rival's ads are the one thing here the law rules out (system.md, the 3 lines).
-   The run and the table tell the same story as the `ads` screen and the Marketing page's "Rival ads" use case
-   (Friday 07:06: Rival A's 9 new ads overnight, a gift set at £56, £2 under your £58; Rival C's ad at 41 days). Example.
-   Never £40 for a gift set here: that is the real September run's basket. */
+/* Ad tracking (/recipes/ad-tracking). A ready-made collection (9 Nov): the ads competitors run in public, read each
+   morning and followed to the page, price and code behind each one; where an ad offers a code for signing up,
+   Obsession signs up and keeps what arrives. Each page is opened directly, so no click is paid for. No platform names.
+   Competitors only: the reader's own ads are Ad landing check. The run and the table match the `ads` screen (Friday
+   07:06: Competitor A's 9 new ads, a gift set at £56, £2 under your £58). Example. Never £40 for a gift set here. */
 
 export const recipe: Recipe = {
   id: 'ads',
   slug: 'ad-tracking',
   name: 'Ad tracking',
   group: 'Watch other companies',
-  line: 'Reads the ads your competitors run in public and follows each one to its page, price and code.',
-  gets: 'Each new competitor ad and its offer, every morning, side by side with the page it lands on.',
+  line: 'The ads your competitors run in public, each followed to its page, price and code.',
+  gets: 'Each new competitor ad and its offer, every morning, beside the page it lands on.',
   kit: [
-    'An AI customer per competitor',
-    'Phone and desktop browsers',
-    'An inbox for sign up codes',
+    'The ads each competitor runs in public, read daily',
+    'Each landing page, on phone and desktop',
+    'An inbox for sign-up codes',
     'A check every morning',
-    'Screenshots of every ad and page',
-    'Every step signed and dated',
+    'A screenshot of every ad and page',
+    'Each page opened directly, so no click is paid for',
   ],
 
   meta: {
     path: '/recipes/ad-tracking',
-    title: 'Ad tracking: AI customers follow competitor ads to the offer',
+    title: 'Ad tracking: every competitor ad, followed to its offer',
     description:
-      'AI customers read the ads your competitors run in public each morning and follow each one to its page, price and code. Every new offer arrives with proof.',
+      'The ads your competitors run in public, read each morning and followed to the page, price and code behind each. Every new offer dated, with screenshots.',
     answer:
-      'Ad tracking follows your competitors’ ads to the offer behind each one: AI customers read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
+      'Ad tracking reads the ads your competitors run in public each morning and follows each one to its page, price and code. Every new offer lands dated, beside the ad that led to it.',
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,13 +38,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that follows your competitors’ ads to the offer behind each one.',
-    sub: 'Ad tracking follows your competitors’ ads to the offer behind each one: AI customers read the ads your competitors run in public each morning and open each one’s page, price and code. Every new offer reaches you next to yours, with proof.',
+    headline: 'Your competitors’ ads, followed to the offer behind each one.',
+    sub: 'Ad tracking reads the ads your competitors run in public each morning and follows each one to its page, price and code. Every new offer lands dated, beside the ad that led to it.',
     screen: 'ads',
     capture: {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'ads',
     },
   },
@@ -63,27 +56,27 @@ export const recipe: Recipe = {
     targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
     journey: ['Read the ads they run in public', 'Open each page on phone and desktop', 'Sign up where an ad offers a code', 'Compare the offer with yours'],
     schedule: 'Every morning at 07:00',
-    report: 'Slack alert, weekly PDF',
-    kit: ['Its own ID', 'Phone and desktop browsers', '3 inboxes, for sign up codes', 'Screenshots of every ad and page'],
+    report: 'Slack for new offers, a weekly PDF',
+    kit: ['Phone and desktop', '3 inboxes, for sign-up codes', 'Every morning', 'Screenshots of every ad and page'],
     events: [
       { time: 'Fri 07:00', text: 'Read the ads 3 competitors run in public. Competitor A started 9 overnight.' },
       { time: 'Fri 07:04', text: 'Opened the page behind Competitor A’s “Free gift over £40” ad, on phone and desktop.' },
       { time: 'Fri 07:06', text: 'That page shows code GIFT40 and a gift set at £56, £2 under yours.' },
-      { time: 'Fri 07:09', text: 'Competitor B’s ad offers 15% off for signing up. The AI customer signs up, and the code arrives in 2 minutes.' },
+      { time: 'Fri 07:09', text: 'Competitor B’s ad offers 15% off for signing up. Obsession signs up, and the code arrives in 2 minutes.' },
       { time: 'Fri 07:12', text: 'Competitor C’s free UK delivery ad has run 41 days, unchanged.' },
     ],
     finding: 'Competitor A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
-    fix: 'A reply for your £58 gift set, as an ad and an email, drafted for your OK.',
-    ledger: 'Example run. Every ad and page screenshotted on phone and desktop, and signed. Each page opened directly, so nobody paid for a click.',
+    fix: 'Posted to #pricing in Slack, with the ad and its page side by side.',
+    ledger: 'Example run. Every ad and page screenshotted on phone and desktop. Each page opened directly, so nobody paid for a click.',
   },
 
   steps: [
     {
-      title: 'Add the brands',
-      line: 'Your competitors, or a client’s competitors. Paste a list, upload a CSV, connect Clay or use the API.',
+      title: 'Name the brands',
+      line: 'Your competitors, or a client’s. Paste a list, upload a CSV, connect Clay or call the API.',
     },
     {
-      title: 'An AI customer reads their ads',
+      title: 'Obsession reads their ads',
       line: 'The ads they run in public, each morning: the words, the image or video, and the day each started.',
     },
     {
@@ -91,8 +84,8 @@ export const recipe: Recipe = {
       line: 'To its page, opened directly on phone and desktop. Where an ad offers a code for signing up, it signs up and keeps what arrives.',
     },
     {
-      title: 'You get the offer next to yours',
-      line: 'An alert each morning a competitor has a new offer, with the ad and its page side by side.',
+      title: 'Every offer lands, dated',
+      line: 'The ad and its page side by side, in Slack, a table or from the API.',
     },
   ],
 
@@ -109,18 +102,18 @@ export const recipe: Recipe = {
       group: 'Where each ad lands',
       items: [
         { title: 'The page', line: 'Opened directly on phone and desktop, with the price, stock and offer it shows.' },
-        { title: 'Sign up offers', line: 'Where an ad offers a code for signing up, the AI customer signs up and records what arrives, and when.' },
+        { title: 'Sign-up offers', line: 'Where an ad offers a code for signing up, Obsession signs up and keeps what arrives, and when.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every new competitor offer reaches you with its ad and its page.',
+    heading: 'Every new competitor offer, with its ad and its page.',
     items: [
-      { format: 'Slack or email alert', line: 'Each morning a competitor has a new offer, with the ad and the page side by side.' },
+      { format: 'Slack or email', line: 'Each morning a competitor has a new offer, with the ad and the page side by side.' },
       { format: 'Ad timeline', line: 'Every ad each competitor starts and stops, and how long it ran.' },
       { format: 'Weekly PDF', line: 'What every competitor is pushing, and the ads they keep running.' },
-      { format: 'Sheet, Clay or webhook', line: 'Each ad, page and offer as a row, a column or JSON.' },
+      { format: 'A table, webhook or API', line: 'Each ad, page and offer as a row in Clay, JSON at your endpoint, or a fact from the API.' },
     ],
   },
 
@@ -132,9 +125,9 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'See every ad each client’s competitors run in public, followed to its page, price and code.' },
-    { audience: 'marketing', line: 'See the offer behind every competitor ad the morning it starts.' },
-    { audience: 'founders', line: 'See what your competitors are pushing this week, and the price behind it.' },
+    { audience: 'agencies', line: 'Every ad each client’s competitors run in public, followed to its page, price and code.' },
+    { audience: 'marketing', line: 'The offer behind every competitor ad, the morning it starts.' },
+    { audience: 'founders', line: 'What your competitors are pushing this week, and the price behind it.' },
   ],
 
   table: {
@@ -151,46 +144,32 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Nobody pays for a click, and every offer comes with its proof.',
+    heading: 'Nobody pays for a click. Every offer is dated, with its screenshot.',
     items: [
       {
-        q: 'How do I see what happens after a competitor’s ad, not just the ad?',
-        a: 'Obsession’s Ad tracking opens the page each public ad points to on phone and desktop, signs up where the ad offers a code, and logs the offer behind every ad next to yours.',
-      },
-      {
-        q: 'What’s it worth?',
-        a: 'Ad tracking gives your team up to 18 hours a month back, if it spends 90 minutes a week on each of 3 competitors. The AI customers do the checking, and you read what changed.',
+        q: 'How do I see what happens after a competitor’s ad, not only the ad?',
+        a: 'Ad tracking opens the page each public ad points to on phone and desktop, signs up where the ad offers a code, and keeps the offer behind every ad, dated.',
       },
       {
         q: 'Does Ad tracking click on paid ads?',
-        a: 'No. Ad tracking reads the ads in the public ad libraries and opens each landing page from its link, so nobody pays for a click.',
+        a: 'No. It reads the ads in the public ad libraries and opens each landing page from its link, so nobody pays for a click.',
       },
       {
-        q: 'Which ads does Ad tracking read?',
-        a: 'Ad tracking reads the ads your competitors run in public, and opens the page each one points to, on phone and desktop.',
+        q: 'Does it sign up at competitors?',
+        a: 'Where an ad offers a code for signing up, yes, so you see what a new customer gets. Who asked is never shown.',
       },
-      {
-        q: 'Does Ad tracking sign up at competitors?',
-        a: 'Yes, where an ad offers a code for signing up, so you see what a new customer gets. You stay private unless you choose to be named. When an AI customer talks to a person, it says it’s an AI.',
-      },
-      {
-        q: 'Can Ad tracking check our own ads, or a client’s?',
-        a: 'That’s Obsession’s Ad landing check: each morning an AI customer opens the page every live ad of yours points to, and drafts the fix for your OK. Ad tracking follows the ads competitors run in public.',
-      },
-      {
-        q: 'How many brands can Ad tracking follow?',
-        a: 'Ad tracking follows as many as you add. Name them or paste a list, and it reads their ads every morning, continuously.',
-      },
+      { q: 'Can it check our own ads?', a: 'That’s Ad landing check: every live ad of yours, opened from its link each morning.' },
+      { q: 'How many brands can it follow?', a: 'As many as you name, every morning, for as long as you need.' },
     ],
   },
 
   final: {
     heading: 'See the offer behind your competitors’ ads.',
-    sub: 'Join the waitlist. Ad tracking comes ready to run on the competitors you name.',
+    sub: 'Early access includes every brand already covered, and up to 5 added for you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'ads',
     },
   },

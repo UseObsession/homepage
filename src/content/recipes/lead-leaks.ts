@@ -1,206 +1,193 @@
 import type { Recipe } from '../types'
 
-/* Lead leaks (/recipes/lead-leaks; /recipes/speed-to-lead redirects here for good, public/_redirects). Renamed from
-   Speed to lead on 3 Oct (Seun's pick, from the "leaky funnel"); the id stays 'speed', and the copy keeps "speed to
-   lead" in the title, description, answer and questions, because that is the term buyers search.
-   Kept James's reply checks (first reply, channel, follow ups, callbacks logged as replies, automatic replies apart).
-   Rules: only the 3 lines in system.md. It runs on the reader's own form, chat and phone, or a client's with the
-   client's agreement (said once, in the steps). A test lead, an AI agent that says it is an AI to any person it talks
-   to, times every first reply and checks who got it in the CRM the reader connects; whether it also says it's a test
-   from the reader is the reader's setting. The run is an example, matches the `inbound` screen, and says so; the
-   table tells the same story.
-   This recipe proves every channel still lets leads in. */
+/* Speed to lead (/recipes/lead-leaks; /recipes/speed-to-lead redirects here, public/_redirects; the id stays 'speed').
+   Recast 9 Nov (James rejected selling speed-to-lead alerts to the companies that leak leads): a ready-made
+   collection of how fast, and how well, other companies answer a new enquiry, for the competitors, prospects or market
+   the reader names. Obsession asks by form, chat, email and phone as the buyer profile the reader picks, says it is an
+   AI to anyone who talks to it, and times and keeps every reply. Who asked is never shown. The run and the table are
+   1 example (5 invented payroll companies at .example addresses) and say so. */
 
 export const recipe: Recipe = {
   id: 'speed',
   slug: 'lead-leaks',
-  name: 'Lead leaks',
+  name: 'Speed to lead',
   group: 'Check your own journeys',
-  line: 'Sends an AI customer through your own form, chat and phone as a test lead, and finds where leads leak.',
-  gets: 'Your speed to lead on every channel, who picked each lead up, and every lead that slipped through.',
+  line: 'How fast, and how well, companies answer a new enquiry by form, chat, email and phone.',
+  gets: 'Each company’s time to first reply on every channel, what the reply said, and the enquiries nobody answered.',
   kit: [
-    'An AI customer as your test lead',
-    'Its own inbox and phone number',
-    'A timer on every enquiry',
-    'Tests at the times you pick',
-    'Your CRM, if you connect it',
-    'Every test kept with its receipt',
+    'An enquiry at each company, as the buyer you pick',
+    'An inbox and phone number for each enquiry',
+    'Forms, chat, email and phone',
+    'Enquiries at the hours you choose',
+    'Every reply timed to the second',
+    'Every reply kept: the email, the transcript, the call',
   ],
 
   meta: {
     path: '/recipes/lead-leaks',
-    title: 'Lead leaks: test your speed to lead every day · Obsession',
+    title: 'Speed to lead data: how fast companies answer · Obsession',
     description:
-      'Speed to lead, tested: an AI customer, as a test lead, uses your own form, chat and phone, times every first reply and finds the leads your team never answered.',
+      'How fast companies answer a new enquiry by form, chat, email and phone, and what they say. Every reply timed and kept, for any company you name.',
     answer:
-      'Lead leaks is a speed to lead test for your own funnel: an AI customer, as a test lead, uses your form, chat and phone, times every first reply and shows you each lead your team never answered.',
+      'Speed to lead records how fast, and how well, companies answer a new enquiry. Obsession asks by form, chat, email and phone, as the buyer profile you pick, and times and keeps every reply.',
     ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Recipes', path: '/recipes' },
-      { name: 'Lead leaks', path: '/recipes/lead-leaks' },
+      { name: 'Speed to lead', path: '/recipes/lead-leaks' },
     ],
   },
 
   hero: {
-    headline: 'Find every lead your form, chat and phone let slip.',
-    sub: 'Lead leaks is a speed to lead test for your own funnel: an AI customer, as a test lead, uses your form, chat and phone, times every first reply and shows you each lead your team never answered.',
+    headline: 'How fast every company answers a new enquiry.',
+    sub: 'Speed to lead records how fast, and how well, companies answer a new enquiry. Obsession asks by form, chat, email and phone, as the buyer profile you pick, and times and keeps every reply.',
     screen: 'inbound',
     capture: {
       kind: 'waitlist',
       source: 'recipe-speed-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'speed',
     },
   },
 
   run: {
-    tab: 'Example: your inbound, daily',
+    tab: 'Example: 5 payroll companies, 1 demo request',
     recipe: 'speed',
-    task: 'At 09:00, 13:00 and 17:00 every day, send a test lead through our demo form, site chat and sales line. Time each first reply and tell me who got it.',
-    targets: 'Your own demo form, site chat and sales line',
+    task: 'Ask 5 payroll software companies for a demo at 09:00 on Tuesday, by form, chat and phone. Time each first reply and keep what they say.',
+    targets: 'paytide.example, ledgerly.example, wagewise.example, staffbook.example, runpay.example',
     journey: ['Fill the demo form', 'Open the site chat', 'Call the sales line', 'Time each first reply'],
-    schedule: 'Daily at 09:00, 13:00 and 17:00',
-    report: 'A Slack alert, a daily line in your CRM',
-    kit: ['AI customer as test lead', 'Own inbox', 'Own phone number', 'Your CRM, connected by you'],
+    schedule: 'Tuesday at 09:00, replies watched for 3 days',
+    report: 'A table, 1 row per company and channel',
+    kit: ['Buyer: 40-person firm, UK', '5 inboxes', '5 phone numbers', 'Every reply timed'],
     events: [
-      { time: '09:00', text: 'The AI customer fills the demo form, opens the site chat and calls the sales line.' },
-      { time: '09:01', text: 'Site chat answers in 38 seconds. The lead lands in your CRM with an owner.' },
-      { time: '09:01', text: 'The sales line rings out. No voicemail, and no callback yet.' },
-      { time: '13:12', text: 'Demo form: first reply after 4 hours 12 minutes. In your CRM with no owner.' },
-      { time: '17:00', text: 'Routing fix approved. Tested again: first reply in 3 minutes 40 seconds.' },
+      { time: 'Tue 09:00', text: 'Demo forms filled, chats opened and sales lines called at all 5.' },
+      { time: 'Tue 09:01', text: 'Paytide’s chat answers in 38 seconds. Its sales line picks up.' },
+      { time: 'Tue 09:02', text: 'Staffbook’s chat answers in 2 minutes. Its sales line rings out.' },
+      { time: 'Tue 09:04', text: 'Ledgerly calls back in 4 minutes.' },
+      { time: 'Tue 13:12', text: 'Wagewise emails a reply after 4 hours 12 minutes, with a price list.' },
+      { time: 'Fri 09:00', text: 'Runpay: no reply on any channel after 3 days.' },
     ],
-    finding: '2 leaks: the sales line rang out with no callback, and the demo form waited 4 hours 12 minutes with no owner in your CRM.',
-    fix: 'A routing rule drafted: form and phone leads go to the next free rep within 1 minute. Live after your OK.',
-    ledger: 'Example run. Every test lead timed, every reply kept with its receipt.',
+    finding: '3 of 5 answer a channel inside 5 minutes. Runpay answered nothing in 3 days.',
+    fix: 'In your table: 15 rows, 1 per company and channel, each with the reply itself.',
+    ledger: 'Example run. Every enquiry timed, every reply kept with its receipt.',
   },
 
   steps: [
     {
-      title: 'Point it at your own channels',
-      line: 'Your forms, chat, phone lines and inbox, or a client’s with the client’s agreement.',
+      title: 'Name the companies',
+      line: 'Your competitors, the prospects you sell to, or a whole market. Paste a list or call the API.',
     },
     {
-      title: 'Your AI customer gets in touch',
-      line: 'It uses each channel the way a buyer does, at the times you pick, and says it’s AI to anyone who talks to it.',
+      title: 'Pick the buyer',
+      line: 'Who asks, from where, and what: a 40-person firm in the UK asking for a demo, or a homeowner asking for a quote.',
     },
     {
-      title: 'Every reply is timed',
-      line: 'From the second the enquiry lands to the first answer, on any channel, and who in your CRM picked it up.',
+      title: 'Obsession gets in touch',
+      line: 'By form, chat, email and phone, at the hours you choose. It says it’s an AI to anyone who talks to it.',
     },
     {
-      title: 'You see every leak',
-      line: 'Missed calls, forms with no owner and chats nobody answers, with the routing fix drafted for your OK and tested again.',
+      title: 'Every reply lands, timed',
+      line: 'From the second the enquiry was sent to the first answer, with the reply itself: the email, the transcript or the call.',
     },
   ],
 
   checks: [
     {
-      group: 'How it gets in touch',
+      group: 'How it asks',
       items: [
         { title: 'Web forms', line: 'Demo, contact and quote forms, filled the way a buyer fills them.' },
-        { title: 'Site chat', line: 'Whether the bot or a person answers, and how fast.' },
-        { title: 'Phone lines', line: 'Whether the call is picked up, goes to voicemail or gets a callback, and when.' },
-        { title: 'Email and text', line: 'Your published address and texting number, where you list them.' },
+        { title: 'Site chat', line: 'Whether a bot or a person answers.' },
+        { title: 'Phone', line: 'Whether the line picks up, goes to voicemail or calls back.' },
+        { title: 'Email', line: 'The published sales or enquiry address.' },
       ],
     },
     {
-      group: 'What it measures',
+      group: 'What it records',
       items: [
-        { title: 'Speed to lead', line: 'From the enquiry to the first answer, on any channel.' },
-        { title: 'Channel', line: 'Whether your team replies the way it was asked, or calls instead.' },
-        { title: 'Who got it', line: 'Whether the lead reached your CRM, and whether anyone owns it.' },
-        { title: 'Follow ups', line: 'How many times your team chases, and for how long.' },
+        { title: 'Time to first reply', line: 'On any channel, from the second the enquiry was sent.' },
+        { title: 'The reply itself', line: 'What they offered: a call, a price, a brochure or a question back.' },
+        { title: 'Follow ups', line: 'How many times they chase, on which channel, and for how long.' },
+        { title: 'Out of hours', line: 'What an enquiry at 21:00 on a Friday gets.' },
       ],
     },
     {
-      group: 'Where leads leak',
+      group: 'Where it stops',
       items: [
-        { title: 'No reply', line: 'A form or an email that nobody answers inside the window you set.' },
-        { title: 'No owner', line: 'A lead that reaches your CRM and sits there with nobody on it.' },
-        { title: 'Missed calls', line: 'A line that rings out, a full voicemail, or a callback that never comes.' },
-        { title: 'Out of hours', line: 'What happens to a lead that arrives at 21:00 on a Friday.' },
+        { title: 'People', line: 'It says it’s an AI to anyone who talks to it.' },
+        { title: 'Your name', line: 'Who asked is never shown.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every channel timed. Every leak named.',
+    heading: 'Every company’s reply time, side by side.',
     items: [
-      { format: 'Speed to lead per channel', line: 'Fastest, slowest and the median, by channel and by hour.' },
-      { format: 'The replies themselves', line: 'Emails, texts, chat transcripts and call logs, as proof.' },
-      { format: 'Every leak', line: 'Each test with no owner, no reply or a missed call, and when it happened.' },
-      { format: 'The routing fix', line: 'Drafted in the CRM you connect, and tested again after your OK.' },
-      { format: 'Over time', line: 'Run it daily or weekly to see who got faster or slower.' },
-      { format: 'A sheet', line: '1 row per test, ready for your CRM or Clay.' },
+      { format: 'Time to first reply', line: 'Fastest, slowest and the median, by company, channel and hour.' },
+      { format: 'The replies', line: 'Emails, chat transcripts and call recordings, as they came.' },
+      { format: 'No reply', line: 'Every enquiry nobody answered inside the window you set.' },
+      { format: 'Over time', line: 'Ask again each month and see who got faster.' },
+      { format: 'A table', line: 'A row per company and channel in Clay or Google Sheets.' },
+      { format: 'API and MCP', line: 'Each reply time as a fact, from your code or your AI agent.' },
     ],
   },
 
   settings: [
-    { k: 'Channels', v: 'Your own forms, chat, phone and inbox, or a client’s' },
-    { k: 'The enquiry', v: 'What the AI customer asks, in your buyers’ words, and whether it says it’s a test from you' },
-    { k: 'When', v: 'The times you pick, evenings and weekends included' },
-    { k: 'Target', v: 'For example: a first reply within 5 minutes' },
+    { k: 'Companies', v: 'Competitors, prospects or a whole market' },
+    { k: 'The buyer', v: 'Who asks, from where, and in which words' },
+    { k: 'Channels', v: 'Forms, chat, email and phone' },
+    { k: 'When', v: 'The hours you choose, evenings and weekends included' },
     { k: 'Window', v: 'How long to wait for a reply' },
-    { k: 'How often', v: 'Daily, weekly, or after a routing change' },
-    { k: 'Your CRM', v: 'Connected by you, to see who got each lead' },
+    { k: 'How often', v: 'Once, monthly or quarterly' },
   ],
 
   forWho: [
-    { audience: 'sales', line: 'Find where your form, chat and phone leak leads, before a buyer does.' },
-    { audience: 'agencies', line: 'Show a client how long their leads wait for a reply.' },
-    { audience: 'marketing', line: 'Know every lead you paid for gets an answer, and how fast.' },
-    { audience: 'founders', line: 'Your own inbound checked every morning, while you’re heads down on the product.' },
+    { audience: 'sales', line: 'Find the prospects that answer slowly, and open the call with their own reply times.' },
+    { audience: 'agencies', line: 'Show a prospect how its replies compare with 5 competitors’.' },
+    { audience: 'marketing', line: 'See how fast competitors answer the buyers you both pay to reach.' },
+    { audience: 'founders', line: 'Know how fast your market answers a buyer before you set your own target.' },
+    { audience: 'developers', line: 'Reply times by company and channel, as facts from the API.' },
   ],
 
   table: {
-    heading: 'The chat answered in 38 seconds. The form waited 4 hours.',
-    line: 'Example: 1 day of your inbound, from the 09:00 test to the retest after the fix.',
-    cols: ['First reply', 'Who got it'],
+    heading: 'Paytide answered in 38 seconds. Runpay never answered.',
+    line: 'Example: 5 payroll companies, a demo request at 09:00 on Tuesday.',
+    cols: ['Form', 'Chat', 'Phone'],
     rows: [
-      { label: 'Site chat', values: ['38 seconds', 'An owner in your CRM'] },
-      { label: 'Sales line', values: ['Rang out, no callback', 'Nobody'] },
-      { label: 'Demo form', values: ['4 hours 12 minutes', 'No owner in your CRM'] },
-      { label: 'After the fix', values: ['3 minutes 40 seconds', 'The next free rep'] },
+      { label: 'Paytide', values: ['12 minutes', '38 seconds', 'Picked up'] },
+      { label: 'Ledgerly', values: ['26 minutes', 'Bot only', 'Called back in 4 minutes'] },
+      { label: 'Wagewise', values: ['4 hours 12 minutes', 'No chat', 'Voicemail'] },
+      { label: 'Staffbook', values: ['1 day', '2 minutes', 'Rang out'] },
+      { label: 'Runpay', values: ['No reply', 'No reply', 'Rang out'] },
     ],
   },
 
   faq: {
-    heading: 'Every channel tested. Every reply timed.',
+    heading: 'Every reply timed and kept. Who asked is never shown.',
     items: [
       {
         q: 'Is this a speed to lead test?',
-        a: 'Yes. Lead leaks measures speed to lead, the time from a new enquiry to the first reply, on every channel you own, and finds the leads that never get a reply at all.',
+        a: 'It is speed to lead data on other companies: the time from a new enquiry to the first reply, on every channel, for the competitors, prospects or market you name.',
       },
       {
-        q: 'How fast do we actually answer a lead, including after 5pm and at weekends?',
-        a: 'Lead leaks finds out: an AI customer arrives as a lead on your form, chat and phone at the times you pick, evenings and weekends included, and every first reply is timed, with who picked it up.',
+        q: 'How fast do companies in my market answer a lead?',
+        a: 'Name them, and Obsession asks each one as the buyer you pick, by form, chat, email and phone, then times every first reply, evenings and weekends included.',
       },
       {
-        q: 'Why test speed to lead?',
-        a: 'Because most leads wait, and Lead leaks shows whether yours do, channel by channel: when 6,346 real demo and contact forms were filled in, 68 in 100 got no reply.',
+        q: 'Where does the data come from?',
+        a: 'From real enquiries. Obsession’s agents ask the way any buyer can, each with its own inbox and number, and say they’re an AI to anyone who talks to them.',
       },
-      {
-        q: 'Does my team know it’s a test?',
-        a: 'Your team knows it’s AI: every Lead leaks AI customer says so to anyone who talks to it. Whether it also says it’s a test from you is your setting.',
-      },
-      { q: 'Do callbacks count?', a: 'Yes. Each Lead leaks AI customer has its own number, so callbacks and texts are logged as replies.' },
-      { q: 'What counts as a reply?', a: 'Lead leaks counts the first answer on any channel. Automatic replies are logged separately.' },
-      { q: 'Does Lead leaks need our CRM?', a: 'No. Connect it to Lead leaks if you want to see who got each lead and whether anyone owns it.' },
-      {
-        q: 'Can Lead leaks fix the routing?',
-        a: 'Lead leaks drafts the fix in the CRM you connect. It goes live after your OK, then Lead leaks tests again.',
-      },
+      { q: 'Do callbacks count?', a: 'Yes. Each enquiry has its own number, so callbacks and texts count as replies. Automatic replies are kept apart.' },
+      { q: 'Can I include my own company?', a: 'Yes. Name it beside your competitors, and the reply times sit side by side.' },
     ],
   },
 
   final: {
-    heading: 'Find the leads your team never answered.',
-    sub: 'Join the waitlist. Lead leaks comes ready to run on your own form, chat and phone.',
+    heading: 'Which companies should we ask first?',
+    sub: 'Early access includes every company already covered, and up to 5 added for you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-speed-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'speed',
     },
   },

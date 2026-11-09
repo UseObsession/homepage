@@ -1,49 +1,36 @@
 import type { Recipe } from '../types'
 
-/* Outbound agent check (/recipes/outbound-agent-check). Check your AI agents. Screen: outcheck (Your company; "Email ·
-   Text · Calls"; Flagged 3, Passed 37, so 40 messages read; "Your AI SDR: Paused by your rule"; to "Test prospects 1
-   and 2 · AI · for Your company", "Ordinary replies only · no tricks"; the messages, oldest first: Mon 08:31 email
-   "Used by 2,000 teams." matches the approved list; Mon 10:15 call stops on "not now" ("No problem, bye for now.");
-   Mon 12:10 text, 1 text a week kept; Mon 16:30 email "Plans start at $49 a seat." matches the price list of 1 Oct;
-   Tue 09:02 email names who it acts for; Tue 11:26 email "30% off if you sign today." over the 15% limit (flagged);
-   Tue 15:40 call says it's AI at 00:04; Wed 03:12 text "Free for a quick demo today?" inside quiet hours 21:00 to
-   08:00 (flagged); Wed 09:14 email claims a customer you don't have (flagged); Wed 10:02 STOP honoured within 1
-   message; "Added with your OK · receives and replies"; the toast "3 flagged · AI SDR paused by your rule").
-   The screen quotes the claimed customer by name; the copy never names it.
-   Base: _research/verify/VERIFY.md 6.3 (who buys, how it works, the checks, the outcome) and 11 (the red lines). No
-   real AI agent check has run yet, so the run is an example and says so, and no Verify claim sits in proof.
-   The three lines hold (system.md), and nothing else is written as a rule: every message kept exactly as it arrived;
-   the reader private unless they choose to be named; the law (each test prospect is named as AI and says so when it
-   talks to a person). The rest is the reader's setting: the lists the test prospects join, how they reply (hard or
-   adversarial replies if wanted), and whether the AI SDR pauses on a flag. Each is marked as a test in the reader's
-   list. A client's AI SDR is named with the client's agreement once, for agencies. No vendor or product names: "your
-   AI SDR".
-   Up-to-50 rule: the 1 modelled figure (up to 1,040 hours a year) carries its model in the same line: 1 person
-   reading what the AI SDR sends 20 hours a week x 52 weeks = 1,040, turned into the flagged messages only. */
+/* Outbound agent check (/recipes/outbound-agent-check). Check your AI agents. Screen: outcheck (40 messages read, 3
+   flagged: 30% off over the 15% limit, a text at 03:12 inside quiet hours, a customer you don't have; STOP honoured;
+   "AI SDR paused by your rule"). The screen quotes the claimed customer by name; the copy never names it.
+   The 9 Nov story: the record of what AI SDRs send prospects: every email, text and call, kept as it arrived. Prospect
+   profiles join the reader's own AI SDR's lists (added by the reader) and reply as prospects do, and each message that
+   breaks the reader's rules is flagged; a demo request at a competitor shows what its AI SDR sends. Each profile says
+   it's an AI when it talks to a person. No real AI agent check has run yet, so the run is an example. */
 
 export const recipe: Recipe = {
   id: 'outbound-agent',
   slug: 'outbound-agent-check',
   name: 'Outbound agent check',
   group: 'Check your AI agents',
-  line: 'Puts AI customers on your AI SDR’s lists as test prospects and checks every email, text and call it sends them.',
-  gets: 'Every message your AI SDR sends your test prospects, checked against your rules, with the ones that broke them flagged.',
+  line: 'Every email, text and call an AI SDR sends a prospect, dated: yours, and your competitors’ after a demo request.',
+  gets: 'Every message an AI SDR sends, kept as it arrived, with the ones that break your rules flagged.',
   kit: [
-    'AI customers as test prospects, added by you',
-    'Their own inboxes and phone numbers',
+    'Prospect profiles with their own inboxes and numbers',
+    'Added to your lists by you, or a demo request at a competitor',
     'Your approved claims, prices and discount limit',
     'Your quiet hours and contact limits',
-    'Replies as prospects do',
-    'Every message kept with its receipt',
+    'Every message kept with the time it landed',
+    'Flags in Slack, a sheet or the API',
   ],
 
   meta: {
     path: '/recipes/outbound-agent-check',
-    title: 'Outbound agent check: see what your AI SDR sends · Obsession',
+    title: 'Outbound agent check: every message your AI SDR sends',
     description:
-      'AI customers join your AI SDR’s lists as test prospects, read every email, text and call sent to them, and check each one against your claims, prices and limits.',
+      'Outbound agent check keeps every email, text and call an AI SDR sends a prospect, yours or a competitor’s, and flags each one that breaks your rules.',
     answer:
-      'Outbound agent check shows you what your AI SDR sends prospects: AI customers join its lists as test prospects, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
+      'Outbound agent check is the record of what AI SDRs send prospects: every email, text and call, kept as it arrived. Prospect profiles join your AI SDR’s lists and reply as prospects do, and every claim, discount and send time that breaks your rules is flagged.',
     ogImage: '/og/outbound-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -53,13 +40,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that checks what your AI SDR sends prospects.',
-    sub: 'Outbound agent check shows you what your AI SDR sends prospects: AI customers join its lists as test prospects, receive what your prospects receive and reply as they do, and flag every claim, discount and send time that breaks your rules.',
+    headline: 'What your AI SDR sends prospects, every message kept.',
+    sub: 'Outbound agent check is the record of what AI SDRs send prospects: every email, text and call, kept as it arrived. Prospect profiles join your AI SDR’s lists and reply as prospects do, and every claim, discount and send time that breaks your rules is flagged.',
     screen: 'outcheck',
     capture: {
-      kind: 'verify',
+      kind: 'waitlist',
       source: 'recipe-outbound-agent-hero',
-      button: 'Check my AI SDR free',
+      button: 'Request early access',
       interest: 'outbound-agent',
     },
   },
@@ -67,40 +54,37 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: your AI SDR, continuously',
     recipe: 'outbound-agent',
-    task: 'Add 2 test prospects to our AI SDR’s lists. Read every email, text and call it sends them, reply as prospects do, and check each message against our rules.',
+    task: 'Add 2 prospect profiles to our AI SDR’s lists. Keep every email, text and call it sends them, reply as prospects do, and flag what breaks our rules.',
     targets: 'Your AI SDR: email, text and calls',
-    journey: ['Join its lists', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
+    journey: ['Join its lists', 'Keep every message', 'Reply “not now”, then STOP', 'Read against your rules'],
     schedule: 'Every message, as it lands',
-    report: 'A Slack flag, and a weekly signed record',
-    kit: ['2 AI customers, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
+    report: 'Slack flags, and every message by API',
+    kit: ['2 prospect profiles', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
     events: [
-      { time: 'Mon 08:31', text: 'The first email to test prospects 1 and 2: “Used by 2,000 teams.” It matches your approved list.' },
+      { time: 'Mon 08:31', text: 'The first email to prospects 1 and 2: “Used by 2,000 teams.” It matches your approved list.' },
       { time: 'Tue 11:26', text: 'Email: “30% off if you sign today.” Your limit is 15%.' },
       { time: 'Wed 03:12', text: 'A text: “Free for a quick demo today?” Your quiet hours run from 21:00 to 08:00.' },
       { time: 'Wed 09:14', text: 'Email: it claims a customer you don’t have.' },
-      { time: 'Wed 10:02', text: 'Test prospect 2 texts STOP. “You’re unsubscribed.” Nothing follows.' },
+      { time: 'Wed 10:02', text: 'Prospect 2 texts STOP. “You’re unsubscribed.” Nothing follows.' },
     ],
     finding: '3 of 40 messages broke your rules: 30% off where your limit is 15%, a text at 03:12 and a customer you don’t have.',
-    fix: 'Your AI SDR paused by the rule you set, and 3 changes drafted for its settings: the discount cap, the send window and the customer list. Live after your OK.',
-    ledger: 'Example run. 40 messages read, 37 passed, each signed and dated.',
+    fix: 'Each flag in #sales-ops the minute it landed, and your AI SDR paused by the rule you set.',
+    ledger: 'Example run. 40 messages kept, 37 within your rules, each dated.',
   },
 
   steps: [
     {
-      title: 'Add test prospects to its lists',
-      line: 'Your AI SDR, or a client’s. You add the test prospects to the lists it sends to, and give Obsession your approved claims, prices and limits.',
+      title: 'Join the lists',
+      line: 'You add prospect profiles to the lists your AI SDR sends to, or a client does. For a competitor, Obsession requests a demo as the prospect you pick.',
+    },
+    { title: 'Add your rules', line: 'Your approved claims, price list, discount limit, quiet hours and contact limits.' },
+    {
+      title: 'Every message kept',
+      line: 'Each email, text and call, kept as it arrived. The profiles reply as prospects do, yes, not now, no or STOP, and say they’re an AI when they talk to a person.',
     },
     {
-      title: 'Approve the checks',
-      line: 'Obsession writes them from your rules and the law where you sell: it says it’s AI and who it’s for, claims only real customers, keeps to your discount limit and quiet hours, and stops on STOP. Change any check, then approve.',
-    },
-    {
-      title: 'AI customers receive, and reply',
-      line: 'Each reads every email, text and call as a prospect would, and replies as prospects do: yes, not now, no or STOP. Harder replies too, if you want them.',
-    },
-    {
-      title: 'You get a flag and the fix',
-      line: 'Each message passes or is flagged, with the quote, the time and the rule it broke. The change comes drafted for your OK, and your AI SDR pauses only if you’ve set that rule.',
+      title: 'Flags land where you work',
+      line: 'Slack, a sheet or the API, with the quote, the time and the rule it broke. Your AI SDR pauses only if you set that rule.',
     },
   ],
 
@@ -108,146 +92,108 @@ export const recipe: Recipe = {
     {
       group: 'What it says',
       items: [
-        { title: 'Says it’s AI', line: 'At the start of every call, and in every email and text, with who it acts for.' },
-        { title: 'Only true claims', line: 'Every customer, result and figure it cites, against your approved list.' },
-        { title: 'The right price', line: 'Every price it quotes, against your price list as it read that day.' },
-        { title: 'Offers within its limit', line: 'Every discount against the limit you set, so 30% never goes out where 15% is the cap.' },
+        { title: 'Says it’s an AI', line: 'At the start of every call, and in every email and text, with who it acts for.' },
+        { title: 'Only true claims', line: 'Every customer, result and figure it cites, beside your approved list.' },
+        { title: 'The right price', line: 'Every price it quotes, beside your price list as it read that day.' },
+        { title: 'Offers within its limit', line: 'Every discount beside the limit you set, so 30% never goes out where 15% is the cap.' },
       ],
     },
     {
       group: 'When it writes',
       items: [
-        { title: 'Quiet hours', line: 'Every send time in the prospect’s own time zone, against your quiet hours and the law.' },
+        { title: 'Quiet hours', line: 'Every send time in the prospect’s own time zone, beside your quiet hours and the law.' },
         { title: 'How often', line: 'Every email, text and call counted against your contact limits.' },
         { title: 'Stops on no and STOP', line: 'And how fast: the next message after “not now”, “no” or STOP is timed.' },
-        { title: 'No mixed messages', line: 'Sequences that contradict each other, or send the same thing twice.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
-        { title: 'Replies you set', line: 'Yes, not now, no and STOP, as prospects reply, and hard or adversarial replies if you want them.' },
-        { title: 'Added by you', line: 'On the lists you choose, so they get what your prospects get.' },
-        { title: 'The record', line: 'Every message kept exactly as it arrived, with the time it landed.' },
-        { title: 'Your numbers', line: 'Every test prospect is marked as a test in your list, so it stays out of your reply rates.' },
+        { title: 'Added by you', line: 'On the lists you choose, so the profiles get what your prospects get.' },
+        { title: 'Your numbers', line: 'Each profile is marked as a test in your list, so it stays out of your reply rates.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every message comes back checked, and every broken rule flagged.',
+    heading: 'Every message comes back as it arrived, with broken rules flagged.',
     items: [
-      { format: 'A verdict per message', line: 'Passed or flagged, with the policy or the law that decided it.' },
-      { format: 'The message as received', line: 'Every email, text and call recording, with the time it landed in the prospect’s own time zone.' },
-      { format: 'Stop times', line: 'How long your AI SDR took to stop after “not now”, “no” and STOP.' },
-      { format: 'The fix, drafted', line: 'The claim, limit or send window to change in your AI SDR’s settings. Live when you approve it.' },
-      { format: 'A pause, on your rule', line: 'Your AI SDR paused the moment a message breaks a rule you choose. Only if you switch it on.' },
-      {
-        format: 'A record to share',
-        line: 'A weekly page and PDF for your sales lead, your compliance team or your client, or Slack, a sheet or a webhook. Every message kept with its receipt.',
-      },
+      { format: 'A line per message', line: 'Within your rules or flagged, with the rule that decided it.' },
+      { format: 'The message itself', line: 'Every email, text and call recording, with the time it landed in the prospect’s time zone.' },
+      { format: 'Stop times', line: 'How long the AI SDR took to stop after “not now”, “no” and STOP.' },
+      { format: 'Competitors’ sequences', line: 'What their AI SDRs send after a demo request, message by message.' },
+      { format: 'A pause, on your rule', line: 'Your AI SDR paused when a message breaks a rule you choose. Only if you switch it on.' },
+      { format: 'Slack, sheet or API', line: 'Every message as a flag, a row or JSON.' },
     ],
   },
 
   settings: [
-    { k: 'AI SDR', v: 'Yours, or one you run for a client' },
+    { k: 'AI SDRs', v: 'Yours, a client’s, or a competitor’s after a demo request' },
     { k: 'Channels', v: 'Email, text and calls' },
-    { k: 'Test prospects', v: '2 or more AI customers as test prospects, added by you' },
+    { k: 'Prospect profiles', v: '2 or more, added by you' },
     { k: 'Claims', v: 'Your approved customers, results and figures' },
     { k: 'Prices and offers', v: 'Your price list, and a discount limit such as 15%' },
     { k: 'Quiet hours', v: 'For example 21:00 to 08:00, in the prospect’s own time zone' },
-    { k: 'Contact limits', v: 'For example 1 text a week' },
     { k: 'Pause rule', v: 'Pause your AI SDR on a flag, only if you switch it on' },
+    { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
   forWho: [
     { audience: 'sales', line: 'Know every claim and discount your AI SDR makes before a prospect quotes it back to you.' },
-    {
-      audience: 'agencies',
-      line: 'Check the outbound you run for each client, with their agreement, and show them every message kept to their rules.',
-    },
+    { audience: 'agencies', line: 'A record of the outbound you run for each client, every message kept.' },
     { audience: 'founders', line: 'Let an AI SDR write for you without reading every email it sends.' },
-    {
-      audience: 'developers',
-      line: 'Run the checks from your code after every prompt or sequence change, before a real prospect gets it.',
-    },
+    { audience: 'developers', line: 'Read every message from your code after each prompt or sequence change.' },
   ],
 
   table: {
-    heading: 'Your AI SDR sends more than anyone can read. Test prospects read every message it sends them.',
-    line: 'Up to 1,040 hours a year back for 1 person who reads what your AI SDR sends 20 hours a week: you read only the flagged messages.',
-    cols: ['Today', 'With test prospects'],
+    heading: 'Your AI SDR sends more than anyone can read. Every message is kept.',
+    cols: ['By hand', 'With Outbound agent check'],
     rows: [
-      { label: 'Claims', values: ['Spotted when a prospect objects', 'Checked against your approved list, every message'] },
+      { label: 'Claims', values: ['Spotted when a prospect objects', 'Read against your approved list, every message'] },
       { label: 'Discounts', values: ['Found when a deal arrives at 30% off', 'Flagged the moment it goes over your limit'] },
-      { label: 'Send times', values: ['Nobody sees the text sent at 03:12', 'Every send time checked against your quiet hours'] },
+      { label: 'Send times', values: ['Nobody sees the text sent at 03:12', 'Every send time read against your quiet hours'] },
       { label: 'STOP', values: ['You trust the unsubscribe list', 'STOP sent, and the next message timed'] },
-      { label: 'Reading', values: ['20 hours a week, sampled by hand', 'Only the flagged messages'] },
-      { label: 'Evidence', values: ['Exports from your sending tool', 'Every message kept with its receipt'] },
+      { label: 'Competitors', values: ['A colleague’s forwarded email', 'Every message after a demo request, dated'] },
     ],
   },
 
   faq: {
-    heading: 'Every AI customer says it’s AI. You set the rest.',
+    heading: 'It says it’s an AI. You set the rest.',
     items: [
       {
         q: 'Are AI SDRs worth it, or do they just send more spam?',
-        a: 'Outbound agent check shows you what yours sends: AI customers join its lists as test prospects and flag every claim, discount and send time that breaks your rules, with the message as proof.',
+        a: 'Outbound agent check shows you what yours sends: prospect profiles join its lists, every message is kept as it arrived, and each claim, discount and send time that breaks your rules is flagged.',
       },
       {
-        q: 'Does Outbound agent check contact anyone?',
-        a: 'Only your AI SDR. Outbound agent check’s AI customers receive what it sends them and reply as you set, and each says it’s AI when it talks to a person.',
+        q: 'How do prospect profiles get on our lists?',
+        a: 'You add Outbound agent check’s profiles, or your client does. Each has its own inbox and number.',
       },
       {
-        q: 'How do test prospects get on our lists?',
-        a: 'You add Outbound agent check’s AI customers, or your client does. Each has its own inbox and number.',
+        q: 'Can Outbound agent check read a competitor’s AI SDR?',
+        a: 'Yes. Outbound agent check requests a demo or signs up as the prospect you pick, and keeps everything the competitor’s AI SDR sends. Who asked is never shown.',
       },
       {
-        q: 'Does Outbound agent check say it’s AI?',
-        a: 'Yes. Every Outbound agent check AI customer is named as an AI test prospect working for your company, so your team can see it’s a test.',
+        q: 'Does Outbound agent check say it’s an AI?',
+        a: 'Yes, whenever it talks to a person. On your own lists, each Outbound agent check profile is named as an AI test prospect.',
       },
       {
-        q: 'Will Outbound agent check try to trick our AI SDR?',
-        a: 'Only if you want it to. Outbound agent check replies as an ordinary prospect does: yes, not now, no or STOP. Add hard or adversarial replies to see where your AI SDR breaks.',
-      },
-      {
-        q: 'What does Outbound agent check compare messages with?',
-        a: 'Outbound agent check compares them with your approved claims, your price list and discount limit, your quiet hours and contact limits, and the rules where you sell: that it says it’s AI and who it acts for, and stops on STOP.',
-      },
-      {
-        q: 'Will test prospects skew our numbers?',
-        a: 'No. Each Outbound agent check AI customer is marked as a test in your list, so it stays out of your reply rates and your pipeline.',
+        q: 'Will prospect profiles skew our numbers?',
+        a: 'No. Each Outbound agent check profile is marked as a test in your list, so it stays out of your reply rates and pipeline.',
       },
       {
         q: 'Can Outbound agent check pause our AI SDR?',
-        a: 'Only if you set that rule: then Outbound agent check pauses it on a flagged message until you’ve looked.',
-      },
-      {
-        q: 'Which AI SDRs can Outbound agent check cover?',
-        a: 'Outbound agent check covers any that sends email, texts or calls, from a vendor or built in house.',
-      },
-      {
-        q: 'What’s it worth?',
-        a: 'Outbound agent check gives up to 1,040 hours a year back for 1 person who reads what your AI SDR sends 20 hours a week. You read only what was flagged, with the message and the fix beside it.',
-      },
-      {
-        q: 'Is a passed check a guarantee?',
-        a: 'No. A passed Outbound agent check is dated evidence of what your AI SDR sent to each test prospect.',
-      },
-      {
-        q: 'What’s in the free check?',
-        a: 'The free check is an Outbound agent check on an AI SDR you run for yourself or a client: 3 AI customers join its list on 1 channel, and your report lands within 4 days.',
+        a: 'Only if you set that rule. Then a flagged message pauses it until you’ve looked.',
       },
     ],
   },
 
   final: {
     heading: 'Read what your AI SDR sends, the way your prospects read it.',
-    sub: 'Your first check is free: 3 AI customers join its list on 1 channel, and your report lands within 4 days. Your AI SDR, or a client’s.',
+    sub: 'Early access includes Outbound agent check on your AI SDR and up to 5 companies added for you, set up with the founders.',
     capture: {
-      kind: 'verify',
+      kind: 'waitlist',
       source: 'recipe-outbound-agent-final',
-      button: 'Check my AI SDR free',
+      button: 'Request early access',
       interest: 'outbound-agent',
     },
   },

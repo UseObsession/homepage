@@ -13,11 +13,11 @@ import { Hero5 } from '../components/v5/Hero5'
 import type { Page, ReaderId } from '../content/types'
 import './StoryPage.css'
 
-/* Marketing, Sales and Agencies: 1 layout, only the words and the screens change (content/pages/NAME.ts). Each block
-   answers the question the last one leaves open (COPY.md, "Copy deck > Reader pages"):
-   what it is for you (the hero, beside the app screen of the page's first use case) > what you can't see today and a
-   customer can (the gap) > the jobs, 1 tab each, each with its screen and its recipe > how a customer agent lives >
-   what you can ask it from the AI you already use (the ask section) > how it compares > a real one > questions > the call to action (#join).
+/* Marketing, Sales and Agencies: 1 layout, only the words and the screens change (content/pages/NAME.ts). Since the
+   9 Nov rewrite each page reads: what you get from the web behind the login (the hero, beside an app screen) > the hand
+   work you do today (the gap) > the jobs, 1 tab each, each with its screen and its recipe > what you can ask from the
+   AI you already use (the ask section) > Brand G, the 1 real run > questions > early access (#join). The 3 pages leave
+   out `life` and `compare`, which repeated Home; the blocks stay here for any page that sets them.
    `workspace` names whose workspace the app screens show: 'agency' on Agencies, 'company' everywhere else. `reader`
    gives the hero its hue (styles/accents.css). */
 export function AudiencePage({ page, workspace, reader }: { page: Page; workspace: Workspace; reader: ReaderId }) {
