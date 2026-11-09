@@ -1,9 +1,8 @@
-/* The 4 ways in: how a team tells Obsession what to do (_research/verify/VERIFY.md section 4; James's roles.ts on main
-   had the first 3). Pick a recipe, type a task and build your own say what to do; check your AI agents is the 4th
-   because what you hand over is different: you point Obsession at an AI agent and your policies, Obsession writes the
-   checks, and you approve them. Nobody writes a task or picks a journey.
-   Read by Home's how it works (its first step names all 4), the nav's and the footer's link to /verify, the /verify
-   breadcrumb and llms.txt, so every surface names the 4th way the same way. */
+/* The 4 ways in: how a team asks the index for what it needs. Pick a recipe, ask a question and build your own read
+   what companies send signed-up customers; the 4th, /verify, is what AI agents tell customers, word for word: support
+   chats, voice lines and sales agents, yours and competitors'.
+   Read by the nav's and the footer's link to /verify, the /verify breadcrumb and llms.txt, so every surface names the
+   4 ways the same way. */
 
 export type WayId = 'recipe' | 'task' | 'build' | 'verify'
 export type Way = { id: WayId; name: string; who: string; line: string; to: string }
@@ -13,28 +12,28 @@ export const ways: Record<WayId, Way> = {
     id: 'recipe',
     name: 'Pick a recipe',
     who: 'For the jobs teams repeat',
-    line: 'A recipe comes with its agents, inboxes, numbers, schedule and checks already set up.',
+    line: 'A recipe sets the companies, the customer profile, the steps and how often each is checked.',
     to: '/recipes',
   },
   task: {
     id: 'task',
-    name: 'Type a task',
+    name: 'Ask a question',
     who: 'For anything else',
-    line: 'Describe what you want to know in plain words, on our website or to your own agent. Obsession plans the watch and starts it after your OK.',
+    line: 'Search one company or ask across a group, on our website or from your own agent. A company not covered yet is added when you click Watch.',
     to: '/#how',
   },
   build: {
     id: 'build',
     name: 'Build your own',
     who: 'For developers',
-    line: 'The same AI customers from your own agent or code: MCP, the API and SDKs, with every fact posted to your webhook.',
+    line: 'The same index from your own agent or code: MCP, the API and SDKs, with each new fact sent to your webhook.',
     to: '/developers',
   },
   verify: {
     id: 'verify',
-    name: 'Check your AI agents',
-    who: 'For teams running AI agents',
-    line: 'Give us the chat page, phone number or inbox your AI answers on. AI customers use it as your customers do, every day, and keep what they find.',
+    name: 'What AI agents tell customers',
+    who: 'For teams running AI agents, or facing them',
+    line: 'What support chats, voice lines and sales agents say to a customer, yours and competitors’, word for word, each with its transcript.',
     to: '/verify',
   },
 }

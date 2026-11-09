@@ -1,5 +1,4 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { nav } from '../content/nav'
 import { CaptureForm } from './CaptureForm'
 import './SoonDialog.css'
 
@@ -7,9 +6,10 @@ import './SoonDialog.css'
    instead of GitHub: the bar's Star on GitHub, the open source section's and the developers hero's Star it on GitHub,
    the hero's Open source tag and the footer's Open source link. The links keep their address in the HTML, so crawlers
    and a click before the script loads still reach it; 1 listener on the document catches them once the app runs, with
-   or without a modifier key. The dialog is the design system's (surfaces.css .ob-dialog): the news, and the waitlist
-   form, drawn only while it is open. Delete this component and its line in App.tsx, and the links go to GitHub again. */
-const CODE = nav.github.to
+   or without a modifier key. The dialog is the design system's (surfaces.css .ob-dialog): the news, and the early access
+   form, drawn only while it is open. The org's address is written here, not read from the nav, since 9 Nov the bar's
+   button points at the sample data. Delete this component and its line in App.tsx, and the links go to GitHub again. */
+const CODE = 'https://github.com/UseObsession'
 
 export function SoonDialog() {
   const hid = useId()
@@ -53,8 +53,8 @@ export function SoonDialog() {
               </svg>
             </button>
           </div>
-          <p className="ob-dialog-body">Our code goes up on GitHub soon. Join the waitlist and we’ll email you the day it does.</p>
-          <CaptureForm capture={{ kind: 'waitlist', button: 'Join the waitlist', interest: 'any', source: 'github-soon' }} />
+          <p className="ob-dialog-body">Our code goes up on GitHub soon. Request early access and we’ll email you the day it does.</p>
+          <CaptureForm capture={{ kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'github-soon' }} />
         </>
       )}
     </dialog>

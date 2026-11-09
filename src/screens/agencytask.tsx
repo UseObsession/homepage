@@ -7,7 +7,7 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-compose app-agencytask"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to send 4 AI customers to each of the agency’s 15 client stores, with each client’s OK, before Black Friday, answers the agent’s 2 questions (all 15 clients, a PDF per client), and gets a 4 day plan with its kit: 60 AI customers, each with its own ID and inbox, a 48 hour watch of every inbox and 15 PDF reports. AM approves the plan, which buys nothing, and the AI customers start working. 1 typed line, then just 2 questions. AM’s OK sends 60 AI customers, nothing bought.">
+    <div className="il appx-il app-compose app-agencytask"><div className="appx-fit"><div className="appx" role="img" aria-label="A new watch, the typed way in: AM types a task to check each of the agency’s 15 client stores as 4 personas, with each client’s OK, before Black Friday, answers the agent’s 2 questions (all 15 clients, a PDF per client), and gets a 4 day plan with its kit: 60 accounts, each with its own ID and inbox, a 48 hour watch of every inbox and 15 PDF reports. AM approves the plan, which buys nothing, and the sign-ups start. 1 typed line, then just 2 questions. AM’s OK starts 60 accounts, nothing bought.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>New watch</span>
@@ -28,7 +28,7 @@ export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
             <p className="ax-side-h">{ws.lists}</p>
             <a role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="ax-h cp-h ax-fade">
@@ -63,7 +63,7 @@ export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
                 <svg className="sig st-needs w0" viewBox="2 2 96 96"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg>
                 <svg className="sig st-working moving w1" viewBox="2 2 96 96"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg>
               </span>
-              <div className="cp-tt"><h3>Black Friday store check</h3><p>15 stores · 4 AI customers each · by 20 Nov</p></div>
+              <div className="cp-tt"><h3>Black Friday store check</h3><p>15 stores · 4 personas each · by 20 Nov</p></div>
               <span className="cp-pill cp-stk">
                 <span className="p0"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="5.75" /><path d="M8 4.9v3.35l2.1 1.3" /></svg><b>4 days</b></span>
                 <span className="p1"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="5.75" /><path d="M8 4.9v3.35l2.1 1.3" /></svg><b>Day 1</b>of 4</span>
@@ -71,7 +71,7 @@ export function AgencytaskScreen({ workspace = 'agency' }: ScreenProps) {
             </header>
             <ol className="cp-steps">
               <li style={{ '--d': '4.08s' }}>
-                <span className="n">1</span><span className="s">Set up 60 AI customers</span>
+                <span className="n">1</span><span className="s">Set up 60 accounts</span>
                 <span className="ax-chip cp-kit"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1.75" y="3.25" width="12.5" height="9.5" rx="1.5" /><circle cx="5.6" cy="7.25" r="1.5" /><path d="M3.6 10.6c.4-.95 1.1-1.4 2-1.4s1.6.45 2 1.4M9.5 6.75h2.75M9.5 9.25h1.75" /></svg>60 agent IDs</span>
                 <time>Day 1</time>
               </li>

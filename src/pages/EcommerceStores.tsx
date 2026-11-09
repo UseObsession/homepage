@@ -14,13 +14,11 @@ import { Count, Play, Step, Win } from '../legacy/james/components/UseCase'
 import './RetentionAgencies.css'
 import './EcommerceStores.css'
 
-/* /use-cases/leak-checks-for-ecommerce-stores, drawn as the retention agencies page is (RetentionAgencies.tsx): James's
-   hero flow, the problem, 11 steps in 3 phases each beside its app window, the handover with its drafted email, the
-   questions, 4 link cards and the site's final section, built from his pieces inside his wrapper. Its 3 additions to
-   his classes are the agencies page's (RetentionAgencies.css), and 1 of its own (EcommerceStores.css). The words are
-   the content file's (content/usecases); the app windows' rows and numbers are here. 1 store carries the page:
-   Halden Home, from its first check to the week's report. The store, its people and every figure on their screens are
-   made up; `fine` says so. */
+/* /use-cases/leak-checks-for-ecommerce-stores (9 Nov story): every email and text a store and its competitors send after
+   a sign-up, a basket and a checkout, dated, and the ones that never came. Drawn as the retention agencies page is, from
+   James's pieces: hero flow, the problem, 11 steps in 3 phases beside their app windows, the handover, questions, 4 link
+   cards and the site's final section. Words are the content file's; the windows' rows and numbers are here. Halden Home,
+   its competitors and every figure on their screens are made up; `fine` says so. */
 
 const phases = study.how?.steps ?? []
 const step = (phase: number, i: number) => phases[phase].steps[i]
@@ -36,9 +34,9 @@ const journeys = [
   ['Leaves a basket', true],
   ['Leaves at checkout', true],
   ['Logs in with a code', true],
-  ['Places an order, then a refund', true],
+  ['Asks for a back in stock alert', true],
   ['Asks support a question', false],
-  ['Asks for a back in stock alert', false],
+  ['Asks for a price drop alert', false],
 ] as const
 
 const results = [
@@ -49,24 +47,22 @@ const results = [
   { journey: 'Basket', phone: 'none', laptop: 'none', verdict: 'Silent' },
   { journey: 'Checkout', phone: '1 h, empty basket', laptop: '1 h, empty basket', verdict: 'Broken' },
   { journey: 'Log in', phone: '20 s', laptop: '20 s', verdict: 'Worked' },
-  { journey: 'Order', phone: '40 s', laptop: '40 s', verdict: 'Worked' },
+  { journey: 'Back in stock', phone: '40 s', laptop: '40 s', verdict: 'Worked' },
 ]
 const failed = (v: string) => v === 'none' || v === 'Rejected' || v.includes('empty basket')
 
 const fixes = [
-  { leak: 'Welcome code', why: 'WELCOME10 ended 30 Sep; the pop up still offers it', fix: 'A live code in the pop up', who: 'Ana, in Shopify' },
-  { leak: 'Basket reminder', why: 'The flow has been off since 14 Oct', fix: 'Turn it back on; reminder drafted', who: 'Kilnworth' },
+  { leak: 'Welcome code', why: 'WELCOME10 rejected; the pop up still offers it', fix: 'A live code in the pop up', who: 'Ana, in Shopify' },
+  { leak: 'Basket reminder', why: 'Nothing in 48 hours', fix: 'Turn the basket flow back on', who: 'Kilnworth' },
   { leak: 'Checkout button', why: 'It opens the basket page, which is empty', fix: 'Use the checkout’s own return link', who: 'Kilnworth' },
 ]
 
-/* Step 9: the store's live ads, each page opened from the ad's link at 07:00. */
-const ads = [
-  { ad: 'Ad 1', kind: 'Search', spend: '£120', page: '/linen-throw-sand', stock: 'In stock' },
-  { ad: 'Ad 2', kind: 'Social', spend: '£85', page: '/fig-cedar-candle', stock: 'In stock' },
-  { ad: 'Ad 3', kind: 'Search', spend: '£240', page: '/wool-blanket', stock: 'In stock' },
-  { ad: 'Ad 4', kind: 'Social', spend: '£410', page: '/linen-throw-oat', stock: 'Sold out' },
-  { ad: 'Ad 5', kind: 'Search', spend: '£64', page: '/oak-tray', stock: 'In stock' },
-  { ad: 'Ad 6', kind: 'Social', spend: '£150', page: '/linen-cushion', stock: 'In stock' },
+/* Step 9: Halden Home beside its 3 competitors, each with its own account. */
+const competitors = [
+  { store: 'Halden Home', role: 'You', offer: '10%', first: '2 min', reminder: '1 h' },
+  { store: 'Brackwater Home', role: 'Competitor', offer: '20%', first: '4 min', reminder: '2 h' },
+  { store: 'Copperleaf Living', role: 'Competitor', offer: '15%', first: '9 h', reminder: 'None' },
+  { store: 'Oakhurst & Weave', role: 'Competitor', offer: 'Free delivery', first: '1 h', reminder: '3 h' },
 ]
 
 const weeks = [
@@ -194,61 +190,61 @@ export function EcommerceStores() {
               </div>
 
               <Step n={1} title={step(0, 0).title} line={step(0, 0).line} pick={step(0, 0).example}>
-                <Win title="New check · Your store">
+                <Win title="New check · Your store and competitors">
                   <ul className="uc-ins">
                     <li className="sel">
-                      Type its address<small>Any store a customer can reach</small>
+                      Type an address<small>Any store a customer can reach</small>
                     </li>
                     <li>
-                      Connect Shopify<small>Themes and discount codes</small>
+                      Paste a list<small>Your competitors</small>
                     </li>
                     <li>
-                      Connect your email platform<small>Flows</small>
+                      Connect Clay<small>A table you already use</small>
                     </li>
                     <li>
-                      Connect your ad accounts<small>Live ads</small>
+                      API or MCP<small>From your code or your AI agent</small>
                     </li>
                   </ul>
                   <div className="uc-fld">
-                    <p className="uc-lab">Your store</p>
+                    <p className="uc-lab">Stores</p>
                     <ul className="uc-list uc-seq">
                       <li style={at(0)}>
                         <b>
                           Halden Home
                           <small>haldenhome.example</small>
                         </b>
-                        <span>Homewares</span>
-                        <span className="tag idle">To check</span>
+                        <span>Your store</span>
+                        <span className="tag idle">To watch</span>
                       </li>
                       <li style={at(1)}>
                         <b>
-                          Shopify
-                          <small>Read only</small>
+                          Brackwater Home
+                          <small>brackwaterhome.example</small>
                         </b>
-                        <span>Theme publishes and discount codes</span>
-                        <span className="tag ok">Connected</span>
+                        <span>In the index since 2 Sep</span>
+                        <span className="tag ok">Covered</span>
                       </li>
                       <li style={at(2)}>
                         <b>
-                          Email platform
-                          <small>Read only</small>
+                          Copperleaf Living
+                          <small>copperleafliving.example</small>
                         </b>
-                        <span>Flows and their settings</span>
-                        <span className="tag ok">Connected</span>
+                        <span>In the index since 14 Oct</span>
+                        <span className="tag ok">Covered</span>
                       </li>
                       <li style={at(3)}>
                         <b>
-                          Ad accounts
-                          <small>Read only</small>
+                          Oakhurst &amp; Weave
+                          <small>oakhurstweave.example</small>
                         </b>
-                        <span>6 live ads</span>
-                        <span className="tag ok">Connected</span>
+                        <span>Not in the index yet</span>
+                        <span className="tag idle">To watch</span>
                       </li>
                     </ul>
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to check<small>Each journey gets its own AI customer</small>
+                      Ready to watch<small>New customer · UK, on a phone and a laptop</small>
                     </span>
                     <b>
                       <Count to={8} /> journeys
@@ -262,7 +258,7 @@ export function EcommerceStores() {
                   <div className="uc-cfg">
                     <div>
                       <div className="uc-fld">
-                        <p className="uc-lab">At your store, the AI customer</p>
+                        <p className="uc-lab">At each store, the account</p>
                         <ul className="uc-checks">
                           {journeys.map(([j, on], i) => (
                             <li key={j}>
@@ -288,15 +284,15 @@ export function EcommerceStores() {
                             No basket or checkout reminder within <em>24 hours</em>
                           </li>
                           <li style={at(12)}>Any link that doesn’t open the live store</li>
-                          <li style={at(13)}>An ad whose page is sold out, broken or off its price</li>
+                          <li style={at(13)}>A competitor’s new offer or code</li>
                         </ul>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">Every morning at 07:00</p>
-                        <div className="uc-field">Each live ad’s page, from its link: 6 ads</div>
+                        <p className="uc-lab">Competitors</p>
+                        <div className="uc-field">The same steps at 3 competitors</div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">Shop on</p>
+                        <p className="uc-lab">Sign up on</p>
                         <div className="uc-seg">
                           <span>A phone</span>
                           <span>A laptop</span>
@@ -314,13 +310,13 @@ export function EcommerceStores() {
                       <div className="uc-fld">
                         <p className="uc-lab">Afterwards</p>
                         <div className="uc-seg">
-                          <span>Stop</span>
+                          <span>Close the account</span>
                           <span className="on">Every Monday and after every change</span>
                         </div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">Results</p>
-                        <div className="uc-field uc-dd">Slack #store-checks</div>
+                        <p className="uc-lab">Each new fact to</p>
+                        <div className="uc-field uc-dd">Webhook · Slack #store-checks</div>
                       </div>
                     </div>
                   </div>
@@ -333,12 +329,12 @@ export function EcommerceStores() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Halden Home</span>
-                        <span className="tag idle">AI customer 7C21</span>
+                        <span className="tag idle">Account 7C21</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
-                          <dt>Identity</dt>
-                          <dd>AI, says so to a person</dd>
+                          <dt>Profile</dt>
+                          <dd>New customer · UK</dd>
                         </div>
                         <div>
                           <dt>Inbox</dt>
@@ -452,14 +448,14 @@ export function EcommerceStores() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">16 of 16 checks done. The 2 orders were marked as AI tests and refunded. All 6 live ads’ pages load, in stock and at the ad’s price.</p>
+                  <p className="uc-small">16 of 16 checks done, each with its screenshots and the emails as they arrived.</p>
                 </Win>
               </Step>
 
               {study.found && (
                 <Reveal className="uc-inout uc-real">
                   <div>
-                    <p className="kicker">What real checks found</p>
+                    <p className="kicker">What a real run found</p>
                     <h3 className="h2">{study.found.heading}</h3>
                     <p className="muted">{study.found.line}</p>
                   </div>
@@ -482,7 +478,7 @@ export function EcommerceStores() {
               </div>
 
               <Step n={5} title={step(1, 0).title} line={step(1, 0).line} pick={step(1, 0).example}>
-                <Win title="Proof · Halden Home · Basket">
+                <Win title="Evidence · Halden Home · Basket">
                   <div className="uc-verdict">
                     <span className="uc-lab">Silent</span>
                     <b>A basket left with the marketing box ticked got no reminder.</b>
@@ -517,7 +513,7 @@ export function EcommerceStores() {
                     </div>
                   </div>
                   <div className="uc-row uc-end">
-                    <span className="uc-btn">Copy proof link</span>
+                    <span className="uc-btn">Copy evidence link</span>
                   </div>
                 </Win>
               </Step>
@@ -548,7 +544,7 @@ export function EcommerceStores() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">“Why” comes from the connected Shopify and email platform. From the address alone, you get what happened and the fix to try.</p>
+                  <p className="uc-small">Each line links to the emails and screenshots behind it.</p>
                   <div className="uc-slack">
                     <span className="uc-slack-av">
                       <Mark size={18} />
@@ -556,7 +552,7 @@ export function EcommerceStores() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#store-checks</span>
                       <br />
-                      First check done: 8 journeys, <b>3</b> leaks, each with its fix. The welcome code is a 2 minute change.
+                      First check done: 8 journeys, <b>3</b> leaks, each with its emails and screenshots. The welcome code is a 2 minute change.
                     </p>
                   </div>
                 </Win>
@@ -615,7 +611,7 @@ export function EcommerceStores() {
                     {[
                       ['10:00', 'New theme published; Shopify tells Obsession'],
                       ['10:05', 'The storefront journeys run again, on a phone and a laptop'],
-                      ['10:20', 'Phone: Add to basket does nothing. Alert sent with the proof'],
+                      ['10:20', 'Phone: Add to basket does nothing. Sent to the webhook, with screenshots'],
                       ['11:40', 'Kilnworth fixes the basket drawer'],
                       ['11:55', 'Checked again: added on a phone in 2 seconds'],
                     ].map(([t, e], i) => (
@@ -632,50 +628,50 @@ export function EcommerceStores() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#store-checks</span>
                       <br />
-                      The new theme went live at 10:00. On a phone, Add to basket does nothing. Proof attached.
+                      The new theme went live at 10:00. On a phone, Add to basket does nothing. Screenshots attached.
                     </p>
                   </div>
                 </Win>
               </Step>
 
               <Step n={9} title={step(2, 2).title} line={step(2, 2).line} pick={step(2, 2).example}>
-                <Win title="Halden Home · Ads · Tue 17 Nov, 07:00">
+                <Win title="Halden Home · Competitors · Tue 17 Nov">
                   <div className="uc-verdict">
-                    <span className="uc-lab">Ad 4</span>
-                    <b>Sends £410 a day of clicks to a sold out page.</b>
-                    <span className="uc-small">Found at 07:04. The page was opened from the ad’s link, so no click was paid for.</span>
+                    <span className="uc-lab">Brackwater Home</span>
+                    <b>Sends new subscribers 20% off, twice the 10% on its website.</b>
+                    <span className="uc-small">Arrived 07:04, 4 minutes after sign-up. Sender checked.</span>
                   </div>
                   <div className="uc-table">
                     <table>
                       <thead>
                         <tr>
-                          <th>Ad</th>
-                          <th>A day</th>
-                          <th>Page</th>
-                          <th>Stock</th>
+                          <th>Store</th>
+                          <th>Welcome offer</th>
+                          <th>First email</th>
+                          <th>Basket reminder</th>
                         </tr>
                       </thead>
                       <tbody className="uc-seq">
-                        {ads.map((a, i) => (
-                          <tr key={a.ad} style={at(i)}>
+                        {competitors.map((c, i) => (
+                          <tr key={c.store} style={at(i)}>
                             <td>
-                              <b>{a.ad}</b>
-                              <small>{a.kind}</small>
+                              <b>{c.store}</b>
+                              <small>{c.role}</small>
                             </td>
-                            <td className="num">{a.spend}</td>
-                            <td className="num">{a.page}</td>
-                            <td className={a.stock === 'Sold out' ? 'zero' : ''}>{a.stock}</td>
+                            <td className="num">{c.offer}</td>
+                            <td className="num">{c.first}</td>
+                            <td className={c.reminder === 'None' ? 'zero' : ''}>{c.reminder}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">Drafted: pause Ad 4, or point it at the Linen Throw in sand, in stock.</p>
+                  <p className="uc-small">Brackwater’s 20% came only by email. Its website still shows 10%.</p>
                   <div className="uc-row uc-end">
-                    <span className="uc-btn alt">Change link</span>
-                    <span className="uc-btn">Pause Ad 4</span>
+                    <span className="uc-btn alt">Open the email</span>
+                    <span className="uc-btn">Ask Insights</span>
                   </div>
-                  <p className="uc-small">Paused at 07:40, after Ana’s OK.</p>
+                  <p className="uc-small">Each row links to the emails and screenshots behind it.</p>
                 </Win>
               </Step>
 
@@ -690,7 +686,7 @@ export function EcommerceStores() {
                       </p>
                     </li>
                     <li>
-                      <small>Sale ads</small>
+                      <small>Sale pages</small>
                       <p>
                         <b>
                           <Count to={14} />
@@ -717,8 +713,8 @@ export function EcommerceStores() {
                   </ul>
                   <ol className="uc-tl uc-seq">
                     {[
-                      ['08:00', 'Sale live; Ana tells Obsession from Slack'],
-                      ['08:01', 'Every journey and every sale ad runs on the sale'],
+                      ['08:00', 'Sale live; Ana tells Obsession'],
+                      ['08:01', 'Every journey runs on the sale'],
                       ['08:05', 'BF25 rejected at checkout: it starts on Saturday'],
                       ['08:20', 'Start date moved to today'],
                       ['08:25', 'Checked again: BF25 takes 25% off'],
@@ -733,13 +729,13 @@ export function EcommerceStores() {
               </Step>
 
               <Step n={11} title={step(2, 4).title} line={step(2, 4).line} pick={step(2, 4).example}>
-                <Win title="Report · Halden Home · Week of 23 Nov">
+                <Win title="Insights · Black Friday week">
                   <ul className="uc-tiles">
                     {[
-                      ['Journeys checked', 8, ''],
-                      ['Worked', 8, 'of 8'],
-                      ['Breaks caught in November', 3, ''],
-                      ['Open', 0, ''],
+                      ['Stores', 4, ''],
+                      ['Sent an offer', 4, 'of 4'],
+                      ['Texted first', 2, 'of 4'],
+                      ['Open at Halden', 0, ''],
                     ].map(([k, n, of]) => (
                       <li key={k}>
                         <small>{k}</small>
@@ -754,11 +750,11 @@ export function EcommerceStores() {
                   </ul>
                   <dl className="uc-sum uc-seq">
                     {[
-                      ['Last week', '8 journeys on a phone and a laptop, and 6 live ads, all worked'],
-                      ['12 Nov', 'Caught: Add to basket on a phone, after the new theme'],
-                      ['17 Nov', 'Caught: Ad 4 sending clicks to a sold out page, paused'],
-                      ['27 Nov', 'Caught: BF25 set to start a day late'],
-                      ['Fixed', 'Since 3 Nov: the welcome code, the basket reminder, the checkout button'],
+                      ['Halden Home', 'BF25, 25% off, by email at 08:00. Code fixed by 08:25'],
+                      ['Brackwater Home', '30% off, by text at 07:00, then by email at 07:30'],
+                      ['Copperleaf Living', '20% off, by email at 09:15'],
+                      ['Oakhurst & Weave', 'Free delivery, by text on Thursday'],
+                      ['Caught at Halden', '12 Nov: Add to basket on a phone. 27 Nov: BF25 set a day late'],
                       ['Open', 'None'],
                     ].map(([k, v], i) => (
                       <div key={k} style={at(i)}>
@@ -790,37 +786,37 @@ export function EcommerceStores() {
               <Reveal className="uc-opener">
                 <div>
                   <p className="kicker">The handover</p>
-                  <h3 className="h2">The proof and the fix, in 1 message to whoever owns it.</h3>
-                  <p className="muted">The proof shows what a customer got. The fix says what to change, and the draft shows the email that should have come.</p>
+                  <h3 className="h2">The email that never came, in 1 link to whoever owns it.</h3>
+                  <p className="muted">The link opens the inbox as it was: what arrived, when, and the reminder that never did.</p>
                   <div className="uc-mail">
                     <p className="uc-mail-head">
                       From <b>Ana Ruiz, Halden Home</b> to <b>Kit Doyle, Kilnworth</b> · Subject <b>Basket reminder: nothing in 48 hours</b>
                     </p>
                     <p>Hi Kit,</p>
                     <p>
-                      Our check left a Linen Throw in the basket on 3 November, and no reminder came. The flow has been off since 14 October.
-                      The proof and a drafted reminder are attached.
+                      Our check left a Linen Throw in the basket on 3 November, and no reminder came in 48 hours. Brackwater sends 3, the
+                      second with 10% off. The inbox and screenshots are attached.
                     </p>
-                    <p>Can you turn it back on this week?</p>
+                    <p>Can you turn our basket flow back on this week?</p>
                     <p>Ana</p>
                     <p className="uc-att">
-                      <span>Proof: basket, 3 to 5 Nov</span>
-                      <span>Draft: basket reminder</span>
+                      <span>Evidence: basket, 3 to 5 Nov</span>
+                      <span>Brackwater’s 3 reminders</span>
                     </p>
                   </div>
-                  <p className="uc-small">Sent from the proof page, with the fix attached.</p>
+                  <p className="uc-small">Sent from the evidence page.</p>
                 </div>
                 <div className="uc-phone-wrap">
-                  <p className="kicker">The drafted reminder</p>
+                  <p className="kicker">What a competitor sends</p>
                   <Play className="uc-phone">
                     <div className="uc-screen uc-seq">
                       <p className="uc-screen-head" style={at(0)}>
-                        Halden Home<small>Email</small>
+                        Brackwater Home<small>Email</small>
                       </p>
                       {[
-                        ['1 hour', 'Your Linen Throw is still in your basket.'],
-                        ['Day 1', 'Still thinking about the Linen Throw in oat? It’s saved in your basket.'],
-                        ['Day 3', 'Your basket is still here when you’re ready.'],
+                        ['2 hours', 'Still thinking it over? Your Wool Throw is in your basket.'],
+                        ['Day 1', '10% off your basket, today only.'],
+                        ['Day 3', 'Last chance: your basket empties tonight.'],
                       ].map(([d, t], i) => (
                         <div key={d} style={at(i + 1)}>
                           <p className="uc-day">{d}</p>

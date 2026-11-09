@@ -1,52 +1,35 @@
 import type { Recipe } from '../types'
 
 /* Partner checks (/recipes/partner-checks). Check your own journeys. For partnership and affiliate teams.
-   Screen: partners (Your company / Missions / Partner checks, as a customer, Mon 07:00: 6 affiliates and partners, each
-   checked for Link, Code and Offer. Hiking blog (affiliate) HIKE15, Run club (partner) RUN15, Gift guide (partner)
-   GIFT15, Podcast (affiliate) POD15 and Newsletter (partner) NEWS15 all pass at 15% off. Deals site (affiliate),
-   07:12: deals-site.example still shows "Summer sale, 20% off" with SUMMER20; SUMMER20 is rejected in the basket and
-   last season's offer is shown. The note, drafted in JO's thread: "SUMMER20 ended 31 Aug. Please use DEALS15 instead.
-   New banner attached." Edit or Send; "Sent with your OK 09:14". On the page JO is always "your partnerships lead",
-   as AM is "your rep" on Expansion offers: nobody outside knows who JO is. The note on screen: "Links and codes only, never
-   prices". The toast: "Note sent to 1 partner, check again Mon"). Partner names are categories, the site's style,
-   never a business name: invented names kept landing on real ones. 07:12, not 07:04, so it never opens on the same
-   minute as Ad landing check beside it on /marketing.
-   Seun approved the recipe on 3 Oct. It is the partner side of Ad landing check: that recipe opens the pages the
-   reader's own ads point to; this 1 follows the links other sites run for the reader.
-   Rules: only the 3 lines in system.md; everything else is the reader's setting. It checks links, codes and banners
-   (1 word for what is checked, on every line a reader sees) at the partners on the reader's list, reading their
-   public pages as any visitor would; anything else on a partner's page, prices included, is the reader's to add. The
-   code is tried in a basket on the reader's own store, where the agent stops before payment (so no partner earns a
-   commission from a check) or buys on a capped card and refunds, as the reader chooses. Each note is drafted in the
-   team's own thread and goes after the reader's OK; a client's partners with the client's agreement are said once.
-   Up-to-50 rule: no money figure is modelled, because the screen has no traffic or sales to model it on. The flat
-   specific instead: a weekly check means a dead code, link or banner is found within 7 days (within a day when the
-   check runs daily in a sale). It is found, not taken down: only the partner can change their page. No sources,
-   prices of Obsession or real names on the page. The run is an example and says so. */
+   Screen: partners (6 partners checked for link, code and offer on Mon 07:00; Deals site still shows SUMMER20, rejected
+   in the basket; a note drafted in JO's thread, sent with your OK at 09:14). JO is always "your partnerships lead".
+   The 9 Nov story: the record of what every partner shows your customers, your link, code and banner, read each Monday
+   as any visitor would, with each code tried in a basket on your own store, stopped before payment. Results land in
+   Slack, a sheet or the API, and a note is drafted for any partner out of date. The run is an example. */
 
 export const recipe: Recipe = {
   id: 'partners',
   slug: 'partner-checks',
   name: 'Partner checks',
   group: 'Check your own journeys',
-  line: 'Your AI customer follows every partner’s link and code to your basket each week, and drafts a note when one is out of date.',
-  gets: 'Every partner’s link, code and banner checked by an AI customer each Monday, and a note drafted for any that’s out of date.',
+  line: 'Every partner’s link, code and banner as a visitor sees them, collected each Monday, with each code tried in your basket.',
+  gets: 'Every partner’s link, code and offer each Monday, with a screenshot, and the ones out of date flagged.',
   kit: [
-    'An AI customer with its own ID',
     'Your partner list, codes and banners',
-    'A browser to visit every partner',
-    'A basket on your own store',
-    'Notes in your team’s own thread',
-    'Every check and OK kept with its receipt',
+    'A browser that visits each partner page',
+    'A basket on your own store, stopped before payment',
+    'A screenshot of each partner page',
+    'Notes drafted in your team’s own thread',
+    'Results in Slack, a sheet or the API',
   ],
 
   meta: {
     path: '/recipes/partner-checks',
-    title: 'Partner checks: test every partner link and code · Obsession',
+    title: 'Partner checks: every partner link and code, every week',
     description:
-      'Each week an AI customer follows every partner’s link to your store, tries their code in your basket, and drafts a note for any that’s out of date.',
+      'Each Monday, Partner checks reads every partner page as a visitor, follows your link, tries the code in your basket and flags any that’s out of date.',
     answer:
-      'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI customer follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
+      'Partner checks is the record of what every partner shows your customers: your link, your code and your banner. Each Monday Obsession opens each partner page as a visitor, follows the link to your store, tries the code in your basket and flags any that’s out of date.',
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -56,13 +39,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that catches every partner still sharing an expired code or an old banner.',
-    sub: 'Partner checks catches every partner still sharing an expired code or an old banner: each Monday an AI customer follows every partner’s link to your store and tries their code in your basket, then drafts a note for your OK.',
+    headline: 'What every partner shows your customers, each Monday.',
+    sub: 'Partner checks is the record of what every partner shows your customers: your link, your code and your banner. Each Monday Obsession opens each partner page as a visitor, follows the link to your store, tries the code in your basket and flags any that’s out of date.',
     screen: 'partners',
     capture: {
       kind: 'waitlist',
       source: 'recipe-partners-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'partners',
     },
   },
@@ -70,47 +53,44 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: 6 partners, every Monday',
     recipe: 'partners',
-    task: 'Every Monday, visit each partner as a customer, follow our link to the store and try their code in the basket. Draft a note to any partner whose link, code or banner is out of date.',
+    task: 'Every Monday, open each partner page as a visitor, follow our link to the store and try their code in the basket. Flag any link, code or banner that’s out of date.',
     targets: 'Your 6 affiliates and partners, from a hiking blog to a newsletter',
-    journey: ['Visit each partner’s page', 'Follow the link to your store', 'Try the code in your basket', 'Draft the note for your OK'],
+    journey: ['Open each partner page', 'Follow the link to your store', 'Try the code in your basket', 'Flag what’s out of date'],
     schedule: 'Every Monday at 07:00',
-    report: 'A Monday note, and drafts ready to approve',
-    kit: ['Its own ID', 'Your partner list', 'A basket on your store', 'Your team’s thread'],
+    report: 'Slack on Monday, and a note to approve',
+    kit: ['Visitor · UK', 'Your partner list', 'A basket on your store', 'Your team’s thread'],
     events: [
-      { time: 'Mon 07:00', text: '6 partners visited by your AI customer: 3 affiliates and 3 partners, each with its own link and code.' },
+      { time: 'Mon 07:00', text: '6 partner pages read: 3 affiliates and 3 partners, each with its own link and code.' },
       { time: 'Mon 07:08', text: 'Hiking blog and Run club pass. The links land, and HIKE15 and RUN15 take 15% off in your basket.' },
-      {
-        time: 'Mon 07:12',
-        text: 'Deals site still shows your summer sale: 20% off with SUMMER20. In your basket, SUMMER20 is rejected.',
-      },
+      { time: 'Mon 07:12', text: 'Deals site still shows your summer sale: 20% off with SUMMER20. In your basket, SUMMER20 is rejected.' },
       { time: 'Mon 07:15', text: 'Gift guide, Podcast and Newsletter pass. 5 of 6 partners are current.' },
       {
         time: 'Mon 07:16',
-        text: 'A note drafted in your partnerships lead’s own thread: SUMMER20 ended 31 Aug, please use DEALS15, new banner attached.',
+        text: 'A note drafted in your partnerships lead’s thread: SUMMER20 ended 31 Aug, please use DEALS15, new banner attached.',
       },
-      { time: 'Mon 09:14', text: 'Sent with your OK. Deals site is checked again next Monday.' },
+      { time: 'Mon 09:14', text: 'Sent with your OK. Deals site is read again next Monday.' },
     ],
     finding: 'Deals site still sends customers to SUMMER20, a code that ended on 31 Aug, under last season’s banner.',
-    fix: 'A note from your partnerships lead’s thread with DEALS15 and the new banner, sent with your OK at 09:14. Checked again next Monday.',
-    ledger: 'Example run. Every visit, basket and OK kept with its receipt.',
+    fix: 'In Slack at 07:16 with the screenshot, and the note with DEALS15 sent from your partnerships lead’s thread at 09:14.',
+    ledger: 'Example run. Every visit and basket kept with its screenshot.',
   },
 
   steps: [
     {
-      title: 'Your AI customer visits every partner',
-      line: 'Each Monday it opens each partner’s page, finds your link, code and banner, and notes the offer it shows. It reads what any visitor can see.',
+      title: 'Add your partners',
+      line: 'Each partner page, link and code, from a list, a CSV or the API, with your current codes and banners.',
     },
     {
-      title: 'Follow the link to your store',
-      line: 'It checks the link lands on the page the partner means, with their tag still on it, so they get the credit.',
+      title: 'Each Monday, read every page',
+      line: 'Obsession opens each partner page as any visitor would, finds your link, code and banner, and notes the offer.',
     },
     {
-      title: 'Try the code in your basket',
-      line: 'On your own store, it applies the partner’s code to a basket and checks the discount. It stops before payment, or buys on a capped card and refunds, as you choose.',
+      title: 'Follow the link, try the code',
+      line: 'The link must land with the partner’s tag still on it, and the code must work in a basket on your store. It stops before payment, so no partner earns a commission.',
     },
     {
-      title: 'Draft the note for your OK',
-      line: 'When a link, code or banner is out of date, it drafts a note in your team’s own thread, with the right code and the current banner. It goes after your OK, and the partner is checked again next Monday.',
+      title: 'Out of date? You hear Monday',
+      line: 'In Slack or a sheet, with the screenshot, and a note drafted in your team’s thread for your OK.',
     },
   ],
 
@@ -127,57 +107,48 @@ export const recipe: Recipe = {
       group: 'On your own store',
       items: [
         { title: 'The landing page', line: 'It loads, shows what the partner promised, and keeps their tag so they get the credit.' },
-        { title: 'The code in the basket', line: 'Applied to a real basket, with the discount checked against the offer.' },
-        { title: 'At payment', line: 'It stops there, or buys on a capped card and refunds, as you choose. Stopping means no partner earns a commission.' },
+        { title: 'The code in the basket', line: 'Applied to a real basket, with the discount read against the offer.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
+        { title: 'At payment', line: 'Every basket stops before payment, so no partner earns a commission.' },
         { title: 'Before any note', line: 'Every note waits for your OK, then goes from your team’s own thread.' },
-        { title: 'At a block', line: 'A CAPTCHA or a bot block on a partner’s page ends that visit, and the Monday note names it.' },
+        { title: 'At a block', line: 'A CAPTCHA or a bot block on a partner page ends that visit, and Monday’s results name it.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every partner is checked each Monday, with a note ready for any that’s out of date.',
+    heading: 'Every partner read each Monday, with the old ones flagged.',
     items: [
-      { format: 'A verdict per partner', line: 'Link, code and offer, with a screenshot of their page and your basket.' },
-      { format: 'The note, drafted', line: 'In your team’s own thread, with the right code and the current banner, waiting for your OK.' },
+      { format: 'A line per partner', line: 'Link, code and offer, with a screenshot of their page and your basket.' },
       { format: 'Codes that fail', line: 'Every code your basket rejects, which partner shows it, and since when.' },
-      { format: 'Checked again', line: 'The partner checked again the next Monday, and marked fixed once their page is right.' },
-      { format: 'A weekly note', line: 'Partners checked, problems found, notes sent and pages fixed.' },
-      { format: 'A record to share', line: 'Every visit, basket and OK kept with its receipt.' },
+      { format: 'The note, drafted', line: 'In your team’s thread, with the right code and the current banner, for your OK.' },
+      { format: 'Read again', line: 'Each partner read again next Monday, and marked fixed once their page is right.' },
+      { format: 'Slack, sheet or API', line: 'Every partner’s line as a message, a row or JSON.' },
     ],
   },
 
   settings: [
     { k: 'Partners', v: 'Every affiliate and partner, or the ones you pick' },
-    { k: 'Your list', v: 'Each partner’s page, link and code: paste it, upload a CSV or use the API' },
+    { k: 'Your list', v: 'Each partner page, link and code: paste it, upload a CSV or use the API' },
     { k: 'Offers', v: 'Your current codes, offers and banners' },
     { k: 'How often', v: 'Every Monday at 07:00, or daily in a sale' },
-    { k: 'Store', v: 'Yours: stop at the basket, or buy on a capped card and refund' },
-    { k: 'Notes from', v: 'Your team’s own thread' },
     { k: 'Needs your OK', v: 'Every note to a partner' },
-    { k: 'Also log', v: 'Anything else on a partner’s page, prices included' },
+    { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
   forWho: [
-    {
-      audience: 'marketing',
-      line: 'Partnership and affiliate teams know every partner sends customers to a code that works and this season’s offer.',
-    },
-    {
-      audience: 'agencies',
-      line: 'Check every client’s affiliates and creators each week with their OK, and send a record of every code you caught, with proof.',
-    },
-    { audience: 'founders', line: 'A few partners and nobody to check them? Every link and code tried each Monday, and the note drafted for you.' },
+    { audience: 'marketing', line: 'Know every partner sends customers to a code that works and this season’s offer.' },
+    { audience: 'agencies', line: 'Every client’s affiliates and creators, read each week with their OK.' },
+    { audience: 'founders', line: 'Every partner’s link and code tried each Monday, with nobody on the team checking by hand.' },
   ],
 
   table: {
-    heading: 'It checks the link, the code and the offer at every partner.',
-    line: 'From the example run: 5 partners current, and 1 showing a code that ended on 31 Aug. Checked every Monday, a dead code, link or banner is found within 7 days, or within a day when you check daily in a sale.',
+    heading: 'The link, the code and the offer at every partner.',
+    line: 'Example run: 5 partners current, 1 showing a code that ended on 31 Aug. Read every Monday, a dead code is found within 7 days, or within a day when you read daily in a sale.',
     cols: ['Link', 'Code', 'Offer'],
     rows: [
       { label: 'Hiking blog', values: ['Lands', 'HIKE15 works', '15% off'] },
@@ -190,50 +161,38 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every link, code and banner checked. Every note sent after your OK.',
+    heading: 'Every link, code and banner read. Every note sent after your OK.',
     items: [
       {
         q: 'How do I check my affiliates’ links and codes still work?',
-        a: 'Partner checks tries them every Monday: an AI customer follows each partner’s link to your store, applies their code to a basket on your own store and checks the discount, then drafts a note for your OK when a link, code or banner is out of date.',
+        a: 'Partner checks reads them every Monday: it follows each partner’s link to your store, tries their code in a basket on your store and flags any link, code or banner that’s out of date, with a screenshot.',
       },
       {
         q: 'Does Partner checks contact our partners?',
-        a: 'Through your team: Partner checks drafts each note in your team’s own thread, and it goes after your OK.',
+        a: 'Through your team. Partner checks drafts each note in your team’s own thread, and it goes after your OK.',
       },
       {
         q: 'Does Partner checks buy anything?',
-        a: 'If you choose. Partner checks tries the code in a basket on your own store and stops before payment, so no partner earns a commission. Or it buys on a capped card and refunds the order.',
+        a: 'No. Partner checks tries each code in a basket on your own store and stops before payment, so no partner earns a commission.',
       },
       {
         q: 'Which partners can Partner checks cover?',
         a: 'Partner checks covers any partner with a public page that links to you: affiliates, creators, newsletters, podcasts, review sites and gift guides, from the list you give it.',
       },
       {
-        q: 'How does Partner checks know what’s current?',
-        a: 'Partner checks reads it from the codes, offers and banners you give it. Change an offer, and the next check makes sure every partner shows the new one.',
-      },
-      {
-        q: 'Does Partner checks say it’s AI?',
-        a: 'Yes, whenever it talks to a person. On a partner’s page it reads what any visitor can see.',
-      },
-      {
-        q: 'What’s it worth?',
-        a: 'With Partner checks, a dead code, link or banner is found within 7 days, not when a customer complains or the month’s numbers dip. Check daily in a sale, and it’s found within a day.',
-      },
-      {
         q: 'How is Partner checks different from Ad landing check?',
-        a: 'Partner checks follows the links other sites run for you, and drafts the note when one is out of date. Ad landing check opens the pages your own ads point to.',
+        a: 'Partner checks follows the links other sites run for you. Ad landing check opens the pages your own ads point to.',
       },
     ],
   },
 
   final: {
     heading: 'Know every partner sends customers to a code that works.',
-    sub: 'Join the waitlist. Partner checks comes ready to follow every partner’s link and code to your basket each Monday, and to draft each note for your OK.',
+    sub: 'Early access includes Partner checks on your partner list, read every Monday from the first week.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-partners-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'partners',
     },
   },

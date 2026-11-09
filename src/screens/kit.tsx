@@ -6,10 +6,10 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function KitScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-kit"><div className="appx-fit"><div className="appx" role="img" aria-label="A Homeware mystery shop being set up in Watches: Obsession issues AI customer 2 of 4 its own declared identity, field by field, with an inbox, a phone number, a browser, a card capped at £0 that stops before payment, a watch of 48 hours and signed records. Then all 4 AI customers are ready, with nothing to install.">
+    <div className="il appx-il app-kit"><div className="appx-fit"><div className="appx" role="img" aria-label="A Homeware store check being set up in Watches: Obsession issues persona 2 of 4 its own declared identity, field by field, with an inbox, a phone number, a browser, a card capped at £0 that stops before payment, a watch of 48 hours and signed records. Then all 4 personas are ready, with nothing to install.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
-        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>Mystery shopper</span>
+        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Watches<span>/</span>Store sign-up and checkout</span>
         <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
         <span className="ax-team" aria-hidden="true"><span>AM</span><span>JO</span></span>
       </div>
@@ -27,13 +27,13 @@ export function KitScreen({ workspace = 'agency' }: ScreenProps) {
             <p className="ax-side-h">{ws.lists}</p>
             <a className="on" role="none"><i />Homeware</a><a role="none"><i />Coffee roaster</a><a role="none"><i />Candles</a><a role="none"><i />Outdoor gear</a><a role="none"><i />Dental group</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           {/* header: the watch, and who runs it */}
           <header className="ax-h kt-h ax-fade">
-            <h2>Mystery shopper</h2>
-            <span className="ax-meta">Homeware · 4 AI customers</span>
+            <h2>Store sign-up and checkout</h2>
+            <span className="ax-meta">Homeware · 4 personas</span>
             <span className="kt-id-pill"><span className="kt-ag"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession agent for {ws.org}</span>
           </header>
           <section className="kt-stage ax-fade" style={{ '--d': '.06s' }}>
@@ -54,7 +54,7 @@ export function KitScreen({ workspace = 'agency' }: ScreenProps) {
                   </div>
                   <div className="kt-main">
                     <div className="kt-name">
-                      <h3>AI customer 2 of 4</h3>
+                      <h3>Persona 2 of 4</h3>
                       <p>Labelled tester <i>·</i> Homeware store</p>
                     </div>
                     <dl className="kt-fields">
@@ -74,8 +74,8 @@ export function KitScreen({ workspace = 'agency' }: ScreenProps) {
                 <span className="kt-av a1"><b>1</b></span><span className="kt-av a2 on" style={{ '--t': '3.4s' }}><b>2</b></span><span className="kt-av a3" style={{ '--t': '4.15s' }}><b>3</b></span><span className="kt-av a4" style={{ '--t': '4.45s' }}><b>4</b></span>
               </div>
               <span className="kt-st">
-                <span className="v0">Setting up 4 AI customers</span>
-                <span className="v1"><b>4 AI customers ready</b><i>·</i>0 to install</span>
+                <span className="v0">Setting up 4 personas</span>
+                <span className="v1"><b>4 personas ready</b><i>·</i>0 to install</span>
               </span>
               <span className="ax-btn kt-go">Start run</span>
             </footer>

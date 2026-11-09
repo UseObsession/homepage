@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function CampaignScreen() {
   return (
-    <div className="il appx-il app-campaign"><div className="appx-fit"><div className="appx" role="img" aria-label="Your own 08:00 autumn launch, checked the way a customer gets it by 4 labelled AI customers on phone and desktop with UK and US numbers: the email, landing page and unsubscribe pass, while the text to US numbers and the LAUNCH20 code fail and need you. You approve the 2 drafted fixes, both test clean again by 08:42, and the record keeps what failed and marks it fixed. US texts undelivered, LAUNCH20 rejected for new customers. Both fixed, retested clean by 08:42.">
+    <div className="il appx-il app-campaign"><div className="appx-fit"><div className="appx" role="img" aria-label="Your own 08:00 autumn launch, checked the way a customer gets it by 4 labelled personas on phone and desktop with UK and US numbers: the email, landing page and unsubscribe pass, while the text to US numbers and the LAUNCH20 code fail and need you. You approve the 2 drafted fixes, both test clean again by 08:42, and the record keeps what failed and marks it fixed. US texts undelivered, LAUNCH20 rejected for new customers. Both fixed, retested clean by 08:42.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Autumn launch</span>
@@ -26,11 +26,11 @@ export function CampaignScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="cg-h ax-fade">
-            <h2>Autumn launch</h2><span className="cg-meta">4 AI customers</span><span className="cg-time">Sent 08:00</span>
+            <h2>Autumn launch</h2><span className="cg-meta">4 personas</span><span className="cg-time">Sent 08:00</span>
             <span className="cg-id"><span className="cg-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession agent for Your company</span>
           </header>
           <div className="cg-wrap">

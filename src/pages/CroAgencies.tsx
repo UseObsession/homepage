@@ -14,18 +14,15 @@ import { Count, Play, Step, Win } from '../legacy/james/components/UseCase'
 import './RetentionAgencies.css'
 import './EcommerceStores.css'
 
-/* /use-cases/funnel-qa-for-cro-agencies, drawn as the retention agencies page is (RetentionAgencies.tsx): James's hero
-   flow, the problem, 10 steps in 3 phases each beside its app window, the opener with the agency's plan, the questions,
-   4 link cards and the site's final section, built from his pieces inside his wrapper. It needs no classes of its own:
-   the retention page's 3 additions and the ecommerce page's 4 link cards (EcommerceStores.css) cover it. The words are
-   the content file's (content/usecases); the app windows' rows and numbers are here. 1 brand carries the page: Ferrow
-   Coffee, from the pitch check to November's readout. The brands, the people and every figure on their screens are made
-   up; `fine` says so. */
+/* /use-cases/funnel-qa-for-cro-agencies (9 Nov rewrite): the record of what each brand's funnel sends after a sign-up,
+   from the pitch to November's readout, told through Ferrow Coffee (invented) in 10 steps beside their app windows, with
+   Brand G, the 1 real run, after step 4. Drawn from James's pieces inside his wrapper with the retention and ecommerce
+   pages' classes. The words are the content file's (content/usecases); the app windows' rows and numbers are here. */
 
 const phases = study.how?.steps ?? []
 const step = (phase: number, i: number) => phases[phase].steps[i]
 
-/* The hero's last stop: each brand and what happened after its sign up, in his tags. */
+/* The hero's last stop: each brand and what came after its sign-up, in his tags. */
 const tones = ['bad', 'bad', 'idle', 'bad']
 
 const pipeline = [
@@ -45,7 +42,7 @@ const results = [
   { brand: 'Oskerby Roasters', offer: 'Matches', email: '2 min', code: 'Works', leaks: 'No leak', tone: 'idle' },
 ]
 
-const rivals = [
+const competitors = [
   { brand: 'Ferrow Coffee', role: 'Prospect', offer: '15%, ad 20%', email: '7 h', code: 'Rejected' },
   { brand: 'Wendlow Coffee', role: 'Competitor', offer: 'Matches', email: '2 min', code: 'Works' },
   { brand: 'Gorsedale Roasters', role: 'Competitor', offer: 'Matches', email: '6 min', code: 'Works' },
@@ -139,7 +136,7 @@ export function CroAgencies() {
           {study.problem && study.fit && (
             <section className="section sunken">
               <div className="wrap">
-                <SectionHead kicker="Why nobody sees past the sign up" title={study.problem.heading} />
+                <SectionHead kicker="Why nobody sees past the sign-up" title={study.problem.heading} />
                 <ul className="uc-why">
                   {study.problem.items.map((item) => (
                     <Reveal as="li" key={item.title} className="card">
@@ -156,7 +153,7 @@ export function CroAgencies() {
                 </Reveal>
                 <Reveal className="uc-inout">
                   <div>
-                    <p className="kicker">Before the yes, and after it</p>
+                    <p className="kicker">How it reaches you</p>
                     <h3 className="h2">{study.fit.heading}</h3>
                     <p className="muted">{study.fit.line}</p>
                   </div>
@@ -183,7 +180,7 @@ export function CroAgencies() {
               </div>
 
               <Step n={1} title={step(0, 0).title} line={step(0, 0).line} pick={step(0, 0).example}>
-                <Win title="New check · Add brands">
+                <Win title="Look up · Add brands">
                   <ul className="uc-ins">
                     <li className="sel">
                       Paste a list<small>Names or websites</small>
@@ -216,7 +213,7 @@ export function CroAgencies() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to check<small>Each brand gets its own AI customer</small>
+                      Ready to look up<small>Not in the index yet? Watch it</small>
                     </span>
                     <b>
                       <Count to={12} /> brands
@@ -226,7 +223,7 @@ export function CroAgencies() {
               </Step>
 
               <Step n={2} title={step(0, 1).title} line={step(0, 1).line} pick={step(0, 1).example}>
-                <Win title="New check · Pipeline: November · Configure">
+                <Win title="Watch · Pipeline: November · Set up">
                   <div className="uc-cfg">
                     <div>
                       <div className="uc-fld">
@@ -234,11 +231,11 @@ export function CroAgencies() {
                         <div className="uc-field uc-dd">The page behind a live ad</div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">At each brand, the AI customer</p>
+                        <p className="uc-lab">At each brand, the new account</p>
                         <ul className="uc-checks">
                           <li>
                             <span className="uc-cb on" style={at(0)} />
-                            Signs up through the pop up
+                            Signs up through the pop-up
                           </li>
                           <li>
                             <span className="uc-cb on" style={at(1)} />
@@ -275,8 +272,8 @@ export function CroAgencies() {
                       <div className="uc-fld">
                         <p className="uc-lab">What counts as a leak</p>
                         <ul className="uc-rules uc-seq">
-                          <li style={at(2)}>The pop up breaks message match with the ad</li>
-                          <li style={at(3)}>Nothing on screen after the sign up</li>
+                          <li style={at(2)}>The pop-up is off the ad’s offer</li>
+                          <li style={at(3)}>Nothing on screen after the sign-up</li>
                           <li style={at(4)}>
                             No email within <em>1 hour</em>
                           </li>
@@ -285,7 +282,7 @@ export function CroAgencies() {
                         </ul>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">Watch</p>
+                        <p className="uc-lab">Report after</p>
                         <div className="uc-seg">
                           <span>24 hours</span>
                           <span className="on">48 hours</span>
@@ -295,13 +292,13 @@ export function CroAgencies() {
                       <div className="uc-fld">
                         <p className="uc-lab">Afterwards</p>
                         <div className="uc-seg">
-                          <span className="on">Stop</span>
-                          <span>Check every week</span>
+                          <span className="on">Keep the account open</span>
+                          <span>Close it</span>
                         </div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">Results</p>
-                        <div className="uc-field uc-dd">Slack #new-business</div>
+                        <p className="uc-lab">New facts</p>
+                        <div className="uc-field uc-dd">Webhook · Slack #new-business</div>
                       </div>
                     </div>
                   </div>
@@ -314,12 +311,12 @@ export function CroAgencies() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Ferrow Coffee</span>
-                        <span className="tag idle">AI customer 5B2C</span>
+                        <span className="tag idle">Account 5B2C</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
-                          <dt>Identity</dt>
-                          <dd>AI, says so to a person</dd>
+                          <dt>Profile</dt>
+                          <dd>New customer · US</dd>
                         </div>
                         <div>
                           <dt>Inbox</dt>
@@ -339,7 +336,7 @@ export function CroAgencies() {
                           ['10:11:48', 'Found 3 live ads in public'],
                           ['10:12:02', 'Opened the 20% ad’s page from its link'],
                           ['10:12:07', 'No discount in the cart: the link carried no code'],
-                          ['10:12:19', 'Pop up: 15% off your first bag'],
+                          ['10:12:19', 'Pop-up: 15% off your first bag'],
                           ['10:12:41', 'Signed up; “Check your inbox” shown'],
                         ].map(([t, e], i) => (
                           <li key={t} style={at(i)}>
@@ -366,10 +363,10 @@ export function CroAgencies() {
               </Step>
 
               <Step n={4} title={step(0, 3).title} line={step(0, 3).line} pick={step(0, 3).example}>
-                <Win title="Pipeline: November · Results">
+                <Win title="Insights · Pipeline: November">
                   <ul className="uc-tiles">
                     {[
-                      ['Pop up breaks message match', 4, 'bad'],
+                      ['Pop-up off the ad’s offer', 4, 'bad'],
                       ['No email within 1 hour', 6, 'bad'],
                       ['Code rejected at checkout', 3, 'bad'],
                       ['2 or more leaks', 6, ''],
@@ -415,14 +412,14 @@ export function CroAgencies() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">12 of 12 done. Brindlecup’s pop up took the email and showed nothing, which counts as a leak too.</p>
+                  <p className="uc-small">12 of 12 done. Brindlecup’s pop-up took the email and showed nothing, which counts as a leak too.</p>
                 </Win>
               </Step>
 
               {study.found && (
                 <Reveal className="uc-inout uc-real">
                   <div>
-                    <p className="kicker">What real checks found</p>
+                    <p className="kicker">From our own runs</p>
                     <h3 className="h2">{study.found.heading}</h3>
                     <p className="muted">{study.found.line}</p>
                   </div>
@@ -445,16 +442,16 @@ export function CroAgencies() {
               </div>
 
               <Step n={5} title={step(1, 0).title} line={step(1, 0).line} pick={step(1, 0).example}>
-                <Win title="Teardown slide · Ferrow Coffee · After the sign up">
+                <Win title="Teardown slide · Ferrow Coffee · After the sign-up">
                   <div className="uc-verdict">
                     <span className="uc-lab">3 leaks</span>
-                    <b>The ad promised 20% and the pop up 15%. The code came 7 hours later and was rejected on a subscription.</b>
+                    <b>The ad promised 20% and the pop-up 15%. The code came 7 hours later and was rejected on a subscription.</b>
                     <span className="uc-small">Every step dated; the email kept as it arrived, with its headers.</span>
                   </div>
                   <ol className="uc-tl uc-seq">
                     {[
                       ['Mon 2 Nov 10:12', 'Opened the page behind the 20% ad', false],
-                      ['Mon 2 Nov 10:12', 'The pop up offered 15%; signed up on mobile, “Check your inbox” shown', false],
+                      ['Mon 2 Nov 10:12', 'The pop-up offered 15%; signed up on mobile, “Check your inbox” shown', false],
                       ['Mon 2 Nov 11:12', 'No email after 1 hour', true],
                       ['Mon 2 Nov 17:24', 'Welcome email with FERROW15, sent at 17:23 by Ferrow’s email platform, by its own headers', false],
                       ['Mon 2 Nov 17:26', 'FERROW15 rejected on a subscription', true],
@@ -471,7 +468,7 @@ export function CroAgencies() {
                       <span>10:12</span>
                     </div>
                     <div className="uc-shot bad">
-                      <div>Pop up, 15% off</div>
+                      <div>Pop-up, 15% off</div>
                       <span>10:12</span>
                     </div>
                     <div className="uc-shot bad">
@@ -481,7 +478,7 @@ export function CroAgencies() {
                   </div>
                   <div className="uc-row uc-end">
                     <span className="uc-btn alt">Add to the teardown</span>
-                    <span className="uc-btn">Copy proof link</span>
+                    <span className="uc-btn">Copy evidence link</span>
                   </div>
                 </Win>
               </Step>
@@ -515,7 +512,7 @@ export function CroAgencies() {
                       </p>
                     </li>
                     <li>
-                      <small>Code shown on screen after the sign up</small>
+                      <small>Code shown on screen after the sign-up</small>
                       <p>
                         <b>
                           <Count to={0} />
@@ -535,7 +532,7 @@ export function CroAgencies() {
                         </tr>
                       </thead>
                       <tbody className="uc-seq">
-                        {rivals.map((r, i) => (
+                        {competitors.map((r, i) => (
                           <tr key={r.brand} style={at(i + 3)}>
                             <td>
                               <b>{r.brand}</b>
@@ -558,7 +555,7 @@ export function CroAgencies() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#new-business</span>
                       <br />
-                      Ferrow Coffee is ready for Thursday: <b>3</b> leaks after the sign up, each with proof, beside 5 competitors. The slide is in
+                      Ferrow Coffee is ready for Thursday: <b>3</b> leaks after the sign-up, each with its email and screenshot, beside 5 competitors. The slide is in
                       the teardown.
                     </p>
                   </div>
@@ -609,14 +606,14 @@ export function CroAgencies() {
                 <Win title="Ferrow Coffee · Test 1 · Fri 20 Nov">
                   <div className="uc-verdict">
                     <span className="uc-lab">Leak caught</span>
-                    <b>After an overnight update to the pop up app, variant B takes the email and gives no code.</b>
+                    <b>After an overnight update to the pop-up app, variant B takes the email and gives no code.</b>
                     <span className="uc-small">B is ahead on opt-in rate, not yet significant. A still sends its code.</span>
                   </div>
                   <ol className="uc-tl uc-seq">
                     {[
-                      ['07:00', 'The morning check: an AI customer signs up through A and B on mobile'],
+                      ['07:00', 'The morning check: new sign-ups through A and B on mobile'],
                       ['07:01', 'A: the code by email in 40 seconds'],
-                      ['07:01', 'B: a blank where the code should be; alert sent with the proof'],
+                      ['07:01', 'B: a blank where the code should be; webhook sent with the screenshot'],
                       ['08:01', 'B: no email after 1 hour either'],
                       ['08:40', 'The agency finds the app updated overnight and reconnects B'],
                       ['09:00', 'Checked again: B shows FERROW20 and emails it in 38 seconds'],
@@ -634,8 +631,8 @@ export function CroAgencies() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#ferrow-coffee</span>
                       <br />
-                      Test 1, variant B: since an overnight app update, the pop up takes the email and gives no code, on screen or by email.
-                      Last good check Thursday 07:00. Proof attached.
+                      Test 1, variant B: since an overnight app update, the pop-up takes the email and gives no code, on screen or by email.
+                      Last good check Thursday 07:00. Screenshots attached.
                     </p>
                   </div>
                 </Win>
@@ -699,7 +696,7 @@ export function CroAgencies() {
                   </ul>
                   <dl className="uc-sum uc-seq">
                     {[
-                      ['Fixed', 'The pop up matches the ad; the welcome email sends at once; the code works on a subscription'],
+                      ['Fixed', 'The pop-up matches the ad; the welcome email sends at once; the code works on a subscription'],
                       ['Caught', 'Test 1: B gave no code after an overnight app update, fixed the same morning'],
                       ['Open', 'None'],
                       ['Against 5 competitors', 'The fastest first email of the 6'],
@@ -735,24 +732,24 @@ export function CroAgencies() {
                 <div>
                   <p className="kicker">The opener</p>
                   <h3 className="h2">Their own funnel and your first test, in 1 email.</h3>
-                  <p className="muted">The proof shows what a new customer gets today. Your plan shows what you’d change first.</p>
+                  <p className="muted">The record shows what a new customer gets today. Your plan shows what you’d change first.</p>
                   <div className="uc-mail">
                     <p className="uc-mail-head">
-                      From <b>Jonah, your agency</b> to <b>Sam Ortega, Ferrow Coffee</b> · Subject <b>Your 20% ad, and a 15% pop up</b>
+                      From <b>Jonah, your agency</b> to <b>Sam Ortega, Ferrow Coffee</b> · Subject <b>Your 20% ad, and a 15% pop-up</b>
                     </p>
                     <p>Hi Sam,</p>
                     <p>
-                      Before Thursday’s call, we followed your “20% off your first bag” ad as a new customer on mobile. The pop up offered 15%,
+                      Before Thursday’s call, we followed your “20% off your first bag” ad as a new customer on mobile. The pop-up offered 15%,
                       the code came 7 hours later, and it was rejected on a subscription.
                     </p>
                     <p>I’ve attached the slide and the first test we’d run. Worth walking through on Thursday?</p>
                     <p>Jonah</p>
                     <p className="uc-att">
-                      <span>Proof: Ferrow Coffee, 2 to 4 Nov</span>
-                      <span>Plan: after the sign up</span>
+                      <span>Record: Ferrow Coffee, 2 to 4 Nov</span>
+                      <span>Plan: after the sign-up</span>
                     </p>
                   </div>
-                  <p className="uc-small">Written by your audit lead, from the brand’s proof.</p>
+                  <p className="uc-small">Written by your audit lead, from the brand’s record.</p>
                 </div>
                 <div className="uc-phone-wrap">
                   <p className="kicker">Your plan</p>
@@ -762,9 +759,9 @@ export function CroAgencies() {
                         Ferrow Coffee<small>Plan</small>
                       </p>
                       {[
-                        ['Quick win', 'Match the pop up to the ad: 20% off your first bag.'],
+                        ['Quick win', 'Match the pop-up to the ad: 20% off your first bag.'],
                         ['Quick win', 'Send the code at once, and let it work on a subscription.'],
-                        ['Test 1', 'Show the code on screen after the sign up.'],
+                        ['Test 1', 'Show the code on screen after the sign-up.'],
                       ].map(([d, t], i) => (
                         <div key={i} style={at(i + 1)}>
                           <p className="uc-day">{d}</p>

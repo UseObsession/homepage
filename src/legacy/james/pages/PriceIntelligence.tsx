@@ -6,10 +6,10 @@ import { at } from '../components/stagger'
 import { Count, Step, Win } from '../components/UseCase'
 import './PriceIntelligence.css'
 
-/* Use case: a price intelligence firm adds what retailers show only after sign up to the sources it already collects.
-   The firm, its client, the retailers, products, prices and figures are made up, and the small print says so.
-   The hero's headline and sub, the questions and the small print come from the site's content file for this address, so
-   the head and the JSON-LD say what the page says. The hero's flow is his, and the content file's hero.flow mirrors it. */
+/* Use case (9 Nov rewrite): a price intelligence firm adds member and signed-in prices, beside public ones, per store,
+   dated with screenshots, to the sources it already collects. The firm, its client, the retailers, products, prices and
+   figures are made up, and the small print says so. The hero's headline and sub, the questions and the small print come
+   from the content file (content/usecases), whose hero.flow mirrors the flow here. */
 
 const basket = [
   { product: 'Brand A macinato 250 g', ean: '80…0417', pub: '3,19 €', member: '2,69 €', gap: '−16%' },
@@ -88,7 +88,7 @@ export function PriceIntelligence() {
                     Newsletters<span className="tag idle">today</span>
                   </li>
                   <li className="new">
-                    After sign up<span className="tag">new</span>
+                    Signed in<span className="tag">new</span>
                   </li>
                 </ul>
                 <span className="uc-node-foot">Member prices · coupons · later offers</span>
@@ -100,7 +100,7 @@ export function PriceIntelligence() {
               </div>
               <div className="uc-node mid">
                 <span className="kicker">Your platform</span>
-                <b>One more domain</b>
+                <b>1 more source</b>
                 <ul>
                   <li>Matched to your product database</li>
                   <li>On your promo calendar</li>
@@ -133,16 +133,16 @@ export function PriceIntelligence() {
       <section className="section sunken">
         <div className="wrap">
           <SectionHead
-            kicker="Behind the sign up"
+            kicker="Behind the login"
             title="A crawler sees the shop window. A member sees the shop."
-            lede="Retailers keep their sharpest prices and offers for people who’ve joined. None of it shows on a public product page or in the flyer."
+            lede="Retailers keep their sharpest prices and offers for signed-in members. None of it is on the public product page or in the flyer."
           />
           <ul className="pr-gaps">
             {[
               ['Member prices', 'The price shown once you’re signed in, or with the loyalty card linked to the account.'],
               ['Welcome coupons', 'The code or credit that lands after joining, and what it takes to use it.'],
-              ['Offers that arrive later', 'The email on day 3, the text on day 7, the win back coupon after three weeks.'],
-              ['Prices by store', 'Online prices change once you pick a store or a postcode. Each AI customer shops from the city you choose.'],
+              ['Offers that arrive later', 'The email on day 3, the text on day 7, the win back coupon after 3 weeks.'],
+              ['Prices by store', 'Online prices change once you pick a store or a postcode. Each account shops from the city you choose.'],
             ].map(([h, p]) => (
               <Reveal as="li" key={h} className="card">
                 <h3 className="h3">{h}</h3>
@@ -169,11 +169,11 @@ export function PriceIntelligence() {
             </div>
             <div className="ours">
               <p className="kicker">Obsession runs</p>
-              <h3 className="h3">The AI customers, the inboxes and the waiting.</h3>
+              <h3 className="h3">The accounts, the inboxes and the waiting.</h3>
               <ul>
-                <li>An AI customer per retailer and city, with its own inbox, Italian mobile number and browser</li>
-                <li>The sign ups, the store choice and the readings on your basket</li>
-                <li>Inboxes and phones kept open for as long as you watch</li>
+                <li>A member account per retailer and city, with its own inbox, Italian mobile number and browser</li>
+                <li>The sign-ups, the store choice and the readings on your basket</li>
+                <li>Each account kept open for as long as you track it</li>
                 <li>A screenshot or the message behind every observation</li>
               </ul>
             </div>
@@ -185,8 +185,8 @@ export function PriceIntelligence() {
         <div className="wrap">
           <SectionHead
             kicker="Step by step"
-            title="From a retailer list to a new domain in your platform."
-            lede="How the firm in this example adds member prices to one client’s coffee basket, across 120 Italian grocery retailers."
+            title="From a list of retailers to member prices in your platform."
+            lede="How the firm in this example adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers."
           />
 
           <div className="uc-phase first">
@@ -196,9 +196,9 @@ export function PriceIntelligence() {
 
           <Step
             n={1}
-            title="Send the retailers and the basket"
-            line="The retailers to join, the products to read and the cities to shop from. Use the tracking basket you already run for the client."
-            pick="The firm sends 120 grocery retailers, the 40 item coffee basket it already tracks for its client, and three cities."
+            title="Name the retailers and the basket"
+            line="The retailers, the products and the cities to shop from. Use the basket you already track for the client."
+            pick="The firm names 120 grocery retailers, the 40 item coffee basket it tracks for its client, and 3 cities."
           >
             <Win title="New watch · Retailers and basket">
               <div className="uc-fld">
@@ -249,8 +249,8 @@ export function PriceIntelligence() {
           <Step
             n={2}
             title="Choose what to capture"
-            line="Public and member price on every basket item, the welcome offer, and everything that arrives after sign up. Fixed rules decide each reading, so the same page always gives the same answer."
-            pick="Member prices every week, to follow the promotion cycle, daily around Black Friday, and every email and text for 30 days after joining."
+            line="Public and member price on every item, the welcome offer, and every email and text after sign-up. Fixed rules decide each reading, so the same page always gives the same answer."
+            pick="Member prices every week, daily around Black Friday, and every email and text as it arrives."
           >
             <Win title="New watch · Configure">
               <div className="uc-cfg">
@@ -272,7 +272,7 @@ export function PriceIntelligence() {
                       </li>
                       <li>
                         <span className="uc-cb on" style={at(3)} />
-                        Emails and texts after sign up
+                        Emails and texts after sign-up
                       </li>
                       <li>
                         <span className="uc-cb on" style={at(4)} />
@@ -292,7 +292,7 @@ export function PriceIntelligence() {
                       <li style={at(5)}>Read each price signed out, then signed in, on the same page</li>
                       <li style={at(6)}>Record the store and city every price belongs to</li>
                       <li style={at(7)}>
-                        Keep the inbox and phone open for <em>30 days</em>
+                        Keep each account open, <em>month after month</em>
                       </li>
                       <li style={at(8)}>Never invent identity details. Stop and report where a card needs a tax code</li>
                     </ul>
@@ -316,27 +316,27 @@ export function PriceIntelligence() {
 
           <Step
             n={3}
-            title="Choose how it arrives"
-            line="A feed in the shape your platform already takes: one row per observation, with the image link. Matching to your product database stays with your team."
+            title="Choose where it lands"
+            line="A file in the shape your platform takes, 1 row per observation with its screenshot, or a webhook the day a price moves. Product matching stays with your team."
             pick="The firm takes a daily file, plus a webhook for anything that arrives between files."
           >
             <Win title="New watch · Delivery">
               <ul className="uc-ins">
                 <li className="sel">
-                  Daily CSV<small>One row per observation</small>
+                  Daily CSV<small>1 row per observation</small>
                 </li>
                 <li className="sel">
-                  Webhook<small>As each one lands</small>
+                  Webhook<small>The day a price moves</small>
                 </li>
                 <li>
-                  API<small>Pull when you like</small>
+                  API or MCP<small>Look up any retailer</small>
                 </li>
                 <li>
-                  JSON<small>Same fields, nested</small>
+                  Google Sheets<small>The same fields, in a sheet</small>
                 </li>
               </ul>
               <div className="uc-fld">
-                <p className="uc-lab">One row, as it arrives</p>
+                <p className="uc-lab">1 row, as it arrives</p>
                 <dl className="uc-sum pr-fields uc-seq">
                   {[
                     ['retailer', 'Corvalle'],
@@ -369,20 +369,20 @@ export function PriceIntelligence() {
 
           <Step
             n={4}
-            title="Each retailer gets its own AI customer"
-            line="A real inbox, an Italian mobile number and its own browser, set to the city you chose. It joins the way a customer would and, in this example, buys nothing. When it talks to a person, it says it’s AI."
+            title="Each retailer gets its own member account"
+            line="Its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person."
           >
             <Win title="Corvalle · Milano">
               <div className="uc-s6">
                 <div className="uc-id">
                   <div className="uc-row uc-between">
                     <span className="uc-mh">Corvalle</span>
-                    <span className="tag idle">Member 7C1D</span>
+                    <span className="tag idle">Account 7C1D</span>
                   </div>
                   <dl className="uc-idrows">
                     <div>
-                      <dt>Identity</dt>
-                      <dd>AI, says so to a person</dd>
+                      <dt>Profile</dt>
+                      <dd>Member · Milano</dd>
                     </div>
                     <div>
                       <dt>Inbox</dt>
@@ -444,7 +444,7 @@ export function PriceIntelligence() {
           <Step
             n={5}
             title="Signed out and signed in, side by side"
-            line="Every basket item is read twice on the same page, minutes apart, with a screenshot of each. A member price only counts when both readings agree on the product and the store."
+            line="Every item is read twice on the same page, minutes apart, with a screenshot of each. A member price counts only when both readings agree on the product and the store."
           >
             <Win title="Corvalle · Basket readings">
               <ul className="uc-tiles">
@@ -512,10 +512,10 @@ export function PriceIntelligence() {
 
           <Step
             n={6}
-            title="It keeps the inbox open"
-            line="Welcome offers, member emails, texts and win back coupons arrive over days and weeks. Each one is captured as it lands, with its dates and conditions."
+            title="The account stays open"
+            line="Welcome offers, member emails, texts and win back coupons arrive over days and weeks. Each is kept as it lands, with its dates and conditions."
           >
-            <Win title="Corvalle · After sign up">
+            <Win title="Corvalle · After sign-up">
               <ol className="pr-inbox uc-seq">
                 {inbox.map((m, i) => (
                   <li key={m.time} style={at(i)} className={m.yours ? 'yours' : ''}>
@@ -539,21 +539,21 @@ export function PriceIntelligence() {
 
           <Step
             n={7}
-            title="An identity card for every observation"
-            line="Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations already do."
+            title="A record behind every observation"
+            line="Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations."
           >
-            <Win title="Observation · Corvalle · SMS">
+            <Win title="Observation · Corvalle · Text">
               <div className="pr-card">
                 <div className="pr-sms" aria-hidden="true">
                   <p className="pr-sms-head">
-                    Corvalle<small>SMS</small>
+                    Corvalle<small>Text</small>
                   </p>
                   <p className="pr-bubble">Solo con la Carta: −20% sul caffè fino a domenica 11/10. Ti aspettiamo!</p>
                 </div>
                 <dl className="uc-idrows uc-seq">
                   {[
                     ['Retailer', 'Corvalle'],
-                    ['Channel', 'SMS to members'],
+                    ['Channel', 'Text to members'],
                     ['Received', 'Mon 5 Oct 2026, 11:15'],
                     ['Offer', '20% off coffee, card holders only'],
                     ['Valid', '5 to 11 October'],
@@ -573,7 +573,7 @@ export function PriceIntelligence() {
           <Step
             n={8}
             title="Next to flyers, web campaigns and newsletters"
-            line="Member offers become one more line on your promo calendar, so your client sees every channel at once: did the coffee promotion reach the flyer, the website, the newsletter or only the members?"
+            line="Member offers become 1 more line on your promo calendar, so your client sees whether the coffee promotion reached the flyer, the website, the newsletter or only the members."
           >
             <Win title="Promo calendar · Corvalle · Coffee">
               <div className="pr-cal-wrap">
@@ -632,8 +632,8 @@ export function PriceIntelligence() {
                 roles: 'Trade marketing, category and sales',
                 items: [
                   ['Check member promotions ran', 'Turn agreed loyalty promotions into evidence, as you already do for flyers.', 'The 20% coffee offer reached Corvalle members, 5 to 11 October.'],
-                  ['See who discounts you to members', 'Member price against public price, per retailer and per item.', 'Competitor B is 21% cheaper for Corvalle members.'],
-                  ['Price erosion behind the login', 'Which retailer goes below a threshold first, for members only.', 'Brand A macinato: 2,49 € for Corvalle members on 14 October.'],
+                  ['See whose products get the member price', 'Member price against public price, per retailer and per item.', 'At Corvalle, members get Competitor B’s macinato 21% off and Brand A’s 16% off.'],
+                  ['Catch price erosion behind the login', 'Which retailer goes below a threshold first, for members only.', 'Brand A macinato: 2,49 € for Corvalle members on 14 October.'],
                 ],
               },
               {
@@ -641,8 +641,8 @@ export function PriceIntelligence() {
                 roles: 'Pricing, loyalty and CRM',
                 items: [
                   ['Benchmark the welcome offer', 'What each competitor gives a new member, and what it takes to use it.', 'Corvalle: 5 € off a 30 € shop, valid 14 days.'],
-                  ['Competitors’ member prices on your basket', 'Your tracking basket, read as a member at each competitor.', '14 of 40 items carry a member price at Corvalle.'],
-                  ['The sequence after sign up', 'Every email and text a competitor sends new members, by day.', '9 messages in 30 days, 3 with a coupon.'],
+                  ['Read competitors’ member prices on your basket', 'Your tracking basket, read as a member at each competitor.', '14 of 40 items carry a member price at Corvalle.'],
+                  ['Map the messages after sign-up', 'Every email and text a competitor sends new members, by day.', '9 messages in 30 days, 3 with a coupon.'],
                 ],
               },
             ].map((g) => (
@@ -687,9 +687,9 @@ export function PriceIntelligence() {
           </Reveal>
           <Reveal className="card">
             <Link to="/sample-output">
-              <span className="kicker">One real run</span>
-              <span className="h3">Sample output</span>
-              <span className="muted">A real store check from September 2026, shown in every format it can arrive in.</span>
+              <span className="kicker">1 real run</span>
+              <span className="h3">Sample data</span>
+              <span className="muted">Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.</span>
               <span className="uc-more-go">See it →</span>
             </Link>
           </Reveal>
@@ -698,8 +698,8 @@ export function PriceIntelligence() {
       </section>
 
       <FinalCta
-        title="Try it on ten retailers."
-        line="Join the waitlist, and we’ll run ten retailers and one tracking basket: member prices, coupons and what arrives after sign up, as a feed."
+        title={study.final.heading}
+        line={study.final.sub ?? ''}
         source="usecase-price-final"
         withCompany={false}
       />

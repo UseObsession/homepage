@@ -1,376 +1,269 @@
 import { consoleHeading } from '../console'
-import type { Page } from '../types'
+import { explorer } from '../explorer'
+import type { Explorer, Page } from '../types'
 
-/* Check your AI agents (/verify), the 4th way in (content/ways.ts; _research/verify/VERIFY.md sections 4, 5, 9 and 11).
-   The story, in the site's order: hero (the free AI agent check, 5 example runs in the console) > how it works (point
-   it at your agent, approve the checks, test customers use it, a verdict and a signed record) > the gap (your vendor
-   grades its own agent) > use cases > outcomes (up to ceilings, each with its model in the line) > every kind of AI
-   agent > the 8 recipes > proof > questions (the three lines) > the free check.
-   No real AI agent check has run yet: every run, screen and figure here is an example and says so (the console's
-   Example tag and "Example run." in every ledger; every screen's Example tag). The proof beat is the 1 real run, the
-   September store check, as the method the checks use; it makes no claim about an AI agent check. Swap in the first
-   real check, with the owner's OK, as soon as it lands.
-   The console's runs match their screens' numbers: botcheck (14 day policy, 30 days on chat, 0 emails in 6 hours,
-   18 of 20 checks passed), callcheck (£0 said, £50 on the price list, 1 min 12 s on hold), outcheck (3 of 40 messages
-   flagged), vendorcheck (17 and 12 of 20) and drift (37, then 28 of 40 after the 23:20 update).
-   Screens, each once, all 8 of the AI agent checks' own: How (disclosure: 1 agent on every channel; salescheck: checks
-   written from your prices and the rules; callcheck: a declared test customer using it; resolution: the verdict and the
-   signed record); use cases (botcheck, outcheck, vendorcheck, drift). The voice receptionist has its console run and
-   How's 3rd step rather than a use case tab, so no screen shows twice and no other recipe's screen stands in. The
-   proof shows the real report.
-   Outcomes, recomputed (3 Oct, no money up to): 11 days to notice, cut to 1 by a daily check, is up to 10 days sooner;
-   10,000 billed resolutions a month x 19 in 100 not real = up to 1,900 a month to dispute (19 in 100 is the resolution
-   screen's own rate); 15 hours a week of transcript reading x 52 = 780 hours.
-   Narrative edit (3 Oct): the hero sub names the 3 agents the console opens on (support bot, AI receptionist, AI SDR);
-   How's heading says what you give it, so its first step isn't said twice; the use cases cover more than answers
-   (a discount over its limit, a vendor that keeps a customer waiting), so their claim does too; the kinds cover agents
-   that send as well as answer. The console's last tab and its use case share 1 name, "After every update".
-   The questions hold only the three lines (system.md): the record, the reader's privacy and the law. Hard
-   questions, budgets and channels are the reader's settings, not rules. */
+/* /verify (9 Nov rewrite): what AI agents tell customers, as data. Support chats, voice lines, sales agents and outbound
+   callers, yours and your competitors', each answer kept as a dated transcript or call beside the page it should match:
+   Home's "Support answers" wall. The page reads: hero with Home's explorer on AI agents > what's in it > your vendor
+   grades its own agent > every kind of agent > the recipes > is this real (our count, Brand G) > questions > early access.
+   No real AI agent run has happened yet: every company and conversation is invented, at a .example address, and the
+   hero's note says so. */
+
+const access = {
+  kind: 'waitlist',
+  button: 'Request early access',
+  interest: 'support-bot',
+} as const
+
+/* The hero's object: Home's explorer (content/explorer.ts), on AI agents. Search reads 1 company's agents by persona
+   and channel; Insights asks 1 question across a group of companies' agents. Every company is invented. */
+const agents: Explorer = {
+  ...explorer,
+  placeholder: { search: 'Any company’s website', insights: 'Ask about a group of AI agents' },
+  said: 'An example of Obsession’s console, on invented companies. Search a company and choose who asks and on which channel: its AI agent’s answers come back as dated facts, with the transcript or recording behind them. Insights asks one question across a group of companies’ AI agents and writes a report with a row for each.',
+  companies: [
+    {
+      domain: 'online-bank.example',
+      kind: 'Bank',
+      covered: true,
+      personas: ['New saver · UK', 'Existing customer · UK'],
+      steps: ['Chat', 'Voice line'],
+      data: [{ label: 'Chats', kind: 'Chat' }, { label: 'Calls', kind: 'Call' }, { label: 'Offers', kind: 'Offer' }],
+      views: [
+        {
+          persona: 'New saver · UK',
+          step: 'Chat',
+          facts: [
+            { when: '4 Nov', kind: 'Chat', text: 'Asked if the 4.6% rate is fixed. Chat said yes; the rate page says variable.' },
+            { when: '4 Nov', kind: 'Chat', text: 'Passed to a person after 11 minutes.' },
+          ],
+          evidence: { from: 'Chat transcript · online-bank.example', subject: 'Is the 4.6% rate fixed?', lines: ['09:20 Chat: “Yes, 4.6% is fixed for 12 months.”', '09:20 Rate page, same minute: “4.6% variable”', 'Our side said it is an AI at the start'] },
+          record: { channel: 'chat', act: 'asked about a savings rate', wall: 'conversation', responder: 'AI support agent (vendor platform)' },
+        },
+        {
+          persona: 'New saver · UK',
+          step: 'Voice line',
+          facts: [
+            { when: '5 Nov', kind: 'Call', text: 'The voice agent also called 4.6% fixed for the first year.' },
+            { when: '5 Nov', kind: 'Call', text: 'Asked for a person: 6 minutes on hold, then the call ended.' },
+          ],
+          evidence: { from: 'Call · online-bank.example, 0800 line', subject: 'Call about the easy access rate', lines: ['5 Nov, 10:02, 7 min 30 s', 'Voice agent: “It’s 4.6%, fixed for the first year.”', 'Our caller said it is an AI at the start'] },
+          record: { channel: 'voice', act: 'called about a savings rate', wall: 'call', responder: 'AI voice agent (vendor platform)' },
+        },
+        {
+          persona: 'Existing customer · UK',
+          step: 'Chat',
+          facts: [
+            { when: '6 Nov', kind: 'Offer', text: 'Asked to close the account. Chat offered 4.9% to stay, shown nowhere else.' },
+            { when: '6 Nov', kind: 'Chat', text: 'Said it is an AI only when asked.' },
+          ],
+          evidence: { from: 'Chat transcript · online-bank.example/app', subject: 'I’d like to close my savings account', lines: ['14:05 Chat: “Before you go, we can move you to 4.9% today.”', 'Not on the rate page or the signed-in offers page, 14:05', 'Signed in as the existing customer'] },
+          record: { channel: 'chat', act: 'asked to close a savings account', wall: 'cancellation', responder: 'AI support agent (vendor platform)' },
+        },
+      ],
+    },
+    {
+      domain: 'dental-clinic.example',
+      kind: 'Dental clinic',
+      covered: true,
+      personas: ['New patient · London'],
+      steps: ['Call'],
+      data: [{ label: 'Calls', kind: 'Call' }, { label: 'Prices', kind: 'Price' }],
+      views: [
+        {
+          persona: 'New patient · London',
+          step: 'Call',
+          facts: [
+            { when: '3 Nov', kind: 'Price', text: 'The receptionist said the aligner consult is free. The price list says £50.' },
+            { when: '3 Nov', kind: 'Call', text: 'Asked for a person: answered after 1 minute 12 seconds on hold.' },
+          ],
+          evidence: { from: 'Call · dental-clinic.example, main line', subject: 'New patient asking about aligners', lines: ['3 Nov, 08:01, 3 min 5 s', 'Receptionist: “The aligner consult is free.”', 'Price list, captured that morning: “Aligner consultation £50”', 'Our caller said it is an AI at the start'] },
+          record: { channel: 'voice', act: 'called as a new patient', wall: 'call', responder: 'AI receptionist (voice platform)' },
+        },
+      ],
+    },
+    {
+      domain: 'saas-app.example',
+      kind: 'Software',
+      covered: true,
+      personas: ['Prospect · 50 seats'],
+      steps: ['Outbound'],
+      data: [{ label: 'Emails', kind: 'Email' }, { label: 'Texts', kind: 'Text' }, { label: 'Offers', kind: 'Offer' }],
+      views: [
+        {
+          persona: 'Prospect · 50 seats',
+          step: 'Outbound',
+          facts: [
+            { when: '4 Nov', kind: 'Email', text: 'Day 1: an email from its AI SDR, 6 minutes after the guide download.' },
+            { when: '5 Nov', kind: 'Offer', text: 'Day 2: “30% off if you sign this week.” The pricing page shows no offer.' },
+            { when: '6 Nov', kind: 'Text', text: 'Day 3: a text at 03:12, local time. Replied STOP; nothing followed.' },
+          ],
+          evidence: { from: 'Alex at SaaS App <alex@saas-app.example>', subject: '30% off if you sign this week', lines: ['Arrived day 2, 11:26', 'Sender checked: signature valid', 'Not on saas-app.example/pricing the same day'] },
+          record: { channel: 'email', act: 'downloaded a guide as a prospect', wall: 'form', responder: 'AI SDR (outbound platform)' },
+        },
+      ],
+    },
+  ],
+  insights: [
+    {
+      label: 'Chat vs terms',
+      kind: 'Banks',
+      question: 'Which UK banks’ chat agents quote terms their own rate page doesn’t?',
+      persona: 'New saver · UK',
+      plan: ['Find 5 UK banks with a chat agent', 'Look each one up in the index', 'Write the report'],
+      cols: ['Bank', 'What chat said', 'Rate page'],
+      sources: [
+        { domain: 'online-bank.example', cells: ['4.6%, fixed', '4.6% variable'], evidence: 'Chat 4 Nov, 09:20: “Yes, 4.6% is fixed for 12 months.” Rate page, same minute: variable.' },
+        { domain: 'app-bank.example', cells: ['5.0% for 12 months', '5.0% for 12 months'], evidence: 'Chat 4 Nov, 10:02, matched the rate page word for word.' },
+        { domain: 'savings-bank.example', cells: ['4.8%, take money out any time', '4.8%, 30 days’ notice'], evidence: 'Chat 5 Nov, 08:44: “You can take money out any time.” The terms page says 30 days’ notice.' },
+        { domain: 'high-street-bank.example', cells: ['Passed to a person', '4.2%'], evidence: 'Chat 5 Nov, 12:10: passed to a person after 3 questions. The person quoted 4.2%, as the page does.' },
+        { domain: 'credit-union.example' },
+      ],
+      noun: ['bank', 'banks'],
+      watched: 'Watching. Its chat answers arrive here.',
+      answer: '2 of the 4 banks in the index have a chat agent that quotes terms their rate page doesn’t.',
+      stats: [
+        { v: '2 of 4', l: 'chat differs from the page' },
+        { v: '1 of 4', l: 'passed to a person' },
+        { v: '11 min', l: 'longest wait for a person' },
+      ],
+    },
+    {
+      label: 'Phone prices',
+      kind: 'Dental clinics',
+      question: 'Which London dental clinics’ AI receptionists quote a price their list doesn’t?',
+      persona: 'New patient · London',
+      plan: ['Find 5 London clinics with an AI receptionist', 'Look each one up in the index', 'Write the report'],
+      cols: ['Clinic', 'Aligner consult, phone vs list', 'Difference'],
+      sources: [
+        { domain: 'dental-clinic.example', cells: ['Free vs £50', '£50 less by phone'], evidence: 'Call 3 Nov, 08:01: “The aligner consult is free.” Price list that morning: £50.' },
+        { domain: 'smile-studio.example', cells: ['£40 vs £40', 'Same'], evidence: 'Call 4 Nov, 09:15, 2 min 40 s. Matched the price list.' },
+        { domain: 'city-dental.example', cells: ['£75 vs £60', '£15 more by phone'], evidence: 'Call 4 Nov, 11:30: “It’s 75 for the consult.” Price list: £60.' },
+        { domain: 'family-dentist.example', cells: ['£50 vs £50', 'Same'], evidence: 'Call 5 Nov, 10:05. Matched the price list, and texted it after the call.' },
+        { domain: 'bright-teeth.example' },
+      ],
+      noun: ['clinic', 'clinics'],
+      watched: 'Watching. Its phone quote arrives here.',
+      answer: '2 of the 4 clinics in the index quote a different price by phone than on their list.',
+      stats: [
+        { v: '2 of 4', l: 'differ from the list' },
+        { v: '£50', l: 'largest gap' },
+        { v: '1 of 4', l: 'texted the price after' },
+      ],
+    },
+  ],
+}
 
 export const page: Page = {
   meta: {
     path: '/verify',
-    title: 'Check your AI agents with AI customers daily · Obsession',
+    title: 'What AI agents tell customers, word for word · Obsession',
     description:
-      'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI.',
+      'Obsession records what AI agents tell customers: support chats, voice lines, sales agents and outbound callers, yours and competitors’, each answer dated.',
     answer:
-      'Obsession sends AI customers to every AI agent you run. Each has its own inbox, phone number and card, and uses your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+      'Obsession records what AI agents tell customers, as dated transcripts and call recordings. It asks support chats, voice lines, sales agents and outbound callers what a customer asks, yours and your competitors’, and keeps each answer beside the page it should match.',
     ogImage: '/og/verify.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Check your AI agents', path: '/verify' },
+      { name: 'AI agents', path: '/verify' },
     ],
   },
 
   hero: {
     pill: 'Early access',
-    headline: 'Send AI customers to every AI agent you run.',
-    sub: 'Your support bot promises the wrong refund, your AI receptionist misses a booking, and you hear it from a customer. AI customers use every AI agent you run, on every channel, every day. You see each wrong answer and broken promise the morning it happens, with proof.',
-    capture: {
-      kind: 'verify',
-      source: 'verify-hero',
-      button: 'Check my AI agent free',
-    },
-    proof: [
-      { value: 'Every channel', label: 'chat, phone, email, text and checkout' },
-      { value: 'Every day', label: 'and again after every update' },
-      { value: 'Every answer kept', label: 'with its receipt, for legal, your vendor or your insurer' },
-    ],
+    pillTo: '#join',
+    headline: 'What AI agents tell customers, word for word.',
+    sub: 'Support chats, voice lines, sales agents and outbound callers, yours and your competitors’. Every answer kept as a dated transcript or call, beside the page it should match.',
+    capture: { ...access, source: 'verify-hero' },
+    note: 'Every company and conversation in the console below is an example.',
+    proof: [],
     consoleHeading,
-    demos: [
-      {
-        tab: 'Support bot',
-        recipe: 'support-bot',
-        task: 'Every morning, ask our support bot what a customer asks, on chat, email and our portal. Check each answer against our policy pages and tell me what breaks.',
-        targets: 'Your support bot: chat, email and your portal',
-        journey: ['Say it’s AI, ask about a return', 'Ask for a person', 'Wait for the promised email', 'Check against your policy'],
-        schedule: 'Daily at 07:00, and after every update',
-        report: 'A Slack alert and a signed record',
-        kit: ['Agent ID, declared as AI', '2 inboxes', 'A test account on your portal', 'Tagged as a test, never billed'],
-        events: [
-          { time: 'Mon 07:00', text: 'AI customer 2 says it’s AI and asks to return an order after 20 days, on chat, email and your portal.' },
-          { time: 'Mon 07:02', text: 'Chat: “Yes, you have 30 days.” Your returns page, captured at 07:00, says 14.' },
-          { time: 'Mon 07:04', text: 'Asks for a person. Chat hands over in 41 seconds, the portal in 3 minutes.' },
-          { time: 'Mon 07:12', text: 'Email: a person replies in 12 minutes, and says 14 days.' },
-          { time: 'Mon 13:04', text: '6 hours on, the confirmation email the portal promised hasn’t arrived.' },
-        ],
-        finding: 'Chat gives a 30 day refund window where your policy says 14, and the portal’s promised email never came.',
-        fix: 'The return answer drafted for your bot’s settings, and the missing email flagged for your helpdesk. Live after your OK.',
-        ledger: 'Example run. 20 checks, 18 passed, every answer and wait signed and dated.',
-      },
-      {
-        tab: 'Voice receptionist',
-        recipe: 'voice-agent',
-        task: 'Every morning, call our AI receptionist as 3 new patients. Book a slot, ask a price and a person, and check every answer against our price list.',
-        targets: 'Your AI receptionist, on your own number',
-        journey: ['Say it’s an AI customer', 'Book a real slot, then cancel', 'Ask a price, then a person', 'Check against your price list'],
-        schedule: 'Daily at 08:00',
-        report: 'A report by 09:00, with every recording',
-        kit: ['Agent ID, declared as AI', '3 phone numbers', '3 voices, used with consent', 'Your calendar, connected by you'],
-        events: [
-          { time: 'Mon 08:00', text: '3 AI customers ring as new patients. Each says it’s an AI, who it works for and that the call is recorded.' },
-          { time: 'Mon 08:00', text: 'Call 2: the receptionist says it’s AI in its first 2 seconds, and books Tuesday at 10:20.' },
-          { time: 'Mon 08:01', text: 'Asks the price of an aligner consult. “The aligner consult is free.” Your price list says £50.' },
-          { time: 'Mon 08:01', text: 'Asks for a person. A person answers after 1 minute 12 seconds on hold.' },
-          { time: 'Mon 08:03', text: 'Calls 1 and 3 pass every check, so 11 of 12 checks pass. Each test slot is cancelled.' },
-        ],
-        finding: 'Your receptionist tells new patients the aligner consult is free. Your price list says £50.',
-        fix: 'The price answer drafted for your receptionist’s settings. Live after your OK.',
-        ledger: 'Example run. 3 calls, 11 of 12 checks passed, every call recorded, signed and dated.',
-      },
-      {
-        tab: 'AI SDR',
-        recipe: 'outbound-agent',
-        task: 'Add 2 AI customers to our AI SDR’s lists as prospects. Read every email, text and call it sends them, and check each one against our rules.',
-        targets: 'Your AI SDR: email, text and calls',
-        journey: ['Join its lists', 'Read every message', 'Reply “not now”, then STOP', 'Check against your rules'],
-        schedule: 'Every message, as it lands',
-        report: 'A Slack flag, and a weekly signed record',
-        kit: ['2 AI customers, declared as AI', '2 inboxes', '2 phone numbers', 'Replies as prospects do'],
-        events: [
-          { time: 'Mon 08:31', text: 'AI customers 1 and 2 get the first email. Its claims match your list.' },
-          { time: 'Tue 11:26', text: 'Email: “30% off if you sign today.” Your rule allows up to 15%.' },
-          { time: 'Wed 03:12', text: 'A text at 03:12. Your quiet hours run from 21:00 to 08:00.' },
-          { time: 'Wed 09:14', text: 'Email: it names a customer you don’t have.' },
-          { time: 'Wed 10:02', text: 'AI customer 2 replies STOP. “You’re unsubscribed.” Nothing follows.' },
-        ],
-        finding: '3 of 40 messages broke your rules: a discount over its limit, a text at 03:12 and a customer you don’t have.',
-        fix: 'Your AI SDR paused by your rule, and 3 rule changes drafted for its settings. Live after your OK.',
-        ledger: 'Example run. 40 messages read, 37 passed, each signed and dated.',
-      },
-      {
-        tab: 'Before you sign',
-        recipe: 'vendor-agent',
-        task: 'Run our 20 hardest tickets on each shortlisted vendor’s agent, set up on our policies, and compare them side by side.',
-        targets: 'Vendor B and Vendor C',
-        journey: ['Set up the same 20 cases', 'Ask as AI customers', 'Time every handoff', 'Score against your policy'],
-        schedule: '2 weeks before you sign, then monthly',
-        report: 'A signed report for procurement',
-        kit: ['Agent ID, declared as AI', 'An inbox and number per vendor', 'Your 20 real cases', 'Tagged as tests on both'],
-        events: [
-          { time: '19 Sep', text: 'Both vendors agree to the test. The same 20 cases go to each agent.' },
-          { time: '22 Sep', text: 'Asks for a person. Vendor B connects one in 1 minute 50 seconds.' },
-          { time: '22 Sep', text: 'Vendor C says “How can I help?” 3 times. No person in 6 minutes, where your policy says 3.' },
-          { time: '29 Sep', text: 'A refund on day 35, an address change, an expired code: every case run on both.' },
-          { time: '3 Oct', text: 'Vendor B passes 17 of 20 cases. Vendor C passes 12.' },
-        ],
-        finding: 'Vendor B passed 17 of 20 cases and Vendor C 12. Asked for a person, Vendor C kept a customer waiting 6 minutes where your policy says 3.',
-        fix: 'A side by side report for procurement, every case signed. The choice stays yours.',
-        ledger: 'Example run. 40 runs over 2 weeks, every answer signed and dated.',
-      },
-      {
-        tab: 'After every update',
-        recipe: 'drift',
-        task: 'Replay our 40 hardest support cases every morning, and again within the hour of any update. Tell me what changed.',
-        targets: 'Your support bot, run by Vendor A',
-        journey: ['Replay your 40 cases', 'Compare with the baseline', 'Run again after every update', 'Flag every new failure'],
-        schedule: 'Daily at 07:00, and within the hour of any update',
-        report: 'A Slack alert, and a note for your vendor',
-        kit: ['Agent ID, declared as AI', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
-        events: [
-          { time: '2 Oct, 07:00', text: 'Morning replay: 37 of 40 cases pass, in line with the baseline.' },
-          { time: '2 Oct, 23:20', text: 'Vendor A ships an update to your bot.' },
-          { time: '3 Oct, 00:10', text: 'The replay runs again. 28 of 40 pass.' },
-          { time: '3 Oct, 00:12', text: '9 cases fail that passed that morning: refunds, delivery fees, warranty, and stopping after “No”.' },
-          { time: '3 Oct, 00:14', text: 'A note to Vendor A drafted, with every answer before and after.' },
-        ],
-        finding: 'Since Vendor A’s update, 9 of your 40 cases fail. Your bot now offers 30 day refunds and free delivery.',
-        fix: 'The note to Vendor A, with every answer before and after, signed. Sent after your OK.',
-        ledger: 'Example run. 80 replays, every answer signed and dated.',
-      },
-    ],
   },
 
-  how: {
-    heading: 'Name your AI agent and your policies. AI customers bring back the proof.',
-    sub: 'There’s nothing to install. They use the same chat, phone and inbox your customers do, and run only once you approve the checks.',
-    steps: [
-      {
-        title: 'Point it at your AI agent',
-        line: 'A chat page, phone number, inbox, portal or checkout: yours, a client’s with their agreement, or a vendor’s you’re trialling. Add your policies, prices and where you sell.',
-        screen: 'disclosure',
-        chips: ['Chat', 'Phone', 'Email', 'Text', 'Portal', 'Checkout'],
-      },
-      {
-        title: 'Approve the checks',
-        line: 'Obsession writes them from your policies, your prices and the rules where you sell: it says it’s AI, quotes the right price, gets you a person. Change any check, then approve.',
-        screen: 'salescheck',
-      },
-      {
-        title: 'AI customers use it',
-        line: 'Each has its own ID, inbox, number, account and card, and says it’s AI and who it works for. Every day, and after every update. Checkouts go as far as the budget you set.',
-        screen: 'callcheck',
-      },
-      {
-        title: 'You get a verdict and a signed record',
-        line: 'Each check passes or fails, with the transcript or recording, the policy it broke and what happened next. The fix comes drafted, and anyone you show can check the record.',
-        screen: 'resolution',
-      },
+  explorer: agents,
+
+  dataKinds: {
+    kicker: 'What’s in it?',
+    heading: 'Every answer, and what happened after it.',
+    items: [
+      { title: 'The conversation itself', line: 'Every chat transcript and call recording, word for word, with the time of each reply.', eg: 'Chat 09:20 · “Yes, 4.6% is fixed”' },
+      { title: 'The answer beside the page', line: 'Each answer next to the policy, price list or terms it should match, captured the same minute.', eg: 'Chat: fixed rate · page: variable' },
+      { title: 'The wait for a person', line: 'How long each channel takes to hand a customer to a person, if it does.', eg: 'Chat 41 s · voice line 6 min' },
+      { title: 'What it promised', line: 'Whether the email, refund, callback or booking it promised ever came.', eg: 'Email promised · none 6 hours later' },
+      { title: 'What it sends unasked', line: 'Every email, text and call an AI SDR or outbound caller sends a prospect, with the time.', eg: 'Text at 03:12 · “30% off this week”' },
+      { title: 'The day it changes', line: 'The same questions asked every day, so a new answer shows the day it starts.', eg: '37 of 40 the same, then 28' },
     ],
   },
 
   gap: {
-    heading: 'Your AI vendor grades its own agent. Obsession checks it as your customer.',
-    sub: 'It asks, then waits for the refund, the email and the callback, and keeps every receipt.',
+    heading: 'Your vendor grades its own agent. Obsession keeps what the customer heard.',
+    sub: 'Asked on the real channels, yours and your competitors’, as the customer profiles you pick.',
     rows: [
-      { today: 'Your vendor tests its agent in its own simulator', obsession: 'AI customers use it on your real channels' },
-      { today: 'You hear from a complaint, days later', obsession: 'A failed check reaches you the same morning' },
-      { today: 'Transcripts show what the bot said', obsession: 'Checks follow what happened next: the refund, the email, the booking' },
-      { today: 'Resolutions billed on the vendor’s own count', obsession: 'Each billed outcome checked against what the customer got' },
-      { today: 'Screenshots in a folder', obsession: 'Every answer kept with its receipt, for legal, your vendor or your insurer' },
-    ],
-  },
-
-  uses: {
-    heading: 'AI customers find what your AI agent gets wrong on your real channels.',
-    items: [
-      {
-        tab: 'Support bot',
-        moment: 'Monday 07:00, before your team logs on.',
-        outcome: 'The wrong refund window, found at 07:02 with the transcript.',
-        line: 'AI customers ask on chat, email and your portal in the same minute, and check each answer against your policy page.',
-        whyOnly: 'Each has a real inbox and portal account, so it sees whether the email the bot promised ever came.',
-        recipe: 'support-bot',
-        screen: 'botcheck',
-      },
-      {
-        tab: 'AI SDR',
-        moment: 'Monday, as the week’s sequences go out.',
-        outcome: 'Every claim, discount and send time your AI customers receive, checked against your rules.',
-        line: 'AI customers on its lists read every email, text and call, reply “not now” and STOP, and time how fast it stops.',
-        whyOnly: 'Real inboxes and numbers on the receiving end, so you see each message as a prospect does.',
-        recipe: 'outbound-agent',
-        screen: 'outcheck',
-      },
-      {
-        tab: 'Before you sign',
-        moment: 'The shortlist meeting, with 2 vendors left.',
-        outcome: '2 vendors, the same 20 cases, signed and side by side.',
-        line: 'AI customers run your real cases on each vendor’s agent and time every handoff.',
-        whyOnly: 'The same customers, cases and channels on both, so the comparison is fair.',
-        recipe: 'vendor-agent',
-        screen: 'vendorcheck',
-      },
-      {
-        tab: 'After every update',
-        moment: 'Your vendor ships an update at 23:20.',
-        outcome: 'By 00:10 you know which 9 answers broke.',
-        line: 'AI customers replay your 40 hardest cases every morning, and again within the hour of any update.',
-        whyOnly: 'The same AI customers ask the same questions every day, so any change is the agent’s.',
-        recipe: 'drift',
-        screen: 'drift',
-      },
-    ],
-  },
-
-  outcomes: {
-    heading: 'Know the morning it breaks, not 11 days later.',
-    items: [
-      { value: 'Up to 10 days', label: 'sooner: a daily check catches a broken answer within 1 day, where 1 team took 11 days to notice' },
-      { value: 'Up to 1,900', label: 'billed resolutions a month to challenge, each with its proof: 10,000 billed, if 19 in 100 aren’t real' },
-      { value: 'Up to 780 hours', label: 'back a year: 15 hours a week of reading transcripts, turned into a list of what failed' },
+      { today: 'Your vendor tests its agent in its own simulator', obsession: 'Answers from your real chat, phone line and inbox, as a customer gets them' },
+      { today: 'Transcripts show what the bot said', obsession: 'What happened after: the refund, the email, the booking' },
+      { today: 'You guess what a competitor’s agent says', obsession: 'Its answers on rates, prices and refunds, dated, beside yours' },
+      { today: 'You hear from a complaint, days later', obsession: 'A changed answer at your webhook, the day it changes' },
+      { today: 'Screenshots in a folder', obsession: 'Each answer with its transcript or recording and the time, ready for legal or your vendor' },
     ],
   },
 
   kinds: {
-    heading: 'Every AI agent your customers meet gets its own AI customer.',
-    label: 'Pick your AI agent',
+    heading: 'Every AI agent a customer meets, from chat to phone.',
+    label: 'Pick an agent',
     items: [
-      {
-        name: 'Support bots and help desks',
-        line: 'The same question on chat, email and your portal, checked against your policy every morning.',
-        recipes: ['support-bot', 'resolution', 'drift', 'disclosure'],
-      },
-      {
-        name: 'Voice receptionists and call agents',
-        line: 'AI customers with different voices book, ask a price and ask for a person, every day.',
-        recipes: ['voice-agent', 'disclosure', 'drift'],
-      },
-      {
-        name: 'Booking agents',
-        line: 'A real slot booked and cancelled, and the calendar entry and the confirmation text checked.',
-        recipes: ['voice-agent', 'support-bot'],
-      },
-      {
-        name: 'AI SDRs and outbound callers',
-        line: 'Every email, text and call your AI customers receive from it, checked against your claims, limits and quiet hours.',
-        recipes: ['outbound-agent', 'disclosure'],
-      },
-      {
-        name: 'Shopping and sales agents',
-        line: 'The prices, stock and delivery it quotes, checked against your store, through to checkout.',
-        recipes: ['sales-agent', 'drift'],
-      },
-      {
-        name: 'AI in your support portal',
-        line: 'A test account asks what a signed in customer asks and follows what happens next.',
-        recipes: ['support-bot', 'resolution'],
-      },
-      {
-        name: 'Agents you’re about to buy',
-        line: 'Your real cases on each shortlisted vendor’s agent, before you sign.',
-        recipes: ['vendor-agent', 'drift'],
-      },
+      { name: 'Support bots and help desks', line: 'The same question on chat, email and your portal, each answer beside your policy.', recipes: ['support-bot', 'resolution', 'drift', 'disclosure'] },
+      { name: 'Voice receptionists and call agents', line: 'Every call recorded: the price it quoted, the booking and the wait for a person.', recipes: ['voice-agent', 'disclosure', 'drift'] },
+      { name: 'AI SDRs and outbound callers', line: 'Every email, text and call it sends a prospect, with the time, the offer and what follows STOP.', recipes: ['outbound-agent', 'disclosure'] },
+      { name: 'Shopping and sales agents', line: 'The prices, stock and delivery it quotes, beside your store, through to checkout.', recipes: ['sales-agent', 'drift'] },
+      { name: 'Competitors’ agents', line: 'What a competitor’s chat and phone line tell any customer, dated, beside your own.', recipes: ['competitor', 'support-bot'] },
+      { name: 'Agents you’re about to buy', line: 'Your hardest cases on each shortlisted vendor’s agent, side by side, with the vendor’s agreement.', recipes: ['vendor-agent', 'drift'] },
     ],
   },
 
   recipes: {
-    heading: 'Start from the check that matches your agent.',
+    heading: 'Start from the recipe that fits the agent.',
     ids: ['support-bot', 'voice-agent', 'outbound-agent', 'sales-agent', 'vendor-agent', 'resolution', 'disclosure', 'drift'],
   },
 
+  /* Is this real: our own runs and Brand G, the 1 real record, as Home has them. No AI agent run is claimed. */
   proof: {
-    heading: 'Our AI customers already caught a store that never followed up.',
-    line: 'In September, 4 AI customers joined a UK store, name hidden, and every inbox was watched for 48 hours. 1 left a basket and 1 stopped at checkout, and nobody wrote to either. Your AI agent check works the same way: AI customers ask, then watch for what comes next.',
-    cta: { label: 'See one of our runs and its results', to: '/sample-output' },
+    heading: '1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
+    line: 'Brand G, a real skincare store, is one: a £40 basket left at 02:57 on 22 Sep, and no reminder 48 hours later. Its whole record is the sample data. Chats and calls are kept the same way, each reply with its time.',
+    cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
   faq: {
-    heading: 'Every AI customer says it’s an AI. Everything else is yours to set.',
+    heading: 'Before you request access.',
     items: [
       {
-        q: 'What does Obsession check in my AI agents?',
-        a: 'Obsession sends AI customers to every AI agent you run. Each has its own inbox, phone number and card, and uses your support bot, AI receptionist and AI SDR every day. You see every wrong answer, missed handoff and broken promise, with the proof.',
+        q: 'What does Obsession record from AI agents?',
+        a: 'Obsession records what AI agents tell customers, as dated transcripts and call recordings. It asks support chats, voice lines, sales agents and outbound callers what a customer asks, yours and your competitors’, and keeps each answer beside the page it should match.',
+      },
+      {
+        q: 'Can I see what a competitor’s AI agent says?',
+        a: 'Yes, as its customer. Obsession asks a competitor’s chat or phone line what any customer can ask, and keeps every answer exactly as it arrived.',
       },
       {
         q: 'How is this different from our vendor’s own tests?',
-        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession’s AI customers use your agent on its real channels, check each answer against your policies and the law, and keep every answer with its receipt.',
-      },
-      {
-        q: 'How do we find out our chatbot is giving customers wrong answers?',
-        a: 'Before customers do: Obsession’s AI customers ask your bot what customers ask every day and check each answer against your policy pages, so a wrong answer shows up the morning it starts.',
-      },
-      {
-        q: 'Our deflection numbers look great. Are the resolutions real?',
-        a: 'Obsession’s Resolution check finds out: it matches each resolution your AI vendor bills against what happened in your payments and helpdesk, and every one that wasn’t real goes into a signed dispute pack.',
+        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession asks on your real channels, as a customer, and keeps what came after: the email, the refund, the booking.',
       },
       {
         q: 'Do you need our logins or code?',
-        a: 'No. Obsession’s AI customers use your AI agent the way your customers do. A test account on your portal, or a helpdesk export, only if you give them.',
+        a: 'No. Obsession uses the chat page, phone number and inbox any customer can. A test account on your portal only if you give one.',
       },
       {
-        q: 'Will Obsession try to break or trick our bot?',
-        a: 'Only if you want it to. Obsession asks what your customers ask, and you can add hard or adversarial questions to see where your bot breaks.',
+        q: 'Does it say it’s an AI?',
+        a: 'Yes, at the start of every chat and call, and it says calls are recorded. Every recording is kept exactly as made. Conversations with your own agents are tagged as tests, agreed with your vendor first.',
       },
       {
-        q: 'Will our vendor bill us for the tests?',
-        a: 'Every Obsession test is tagged as a test, and we agree that with your vendor before the first one runs.',
-      },
-      {
-        q: 'Are test calls recorded?',
-        a: 'Yes. Each of Obsession’s AI customers says at the start of every call that it’s AI and that the call is recorded, and every recording is kept exactly as made.',
-      },
-      {
-        q: 'Can we check a vendor’s agent before we sign?',
-        a: 'Yes, with the vendor’s agreement: Obsession’s Vendor agent check runs the same cases on every vendor on your shortlist.',
-      },
-      {
-        q: 'Can you check a competitor’s bot?',
-        a: 'Yes, as its customer: Competitor tracking asks a competitor’s chat bot what any customer can ask, and keeps every answer exactly as it arrived.',
-      },
-      {
-        q: 'Does Obsession pay or place orders?',
-        a: 'Only if you set a budget. Obsession’s AI customers pay with real payment details, up to the cap you set. With no budget, every checkout stops before payment.',
-      },
-      {
-        q: 'What do we get back?',
-        a: 'Obsession sends a verdict on every check, with the transcript or recording, the policy it broke, what happened next and the fix drafted. Every answer is kept with its receipt.',
-      },
-      {
-        q: 'Is a passed check a guarantee?',
-        a: 'No. A passed Obsession check is dated evidence of what happened on each check.',
+        q: 'What does early access include?',
+        a: 'API and MCP access, lookups of every company already covered, and up to 5 companies added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
       },
     ],
   },
 
   final: {
-    heading: 'Your first AI agent check is free.',
-    sub: 'Name a chat page or phone number you run, for yourself or a client. 3 AI customers use it, and your report lands within 4 days.',
-    capture: {
-      kind: 'verify',
-      source: 'verify-final',
-      button: 'Check my AI agent free',
-    },
+    heading: 'Which AI agent should we ask first?',
+    capture: { ...access, source: 'verify-final' },
   },
 }

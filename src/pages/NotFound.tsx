@@ -4,8 +4,8 @@ import { notFoundPage as p } from '../content/site'
 import { NoticeHero } from './Notice'
 import './NotFound.css'
 
-/* Any address without a page (dist/404.html, noindex): the ways back, and the waitlist at #join, so the nav's call to
-   action lands here too. */
+/* Any address without a page (dist/404.html, noindex): the ways back, and the early access form at #join, so the nav's
+   call to action lands here too. */
 export function NotFound() {
   return (
     <NoticeHero headline={p.headline} sub={p.sub} end>

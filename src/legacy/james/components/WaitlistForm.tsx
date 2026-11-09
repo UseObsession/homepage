@@ -17,7 +17,7 @@ type Props = {
   button?: string
 }
 
-export function WaitlistForm({ source, withCompany = false, button = 'Join the waitlist' }: Props) {
+export function WaitlistForm({ source, withCompany = false, button = 'Request early access' }: Props) {
   const id = useId()
   const [step, setStep] = useState<'company' | 'email' | 'done'>(withCompany ? 'company' : 'email')
   const [company, setCompany] = useState('')
@@ -32,7 +32,7 @@ export function WaitlistForm({ source, withCompany = false, button = 'Join the w
 
     if (step === 'company') {
       if (!DOMAIN.test(company.trim())) {
-        setError('Enter a web address, like rivalbrand.com')
+        setError('Enter a web address, like competitor.com')
         return
       }
       setStep('email')
@@ -68,12 +68,12 @@ export function WaitlistForm({ source, withCompany = false, button = 'Join the w
     return (
       <div className="wl-done" role="status">
         <p className="wl-done-head">
-          <Mark size={18} /> You're on the list.
+          <Mark size={18} /> Request received.
         </p>
         <p className="muted">
           {company
-            ? `We'll be in touch about ${company.replace(/^https?:\/\//, '').replace(/\/.*$/, '')} and what you'd like to find out.`
-            : "We'll be in touch to ask what you'd like to find out first."}
+            ? `We’ll be in touch to set up your access, starting with ${company.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}.`
+            : 'We’ll be in touch to set up your access.'}
         </p>
         {!ENDPOINT && <p className="wl-preview">Preview: nothing was sent.</p>}
       </div>
@@ -93,7 +93,7 @@ export function WaitlistForm({ source, withCompany = false, button = 'Join the w
               type="text"
               inputMode="url"
               autoComplete="off"
-              placeholder="Any company, e.g. rivalbrand.com"
+              placeholder="Any company, e.g. competitor.com"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
             />
@@ -136,7 +136,7 @@ export function WaitlistForm({ source, withCompany = false, button = 'Join the w
           {error}
         </p>
       ) : (
-        step === 'email' && <p className="wl-consent">We’ll only use your email to contact you about early access.</p>
+        step === 'email' && <p className="wl-consent">Onboarding a limited number of teams. We’ll use your email only about early access.</p>
       )}
     </form>
   )

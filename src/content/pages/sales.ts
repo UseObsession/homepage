@@ -1,24 +1,36 @@
-import { askExamples, askShared, life } from '../shared5'
+import { askShared } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page } from '../types'
 
-/* Sales (/sales), the October rewrite (COPY.md, "Copy deck > Sales"). Sales teams, RevOps and the GTM engineers who
-   build their plays. Their words (research/voc.md): "battlecards", "competitor intel", "keep current", and Jamie's
-   "evidence", "prove", "domain as the input". The trigger is the calendar: a first call booked starts a customer agent
-   at that account, so the brief is ready on the day.
-   The story: what it is for you (each account and rival, seen as their customer) > what your CRM can't see > 6 jobs
-   from first call to win back, each with its screen > how a customer agent lives > the real
-   September store check > questions > early access. Every use case screen is an example (its Example tag). */
+/* Sales (/sales), the 9 Nov rewrite to Home's story: sales teams, RevOps and GTM engineers get what each account and
+   competitor sends its own customers, ready before the call, with a domain as the only input. Their words: battlecards,
+   competitor intel, evidence. The page: the hero > stale battlecards > 4 jobs from first call to win back > asked in
+   plain words > Brand G, the 1 real run > questions > early access. Every use case screen is an example. */
 
+/* The code example: an account's facts before the call, then a competitor not covered yet added. */
+const CODE = `import os
+from obsession import Obsession
+
+ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+
+# What did Wrenfield send its customers this month?
+for fact in ob.facts("wrenfield.example", since="30d"):
+    print(fact.seen_at, fact.kind, fact.sentence, fact.receipt_url)
+
+# A competitor not covered yet? Add it, and get each new fact at your webhook
+ob.index(["larchwise.example"], how="account")
+ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")`
+
+const access = { kind: 'waitlist', button: 'Request early access', interest: 'prospect' } as const
 
 export const page: Page = {
   meta: {
     path: '/sales',
-    title: 'Send AI customers to every account · Obsession',
+    title: 'Competitor intel for battlecards and briefs · Obsession',
     description:
-      'Send an AI customer to each prospect, account and competitor before you call, so every brief and battlecard opens on what their customers get.',
+      'What each account and competitor sends its own customers, ready before the call: trial emails, discounts, signed-in prices and support answers, each dated.',
     answer:
-      'Obsession sends an AI customer to each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
+      'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. A domain is the only input, from Clay, your CRM or your own agent.',
     ogImage: '/og/sales.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,114 +39,119 @@ export const page: Page = {
   },
 
   hero: {
-    pill: '',
-    headline: 'Send AI customers to every account and competitor.',
-    sub: 'Obsession sends an AI customer to each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
-    capture: { kind: 'waitlist', source: 'sales-hero', button: 'Join the waitlist', interest: 'prospect' },
+    pill: 'Early access',
+    pillTo: '#join',
+    headline: 'Know what every account sends its customers before you call.',
+    sub: 'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. A domain is the only input, from Clay, your CRM or your own agent.',
+    capture: { ...access, source: 'sales-hero' },
     secondary: { label: 'See how it compares', to: '/compare' },
     proof: [],
     consoleHeading,
+    /* The hero's object: domains in a Clay table, facts landing row by row. */
     screens: [{ tab: 'Clay', screen: 'claycols', recipe: 'prospect', line: '' }],
   },
 
   gapPair: {
-    heading: 'Your CRM knows what they told you. A customer knows what they do.',
-    line: 'Intent data says an account is shopping. It can’t say that their trial goes quiet on day 3, or that a competitor just cut its price by 20%. Only a customer gets that.',
+    heading: 'Battlecards go stale the week they’re written.',
+    line: 'Someone signs up to a competitor once, screenshots the pricing page, and the card is out of date by the next price change. Obsession keeps each competitor’s emails, prices and offers as they arrive.',
     tools: {
-      label: 'What you can see today',
+      label: 'What you have today',
       items: [
         'Their website and LinkedIn',
         'News and funding alerts',
         'Intent data and firmographics',
-        'What the buyer says on the call',
+        'A battlecard written last quarter',
       ],
     },
     customer: {
-      label: 'What your AI customer at each account gets',
+      label: 'What Obsession adds',
       items: [
-        'How fast they answer a new lead, by form, chat and phone',
-        'What their trial sends, and when it goes quiet',
-        'Every price and discount a competitor offers',
-        'The welcome email that never came',
-        'What their support bot tells a customer',
+        'Their trial emails, and the day each arrived',
+        'The discount sent before the trial ends',
+        'Signed-in prices beside the public page',
+        'What their support tells a customer, and how fast',
+        'A date and a screenshot behind every line',
       ],
     },
   },
 
   uses: {
-    heading: 'From the first call to the win back, every deal opens on proof.',
+    heading: 'From the first call to the win back, every line comes with its evidence.',
     items: [
       {
         tab: 'Account brief',
-        moment: 'Friday 16:00. A first call books for next Friday, and the calendar invite starts an AI customer at the account.',
-        outcome: 'Know what each account does before you call: 7 days as their customer.',
-        line: 'An AI customer joins their newsletter, starts a trial, asks their help bot and reads their news, and the brief is ready the morning of the call.',
-        whyOnly: 'A welcome email or a trial nudge only reaches an inbox that signed up. Each AI customer has its own, at every account on your list.',
+        moment: 'Friday, 16:00. A first call with Larchwise books for next Friday, and all you’ve seen is their homepage.',
+        outcome: 'A brief on what the account sends its own customers, ready the morning of the call.',
+        line: 'Their trial emails, prices and support answers, each dated, with talking points drafted and saved to the CRM.',
+        whyOnly: 'A trial that goes quiet on day 2 shows only to someone in the trial.',
         recipe: 'prospect',
         screen: 'brief',
       },
       {
         tab: 'Battlecards',
-        moment: 'Wednesday 15:00. A buyer says the competitor is cheaper.',
-        outcome: 'Know every competitor’s discount before your buyer quotes it.',
-        line: 'AI customers start each competitor’s trial and keep every email, price and offer until it ends, then check the competitor’s pages every Monday.',
-        whyOnly: 'Competitor A’s 20% off only reaches trials still open on day 13. Each AI customer stays in its trial to the last day.',
+        moment: 'Wednesday, 15:00. A buyer says the competitor is cheaper.',
+        outcome: 'Battlecards that stay current, with every competitor’s discount dated.',
+        line: 'Each competitor’s trial emails, offers and seat prices fill in as they arrive, and the card updates in your CRM.',
+        whyOnly: 'Competitor A’s 20% off reaches only trials still open on day 13. It’s on no pricing page.',
         recipe: 'trial',
         screen: 'battlecard',
       },
       {
-        tab: 'Lead leaks',
-        moment: 'Thursday 09:00. Inbound is up, meetings booked are not.',
-        outcome: 'Find where your own form, chat and phone drop leads.',
-        line: 'Every day, an AI customer labelled as a test lead uses your form, chat and phone, times each reply and checks who got it.',
-        whyOnly: 'Your CRM shows the lead arrived. Only a lead on the other side, with its own inbox and number, can time the 4 hour wait and the missed call.',
-        recipe: 'speed',
-        screen: 'inbound',
-      },
-      {
-        tab: 'Pilot proof',
-        moment: 'Tuesday 09:00. Kickoff, and their CFO wants proof by day 30.',
-        outcome: 'Turn pilots into contracts on a before and after anyone can check.',
-        line: 'With their OK, the same AI customers ask their support the same 20 questions on day 0, 14 and 28, and time every answer.',
-        whyOnly: 'Each AI customer keeps its own inbox and number from day 0 to day 28, so every answer is timed the same way.',
-        recipe: 'mystery',
-        screen: 'pilot',
-      },
-      {
-        tab: 'Account watch',
-        moment: 'Monday 08:00. 2 hours before the forecast call.',
-        outcome: 'See churn and upsell coming, with the play drafted.',
-        line: 'AI customers stay at each account, follow its news and read the CRM, tickets and calls you connect.',
-        whyOnly: 'Each AI customer lives at the account, so it sees what breaks for them before their usage drops.',
-        recipe: 'account-watch',
-        screen: 'acctwatch',
+        tab: 'Outbound',
+        moment: 'Monday, 09:00. 50 target accounts from Clay, and 1 opener for all of them.',
+        outcome: 'The accounts with a real gap rise to the top, each with a dated fact to open on.',
+        line: 'Put in the domains. Each comes back with what its customers get, and an opener drafted for you to send.',
+        whyOnly: 'Intent data says an account might buy. Its own emails say why.',
+        recipe: 'prospect',
+        screen: 'leads',
       },
       {
         tab: 'Win back',
-        moment: 'Thursday 14:00. The lost deals list nobody reopens.',
+        moment: 'Thursday, 14:00. The lost deals list nobody reopens.',
         outcome: 'Reopen lost accounts the week their new setup breaks.',
-        line: 'An AI customer joins each lost account’s emails and texts, keeps what breaks or changes, and drafts your rep’s note.',
-        whyOnly: 'Each AI customer stays on every lost account’s list with its own inbox and number, so it sees the welcome email stop and the code expire after the move.',
+        line: 'Each lost account’s emails and texts are kept, so you see the welcome email stop and the code expire after the move.',
+        whyOnly: 'Only a subscriber on their list sees the emails stop.',
         recipe: 'email-sms',
         screen: 'winback',
       },
     ],
   },
 
-  life,
-
-  /* The ask section (docs/positioning/ask-section.md), where the comparison sits on other pages: an account brief,
-     support speed across a target list, and what changed in their stack. */
   ask: {
     ...askShared,
+    heading: 'Ask about any account before the call.',
+    line: 'Connect Obsession once to Claude Code or Codex, or call it from code with a domain. Every answer links the emails and pages behind it.',
     areas: ['Prospects', 'Accounts', 'Competitors'],
-    examples: [{ ...askExamples.brief, where: 'Claude Code' }, askExamples.support, askExamples.watch],
+    examples: [
+      {
+        where: 'Claude Code',
+        q: 'Brief me on Wrenfield before Thursday’s call.',
+        a: [
+          'A new customer gets a welcome email in 4 minutes, but the basket reminder took 26 hours.',
+          'Support took 31 hours to answer a delivery question. Their help page promises 24.',
+          'Their emails have come from a new platform since 2 October.',
+        ],
+        receipts: 'Screenshots: 7 emails and 1 support thread, linked',
+      },
+      {
+        where: 'Codex',
+        q: 'Which of our competitors email a discount before the trial ends?',
+        a: [
+          'Northfold sends 40% off the first year on day 12. Its pricing page shows full price.',
+          'Wrenfield offers 3 months at half price on day 13.',
+          'Larchwise sends no offer, only “Your trial has ended”.',
+        ],
+        receipts: 'Screenshots: 9 emails and 3 pricing pages, linked',
+      },
+      { where: 'Code', q: 'Pull an account’s facts by domain before the call.', file: 'accounts.py', code: CODE },
+    ],
   },
 
+  /* The 1 real run: Brand G, the September store check. */
   proof: {
-    heading: 'On a real store, 1 AI customer left a basket and 1 stopped at checkout. Neither got a reminder in 48 hours.',
-    line: 'A skincare store in September 2026, name hidden: 4 AI customers, every inbox watched for 48 hours, 15 screenshots. Your briefs and battlecards come back with the same detail, and the same proof.',
-    cta: { label: 'See the real report', to: '/sample-output' },
+    heading: 'A £40 basket left at 02:57. No reminder in 48 hours.',
+    line: 'Brand G, a real skincare store, on 22 Sep. Its whole record is the sample data: every email with the time it arrived, and every screenshot. Every line on a brief or battlecard links to a record like it.',
+    cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
   faq: {
@@ -142,26 +159,33 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a sales team?',
-        a: 'Obsession sends an AI customer to each prospect, account and competitor before you call, so every brief, battlecard and renewal opens on what their customers actually get, with proof.',
+        a: 'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. Briefs and battlecards stay current as new emails, prices and offers arrive.',
       },
       {
-        q: 'Can it start when a meeting is booked?',
-        a: 'Yes. Connect your calendar and an AI customer goes to the account the moment a first call is booked, so the brief is ready on the day.',
+        q: 'How is this different from Klue or Crayon?',
+        a: 'They keep what competitors publish: pages, news and reviews. Obsession keeps what competitors send their signed-up customers: trial emails, signed-in prices, discounts and support answers.',
       },
       {
         q: 'Does it work with Clay and our CRM?',
-        a: 'Yes. Send a list from Clay, HubSpot or Salesforce, and each finding comes back to the same row, with its proof linked.',
+        a: 'Yes. A domain is the only input. Send a list from Clay or your CRM, and each fact comes back to the same row, with its screenshot linked.',
       },
       {
-        q: 'Can our own agent use it?',
-        a: 'Yes. Connect Obsession to Claude, ChatGPT or your own agent through MCP or the API, and it can ask what any account does to its customers.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up, start trials and ask for quotes the way any customer can, from the customer profiles and countries you choose, and keep each account open for months.',
+      },
+      {
+        q: 'Does an account know we looked it up?',
+        a: 'No. Anyone can see that a company is covered, and since when, but never who asked.',
+      },
+      {
+        q: 'What does early access include?',
+        a: 'API and MCP access, lookups of every company already covered, and up to 5 accounts added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
       },
     ],
   },
 
   final: {
-    heading: 'Pick an account. Send it an AI customer.',
-    sub: 'Start with the renewal you can’t lose, or the deal you’re fighting for.',
-    capture: { kind: 'waitlist', source: 'sales-final', button: 'Join the waitlist', interest: 'any' },
+    heading: 'Which account is your next call with?',
+    capture: { ...access, source: 'sales-final' },
   },
 }

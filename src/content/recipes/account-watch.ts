@@ -1,44 +1,35 @@
 import type { Recipe } from '../types'
 
-/* Account watch (/recipes/account-watch). Keep and grow customers. Screen: acctwatch (38 accounts; Inside, Outside, Lived;
-   Snack brand at risk: usage down 38% in 14 days, 3 urgent tickets in 5 days, its site down twice; Payroll SaaS hiring 12
-   sales roles; the save plan approved).
-   Base: site_sales.json "Account watch" (approved copy and demo) and its cofounder flags: news and hiring are the
-   commodity half, so the page builds to what only a live customer sees (a journey that breaks, emails that
-   stop, links that break), and the fit is sellers whose product their accounts' customers touch. The "moved to a
-   rival's platform" signal is held back until 1 real account has said yes (site_home.json). Not offered to agencies
-   (James: account intelligence isn't for them).
-   The 3 lines hold (obsession/system.md): the record kept as it arrived, the customer private unless they choose to
-   be named, and the law (an agent says it's AI when it talks to a person). Inside data comes only from the tools the
-   customer connects, with consent. Everything else, how far an agent goes at an account and whether it writes to
-   anyone, is the customer's setting. The run is an example and says so.
-   Up-to-50 rule, no money promises (James and Seun, 3 Oct): the 1 modelled figure is hours, with its sum in the same
-   line, the same model as /sales: 1 account manager checking the run's 38 accounts by hand at 15 minutes each a week (38 × 15 = 570 minutes, 9.5 hours a week;
-   9.5 × 52 = 494 hours a year), against every account checked every morning. */
+/* Account watch (/recipes/account-watch). A ready-made collection (9 Nov): a customer account open at each company the
+   reader sells to, and what each one sends its own customers (emails that stop, links that break, offers that change,
+   a journey or a site that fails), dated and landed on the account's record in the reader's CRM. Public news and job
+   posts sit beside them as a supplement, never the product. No tracking of individual staff (the old "your champion
+   leaves" check is gone), no reading of the reader's usage, tickets or calls. Not offered to agencies. The run is an
+   example and says so; the `acctwatch` screen keeps its own words. */
 
 export const recipe: Recipe = {
   id: 'account-watch',
   slug: 'account-watch',
   name: 'Account watch',
   group: 'Watch other companies',
-  line: 'Sends AI customers to every account, reads the tools you connect, and flags churn and upsell with the play drafted.',
-  gets: 'Every morning: who’s at risk, who’s ready to grow, and the play for each.',
+  line: 'What each company you sell to shows its own customers, dated, on the account’s record in your CRM.',
+  gets: 'Every morning: the accounts whose emails stopped, links broke or offers changed, each with its receipt.',
   kit: [
-    'An AI customer per account',
-    'An inbox per account, and its own number',
-    'Your CRM, helpdesk and calls, read only',
-    'Each account’s news and hiring, read daily',
-    'A check at 07:00, every day',
-    'Every signal signed and dated',
+    'A customer account at each company you sell to',
+    'An inbox and number for each',
+    'Every email kept with its arrival time',
+    'Their sign-up, basket or booking, walked daily',
+    'Their news and job posts, as a supplement',
+    'Your CRM, to put each fact on the account',
   ],
 
   meta: {
     path: '/recipes/account-watch',
-    title: 'Account watch: churn and upsell in every account · Obsession',
+    title: 'Account watch: what your accounts send their customers',
     description:
-      'With consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and stay its customer, then flag churn and upsell.',
+      'What each company you sell to sends its own customers: emails, offers and journeys, dated, with public news beside them, on each account in your CRM.',
     answer:
-      'Account watch flags churn and upsell in every account: with consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
+      'Account watch keeps a customer account open at each company you sell to and records what it sends its own customers. Each fact lands dated on the account’s record in your CRM, with public news and job posts beside it.',
     ogImage: '/og/account-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,13 +39,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that spots churn and upsell in every account.',
-    sub: 'Account watch flags churn and upsell in every account: with consent, AI customers read the CRM, tickets and calls you connect, track each account’s news and join its emails and texts as a customer. Every morning you get who’s at risk, who’s ready to grow, and the play.',
+    headline: 'What every company you sell to shows its own customers.',
+    sub: 'Account watch keeps a customer account open at each company you sell to and records what it sends its own customers. Each fact lands dated on the account’s record in your CRM, with public news and job posts beside it.',
     screen: 'acctwatch',
     capture: {
       kind: 'waitlist',
       source: 'recipe-account-watch-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'account-watch',
     },
   },
@@ -62,159 +53,130 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: renewals this quarter',
     recipe: 'account-watch',
-    task: 'Every morning, check the 38 accounts renewing this quarter: the usage, tickets and calls we connect, their news, and what their customers get. Flag churn or upsell.',
+    task: 'Every morning, check what the 38 accounts renewing this quarter send their own customers, and their news. Put each change on the account in our CRM.',
     targets: '38 accounts, from your CRM',
-    journey: ['Read the tools you connect', 'Track news and hiring', 'Stay a customer', 'Flag risk and growth'],
+    journey: ['Sign up as their customer', 'Keep every email', 'Walk their sign-up and checkout', 'Read public news and job posts'],
     schedule: 'Every morning at 07:00',
-    report: 'A Slack alert, the play in your CRM',
-    kit: ['Its own ID', 'An inbox per account', 'Its own number', 'Tools you connect'],
+    report: 'Slack, and each fact on the account in your CRM',
+    kit: ['Profile: new customer', 'An inbox per account', 'Its own number', 'Your CRM'],
     events: [
-      { time: 'Mon 07:00', text: '38 accounts read from your CRM, helpdesk and call notes, with consent.' },
-      { time: 'Mon 07:04', text: 'An AI customer joins each account’s emails and texts, the way its customers do.' },
-      { time: 'Tue 07:00', text: 'Payroll SaaS posts 12 sales roles. Its seats are 92% used.' },
-      { time: 'Thu 07:00', text: 'Snack brand: usage down 38% in 14 days, and 3 urgent tickets in 5.' },
+      { time: 'Mon 07:00', text: '38 accounts read from your CRM.' },
+      { time: 'Mon 07:04', text: 'Obsession signs up to each account’s emails and texts, the way its customers do.' },
+      { time: 'Tue 07:00', text: 'Payroll SaaS posts 12 sales roles.' },
+      { time: 'Wed 07:00', text: 'Snack brand’s welcome emails stop. The last arrived on Monday.' },
       { time: 'Thu 07:05', text: 'Snack brand’s site goes down for the 2nd time this week, seen the way its own customers see it.' },
     ],
-    finding: 'Snack brand is at risk, for 3 reasons. Payroll SaaS is ready to grow.',
-    fix: 'A save plan and an expansion note, drafted in your CRM for your team to send.',
-    ledger: 'Example run. Every signal linked to its source, dated and signed.',
+    finding: 'Snack brand’s emails stopped and its site went down twice. Payroll SaaS is hiring 12 sales roles.',
+    fix: 'Both on the account records in your CRM, each with its receipt, and in #accounts in Slack.',
+    ledger: 'Example run. Every fact dated and linked to its receipt.',
   },
 
   steps: [
-    { title: 'Connect your tools', line: 'Your CRM, helpdesk and call notes, read only, with consent.' },
     { title: 'Add the accounts', line: 'Every account on your book, from your CRM, a CSV, Clay or the API.' },
     {
-      title: 'AI customers watch each one',
-      line: 'In your tools, in the account’s public news and hiring, and on its own emails and texts, as its customer.',
+      title: 'Obsession becomes their customer',
+      line: 'It signs up to each account’s emails and texts, and walks its sign-up, basket or booking as far as you choose.',
     },
     {
-      title: 'You get the play',
-      line: 'Every morning: the accounts that need you, each reason with its source, and the next move drafted for your OK.',
+      title: 'Every change is dated',
+      line: 'Emails that stop, links that break, a new offer, a site that goes down. Public news and job posts sit beside them.',
     },
+    { title: 'Facts land on the account', line: 'On its record in your CRM, in Slack each morning, or from the API.' },
   ],
 
   checks: [
     {
-      group: 'Inside, from the tools you connect',
+      group: 'As their customer',
       items: [
-        { title: 'Usage', line: 'Logins, seats and the features an account stops using, week on week.' },
-        { title: 'Tickets', line: 'Urgent and repeat tickets, and how long they stay open.' },
-        { title: 'Calls', line: 'Notes that name a competitor, a budget cut or a new boss.' },
+        { title: 'Their emails and texts', line: 'The day they stop, their links break or the offer changes.' },
+        { title: 'Their journeys', line: 'The sign-up, basket or booking their customers use, walked as far as you choose.' },
+        { title: 'Their site', line: 'Whether it loads for a customer, each morning.' },
       ],
     },
     {
-      group: 'Outside, in public',
+      group: 'In public, as a supplement',
       items: [
-        { title: 'News', line: 'Funding, cuts, takeovers and new leaders.' },
-        { title: 'Hiring', line: 'The roles each account posts, and the teams that grow.' },
-        { title: 'Your champion', line: 'The day the person who bought from you moves on, from the account’s public pages.' },
+        { title: 'News', line: 'Funding, cuts and takeovers.' },
+        { title: 'Job posts', line: 'The roles each account posts, and the teams that grow.' },
       ],
     },
     {
-      group: 'Lived, as their customer',
+      group: 'Where it stops',
       items: [
-        {
-          title: 'Their emails and texts',
-          line: 'An AI customer on each account’s list sees the day its emails stop, its links break or its texts go quiet.',
-        },
-        {
-          title: 'Their journeys',
-          line: 'The sign up, basket or booking its customers use, walked as far as you choose.',
-        },
+        { title: 'People', line: 'No tracking of individual staff, and no contact details.' },
+        { title: 'Payment', line: 'Every journey stops short of paying.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'The accounts that need you, in the tools your team already opens.',
+    heading: 'Each account’s changes, in the tools your team already opens.',
     items: [
-      { format: 'Slack', line: 'An alert the morning an account turns risky or ready to grow, with its reasons.' },
-      { format: 'Your CRM', line: 'The risk, the reasons and the drafted play on each account’s record.' },
-      { format: 'Email', line: 'A 07:00 note: who’s at risk, who’s ready, and what to do today.' },
-      { format: 'Sheet', line: 'Every account and every signal, day by day.' },
-      { format: 'Webhook', line: 'Each signal as it lands, with its source and signature.' },
+      { format: 'Your CRM', line: 'Each fact on the account’s record, with its receipt.' },
+      { format: 'Slack', line: 'A 07:00 post: the accounts whose customers saw something change.' },
+      { format: 'A table', line: 'Every account and every fact, day by day.' },
+      { format: 'Webhook', line: 'Each fact as it lands, with its receipt.' },
+      { format: 'API and MCP', line: 'Ask your AI agent what changed at an account before a call.' },
     ],
   },
 
   settings: [
     { k: 'Accounts', v: 'Every account on your book, or the ones renewing soonest' },
-    { k: 'Inside data', v: 'Only the tools you connect, read only' },
-    { k: 'Signals', v: 'Usage, tickets, calls, news, hiring and what their customers get' },
+    { k: 'Profile', v: 'Who signs up to each account, and from where' },
+    { k: 'Journeys', v: 'Emails, texts, sign-up, basket or booking' },
+    { k: 'Public signals', v: 'News and job posts, or none' },
     { k: 'How often', v: 'Every morning at 07:00, or when you choose' },
-    { k: 'Alerts', v: 'Risk and growth, in Slack, email or your CRM' },
-    { k: 'The play', v: 'Save plans, expansion notes and intros, drafted for your team to send, or sent for you' },
+    { k: 'Where it lands', v: 'Your CRM, Slack, a table or a webhook' },
   ],
 
   forWho: [
-    { audience: 'sales', line: 'Account managers see churn coming before the renewal call, with the save plan drafted.' },
-    { audience: 'founders', line: 'Know which customers are drifting while there’s still time to call them.' },
-    { audience: 'developers', line: 'Send every signal, with its source, into your own CRM or app through the API.' },
+    { audience: 'sales', line: 'Account managers see what changed at each account before the renewal call.' },
+    { audience: 'founders', line: 'Know which customers’ own businesses are changing while there’s time to call.' },
+    { audience: 'developers', line: 'Each account’s facts, with receipts, in your own CRM or app through the API.' },
   ],
 
   table: {
-    heading: 'Inside data only through tools you connect. Everything else, the way any customer sees it.',
+    heading: 'Everything comes from the customer side or the public web.',
     cols: ['Where it comes from', 'Whose OK'],
     rows: [
-      { label: 'Usage, tickets and calls', values: ['The tools you connect, read only', 'Yours, with consent'] },
-      { label: 'News, hiring and their site', values: ['Public pages anyone can read', 'None needed'] },
-      { label: 'Their emails and texts', values: ['An AI customer joins their list', 'None: the sign up any customer uses'] },
-      {
-        label: 'Their sign up, basket or booking',
-        values: ['An AI customer, as far as you choose', 'Yours, in your settings'],
-      },
+      { label: 'Their emails and texts', values: ['An account signed up like any customer’s', 'None: the sign-up any customer uses'] },
+      { label: 'Their sign-up, basket or booking', values: ['Walked as their customer, as far as you choose', 'Yours, in your settings'] },
+      { label: 'News and job posts', values: ['Public pages anyone can read', 'None needed'] },
+      { label: 'Your list of accounts', values: ['Your CRM, connected by you', 'Yours'] },
     ],
   },
 
   faq: {
-    heading: 'Your tools read with consent. Every signal kept with its source.',
+    heading: 'Only what their customers see. Who asked is never shown.',
     items: [
       {
-        q: 'How do I know a customer is about to churn when they never complain?',
-        a: 'Obsession’s Account watch reads the signals they don’t send you: with consent, usage, tickets and calls from the tools you connect, plus each account’s public news and what its own customers get. Every morning it flags who’s at risk, with the save plan drafted.',
+        q: 'How do I know an account’s business is changing before they tell us?',
+        a: 'Account watch signs up to each account as a customer and dates every change in what it sends: emails that stop, links that break, new offers. Each change lands on the account in your CRM the morning it happens.',
       },
       {
-        q: 'How do I get an alert when our champion leaves an account?',
-        a: 'Account watch flags the day the person who bought from you moves on, from the account’s public pages, with the next move drafted for your team.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up the way any customer can and keep each account open for months. News and job posts come from public pages.',
       },
       {
-        q: 'What’s it worth?',
-        a: 'Account watch gives up to 494 hours a year back for 1 account manager who checks 38 accounts by hand, 15 minutes each a week: 9.5 hours a week (9.5 × 52 = 494). Its AI customers check every one every morning, and you read only the accounts that need you.',
+        q: 'Does it read our customers’ data?',
+        a: 'No. It sees only what any of their customers sees, and reads your CRM only to know which accounts to watch.',
       },
+      { q: 'Will our accounts know?', a: 'Who asked is never shown. When Obsession talks to a person, it says it’s an AI.' },
       {
-        q: 'Does Account watch read our customers’ data?',
-        a: 'Account watch reads only what sits in the tools you connect, without changing anything, and only with consent. At each account, it sees what any of its customers sees.',
+        q: 'Does it fit what we sell?',
+        a: 'It sees the most when your product touches your accounts’ customers: their emails, texts, checkout or booking.',
       },
-      {
-        q: 'Will our accounts know?',
-        a: 'When the Account watch AI customer talks to a person at an account, it says it’s an AI. You stay private unless you choose to be named.',
-      },
-      {
-        q: 'How is Account watch different from a health score?',
-        a: 'Account watch’s AI customers live as each account’s customer, so they see what breaks for them before usage drops. A health score reads only your own data.',
-      },
-      {
-        q: 'Does Account watch fit what we sell?',
-        a: 'Account watch sees the most when your product touches your accounts’ customers: their emails, texts, chat, checkout or booking. The signals from your tools and the news fit any account.',
-      },
-      {
-        q: 'Does Account watch write to the account?',
-        a: 'That’s your setting. Account watch drafts the save plan, expansion note or intro for your team to send, or sends it for you. When it writes to a person, it says it’s an AI.',
-      },
-      { q: 'How many accounts can Account watch cover?', a: 'Account watch covers as many as you add. Every one is checked every morning.' },
-      {
-        q: 'Where do the signals land?',
-        a: 'Account watch sends them to Slack, your CRM, an email, a sheet or a webhook, each with its reasons and the source behind every one.',
-      },
+      { q: 'How many accounts can it cover?', a: 'As many as you add, every morning.' },
     ],
   },
 
   final: {
-    heading: 'See every renewal coming, with the play already drafted.',
-    sub: 'Join the waitlist. Account watch comes ready to run on the accounts in your CRM.',
+    heading: 'Know what changed at every account before the call.',
+    sub: 'Early access includes up to 5 companies added for you, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-account-watch-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'account-watch',
     },
   },

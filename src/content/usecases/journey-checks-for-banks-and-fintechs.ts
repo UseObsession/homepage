@@ -1,30 +1,22 @@
 import type { UseCaseStudy } from '../types'
 
-/* Journey checks for banks and fintechs (/use-cases/journey-checks-for-banks-and-fintechs), 5 Nov 2026: the second
-   worked example outside stores (James, 5 Nov). A savings bank's product team has its chat, support and phone line
-   asked the questions savers ask every morning, each answer checked against the rate page and the terms, and the same
-   questions asked at 3 rivals through what anyone can use.
-   The cast and its finding come from Home's wall (content/look.ts): Kittiwake Bank's chat calling the 4.6% easy access
-   rate fixed when its own page says variable; its rivals are the wall's other banks (Dunmere, Sedgefield, Quaystone).
-   Every name, rate and figure is invented and `fine` says so; there are no real runs at banks yet.
-   Banks check identity, so at a rival an AI customer goes only as far as anyone can before an ID check (pages, chat,
-   rate tools, the emails anyone can sign up for) and never invents identity details; at the reader's own bank it can
-   use test accounts the bank provides. Consumer Duty is named in 1 answer as the reason UK banks keep this evidence,
-   with no claim that it satisfies the rule.
-   Drawn by the study system (pages/UseCase.tsx). Its 1 screen is the support bot check's (botcheck: chat says one
-   thing, the policy another, caught at 07:02). Headings carry the job, not the words "AI customer" (James, 5 Nov). */
+/* Journey checks for banks and fintechs (/use-cases/journey-checks-for-banks-and-fintechs), 9 Nov rewrite: what banks
+   show only to their customers (account opening and the ID check, the emails after, signed-in rates beside public
+   ones, offers after the form, what chat tells a saver), for a bank's own channels and its competitors', looked up in
+   Search or Insights, a table or a webhook. Kittiwake Bank's chat calling a variable rate fixed comes from Home; every
+   name, rate and figure is invented and `fine` says so. The agents appear only in the answer on where the data comes from. */
 
 export const study: UseCaseStudy = {
   name: 'Journey checks for banks and fintechs',
-  line: 'What chat, support and every page tell a customer, checked against the terms.',
+  line: 'Account opening, signed-in rates, offers and chat answers, at your bank and your competitors.',
 
   meta: {
     path: '/use-cases/journey-checks-for-banks-and-fintechs',
-    title: 'Journey checks for banks and fintechs: what customers hear',
+    title: 'Journey checks for banks and fintechs: behind the login',
     description:
-      'Send AI customers to your bank and your rivals: each asks chat and support what customers ask, keeps every email and flags any answer the terms contradict.',
+      'Account opening, the ID check, signed-in rates, switching offers and chat answers, at your bank and your competitors, each dated with a screenshot.',
     answer:
-      'Obsession sends AI customers to a bank’s own channels and to its rivals’. Each asks chat, support and the phone line the questions real customers ask, keeps every email and text, and reads every rate and term on the pages behind them. Where 2 channels disagree, it comes back with both, side by side.',
+      'Obsession records what banks and fintechs show only to their customers: account opening, the ID check, the emails after it, signed-in rates and offers, and what chat tells a saver. Each fact is dated, with its screenshot, email or transcript, for your own bank and your competitors. Look up one bank, or ask a question across many.',
     ogImage: '/og/journey-checks-for-banks-and-fintechs.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -36,83 +28,83 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Know what every channel tells a customer, every day.',
-    sub: 'An AI customer asks your chat, your support and your phone line the questions real customers ask, keeps every email and text, and checks each answer against your rates and terms. When a channel says something the terms don’t, you get both, side by side.',
-    example: { chips: ['Kittiwake Bank, a savings bank', '3 rivals', 'Chat, email, phone and pages'] },
+    headline: 'The rates, offers and answers banks give only their customers.',
+    sub: 'Account opening and the ID check, every email after, signed-in rates and switching offers, and what chat tells a saver. At your bank and your competitors, each dated with its screenshot or transcript.',
+    example: { chips: ['Kittiwake Bank, a savings bank', '3 competitors', 'Sign-up, login and chat'] },
     flow: [
       {
         label: 'What you name',
-        title: 'Your channels and 3 rivals',
-        items: ['Chat and the support bot', 'Help centre and phone line', 'Rate pages and terms', 'Rivals’ pages and chat'],
-        foot: 'The questions customers ask',
+        title: 'Your bank and 3 competitors',
+        items: ['Account opening and the ID check', 'Signed-in rate pages', 'Chat and the help centre', 'The customer profiles to ask as'],
+        foot: 'New saver, existing customer, switcher',
       },
       {
-        label: 'What it checks',
-        title: 'Every answer against the terms',
-        items: ['The rate, and whether it’s fixed', 'Fees, limits and notice', 'Who qualifies', 'What arrives after'],
-        foot: 'Each with its transcript',
+        label: 'What comes back',
+        title: 'Every fact, dated',
+        items: ['Each step of account opening', 'Every email and text after', 'New and existing customer rates', 'Chat answers, word for word'],
+        foot: 'Each with its screenshot or transcript',
       },
       {
         label: 'Where it lands',
-        title: 'Your product and risk teams',
-        items: ['An alert when an answer is wrong', 'A monthly record of every answer', 'Your own AI agent'],
-        foot: 'Dated and kept',
+        title: 'Where your team works',
+        items: ['Search: one bank', 'Insights: a question across many', 'A webhook, Clay or the API'],
+        foot: 'Nothing to install',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-banks-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'support-bot',
     },
   },
 
   how: {
-    heading: 'You write the questions. They get asked everywhere, every morning.',
-    sub: 'Kittiwake Bank checks what its chat, support and pages tell savers, and what 3 rivals tell theirs.',
+    heading: 'Name the banks and who asks. The accounts stay open.',
+    sub: 'Kittiwake Bank, a savings bank, follows its own channels and 3 competitors’.',
     steps: [
       {
         title: 'Set it up',
-        line: 'The channels, the questions and the terms each answer is checked against.',
-        chips: ['Your channels, with your OK', 'Rivals: only what anyone can use', 'Says it’s AI to a person', 'Never invents identity details'],
+        line: 'Which banks, as which customers, and what each answer is checked against.',
+        chips: ['Your bank and any competitor', 'New saver · UK', 'Existing customer · UK', 'Says it’s AI to a person'],
         steps: [
           {
-            title: 'Name the channels',
-            line: 'Your chat, support bot, help centre, phone line and app. At your own bank it can use test accounts you provide; at a rival, it goes only where anyone can before an ID check.',
-            example: 'Kittiwake names its web chat, app chat, phone line and help centre, and 3 rivals: Dunmere, Sedgefield and Quaystone.',
+            title: 'Name the banks',
+            line: 'Your own bank and each competitor, on the web or in the app.',
+            example: 'Kittiwake names itself and 3 competitors: Dunmere, Sedgefield and Quaystone.',
           },
           {
-            title: 'Write the questions customers ask',
-            line: 'In their words, not yours: from your complaints, your search terms or your own list. Each question is asked the same way in every channel.',
-            example: '40 questions on savings: Is the 4.6% rate fixed? Can I take money out without losing interest? What happens when the bonus ends?',
+            title: 'Pick who asks',
+            line: 'The customer profiles and country to ask as. A new saver and a 3-year customer are often offered different rates.',
+            example: 'A new saver in the UK, an existing customer after the bonus ends, and someone switching from another bank.',
           },
           {
-            title: 'Choose what each answer is checked against',
-            line: 'The rate page and the terms. Fixed rules give each answer its verdict, so the same answer always gets the same one.',
-            example: 'The rate, fixed or variable, the notice period, the withdrawal limit and the bonus end date.',
+            title: 'Say what to check against',
+            line: 'Your rate page and your terms. An answer that disagrees with them becomes a finding, with both side by side.',
+            example: 'The rate, fixed or variable, the notice period and the bonus end date.',
           },
         ],
       },
       {
-        title: 'Obsession asks, every day',
-        line: 'Every morning at 07:00 in this example, and again after every update to the bot.',
+        title: 'Obsession opens the accounts',
+        line: 'And keeps them open, so every rate change and offer arrives as it happens.',
         screen: 'botcheck',
         chips: ['Its own inbox', 'Its own phone number', 'Its own browser', 'Says it’s AI'],
         steps: [
           {
-            title: 'The same questions in every channel',
-            line: 'The AI customer asks each question in chat, by email and on the phone, and keeps every answer word for word, with its time.',
-            example: 'Tue 07:04, web chat: “Is the 4.6% rate fixed?” “Yes, 4.6% is fixed for 12 months.”',
+            title: 'Account opening, step by step',
+            line: 'Every form, the ID check and the emails after it, each with the time it arrived.',
+            example: '1 Nov, 14:22 at Dunmere: “Your account is open”, sent after the ID check. At 48 hours: “Finish your switch”.',
           },
           {
-            title: 'Each answer against the terms',
-            line: 'It reads the rate page and the terms the answer should match. Where they disagree, both go into 1 finding.',
-            example: 'The Easy Access Saver page says 4.6% variable. The chat has called it fixed since Monday’s bot update.',
+            title: 'Signed-in rates beside public ones',
+            line: 'The rate an existing customer sees once signed in, beside the one on the public page.',
+            example: 'Sedgefield: 4.8% on the public page, 4.0% signed in as a 3-year customer.',
           },
           {
-            title: 'What rivals tell their customers',
-            line: 'The same questions at each rival, through the chat and pages anyone can use, so you see how their rates and their answers move.',
-            example: 'Quaystone raised its easy access rate to 4.75% on Thursday. Its chat quoted 4.5% until Friday.',
+            title: 'What chat tells a customer',
+            line: 'The same questions in chat and support, each answer kept word for word and checked against the terms.',
+            example: 'Tue 07:04, Kittiwake web chat: “Yes, 4.6% is fixed for 12 months.” The rate page says variable.',
           },
         ],
       },
@@ -120,44 +112,31 @@ export const study: UseCaseStudy = {
   },
 
   problem: {
-    heading: 'Your terms are signed off. What your channels say about them isn’t.',
-    sub: 'A rate change goes through approval. The chat answer about it, the help article and the reply a support agent copies don’t, and 1 bot update can change all of them overnight.',
+    heading: 'Rate tables show the public rate. Customers get another.',
+    sub: 'Comparison sites stop at the public page, and panels sell a fixed list of banks behind a client login. The rest is found by staff opening accounts by hand, a few banks at a time.',
     items: [
-      { title: 'A wrong answer in chat', line: 'A bot that calls a variable rate fixed, or gets a notice period wrong.' },
-      { title: 'Pages out of step', line: 'A help article that still quotes last month’s rate.' },
+      { title: 'Existing customer rates', line: 'What a saver is paid once the bonus ends, seen only signed in.' },
+      { title: 'Offers after the form', line: 'A switching bonus shown only once the form is filled in.' },
+      { title: 'Wrong answers in chat', line: 'A bot that calls a variable rate fixed, or gets a notice period wrong.' },
       { title: 'Messages that never come', line: 'The rate change notice or the bonus ending email that never went out.' },
-      { title: 'Rivals’ moves', line: 'A rival’s new rate, and what its own channels tell customers about it.' },
     ],
-    answer: 'Each finding is dated, with the transcript, the page and the term it broke, kept for as long as you need it.',
-  },
-
-  split: {
-    yours: {
-      label: 'You keep',
-      heading: 'Your products, your terms and your decisions.',
-      items: ['Your products, rates and terms', 'The questions, and what counts as a wrong answer', 'Every fix, and who signs it off', 'What you report, and to whom'],
-    },
-    ours: {
-      label: 'Obsession runs',
-      heading: 'The asking, the transcripts and the record.',
-      items: [
-        'An AI customer for each channel, with its own inbox, phone number and browser',
-        'The same questions every day, and after every bot update',
-        'Every answer kept word for word, with its time',
-        'The page and the term behind every finding',
-      ],
-    },
+    answer: 'Each finding is dated, with the screenshot, email or transcript behind it, kept for as long as you need it.',
   },
 
   outputs: {
-    heading: 'What product and risk teams do with it.',
+    heading: 'What product, pricing and risk teams do with it.',
     groups: [
       {
         items: [
           {
+            title: 'Price against what customers get',
+            line: 'Not the rate on a comparison table.',
+            example: 'Asked “Which banks pay existing savers less than new ones?”, Insights answered 3 of 5, by up to 1.1 points.',
+          },
+          {
             title: 'Catch a wrong answer the day it starts',
             line: 'Not when the complaints arrive.',
-            example: 'The fixed rate answer reached the savings team at 07:05 on Tuesday, the morning after the bot update.',
+            example: 'The fixed rate answer reached the savings team’s webhook at 07:05 on Tuesday, the morning after a bot update.',
           },
           {
             title: 'Show what customers were told',
@@ -165,14 +144,9 @@ export const study: UseCaseStudy = {
             example: 'October: 40 questions a day in 3 channels, 4 wrong answers, each fixed within a day.',
           },
           {
-            title: 'Check a change before customers do',
-            line: 'Ask every question again after a rate change or a bot update.',
-            example: 'After the 1 November rate cut, all 40 answers matched the new rate by 09:00.',
-          },
-          {
-            title: 'See what rivals tell their customers',
-            line: 'Their rates, and what their own chat says about them.',
-            example: 'Quaystone’s chat quoted its old rate for a day after the change.',
+            title: 'Match a competitor’s offer, or don’t',
+            line: 'Switching bonuses and rate changes, the day they appear.',
+            example: 'Quaystone raised its easy access rate to 4.75% on Thursday. Its chat quoted 4.5% until Friday.',
           },
         ],
       },
@@ -183,56 +157,52 @@ export const study: UseCaseStudy = {
     recipe: {
       label: 'The recipe',
       title: 'Support bot check',
-      line: 'The same questions to your support bot every day, each answer checked against your policy.',
+      line: 'The same questions to a support bot every day, each answer checked against the policy.',
       cta: { label: 'Learn more', to: '/recipes/support-bot-check' },
     },
     sample: {
       label: '1 real run',
-      title: 'Sample output',
-      line: 'A UK store checked in September 2026: 1 basket and 1 checkout left, and nobody wrote to either in 48 hours.',
+      title: 'Sample data',
+      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
       cta: { label: 'See it', to: '/sample-output' },
     },
   },
 
-  fine: 'Kittiwake Bank, its rivals and their .example addresses, every rate, answer and figure here are made up.',
+  fine: 'Kittiwake Bank, its competitors and their .example addresses, every rate, answer and figure here are made up.',
 
   faq: {
     heading: 'What banks and fintechs ask.',
     items: [
       {
         q: 'What does Obsession do for banks and fintechs?',
-        a: 'Obsession sends AI customers to a bank’s own channels and to its rivals’. Each asks chat, support and the phone line the questions real customers ask, keeps every email and text, and reads every rate and term on the pages behind them. Where 2 channels disagree, it comes back with both, side by side.',
+        a: 'Obsession records what banks and fintechs show only to their customers: account opening, the ID check, the emails after it, signed-in rates and offers, and what chat tells a saver. Each fact is dated, with its screenshot, email or transcript, for your own bank and your competitors. Look up one bank, or ask a question across many.',
       },
       {
-        q: 'Does it open accounts at other banks?',
-        a: 'No. At a rival it goes only as far as anyone can before an ID check: its pages, its chat, its rate tools and the emails anyone can sign up for. It never invents identity details. At your own bank, it can use test accounts you provide.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents open accounts, sign in and ask chat the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. They never invent identity details, never sign in to an account that isn’t their own, and say they’re an AI when they talk to a person.',
       },
       {
         q: 'Does it help with Consumer Duty?',
-        a: 'In the UK, the Consumer Duty asks firms to check that what they tell customers supports their understanding. Obsession gives you a dated record of what your channels actually said, answer by answer. It isn’t compliance advice, and what you report stays your call.',
+        a: 'In the UK, the Consumer Duty asks firms to check that what they tell customers supports their understanding. Obsession gives you a dated record of what your channels said, answer by answer. It isn’t compliance advice, and what you report stays your call.',
       },
       {
-        q: 'Does it talk to our human agents?',
-        a: 'Only with your OK, and it says it’s an AI when it talks to a person.',
+        q: 'Who sees what we look up?',
+        a: 'Only your team. Anyone can see that a bank is covered, and since when, but never who asked. Your own questions and their transcripts stay on an account that works only for you.',
       },
       {
-        q: 'How often does it run?',
-        a: 'Every morning in this example, again after every bot update, or any rhythm you set.',
-      },
-      {
-        q: 'Who sees the transcripts?',
-        a: 'Only your team. Your questions, transcripts and findings are yours alone.',
+        q: 'How often does it check?',
+        a: 'The accounts stay open, so emails and rate changes arrive as they happen. Chat questions are asked every morning in this example, again after every bot update, or on any rhythm you set.',
       },
     ],
   },
 
   final: {
-    heading: 'Try it on 40 questions.',
-    sub: 'Join the waitlist, and we’ll ask your chat and 2 rivals’ 40 questions for 14 days, with every answer checked against the terms.',
+    heading: 'Which banks should we look up first?',
+    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-banks-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'support-bot',
     },
   },

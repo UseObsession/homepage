@@ -4,8 +4,8 @@ import { LinkGroups, type LinkRow } from '../components/sections/LinkGroups'
 import { formatDate, blogUi, resourcesPage as page } from '../content/resources'
 import { catalog } from '../content/catalog'
 
-/* /resources: everything that shows the work. The use cases, the 1 real run and, while it has a live post, the blog
-   (its 3 newest posts), each as a group of link rows; then the waitlist (#join). */
+/* /resources: the data at work. The use cases, Brand G's real record (the sample data) and, while it has a live post,
+   the blog (its 3 newest posts), each as a group of link rows; then early access (#join). */
 export function Resources() {
   const g = page.groups
   const latest: LinkRow[] = catalog.posts.slice(0, 3).map((p) => ({

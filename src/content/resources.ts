@@ -1,34 +1,32 @@
 import type { BlogIndexPage, Capture, Final, ResourcesPage, UseCasesIndexPage } from './types'
 
 /* The Resources hub (/resources), the Use cases index (/use-cases) and the Blog index (/blog), plus the words every
-   post shares (content/blog/*.ts carries the posts). Copy rules: docs/REBUILD.md, "Copy". The worked examples carry
-   their own names and lines (content/usecases), and so does every post.
-   Narrative edit (3 Oct): each hero is a complete claim and its sub names what the rows below hold; the real run's row
-   states what it found (1 basket, 1 checkout, nobody wrote), as every page does; the blog's words name the topics its
-   posts cover (mystery shopping, competitor tracking, prospect audits, speed to lead); the shared close names the
-   job ("every company on your list") instead of "on your list". */
+   post shares (content/blog/*.ts carries the posts). Since 9 Nov the hub and the index say what Home says: the web
+   behind the login, as data. Resources is the data at work (the use cases and Brand G's real record); the use cases
+   are what each kind of team looks up and where it lands. Every form is early access, never a waitlist. The worked
+   examples carry their own names and lines (content/usecases), and so does every post. */
 
-const waitlist = (source: string): Capture => ({
+const access = (source: string): Capture => ({
   kind: 'waitlist',
   source,
-  button: 'Join the waitlist',
+  button: 'Request early access',
   interest: 'any',
 })
 
+/* The shared close (the blog index uses it too). Its line, "Onboarding a limited number of teams.", is content/join.ts. */
 const final = (source: string): Final => ({
-  heading: 'Send AI customers to every company on your list.',
-  sub: 'Join the waitlist and tell us the first job to set up. We confirm the plan with you before anything runs.',
-  capture: waitlist(source),
+  heading: 'Which company should we look up first?',
+  capture: access(source),
 })
 
 export const resourcesPage: ResourcesPage = {
   meta: {
     path: '/resources',
-    title: 'Obsession resources: worked examples and a real store check',
+    title: 'Obsession resources: use cases and one real store’s record',
     description:
-      'Obsession at work: worked examples of AI customers from set up to proof, and the real September 2026 store check in every format it arrives in.',
+      'Obsession’s data at work: use cases that follow 1 team from its question to the data, and a real store’s record in every format it comes in.',
     answer:
-      'Obsession’s resources show the work before you join: worked examples that follow 1 job from set up to proof, and the 1 real store check in every format it arrives in.',
+      'Obsession’s resources show the data at work: use cases that follow 1 team from its question to the data, and 1 real store’s record in every format it comes in.',
     ogImage: '/og/resources.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -36,21 +34,21 @@ export const resourcesPage: ResourcesPage = {
     ],
   },
   hero: {
-    headline: 'See the work before you join.',
-    sub: 'Obsession’s resources show the work before you join: worked examples that follow 1 job from set up to proof, and the 1 real store check in every format it arrives in.',
+    headline: 'See the data first.',
+    sub: 'Obsession’s resources show the data at work: use cases that follow 1 team from its question to the data, and 1 real store’s record in every format it comes in.',
   },
   groups: {
     useCases: {
       id: 'use-cases',
       name: 'Use cases',
-      line: '1 job, start to finish, for 1 kind of customer. The names and numbers are made up.',
+      line: 'What 1 kind of team looks up, and where it lands. The names and numbers are made up.',
       all: { label: 'Every use case', to: '/use-cases' },
     },
     sample: {
       id: 'sample-output',
-      name: 'Sample output',
-      line: 'A real run: a store check from September 2026, with the store’s name hidden.',
-      link: { label: 'The September store check', to: '/sample-output', line: '4 AI customers, every inbox watched for 48 hours. 1 left a basket, 1 stopped at checkout, and nobody wrote to either.' },
+      name: 'Sample data',
+      line: 'A real record: a UK skincare store in September 2026, its name hidden.',
+      link: { label: 'Brand G’s record', to: '/sample-output', line: '4 test customers, every inbox watched for 48 hours. 1 left a basket, 1 stopped at checkout, and nobody wrote to either.' },
     },
     blog: {
       id: 'blog',
@@ -58,7 +56,7 @@ export const resourcesPage: ResourcesPage = {
       line: 'Guides from both founders, with every price dated and every source linked.',
       all: { label: 'Every post', to: '/blog' },
       /* The row while the blog has no posts. */
-      empty: { label: 'Guides from the founders', line: 'Mystery shopping, competitor tracking, prospect audits and speed to lead.' },
+      empty: { label: 'Guides from the founders', line: 'Competitors’ emails, prices, trials and Black Friday offers.' },
     },
   },
   final: final('resources-final'),
@@ -67,11 +65,11 @@ export const resourcesPage: ResourcesPage = {
 export const useCasesPage: UseCasesIndexPage = {
   meta: {
     path: '/use-cases',
-    title: 'Use cases: 1 job for 1 kind of customer, start to finish',
+    title: 'Obsession use cases: who looks up the web behind the login',
     description:
-      'Worked examples of Obsession: AI customers run 1 job for 1 kind of customer, from set up to the proof in their own tools. The names are made up.',
+      'Worked examples of Obsession: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. Names made up.',
     answer:
-      'Obsession use cases are worked examples: AI customers run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
+      'Obsession use cases are worked examples: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. The names and numbers are made up.',
     ogImage: '/og/use-cases.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -80,28 +78,28 @@ export const useCasesPage: UseCasesIndexPage = {
     ],
   },
   hero: {
-    headline: 'See 1 job run from a list to proof in the tools you already use.',
-    sub: 'Obsession use cases are worked examples: AI customers run 1 job for 1 kind of customer, from the set up to what lands in their own tools. The names and numbers are made up.',
+    headline: 'What each team looks up, and where it lands.',
+    sub: 'Obsession use cases are worked examples: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. The names and numbers are made up.',
   },
   group: {
     id: 'examples',
     name: 'Worked examples',
-    line: 'Every agent says it’s AI, and every step is signed.',
+    line: 'Every fact dated, with the email or screenshot behind it.',
   },
   guides: {
     id: 'every-job',
-    name: 'Every job, explained',
-    line: 'Two guides set out every job an AI customer does, with the page that runs each one.',
+    name: 'Every use case, by industry',
+    line: '2 long guides, with the recipe for each use case.',
     rows: [
       {
         label: 'AI agent use cases for business',
         to: '/blog/ai-agent-use-cases-for-business',
-        line: 'The jobs AI customers do at your own company, competitors, prospects and partners, for every industry.',
+        line: 'What teams in every industry look up about competitors, prospects, partners and their own company.',
       },
       {
         label: 'Agentic AI use cases in ecommerce',
         to: '/blog/agentic-ai-use-cases-in-ecommerce',
-        line: 'The jobs AI customers do for ecommerce brands and the agencies that serve them.',
+        line: 'What ecommerce brands, and the agencies that serve them, look up behind the login.',
       },
     ],
   },

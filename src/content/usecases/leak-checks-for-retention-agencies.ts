@@ -1,39 +1,22 @@
 import type { UseCaseStudy } from '../types'
 
-/* Leak checks for retention agencies (/use-cases/leak-checks-for-retention-agencies). Written 20 Oct 2026 for agencies
-   shaped like Longplay Brands: email and SMS agencies for ecommerce brands that sell through an audit and run each
-   client's programme after the yes. Longplay replied to "5 stores mystery shopped free?" on 9 Oct.
-   The offer, in James's words of approval: name any store; we become its new customer and show you what happened,
-   with proof. Before a pitch, the prospect's leaks. After you win, the client's leaks every week, and how its rivals
-   compare.
-   1 store carries the page, as Tidewren carries the Clay page: Larch & Lye, a skincare brand on the agency's pitch
-   list. Its pop up promises 15% off and never sends the code, its text opt in sends nothing and its basket gets no
-   reminder. The agency pitches it with the receipt, wins it, rebuilds the flows, catches a break after a theme update
-   and shows it beside 5 rivals in the month's report.
-   Drawn in James's format (10 steps in 3 phases, each beside its app window) by src/pages/RetentionAgencies.tsx from
-   his pieces. Every word here; the app windows' rows and numbers in the page.
-   Copy (COPY.md): buyer words (sign up, welcome email, abandoned basket, Promotions tab, report to the client); no
-   "lifecycle" and no "facts"; every store invented at a .example address; written as designed.
-   Merged 21 Oct 2026 (James): the mystery shopping page for ecommerce agencies folds into this one, and its address
-   now redirects here (public/_redirects). From it, this page keeps the real proof (`found`: 93% of stores shopped on
-   every journey had a leak, 376 stores shopped, shown as 1,500 journeys at real stores since 6 Nov (James: hide the store count; 1,500 until 22 Oct, 128 until 5 Nov; 376 is James’s count of stores, and 1,500 counts journeys, James 4 and 5 Nov), 77% of leaks silence, 4 real findings retold at invented shops, the
-   real September report), the free 5 stores form with its client OK, the agents' capacity (up to 1,000 stores in 48
-   hours) and the term itself, as the question "Is this mystery shopping?". Seun's rule on the real block still holds:
-   only those 2 shares, the store count and the capacity, never how many stores were tried or finished, the run's
-   dates or length, or the tests that could not finish. Its report stack, its drafted fixes, "gap" and "audit" for our
-   own offer are dropped: the agency's team owns the fix, and the agency already sells an audit. */
+/* Leak checks for retention agencies (/use-cases/leak-checks-for-retention-agencies), the 9 Nov rewrite to Home: what any
+   store sends a new customer after a sign-up, a text opt-in and a basket, and what never comes, dated with the email
+   itself. Before a pitch, the prospect's record; after the win, the client's store kept open beside its competitors.
+   1 invented store carries the 10 steps (Larch & Lye, drawn by src/pages/RetentionAgencies.tsx); the real proof is our
+   1,500 runs and Brand G, the only real record. No AI customers, no mystery shopping, no free checks: early access. */
 
 export const study: UseCaseStudy = {
   name: 'Leak checks for retention agencies',
-  line: 'Send AI customers to every store you pitch or keep, and see what each one gets, with proof.',
+  line: 'What every store you pitch or keep sends a new customer, and what never came.',
 
   meta: {
     path: '/use-cases/leak-checks-for-retention-agencies',
     title: 'Leak checks for retention agencies, from pitch to renewal',
     description:
-      'Send an AI customer to any store you name. Before a pitch, the prospect’s leaks. After you win, the client’s leaks weekly, with proof.',
+      'What any store sends a new customer after a sign-up, a text opt-in and a basket, dated with the email itself. For stores you pitch and clients you keep.',
     answer:
-      'Obsession sends an AI customer to any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
+      'Obsession keeps what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated, with the email itself. Before a pitch, you see what the prospect never sent; after you win, you see the client’s store every week, beside its competitors.',
     ogImage: '/og/leak-checks-for-retention-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,9 +28,9 @@ export const study: UseCaseStudy = {
 
   hero: {
     pill: 'Early access',
-    headline: 'Send AI customers to every store you pitch, and every store you keep.',
-    sub: 'Name any store. An AI customer signs up there, opts in to texts and leaves a basket, then shows you what happened, with proof. Before a pitch, you see the prospect’s leaks. After you win, you see the client’s leaks every week, and how its competitors compare.',
-    video: { youtube: 'Bnkm02NllPs', label: 'Watch how it works', title: 'Leak checks for retention agencies: every store’s leaks, with proof' },
+    headline: 'Open every pitch with the store’s own emails, and the ones that never came.',
+    sub: 'What any store sends after a sign-up, a text opt-in and a basket, each message dated and kept as it arrived. Look up the stores you pitch, the clients you keep and their competitors, in Obsession or your Clay table.',
+    video: { youtube: 'Bnkm02NllPs', label: 'Watch how it works', title: 'Leak checks for retention agencies' },
     example: { chips: [] },
     flow: [
       {
@@ -58,21 +41,21 @@ export const study: UseCaseStudy = {
       },
       {
         label: 'Obsession',
-        title: 'An AI customer at each store',
-        items: ['Its own inbox', 'A US mobile number', 'Its own browser', 'Says it’s AI'],
+        title: 'A new customer at each store',
+        items: ['New customer · US', 'Its own inbox and number', 'Pop up, texts, basket', 'Account kept open'],
         foot: 'Watching for 48 hours',
       },
       {
         label: 'Back to you',
-        title: 'A leak at each store, with its receipt',
+        title: 'What each store never sent',
         items: ['Larch & Lye: No 15% code', 'Pellwood: No basket reminder', 'Fenwick Apothecary: No leak', 'Marrow Skin: Texts never sent'],
         foot: 'Leak · Seen · What happened · Receipt',
       },
     ],
     capture: {
-      kind: 'mystery',
+      kind: 'waitlist',
       source: 'usecase-leaks-hero',
-      button: 'Check 5 stores free',
+      button: 'Request early access',
       interest: 'mystery',
     },
   },
@@ -80,7 +63,7 @@ export const study: UseCaseStudy = {
   /* The 10 steps, in the 3 phases the page draws them in. Each step's app window is in the page. */
   how: {
     heading: 'From a pitch list to a client you keep.',
-    sub: 'How the agency in this example finds Larch & Lye’s leaks, wins the account and keeps it.',
+    sub: 'How the agency in this example finds what Larch & Lye never sends, wins the account and keeps it.',
     steps: [
       {
         title: 'Before the pitch',
@@ -88,24 +71,24 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'Name the stores',
-            line: 'Paste a list, upload a CSV, connect Clay or call the API. Any store you can name, with no directory to check first.',
+            line: 'Paste a list, upload a CSV, connect Clay or call the API. A store already covered returns its history at once; Watch the rest.',
             example: 'The agency pastes the 40 skincare brands on next month’s pitch list.',
           },
           {
-            title: 'Choose what the customer does',
-            line: 'Pick the journeys to run at each store and how long to wait. Each has its own deadline, so a missing email counts as a leak once its time is up.',
-            example: 'Sign up through the pop up, opt in to texts, browse a product, leave a basket. Wait 48 hours.',
+            title: 'Pick the customer and the steps',
+            line: 'Choose the customer profile and what it does at each store. Each message has a deadline, so one that never comes goes on the record too.',
+            example: 'New customer · US: sign up through the pop up, opt in to texts, browse a product, leave a basket. Wait 48 hours.',
           },
           {
-            title: 'Each store gets its own AI customer',
-            line: 'A real inbox, a real mobile number and its own browser, used for that store only. It signs up the way anyone would and saves a screenshot at every step. It says it’s AI when it talks to a person.',
+            title: 'Each store, its own account',
+            line: 'A real inbox, mobile number and browser for each store, kept open after the check. Every step is saved with a screenshot.',
             example: 'Larch & Lye, 10:14 on 2 Nov: signed up through the “15% off your first order” pop up and ticked text consent.',
           },
           {
-            title: 'The leaks, store by store',
-            line: 'After 48 hours, every store has a verdict: what arrived, when, and what never came. A broken form is a leak too.',
+            title: 'What each store sent, and what never came',
+            line: 'After 48 hours, every store has its record: what arrived, when, and what didn’t. A broken form counts too.',
             example:
-              '40 stores done. 14 never sent the pop up’s code, 17 sent no text after the opt in, 22 sent nothing after a basket. 12 have 3 or more leaks, Larch & Lye among them.',
+              '40 stores done. 14 never sent the pop up’s code, 17 sent no text after the opt-in, 22 sent nothing after a basket. 12 have 3 or more leaks, Larch & Lye among them.',
           },
         ],
       },
@@ -114,13 +97,13 @@ export const study: UseCaseStudy = {
         line: 'Steps 5 and 6',
         steps: [
           {
-            title: 'A receipt for every leak',
-            line: 'The timeline, the screenshots and the emails themselves, on 1 link anyone can open, including the brand.',
+            title: 'The email itself, for every leak',
+            line: 'The timeline, the screenshots and each email as it arrived, on 1 link anyone can open, the brand included.',
             example:
-              'Larch & Lye: the pop up promised 15% off. A welcome email came 9 hours later, without the code. The text opt in sent nothing, and the basket got no reminder.',
+              'Larch & Lye: the pop up promised 15% off. A welcome email came 9 hours later, without the code. The text opt-in sent nothing, and the basket got no reminder.',
           },
           {
-            title: 'Pitch the stores losing the most',
+            title: 'Pitch the stores missing the most',
             line: 'Sort the list by leaks. The stores with the most have a reason to take your call this week.',
             example: 'The agency writes to the 12 stores with 3 or more leaks first.',
           },
@@ -131,19 +114,19 @@ export const study: UseCaseStudy = {
         line: 'Steps 7 to 10',
         steps: [
           {
-            title: 'The same AI customer, every week',
-            line: 'Once a store signs, its check keeps running: a fresh sign up every week, and after every launch, rebuild or theme update you tell it about.',
-            example: 'Larch & Lye signs. The agency rebuilds its welcome series. Week 1: the code arrives in 40 seconds, the basket reminder after an hour.',
+            title: 'The account stays open',
+            line: 'Once a store signs, its account keeps receiving, with a fresh sign-up after every launch, rebuild or theme update you name.',
+            example: 'Larch & Lye signs. The agency rebuilds its welcome series. The code now arrives in 40 seconds, the basket reminder after an hour.',
           },
           {
             title: 'A break caught before the client sees it',
-            line: 'When something that worked stops working, you hear that morning, with the receipt.',
+            line: 'When something that worked stops, the new fact reaches your webhook that morning, with the email behind it.',
             example: 'Tuesday 1 Dec, after a theme update: the pop up takes the email but sends no code. Fixed the same day. Larch & Lye never saw it.',
           },
           {
             title: 'The client beside its competitors',
-            line: 'Name the competitors once. Each gets its own AI customer, so you can show what Larch & Lye’s customers get next to theirs.',
-            example: 'Welcome in 40 seconds against a 6 hour competitor average. The only 1 of 6 that reminds a basket.',
+            line: 'Name the competitors once. Each is watched the same way, so you can show what Larch & Lye’s customers get next to theirs.',
+            example: 'Welcome in 40 seconds against a 6 hour competitor average. The only 1 of 6 that sends a basket reminder.',
           },
           {
             title: 'The month, in 1 report',
@@ -156,50 +139,49 @@ export const study: UseCaseStudy = {
   },
 
   problem: {
-    heading: 'A login tells you how the flows are built, not what a customer gets.',
+    heading: 'A login shows how the flows are built, not what a customer gets.',
     items: [
       {
-        title: 'Everyone has the same audit',
-        line: 'Every agency offers a free audit, so your first email reads like the last ten the founder deleted.',
+        title: 'Every agency offers the same audit',
+        line: 'So your first email reads like the last ten the founder deleted.',
       },
       {
         title: 'Your best work waits for a login',
-        line: 'The audit runs inside the brand’s accounts, so a prospect only sees what you found after agreeing to a call.',
+        line: 'The audit runs inside the brand’s accounts, so a prospect sees what you found only after agreeing to a call.',
       },
       {
-        title: 'Checking by hand doesn’t scale',
-        line: 'Signing up to 40 prospects and checking 20 clients again every week is a strategist’s whole week. So nobody does it, and clients find the breaks first.',
+        title: 'A spare inbox doesn’t scale',
+        line: 'Signing up to 40 prospects and 20 clients every week is a strategist’s whole week. So nobody does it, and clients find the breaks first.',
       },
     ],
-    answer:
-      'Obsession sends AI customers to every store, so you see what each one does to the people who sign up, with proof, before anyone hands you a login.',
+    answer: 'Obsession keeps what each store sends a new customer, dated, with the email itself, before anyone hands you a login.',
   },
 
   fit: {
-    heading: 'It does the outside half. Your audit still does the inside.',
-    line: 'Nothing changes in how you sell or deliver. Obsession shows what a new customer gets; your team still owns the diagnosis, the plan and the fix.',
+    heading: 'It covers the outside. Your audit still covers the inside.',
+    line: 'Nothing changes in how you sell or deliver. Obsession shows what a new customer gets; your team owns the diagnosis, the plan and the fix.',
     items: [
-      { title: 'Before the pitch', line: 'Paste your pitch list. Each store comes back with its leaks and a receipt.' },
-      { title: 'After you win', line: 'The same AI customer signs up again every week, and after every launch.' },
-      { title: 'Where you work', line: 'Slack, your Clay table, or a link that drops into the deck.' },
+      { title: 'Before the pitch', line: 'Paste your pitch list, or ask Insights across it. Each store comes back with what it sent and what never came.' },
+      { title: 'After you win', line: 'The client’s account stays open, with a fresh sign-up after every launch.' },
+      { title: 'Where you work', line: 'Your Clay table or Google Sheet, a webhook into Slack, or a link in the deck.' },
     ],
   },
 
   outputs: {
-    heading: 'What you do with the leaks.',
+    heading: 'What you do with it.',
     groups: [
       {
         items: [
           {
             label: 'Winning clients',
             title: 'Pitch the stores that are leaking',
-            line: 'Paste your pitch list and write first to the stores losing the most.',
+            line: 'Write first to the stores missing the most.',
             example: '12 of 40 skincare brands have 3 or more leaks.',
           },
           {
             label: 'Keeping clients',
             title: 'Catch a break before the client does',
-            line: 'A weekly sign up on every client store, and 1 after every launch.',
+            line: 'A fresh sign-up on every client store after every launch.',
             example: 'Larch & Lye: the code stopped after a theme update, fixed the same morning.',
           },
           {
@@ -212,46 +194,39 @@ export const study: UseCaseStudy = {
             label: 'Growing accounts',
             title: 'Sell the next channel',
             line: 'A leak in a channel you don’t run yet is the next line on the retainer.',
-            example: 'Ottery Botanics takes a text opt in and never sends a text.',
+            example: 'Ottery Botanics takes a text opt-in and never sends a text.',
           },
         ],
       },
     ],
   },
 
-  /* What real checks found, right after the invented 40 store run (moved from the mystery shopping page, 21 Oct). The
-     2 shares are of the stores shopped on every journey and of the leaks they had; the 4 findings are real, retold at
-     invented shops (content/shops.ts). Only email was watched in those checks: "no email", never "no message". */
+  /* The real proof, right after the invented 40 store run: our own count (Home's), then Brand G, the 1 real record, in
+     its exact facts. `shop` is required by the type and not drawn on this page. */
   found: {
-    heading: 'Our AI customers found a leak at 93% of stores where they ran every\u00a0journey. 77% were silence.',
-    line: 'Our AI customers have run 1,500 journeys at real stores so far. Silence is the leak an audit inside the account can’t see: the email that never came.',
+    heading: '1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
+    line: '1 of them in full: Brand G, a real skincare store, checked in September with 4 customer profiles.',
     items: [
       {
-        label: 'Fashion store · Basket left',
-        verdict: 'Wrong email',
-        finding: 'A buyer left a basket, and 2 hours later got a browse email instead.',
-        shop: 'pellam',
+        label: 'Basket left',
+        verdict: 'No basket reminder',
+        finding: 'A Body Care Gift Set (£40) left at 02:57 on 22 Sep. Nothing in 48 hours.',
+        shop: 'ferula',
       },
       {
-        label: 'Cosmetics store · Basket left',
-        verdict: 'Broken email',
-        finding: '2 cart emails came, both with no product name and a blank total.',
-        shop: 'celandre',
+        label: 'Checkout left',
+        verdict: 'No checkout reminder',
+        finding: 'A £21 checkout left at 03:11. Nothing in 48 hours.',
+        shop: 'ferula',
       },
       {
-        label: 'Drinks store · New subscriber',
-        verdict: 'Broken links',
-        finding: 'The welcome email came, but every product link and button opened a closed development store.',
-        shop: 'quinnet',
-      },
-      {
-        label: 'Natural beauty store · Basket left',
-        verdict: 'Cart silent',
-        finding: 'A subscriber got the welcome, then left a basket. No cart email in 48 hours.',
+        label: 'Sign-up and browse',
+        verdict: '5 messages',
+        finding: '5 messages in 48 hours, all on welcome and browse.',
         shop: 'ferula',
       },
     ],
-    cta: { label: 'See a sample output', to: '/sample-output' },
+    cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
   /* The 2 recipes the page runs, 1 for each half of the offer, and the 1 real run. */
@@ -259,92 +234,80 @@ export const study: UseCaseStudy = {
     recipe: {
       label: 'Before the pitch',
       title: 'Prospect intelligence',
-      line: 'Proof of a real leak at each store on your pitch list.',
+      line: 'What each store on your pitch list sends a new customer, and what never came.',
       cta: { label: 'Learn more', to: '/recipes/prospect-intelligence' },
     },
     second: {
       label: 'After you win',
-      title: 'Mystery shopper',
-      line: 'Your clients’ stores, journey by journey, every week and after every launch.',
+      title: 'Client store checks',
+      line: 'Your clients’ stores, step by step, every week and after every launch.',
       cta: { label: 'Learn more', to: '/recipes/mystery-shopper' },
     },
     sample: {
       label: '1 real run',
-      title: 'Sample output',
-      line: 'A real store check from September 2026, shown in every format it can arrive in.',
+      title: 'Sample data',
+      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
       cta: { label: 'See it', to: '/sample-output' },
     },
   },
 
-  fine: 'The agency, the stores in the 10 steps and their .example addresses, the people, the phone number and every figure on their screens are made up. The 93%, the 1,500 journeys and the 77% are real, the 4 findings come from real checks with every store, brand and product changed, and the sample output is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
+  fine: 'The agency, the stores in the 10 steps and their .example addresses, the people, the phone number and every figure on their screens are made up. The 1,500 runs are our own, and Brand G is a real run. Clay and Slack are trademarks of their owners, named to show where a list can come from and where results go.',
 
   faq: {
     heading: 'What retention agencies ask.',
     items: [
       {
         q: 'What does Obsession do for retention agencies?',
-        a: 'Obsession sends an AI customer to any store you name and shows you what happened, with proof. Before a pitch, you see the prospect’s leaks; after you win, you see the client’s leaks every week, and how its competitors compare.',
+        a: 'Obsession keeps what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated, with the email itself. Before a pitch, you see what the prospect never sent; after you win, you see the client’s store every week, beside its competitors.',
       },
       {
-        q: 'Is this mystery shopping?',
-        a: 'Yes, of what a new customer gets: the emails, the texts and the basket reminders, at any store you name, every week. It’s one of the jobs an AI customer does, and it runs on 40 stores as easily as 1, and keeps every message as proof.',
-      },
-      {
-        q: 'What do the 5 free checks cover?',
-        a: '5 stores you name, prospects or clients, each with its own AI customer for 48 hours: the pop up and its code, the welcome email, texts and a basket. You get what happened within 4 days, with proof, in any format.',
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up, opt in to texts and leave baskets the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. Every email is kept as it arrived, with its sender checked.',
       },
       {
         q: 'Do our clients have to agree?',
-        a: 'Yes. A client’s store is checked with the client’s OK, and they install nothing. A prospect’s store you can check before you pitch.',
+        a: 'Yes. A client’s store is watched with the client’s OK, and they install nothing. A prospect’s store you can look up before you pitch.',
       },
       {
         q: 'Do we need the brand’s login?',
-        a: 'No. It signs up the way any customer would, from the store’s own pop up or footer form. Your audit still runs inside the accounts, after the yes.',
+        a: 'No. The account signs up the way any customer would, from the store’s own pop up or footer form. Your audit still runs inside the accounts, after the yes.',
       },
       {
         q: 'What counts as a leak?',
-        a: 'Anything a new customer should get and doesn’t, by a deadline you set: a pop up code that never comes, a late welcome email, a text opt in that sends nothing, a basket with no reminder, an email in the Promotions tab.',
+        a: 'Anything a new customer should get and doesn’t, by a deadline you set: a pop up code that never comes, a late welcome email, a text opt-in that sends nothing, a basket with no reminder, an email in the Promotions tab.',
       },
       {
-        q: 'Does it contact anyone at the store?',
-        a: 'Only as a customer would. When it talks to a person, by chat, email or phone, it says it’s AI from Obsession.',
+        q: 'Can the store see the record?',
+        a: 'Yes. Every record is a link anyone can open, so it goes in the pitch and the store can check it for itself.',
       },
       {
-        q: 'Can the store see the receipt?',
-        a: 'Yes. Every receipt is a link anyone can open, so it goes in the pitch and the store can check it for itself.',
-      },
-      {
-        q: 'How often does it check our clients?',
-        a: 'As often as you choose: every week, and after every launch, rebuild or theme update you tell it about.',
-      },
-      {
-        q: 'How many stores can it check at once?',
-        a: 'Up to 1,000 stores in 48 hours, so a whole pitch list or every client store in one go.',
+        q: 'How many stores can it cover?',
+        a: 'As many as you name: a 40 store pitch list or every client store at once. A store already covered returns its history straight away.',
       },
       {
         q: 'Will a store know who’s asking?',
-        a: 'No. Obsession shares what a store did, never who asked.',
+        a: 'No. Anyone can see that a store is covered, and since when, but never who asked.',
       },
       {
         q: 'Does it buy anything?',
-        a: 'If you choose. A basket check fills a basket and leaves it, and counts as 1 basket in the store’s numbers. A real order goes on a card you fund, never on fake payment details.',
+        a: 'Only if you choose. A basket is filled and left, and counts as 1 basket in the store’s numbers. A real order goes on a card you fund, never on fake payment details.',
       },
       {
         q: 'Is it legal?',
-        a: 'Every AI customer does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.',
+        a: 'Obsession does only what any customer can, on the forms anyone can use. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own. Any company can opt out at useobsession.com/agents. This is not legal advice.',
       },
     ],
   },
 
   final: {
-    heading: 'Try it on 5 stores.',
-    sub: 'Name a store, a prospect or a client with their OK. We’ll send it an AI customer and send you what happened within 4 days, with proof, then ask for the other 4.',
+    heading: 'Which client stores should we look up first?',
+    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
     capture: {
-      kind: 'mystery',
+      kind: 'waitlist',
       source: 'usecase-leaks-final',
-      button: 'Check 5 stores free',
+      button: 'Request early access',
       interest: 'mystery',
     },
-    link: { label: 'See everything AI customers do for agencies', to: '/agencies' },
+    link: { label: 'More for agencies', to: '/agencies' },
   },
 }

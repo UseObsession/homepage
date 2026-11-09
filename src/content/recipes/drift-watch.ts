@@ -1,51 +1,34 @@
 import type { Recipe } from '../types'
 
-/* Drift watch (/recipes/drift-watch). Check your AI agents. Screen: drift (Your company's support bot, 40 cases, daily;
-   Test customer 2, AI, for Your company, replays them every morning at 07:00 and again after every update; the pass
-   rate holds inside the 90 to 100% baseline from 20 Sep, 92.5% (37 of 40) before; Vendor A's update on 2 Oct at
-   23:20; the run again after the update at 00:10, 70% (28 of 40); 9 cases newly failing since the update, each with
-   the bot's new answer: address change A-01 "Done, it's updated."; refunds 14 days R-07 "Yes, up to 30 days.";
-   person on request H-02 "I can help instead."; live codes only C-04 "AUTUMN10 works."; delivery £4.95 D-03
-   "Delivery is free."; cancel online X-05 "Call us to cancel."; warranty 2 years W-09 "Warranty is 1 year."; no price
-   match P-06 "We'll match that."; stops after "No" N-02 "Anything else?" 3 times. A note to Vendor A, drafted: "Since
-   your 2 Oct update, 9 of our 40 cases fail. Before and after, signed.", sent after the reader's OK. "With your OK and
-   Vendor A's · tests tagged").
-   Base: _research/verify/VERIFY.md 6.8 (the golden set, the run after every change, the checks, the outcome) and 11
-   (the red lines). No real AI agent check has run yet, so the run is an example and says so, and no Verify claim sits
-   in proof.
-   The three lines hold (system.md), and nothing else is written as a rule: every answer kept exactly as it arrived,
-   before and after; the reader private unless they choose to be named; the law (every test customer says it's AI when
-   it talks to a person). The rest is the reader's setting: the cases, hard or adversarial ones included, and when the
-   note goes to the vendor. Every replay is tagged, agreed with the vendor, so none is billed. A client's agent is
-   named with the client's agreement once, in the FAQ. No vendor or product names: Vendor A.
-   Up-to-50 rule: the 1 modelled figure (up to 10 days sooner) carries its model in the same line: 1 team found a drop
-   in its agent 11 days after the change that caused it; a replay every morning finds it within 1 day, 11 - 1 = 10.
-   Flat facts from the example: 37, then 28, of 40 (92.5%, then 70%), 9 newly failing, found 50 minutes after the
-   update (23:20 to 00:10), 80 replays (40 at 07:00 and 40 at 00:10). */
+/* Drift watch (/recipes/drift-watch). A ready-made collection (9 Nov): the record of what an AI agent answers on the
+   reader's hardest cases, every morning and within the hour of any vendor release, model update or prompt edit, with
+   every changed answer shown before and after. Obsession says it is an AI; every replay is tagged, agreed with the
+   vendor, so none is billed. No vendor or product names: Vendor A. No real AI agent check has run yet, so the run is
+   an example (the `drift` screen: 37 of 40 before Vendor A's update at 23:20, 28 of 40 at 00:10, 9 newly failing). */
 
 export const recipe: Recipe = {
   id: 'drift',
   slug: 'drift-watch',
   name: 'Drift watch',
   group: 'Check your AI agents',
-  line: 'Replays your hardest cases on your AI agent every morning and after every update, and flags every answer that changed.',
-  gets: 'Every answer that changed, found the day it changed, with its before and after as proof.',
+  line: 'What your AI agent answers on your hardest cases, every morning and after every update, with every changed answer.',
+  gets: 'Every answer that changed, found the day it changed, with its before and after.',
   kit: [
-    'An AI customer, working for your company',
-    'Its own inbox and test account',
+    'A customer profile, declared as AI',
+    'An inbox and test account',
     'Your hardest cases, each with its rule',
     'Your vendor’s updates, watched',
     'Every replay tagged, agreed with your vendor',
-    'Every answer kept with its receipt',
+    'Every answer kept with its time',
   ],
 
   meta: {
     path: '/recipes/drift-watch',
     title: 'Drift watch: catch the answers an update breaks · Obsession',
     description:
-      'An AI customer replays your hardest cases on your AI agent every morning and within the hour of any update, and flags every answer that changed.',
+      'Your hardest cases asked of your AI agent every morning and within the hour of any update. Every answer kept, and every change shown before and after.',
     answer:
-      'Drift watch catches what each update breaks in your AI agent: an AI customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
+      'Drift watch records what your AI agent answers on your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -55,13 +38,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that catches what each update breaks in your AI agent.',
-    sub: 'Drift watch catches what each update breaks in your AI agent: an AI customer replays your hardest cases every morning, and within the hour of any update, and compares every answer with your baseline, with proof.',
+    headline: 'What each update changed in your AI agent’s answers.',
+    sub: 'Drift watch records what your AI agent answers on your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
     screen: 'drift',
     capture: {
-      kind: 'verify',
+      kind: 'waitlist',
       source: 'recipe-drift-hero',
-      button: 'Check my AI agent free',
+      button: 'Request early access',
       interest: 'drift',
     },
   },
@@ -73,8 +56,8 @@ export const recipe: Recipe = {
     targets: 'Your support bot, run by Vendor A',
     journey: ['Replay your 40 cases', 'Compare with the baseline', 'Run again after any update', 'Flag every new failure'],
     schedule: 'Daily at 07:00, and within the hour of any update',
-    report: 'A Slack alert, and a note for your vendor',
-    kit: ['Its own ID, declared as AI', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
+    report: 'Slack, and every answer in a table',
+    kit: ['Declared as AI', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
     events: [
       { time: '2 Oct 07:00', text: 'The morning replay: 37 of 40 cases pass, 92.5%, inside your baseline of 90 to 100%.' },
       { time: '2 Oct 23:20', text: 'Vendor A ships an update to your bot.' },
@@ -83,8 +66,8 @@ export const recipe: Recipe = {
       { time: '3 Oct 00:14', text: 'Delivery “is free” where you charge £4.95, the warranty is “1 year” where yours is 2, and “Anything else?” comes 3 times after “No”.' },
     ],
     finding: 'Since Vendor A’s update, 9 of your 40 cases fail. Your bot now offers 30 day refunds, free delivery and price matches you don’t give.',
-    fix: 'A note to Vendor A with every answer before and after, signed. Sent after your OK.',
-    ledger: 'Example run. 80 replays, every answer signed and dated.',
+    fix: 'In Slack at 00:14, with every answer before and after, ready to send to Vendor A.',
+    ledger: 'Example run. 80 replays, every answer dated.',
   },
 
   steps: [
@@ -97,12 +80,12 @@ export const recipe: Recipe = {
       line: 'The first replays set the pass rate your bot normally holds, case by case. You approve it, and change any rule.',
     },
     {
-      title: 'It replays every morning, and after any update',
-      line: 'An AI customer asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
+      title: 'Obsession asks every morning, and after any update',
+      line: 'Every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
     },
     {
-      title: 'You see what changed',
-      line: 'Every case that newly fails, with the answer before and after, and a note to your vendor drafted. It goes when you approve it.',
+      title: 'Every changed answer lands',
+      line: 'Each case that newly fails, with the answer before and after, in Slack, a PDF or from the API.',
     },
   ],
 
@@ -128,10 +111,9 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Hard questions', line: 'What an ordinary customer asks, and hard or adversarial cases if you want them.' },
+        { title: 'Hard questions', line: 'What an ordinary customer asks, and hard cases only if you add them.' },
         { title: 'The record', line: 'Every answer kept exactly as it arrived, before and after.' },
         { title: 'Your bill', line: 'Every replay is tagged, and agreed with your vendor, so none is billed as a resolution.' },
-        { title: 'Your vendor', line: 'The note goes to your vendor when you send it.' },
       ],
     },
   ],
@@ -142,12 +124,8 @@ export const recipe: Recipe = {
       { format: 'A verdict per case', line: 'Passed, or newly failing, against your baseline.' },
       { format: 'Before and after', line: 'Every changed answer side by side, with the rule it broke.' },
       { format: 'The pass rate over time', line: 'Every morning’s replay on 1 line, with each update marked.' },
-      { format: 'A note for your vendor', line: 'Drafted with the evidence. Sent when you approve it.' },
-      { format: 'An alert where you look', line: 'Slack, email or a webhook, the moment a replay drops below your baseline.' },
-      {
-        format: 'A dated record',
-        line: 'Every replay kept with its receipt, as a page and a PDF for your vendor, your client or your insurer.',
-      },
+      { format: 'Slack, email or a webhook', line: 'The moment a replay drops below your baseline.' },
+      { format: 'A dated record', line: 'Every replay as a page and a PDF for your vendor, your client or your insurer.' },
     ],
   },
 
@@ -159,96 +137,64 @@ export const recipe: Recipe = {
     { k: 'Changes watched', v: 'Vendor releases, model updates, and prompt and knowledge base edits' },
     { k: 'Tagging', v: 'Every replay tagged, agreed with your vendor first' },
     { k: 'How often', v: 'Daily at 07:00, and within the hour of any change' },
-    { k: 'Alerts', v: 'Slack, email or a webhook when the pass rate drops below your baseline' },
   ],
 
   forWho: [
-    {
-      audience: 'founders',
-      line: 'Hear the night a vendor update changes what your bot tells customers, not days later from a complaint.',
-    },
-    {
-      audience: 'agencies',
-      line: 'Watch every agent you run for clients and catch a vendor update before your client does.',
-    },
+    { audience: 'founders', line: 'Hear the night a vendor update changes what your bot tells customers.' },
+    { audience: 'agencies', line: 'Every agent you run for clients, replayed after each vendor update.' },
     { audience: 'marketing', line: 'Catch the morning your bot starts handing out a code that has expired.' },
-    {
-      audience: 'developers',
-      line: 'Replay the cases from your code before every prompt change ships, and after every model update.',
-    },
+    { audience: 'developers', line: 'Replay the cases from your code before every prompt change ships.' },
   ],
 
   table: {
-    heading: 'Find the drop the night it happens, not 11 days later.',
-    line: 'Up to 10 days sooner: 1 team found a drop in its agent 11 days after the change that caused it. A replay every morning finds it within 1 day, and a replay after every update within the hour.',
-    cols: ['Today', 'With drift watch'],
+    heading: 'Find the drop the night it happens.',
+    line: 'Example: Vendor A’s update, replayed 50 minutes later.',
+    cols: ['Today', 'With Drift watch'],
     rows: [
       { label: 'A vendor update', values: ['You read the release notes, if there are any', 'Your cases replayed within the hour'] },
       { label: 'A drop in quality', values: ['Noticed days later, from complaints', 'Flagged the night it happens'] },
       { label: 'What changed', values: ['Transcripts, read by hand', 'Every answer before and after, side by side'] },
       { label: 'Your hardest cases', values: ['Tested once, at launch', 'Replayed every morning'] },
-      { label: 'Telling your vendor', values: ['“It feels worse lately”', '9 cases, before and after, signed'] },
-      { label: 'Proof over time', values: ['None', 'A signed pass rate for every day'] },
+      { label: 'Telling your vendor', values: ['“It feels worse lately”', '9 cases, before and after'] },
+      { label: 'Over time', values: ['Nothing kept', 'A pass rate for every day'] },
     ],
   },
 
   faq: {
-    heading: 'Every AI customer says it’s AI. Every replay is tagged and agreed with your vendor.',
+    heading: 'Every answer kept, before and after. Every replay agreed with your vendor.',
     items: [
       {
         q: 'What is drift in an AI agent?',
-        a: 'Drift is your AI agent answering the same question differently from day to day, most often after a vendor release, a model update or a prompt change: the change Drift watch catches.',
+        a: 'Drift is your AI agent answering the same question differently from day to day, most often after a vendor release, a model update or a prompt change.',
       },
       {
         q: 'Why did our AI agent start giving wrong answers after an update?',
-        a: 'A vendor release, a model update or a prompt change can change its answers with nothing else changed on your side, and Obsession’s Drift watch replays your hardest cases within the hour of any update and flags every answer that changed, before and after.',
+        a: 'A vendor release, a model update or a prompt change can change its answers with nothing else changed on your side. Drift watch replays your hardest cases within the hour of any update and shows every answer that changed.',
       },
       {
         q: 'How does Drift watch know about an update?',
-        a: 'Drift watch reads your vendor’s release notes or a webhook, or your own team’s prompt and knowledge base changes. It replays your cases within the hour.',
+        a: 'It reads your vendor’s release notes or a webhook, or your own team’s prompt and knowledge base changes, and replays your cases within the hour.',
       },
       {
         q: 'Which cases should we use?',
-        a: 'Give Drift watch the questions your bot must always get right, often the ones that already went wrong once. Each gets the rule that decides it.',
-      },
-      {
-        q: 'Does Drift watch say it’s AI?',
-        a: 'Yes. Every Drift watch AI customer says it’s an AI working for your company, so your team can see it’s a test.',
+        a: 'The questions your bot must always get right, often the ones that already went wrong once. Each gets the rule that decides it.',
       },
       {
         q: 'Will our vendor bill us for the replays?',
-        a: 'Every Drift watch replay is tagged as a test, and we agree that with your vendor before the first one runs.',
+        a: 'Every replay is tagged as a test, and we agree that with your vendor before the first one runs.',
       },
-      {
-        q: 'Will Drift watch try to trick our bot?',
-        a: 'Only if you want it to. Drift watch asks what an ordinary customer asks, and you can add hard or adversarial cases to your set.',
-      },
-      {
-        q: 'Can Drift watch cover a client’s agents?',
-        a: 'Yes, with the client’s agreement: the Drift watch record carries your agency’s name.',
-      },
-      {
-        q: 'What’s it worth?',
-        a: 'Drift watch finds a drop up to 10 days sooner: 1 team found a drop in its agent 11 days after the change that caused it, and a replay every morning finds it within 1. A replay after every update finds it within the hour.',
-      },
-      {
-        q: 'Is a passed replay a guarantee?',
-        a: 'No. A passed Drift watch replay is dated evidence of what your agent said on each case that day.',
-      },
-      {
-        q: 'What’s in the free check?',
-        a: 'The free check is a Drift watch run: 3 AI customers use your AI agent on 1 channel, and your report lands within 4 days. It’s the first point on your baseline.',
-      },
+      { q: 'Does Obsession say it’s AI?', a: 'Yes, to anyone it talks to.' },
+      { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated record of what your agent said on each case that day.' },
     ],
   },
 
   final: {
     heading: 'Know which answers an update changed within the hour.',
-    sub: 'Your first check is free: 3 AI customers use your AI agent on 1 channel, and your report lands within 4 days. Your agent, or a client’s.',
+    sub: 'Early access includes API and MCP access, set up with the founders.',
     capture: {
-      kind: 'verify',
+      kind: 'waitlist',
       source: 'recipe-drift-final',
-      button: 'Check my AI agent free',
+      button: 'Request early access',
       interest: 'drift',
     },
   },

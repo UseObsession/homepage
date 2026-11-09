@@ -1,39 +1,35 @@
 import type { Recipe } from '../types'
 
-/* Delivery monitoring (/recipes/delivery-monitoring). Check your own journeys. Screen: qa.
-   New page (James's original recipe set had Delivery monitoring; our version's "First 14 days" use case on the
-   Founders page). AI test customers with real inboxes and numbers live your first 14 days, a new one after every
-   release and every week, and prove every email, text and login code arrives. It also covers every launch send
-   (Marketing's "Your launch", the Agencies weekend codes, the webinar invite). The reader's own journeys, or a
-   client's with the client's agreement (said once, in the FAQ); each code is tried at checkout, then stopped before
-   payment or bought on a capped card, as the reader chooses. Only the 3 lines in system.md are rules. No claim about
-   spam folder placement: only what arrived, when, and whether it works.
-   The run and the table tell the same story as the `qa` screen (release 4.2, 3 test customers, UK login
-   codes stop on day 6, US codes in 6 seconds, the fix ticket drafted). Example. */
+/* Delivery monitoring (/recipes/delivery-monitoring). A ready-made collection (9 Nov): every email, text and login code
+   the reader's own sign-up (or a client's, with their OK) sends a new customer in its first 14 days, timed on real
+   inboxes and numbers in each country they sell in, from new accounts opened after every release. Anything missing is
+   flagged the day it was due. Codes are tried at checkout and stop before payment. No claim about spam folder
+   placement: only what arrived, when, and whether it works. The run and the table match the `qa` screen (release 4.2,
+   3 accounts, UK login codes stop on day 6, US codes in 6 seconds). Example. */
 
 export const recipe: Recipe = {
   id: 'delivery',
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
   group: 'Check your own journeys',
-  line: 'AI customers live your first 14 days on real inboxes and numbers, and prove every message arrives.',
-  gets: 'Every email, text and code your customers should get, timed, and anything missing flagged the day it’s due.',
+  line: 'Every email, text and login code your sign-up sends a new customer in its first 14 days, timed, in each country.',
+  gets: 'Every message a new customer should get, timed, and anything missing flagged the day it was due.',
   kit: [
-    'AI customers',
+    'A new account after every release',
     'Real inboxes',
-    'Numbers in each country you sell in',
+    'Real numbers in each country you sell in',
     'iPhone, Android and desktop',
     'A 14 day watch, every message timed',
-    'Every message kept with its receipt',
+    'Every message kept with its arrival time',
   ],
 
   meta: {
     path: '/recipes/delivery-monitoring',
     title: 'Delivery monitoring: prove every email, text and code lands',
     description:
-      'AI customers live your first 14 days on real inboxes and numbers in each country you sell in, and flag any email, text or code that never arrives.',
+      'Every email, text and login code your sign-up sends a new customer in its first 14 days, timed on real inboxes and numbers in each country you sell in.',
     answer:
-      'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
+      'Delivery monitoring records every email, text and login code your sign-up sends a new customer in its first 14 days. After every release, Obsession opens new accounts with real inboxes and numbers in each country you sell in, and flags anything that never arrives.',
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,13 +39,13 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'An AI customer that proves every email, text and login code arrives.',
-    sub: 'Delivery monitoring proves every email, text and login code arrives: after every release, AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flag anything that never comes.',
+    headline: 'Every email, text and login code your new customers should get, timed.',
+    sub: 'Delivery monitoring records every email, text and login code your sign-up sends a new customer in its first 14 days. After every release, Obsession opens new accounts with real inboxes and numbers in each country you sell in, and flags anything that never arrives.',
     screen: 'qa',
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-hero',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'delivery',
     },
   },
@@ -57,29 +53,29 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: release 4.2',
     recipe: 'delivery',
-    task: 'After release 4.2, start 3 AI customers in the UK and US. Live our first 14 days and flag anything that never arrives.',
+    task: 'After release 4.2, open 3 new accounts in the UK and US. Watch our first 14 days and flag anything that never arrives.',
     targets: 'Your app, UK and US',
-    journey: ['Sign up as AI customers', 'Log in by text code', 'Open every email', 'Time every message'],
+    journey: ['Sign up', 'Log in by text code', 'Open every email', 'Time every message'],
     schedule: 'Every release, then daily for 14 days',
-    report: 'Slack alert, ticket drafted',
-    kit: ['3 AI customers', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
+    report: 'Slack alert, every message in a table',
+    kit: ['3 new accounts', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
     events: [
-      { time: 'Day 1, 09:00', text: '3 AI customers sign up: UK on iPhone, US and UK on Android.' },
+      { time: 'Day 1, 09:00', text: '3 accounts sign up: UK on iPhone, US and UK on Android.' },
       { time: 'Day 1, 09:03', text: 'Welcome emails in 2 to 3 minutes. Login codes by text in under 10 seconds.' },
       { time: 'Day 3, 10:00', text: 'Setup tips email arrives for all 3. Every link opens.' },
-      { time: 'Day 6, 09:12', text: 'Login code by text: the US customer gets it in 6 seconds.' },
-      { time: 'Day 6, 09:22', text: 'Both UK customers: no code after 10 minutes.' },
+      { time: 'Day 6, 09:12', text: 'Login code by text: the US account gets it in 6 seconds.' },
+      { time: 'Day 6, 09:22', text: 'Both UK accounts: no code after 10 minutes.' },
     ],
     finding: 'Login codes stopped reaching UK numbers on day 6. US numbers still get them in 6 seconds.',
-    fix: 'A fix ticket drafted for your tracker with the text log, filed after your OK. Once it’s fixed, both UK customers try again.',
-    ledger: 'Example run. Every email, text and code timed and screenshotted, with proof.',
+    fix: 'In #releases in Slack with the text log. A new UK account tries again after the fix.',
+    ledger: 'Example run. Every email, text and code timed, with its screenshot.',
   },
 
   steps: [
-    { title: 'Pick the journeys', line: 'Sign up, onboarding, trial, a launch: every message a customer should get.' },
-    { title: 'AI customers join', line: 'Each has a real inbox and number in the countries you sell in, and says it’s AI to any person it talks to.' },
-    { title: 'They live it for 14 days', line: 'Every email, text and code timed against when it should arrive. A new AI customer starts every week.' },
-    { title: 'What never arrives reaches you', line: 'The day it was due, with the screenshot, the log and a ticket drafted.' },
+    { title: 'Pick the journeys', line: 'Sign-up, onboarding, trial, a launch: every message a customer should get. Yours, or a client’s.' },
+    { title: 'New accounts open', line: 'After every release and every week, each with a real inbox and number in the countries you sell in.' },
+    { title: 'Every message timed', line: 'Against when it should arrive, for 14 days.' },
+    { title: 'What never arrives lands first', line: 'The day it was due, with the screenshot and the log, in Slack, a ticket or a webhook.' },
   ],
 
   checks: [
@@ -94,8 +90,8 @@ export const recipe: Recipe = {
     {
       group: 'Every launch',
       items: [
-        { title: 'Emails and texts', line: 'Each send lands in every test inbox and on every number.' },
-        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment or buying on a capped card, as you choose. Every link opened on phone and desktop.' },
+        { title: 'Emails and texts', line: 'Each send lands in every inbox and on every number.' },
+        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment. Every link opened on phone and desktop.' },
       ],
     },
     {
@@ -108,19 +104,19 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every miss arrives with its log and a ticket drafted for your tracker.',
+    heading: 'Every miss arrives with its log.',
     items: [
-      { format: 'Slack alert', line: 'The day a message doesn’t arrive, with the log attached.' },
-      { format: 'Ticket', line: 'Drafted for your tracker, with the screenshots and the text log.' },
-      { format: '14 day timeline', line: 'Every message each AI customer got, and when.' },
+      { format: 'Slack', line: 'The day a message doesn’t arrive, with the log attached.' },
+      { format: 'Ticket', line: 'For your tracker, with the screenshots and the text log.' },
+      { format: '14 day timeline', line: 'Every message each account got, and when.' },
       { format: 'PDF', line: 'For your team or a client, ready to forward.' },
       { format: 'Webhook', line: 'Each arrival and each miss as JSON.' },
     ],
   },
 
   settings: [
-    { k: 'Journeys', v: 'Sign up, onboarding, trial, renewals and launches' },
-    { k: 'AI customers', v: 'A new one every release, or every week' },
+    { k: 'Journeys', v: 'Sign-up, onboarding, trial, renewals and launches' },
+    { k: 'New accounts', v: 'After every release, or every week' },
     { k: 'Countries', v: 'A real number in each country you sell in' },
     { k: 'Devices', v: 'iPhone, Android and desktop' },
     { k: 'Window', v: '14 days, or as long as your journey runs' },
@@ -129,13 +125,13 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'founders', line: 'Find the email, text or code new users never get, the day it goes missing.' },
     { audience: 'marketing', line: 'Know every launch email, text and code works in every country you send to.' },
-    { audience: 'agencies', line: 'Prove every client’s messages arrive, with a log to forward.' },
+    { audience: 'agencies', line: 'Every client’s messages timed, with a log to forward.' },
     { audience: 'developers', line: 'Every login code timed on real numbers, after every release.' },
   ],
 
   table: {
     heading: 'Day 1 passed. On day 6, UK login codes stopped arriving.',
-    line: 'Example: release 4.2, 3 AI customers.',
+    line: 'Example: release 4.2, 3 new accounts.',
     cols: ['UK, iPhone', 'US, Android', 'UK, Android'],
     rows: [
       { label: 'Day 1, welcome email', values: ['2 min', '2 min', '3 min'] },
@@ -150,39 +146,33 @@ export const recipe: Recipe = {
     heading: 'Real inboxes and numbers, and every message timed.',
     items: [
       {
-        q: 'How do I know our welcome emails and login codes actually arrive?',
-        a: 'Obsession’s Delivery monitoring has AI customers with real inboxes and numbers live your first 14 days in each country you sell in, and flags any email, text or code that never arrives.',
+        q: 'How do I know our welcome emails and login codes arrive?',
+        a: 'Delivery monitoring opens new accounts with real inboxes and numbers in each country you sell in, watches your first 14 days, and flags any email, text or code that never arrives.',
       },
       {
         q: 'Why 14 days?',
-        a: 'Because Delivery monitoring checks what day 1 tests miss: the login code on day 6 and the trial reminder on day 13. 14 days runs a 14 day trial to its last reminder, and you can set any window.',
+        a: 'Because a day 1 test misses the login code on day 6 and the trial reminder on day 13. You can set any window.',
       },
       {
         q: 'Are the inboxes and numbers real?',
-        a: 'Yes. Each Delivery monitoring AI customer has its own inbox and a real number in the country you pick, so a text a network blocks never reaches it either.',
+        a: 'Yes, each with a real number in the country you pick, so a text a network blocks never reaches it either.',
       },
       {
-        q: 'Can Delivery monitoring check our launch emails and texts?',
-        a: 'Yes. Delivery monitoring’s AI customers on your list get every send, open every link and try every code at checkout, stopping before payment or buying on a capped card, as you choose.',
+        q: 'Can it check our launch emails and texts?',
+        a: 'Yes. Accounts on your list get every send, open every link and try every code at checkout, stopping before payment.',
       },
-      {
-        q: 'Does Delivery monitoring see our real customers’ data?',
-        a: 'No. Delivery monitoring only sees what its own AI customers receive.',
-      },
-      {
-        q: 'Can agencies run Delivery monitoring for clients?',
-        a: 'Yes, with each client’s OK: Delivery monitoring gives every client its own AI customers and its own log to forward.',
-      },
+      { q: 'Does it see our real customers’ data?', a: 'No. It sees only what its own accounts receive.' },
+      { q: 'Can agencies run it for clients?', a: 'Yes, with each client’s OK, each with its own log to forward.' },
     ],
   },
 
   final: {
     heading: 'Find the message your customers never got.',
-    sub: 'Join the waitlist. Delivery monitoring comes ready to watch your first 14 days.',
+    sub: 'Early access includes API and MCP access, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-final',
-      button: 'Join the waitlist',
+      button: 'Request early access',
       interest: 'delivery',
     },
   },

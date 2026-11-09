@@ -1,24 +1,27 @@
 import { consoleHeading } from '../console'
-import { CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
-import { life, openSource, ways } from '../shared5'
+import { openSource, ways } from '../shared5'
 import type { Page } from '../types'
 
-/* Developers (/developers), the October rewrite (COPY.md, "Copy deck > Developers"). Developers, agent builders and
-   GTM engineers. The frame: Exa searches the web, Browserbase drives a browser, Obsession is the customer. The 5 verbs
-   are the whole surface (lookup, facts, evidence, index, notify), the same as an API, an MCP server and an
-   SDK. The runtime is open source; Obsession Cloud runs it, with the history.
-   The story: what it is for you (a customer at every company, for your agents) > what you'd build yourself (James's
-   "Signing up once is easy") > how a customer agent lives > the 4 ways in and the 5 verbs > the code and the webhook >
-   what developers build on it > open source > questions > API access. Every example domain ends in .example. */
+/* Developers (/developers), the 9 Nov rewrite after Home: the web behind the login, as an API for teams building AI
+   agents, developers and GTM engineers. 5 verbs (lookup, facts, evidence, index, notify), the same over MCP, the API and
+   SDKs. The story: what your agent gets > what you'd build yourself to get it > the ways in and the verbs > the code
+   and the webhook > what developers build on it > open source, short > questions > API access. Every example domain
+   ends in .example. */
+
+const access = {
+  kind: 'waitlist',
+  button: 'Get API access',
+  interest: 'any',
+} as const
 
 export const page: Page = {
   meta: {
     path: '/developers',
-    title: 'Obsession API and MCP: AI customers your agents can call',
+    title: 'Obsession API and MCP: the web behind the login, for agents',
     description:
-      'Send an AI customer to any company from your own agent: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. Open source runtime.',
+      'Give your agents what companies show only signed-up customers: emails, member prices, trial limits, quotes and offers, all dated. 5 verbs over MCP and API.',
     answer:
-      'Obsession lets your agents send an AI customer (an agent with its own inbox, phone number and browser) to any company, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
+      'Obsession gives AI agents what companies show only to signed-up customers. That means their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with its receipt, behind 5 verbs over MCP, the API and SDKs.',
     ogImage: '/og/developers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,120 +30,112 @@ export const page: Page = {
   },
 
   hero: {
-    pill: '',
-    headline: 'Let your agents send an AI customer to any company.',
-    sub: 'Obsession lets your agents send an AI customer (an agent with its own inbox, phone number and browser) to any company, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
-    capture: {
-      kind: 'waitlist',
-      source: 'developers-hero',
-      button: 'Get API access',
-      interest: 'any',
-    },
-    secondary: { label: 'Star it on GitHub', to: 'https://github.com/UseObsession' },
+    pill: 'Early access',
+    pillTo: '#join',
+    headline: 'The web behind the login, as an API for your agents.',
+    sub: 'What companies show only signed-up customers: emails, member prices, trial limits, quotes and offers, each dated with its receipt. 5 verbs over MCP, the API and SDKs.',
+    capture: { ...access, source: 'developers-hero' },
+    secondary: { label: 'See sample data', to: '/sample-output' },
     proof: [],
     consoleHeading,
-    screens: [{ tab: 'Record', screen: 'run', recipe: 'mystery', line: '' }],
+    /* The hero's screen: competitors' emails and texts, each dated as it arrived. */
+    screens: [{ tab: 'Inbox', screen: 'inbox', link: { label: 'See sample data', to: '/sample-output' }, line: '' }],
   },
 
   gapPair: {
-    heading: 'Signing up once is easy. Staying a customer of 10,000 companies is not.',
-    line: 'Your agent can reason about a company, but it can’t receive a login code, wait 3 weeks for a price drop or prove an email is real. That is the part Obsession runs.',
+    heading: 'Signing up once is easy. Keeping 10,000 accounts open for months is not.',
+    line: 'Your agent can read a page. It can’t receive a login code, wait 3 weeks for a price change or prove when an email arrived. Obsession runs that part and hands you the facts.',
     tools: {
       label: 'What you’d build yourself',
       items: [
-        'Inboxes, numbers and browsers that keep working',
-        'A process that waits weeks without burning tokens',
+        'Inboxes, phone numbers and browsers that keep working',
+        'Weeks of waiting for the next email, at every company',
         'Telling a welcome from a reminder from a price change',
-        'Proof each email is real, and when it arrived',
-        'Fixing every sign up when a site changes',
+        'A receipt for every email: sender checked, time it arrived',
+        'Fixing each sign-up when a site changes',
       ],
     },
     customer: {
-      label: 'What Obsession runs for you',
+      label: 'What Obsession gives you',
       items: [
-        'An inbox, number and browser for each AI customer, in many countries',
-        'AI customers that sleep for free and wake when the company acts',
-        'Every message turned into 1 sentence, a fact',
-        'DKIM checked and timestamped, every time',
-        'Per site programs, rewritten when a page changes',
+        'Accounts at any company, in the country and profile you pick',
+        '10,000 companies at once, each kept open for months',
+        'Every message turned into 1 dated fact',
+        'The raw email with its DKIM result, or the page as captured',
+        'Sign-ups kept working as sites change',
       ],
     },
   },
 
-  life,
   ways,
 
   developers: {
-    heading: 'Send an AI customer in 1 call. Facts arrive on your webhook.',
-    line: 'TypeScript and Python SDKs on a plain HTTP API. Each fact comes with its receipt: the raw email or page, when it arrived, and its signature checked.',
+    heading: 'Look a company up in 1 call. Each new fact reaches your webhook.',
+    line: 'TypeScript and Python SDKs on a plain HTTP API. Each fact comes with its receipt: the raw email or page, the time it arrived, and the sender checked.',
     code: `import { Obsession } from '@useobsession/sdk'
 
 const ob = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
-// What the shared record already covers, and since when
-const known = await ob.lookup(['competitor-a.example', 'competitor-b.example'])
+// Is it covered, and since when?
+const covered = await ob.lookup(['quillon.example', 'larkfield.example'])
 
-// Send an AI customer to the rest, or join ones already there
-await ob.index(['competitor-c.example'], { how: 'trial', shared: true })
+// Every offer Quillon sent its customers in the last 30 days
+const offers = await ob.facts('quillon.example', { kind: 'offer', since: '30d' })
 
-// Every new fact, pushed as it lands
+// Not covered yet? Add it
+await ob.index(['larkfield.example'], { how: 'account' })
+
+// Each new fact, at your webhook
 await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hooks/obsession' })
 
 // Example: POST https://your-app.example/hooks/obsession
 {
   "event": "fact.created",
-  "company": "competitor-c.example",
-  "sentence": "Competitor C cut its Pro plan from $49 to $39 a month.",
-  "seen_at": "2026-10-14T09:12:31+01:00",
+  "company": "larkfield.example",
+  "kind": "email",
+  "sentence": "Every link in the welcome email opens a closed site.",
+  "seen_at": "2026-11-03T09:04:00+00:00",
   "receipt": {
-    "kind": "email",
+    "journey": "welcome",
     "dkim": "pass",
-    "gmail_tab": "Promotions",
-    "url": "https://api.useobsession.com/v1/evidence/ev_77d0"
+    "url": "https://api.useobsession.com/v1/evidence/run_l1_1103"
   }
 }`,
-    screen: 'dev',
+    screen: 'memberfeed',
     cta: { label: 'Get API access', to: '#join' },
   },
 
+  /* Uses that read data about other companies. QA of your own app (every deploy, merchant checks) left with the old
+     story. */
   uses: {
     heading: 'What developers build on it.',
     items: [
       {
         tab: 'Competitor tracking as a feature',
-        moment: 'Friday 15:00. A customer asks why your app missed a competitor’s price rise.',
-        outcome: 'Ship competitor tracking in your own product, with every change dated and its proof attached.',
-        line: 'AI customers go to every competitor your users name, keep every email and text, and check their pricing pages daily. Each change posts to your app as JSON.',
-        whyOnly: 'One AI customer per company, shared across every user who watches it, so the history is there on day one.',
+        moment: 'Friday 15:00. A user asks why your app missed a competitor’s price rise.',
+        outcome: 'Ship competitor tracking inside your product, every change dated, with its screenshot.',
+        line: 'Call index for each competitor your users name. Their emails, trial limits and signed-in prices arrive as facts, and each change posts to your app as JSON.',
+        whyOnly: 'A company is indexed once and shared, so a competitor already covered arrives with its history. Who asked is never shown.',
         recipe: 'competitor',
         screen: 'rivals',
       },
       {
-        tab: 'Prospect intelligence',
+        tab: 'Prospect research',
         moment: 'Monday 09:00. Your users import 50 accounts, and every one looks the same.',
-        outcome: 'Show each user which accounts have the gap their product fixes, with proof.',
-        line: 'For each account your users add, an AI customer joins the newsletter or starts a trial and keeps what arrives. The gap lands on the account record.',
-        whyOnly: 'Contact data says who to email. AI customers show what each company actually sends its customers.',
+        outcome: 'Brief each account from what it sends its own customers.',
+        line: 'For each account, facts returns its trial limits, welcome emails, signed-in prices and support answers. Your app writes them onto the account record, each with its receipt.',
+        whyOnly: 'Contact data says who to email. Obsession shows what each company sends a signed-up customer.',
         recipe: 'prospect',
-        screen: 'leads',
+        screen: 'brief',
       },
       {
-        tab: 'Every deploy',
-        moment: 'Thursday 06:02. Release 2.15 is green. The launch email goes at 08:00.',
-        outcome: 'Hold the launch email when a real sign up breaks, before customers find it.',
-        line: 'Your deploy calls 1 endpoint. A fresh AI customer signs up, enters the login code from a real text and opens every email. The verdict reaches your webhook before the 08:00 send.',
-        whyOnly: 'A fresh inbox and a real number every run, so your app sees a stranger, not your team’s test account.',
-        recipe: 'audit',
-        screen: 'ship',
-      },
-      {
-        tab: 'Merchant checks',
-        moment: 'Sunday 22:00. A merchant says your basket emails stopped. Your logs say sent.',
-        outcome: 'Prove your app works on every merchant’s store, every week.',
-        line: 'Each merchant who opts in gets an AI customer every Monday, working for your app. It leaves a basket and watches its inbox for 48 hours.',
-        whyOnly: 'What a real customer gets at every store at once, not what your logs say, with the proof attached.',
-        recipe: 'mystery',
-        screen: 'shop',
+        tab: 'Price and offer answers',
+        moment: 'Saturday 10:00. A user asks your agent where coffee is cheapest with a loyalty card.',
+        outcome: 'Answer price questions with the member price, not only the shelf price.',
+        line: 'Your agent calls facts across a list of retailers, by kind and persona, and answers with member prices, coupons and offers, each linked to its screenshot.',
+        whyOnly: 'Search engines see the shelf price. Only a signed-in member sees the member price and the coupon.',
+        recipe: 'prices',
+        screen: 'members',
       },
     ],
   },
@@ -152,23 +147,19 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
     items: [
       {
         q: 'What does Obsession give my agent?',
-        a: 'Obsession lets your agents send an AI customer (an agent with its own inbox, phone number and browser) to any company, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
+        a: 'Obsession gives AI agents what companies show only to signed-up customers. That means their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with its receipt. Your agent reaches it with 5 verbs over MCP, the API or the SDKs.',
       },
       {
-        q: 'What is customer-side observability?',
-        a: `${CUSTOMER_SIDE_OBSERVABILITY.definition} It’s what AI customers do, and Obsession gives your agent that view as a tool: 5 verbs over MCP, an API and an SDK.`,
+        q: 'Where does the data come from?',
+        a: 'From real accounts. Obsession’s agents sign up, start trials and ask for quotes the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. A company not covered yet is added when you call index.',
       },
       {
         q: 'How is it different from Exa, Browserbase or a scraper?',
-        a: 'Exa searches the web and Browserbase drives a browser, for as long as your code runs. Obsession is an AI customer that stays: it signs up, waits weeks or months, and keeps every email and page it gets, with proof.',
+        a: 'Exa searches the pages anyone can open, and Browserbase drives a browser for as long as your code runs. Obsession keeps accounts open at each company for months and returns what they were sent, dated. Your agent can call all 3.',
       },
       {
         q: 'How do I connect it to Claude or Cursor?',
         a: 'Add the MCP server once, with claude mcp add obsession https://mcp.useobsession.com or your client’s settings, and your agent can call all 5 verbs.',
-      },
-      {
-        q: 'What is open source, and what is Obsession Cloud?',
-        a: 'The runtime is open source: the AI customers, how they fan out, sleep and learn, the record, recipes, integrations and the 5 verbs. Obsession Cloud runs it for you, with inboxes and numbers in many countries and months of shared history.',
       },
       {
         q: 'How do I check a fact is real?',
@@ -176,7 +167,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
       },
       {
         q: 'Which languages can I use?',
-        a: 'TypeScript and Python SDKs, on a plain HTTP API, so any language can call it. Webhooks push each new fact as it lands.',
+        a: 'TypeScript and Python SDKs, on a plain HTTP API, so any language can call it. Webhooks send each new fact as it lands.',
       },
       {
         q: 'What does it cost?',
@@ -186,13 +177,8 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
   },
 
   final: {
-    heading: 'Send your agent’s first AI customer.',
-    sub: 'Keys open from the waitlist, a team at a time. Tell us what you’ll build and we send yours.',
-    capture: {
-      kind: 'waitlist',
-      source: 'developers-final',
-      button: 'Get API access',
-      interest: 'any',
-    },
+    heading: 'Which company should your agent look up first?',
+    sub: 'Early access includes API and MCP keys, lookups of every company already covered, and up to 5 companies added for you.',
+    capture: { ...access, source: 'developers-final' },
   },
 }

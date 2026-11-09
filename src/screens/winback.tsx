@@ -3,7 +3,7 @@
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function WinbackScreen() {
   return (
-    <div className="il appx-il app-winback"><div className="appx-fit"><div className="appx" role="img" aria-label="The Accounts page filtered to 4 accounts lost to a competitor, each with the month it left and the date it renews with the competitor. For Tarnfell Outdoor, 9 months on Competitor A draw out as a timeline of checks every 2 weeks by an AI customer, with 3 dated breaks and their captures, all from public sign ups: the welcome email stopped in March, a text unsubscribe was ignored in June, and an emailed code had already expired in August. A reopen note citing all 3 is drafted for you to send yourself, and the account turns to needs you. Competitor A broke 3 times in 9 months. Reopen note cites all 3, yours to send.">
+    <div className="il appx-il app-winback"><div className="appx-fit"><div className="appx" role="img" aria-label="The Accounts page filtered to 4 accounts lost to a competitor, each with the month it left and the date it renews with the competitor. For Tarnfell Outdoor, 9 months on Competitor A draw out as a timeline of checks every 2 weeks, with 3 dated breaks and their captures, all from public sign ups: the welcome email stopped in March, a text unsubscribe was ignored in June, and an emailed code had already expired in August. A reopen note citing all 3 is drafted for you to send yourself, and the account turns to needs you. Competitor A broke 3 times in 9 months. Reopen note cites all 3, yours to send.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Accounts</span>
@@ -26,7 +26,7 @@ export function WinbackScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="wb-h ax-fade">
@@ -43,7 +43,7 @@ export function WinbackScreen() {
             <div className="wb-r ax-in" style={{ '--d': '.24s' }}><svg className="sig st-waiting" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span className="wb-nm">Sallowby Skin</span><span className="wb-m">Apr</span><span className="wb-m">21 Apr</span></div>
             <div className="wb-r ax-in" style={{ '--d': '.3s' }}><svg className="sig st-working" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span className="wb-nm">Pellmoor Pet</span><span className="wb-m">Jun</span><span className="wb-m">30 Jun</span></div>
           </section>
-          {/* the selected account: 9 months since it chose the rival */}
+          {/* the selected account: 9 months since it chose the competitor */}
           <section className="ax-card wb-tl ax-fade" style={{ '--d': '.2s' }}>
             <header className="wb-th"><b>Tarnfell Outdoor</b><span>on Competitor A · checked every 2 weeks</span></header>
             <div className="wb-strip">

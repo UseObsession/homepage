@@ -1,9 +1,10 @@
 import type { SamplePage, ViewerFormat } from './types'
 
-/* The Sample output page (/sample-output) and the output viewer, rebuilt from James's report.ts, OutputFormats.tsx and
-   SampleOutput.tsx. The 1 real run: the September 2026 store check of a skincare store ("Brand G", name hidden).
+/* The Sample output page (/sample-output) and the output viewer. Since 9 Nov it is the sample data Home points to:
+   Brand G's whole record from the web behind the login, the 1 real run (a UK skincare store, September 2026, name
+   hidden). The 4 shoppers are "test customers", never AI customers; the close is early access, not a free shop.
    State only what happened, from the report itself (public/report, Website/sample-report.html):
-   - 4 labelled AI customers, 1 inbox each (welcome, browse, basket, checkout); no phone number was used.
+   - 4 labelled test customers, 1 inbox each (welcome, browse, basket, checkout); no phone number was used.
    - Every inbox watched for 48 hours. On Tuesday 22 September 2026 the basket was left at 02:57 and the checkout at 03:11
      UK time (the report image says the checkout inbox was seeded at 03:11). When welcome and browse began isn't recorded.
    - Basket: a Body Care Gift Set (£40) left at 02:57 (cart.g3). Checkout: a Deodorant (£21), left before paying at 03:11
@@ -12,16 +13,16 @@ import type { SamplePage, ViewerFormat } from './types'
    There was NO control message and NO second run, and the run is never shown as signed. UK time in September is
    BST, so the webhook window carries +01:00. Every other run or row on the page says it is an example.
    The report images still say "cart"; the site says "basket". "James" in the drafts is a placeholder name.
-   Narrative edit (3 Oct): the page reads in the order it renders (pages/SampleOutput): the finding > all 4 journeys >
-   the basket gap > the checkout gap, which builds on it ("heard nothing either") > the same run in every format > the
-   questions > the free shop. The drafts' words stay as the images show them. */
+   The page reads in the order it renders (pages/SampleOutput): the finding > all 4 journeys > the basket gap > the
+   checkout gap, which builds on it ("heard nothing either") > the same record in every format > the questions > early
+   access. The drafts' words stay as the images show them. */
 
 /* The same run in every format it can arrive in. Home imports this too, and opens it on its own format. */
 export const outputFormats: ViewerFormat[] = [
   {
     id: 'pdf',
     label: 'PDF report',
-    line: 'A report to forward to anyone: the verdicts first, then the proof behind each one.',
+    line: 'A report to forward to anyone: the facts first, then the evidence behind each one.',
     view: {
       kind: 'pdf',
       to: '/sample-output#report',
@@ -29,14 +30,14 @@ export const outputFormats: ViewerFormat[] = [
         {
           src: '/report/page-1.jpg',
           small: '/report/page-1-640.webp',
-          alt: 'Page 1 of the report: the 4 journeys and their verdicts, a checkout screenshot and the AI customer set up',
+          alt: 'Page 1 of the report: the 4 journeys and their verdicts, a checkout screenshot and the test customer set up',
           width: 992,
           height: 1404,
         },
         {
           src: '/report/page-2.jpg',
           small: '/report/page-2-640.webp',
-          alt: 'Page 2 of the report: nothing followed up the AI customer who left at checkout, beside the reminder we drafted',
+          alt: 'Page 2 of the report: nothing followed up the test customer who left at checkout, beside the reminder we drafted',
           width: 992,
           height: 1404,
         },
@@ -46,7 +47,7 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'email',
     label: 'Email',
-    line: 'An alert the moment a verdict lands, or 1 digest on the schedule you set.',
+    line: 'Each new fact the moment it lands, or 1 digest on the schedule you set.',
     view: {
       kind: 'email',
       from: 'Obsession',
@@ -57,13 +58,13 @@ export const outputFormats: ViewerFormat[] = [
         { time: '22 Sep, 02:57', text: 'Left a Body Care Gift Set (£40) in the basket' },
         { time: '24 Sep, 02:57', text: 'Nothing arrived in the 48 hours we watched.' },
       ],
-      button: 'Open the proof',
+      button: 'Open the evidence',
     },
   },
   {
     id: 'slack',
     label: 'Slack',
-    line: 'A message in the channel you choose, with the verdict and a link to the proof.',
+    line: 'A message in the channel you choose, with the fact and a link to its evidence.',
     view: {
       kind: 'slack',
       channel: '#store-checks',
@@ -71,17 +72,17 @@ export const outputFormats: ViewerFormat[] = [
       time: '02:58',
       title: 'Silent: Brand G, basket journey',
       line: 'No reminder 48 hours after a £40 basket was left.',
-      buttons: ['View proof', 'All journeys'],
+      buttons: ['View evidence', 'All journeys'],
     },
   },
   {
     id: 'clay',
     label: 'Sheet or Clay',
-    line: 'New columns on the rows you already have: the gap, the day it was seen and a proof link.',
+    line: 'New columns on the rows you already have: the fact, the day it was seen and its screenshot.',
     view: {
       kind: 'clay',
-      cols: ['Company', 'Gap', 'Seen on', 'Proof'],
-      added: ['Gap', 'Seen on', 'Proof'],
+      cols: ['Company', 'Fact', 'Seen on', 'Screenshot'],
+      added: ['Fact', 'Seen on', 'Screenshot'],
       rows: [
         { cells: ['Brand G', 'No basket reminder', '24 Sep', 'link'], gap: true, example: false },
         { cells: ['Candle store', 'No gap', '24 Sep', 'link'], gap: false, example: true },
@@ -115,7 +116,7 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'workflow',
     label: 'Workflow',
-    line: 'A verdict can start anything: the steps you set, then whatever you build next.',
+    line: 'A new fact can start anything: the steps you set, then whatever you build next.',
     view: {
       kind: 'workflow',
       steps: [
@@ -133,11 +134,11 @@ export const outputFormats: ViewerFormat[] = [
 export const sample: SamplePage = {
   meta: {
     path: '/sample-output',
-    title: 'Mystery shopper report example: a real store, 0 reminders',
+    title: 'Sample data: a real store’s record, and 0 basket reminders',
     description:
-      'A real September 2026 check of a skincare store: 4 AI customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders. As a PDF, email or Slack.',
+      'A real UK skincare store’s record, September 2026: 4 test customers, 48 hours watched, 1 basket and 1 checkout left, 0 reminders. As a PDF, Clay or JSON.',
     answer:
-      'A sample run from September 2026: 4 labelled AI customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours. 1 AI customer left a basket, 1 stopped at checkout, and neither got a reminder. Its findings come as a PDF report, an email, a Slack message, a sheet or Clay, a JSON webhook or a workflow.',
+      'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 and a checkout left at 03:11 got no reminder. The record comes as a PDF report, an email, a Slack message, a sheet or Clay, a JSON webhook or a workflow.',
     ogImage: '/og/sample-output.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -147,26 +148,26 @@ export const sample: SamplePage = {
   },
 
   hero: {
-    pill: 'Real run · September 2026 · name hidden',
-    headline: '1 AI customer left a basket, 1 stopped at checkout. Neither heard a thing in 48 hours.',
-    sub: 'A sample run from September 2026: 4 labelled AI customers shopped a UK skincare store, 1 inbox each, and every inbox was watched for 48 hours. Below are its findings, then every report type you can get them as.',
+    pill: 'Real record · September 2026 · name hidden',
+    headline: 'A £40 basket left at 02:57. 48 hours later, still no reminder.',
+    sub: 'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. Below is Brand G’s whole record, then every format it comes in.',
     figures: [
-      { value: '4', label: 'AI customers, 1 inbox each' },
+      { value: '4', label: 'test customers, 1 inbox each' },
       { value: '5', label: 'messages, all on welcome and browse' },
-      { value: '15', label: 'screenshots kept as proof' },
+      { value: '15', label: 'screenshots kept with the record' },
     ],
-    cta: { label: 'Get one for your store', to: '#get-one' },
+    cta: { label: 'Request early access', to: '#get-one' },
   },
 
   formats: {
-    heading: 'Every report type, from the same run.',
-    line: 'A run’s findings reach you in 6 ways: a PDF report, an email, a Slack message, columns in a sheet or Clay, a JSON webhook, or a workflow. The PDF is this run’s real report; the other tabs show its verdicts as each would arrive.',
+    heading: 'The same record, in every format.',
+    line: 'A PDF report, an email, a Slack message, columns in a sheet or Clay, a JSON webhook, or a workflow. The PDF is this run’s real report; the other tabs show its facts as each would arrive.',
     start: 'pdf',
   },
 
   report: {
     heading: 'Welcome and browse got messages. Basket and checkout got none.',
-    line: '£61 was left at basket and checkout, and nothing asked either AI customer back.',
+    line: '£61 was left at basket and checkout, and no message asked either customer back.',
     journeys: [
       {
         n: 1,
@@ -195,10 +196,10 @@ export const sample: SamplePage = {
     ],
     shot: {
       src: '/report/checkout-capture.png',
-      alt: 'The store’s checkout page with the AI customer’s inbox address filled in and the marketing box ticked',
+      alt: 'The store’s checkout page with the test customer’s inbox address filled in and the marketing box ticked',
       width: 760,
       height: 475,
-      caption: 'The checkout session: the AI customer’s inbox filled in, the marketing box ticked. 1 of 4 frames it recorded. Payment buttons and product photo blurred.',
+      caption: 'The checkout session: the test customer’s inbox filled in, the marketing box ticked. 1 of 4 frames it recorded. Payment buttons and product photo blurred.',
     },
     setup: {
       heading: 'Test customer set up',
@@ -229,9 +230,9 @@ export const sample: SamplePage = {
     {
       n: 1,
       journey: 'Basket',
-      heading: 'Nothing followed up an AI customer who left a basket.',
-      finding: 'No email arrived in the 48 hours after our AI customer put a Body Care Gift Set in the basket and left.',
-      consent: 'Our AI customer subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
+      heading: 'Nothing followed up a £40 basket left at 02:57.',
+      finding: 'No email arrived in the 48 hours after our test customer put a Body Care Gift Set in the basket and left.',
+      consent: 'Our test customer subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
       nothing: {
         heading: 'Nothing arrived',
         line: 'We watched cart.g3@test.useobsession.com from 22 Sep 2026, 02:57 to 24 Sep 2026, 02:57 UK time. No message from Brand G reached it.',
@@ -255,15 +256,15 @@ export const sample: SamplePage = {
           height: 1594,
         },
         text: 'Still in your bag. James, your Body Care Gift Set is still in your bag. You added it late on Monday night and left before checking out. We’ve kept it exactly as you left it. Resume your order. Nothing has been charged. If something made you stop, reply and tell us what it was.',
-        note: 'James is a placeholder name. The AI customer gave the store none.',
+        note: 'James is a placeholder name. The test customer gave the store none.',
       },
     },
     {
       n: 2,
       journey: 'Checkout',
-      heading: 'The AI customer who stopped at checkout heard nothing either.',
-      finding: 'No email arrived in the 48 hours after our AI customer started checkout and left without paying.',
-      consent: 'Our AI customer subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
+      heading: 'The customer who stopped at checkout heard nothing either.',
+      finding: 'No email arrived in the 48 hours after our test customer started checkout and left without paying.',
+      consent: 'Our test customer subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
       nothing: {
         heading: 'Nothing arrived',
         line: 'We watched checkout.g7@test.useobsession.com from 22 Sep 2026, 03:11 to 24 Sep 2026, 03:11 UK time. No message from Brand G reached it.',
@@ -287,7 +288,7 @@ export const sample: SamplePage = {
           height: 1644,
         },
         text: 'One step left. James, your order is one step from done. You filled in your details late on Monday night and stopped at payment. The Deodorant is still in your order, and nothing has been charged. Finish your order. If something at payment put you off, reply and tell us. We’d rather fix it than lose the order.',
-        note: 'James is a placeholder name. The AI customer gave the store none.',
+        note: 'James is a placeholder name. The test customer gave the store none.',
       },
     },
   ],
@@ -297,39 +298,38 @@ export const sample: SamplePage = {
     items: [
       {
         q: 'What does an abandoned cart test report show?',
-        a: 'An Obsession report shows each journey’s verdict and the proof behind it. In this one, the basket customer left a £40 gift set at 02:57 and the checkout customer left at 03:11, neither inbox got a reminder in 48 hours, and 15 screenshots were kept.',
+        a: 'Each journey’s verdict and the evidence behind it. In this one, the basket customer left a £40 gift set at 02:57 and the checkout customer left at 03:11, neither inbox got a reminder in 48 hours, and 15 screenshots were kept.',
       },
       {
         q: 'Is this a real store?',
-        a: 'Yes. Obsession checked a skincare store in September 2026. We hide its name and show the rest as it happened.',
+        a: 'Yes. Obsession recorded a skincare store in September 2026. We hide its name and show the rest as it happened.',
       },
       {
         q: 'Why does silence count as a gap?',
-        a: 'Because both journeys completed on the storefront, both AI customers had ticked the marketing box, and Obsession watched each inbox for the full 48 hours. Nothing arrived.',
+        a: 'Because both journeys completed on the storefront, both test customers had ticked the marketing box, and Obsession watched each inbox for the full 48 hours. Nothing arrived.',
       },
       {
-        q: 'Did the AI customers buy anything?',
-        a: 'No. This check was set to stop before payment, so the checkout customer left at the last step.',
+        q: 'Did Obsession buy anything?',
+        a: 'No. This run stopped before payment, so the checkout customer left at the last step.',
       },
       {
-        q: 'What would a check of my store include?',
-        a: 'An Obsession check of your store sends 4 AI customers, each with its own inbox, through welcome, browse, basket and checkout, watched for 48 hours, with every step signed and dated. You get each journey’s verdict, the proof, and a reminder drafted for every gap, within 4 days.',
+        q: 'How do I get a record like this for another company?',
+        a: 'Look it up. A company already covered returns its history at once. For one that isn’t, click Watch: Obsession signs up as the customer profile and country you pick, keeps the account open, and each email, price and offer joins the record the day it arrives.',
       },
       {
-        q: 'Can I check a client’s store?',
-        a: 'Yes, with their OK. Tell Obsession it’s a client’s when you sign up, and we confirm their OK before anything runs.',
+        q: 'Who sees what I look up?',
+        a: 'Only you. Anyone can see that a company is covered, and since when, but never who asked.',
       },
     ],
   },
 
   final: {
-    heading: 'See what your customers hear after they leave.',
-    sub: 'Your first mystery shop is free: we send 4 AI customers, 48 hours watched, the report within 4 days. A store you run, or a client’s with their OK.',
+    heading: 'Get this record for any company you name.',
     capture: {
-      kind: 'mystery',
+      kind: 'waitlist',
       source: 'sample-output-final',
-      button: 'Get one for your store',
-      interest: 'mystery',
+      button: 'Request early access',
+      interest: 'any',
     },
   },
 }

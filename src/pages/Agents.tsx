@@ -3,9 +3,9 @@ import { Faq } from '../components/sections/Faq'
 import { agentsPage as p } from '../content/site'
 import { NoticeHero, NoticeSections } from './Notice'
 
-/* /agents: for a company an Obsession agent visited. What it is, what it does and never does, what it keeps, the
-   questions that company asks, and 1 email to ask about it or keep agents off a site (content/site.ts). Every agent
-   links here. */
+/* /agents: for a company an Obsession agent visited, the 1 page that explains the agents behind the data. What it is,
+   what it does and never does, what it keeps, the questions that company asks, and 1 email to ask about it or keep
+   agents off a site (content/site.ts). Every agent links here. */
 export function Agents() {
   const c = p.contact
   return (

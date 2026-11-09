@@ -10,7 +10,7 @@ function isoDate(d: string) {
   return m && year ? `${year}-${String(m).padStart(2, '0')}-${day.padStart(2, '0')}` : undefined
 }
 
-/* /privacy: what the waitlist and the free mystery shop keep, and why (content/site.ts). */
+/* /privacy: what the early access form keeps, and why (content/site.ts). */
 export function Privacy() {
   return (
     <>

@@ -5,10 +5,10 @@ import { PartnerWord } from '../components/PartnerMark'
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function InboundScreen() {
   return (
-    <div className="il appx-il app-inbound"><div className="appx-fit"><div className="appx" role="img" aria-label="The Lead leaks page: with your OK, a test lead declared as AI uses your demo form, site chat and sales line at 09:00, 13:00 and 17:00 every day, each first reply timed against a 5 minute target, each lead’s owner read from HubSpot. At 09:00 chat replies in 38s and is assigned to JO; the form waits 4h 12m and lands unassigned; the sales line rings out with no voicemail and lands unassigned. The routing fix: unassigned form and phone leads go to the next free rep within 1 minute, live after your OK, and AM approves it at 13:20. At the 17:00 retest the form replies in 3m 40s. Form waited 4h 12m. Phone rang out. 1 routing rule closes both leaks. Same day: 4h 12m down to 3m 40s.">
+    <div className="il appx-il app-inbound"><div className="appx-fit"><div className="appx" role="img" aria-label="The Speed to lead page: with your OK, a test lead declared as AI uses your demo form, site chat and sales line at 09:00, 13:00 and 17:00 every day, each first reply timed against a 5 minute target, each lead’s owner read from HubSpot. At 09:00 chat replies in 38s and is assigned to JO; the form waits 4h 12m and lands unassigned; the sales line rings out with no voicemail and lands unassigned. The routing fix: unassigned form and phone leads go to the next free rep within 1 minute, live after your OK, and AM approves it at 13:20. At the 17:00 retest the form replies in 3m 40s. Form waited 4h 12m. Phone rang out. 1 routing rule closes both leaks. Same day: 4h 12m down to 3m 40s.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
-        <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Lead leaks</span>
+        <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Speed to lead</span>
         <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
         <span className="ax-team" aria-hidden="true"><span>AM</span><span>JO</span></span>
       </div>
@@ -28,12 +28,12 @@ export function InboundScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           {/* the page: your own funnel, tested by a declared AI test lead */}
           <header className="ib-h ax-fade">
-            <h2>Lead leaks</h2>
+            <h2>Speed to lead</h2>
             <span className="ib-meta">Test lead, declared AI · 3 runs a day</span>
             <span className="ib-id"><span className="ib-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession AI agent</span>
           </header>

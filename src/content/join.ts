@@ -1,12 +1,13 @@
-/* The waitlist's words: the line under every form and the card that opens once the email is saved
-   (components/CaptureForm, components/JoinCard, lib/join.ts). Every form is the waitlist. What a page offers on top
-   (a free check of a store, 5 client stores or an AI agent) is its button, the line under it, the brands question
-   and the thank you, so the reader always knows they joined the waitlist and what comes next.
+/* The early access form's words: the line under every form and the card that opens once the email is saved
+   (components/CaptureForm, components/JoinCard, lib/join.ts). Since 9 Nov every form is early access, never a
+   waitlist and never a free check: API and MCP access, lookups of every company already covered, and up to 5
+   companies added for you, set up with the founders. A page's offer only changes the brands question and the thank
+   you. The `free` words are what a form of kind 'mystery' or 'verify' shows; they say early access too.
 
    Offers, worked out from the form (lib/join.ts offerOf):
-   - clients: an agency page. Free on a form that offers the check ("Check 5 stores free").
-   - store: a free shop of their own store (a mystery shop form).
-   - agents: a free check of an AI agent (a verify form), or an AI agent recipe's waitlist.
+   - clients: an agency page.
+   - store: a store page (a form of kind 'mystery').
+   - agents: an AI agent page (a form of kind 'verify'), or an AI agent recipe's form.
    - own: a recipe that checks their own journeys.
    - companies: a recipe that watches other companies, and the marketing, sales and compare pages.
    - accounts: never a page's; the brands question for a sales team.
@@ -23,57 +24,57 @@ type Offer = { ask: Ask; micro: string; done: string; none?: string; free?: { mi
 export const offers: Record<OfferId, Offer> = {
   clients: {
     ask: {
-      title: 'Which client stores should we check?',
+      title: 'Which client stores should we add first?',
       help: 'Up to 5 stores you run or pitch, with the owner’s OK.',
       placeholder: 'client-store.com',
       add: 'Add another store',
     },
-    micro: 'Request early access, then name up to 5 client stores to start with.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 client stores to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'You request early access, then name up to 5 client stores. We check them free as a new customer and send what happened within 4 days, with proof.',
-      help: 'Up to 5 stores you run or pitch, with the owner’s OK. We check them free as a new customer and send what happened within 4 days.',
-      done: 'We’ll check {list} as a new customer and email {email} what happened within 4 days.',
+      micro: 'Onboarding a limited number of teams. Early access adds up to 5 client stores for you.',
+      help: 'Up to 5 stores you run or pitch, with the owner’s OK. We add each one as a new customer and keep everything it is sent.',
+      done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },
   store: {
     ask: {
-      title: 'Which store should we shop?',
+      title: 'Which store should we add first?',
       help: 'Yours, or a client’s with their OK. Add competitors to compare, up to 5 in all.',
       placeholder: 'your-store.com',
       add: 'Add a competitor',
     },
-    micro: 'Request early access, then name the store to start with.',
+    micro: 'Onboarding a limited number of teams. Name the store to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'You request early access, then name your store. We shop it free as a new customer: 4 AI customers, 48 hours watched, your report within 4 days.',
-      help: 'Yours, or a client’s with their OK. We shop it free with 4 AI customers and send your report within 4 days. Add competitors to compare, up to 5 in all.',
-      done: 'We’ll shop {first} as a new customer and email {email} your report within 4 days.',
+      micro: 'Onboarding a limited number of teams. Early access adds up to 5 stores for you.',
+      help: 'Yours, a competitor’s, or a client’s with their OK. We sign up and leave a basket as a new customer, and keep everything each store sends. Up to 5 in all.',
+      done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },
   agents: {
     ask: {
-      title: 'Which AI agent should we check?',
-      help: 'Its chat page, phone number or website. Yours, or a client’s with their OK. Up to 5.',
+      title: 'Which AI agent should we add first?',
+      help: 'Its chat page, phone number or website. Yours, a competitor’s, or a client’s with their OK. Up to 5.',
       placeholder: 'Chat page, phone or website',
       add: 'Add another agent',
     },
-    micro: 'Request early access, then name the AI agent to check first.',
+    micro: 'Onboarding a limited number of teams. Name the AI agent to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'You request early access, then name your AI agent. We check it free: 3 AI customers, 1 channel, your report within 4 days.',
-      help: 'Its chat page, phone number or website. Yours, or a client’s with their OK. We send it 3 AI customers free and email your report within 4 days.',
-      done: 'We’ll send 3 AI customers to {first} and email {email} your report within 4 days.',
+      micro: 'Onboarding a limited number of teams. Early access adds up to 5 AI agents for you.',
+      help: 'Its chat page, phone number or website. Yours, a competitor’s, or a client’s with their OK. We ask it what customers ask and keep every answer, word for word. Up to 5.',
+      done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },
   own: {
     ask: {
-      title: 'Which site should we check first?',
+      title: 'Which site should we add first?',
       help: 'Yours, or a client’s with their OK. Add competitors to compare, up to 5 in all.',
       placeholder: 'your-site.com',
       add: 'Add a competitor',
     },
-    micro: 'Request early access, then name the site to check first.',
+    micro: 'Onboarding a limited number of teams. Name the site to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   companies: {
@@ -83,7 +84,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'competitor.com',
       add: 'Add a company',
     },
-    micro: 'Request early access, then name up to 5 companies to look up first.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 companies to look up first.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   /* A sales team, asked by who they are (lib/join askOf), never by a page. */
@@ -94,7 +95,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'account.com',
       add: 'Add an account',
     },
-    micro: 'Request early access, then name up to 5 accounts or prospects to look up first.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 accounts or prospects to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   api: {
@@ -140,15 +141,15 @@ export const sizes = {
   sales: { question: 'How big is the sales team?', options: ['Just me', '2 to 10', '11 to 50', 'More than 50'] },
 }
 
-/* An agency's client stores, asked the way its work runs (the free check's promise stays when the page made one). */
+/* An agency's client stores, asked the way its work runs. */
 export const clientAsks: Record<string, { title?: string; help: string }> = {
   'Retention, email and SMS': { help: 'Up to 5 stores you run or pitch, with the owner’s OK. We sign up as a new customer and keep every email and text.' },
-  CRO: { help: 'Up to 5 stores you run or pitch, with the owner’s OK. We shop them as a new customer, from landing page to checkout.' },
+  CRO: { help: 'Up to 5 stores you run or pitch, with the owner’s OK. We go from landing page to checkout as a new customer.' },
   'Performance and paid media': {
     title: 'Which client brands should we follow from ad to checkout?',
     help: 'Up to 5 brands you run ads for or pitch, with the owner’s OK. We click through as a new customer and see where each ad lands.',
   },
-  'Shopify build': { help: 'Up to 5 stores you’ve built or are launching, with the owner’s OK. We check them as a new customer after each change.' },
+  'Shopify build': { help: 'Up to 5 stores you’ve built or are launching, with the owner’s OK. We sign up as a new customer after each change and keep what each one sends.' },
 }
 
 /* The recipes most people like them start with, shown first (never ticked for them): by agency type, else by role. */
@@ -218,7 +219,7 @@ export const join = {
   },
   saved: { failed: 'Some answers didn’t save.', retry: 'Try again' },
   /* The thank you's list of what they told us. */
-  sum: { you: 'You', site: 'Website', brands: 'To check', agents: 'AI agents', recipes: 'Recipes' },
+  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Recipes' },
   /* Another form on a page where the sign up already happened. */
   joined: 'You’re on the early access list as {email}.',
 }

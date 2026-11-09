@@ -4,8 +4,8 @@
    - WebPage on every page (CollectionPage on /blog); a FAQPage too wherever the page shows questions (the same words,
      so they match the page).
    - SoftwareApplication on Home.
-   - The DefinedTerm "AI customer" (content/glossary.ts) on Home and on the 3 articles that define, explain and argue
-     for it, each page about it, so engines file Obsession under AI customers and never under customer service bots.
+   - The DefinedTerm "AI customer" (content/glossary.ts) on the 3 articles that define, explain and argue for it. Since
+     the 9 Nov rewrite Home is about the product only: the web behind the login, as data.
    - BreadcrumbList wherever the page's Meta has a breadcrumb: every page below Home, matching the breadcrumb the page
      shows (components/Crumbs reads the same list).
    - BlogPosting on every post, with both founders as its authors (docs/REBUILD.md 9c), and Blog on /blog, listing them.
@@ -62,8 +62,8 @@ const organization: Node = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
   alternateName: 'useobsession',
   description: llms.summary,
-  slogan: 'The first AI customers that work for you.',
-  knowsAbout: [AI_CUSTOMER.plural],
+  slogan: 'The web behind the login, as data.',
+  knowsAbout: ['Competitor emails and texts', 'Member and signed-in prices', 'Trial plans and limits', 'Quotes behind forms'],
   email: CONTACT_EMAIL,
   founder: FOUNDERS.map(person),
   /* /agents: any company an agent met writes here with a question, or to keep agents off its site. */
@@ -94,7 +94,7 @@ const agentTerms = (): Node[] => [
   },
 ]
 
-/* The term Obsession owns (content/glossary.ts): defined once, on Home and on the 3 articles that explain it. */
+/* The term the blog builds on (content/glossary.ts): defined once, on the 3 articles that explain it. */
 const TERM = `${SITE}${AI_CUSTOMER.path}#term`
 const aiCustomer: Node = {
   '@type': 'DefinedTerm',
@@ -116,7 +116,7 @@ const customerSideObservability: Node = {
   inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': `${SITE}/#glossary`, name: 'Obsession glossary' },
 }
 const definesCso = (e: Entry) => e.meta.path === CUSTOMER_SIDE_OBSERVABILITY.path
-const aboutTerm = (e: Entry) => e.kind === 'home' || (e.kind === 'post' && AI_CUSTOMER.articles.includes(e.meta.path.split('/').pop() ?? ''))
+const aboutTerm = (e: Entry) => e.kind === 'post' && AI_CUSTOMER.articles.includes(e.meta.path.split('/').pop() ?? '')
 
 const website: Node = {
   '@type': 'WebSite',
@@ -215,7 +215,7 @@ export function jsonLd(e: Entry): Node {
     publisher: { '@id': ORG },
     primaryImageOfPage: { '@type': 'ImageObject', url: absolute(e.meta.ogImage), width: 1200, height: 630 },
     ...(e.kind === 'home'
-      ? { about: [{ '@id': APP }, { '@id': TERM }] }
+      ? { about: { '@id': APP } }
       : aboutTerm(e)
         ? { about: definesCso(e) ? [{ '@id': CSO_TERM }, { '@id': TERM }] : { '@id': TERM } }
         : {}),

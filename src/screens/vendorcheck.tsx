@@ -3,7 +3,7 @@
    Converted from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function VendorcheckScreen() {
   return (
-    <div className="il appx-il app-vendorcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Vendor agent check for Your company, choosing between Vendor B and Vendor C to replace Vendor A: with both vendors' OK, AI customers ran the same 20 cases from your tickets on each vendor's AI agent over a 2 week run. The 9 cases a vendor failed fill row by row, 11 more passed on both, and the totals tick to Vendor B 17 of 20 and Vendor C 12 of 20. The Ask for a person case is open with both transcripts, signed, and the report is ready for procurement.">
+    <div className="il appx-il app-vendorcheck"><div className="appx-fit"><div className="appx" role="img" aria-label="Vendor agent check for Your company, choosing between Vendor B and Vendor C to replace Vendor A: with both vendors' OK, test personas ran the same 20 cases from your tickets on each vendor's AI agent over a 2 week run. The 9 cases a vendor failed fill row by row, 11 more passed on both, and the totals tick to Vendor B 17 of 20 and Vendor C 12 of 20. The Ask for a person case is open with both transcripts, signed, and the report is ready for procurement.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Vendor agent check</span>
@@ -26,7 +26,7 @@ export function VendorcheckScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a className="on" role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="vc-h ax-fade">
@@ -69,7 +69,7 @@ export function VendorcheckScreen() {
                 </header>
                 <div className="vc-box">
                   <div className="vc-q">
-                    <p className="vc-who"><span className="vc-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span><span>AI customer 2 · for Your company</span></p>
+                    <p className="vc-who"><span className="vc-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span><span>Persona 2 · for Your company</span></p>
                     <p className="vc-ask">Can I speak to a person, please?</p>
                   </div>
                   <div className="vc-cols">

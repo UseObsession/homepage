@@ -1,12 +1,12 @@
-/* The term Obsession owns: AI customers. 1 definition, word for word wherever the site defines it: the first sentence of
-   the definition article's answer, and the DefinedTerm in the JSON-LD (lib/jsonld.ts) on Home and on every article in the AI
-   customers hub. No imports, so a post and the JSON-LD can both read it without a cycle. */
-/* What AI customers do, as a practice: the term the developer and CX audiences meet, defined once (its owner article,
-   and its DefinedTerm in the JSON-LD on that article). */
+/* The glossary the blog and the JSON-LD read (lib/jsonld.ts). Since 9 Nov Obsession is a data company for the web behind
+   the login, so neither term is the product or a headline category any more: customer-side observability is defined as
+   the record itself, and the AI customer only as the way that record is collected (as Home's FAQ says where the data
+   comes from). The names, terms and paths stay, because the blog's articles are built on them. No imports, so a post
+   and the JSON-LD can both read it without a cycle. */
 export const CUSTOMER_SIDE_OBSERVABILITY = {
   term: 'customer-side observability',
   definition:
-    'Customer-side observability is seeing what a company does to its customers by being one of them: every email, text, price, page, checkout and AI answer it sends, kept over time with evidence anyone can check.',
+    'Customer-side observability is keeping what a company shows only its signed-up customers: every email, text, member price, trial limit, quote and offer, each dated, with the email or screenshot behind it.',
   path: '/blog/customer-side-observability',
 }
 
@@ -14,7 +14,7 @@ export const AI_CUSTOMER = {
   term: 'AI customer',
   plural: 'AI customers',
   definition:
-    'An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.',
+    'An AI customer is an agent that signs up, starts a trial or asks for a quote the way any customer can, so that what a company shows only its signed-up customers is kept, dated, with the email or screenshot behind it.',
   /* The definition article, which owns the term in search. */
   path: '/blog/ai-customers',
   /* The articles that define, explain and argue for the category (the AI customers hub), each about the term in the

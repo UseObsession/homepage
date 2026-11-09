@@ -5,7 +5,7 @@ import { PartnerWord } from '../components/PartnerMark'
    from its HTML by scripts/convert-screens.mjs (3 Oct 2026); this file is the screen's source now. */
 export function RivalsScreen() {
   return (
-    <div className="il appx-il app-rivals"><div className="appx-fit"><div className="appx" role="img" aria-label="The Competitors page: 30 days of Tallyhop, Notewell and Pinecrate on 3 timelines, each dated change seen by an AI customer that checks their public pages and emails every morning from the US and UK. Today’s 07:04 check catches Tallyhop raising Pro from $49 to $59 in the US only, with screenshots of its pricing page 24 hours apart, and your comparison page is redrafted, waiting for your OK. Pro raised to $59, caught at 07:04 today. Same page, 24 hours apart: $49, then $59. Comparison page redrafted. Live only on your OK.">
+    <div className="il appx-il app-rivals"><div className="appx-fit"><div className="appx" role="img" aria-label="The Competitors page: 30 days of Tallyhop, Notewell and Pinecrate on 3 timelines, each dated change caught by Obsession, which checks their pages and emails every morning from the US and UK. Today’s 07:04 check catches Tallyhop raising Pro from $49 to $59 in the US only, with screenshots of its pricing page 24 hours apart, and your comparison page is redrafted, waiting for your OK. Pro raised to $59, caught at 07:04 today. Same page, 24 hours apart: $49, then $59. Comparison page redrafted. Live only on your OK.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Competitors</span>
@@ -28,7 +28,7 @@ export function RivalsScreen() {
             <p className="ax-side-h">Lists</p>
             <a role="none"><i />Prospects</a><a role="none"><i />Customers</a><a role="none"><i />Competitors</a><a role="none"><i />Suppliers</a>
           </div>
-          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> AI customers working</span></div>
+          <div className="ax-side-f"><svg className="sig st-working moving" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg><span><b>37</b> companies watched</span></div>
         </aside>
         <div className="ax-main">
           <header className="rv-h ax-fade">
@@ -36,7 +36,7 @@ export function RivalsScreen() {
             <span className="rv-id"><span className="rv-av"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession AI agent</span>
             <span className="ax-btn ghost rv-add"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9" /></svg>Add competitor</span>
           </header>
-          {/* 3 rivals, 30 days, oldest at the top, today at the foot */}
+          {/* 3 competitors, 30 days, oldest at the top, today at the foot */}
           <section className="rv-tl">
             <div className="rv-col rv-a">
               <div className="rv-ch ax-in" style={{ '--d': '.06s' }}>
