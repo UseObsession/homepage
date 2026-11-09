@@ -1,0 +1,11 @@
+/* CardGrid.tsx: plain cards on the page's own ground, 3 across for 6, 2 across for 4, 1 on a phone. */
+.v5-cards .cg-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.v5-cards .cg-grid[data-cols='3'] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.v5-cards .cg-card { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 20px 20px 18px; border: 1px solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-surface); }
+.v5-cards .cg-title { margin: 0; font: 600 17px / 1.3 var(--ob-font-sans); letter-spacing: -0.015em; color: var(--ob-text); }
+.v5-cards .cg-line { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ob-text-2); }
+.v5-cards .cg-eg { margin: 4px 0 0; padding-top: 10px; border-top: 1px solid var(--ob-line-subtle); font: 500 12.5px / 1.45 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-cards .cg-link { margin-top: auto; padding-top: 6px; font-size: 14.5px; }
+.v5-cards .cg-more { margin: 18px 0 0; font-size: 15px; color: var(--ob-text-2); }
+@media (max-width: 960px) { .v5-cards .cg-grid[data-cols='3'] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .v5-cards .cg-grid, .v5-cards .cg-grid[data-cols='3'] { grid-template-columns: minmax(0, 1fr); } }

@@ -13,7 +13,7 @@ import './Hero5.css'
    `center` (Home) stacks it all on the page's middle instead, as the first site's hero was: the tag, the headline 1
    sentence to a full line, the sub, the form, then the object under the words at the page's width.
    `reader` gives a reader page its hue on the hero's 1 soft glow (styles/accents.css), as before. */
-type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary' | 'note'> & { pill?: string }
+type HeroWords = Pick<HeroContent, 'headline' | 'sub' | 'capture' | 'secondary' | 'note'> & { pill?: string; pillTo?: string }
 
 function Secondary({ cta }: { cta: Cta }) {
   return cta.to.startsWith('/') ? (
@@ -51,9 +51,9 @@ export function Hero5({
         {crumbs && <Crumbs />}
         <div className="v5-hero-grid">
           <div className="v5-hero-words ob-anim-hero">
-            {/* The category tag (Home's "Open source"): a quiet link to the code, over the headline. */}
+            {/* The category tag over the headline (Home's "Early access", to the form). Without pillTo, a quiet link to the code. */}
             {hero.pill && (
-              <a className="v5-hero-tag" href={nav.github.to} rel="noopener">
+              <a className="v5-hero-tag" href={hero.pillTo ?? nav.github.to} rel={hero.pillTo ? undefined : 'noopener'}>
                 <span className="v5-hero-tag-dot" aria-hidden="true" />
                 {hero.pill}
               </a>

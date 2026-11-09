@@ -22,13 +22,12 @@ export const CONTROLLER: string | null = null
    the Organization JSON-LD, Home's hero, its "What is Obsession?" and /agents). The footer carries its core in 1 short
    line (content/footer.ts). */
 const SENTENCE =
-  'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.'
+  'Obsession collects what companies show only to signed-up customers: their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP.'
 
-/* What Obsession is, as an entity: the category (AI customers) and then the sentence. The line every engine and profile
-   repeats (llms.txt's summary, the Organization and WebSite JSON-LD, docs/SEARCH.md 2), so assistants file Obsession
-   under AI customers and never under customer service bots. */
+/* What Obsession is, as an entity: the line every engine and profile repeats (llms.txt's summary, the Organization and
+   WebSite JSON-LD, docs/SEARCH.md 2). Since 9 Nov a data company for the web behind the login, never AI customers. */
 export const ENTITY =
-  'Obsession sends AI customers to any company you name. Each one signs up, buys, talks to support and stays for months, keeping every email, offer, price and reply it gets, with proof.'
+  'Obsession collects what companies show only to signed-up customers: their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP.'
 
 /* /recipes. James's index (1 job each, everything set up, the add-companies hub), grouped by job as in the nav.
    The groups render the recipes whose `group` matches, in this order. */
@@ -380,9 +379,9 @@ export const agentsPage: AgentsPage = {
 export const notFoundPage: NotFoundPage = {
   meta: {
     path: '/404',
-    title: 'Page not found · Obsession, an AI customer for any company',
+    title: 'Page not found · Obsession, the web behind the login',
     description:
-      'There’s no page at this address. Obsession sends AI customers to any company you name, and they keep every email, with proof.',
+      'There’s no page at this address. Obsession collects what companies show only to signed-up customers, by API or MCP.',
     answer: `There’s no page at this address on useobsession.com. ${SENTENCE}`,
   },
   headline: 'There’s no page at this address.',

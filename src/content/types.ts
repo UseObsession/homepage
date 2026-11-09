@@ -81,6 +81,8 @@ export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ 
    screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
 export type Hero = {
   pill: string
+  /* Where the pill goes. Without it, the pill links to the open source code (nav.github). */
+  pillTo?: string
   headline: string
   sub: string
   capture: Capture
@@ -407,9 +409,38 @@ export type Look = {
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
+/* Home's hero lookup (components/v5/HeroLookup, 9 Nov): a website typed into a box, the kind of data lit, and dated facts
+   back. A scene that is not `covered` shows its `steps` first: the company being added to the index. */
+export type HeroLookupFact = { when: string; kind: string; text: string }
+export type HeroLookupScene = {
+  label: string
+  domain: string
+  chip: string
+  covered: boolean
+  status: string
+  statusDone?: string
+  steps?: string[]
+  facts: HeroLookupFact[]
+  call: string
+}
+export type HeroLookup = { placeholder: string; button: string; chips: string[]; scenes: HeroLookupScene[]; proof: string; said: string }
+
+/* A plain grid of cards under a section head (components/v5/CardGrid, 9 Nov). */
+export type CardGrid = {
+  kicker?: string
+  heading: string
+  line?: string
+  items: { title: string; line: string; eg?: string; link?: Cta }[]
+  more?: { text: string; label: string; to: string }
+}
+
 export type Page = {
   meta: Meta
   hero: Hero
+  /* Home only, since 9 Nov: the hero's lookup in place of the film; what is behind the login; who uses it. */
+  lookup?: HeroLookup
+  dataKinds?: CardGrid
+  users?: CardGrid
   /* Every story page but Home, which shows the 4 steps compact (`howRail`), with no full screens. */
   how?: How
   /* Home only: how it works in 4 short steps, between who it's for and the gap. */

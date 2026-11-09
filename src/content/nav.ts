@@ -43,7 +43,7 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
    beachhead first: Prospect intelligence). Mystery shopper is the featured card, so its job shows 2 others. Check your
    AI agents leads to its own page, /verify, which lists its recipes; the other 5 lead to their section of /recipes. */
 const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
-  'Watch other companies': { line: 'Every email, ad, price and trial, as their customer.', examples: ['competitor', 'prospect'] },
+  'Watch other companies': { line: 'Every email, ad, price and trial they send their customers.', examples: ['competitor', 'prospect'] },
   'Check your own journeys': { line: 'Find the break before a customer does.', examples: ['adcheck', 'speed'] },
   'Check your AI agents': {
     line: 'Check the AI agents you run, as a customer meets them.',
@@ -63,7 +63,12 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
 })
 
 /* The post the blog index leads with (content/blog: its featured post, else the newest). */
-const blogLead = catalog.blogLive ? (catalog.posts.find((p) => p.featured) ?? catalog.posts[0]) : undefined
+/* The menu's lead post (9 Nov): what competitors show anyone beside what only their customers see, the data company's
+   own question. Falls back to the featured post. */
+const MENU_LEAD = 'ecommerce-competitive-intelligence'
+const blogLead = catalog.blogLive
+  ? (catalog.posts.find((p) => p.slug === MENU_LEAD) ?? catalog.posts.find((p) => p.featured) ?? catalog.posts[0])
+  : undefined
 
 export const nav = {
   home: 'Obsession home',
@@ -71,10 +76,10 @@ export const nav = {
   label: 'Main',
   /* The readers, as plain links: who it is for comes first (COPY.md, "One taxonomy": 4 readers, by role). */
   readers: [
-    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Every competitor ad, email and offer, seen as their customer.' },
-    { id: 'sales', label: 'Sales', to: '/sales', line: 'Know what each account does to its customers.' },
-    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Every client and prospect, checked as a customer.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'The web behind the sign up, as an API.' },
+    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Competitors’ emails, offers and prices, after sign-up.' },
+    { id: 'sales', label: 'Sales', to: '/sales', line: 'What each account shows its own customers.' },
+    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Pitch with a prospect’s own emails.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'The web behind the login, as an API.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
@@ -86,10 +91,10 @@ export const nav = {
     all: { label: 'Browse all recipes', to: '/recipes' } satisfies NavPage,
     /* The featured card: the free first report, then the 1 real run. */
     feature: {
-      label: 'Your first mystery shop is free',
-      line: 'We shop your store, or a client’s with their OK, and send the report within 4 days.',
-      action: 'Get my free report',
-      to: '/recipes/mystery-shopper',
+      label: 'See one real record',
+      line: 'A real store’s 4 sign-ups and baskets, and what it sent in the 48 hours after.',
+      action: 'See sample data',
+      to: '/sample-output',
     },
     run: { label: 'See a real run', to: '/sample-output' } satisfies NavPage,
     /* Check your AI agents' own page: the bar marks Recipes as current there too. */
@@ -101,8 +106,8 @@ export const nav = {
     to: '/resources',
     button: 'Resources menu',
     run: {
-      kicker: 'Sample output',
-      label: 'The September store check',
+      kicker: 'Sample data',
+      label: 'One real store’s record',
       to: '/sample-output',
       line: 'We joined a real store 4 times. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x
@@ -111,7 +116,7 @@ export const nav = {
         src: '/nav/report-peek.jpg',
         width: 168,
         height: 102,
-        alt: 'The top of the September 2026 store mystery shop report on Brand G: 4 journeys shopped, 2 gaps found',
+        alt: 'The top of the September 2026 report on Brand G: 4 journeys, 2 gaps found',
       },
     },
     /* The worked examples by name only: each name already says who it is for, and 5 cards made the menu too tall
@@ -139,7 +144,7 @@ export const nav = {
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
   /* The page's call to action. Pages without their own use this one. */
-  cta: { label: 'Join the waitlist', to: '#join' } satisfies Cta,
+  cta: { label: 'Request early access', to: '#join' } satisfies Cta,
   /* The open source engine, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. */
   github: { label: 'Star on GitHub', to: 'https://github.com/UseObsession' } satisfies Cta,
   menu: { open: 'Open menu', close: 'Close menu', sheet: 'Menu' },
@@ -151,6 +156,7 @@ export const nav = {
    measured). A page whose own button says more keeps its words in its hero, its final form and the phone sheet; the
    bar says the same offer in fewer words. "Get my free report" measures 152px, so the bar says "Get free report". */
 const BAR_WORDS: Record<string, string> = {
+  'Request early access': 'Early access',
   'Get early access for my team': 'Get early access',
   'Get one for your store': 'Get free report',
   'Get my free report': 'Get free report',
