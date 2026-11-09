@@ -1,4 +1,5 @@
 import { consoleHeading } from '../console'
+import { explorer } from '../explorer'
 import { outputFormats } from '../sample'
 import { askExamples, askShared, life } from '../shared5'
 import type { Page, ViewerFormat } from '../types'
@@ -7,7 +8,7 @@ import type { Page, ViewerFormat } from '../types'
    companies show only to signed-up customers, looked up by API, MCP or a table, and a company not covered yet is
    added on request. No AI customers and no mystery shopping on Home: the agents appear only where the page says where
    the data comes from. Early access, never a waitlist. The page reads, in order:
-   1 the hero: what it is, and a lookup in place of the film (HeroLookup) >
+   1 the hero: what it is, and the explorer in place of the film (HeroExplorer) >
    2 What's in it? (the kinds of data behind the login) >
    3 Is this real? (our real count, and the 1 real record) >
    4 Who uses it? (4 buyers, the rest on /use-cases) >
@@ -103,57 +104,8 @@ export const page: Page = {
     consoleHeading,
   },
 
-  /* The hero's object: 3 lookups take turns. The middle one isn't covered yet, so it is added while you watch. */
-  lookup: {
-    placeholder: 'Any company’s website',
-    button: 'Look up',
-    chips: ['Emails', 'Prices', 'Trials', 'Offers', 'Quotes'],
-    proof: 'Each fact dated, with a screenshot',
-    said: 'An example lookup. Type a company’s website and Obsession returns what it shows its signed-up customers, each fact dated. A company not covered yet is added on the spot: Obsession signs up as a new customer, and its first emails arrive within minutes.',
-    scenes: [
-      {
-        label: 'Show a software company already in the index',
-        domain: 'quillon.example',
-        chip: 'Trials',
-        covered: true,
-        status: 'In the index since 14 Mar · 3 customer profiles',
-        facts: [
-          { when: '5 Nov', kind: 'Offer', text: 'Trial users get 40% off the first year. Not on the pricing page.' },
-          { when: '5 Nov', kind: 'Trial', text: 'Free plan: 3 projects and 1 seat. Upgrade prompt on day 7.' },
-          { when: '4 Nov', kind: 'Email', text: 'Day 3 of your trial: “Invite your team”.' },
-          { when: '28 Oct', kind: 'Price', text: 'Pro is £24 a month signed in, £29 on the public page.' },
-        ],
-        call: 'GET /v1/facts?company=quillon.example',
-      },
-      {
-        label: 'Show a shop not in the index yet, added on request',
-        domain: 'larkfield.example',
-        chip: 'Emails',
-        covered: false,
-        status: 'Not in the index yet. Adding it now.',
-        statusDone: 'In the index from today · kept for months',
-        steps: ['Signed up as a new customer in the UK', 'Account open, inbox watched', 'First email after 4 minutes'],
-        facts: [
-          { when: 'Today 09:09', kind: 'Email', text: 'Welcome to Larkfield. Every link opens a closed site.' },
-          { when: 'Today 09:13', kind: 'Email', text: 'Your 10% code: WELCOME10.' },
-        ],
-        call: 'POST /v1/index  {"company": "larkfield.example"}',
-      },
-      {
-        label: 'Show a bank already in the index',
-        domain: 'kittiwake.example',
-        chip: 'Prices',
-        covered: true,
-        status: 'In the index since 2 Jun · UK and Ireland',
-        facts: [
-          { when: '4 Nov', kind: 'Chat', text: 'Asked if the 4.6% rate is fixed. Chat said yes; the rate page says variable.' },
-          { when: '1 Nov', kind: 'Email', text: 'Switch by 30 Nov for a £150 bonus. Existing customers only.' },
-          { when: '28 Oct', kind: 'Price', text: 'Easy Access Saver: 4.6% signed in, 4.1% on the website.' },
-        ],
-        call: 'GET /v1/facts?company=kittiwake.example&kind=price',
-      },
-    ],
-  },
+  /* The hero's object: the explorer (content/explorer.ts), in place of the film. */
+  explorer,
 
   /* The share image's card (scripts/og.mjs): 4 facts from the index, from 4 kinds of company. */
   shareFindings: {
@@ -255,7 +207,7 @@ export const page: Page = {
   life: {
     ...life,
     kicker: 'How does it work?',
-    heading: 'Not covered yet? One lookup adds it.',
+    heading: 'Not covered yet? Watch it.',
     line: 'Look up any company. If it isn’t in the index, Obsession signs up as a new customer, from the profile and country you pick, and keeps the account open. Everything it is sent goes into the index the day it arrives.',
     list: 'companies.csv · 10,000 companies',
     axis: { ...life.axis, end: 'Day 90: every message from all 10,000, kept' },

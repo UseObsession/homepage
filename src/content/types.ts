@@ -409,21 +409,73 @@ export type Look = {
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
-/* Home's hero lookup (components/v5/HeroLookup, 9 Nov): a website typed into a box, the kind of data lit, and dated facts
-   back. A scene that is not `covered` shows its `steps` first: the company being added to the index. */
-export type HeroLookupFact = { when: string; kind: string; text: string }
-export type HeroLookupScene = {
-  label: string
+/* Home's hero explorer (components/v5/HeroExplorer, 9 Nov): the index as a console. Search: each company has the
+   personas that fit it; each view is 1 persona at 1 step, with its facts, the evidence behind them and the record (the
+   core's reply shape). A company not covered has its estimate and `index`: the steps of its first run and its first
+   facts. Insights: a question about a group of companies, the sources collected for it and the report. */
+export type ExFact = { when: string; kind: string; text: string }
+export type ExEvidence = { from: string; subject: string; lines: string[] }
+export type ExRecord = { channel: string; act: string; wall: string; responder: string }
+export type ExView = { persona: string; step: string; facts: ExFact[]; evidence: ExEvidence; record: ExRecord }
+export type ExCompany = {
   domain: string
-  chip: string
+  kind: string
   covered: boolean
-  status: string
-  statusDone?: string
-  steps?: string[]
-  facts: HeroLookupFact[]
-  call: string
+  personas: string[]
+  steps: string[]
+  data: { label: string; kind: string }[]
+  views: ExView[]
+  index?: { heading: string; steps: string[]; first: ExFact[]; done: string; record: ExRecord; evidence: ExEvidence }
+  /* Not covered: what the index estimates from firms that share its keys, each with an honest range (index core, 9 Nov). */
+  estimate?: { title: string; basis: string; lines: { label: string; value: string; range: string }[]; cta: string }
 }
-export type HeroLookup = { placeholder: string; button: string; chips: string[]; scenes: HeroLookupScene[]; proof: string; said: string }
+/* A source without cells is not in the index yet: the report offers Watch for it, and `watched` is its row once watched. */
+export type ExSource = { domain: string; cells?: [string, string]; evidence?: string }
+export type ExInsight = {
+  label: string
+  kind: string
+  question: string
+  persona: string
+  plan: [string, string, string]
+  cols: [string, string, string]
+  sources: ExSource[]
+  noun: [string, string]
+  watched: string
+  answer: string
+  stats: { v: string; l: string }[]
+}
+export type Explorer = {
+  placeholder: { search: string; insights: string }
+  modes: { search: string; insights: string }
+  buttons: { search: string; insights: string }
+  openRecord: string
+  tryLabel: { search: string; insights: string }
+  groups: { persona: string; step: string; data: string; asked: string; sources: string }
+  tabs: { facts: string; evidence: string; record: string }
+  output: { search: string; insights: string }
+  hint: string
+  none: string
+  fromIndex: string
+  newRun: string
+  notCovered: string
+  estimated: string
+  said: string
+  companies: ExCompany[]
+  ready: (persona: string) => string
+  insight: {
+    waiting: string
+    inIndex: string
+    watch: string
+    watching: string
+    notIn: string
+    missing: (n: number, noun: [string, string]) => string
+    watchAll: (n: number) => string
+    allWatched: (persona: string) => string
+    collecting: (done: number, all: number) => string
+    done: (all: number, covered: number) => string
+  }
+  insights: ExInsight[]
+}
 
 /* A plain grid of cards under a section head (components/v5/CardGrid, 9 Nov). */
 export type CardGrid = {
@@ -437,8 +489,8 @@ export type CardGrid = {
 export type Page = {
   meta: Meta
   hero: Hero
-  /* Home only, since 9 Nov: the hero's lookup in place of the film; what is behind the login; who uses it. */
-  lookup?: HeroLookup
+  /* Home only, since 9 Nov: the hero's explorer in place of the film; what is behind the login; who uses it. */
+  explorer?: Explorer
   dataKinds?: CardGrid
   users?: CardGrid
   /* Every story page but Home, which shows the 4 steps compact (`howRail`), with no full screens. */
