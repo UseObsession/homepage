@@ -482,7 +482,8 @@ export type CardGrid = {
   kicker?: string
   heading: string
   line?: string
-  items: { title: string; line: string; eg?: string; link?: Cta }[]
+  /* `id` makes a card a place to link to (the nav's integrations: /developers#supabase). */
+  items: { id?: string; title: string; line: string; eg?: string; link?: Cta }[]
   more?: { text: string; label: string; to: string }
 }
 
@@ -493,6 +494,8 @@ export type Page = {
   explorer?: Explorer
   dataKinds?: CardGrid
   users?: CardGrid
+  /* /developers only, since 9 Nov: where the facts go and come from (the nav's Integrations link to each card). */
+  integrations?: CardGrid
   /* Every story page but Home, which shows the 4 steps compact (`howRail`), with no full screens. */
   how?: How
   /* Home only: how it works in 4 short steps, between who it's for and the gap. */

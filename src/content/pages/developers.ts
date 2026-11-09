@@ -69,6 +69,21 @@ export const page: Page = {
 
   ways,
 
+  /* Where the facts come from and where they go: the nav's Integrations menu links to each card by its id. */
+  integrations: {
+    kicker: 'Integrations',
+    heading: 'Facts land in the tools you already use.',
+    line: 'Send companies in from a table, and each new fact back out, the moment it lands.',
+    items: [
+      { id: 'clay', title: 'Clay', line: 'A column of facts on the rows you already have. Add a domain, get its emails, prices and offers.', eg: 'Company → Fact · Seen on · Screenshot', link: { label: 'Prospect research with Clay', to: '/use-cases/prospect-intelligence-with-clay' } },
+      { id: 'baserow', title: 'Baserow', line: 'A new row looks the company up, or watches it if it isn’t covered. Its facts fill the next columns.', eg: 'Row added → 3 columns filled' },
+      { id: 'supabase', title: 'Supabase', line: 'Every new fact lands as a row in your own table, with its receipt link, ready to query.', eg: 'facts (company, kind, sentence, seen_at)' },
+      { id: 'webhooks', title: 'Webhooks', line: 'Each new fact posted to your endpoint as JSON, the moment it lands.', eg: 'POST · fact.created' },
+      { id: 'mcp', title: 'MCP', line: 'Claude, ChatGPT, Codex and Cursor call the same 5 verbs. Connect once, then ask in plain words.', eg: 'claude mcp add obsession' },
+      { id: 'sheets', title: 'Google Sheets', line: 'A formula on any row returns that company’s latest facts, and refreshes as new ones arrive.', eg: '=OBSESSION.FACTS(A2, "offers")' },
+    ],
+  },
+
   developers: {
     heading: 'Look a company up in 1 call. Each new fact reaches your webhook.',
     line: 'TypeScript and Python SDKs on a plain HTTP API. Each fact comes with its receipt: the raw email or page, the time it arrived, and the sender checked.',

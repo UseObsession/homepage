@@ -76,10 +76,107 @@ const blogLead = catalog.blogLive
   ? (catalog.posts.find((p) => p.slug === MENU_LEAD) ?? catalog.posts.find((p) => p.featured) ?? catalog.posts[0])
   : undefined
 
+/* The bar's menus since 9 Nov (James, after Exa's): tool first. Products (the 3 ways to get the data, the API, the
+   recipes) with the integrations under them; Solutions (use cases beside the teams and industries they serve);
+   Resources (the proof and the reading, with the rest of the company in a side column); Developers as a plain link.
+   Each row is a name, 1 line and an icon (components/Nav draws the icons). */
+export type NavIcon =
+  | 'search'
+  | 'insights'
+  | 'watch'
+  | 'api'
+  | 'recipes'
+  | 'table'
+  | 'database'
+  | 'webhook'
+  | 'target'
+  | 'mail'
+  | 'tag'
+  | 'clock'
+  | 'chat'
+  | 'megaphone'
+  | 'briefcase'
+  | 'users'
+  | 'bank'
+  | 'cart'
+export type NavTool = NavPage & { line: string; icon: NavIcon }
+export type NavColumn = { label: string; items: NavTool[] }
+
+const menus = {
+  products: {
+    label: 'Products',
+    button: 'Products menu',
+    items: [
+      { label: 'Search', line: 'One company’s emails, prices and offers', to: '/#search', icon: 'search' },
+      { label: 'Insights', line: 'One question, answered across many companies', to: '/#insights', icon: 'insights' },
+      { label: 'Watch', line: 'Add any company not covered yet', to: '/#how', icon: 'watch' },
+      { label: 'API and MCP', line: '5 verbs for your agents and your code', to: '/developers', icon: 'api' },
+      { label: 'Recipes', line: 'Ready-made collections to start from', to: '/recipes', icon: 'recipes' },
+    ] satisfies NavTool[],
+    integrations: {
+      label: 'Integrations',
+      items: [
+        { label: 'Clay', line: 'Facts on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
+        { label: 'Baserow', line: 'A new row in, its facts out', to: '/developers#baserow', icon: 'table' },
+        { label: 'Supabase', line: 'Every fact in your own table', to: '/developers#supabase', icon: 'database' },
+        { label: 'Webhooks', line: 'Each new fact at your endpoint', to: '/developers#webhooks', icon: 'webhook' },
+      ] satisfies NavTool[],
+      all: { label: 'All integrations', to: '/developers#integrations' } satisfies NavPage,
+    },
+  },
+  solutions: {
+    label: 'Solutions',
+    button: 'Solutions menu',
+    columns: [
+      {
+        label: 'Use cases',
+        items: [
+          { label: 'Competitor tracking', line: 'Their emails, offers and prices, dated', to: '/recipes/competitor-tracking', icon: 'target' },
+          { label: 'Prospect research', line: 'Open every pitch with their own emails', to: '/recipes/prospect-intelligence', icon: 'mail' },
+          { label: 'Pricing intelligence', line: 'Member prices beside public ones', to: '/use-cases/member-prices-for-price-intelligence', icon: 'tag' },
+          { label: 'Trial teardowns', line: 'Competitors’ trials, sign-up to cancel', to: '/use-cases/trial-checks-for-software-companies', icon: 'clock' },
+          { label: 'AI agent answers', line: 'What AI agents tell customers', to: '/verify', icon: 'chat' },
+        ],
+      },
+      {
+        label: 'Teams and industries',
+        items: [
+          { label: 'Marketing', line: 'Every competitor’s emails and offers', to: '/marketing', icon: 'megaphone' },
+          { label: 'Sales', line: 'What each account sends its customers', to: '/sales', icon: 'briefcase' },
+          { label: 'Agencies', line: 'Pitch with a prospect’s own emails', to: '/agencies', icon: 'users' },
+          { label: 'Banks and fintechs', line: 'Rates and answers behind the login', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
+          { label: 'Online stores', line: 'The emails after every basket', to: '/use-cases/leak-checks-for-ecommerce-stores', icon: 'cart' },
+        ],
+      },
+    ] satisfies NavColumn[],
+  },
+  resources: {
+    label: 'Resources',
+    button: 'Resources menu',
+    items: [
+      { label: 'Sample data', line: 'One real store’s record, end to end', to: '/sample-output' },
+      { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
+      ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
+      { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
+    ] satisfies (NavPage & { line: string })[],
+    more: {
+      label: 'More',
+      items: [
+        { label: 'Every resource', to: '/resources' },
+        { label: 'Saw an Obsession agent?', to: '/agents' },
+        { label: 'Contact', to: `mailto:${catalog.contact}` },
+        { label: 'Privacy', to: '/privacy' },
+      ] satisfies NavPage[],
+    },
+  },
+  developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
+}
+
 export const nav = {
   home: 'Obsession home',
   skip: 'Skip to content',
   label: 'Main',
+  menus,
   /* The readers, as plain links: who it is for comes first (COPY.md, "One taxonomy": 4 readers, by role). */
   readers: [
     { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Competitors’ emails, offers and prices, after sign-up.' },

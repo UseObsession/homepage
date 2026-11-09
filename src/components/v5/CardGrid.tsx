@@ -19,7 +19,7 @@ export function CardGrid({ grid, id }: { grid: CardGridContent; id?: string }) {
         </div>
         <ul className="cg-grid" data-cols={grid.items.length % 3 === 0 ? 3 : 2}>
           {grid.items.map((c) => (
-            <li className="cg-card" key={c.title}>
+            <li className="cg-card" key={c.title} id={c.id}>
               <h3 className="cg-title">{c.title}</h3>
               <p className="cg-line">{c.line}</p>
               {c.eg && <p className="cg-eg">{c.eg}</p>}

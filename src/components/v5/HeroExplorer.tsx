@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import type { ExCompany, ExFact, Explorer } from '../../content/types'
 import './HeroExplorer.css'
 
@@ -11,7 +12,9 @@ import './HeroExplorer.css'
    middle, ending in the answer and 3 numbers. On the left the dot is the state: green in the index, hollow not yet,
    pulsing once watched. A company not in the index gets a Watch button in its row, and all at once under the report;
    watching is the reader's choice. Other questions sit under the window.
-   The window follows the page's theme. Under reduced motion nothing types and every run shows its finished frame. */
+   The nav's Products menu links to /#search and /#insights: the window opens in that mode (Insights runs its first
+   question if it hasn't yet). The window follows the page's theme. Under reduced motion nothing types and every run
+   shows its finished frame. */
 
 type Mode = 'search' | 'insights'
 type Tab = 'facts' | 'evidence' | 'record'
@@ -245,6 +248,13 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
       setMode(m)
       if (m === 'insights' && !asked.current) ask(0)
     })
+  /* Arriving from the nav (/#search, /#insights) opens that mode. */
+  const { hash } = useLocation()
+  const fromNav = useRef(pickMode)
+  fromNav.current = pickMode
+  useEffect(() => {
+    if (hash === '#search' || hash === '#insights') fromNav.current(hash.slice(1) as Mode)
+  }, [hash])
   const toggleKind = (v: string) =>
     act(() =>
       setKind((k) => {
@@ -308,6 +318,8 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
 
   return (
     <div ref={rootRef} className="v5-hx">
+      <span id="search" className="hx-anchor" aria-hidden="true" />
+      <span id="insights" className="hx-anchor" aria-hidden="true" />
       <p className="sr-only">{ex.said}</p>
       <div className="hx-win">
         {/* The box: a company to search, or a question to ask. */}

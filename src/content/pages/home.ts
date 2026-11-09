@@ -124,7 +124,7 @@ export const page: Page = {
     kicker: 'What’s in it?',
     heading: 'Everything a company shows only its customers.',
     items: [
-      { title: 'Emails and texts', line: 'Every message after a sign-up, a basket or a trial, with the time it arrived.', eg: 'Day 3 · “Invite your team”' },
+      { title: 'Emails, texts and flows', line: 'Every screen and message after a sign-up, a basket or a trial, each one timed.', eg: 'Day 3 · “Invite your team”' },
       { title: 'Trial plans and limits', line: 'What the free plan includes, where it stops and when the upgrade prompt appears.', eg: '3 projects, 1 seat · prompt on day 7' },
       { title: 'Member and signed-in prices', line: 'The price a signed-in customer sees, beside the public one.', eg: 'Pro £24 signed in · £29 public' },
       { title: 'Quotes behind forms', line: 'Finance, insurance and service quotes for the customer profile you pick.', eg: '£289 a month over 36 months' },
