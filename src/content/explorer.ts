@@ -1,178 +1,335 @@
-import type { Explorer } from './types'
+import type { Explorer, ExRead } from './types'
 
-/* Home's hero explorer (components/v5/HeroExplorer, 9 Nov, James): the index as a console, after Exa's. Search reads
-   the index for one company; each company has the personas that make sense for it, and its answer changes with who
-   asks (the core result, 8 Nov). The Record tab is the core's reply shape: firm, channel, persona, act, wall, events,
-   responder. A company not covered shows what the index expects, with ranges (index core, 9 Nov), and Watch it starts
-   its first run. Insights asks one question across a group of companies: it reads the ones in the index, writes the
-   report, and offers Watch for the ones it doesn't have (James, 9 Nov: watching is the reader's choice, never automatic). Every company is invented, on the reserved .example domain, and
-   named for what it is. */
+/* Home's hero explorer (components/v5/HeroExplorer, 9 Nov, James): the index as a console, after Exa's. Since 10 Nov
+   Search shows the index as obsession-index/migrations/0001_core.sql stores it (workspace), and nothing it doesn't.
+   The chips are the schema's columns: persona, wall (the walls an event sits behind) and kind. Each row is an event,
+   an act by our persona or what the firm showed or sent, at our clock's time. Its facts are its reads, one reader's
+   note about one event, tagged with the read's kind. Evidence is the event's clean copy (headers, body, signature
+   check, raw hash); Record is the event row and its reads. Gaps, changes and "nothing came" are answers, worked out
+   when asked, so Search never states them: the times are on every row. Insights is where answers live. The 3 covered companies come from the Search examples that
+   survived the adversarial check (docs/knowledge/search-examples-2026-11-10.md); a company not covered has Watch it.
+   Every company is invented, on the reserved .example domain, and named for what it is. */
+
+/* The readers that write the reads, by program and version, as read.reader holds them. */
+const LLM = 'gemini-read@2026-11-09'
+const flow = (text: string, value: Record<string, string>): ExRead => ({ kind: 'flow', text, value, reader: LLM })
+const sentBy = (name: string, by = 'dkim'): ExRead => ({ kind: 'responder', text: name, value: { responder: name, by }, reader: 'rules/dkim@1' })
+const prices = (text: string, items: { name: string; price: string }[]): ExRead => ({ kind: 'prices', text, value: { items }, reader: LLM })
+
 export const explorer: Explorer = {
   placeholder: { search: 'Any company’s website', insights: 'Ask about a group of companies' },
   modes: { search: 'Search', insights: 'Insights' },
   buttons: { search: 'Search', insights: 'Ask' },
-  openRecord: 'Open the record',
+  openRecord: 'See the evidence',
   tryLabel: { search: 'Try other sources', insights: 'Try other questions' },
-  groups: { persona: 'Persona', step: 'Step', data: 'Data', asked: 'Asked as', sources: 'Sources' },
+  groups: { persona: 'Persona', wall: 'Wall', kind: 'Kind', asked: 'Asked as', sources: 'Sources' },
   tabs: { facts: 'Facts', evidence: 'Evidence', record: 'Record' },
   output: { search: 'Output', insights: 'Report' },
   hint: 'Change who asks',
-  none: 'Nothing at this step for this persona yet. Pick another.',
+  none: 'Nothing behind this wall for this persona yet. Pick another.',
   fromIndex: 'From the index · 0.3 s',
-  newRun: 'New run · first facts in minutes',
+  newRun: 'New run · first events in minutes',
   notCovered: 'Not in the index yet',
-  estimated: 'Estimated · not observed yet',
-  said: 'An example of Obsession’s console. Search a company and choose who asks, at which step, and which data: the answer comes back as dated facts, the evidence behind them and the record. A company not in the index shows what the index expects, with ranges, and Watch it adds it. Insights asks one question across a group of companies: Obsession reads the ones in the index and writes a report with a row for each company. A company not in the index yet has a Watch button, and what it sends joins the report as it arrives.',
+  unindexed: {
+    title: 'Nothing from behind its walls yet.',
+    line: 'Watch it, and Obsession signs up as the persona on the left. What the shop shows and sends from then on lands here.',
+    cta: 'Watch it',
+  },
+  said: 'An example of Obsession’s console. Search a company and choose the persona, the wall and the kind. Each row is an event in the company’s timeline, what we did or what it showed or sent, with the facts read from it; open a row to see the evidence as it arrived and the record as the index stores it. A company not in the index has Watch it. Insights asks one question across a group of companies: Obsession reads the ones in the index and writes a report with a row for each company. A company not in the index yet has a Watch button, and what it sends joins the report as it arrives.',
   companies: [
     {
-      domain: 'saas-app.example',
-      kind: 'Software',
+      domain: 'sportswear-brand.example',
+      kind: 'Sportswear',
       covered: true,
-      personas: ['New visitor · UK', 'Trial user · US', 'Team admin · 20 seats'],
-      steps: ['Sign-up', 'Login', 'Cancel'],
-      data: [
+      personas: ['New customer · US', 'New customer · UK'],
+      walls: ['Purchase', 'Sign-up'],
+      kinds: [
         { label: 'Emails', kind: 'Email' },
-        { label: 'Prices', kind: 'Price' },
-        { label: 'Trials', kind: 'Trial' },
-        { label: 'Offers', kind: 'Offer' },
+        { label: 'Pages', kind: 'Page' },
       ],
       views: [
         {
-          persona: 'New visitor · UK',
-          step: 'Sign-up',
-          facts: [
-            { when: '4 Nov', kind: 'Email', text: 'Welcome: “Start your 14-day trial”, 3 minutes after sign-up.' },
-            { when: '4 Nov', kind: 'Trial', text: 'Free plan: 3 projects and 1 seat.' },
-            { when: '3 Nov', kind: 'Price', text: 'Pro is £29 a month on the public page.' },
+          persona: 'New customer · US',
+          wall: 'Purchase',
+          events: [
+            {
+              at: '5 Nov 10:02',
+              dir: 'shown',
+              kind: 'Page',
+              text: 'Pop-up on leaving checkout',
+              facts: [flow('Exit offer · 10% off', { flow: 'exit_offer', purpose: '10% off' })],
+              evidence: {
+                head: [['Page', 'sportswear-brand.example/checkout'], ['Shown', 'Thu 5 Nov 2026 10:02:35 · exit country US']],
+                body: ['Wait! Take 10% off before you go.', '[ Claim 10% ]   No thanks'],
+                proof: ['Clean copy of screenshot sha256:41b7… and page sha256:c2e0…'],
+              },
+              row: { kind: 'page', channel: 'web', wall: ['purchase'], at: '2026-11-05T10:02:35Z', visit: 'checkout · 5 Nov 10:01', ref: 'https://sportswear-brand.example/checkout', fields: { trigger: 'exit intent' }, digest: 'sha256:8a1f…', raw: { screenshot: 'sha256:41b7…', html: 'sha256:c2e0…' } },
+            },
+            { at: '5 Nov 10:02', dir: 'act', kind: 'Act', text: 'Left checkout at the payment step' },
+            {
+              at: '5 Nov 11:03',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'You left something behind',
+              facts: [flow('Abandoned basket · a reminder, no offer', { flow: 'abandoned_basket', purpose: 'reminder, no offer' }), sentBy('Klaviyo')],
+              evidence: {
+                head: [['From', 'Sportswear Brand <hello@sportswear-brand.example>'], ['To', 'our address, removed'], ['Date', 'Thu, 5 Nov 2026 11:03:17 +0000'], ['Subject', 'You left something behind']],
+                body: ['Your basket is waiting.', 'Trail Runner 2, size 9 · $120', '[ Back to my basket ]'],
+                proof: ['dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', 'Received 11:03:20 · clean copy of sha256:7d02…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['purchase'], at: '2026-11-05T11:03:20Z', t_firm: '2026-11-05T11:03:17Z', visit: 'checkout · 5 Nov 10:01', after: 'leave · 10:02:38', subject: 'You left something behind', auth: 'dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', digest: 'sha256:e93b…', raw: { mime: 'sha256:7d02…' } },
+            },
+            {
+              at: '6 Nov 10:05',
+              dir: 'shown',
+              kind: 'Email',
+              text: '15% off your basket, 48 hours',
+              facts: [flow('Abandoned basket · 15% off, code BACK15, 48 hours', { flow: 'abandoned_basket', purpose: '15% off, code BACK15, 48 hours' }), sentBy('Klaviyo')],
+              evidence: {
+                head: [['From', 'Sportswear Brand <hello@sportswear-brand.example>'], ['To', 'our address, removed'], ['Date', 'Fri, 6 Nov 2026 10:05:09 +0000'], ['Subject', '15% off your basket, 48 hours']],
+                body: ['Still thinking it over?', 'Use BACK15 for 15% off your basket. It ends in 48 hours.', '[ Back to my basket ]'],
+                proof: ['dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', 'Received 10:05:12 · clean copy of sha256:9f3c…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['purchase'], at: '2026-11-06T10:05:12Z', t_firm: '2026-11-06T10:05:09Z', visit: 'checkout · 5 Nov 10:01', after: 'leave · 5 Nov 10:02:38', subject: '15% off your basket, 48 hours', fields: { code: 'BACK15' }, auth: 'dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', digest: 'sha256:51ad…', raw: { mime: 'sha256:9f3c…' } },
+            },
           ],
-          evidence: { from: 'SaaS App <hello@saas-app.example>', subject: 'Start your 14-day trial', lines: ['Arrived 09:04, 3 minutes after sign-up', 'Sender checked: signature valid'] },
-          record: { channel: 'email', act: 'created an account', wall: 'sign-up', responder: 'Customer.io journey' },
         },
         {
-          persona: 'Trial user · US',
-          step: 'Sign-up',
-          facts: [
-            { when: '5 Nov', kind: 'Offer', text: 'Day 12: 40% off the first year. Not on the pricing page.' },
-            { when: '5 Nov', kind: 'Trial', text: 'Upgrade prompt on day 7, at 80% of the project limit.' },
-            { when: '4 Nov', kind: 'Email', text: 'Day 3: “Invite your team”.' },
+          persona: 'New customer · UK',
+          wall: 'Purchase',
+          events: [
+            { at: '5 Nov 10:02', dir: 'act', kind: 'Act', text: 'Left checkout at the payment step' },
+            {
+              at: '5 Nov 11:04',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'You left something behind',
+              facts: [flow('Abandoned basket · a reminder, no offer', { flow: 'abandoned_basket', purpose: 'reminder, no offer' }), sentBy('Klaviyo')],
+              evidence: {
+                head: [['From', 'Sportswear Brand <hello@sportswear-brand.example>'], ['To', 'our address, removed'], ['Date', 'Thu, 5 Nov 2026 11:03:59 +0000'], ['Subject', 'You left something behind']],
+                body: ['Your basket is waiting.', 'Trail Runner 2, size 8 · £95', '[ Back to my basket ]'],
+                proof: ['dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', 'Received 11:04:02 · clean copy of sha256:c18a…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['purchase'], at: '2026-11-05T11:04:02Z', t_firm: '2026-11-05T11:03:59Z', visit: 'checkout · 5 Nov 10:02', after: 'leave · 10:02:51', subject: 'You left something behind', auth: 'dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', digest: 'sha256:0f6e…', raw: { mime: 'sha256:c18a…' } },
+            },
           ],
-          evidence: { from: 'SaaS App <hello@saas-app.example>', subject: '40% off your first year, today only', lines: ['Arrived day 12 of the trial, 10:30', 'Sender checked: signature valid', 'Not on saas-app.example/pricing the same day'] },
-          record: { channel: 'email', act: 'started a free trial', wall: 'sign-up', responder: 'Customer.io journey' },
         },
         {
-          persona: 'Trial user · US',
-          step: 'Login',
-          facts: [
-            { when: '5 Nov', kind: 'Price', text: 'Pro is $24 a month signed in, $29 on the public page.' },
-            { when: '5 Nov', kind: 'Trial', text: '“7 days left” banner, with a button to talk to sales.' },
+          persona: 'New customer · US',
+          wall: 'Sign-up',
+          events: [
+            { at: '5 Nov 09:00', dir: 'act', kind: 'Act', text: 'Signed up with the footer form' },
+            {
+              at: '5 Nov 09:01',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'Welcome! Here’s 10% off',
+              facts: [flow('Welcome · 10% off, code WELCOME10', { flow: 'welcome', purpose: '10% off, code WELCOME10' }), sentBy('Klaviyo')],
+              evidence: {
+                head: [['From', 'Sportswear Brand <hello@sportswear-brand.example>'], ['To', 'our address, removed'], ['Date', 'Thu, 5 Nov 2026 09:01:02 +0000'], ['Subject', 'Welcome! Here’s 10% off']],
+                body: ['Welcome to the team.', 'Here’s 10% off your first order: WELCOME10', '[ Shop new in ]'],
+                proof: ['dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', 'Received 09:01:05 · clean copy of sha256:02ee…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['sign_up'], at: '2026-11-05T09:01:05Z', t_firm: '2026-11-05T09:01:02Z', visit: 'sign_up · 5 Nov 09:00', after: 'sign_up · 09:00:12', subject: 'Welcome! Here’s 10% off', fields: { code: 'WELCOME10' }, auth: 'dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', digest: 'sha256:6b1d…', raw: { mime: 'sha256:02ee…' } },
+            },
           ],
-          evidence: { from: 'Screenshot · app.saas-app.example/billing', subject: 'Billing page, signed in as the trial user', lines: ['Taken 5 Nov, 11:02', 'Pro $24 / month, shown beside “Your trial ends in 7 days”'] },
-          record: { channel: 'web', act: 'signed in on day 7', wall: 'login', responder: 'In-app paywall (Stigg)' },
         },
         {
-          persona: 'Team admin · 20 seats',
-          step: 'Cancel',
-          facts: [
-            { when: '2 Nov', kind: 'Offer', text: 'Offer to stay: 50% off for 3 months.' },
-            { when: '2 Nov', kind: 'Email', text: '“Your data will be deleted in 30 days”, 1 hour after cancelling.' },
+          persona: 'New customer · UK',
+          wall: 'Sign-up',
+          events: [
+            { at: '5 Nov 09:00', dir: 'act', kind: 'Act', text: 'Signed up with the footer form' },
+            {
+              at: '5 Nov 09:01',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'Welcome! Here’s 10% off',
+              facts: [flow('Welcome · 10% off, code WELCOME10', { flow: 'welcome', purpose: '10% off, code WELCOME10' }), sentBy('Klaviyo')],
+              evidence: {
+                head: [['From', 'Sportswear Brand <hello@sportswear-brand.example>'], ['To', 'our address, removed'], ['Date', 'Thu, 5 Nov 2026 09:01:06 +0000'], ['Subject', 'Welcome! Here’s 10% off']],
+                body: ['Welcome to the team.', 'Here’s 10% off your first order: WELCOME10', '[ Shop new in ]'],
+                proof: ['dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', 'Received 09:01:09 · clean copy of sha256:5a91…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['sign_up'], at: '2026-11-05T09:01:09Z', t_firm: '2026-11-05T09:01:06Z', visit: 'sign_up · 5 Nov 09:00', after: 'sign_up · 09:00:20', subject: 'Welcome! Here’s 10% off', fields: { code: 'WELCOME10' }, auth: 'dkim=pass d=sportswear-brand.example spf=pass dmarc=pass', digest: 'sha256:6b1d…', raw: { mime: 'sha256:5a91…' } },
+            },
           ],
-          evidence: { from: 'Screenshot · app.saas-app.example/cancel', subject: 'Cancel flow, step 2 of 3', lines: ['Taken 2 Nov, 15:40', '“Stay for 50% off for 3 months” before the final cancel button'] },
-          record: { channel: 'web', act: 'cancelled a 20-seat plan', wall: 'cancellation', responder: 'Cancel flow (Churnkey)' },
         },
       ],
     },
     {
-      domain: 'online-bank.example',
-      kind: 'Bank',
+      domain: 'sim-network.example',
+      kind: 'Mobile network',
       covered: true,
-      personas: ['New saver · UK', 'Existing customer · UK', 'Switching from another bank'],
-      steps: ['Sign-up', 'Login', 'Chat'],
-      data: [
-        { label: 'Rates', kind: 'Rate' },
-        { label: 'Emails', kind: 'Email' },
-        { label: 'Offers', kind: 'Offer' },
-        { label: 'Support', kind: 'Chat' },
+      personas: ['Customer since Aug', 'New customer · UK'],
+      walls: ['Cancel', 'Login', 'Open'],
+      kinds: [
+        { label: 'Texts', kind: 'Text' },
+        { label: 'Pages', kind: 'Page' },
       ],
       views: [
         {
-          persona: 'New saver · UK',
-          step: 'Sign-up',
-          facts: [
-            { when: '1 Nov', kind: 'Rate', text: 'Easy Access Saver: 4.1% on the website.' },
-            { when: '1 Nov', kind: 'Email', text: '“Your account is open”, sent after the ID check.' },
+          persona: 'Customer since Aug',
+          wall: 'Cancel',
+          events: [
+            { at: '6 Nov 10:00', dir: 'act', kind: 'Act', text: 'Texted STAC to 75075 to leave' },
+            {
+              at: '6 Nov 10:00',
+              dir: 'shown',
+              kind: 'Text',
+              text: '“Your STAC is ST4 829 117…”',
+              facts: [flow('Switching code · valid 30 days', { flow: 'switching_code', purpose: 'valid 30 days' })],
+              evidence: {
+                head: [['From', 'SIMNET'], ['To', 'our number, removed'], ['Received', 'Fri 6 Nov 2026 10:00:38']],
+                body: ['Your STAC is ST4 829 117. It is valid for 30 days. Your service ends when your new provider switches you. You have no early exit charge.'],
+                proof: ['Sender ID SIMNET · clean copy of sha256:5c19…'],
+              },
+              row: { kind: 'sms', channel: 'sms', wall: ['cancel'], at: '2026-11-06T10:00:38Z', visit: 'cancel · 6 Nov 10:00', after: 'ask · 10:00:00', fields: { sender: 'SIMNET' }, digest: 'sha256:2e7a…', raw: { text: 'sha256:5c19…' } },
+            },
+            {
+              at: '6 Nov 10:06',
+              dir: 'shown',
+              kind: 'Text',
+              text: '“Before you go: 50GB for £6 a month”',
+              facts: [flow('Offer to stay · 50GB for £6 a month, 12 months', { flow: 'retention_offer', purpose: '50GB for £6 a month, 12 months' })],
+              evidence: {
+                head: [['From', 'SIMNET'], ['To', 'our number, removed'], ['Received', 'Fri 6 Nov 2026 10:06:12']],
+                body: ['Before you go: stay with us for 50GB at £6 a month for 12 months. Reply YES by Sunday and keep your number.'],
+                proof: ['Sender ID SIMNET · clean copy of sha256:d40b…'],
+              },
+              row: { kind: 'sms', channel: 'sms', wall: ['cancel'], at: '2026-11-06T10:06:12Z', visit: 'cancel · 6 Nov 10:00', after: 'ask · 10:00:00', fields: { sender: 'SIMNET', price: '£6', data: '50GB', term: '12 months' }, digest: 'sha256:9c03…', raw: { text: 'sha256:d40b…' } },
+            },
+            {
+              at: '9 Nov 09:12',
+              dir: 'shown',
+              kind: 'Text',
+              text: '“Last chance: 50GB for £5 a month”',
+              facts: [flow('Offer to stay · 50GB for £5 a month, 12 months', { flow: 'retention_offer', purpose: '50GB for £5 a month, 12 months' })],
+              evidence: {
+                head: [['From', 'SIMNET'], ['To', 'our number, removed'], ['Received', 'Mon 9 Nov 2026 09:12:44']],
+                body: ['Last chance: 50GB for £5 a month for 12 months if you stay. Reply YES today.'],
+                proof: ['Sender ID SIMNET · clean copy of sha256:8e21…'],
+              },
+              row: { kind: 'sms', channel: 'sms', wall: ['cancel'], at: '2026-11-09T09:12:44Z', visit: 'cancel · 6 Nov 10:00', after: 'ask · 6 Nov 10:00:00', fields: { sender: 'SIMNET', price: '£5', data: '50GB', term: '12 months' }, digest: 'sha256:44f8…', raw: { text: 'sha256:8e21…' } },
+            },
           ],
-          evidence: { from: 'Online Bank <hello@online-bank.example>', subject: 'Your account is open', lines: ['Arrived 1 Nov, 14:22, after the ID check', 'Sender checked: signature valid'] },
-          record: { channel: 'email', act: 'opened a savings account', wall: 'identity check', responder: 'Salesforce Marketing Cloud journey' },
         },
         {
-          persona: 'New saver · UK',
-          step: 'Chat',
-          facts: [
-            { when: '4 Nov', kind: 'Chat', text: 'Asked if the 4.6% rate is fixed. Chat said yes; the rate page says variable.' },
-            { when: '4 Nov', kind: 'Chat', text: 'Passed to a person after 11 minutes.' },
+          persona: 'Customer since Aug',
+          wall: 'Login',
+          events: [
+            { at: '6 Nov 09:57', dir: 'act', kind: 'Act', text: 'Signed in to the account' },
+            {
+              at: '6 Nov 09:58',
+              dir: 'shown',
+              kind: 'Page',
+              text: 'Your plan, signed in',
+              facts: [prices('30GB for £10 a month', [{ name: '30GB', price: '£10 a month' }])],
+              evidence: {
+                head: [['Page', 'sim-network.example/account'], ['Shown', 'Fri 6 Nov 2026 09:58:03 · signed in']],
+                body: ['Your plan: 30GB · £10 a month', 'Next bill 1 Dec', '[ Change plan ]'],
+                proof: ['Clean copy of screenshot sha256:aa30… and page sha256:1d9e…'],
+              },
+              row: { kind: 'page', channel: 'web', wall: ['login'], at: '2026-11-06T09:58:03Z', visit: 'log_in · 6 Nov 09:57', ref: 'https://sim-network.example/account', digest: 'sha256:f2b8…', raw: { screenshot: 'sha256:aa30…', html: 'sha256:1d9e…' } },
+            },
           ],
-          evidence: { from: 'Chat transcript · online-bank.example', subject: 'Is the 4.6% rate fixed?', lines: ['09:20 Chat: “Yes, 4.6% is fixed for 12 months.”', '09:20 Rate page, same minute: “4.6% variable”', 'Our side said it is an AI at the start'] },
-          record: { channel: 'chat', act: 'asked about a savings rate', wall: 'conversation', responder: 'Support bot (vendor platform)' },
         },
         {
-          persona: 'Existing customer · UK',
-          step: 'Login',
-          facts: [
-            { when: '28 Oct', kind: 'Rate', text: 'Easy Access Saver: 4.6% for signed-in customers.' },
-            { when: '1 Nov', kind: 'Offer', text: '£150 to switch your current account by 30 Nov. Existing customers only.' },
+          persona: 'New customer · UK',
+          wall: 'Open',
+          events: [
+            {
+              at: '6 Nov 10:05',
+              dir: 'shown',
+              kind: 'Page',
+              text: 'SIM-only plans, signed out',
+              facts: [prices('50GB for £8 a month · 100GB for £10 a month', [{ name: '50GB', price: '£8 a month' }, { name: '100GB', price: '£10 a month' }])],
+              evidence: {
+                head: [['Page', 'sim-network.example/plans'], ['Shown', 'Fri 6 Nov 2026 10:05:30 · signed out']],
+                body: ['SIM-only plans, 12 months', '50GB · £8 a month', '100GB · £10 a month', '[ Choose ]'],
+                proof: ['Clean copy of screenshot sha256:61dd… and page sha256:0c4a…'],
+              },
+              row: { kind: 'page', channel: 'web', wall: ['open'], at: '2026-11-06T10:05:30Z', visit: 'view · 6 Nov 10:05', ref: 'https://sim-network.example/plans', digest: 'sha256:7a52…', raw: { screenshot: 'sha256:61dd…', html: 'sha256:0c4a…' } },
+            },
           ],
-          evidence: { from: 'Screenshot · online-bank.example/app/offers', subject: 'Offers page, signed in', lines: ['Taken 1 Nov, 08:15', '“£150 when you switch by 30 November”'] },
-          record: { channel: 'web', act: 'signed in to online banking', wall: 'login', responder: 'Offers engine (signed-in pages)' },
-        },
-        {
-          persona: 'Switching from another bank',
-          step: 'Sign-up',
-          facts: [
-            { when: '3 Nov', kind: 'Offer', text: '£200 switching bonus, shown only after the switch form.' },
-            { when: '3 Nov', kind: 'Email', text: 'At 48 hours: “Finish your switch”.' },
-          ],
-          evidence: { from: 'Online Bank <hello@online-bank.example>', subject: 'Finish your switch', lines: ['Arrived 48 hours after the switch form', 'Sender checked: signature valid'] },
-          record: { channel: 'email', act: 'started a current account switch', wall: 'form', responder: 'Salesforce Marketing Cloud journey' },
         },
       ],
     },
     {
-      domain: 'self-storage.example',
-      kind: 'Self storage',
+      domain: 'reading-app.example',
+      kind: 'Reading app',
       covered: true,
-      personas: ['Renter · Texas', 'Business renter · Texas'],
-      steps: ['Call', 'Form'],
-      data: [
-        { label: 'Quotes', kind: 'Quote' },
-        { label: 'Offers', kind: 'Offer' },
+      personas: ['Trial user · UK'],
+      walls: ['Sign-up', 'Cancel'],
+      kinds: [
+        { label: 'Emails', kind: 'Email' },
+        { label: 'Pages', kind: 'Page' },
       ],
       views: [
         {
-          persona: 'Renter · Texas',
-          step: 'Call',
-          facts: [
-            { when: '6 Nov', kind: 'Quote', text: '10x10 unit: $129 a month, first month $1.' },
-            { when: '6 Nov', kind: 'Offer', text: 'The phone price is $10 below the website’s $139.' },
+          persona: 'Trial user · UK',
+          wall: 'Sign-up',
+          events: [
+            {
+              at: '2 Nov 10:14',
+              dir: 'shown',
+              kind: 'Page',
+              text: 'Start your 7-day free trial',
+              facts: [prices('7 days free, then £79.99 a year', [{ name: 'Trial, 7 days', price: '£0' }, { name: 'Then yearly', price: '£79.99' }])],
+              evidence: {
+                head: [['Page', 'reading-app.example/checkout'], ['Shown', 'Mon 2 Nov 2026 10:14:02 · signed in']],
+                body: ['Start your 7-day free trial', 'Today: full access', 'Day 5: we’ll email you a reminder', 'Day 7: £79.99 for the year, unless you cancel', '[ Start free trial ]'],
+                proof: ['Clean copy of screenshot sha256:0b55… and page sha256:e8f2…'],
+              },
+              row: { kind: 'page', channel: 'web', wall: ['sign_up', 'purchase'], at: '2026-11-02T10:14:02Z', visit: 'sign_up · 2 Nov 10:13', ref: 'https://reading-app.example/checkout', digest: 'sha256:3f90…', raw: { screenshot: 'sha256:0b55…', html: 'sha256:e8f2…' } },
+            },
+            { at: '2 Nov 10:14', dir: 'act', kind: 'Act', text: 'Started the free trial' },
+            {
+              at: '2 Nov 10:15',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'Welcome to your trial',
+              facts: [flow('Welcome', { flow: 'welcome', purpose: 'trial started' }), sentBy('Braze')],
+              evidence: {
+                head: [['From', 'Reading App <hello@reading-app.example>'], ['To', 'our address, removed'], ['Date', 'Mon, 2 Nov 2026 10:14:59 +0000'], ['Subject', 'Welcome to your trial']],
+                body: ['Your 7 days start now.', 'Here are 5 titles to begin with.', '[ Start reading ]'],
+                proof: ['dkim=pass d=reading-app.example spf=pass dmarc=pass', 'Received 10:15:02 · clean copy of sha256:3c8e…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['sign_up', 'purchase'], at: '2026-11-02T10:15:02Z', t_firm: '2026-11-02T10:14:59Z', visit: 'sign_up · 2 Nov 10:13', after: 'sign_up · 10:14:21', subject: 'Welcome to your trial', auth: 'dkim=pass d=reading-app.example spf=pass dmarc=pass', digest: 'sha256:c7d1…', raw: { mime: 'sha256:3c8e…' } },
+            },
+            {
+              at: '8 Nov 18:02',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'Last chance: 40% off your first year',
+              facts: [flow('Trial offer · 40% off the first year', { flow: 'trial_offer', purpose: '40% off the first year' }), sentBy('Braze')],
+              evidence: {
+                head: [['From', 'Reading App <hello@reading-app.example>'], ['To', 'our address, removed'], ['Date', 'Sun, 8 Nov 2026 18:02:37 +0000'], ['Subject', 'Last chance: 40% off your first year']],
+                body: ['Your trial ends soon.', 'Keep reading with 40% off your first year.', '[ Claim 40% off ]'],
+                proof: ['dkim=pass d=reading-app.example spf=pass dmarc=pass', 'Received 18:02:40 · clean copy of sha256:e471…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['sign_up', 'purchase'], at: '2026-11-08T18:02:40Z', t_firm: '2026-11-08T18:02:37Z', visit: 'sign_up · 2 Nov 10:13', after: 'sign_up · 2 Nov 10:14:21', subject: 'Last chance: 40% off your first year', auth: 'dkim=pass d=reading-app.example spf=pass dmarc=pass', digest: 'sha256:18b6…', raw: { mime: 'sha256:e471…' } },
+            },
           ],
-          evidence: { from: 'Call · self-storage.example, Austin', subject: 'Call to rent a 10x10 unit', lines: ['6 Nov, 10:12, 3 min 40 s', 'Desk: “The 10 by 10 is 129 a month, and your first month is a dollar.”', 'Our caller said it is an AI at the start'] },
-          record: { channel: 'voice', act: 'called to rent a unit', wall: 'call', responder: 'Desk reading a rate screen (SiteLink)' },
         },
         {
-          persona: 'Renter · Texas',
-          step: 'Form',
-          facts: [{ when: '6 Nov', kind: 'Quote', text: 'Online quote: $139 a month, no first-month offer.' }],
-          evidence: { from: 'Screenshot · self-storage.example/reserve', subject: 'Quote form result', lines: ['Taken 6 Nov, 10:30', '10x10, $139 / month, reserve now'] },
-          record: { channel: 'web', act: 'asked for a quote online', wall: 'form', responder: 'Booking widget (storEDGE)' },
-        },
-        {
-          persona: 'Business renter · Texas',
-          step: 'Call',
-          facts: [
-            { when: '6 Nov', kind: 'Quote', text: '20x20 unit: $289 a month on a 6-month term.' },
-            { when: '6 Nov', kind: 'Offer', text: 'Free lock and 10% off for paying 6 months up front.' },
+          persona: 'Trial user · UK',
+          wall: 'Cancel',
+          events: [
+            { at: '9 Nov 09:00', dir: 'act', kind: 'Act', text: 'Cancelled in account settings' },
+            {
+              at: '9 Nov 09:01',
+              dir: 'shown',
+              kind: 'Email',
+              text: 'Your subscription is cancelled',
+              facts: [flow('Cancel confirmation', { flow: 'cancel_confirmation', purpose: 'access ends 9 Nov' }), sentBy('Braze')],
+              evidence: {
+                head: [['From', 'Reading App <hello@reading-app.example>'], ['To', 'our address, removed'], ['Date', 'Mon, 9 Nov 2026 09:01:08 +0000'], ['Subject', 'Your subscription is cancelled']],
+                body: ['You won’t be charged.', 'Your access ends today at 10:14.', '[ Changed your mind? ]'],
+                proof: ['dkim=pass d=reading-app.example spf=pass dmarc=pass', 'Received 09:01:11 · clean copy of sha256:94fa…'],
+              },
+              row: { kind: 'email', channel: 'email', wall: ['login', 'cancel'], at: '2026-11-09T09:01:11Z', t_firm: '2026-11-09T09:01:08Z', visit: 'cancel · 9 Nov 08:59', after: 'cancel · 09:00:04', subject: 'Your subscription is cancelled', auth: 'dkim=pass d=reading-app.example spf=pass dmarc=pass', digest: 'sha256:5e2c…', raw: { mime: 'sha256:94fa…' } },
+            },
           ],
-          evidence: { from: 'Call · self-storage.example, Austin', subject: 'Call to rent a unit for stock', lines: ['6 Nov, 11:05, 5 min 10 s', 'Desk: “For business we do 289 on six months, and the lock’s free.”', 'Our caller said it is an AI at the start'] },
-          record: { channel: 'voice', act: 'called to rent a unit for a business', wall: 'call', responder: 'Desk reading a rate screen (SiteLink)' },
         },
       ],
     },
@@ -180,30 +337,43 @@ export const explorer: Explorer = {
       domain: 'skincare-shop.example',
       kind: 'Online shop',
       covered: false,
-      estimate: {
-        title: 'Not observed yet. Here is what the index expects.',
-        basis: 'Estimated from 41 similar shops on the same email platform. Each range holds 8 times in 10.',
-        lines: [
-          { label: 'First email after sign-up', value: '3 to 25 minutes', range: '80% range' },
-          { label: 'Welcome discount', value: '10% to 15%', range: '80% range' },
-          { label: 'Basket reminder', value: 'within 1 to 6 hours', range: '80% range' },
-        ],
-        cta: 'Watch it',
-      },
-      personas: ['New customer · UK', 'Returning customer · US'],
-      steps: [],
-      data: [{ label: 'Emails', kind: 'Email' }],
+      personas: ['New customer · UK', 'New customer · US'],
+      walls: [],
+      kinds: [],
       views: [],
       index: {
         heading: 'Watching skincare-shop.example',
         steps: ['Signed up', 'Added a product to the basket', 'Left at checkout'],
         first: [
-          { when: 'Today 09:09', kind: 'Email', text: 'Welcome: “10% off your first order”.' },
-          { when: 'Today 09:13', kind: 'Email', text: 'Every link in the welcome email opens a closed site.' },
+          {
+            at: 'Today 09:05',
+            dir: 'shown',
+            kind: 'Page',
+            text: 'Home page',
+            facts: [{ kind: 'signals', text: 'Klaviyo, Shop Pay, Recharge', value: { tags: ['klaviyo.js', 'shop_pay', 'recharge'] }, reader: 'rules/tags@3' }],
+            evidence: {
+              head: [['Page', 'skincare-shop.example'], ['Shown', 'Today 09:05:01 · exit country UK']],
+              body: ['Clean skincare, made in small batches', '[ Shop best sellers ]', 'Pop-up: 10% off your first order. [ Your email ]'],
+              proof: ['Clean copy of screenshot sha256:6f0d… and page sha256:a1b7…'],
+            },
+            row: { kind: 'page', channel: 'web', wall: ['open'], at: 'today 09:05:01', visit: 'sign_up · today 09:05', ref: 'https://skincare-shop.example/', digest: 'sha256:2b9e…', raw: { screenshot: 'sha256:6f0d…', html: 'sha256:a1b7…' } },
+          },
+          { at: 'Today 09:05', dir: 'act', kind: 'Act', text: 'Signed up in the pop-up' },
+          {
+            at: 'Today 09:09',
+            dir: 'shown',
+            kind: 'Email',
+            text: 'Welcome! Here’s 10% off',
+            facts: [flow('Welcome · 10% off, code HELLO10', { flow: 'welcome', purpose: '10% off, code HELLO10' }), sentBy('Klaviyo')],
+            evidence: {
+              head: [['From', 'Skincare Shop <hello@skincare-shop.example>'], ['To', 'our address, removed'], ['Date', 'Today 09:09:11 +0000'], ['Subject', 'Welcome! Here’s 10% off']],
+              body: ['Thanks for joining us.', 'Here’s 10% off your first order: HELLO10', '[ Shop now ]'],
+              proof: ['dkim=pass d=skincare-shop.example spf=pass dmarc=pass', 'Received 09:09:14 · clean copy of sha256:d2a4…'],
+            },
+            row: { kind: 'email', channel: 'email', wall: ['sign_up'], at: 'today 09:09:14', t_firm: 'today 09:09:11', visit: 'sign_up · today 09:05', after: 'sign_up · 09:05:02', subject: 'Welcome! Here’s 10% off', fields: { code: 'HELLO10' }, auth: 'dkim=pass d=skincare-shop.example spf=pass dmarc=pass', digest: 'sha256:90c3…', raw: { mime: 'sha256:d2a4…' } },
+          },
         ],
         done: 'In the index from today',
-        record: { channel: 'email', act: 'signed up and left a basket', wall: 'sign-up', responder: 'Klaviyo flow' },
-        evidence: { from: 'Skincare Shop <hello@skincare-shop.example>', subject: 'Welcome! Here’s 10% off', lines: ['Arrived 09:09, 4 minutes after sign-up', 'Sender checked: signature valid', 'Every link opens staging.skincare-shop.example, a closed site'] },
       },
     },
   ],
