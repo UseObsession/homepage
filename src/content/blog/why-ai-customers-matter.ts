@@ -28,17 +28,16 @@ const PRODUCT_AI = 'https://dnyuz.com/2026/09/25/ai-cant-take-over-your-holiday-
 
 export const post: BlogPost = {
   slug: 'why-ai-customers-matter',
-  title: 'Why every company needs AI customers',
-  dek: 'What a company sends and what its customers receive have drifted apart, and only a customer sees the gap. Why that gap matters more each month, what changes when AI customers watch it, and what it is worth in your own numbers.',
+  title: 'Why AI customers matter: what every company shows only its customers',
+  dek: 'What a company sends and what its customers receive have drifted apart, and only a customer sees the gap. AI customers are one way Obsession collects what companies show only to customers, at any company you name, and the gap is worth working out in your own numbers.',
   metaTitle: 'Why AI customers matter: what only a customer of yours sees',
   description:
-    'Why AI customers matter: what a company sends and what customers receive have drifted apart. Why it matters now, what changes, and your number.',
+    'Why AI customers matter: what a company sends and what its customers receive have drifted apart, and only a customer sees the gap, at any company.',
   answer:
-    'AI customers matter because what a company sends and what its customers receive have drifted apart, and only a customer sees the difference: the welcome email that never came, the code refused at checkout, the chatbot quoting an old policy. An AI customer sees it at any company, every day, and keeps the evidence, at a cost low enough to watch every competitor, prospect and journey at once. Obsession’s AI customers do this today at any company you name, such as your own store, a competitor or a prospect.',
+    'AI customers matter because what a company sends and what its customers receive have drifted apart, and only a customer sees the difference: the welcome email that never came, the code refused at checkout, the chatbot quoting an old policy. An AI customer sees it at any company, every day, and keeps the evidence, at a cost low enough to follow every competitor, prospect and journey at once. Obsession collects that view this way, keeping what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
   primaryKeyword: 'why ai customers matter',
   keywords: [
     'why every company needs ai customers',
-    'meet your first ai customers',
     'ai customers',
     'what customers actually receive',
     'customer journey testing',
@@ -46,9 +45,9 @@ export const post: BlogPost = {
     'test ai chatbot as a customer',
     'customer experience gap',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 7,
   order: 4,
   authors: [
@@ -236,16 +235,16 @@ export const post: BlogPost = {
       text: 'Every job an AI customer does, with the page that runs each one, is set out in [AI customer use cases](/blog/ai-agent-use-cases-for-business), and for online stores and their agencies in [AI customer use cases in ecommerce](/blog/agentic-ai-use-cases-in-ecommerce).',
     },
 
-    { kind: 'h2', id: 'meet', text: 'Meet your first AI customers' },
+    { kind: 'h2', id: 'meet', text: 'How teams start' },
     {
       kind: 'p',
-      text: 'If your company needs to see what customers receive from it, its competitors or its prospects, use Obsession. Start where the money is: your own store’s journeys, 5 client stores for an agency, or your 5 closest competitors. A store’s [first check is free](/use-cases/leak-checks-for-ecommerce-stores), and an agency can [check 5 stores free](/use-cases/leak-checks-for-retention-agencies). Within days, each AI customer has signed up, waited and kept what arrived, and you read the first findings with their evidence. How they do it is in [how AI customers work](/blog/how-ai-customers-work), and what the term means is in [AI customers](/blog/ai-customers).',
+      text: 'If your company needs to see what customers receive from it, its competitors or its prospects, use Obsession. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Teams start in early access, onboarding teams now: API and MCP access, lookups of every company already covered, and companies added on request. Start where the money is: your own store’s journeys ([leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores)), the stores an agency works on ([leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies)), or your closest competitors. How the data is collected is in [how AI customers work](/blog/how-ai-customers-work), and what the term means is in [AI customers](/blog/ai-customers).',
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company you name, and it keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'See what only a customer sees, at a real UK skincare store in September 2026: every inbox watched for 48 hours, every email and screenshot kept, and a £40 basket left at 02:57 that got no reminder.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about why AI customers matter' },

@@ -38,12 +38,12 @@ const AGENCY_COLS = ['Job', 'What it does', 'What the agency gets', 'How often',
 export const post: BlogPost = {
   slug: 'agentic-ai-use-cases-in-ecommerce',
   title: 'Agentic AI use cases in ecommerce: 27 jobs for brands and agencies, done as a customer',
-  dek: 'Three kinds of AI agent now deal with every online store: the store’s own agents, shoppers’ agents, and AI customers working for a brand or its agency. AI customers take on 27 jobs, from timing the abandoned checkout flow to reading a competitor’s price after its welcome code.',
+  dek: 'Three kinds of AI agent now deal with every online store: the store’s own agents, shoppers’ agents, and agents that shop as a customer for a brand or its agency. Those customer-side agents take on 27 jobs, from timing the abandoned checkout flow to reading a competitor’s price after its welcome code.',
   metaTitle: 'Agentic AI use cases in ecommerce for brands and agencies',
   description:
-    'Agentic AI use cases in ecommerce: 27 jobs AI customers do for Shopify brands and their agencies, from abandoned checkout flows to competitors’ prices.',
+    'Agentic AI use cases in ecommerce: 27 jobs an agent does as a customer for Shopify brands and agencies, from abandoned checkouts to competitors’ prices.',
   answer:
-    'Agentic AI use cases in ecommerce come from three kinds of AI agent: the store’s own agents, shoppers’ agents, and AI customers that work for a brand or agency at any store. Only an AI customer stays a new customer of any store for months and keeps what it sends, from the welcome code at checkout to a competitor’s real price, with each email and page as proof. To see what any store sends a customer, your own or a competitor’s, use Obsession: brands find revenue leaks and watch competitors with its AI customers, and agencies prospect with proof.',
+    'Agentic AI use cases in ecommerce come from three kinds of AI agent: the store’s own agents, shoppers’ agents, and agents that work for a brand or agency as a customer of any store. Only the third stays a new customer of a store for months and keeps what it sends, from the welcome code at checkout to a competitor’s real price, with each email and page as proof. Obsession keeps what any store shows only to its customers, yours or a competitor’s, dated with the email or screenshot, so brands catch a broken flow the day it breaks and agencies open pitches with proof.',
   primaryKeyword: 'agentic ai use cases in ecommerce',
   keywords: [
     'ai use cases in ecommerce',
@@ -53,9 +53,9 @@ export const post: BlogPost = {
     'ai customer use cases in ecommerce',
     'agentic ai in ecommerce',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-31',
-  updated: '2026-10-31',
+  updated: '2026-11-11',
   readingMinutes: 10,
   order: 1,
   authors: [
@@ -476,21 +476,21 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'first-job', text: 'How to use AI in ecommerce, by role' },
     {
       kind: 'p',
-      text: 'The first job is the one closest to the number each role owns, and every role has a free way to start.',
+      text: 'The first job is the one closest to the number each role owns, with the page where its team can request early access.',
     },
     {
       kind: 'table',
-      caption: 'The first job for an AI customer by ecommerce role, with the free way to start',
-      cols: ['Role', 'First job', 'Free start'],
+      caption: 'The first job by ecommerce role, with where to start',
+      cols: ['Role', 'First job', 'Where to start'],
       rows: [
-        ['Store founder', 'Your welcome, basket and checkout, shopped as a new customer', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Head of ecommerce', 'Every sale code tried at checkout before the next sale', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['CRM or retention lead', 'The abandoned checkout flow, timed to the minute', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Growth or performance lead', 'The pop-up and welcome code a paid visitor meets', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Retention agency', '5 stores you pitch or keep, each as a new customer', '[Check 5 stores free](/use-cases/leak-checks-for-retention-agencies)'],
-        ['CRO or performance agency', 'The pop-up and code behind 5 brands’ live ads', '[Check 5 brands free](/use-cases/funnel-qa-for-cro-agencies)'],
-        ['Shopify Plus agency', 'A client store, signed up to after the next release', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Shopify fixer', 'The break on a store you are quoting for', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['Store founder', 'Your welcome, basket and checkout, shopped as a new customer', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['Head of ecommerce', 'Every sale code tried at checkout before the next sale', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['CRM or retention lead', 'The abandoned checkout flow, timed to the minute', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['Growth or performance lead', 'The pop-up and welcome code a paid visitor meets', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['Retention agency', 'The stores you pitch or keep, each as a new customer', '[Request early access](/use-cases/leak-checks-for-retention-agencies)'],
+        ['CRO or performance agency', 'The pop-up and code behind each brand’s live ads', '[Request early access](/use-cases/funnel-qa-for-cro-agencies)'],
+        ['Shopify Plus agency', 'A client store, signed up to after the next release', '[Request early access](/use-cases/funnel-qa-for-cro-agencies)'],
+        ['Shopify fixer', 'The break on a store you are quoting for', '[Request early access](/agencies)'],
       ],
     },
 
@@ -520,21 +520,14 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. In October the same team ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. The [sample data](/sample-output) shows a real UK skincare store’s record from September 2026, where a £40 basket left at 02:57 got no reminder.',
     },
-    {
-      kind: 'list',
-      items: [
-        'Every store in the pilot had at least one gap.',
-        'Nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in.',
-      ],
-    },
-    { kind: 'p', text: 'Plans are credit-based, like Claude’s.' },
+    { kind: 'p', text: 'Teams start in early access, priced per call or per company watched, with a spending cap on every key.' },
 
     { kind: 'h2', id: 'compared', text: 'Ways to see what a store sends its customers, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 31 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 31 October 2026.',
     },
     {
       kind: 'table',
@@ -580,8 +573,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Ad landing check](/recipes/ad-landing-check), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Listings and AI answers](/recipes/listings-ai-answers)',
-          'AI customers sign up, shop and wait at any store, competitors included, and keep what arrives',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'Keeps what any store shows only to its customers, competitors included, each dated with the email or screenshot',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the fix to the store’s team or agency',
           'Every store a brand or agency names, checked as a customer',
         ],
@@ -605,15 +598,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company: it signs up and keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check my store free',
+      label: 'Request early access',
     },
     {
       kind: 'cta',
-      text: 'For retention agencies: name 5 stores, clients with their OK or prospects you’re about to pitch. AI customers become each store’s new customer for 48 hours, through the pop-up and its code, the welcome email and a basket. What happened reaches you within 4 days, with proof.',
+      text: 'For retention agencies: open every pitch with the store’s own emails, and the ones that never came, from the pop-up and its code to the welcome email and the basket reminder, each message dated.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Check 5 stores free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agentic AI in ecommerce' },
@@ -656,7 +649,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'Each job is described in the words of the page that runs it, linked in its row. Every other tool is described from its own pages as of 31 October 2026, with prices in US dollars as listed that day. The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores, and each journey had its own new customer, inbox and 48-hour window. Fernwick is invented.',
+      text: 'Each job is described in the words of the page that runs it, linked in its row. Every other tool is described from its own pages as of 31 October 2026, with prices in US dollars as listed that day. Fernwick is invented.',
     },
   ],
 

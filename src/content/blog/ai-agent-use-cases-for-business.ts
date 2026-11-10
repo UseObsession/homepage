@@ -29,12 +29,12 @@ const COLS = ['Job', 'What it does', 'What comes back', 'How often', 'Who runs i
 export const post: BlogPost = {
   slug: 'ai-agent-use-cases-for-business',
   title: 'AI agent use cases for business: 34 jobs an AI agent can do as a customer of any company',
-  dek: 'Most AI agents work inside the company that runs them. AI customers work at other companies as a real customer, your own included. They take on 34 jobs, from checking a welcome email to watching a competitor’s prices and opening a pitch with proof.',
+  dek: 'Most AI agents work inside the company that runs them. Some work at a company as a real customer, your own included, and keep what it shows only to customers. They take on 34 jobs, from checking a welcome email to watching a competitor’s prices and opening a pitch with proof.',
   metaTitle: 'AI agent use cases for business: 34 jobs done as a customer',
   description:
-    'AI agent use cases for business: what AI agents do inside a company, and 34 jobs for AI customers at your own company, competitors, prospects and partners.',
+    'AI agent use cases for business: what agents do inside a company, and 34 jobs done as a customer at your own company, competitors, prospects and partners.',
   answer:
-    'AI agent use cases for business fall into two kinds: AI agents that work inside a company, and AI customers, which work at other companies as their customer. Inside agents answer customers and write code, while AI customers sign up to any company, your own included, and keep what it sends and shows them. To send AI customers to any company, use Obsession: they keep every email and price as it arrived, so your company can find revenue leaks, watch competitors and prospect with proof.',
+    'AI agent use cases for business fall into two kinds: agents that work inside a company, answering customers and writing code, and agents that work at other companies as their customer, your own company included. Customer-side agents sign up to any company and keep what it sends and shows, so a business can check its own welcome email, follow competitors and open pitches with proof. Obsession keeps what any company shows only to its customers, each dated with the email or screenshot, and teams look it up in a table, through the API or over MCP, the standard way AI agents call tools.',
   primaryKeyword: 'ai agent use cases for business',
   keywords: [
     'ai agent use cases',
@@ -45,9 +45,9 @@ export const post: BlogPost = {
     'ai agent use cases for small businesses',
     'ai customer use cases',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-31',
-  updated: '2026-10-31',
+  updated: '2026-11-11',
   readingMinutes: 10,
   order: 2,
   authors: [
@@ -538,23 +538,23 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'by-role', text: 'What AI agents can do for your business, by role' },
     {
       kind: 'p',
-      text: 'Each role has one job worth sending an AI customer to first. Most can start it with a free check.',
+      text: 'Each role has one job to start with, and a page where its team can request early access.',
     },
     {
       kind: 'table',
-      caption: 'The first job to send an AI customer to, by role, with where to start',
+      caption: 'The first job, by role, with where to start',
       cols: ['Role', 'First job', 'Where to start'],
       rows: [
-        ['Ecommerce founder', 'Your welcome, basket and checkout, as a new customer', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Head of ecommerce', 'Codes and offers at checkout before the next sale', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Retention agency', '5 stores you pitch or keep', '[Check 5 stores free](/use-cases/leak-checks-for-retention-agencies)'],
-        ['CRO or performance agency', 'The pop-up and code behind 5 brands’ live ads', '[Check 5 brands free](/use-cases/funnel-qa-for-cro-agencies)'],
-        ['Shopify Plus agency', 'A client store, after its next release', '[Check my store free](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Software company marketing lead', 'A competitor’s free trial, from first email to last', '[Send an AI customer](/)'],
-        ['B2B sales leader', 'Your speed to lead on form, chat and phone', '[Send an AI customer](/)'],
-        ['CX lead', 'Your support chatbot, asked what customers ask', '[Check your AI agents](/verify)'],
-        ['Local business with an AI receptionist', 'The calls new customers make each morning', '[Check your AI agents](/verify)'],
-        ['Developer', 'An AI customer your own agent can call', '[See the API and MCP](/developers)'],
+        ['Ecommerce founder', 'Your welcome, basket and checkout, as a new customer', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['Head of ecommerce', 'Codes and offers at checkout before the next sale', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
+        ['Retention agency', 'The stores you pitch or keep', '[Request early access](/use-cases/leak-checks-for-retention-agencies)'],
+        ['CRO or performance agency', 'The pop-up and code behind each brand’s live ads', '[Request early access](/use-cases/funnel-qa-for-cro-agencies)'],
+        ['Shopify Plus agency', 'A client store, after its next release', '[Request early access](/use-cases/funnel-qa-for-cro-agencies)'],
+        ['Software company marketing lead', 'A competitor’s free trial, from first email to last', '[Request early access](/use-cases/trial-checks-for-software-companies)'],
+        ['B2B sales leader', 'Your speed to lead on form, chat and phone', '[Request early access](/sales)'],
+        ['CX lead', 'Your support chatbot, asked what customers ask', '[Request early access](/verify)'],
+        ['Local business with an AI receptionist', 'The calls new customers make each morning', '[Request early access](/verify)'],
+        ['Developer', 'Any company’s facts, called by your own agent', '[See the API and MCP](/developers)'],
       ],
     },
 
@@ -584,14 +584,14 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. In October the same team ran a pilot for 4 agencies, and the first is moving to 300 brands a month.',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. The [sample data](/sample-output) shows a real store’s record in every format it comes in.',
     },
-    { kind: 'p', text: 'Plans are credit-based, like Claude’s.' },
+    { kind: 'p', text: 'Teams start in early access, priced per call or per company watched, with a spending cap on every key.' },
 
     { kind: 'h2', id: 'compared', text: 'Ways to see what a company sends its customers, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 31 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 31 October 2026.',
     },
     {
       kind: 'table',
@@ -637,8 +637,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence), [Lead leaks](/recipes/lead-leaks), [Support bot check](/recipes/support-bot-check), [Listings and AI answers](/recipes/listings-ai-answers)',
-          'AI customers sign up and stay at any company you name, and keep what it sends',
-          'Running now: first store or AI agent check free\nCredit-based plans, like Claude’s',
+          'Keeps what any company you name shows only to customers, each dated with the email or screenshot',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the fix to the company’s own team',
           'Any company, yours included, seen as a customer for months',
         ],
@@ -666,15 +666,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What AI agents tell customers, word for word: your support chat, voice line or sales agent and your competitors’, each answer kept as a dated transcript beside the page it should match.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company: it signs up and keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Name the first company to send one to: your own, a competitor or a prospect.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'A real UK skincare store’s record from September 2026, in every format it comes in: the emails, the screenshots, and a £40 basket left at 02:57 that never got a reminder.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agent use cases' },
@@ -705,7 +705,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What can AI agents do for small businesses?',
-          a: 'Start with one job at your own company. Sign up to your own site as a new customer, then check the welcome email, the code at checkout and the reminder after a basket. A store owner can have that checked free, and a business with a chatbot or an AI phone line can have its AI agent checked free.',
+          a: 'Start with one job at your own company. Sign up to your own site as a new customer, then check the welcome email, the code at checkout and the reminder after a basket. Obsession keeps that record of a business’s own journeys, dated with every email and screenshot, and of what its chatbot or AI phone line tells customers, word for word.',
         },
         {
           q: 'What are some AI agent examples in real life?',

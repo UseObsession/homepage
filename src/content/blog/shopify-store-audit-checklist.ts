@@ -62,7 +62,7 @@ export const post: BlogPost = {
   description:
     'A Shopify store audit in 2 halves: read your conversion funnel, GA4 and speed data, then test sign up, codes, checkout and emails as a new customer.',
   answer:
-    'A Shopify store audit has 2 halves: read your own data (Shopify’s conversion rate breakdown, GA4, session recordings, PageSpeed Insights, a crawler and Search Console) to find the step, device and page where visitors stop, then shop the store as a new customer on a phone to test the sign up, welcome code, basket, checkout, payment methods, discount codes and every email. When sales drop, find the step in the data first, then reproduce it as a customer on the same device. Obsession’s AI customers run the second half as real customers of the store after every release, trying every code at checkout and keeping every email exactly as it arrived.',
+    'A Shopify store audit has 2 halves: read your own data (Shopify’s conversion rate breakdown, GA4, session recordings, PageSpeed Insights, a crawler and Search Console) to find the step, device and page where visitors stop, then shop the store as a new customer on a phone to test the sign up, welcome code, basket, checkout, payment methods, discount codes and every email. When sales drop, find the step in the data first, then reproduce it as a customer on the same device. For the second half after every release, Obsession keeps every email, code and page the store shows a new customer, dated with the email or screenshot.',
   primaryKeyword: 'shopify store audit',
   keywords: [
     'shopify store audit checklist',
@@ -78,7 +78,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 12,
   order: 12,
   authors: [
@@ -281,13 +281,13 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A test by hand covers 1 inbox, 1 device and 1 moment. A theme publish, an app update or a discount edit can break a step the day after you test it, and [Shopify Status](' +
         STATUS +
-        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh AI customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. The report comes within 4 days.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'sales-dropped', text: 'When sales or conversion rate drop' },
@@ -365,7 +365,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Shopify store audit tools compared', compare: true },
     {
       kind: 'p',
-      text: 'The free tools cover Part 1 for most stores, and the paid options save time or run checks on a schedule. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
+      text: 'The free tools cover Part 1 for most stores, and the paid options save time or run checks on a schedule. We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026.',
     },
     {
       kind: 'table',
@@ -445,16 +445,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Delivery monitoring](/recipes/delivery-monitoring)',
-          'AI customers sign up after every release or each morning, open every email and link, and try every code at checkout',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
-          'Sees what its own AI customers receive, and stops at a CAPTCHA',
+          'Every email, link and code a new customer meets after every release or each morning, kept with its time',
+          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Sees what a new customer receives, and names any step behind a CAPTCHA',
           'What a customer gets after every change, for stores that change often or run paid traffic',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your store changes often or runs paid traffic, use Obsession to send an AI customer through it after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
+      text: 'If your store changes often or runs paid traffic, use Obsession to put a new customer through it after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -472,9 +472,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s website audit signs up as a new AI customer after every release or every morning, tries every welcome and launch code at checkout, and sends each break to Slack with the step, the screenshot and the time. It runs now, on credit-based plans like Claude’s.',
-      to: '/recipes/website-audit',
-      label: 'See the website audit',
+      text: 'A real UK skincare store’s record from September 2026: every email with the time it arrived, every screenshot, and a £40 basket that got no reminder in 48 hours. Every format it comes in, side by side.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'questions', text: 'Store audit questions' },
@@ -487,7 +487,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do I audit my Shopify store for free?',
-          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. Obsession’s store check is free as well: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours.',
+          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. To run the customer half after every change, Obsession keeps every email, code and page a store shows a new customer, each dated.',
         },
         {
           q: 'Why is my Shopify store not getting sales?',

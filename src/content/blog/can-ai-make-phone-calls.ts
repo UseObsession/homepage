@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 12 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 12, and WRITER_BRIEF.md, batch 3; Seun's go
    on 1 Nov 2026). It owns "can ai make phone calls" and its neighbours (Google autocomplete, US and UK, 31 Oct 2026, in
@@ -43,13 +42,13 @@ const PECR_19 = 'https://www.legislation.gov.uk/uksi/2003/2426/regulation/19'
 
 export const post: BlogPost = {
   slug: 'can-ai-make-phone-calls',
-  title: 'Can AI make phone calls? Yes: what Google, Meta’s Muse and AI agents do, and the rules',
+  title: 'Can AI make phone calls? What AI agents do, and the rules for businesses',
   dek: 'Google’s AI calls businesses for people who use Search, Gemini phones them from a Pixel 11 owner’s own number, and Meta is rolling out calls from its Muse agent. In the US the law treats an AI voice as an artificial voice, which brings rules on consent and on saying who is calling.',
-  metaTitle: 'Can AI make phone calls? What AI agents do and what’s legal',
+  metaTitle: 'Can AI make phone calls? AI agents and rules for businesses',
   description:
     'Yes, AI can make phone calls: Google and Gemini call businesses for people, and Meta is rolling out Muse calls. What US, EU and UK rules ask of AI calls.',
   answer:
-    'Yes, AI can make phone calls: Google’s AI calls businesses for people, Meta is rolling out calls from its Muse agent, and companies run voice agents that make and take calls. In the US, the FCC’s February 2024 ruling treats an AI voice as an artificial voice, so calls that use one to mobiles and home lines need the called person’s prior express consent, with some exceptions. To check the AI that answers your company’s phone, use Obsession: its AI customers call the number, say they’re AI at the start and keep every call recorded.',
+    'Yes, AI can make phone calls: Google’s AI calls businesses for people, Meta is rolling out calls from its Muse agent, and companies run voice agents that make and take calls. In the US, the FCC’s February 2024 ruling treats an AI voice as an artificial voice, so calls that use one to mobiles and home lines need the called person’s prior express consent, with some exceptions. To check the AI that answers your company’s phone, Obsession calls it as an AI caller and keeps every call recorded and dated, by API or MCP (the way AI agents call tools).',
   primaryKeyword: 'can ai make phone calls',
   keywords: [
     'can ai make phone calls for you',
@@ -60,7 +59,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -84,15 +83,15 @@ export const post: BlogPost = {
           links: ['runs', 'answers, books, transfers'],
         },
         {
-          name: 'An AI customer',
+          name: 'A test caller',
           who: 'Works for Kestrelway itself',
-          nodes: ['Kestrelway', 'AI customer', 'Its own line'],
-          links: ['hires', 'calls, says it’s AI'],
+          nodes: ['Kestrelway', 'Obsession agent', 'Its own line'],
+          links: ['sends', 'calls, says it’s AI'],
           lit: 1,
           ours: true,
         },
       ],
-      foot: 'All 3 are AI phone calls. Only the AI customer works for Kestrelway itself, calling its own line and keeping each recording for it. Kestrelway is an invented company.',
+      foot: 'All 3 are AI phone calls. Only the test caller works for Kestrelway itself, calling its own line and keeping each recording for it. Kestrelway is an invented company.',
     },
   },
 
@@ -107,7 +106,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI makes 3 kinds of call today. A person’s AI agent calls a business for them, and a business’s own voice agent answers its callers or calls its customers. [AI customers](/blog/ai-customers) call a company’s own line to check what callers hear. Whether a call is allowed depends on who is called, what the call is for and where each side is, so each legal point names the place it applies.',
+      text: 'AI makes 3 kinds of call today. A person’s AI agent calls a business for them, and a business’s own voice agent answers its callers or calls its customers. And a test caller rings a company’s own line to check what callers hear, the job the term [AI customers](/blog/ai-customers) names. Whether a call is allowed depends on who is called, what the call is for and where each side is, so each legal point names the place it applies.',
     },
 
     { kind: 'h2', id: 'for-you', text: 'Can AI make phone calls for you?' },
@@ -313,14 +312,14 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'How AI customers call a company’s own line' },
+    { kind: 'h2', id: 'ai-customers', text: 'How a test caller checks a company’s own line' },
     {
       kind: 'p',
-      text: '**' + AI_CUSTOMER.definition + '** It works for the company that sends it, and the term is explained in full in [what AI customers are](/blog/ai-customers). Each AI customer rings from [its own phone number](/blog/how-ai-customers-work), which takes calls back too.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. On the phone, the caller is an Obsession agent, which works for the company that sends it and rings from [its own phone number](/blog/how-ai-customers-work), which takes calls back too.',
     },
     {
       kind: 'p',
-      text: '[Voice agent check](/recipes/voice-agent-check) calls a company’s AI receptionist every morning as new customers. The AI customers book a real slot, ask a price and ask for a person, then check each answer against the price list and opening hours. Each says at the start of the call that it’s an AI customer, who it works for and that the call is recorded, in voices and accents used with consent.',
+      text: '[Voice agent check](/recipes/voice-agent-check) rings a company’s AI receptionist each morning as new customers. It books a real slot, asks a price and asks for a person, then sets each answer beside the price list and opening hours. Each caller says at the start that it’s an AI, who it works for and that the call is recorded, in voices and accents used with consent.',
     },
     {
       kind: 'p',
@@ -332,17 +331,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every AI customer says it’s an AI when it talks to a person. It never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every AI customer will and won’t do](/agents) sets out.',
+      text: 'Every Obsession agent says it’s an AI when it talks to a person. Each keeps to the rules on [its own page](/agents): no fake payment details, and no getting round a CAPTCHA or a bot block.',
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. If your company needs to know what callers hear on its own line every morning, with each call recorded and checked against its price list, use Obsession.',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. If your company needs to know what callers hear on its own line every morning, with each call recorded and set beside its price list, use Obsession.',
     },
     {
       kind: 'cta',
-      text: 'Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What your AI receptionist tells callers, word for word. Every call is kept as a dated recording and transcript beside your price list and opening hours, with the wait for a person.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI phone calls' },

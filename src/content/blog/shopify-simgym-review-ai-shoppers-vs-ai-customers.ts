@@ -43,7 +43,7 @@ export const post: BlogPost = {
   description:
     'Shopify SimGym review: how its AI shoppers compare themes, SimGym pricing, how accurate Shopify’s research found it, and what it misses after the click.',
   answer:
-    'Shopify SimGym is an app by Shopify that sends AI shoppers through a store’s live theme, a draft theme or both, and in a comparison predicts which theme earns more add-to-carts. Shopify’s pages describe its shoppers browsing, adding to cart and giving feedback, and say nothing of signing up, receiving emails or trying a discount code. For what a customer receives after the click, use Obsession: its AI customers become real customers of your store or any competitor, try the code at checkout and keep every email with its time.',
+    'Shopify SimGym is an app by Shopify that sends AI shoppers through a store’s live theme, a draft theme or both, and in a comparison predicts which theme earns more add-to-carts. Shopify’s pages describe its shoppers browsing, adding to cart and giving feedback, and say nothing of signing up, receiving emails or trying a discount code. For what a customer receives after the click, Obsession keeps every email, code and page your store or any competitor shows a new customer, dated with the email or screenshot.',
   primaryKeyword: 'shopify simgym',
   keywords: [
     'simgym review',
@@ -56,7 +56,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-29',
-  updated: '2026-10-29',
+  updated: '2026-11-11',
   readingMinutes: 14,
   order: 0,
   authors: [
@@ -227,7 +227,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). In October 2026 Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. One way it collects them is the AI customer ([what AI customers are](/blog/ai-customers)): an agent that signs up the way any customer can. It keeps what the store sends, dated, with the email or screenshot behind it. In October 2026 Obsession ran a pilot for agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its agents signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
     },
     {
       kind: 'list',
@@ -243,7 +243,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'SimGym’s shoppers and AI customers both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. In Obsession’s pilot, most stores put a CAPTCHA or bot check in front of at least one step. A CAPTCHA is a puzzle that blocks automated visitors. Each Obsession store check ends in a report on every journey. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test.',
+      text: 'SimGym’s shoppers and AI customers both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. In Obsession’s pilot, most stores put a CAPTCHA or bot check in front of at least one step. A CAPTCHA is a puzzle that blocks automated visitors. Obsession keeps a record of every journey, and where a store puts a CAPTCHA in front of a step, the record names the step it couldn’t reach.',
     },
 
     { kind: 'h2', id: 'side-by-side', text: 'Simulated shoppers and AI customers, side by side' },
@@ -253,7 +253,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, Obsession’s AI customers open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'On a Shopify store, Obsession’s agents open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call.',
     },
     {
       kind: 'art',
@@ -292,7 +292,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'compared', text: 'SimGym alternatives compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 29 October 2026. CustomerEye and Insper, 2 other AI shopper apps for Shopify, showed as not currently available on the Shopify App Store that day.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 29 October 2026. CustomerEye and Insper, 2 other AI shopper apps for Shopify, showed as not currently available on the Shopify App Store that day.',
     },
     {
       kind: 'table',
@@ -331,19 +331,19 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking)',
-          'AI customers sign up at any store you name, try the code at checkout and keep every email and page, with its time',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'Every email, code and page any store you name shows a new customer, from sign-up to checkout, kept with its time',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the theme A/B decision to SimGym or a live A/B test, and payment to a test order',
           'What customers receive after the click, at your store and competitors’, every week',
         ],
       ],
     },
 
-    { kind: 'h2', id: 'which-to-use', text: 'SimGym, an A/B test or AI customers: which to use when' },
+    { kind: 'h2', id: 'which-to-use', text: 'SimGym, an A/B test or Obsession: which to use when' },
     {
       kind: 'list',
       items: [
-        '**Everything after the click, every week:** use Obsession. Its AI customers sign up, take the welcome code to checkout, wait for the reminders and keep every email and page, at your own store and at the competitors you name. Before a launch, the same AI customers run every journey on the draft theme from its preview link.',
+        '**Everything after the click, every week:** use Obsession. It keeps every email and page a new customer gets after signing up, taking the welcome code to checkout and waiting for the reminders, at your own store and at the competitors you name. Before a launch, the same journeys run on the draft theme from its preview link.',
         '**A theme, layout or menu decision before launch:** SimGym. Test one change at a time, as Shopify advises, and read the result as a prediction.',
         '**A big redesign on a store with steady traffic:** confirm it with a live A/B test once SimGym has narrowed the options.',
         '**A free second simulation with session replays:** Avada Shop Sim.',
@@ -356,9 +356,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check my store free',
+      label: 'Request early access',
     },
     {
       kind: 'p',
@@ -366,9 +366,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name 3 brands your agency is about to pitch and 2 of its clients, with their OK. Obsession sends an AI customer through each one’s live ad and sends what happened after the sign up within 4 days, with proof, free.',
+      text: 'What each brand’s funnel sends after the pop-up, from the code to the basket and checkout reminders, each dated, at every brand you pitch or test, before and after each test. Agencies start in early access.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Check 5 brands free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify SimGym' },
@@ -397,14 +397,14 @@ export const post: BlogPost = {
         },
         {
           q: 'What’s an alternative to SimGym?',
-          a: 'For another AI shopper simulation, Avada Shop Sim is free and sends up to 20 AI shoppers a run with a replay of each session. For real buyers’ behaviour, run a live A/B test. For what a customer receives after the click, use Obsession. Its AI customers sign up at your store or any competitor, try the welcome code at checkout and keep every email and page.',
+          a: 'For another AI shopper simulation, Avada Shop Sim is free and sends up to 20 AI shoppers a run with a replay of each session. For real buyers’ behaviour, run a live A/B test. For what a customer receives after the click, use Obsession, which keeps every email and page a new customer gets at your store or any competitor, from the sign-up to the welcome code at checkout, each dated.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'In Obsession’s pilot for 4 agencies, each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave. Each journey had its own inbox, watched for 48 hours. In the 26 October walk, an AI customer went through each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
+      text: 'In Obsession’s pilot for agencies, each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave. Each journey had its own inbox, watched for 48 hours. In the 26 October walk, an Obsession agent went through each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
     },
   ],
 

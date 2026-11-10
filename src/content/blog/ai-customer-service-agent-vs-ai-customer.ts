@@ -33,12 +33,12 @@ const DECAGON = 'https://decagon.ai/'
 export const post: BlogPost = {
   slug: 'ai-customer-service-agent-vs-ai-customer',
   title: 'AI customer service agents vs AI customers: who each one works for',
-  dek: 'Two kinds of AI agent with nearly the same name face opposite ways. An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included.',
+  dek: 'An AI customer service agent works for a company and answers that company’s customers. An AI customer signs up to any company you name, your own included, and is one way Obsession collects what companies show only to customers.',
   metaTitle: 'AI customer service agent vs AI customer: the difference',
   description:
     'An AI customer service agent answers a company’s customers. An AI customer works for your company as a customer of any company you name. Where they meet.',
   answer:
-    'An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included, keeping what that company sends and shows it as evidence. They meet when an AI customer asks a company’s service agent what its customers ask, and Obsession’s AI customers do that at any company you name and keep the transcript.',
+    'An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included, keeping what that company sends and shows it as evidence. They meet when an AI customer asks a company’s service agent what its customers ask, and Obsession keeps each answer word for word, dated, beside everything else that company shows only to its customers.',
   primaryKeyword: 'ai customer service agent vs ai customer',
   keywords: [
     'ai customer vs ai customer service agent',
@@ -50,9 +50,9 @@ export const post: BlogPost = {
     'test ai customer service agent',
     'customer-side observability',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 7,
   order: 2,
   authors: [
@@ -72,7 +72,7 @@ export const post: BlogPost = {
         },
         {
           name: 'AI customer',
-          who: 'Obsession',
+          who: 'Obsession’s agents',
           nodes: ['Your company', 'AI customer', 'Any company'],
           links: ['hires', 'is a customer of'],
           lit: 1,
@@ -107,7 +107,7 @@ export const post: BlogPost = {
         ['Lives in', 'The company’s site, app and help desk', 'Its own inbox, phone number and browser'],
         ['Measured by', 'Resolutions and handle time', 'What arrived, when, against what was promised'],
         ['Leaves behind', 'A resolved ticket', 'Evidence, kept as it arrived'],
-        ['Examples', 'HubSpot Customer Agent, Sierra, Decagon', 'Obsession'],
+        ['Examples', 'HubSpot Customer Agent, Sierra, Decagon', 'Obsession’s agents'],
       ],
     },
 
@@ -147,7 +147,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `The practice it carries out has a name. ${CUSTOMER_SIDE_OBSERVABILITY.definition} Its view starts where a service agent’s ends: the emails, texts, prices, pages and checkout around the conversation, and the conversation itself as the customer had it ([customer-side observability](/blog/customer-side-observability)).`,
+      text: `The practice it carries out has a name. ${CUSTOMER_SIDE_OBSERVABILITY.definition} Its view starts where a service agent’s ends: the emails, texts, prices, pages and checkout around the conversation, and the conversation itself as the customer had it ([customer-side observability](/blog/customer-side-observability)). AI customers are one way Obsession collects that record, at any company you name.`,
     },
 
     { kind: 'h2', id: 'where-they-meet', text: 'Where they meet: checking a service agent' },
@@ -192,9 +192,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers ask your AI agents what your customers ask on chat, email and phone, every day and after every update, and keep each answer as proof. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'Every answer your chat agent, voice line or AI sales agent gives a customer, word for word and dated, beside the page it should match, every day and after every update.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'personal-agents', text: 'Personal AI agents' },
@@ -267,7 +267,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**To answer your customers faster, at any hour:** an AI customer service agent.',
-        '**To see what customers receive, from your company or from a competitor:** use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
+        '**To see what customers receive, from your company or from a competitor:** use Obsession. It keeps what any company you name shows only to its customers, including every email, offer and price and what its AI agents say, each dated with the email or screenshot.',
         '**If you run a service agent:** both. The service agent answers; AI customers check what it tells people, every day and after every update.',
         '**If you run no AI agent and watch 1 or 2 competitors:** a monthly check by hand covers it, and AI customers earn their place as the list or the pace grows.',
       ],

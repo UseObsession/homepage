@@ -56,13 +56,13 @@ const CLOUD_BROWSER = 'https://help.openai.com/en/articles/20001280-using-cloud-
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-retention-agencies',
-  title: 'Why retention agencies need AI customers',
-  dek: 'What a retention agency can’t see from inside a client’s account, what that costs in retainers, the weekly routine that covers it, and the jobs AI customers do for every client, competitor and prospect.',
-  metaTitle: 'Klaviyo agency AI: why retention agencies need AI customers',
+  title: 'Klaviyo agency AI: how retention agencies show clients what their customers received',
+  dek: 'What a retention agency can’t see inside a client’s Klaviyo account, what it costs in retainers, and a weekly routine that keeps what every new customer receives, dated.',
+  metaTitle: 'Klaviyo agency AI: show clients what their customers got',
   description:
-    'Klaviyo agency AI for proof: AI customers show each client what its customers received, watch competitors and open pitches, with the payback in retainers.',
+    'Klaviyo agency AI for proof: what each client’s customers received, from the welcome email to the basket reminder, dated, with competitors and prospects.',
   answer:
-    'Retention agencies that run Klaviyo, Postscript or Attentive for ecommerce brands need AI customers to show each client what its customers received, from the welcome email to the basket reminder, checked as a new customer every week and kept exactly as it arrived. The platforms report what was sent, and Obsession’s AI customers, each with its own inbox, phone number and browser, keep what arrived at each client store, at its competitors and at the agency’s prospects as proof.',
+    'The most useful AI for a Klaviyo agency shows each client what its customers received, from the welcome email to the basket reminder, kept exactly as it arrived. Klaviyo, Postscript and Attentive report what was sent, and a client keeps paying for what it can see. Obsession keeps what each client, competitor and prospect sends a new customer, dated as it arrived, by API, MCP or a table.',
   primaryKeyword: 'klaviyo agency ai',
   keywords: [
     'klaviyo agency ai',
@@ -74,9 +74,9 @@ export const post: BlogPost = {
     'ai tools for email marketing',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'For agencies',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 12,
   order: 13,
   authors: [
@@ -270,7 +270,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'An agency gives each client store, each competitor and each prospect its own AI customer, with the client’s OK for its store. Obsession runs this today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. For a retention agency, it shows what each client’s customers received, from the pop up to the basket reminder.',
+      text: 'An agency gives each client store, each competitor and each prospect its own AI customer, with the client’s OK for its store. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a retention agency, that is what each client’s customers received, from the pop up to the basket reminder, kept for as long as the agency follows the store.',
     },
     { kind: 'h3', id: 'client-flows', text: '1. Every client’s flows, every week' },
     {
@@ -334,7 +334,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Retention agency options compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -381,8 +381,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence)',
-          'AI customers at clients, competitors and prospects, every email and text kept',
-          'Running now: check 5 stores free\nCredit-based plans, like Claude’s',
+          'What clients, competitors and prospects send a new customer, every email and text kept as it arrived',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'What customers get at every client, competitor and prospect, kept as proof',
         ],
@@ -390,7 +390,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency needs to show every client what its customers received, watch their competitors and open pitches with proof, use Obsession. For a handful of clients whose flows rarely change, a sheet and a new address are enough. The options combine: the platform reports revenue, the audit finds causes, a placement test checks a big send, and AI customers record what each new customer received. [Hiring AI customers](/blog/hire-ai-customers) sets out how to brief them.',
+      text: 'Use Obsession when your agency needs to show every client what its customers received, beside its competitors, and to open pitches on each prospect’s own emails. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For a handful of clients whose flows rarely change, a sheet and a new address are enough. The options combine: the platform reports revenue, the audit finds causes, a placement test checks a big send, and Obsession keeps what each new customer received. [Hiring AI customers](/blog/hire-ai-customers) sets out how to brief each check.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
@@ -419,9 +419,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Name 5 stores, prospects or clients with their OK: an AI customer becomes each one’s new customer for 48 hours, covering the pop up and its code, the welcome email, texts and a basket, and your agency sees what happened within 4 days, with proof.',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated with the email itself, for the stores you pitch, the clients you keep and their competitors. Agencies start in early access, onboarding teams now.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Check 5 stores free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI for retention agencies' },

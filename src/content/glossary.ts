@@ -17,31 +17,7 @@ export const AI_CUSTOMER = {
     'An AI customer is an agent that signs up, starts a trial or asks for a quote the way any customer can, so that what a company shows only its signed-up customers is kept, dated, with the email or screenshot behind it.',
   /* The definition article, which owns the term in search. */
   path: '/blog/ai-customers',
-  /* The articles that define, explain and argue for the category (the AI customers hub), each about the term in the
-     JSON-LD. */
-  articles: [
-    'ai-customers',
-    'ai-customer-service-agent-vs-ai-customer',
-    'how-ai-customers-work',
-    'why-ai-customers-matter',
-    'hire-ai-customers',
-    'ai-customers-find-revenue-leaks',
-    'ai-customers-at-scale',
-    'future-of-ai-customers',
-    'ai-customers-for-developers',
-    'ai-customers-for-commercial-teams',
-    'customer-side-observability',
-    'ai-customers-for-ecommerce-brands',
-    'ai-customers-for-retention-agencies',
-    'ai-customers-for-cro-agencies',
-    'ai-customers-for-cx-teams',
-    'ai-customers-for-shopify-plus-agencies',
-    'ai-customers-for-ecommerce-vendors',
-    'ai-customers-for-b2b-sales-teams',
-    'long-running-ai-agents',
-    'what-to-build-with-ai-customers',
-    'ai-agent-use-cases-for-business',
-    'agentic-ai-use-cases-in-ecommerce',
-    'speed-to-lead-statistics',
-  ],
+  /* The posts that define or explain the term, each about it in the JSON-LD (lib/jsonld.ts). Since the 11 Nov SEO
+     revamp no other guide mentions it: the term names one way the index is collected, never the category. */
+  articles: ['ai-customers', 'how-ai-customers-work', 'ai-customer-service-agent-vs-ai-customer', 'customer-side-observability'],
 }

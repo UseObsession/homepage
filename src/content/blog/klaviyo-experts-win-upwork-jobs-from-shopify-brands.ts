@@ -44,7 +44,7 @@ export const post: BlogPost = {
   description:
     'Klaviyo experts on Upwork: sign up to the Shopify brand’s store as a new customer, see what its emails miss, and open your proposal with it.',
   answer:
-    'To win Upwork Klaviyo jobs from Shopify brands, become the brand’s customer before you bid: within the hour of the job post, sign up to its store, leave a basket and start a checkout. Open the proposal with what its emails got wrong and when, such as a welcome email that came without the code the pop-up promised. To check hundreds of prospects a month, use Obsession: its AI customers become each brand’s new customer and report at the hours you choose, 4, 12, 24 or 48, or for as long as you want to keep watching.',
+    'To win Upwork Klaviyo jobs from Shopify brands, become the brand’s customer before you bid: within the hour of the job post, sign up to its store, leave a basket and start a checkout. Open the proposal with what its emails got wrong and when, such as a welcome email that came without the code the pop-up promised. For hundreds of prospects a month, Obsession keeps what each brand sends a new customer, dated with the email itself, by API, MCP or a table.',
   primaryKeyword: 'upwork klaviyo jobs',
   keywords: [
     'klaviyo expert upwork',
@@ -58,7 +58,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-29',
-  updated: '2026-10-29',
+  updated: '2026-11-11',
   readingMinutes: 13,
   order: 1,
   authors: [
@@ -196,7 +196,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-4-hours-misses', text: 'What a 4-hour check misses' },
     {
       kind: 'p',
-      text: 'Some stores send their first reminder later than 4 hours. This month Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store, each with its own inbox, and watched every inbox for 48 hours. Every store in the pilot had at least one gap: an email that never came, came late or missed one of Obsession’s written criteria, such as the item’s price or a link back.',
+      text: 'Some stores send their first reminder later than 4 hours. In October 2026 Obsession ran a pilot on the stores that 4 agencies pitch and serve. Between 21 and 24 October, its agents signed up, browsed, left a basket and started a checkout at each store, each with its own inbox, and watched every inbox for 48 hours. Every store in the pilot had at least one gap: an email that never came, came late or missed one of Obsession’s written criteria, such as the item’s price or a link back.',
     },
     {
       kind: 'list',
@@ -274,7 +274,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Ways to check prospects at volume, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 29 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 29 October 2026.',
     },
     {
       kind: 'table',
@@ -306,8 +306,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Mystery shopper](/recipes/mystery-shopper)',
-          'An AI customer for each step at any store you name, shopping from the US or the UK, each email kept as it arrived',
-          'Running now: Check 5 stores free\nCredit-based plans, like Claude’s',
+          'What any store you name sends a new customer at each step, from the US or the UK, each email kept as it arrived',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Why a flow didn’t send sits inside the brand’s account',
           'Hundreds or thousands of prospects a month, then weekly and monthly client checks',
         ],
@@ -315,15 +315,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. This month it ran a pilot for 4 agencies on the stores they pitch and serve, and the first is moving to 300 brands a month.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Each check is run by an Obsession agent, a customer that says it’s an AI ([how the data is collected](/blog/ai-customers)). Its agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'p',
-      text: 'Obsession runs as many AI customers as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000, and it’s built for millions.',
+      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000. It’s built for hundreds of thousands of companies, each looked up in one call.',
     },
     {
       kind: 'p',
-      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same AI customers check each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/recipes/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
+      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same checks run on each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/recipes/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
     },
     {
       kind: 'p',
@@ -333,9 +333,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name 5 stores you’re pitching, or clients’ stores with their OK, and Obsession checks them free. Its AI customers sign up, leave a basket and start a checkout at each store, then report what arrived and what didn’t, with every email kept as it arrived. The Obsession team helps your agency set up its first batch.',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up and a basket, each message dated with the email itself, for the stores you pitch and the clients you keep. Agencies start in early access, onboarding teams now.',
       to: USE_CASE,
-      label: 'Check 5 stores free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'when-you-dont-need-it', text: 'When a check before the proposal isn’t needed' },
@@ -375,7 +375,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How long should I wait before saying a store sends no abandoned cart email?',
-          a: '48 hours, with the spam folder checked. In Obsession’s October pilot for 4 agencies, some stores sent their first reminder about 10 hours after the AI customer left. Until the 48 hours are up, say “nothing yet at 4 hours”.',
+          a: '48 hours, with the spam folder checked. In Obsession’s October pilot for 4 agencies, some stores sent their first reminder about 10 hours after the shopper left. Until the 48 hours are up, say “nothing yet at 4 hours”.',
         },
         {
           q: 'Does this work if the brand isn’t on Klaviyo?',

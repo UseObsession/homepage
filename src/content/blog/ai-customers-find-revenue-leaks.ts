@@ -54,13 +54,13 @@ const BOT_TEST = '/blog/test-store-chatbot-returns-policy'
 
 export const post: BlogPost = {
   slug: 'ai-customers-find-revenue-leaks',
-  title: 'Customer journey testing: how AI customers find revenue leaks',
-  dek: 'The steps that lose money rarely raise an error. Where they hide in online stores, B2B lead forms and AI agents, what a pass looks like at each, how an AI customer finds them, and what a silent step costs in your own numbers.',
-  metaTitle: 'Customer journey testing: AI customers find revenue leaks',
+  title: 'Customer journey testing: how stores and B2B teams find revenue leaks',
+  dek: 'The steps that lose money rarely raise an error. Where they hide in online stores, B2B lead forms and AI agents, what a pass looks like at each, how to test each step as a new customer, and what a silent step costs in your own numbers.',
+  metaTitle: 'Customer journey testing: how stores find revenue leaks',
   description:
-    'Customer journey testing with AI customers: where revenue leaks hide in stores, lead forms and AI agents, what a pass looks like, and what one costs you.',
+    'Customer journey testing as a new customer: where revenue leaks hide in stores, lead forms and AI agents, what a pass looks like, and what one costs you.',
   answer:
-    'Customer journey testing with AI customers finds revenue leaks where a company’s own reports can’t: an AI customer signs up with its own inbox, phone number and browser, waits, opens every email, text and reply, and checks each one against what was promised. The leaks it finds are steps that fail without an error, such as a welcome text that never arrives, a code refused at checkout, a basket reminder hours late, a chatbot quoting the wrong policy or a demo form nobody answers. Obsession’s AI customers run these tests on any store, lead form or AI agent you name, every week and after every change.',
+    'Customer journey testing finds revenue leaks where a company’s own reports can’t: a test customer signs up with its own inbox, phone number and browser, waits, opens every email, text and reply, and checks each one against what was promised. The leaks it finds are steps that fail without an error, such as a welcome text that never arrives, a code refused at checkout, a basket reminder hours late, a chatbot quoting the wrong policy or a demo form nobody answers. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, so every step of your store, lead form or AI agent is on record every week and after every change.',
   primaryKeyword: 'customer journey testing',
   keywords: [
     'revenue leaks',
@@ -73,9 +73,9 @@ export const post: BlogPost = {
     'speed to lead',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Check your own journeys',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 11,
   order: 7,
   authors: [
@@ -261,9 +261,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers use every AI agent you run as your customers do, on every channel, every day. The first check is free: 3 AI customers, 1 channel, and your report within 4 days.',
+      text: 'What your AI agents tell customers, word for word, on every channel: each answer kept as a dated transcript beside the page it should match.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'customer-journey-testing', text: 'Customer journey testing, step by step' },
@@ -302,7 +302,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer runs the same 5 steps, waits days or weeks at almost no cost and keeps every message as it arrived, as [how AI customers work](/blog/how-ai-customers-work) explains. Obsession’s AI customers shop a store as new customers every week and after every change, and every failure comes back with proof and the fix.',
+      text: 'An AI customer runs the same 5 steps, waits days or weeks at almost no cost and keeps every message as it arrived, as [how AI customers work](/blog/how-ai-customers-work) explains. Obsession keeps the result for any store you name, every week and after every change, each step dated with the email or screenshot.',
     },
 
     { kind: 'h2', id: 'your-number', text: 'What a silent step costs' },
@@ -374,7 +374,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Ways to test your customer journeys', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -415,18 +415,18 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Lead leaks](/recipes/lead-leaks), [Support bot check](/recipes/support-bot-check)',
-          'AI customers sign up, wait and keep every email, text and reply as proof',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
-          'Sees what its own AI customers receive',
+          'Every email, text and reply a new customer gets, kept dated with its proof',
+          'Early access, onboarding teams now. Priced per call or per company watched',
+          'The cause sits in your own tools',
           'What a real customer gets, weekly and after every change',
         ],
       ],
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company: it signs up and keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof. Your first store check is free: 4 AI customers sign up, browse, leave a basket and stop at checkout, every inbox is watched for 48 hours, and your report arrives within 4 days.',
+      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -481,7 +481,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Business Insider’s report of the Product.ai study is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. The store in the illustrations and every figure in the cost example are invented. We ran none of these tests, and the only result of our own is the September store check on our sample output page. For legal questions about AI agents, take advice for your own case.',
+      text: 'Business Insider’s report of the Product.ai study is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. The store in the illustrations and every figure in the cost example are invented. The September store check on the sample output page is a real record of our own, and the other tests are set out for you to run. For legal questions about AI agents, take advice for your own case.',
     },
   ],
 

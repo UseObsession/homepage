@@ -5,7 +5,8 @@
    - a recipe or use case lists no guides: name it in a post's `related`, or link it from a post;
    - a page has no link to it from another page's text (the nav and footer don't count);
    - a page has more or less than 1 h1, no title or description, or a canonical that isn't its own address;
-   - a post's BlogPosting doesn't mention the Obsession app (/#software) and the term "AI customer";
+   - a post's BlogPosting doesn't mention the Obsession app (/#software) (since 11 Nov, the "AI customer" term sits only
+     on the posts that define it, so it isn't required);
    - llms.txt doesn't group the guides by reader ("## Guides: ...") or leaves a guide out;
    - the sitemap leaves a page out.
    A page with fewer than 3 links in is noted, not failed. */
@@ -77,7 +78,6 @@ for (const [p, html] of pages) {
   if (kind === 'post') {
     const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('')
     if (!ld.includes('/#software')) fail(`${p}: the BlogPosting doesn't mention the Obsession app (/#software, lib/jsonld.ts).`)
-    if (!ld.includes('/blog/ai-customers#term')) fail(`${p}: the BlogPosting doesn't mention the term "AI customer" (lib/jsonld.ts).`)
   }
 }
 

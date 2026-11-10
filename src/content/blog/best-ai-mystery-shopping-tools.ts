@@ -49,13 +49,13 @@ const EVALYN = 'https://www.evalyn.ai/'
 
 export const post: BlogPost = {
   slug: 'best-ai-mystery-shopping-tools',
-  title: 'The best AI mystery shopping tools in 2026, by what they test',
-  dek: '20 tools grouped by what they test: phone staff, AI agents and chatbots, or a website and store, with human shopper panels beside them. Every price is as each company listed it on 28 October 2026, next to what a new customer got in Obsession’s October pilot for 4 agencies.',
-  metaTitle: 'Best AI mystery shopping tools in 2026, by what they test',
+  title: 'The best AI mystery shopping tools in 2026 for stores and CX teams, by what they test',
+  dek: '20 tools grouped by what they test: phone staff, AI agents and chatbots, or a website and store, with human shopper panels beside them. Store founders, CX leads and agencies get each price as listed on 28 October 2026 and the pick for each job.',
+  metaTitle: 'Best AI mystery shopping tools for stores and CX teams, 2026',
   description:
-    'AI mystery shopping tools compared by what they test: phone staff, AI agents, stores and inboxes. Prices as listed on 28 Oct 2026, beside a real store run.',
+    '20 AI mystery shopping tools for store founders, CX leads and agencies, compared by what they test, from phone staff to inboxes, priced as on 28 Oct 2026.',
   answer:
-    'AI mystery shopping tools send software to act as a customer of a business and report what it got. By job, the picks are PressTwo SpotCheck or AdStack for phone staff, Cresta or UndercoverAgent for your own AI agents, AI Store Shopper or Shoptest for a store’s path to checkout, and T-ROC for the shop floor. Obsession’s AI customers become real customers of any company you name and keep every email, offer, price and page they get as proof.',
+    'AI mystery shopping tools send software to act as a customer of a business and report what it got. By job, the picks are PressTwo SpotCheck or AdStack for phone staff, Cresta or UndercoverAgent for your own AI agents, AI Store Shopper or Shoptest for a store’s path to checkout, and T-ROC for the shop floor. Obsession keeps what any company you name shows only to its customers, from the welcome email to the basket reminder, dated with the email or screenshot.',
   primaryKeyword: 'ai mystery shopping tools',
   keywords: [
     'ai mystery shopping',
@@ -67,7 +67,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-28',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 19,
   order: 1,
   authors: [
@@ -84,10 +84,10 @@ export const post: BlogPost = {
         { name: 'Calls your staff', cells: ['Rang the shop line', 'Call answered well', 'Not watched'], tone: 'info' },
         { name: 'Tests your own bot', cells: ['Asked the help bot', 'Returns answer right', 'Not watched'], tone: 'info' },
         { name: 'Walks your website', cells: ['Reached checkout', 'Checkout loads', 'Not watched'], tone: 'info' },
-        { name: 'AI customer', cells: ['Signed up, left a basket', 'Welcome email in 4 min', 'No basket email'], tone: 'fail' },
+        { name: 'Signs up and waits', cells: ['Signed up, left a basket', 'Welcome email in 4 min', 'No basket email'], tone: 'fail' },
       ],
       notes: [
-        'Only the AI customer had an inbox and waited, so only it saw the basket email that never came.',
+        'Only the one that signed up had an inbox and waited, so only it saw the basket email that never came.',
         'Kestrel Home and every result here are invented.',
       ],
     },
@@ -118,7 +118,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A fourth kind is the AI customer. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). It sees what arrives after the visit: the welcome email, the reminder after a left basket and the price printed in that reminder.',
+      text: 'A fourth kind signs up the way any customer can and keeps what the company sends and shows, dated, with the email or screenshot behind it ([what AI customers are](/blog/ai-customers)). It sees what arrives after the visit: the welcome email, the reminder after a left basket and the price printed in that reminder.',
     },
 
     { kind: 'h2', id: 'how-compared', text: 'How the tools were compared' },
@@ -442,18 +442,18 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-got', text: 'What a customer actually got' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Two of its October runs show what a customer got, and which group of tools can see each result.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Two of its October runs show what a customer got, and which group of tools can see each result.',
     },
 
-    { kind: 'h3', id: 'october-pilot', text: 'A pilot for 4 agencies, every inbox watched for 48 hours' },
+    { kind: 'h3', id: 'october-pilot', text: 'An October pilot for agencies, every inbox watched for 48 hours' },
     {
       kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
+      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026.',
     },
     {
       kind: 'table',
       caption:
-        'What arrived within 48 hours, by journey, in Obsession’s October pilot for 4 agencies, 21 to 24 October 2026. A journey stopped by a CAPTCHA, at a store with no sign-up form, or spoiled by our own test is left out',
+        'What arrived within 48 hours, by journey, in Obsession’s October pilot for agencies, 21 to 24 October 2026. A journey stopped by a CAPTCHA, at a store with no sign-up form, or spoiled by our own test is left out',
       cols: ['Journey', 'Within 48 hours'],
       rows: [
         ['Sign up for emails', 'Almost every store sent a welcome email'],
@@ -473,7 +473,7 @@ export const post: BlogPost = {
         'Some stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. Each of those stores then sent nothing in the 48 hours after a checkout was left.',
         'Most first checkout reminders came within 4 hours, the fastest after 30 minutes and the slowest after about 10 hours. Fewer than half of the stores that sent one followed it with a second reminder inside 48 hours.',
         'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
-        'Most stores put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of at least one step. The report names each step a CAPTCHA kept the AI customer from testing.',
+        'Most stores put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of at least one step. The report names each step a CAPTCHA kept the shopper from testing.',
       ],
     },
     {
@@ -484,7 +484,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'client-stores', text: 'Stores agencies show as clients, walked on a phone' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
+      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
@@ -506,7 +506,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/recipes/mystery-shopper) gives each journey its own AI customer and inbox, and watches every inbox to the end of the wait.',
+        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/recipes/mystery-shopper) gives each journey its own new customer and inbox, and watches every inbox to the end of the wait.',
         '**Phone staff:** PressTwo SpotCheck for a listed monthly price, AdStack to have the programme run for you, Implement AI for multi-site gyms.',
         '**Competitors’ sales and phone teams:** Dealer Driven Data for car dealers, LocalSpy AI for local businesses.',
         '**How fast reps answer a new lead:** Qualified’s free test.',
@@ -521,15 +521,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check my store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 20 tools and Obsession, side by side', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 28 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 28 October 2026.',
     },
     {
       kind: 'table',
@@ -567,8 +567,8 @@ export const post: BlogPost = {
         ['T-ROC', 'In-person visits, compliance checks and fast dashboards', '$40 to $150 a store visit', '4 to 6 visits per store per quarter suggested', 'Multi-location retail'],
         [
           'Obsession (ours): [AI mystery shopper](/recipes/mystery-shopper), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
-          'AI customers sign up, shop and wait at any company you name, and keep what arrives',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'What any company you name sends after a sign-up, a basket and a checkout, kept as it arrives',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Online journeys and inboxes, with a person for the shop floor',
           'What a real customer gets, across email, offers, prices and pages, kept as proof',
         ],
@@ -602,7 +602,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI mystery shopping tools test the emails a store sends?',
-          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession’s AI customers each keep their own inbox and watch it to the end of the wait. In Obsession’s October pilot for 4 agencies, nearly half the stores sent nothing within 48 hours of an AI customer leaving a checkout.',
+          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession gives each journey its own inbox and keeps every email that arrives, dated, to the end of the wait. In Obsession’s October pilot for agencies, nearly half the stores sent nothing within 48 hours of a new customer leaving a checkout.',
         },
         {
           q: 'Can an AI mystery shopper get past a CAPTCHA?',

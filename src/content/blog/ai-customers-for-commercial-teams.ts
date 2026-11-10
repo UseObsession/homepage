@@ -34,13 +34,13 @@ const REJOINER = 'https://rejoiner.com/abandoned-cart-email-report'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-commercial-teams',
-  title: 'AI agents for marketing teams, sales and agencies: what AI customers answer',
+  title: 'AI agents for marketing teams, sales and agencies: what companies send customers',
   dek: 'What marketing, sales, agency, ecommerce and CX teams can only learn as a customer, the checks to run each week with a pass mark, and what each team does with the result that week.',
-  metaTitle: 'AI agents for marketing teams, sales teams and agencies',
+  metaTitle: 'AI agents for marketing teams: competitor emails and offers',
   description:
-    'AI agents for marketing teams, sales teams, agencies and CX: the questions only a customer can answer, the checks to run and what to do that week.',
+    'AI agents for marketing teams, sales and agencies: what competitors, prospects and clients send their customers, the weekly checks and what to do next.',
   answer:
-    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer. AI customers sign up to a competitor, a prospect, a client or the team’s own company and record what it sends and shows. Obsession’s AI customers show marketing its competitors’ offers, sales how a prospect treats its customers, agencies every client’s flows, and ecommerce and CX teams every journey and chatbot answer.',
+    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer of a competitor, a prospect, a client or the team’s own company, and keep what it sends and shows. That gives marketing its competitors’ offers, sales a view of how each prospect treats its customers and agencies every client’s flows. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, and teams look it up in a table, through the API or over MCP, the standard way AI agents call tools.',
   primaryKeyword: 'ai agents for marketing teams',
   keywords: [
     'ai for sales teams',
@@ -52,9 +52,9 @@ export const post: BlogPost = {
     'ai agents for ecommerce',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 9,
   order: 10,
   authors: [
@@ -192,9 +192,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 stores free, a prospect’s or a client’s with their OK: an AI customer signs up as each store’s new customer, opts in to texts and leaves a basket, and you see what happened within 4 days, with proof.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      text: 'Open every pitch with the prospect’s own emails, and show each client what its store and its competitors send their signed-up customers, every message dated with a screenshot.',
+      to: '/agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'ecommerce-cx', text: 'AI for ecommerce and CX teams' },
@@ -224,9 +224,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'start', text: 'Start this week' },
@@ -243,7 +243,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so your team can find revenue leaks, watch competitors and prospect with proof. They run as its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
+      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, for as long as your team follows it, and your team looks each company up in a table, through the API or over MCP. Its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes run these checks across every company you name. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },

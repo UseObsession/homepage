@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 11 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 11, and WRITER_BRIEF.md, batch 3; Seun's go
    on 1 Nov 2026). It owns "b2b mystery shopping", "b2b mystery shopper" and "saas mystery shopping" (Google
@@ -35,12 +34,12 @@ export const post: BlogPost = {
   description:
     'B2B mystery shopping tests a sales funnel the way a buyer meets it: the first reply, the questions, the follow ups and the quote. How sales teams run it.',
   answer:
-    'B2B mystery shopping tests a sales funnel as a buyer meets it: a test buyer asks for a demo and records who replies, how fast, the questions and the price quoted. Run it on your company’s own form, chat and sales line, because a test lead sent to a competitor’s sales team spends their staff’s time on a lead that isn’t real. To run it daily and after every routing change, use Obsession: its AI customers ask for the demo, use the chat and call the sales line, keeping every reply with its time.',
+    'B2B mystery shopping tests a sales funnel as a buyer meets it: a test buyer asks for a demo and records who replies, how fast, the questions and the price quoted. Run it on your company’s own form, chat and sales line, because a test lead sent to a competitor’s sales team spends their staff’s time on a lead that isn’t real. Obsession keeps every reply your demo form and chat give a buyer, dated with the email or screenshot, after every routing change, by API, MCP or a table.',
   primaryKeyword: 'b2b mystery shopping',
   keywords: ['b2b mystery shopper', 'saas mystery shopping'],
   category: 'Check your own journeys',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -50,7 +49,7 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'larkfield.example · 1 demo request, 5 days',
-      who: 'An AI customer asks Larkfield for a demo, as Larkfield’s own test buyer',
+      who: 'A test buyer asks Larkfield for a demo, on Larkfield’s own form',
       rows: [
         { time: 'Mon 10:02', text: 'Demo form sent', detail: '“What would 40 seats cost from January?”', tone: 'info' },
         { time: 'Mon 10:03', text: 'Automatic reply', detail: 'A booking link, with no answer on price', tone: 'info' },
@@ -214,10 +213,10 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'How AI customers run B2B mystery shops' },
+    { kind: 'h2', id: 'ai-customers', text: 'How Obsession keeps what a buyer meets' },
     {
       kind: 'p',
-      text: '**' + AI_CUSTOMER.definition + '** For a sales team, AI customers are buyers of its own company. Each one asks for the demo, opens the chat or calls the sales line at the hours the team picks, and keeps every reply with its time and channel.',
+      text: 'For a sales team, the company to test is its own. A test buyer asks for the demo or opens the chat at the hours the team picks, and every reply is kept with its time and channel.',
     },
     {
       kind: 'p',
@@ -225,7 +224,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every AI customer says it’s an AI when it talks to a person. It never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every AI customer will and won’t do](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Where a form puts a CAPTCHA or a bot check in front of a step, the report names the step it couldn’t test.',
+      text: 'The test buyer is an Obsession agent, a customer that says it’s an AI when it talks to a person. It never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Where a form puts a CAPTCHA or a bot check in front of a step, the record names the step it couldn’t reach.',
     },
     {
       kind: 'p',
@@ -233,19 +232,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'cta',
-      text: 'Name your company’s demo form, chat and sales line, and AI customers become its buyers. They ask for the demo, wait for the reply and keep every email, chat and call log exactly as it arrived, with its time.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'What each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. Sales teams start in early access, with any company they name added on request.',
+      to: '/sales',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to mystery shop a B2B sales funnel, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 1 November 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 1 November 2026.',
     },
     {
       kind: 'table',
@@ -291,8 +290,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Mystery shopper](/recipes/mystery-shopper), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check)',
-          'AI customers ask for the demo, use the chat and call the sales line as buyers, and keep every reply with its time',
-          'Running now\nCredit-based plans, like Claude’s',
+          'Every reply a buyer gets from a demo form, chat and sales line, kept with its time and its email, screenshot or call',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Real leads and their deals stay in the team’s CRM',
           'What a buyer meets on every way in, every day',
         ],
@@ -300,7 +299,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your company needs to know what a buyer meets on every form, chat and sales line, every day and after every change, use Obsession. For coaching phone reps at a listed monthly price, PressTwo SpotCheck fits, and Qualified’s free test gives a single first response time. A human programme such as Service Monitor’s suits recorded calls a manager can coach from, and a request sent by hand covers a spot check after a change.',
+      text: 'If your company needs to know what a buyer meets on every demo form, chat and sales line, every day and after every change, use Obsession. For coaching phone reps at a listed monthly price, PressTwo SpotCheck fits, and Qualified’s free test gives a single first response time. A human programme such as Service Monitor’s suits recorded calls a manager can coach from, and a request sent by hand covers a spot check after a change.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about B2B mystery shopping' },

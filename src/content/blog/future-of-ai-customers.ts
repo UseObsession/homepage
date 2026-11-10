@@ -47,13 +47,13 @@ const AI_ACT_113 = 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-1
 
 export const post: BlogPost = {
   slug: 'future-of-ai-customers',
-  title: 'Machine customers: the future of shopping with AI, and where AI customers fit',
+  title: 'Machine customers: the future of shopping with AI, and what brands do this quarter',
   dek: 'AI agents now search, buy and contact companies for people, and companies answer with agents of their own. What is live, announced and forecast on 24 October 2026, what neither side sees, and what to do this quarter.',
   metaTitle: 'Machine customers and agentic commerce: what is live today',
   description:
     'Machine customers and agentic commerce on 24 October 2026: what is live, announced and forecast, how companies answer with agents, and what to do now.',
   answer:
-    'Machine customers are nonhuman economic actors that obtain goods or services in exchange for payment, in a definition CMSWire attributes to Gartner, and in commerce they include AI agents that search, buy and contact companies for people. On 24 October 2026 agents can already shop through Shopify, Google and ChatGPT, Visa and Mastercard are deploying payments for agents, and companies answer with AI agents of their own. Obsession’s AI customers stand where those agents stand: they become customers of any company you name and keep what it sends and shows them as evidence.',
+    'Machine customers are nonhuman economic actors that obtain goods or services in exchange for payment, in a definition CMSWire attributes to Gartner, and in commerce they include AI agents that search, buy and contact companies for people. On 24 October 2026 agents can already shop through Shopify, Google and ChatGPT, Visa and Mastercard are deploying payments for agents, and companies answer with AI agents of their own. Obsession keeps what any company shows only to its customers, including what its AI agents tell them, dated with the email, screenshot or transcript, for lookup by API, MCP or a table.',
   primaryKeyword: 'machine customers',
   keywords: [
     'future of shopping ai',
@@ -65,9 +65,9 @@ export const post: BlogPost = {
     'personal ai agents customer service',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 10,
   order: 11,
   authors: [
@@ -289,9 +289,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers use every AI agent your company runs, on every channel, every day, and show each wrong answer the morning it happens, with proof. The first check is free: 3 AI customers, 1 channel, and your report within 4 days.',
+      text: 'What every AI agent your company runs tells customers, on chat and voice, word for word and dated, beside the page it should match, every day and after every update.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -317,7 +317,7 @@ export const post: BlogPost = {
         '**Put a number on your AI channel.** Count last month’s sessions from AI assistants and the orders placed inside AI checkouts, with the method in [agentic commerce for merchants](/blog/agentic-commerce-for-merchants). Revenue exposed to a wrong answer is your AI revenue a day × the days until you would notice. With invented figures, £350 a day for 21 days is £7,350 of orders placed while an answer was wrong.',
         '**Decide your channels.** In Shopify, under Sales channels, then Agentic, check which AI channels list your products and where each order is placed.',
         '**Write a rule for agent traffic.** Decide which agents may browse, build a basket and check out, and set it in your bot management. Cloudflare’s Verified bots and Shopify’s higher limits for signed traffic are 2 controls that exist today.',
-        '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy). To run it every day, use Obsession.',
+        '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy). To run it every day, use Obsession: it keeps what your agent, and any other company’s, tells customers, word for word and dated.',
         '**Make your agent say it is an AI** and hand over to a person when asked. In the EU, Article 50 transparency duties apply from 2 August 2026.',
         '**Keep what your agent said,** with the time of each turn, so a dispute about a promise can be settled from the record.',
         '**Ask the AI assistants about your store** and fix each wrong answer at its source, with the method in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
@@ -325,9 +325,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company you name, and it keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'Every email a new customer gets from your store and your competitors after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come.',
+      to: '/use-cases/leak-checks-for-ecommerce-stores',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about machine customers and agentic commerce' },

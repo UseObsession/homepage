@@ -1,16 +1,15 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Best X guides, row 3 (_research/seo/recommend/best-x/PLAN.md, agreed by Seun on 28 Oct 2026): the best AI chatbot and
    AI agent testing tools. Primary "ai chatbot testing tools"; secondary "chatbot testing tools", "ai agent testing tools",
    "chatbot automation testing tools", "how to automate chatbot testing", "what is chatbot testing" (Google autocomplete,
    US and UK, 28 Oct 2026, autocomplete_tools_28oct.json). It takes "ai chatbot testing" from ai-customers-for-cx-teams,
-   which keeps AI customer service QA and AI agent QA; /recipes/support-bot-check keeps "test my chatbot" (linked here
-   through the cta label); test-store-chatbot-returns-policy keeps "how to test a chatbot" (linked with that anchor).
+   which keeps AI customer service QA and AI agent QA; /recipes/support-bot-check keeps "test my chatbot" (the cta
+   label linked it until 11 Nov 2026, when the cta moved to /verify; the recipe is linked in the table); test-store-chatbot-returns-policy keeps "how to test a chatbot" (linked with that anchor).
    Readers: engineers, product managers and CX leads choosing how to test a chatbot or AI agent they run.
    Every other tool comes only from research_chatbot_testing.json (12 tools, each read on its own pages on 28 Oct 2026),
-   grouped by its 5 jobs. Obsession is presented by STANDARD.md: named in the answer, live today with the free AI agent
-   check, its full view once, the 1,500 line word for word, "Use Obsession when" once, last in the table.
+   grouped by its 5 jobs. Obsession is presented by STANDARD.md: named in the answer, in early access (11 Nov 2026),
+   its full view once, the 1,500 line word for word, "Use Obsession when" once, last in the table.
    Obsession is described only in the words of /verify and the AI agent recipes. firsthand_28oct.json holds no chatbot
    evidence, so no run of ours is cited here; the chat widgets over Check out (F28) are left out on purpose.
    The CMA guidance is the one outside fact, as cited in test-store-chatbot-returns-policy.
@@ -50,13 +49,13 @@ const TOKENSURF = 'https://tokensurf.io/'
 
 export const post: BlogPost = {
   slug: 'best-ai-chatbot-testing-tools',
-  title: 'The best AI chatbot and AI agent testing tools in 2026',
+  title: 'AI chatbot testing tools: the best for each job, for CX and engineering teams in 2026',
   dek: 'AI chatbot and AI agent testing tools grouped by the job each does: evals before launch, live monitoring, voice agents, enterprise QA and checks from the customer’s side. Each comes with what it does well, its price on 28 October 2026 and where it stops.',
-  metaTitle: 'AI chatbot testing tools: the best for each job in 2026',
+  metaTitle: 'AI chatbot testing tools: best for CX and engineering teams',
   description:
     'AI chatbot testing tools compared by job: evals before launch, live monitoring, voice agents and customer-side checks, with prices listed in October 2026.',
   answer:
-    'The best AI chatbot testing tools depend on the job: Braintrust and Promptfoo for evals before launch, LangSmith and Langfuse for live monitoring, and Cekura, Coval, Hamming and Roark for voice agents. For checks from the customer’s side, Obsession’s AI customers use your company’s live chat, email and phone as real customers do, every day and after every update. They keep each answer as proof: the transcript or recording, with its time and channel.',
+    'The best AI chatbot testing tools depend on the job: Braintrust and Promptfoo for evals before launch, LangSmith and Langfuse for live monitoring, and Cekura, Coval, Hamming and Roark for voice agents. From the customer’s side, Obsession keeps what your live chat, email and phone tell a customer, dated daily and after every update, by API or MCP (the way AI agents call tools).',
   primaryKeyword: 'ai chatbot testing tools',
   keywords: [
     'ai chatbot testing tools',
@@ -70,7 +69,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-28',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 17,
   order: 3,
   authors: [
@@ -101,15 +100,15 @@ export const post: BlogPost = {
           links: ['sets up', 'test'],
         },
         {
-          name: 'AI customers',
+          name: 'Checks as a customer',
           who: 'Obsession',
-          nodes: ['Your company', 'AI customer', 'Your live agent'],
-          links: ['hires', 'chats, emails, calls'],
+          nodes: ['Your company', 'Obsession agent', 'Your live agent'],
+          links: ['sends', 'chats, emails, calls'],
           lit: 1,
           ours: true,
         },
       ],
-      foot: 'Evals and monitoring work from inside the build and the agent’s own logs. Voice testers put the agent through simulated callers, and AI customers use the live chat, inbox and phone line customers use.',
+      foot: 'Evals and monitoring work from inside the build and the agent’s own logs. Voice testers put the agent through simulated callers, and Obsession uses the live chat, inbox and phone line customers use.',
     },
   },
 
@@ -386,23 +385,21 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'obsession', text: 'Obsession' },
     {
       kind: 'p',
-      text: 'Send an AI customer to any company. **' +
-        AI_CUSTOMER.definition +
-        '** A chatbot is an AI customer service agent, which answers customers for a company. An AI customer is one of those customers, as [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out, and [what AI customers are](/blog/ai-customers) explains the term in full.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. A chatbot is an AI customer service agent, which answers customers for a company, and Obsession reaches it as one of those customers, through an Obsession agent that says it’s an AI. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out the difference, and [what AI customers are](/blog/ai-customers) explains the term.',
     },
     {
       kind: 'p',
-      text: 'For a team running a chatbot or AI agent, Obsession’s AI customers chat, email and call it on the live channels customers use. They run every morning and within the hour of each update. Each one says it is an AI, asks what customers ask and checks the answer against the company’s policy page. It then asks for a person, and watches its own inbox for the email or callback the agent promised.',
+      text: 'For a team running a chatbot or AI agent, Obsession chats with, emails and calls it on the live channels customers use, every morning and within the hour of each update. It says it is an AI, asks what customers ask and sets each answer beside the company’s policy page. It then asks for a person, and watches its own inbox for the email or callback the agent promised.',
     },
     {
       kind: 'p',
-      text: 'The same AI customers sign up to any company your team names and keep every email, offer and price it sends, so your company can also find its revenue leaks, watch its competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
+      text: 'The same index holds what any company your team names shows only to customers, from the welcome email to the save offer in the cancel flow, for as long as your team follows it. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'list',
       items: [
         '**What it does well:** answers checked from outside on chat, email and phone, every day and after every update. Each is kept as the transcript or recording, beside the policy page as it read that minute. Its checks cover a support bot, a voice receptionist, answers that change after an update, the notice that an agent is AI, resolutions an AI vendor bills for, and shortlisted vendors.',
-        '**Price as listed:** running now. The first AI agent check is free, and plans are credit-based, like Claude’s.',
+        '**Price as listed:** early access, onboarding teams now. Priced per call or per company watched, never per token.',
         '**Where it stops:** it covers the live chat, inbox and phone line your company names, and scoring prompts and models inside the build is an eval tool’s job.',
         '**Best for:** knowing what customers are told on the live chat, email and phone, every day and after every update, with each answer kept.',
       ],
@@ -413,7 +410,7 @@ export const post: BlogPost = {
       art: {
         kind: 'runs',
         title: 'brightwell.example · 1 cancellation question, 3 days, 3 channels',
-        prompt: 'I’m an AI customer. Can I cancel my plan in the first month without a fee?',
+        prompt: 'I’m an AI assistant asking for a customer. Can I cancel my plan in the first month without a fee?',
         runs: [
           { label: 'Mon 07:00 · chat', answer: 'Yes, it’s free in the first 30 days.', verdict: { tone: 'ok', text: 'Matches policy' } },
           { label: 'Mon 07:00 · phone', answer: 'Yes, there’s no fee for 30 days.', verdict: { tone: 'ok', text: 'Matches policy' } },
@@ -427,15 +424,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Support bot check asks your support bot what your customers ask, on chat, email and your portal, every day. Each wrong answer comes back with its transcript and the right answer drafted.',
-      to: '/recipes/support-bot-check',
-      label: 'Test my chatbot',
+      text: 'What your support bot and voice line tell customers, word for word, on chat, email and the phone. Every answer is kept as a dated transcript or call beside the policy it should match, yours and your competitors’.',
+      to: '/verify',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'compared', text: 'AI chatbot testing tools compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 28 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 28 October 2026.',
     },
     {
       kind: 'table',
@@ -488,9 +485,9 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Drift watch](/recipes/drift-watch), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check), [Vendor agent check](/recipes/vendor-agent-check)',
-          'AI customers use the live chat, email and phone daily and after updates, and keep each answer',
-          'Running now: first AI agent check free\nCredit-based plans, like Claude’s',
-          'Sees what its AI customers are told, on the channels your team names',
+          'The live chat, email and phone asked daily and after updates, each answer dated',
+          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Keeps what customers are told, on the channels your team names',
           'What customers are told on every channel, every day, kept as proof',
         ],
       ],
@@ -534,9 +531,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
-      to: '/verify',
-      label: 'Check your AI agents',
+      text: 'What companies show only signed-up customers, as an API for your agents and your test pipeline: emails, member prices, trial limits, quotes and support answers, each dated, behind 5 verbs over MCP, the API and SDKs.',
+      to: '/developers',
+      label: 'See the API and MCP',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI chatbot testing tools' },
@@ -545,7 +542,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What are the best AI chatbot testing tools?',
-          a: 'It depends on the job. Braintrust and Promptfoo test prompts and models before launch, and LangSmith and Langfuse monitor live conversations. Cekura, Coval, Hamming and Roark test voice agents, and Cyara Botium covers enterprise bots. Obsession’s AI customers check the live chat, email and phone as customers, every day and after every update, and keep each answer.',
+          a: 'It depends on the job. Braintrust and Promptfoo test prompts and models before launch, and LangSmith and Langfuse monitor live conversations. Cekura, Coval, Hamming and Roark test voice agents, and Cyara Botium covers enterprise bots. Obsession keeps what the live chat, email and phone tell a customer, every day and after every update, each answer dated.',
         },
         {
           q: 'What is chatbot testing?',
@@ -565,7 +562,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Are there free chatbot testing tools?',
-          a: 'Promptfoo’s Community plan is free and open source, and Braintrust, LangSmith and Langfuse have free plans. Cekura starts every plan with 300 free credits and Roark with $50 of credit. Obsession’s first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and the report lands within 4 days.',
+          a: 'Promptfoo’s Community plan is free and open source, and Braintrust, LangSmith and Langfuse have free plans. Cekura starts every plan with 300 free credits and Roark with $50 of credit.',
         },
         {
           q: 'Can a team test a chatbot it bought from a vendor?',

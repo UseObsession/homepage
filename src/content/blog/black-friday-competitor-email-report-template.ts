@@ -13,7 +13,9 @@ import type { BlogPost } from './types'
    The example table uses invented brands at .example addresses and invented numbers, and says so in its caption.
    Not used, on purpose: the library's "Inbox Watch" data (not built, so no rival figure from it), any promise that the
    page reduces churn, the 93% and 128 stores, any PilotX audit figure, and Milled (its pages returned an error).
-   Buyer words (sign up, basket, pop up, report to the client); no dashes. */
+   Buyer words (sign up, basket, pop up, report to the client); no dashes.
+   11 Nov 2026 (SEO revamp wave 1): title, answer, Obsession's lines and the calls to action moved to the live position
+   (the web behind the login, early access); no free offer. */
 
 const KLAVIYO_BFCM = 'https://www.klaviyo.com/bfcm'
 const KLAVIYO_TIMING = 'https://www.klaviyo.com/blog/when-to-send-black-friday-emails'
@@ -26,13 +28,13 @@ const R_AGENCY = 'https://www.reddit.com/r/agency/comments/1s4iwpc/i_kept_losing
 
 export const post: BlogPost = {
   slug: 'black-friday-competitor-email-report-template',
-  title: 'The Black Friday competitor email report: a one page template for clients',
+  title: 'The Black Friday competitor email report: a one page template agencies send clients',
   dek: 'A one page report a client reads in 2 minutes: when each competitor started, how often it sent, its deepest offer and where its main button led. It includes an example filled in with invented brands and the method to collect every line by hand.',
   metaTitle: 'Black Friday email report: a one page template for clients',
   description:
     'A Black Friday email report a client reads in 2 minutes: each competitor’s first send, emails a day, deepest offer and landing page. Template and example.',
   answer:
-    'A Black Friday email report for a client is one page: for each of 3 competitors, the first Black Friday email you received and when, the emails and texts a day, the deepest offer and how it works, and the page the email sent people to, then what the client did differently and 3 decisions for January. Collect it by signing up to each competitor with its own new address and logging every message as it arrives. Obsession’s AI customers do this as a real customer of each competitor and keep every email and offer each competitor sends as proof.',
+    'A Black Friday email report for a client is one page: for each of 3 competitors, the first Black Friday email you received and when, the emails and texts a day, the deepest offer and how it works, and the page the email sent people to, then what the client did differently and 3 decisions for January. Collect it by signing up to each competitor with its own new address and logging every message as it arrives. Obsession keeps every email and offer each competitor sends its customers, dated as it arrived, for every client’s competitors, by API, MCP (the standard way AI agents call tools) or a table.',
   primaryKeyword: 'black friday email report',
   keywords: [
     'black friday email report',
@@ -46,7 +48,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 9,
   order: 1,
   authors: [
@@ -167,7 +169,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Sign up at least 4 weeks before Black Friday, which this year means by Friday 30 October, because [Klaviyo’s guide](' +
+      text: 'Sign up at least 4 weeks before a sale where you can, because [Klaviyo’s guide](' +
         KLAVIYO_TIMING +
         ') puts teasers 2 to 4 weeks before the day. A later sign up still catches the busiest hour: the guide cites Klaviyo’s 2024 data for the most active marketing hour of BFCM, 9 to 10 a.m. ET on Black Friday. If you join late, write the day you joined at the top of the report and head the column “first email received”.',
     },
@@ -258,9 +260,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s leak checks for retention agencies include monthly reports that link every value to its evidence and compare client stores with their competitors.',
+      text: 'Report to every client with each competitor’s own emails: what any store sends after a sign-up and a basket, each message dated and kept as it arrived, for the clients you keep and their competitors.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'See leak checks for retention agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'hours', text: 'Time needed to keep the log by hand' },
@@ -272,7 +274,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up', compare: true },
     {
       kind: 'p',
-      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a competitor sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. [Panoramata’s pricing page](' +
+      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a competitor sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. [Panoramata’s pricing page](' +
         PANORAMATA +
         ') lists emails, flows, SMS and ads, says it covers more than 20,000 brands, and gives its $99 plan 20 competitors and 6 months of history, with unlimited on the $179 and $399 plans. [MailCharts says](' +
         MAILCHARTS +
@@ -290,13 +292,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method with AI customers: each one has its own inbox and texting number and logs every message, offer and code on 1 timeline with the original email from the minute it first subscribes. [What AI customers are](/blog/ai-customers) explains the term. To report on competitors for every client without the hours of logging, use Obsession. For 1 client and 3 competitors, the sheet is enough.',
+      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method for every client’s competitors. It logs every message, offer and code on 1 timeline, with the original email, from the day each competitor is added and for as long as you follow them. To report on competitors for every client without the hours of logging, use Obsession. For 1 client and 3 competitors, the sheet is enough.',
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 stores free, whether prospects or clients with their OK: its AI customers become each store’s new customer and send you what happened within 4 days, with proof.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      text: 'Open every pitch and client review with the store’s own emails: what every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot.',
+      to: '/agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
@@ -318,6 +320,7 @@ export const post: BlogPost = {
         {
           q: 'Is it all right to sign up to a competitor’s emails?',
           a: 'The sign up forms are public and open to any customer. Sign up as yourself, buy nothing, write to nobody at the brand and read each brand’s terms, which differ by country. This is not legal advice.',
+          link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
         },
         {
           q: 'What if I only start after the teasers?',

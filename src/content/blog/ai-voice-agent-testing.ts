@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 10 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 10, and WRITER_BRIEF.md, batch 3; Seun's go
    on 1 Nov 2026). It owns "ai voice agent testing", "ai voice agent testing platform" and "automated ai voice agent
@@ -9,8 +8,8 @@ import { AI_CUSTOMER } from '../glossary'
    Readers: teams launching AI receptionists and voice agents, and the agencies that build them.
    The shape: what a voice agent is and the three layers to test, the checks with pass marks, simulated callers against
    real calls, automated testing, the three testing platforms and the tests inside Vapi and Retell (each from its own
-   pages), the live line as a real caller (the AI customer definition word for word from glossary.ts, then the voice
-   agent check in its own words), the options compared with the last row ours, which to choose, and the FAQ.
+   pages), the live line as a real caller (since 11 Nov 2026 the entity sentence, then the voice agent check in its own
+   words), the options compared with the last row ours, which to choose, and the FAQ.
    Read at source on 1 Nov 2026: Cekura's home and pricing pages; Coval's home, pricing and docs pages, and Norwest's post
    of 24 Jun 2026 on Coval's Series A (the round is also in _research/ai-customers-rethink/research_27oct.json); Hamming's
    home and pricing pages; Vapi's Simulations overview, Evals quickstart and pricing page; Retell's test overview,
@@ -41,12 +40,12 @@ export const post: BlogPost = {
   description:
     'AI voice agent testing platforms compared: Coval, Hamming, Cekura, Vapi and Retell, with prices, and how to test the live line as a real caller.',
   answer:
-    'AI voice agent testing checks what a voice agent says and does on a call: whether it picks up, understands the caller, gives the right answer and hands over to a person. Coval, Hamming and Cekura put the agent through simulated callers before launch and score its live calls once it launches, and Vapi and Retell test agents built on their own platforms. To call the live number as a real caller every morning, use Obsession: its AI customers ring your company’s line, say they’re AI and check each answer against your price list.',
+    'AI voice agent testing checks what a voice agent says and does on a call: whether it picks up, understands the caller, gives the right answer and hands over to a person. Coval, Hamming and Cekura put the agent through simulated callers before launch and score its live calls once it launches, and Vapi and Retell test agents built on their own platforms. Obsession rings your live number each morning as an AI caller and keeps every call recorded and dated beside your price list, by API or MCP (the way AI agents call tools).',
   primaryKeyword: 'ai voice agent testing',
   keywords: ['ai voice agent testing platform', 'automated ai voice agent testing', 'voice agent testing'],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -56,11 +55,11 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'bramblecare.example · 1 call, Mon 08:00',
-      who: 'An AI customer rings the clinic’s AI receptionist as a new patient',
+      who: 'An AI caller rings the clinic’s AI receptionist as a new patient',
       rows: [
         { time: '00:00', text: 'Answered after 2 rings', detail: 'Inside the 3-ring target', tone: 'ok' },
         { time: '00:03', text: 'Receptionist says it’s AI', detail: 'In its first 3 seconds', tone: 'ok' },
-        { time: '00:06', text: 'AI customer says it’s AI', detail: 'And that the call is recorded', tone: 'info' },
+        { time: '00:06', text: 'Caller says it’s AI', detail: 'And that the call is recorded', tone: 'info' },
         { time: '00:21', text: 'Opening hours', detail: 'Saturdays 9 to 1, as the website says', tone: 'ok' },
         { time: '00:48', text: 'Refund on a cancelled visit', detail: '“No refunds.” The policy refunds at 24 hours’ notice', tone: 'fail' },
         { time: '01:10', text: 'Asks for a person', detail: '“Transferring you now”', tone: 'info' },
@@ -264,15 +263,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `AI customers ring that number as callers. ${AI_CUSTOMER.definition} The term is explained in full in [what AI customers are](/blog/ai-customers).`,
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
-    },
-    {
-      kind: 'p',
-      text: 'Obsession’s [Voice agent check](/recipes/voice-agent-check) calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer. Each AI customer rings from its own phone number and says at the start that it’s an AI customer, who it works for and that the call is recorded, in a voice used with consent, with different voices and accents across the calls.',
+      text: 'Obsession’s [Voice agent check](/recipes/voice-agent-check) rings your AI receptionist each morning, books a slot, asks a price and asks for a person, then sets each answer beside your price list. Each call comes from its own phone number. At the start the caller says it’s an AI, who it works for and that the call is recorded, in a voice used with consent, with different voices and accents across the calls.',
     },
     {
       kind: 'p',
@@ -284,19 +279,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every AI customer says it’s an AI when it talks to a person and never uses fake payment details, as [what every AI customer will and won’t do](/agents) sets out.',
+      text: 'Every call comes from an Obsession agent, a customer that says it’s an AI, as [what every Obsession agent will and won’t do](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'cta',
-      text: 'Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What your AI receptionist and voice line tell callers, word for word. Every call is kept as a dated recording and transcript beside the price list it should match, yours and your competitors’.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'compared', text: 'AI voice agent testing platforms compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 1 November 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 1 November 2026.',
     },
     {
       kind: 'table',
@@ -343,8 +338,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Voice agent check](/recipes/voice-agent-check), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check)',
-          'AI customers ring the live number every morning and keep every call recorded and timed',
-          'Running now: first AI agent check free\nCredit-based plans, like Claude’s',
+          'The live number rung every morning, every call recorded, transcribed and dated',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Calls the numbers your company gives it',
           'What callers hear on the live line, every day',
         ],
@@ -380,7 +375,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is the best AI voice agent testing platform?',
-          a: 'It depends on the job. Coval publishes monthly plans from $100, Cekura charges $0.25 a test minute with 300 free credits, and Hamming runs very large simulations on sales-led plans. Vapi and Retell test agents built on their own platforms. To call the live number as a real caller every morning, Obsession’s AI customers ring it and keep every call recorded and timed.',
+          a: 'It depends on the job. Coval publishes monthly plans from $100, Cekura charges $0.25 a test minute with 300 free credits, and Hamming runs very large simulations on sales-led plans. Vapi and Retell test agents built on their own platforms. To call the live number as a real caller every morning, Obsession rings it and keeps every call recorded and dated.',
         },
         {
           q: 'How does automated AI voice agent testing work?',
@@ -392,7 +387,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do AI customers say they’re AI on a test call?',
-          a: 'Yes. Each of Obsession’s AI customers says at the start of every call that it’s an AI customer, who it works for and that the call is recorded. It speaks in a voice used with consent. Voice agent check also checks that the receptionist says it’s AI, and AI disclosure check does the same on every channel, every day.',
+          a: 'Yes. Every Obsession caller says at the start of every call that it’s an AI, who it works for and that the call is recorded. It speaks in a voice used with consent. Voice agent check also checks that the receptionist says it’s AI, and AI disclosure check does the same on every channel, every day.',
           link: { label: 'AI disclosure check', to: '/recipes/ai-disclosure-check' },
         },
         {

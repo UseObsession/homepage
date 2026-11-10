@@ -74,7 +74,7 @@ export const post: BlogPost = {
   description:
     'Agentic commerce for Shopify and DTC stores: what’s live in ChatGPT, Google AI Mode and Copilot, the settings to check, and a readiness test you run.',
   answer:
-    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession’s AI customers run that test every week as real customers and follow each answer to checkout, keeping every answer as it was given.',
+    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession keeps what AI assistants and a store’s own sales agent tell shoppers, dated word for word and followed to checkout, by API, MCP (the way AI agents call tools) or a table.',
   primaryKeyword: 'agentic commerce',
   keywords: [
     'agentic commerce for merchants',
@@ -90,7 +90,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 13,
   order: 11,
   authors: [
@@ -412,19 +412,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession runs that test every week. Its AI customers sign up to any company you name and keep every email, text, price, page, checkout and AI answer they get, so you can find your revenue leaks, watch your competitors and prospect with proof. For agentic commerce, its [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
+      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For agentic commerce, its [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s Sales agent check asks your AI sales agent about prices, stock and delivery every day, checks each answer against your store and follows it to checkout. Your first AI agent check is free: 3 AI customers ask on 1 channel, and the report lands within 4 days.',
-      to: '/recipes/sales-agent-check',
-      label: 'See Sales agent check',
+      text: 'What your store’s AI sales agent tells shoppers about prices, stock and delivery, word for word. Every answer is kept as a dated transcript beside the page it should match, yours and your competitors’.',
+      to: '/verify',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'options', text: 'Agentic readiness tools compared', compare: true },
     {
       kind: 'p',
-      text: 'We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026.',
     },
     {
       kind: 'table',
@@ -477,7 +477,7 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Listings and AI answers](/recipes/listings-ai-answers), [Sales agent check](/recipes/sales-agent-check), [Mystery shopper](/recipes/mystery-shopper)',
           'Listings and AI answers: assistants asked every Monday\nSales agent check: your agent asked daily, each answer followed to checkout\nMystery shopper: every email, text and reply timed',
-          'Running now: first store check free\nFirst AI agent check free\nCredit-based plans, like Claude’s',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Doesn’t change your settings or feeds\nNot needed while AI sessions are few',
           'What shoppers and their AI agents get, from the answer to checkout, kept as proof',
         ],
@@ -525,9 +525,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to your store. Obsession’s AI customers join it as new customers every week and after every change: they follow your ads, sign up, use the welcome code, leave a basket and wait. Your first store check is free: 4 AI customers, 48 hours watched, and your report within 4 days.',
+      text: 'What your store sends a new customer after a sign-up, a basket and a checkout, and what your competitors send, each email and text dated the hour it arrived.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agentic commerce' },

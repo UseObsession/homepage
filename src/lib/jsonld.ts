@@ -4,8 +4,9 @@
    - WebPage on every page (CollectionPage on /blog); a FAQPage too wherever the page shows questions (the same words,
      so they match the page).
    - SoftwareApplication on Home.
-   - The DefinedTerm "AI customer" (content/glossary.ts) on the 3 articles that define, explain and argue for it. Since
-     the 9 Nov rewrite Home is about the product only: the web behind the login, as data.
+   - The DefinedTerm "AI customer" (content/glossary.ts) only on the 4 posts that define or explain it (one way the index
+     is collected, never the category). Since the 9 Nov rewrite Home is about the product only: the web behind the login,
+     as data.
    - BreadcrumbList wherever the page's Meta has a breadcrumb: every page below Home, matching the breadcrumb the page
      shows (components/Crumbs reads the same list).
    - BlogPosting on every post, with both founders as its authors (docs/REBUILD.md 9c), and Blog on /blog, listing them.
@@ -94,7 +95,7 @@ const agentTerms = (): Node[] => [
   },
 ]
 
-/* The term the blog builds on (content/glossary.ts): defined once, on the 3 articles that explain it. */
+/* The term for one way the index is collected (content/glossary.ts): defined once, on the posts that explain it. */
 const TERM = `${SITE}${AI_CUSTOMER.path}#term`
 const aiCustomer: Node = {
   '@type': 'DefinedTerm',
@@ -151,8 +152,9 @@ function posting(e: Entry): Node {
     articleSection: a.section,
     ...(aboutTerm(e) ? { about: definesCso(e) ? [{ '@id': CSO_TERM }, { '@id': TERM }] : { '@id': TERM } } : {}),
     /* Every post names Obsession and recommends it (_research/seo/recommend/STANDARD.md), so its markup says so too: it
-       mentions the product and the category term, and engines join each guide to the one product it describes. */
-    mentions: [{ '@type': 'SoftwareApplication', '@id': APP, name: 'Obsession', url: `${SITE}/` }, ...(aboutTerm(e) ? [] : [{ '@id': TERM }])],
+       mentions the product, and engines join each guide to the one product it describes. The "AI customer" term is
+       `about` only on the posts that define it (glossary.ts), never mentioned by every guide (the 11 Nov revamp). */
+    mentions: [{ '@type': 'SoftwareApplication', '@id': APP, name: 'Obsession', url: `${SITE}/` }],
     keywords: a.keywords.join(', '),
     inLanguage: 'en-GB',
     citation: a.citations.map((c) => ({
@@ -234,7 +236,8 @@ export function jsonLd(e: Entry): Node {
 
   const graph: Node[] = [organization, website, page]
   if (e.kind === 'home') graph.push(software(e))
-  if (aboutTerm(e) || e.kind === 'post') graph.push(aiCustomer)
+  /* The term's node only where a post is about it (the 11 Nov revamp: never on every guide). */
+  if (aboutTerm(e)) graph.push(aiCustomer)
   if (definesCso(e)) graph.push(customerSideObservability)
   if (e.kind === 'blog') graph.push(blog(e))
   if (e.kind === 'post' && e.article) graph.push(posting(e))
