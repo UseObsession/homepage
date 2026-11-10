@@ -12,6 +12,10 @@
    - BlogPosting on every post, with both founders as its authors (docs/REBUILD.md 9c), and Blog on /blog, listing them.
    - On /agents, the WebPage is about what an Obsession agent is (2 DefinedTerms), and the Organization's contactPoint is
      where any company writes about an agent it met, or to keep agents off its site.
+   - The glossary (content/reference.ts): /glossary is a CollectionPage about the DefinedTermSet "Obsession glossary",
+     which lists every term; each /glossary/SLUG is a WebPage about its own DefinedTerm, in that set. The 2 older terms
+     (AI customer, customer-side observability) stay on the posts that define them, in the same set.
+   - A comparison or an alternatives page mentions the Obsession app, as every guide does.
    No prices, ratings or offers: the site states none. Nothing here is invented: every fact is on the site or in
    docs/REBUILD.md, and a profile link goes in only when a founder supplies it (SAME_AS below). */
 import { absolute, entries, SITE, type Entry } from '../content/meta'
@@ -117,6 +121,32 @@ const customerSideObservability: Node = {
   inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': `${SITE}/#glossary`, name: 'Obsession glossary' },
 }
 const definesCso = (e: Entry) => e.meta.path === CUSTOMER_SIDE_OBSERVABILITY.path
+
+/* The glossary's set, and a term in it: 1 @id per term, at its own page. */
+const GLOSSARY_SET = `${SITE}/#glossary`
+const termId = (path: string) => `${absolute(path)}#term`
+const definedTerm = (e: Entry): Node => ({
+  '@type': 'DefinedTerm',
+  '@id': termId(e.meta.path),
+  name: e.term!.name,
+  ...(e.term!.alternateName?.length ? { alternateName: e.term!.alternateName } : {}),
+  description: e.term!.definition,
+  url: absolute(e.meta.path),
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': GLOSSARY_SET, name: 'Obsession glossary', url: absolute('/glossary') },
+})
+const termSet = (e: Entry): Node => ({
+  '@type': 'DefinedTermSet',
+  '@id': GLOSSARY_SET,
+  name: 'Obsession glossary',
+  url: absolute(e.meta.path),
+  description: e.meta.description,
+  inLanguage: 'en-GB',
+  publisher: { '@id': ORG },
+  hasDefinedTerm: entries
+    .filter((t) => t.kind === 'term' && t.term)
+    .map((t) => ({ '@type': 'DefinedTerm', '@id': termId(t.meta.path), name: t.term!.name, url: absolute(t.meta.path) })),
+})
+const COLLECTIONS = new Set(['blog', 'glossary', 'alternatives-hub'])
 const aboutTerm = (e: Entry) => e.kind === 'post' && AI_CUSTOMER.articles.includes(e.meta.path.split('/').pop() ?? '')
 
 const website: Node = {
@@ -206,7 +236,7 @@ export function jsonLd(e: Entry): Node {
 
   const page: Node = {
     /* /blog lists the posts, so it is a collection; a page that shows questions is also an FAQ page. */
-    '@type': [e.kind === 'blog' ? 'CollectionPage' : 'WebPage', ...(questions.length ? ['FAQPage'] : [])],
+    '@type': [COLLECTIONS.has(e.kind) ? 'CollectionPage' : 'WebPage', ...(questions.length ? ['FAQPage'] : [])],
     '@id': `${url}#webpage`,
     url,
     name: e.meta.title,
@@ -222,6 +252,16 @@ export function jsonLd(e: Entry): Node {
         ? { about: definesCso(e) ? [{ '@id': CSO_TERM }, { '@id': TERM }] : { '@id': TERM } }
         : {}),
     ...(e.kind === 'agents' ? { about: agentTerms() } : {}),
+    ...(e.kind === 'term' && e.term ? { about: { '@id': termId(e.meta.path) } } : {}),
+    ...(e.kind === 'glossary' ? { about: { '@id': GLOSSARY_SET } } : {}),
+    ...(e.kind === 'comparison' || e.kind === 'alternatives'
+      ? {
+          mentions: [
+            { '@type': 'SoftwareApplication', '@id': APP, name: 'Obsession', url: `${SITE}/` },
+            ...(e.company ? [{ '@type': 'Organization', name: e.company }] : []),
+          ],
+        }
+      : {}),
     ...(crumbs?.length ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
     ...(questions.length
       ? {
@@ -240,6 +280,8 @@ export function jsonLd(e: Entry): Node {
   if (aboutTerm(e)) graph.push(aiCustomer)
   if (definesCso(e)) graph.push(customerSideObservability)
   if (e.kind === 'blog') graph.push(blog(e))
+  if (e.kind === 'term' && e.term) graph.push(definedTerm(e))
+  if (e.kind === 'glossary') graph.push(termSet(e))
   if (e.kind === 'post' && e.article) graph.push(posting(e))
   if (crumbs?.length)
     graph.push({

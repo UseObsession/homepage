@@ -186,6 +186,52 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/use-cases/member-prices-for-price-intelligence` | member price intelligence |
 | `/sample-output` | mystery shopper report example, abandoned cart test report |
 | `/agents` | declared AI agent; an AI agent signed up to my website |
+| `/compare` | obsession vs, compare obsession, where else can I get competitor emails (the hub of the comparisons; each tool’s own comparison owns its pair). Added 11 Nov 2026 |
+| `/compare/obsession-vs-browserbase` | obsession vs browserbase, browserbase vs obsession, browserbase contexts login, headless browser for ai agents, browserbase pricing. Added 11 Nov 2026 |
+| `/compare/obsession-vs-exa` | obsession vs exa, exa vs obsession, exa private information, web data behind login for ai agents, exa search api (exa alternatives and exa vs tavily stay with the blog guides). Added 11 Nov 2026 |
+| `/compare/obsession-vs-firecrawl` | obsession vs firecrawl, firecrawl vs obsession, firecrawl interact login, scrape data behind login api, firecrawl pricing (firecrawl alternatives and scrape data behind login stay with the blog guides). Added 11 Nov 2026 |
+| `/compare/obsession-vs-klue` | obsession vs klue, klue vs obsession, klue pricing, klue competitive intelligence, competitor trial teardown. Added 11 Nov 2026 |
+| `/compare/obsession-vs-mailcharts` | obsession vs mailcharts, mailcharts vs obsession, mailcharts pricing, mailcharts validity, competitor email tracking. Added 11 Nov 2026 |
+| `/compare/obsession-vs-panoramata` | obsession vs panoramata, panoramata vs obsession, panoramata pricing, competitor email tracking, competitor sms tracking. Added 11 Nov 2026 |
+| `/compare/obsession-vs-parallel` | obsession vs parallel, parallel vs obsession, parallel web systems, parallel monitor api, parallel task api. Added 11 Nov 2026 |
+| `/compare/obsession-vs-tavily` | obsession vs tavily, tavily vs obsession, tavily nebius, tavily search api, web search api for ai agents (tavily alternatives stays with the blog guide). Added 11 Nov 2026 |
+| `/alternatives/competiscan` | competiscan alternatives, competiscan alternative, competiscan competitors, comperemedia alternative, financial services competitive intelligence. Added 11 Nov 2026 |
+| `/alternatives/crayon` | crayon alternatives, crayon alternative, alternatives to crayon, crayon competitive intelligence, crayon competitors. Added 11 Nov 2026 |
+| `/alternatives/klue` | klue alternatives, klue alternative, alternatives to klue, klue competitors, competitive intelligence saas (competitive intelligence tools is left to the incumbents). Added 11 Nov 2026 |
+| `/alternatives` | alternatives to competitive intelligence tools, competitor email tracking alternatives (the hub; each alternatives page owns its tool’s name). Added 11 Nov 2026 |
+| `/alternatives/mailcharts` | mailcharts alternatives, mailcharts alternative, alternatives to mailcharts, mailcharts competitors, mailcharts pricing (competitor email tracking tools stays with /blog/competitor-email-tracking-tools). Added 11 Nov 2026 |
+| `/alternatives/panoramata` | panoramata alternatives, panoramata alternative, alternatives to panoramata, panoramata competitors, panoramata pricing (competitor email tracking tools stays with /blog/competitor-email-tracking-tools). Added 11 Nov 2026 |
+| `/glossary` | glossary, competitive intelligence glossary, email marketing glossary terms (the hub; each term page owns its definition). Added 11 Nov 2026 |
+| `/glossary/abandoned-cart-email` | abandoned cart email, what is an abandoned cart email, abandoned cart email meaning, abandoned checkout email, cart abandonment email, abandoned cart flow (abandoned cart email not sending stays with /blog/ai-customers-find-revenue-leaks). Added 11 Nov 2026 |
+| `/glossary/alternative-data` | alternative data, what is alternative data, alternative data meaning, alternative data definition, alternative data examples (alternative data providers and for hedge funds stay with the blog guide). Added 11 Nov 2026 |
+| `/glossary/battlecard` | battlecard, what is a battlecard, sales battlecard, competitive battlecard, battlecard meaning, battle card sales (competitor battlecard template stays with the blog guide). Added 11 Nov 2026 |
+| `/glossary/cancel-flow` | cancel flow, what is a cancel flow, cancellation flow, subscription cancel flow, cancel flow examples, cancellation journey. Added 11 Nov 2026 |
+| `/glossary/click-to-cancel` | click to cancel, what is click to cancel, click-to-cancel rule, ftc click to cancel, click to cancel law, negative option rule (subscription trap law uk stays with the blog guide). Added 11 Nov 2026 |
+| `/glossary/competitive-intelligence` | competitive intelligence, what is competitive intelligence, competitive intelligence meaning, competitive intelligence definition, competitor intelligence (competitive intelligence tools is left to the incumbents; ecommerce competitive intelligence stays with its guide). Added 11 Nov 2026 |
+| `/glossary/customer-journey-benchmarking` | customer journey benchmarking, what is customer journey benchmarking, journey benchmarking, competitor journey benchmarking, customer experience benchmarking. Added 11 Nov 2026 |
+| `/glossary/dark-pattern` | dark pattern, what is a dark pattern, dark patterns meaning, dark pattern examples, deceptive design, deceptive design patterns (dark patterns subscription cancellation stays with the blog guide). Added 11 Nov 2026 |
+| `/glossary/declared-agent` | declared agent meaning, what is a declared agent, declared agent definition, ai agent disclosure, identify ai agents (declared AI agent stays with /agents). Added 11 Nov 2026 |
+| `/glossary/dkim` | dkim, what is dkim, dkim meaning, dkim signature, dkim selector, dkim record, dkim check. Added 11 Nov 2026 |
+| `/glossary/headless-browser` | headless browser, what is a headless browser, headless browser meaning, headless chrome, headless mode. Added 11 Nov 2026 |
+| `/glossary/llm-grounding` | llm grounding, what is grounding in ai, grounding llm meaning, ai grounding, grounded generation, grounding with search. Added 11 Nov 2026 |
+| `/glossary/login-wall` | login wall, what is a login wall, login wall meaning, content behind a login, sign-up wall. Added 11 Nov 2026 |
+| `/glossary/member-price` | member price, what is a member price, member price meaning, member pricing, loyalty pricing, dual pricing (member only pricing stays with the blog guide; member price intelligence with /use-cases/member-prices-for-price-intelligence). Added 11 Nov 2026 |
+| `/glossary/model-context-protocol` | model context protocol, what is model context protocol, what is mcp, mcp meaning, mcp server, mcp ai. Added 11 Nov 2026 |
+| `/glossary/mystery-shopping` | mystery shopping, what is mystery shopping, mystery shopping meaning, mystery shopping definition, mystery shopper meaning, mystery customer research (mystery shopping software and AI mystery shopping stay with /blog/best-ai-mystery-shopping-tools, AI mystery shopper with /recipes/mystery-shopper, is mystery shopping legal with the legality guide). Added 11 Nov 2026 |
+| `/glossary/one-click-unsubscribe` | one-click unsubscribe, what is one-click unsubscribe, one click unsubscribe, rfc 8058, list-unsubscribe-post, list-unsubscribe header (one click unsubscribe requirements and law stay with the blog guide). Added 11 Nov 2026 |
+| `/glossary/point-in-time-data` | point in time data, what is point in time data, point-in-time data meaning, point-in-time database, look-ahead bias, vintage data. Added 11 Nov 2026 |
+| `/glossary/rate-parity` | rate parity, what is rate parity, rate parity meaning, hotel rate parity, parity clause, price parity (rate parity testing stays with the blog guide). Added 11 Nov 2026 |
+| `/glossary/save-offer` | save offer, what is a save offer, save offer meaning, cancellation offer, retention offer, cancel offer. Added 11 Nov 2026 |
+| `/glossary/signed-in-price` | signed-in price, what is a signed-in price, signed in price meaning, logged in price, price after login, account holder price. Added 11 Nov 2026 |
+| `/glossary/sms-stop` | sms stop, what is sms stop, reply stop to opt out, text stop to unsubscribe, sms opt out, stop keyword. Added 11 Nov 2026 |
+| `/glossary/the-web-behind-the-login` | web behind the login definition, what is the web behind the login, content behind login (the web behind the login and what search engines can’t index stay with /blog/the-web-behind-the-login; data behind login with `/`). Added 11 Nov 2026 |
+| `/glossary/trial-limit` | trial limit, what is a trial limit, free trial limits, free plan limits, saas trial limits, freemium limits. Added 11 Nov 2026 |
+| `/glossary/triggered-flow` | triggered flow, what is a triggered flow, triggered email flow, email flow meaning, automated email flow, flow trigger. Added 11 Nov 2026 |
+| `/glossary/upgrade-prompt` | upgrade prompt, what is an upgrade prompt, upgrade prompt examples, in-app upgrade prompt, paywall, upsell prompt. Added 11 Nov 2026 |
+| `/glossary/web-bot-auth` | web bot auth, what is web bot auth, web bot auth meaning, signed agents, bot authentication, http message signatures for bots. Added 11 Nov 2026 |
+| `/glossary/web-scraping` | web scraping, what is web scraping, web scraping meaning, web scraping definition, web scraper, scraping api (scrape data behind login stays with the blog guide). Added 11 Nov 2026 |
+| `/glossary/web-search-api` | web search api, what is a web search api, web search api meaning, search api for ai agents, search api for llm (best web search api stays with the blog guide). Added 11 Nov 2026 |
+| `/glossary/welcome-series` | welcome series, what is a welcome series, welcome email series, welcome series email, welcome flow, welcome email sequence. Added 11 Nov 2026 |
 | Post 1 | is it legal to mystery shop competitors |
 | Post 2 | free audit lead generation for agencies, outside-in audit |
 | Post 3 | AI mystery shopping (tools, software) |

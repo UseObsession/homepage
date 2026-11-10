@@ -58,7 +58,7 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, posts, sourceProblems, blogUi, blogPage, isJamesPath } = await import(
+const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, posts, references, refFileOf, sourceProblems, blogUi, blogPage, isJamesPath } = await import(
   pathToFileURL(join(server, 'entry-server.js')).href
 )
 const postEntries = entries.filter((e) => e.kind === 'post')
@@ -338,7 +338,11 @@ await writeFile(
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
 const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
 const llmsSections = [
-  ['Pages', ofKind('home', 'audience', 'developers', 'compare', 'verify', 'recipes', 'sample', 'resources')],
+  ['Pages', ofKind('home', 'audience', 'developers', 'verify', 'recipes', 'sample', 'resources')],
+  /* The comparisons, alternatives and glossary (content/reference.ts), each under its hub. */
+  ['Compare', ofKind('compare', 'comparison')],
+  ['Alternatives', ofKind('alternatives-hub', 'alternatives')],
+  ['Glossary', ofKind('glossary', 'term')],
   ['Recipes', ofKind('recipe')],
   ['Use cases', ofKind('use-cases', 'use-case')],
   ['Blog', ofKind('blog')],
@@ -562,6 +566,15 @@ for (const p of posts) {
   const { fails, warns } = sourceProblems(p)
   for (const m of fails) fail(`/blog/${p.slug}: ${m}`)
   for (const m of warns) warn(`/blog/${p.slug}: ${m}`)
+}
+
+/* A reference page's address ends in its file's name, and its sources are what its text links to (lib/sources). */
+for (const r of references) {
+  const where = r.meta.path
+  if (refFileOf[where]?.split('/').pop() !== where.split('/').pop()) fail(`${where}: the page's address and its file's name differ (src/content/${refFileOf[where]}.ts).`)
+  const { fails, warns } = sourceProblems(r)
+  for (const m of fails) fail(`${where}: ${m}`)
+  for (const m of warns) warn(`${where}: ${m}`)
 }
 
 /* The browser never loads a screen to see whose workspace it shows, so components/workspace.ts lists the agency ones:
