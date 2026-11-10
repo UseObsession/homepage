@@ -27,6 +27,18 @@ const COMPETITOR_HOSTS = new Set([
   'foreplay.co',
   // AI visibility tracking (what AI assistants say about a brand)
   'otterly.ai', 'peec.ai', 'tryprofound.com',
+  // Web search, extraction and browser APIs for AI agents (the 11 Nov 2026 comparison posts)
+  'exa.ai', 'docs.exa.ai', 'tavily.com', 'docs.tavily.com', 'firecrawl.dev', 'docs.firecrawl.dev', 'parallel.ai',
+  'docs.parallel.ai', 'linkup.so', 'you.com', 'serper.dev', 'serpapi.com', 'jina.ai', 'perplexity.ai',
+  'docs.perplexity.ai', 'browserbase.com', 'docs.browserbase.com', 'browser-use.com', 'docs.browser-use.com',
+  'apify.com', 'scrapingbee.com', 'brightdata.com', 'octoparse.com', 'axiom.ai', 'simplescraper.io', 'steel.dev',
+  'hyperbrowser.ai', 'nimbleway.com', 'crustdata.com', 'grep.ai', 'agentmail.to', 'brave.com',
+  // Competitive intelligence, battlecards and competitor marketing monitoring
+  'klue.com', 'crayon.co', 'reyo.ai', 'hoppycopy.co', 'competitortrack.io',
+  // Bank, card and travel market intelligence, and rate shopping
+  'mintel.com', 'comperemedia.com', 'corporateinsight.com', 'mylighthouse.com', 'rategain.com', 'otainsight.com',
+  // Ad intelligence
+  'adspy.com', 'pipiads.com', 'motionapp.com', 'segwise.ai', 'bigspy.com',
 ])
 
 /* A host and its parents: help.sendview.io matches sendview.io. */

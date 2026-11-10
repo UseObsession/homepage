@@ -89,7 +89,17 @@ Two of our pages never target the same query. The non-owner links to the owner w
 
 | Page | Owns |
 |---|---|
-| `/` | Obsession (brand), the web behind the login, data behind login |
+| `/` | Obsession (brand), data behind login |
+| `/blog/the-web-behind-the-login` | the web behind the login (the category term, 11 Nov 2026), what search engines can’t index, deep web vs surface web |
+| `/blog/exa-vs-tavily-vs-firecrawl` | exa vs tavily, exa vs firecrawl, tavily vs firecrawl, exa vs parallel |
+| `/blog/exa-alternatives` | exa alternatives, exa alternative, exa ai alternatives |
+| `/blog/best-web-search-api-for-ai-agents` | best web search api for ai agents, web search api for llm, search api for ai agents, bing search api alternative |
+| `/blog/can-ai-agents-log-in-to-websites` | can ai agents log in to websites, can ai agents login to websites, ai agent login, browser agent authentication |
+| `/blog/scrape-data-behind-login` | scrape data behind login, web scraping behind login, scraping website with login |
+| `/blog/consumer-duty-fair-value-assessment` | consumer duty fair value assessment, fair value assessment template, price and value outcome |
+| `/blog/bank-competitor-analysis` | bank competitor analysis, bank competitor analysis template, savings rate benchmarking |
+| `/blog/member-only-pricing` | member only pricing, member prices, loyalty pricing, track competitor member prices |
+| `/blog/how-to-see-competitor-ads` | how to see competitor ads, competitor ads, see competitors’ facebook ads, google ads transparency center |
 | `/blog/ai-customers` | AI customers, AI customer, what are AI customers |
 | `/blog/ai-customer-service-agent-vs-ai-customer` | AI customer service agent vs AI customer, what is an AI customer service agent, is HubSpot's Customer Agent an AI customer, personal AI agents |
 | `/blog/how-ai-customers-work` | how AI customers work, can an AI agent sign up, AI agent inbox and phone number |
