@@ -64,13 +64,24 @@
 .v5-hx .hx-fact { display: grid; grid-template-columns: 6.4rem 4.4rem minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 11px 14px; border: 1px solid var(--ob-line-subtle); border-radius: 10px; background: var(--ob-surface); animation: hx-in 0.35s var(--ob-ease) both; }
 .v5-hx .hx-when { font: 500 12px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
 .v5-hx .hx-kind { font: 600 11px / 1.4 var(--ob-font-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ob-text-2); }
-.v5-hx .hx-text { font: 500 14.5px / 1.45 var(--ob-font-sans); color: var(--ob-text); }
+.v5-hx .hx-text { display: grid; gap: 7px; min-width: 0; font: 500 14.5px / 1.45 var(--ob-font-sans); color: var(--ob-text); }
+/* An act: what our persona did, the moment the firm's messages follow. Quiet, so the firm's side reads first. */
+.v5-hx .hx-fact[data-act] { padding-block: 7px; background: transparent; border-style: dashed; }
+.v5-hx .hx-fact[data-act] .hx-kind { color: var(--ob-text-3); }
+.v5-hx .hx-fact[data-act] .hx-text { font-size: 13.5px; color: var(--ob-text-2); }
+/* The event's facts: its reads, each tagged with the read's kind. */
+.v5-hx .hx-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.v5-hx .hx-tag { display: inline-flex; align-items: baseline; gap: 7px; max-width: 100%; padding: 3px 9px; border: 1px solid var(--ob-line-subtle); border-radius: 7px; background: var(--ob-bg-sunken); font: 500 12.5px / 1.4 var(--ob-font-sans); color: var(--ob-text-2); }
+.v5-hx .hx-tagk { flex: none; font: 600 10.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); }
 .v5-hx .hx-none { margin: 0; font: 500 13px / 1.5 var(--ob-font-mono); color: var(--ob-text-3); }
 
-.v5-hx .hx-ev { display: grid; gap: 6px; padding: 16px; border: 1px solid var(--ob-line-subtle); border-radius: 12px; background: var(--ob-surface); animation: hx-in 0.35s var(--ob-ease) both; }
-.v5-hx .hx-ev-from { margin: 0; font: 500 12.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); }
-.v5-hx .hx-ev-sub { margin: 0; font: 600 16px / 1.35 var(--ob-font-sans); }
-.v5-hx .hx-ev ul { margin: 6px 0 0; padding: 10px 0 0; list-style: none; display: grid; gap: 5px; border-top: 1px solid var(--ob-line-subtle); font: 500 13px / 1.45 var(--ob-font-mono); color: var(--ob-text-2); }
+.v5-hx .hx-ev { display: grid; gap: 12px; padding: 14px 16px; border: 1px solid var(--ob-line-subtle); border-radius: 12px; background: var(--ob-surface); animation: hx-in 0.35s var(--ob-ease) both; }
+.v5-hx .hx-ev-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 3px 14px; margin: 0; font: 500 12.5px / 1.45 var(--ob-font-mono); }
+.v5-hx .hx-ev-head dt { color: var(--ob-text-3); }
+.v5-hx .hx-ev-head dd { margin: 0; color: var(--ob-text-2); overflow-wrap: anywhere; }
+.v5-hx .hx-ev-body { display: grid; gap: 6px; padding: 12px 0; border-block: 1px solid var(--ob-line-subtle); }
+.v5-hx .hx-ev-body p { margin: 0; font: 500 14px / 1.5 var(--ob-font-sans); color: var(--ob-text); }
+.v5-hx .hx-ev-proof { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font: 500 12px / 1.45 var(--ob-font-mono); color: var(--ob-text-3); overflow-wrap: anywhere; }
 .v5-hx .hx-rec { margin: 0; padding: 14px 16px; border: 1px solid var(--ob-line-subtle); border-radius: 12px; background: var(--ob-surface); font: 500 12.5px / 1.6 var(--ob-font-mono); color: var(--ob-text-2); white-space: pre-wrap; overflow-wrap: anywhere; animation: hx-in 0.35s var(--ob-ease) both; }
 .v5-hx .hx-k { color: var(--ob-text); }
 .v5-hx .hx-s { color: var(--ob-success); }
@@ -113,15 +124,9 @@
   .v5-hx .hx-fact .hx-link { grid-column: 2; grid-row: 1 / span 3; }
 }
 
-/* ---- A company not observed yet: the index's estimate, each with its range ---- */
+/* ---- A company not in the index yet: nothing from behind its walls, and Watch it ---- */
 .v5-hx .hx-est { display: grid; gap: 10px; justify-items: start; padding: 18px; border: 1px dashed var(--ob-line-strong); border-radius: 12px; background: var(--ob-surface); animation: hx-in 0.35s var(--ob-ease) both; }
-.v5-hx .hx-est ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; width: 100%; }
-.v5-hx .hx-est li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: baseline; padding: 9px 12px; border: 1px solid var(--ob-line-subtle); border-radius: 9px; }
-.v5-hx .hx-est-l { font: 500 14px / 1.4 var(--ob-font-sans); color: var(--ob-text-2); }
-.v5-hx .hx-est-v { font: 600 14px / 1.4 var(--ob-font-mono); color: var(--ob-text); }
-.v5-hx .hx-est-r { font: 500 11px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); }
 .v5-hx .hx-est-b { margin: 0 0 4px; font: 500 12.5px / 1.5 var(--ob-font-mono); color: var(--ob-text-3); }
-@media (max-width: 760px) { .v5-hx .hx-est li { grid-template-columns: minmax(0, 1fr) auto; } .v5-hx .hx-est-r { display: none; } }
 
 /* ---- Insights: the question, the sources collected on the left, the report in the middle ---- */
 .v5-hx .hx-bar[data-ask] .hx-q { font: 500 16.5px / 1.4 var(--ob-font-sans); letter-spacing: -0.005em; white-space: normal; }
@@ -176,3 +181,12 @@
   .v5-hx .hx-stats { grid-template-columns: minmax(0, 1fr); }
   .v5-hx .hx-stat { grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 10px; }
 }
+
+/* ---- Drill-down (10 Nov): Evidence and Record show one fact, named on top, with ‹ › to step through the view ---- */
+.v5-hx .hx-drill { display: grid; gap: 10px; animation: hx-in 0.3s var(--ob-ease) both; }
+.v5-hx .hx-drillhead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border: 1px solid var(--ob-line-subtle); border-radius: 10px; background: var(--ob-bg-sunken); }
+.v5-hx .hx-drillfact { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0; min-width: 0; font: 500 13.5px/1.4 var(--ob-font-sans); color: var(--ob-text); }
+.v5-hx .hx-stepper { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--ob-font-mono); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.v5-hx .hx-stepper button { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 1px solid var(--ob-line-strong); border-radius: 7px; background: transparent; font: 500 15px/1 var(--ob-font-sans) !important; color: var(--ob-text-2); }
+.v5-hx .hx-stepper button:hover { color: var(--ob-text); border-color: var(--ob-text-3); }
+.v5-hx .hx-drill .hx-rec { font-size: 12px; line-height: 1.55; max-height: 300px; overflow: auto; }

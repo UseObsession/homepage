@@ -409,25 +409,35 @@ export type Look = {
 }
 export type Developers = { heading: string; line: string; code: string; screen: ScreenName; cta: Cta }
 
-/* Home's hero explorer (components/v5/HeroExplorer, 9 Nov): the index as a console. Search: each company has the
-   personas that fit it; each view is 1 persona at 1 step, with its facts, the evidence behind them and the record (the
-   core's reply shape). A company not covered has its estimate and `index`: the steps of its first run and its first
-   facts. Insights: a question about a group of companies, the sources collected for it and the report. */
-export type ExFact = { when: string; kind: string; text: string }
-export type ExEvidence = { from: string; subject: string; lines: string[] }
-export type ExRecord = { channel: string; act: string; wall: string; responder: string }
-export type ExView = { persona: string; step: string; facts: ExFact[]; evidence: ExEvidence; record: ExRecord }
+/* Home's hero explorer (components/v5/HeroExplorer, 9 Nov), matched to the index schema on 10 Nov
+   (obsession-index/migrations/0001_core.sql in the workspace). Search shows 1 company's timeline as the index stores it,
+   never an answer. Each row is an event: what our persona did (an act) or what the firm showed or sent (shown). Its
+   facts are its reads: one reader's note about one event (a flow, a responder, prices, a form, signals, a transcript),
+   which is what system.md calls facts. Evidence is the event's clean copy: the email or page as it arrived, with its
+   signature check and both clocks. Record is the event row and its reads. The chips are the schema's own columns:
+   persona, wall and kind. Anything that combines events (a gap, a change, nothing came) is an answer, worked out when
+   asked, so it belongs to Insights. Insights: a question about a group of companies, the sources collected for it and
+   the report. */
+export type ExRow = { [key: string]: string | number | boolean | string[] | ExRow | ExRow[] }
+/* A read (obsession.read): its kind, how it reads in words, its value as stored, and the program that wrote it. */
+export type ExRead = { kind: string; text: string; value: ExRow; reader: string }
+/* An event's clean copy: its header lines, its body as text, and the proof lines under it. */
+export type ExEvidence = { head: [string, string][]; body: string[]; proof: string[] }
+/* An event (obsession.event). `kind` is the event's kind in words; `row` is the rest of its row. An act has no facts
+   or evidence here: it is the moment the firm's messages follow. */
+export type ExEvent = { at: string; dir: 'act' | 'shown'; kind: string; text: string; facts?: ExRead[]; evidence?: ExEvidence; row?: ExRow }
+/* 1 persona behind 1 wall: its events in time order. */
+export type ExView = { persona: string; wall: string; events: ExEvent[] }
 export type ExCompany = {
   domain: string
   kind: string
   covered: boolean
   personas: string[]
-  steps: string[]
-  data: { label: string; kind: string }[]
+  walls: string[]
+  kinds: { label: string; kind: string }[]
   views: ExView[]
-  index?: { heading: string; steps: string[]; first: ExFact[]; done: string; record: ExRecord; evidence: ExEvidence }
-  /* Not covered: what the index estimates from firms that share its keys, each with an honest range (index core, 9 Nov). */
-  estimate?: { title: string; basis: string; lines: { label: string; value: string; range: string }[]; cta: string }
+  /* Not in the index: what Watch it does, and the first events it collects. */
+  index?: { heading: string; steps: string[]; first: ExEvent[]; done: string }
 }
 /* A source without cells is not in the index yet: the report offers Watch for it, and `watched` is its row once watched. */
 export type ExSource = { domain: string; cells?: [string, string]; evidence?: string }
@@ -450,7 +460,7 @@ export type Explorer = {
   buttons: { search: string; insights: string }
   openRecord: string
   tryLabel: { search: string; insights: string }
-  groups: { persona: string; step: string; data: string; asked: string; sources: string }
+  groups: { persona: string; wall: string; kind: string; asked: string; sources: string }
   tabs: { facts: string; evidence: string; record: string }
   output: { search: string; insights: string }
   hint: string
@@ -458,7 +468,7 @@ export type Explorer = {
   fromIndex: string
   newRun: string
   notCovered: string
-  estimated: string
+  unindexed: { title: string; line: string; cta: string }
   said: string
   companies: ExCompany[]
   ready: (persona: string) => string

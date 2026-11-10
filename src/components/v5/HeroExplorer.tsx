@@ -1,12 +1,14 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
-import type { ExCompany, ExFact, Explorer } from '../../content/types'
+import type { ExCompany, ExEvent, ExRow, Explorer } from '../../content/types'
 import './HeroExplorer.css'
 
 /* Home's hero object since 9 Nov (James): the index as a console, after Exa's. Two modes.
-   Search: one company. Only the set up plays by itself, once: the first company types in, the facts arrive and the
-   persona row pulses. Then it is the reader's: who asks, at which step, which data; Facts, Evidence or Record. A
-   company not covered shows the index's estimate with ranges, and Watch it runs its first visit.
+   Search: one company's timeline, as the index stores it (content/types.ts ExView). Only the set up plays by itself,
+   once: the first company types in, its events arrive and the persona row pulses. Then it is the reader's: persona,
+   wall and kind, the schema's own columns. Facts lists the events, each with its reads; Evidence is one event's clean
+   copy and Record its rows, stepping through the events the firm showed or sent. A company not covered has Watch it,
+   which runs its first visit.
    Insights: one question across a group of companies, like Exa's agent. The first time it is opened, the first question
    types and runs: the companies are found and listed on the left as each is looked up, and the report fills in the
    middle, ending in the answer and 3 numbers. On the left the dot is the state: green in the index, hollow not yet,
@@ -87,9 +89,11 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   const [typed, setTyped] = useState(co.domain.length)
   const [searched, setSearched] = useState(true)
   const [persona, setPersona] = useState(co.personas[0])
-  const [step, setStep] = useState(co.views[0]?.step ?? '')
+  const [wall, setWall] = useState(co.views[0]?.wall ?? '')
   const [kind, setKind] = useState<string | null>(null)
   const [tab, setTab] = useState<Tab>('facts')
+  /* The event Evidence and Record show: picked from a row's link, or the first one the firm showed or sent. */
+  const [sel, setSel] = useState<string | null>(null)
   const [hint, setHint] = useState(false)
   const [run, setRun] = useState<Run>(IDLE)
 
@@ -224,7 +228,7 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
       })()
     })
 
-  const viewFor = (c: ExCompany, p: string, s: string) => c.views.find((v) => v.persona === p && v.step === s)
+  const viewFor = (c: ExCompany, p: string, w: string) => c.views.find((v) => v.persona === p && v.wall === w)
   const pickCompany = (k: number) =>
     act(() => {
       const c = ex.companies[k]
@@ -233,7 +237,7 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
       setTyped(c.domain.length)
       setSearched(true)
       setPersona(c.personas[0])
-      setStep(c.views.find((v) => v.persona === c.personas[0])?.step ?? c.steps[0] ?? '')
+      setWall(c.views.find((v) => v.persona === c.personas[0])?.wall ?? c.walls[0] ?? '')
       setKind(null)
       setTab('facts')
       setRun(IDLE)
@@ -241,7 +245,7 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   const pickPersona = (p: string) =>
     act(() => {
       setPersona(p)
-      if (!viewFor(co, p, step)) setStep(co.views.find((v) => v.persona === p)?.step ?? step)
+      if (!viewFor(co, p, wall)) setWall(co.views.find((v) => v.persona === p)?.wall ?? wall)
     })
   const pickMode = (m: Mode) =>
     act(() => {
@@ -258,20 +262,29 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   const toggleKind = (v: string) =>
     act(() =>
       setKind((k) => {
-        const n = co.data.find((d) => d.label === v)?.kind ?? null
+        const n = co.kinds.find((d) => d.label === v)?.kind ?? null
         return k === n ? null : n
       }),
     )
 
   const asking = mode === 'insights'
-  /* Search's answer: the view for this persona and step, or, for a company just indexed, its first facts. */
+  /* Search's output: the view for this persona behind this wall, or, for a company just indexed, its first events.
+     The kind filter leaves acts in place, so every message still sits after what it follows. */
   const indexed = !co.covered && run.done && co.index
   const indexing = !co.covered && run.on && !run.done
-  const view = co.covered ? viewFor(co, persona, step) : undefined
-  const allFacts = indexed ? co.index!.first : (view?.facts ?? [])
-  const shown: ExFact[] = indexing ? (co.index?.first.slice(0, run.facts) ?? []) : allFacts.filter((f) => !kind || f.kind === kind)
-  const evidence = indexed ? co.index!.evidence : view?.evidence
-  const record = indexed ? co.index!.record : view?.record
+  const view = co.covered ? viewFor(co, persona, wall) : undefined
+  const all: ExEvent[] = indexed ? co.index!.first : (view?.events ?? [])
+  const shown: ExEvent[] = indexing ? (co.index?.first.slice(0, run.facts) ?? []) : all.filter((e) => e.dir === 'act' || !kind || e.kind === kind)
+  /* Drill-down: the events the firm showed or sent, each with its clean copy (Evidence) and its rows (Record). */
+  const keyOf = (e: ExEvent) => e.at + e.text
+  const items = all.filter((e) => e.evidence)
+  const fi = Math.max(0, items.findIndex((e) => keyOf(e) === sel))
+  const cur = items[fi]
+  const record: ExRow | undefined = cur && {
+    event: { firm: co.domain, persona, dir: cur.dir, ...cur.row },
+    reads: (cur.facts ?? []).map(({ kind: k, value, reader }) => ({ kind: k, value, reader })),
+  }
+  const stepItem = (d: number) => act(() => setSel(keyOf(items[(fi + d + items.length) % items.length])))
   const showTabs = searched && (co.covered || !!indexed)
   const covered = ins.sources.filter((s) => s.cells).length
   const unwatched = ins.sources.filter((s) => !s.cells && !watched.includes(s.domain)).map((s) => s.domain)
@@ -295,22 +308,49 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
           ? co.index!.done
           : indexing
             ? ex.newRun
-            : co.estimate
-              ? ex.estimated
-              : ex.notCovered
+            : ex.notCovered
   const badgeState = asking ? (stage >= 3 ? 'in' : 'new') : indexing ? 'new' : co.covered || indexed ? 'in' : 'out'
   const btnLabel = asking ? ex.buttons.insights : ex.buttons.search
 
-  const factRows = (list: ExFact[]) => (
+  /* The timeline: an act is a quiet line; what the firm showed or sent carries its facts (its reads, each tagged with
+     the read's kind) and a link to its evidence. */
+  const eventRows = (list: ExEvent[]) => (
     <ul className="hx-facts">
-      {list.map((f) => (
-        <li className="hx-fact" key={f.when + f.text}>
-          <span className="hx-when">{f.when}</span>
-          <span className="hx-kind">{f.kind}</span>
-          <span className="hx-text">{f.text}</span>
-          <button type="button" className="hx-link" aria-label={ex.openRecord} title={ex.openRecord} onClick={() => act(() => setTab('evidence'))}>
-            <Svg html={LINK} />
-          </button>
+      {list.map((e) => (
+        <li className="hx-fact" data-act={e.dir === 'act' ? '' : undefined} key={keyOf(e)}>
+          <span className="hx-when">{e.at}</span>
+          <span className="hx-kind">{e.kind}</span>
+          <span className="hx-text">
+            <span className="hx-what">{e.text}</span>
+            {e.facts && (
+              <span className="hx-tags">
+                {e.facts.map((f) => (
+                  <span className="hx-tag" key={f.kind}>
+                    <span className="hx-tagk">{f.kind}</span>
+                    {f.text}
+                  </span>
+                ))}
+              </span>
+            )}
+          </span>
+          {e.evidence ? (
+            <button
+              type="button"
+              className="hx-link"
+              aria-label={`${ex.openRecord}: ${e.text}`}
+              title={ex.openRecord}
+              onClick={() =>
+                act(() => {
+                  setSel(keyOf(e))
+                  setTab('evidence')
+                })
+              }
+            >
+              <Svg html={LINK} />
+            </button>
+          ) : (
+            <span />
+          )}
         </li>
       ))}
     </ul>
@@ -404,16 +444,18 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                   </p>
                   <Chips items={co.personas} on={(v) => v === persona} pick={pickPersona} hint={hint ? co.personas[1] : undefined} />
                 </div>
-                {co.steps.length > 0 && (
+                {co.walls.length > 0 && (
                   <div className="hx-grp">
-                    <p className="hx-gl">{ex.groups.step}</p>
-                    <Chips items={co.steps} on={(v) => v === step} pick={(v) => act(() => setStep(v))} empty={(v) => !viewFor(co, persona, v)} />
+                    <p className="hx-gl">{ex.groups.wall}</p>
+                    <Chips items={co.walls} on={(v) => v === wall} pick={(v) => act(() => setWall(v))} empty={(v) => !viewFor(co, persona, v)} />
                   </div>
                 )}
-                <div className="hx-grp">
-                  <p className="hx-gl">{ex.groups.data}</p>
-                  <Chips items={co.data.map((d) => d.label)} on={(v) => co.data.find((d) => d.label === v)?.kind === kind} pick={toggleKind} />
-                </div>
+                {co.kinds.length > 0 && (
+                  <div className="hx-grp">
+                    <p className="hx-gl">{ex.groups.kind}</p>
+                    <Chips items={co.kinds.map((d) => d.label)} on={(v) => co.kinds.find((d) => d.label === v)?.kind === kind} pick={toggleKind} />
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -528,63 +570,71 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                 <div className="hx-page">
                   <p className="hx-page-h">{co.index?.heading}</p>
                   <Steps items={progress} done={run.steps} />
-                  {shown.length > 0 && factRows(shown)}
+                  {shown.length > 0 && eventRows(shown)}
                 </div>
-              ) : !co.covered && !indexed && co.estimate ? (
+              ) : !co.covered && !indexed ? (
                 <div className="hx-est">
-                  <p className="hx-empty-t">{co.estimate.title}</p>
-                  <ul>
-                    {co.estimate.lines.map((l) => (
-                      <li key={l.label}>
-                        <span className="hx-est-l">{l.label}</span>
-                        <span className="hx-est-v">{l.value}</span>
-                        <span className="hx-est-r">{l.range}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="hx-est-b">{co.estimate.basis}</p>
+                  <p className="hx-empty-t">{ex.unindexed.title}</p>
+                  <p className="hx-est-b">{ex.unindexed.line}</p>
                   {co.index && (
                     <button type="button" className="hx-go" onClick={indexIt}>
-                      {co.estimate.cta}
+                      {ex.unindexed.cta}
                     </button>
                   )}
                 </div>
-              ) : tab === 'evidence' && evidence ? (
-                <div className="hx-ev">
-                  <p className="hx-ev-from">{evidence.from}</p>
-                  <p className="hx-ev-sub">{evidence.subject}</p>
-                  <ul>
-                    {evidence.lines.map((l) => (
-                      <li key={l}>{l}</li>
-                    ))}
-                  </ul>
+              ) : (tab === 'evidence' || tab === 'record') && cur ? (
+                <div className="hx-drill">
+                  <div className="hx-drillhead">
+                    <p className="hx-drillfact">
+                      <span className="hx-when">{cur.at}</span>
+                      <span className="hx-kind">{cur.kind}</span>
+                      <span>{cur.text}</span>
+                    </p>
+                    {items.length > 1 && (
+                      <span className="hx-stepper">
+                        <button type="button" aria-label="Previous event" onClick={() => stepItem(-1)}>
+                          ‹
+                        </button>
+                        <span>
+                          {fi + 1} of {items.length}
+                        </span>
+                        <button type="button" aria-label="Next event" onClick={() => stepItem(1)}>
+                          ›
+                        </button>
+                      </span>
+                    )}
+                  </div>
+                  {tab === 'evidence' && cur.evidence ? (
+                    <div className="hx-ev">
+                      <dl className="hx-ev-head">
+                        {cur.evidence.head.map(([k, v]) => (
+                          <Fragment key={k}>
+                            <dt>{k}</dt>
+                            <dd>{v}</dd>
+                          </Fragment>
+                        ))}
+                      </dl>
+                      <div className="hx-ev-body">
+                        {cur.evidence.body.map((l) => (
+                          <p key={l}>{l}</p>
+                        ))}
+                      </div>
+                      <ul className="hx-ev-proof">
+                        {cur.evidence.proof.map((l) => (
+                          <li key={l}>{l}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    record && (
+                      <pre className="hx-rec">
+                        <Json v={record} />
+                      </pre>
+                    )
+                  )}
                 </div>
-              ) : tab === 'record' && record ? (
-                <pre className="hx-rec">
-                  {'{\n'}
-                  <K k="firm" v={co.domain} />
-                  <K k="channel" v={record.channel} />
-                  <K k="persona" v={persona} />
-                  <K k="act" v={record.act} />
-                  <K k="wall" v={record.wall} />
-                  {'  '}
-                  <span className="hx-k">"events"</span>
-                  {': [\n'}
-                  {allFacts.map((f, k) => (
-                    <span key={f.text}>
-                      {'    { '}
-                      <span className="hx-k">"at"</span>: <span className="hx-s">"{f.when}"</span>, <span className="hx-k">"kind"</span>:{' '}
-                      <span className="hx-s">"{f.kind.toLowerCase()}"</span>
-                      {' }'}
-                      {k < allFacts.length - 1 ? ',\n' : '\n'}
-                    </span>
-                  ))}
-                  {'  ],\n'}
-                  <K k="responder" v={record.responder} last />
-                  {'}'}
-                </pre>
               ) : shown.length ? (
-                factRows(shown)
+                eventRows(shown)
               ) : (
                 <p className="hx-none">{ex.none}</p>
               )}
@@ -622,12 +672,55 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   )
 }
 
-function K({ k, v, last }: { k: string; v: string; last?: boolean }) {
-  return (
-    <>
-      {'  '}
-      <span className="hx-k">"{k}"</span>: <span className="hx-s">"{v}"</span>
-      {last ? '\n' : ',\n'}
-    </>
-  )
+/* The record as the index stores it: keys in ink, values in green, nested rows indented. */
+function Json({ v, d = 0 }: { v: ExRow | ExRow[string]; d?: number }): ReactNode {
+  if (Array.isArray(v)) {
+    if (v.every((x) => typeof x === 'string'))
+      return (
+        <>
+          {'['}
+          {v.map((x, i) => (
+            <span key={i}>
+              {i ? ', ' : ''}
+              <span className="hx-s">"{x as string}"</span>
+            </span>
+          ))}
+          {']'}
+        </>
+      )
+    const pad = '  '.repeat(d + 1)
+    return (
+      <>
+        {'[\n'}
+        {v.map((x, i) => (
+          <span key={i}>
+            {pad}
+            <Json v={x} d={d + 1} />
+            {i < v.length - 1 ? ',\n' : '\n'}
+          </span>
+        ))}
+        {'  '.repeat(d)}
+        {']'}
+      </>
+    )
+  }
+  if (typeof v === 'object') {
+    const rows = Object.entries(v)
+    const pad = '  '.repeat(d + 1)
+    return (
+      <>
+        {'{\n'}
+        {rows.map(([k, x], i) => (
+          <span key={k}>
+            {pad}
+            <span className="hx-k">"{k}"</span>: <Json v={x} d={d + 1} />
+            {i < rows.length - 1 ? ',\n' : '\n'}
+          </span>
+        ))}
+        {'  '.repeat(d)}
+        {'}'}
+      </>
+    )
+  }
+  return typeof v === 'string' ? <span className="hx-s">"{v}"</span> : <span className="hx-s">{String(v)}</span>
 }
