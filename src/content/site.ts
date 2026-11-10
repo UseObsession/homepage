@@ -22,12 +22,12 @@ export const CONTROLLER: string | null = null
    the Organization JSON-LD, Home's hero, its "What is Obsession?" and /agents). The footer carries its core in 1 short
    line (content/footer.ts). */
 const SENTENCE =
-  'Obsession collects what companies show only to signed-up customers: their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.'
+  'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.'
 
 /* What Obsession is, as an entity: the line every engine and profile repeats (llms.txt's summary, the Organization and
    WebSite JSON-LD, docs/SEARCH.md 2). Since 9 Nov a data company for the web behind the login, never AI customers. */
 export const ENTITY =
-  'Obsession collects what companies show only to signed-up customers: their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.'
+  'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.'
 
 /* /recipes. Since 9 Nov each recipe is a ready-made collection from the web behind the login: what it collects, from
    which companies, as which customer profile, and where the data lands. Grouped by job as in the nav; the groups render
@@ -381,7 +381,7 @@ export const notFoundPage: NotFoundPage = {
     path: '/404',
     title: 'Page not found · Obsession, the web behind the login',
     description:
-      'There’s no page at this address. Obsession collects what companies show only to signed-up customers, by API or MCP.',
+      'There’s no page at this address. Obsession collects what companies show only to customers, by API or MCP.',
     answer: `There’s no page at this address on useobsession.com. ${SENTENCE}`,
   },
   headline: 'There’s no page at this address.',
@@ -408,7 +408,7 @@ export const notFoundPage: NotFoundPage = {
 export const llms: Llms = {
   summary: ENTITY,
   intro: [
-    'Obsession is a data company for the web behind the login: what companies show only to signed-up customers. That means the emails and texts after a sign-up, basket or trial, with the time each arrived; trial plans and limits; member and signed-in prices beside public ones; quotes behind forms for finance, insurance and services; checkout codes, cancel offers and renewal notices; and what chat and support tell a customer. Each fact is dated, with its receipt: the raw email with its sender checked, or the page as captured, and a screenshot.',
+    'Obsession is a data company for the web behind the login: what companies show only to customers. That means the emails and texts after a sign-up, basket or trial, with the time each arrived; trial plans and limits; member and signed-in prices beside public ones; quotes behind forms for finance, insurance and services; checkout codes, cancel offers and renewal notices; and what chat and support tell a customer. Each fact is dated, with its receipt: the raw email with its sender checked, or the page as captured, and a screenshot.',
     'Teams and AI agents look up any company through MCP, the API and SDKs (5 verbs: lookup, facts, evidence, index, notify), or in a table they already use: Clay, Google Sheets or a webhook. In the product, Search answers for 1 company, and the answer changes with the customer profile asking. Insights asks 1 question across a group of companies and answers with a report, 1 row per company.',
     'A company not covered yet is added when the user clicks Watch (index, in the API). Obsession’s agents sign up, start the trial or ask for the quote as the customer profile and country the user picks, keep the account open, and everything it is sent joins the index the day it arrives. What a company sends every new subscriber goes into the shared index, so its history is there on day 1. Who asked is never shown.',
     'Recipes are ready-made collections, each naming what it collects, from which companies, as which customer profile and where it lands. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own company as a new customer meets it (store sign-up and checkout, ad landing check, speed to lead, partner checks, website audit, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',

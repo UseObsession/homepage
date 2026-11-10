@@ -5,7 +5,7 @@ import { askExamples, askShared, life } from '../shared5'
 import type { Page, ViewerFormat } from '../types'
 
 /* Home (/), the 9 Nov rewrite (James): Obsession is a data company for the web behind the login. It sells what
-   companies show only to signed-up customers, looked up by API, MCP or a table, and a company not covered yet is
+   companies show only to customers, looked up by API, MCP or a table, and a company not covered yet is
    added on request. No AI customers and no mystery shopping on Home: the agents appear only where the page says where
    the data comes from. Early access, never a waitlist. The page reads, in order:
    1 the hero: what it is, and the explorer in place of the film (HeroExplorer) >
@@ -24,7 +24,7 @@ from obsession import Obsession
 
 ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
 
-# What does Quillon show its signed-up customers?
+# What does Quillon show its customers?
 for fact in ob.facts("quillon.example", since="30d"):
     print(fact.seen_at, fact.kind, fact.sentence, fact.receipt_url)
 
@@ -85,10 +85,10 @@ export const page: Page = {
     path: '/',
     title: 'Obsession: the web behind the login',
     description:
-      'Obsession collects what companies show only to signed-up customers: emails, texts, member prices, trial limits, quotes and offers, each dated with a screenshot. Look up any company by API or MCP.',
+      'The screens, emails, texts, prices and offers companies show only to customers, step by step, each dated with a screenshot. Look up any company by API or MCP.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     answer:
-      'Obsession collects what companies show only to signed-up customers. That means their emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     ogLine: 'The web behind the login.',
     ogImage: '/og/home.png',
   },
@@ -97,7 +97,7 @@ export const page: Page = {
     pill: 'Early access',
     pillTo: '#join',
     headline: 'The web behind the login.',
-    sub: 'The emails, prices, trial limits and offers companies show only to signed-up customers. Look up any company by API or MCP, each fact dated.',
+    sub: 'The screens, emails, texts, prices and offers companies show only to customers, step by step. Look up any company by API or MCP, each fact dated.',
     capture: { ...access, source: 'home-hero' },
     secondary: { label: 'See sample data', to: '/sample-output' },
     proof: [],
@@ -121,8 +121,8 @@ export const page: Page = {
   },
 
   dataKinds: {
-    kicker: 'What’s in it?',
-    heading: 'Everything a company shows only its customers.',
+    kicker: 'What’s behind the login?',
+    heading: 'Six kinds of data no search engine can reach.',
     items: [
       { title: 'Emails, texts and flows', line: 'Every screen and message after a sign-up, a basket or a trial, each one timed.', eg: 'Day 3 · “Invite your team”' },
       { title: 'Trial plans and limits', line: 'What the free plan includes, where it stops and when the upgrade prompt appears.', eg: '3 projects, 1 seat · prompt on day 7' },
@@ -191,7 +191,7 @@ export const page: Page = {
   stopTrack: {
     kicker: 'Where else can I get it?',
     heading: 'Search engines stop at the login.',
-    line: 'Google and Exa index the pages anyone can open. Email archives keep newsletters from their own list of brands, and panels sell a fixed list behind a client login. Obsession covers any company you name, by API.',
+    line: 'Everyone else stops at public pages or a fixed list of brands. Obsession covers any company you name.',
     steps: ['Public page', 'Sign up', 'Emails and texts', 'Trials and prices', 'Quotes and checkout', 'Cancel and support', 'Month 3'],
     rows: [
       { name: 'Search engines', who: 'Google, Exa', stop: 1, note: 'The pages anyone can open' },
@@ -222,7 +222,7 @@ export const page: Page = {
     ...life,
     kicker: 'How does it work?',
     heading: 'From an instant lookup to months of watching, at any company.',
-    line: 'Companies in the index answer at once. Name one that isn’t, and Obsession signs up as the customer profile and country you pick, keeps the account open, and adds everything it is sent the day it arrives.',
+    line: 'Companies in the index answer at once. Name one that isn’t, and Obsession signs up and keeps watching.',
     list: 'companies.csv · 10,000 companies',
     axis: { ...life.axis, end: 'Day 90: every message from all 10,000, kept' },
     lanes: [
@@ -277,7 +277,7 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'Obsession collects what companies show only to signed-up customers. That means their emails and texts, member prices, trial limits, quotes and cancel offers. Each one is dated, with a screenshot, and you look it up by API, MCP or a table.',
+        a: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. You look it up by API, MCP or a table.',
       },
       {
         q: 'Where does the data come from?',
