@@ -158,6 +158,7 @@ const menus = {
       { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
       ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
       { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
+      { label: 'Glossary', line: 'The words for what customers are shown', to: '/glossary' },
     ] satisfies (NavPage & { line: string })[],
     more: {
       label: 'More',
@@ -247,7 +248,7 @@ export const nav = {
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
   /* The page's call to action. Pages without their own use this one. */
-  cta: { label: 'Request early access', to: '#join' } satisfies Cta,
+  cta: { label: 'Request early access', to: '#join', bar: 'Early access' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
   github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,

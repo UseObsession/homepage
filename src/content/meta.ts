@@ -2,7 +2,8 @@
    (content/types). The prerender (scripts/prerender.mjs) writes it into each page's head, with the JSON-LD from
    lib/jsonld; the share images (scripts/og.mjs), sitemap.xml and llms.txt are made from the same list. */
 import { nav } from './nav'
-import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, sample, studies } from './registry'
+import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, references, refFileOf, sample, studies } from './registry'
+import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } from './reference'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import type { Faq, Meta, ShareFindings } from './types'
@@ -26,6 +27,11 @@ export type PageKind =
   | 'post'
   | 'privacy'
   | 'agents'
+  | 'comparison'
+  | 'alternatives-hub'
+  | 'alternatives'
+  | 'glossary'
+  | 'term'
   | 'not-found'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
@@ -65,6 +71,10 @@ export type Entry = {
   place?: string
   /* A post's facts (BlogPosting JSON-LD, the RSS feed). */
   article?: Article
+  /* A glossary term's name and definition (its DefinedTerm), on /glossary/SLUG. */
+  term?: { name: string; alternateName?: string[]; definition: string }
+  /* A comparison's or an alternatives page's company, for its JSON-LD. */
+  company?: string
 }
 
 /* The share image's line on an audience page: its gap's claim (what the reader can't see today), else the line the nav
@@ -76,6 +86,38 @@ const ogFor = (meta: Meta) => ({ ...meta, ogImage: meta.ogImage ?? `/og/${meta.p
 const crumbName = (meta: Meta, fallback: string) => meta.breadcrumb?.[meta.breadcrumb.length - 1]?.name ?? fallback
 
 const AUDIENCES = ['marketing', 'sales', 'agencies'] as const
+
+/* A reference page (content/reference.ts): a comparison, an alternatives page or a glossary term. */
+const REF_KIND: Record<ReferenceKind, PageKind> = { compare: 'comparison', alternatives: 'alternatives', term: 'term' }
+const REF_PLACE: Record<ReferenceKind, string> = { compare: 'Compare', alternatives: 'Compare / Alternatives', term: 'Glossary' }
+const refEntries = (kind: ReferenceKind): Entry[] =>
+  references
+    .filter((r) => r.kind === kind)
+    .map((r) => {
+      const faq = r.blocks.flatMap((b) => (b.kind === 'faq' ? b.items : []))
+      return {
+        kind: REF_KIND[kind],
+        meta: r.meta,
+        name: r.name,
+        headline: r.title,
+        line: r.dek,
+        faq: faq.length ? { heading: r.title, items: faq } : undefined,
+        source: `src/content/${refFileOf[r.meta.path]}.ts`,
+        lastmod: r.checked,
+        place: REF_PLACE[kind],
+        term: r.term,
+        company: r.company,
+      }
+    })
+const hubEntry = (hub: ReferenceHub, kind: PageKind): Entry => ({
+  kind,
+  meta: hub.meta,
+  name: crumbName(hub.meta, kind),
+  headline: hub.hero.headline,
+  line: firstSentence(hub.hero.sub),
+  faq: hub.faq,
+  source: 'src/content/reference.ts',
+})
 
 const home = pages.home
 const dev = pages.developers
@@ -114,6 +156,9 @@ export const entries: Entry[] = [
     faq: compare.faq,
     source: 'src/content/pages/compare.ts',
   },
+  ...refEntries('compare'),
+  hubEntry(alternativesHub, 'alternatives-hub'),
+  ...refEntries('alternatives'),
   {
     kind: 'verify',
     meta: ogFor(verify.meta),
@@ -232,6 +277,8 @@ export const entries: Entry[] = [
       },
     }
   }),
+  hubEntry(glossaryHub, 'glossary'),
+  ...refEntries('term'),
   {
     kind: 'agents',
     meta: ogFor(agentsPage.meta),

@@ -5,17 +5,21 @@
    - src/content/usecases/SLUG.ts exports `study` (a UseCaseStudy), served at its meta.path (/use-cases/SLUG).
    - src/content/blog/SLUG.ts exports `post` (a BlogPost), served at /blog/SLUG. types.ts there is the contract;
      content/blog/archive/ holds posts kept but not published.
+   - src/content/compare/obsession-vs-SLUG.ts, alternatives/SLUG.ts and terms/SLUG.ts export `ref` (a ReferencePage,
+     content/reference.ts), served at its meta.path (/compare/obsession-vs-SLUG, /alternatives/SLUG, /glossary/SLUG).
    The site's own pages (Recipes index, Sample output, Privacy, Agents, 404, Resources, Use cases, Blog) live in
-   site.ts, sample.ts and resources.ts. */
+   site.ts, sample.ts and resources.ts; the 2 reference hubs (/alternatives, /glossary) in reference.ts. */
 import { sample } from './sample'
 import { agentsPage, notFoundPage, privacyPage, recipesPage } from './site'
 import type { BlogPost } from './blog/types'
+import type { ReferenceKind, ReferencePage } from './reference'
 import type { Page, Recipe, RecipeId, UseCaseStudy } from './types'
 
 const pageFiles = import.meta.glob<Page>('./pages/*.ts', { eager: true, import: 'page' })
 const recipeFiles = import.meta.glob<Recipe>('./recipes/*.ts', { eager: true, import: 'recipe' })
 const studyFiles = import.meta.glob<UseCaseStudy>('./usecases/*.ts', { eager: true, import: 'study' })
 const postFiles = import.meta.glob<BlogPost>(['./blog/*.ts', '!./blog/types.ts'], { eager: true, import: 'post' })
+const refFiles = import.meta.glob<ReferencePage>(['./compare/*.ts', './alternatives/*.ts', './terms/*.ts'], { eager: true, import: 'ref' })
 
 const nameOf = (file: string) => file.slice(file.lastIndexOf('/') + 1, -'.ts'.length)
 
@@ -94,5 +98,26 @@ export const postBySlug: Record<string, BlogPost | undefined> = Object.fromEntri
 /* The blog shows only while it has a live post (it was archived in content/blog/archive from 3 to 23 Oct 2026). With
    none: no /blog pages, nav or footer link, Resources group, sitemap lines or feed. */
 export const blogLive = posts.length > 0
+
+/* The reference pages (content/reference.ts): comparisons in the order /compare lists them, alternatives likewise, and
+   the glossary A to Z. A page's file is named for the last part of its address (the prerender checks). */
+const REF_ORDER: Record<ReferenceKind, string[]> = {
+  compare: ['exa', 'firecrawl', 'tavily', 'parallel', 'browserbase', 'mailcharts', 'panoramata', 'klue'].map((s) => `/compare/obsession-vs-${s}`),
+  alternatives: ['mailcharts', 'panoramata', 'klue', 'crayon', 'competiscan'].map((s) => `/alternatives/${s}`),
+  term: [],
+}
+const KIND_RANK: ReferenceKind[] = ['compare', 'alternatives', 'term']
+const refRank = (r: ReferencePage) => {
+  const i = REF_ORDER[r.kind].indexOf(r.meta.path)
+  return i === -1 ? REF_ORDER[r.kind].length : i
+}
+export const references: ReferencePage[] = Object.values(refFiles).sort(
+  (a, b) => KIND_RANK.indexOf(a.kind) - KIND_RANK.indexOf(b.kind) || refRank(a) - refRank(b) || a.name.localeCompare(b.name),
+)
+export const refByPath: Record<string, ReferencePage | undefined> = Object.fromEntries(references.map((r) => [r.meta.path, r]))
+/* The folder and file each reference page came from, by its address (compare/obsession-vs-exa). */
+export const refFileOf: Record<string, string> = Object.fromEntries(
+  Object.entries(refFiles).map(([file, r]) => [r.meta.path, file.slice(2, -'.ts'.length)]),
+)
 
 export { agentsPage, notFoundPage, privacyPage, recipesPage, sample }

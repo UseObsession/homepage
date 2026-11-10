@@ -10,7 +10,7 @@ import { headFor } from './content/head'
 import { storyCtas } from './content/heads'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
-import { recipeWords, studyWords } from './content/words'
+import { recipeWords, refWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
 import { lazyPage, type LazyPage } from './lib/lazy'
 import { endNav, startNav } from './lib/navProgress'
@@ -46,11 +46,16 @@ const SampleOutput = page('SampleOutput')
 const Privacy = page('Privacy')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
+const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
+const AlternativesHub = page('ReferenceHub', 'AlternativesHub')
+const GlossaryHub = page('ReferenceHub', 'GlossaryHub')
 
 const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
 /* The worked examples the study system draws. The pages in James's format (legacy/jamesPaths) are their own pages at their own addresses. */
 const STUDIES = new Set(catalog.studies.map((s) => s.path).filter((p) => !isJamesPath(p)))
 const POSTS = new Set(catalog.posts.map((p) => p.slug))
+/* The comparisons, alternatives pages and glossary terms (content/reference.ts), by their address. */
+const REFERENCES = new Set(catalog.references.map((r) => r.path))
 const PAGES: Record<string, LazyPage> = {
   '/': Home,
   '/agencies': Agencies,
@@ -65,6 +70,8 @@ const PAGES: Record<string, LazyPage> = {
   '/sample-output': SampleOutput,
   '/privacy': Privacy,
   '/agents': Agents,
+  '/alternatives': AlternativesHub,
+  '/glossary': GlossaryHub,
   [JAMES_PATHS.prospect]: ProspectIntelligence,
   [JAMES_PATHS.price]: PriceIntelligence,
   [JAMES_PATHS.retention]: RetentionAgencies,
@@ -82,6 +89,7 @@ function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promi
   if (first === 'recipes' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
   if (first === 'use-cases' && STUDIES.has(p)) return { page: UseCase, words: studyWords(p) }
   if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return { page: BlogPost }
+  if (REFERENCES.has(p)) return { page: Reference, words: refWords(p) }
   return { page: NotFound }
 }
 
@@ -235,7 +243,9 @@ function ctaAt(pathname: string) {
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
    view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
 const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
-const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !clean.startsWith('/blog/')
+/* A comparison, an alternatives page or a glossary term opens on the article's header, with no form (pages/Reference). */
+const REFERENCE_PREFIXES = ['/blog/', '/compare/', '/alternatives/', '/glossary/']
+const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !REFERENCE_PREFIXES.some((p) => clean.startsWith(p))
 
 /* The internal page a link event points at (its path and query), or null for another site, a new tab or a download. */
 function linkPath(e: Event): string | null {
@@ -273,7 +283,7 @@ function NavIntent() {
     let stopped = false
     const ahead = async () => {
       await siteStyles()
-      for (const page of [...Object.values(PAGES), Recipe, UseCase]) {
+      for (const page of [...Object.values(PAGES), Recipe, UseCase, Reference]) {
         if (stopped) return
         await page.preload().catch(() => {})
       }
@@ -339,6 +349,13 @@ function UseCaseRoute() {
   return STUDIES.has(path) ? <UseCase key={slug} path={path} /> : <NotFound />
 }
 
+/* /compare/obsession-vs-SLUG, /alternatives/SLUG and /glossary/SLUG for every reference page (content/reference.ts). */
+function ReferenceRoute({ base }: { base: string }) {
+  const { slug = '' } = useParams()
+  const path = `/${base}/${slug}`
+  return REFERENCES.has(path) ? <Reference key={path} path={path} /> : <NotFound />
+}
+
 /* /blog/SLUG for every post in src/content/blog. */
 function PostRoute() {
   const { slug = '' } = useParams()
@@ -361,6 +378,11 @@ export function AppRoutes() {
         <Route index element={<Home />} />
         <Route path="agencies" element={<Agencies />} />
         <Route path="compare" element={<Compare />} />
+        <Route path="compare/:slug" element={<ReferenceRoute base="compare" />} />
+        <Route path="alternatives" element={<AlternativesHub />} />
+        <Route path="alternatives/:slug" element={<ReferenceRoute base="alternatives" />} />
+        <Route path="glossary" element={<GlossaryHub />} />
+        <Route path="glossary/:slug" element={<ReferenceRoute base="glossary" />} />
         <Route path="sales" element={<Sales />} />
         <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />

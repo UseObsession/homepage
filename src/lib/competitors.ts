@@ -39,6 +39,7 @@ const COMPETITOR_HOSTS = new Set([
   'mintel.com', 'comperemedia.com', 'corporateinsight.com', 'mylighthouse.com', 'rategain.com', 'otainsight.com',
   // Ad intelligence
   'adspy.com', 'pipiads.com', 'motionapp.com', 'segwise.ai', 'bigspy.com',
+  'kompyte.com', 'contify.com', 'alpha-sense.com',
 ])
 
 /* A host and its parents: help.sendview.io matches sendview.io. */

@@ -3,12 +3,15 @@ import { formatDate } from '../content/resources'
 
 type Source = BlogPost['sources'][number]
 
+/* A post, or a reference page (content/reference.ts, whose answer is its meta's): what the source checks read. */
+type Cited = Pick<BlogPost, 'dek' | 'blocks' | 'sources'> & { answer?: string; meta?: { answer: string } }
+
 /* Where a post's links sit: every word a reader sees, with the links written into it ([words](url)) and each stat's. */
-const textOf = (post: BlogPost) => JSON.stringify([post.answer, post.dek, post.blocks])
+const textOf = (post: Cited) => JSON.stringify([post.answer ?? post.meta?.answer ?? '', post.dek, post.blocks])
 
 /* A post's sources as a reader meets them: only those its text links to, in the order it first links to each. The
    link in the text is the citation; the list at the foot is where a reader checks it. */
-export function citedSources(post: BlogPost): Source[] {
+export function citedSources(post: Cited): Source[] {
   const text = textOf(post)
   return post.sources
     .map((s) => ({ s, at: text.indexOf(s.url) }))
@@ -30,7 +33,7 @@ const isEvidence = (url: string) => !OWN.test(url) || /^https?:\/\/(www\.)?useob
    claim that lost its link), an outside link in the text that isn't listed, one of our product pages listed, a URL
    listed twice, and a date that isn't the source's own (2026-10-07, 2026-10 or 2026: the day the links were checked is
    the post's, said once). Warns: more than 1 quote block (a quote is kept only as the evidence for a claim). */
-export function sourceProblems(post: BlogPost): { fails: string[]; warns: string[] } {
+export function sourceProblems(post: Cited): { fails: string[]; warns: string[] } {
   const text = textOf(post)
   const listed = new Set<string>()
   const fails: string[] = []
