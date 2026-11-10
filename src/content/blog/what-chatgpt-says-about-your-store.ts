@@ -7,7 +7,8 @@ import type { BlogPost } from './types'
    are one screenshot; the study evidence says one run is a draw. The piece gives the full method free (10 to 20
    questions in the customer's words, 3 runs on each assistant, a dated and country-tagged log, scored as appearance
    rate and accuracy against the store's own pages, never a rank), then what to fix, then the paid tools fairly.
-   Obsession is named once in the body (the disclosure, where the by-hand method stops) plus the 2 cta blocks.
+   Obsession is named once in the body (the disclosure, where the by-hand method stops) plus the 2 cta blocks (since
+   11 Nov 2026: See sample data, and Request early access on /agencies beside the agencies section).
    Taken off the table on purpose: rank tracking, and an AI visibility tool for anyone whose own check still shows
    unfixed wrong claims.
    Read at the source on 23 Oct 2026: Search Engine Journal on SparkToro and Gumshoe.ai, PPC Land on Lily Ray, DNYUZ's
@@ -52,7 +53,7 @@ export const post: BlogPost = {
   description:
     'See what ChatGPT says about your brand: ask 15 customer questions 3 times on ChatGPT, Perplexity and Google, log each run, score appearance and accuracy.',
   answer:
-    'To check what ChatGPT says about your store, ask 10 to 20 questions in your customers’ words, 3 times on each assistant, and log the date and country. Then score 2 numbers: how often your store is named, and how many of the claims in the answers match your own pages. Obsession’s AI customers ask the assistants your customers use the same questions every week and keep each answer, with its date and the page it cites, as proof.',
+    'To check what ChatGPT says about your store, ask 10 to 20 questions in your customers’ words, 3 times on each assistant, and log the date and country. Then score 2 numbers: how often your store is named, and how many of the claims in the answers match your own pages. Obsession asks the assistants your customers use the same questions every week and keeps each answer, with its date and the page it cites.',
   primaryKeyword: 'what does chatgpt say about my brand',
   keywords: [
     'what does chatgpt say about my brand',
@@ -67,8 +68,8 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 10,
+  updated: '2026-11-11',
+  readingMinutes: 14,
   order: 9,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -292,7 +293,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Prices change, so confirm them on each page.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Prices change, so confirm them on each page.',
     },
     {
       kind: 'list',
@@ -323,9 +324,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s Listings and AI answers recipe runs this check every Monday: its AI customers ask the assistants your customers use, trace each wrong answer to the page it cites, and ask again until the answer changes.',
-      to: '/recipes/listings-ai-answers',
-      label: 'See Listings and AI answers',
+      text: 'A real UK skincare store’s record from September 2026: 4 test customers, every inbox watched for 48 hours, and a £40 basket that got no reminder. It comes as a PDF, a sheet, Clay or JSON.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'no-tool-yet', text: 'Before you add an AI visibility tool' },
@@ -356,9 +357,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Your first store check is free. Obsession’s AI customers shop your store as new customers, from the ad to the sign up, the welcome code and the basket, and report each problem with proof and the fix.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      text: 'What every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot, ready to open a pitch or report straight to the client.',
+      to: '/agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions-asked', text: 'Frequently asked questions' },

@@ -37,13 +37,13 @@ const SAMPLE = 'https://useobsession.com/sample-output'
 
 export const post: BlogPost = {
   slug: 'audit-prospect-email-without-klaviyo-login',
-  title: 'Audit a prospect’s email and SMS without a Klaviyo login',
+  title: 'Klaviyo flow audit without a login: how agencies audit a prospect before the pitch',
   dek: 'Most free audits need the prospect’s Klaviyo login before an agency can show a finding. An agency can instead sign up to the prospect’s store as a new customer, record 48 hours of email and texts, and send the owner what arrived before any call.',
   metaTitle: 'Klaviyo flow audit without a login: 48 hours as a customer',
   description:
     'Run a Klaviyo flow audit on a prospect without their login: sign up as a new customer, record 48 hours of email and SMS, and send the owner the result.',
   answer:
-    'To audit a prospect’s email and SMS without a Klaviyo login, sign up to their store as a new customer from an address and phone number that have never bought, then record every email and text for 48 hours with its time and Gmail tab. Send the owner the emails as they arrived, with their times, and leave the audit inside their Klaviyo account until they agree to work with you. Obsession’s AI customers run this audit as real new customers of any store you name and keep every email as proof the prospect can open.',
+    'To run a Klaviyo flow audit on a prospect without their login, sign up to their store as a new customer and record every email and text for 48 hours. Send the owner the emails as they arrived, with their times, and leave the audit inside their Klaviyo account until they agree to work with you. Obsession keeps what any store you name sends a new customer, every email dated as it arrived, on a link the prospect can open.',
   primaryKeyword: 'klaviyo flow audit',
   keywords: [
     'email flow audit',
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 10,
   order: 6,
   authors: [
@@ -271,7 +271,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'An example from the September store check in our [sample output](' +
         SAMPLE +
-        '): on Tuesday 22 September an AI customer left a £40 Body Care Gift Set in a UK skincare store’s basket at 02:57, and another stopped at checkout with a £21 deodorant at 03:11. No email reached either inbox in the 48 hours that followed. The check used 4 AI customers with 1 inbox each, at 1 store in 1 run, so it records what arrived and can’t say why.',
+        '): on Tuesday 22 September a test customer left a £40 Body Care Gift Set in a UK skincare store’s basket at 02:57, and another stopped at checkout with a £21 deodorant at 03:11. No email reached either inbox in the 48 hours that followed. The check used 4 test customers with 1 inbox each, at 1 store in 1 run, so it records what arrived and can’t say why.',
     },
     {
       kind: 'note',
@@ -304,13 +304,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a prospect, they run the same sign up, keep each email as it arrived, say they’re AI when they talk to a person and return each result as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a prospect, an [Obsession agent](/agents) runs the same sign up and keeps each email as it arrived. It says it’s an AI when it talks to a person, and each result comes back as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
     },
     {
       kind: 'cta',
-      text: 'Name 5 stores, prospects or clients (a client’s with their OK), and Obsession checks them free. Its AI customers sign up, opt in to texts and leave a basket at each, watch every inbox for 48 hours and send back what arrived and what didn’t, with proof, within 4 days.',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated with the email itself, on a link the prospect can open. Agencies start in early access, onboarding teams now.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'five-prospects-this-week', text: 'Next steps: audit 5 prospects in one week' },
@@ -324,9 +324,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'For a full pitch list, the prospect intelligence recipe returns a verdict and a proof link for every company to Clay, your CRM or a sheet.',
-      to: '/recipes/prospect-intelligence',
-      label: 'See prospect intelligence',
+      text: 'For a full pitch list, open each pitch on what the prospect sends its signed-up customers, from the welcome email to the reminder that never came. Every fact is dated with a screenshot, in Clay, your CRM or a sheet.',
+      to: '/agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

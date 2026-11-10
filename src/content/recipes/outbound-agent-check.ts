@@ -26,7 +26,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/outbound-agent-check',
-    title: 'Outbound agent check: every message your AI SDR sends',
+    title: 'Outbound agent check: every message your AI SDR sends buyers',
     description:
       'Outbound agent check keeps every email, text and call an AI SDR sends a prospect, yours or a competitor’s, and flags each one that breaks your rules.',
     answer:

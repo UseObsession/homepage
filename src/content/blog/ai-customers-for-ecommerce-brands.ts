@@ -63,13 +63,13 @@ const AGENTIC = '/blog/agentic-commerce-for-merchants'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-ecommerce-brands',
-  title: 'Why ecommerce brands need AI customers',
-  dek: 'Much of a store’s revenue depends on emails, texts, codes and reminders that stop without an error, and AI assistants now quote its prices to shoppers. What only a customer sees, what a silent step costs in your own numbers, and the jobs AI customers do before Black Friday.',
-  metaTitle: 'AI agents for ecommerce: why DTC brands need AI customers',
+  title: 'AI agents for ecommerce: what DTC brands and their competitors send new customers',
+  dek: 'Much of a store’s revenue depends on emails, texts, codes and reminders that stop without an error, and AI assistants now quote its prices to shoppers. What only a customer sees, what a silent step costs in your own numbers, and the checks to run before Black Friday, at your store and every competitor.',
+  metaTitle: 'AI agents for ecommerce: what DTC brands send new customers',
   description:
-    'AI agents for ecommerce that shop as customers: what AI customers check in a store, what a silent flow costs before Black Friday, and the options compared.',
+    'AI agents for ecommerce that shop as customers: what a store and its competitors send new customers, and what a silent flow costs before Black Friday.',
   answer:
-    'Ecommerce brands need AI customers, the AI agents for ecommerce that shop as customers, because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An AI customer becomes a real customer of a store and its competitors, asks AI assistants what shoppers ask, and keeps what it receives as evidence, every week and after every change. Most other AI agents for ecommerce answer shoppers or run admin for the store, while Obsession’s AI customers shop it as customers and keep every email, code and price as proof.',
+    'Ecommerce brands use AI agents for ecommerce that shop as customers because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An agent that is a real customer of the store and its competitors, and asks AI assistants what shoppers ask, keeps what it receives as evidence, every week and after every change. Obsession keeps what any store shows only to its customers, yours and every competitor’s, from the welcome code to the basket reminder, each dated with the email or screenshot.',
   primaryKeyword: 'ai agents for ecommerce',
   keywords: [
     'ai agents for ecommerce business',
@@ -81,9 +81,9 @@ export const post: BlogPost = {
     'ai for ecommerce brands',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Check your own journeys',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 12,
   order: 12,
   authors: [
@@ -346,7 +346,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a store, it shows what a real customer gets after the sign up, the click and the checkout, at the store and at its competitors. AI customers say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
+      text: 'Obsession runs these jobs today. It keeps what any company shows only to its customers, each dated with the email or screenshot, for as long as you follow the company, and for a store that means what a real customer gets after the sign up, the click and the checkout, at the store and at every competitor. Its agents say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -383,7 +383,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Shopify store monitoring options, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026. If your store needs to see what a real customer receives after the sign up, the code and the basket, at your store and at your competitors, use Obsession. For uptime alone a scripted monitor is enough, and a store that rarely changes can check by hand.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026. If your store needs to see what a real customer receives after the sign up, the code and the basket, at your store and at your competitors, use Obsession. For uptime alone a scripted monitor is enough, and a store that rarely changes can check by hand.',
     },
     {
       kind: 'table',
@@ -443,8 +443,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Listings and AI answers](/recipes/listings-ai-answers)',
-          'AI customers of your store and its competitors, every email, code and price kept as proof',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'What your store and its competitors show new customers, every email, code and price dated with proof',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'What a real customer gets after sign up, click and checkout, kept as proof',
         ],
@@ -478,9 +478,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check my store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agents for ecommerce' },

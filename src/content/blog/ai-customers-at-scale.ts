@@ -27,13 +27,13 @@ const BLS = 'https://www.bls.gov/ooh/business-and-financial/market-research-anal
 
 export const post: BlogPost = {
   slug: 'ai-customers-at-scale',
-  title: 'AI customers at scale: what one costs, and what a million cost',
-  dek: 'An AI customer’s month priced line by line from published prices, then the same sum at 100, 10,000 and a million, against a human mystery shopper and an hour of your own team’s time.',
-  metaTitle: 'AI agent cost per month: what AI customers cost at scale',
+  title: 'AI agent cost per month: what an agent costs as a customer of 1 company, or a million',
+  dek: 'An AI agent that stays a customer of 1 company for a month, priced line by line from published prices. The same sum then runs at 100, 10,000 and a million, against a human mystery shopper and an hour of your team’s time.',
+  metaTitle: 'AI agent cost per month: what teams pay, from 1 to a million',
   description:
-    'What an AI customer costs a month at published prices: inbox, model, waiting and storage line by line, against mystery shopping, from 1 to a million.',
+    'What an AI agent costs a month as a customer of 1 company: inbox, model, waiting and storage at published prices, against mystery shopping, to a million.',
   answer:
-    'At published retail prices, an AI customer watching one company’s email costs about $2 a month, and almost all of it is the inbox: reading 20 emails with a small model costs about a cent, and waiting costs nothing when the agent sleeps until the company acts. A human mystery shop costs $50 to $200 for one visit. Obsession runs AI customers this way today, each asleep until its company acts, on credit-based plans like Claude’s.',
+    'At published retail prices, an AI agent that stays a customer of one company, watching its email, costs about $2 a month, and almost all of it is the inbox. Reading 20 emails with a small model costs about a cent, waiting costs nothing while the agent sleeps until the company acts, and a human mystery shop costs $50 to $200 for one visit. Obsession collects what any company shows only to its customers this way, dated with the email or screenshot, priced per call or per company watched.',
   primaryKeyword: 'ai agent cost per month',
   keywords: [
     'cost of ai agents',
@@ -44,9 +44,9 @@ export const post: BlogPost = {
     'ai customers at scale',
     'ai agent pricing',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 7,
   order: 8,
   authors: [
@@ -177,19 +177,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is built on those 3 choices: Obsession can run millions of AI customers, each asleep until its company acts, with sign ups learned once per platform.',
+      text: 'Obsession is built on those 3 choices: its agents sleep until each company acts, sign ups are learned once per platform, and it is designed for hundreds of thousands of companies, each looked up in one call.',
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company you name: it keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'Skip building the identity layer: 5 verbs over the API and MCP return what any company shows only to its customers, each fact dated with its email or screenshot.',
+      to: '/developers',
+      label: 'See the API and MCP',
     },
 
     { kind: 'h2', id: 'vs-human', text: 'AI agent cost vs a human', compare: true },
     {
       kind: 'p',
-      text: 'A person and an AI customer buy different things. A mystery shopper buys judgement at one moment: tone, service, the store itself. An AI customer buys every message and page over months, kept as evidence. Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'A person and an AI customer buy different things. A mystery shopper buys judgement at one moment: tone, service, the store itself. An AI customer buys every message and page over months, kept as evidence. We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -201,7 +201,7 @@ export const post: BlogPost = {
         ['Your own team: by hand', 'Knows the brand and its context', 'Your hours at your rate', 'Time for every check, every week', '1 to 3 companies, once'],
         ['AI browser agent: ChatGPT cloud browser', 'Completes one web task on request', 'Paid ChatGPT plans', 'No inbox or number described', 'One-off lookups'],
         ['AI customers you build: retail services', 'Every email and page for months, with evidence', 'About $2 a month each at retail', 'Identity cost grows with every company', 'Developers watching a few hundred companies'],
-        ['Obsession (ours): AI customers', 'Built for millions, asleep until each company acts', 'Running now: first store check free\nCredit-based plans, like Claude’s', 'Stops at bot walls and CAPTCHAs', 'What a real customer gets at many companies, for months'],
+        ['Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Mystery shopper](/recipes/mystery-shopper)', 'What any company shows only to customers, dated, for months', 'Early access, onboarding teams now. Priced per call or per company watched', 'Stops at bot walls and CAPTCHAs', 'What a real customer gets at many companies, for months'],
       ],
     },
     {
@@ -271,7 +271,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or past one month, the hours compound and the evidence starts to matter, and the $2 line wins. To run AI customers at many companies for months without building them yourself, use Obsession.',
+      text: 'Past a handful of companies, or past one month, the hours compound and the evidence starts to matter, and the $2 line wins. To keep what many companies show only to their customers, for months, without building it yourself, use Obsession.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits of this model' },

@@ -41,6 +41,10 @@ Read time: about 20 minutes.
 
 ## 2. Positioning in search
 
+**11 Nov 2026: the position changed on 9 Nov, and this section's older paragraphs are kept as history.** Since PRs #55 to #57, Obsession is a data company for the web behind the login. The sentence every engine should repeat is `ENTITY` in `src/content/site.ts`, word for word: *Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.* The line is *the web behind the login*; the slogan *The web behind the login, as data.*; the action *Request early access*. **AI customers is no longer the category:** it stays out of titles, H1s, descriptions, answers and calls to action, its DefinedTerm sits only on the 4 posts that define it, and its blog hub became **Behind the login** (the 11 Nov SEO revamp, wave 1; plan at `_research/seo/revamp-11nov/PLAN.md` in the Obsession folder). The free checks the blog offered are retired (James, 6 and 8 Nov). The rules live in the `obsession-website`, `obsession-seo` and `obsession-blog` skills and their gates. The paragraphs below on "the first AI customers that work for you", the "first" claim and scale describe the 24 Oct position; don't reuse their words. The owner rows still hold for addresses and queries; rows naming AI customers as a query keep only where the reader types it.
+
+**Demand for the new position** (Google autocomplete, US and UK, 11 Nov; files in `_research/seo/revamp-11nov/`): nobody types "the web behind the login" yet, so the category is defined on our own pages and reached through the jobs people type: scrape data behind login, competitor email tracking and monitoring, competitor price monitoring, one click unsubscribe requirements, subscription trap law UK, EU withdrawal button, alternative data providers, competitor battlecard template, competitive intelligence SaaS, digital experience benchmark, how to see competitor ads. Wave 2 of the revamp claims them, one owner page each.
+
 **The one sentence every engine should repeat** (`ENTITY` in `src/content/site.ts`, which is `llms.summary` and the Organization and WebSite descriptions; use it word for word on profiles, listings and author bios): *Obsession makes the first AI customers that work for you. Its AI agents sign up to any company you name and stay its customer for months, keeping every email, offer and price it sends, with proof.*
 
 **The category is AI customers** (Seun, 24 Oct 2026). How Obsession introduces itself: *the first AI customers that work for you*. The lockup: *AI customers* (the category), *the first AI customers that work for you* (who we are), *Meet your first AI customers* (the invitation, and the thesis article's title), *Keep the receipts* (the proof).
@@ -85,7 +89,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 
 | Page | Owns |
 |---|---|
-| `/` | Obsession (brand), AI customers for every company |
+| `/` | Obsession (brand), the web behind the login, data behind login |
 | `/blog/ai-customers` | AI customers, AI customer, what are AI customers |
 | `/blog/ai-customer-service-agent-vs-ai-customer` | AI customer service agent vs AI customer, what is an AI customer service agent, is HubSpot's Customer Agent an AI customer, personal AI agents |
 | `/blog/how-ai-customers-work` | how AI customers work, can an AI agent sign up, AI agent inbox and phone number |

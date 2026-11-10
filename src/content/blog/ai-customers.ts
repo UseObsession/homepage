@@ -33,12 +33,12 @@ const GMAIL_SENDERS = 'https://support.google.com/a/answer/81126?hl=en'
 
 export const post: BlogPost = {
   slug: 'ai-customers',
-  title: 'AI customers: what they are, what they see, and why they differ',
-  dek: 'An AI customer joins a company the way a person does and stays for months. What it is, what it sees that dashboards and surveys can’t, the rules it keeps, and how it differs from support bots, synthetic customers and mystery shoppers.',
-  metaTitle: 'AI customers: what they are and how they differ from bots',
+  title: 'AI customers: the agents that keep what companies show only to customers',
+  dek: 'An AI customer signs up, starts a trial or asks for a quote the way any customer can, and keeps what the company sends, dated. The term names one way Obsession collects what companies show only to customers, and it differs from support bots, synthetic customers and mystery shoppers in who it works for and what it keeps.',
+  metaTitle: 'AI customers: agents that keep what companies show customers',
   description:
-    'AI customers are AI agents that become real customers of a company and keep what it sends as evidence. What they see, the rules, and how they differ.',
-  answer: `${AI_CUSTOMER.definition} It is a customer of the company and works for whoever sent it, the opposite of an AI customer service agent, which works for the company and answers its customers. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof.`,
+    'AI customers are agents that sign up, start trials and ask for quotes like any customer, so what a company shows only its customers is kept, dated.',
+  answer: `${AI_CUSTOMER.definition} It works for whoever sent it, the opposite of an AI customer service agent, which works for a company and answers its customers. AI customers are one way Obsession collects its index, which keeps what any company shows only to its customers, dated with the email or screenshot, for lookup by API, MCP or a table.`,
   primaryKeyword: 'ai customers',
   keywords: [
     'what are ai customers',
@@ -49,12 +49,11 @@ export const post: BlogPost = {
     'ai test customers',
     'ai agents as customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 8,
   order: 1,
-  featured: true,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
     { name: 'James Akinniranye', role: 'Cofounder' },
@@ -105,7 +104,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'The term says where the agent stands and who it works for. It is a customer of the company, and it works for whoever sent it: a brand watching its competitors, an agency checking a client’s store, a sales team researching a prospect, or a company testing its own checkout and support bot.',
+      text: 'The term says where the agent stands and who it works for. It is a customer of the company, and it works for whoever sent it: a brand watching its competitors, an agency checking a client’s store, a sales team researching a prospect, or a company testing its own checkout and support bot. The term names one way Obsession’s index is collected. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     { kind: 'h3', id: 'identity', text: 'A real identity' },
     {
@@ -126,7 +125,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Together these make an AI customer cheap to keep. It is asleep almost all the time and wakes only when the company sends something or a check is due, so one team can keep a customer at thousands of companies, and Obsession can run millions of AI customers ([AI customers at scale](/blog/ai-customers-at-scale)).',
+      text: 'Together these make an AI customer cheap to keep. It is asleep almost all the time and wakes when the company sends something or a check is due, so one team can follow thousands of companies at once. Obsession is built for hundreds of thousands of companies, each looked up in one call ([AI customers at scale](/blog/ai-customers-at-scale)).',
     },
 
     { kind: 'h2', id: 'what-it-sees', text: 'What an AI customer sees' },
@@ -253,9 +252,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. They sign up to any company you name and keep every email, offer and price it sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'See what the record looks like: a real UK skincare store, September 2026, every email and screenshot kept, and a £40 basket left at 02:57 that got no reminder in 48 hours.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -271,9 +270,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'The first store check is free: 4 AI customers follow your ads, sign up, use the welcome code, leave a basket and wait, and your report arrives within 4 days.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      text: 'Look up what any company shows only to its customers from your own code or agent: 5 verbs over the API and MCP, each fact dated with its email or screenshot, and a company not yet covered added on request.',
+      to: '/developers',
+      label: 'See the API and MCP',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI customers' },

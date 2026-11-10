@@ -38,13 +38,13 @@ const SHOPIFY_AGENTS = 'https://shopify.dev/docs/agents'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-developers',
-  title: 'AI customers for developers: an email API, a phone number and a browser for your agent',
-  dek: 'How to give an AI agent an inbox, a phone number and a browser and keep it a customer of thousands of companies for months, the hard parts at scale, what the parts cost at published prices, and how to call it over MCP.',
-  metaTitle: 'Email API for AI agents: how to build AI customers at scale',
+  title: 'Email API for AI agents: how developers get what companies send customers',
+  dek: 'How developers give an AI agent an inbox, a phone number and a browser and keep it a customer of thousands of companies for months. The parts at published prices, the hard parts at scale, and the same facts over MCP, the standard way AI agents call tools.',
+  metaTitle: 'Email API for AI agents: what developers build, at what cost',
   description:
-    'Email API for AI agents, phone numbers and browsers: how to build AI customers, the hard parts at scale, published prices, and 5 verbs over MCP and an API.',
+    'Email API for AI agents, phone numbers and browsers: what developers build to read what companies send customers, the costs, or 5 verbs over MCP and API.',
   answer:
-    'An email API for AI agents, such as AgentMail, gives each agent its own inbox, and an AI customer needs that plus a phone number, a browser, a sign up program for each platform, waiting that costs nothing for months, and an evidence store that keeps each email with its DKIM result and a hash. You can build it from services such as AgentMail, Twilio, Browserbase and Cloudflare Durable Objects, or use Obsession’s AI customers, which come with all of it, with API keys going to teams one at a time.',
+    'An email API for AI agents, such as AgentMail, gives each agent its own inbox that it creates, reads and sends from by API. Reading what companies send their customers takes more: a phone number, a browser, a sign up program per platform, months of waiting and a store that keeps each raw email with its DKIM result, the signature check that shows which domain sent it. Obsession keeps what any company shows only to its customers, dated with the raw email or screenshot, and your agent looks it up through 5 verbs over the API or MCP.',
   primaryKeyword: 'email api for ai agents',
   keywords: [
     'give your ai agent a phone number',
@@ -56,9 +56,9 @@ export const post: BlogPost = {
     'dkim verification',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 10,
   order: 9,
   authors: [
@@ -234,12 +234,12 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'build-or-buy', text: 'Build or buy', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
       compare: true,
-      caption: 'Ways to build AI customers. Prices from each company’s own pages, 24 October 2026, in US dollars',
+      caption: 'Ways to give an agent an inbox, a number and a browser at many companies. Prices from each company’s own pages, 24 October 2026, in US dollars',
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         [
@@ -285,9 +285,9 @@ export const post: BlogPost = {
           'Facts from stored evidence',
         ],
         [
-          'Obsession (ours): 5 verbs over MCP, an API and an SDK',
+          'Obsession (ours): 5 verbs over MCP, the API and SDKs',
           'Customer agents with an inbox, number and browser\nShared history from day one\nEvidence with its DKIM result',
-          'Running now for store checks\nAPI keys go to teams one at a time\nCredit-based plans, like Claude’s',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'Agents that need to be a real customer at many companies',
         ],
@@ -323,7 +323,7 @@ export const post: BlogPost = {
       text: 'Use Obsession when you need thousands of companies, history from the first day, or numbers in many countries. Build it when you watch a handful of companies, need the store in your own systems, or want to run an open source runtime yourself.',
     },
 
-    { kind: 'h2', id: 'call-over-mcp', text: 'Calling AI customers over MCP and an API' },
+    { kind: 'h2', id: 'call-over-mcp', text: 'Looking companies up over MCP and an API' },
     {
       kind: 'p',
       text: '[MCP](' +
@@ -334,7 +334,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your agent can find revenue leaks, watch competitors and prospect with proof. It exposes them as 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies the shared record already covers, and since when), facts (what a company did, each with its evidence), evidence (the raw email, page or transcript behind a fact), index (start customer agents, or join ones already there) and notify (new facts pushed to your webhook, Slack or CRM as they land). Its runtime is open source: it fans out to many companies at once, sleeps each customer agent for free and learns each sign up once before running it as code, and Obsession Cloud runs it with inboxes and numbers in many countries and months of shared history. Obsession runs today on credit-based plans, like Claude’s, where credits pay for the work your AI customers do, and every key has a spending cap you set.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For your code that is 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies are covered, and since when), facts (what a company sent or showed, typed, each with a timestamp and a link to its evidence), evidence (the raw email with its DKIM result, or the page as captured), index (add a new company) and notify (each new fact posted to your webhook as JSON the moment it lands). A company is indexed once and shared, so one already covered arrives with its history, and the runtime that signs up, keeps each account open and files every email is open source. Priced per call or per company watched, every key has a spending cap you set, and teams start in early access with API and MCP keys and lookups of every company already covered.',
     },
     {
       kind: 'art',
@@ -347,16 +347,16 @@ export const post: BlogPost = {
           { time: '09:00', text: 'lookup: 3 domains', detail: '2 covered since July, 1 not yet', tone: 'ok' },
           { time: '09:00', text: 'facts: since 24 September', detail: 'The covered competitors’ facts, each linked to its evidence', tone: 'ok' },
           { time: '09:01', text: 'evidence: 1 price email', detail: 'The raw email, its DKIM result and its hash', tone: 'ok' },
-          { time: '09:01', text: 'index: 1 domain', detail: 'An AI customer starts a trial as a new customer', tone: 'info' },
+          { time: '09:01', text: 'index: 1 domain', detail: 'An Obsession agent starts a trial as a new customer', tone: 'info' },
           { time: '11:42', text: 'notify: fact.created', detail: 'quillery.example cut Pro from $49 to $39 a month', tone: 'ok' },
         ],
         foot: 'An example with invented companies. The 5 calls are Obsession’s verbs. What the app shows its user is its own.',
       },
-      caption: 'How an app’s agent uses AI customers as a tool: it asks what is covered, reads facts and evidence, starts an AI customer where none exists, and is told when something arrives.',
+      caption: 'How an app’s agent uses Obsession as a tool: it asks what is covered, reads facts and evidence, adds a new company, and is told when a new fact lands.',
     },
     {
       kind: 'cta',
-      text: 'Obsession gives your AI agents a customer at every company: long lived agents with their own inbox, phone number and browser, behind 5 verbs over MCP, an API and an SDK. The runtime is open source.',
+      text: '5 verbs for your agents and your code: look up any company, read its facts with the raw email or page behind each, add a new company, and get every new fact at your webhook the moment it lands.',
       to: '/developers',
       label: 'See the API and MCP',
     },
@@ -387,7 +387,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there an MCP server for ecommerce?',
-          a: 'Yes. Shopify’s developer docs offer MCP servers through which agents search products, build carts, check out and fetch order status for a buyer. What companies send their customers comes from a customer-side server backed by AI customers.',
+          a: 'Yes. Shopify’s developer docs offer MCP servers through which agents search products, build carts, check out and fetch order status for a buyer. What companies send their customers comes from a customer-side server such as Obsession’s, which keeps each email and page dated, with its evidence.',
         },
         {
           q: 'Can an AI agent wait weeks for an email without running?',

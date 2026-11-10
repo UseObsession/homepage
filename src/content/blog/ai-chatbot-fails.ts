@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 6 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 6; WRITER_BRIEF.md, batch 2; Seun's go,
    1 Nov 2026). It owns "ai chatbot fails" and ai bot fails, ai chatbot error and ai chatbot problems (Google
@@ -15,8 +14,8 @@ import { AI_CUSTOMER } from '../glossary'
    30 Oct 2026), Utah Code 13-77-102 and 13-77-103 (le.utah.gov), Maine's 10 MRSA 1500-DD (the Revisor's page) and
    Article 50 of the AI Act (EUR-Lex consolidated text of 27 Jul 2026). The trust-and-failure claims in
    research_27oct.json are about shoppers' agents meeting stores, so none is used here; Taco Bell is the newer voice
-   case. Obsession follows STANDARD.md: named in the answer, the line with the uses once, the 1,500 line word for word,
-   "Use Obsession when" once, and the /verify offer in its words. harlow.example is invented. No dashes. */
+   case. Obsession follows STANDARD.md: named in the answer, the entity sentence once (11 Nov 2026), the 1,500 line in
+   the site’s words, "Use Obsession when" once, and the /verify call to action in its words. harlow.example is invented. No dashes. */
 
 const BI = 'https://www.businessinsider.com/car-dealership-chevrolet-chatbot-chatgpt-pranks-chevy-2023-12'
 const BBC_DPD = 'https://www.bbc.com/news/technology-68025677'
@@ -37,12 +36,12 @@ export const post: BlogPost = {
   description:
     'AI chatbot fails at Air Canada, DPD, Cursor and New York City: what each bot told customers, what it cost, and how CX teams catch them before customers.',
   answer:
-    'AI chatbot fails are public cases where a business’s chatbot or voice agent misbehaved or gave a false policy, price or promise, like the refund rule Air Canada had to honour. A customer or reporter found each one first, and some followed an update, so CX teams catch them by asking the live chat what customers ask and checking each answer against policy. To catch them before customers do, use Obsession: its AI customers ask your company’s chat and phone line what customers ask, every day and after every update, and keep each answer as proof.',
+    'AI chatbot fails are public cases where a business’s chatbot or voice agent misbehaved or gave a false policy, price or promise, like the refund rule Air Canada had to honour. A customer or reporter found each one first, and some followed an update, so CX teams catch them by asking the live chat what customers ask and checking each answer against policy. Obsession asks your company’s chat and phone line what customers ask, every day and after every update, and keeps each answer dated, to look up by API or MCP (the way AI agents call tools).',
   primaryKeyword: 'ai chatbot fails',
   keywords: ['ai bot fails', 'ai chatbot error', 'ai chatbot problems'],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 11,
   order: 3,
   authors: [
@@ -233,7 +232,7 @@ export const post: BlogPost = {
       art: {
         kind: 'log',
         title: 'harlow.example · daily refund question',
-        who: 'An AI customer on the site chat, for Harlow’s CX team',
+        who: 'A daily check on the site chat, for Harlow’s CX team',
         rows: [
           { time: 'Mon 07:00', text: 'Chat: “Returns close 14 days after delivery.”', detail: 'Matches the returns page', tone: 'ok' },
           { time: 'Mon 23:10', text: 'The chat vendor ships an update', tone: 'info' },
@@ -250,20 +249,18 @@ export const post: BlogPost = {
       text: 'The by-hand version, with 8 questions and a scoring sheet, is in [how to test a store chatbot on returns, delivery dates and codes](/blog/test-store-chatbot-returns-policy). [AI chatbot testing tools](/blog/best-ai-chatbot-testing-tools) compares the software that tests an agent before launch and monitors it after. [AI agent QA](/blog/ai-customers-for-cx-teams) works out what a wrong answer costs a CX team in its own numbers.',
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'How AI customers catch failures first' },
+    { kind: 'h2', id: 'ai-customers', text: 'Every answer your agents give, kept and dated' },
     {
       kind: 'p',
-      text: '[AI customers](/blog/ai-customers) run the same checks as a customer would. **' +
-        AI_CUSTOMER.definition +
-        '** Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     {
       kind: 'p',
-      text: 'For a CX team, Obsession’s AI customers chat, email and call the agents your company runs, every morning and after every update. Each one asks what customers ask and checks the answer against the policy page as it read that minute. Then it asks for a person and watches its own inbox for the refund or email the agent promised.',
+      text: 'For a CX team, Obsession chats with, emails and calls the agents your company runs, every morning and after every update. It asks what customers ask and sets each answer beside the policy page as it read that minute. Then it asks for a person and watches its own inbox for the refund or email the agent promised.',
     },
     {
       kind: 'p',
-      text: 'Each AI customer says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
+      text: 'The visitor is an Obsession agent, a customer that says it’s an AI, and this way of collecting is what the term [AI customers](/blog/ai-customers) names. Each agent keeps to the rules on [its own page](/agents): no fake payment details, and no getting round a CAPTCHA or a bot block. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'p',
@@ -271,9 +268,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What your chat, email and phone agents tell customers, word for word. Every answer is kept as a dated transcript or call beside the policy it should match, and your team hears of a changed answer the day it changes.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI chatbot fails' },

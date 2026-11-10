@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 4 in _research/seo/plan/week-2nov/SLATE.md (Seun's go, 1 Nov 2026: "Start them"), written to WRITER_BRIEF.md in
    the same folder. It owns "chatgpt shopping" and its neighbours (Google autocomplete, US and UK, 31 Oct 2026:
@@ -54,7 +53,7 @@ export const post: BlogPost = {
   description:
     'ChatGPT shopping for brands: how ChatGPT picks products from feeds, pages and reviews, and how to check what it tells shoppers about your products.',
   answer:
-    'ChatGPT shopping is ChatGPT answering “what should I buy” with products, prices and reasons, which it picks using product data, pages on the web and what the shopper asked. Answers change from one run to the next, so a brand checks what ChatGPT says about its products repeatedly, logged out and against its live store. To track what ChatGPT tells shoppers about your products, use Obsession: its AI customers ask the same shopping questions every week and keep each answer, dated, with the page it cites.',
+    'ChatGPT shopping is ChatGPT answering “what should I buy” with products, prices and reasons, which it picks using product data, pages on the web and what the shopper asked. Answers change from one run to the next, so a brand checks what ChatGPT says about its products repeatedly, logged out and against its live store. To track what ChatGPT tells shoppers about your products, Obsession asks the same shopping questions every week and keeps each answer, dated, with the page it cites.',
   primaryKeyword: 'chatgpt shopping',
   keywords: [
     'chatgpt shopping research',
@@ -67,7 +66,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 13,
   order: 1,
   authors: [
@@ -314,36 +313,34 @@ export const post: BlogPost = {
       text: 'Then report the answer to OpenAI from the menu on the product, which its shopping page offers for incorrect information. Ask the same questions again after each fix, and close the problem when every run is right. For what a shopper’s own AI agent meets once it reaches your store, from checkout to the returns page, see the 10 checks for an [agent ready website](/blog/agent-ready-website).',
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'How AI customers check ChatGPT every week' },
+    { kind: 'h2', id: 'ai-customers', text: 'How brands check ChatGPT every week' },
     {
       kind: 'p',
       text: 'A check by hand covers 1 person, 1 country and 1 afternoon, and the log holds only the weeks someone remembers to run it.',
     },
     {
       kind: 'p',
-      text: '**' +
-        AI_CUSTOMER.definition +
-        '** [What AI customers are](/blog/ai-customers) explains the term in full. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     {
       kind: 'p',
-      text: 'For ChatGPT shopping, Obsession’s AI customers ask ChatGPT and the other assistants your shoppers use the same questions every Monday, each the official way and from a clean history. They keep each answer with its date and the page it cites, trace a wrong price to that page and ask again until the answer changes. The same AI customers sign up to your store, use the welcome code and leave a basket, so the price and offer a shopper meets after the answer are checked too.',
+      text: 'For ChatGPT shopping, Obsession asks ChatGPT and the other assistants your shoppers use the same questions every Monday, each the official way and from a clean history. It keeps each answer with its date and the page it cites, traces a wrong price to that page and asks again until the answer changes. It also signs up to your store, uses the welcome code and leaves a basket, so the price and offer a shopper meets after the answer are kept too.',
     },
     {
       kind: 'p',
-      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Every AI customer says it’s an AI when it talks to a person and never gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Every agent says it’s an AI when it talks to a person, and none gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s Listings and AI answers asks ChatGPT and the other assistants your shoppers use the same questions every Monday. It traces each wrong answer to the page it cites and asks again until the answer changes.',
-      to: '/recipes/listings-ai-answers',
-      label: 'See Listings and AI answers',
+      text: 'A real UK skincare store’s record from September 2026: 4 test customers, every inbox watched for 48 hours, and a £40 basket that got no reminder. It comes as a PDF, a sheet, Clay or JSON.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to check what ChatGPT tells shoppers, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 1 November 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 1 November 2026.',
     },
     {
       kind: 'table',
@@ -362,8 +359,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Listings and AI answers](/recipes/listings-ai-answers), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
-          'AI customers ask ChatGPT every week, keep each answer, then shop your store',
-          'Running now: Check my store free\nCredit-based plans, like Claude’s',
+          'ChatGPT asked every week, each answer dated, then what your store sends a new customer',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'OpenAI decides what ChatGPT shows',
           'What shoppers are told, and what your store then gives them',
         ],
@@ -387,9 +384,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'OpenAI says ChatGPT purchases are completed on merchants’ own websites or apps, so start with what shoppers meet on yours. Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'OpenAI says ChatGPT purchases are completed on merchants’ own websites or apps, so start with what shoppers meet on yours: every email and text your store sends after a sign-up, a basket and a checkout, each with the time it arrived.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check my store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about ChatGPT shopping' },

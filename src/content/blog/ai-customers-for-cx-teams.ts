@@ -56,13 +56,13 @@ const BOT_TEST = '/blog/test-store-chatbot-returns-policy'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-cx-teams',
-  title: 'Why CX teams need AI customers',
-  dek: 'A company answers for its AI agent as it would for an employee, and the agent’s answers can change with every edit. What CX teams can’t see from inside the help desk, what a wrong answer costs in their own numbers, and how AI customers check every channel every day.',
-  metaTitle: 'AI customer service quality assurance from the customer side',
+  title: 'AI customer service quality assurance: what CX teams’ AI agents tell customers',
+  dek: 'A company answers for its AI agent as it would for an employee, and the agent’s answers can change with every edit. What CX teams can’t see from inside the help desk, what a wrong answer costs in their own numbers, and how to check what the agent tells customers on every channel, every day.',
+  metaTitle: 'AI customer service quality assurance for CX teams, daily',
   description:
-    'AI customer service quality assurance for CX teams: what QA inside the help desk misses, what a wrong answer costs, and how AI customers check each day.',
+    'AI customer service quality assurance for CX teams: what QA inside the help desk misses, what a wrong answer costs, and how to check every answer each day.',
   answer:
-    'CX teams need AI customers because a company answers for its AI agent as it would for an employee, and the agent’s answers can change after any prompt edit, help article update or vendor release. AI customer service quality assurance inside the help desk scores conversations customers have already had. Obsession’s AI customers ask the agent what customers ask, on chat, email and phone, every day and within the hour of each update, and keep every transcript as proof.',
+    'AI customer service quality assurance matters because a company answers for its AI agent as it would for an employee, and the agent’s answers can change after any prompt edit, help article update or vendor release. QA inside the help desk scores conversations customers have already had, while a check from the customer side asks the agent what customers ask, on chat, email and phone, every day and within the hour of each update. Obsession keeps what AI agents tell customers, word for word, each answer a dated transcript beside the page it should match, for your own agents and your competitors’.',
   primaryKeyword: 'ai customer service quality assurance',
   keywords: [
     'ai customer service quality assurance',
@@ -74,9 +74,9 @@ export const post: BlogPost = {
     'chatbot quality assurance',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Check your AI agents',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 12,
   order: 15,
   authors: [
@@ -306,15 +306,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a CX team, its AI customers call, chat and email the company’s AI agents every day, as its customers do. They check each agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
+      text: 'Obsession runs these checks today. It keeps what any company shows only to its customers, each dated with the email or screenshot, and for a CX team that means what the company’s AI agents tell customers on chat, email and phone, word for word, every day, each answer kept beside the page it should match. Each check covers whether the agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
         BOT_TEST +
         ') gives the questions and a scoring sheet.',
     },
     {
       kind: 'cta',
-      text: 'AI customers ask your AI agents what your customers ask, on chat, email and phone, every day and after every update, and keep each answer as proof.',
+      text: 'What your AI agents tell customers, word for word: support chats, voice lines and sales agents, yours and your competitors’, each answer kept as a dated transcript beside the page it should match.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -360,7 +360,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'AI agent QA options, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -406,9 +406,9 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Drift watch](/recipes/drift-watch), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check), [Vendor agent check](/recipes/vendor-agent-check)',
-          'AI customers ask on live channels daily and after updates, and keep each answer',
-          'Running now: first AI agent check free\nCredit-based plans, like Claude’s',
-          'Sees what its own AI customers are told',
+          'Asks on live channels daily and after updates, and keeps each answer as a dated transcript',
+          'Early access, onboarding teams now. Priced per call or per company watched',
+          'The reason behind an answer sits in the agent’s own logs',
           'What customers are told on every channel, after every update, kept as proof',
         ],
       ],
@@ -452,9 +452,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Your first AI agent check is free: name a chat page or phone number your company runs, 3 AI customers use it, and your report lands within 4 days.',
+      text: 'Support chats, voice lines, sales agents and outbound callers: every answer kept as a dated transcript or call beside the page it should match, from the first day you follow them.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agent QA' },

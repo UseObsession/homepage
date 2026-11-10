@@ -13,5 +13,5 @@ export const readerHubs: Record<string, string[]> = {
   '/marketing': ['Watch other companies'],
   '/verify': ['Check your AI agents'],
   '/sales': [],
-  '/developers': [],
+  '/developers': ['Behind the login'],
 }

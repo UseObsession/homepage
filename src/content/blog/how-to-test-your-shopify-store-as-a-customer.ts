@@ -39,13 +39,13 @@ const LEAKS = '/use-cases/leak-checks-for-ecommerce-stores'
 
 export const post: BlogPost = {
   slug: 'how-to-test-your-shopify-store-as-a-customer',
-  title: 'How to test your Shopify store as a customer: the test order, the checks, and AI customers that keep checking',
+  title: 'How to test your Shopify store as a customer: a test order and 10 checks',
   dek: 'Place a free test order in Shopify’s test mode, then shop the store on a phone as a new customer. Run 10 checks, from the ad’s link to the reminder emails 48 hours later, each with what a pass looks like.',
   metaTitle: 'How do I test my Shopify store? As a customer, step by step',
   description:
     'How do I test my Shopify store? Place a free test order in test mode, then run 10 checks on a phone as a new customer, from the ad to the reminder emails.',
   answer:
-    'To test your Shopify store, place a free test order with test card numbers in Shopify’s test mode, then shop the store on a phone as a new customer. Check each step against a pass mark, from the buttons and codes to the welcome and reminder emails over the next 48 hours. To check the sign-up, basket and checkout every week and after every change, use Obsession: its AI customers shop your store and your competitors’ as real customers and keep every email, code and page.',
+    'To test your Shopify store, place a free test order with test card numbers in Shopify’s test mode, then shop the store on a phone as a new customer. Check each step against a pass mark, from the buttons and codes to the welcome and reminder emails over the next 48 hours. Obsession keeps every email, code and page your store and your competitors show a new customer, dated with the email or screenshot, every week and after every change.',
   primaryKeyword: 'how do i test my shopify store',
   keywords: [
     'test my shopify store',
@@ -58,7 +58,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-29',
-  updated: '2026-10-29',
+  updated: '2026-11-11',
   readingMinutes: 17,
   order: 1,
   authors: [
@@ -220,7 +220,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 10 customer checks, in the order a shopper meets them' },
     {
       kind: 'p',
-      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
+      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
     },
 
     { kind: 'h3', id: 'ad-link', text: '1. The ad’s link lands on a live product' },
@@ -280,7 +280,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In October 2026 Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. Nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in. Most first reminders came within 4 hours, the fastest after 30 minutes, and some about 10 hours later.',
+      text: 'In October 2026 Obsession ran a pilot for agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its agents signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. Nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in. Most first reminders came within 4 hours, the fastest after 30 minutes, and some about 10 hours later.',
     },
 
     { kind: 'h3', id: 'chat', text: '10. The store’s chat gives the right answer' },
@@ -360,18 +360,18 @@ export const post: BlogPost = {
         ') covers what it tests, what it costs and how far to trust it.',
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'AI customers that keep checking' },
+    { kind: 'h2', id: 'ai-customers', text: 'Checks that keep running every week' },
     {
       kind: 'p',
-      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, each journey, such as a sign-up, a basket or a checkout, gets its own AI customer. It opens the page behind your ads from their links, signs up, takes the welcome code to checkout, and leaves a basket or a checkout. Every email, code and page is kept as it arrived, with its time. Your team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. An email counts as missing once its window closes, 48 hours for most flows. A new AI customer runs every journey each week, and a theme publish or a flow edit reruns the journeys it touches within the hour.',
+      text: 'On a Shopify store, each journey, such as a sign-up, a basket or a checkout, gets its own new customer. It opens the page behind your ads from their links, signs up, takes the welcome code to checkout, and leaves a basket or a checkout. Every email, code and page is kept as it arrived, with its time. Your team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. An email counts as missing once its window closes, 48 hours for most flows. A fresh sign-up runs every journey each week, and a theme publish or a flow edit reruns the journeys it touches within the hour.',
     },
     {
       kind: 'p',
-      text: 'The same AI customers shop competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'The same checks run at competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call.',
     },
     {
       kind: 'p',
@@ -381,7 +381,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'compared', text: 'Ways to test your Shopify store, compared', compare: true },
     {
       kind: 'p',
-      text: 'A Shopify store checker can mean Shopify’s own test tools, an app that runs set journeys on a schedule, AI shoppers that try a theme, or AI customers. Obsession makes AI customers, so every other option is described from its provider’s own pages as of 29 October 2026.',
+      text: 'A Shopify store checker can mean Shopify’s own test tools, an app that runs set journeys on a schedule, AI shoppers that try a theme, or a record of what the store sends a new customer. We make Obsession, so every other option is described from its provider’s own pages as of 29 October 2026.',
     },
     {
       kind: 'table',
@@ -420,8 +420,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Store leak checks](' + LEAKS + '), [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit)',
-          'AI customers sign up, use the codes and leave baskets and checkouts at the store and its competitors, keeping every email, code and page with its time',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'Every email, code and page the store and its competitors show after a sign-up, a basket and a checkout, kept with its time',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the payment step to Shopify’s test mode',
           'Sign-up to checkout, every week and after every change, at the store and its competitors',
         ],
@@ -446,13 +446,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start tonight' },
     {
       kind: 'p',
-      text: 'Place the test order, run the 10 checks and write pass or fail beside each, then turn test mode off. For the same checks every week, at the store and its competitors, start with the free store check.',
+      text: 'Place the test order, run the 10 checks and write pass or fail beside each, then turn test mode off. For the same checks every week, at the store and its competitors, request early access.',
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
       to: LEAKS,
-      label: 'Check my store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about testing a Shopify store' },
@@ -485,14 +485,15 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there a free Shopify store checker?',
-          a: 'Shopify’s test order is free on a paid plan, its store preview is in the admin, and the 10 checks need only a phone. Obsession’s store check is free as well: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days.',
+          a: 'Shopify’s test order is free on a paid plan, its store preview is in the admin, and the 10 checks need only a phone. To run the same checks every week, Obsession keeps every email, code and page a store shows a new customer, each dated. Teams start in early access.',
+          link: { label: 'See sample data', to: '/sample-output' },
         },
       ],
     },
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. Obsession’s pilot for 4 agencies ran between 21 and 24 October 2026 on the stores each agency sent in. No store or agency is named. Larkfield and everything in both pictures is invented.',
+      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. Obsession’s pilot for agencies ran between 21 and 24 October 2026 on the stores each agency sent in. No store or agency is named. Larkfield and everything in both pictures is invented.',
     },
   ],
 

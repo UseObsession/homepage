@@ -109,11 +109,11 @@ export const useCasesPage: UseCasesIndexPage = {
 export const blogPage: BlogIndexPage = {
   meta: {
     path: '/blog',
-    title: 'The Obsession blog: AI customers and what customers get',
+    title: 'The Obsession blog: what companies show only to customers',
     description:
-      'Guides to AI customers and what companies send them: tests for ecommerce stores and the agencies that run them, with every source linked and dated.',
+      'Guides for teams that track what companies show only to customers: competitors’ emails, member prices, trial limits, cancel offers and what AI agents say.',
     answer:
-      'Checklists and tests for ecommerce stores and the agencies that run them, from both founders of Obsession, with every source linked. Each shows how to see what a new customer actually gets, from the welcome email to the checkout reminder, and how to check it by hand.',
+      'Guides for teams that track what companies show only to customers: competitors’ emails and offers, member prices, trial limits, cancel flows and what AI agents say. Each shows the method by hand, with every source linked, and where Obsession’s index takes over.',
     ogImage: '/og/blog.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -122,7 +122,7 @@ export const blogPage: BlogIndexPage = {
   },
   hero: {
     headline: 'Find out what any company’s customers actually receive.',
-    sub: 'Checklists and tests for ecommerce stores and the agencies that run them, from both founders of Obsession, with every source linked.',
+    sub: 'Guides for teams that track what companies show only to customers: competitors’ emails and offers, member prices, trial limits, cancel flows and what AI agents say. From both founders of Obsession, with every source linked.',
   },
   empty: {
     heading: 'Start with the work itself.',

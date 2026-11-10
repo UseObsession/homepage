@@ -33,13 +33,13 @@ const WEBSYSTEMS = 'https://web-systems.solutions/en/shopify-retainer'
 
 export const post: BlogPost = {
   slug: 'ecommerce-agency-client-retention-with-ai-customers',
-  title: 'How ecommerce agencies stand out and keep clients: AI customers on every client’s store',
+  title: 'Agency client retention: how ecommerce agencies show clients what their customers got',
   dek: 'The ecommerce agencies that keep clients longest show each brand what its customers got this week, before the brand asks. The services to sell by agency type, the weekly routine that runs them across every client, and the business case in an agency’s own numbers.',
   metaTitle: 'Agency client retention: how ecommerce agencies stand out',
   description:
     'Agency client retention for ecommerce agencies: show each brand what its customers got each week, with the services to sell and the case in your numbers.',
   answer:
-    'Agency client retention comes down to what a brand can see, so the ecommerce agencies that stand out show each client what its customers got this week, before the client finds a problem. AI customers make that a service an agency can sell: they sign up, shop and wait at every client’s store, its competitors and the pages behind its ads, and keep each email and screenshot with its time. To run it across every client, use Obsession: its AI customers report what each store sends, from every email to every price, at the hours the agency chooses.',
+    'Agency client retention comes down to what a brand can see, so the ecommerce agencies that stand out show each client what its customers got this week, before the client finds a problem. Each check becomes a service an agency can sell, run at every client’s store, its competitors and the pages behind its ads, with each email and screenshot kept with its time. Obsession keeps what every client store, competitor and ad page shows a new customer, dated with the email or screenshot, by API, MCP or a table.',
   primaryKeyword: 'agency client retention',
   keywords: [
     'marketing agency client management',
@@ -52,7 +52,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-29',
-  updated: '2026-10-29',
+  updated: '2026-11-11',
   readingMinutes: 17,
   order: 0,
   authors: [
@@ -159,7 +159,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'There is almost always something to bring. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. This month Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its AI customers signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
+      text: 'There is almost always something to bring. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. In October 2026 Obsession ran a pilot on the stores that 4 agencies pitch and serve. Between 21 and 24 October, its agents signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
     },
     {
       kind: 'list',
@@ -172,7 +172,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The page and the cart break too. On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. Shopping on a phone as a signed-out new customer, it found problems such as these:',
+      text: 'The page and the cart break too. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. Shopping on a phone as a signed-out new customer, it found problems such as these:',
     },
     {
       kind: 'list',
@@ -193,7 +193,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'services-menu', text: 'Productized agency services, by agency type' },
     {
       kind: 'p',
-      text: 'A productized agency service is a fixed piece of work with a set scope, schedule and price, sold the same way to every client. Each service here is a check run as a new customer of the client’s store, its competitors or the pages behind its ads. The work is done by AI customers. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)).',
+      text: 'A productized agency service is a fixed piece of work with a set scope, schedule and price, sold the same way to every client. Each service here is a check run as a new customer of the client’s store, its competitors or the pages behind its ads. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. Each check is run by an Obsession agent, a customer that says it’s an AI ([how the data is collected](/blog/ai-customers)).',
     },
     {
       kind: 'p',
@@ -338,16 +338,16 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For an agency, every client store, competitor and live ad runs on one routine:',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For an agency, every client store, competitor and live ad runs on one routine:',
     },
     {
       kind: 'list',
       items: [
-        '**An AI customer for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
+        '**An Obsession agent for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
         '**Everything a customer meets.** The emails, the page behind each ad, prices and offers, the basket, checkout and codes, the store’s chat and AI agent, and what AI assistants say about the brand.',
         '**Bot checks.** Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so the agency knows exactly what to check by hand.',
-        '**Scale.** It runs at 300, 1,000 or 5,000 brands a month, and it is built for millions. The first agency to finish the October pilot is moving to 300 brands a month.',
-        '**Pricing.** Credit-based plans, like Claude’s.',
+        '**Scale.** It runs at 300, 1,000 or 5,000 brands a month. It is built for hundreds of thousands of companies, each looked up in one call, and every store stays followed for as long as the agency wants.',
+        '**Pricing.** Priced per call or per company watched, never per token, with a spending cap on every key.',
       ],
     },
 
@@ -382,7 +382,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Ways to check every client, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 29 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 29 October 2026.',
     },
     {
       kind: 'table',
@@ -421,8 +421,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Ad landing check](/recipes/ad-landing-check), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch)',
-          'AI customers sign up, shop and wait at every client store, its competitors and its ads, and keep what arrives',
-          'Running now: 5 stores or 5 brands checked free\nCredit-based plans, like Claude’s',
+          'What every client store, its competitors and its ads show a new customer, every email and screenshot kept as it arrived',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the fix and the client call to the agency',
           'Every client checked as a customer each week, with proof the client can open',
         ],
@@ -430,7 +430,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency wants an AI customer at every client’s store each week, use Obsession. Each finding comes with the email or screenshot and its time, and each fix with a before and after. The same AI customers watch each client’s competitors and open the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
+      text: 'If your agency wants to see every client’s store as a new customer each week, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. Each finding comes with its time, and each fix with a before and after. The same routine covers each client’s competitors and the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
@@ -459,19 +459,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The Obsession team helps your agency set up its first batch: the client stores, the journeys at each and where the reports go. The free checks report within 4 days. Once your own list runs, your agency chooses when to read each store: at 4, 12, 24 or 48 hours, or for as long as it wants to keep watching.',
+      text: 'Agencies start in early access, onboarding teams now, and the Obsession team helps each one set up its first batch: the client stores, the journeys at each and where the reports go. Once your own list runs, your agency chooses when to read each store: at 4, 12, 24 or 48 hours, or for as long as it wants to keep watching.',
     },
     {
       kind: 'cta',
-      text: 'For retention agencies: name 5 stores, clients with their OK or prospects you’re about to pitch. Obsession’s AI customers become each store’s new customer for 48 hours: the pop-up and its code, the welcome email and a basket. What happened reaches you within 4 days, with proof.',
+      text: 'For retention agencies: open every pitch with the store’s own emails. See what any store sends a new customer after the pop-up and a basket, each email dated as it arrived, at the stores you pitch, the clients you keep and their competitors.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Check 5 stores free',
+      label: 'Request early access',
     },
     {
       kind: 'cta',
-      text: 'For CRO and performance agencies: name 5 brands, clients with their OK or brands you’re about to pitch. Obsession’s AI customers open the page behind each brand’s live ad as new customers, sign up through the pop-up and take the code to checkout. They watch the inbox for 48 hours, and what happened after the sign-up reaches you within 4 days, with proof.',
+      text: 'For CRO and performance agencies: see what each brand’s funnel sends after the sign-up, from the pop-up’s code to the basket and checkout reminders, each dated. Use it before the pitch and before and after every test.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Check 5 brands free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agency client retention' },
@@ -511,7 +511,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own AI customer, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an Obsession AI customer walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
+      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own Obsession agent, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
     },
   ],
 

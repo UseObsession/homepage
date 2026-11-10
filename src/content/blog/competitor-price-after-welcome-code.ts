@@ -17,7 +17,9 @@ import type { BlogPost } from './types'
    page lists $99 a month, not the $129 the library carried. The r/smallbusiness thread ends by asking for a tool, so it
    may be a validation post; the quote is used only for the late rival sale. Reddit could not be reopened on 23 Oct:
    both quotes are from the 3 Oct 2026 pull on disk. Illustrative stores are invented at .example addresses and the
-   sums in the table are exact. Buyer words (sign up, welcome email, basket, pop up, Promotions tab); no dashes. */
+   sums in the table are exact. Buyer words (sign up, welcome email, basket, pop up, Promotions tab); no dashes.
+   11 Nov 2026 (SEO revamp wave 1): title, dek, answer, Obsession's lines and the calls to action moved to the live
+   position (the web behind the login, early access); no free offer. */
 
 const SHOPIFY_SALE = 'https://help.shopify.com/en/manual/products/details/product-pricing/sale-pricing'
 const SHOPIFY_COMBINE = 'https://help.shopify.com/en/manual/discounts/discount-combinations'
@@ -41,13 +43,13 @@ const R_RIVAL_PROMO = 'https://www.reddit.com/r/ecommerce/comments/1rfldnq/shoul
 
 export const post: BlogPost = {
   slug: 'competitor-price-after-welcome-code',
-  title: 'A competitor’s real price is the price after the welcome code',
-  dek: 'Price monitoring apps read a competitor’s page price. To see what a first order pays, from the welcome code to the emails after sign up, build a sheet by hand before Black Friday on Friday 27 November.',
+  title: 'Competitor price monitoring for Shopify stores: the price after the welcome code',
+  dek: 'Price monitoring apps read a competitor’s page price. Shopify store owners and growth teams can record by hand what a first order pays, from the welcome code to the emails after sign up, before Black Friday on 27 November.',
   metaTitle: 'Competitor price monitoring on Shopify: price after the code',
   description:
     'Competitor price monitoring apps on Shopify read the page price. Record what a first order pays: welcome code, stacking, shipping, texts and emails.',
   answer:
-    'To monitor a competitor’s real price on Shopify, record what a first order pays: the sale and compare at price, the welcome code and its terms, whether the code stacks with the sale, the free shipping threshold, bundles, member prices, texts and the emails after sign up. Price monitoring apps read the public page, and the code and the emails appear only after a customer signs up, so record them by hand before the competitor’s Black Friday offer goes live. Obsession’s AI customers do this as a real customer of each competitor and keep every price, code and email they receive as proof.',
+    'To monitor a competitor’s real price on Shopify, record what a first order pays: the sale and compare at price, the welcome code and its terms, whether the code stacks with the sale, the free shipping threshold, bundles, member prices, texts and the emails after sign up. Price monitoring apps read the public page, and the code and the emails appear only after a customer signs up, so record them by hand before the competitor’s Black Friday offer goes live. Obsession keeps the price each competitor shows only to its customers, from the welcome code to every emailed offer, dated, by API, MCP (the standard way AI agents call tools) or a table.',
   primaryKeyword: 'competitor price monitoring shopify',
   keywords: [
     'competitor price monitoring shopify',
@@ -58,7 +60,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 11,
   order: 5,
   authors: [
@@ -141,7 +143,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record', compare: true },
     {
       kind: 'p',
-      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
     },
     {
       kind: 'list',
@@ -277,9 +279,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers sign up at your store, use the welcome code at checkout, leave a basket and watch every inbox for 48 hours. Your first store check is free, and the result lists every message that arrived and every one that didn’t.',
+      text: 'Every email a new customer gets from your store and your competitors after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'decision', text: 'Calculating the cost of matching a competitor’s offer' },
@@ -324,13 +326,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 10 competitors checked every morning, use Obsession’s [Price watch](/recipes/price-watch), which is built for checks at this scale.',
+      text: 'For 10 competitors checked every morning, use Obsession’s [Price watch](/recipes/price-watch), which keeps each competitor’s prices, codes and emailed offers, dated, for as long as you follow them.',
     },
     {
       kind: 'cta',
-      text: 'Price watch sends an AI customer to each competitor every morning and joins their email lists for the codes only subscribers get. Each change is reported with a before and after.',
-      to: '/recipes/price-watch',
-      label: 'See how Price watch works',
+      text: 'Every competitor’s emails, texts, offers and prices, as their signed-up customers get them, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
+      to: '/marketing',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

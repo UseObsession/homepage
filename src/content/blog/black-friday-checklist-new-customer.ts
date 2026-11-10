@@ -31,13 +31,13 @@ const SAMPLE = 'https://useobsession.com/sample-output'
 
 export const post: BlogPost = {
   slug: 'black-friday-checklist-new-customer',
-  title: 'The Black Friday checklist: 12 tests to run as a new customer',
-  dek: '12 tests to run from a new email address and phone before Friday 27 November, in the order a shopper meets each step, with what a pass looks like, where to look when a test fails and the limits of testing by hand.',
-  metaTitle: 'Black Friday checklist: 12 tests to run as a new customer',
+  title: 'The Black Friday checklist for stores: 12 tests to run as a new customer',
+  dek: '12 tests for store owners and their agencies to run from a new email address and phone before Friday 27 November, in the order a shopper meets each step. Each comes with what a pass looks like, where to look when it fails and the limits of testing by hand.',
+  metaTitle: 'Shopify Black Friday checklist: 12 tests as a new customer',
   description:
     'Test your store the way a new customer meets it before Black Friday: the pop up, welcome code, texts, basket and checkout reminders, ads, chat and orders.',
   answer:
-    'To check a store before Black Friday, test it as a new customer: from an email address and phone number your store has never seen, sign up through the pop up, check that the welcome email and its code arrive and that the code works at checkout, opt in to texts, leave a basket and a checkout, and wait for each reminder. Run the 12 tests before your code freeze, again after any theme, app or flow change, and on the morning the sale goes live. Obsession’s AI customers run these tests as real new customers of your store every week and after every change, and keep every email, code and page as proof.',
+    'To check a store before Black Friday, test it as a new customer: from an email address and phone number your store has never seen, sign up through the pop up, check that the welcome email and its code arrive and that the code works at checkout, opt in to texts, leave a basket and a checkout, and wait for each reminder. Run the 12 tests before your code freeze, again after any theme, app or flow change, and on the morning the sale goes live. Obsession keeps every email, code and page your store and your competitors show a new customer, dated with the email or screenshot, every week and after every change.',
   primaryKeyword: 'black friday checklist',
   keywords: [
     'shopify black friday checklist',
@@ -52,8 +52,8 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 9,
+  updated: '2026-11-11',
+  readingMinutes: 13,
   order: 0,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -318,13 +318,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. To run the 12 tests on many stores every week, use Obsession.',
+      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. To run the 12 tests on many stores every week, use Obsession.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers run all 12 tests as new customers every week and after every change, and keep every email as it arrived. Your first store check is free.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, every week and after every change. Stores start in early access.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'Running the tests on client and prospect stores' },
@@ -340,9 +340,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 client stores free: its AI customers sign up, leave a basket and stop at checkout at each store, then watch every inbox for 48 hours and report what arrived and what did not.',
+      text: 'What every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and what never came. Agencies start in early access.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

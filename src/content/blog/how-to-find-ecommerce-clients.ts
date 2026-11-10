@@ -64,7 +64,7 @@ export const post: BlogPost = {
   description:
     'How to find ecommerce clients for a CRO or Shopify agency: fit signals, where to look, a first message brands can check, qualifying and the pipeline sum.',
   answer:
-    'To find ecommerce clients for CRO work, filter a store database for brands with about 500 or more orders a month, live paid ads and a recent change such as a new theme, find the founder or head of ecommerce on LinkedIn, and open with a specific finding about their own store that they can check on a phone. Referrals from clients and partner agencies were the top 2 sources of new business for agencies in 2025, so build them alongside outreach. Obsession’s AI customers find that opening finding at every brand on a list, following each live ad through the sign up to checkout as real customers.',
+    'To find ecommerce clients for CRO work, filter a store database for brands with about 500 or more orders a month, live paid ads and a recent change such as a new theme, find the founder or head of ecommerce on LinkedIn, and open with a specific finding about their own store that they can check on a phone. Referrals from clients and partner agencies were the top 2 sources of new business for agencies in 2025, so build them alongside outreach. Obsession keeps what each brand on a list shows a new customer after its live ad, dated with the email or screenshot.',
   primaryKeyword: 'how to find ecommerce clients',
   keywords: [
     'how to get ecommerce clients',
@@ -77,8 +77,8 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 11,
+  updated: '2026-11-11',
+  readingMinutes: 15,
   order: 16,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -306,13 +306,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each brand needs a phone, a new email address for any sign up, a sheet and up to 48 hours of checking the inbox, so the hours grow with every brand on the list. Obsession runs that work today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) uses AI customers that follow a brand’s live ad, sign up through the pop up and take the code to checkout, then report what happened, with proof.',
+      text: 'By hand, each brand needs a phone, a new email address for any sign up, a sheet and up to 48 hours of checking the inbox, so the hours grow with every brand on the list. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) shows what follows a brand’s live ad, from the pop up’s offer to the code at checkout, each step dated.',
     },
     {
       kind: 'cta',
-      text: 'Name 3 brands you are about to pitch and 2 clients, with their OK. Obsession’s AI customers follow each brand’s live ad and send what happened after the sign up within 4 days, with proof, free.',
+      text: 'See what each brand’s funnel sends after the sign up: the pop up’s offer, the welcome email and its code, and the reminders, each dated with the email itself. Look up the brands you pitch before the first message. Agencies start in early access, onboarding teams now.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Check 5 brands free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'qualify', text: 'Qualifying and the first call' },
@@ -398,7 +398,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Ways to find clients compared', compare: true },
     {
       kind: 'p',
-      text: 'Several of these cost only time. We make Obsession, which does some of this, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
+      text: 'Several of these cost only time. We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026.',
     },
     {
       kind: 'table',
@@ -464,8 +464,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
-          'AI customers sign up at each prospect, take the pop up’s code to checkout and return a verdict with a dated proof link',
-          'Running now: 5 brands checked free\nCredit-based plans, like Claude’s',
+          'What each prospect shows a new customer, from the pop up’s code to checkout, with a verdict and a dated proof link',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Supplies no contact data, and leaves the list, the message and the call to you',
           'What a real customer gets at each prospect, as opening findings across a long list',
         ],
@@ -473,13 +473,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency needs a checked finding at every brand on a long list, use Obsession. For an agency that writes to 10 to 20 brands a quarter, the by hand method and a Store Leads or BuiltWith list cover the work, with Sales Navigator or Apollo for the people. An agency whose referrals fill its calendar needs none of the paid tools. Partner directories suit agencies with a record on the platform.',
+      text: 'If your agency needs a checked finding at every brand on a long list, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For an agency that writes to 10 to 20 brands a quarter, the by hand method and a Store Leads or BuiltWith list cover the work, with Sales Navigator or Apollo for the people. An agency whose referrals fill its calendar needs none of the paid tools. Partner directories suit agencies with a record on the platform.',
     },
     {
       kind: 'cta',
-      text: 'Prospect intelligence becomes a customer of every company on your list and returns a verdict and a dated proof link for each, to Clay, your CRM or a sheet. It runs now, on credit-based plans like Claude’s.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'Open a pitch on what each prospect sends its signed-up customers, from the welcome email to the reminder that never came. Each fact is dated with a screenshot, in Clay, your CRM or a sheet.',
+      to: '/agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },

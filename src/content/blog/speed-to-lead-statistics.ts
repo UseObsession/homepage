@@ -55,7 +55,7 @@ export const post: BlogPost = {
   description:
     'Speed to lead statistics, graded: where the 5 minute rule and the Harvard study come from, what Clay found in 2026 and how sales teams time their replies.',
   answer:
-    'The speed to lead statistics that hold up state their method and sample, like Clay’s 2026 test, in which two thirds of 6,346 companies never replied to a demo request. The 5 minute rule comes from a 2007 study of phone calls at 6 companies, and no study has been found behind “78% buy from the first to respond”. To time your team’s replies, use Obsession: its AI customers fill in the form, open the chat and call the sales line at the hours the team picks, and time every reply.',
+    'The speed to lead statistics that hold up state their method and sample, like Clay’s 2026 test, in which two thirds of 6,346 companies never replied to a demo request. The 5 minute rule comes from a 2007 study of phone calls at 6 companies, and no study has been found behind “78% buy from the first to respond”. Obsession times how fast, and how well, any company answers a new enquiry by form, chat, email and phone, your own team included, and keeps every reply dated with the email, transcript or call.',
   primaryKeyword: 'speed to lead statistics',
   keywords: [
     'speed to lead data',
@@ -65,9 +65,9 @@ export const post: BlogPost = {
     'lead response time statistics',
     '5 minute rule lead response',
   ],
-  category: 'AI customers',
+  category: 'Check your own journeys',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 14,
   order: 5,
   authors: [
@@ -401,21 +401,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. Lead leaks, its [speed to lead test](/recipes/lead-leaks), times the first reply to every enquiry on the form, chat and phone the team owns. It shows each lead nobody answered and drafts the routing fix in the CRM the team connects, for the team to approve. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026.',
+      text: 'Obsession keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/recipes/lead-leaks) recipe asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'p',
-      text: 'The same AI customers check the team’s own AI agents. [Sales agent check](/recipes/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/recipes/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
+      text: 'The same checks reach the team’s own AI agents. [Sales agent check](/recipes/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/recipes/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
     },
     {
       kind: 'p',
-      text: 'Each AI customer says it’s an AI when it talks to a person and never gets round a CAPTCHA, a puzzle that blocks automated visitors, or a bot block. Where a form puts a CAPTCHA in front of a step, the report names the step it couldn’t test. [What every AI customer will and won’t do](/agents) sets out the full list. Why a lead went to the wrong owner sits in the router and the CRM, where the team’s own tools show it.',
+      text: 'Each Obsession agent says it’s an AI when it talks to a person. Where a form puts a CAPTCHA, a puzzle that blocks automated visitors, or a bot block in front of a step, the agent stops and the report names the step it couldn’t test. [What every Obsession agent will and won’t do](/agents) sets out the full list. Why a lead went to the wrong owner sits in the router and the CRM, where the team’s own tools show it.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to time your replies, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 1 November 2026. Tools that act as a customer of a business in other ways, such as calling staff or testing a chatbot, are compared in [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools). Tools that watch competitors, such as email archives and page monitors, are set beside Obsession in [Obsession and other tools](/compare).',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 1 November 2026. Tools that act as a customer of a business in other ways, such as calling staff or testing a chatbot, are compared in [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools). Tools that watch competitors, such as email archives and page monitors, are set beside Obsession in [Obsession and other tools](/compare).',
     },
     {
       kind: 'table',
@@ -454,8 +454,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check)',
-          'AI customers use the form, chat and phone at set times and time every first reply',
-          'Running now\nCredit-based plans, like Claude’s',
+          'Test enquiries by form, chat and phone at set times, every first reply timed and kept',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Why a lead was misrouted sits in the CRM the team connects',
           'The first reply a buyer gets on every way in, at the times the team picks',
         ],
@@ -467,9 +467,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers send a test lead through a sales team’s own form, chat and phone at the hours it picks, evenings and weekends included, and time every first reply.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'How fast, and how well, your own team and every competitor you name answer a new enquiry, each reply timed and kept exactly as it arrived.',
+      to: '/recipes/lead-leaks',
+      label: 'See the recipe',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about speed to lead statistics' },

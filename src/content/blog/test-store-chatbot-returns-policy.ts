@@ -6,7 +6,7 @@ import type { BlogPost } from './types'
    Why now: the holiday support peak (Black Friday Fri 27 Nov, Cyber Monday Mon 30 Nov), the CMA guidance of 9 Mar 2026 that a
    business answers for an AI agent even when a vendor supplies it, and EU AI Act Article 50, which applies from 2 Aug 2026.
    Thought leadership, not a review: the full by hand method is given free, with one scoring sheet (pass, wrong, made up, no
-   handoff). Obsession appears only where testing by hand stops and in the 2 cta blocks, and only as the site's own pages state it
+   handoff). Obsession appears only where testing by hand stops and in the 2 cta blocks (Request early access since 11 Nov 2026), as the site's own pages state it
    (the support bot check page is an example run: no real result is claimed).
    Read at the source on 23 Oct 2026: the CMA guidance, the AI Act service desk (Articles 50 and 113), Gorgias docs (test
    conversations, how AI Agent works, intro), Tidio's own llm-info page, Shopify's Inbox listing and help pages (instant answers,
@@ -44,7 +44,7 @@ export const post: BlogPost = {
   description:
     'How to test a chatbot before the holiday peak: ask your store chat what customers ask, check each answer against your policy pages and score it.',
   answer:
-    'To test a store’s chatbot, ask it the questions customers ask this season, logged out, on your live site and on every channel it answers: the last order date for Christmas, the returns window on sale items, whether codes stack, an order that hasn’t arrived and a request for a person. Check each answer against your own policy page and score it pass, wrong, made up or no handoff, then ask again after every policy or chatbot change. Obsession’s AI customers ask your chatbot these questions as real customers every morning and after each update, and keep every answer beside your policy page as proof.',
+    'To test a store’s chatbot, ask it the questions customers ask this season, logged out, on your live site and on every channel it answers: the last order date for Christmas, the returns window on sale items, whether codes stack, an order that hasn’t arrived and a request for a person. Check each answer against your own policy page and score it pass, wrong, made up or no handoff, then ask again after every policy or chatbot change. Obsession asks your chatbot these questions every morning and after each update, and keeps every answer dated beside your policy page as it read that minute.',
   primaryKeyword: 'how to test a chatbot',
   keywords: [
     'how to test a chatbot',
@@ -59,8 +59,8 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 9,
+  updated: '2026-11-11',
+  readingMinutes: 13,
   order: 4,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -139,7 +139,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'vendor-tools', text: 'AI customer service agent testing in Gorgias, Tidio, Fin and Shopify Inbox', compare: true },
     {
       kind: 'p',
-      text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     {
       kind: 'p',
@@ -182,7 +182,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Use the vendor’s test panel before a change goes live, and test the live chatbot as a customer after it does. To test the live chatbot every day on every channel, with each answer kept as proof, use Obsession: its [AI customers](/blog/ai-customers) ask what your customers ask, and say they’re AI when they talk to a person.',
+      text: 'Use the vendor’s test panel before a change goes live, and test the live chatbot as a customer after it does. To test the live chatbot every day on every channel, with each answer kept and dated, use Obsession. Its agent asks what your customers ask and says it’s an AI when it talks to a person, which is the way of collecting the term [AI customers](/blog/ai-customers) names.',
     },
 
     { kind: 'h2', id: 'how-to-test', text: 'How to test a chatbot as a customer' },
@@ -311,9 +311,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers say they’re AI, ask your chatbot what customers ask on each channel every morning and after each update, and keep every answer beside the policy page as it read that minute, with every test tagged and agreed with your vendor first. Your first AI agent check is free: 3 AI customers, 1 channel and a report within 4 days.',
-      to: '/recipes/support-bot-check',
-      label: 'Check my support bot free',
+      text: 'What your store’s chatbot tells customers on each channel, word for word. Every answer is kept as a dated transcript beside the policy page it should match, with every test agreed with your vendor first.',
+      to: '/verify',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'Running the test for client stores' },
@@ -327,9 +327,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers also sign up, leave a basket and stop at checkout at your store, then watch every inbox and report what arrived and what didn’t. Your first store check is free.',
+      text: 'Every email and text your store sends a new customer after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

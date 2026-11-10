@@ -25,7 +25,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/account-watch',
-    title: 'Account watch: what your accounts send their customers',
+    title: 'Account watch: what your accounts send their own customers',
     description:
       'What each company you sell to sends its own customers: emails, offers and journeys, dated, with public news beside them, on each account in your CRM.',
     answer:

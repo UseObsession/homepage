@@ -71,13 +71,13 @@ const CF_AGENT_CLASS = 'https://developers.cloudflare.com/agents/concepts/agent-
 
 export const post: BlogPost = {
   slug: 'long-running-ai-agents',
-  title: 'Why developers need AI customers',
+  title: 'Long running AI agents: what developers need to stay a customer for months',
   dek: 'An agent session lasts minutes and a customer relationship lasts months. The 6 engineering problems in that gap, what waiting costs by design, and the durable execution options compared.',
-  metaTitle: 'Long running AI agents: why developers need AI customers',
+  metaTitle: 'Long running AI agents: the 6 parts developers have to build',
   description:
     'Long running AI agents need an identity that lasts, free waiting, wake ups and evidence: the 6 hard parts, what waiting costs and the options compared.',
   answer:
-    'Long running AI agents that deal with other companies have to stay their customers for weeks or months, so developers need AI customers: an inbox, phone number and browser that keep working, waiting that costs close to nothing, wake ups on outside events and evidence that holds. Durable execution engines such as Temporal, Inngest, Restate and DBOS make the waiting reliable, and Obsession’s AI customers add the identity and the evidence.',
+    'Long running AI agents that deal with other companies have to stay their customers for weeks or months, so developers need an inbox, phone number and browser that keep working, waiting that costs close to nothing, wake ups on outside events and evidence that holds. Durable execution engines such as Temporal, Inngest, Restate and DBOS make the waiting reliable. Obsession adds the identity and the evidence, keeping what any company shows only to its customers, dated with the email or screenshot, behind 5 verbs over the API and MCP.',
   primaryKeyword: 'long running ai agents',
   keywords: [
     'long running ai agents',
@@ -90,9 +90,9 @@ export const post: BlogPost = {
     'pydantic ai durable agents',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 13,
   order: 19,
   authors: [
@@ -373,7 +373,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company’s agents can find revenue leaks, watch competitors and prospect with proof. Its open source runtime fans out to 100,000 companies at once, hibernates each agent until mail, a reply or a clock wakes it, and compiles a first run’s trace into a program of code and typed questions. Raw evidence is stored by content hash, with DKIM checked on arrival and the key kept. Obsession Cloud runs it with inboxes, phone numbers and browsers in many countries and a shared record an agent can look up on day one.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. It keeps accounts open at 10,000 companies at once, for months, and stores every raw email with its DKIM result, checked on arrival.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -413,7 +413,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Durable execution for AI agents, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -472,9 +472,9 @@ export const post: BlogPost = {
           'Teams already on AWS or Vercel',
         ],
         [
-          'Obsession (ours): 5 verbs over MCP, an API and an SDK',
-          'AI customers with an inbox, number and browser\nShared history from day one\nEvidence with its DKIM result',
-          'Running now for store checks\nAPI keys go to teams one at a time\nCredit-based plans, like Claude’s',
+          'Obsession (ours): 5 verbs over MCP, the API and SDKs',
+          'Accounts kept open at any company, for months\nShared history from day one\nEvidence with its DKIM result',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'Agents that must stay a customer of many companies, with proof',
         ],
@@ -521,7 +521,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Each is a long lived agent with its own inbox, phone number and browser, and they run today behind 5 verbs over MCP, an API and an SDK.',
+      text: 'Give your agents an account at any company that stays open for months: 5 verbs over MCP, the API and TypeScript and Python SDKs return what each company shows only to its customers, dated with its proof. The runtime is open source.',
       to: '/developers',
       label: 'See the API and MCP',
     },

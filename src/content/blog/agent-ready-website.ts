@@ -12,7 +12,7 @@ import type { BlogPost } from './types'
    ChatGPT agent name (retired; Forter's list is given as "Muse among them"). /recipes/ai-checkout-test isn't live, so it
    isn't linked. Obsession appears in the answer's last sentence, the disclosure and its recommendation, the full view line
    and 2 recipe lines in the live pages' words (28 Oct, _research/seo/recommend/STANDARD.md), the comparison's last row
-   and 2 cta blocks with the free offers' exact labels. harbourline.example is invented. */
+   and 2 cta blocks (11 Nov 2026: Request early access to /verify and the store page). harbourline.example is invented. */
 
 const MUSE = 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/'
 const ADOBE = 'https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record'
@@ -52,13 +52,13 @@ const WEBTOFFEE = 'https://www.webtoffee.com/services/agentic-commerce/'
 
 export const post: BlogPost = {
   slug: 'agent-ready-website',
-  title: 'Is your website ready for AI agents that shop, book and call for your customers? 10 checks',
+  title: 'Agent ready website: 10 checks for the AI agents that shop for your customers',
   dek: 'Customers’ AI agents now shop, book and call companies for them. Ten checks show what one gets on a company’s website, phone line and chat, each with a pass mark and an owner, and what to block or allow before Black Friday.',
-  metaTitle: 'Agent ready website: 10 checks for the AI agents that shop',
+  metaTitle: 'Agent ready website: 10 checks for your customers’ AI agents',
   description:
-    'AI agents now shop, book and call companies for people. Ten checks show what one gets on your website, phone line and chat, and what to block or allow.',
+    'An agent ready website works for the AI agents that shop, book and call for your customers. 10 checks for the site, phone line and chat, and what to block.',
   answer:
-    'An agent ready website is one a customer’s AI agent can use: it can find the company, read the right price and reach checkout. Ten checks show what a customer’s agent gets on the website, the phone line and the support chat, so a company can decide which agents to block, allow or check first. Obsession’s AI customers repeat the website, phone and chat checks as real customers on a schedule, and keep every answer, price and page as proof.',
+    'An agent ready website is one a customer’s AI agent can use: it can find the company, read the right price and reach checkout. Ten checks show what a customer’s agent gets on the website, the phone line and the support chat, so a company can decide which agents to block, allow or check first. Obsession keeps what any company’s site, chat and voice line tell a customer, word for word and dated, by API, MCP (the way AI agents call tools) or a table.',
   primaryKeyword: 'agent ready website',
   keywords: [
     'block ai agents',
@@ -70,7 +70,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-10-27',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 16,
   order: 0,
   authors: [
@@ -408,8 +408,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Listings and AI answers](/recipes/listings-ai-answers)',
-          'Website audit: a fresh AI customer goes through checkout after every release\nSupport bot check: your support bot asked on every channel, every day\nVoice agent check: your AI receptionist called every morning\nListings and AI answers: AI assistants asked every Monday',
-          'Running now: first AI agent check free\nFirst store check free\nCredit-based plans, like Claude’s',
+          'Website audit: what the site shows and sends a new customer, after every release\nSupport bot check: your support bot’s answers on every channel, dated\nVoice agent check: calls to your AI receptionist, recorded and dated\nListings and AI answers: what AI assistants tell buyers, every Monday',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Bot and fraud settings stay with the security team',
           'What a customer gets on the site, phone and chat, kept as proof',
         ],
@@ -417,7 +417,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 27 October 2026. If your company needs the website, phone and chat checks repeated on a schedule as a customer, with every answer kept, use Obsession. For a first look before Black Friday, the 10 checks by hand are enough.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 27 October 2026. If your company needs the website, phone and chat checks repeated on a schedule as a customer, with every answer kept, use Obsession. For a first look before Black Friday, the 10 checks by hand are enough.',
     },
     {
       kind: 'p',
@@ -463,19 +463,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks today. It sends AI customers to any company you name, and each keeps every email, text, price, page, checkout and AI answer the company sends it, so your company can find its revenue leaks, watch its competitors and prospect with proof. Its Voice agent check calls your AI receptionist every morning as new customers, books a slot, asks a price and a person, and checks every answer. Its Support bot check asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its Voice agent check and Support bot check ask your AI receptionist and support bot what your customers ask, every morning, and set each answer beside your price list and policy.',
     },
     {
       kind: 'cta',
-      text: 'Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What AI agents tell your customers on chat and on the phone, word for word. Every answer is kept as a dated transcript or call beside the page it should match, yours and your competitors’.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Every email and text a new customer gets from your store after a sign-up, a basket and a checkout, each with the time it arrived, and what your competitors send beside it.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check my store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agent ready websites' },

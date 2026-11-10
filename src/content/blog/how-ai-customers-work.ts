@@ -1,4 +1,5 @@
 import type { BlogPost } from './types'
+import { AI_CUSTOMER } from '../glossary'
 
 /* The AI customers series, article 2 of 9 (24 Oct 2026): how an AI customer works, from its identity to the evidence
    it keeps. Readers: technical buyers, developers, ops and CX leads, and anyone who wants to know how a customer that
@@ -27,13 +28,13 @@ const BROWSERBASE = 'https://docs.browserbase.com/introduction/what-is-browserba
 
 export const post: BlogPost = {
   slug: 'how-ai-customers-work',
-  title: 'How AI customers work: from sign up to evidence',
-  dek: 'An AI customer gets its own inbox, phone number and browser, signs up like any customer, sleeps until the company acts, and keeps what arrives as evidence. Each step, what makes it cheap enough to run millions, and where it stops.',
-  metaTitle: 'How AI customers work: sign up, sleep, wake and keep proof',
+  title: 'How AI customers work: from a sign-up form to every email a company sends',
+  dek: 'An AI customer gets its own inbox, phone number and browser, signs up like any customer, sleeps until the company acts, and keeps what arrives, dated. It is one way Obsession collects what companies show only to customers, cheap enough to run at thousands of companies at once.',
+  metaTitle: 'How AI customers work: what companies send, kept as proof',
   description:
-    'How AI customers work: their own inbox, number and browser, a public sign up, sleep until the company acts, and evidence kept as it arrived, at any scale.',
+    'How AI customers work: an inbox, number and browser of their own, a public sign-up, sleep until the company acts, and each email kept as it arrived.',
   answer:
-    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system can hold millions of AI customers at once. Obsession runs these 6 steps today, with AI customers that sign up to any company you name and keep every email, offer and price it sends.',
+    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system is built to follow hundreds of thousands of companies at once. Obsession collects its index this way, keeping what any company shows only to its customers, dated with the email or screenshot, for lookup by API, MCP or a table.',
   primaryKeyword: 'how ai customers work',
   keywords: [
     'can ai agents sign up',
@@ -45,9 +46,9 @@ export const post: BlogPost = {
     'dkim verification',
     'double opt in',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 8,
   order: 3,
   authors: [
@@ -78,7 +79,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The design that makes it work is simple to state. An AI customer is asleep almost all the time, and the outside world wakes it: an email arrives, a text lands, a scheduled check comes due. Asleep, it costs nothing. That is why one system is built to run 100,000 companies at once, and built for millions. The term itself is defined in [what AI customers are](/blog/ai-customers).',
+      text: `The design that makes it work is simple to state. An AI customer is asleep almost all the time, and the outside world wakes it: an email arrives, a text lands, a scheduled check comes due. Asleep, it costs nothing. That is why one system is built to run 100,000 companies at once, and built for millions. The term itself is defined in [what AI customers are](/blog/ai-customers). ${AI_CUSTOMER.definition}`,
     },
 
     { kind: 'h2', id: 'lifecycle', text: 'The life of an AI customer' },
@@ -141,7 +142,7 @@ export const post: BlogPost = {
           { name: 'A replayed script', cells: ['25%', 'A browser for under a minute'], tone: 'ok' },
           { name: 'An agent', cells: ['5%', 'A model, for a new kind of form'], tone: 'info' },
         ],
-        notes: ['The shares are the ones Obsession’s home page states for its own runs.', 'Each new kind of form an agent solves becomes a program for the next company.'],
+        notes: ['The shares by method are an example.', 'Each new kind of form an agent solves becomes a program for the next company.'],
       },
       caption: 'How sign ups split between a plain request, a replayed script and an agent. An example on invented numbers of stores, with the shares Obsession states for its runs.',
     },
@@ -166,7 +167,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The count of AI customers is then set by sign ups and storage; model time barely moves it. Obsession runs AI customers this way at any company you name, so you can find revenue leaks, watch competitors and prospect with proof. Built like this, it can run millions of them, and a company another customer already watches starts with its history on day one.',
+      text: 'The count of AI customers is then set by sign ups and storage. Model time barely moves it. Obsession collects its index this way, keeping what any company you name shows only to its customers, dated with the email or screenshot. Built like this, it is designed for hundreds of thousands of companies, and a company already in the shared index starts with its history on day one.',
     },
 
     { kind: 'h2', id: 'wake', text: 'Waking: what it checks' },
@@ -234,11 +235,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession exposes 5 verbs over MCP and an API: lookup, facts, evidence, index and notify. An agent asks which companies are already covered, reads their facts and evidence, starts AI customers at the companies that aren’t, and gets told when something new arrives ([AI customers for developers](/blog/ai-customers-for-developers)).',
+      text: 'Obsession exposes 5 verbs over MCP and an API: lookup, facts, evidence, index and notify. An agent asks which companies are already covered, reads their facts and evidence, adds a company that isn’t, and gets told when something new arrives ([AI customers for developers](/blog/ai-customers-for-developers)).',
     },
     {
       kind: 'cta',
-      text: 'Give your own AI agent an AI customer at any company: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. The runtime is open source.',
+      text: 'Give your own agent what any company shows only to its customers: 5 verbs over the API and MCP, each fact dated with the email or page behind it, and a company not yet covered added on request.',
       to: '/developers',
       label: 'See the API and MCP',
     },
@@ -285,14 +286,14 @@ export const post: BlogPost = {
         },
         {
           q: 'How many AI customers can run at once?',
-          a: 'Because an AI customer costs nothing while it sleeps, the count is limited by sign ups and storage. Obsession can run millions of AI customers.',
+          a: 'Because an AI customer costs nothing while it sleeps, the count is limited by sign ups and storage. Obsession is built to follow hundreds of thousands of companies this way, each looked up in one call.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Cloudflare’s prices and every outside source were read on 24 October 2026. The store and the 10,000 store watch in the illustrations are invented; the shares by method are the ones Obsession’s home page states.',
+      text: 'Cloudflare’s prices and every outside source were read on 24 October 2026. The store and the 10,000 store watch in the illustrations are invented, and so are the shares by method.',
     },
   ],
 

@@ -45,7 +45,7 @@ export const post: BlogPost = {
   description:
     'Retention agency client reporting a client can check: a weekly log that each flow reached a new customer, the hours it takes, and what it can’t prove.',
   answer:
-    'To show a client their email flows ran, send a weekly flow log: for each flow (welcome, basket, checkout, post purchase, back in stock), what you did as a new customer, the email that arrived with its time and Gmail tab, a status of fired, late, did not fire or not due, and the dates any fix was found, approved, live and checked again. It proves delivery only, and revenue stays in the email platform’s own report. Obsession’s AI customers sign up, leave a basket and stop at checkout at each client store every week as real new customers, and keep every email as it arrived for the log.',
+    'Retention agency client reporting a client can check is a weekly flow log: each flow’s email, the time it arrived, whether it fired on time, and the dates of any fix. It proves delivery only, and revenue stays in the email platform’s own report. Obsession keeps what each client store sends a new customer every week, every email exactly as it arrived, ready for the log.',
   primaryKeyword: 'retention agency client reporting',
   keywords: [
     'retention agency client reporting',
@@ -60,8 +60,8 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 9,
+  updated: '2026-11-11',
+  readingMinutes: 12,
   order: 8,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -299,15 +299,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends [AI customers](' +
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. When the checks take too long by hand, use Obsession’s [leak checks for retention agencies](' +
         USECASE +
-        ') to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. When the checks take too long by hand, use Obsession. Its AI customers do the signing up with each client’s OK: a real inbox and mobile number for each store, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
+        '). An Obsession agent does the signing up with each client’s OK. Each store gets a real inbox and mobile number, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',
-      text: 'Obsession sends each client store its own AI customer every week and returns every email as it arrived, linked and ready for the review call.',
+      text: 'Show each client what its store sent a new customer this week, after a sign-up and a basket. Every email is dated as it arrived, linked and ready for the review call.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'See leak checks for retention agencies',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'start-here', text: 'First steps: the clients reviewed next' },
@@ -317,9 +317,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name 5 client stores, and Obsession’s AI customers sign up, opt in to texts and leave a basket at each, with each client’s OK. They report, with proof, what arrived within 48 hours and what never did, and the 5 checks are free.',
+      text: 'See what every client store sends a new customer after a sign-up, a text opt-in and a basket, and what never came. A fresh sign-up runs after every launch. Agencies start in early access, onboarding teams now.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

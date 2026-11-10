@@ -68,13 +68,13 @@ const LEAKS = '/blog/ai-customers-find-revenue-leaks'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-cro-agencies',
-  title: 'Why CRO and performance agencies need AI customers',
-  dek: 'Paid traffic converts only as well as the page, pop up, code and emails behind the ad. What CRO, paid social and PPC agencies can’t see past the click, what a missed fault costs in sales and retainers, the hours a check takes by hand, and what AI customers check every day.',
-  metaTitle: 'Landing page monitoring: why CRO agencies need AI customers',
+  title: 'Landing page monitoring for CRO agencies: catch a broken page, code or email first',
+  dek: 'Paid traffic converts only as well as the page, pop up, code and emails behind the ad. What CRO, paid social and PPC agencies can’t see past the click, what a missed fault costs, and how to check it every morning at every client and prospect.',
+  metaTitle: 'Landing page monitoring for CRO agencies: catch faults first',
   description:
-    'Landing page monitoring for CRO and performance agencies: what paid traffic meets past the click, what a missed fault costs, and how AI customers check it.',
+    'Landing page monitoring for CRO and performance agencies: the page, pop up, code and emails behind every live ad, each morning, at clients and prospects.',
   answer:
-    'CRO and performance agencies need AI customers because the traffic they buy and test converts only as well as the page, pop up, code and emails it reaches, and none of an agency’s usual tools signs up and waits to see them. For landing page monitoring, AI customers open the page behind each live ad from its own link every morning, sign up through the pop up, take the code to checkout and keep every email that follows, at each client and each prospect. With Obsession’s AI customers, agencies fix faults before clients see them and open pitches with a finding the brand can check.',
+    'Landing page monitoring for a CRO agency opens the page behind each live ad every morning, signs up through the pop up and takes the code to checkout. None of an agency’s usual tools signs up and waits for the emails, so a refused code or a late welcome email can run for days while the ads keep spending. Obsession keeps what each brand’s funnel shows and sends after the click, dated with the email or screenshot, by API, MCP or a table.',
   primaryKeyword: 'landing page monitoring',
   keywords: [
     'landing page monitoring',
@@ -86,9 +86,9 @@ export const post: BlogPost = {
     'paid social agency',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'For agencies',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 12,
   order: 14,
   authors: [
@@ -319,7 +319,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so an agency can find its clients’ revenue leaks, watch their competitors and prospect with proof. Its AI customers follow any brand’s live ad as new customers, sign up through the pop up and take the code to checkout, then show the agency what happened, with proof.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a CRO agency, that is what each brand’s funnel shows after a live ad, from the page and the pop up’s offer to the welcome email and the code at checkout, every morning for as long as the agency follows the brand.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes for agencies in 2026 and 2027' },
@@ -357,7 +357,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Landing page monitoring and CRO tools compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -417,8 +417,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Ad landing check](/recipes/ad-landing-check), [Website audit](/recipes/website-audit), [Prospect intelligence](/recipes/prospect-intelligence), [Ad tracking](/recipes/ad-tracking)',
-          'AI customers follow a live ad, sign up through the pop up and take the code to checkout, with proof',
-          'Running now: check 5 brands free\nCredit-based plans, like Claude’s',
+          'What follows a live ad: the page, the pop up’s offer, every email and the code at checkout, each dated',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'What shoppers get after the click, sign up and checkout, kept as proof',
         ],
@@ -426,7 +426,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency needs to see what shoppers get after the click, the sign up and the checkout, at every client, live test and prospect, use Obsession. For a few clients with fixed ads and no pop up offers, Google’s own checks and a morning pass by hand cover most of the work.',
+      text: 'If your agency needs to see what shoppers get after the click, the sign up and the checkout, at every client, live test and prospect, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For a few clients with fixed ads and no pop up offers, Google’s own checks and a morning pass by hand cover most of the work.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
@@ -454,9 +454,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name 3 brands your agency is about to pitch and 2 of its clients, with their OK. Obsession follows each one’s live ad as a new customer and sends what happened after the sign up within 4 days, with proof, free.',
+      text: 'See what each brand’s funnel sends after the sign up: the pop up’s offer, the welcome email and its code, and the basket and checkout reminders, each dated with the email itself. Look up the brands you pitch, and check every test variant before launch and each morning it’s live. Agencies start in early access, onboarding teams now.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Check 5 brands free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI customers for agencies' },

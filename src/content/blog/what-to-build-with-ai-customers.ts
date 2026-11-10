@@ -37,13 +37,13 @@ const BB_PRICING = 'https://www.browserbase.com/pricing'
 
 export const post: BlogPost = {
   slug: 'what-to-build-with-ai-customers',
-  title: 'What to build with AI customers: 10 production builds',
+  title: 'What to build with AI agents: 10 production builds for developers',
   dek: '10 systems developers build on agents that sign up, wait and keep evidence, each with what fires it, the calls it makes, the facts it returns and where they land.',
-  metaTitle: 'What to build with AI agents: 10 builds with AI customers',
+  metaTitle: 'What to build with AI agents: 10 builds developers can ship',
   description:
     'What to build with AI agents that are customers of other companies: 10 production builds, the calls each makes, the facts it returns and where they land.',
   answer:
-    'Developers can build 10 kinds of production system on AI customers, agents that stay customers of other companies, from sign up and login code tests on every deploy to competitor feeds, prospect facts in Clay and AI disclosure checks. Each calls a few of 5 verbs, lookup, facts, evidence, index and notify, and sends dated facts with their evidence to a test run, a webhook, Slack, a CRM or Clay. Obsession’s AI customers already do this work as real customers of companies, keeping every email, page and transcript as proof.',
+    'Developers can build 10 kinds of production system with AI agents that stay customers of other companies, from sign up and login code tests on every deploy to competitor feeds, prospect facts in Clay and AI disclosure checks. Each calls a few of 5 verbs, lookup, facts, evidence, index and notify, and sends dated facts with their evidence to a test run, a webhook, Slack, a CRM or Clay. Obsession runs those 5 verbs over the API and MCP and keeps what any company shows only to its customers, every email, page and transcript dated with its proof.',
   primaryKeyword: 'what to build with ai agents',
   keywords: [
     'what to build with ai agents',
@@ -55,9 +55,9 @@ export const post: BlogPost = {
     'ai agent examples',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 10,
   order: 20,
   authors: [
@@ -111,7 +111,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer system exposes this as a few calls. Obsession runs one today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. Its [developer page](/developers) names 5 verbs, offered over MCP, an API and an SDK, and each of the 10 builds uses some of them.',
+      text: 'An AI customer system exposes this as a few calls. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [developer page](/developers) names 5 verbs, and each of the 10 builds uses some of them.',
     },
     {
       kind: 'list',
@@ -119,7 +119,7 @@ export const post: BlogPost = {
         '**lookup:** which companies the shared record already covers, and since when.',
         '**facts:** what a company did, as facts, each with its evidence.',
         '**evidence:** the raw email, page or transcript behind a fact.',
-        '**index:** start AI customers, or join ones already there.',
+        '**index:** add a company not yet covered, or follow one already in the index.',
         '**notify:** new facts pushed to your webhook, Slack or CRM as they land.',
       ],
     },
@@ -275,7 +275,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Ways to build them, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -314,9 +314,9 @@ export const post: BlogPost = {
           'Teams building their own system',
         ],
         [
-          'Obsession (ours): 5 verbs over MCP, an API and an SDK',
-          'AI customers at any company\nShared history from day one',
-          'Running now for store checks\nAPI keys go to teams one at a time\nCredit-based plans, like Claude’s',
+          'Obsession (ours): 5 verbs over MCP, the API and SDKs',
+          'What any company shows only to customers\nShared history from day one',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'Builds that must stay a customer of many companies, with proof',
         ],
@@ -324,7 +324,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If a build has to stay a customer of many companies for months, as builds 3, 4, 5 and 9 do, use Obsession. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing competitors’ campaigns. The waiting and evidence the longer builds rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
+      text: 'If a build has to stay a customer of many companies for months, as builds 3, 4, 5 and 9 do, use Obsession, which keeps what any company shows only to its customers, dated with the email or screenshot. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing competitors’ campaigns. The waiting and evidence the longer builds rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -351,7 +351,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Each is a long lived agent with its own inbox, phone number and browser, and they run today behind 5 verbs over MCP, an API and an SDK.',
+      text: 'Build on what any company shows only to its customers: 5 verbs over MCP, the API and TypeScript and Python SDKs (lookup, facts, evidence, index and notify), each fact dated with its email or screenshot. The runtime is open source.',
       to: '/developers',
       label: 'See the API and MCP',
     },

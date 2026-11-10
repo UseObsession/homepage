@@ -60,13 +60,13 @@ const CLOUD_BROWSER = 'https://help.openai.com/en/articles/20001280-using-cloud-
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-ecommerce-vendors',
-  title: 'Why companies that sell to Shopify brands need AI customers',
-  dek: 'A store lead list shows what a store has installed. AI customers show what its new customers receive, which gives a sales team a fact the store can check and customer success proof that the product works on every account.',
-  metaTitle: 'Shopify store leads: why ecommerce vendors need AI customers',
+  title: 'Shopify store leads for vendors: what each store sends its customers',
+  dek: 'A store lead list shows what a store has installed. What its new customers receive shows whether those tools work, which gives a sales team a fact the store can check and customer success proof on every account.',
+  metaTitle: 'Shopify store leads: what each store sends its customers',
   description:
-    'Shopify store leads show what a store has installed. AI customers show what its customers receive, so vendors selling to Shopify brands open with proof.',
+    'Shopify store leads show what a store has installed. What its customers receive shows if it works, so vendors selling to Shopify brands open with proof.',
   answer:
-    'Companies that sell to Shopify brands, such as email and SMS platforms, Shopify app vendors and deliverability vendors, need AI customers because Shopify store leads show what a store has installed, and only a customer of the store sees whether it works. An AI customer becomes a new customer of each store, with its own inbox, phone number and browser, and records what arrives, from the welcome email to the text after the opt in. With Obsession’s AI customers, sales teams open with a fact the store can check, and customer success sees each account’s messages arrive before the renewal.',
+    'Companies that sell to Shopify brands, such as email and SMS platforms, Shopify app vendors and deliverability vendors, use Shopify store leads to see what a store has installed, and only a customer of the store sees whether it works. A new customer of each store records what arrives, from the welcome email to the text after the opt in, so sales opens with a fact the store can check and customer success sees each account’s messages before the renewal. Obsession keeps what any store shows only to its customers, dated with the email or screenshot, and puts each fact back on your lead list’s rows in Clay, your CRM or a table.',
   primaryKeyword: 'shopify store leads',
   keywords: [
     'shopify store leads',
@@ -78,9 +78,9 @@ export const post: BlogPost = {
     'email deliverability tools',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Watch other companies',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 13,
   order: 17,
   authors: [
@@ -277,7 +277,7 @@ export const post: BlogPost = {
     { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
     {
       kind: 'p',
-      text: 'Each store on the list and each customer account gets its own AI customer, through the sign up any customer can use. Obsession runs this today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a vendor, it shows what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
+      text: 'Each store on the list and each customer account gets its own new customer, through the sign up any customer can use. Obsession runs this today. It keeps what any company shows only to its customers, each dated with the email or screenshot, for as long as you follow the company, and for a vendor that means what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
     },
     { kind: 'h3', id: 'before-first-touch', text: '1. A fact for every store before the first touch' },
     {
@@ -335,7 +335,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Shopify store leads and other options, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -388,8 +388,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking), [Delivery monitoring](/recipes/delivery-monitoring), [Account watch](/recipes/account-watch)',
-          'AI customers at every store on the list and every account, each email and text kept',
-          'Running now\nCredit-based plans, like Claude’s',
+          'What every store on the list and every account sends its customers, each email and text dated',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'What each store’s customers receive, as proof for the first email',
         ],
@@ -397,7 +397,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your team needs a fact about what each store’s customers receive, for the first email or the renewal, use Obsession. For 10 to 20 top accounts a quarter, a rep with a new address and a phone is enough. The options combine: a store lead list chooses the stores, Clay finds the people, a library holds past emails, and AI customers record what each store sends its new customers now. [AI customers for commercial teams](/blog/ai-customers-for-commercial-teams) sets out the same checks for marketing, agencies and CX.',
+      text: 'If your team needs a fact about what each store’s customers receive, for the first email or the renewal, use Obsession. For 10 to 20 top accounts a quarter, a rep with a new address and a phone is enough. The options combine: a store lead list chooses the stores, Clay finds the people, a library holds past emails, and Obsession records what each store sends its new customers now. [AI agents for marketing teams, sales and agencies](/blog/ai-customers-for-commercial-teams) sets out the same checks for marketing, agencies and CX.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When a vendor doesn’t need AI customers' },
@@ -426,9 +426,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Prospect intelligence with Clay puts a customer at every brand on a list and brings each gap back to the same rows with its proof, ready for the first email.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'What each store on your list sends its customers, ready before the first email, with every fact dated and its screenshot linked, from a domain in Clay, your CRM or your own agent.',
+      to: '/sales',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify store leads' },

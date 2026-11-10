@@ -21,7 +21,10 @@ import type { BlogPost } from './types'
    first-hand section prints only public_wording sentences (PW01, PW05, PW07, PW08) and shortened findings with their
    counts (F27, F31) from firsthand_28oct.json, with no store, brand, agency or person named. Run 2 is "an AI agent
    working for Obsession", never AI customers. No PilotX September figure, no 93%. larkfield.example and every price in
-   the hero are invented. British English, buyer words, no dashes. */
+   the hero are invented. British English, buyer words, no dashes.
+   11 Nov 2026 (SEO revamp wave 1): title, answer, Obsession's lines, its comparison row and the call to action moved to
+   the live position (the web behind the login, early access); no free offer, the 25 Oct definition and the line
+   implying one agency gone. */
 
 const PRICEMOLE = 'https://pricemole.io/'
 const PRICEMOLE_PRICING = 'https://pricemole.io/pricing'
@@ -57,13 +60,13 @@ const WISER = 'https://www.wiser.com/'
 
 export const post: BlogPost = {
   slug: 'best-competitor-price-tracking-tools',
-  title: 'The best competitor price tracking tools for ecommerce in 2026',
-  dek: '14 tools grouped by the job they do, from a free tracker for a small store to managed services for large retailers. Every price is as each company listed it on 28 October 2026, beside the prices a new customer was shown in the cart and in emails at real online stores.',
+  title: 'The best competitor price tracking tools for ecommerce teams in 2026, by job',
+  dek: '14 tools grouped by the job they do, from a free tracker for a small store to managed services for large retailers. Every price is as each company listed it on 28 October 2026, beside Obsession, which keeps the price a new customer pays at each competitor.',
   metaTitle: 'Best competitor price tracking tools for ecommerce in 2026',
   description:
-    'Competitor price tracking tools compared by job: public prices at scale, small stores, cart and login prices. Prices as listed on 28 October 2026.',
+    'Competitor price tracking tools for ecommerce, compared by job and price, beside Obsession, which keeps the price each competitor shows only to customers.',
   answer:
-    'Competitor price tracking tools read competitor stores’ product pages on a schedule and alert your company when a price changes. By job, Prisync or PriceMole track public prices at scale, Pricefy or Visualping suit small stores, Price2Spy or Priceva say they read login and cart prices, and Particl or Omnia Retail cover marketplace data. Obsession’s AI customers sign up to each competitor as a new customer and record the price after the welcome code, in the cart and in every email offer, with proof.',
+    'Competitor price tracking tools read competitor stores’ product pages on a schedule and alert your company when a price changes. By job, Prisync or PriceMole track public prices at scale, Pricefy or Visualping suit small stores, Price2Spy or Priceva say they read login and cart prices, and Particl or Omnia Retail cover marketplace data. Obsession keeps the price each competitor shows only to its customers, from the welcome code to the cart and emailed offers, dated, by API, MCP (the standard way AI agents call tools) or a table.',
   primaryKeyword: 'competitor price tracking tools',
   keywords: [
     'competitor price tracking software',
@@ -75,7 +78,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-28',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 18,
   order: 4,
   authors: [
@@ -415,13 +418,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-saw', text: 'What a new customer was shown' },
     {
       kind: 'p',
-      text: 'The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. An AI customer is an AI agent that becomes a real customer of a company, with its own inbox, phone number and browser, and keeps what the company sends and shows it as evidence ([what AI customers are](/blog/ai-customers)). Two of Obsession’s October runs show the prices a new customer met past the product page.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Two of Obsession’s October runs show the prices a new customer met past the product page.',
     },
 
     { kind: 'h3', id: 'reminders', text: 'Prices in the reminder emails' },
     {
       kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for 4 agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026. The first agency is moving to 300 brands a month.',
+      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026.',
     },
     {
       kind: 'p',
@@ -429,7 +432,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'What cart and checkout reminder emails showed in Obsession’s October pilot for 4 agencies, 21 to 24 October 2026',
+      caption: 'What cart and checkout reminder emails showed in Obsession’s October pilot for agencies, 21 to 24 October 2026',
       cols: ['What the reminder showed', 'Share of reminders'],
       rows: [
         ['The item at the store’s price', 'Fewer than half'],
@@ -445,7 +448,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'offers', text: 'Offers the cart didn’t honour' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an Obsession AI customer walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
+      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
@@ -461,13 +464,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In both runs the agencies chose the stores, so the patterns describe the stores they pitch, serve and show. Each store was checked from one country and stopped before payment. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
+      text: 'In both runs the agencies chose the stores, so the patterns describe the stores they pitch, serve and show. Each store was checked from one country and stopped before payment. For what a finished record looks like, see the [sample data](/sample-output) from a real UK store.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor price tracking tool to choose' },
     {
       kind: 'p',
-      text: 'A public price tracker is the right pick for a store watching list prices across many competitors every day. Use Obsession when your company needs the price a new customer pays at each competitor. That means the price after the welcome code, the cart total and every offer emailed to subscribers, each recorded as a new customer and kept with a dated screenshot.',
+      text: 'Use Obsession when your company needs the price each competitor shows only to its customers. That means the price after the welcome code, the cart total and every offer emailed to subscribers, each kept with a dated screenshot for as long as you follow the competitor. A public price tracker is the right pick for a store watching list prices across many competitors every day.',
     },
     {
       kind: 'list',
@@ -483,15 +486,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers become new customers of any company your team names: a competitor, a prospect or your own store. They keep every email, offer and price they receive, exactly as it arrived.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'Member prices beside public ones, at every retailer you track: the price a signed-in member sees, the welcome coupon and the offers that follow by email, per store, each dated with its screenshot.',
+      to: '/use-cases/member-prices-for-price-intelligence',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 14 tools and Obsession, side by side', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 28 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 28 October 2026.',
     },
     {
       kind: 'table',
@@ -523,8 +526,8 @@ export const post: BlogPost = {
         ['Wiser', 'Marketplace price and MAP monitoring, free snapshot', 'Not listed\nFree snapshot', 'Sold through its team', 'A free first look, then a quote'],
         [
           'Obsession (ours): [Price watch](/recipes/price-watch), [Competitor tracking](/recipes/competitor-tracking), [Member prices](/use-cases/member-prices-for-price-intelligence)',
-          'AI customers sign up to each competitor and record the price after the welcome code, in the cart and in every emailed offer',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'The price after the welcome code, in the cart and in every emailed offer, at any competitor you name',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Reports each change, with repricing left to your own tools',
           'The price a new customer pays at each competitor, kept as proof',
         ],
@@ -537,7 +540,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is the best competitor price tracking software for ecommerce?',
-          a: 'It depends on the job. On 28 October 2026, Prisync and PriceMole listed plans from $99 a month for public prices across hundreds to thousands of products. Pricefy and Visualping had free plans for a small store. Price2Spy and Priceva said they read prices behind a login or in the cart. For the price a new customer pays after the welcome code, Obsession’s AI customers sign up to each competitor and record it.',
+          a: 'It depends on the job. For the price a new customer pays at each competitor, after the welcome code, in the cart and in emailed offers, Obsession keeps it dated with a screenshot. On 28 October 2026, Prisync and PriceMole listed plans from $99 a month for public prices across hundreds to thousands of products. Pricefy and Visualping had free plans for a small store. Price2Spy and Priceva said they read prices behind a login or in the cart.',
         },
         {
           q: 'What is a good competitor price tracker for small ecommerce stores?',
@@ -549,7 +552,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are competitor price monitoring services?',
-          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add AI customers at every retailer they track.',
+          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add Obsession’s member prices at every retailer they track.',
           link: { label: 'Member price intelligence', to: '/use-cases/member-prices-for-price-intelligence' },
         },
         {
@@ -562,7 +565,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How does Obsession track competitor prices?',
-          a: 'Obsession’s AI customers sign up to each competitor as a new customer, each with its own inbox. They record the price after the welcome code, the cart total and every offer emailed to subscribers. Its Price watch checks every competitor’s prices, offers and delivery each morning and reports each change with a before and after screenshot. Your first store check is free, and plans are credit-based, like Claude’s.',
+          a: 'An Obsession agent, a customer that says it’s an AI, signs up to each competitor with its own inbox. It records the price after the welcome code, the cart total and every offer emailed to subscribers, each dated with a screenshot. Obsession’s Price watch checks every competitor’s prices, offers and delivery each morning and reports each change with a before and after screenshot. Teams start in early access, priced per call or per company watched.',
         },
       ],
     },

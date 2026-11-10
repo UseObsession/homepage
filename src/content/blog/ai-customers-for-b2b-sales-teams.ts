@@ -58,13 +58,13 @@ const COMMERCIAL = '/blog/ai-customers-for-commercial-teams'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-b2b-sales-teams',
-  title: 'Why B2B sales teams need AI customers',
-  dek: 'Many demo requests get no reply from a person, and a CRM reports only on the leads it holds. What speed to lead reports miss, what a slow reply costs in a sales team’s own numbers, and how AI customers test every form, chat and sales line.',
-  metaTitle: 'Speed to lead for B2B sales teams, tested with AI customers',
+  title: 'Speed to lead: how B2B sales teams time the first reply every buyer gets',
+  dek: 'Many demo requests get no reply from a person, and a CRM reports only on the leads it holds. What speed to lead reports miss, what a slow reply costs in a sales team’s own numbers, and how to test every form, chat and sales line as a buyer would.',
+  metaTitle: 'Speed to lead for B2B sales teams: the first reply, timed',
   description:
-    'Speed to lead for B2B sales teams: what CRM reports miss, what a slow demo request costs, and how AI customers test every form, chat and sales line.',
+    'Speed to lead for B2B sales teams: what CRM reports miss, what a slow demo request costs, and how to time every form, chat and sales line as a buyer.',
   answer:
-    'B2B sales teams need AI customers because speed to lead, the time from a buyer’s demo request to the company’s first reply, is usually measured inside the CRM from the moment a lead has an owner, so requests that never reach an owner go uncounted. Obsession’s AI customers fill in the team’s own demo form, use its chat and call its sales line as a buyer would, every day and after every routing change, and time each first reply with the evidence.',
+    'Speed to lead, the time from a buyer’s demo request to the company’s first reply, is usually measured inside the CRM from the moment a lead has an owner, so requests that never reach an owner go uncounted. A test from the buyer’s side fills in the team’s own demo form, uses its chat and calls its sales line, every day and after every routing change, and times each first reply with the evidence. Obsession times how fast, and how well, any company answers a new enquiry by form, chat, email and phone, your own included, and keeps every reply dated with the email, transcript or call.',
   primaryKeyword: 'speed to lead',
   keywords: [
     'speed to lead',
@@ -77,9 +77,9 @@ export const post: BlogPost = {
     'lead response time',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Check your own journeys',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 12,
   order: 18,
   authors: [
@@ -316,7 +316,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs this today. It sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so your company can find its revenue leaks, watch its competitors and prospect with proof. For a sales team, its Lead leaks check sends a test lead through the company’s own form, chat and phone, times every first reply and shows each lead left unanswered. The [speed to lead test](/recipes/lead-leaks) runs at the times the team picks, evenings and weekends included, and drafts the routing fix in the CRM the team connects, live after the team’s OK. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
+      text: 'Obsession runs this today. It keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/recipes/lead-leaks) recipe asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name, at the hours the team picks, evenings and weekends included. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
         COMMERCIAL +
         '#sales).',
     },
@@ -351,7 +351,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'Speed to lead tools compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -405,7 +405,7 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check), [Account watch](/recipes/account-watch)',
           'Test leads use the form, chat and phone at set times and time every first reply',
-          'Running now\nCredit-based plans, like Claude’s',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Real leads’ outcomes sit in the CRM the team connects',
           'The first reply a buyer gets on every way in, timed and kept',
         ],
@@ -441,9 +441,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Send an AI customer to any company. Its Lead leaks check runs on your team’s own form, chat and phone, timing every first reply and showing each lead your team left unanswered.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'How fast, and how well, your own team and every competitor you name answer a new enquiry, each reply timed and kept exactly as it arrived.',
+      to: '/recipes/lead-leaks',
+      label: 'See the recipe',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about speed to lead' },

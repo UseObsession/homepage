@@ -47,13 +47,13 @@ const DELIVERY = '/recipes/delivery-monitoring'
 
 export const post: BlogPost = {
   slug: 'welcome-basket-email-not-sending',
-  title: 'Klaviyo flow not sending: why a welcome or basket email never arrives',
+  title: 'Klaviyo flow not sending: why a store’s welcome or basket email never arrives',
   dek: 'A flow report can look normal while a welcome or basket email never reaches the shopper. Sort the failure as silent, late, broken or wrong, check its likely causes in Klaviyo or Shopify Email, and estimate what one month of it costs.',
-  metaTitle: 'Klaviyo flow not sending: why welcome emails never arrive',
+  metaTitle: 'Klaviyo flow not sending: why a store’s welcome email fails',
   description:
     'Klaviyo flow not sending a welcome or basket email: sort the failure as silent, late, broken or wrong, check the cause, and cost one month of it.',
   answer:
-    'A welcome or basket email that never arrives has a cause in one of 4 places: the list or event never starts the flow, the flow skips the shopper, the message isn’t live, or a code or link fails. Test as a new customer with a control address, wait 48 hours, then read the message’s Skipped reasons to see which. Obsession’s AI customers run this test as real new customers of your store every week and keep every email that arrives, with its time, as proof.',
+    'When a Klaviyo flow is not sending, the missing welcome or basket email has a cause in one of 4 places: the list or event never starts the flow, the flow skips the shopper, the message isn’t live, or a code or link fails. Test as a new customer with a control address, wait 48 hours, then read the message’s Skipped reasons to see which. Obsession keeps every email your store sends a new customer after a sign-up, a basket and a checkout, dated, and flags each missing one when its window closes, every week.',
   primaryKeyword: 'klaviyo flow not sending',
   keywords: [
     'klaviyo flow not sending',
@@ -67,8 +67,8 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 9,
+  updated: '2026-11-11',
+  readingMinutes: 13,
   order: 2,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -361,9 +361,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers shop each client’s store with the client’s OK and report what arrived and what never did, with screenshots, within 4 days. 5 client stores are checked free.',
+      text: 'What every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and what never came. Agencies start in early access.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'Limits of testing by hand' },
@@ -382,7 +382,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. On your own store they [shop as new customers](' +
+      text: 'Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. On your own store its agents [shop as new customers](' +
         LEAKS +
         ') every week and after every change, and Obsession’s [delivery monitoring](' +
         DELIVERY +
@@ -390,9 +390,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession’s AI customers run the new customer test on your store every week and after every change, and report each failure with proof and the fix. Your first store check is free.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, every week and after every change, and every reminder that never came. Stores start in early access.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'before-the-freeze', text: 'When to test before Black Friday' },

@@ -31,12 +31,12 @@ const GMAIL_SENDERS = 'https://support.google.com/a/answer/81126?hl=en'
 
 export const post: BlogPost = {
   slug: 'customer-side-observability',
-  title: 'Customer-side observability: seeing a company the way its customers do',
-  dek: 'Observability tells a team what its own systems are doing. Customer-side observability tells it what customers actually receive, at its own company and at any other. What it is, how it differs, and how developers, CX teams and businesses put it to work.',
+  title: 'Customer-side observability: keeping what any company shows only its customers',
+  dek: 'Observability tells a team what its own systems are doing. Customer-side observability keeps what a company shows only its customers, each email, price and offer dated with its proof, and it is the record Obsession collects for any company you name.',
   metaTitle: 'Customer-side observability: what it is and how to build it',
   description:
-    'Customer-side observability is seeing what a company does to its customers by being one. How it differs from RUM and synthetics, and how to build it.',
-  answer: `${CUSTOMER_SIDE_OBSERVABILITY.definition} AI customers are how it is done: AI agents that become real customers of a company, wait for what arrives and keep it as evidence. Obsession’s AI customers do this today at any company you name and keep the email, price, page and AI answer as each arrived.`,
+    'Customer-side observability is keeping what a company shows only its customers, each dated with its proof. How it differs from RUM and synthetics.',
+  answer: `${CUSTOMER_SIDE_OBSERVABILITY.definition} It covers what a team’s own logs and dashboards can’t: the emails, texts and chat answers that reach customers through other companies’ systems. Obsession keeps this record for any company you name, your own or a competitor, and teams look it up by API, MCP or a table.`,
   primaryKeyword: 'customer-side observability',
   keywords: [
     'customer side observability',
@@ -47,9 +47,9 @@ export const post: BlogPost = {
     'business observability',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 8,
   order: 5,
   authors: [
@@ -229,20 +229,20 @@ export const post: BlogPost = {
           { time: '09:00', text: 'lookup: 6 domains', detail: '4 already covered, with history since August', tone: 'ok' },
           { time: '09:00', text: 'facts: 4 domains, last 30 days', detail: '212 facts, each with a link to its evidence', tone: 'ok' },
           { time: '09:01', text: 'evidence: 1 welcome email', detail: 'The email as it arrived, its DKIM result and its hash', tone: 'ok' },
-          { time: '09:01', text: 'index: 2 domains', detail: 'AI customers start; first facts expected within the hour', tone: 'info' },
+          { time: '09:01', text: 'index: 2 domains', detail: 'Collection starts; first facts expected within the hour', tone: 'info' },
           { time: '10:12', text: 'notify: northgale.example', detail: 'Welcome email, 15% code, Promotions tab', tone: 'ok' },
         ],
         foot: 'An example with invented companies. The 5 calls are Obsession’s verbs; the comparison and the write up are the agent’s own.',
       },
-      caption: 'How an agent uses customer-side observability as a tool: it asks, reads the evidence, starts AI customers where none exist, and is told when something arrives.',
+      caption: 'How an agent uses customer-side observability as a tool: it asks, reads the evidence, adds the companies not yet covered, and is told when something arrives.',
     },
     {
       kind: 'p',
-      text: 'Obsession exposes this as 5 verbs over MCP, an API and an SDK: lookup, facts, evidence, index and notify. The runtime is open source, and Obsession can run millions of AI customers. More is in [AI customers for developers](/blog/ai-customers-for-developers).',
+      text: 'Obsession collects its index with AI customers and exposes it as 5 verbs over the API and MCP: lookup, facts, evidence, index and notify. It is built for hundreds of thousands of companies, each looked up in one call. More is in [AI customers for developers](/blog/ai-customers-for-developers).',
     },
     {
       kind: 'cta',
-      text: 'Give your own AI agent an AI customer at any company: 5 verbs over MCP, an API and an SDK, with every email and page kept as proof. The runtime is open source.',
+      text: 'Give your own agent what any company shows only to its customers: 5 verbs over the API and MCP, each fact dated with the email or page behind it, and a company not yet covered added on request.',
       to: '/developers',
       label: 'See the API and MCP',
     },
@@ -258,15 +258,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'AI customers call, chat and email your AI agents as your customers do, every day, and check they answer right, hand over and say they’re AI. Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What your chat agent, voice line or AI sales agent tells customers, word for word and dated, beside the page it should match, checked every day and after every update.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'every-business', text: 'For every business: your competitors and your market' },
     {
       kind: 'p',
-      text: 'Customer-side observability works on any company, so the same practice covers your market. Every competitor’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)). For all 3, and for your own company, use Obsession. Its AI customers sign up to any company you name and keep every email, offer and price it sends, so you can find revenue leaks, watch competitors and prospect with proof.',
+      text: 'Customer-side observability works on any company, so the same practice covers your market. Every competitor’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)). For all 3, and for your own company, use Obsession. It keeps what any company you name shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
     },
 
     { kind: 'h2', id: 'plan', text: 'A 30 day plan' },
@@ -322,7 +322,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Every outside source was read on its own page on 24 October 2026. The companies in the illustrations are invented. Obsession’s verbs, runtime and scale are as its site and founders state them.',
+      text: 'Every outside source was read on its own page on 24 October 2026. The companies in the illustrations are invented. Obsession’s verbs are as its site states them.',
     },
   ],
 

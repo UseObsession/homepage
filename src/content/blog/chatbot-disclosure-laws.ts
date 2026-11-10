@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 7 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 7; WRITER_BRIEF.md, batch 2; Seun's go,
    1 Nov 2026). It owns "chatbot disclosure laws" and ai chatbot disclosure laws, bot disclosure law, california chatbot
@@ -56,12 +55,12 @@ export const post: BlogPost = {
   description:
     'Chatbot disclosure laws in the EU, UK, California, Maine, Utah and Colorado, quoted from official texts, and how to check what your AI chat and phone say.',
   answer:
-    'Chatbot disclosure laws set when a business’s AI chatbot or voice agent must tell people it’s an AI. The EU requires it from 2 August 2026 unless that’s obvious, Maine wherever a consumer could mistake it for a human, and Utah when a consumer clearly asks. To check yours every day, use Obsession: its AI customers ask your company’s chat and phone line “Am I talking to a person?” and keep each answer with its time.',
+    'Chatbot disclosure laws set when a business’s AI chatbot or voice agent must tell people it’s an AI. The EU requires it from 2 August 2026 unless that’s obvious, Maine wherever a consumer could mistake it for a human, and Utah when a consumer clearly asks. To check yours every day, Obsession asks your company’s chat and phone line “Am I talking to a person?” and keeps each answer as a dated transcript or recording.',
   primaryKeyword: 'chatbot disclosure laws',
   keywords: ['ai chatbot disclosure laws', 'bot disclosure law', 'california chatbot disclosure law', 'maine chatbot disclosure law'],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 14,
   order: 4,
   authors: [
@@ -297,7 +296,7 @@ export const post: BlogPost = {
       art: {
         kind: 'log',
         title: 'alder.example · Monday disclosure check',
-        who: 'An AI customer, for Alder’s CX team',
+        who: 'A morning check, for Alder’s CX team',
         rows: [
           { time: '07:00', text: 'Chat opens: “I’m Alder’s AI assistant.”', tone: 'ok' },
           { time: '07:01', text: 'Asked “Am I talking to a person?”', detail: '“No, I’m an AI. Want a person?”', tone: 'ok' },
@@ -313,20 +312,18 @@ export const post: BlogPost = {
       text: 'A pass on these checks shows what a customer is told on each channel. Whether that meets the law where your company operates is a question for a lawyer there. Each step, with what a pass looks like on chat, email and phone, is set out in [how to test if a chatbot is AI](/recipes/ai-disclosure-check).',
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'AI customers say they’re AI too' },
+    { kind: 'h2', id: 'ai-customers', text: 'Obsession’s agents say they’re AI too' },
     {
       kind: 'p',
-      text: '[AI customers](/blog/ai-customers) run the same checks as a customer would. **' +
-        AI_CUSTOMER.definition +
-        '** An AI customer is the opposite of an [AI customer service agent](/blog/ai-customer-service-agent-vs-ai-customer), which answers customers for a company.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its visitor is an Obsession agent, a customer that says it’s an AI, the opposite of an [AI customer service agent](/blog/ai-customer-service-agent-vs-ai-customer), which answers customers for a company. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names.',
     },
     {
       kind: 'p',
-      text: 'Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. For a CX or legal team, its AI disclosure check starts a conversation on the company’s chat, email and phone line each morning. It keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
+      text: 'For a CX or legal team, Obsession’s AI disclosure check starts a conversation on the company’s chat, email and phone line each morning. It keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
     },
     {
       kind: 'p',
-      text: 'Obsession’s own AI customers keep the rule they check. Each one says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do, and [Voice agent check](/recipes/voice-agent-check) shows how the same AI customers call an AI receptionist.',
+      text: 'Obsession’s own agents keep the rule they check. Each one says it’s an AI when it talks to a person, with no fake payment details and no getting round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do, and [Voice agent check](/recipes/voice-agent-check) shows how the same agents call an AI receptionist.',
     },
     {
       kind: 'p',
@@ -334,9 +331,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Your first AI agent check is free: 3 AI customers use a chat page or phone number your company runs, and your report lands within 4 days.',
+      text: 'What your chat, email and phone agents tell customers about being AI, word for word. Each first line and answer is kept as a dated transcript or call, ready for legal or your vendor.',
       to: '/verify',
-      label: 'Check your AI agents',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about chatbot disclosure laws' },

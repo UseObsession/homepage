@@ -45,13 +45,13 @@ const AGENTMAIL = 'https://docs.agentmail.to/welcome'
 
 export const post: BlogPost = {
   slug: 'can-chatgpt-track-competitor-emails',
-  title: 'Can ChatGPT or Claude track your competitors’ emails?',
-  dek: 'For 1 to 3 competitors, a spare Gmail inbox, a sheet and an AI assistant show what each one has sent since you signed up. The help pages of 5 assistants set the limits: one inbox, capped schedules, no older mail and nothing on keeping each email as evidence.',
-  metaTitle: 'Can ChatGPT track competitor emails? A method and its limits',
+  title: 'Can ChatGPT or Claude track competitor emails? A method for brands and agencies',
+  dek: 'For CRM teams and agencies following 1 to 3 competitors, a spare Gmail inbox, a sheet and an AI assistant show what each one has sent since you signed up. The help pages of 5 assistants set the limits: one inbox, capped schedules, no older mail and nothing on keeping each email as evidence.',
+  metaTitle: 'Can ChatGPT track competitor emails? For brands and agencies',
   description:
-    'ChatGPT can track competitor emails that reach a Gmail inbox you connect. A method for 1 to 3 competitors, and what 5 assistants’ help pages say.',
+    'ChatGPT can track competitor emails that reach a Gmail inbox you connect. A method for brands and agencies with 1 to 3 competitors, and its limits.',
   answer:
-    'Yes, for 1 to 3 competitors: ChatGPT, Claude, Gemini and Perplexity can read and compare the competitor emails that reach a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence. Obsession’s AI customers each sign up to a competitor as a real customer, with their own inbox, and keep every email that competitor sends as proof.',
+    'Yes, ChatGPT can track competitor emails for 1 to 3 competitors, as can Claude, Gemini and Perplexity, by reading and comparing what reaches a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence. Obsession keeps every email any competitor you name sends its customers, dated as it arrived, by API, MCP (the standard way AI agents call tools) or a table.',
   primaryKeyword: 'can chatgpt track competitor emails',
   keywords: [
     'can chatgpt track competitor emails',
@@ -65,8 +65,8 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-10-28',
-  readingMinutes: 8,
+  updated: '2026-11-11',
+  readingMinutes: 11,
   order: 3,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -257,7 +257,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession sends AI customers to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
     },
 
     { kind: 'h3', id: 'good-at', text: 'What each assistant offers for this job' },
@@ -360,13 +360,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 20 competitors, use Obsession. Its [email and SMS tracking](/recipes/email-sms-tracking) gives each competitor its own AI customer, with history that starts from the minute it first signs up, and its [developers page](/developers) covers the same gap for teams building their own AI agents. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
+      text: 'For 20 competitors, use Obsession. Its [email and SMS tracking](/recipes/email-sms-tracking) keeps every email each competitor sends, dated as it arrived, from the day the competitor is added. Its [developers page](/developers) covers the same job for teams building their own AI agents. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
     },
     {
       kind: 'cta',
-      text: 'Obsession’s email and SMS tracking gives each competitor an AI customer with its own inbox and texting number, and keeps every message as it arrived.',
-      to: '/recipes/email-sms-tracking',
-      label: 'See email and SMS tracking',
+      text: 'Every email, text and offer your competitors send their signed-up customers, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
+      to: '/marketing',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'For agencies: running the same test on a client’s store' },
@@ -380,15 +380,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Obsession checks 5 client stores free, with each owner’s OK. Its AI customers sign up, leave a basket and stop at checkout, then report which emails arrived within 48 hours and which never came, with screenshots.',
+      text: 'Open every pitch and client report with the store’s own emails, and the ones that never came: what any store sends after a sign-up and a basket, each message dated and kept as it arrived.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Get 5 client stores checked free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'start-now', text: 'When to sign up before Black Friday' },
     {
       kind: 'p',
-      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start in late October, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. If you sign up by Friday 30 October, the inbox holds 4 weeks of a competitor’s mail by Black Friday. If you sign up on Black Friday, it holds only the sale emails, and no assistant can retrieve the earlier ones. The [Black Friday competitor email report](/blog/black-friday-competitor-email-report-template) turns the sheet into a one page report for a client.',
+      text: 'Open the spare inboxes and sign up this week. Competitors’ teasers start weeks before the sale, Black Friday is Friday 27 November and Cyber Monday is Monday 30 November. An inbox that joins today still holds the teasers still to come and every sale email. One that joins on Black Friday holds only the sale emails, and no assistant can retrieve the earlier ones. The [Black Friday competitor email report](/blog/black-friday-competitor-email-report-template) turns the sheet into a one page report for a client.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Frequently asked questions' },

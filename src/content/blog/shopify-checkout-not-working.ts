@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 5 of the week from 1 Nov 2026 (_research/seo/plan/week-2nov/SLATE.md and WRITER_BRIEF.md, batch 2, branch
    blog/guides-5-8; Seun's go on 1 Nov, "Start them"). The spec is _research/seo/plan/next-31oct/PLAN.md section 1, with
@@ -70,7 +69,7 @@ export const post: BlogPost = {
   description:
     'Shopify checkout not working? Check Shopify’s status page, then run 6 checks on a phone as a new customer, find what changed last and who fixes it.',
   answer:
-    'When Shopify checkout is not working, check Shopify’s status page first, and if Checkout shows as operational, look at the store itself. Shop it on a phone as a new customer in a fresh private window, check that checkout stays on the store’s own web address, then look at what changed last. To have a new customer go through checkout after every change, use Obsession: its AI customers shop your store and your competitors’ and keep every page, code and email as it arrived.',
+    'When Shopify checkout is not working, check Shopify’s status page first, and if Checkout shows as operational, look at the store itself. Shop it on a phone as a new customer in a fresh private window, check that checkout stays on the store’s own web address, then look at what changed last. Obsession keeps every page, code and email your store and your competitors show a new customer on the way to checkout, dated with the screenshot, after every change.',
   primaryKeyword: 'shopify checkout not working',
   keywords: [
     'shopify checkout not working today',
@@ -83,7 +82,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-11-01',
-  updated: '2026-11-01',
+  updated: '2026-11-11',
   readingMinutes: 15,
   order: 0,
   authors: [
@@ -344,32 +343,30 @@ export const post: BlogPost = {
       text: 'For sale week, the [Black Friday checklist](/blog/black-friday-checklist-new-customer) adds 12 tests as a new customer, from the pop-up to the reminder emails.',
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'AI customers that go through checkout after every change' },
+    { kind: 'h2', id: 'ai-customers', text: 'A new customer through checkout after every change' },
     {
       kind: 'p',
-      text: 'Obsession sends [AI customers](/blog/ai-customers) to any company you name, and each keeps every email, offer and price the company sends, so you can find your revenue leaks, watch your competitors and prospect with proof. **' +
-        AI_CUSTOMER.definition +
-        '**',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, [Website audit](/recipes/website-audit) runs after every release: a fresh AI customer goes through the store on a phone and a desktop. It signs up, opens every email and link, tries each code at checkout and stops before payment. Every break comes back with its screenshot and a drafted fix, then a fresh run once the fix ships. [Store leak checks](' +
+      text: 'On a Shopify store, [Website audit](/recipes/website-audit) runs after every release: a fresh Obsession agent goes through the store on a phone and a desktop. It signs up, opens every email and link, tries each code at checkout and stops before payment. Every break comes back with its screenshot and a drafted fix, then a fresh run once the fix ships. [Store leak checks](' +
         LEAKS +
-        ') give every journey, such as a sign-up or a checkout, a new AI customer each week. With Shopify and the store’s email tool connected, read only, a theme publish or an edit to an email flow reruns the checks it touches within the hour.',
+        ') give every journey, such as a sign-up or a checkout, a fresh sign-up each week. With Shopify and the store’s email tool connected, read only, a theme publish or an edit to an email flow reruns the checks it touches within the hour.',
     },
     {
       kind: 'p',
-      text: 'The same AI customers shop competitors’ stores, so the store’s team sees every welcome offer, price and reminder a competitor sends its new customers. The team reads the results at 4, 12, 24 or 48 hours, or keeps the AI customers watching for as long as it wants. A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA or a bot check in front of a step, the report names the step it couldn’t test.',
+      text: 'The same checks run at competitors’ stores, so the store’s team sees every welcome offer, price and reminder a competitor sends its new customers. The team reads the results at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA or a bot check in front of a step, the record names the step it couldn’t reach.',
     },
     {
       kind: 'p',
-      text: 'Every AI customer says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. The team behind Obsession has sent an AI customer to 1,500 ecommerce stores since September 2026. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it’s built for millions.',
+      text: 'Every agent says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to catch a broken Shopify checkout, compared', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 1 November 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 1 November 2026.',
     },
     {
       kind: 'table',
@@ -401,16 +398,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Store leak checks](' + LEAKS + ')',
-          'A fresh AI customer signs up, tries each code at checkout and stops before payment, at the store and its competitors',
-          'Running now: Check my store free\nCredit-based plans, like Claude’s',
-          'Stops before payment unless the store chooses a capped, refunded order',
+          'Each page, code and email a new customer meets from sign-up to checkout, at the store and its competitors, kept with its screenshot',
+          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Stops before payment',
           'A new customer through checkout after every change, each step screenshotted',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your store needs an AI customer to go through checkout after every app, theme or discount change, with every step kept as a screenshot, use Obsession. Shopify’s status page settles whether an outage is Shopify’s, and a test order tests the payment step itself. Shoptest or Checkly fit an alert at any hour on a checkout path that rarely changes. A store with steady orders and few changes can run the 6 checks by hand after each change.',
+      text: 'If your store needs a new customer to go through checkout after every app, theme or discount change, with every step kept as a screenshot, use Obsession. Shopify’s status page settles whether an outage is Shopify’s, and a test order tests the payment step itself. Shoptest or Checkly fit an alert at any hour on a checkout path that rarely changes. A store with steady orders and few changes can run the 6 checks by hand after each change.',
     },
 
     { kind: 'h2', id: 'start', text: 'Start tonight' },
@@ -430,9 +427,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
       to: LEAKS,
-      label: 'Check my store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify checkout not working' },

@@ -30,13 +30,13 @@ const BLS = 'https://www.bls.gov/ooh/business-and-financial/market-research-anal
 
 export const post: BlogPost = {
   slug: 'hire-ai-customers',
-  title: 'Hiring an AI agent to be a customer: the job, the alternatives and the payback',
-  dek: 'What to hire AI customers for, how they compare with mystery shoppers, audits, monitoring tools and doing it by hand, the brief to hand over, and the sum that says whether the hire pays back.',
+  title: 'Hire an AI agent to be a customer: the job, the alternatives and the payback',
+  dek: 'When the job is being a customer, an AI agent competes with mystery shoppers, audits, monitoring tools and doing it by hand. Each suits a different job, and a brief and a payback sum show which one to hire.',
   metaTitle: 'Hire an AI agent to be a customer: the options and payback',
   description:
-    'How to hire an AI agent as a customer: the jobs AI customers do, how they compare with mystery shoppers, audits and tools, a hiring brief and the payback.',
+    'How to hire an AI agent as a customer: the jobs it does, how it compares with mystery shoppers, audits and monitoring, the brief and the payback sum.',
   answer:
-    'Hire AI customers for a job only a customer can do, such as checking that a welcome code arrives and works at checkout, and brief them with the companies, a pass mark for each check, how often to run and where results go. A human mystery shopper suits service in person, and a monthly check by hand suits a business that rarely changes. For jobs that need any company, weeks of waiting and the original evidence, use Obsession’s AI customers.',
+    'Hire an AI agent as a customer for a job only a customer can do, such as checking that a welcome code works at checkout, and brief it with the companies, a pass mark per check, a cadence and where results go. A human mystery shopper suits service in person, and a monthly check by hand suits a business that rarely changes. For jobs that need any company, weeks of waiting and the original evidence, use Obsession, which keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
   primaryKeyword: 'hire ai agent',
   keywords: [
     'hire ai customers',
@@ -48,9 +48,9 @@ export const post: BlogPost = {
     'ai agent vs human',
     'ai customers',
   ],
-  category: 'AI customers',
+  category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-10-28',
+  updated: '2026-11-11',
   readingMinutes: 9,
   order: 6,
   authors: [
@@ -115,7 +115,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If the answers are any company, weeks or months, and the original, use Obsession. Where the answers are your own site, 1 moment and an opinion, another option suits the job better.',
+      text: 'If the answers are any company, weeks or months, and the original, use Obsession, which keeps what any company shows only to its customers, dated with the email or screenshot. Where the answers are your own site, 1 moment and an opinion, another option suits the job better.',
     },
 
     { kind: 'h2', id: 'jobs', text: 'The jobs to hire AI customers for' },
@@ -164,7 +164,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'options', text: 'AI customers vs the other options', compare: true },
     {
       kind: 'p',
-      text: 'Obsession makes AI customers, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -224,8 +224,8 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence)',
-          'AI customers stay at any company for months and keep every email, offer and price',
-          'Running now: first store check free\nCredit-based plans, like Claude’s',
+          'What any company shows only to customers, for months: every email, offer and price, dated',
+          'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',
           'What a real customer gets at any company, for months',
         ],
@@ -280,13 +280,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Send an AI customer to any company you name, and it keeps every email, offer and price the company sends, so you can find revenue leaks, watch competitors and prospect with proof.',
+      text: 'Obsession keeps what any company you name shows only to its customers, every email, offer and price dated with its proof, for as long as you follow the company.',
     },
     {
       kind: 'cta',
-      text: 'Name the companies and the job. Each company gets an AI customer that waits for months and keeps every email, offer and price as proof.',
-      to: '/',
-      label: 'Send an AI customer',
+      text: 'See what the hire returns: a real UK skincare store’s record from September 2026, every email and screenshot dated, and a £40 basket left at 02:57 that got no reminder.',
+      to: '/sample-output',
+      label: 'See sample data',
     },
 
     { kind: 'h2', id: 'payback', text: 'The payback, in your numbers' },
@@ -366,9 +366,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Check your store free: 4 AI customers sign up, browse, leave a basket and stop at checkout, and every inbox is watched for 48 hours. What happened arrives within 4 days, with proof and the fix for each leak.',
+      text: 'The emails and texts your store and your competitors send after a sign-up, a basket and a checkout, each dated, so a broken code or a silent basket shows up the day it happens.',
       to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Check your store free',
+      label: 'Request early access',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about hiring AI customers' },
