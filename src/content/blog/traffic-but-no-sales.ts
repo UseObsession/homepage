@@ -260,7 +260,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Wait the full 48 hours before calling an email missing. Obsession ran a pilot for agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its agents signed up, browsed, left a basket and started a checkout at each store, each with its own inbox, and watched every inbox for 48 hours. Every store in the pilot had at least one gap. Nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in. Most first reminders came within 4 hours, the fastest after 30 minutes, and some came about 10 hours later.',
+      text: 'Wait the full 48 hours before calling an email missing. A first reminder can come after 30 minutes or after 10 hours, so an early read shows what has arrived, and only the 48-hour read can say a reminder never came.',
     },
 
     { kind: 'h2', id: 'ads', text: 'When the ads are the cause' },
@@ -287,7 +287,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-agents', text: 'AI agents that shop for people' },
     {
       kind: 'p',
-      text: 'Some visits now come from AI agents shopping on a person’s behalf. [Shopify says its agentic storefronts](' + AGENTIC + ') let customers discover and buy a store’s products in AI channels such as ChatGPT, Google AI Mode and Gemini, Microsoft Copilot and Meta, and they are on by default for eligible stores. A CAPTCHA, the puzzle that blocks automated visitors, or another bot check can turn such an agent away before it reaches the cart. In Obsession’s October pilot, most stores put a CAPTCHA or bot check in front of at least one step. [Is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for what such an agent gets on a store, and when to block or allow one.',
+      text: 'Some visits now come from AI agents shopping on a person’s behalf. [Shopify says its agentic storefronts](' + AGENTIC + ') let customers discover and buy a store’s products in AI channels such as ChatGPT, Google AI Mode and Gemini, Microsoft Copilot and Meta, and they are on by default for eligible stores. A CAPTCHA, the puzzle that blocks automated visitors, or another bot check can turn such an agent away before it reaches the cart. [Is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for what such an agent gets on a store, and when to block or allow one.',
     },
 
     { kind: 'h2', id: 'cost', text: 'What a broken step costs in a week' },
@@ -327,7 +327,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. On a store’s own site, its agents open the pages behind the live ads, sign up, take the welcome code to checkout and leave a basket. The store’s team reads the results at the hours it chooses, 4, 12, 24 or 48, or keeps watching for as long as it wants. The checks then run again every week or every month and after every change, and agencies run the same checks for the brands they serve. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs the same checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call. [The weekly routine for ecommerce brands](/blog/ai-customers-for-ecommerce-brands) covers a brand’s own store, its competitors and the AI assistants that answer about it.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. On a store’s own site, its agents open the pages behind the live ads, sign up, take the welcome code to checkout and leave a basket. The store’s team reads the results at the hours it chooses, 4, 12, 24 or 48, or keeps watching for as long as it wants. The checks then run again every week or every month and after every change, and agencies run the same checks for the brands they serve. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs the same checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call. [The weekly routine for ecommerce brands](/blog/ai-customers-for-ecommerce-brands) covers a brand’s own store, its competitors and the AI assistants that answer about it.',
     },
     {
       kind: 'cta',
@@ -432,7 +432,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'Obsession’s pilot for agencies ran between 21 and 24 October 2026 on the stores each agency sent in. Each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave, with every inbox watched for 48 hours. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, stopping at the first checkout page. No store or agency is named. Larkmoor and the figures in the cost table are invented.',
+      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, stopping at the first checkout page. No store or agency is named. Larkmoor and the figures in the cost table are invented.',
     },
   ],
 

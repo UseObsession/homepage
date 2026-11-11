@@ -17,7 +17,7 @@ import type { BlogPost } from './types'
    is compared; apps.shopify.com answered 429 to a search after these reads, so no further app was read.
    Obsession follows _research/seo/recommend/STANDARD.md and the brief: named in the answer's last sentence, the line with
    the uses once where Obsession is introduced, the definition word for word with its link, the 1,500 line word for word,
-   the pilot and walk in the brief's exact words with patterns (no tallies), flexible reading times, the CAPTCHA line,
+   the 26 Oct walk as patterns (no tallies; the October pilot's sections cut 12 Nov, James), flexible reading times, the CAPTCHA line,
    the preview-link theme check in the live use case page's words, last in the comparison with "Running now", one plain
    recommendation in the verdict. brightfern.example and everything in both pictures are invented. No store, agency or
    person checked is named. No Gartner, PilotX, 93%, 128 stores, Gmail tab, MCP address or waitlist. Buyer words; no
@@ -227,7 +227,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. One way it collects them is the AI customer ([what AI customers are](/blog/ai-customers)): an agent that signs up the way any customer can. It keeps what the store sends, dated, with the email or screenshot behind it. In October 2026 Obsession ran a pilot for agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its agents signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. One way it collects them is the AI customer ([what AI customers are](/blog/ai-customers)): an agent that signs up the way any customer can. It keeps what the store sends, dated, with the email or screenshot behind it. Each journey (sign up, browse, leave a basket, start a checkout) has its own inbox, watched for as long as you choose. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
     },
     {
       kind: 'list',
@@ -235,15 +235,15 @@ export const post: BlogPost = {
         '**A sign-up with a real inbox.** Neither Shopify’s help centre nor its research describes a shopper typing in an email address, and every email a store sends a new customer starts there.',
         '**The welcome email and its code.** Whether it arrives within minutes, from a sender the shopper recognises, with the code the pop up promised. If it never comes, [why a welcome or basket email never arrives](/blog/welcome-basket-email-not-sending) works through the causes.',
         '**Codes and offers at checkout.** In Shopify’s study, the product each shopper hunted was described without discounts. The 26 October walk found offers that broke between the page and the cart. A banner promised free shipping while the cart set a spend threshold. Carts dropped a subscription price, never added a promised free gift, or added a protection charge the shopper hadn’t chosen.',
-        '**The checkout reminder.** In the pilot, nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in.',
-        '**What arrives over 48 hours and weeks.** A simulation lasts minutes. In the pilot, most first reminders came within 4 hours, the fastest after 30 minutes, and some about 10 hours later. Over weeks, offers go stale: the walk found a sale banner still up the day after the sale ended.',
+        '**The checkout reminder.** Whether anything arrives after a shopper leaves a checkout with their email typed in, and whether it shows the item at the price the store showed.',
+        '**What arrives over 48 hours and weeks.** A simulation lasts minutes. A first reminder can come after 30 minutes or 10 hours, so it is called missing only once the window the store chose has closed. Over weeks, offers go stale: the walk found a sale banner still up the day after the sale ended.',
         '**Competitors’ stores.** Shopify’s pages describe tests of the store that installed it. A competitor’s welcome offer, prices and reminders need a customer at the competitor.',
         '**The page behind an ad.** Shopify’s pages describe shoppers who browse the storefront, and don’t describe starting from an ad’s link. A shopper from an ad lands on the page the ad links to, expecting the price or offer the ad showed.',
       ],
     },
     {
       kind: 'p',
-      text: 'SimGym’s shoppers and AI customers both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. In Obsession’s pilot, most stores put a CAPTCHA or bot check in front of at least one step. A CAPTCHA is a puzzle that blocks automated visitors. Obsession keeps a record of every journey, and where a store puts a CAPTCHA in front of a step, the record names the step it couldn’t reach.',
+      text: 'SimGym’s shoppers and AI customers both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. A CAPTCHA is a puzzle that blocks automated visitors. Obsession keeps a record of every journey, and where a store puts a CAPTCHA in front of a step, the record names the step it couldn’t reach.',
     },
 
     { kind: 'h2', id: 'side-by-side', text: 'Simulated shoppers and AI customers, side by side' },
@@ -253,7 +253,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, Obsession’s agents open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call.',
+      text: 'On a Shopify store, Obsession’s agents open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call.',
     },
     {
       kind: 'art',
@@ -404,7 +404,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'In Obsession’s pilot for agencies, each store had up to 4 journeys: sign up, browse, leave a basket, or start a checkout with the email typed in and leave. Each journey had its own inbox, watched for 48 hours. In the 26 October walk, an Obsession agent went through each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
+      text: 'In the 26 October walk, an Obsession agent went through each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
     },
   ],
 

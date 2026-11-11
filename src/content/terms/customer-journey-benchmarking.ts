@@ -68,7 +68,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: '[Journey checks for banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs) shows it for a savings bank and 3 competitors, with new and existing customer rates side by side.',
+      text: '[Journey checks for banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs) shows it for a savings bank and 3 competitors, with the rates each application shows beside the public ones.',
     },
     {
       kind: 'faq',

@@ -46,8 +46,8 @@ export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect'> = {
   line: 'None of it is on the public web, so no search engine has it. Connect Obsession once to Claude Code or Codex and ask in plain words, or ask on our website. Every answer links the emails and pages behind it.',
   from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
   connect: {
-    'Claude Code': 'claude mcp add obsession https://mcp.useobsession.com',
-    Codex: 'codex mcp add obsession --url https://mcp.useobsession.com',
+    'Claude Code': 'claude mcp add obsession',
+    Codex: 'codex mcp add obsession',
   },
 }
 
@@ -147,7 +147,7 @@ export const ways: Ways = {
       title: 'Ask your own agent',
       line: 'Connect Obsession once to Claude, ChatGPT, Codex or Cursor. Your agent does the reasoning and calls Obsession for what only a signed-up customer gets.',
       who: 'For anyone who already works with an AI agent.',
-      setup: 'claude mcp add obsession https://mcp.useobsession.com',
+      setup: 'claude mcp add obsession',
       you: 'Which of our competitors changed a price or an offer this month?',
       calls: ['obsession.lookup(6 companies)', 'obsession.facts(kind="price", since="30d")', 'obsession.evidence(4 facts)'],
       reply: [

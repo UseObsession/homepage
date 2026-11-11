@@ -238,7 +238,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects its index with AI customers and exposes it as 5 verbs over the API and MCP: lookup, facts, evidence, index and notify. It is built for hundreds of thousands of companies, each looked up in one call. More is in [AI customers for developers](/blog/ai-customers-for-developers).',
+      text: 'Obsession collects its index with AI customers and exposes it as 5 verbs over the API and MCP: lookup, facts, evidence, index and notify. It is built for millions of companies, each looked up in one call. More is in [AI customers for developers](/blog/ai-customers-for-developers).',
     },
     {
       kind: 'cta',

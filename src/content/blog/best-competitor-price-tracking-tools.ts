@@ -418,31 +418,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-saw', text: 'What a new customer was shown' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Two of Obsession’s October runs show the prices a new customer met past the product page.',
-    },
-
-    { kind: 'h3', id: 'reminders', text: 'Prices in the reminder emails' },
-    {
-      kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for agencies on the stores they pitch and serve. Each journey used a new customer with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026.',
-    },
-    {
-      kind: 'p',
-      text: 'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
-    },
-    {
-      kind: 'table',
-      caption: 'What cart and checkout reminder emails showed in Obsession’s October pilot for agencies, 21 to 24 October 2026',
-      cols: ['What the reminder showed', 'Share of reminders'],
-      rows: [
-        ['The item at the store’s price', 'Fewer than half'],
-        ['No price', 'About a third'],
-        ['A different price or currency', 'One in five'],
-      ],
-    },
-    {
-      kind: 'p',
-      text: 'A tracker reading the product page records the store’s price. The price in a reminder reaches only the customer it was sent to.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. A tracker reading the product page records the store’s price. The price in a cart or checkout reminder email reaches only the customer it was sent to, so Obsession keeps each reminder as it arrived, dated, beside the price on the page. One October run shows the offers a new customer met past the product page.',
     },
 
     { kind: 'h3', id: 'offers', text: 'Offers the cart didn’t honour' },
@@ -464,7 +440,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In both runs the agencies chose the stores, so the patterns describe the stores they pitch, serve and show. Each store was checked from one country and stopped before payment. For what a finished record looks like, see the [sample data](/sample-output) from a real UK store.',
+      text: 'The agencies chose the stores, so the patterns describe the stores they show. Each store was checked from one country and stopped before payment. For what a finished record looks like, see the [sample data](/sample-output) from a real UK store.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor price tracking tool to choose' },
