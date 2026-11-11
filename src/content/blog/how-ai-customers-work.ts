@@ -34,7 +34,7 @@ export const post: BlogPost = {
   description:
     'How AI customers work: an inbox, number and browser of their own, a public sign-up, sleep until the company acts, and each email kept as it arrived.',
   answer:
-    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system is built to follow hundreds of thousands of companies at once. Obsession collects its index this way, keeping what any company shows only to its customers, dated with the email or screenshot, for lookup by API, MCP or a table.',
+    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system is built for millions of companies at once. Obsession collects its index this way, keeping what any company shows only to its customers, dated with the email or screenshot, for lookup by API, MCP or a table.',
   primaryKeyword: 'how ai customers work',
   keywords: [
     'can ai agents sign up',
@@ -167,7 +167,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The count of AI customers is then set by sign ups and storage. Model time barely moves it. Obsession collects its index this way, keeping what any company you name shows only to its customers, dated with the email or screenshot. Built like this, it is designed for hundreds of thousands of companies, and a company already in the shared index starts with its history on day one.',
+      text: 'The count of AI customers is then set by sign ups and storage. Model time barely moves it. Obsession collects its index this way, keeping what any company you name shows only to its customers, dated with the email or screenshot. Because of that design, it is built for millions of companies, and a company already in the shared index starts with its history on day one.',
     },
 
     { kind: 'h2', id: 'wake', text: 'Waking: what it checks' },
@@ -286,7 +286,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How many AI customers can run at once?',
-          a: 'Because an AI customer costs nothing while it sleeps, the count is limited by sign ups and storage. Obsession is built to follow hundreds of thousands of companies this way, each looked up in one call.',
+          a: 'Because an AI customer costs nothing while it sleeps, the count is limited by sign ups and storage. Obsession is built to follow millions of companies this way, each looked up in one call.',
         },
       ],
     },

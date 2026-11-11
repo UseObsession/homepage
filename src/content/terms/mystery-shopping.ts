@@ -65,7 +65,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'Each account stays open for as long as you follow the company. For a bank, that means a competitor’s account opening up to the identity check, its signed-in rates and every email after, as [journey checks for banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs) shows. Panels such as Competiscan, and the options beside them, are compared in [Competiscan alternatives](/alternatives/competiscan).',
+      text: 'Each account stays open for as long as you follow the company. For a bank, that means a competitor’s account opening up to the identity check, the rates its application shows and every email after, as [journey checks for banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs) shows. Panels such as Competiscan, and the options beside them, are compared in [Competiscan alternatives](/alternatives/competiscan).',
     },
     {
       kind: 'faq',

@@ -360,7 +360,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every agent says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call.',
+      text: 'Every agent says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to catch a broken Shopify checkout, compared', compare: true },

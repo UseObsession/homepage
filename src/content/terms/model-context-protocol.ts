@@ -80,7 +80,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'Connecting takes one command in Claude Code, claude mcp add obsession, with the server address printed on [the developers page](/developers). From then on an agent can ask what any named competitor emailed new customers this week. Each answer comes back with its date and the email itself, for as long as the company is followed.',
+      text: 'Connecting takes one command in Claude Code, claude mcp add obsession, with the server address that comes with early access, as [the developers page](/developers) sets out. From then on an agent can ask what any named competitor emailed new customers this week. Each answer comes back with its date and the email itself, for as long as the company is followed.',
     },
     {
       kind: 'faq',

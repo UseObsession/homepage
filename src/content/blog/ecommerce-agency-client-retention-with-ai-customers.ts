@@ -13,7 +13,7 @@ import type { BlogPost } from './types'
    claimed), AgencyAnalytics' 2025 release (10 Sep 2025), the r/FacebookAds post of 23 Oct 2026 (its one sentence quoted
    word for word, checked in the Arctic Shift archive), Klaviyo's benchmarks, First Pier's packages and Web Systems'
    retainer page. Left out per research.md: CallRail's figures, the 3.2-year tenure, Moxo, Glaze and Blackbelt prices.
-   Our own figures are the October pilot for 4 agencies and the 26 Oct walk, as patterns (no small tallies, Seun 29 Oct),
+   Our own figures are the 26 Oct walk, as patterns (no small tallies, Seun 29 Oct; the October pilot cut 12 Nov, James),
    anonymised. No agency, store or person we worked with is named. Northgate, its client stores and every figure in the
    business case are invented, at .example addresses. Texts are left out of every claim (SMS isn't built, 27 Oct). No dashes. */
 
@@ -159,16 +159,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'There is almost always something to bring. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. In October 2026 Obsession ran a pilot on the stores that 4 agencies pitch and serve. Between 21 and 24 October, its agents signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
-    },
-    {
-      kind: 'list',
-      items: [
-        'Every store in the pilot had at least one gap.',
-        'Nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in.',
-        'Most first reminders came within 4 hours, the fastest after 30 minutes, and some about 10 hours later.',
-        'Most stores put a CAPTCHA or bot check in front of at least one step.',
-      ],
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. At each client’s store they run up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, so a reminder that never came, came 10 hours late or dropped the price shows up with its time. Where a store puts a CAPTCHA or bot check in front of a step, the record names the step it couldn’t reach.',
     },
     {
       kind: 'p',
@@ -346,7 +337,7 @@ export const post: BlogPost = {
         '**An Obsession agent for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
         '**Everything a customer meets.** The emails, the page behind each ad, prices and offers, the basket, checkout and codes, the store’s chat and AI agent, and what AI assistants say about the brand.',
         '**Bot checks.** Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so the agency knows exactly what to check by hand.',
-        '**Scale.** It runs at 300, 1,000 or 5,000 brands a month. It is built for hundreds of thousands of companies, each looked up in one call, and every store stays followed for as long as the agency wants.',
+        '**Scale.** It runs at 300, 1,000 or 5,000 brands a month. It is built for millions of companies, each looked up in one call, and every store stays followed for as long as the agency wants.',
         '**Pricing.** Priced per call or per company watched, never per token, with a spending cap on every key.',
       ],
     },
@@ -511,7 +502,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own Obsession agent, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
+      text: 'On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
     },
   ],
 

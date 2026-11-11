@@ -196,14 +196,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-4-hours-misses', text: 'What a 4-hour check misses' },
     {
       kind: 'p',
-      text: 'Some stores send their first reminder later than 4 hours. In October 2026 Obsession ran a pilot on the stores that 4 agencies pitch and serve. Between 21 and 24 October, its agents signed up, browsed, left a basket and started a checkout at each store, each with its own inbox, and watched every inbox for 48 hours. Every store in the pilot had at least one gap: an email that never came, came late or missed one of Obsession’s written criteria, such as the item’s price or a link back.',
-    },
-    {
-      kind: 'list',
-      items: [
-        'Most first reminders came within 4 hours, the fastest after 30 minutes. Some came about 10 hours later, which a 4-hour read reports as nothing.',
-        'Nearly half the stores sent nothing in the 48 hours after a shopper left a checkout with their email typed in.',
-      ],
+      text: 'Some stores send their first reminder later than 4 hours. A reminder can come after 30 minutes or after 10 hours, and a 4-hour read reports the late one as nothing. So read early to win the job, and call an email missing only once the window you chose has closed, 48 hours for most flows.',
     },
     {
       kind: 'art',
@@ -319,7 +312,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000. It’s built for hundreds of thousands of companies, each looked up in one call.',
+      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000. It’s built for millions of companies, each looked up in one call.',
     },
     {
       kind: 'p',
@@ -375,7 +368,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How long should I wait before saying a store sends no abandoned cart email?',
-          a: '48 hours, with the spam folder checked. In Obsession’s October pilot for 4 agencies, some stores sent their first reminder about 10 hours after the shopper left. Until the 48 hours are up, say “nothing yet at 4 hours”.',
+          a: '48 hours, with the spam folder checked. Some stores send their first reminder about 10 hours after the shopper leaves. Until the 48 hours are up, say “nothing yet at 4 hours”.',
         },
         {
           q: 'Does this work if the brand isn’t on Klaviyo?',
@@ -386,7 +379,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the examples',
-      text: 'Northfield Skin, its serum and every time in the examples are invented. Obsession’s pilot for 4 agencies ran between 21 and 24 October 2026 on the stores each agency sent in, with every inbox watched for 48 hours. Every store and agency stays anonymous. The 25 minutes in the worked sum is an example to replace with your own, and the 2 retainers are Netalico’s published prices. Upwork’s and OpenAI’s help pages are quoted as they stood on 29 October 2026.',
+      text: 'Northfield Skin, its serum and every time in the examples are invented. The 25 minutes in the worked sum is an example to replace with your own, and the 2 retainers are Netalico’s published prices. Upwork’s and OpenAI’s help pages are quoted as they stood on 29 October 2026.',
     },
   ],
 

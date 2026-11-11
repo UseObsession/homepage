@@ -4,7 +4,7 @@ import type { BlogPost } from './types'
    An ecommerce agency wins clients by opening each pitch with one finding from the brand's own store.
    Primary phrase from Google autocomplete, US and UK, 29 Oct 2026.
    Read at source on 29 Oct 2026: the Agency Core 2026 PDF, the Forbes Agency Council piece of 8 May 2026 and OpenAI's
-   help page on the cloud browser. Our own figures are the October pilot for 4 agencies and the 26 Oct walk, as patterns, anonymised.
+   help page on the cloud browser. Our own figures are the 26 Oct walk, as patterns, anonymised (the October pilot cut 12 Nov, James).
    No agency, store or person we worked with is named. The examples are invented, at .example addresses. */
 
 const AMI = 'https://agencymanagementinstitute.com/wp-content/uploads/2026/05/Agency-Core-2026_Executive-Summary.pdf'
@@ -89,11 +89,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. In October 2026 Obsession ran a pilot on the stores that 4 agencies pitch and serve. Between 21 and 24 October, its agents signed up, browsed, left a basket and started a checkout, up to 4 journeys at each store. Each journey had its own inbox, and every inbox was watched for 48 hours.',
-    },
-    {
-      kind: 'p',
-      text: 'Each journey was scored against Obsession’s written criteria, such as a first reminder within 4 hours and the item and its price shown in it. Every store in the pilot had at least one gap, such as a late reminder or one with no price.',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. At each prospect’s store they run up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, and each is scored against written criteria the agency sets, such as a first reminder within 4 hours with the item and its price shown in it.',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'What checking prospects by hand costs an agency founder' },
@@ -167,18 +163,11 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'four-then-48', text: '3. Read early, judge when the window closes' },
     {
       kind: 'p',
-      text: 'Read every inbox as early as the pitch needs, at 4, 12 or 24 hours for a brand that is hiring now, and check the spam folder each time. Call an email missing only once the window you chose has closed, 48 hours for most flows. In Obsession’s October pilot, the timing looked like this:',
-    },
-    {
-      kind: 'list',
-      items: [
-        'Most first reminders came within 4 hours, the fastest after 30 minutes. Some came about 10 hours later.',
-        'Nearly half the stores sent nothing in the 48 hours after a shopper left a checkout with their email typed in.',
-      ],
+      text: 'Read every inbox as early as the pitch needs, at 4, 12 or 24 hours for a brand that is hiring now, and check the spam folder each time. Call an email missing only once the window you chose has closed, 48 hours for most flows.',
     },
     {
       kind: 'p',
-      text: 'A 4-hour read sees most first reminders. The 48-hour read is the one that can say no reminder came within 48 hours.',
+      text: 'A first reminder can come after 30 minutes or after 10 hours. An early read shows what has already arrived. The 48-hour read is the one that can say no reminder came within 48 hours.',
     },
     { kind: 'p', text: '**Pass:** for each journey, what arrived, when it arrived and what was still missing at 48 hours.' },
 
@@ -215,14 +204,14 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'agency-types', text: 'What each agency type checks first' },
     {
       kind: 'p',
-      text: 'Every agency type follows the same workflow and starts from the part of the store it is paid to fix. The findings in the table come from Obsession’s October checks. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts list on their own sites. These are the stores the agencies chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page.',
+      text: 'Every agency type follows the same workflow and starts from the part of the store it is paid to fix. The page and cart findings in the table come from 26 October 2026, when an Obsession agent walked the client stores that Shopify agencies and freelance experts list on their own sites. These are the stores the agencies chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page.',
     },
     {
       kind: 'table',
-      caption: 'What each agency type checks first, with a real finding from Obsession’s October checks that would open a pitch. No store is named',
+      caption: 'What each agency type checks first, and a finding that would open a pitch. The page and cart findings come from the 26 October walk. No store is named',
       cols: ['Agency type', 'Checks first', 'A finding that opens a pitch'],
       rows: [
-        ['Retention', 'Every email after sign-up, basket and checkout', 'Nothing in 48 hours after a checkout was left'],
+        ['Retention', 'Every email after sign-up, basket and checkout', 'A checkout left with the email typed in, and no reminder in 48 hours'],
         ['CRO', 'The pop-up, the code at checkout and checkout itself', 'A faded Check out button that did nothing until a small terms box was ticked'],
         ['Shopify Plus build', 'What changed after a release', 'A help button sitting over Check out on a phone'],
         ['Performance', 'The page behind each ad, followed to checkout', 'Free shipping on the top bar, then a spend threshold for it in the cart'],
@@ -310,10 +299,10 @@ export const post: BlogPost = {
       items: [
         '**As many Obsession agents as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
         '**An agent in the right country.** Each one shops from the US or the UK, to match the brand’s market.',
-        '**CAPTCHAs, the puzzles that check a visitor is a person.** In the October pilot, most stores put a CAPTCHA or bot check in front of at least one step. Each report names any step a CAPTCHA kept it from testing, so the agency knows exactly what to check by hand.',
+        '**CAPTCHAs, the puzzles that check a visitor is a person.** Each report names any step a CAPTCHA kept it from testing, so the agency knows exactly what to check by hand.',
         '**Reports on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep each brand followed for weeks or months. A brand hiring now can get its first finding within hours, and a client gets weekly or monthly checks.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for the brands it serves.',
-        '**Scale.** It runs at 300 brands a month, 1,000 or 5,000. It is built for hundreds of thousands of companies, each looked up in one call. Every brand stays followed for as long as the agency wants, with each new email dated the day it arrives.',
+        '**Scale.** It runs at 300 brands a month, 1,000 or 5,000. It is built for millions of companies, each looked up in one call. Every brand stays followed for as long as the agency wants, with each new email dated the day it arrives.',
         '**Pricing.** Priced per call or per company watched, never per token, with a spending cap on every key.',
       ],
     },
@@ -487,7 +476,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'The October pilot ran between 21 and 24 October 2026 for 4 agencies, which chose the stores. Each journey had its own Obsession agent, inbox and 48-hour window, and stopped before payment. On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts list on their own sites, as far as the first checkout page. No store, brand or agency is named. The agency, the brand, the times and the retainer in the examples are invented.',
+      text: 'On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts list on their own sites, as far as the first checkout page. No store, brand or agency is named. The agency, the brand, the times and the retainer in the examples are invented.',
     },
   ],
 
