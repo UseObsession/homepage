@@ -362,7 +362,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For slides 4 and 6 across a whole book, every quarter, use Obsession. For the layout, a free template is enough, and for health scores across many accounts, a customer success platform does the job. For 1 account a quarter, the sheet is enough.',
+      text: 'For slides 4 and 6 across a whole book, every quarter, use Obsession. For the layout, a free template is enough, and for health scores across many accounts, a customer success platform does the job. For 1 account a quarter, the sheet is enough. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -429,6 +429,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/sales-intelligence-behind-the-login',
     'churn-risk-indicators',
     'sales-business-case-template',
     'buying-signals-examples',

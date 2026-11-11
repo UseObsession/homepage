@@ -406,7 +406,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Start with the 2 competitors you lose to most: start a trial at each this week and interview the buyers from last month’s losses. Our guide to [competitor monitoring](/blog/competitor-monitoring) covers watching the same competitors between deals.',
+      text: 'Start with the 2 competitors you lose to most: start a trial at each this week and interview the buyers from last month’s losses. Our guide to [competitor monitoring](/blog/competitor-monitoring) covers watching the same competitors between deals. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -473,6 +473,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/sales-intelligence-behind-the-login',
     'battlecard-template',
     'competitive-intelligence-for-product-marketing',
     'sales-business-case-template',

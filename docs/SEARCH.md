@@ -196,6 +196,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/recipes/partner-checks` | affiliate code and link checks |
 | `/use-cases/prospect-intelligence-with-clay` | Clay prospect research workflow |
 | `/use-cases/member-prices-for-price-intelligence` | member price intelligence |
+| `/use-cases/sales-intelligence-behind-the-login` | sales intelligence, sales intelligence data, sales intelligence database, ai sales intelligence, what is sales intelligence, b2b sales signals, competitor signals (sales intelligence tools, platforms and software stay with the incumbents; buying signals examples, battlecard template, churn risk indicators and the other role phrases stay with their guides, which this page links). The hub for the 12 revenue team guides. Added 12 Nov 2026 (Google autocomplete, US and UK, 11 and 12 Nov) |
 | `/sample-output` | mystery shopper report example, abandoned cart test report |
 | `/agents` | declared AI agent; an AI agent signed up to my website |
 | `/compare` | obsession vs, compare obsession, where else can I get competitor emails (the hub of the comparisons; each tool’s own comparison owns its pair). Added 11 Nov 2026 |

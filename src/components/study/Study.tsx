@@ -40,7 +40,8 @@ export function Problem({ problem, id = 'gap' }: { problem: NonNullable<UseCaseS
           </h2>
           {problem.sub && <p className="ob-type-body-lg">{tie(problem.sub)}</p>}
         </header>
-        <ul className="s-st-points" style={{ ['--s-st-cols' as string]: problem.items.length }}>
+        {/* Up to 4 side by side; 5 or more sit 3 to a row, so no line is squeezed into a sliver. */}
+        <ul className="s-st-points" style={{ ['--s-st-cols' as string]: problem.items.length > 4 ? 3 : problem.items.length }}>
           {problem.items.map((p) => (
             <li key={p.title} className="s-st-point">
               <h3 className="s-st-point__title">{tie(p.title)}</h3>
@@ -151,6 +152,12 @@ export function Uses({ outputs, id = 'uses' }: { outputs: NonNullable<UseCaseStu
                     {g.label ? <h4 className="s-st-use__title">{tie(u.title)}</h4> : <h3 className="s-st-use__title">{tie(u.title)}</h3>}
                     {u.line && <p className="s-st-use__line">{tie(u.line)}</p>}
                     <Example text={u.example} />
+                    {u.link && (
+                      <Link className="s-st-use__more" to={u.link.to}>
+                        {u.link.label}
+                        <Arrow className="s-st-use__arrow" />
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

@@ -348,7 +348,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The sample holds a page 1 fact in full: one real store’s emails and screenshots, each with its time. It comes from [the web behind the login](/blog/the-web-behind-the-login), the part search engines don’t reach.',
+      text: 'The sample holds a page 1 fact in full: one real store’s emails and screenshots, each with its time. It comes from [the web behind the login](/blog/the-web-behind-the-login), the part search engines don’t reach. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

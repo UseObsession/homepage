@@ -196,6 +196,36 @@
 .s-st-use__title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
 .s-st-use__line { margin: 0; max-width: 46ch; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
 .s-st-use .s-st-ex { margin-top: var(--ob-space-8); }
+/* A use's guide: a quiet link under its example, the arrow moving on hover like the link rows'. */
+.s-st-use__more {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--ob-space-6);
+  margin-top: var(--ob-space-4);
+  min-height: 44px;
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.s-st-use__arrow {
+  flex: none;
+  width: var(--ob-icon-sm);
+  height: var(--ob-icon-sm);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ob-text-3);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+@media (hover: hover) {
+  .s-st-use__more:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: var(--ob-border-hair); }
+  .s-st-use__more:hover .s-st-use__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
+}
 
 /* ---- The proof's first email and the mockup it carries ------------------------------------------------------------ */
 .s-st-opener { display: grid; gap: var(--ob-space-40); margin-top: var(--ob-space-96); padding-top: var(--ob-space-96); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }

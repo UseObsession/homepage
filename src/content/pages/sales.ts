@@ -160,6 +160,7 @@ export const page: Page = {
       {
         q: 'What does Obsession do for a sales team?',
         a: 'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. Briefs and battlecards stay current as new emails, prices and offers arrive.',
+        link: { label: 'Sales intelligence, role by role', to: '/use-cases/sales-intelligence-behind-the-login' },
       },
       {
         q: 'How is this different from Klue or Crayon?',

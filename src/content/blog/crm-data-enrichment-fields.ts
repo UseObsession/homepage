@@ -347,7 +347,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Start with the accounts in open opportunities, route on texts_live and platform_changed_on for a quarter, and compare them with the rest. That way you can see it in conversion rates from the fields your reps actually use, and in data quality, with every value carrying its date and its proof.',
+      text: 'Start with the accounts in open opportunities, route on texts_live and platform_changed_on for a quarter, and compare them with the rest. That way you can see it in conversion rates from the fields your reps actually use, and in data quality, with every value carrying its date and its proof. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
