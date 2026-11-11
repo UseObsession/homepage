@@ -740,7 +740,8 @@ export type UseCaseStudy = {
   fit?: { heading: string; line: string; items: { title: string; line: string }[] }
   /* What the reader keeps, and what Obsession runs. */
   split?: { yours: { label: string; heading: string; items: string[] }; ours: { label: string; heading: string; items: string[] } }
-  outputs?: { heading: string; sub?: string; groups: { label?: string; line?: string; items: { label?: string; title: string; line?: string; example: string }[] }[] }
+  /* `link` on an item: the guide for that role or job, under its example (the revenue teams hub links each role's guide). */
+  outputs?: { heading: string; sub?: string; groups: { label?: string; line?: string; items: { label?: string; title: string; line?: string; example: string; link?: Cta }[] }[] }
   /* What lands, on its screen. `opener` is the first email the reader writes from it, with their own mockup. */
   proof?: {
     heading: string

@@ -31,7 +31,7 @@ export const ref: ReferencePage = {
   checked: '2026-11-11',
   readingMinutes: 3,
   reader: 'sales',
-  term: { name: 'the web behind the login', alternateName: ['the web behind the wall', 'data behind the login'], definition: DEFINITION },
+  term: { name: 'the web behind the login', alternateName: ['data behind the login'], definition: DEFINITION },
   blocks: [
     { kind: 'h2', id: 'what-sits-there', text: 'What sits behind the login' },
     {

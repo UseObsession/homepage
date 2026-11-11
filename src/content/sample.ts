@@ -108,7 +108,7 @@ export const outputFormats: ViewerFormat[] = [
   "receipt": {
     "journey": "basket",
     "messages_in_window": 0,
-    "url": "https://api.useobsession.com/v1/evidence/run_g3_0922"
+    "url": "/v1/evidence/run_g3_0922"
   }
 }`,
     },

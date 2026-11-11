@@ -113,7 +113,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
   "receipt": {
     "journey": "welcome",
     "dkim": "pass",
-    "url": "https://api.useobsession.com/v1/evidence/run_l1_1103"
+    "url": "/v1/evidence/run_l1_1103"
   }
 }`,
     screen: 'memberfeed',
@@ -174,7 +174,7 @@ await ob.notify({ on: 'fact.created', destination: 'https://your-app.example/hoo
       },
       {
         q: 'How do I connect it to Claude or Cursor?',
-        a: 'Add the MCP server once, with claude mcp add obsession https://mcp.useobsession.com or your client’s settings, and your agent can call all 5 verbs.',
+        a: 'Add the MCP server once, with claude mcp add obsession in Claude Code or in your client’s settings, and your agent can call all 5 verbs. Early access includes API and MCP access, and the server address comes with it.',
       },
       {
         q: 'How do I check a fact is real?',

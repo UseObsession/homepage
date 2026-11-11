@@ -400,7 +400,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The other guides for revenue teams cover the same competitors from each role’s side. [Competitor monitoring](/blog/competitor-monitoring) serves competitive intelligence teams, and [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) covers launches and positioning. [Win loss analysis](/blog/win-loss-analysis) covers why deals were won or lost.',
+      text: 'The other guides for revenue teams cover the same competitors from each role’s side. [Competitor monitoring](/blog/competitor-monitoring) serves competitive intelligence teams, and [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) covers launches and positioning. [Win loss analysis](/blog/win-loss-analysis) covers why deals were won or lost. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

@@ -176,7 +176,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Beside the tools, Obsession’s October 2026 store checks show what stores sent a new customer.',
+      text: 'Beside the tools, an example on an invented store shows what only a new subscriber can see: the email that never came.',
     },
 
     { kind: 'h2', id: 'galleries', text: 'Curated email galleries' },
@@ -408,28 +408,14 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'what-a-subscriber-got', text: 'What a new subscriber actually got' },
+    { kind: 'h2', id: 'what-a-subscriber-got', text: 'What only a new subscriber sees' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Its October store checks show which emails a new subscriber received, and which never came.',
-    },
-    {
-      kind: 'p',
-      text: 'Between 21 and 24 October 2026, Obsession ran a pilot for agencies on the stores they pitch and serve. Each journey used a new Obsession agent with its own inbox. It signed up, browsed, left an item in the cart or left a checkout, and never paid. Every inbox was then watched for 48 hours, and the reports were issued on 27 October 2026.',
-    },
-    {
-      kind: 'list',
-      items: [
-        'Almost every store whose welcome journey could be checked sent its first email within 6 minutes of sign-up.',
-        'Some stores sent a welcome series that met all four of Obsession’s written criteria. Each sent a first email within 15 minutes, the code the form promised, a second email inside 48 hours and a sender the shopper recognised. Each of those stores then sent nothing in the 48 hours after a checkout was left.',
-        'Every store in the pilot had at least one gap. Nearly half sent no email in the 48 hours after the agent left a checkout, with an email address already typed.',
-        'Most first checkout reminders came within 4 hours, the fastest after 30 minutes and the slowest after about 10 hours. Fewer than half of the stores that sent one followed it with a second reminder inside 48 hours.',
-        'Fewer than half of the cart and checkout reminders showed the item at the price the store showed. About a third showed no price, and one in five showed a different one, such as a pound price printed in dollars.',
-      ],
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Each Obsession agent has its own inbox, so it keeps every email a new subscriber gets after a sign-up, a basket and a checkout, and shows the ones that never came.',
     },
     {
       kind: 'art',
-      caption: 'A pattern from the October pilot, drawn on an invented store: a complete welcome series, then nothing in the 48 hours after a checkout was left.',
+      caption: 'An invented store: a complete welcome series, then nothing in the 48 hours after a checkout was left.',
       art: {
         kind: 'log',
         title: 'wrenfield.example · 1 new subscriber, 4 days',
@@ -442,16 +428,16 @@ export const post: BlogPost = {
           { time: 'Wed 14:00', text: 'Leaves a checkout', detail: 'Email typed, nothing paid', tone: 'info' },
           { time: 'Fri 14:00', text: 'No checkout reminder', detail: '48 hours, nothing arrived', tone: 'fail' },
         ],
-        foot: 'An example on an invented store. Its welcome series met every written criterion.',
+        foot: 'An example on an invented store. Its welcome series came on time, with the promised code.',
       },
     },
     {
       kind: 'p',
-      text: 'The agencies chose the stores, so the patterns describe the stores they pitch and serve. The pilot read each inbox at 48 hours, and no agent paid or gave a phone number, so order emails and texts were outside it. A store check can read at 4, 12, 24 or 48 hours, or keep watching for as long as you want. Where a store put a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the report names the step it couldn’t test.',
+      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the record names the step it couldn’t reach.',
     },
     {
       kind: 'p',
-      text: 'Each of these results needed a customer to act first: sign up, leave a basket or leave a checkout. Galleries and campaign archives show a competitor’s newsletters well, and BadRep, MailCharts and Panoramata also hold flow emails for the brands they track. A reminder that never came is visible only to a customer who knows when it left the checkout. Seeing that takes an address that left the checkout itself: a spare inbox, a tracker address such as SendView’s, or an Obsession agent.',
+      text: 'Each step in that example needed a customer to act first: sign up, leave a basket or leave a checkout. Galleries and campaign archives show a competitor’s newsletters well, and BadRep, MailCharts and Panoramata also hold flow emails for the brands they track. A reminder that never came is visible only to a customer who knows when it left the checkout. Seeing that takes an address that left the checkout itself: a spare inbox, a tracker address such as SendView’s, or an Obsession agent.',
     },
     {
       kind: 'p',
@@ -698,7 +684,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Each tool is described from its own pages.** The October pilot’s store checks are Obsession’s own, and every brand and email count for a tool is that tool’s own.',
+        '**Each tool is described from its own pages.** Every brand and email count for a tool is that tool’s own.',
         '**An archive holds what its own addresses received.** A buyer, a long time subscriber or a subscriber in another country may receive different emails.',
         '**A new address starts empty.** Mail sent before the sign up exists only in an archive that already covered the brand.',
         '**A Gmail tab is 1 inbox’s view.** Gmail can sort the same email differently for an engaged customer.',

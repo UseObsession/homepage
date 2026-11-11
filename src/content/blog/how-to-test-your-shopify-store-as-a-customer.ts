@@ -16,8 +16,8 @@ import type { BlogPost } from './types'
    Shoptest Shopify App Store listings. Shopify's pages now call the Bogus Gateway the "Test payment gateway"; the old
    name is kept once because people still search it. 1 builder comment from r/shopify (28 Sep 2026), copied word for
    word from _research/signals/raw/reddit_search/shopify.jsonl (id rs_pcj1buj). Obsession facts from BRIEF.md only: the
-   line with the uses, the definition word for word, the 1,500 line word for word, the pilot of 21 to 24 Oct 2026 as
-   patterns (no tallies), the 26 Oct walk as examples (no counts, no cart prices), flexible reading times, the CAPTCHA
+   line with the uses, the definition word for word, the 1,500 line word for word (the October pilot's
+   patterns cut 12 Nov, James), the 26 Oct walk as examples (no counts, no cart prices), flexible reading times, the CAPTCHA
    line, 300, 1,000 or 5,000 a month and built for millions, credit-based plans like Claude's, the store offer in the
    site's words; the within-the-hour rerun is in the live words of use-cases/leak-checks-for-ecommerce-stores.
    larkfield.example and everything in both pictures is invented. No store, brand, agency or person we worked with is
@@ -280,7 +280,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In October 2026 Obsession ran a pilot for agencies on the stores they pitch and serve. Between 21 and 24 October 2026, its agents signed up, browsed, left a basket and started a checkout at each store. Each of these journeys had its own inbox, watched for 48 hours. Every store in the pilot had at least one gap. Nearly half sent nothing in the 48 hours after a shopper left a checkout with their email typed in. Most first reminders came within 4 hours, the fastest after 30 minutes, and some about 10 hours later.',
+      text: 'A first reminder can come after 30 minutes or after 10 hours, so look again before the 48 hours are up rather than calling it missing at 4 hours.',
     },
 
     { kind: 'h3', id: 'chat', text: '10. The store’s chat gives the right answer' },
@@ -371,11 +371,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same checks run at competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up hundreds of thousands of companies, each in one call.',
+      text: 'The same checks run at competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call.',
     },
     {
       kind: 'p',
-      text: 'A CAPTCHA is the puzzle a site shows to stop automated visitors. Most stores in the pilot put a CAPTCHA or bot check in front of at least one step. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test. Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
+      text: 'A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test. Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to test your Shopify store, compared', compare: true },
@@ -493,7 +493,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. Obsession’s pilot for agencies ran between 21 and 24 October 2026 on the stores each agency sent in. No store or agency is named. Larkfield and everything in both pictures is invented.',
+      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. No store or agency is named. Larkfield and everything in both pictures is invented.',
     },
   ],
 
