@@ -177,7 +177,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is built on those 3 choices: its agents sleep until each company acts, sign ups are learned once per platform, and it is designed for hundreds of thousands of companies, each looked up in one call.',
+      text: 'Obsession is built on those 3 choices: its agents sleep until each company acts, sign ups are learned once per platform, and it is built for millions of companies, each looked up in one call.',
     },
     {
       kind: 'cta',

@@ -125,7 +125,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Together these make an AI customer cheap to keep. It is asleep almost all the time and wakes when the company sends something or a check is due, so one team can follow thousands of companies at once. Obsession is built for hundreds of thousands of companies, each looked up in one call ([AI customers at scale](/blog/ai-customers-at-scale)).',
+      text: 'Together these make an AI customer cheap to keep. It is asleep almost all the time and wakes when the company sends something or a check is due, so one team can follow thousands of companies at once. Obsession is built for millions of companies, each looked up in one call ([AI customers at scale](/blog/ai-customers-at-scale)).',
     },
 
     { kind: 'h2', id: 'what-it-sees', text: 'What an AI customer sees' },

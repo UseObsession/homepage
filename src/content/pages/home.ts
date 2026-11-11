@@ -59,7 +59,7 @@ function homeFormats(): ViewerFormat[] {
   "seen_at": "2026-11-03T09:04:00+00:00",
   "receipt": {
     "journey": "welcome",
-    "url": "https://api.useobsession.com/v1/evidence/run_l1_1103"
+    "url": "/v1/evidence/run_l1_1103"
   }
 }`,
     },
