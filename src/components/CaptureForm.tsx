@@ -5,7 +5,7 @@ import { join } from '../content/join'
 import type { Capture } from '../content/types'
 import { track } from '../lib/analytics'
 import { arrivedFrom, begin, microOf, newId, offerOf, useJoin } from '../lib/join'
-import { WAITLIST_URL, isEmail, submitSignup } from '../lib/waitlist'
+import { WAITLIST_URL, isBlocked, isEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import './CaptureForm.css'
 /* The card's styles, here and not in the card, so they keep their place in the site's 1 sheet (the card's code is a
@@ -113,6 +113,12 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     setProblem(null)
     if (!email.trim()) return flag(copy.errors.emailEmpty)
     if (!isEmail(email)) return flag(copy.errors.emailBad)
+    /* A blocked domain gets the plain thank you and nothing is sent (lib/waitlist BLOCKED_DOMAINS). */
+    if (isBlocked(email)) {
+      setLive(copy.joined.title)
+      setJoined(true)
+      return
+    }
 
     sending.current = true
     setBusy(true)

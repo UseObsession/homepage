@@ -10,7 +10,7 @@ import { StatusMark } from './Logo'
 /* The waitlist card (lib/join.ts): it opens where the email was typed, once the email is saved, and asks the rest in
    4 short steps without leaving the page. Who they are (the page picks a default, so most confirm with 1 tap; an
    agency says what kind, in chips that open in place); name, company and website (all required, so we can reply and
-   look at their store; the company and website guessed from a work email, the website's label in their words); up to
+   look at their store; the company and website guessed from a company email (a Gmail, Yahoo or iCloud address suggests nothing), the website's label in their words); up to
    5 brands (optional), worded for what the form offered or, without an offer, for who they are (client stores, their
    own store, rivals, accounts, the companies their agents need); the recipes they want first (at least 1, the page's
    own ticked) with an optional use case. Then the thank you says what happens next, in the offer's words. Every step

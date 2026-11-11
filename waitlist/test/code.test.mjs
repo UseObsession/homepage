@@ -208,6 +208,26 @@ t('honeypot, bad email, bad json', () => {
   assert.deepEqual(g.post('null'), { ok: false, error: 'bad_email' })
 })
 
+t('personal addresses sign up like work ones', () => {
+  for (const email of ['maya.chen@gmail.com', 'maya_chen@yahoo.co.uk', 'maya@icloud.com']) {
+    const g = makeGas(CODE)
+    assert.deepEqual(g.post({ email, sid: SID, step: '1', source: 'home-hero', page: '/' }), { ok: true, v: 3 }, email)
+    assert.equal(g.table()[0].Email, email)
+  }
+})
+
+t('blocked domains get an ok and leave no row and no alert', () => {
+  for (const email of ['someone@fu-berlin.de', 'someone@zedat.fu-berlin.de', 'Someone@Sunflower.com', 'x@mail.sunflower.com']) {
+    const g = makeGas(CODE)
+    assert.deepEqual(g.post({ email, sid: SID, step: '1', source: 'home-hero', page: '/' }), { ok: true, v: 3 }, email)
+    assert.equal(g.data.length, 0, email); assert.equal(g.mail.length, 0, email)
+  }
+  const g = makeGas(CODE)
+  g.post({ email: 'maya@notfu-berlin.de', sid: SID, step: '1', source: 'home-hero', page: '/' })
+  g.post({ email: 'maya@sunflower.co.uk', sid: '9f6c0a1e-1234-4abc-9def-0123456789ab', step: '1', source: 'home-hero', page: '/' })
+  assert.deepEqual(g.table().map((r) => r.Email), ['maya@notfu-berlin.de', 'maya@sunflower.co.uk'])
+})
+
 t('formula guard and cell limits', () => {
   const g = makeGas(CODE)
   g.post({ email: 'm@n.co', sid: SID, step: '2', name: '=HYPERLINK("x")' + 'a'.repeat(200), note: '+' + 'b'.repeat(2000), company: '@evil' })

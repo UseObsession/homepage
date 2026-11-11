@@ -158,6 +158,16 @@ const ADDRESS = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(:\d+)?(\/\S*)?$/i
 /* A phone number as people type it: an optional +, then digits with spaces, brackets or hyphens, 7 to 15 digits. */
 const PHONE = /^\+?[\d\s()-]{7,20}$/
 
+/* Sign ups from these domains (and their subdomains, e.g. zedat.fu-berlin.de) are dropped, as the founders asked on
+   11 Nov 2026. The form thanks them as usual and sends nothing, so a sender can't tell. The waitlist script holds the
+   same list (waitlist/Code.js BLOCKED) for posts that skip the site: change both together. */
+export const BLOCKED_DOMAINS = ['fu-berlin.de', 'sunflower.com']
+
+export function isBlocked(value: string) {
+  const host = (value.trim().toLowerCase().split('@')[1] ?? '').replace(/\.+$/, '')
+  return BLOCKED_DOMAINS.some((d) => host === d || host.endsWith(`.${d}`))
+}
+
 export function isEmail(value: string) {
   return EMAIL.test(value.trim())
 }

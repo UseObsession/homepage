@@ -3,9 +3,9 @@
    content/join.ts. */
 
 export const capture = {
-  email: { label: 'Work email', placeholder: 'Your work email' },
+  email: { label: 'Email', placeholder: 'Your email' },
   errors: {
-    emailEmpty: 'Enter your work email.',
+    emailEmpty: 'Enter your email.',
     emailBad: 'That doesn’t look like an email address. Check for a typo.',
     server: 'That didn’t go through. Try again in a moment.',
     limited: 'Too many tries from this email. Try again in an hour.',

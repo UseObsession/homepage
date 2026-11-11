@@ -114,6 +114,9 @@ const DONE = 9
 const ORIGIN = ['source', 'page', 'interest', 'arrived_from', 'offer']
 const NOTIFY = true
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+/* Sign ups from these domains (and their subdomains) are dropped like a bot: the reply says ok, nothing is saved and
+   no alert is sent. The site holds the same list (src/lib/waitlist.ts BLOCKED_DOMAINS): change both together. */
+const BLOCKED = ['fu-berlin.de', 'sunflower.com']
 const SID = /^[A-Za-z0-9-]{16,64}$/
 const SITE = 'https://useobsession.com'
 const FOLLOW_UP_MS = 10 * 60 * 1000
@@ -137,6 +140,7 @@ function doPost(e) {
 
   const email = clean(data.email, 200)
   if (!EMAIL.test(email)) return reply(form, { ok: false, error: 'bad_email' }, data)
+  if (blocked(email)) return reply(form, { ok: true, v: VERSION }, data)
 
   const sid = SID.test(String(data.sid || '')) ? String(data.sid) : ''
   const now = new Date()
@@ -493,6 +497,11 @@ function notifyNext(entry, url) {
     entry.Store || entry.Agent ? 'Confirm it’s theirs, or the owner’s OK, before anything runs.' : 'Plan it with them before anything runs.',
     url,
   ])
+}
+
+function blocked(email) {
+  const host = String(email.split('@')[1] || '').toLowerCase().replace(/\.+$/, '')
+  return BLOCKED.some((d) => host === d || host.endsWith('.' + d))
 }
 
 function clean(value, max) {
