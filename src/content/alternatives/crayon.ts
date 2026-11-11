@@ -212,7 +212,7 @@ export const ref: ReferencePage = {
     '/glossary/competitive-intelligence',
     '/glossary/trial-limit',
     '/glossary/save-offer',
-    'competitor-battlecard-template',
+    'battlecard-template',
     'ecommerce-competitive-intelligence',
     'recipe:competitor-tracking',
     'recipe:trial-teardown',

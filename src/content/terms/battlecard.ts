@@ -98,7 +98,7 @@ export const ref: ReferencePage = {
     '/compare/obsession-vs-klue',
     '/alternatives/klue',
     '/alternatives/crayon',
-    'competitor-battlecard-template',
+    'battlecard-template',
     'recipe:trial-teardown',
     'recipe:competitor-tracking',
   ],

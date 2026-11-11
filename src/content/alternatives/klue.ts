@@ -211,7 +211,7 @@ export const ref: ReferencePage = {
     '/glossary/competitive-intelligence',
     '/glossary/trial-limit',
     '/glossary/upgrade-prompt',
-    'competitor-battlecard-template',
+    'battlecard-template',
     'saas-pricing-page-examples',
     'recipe:trial-teardown',
     'recipe:competitor-tracking',
