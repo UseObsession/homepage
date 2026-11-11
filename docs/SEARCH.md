@@ -99,6 +99,18 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/consumer-duty-fair-value-assessment` | consumer duty fair value assessment, fair value assessment template, price and value outcome |
 | `/blog/bank-competitor-analysis` | bank competitor analysis, bank competitor analysis template, savings rate benchmarking |
 | `/blog/member-only-pricing` | member only pricing, member prices, loyalty pricing, track competitor member prices |
+| `/blog/battlecard-template` | battlecard template, competitor battlecard template, sales battlecard template, battlecard examples, competitive battlecards (the definition stays with /glossary/battlecard). Added 11 Nov 2026 |
+| `/blog/buying-signals-examples` | buying signals examples, buying signals in sales, buying signals meaning, signal based selling, buying signals b2b. Added 11 Nov 2026 |
+| `/blog/churn-risk-indicators` | churn risk indicators, early warning signs of churn, signs a customer will churn, customer health score indicators (churn signals stays with /recipes/account-watch). Added 11 Nov 2026 |
+| `/blog/sales-business-case-template` | sales business case template, business case template for b2b sales, how to write a sales business case, business case example sales. Added 11 Nov 2026 |
+| `/blog/cold-email-first-line-examples` | cold email first line examples, personalized cold email first line, cold email opening lines, icebreaker examples for cold emails. Added 11 Nov 2026 |
+| `/blog/clay-custom-signals` | clay custom signals, clay signals, custom signals clay, clay api enrichment (the Clay prospect research workflow stays with /use-cases/prospect-intelligence-with-clay). Added 11 Nov 2026 |
+| `/blog/qbr-template` | qbr template, quarterly business review template, qbr template examples, qbr presentation, upsell signals. Added 11 Nov 2026 |
+| `/blog/win-loss-analysis` | win loss analysis, win loss analysis template, win loss analysis example, why deals are lost to competitors. Added 11 Nov 2026 |
+| `/blog/competitor-monitoring` | competitor monitoring, competitor monitoring software, competitor monitoring tools, track competitor changes, saas competitor analysis (competitor tracking stays with /recipes/competitor-tracking). Added 11 Nov 2026 |
+| `/blog/competitive-intelligence-for-product-marketing` | competitive intelligence for product marketing, competitive intelligence product marketing, competitor positioning analysis, competitor launch tracking. Added 11 Nov 2026 |
+| `/blog/sales-trigger-events` | sales trigger events examples, sales trigger events, trigger events in sales, abm triggers, account based marketing signals. Added 11 Nov 2026 |
+| `/blog/crm-data-enrichment-fields` | crm data enrichment, crm enrichment fields, account scoring model, lead scoring signals. Added 11 Nov 2026 |
 | `/blog/how-to-see-competitor-ads` | how to see competitor ads, competitor ads, see competitors’ facebook ads, google ads transparency center |
 | `/blog/ai-customers` | AI customers, AI customer, what are AI customers |
 | `/blog/ai-customer-service-agent-vs-ai-customer` | AI customer service agent vs AI customer, what is an AI customer service agent, is HubSpot's Customer Agent an AI customer, personal AI agents |
