@@ -208,6 +208,25 @@ t('honeypot, bad email, bad json', () => {
   assert.deepEqual(g.post('null'), { ok: false, error: 'bad_email' })
 })
 
+t('personal and blocked addresses are refused, with no row and no alert', () => {
+  const refused = ['maya.chen@gmail.com', 'maya_chen@yahoo.co.uk', 'Maya@iCloud.com', 'm@hotmail.fr', 'm@me.com', 'someone@fu-berlin.de',
+    'someone@zedat.fu-berlin.de', 'Someone@Sunflower.com', 'x@mail.sunflower.com']
+  for (const email of refused) {
+    const g = makeGas(CODE)
+    assert.deepEqual(g.post({ email, sid: SID, step: '1', source: 'home-hero', page: '/' }), { ok: false, error: 'work_email' }, email)
+    assert.equal(g.data.length, 0, email); assert.equal(g.mail.length, 0, email)
+  }
+  const page = makeGas(CODE).post({ email: 'maya@gmail.com', source: 'home-hero', page: '/' }, 'application/x-www-form-urlencoded')
+  assert.match(page.html, /Use your work email/)
+})
+
+t('work addresses that only look like a provider still sign up', () => {
+  const kept = ['maya@notfu-berlin.de', 'maya@sunflower.co.uk', 'maya@gmail-partners.com', 'maya@outlook.northwind.co.uk', 'maya@acme.me']
+  const g = makeGas(CODE)
+  kept.forEach((email, i) => g.post({ email, sid: SID.slice(0, -1) + i, step: '1', source: 'home-hero', page: '/' }))
+  assert.deepEqual(g.table().map((r) => r.Email), kept)
+})
+
 t('formula guard and cell limits', () => {
   const g = makeGas(CODE)
   g.post({ email: 'm@n.co', sid: SID, step: '2', name: '=HYPERLINK("x")' + 'a'.repeat(200), note: '+' + 'b'.repeat(2000), company: '@evil' })

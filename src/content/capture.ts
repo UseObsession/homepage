@@ -7,6 +7,7 @@ export const capture = {
   errors: {
     emailEmpty: 'Enter your work email.',
     emailBad: 'That doesn’t look like an email address. Check for a typo.',
+    emailPersonal: 'Use your work email. We don’t accept personal addresses like Gmail, Yahoo or iCloud.',
     server: 'That didn’t go through. Try again in a moment.',
     limited: 'Too many tries from this email. Try again in an hour.',
   },
