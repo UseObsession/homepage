@@ -36,7 +36,7 @@ export type Signup = {
 
 export type SignupResult =
   | { ok: true; preview: boolean; v?: number }
-  | { ok: false; error: 'bad_email' | 'rate_limited' | 'failed' }
+  | { ok: false; error: 'bad_email' | 'work_email' | 'rate_limited' | 'failed' }
 
 async function post(body: Record<string, string>): Promise<SignupResult> {
   if (!WAITLIST_URL) {
@@ -55,7 +55,7 @@ async function post(body: Record<string, string>): Promise<SignupResult> {
     })
     const data = (await res.json()) as { ok?: boolean; error?: string; v?: number }
     if (res.ok && data.ok) return { ok: true, preview: false, v: typeof data.v === 'number' ? data.v : 1 }
-    if (data.error === 'bad_email' || data.error === 'rate_limited') return { ok: false, error: data.error }
+    if (data.error === 'bad_email' || data.error === 'work_email' || data.error === 'rate_limited') return { ok: false, error: data.error }
     return { ok: false, error: 'failed' }
   } catch {
     return { ok: false, error: 'failed' }
@@ -158,14 +158,28 @@ const ADDRESS = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(:\d+)?(\/\S*)?$/i
 /* A phone number as people type it: an optional +, then digits with spaces, brackets or hyphens, 7 to 15 digits. */
 const PHONE = /^\+?[\d\s()-]{7,20}$/
 
-/* Sign ups from these domains (and their subdomains, e.g. zedat.fu-berlin.de) are dropped, as the founders asked on
-   11 Nov 2026. The form thanks them as usual and sends nothing, so a sender can't tell. The waitlist script holds the
-   same list (waitlist/Code.js BLOCKED) for posts that skip the site: change both together. */
-export const BLOCKED_DOMAINS = ['fu-berlin.de', 'sunflower.com']
+/* Work addresses only (the founders, 11 Nov 2026). An address is refused when it is at a personal mail provider or a
+   blocked domain. The waitlist script holds the same lists (waitlist/Code.js PERSONAL_NAMES, PERSONAL_DOMAINS,
+   BLOCKED) for posts that skip the site: change both together. */
+/* Providers matched by name under any ending, with no subdomain: gmail.com, yahoo.co.uk, hotmail.fr. */
+const PERSONAL_NAMES = ['gmail', 'googlemail', 'yahoo', 'ymail', 'rocketmail', 'hotmail', 'outlook', 'icloud', 'aol', 'protonmail', 'gmx', 'yandex', 'tutanota']
+/* Providers matched by their whole domain, where the name alone means other things too. */
+const PERSONAL_DOMAINS = [
+  'me.com', 'mac.com', 'live.com', 'live.co.uk', 'msn.com', 'mail.com', 'proton.me', 'pm.me', 'tuta.io', 'fastmail.com', 'hey.com',
+  'web.de', 'mail.ru', 'qq.com', '163.com', '126.com', 'btinternet.com', 'sky.com', 'virginmedia.com', 'talktalk.net', 'comcast.net',
+  'verizon.net', 'att.net', 'sbcglobal.net',
+]
+/* Refused with their subdomains (zedat.fu-berlin.de). */
+const BLOCKED = ['fu-berlin.de', 'sunflower.com']
+const SECOND_LEVEL = ['co', 'com', 'org', 'net', 'ac', 'gov', 'ltd', 'plc', 'edu', 'nhs', 'sch']
 
-export function isBlocked(value: string) {
+export function isWorkEmail(value: string) {
   const host = (value.trim().toLowerCase().split('@')[1] ?? '').replace(/\.+$/, '')
-  return BLOCKED_DOMAINS.some((d) => host === d || host.endsWith(`.${d}`))
+  if (BLOCKED.some((d) => host === d || host.endsWith(`.${d}`)) || PERSONAL_DOMAINS.includes(host)) return false
+  const p = host.split('.')
+  const tld = p[p.length - 1] ?? ''
+  const at = p.length >= 3 && tld.length === 2 && SECOND_LEVEL.includes(p[p.length - 2]) ? p.length - 3 : p.length - 2
+  return !(at === 0 && PERSONAL_NAMES.includes(p[0]))
 }
 
 export function isEmail(value: string) {

@@ -114,9 +114,18 @@ const DONE = 9
 const ORIGIN = ['source', 'page', 'interest', 'arrived_from', 'offer']
 const NOTIFY = true
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-/* Sign ups from these domains (and their subdomains) are dropped like a bot: the reply says ok, nothing is saved and
-   no alert is sent. The site holds the same list (src/lib/waitlist.ts BLOCKED_DOMAINS): change both together. */
+/* Work addresses only (the founders, 11 Nov 2026): an address at a personal mail provider or a blocked domain is
+   refused with work_email, and nothing is saved. The site holds the same lists (src/lib/waitlist.ts isWorkEmail):
+   change both together. Providers by name under any ending with no subdomain (gmail.com, yahoo.co.uk), by whole
+   domain where the name means other things too, and blocked domains with their subdomains (zedat.fu-berlin.de). */
+const PERSONAL_NAMES = ['gmail', 'googlemail', 'yahoo', 'ymail', 'rocketmail', 'hotmail', 'outlook', 'icloud', 'aol', 'protonmail', 'gmx', 'yandex', 'tutanota']
+const PERSONAL_DOMAINS = [
+  'me.com', 'mac.com', 'live.com', 'live.co.uk', 'msn.com', 'mail.com', 'proton.me', 'pm.me', 'tuta.io', 'fastmail.com', 'hey.com',
+  'web.de', 'mail.ru', 'qq.com', '163.com', '126.com', 'btinternet.com', 'sky.com', 'virginmedia.com', 'talktalk.net', 'comcast.net',
+  'verizon.net', 'att.net', 'sbcglobal.net',
+]
 const BLOCKED = ['fu-berlin.de', 'sunflower.com']
+const SECOND_LEVEL = ['co', 'com', 'org', 'net', 'ac', 'gov', 'ltd', 'plc', 'edu', 'nhs', 'sch']
 const SID = /^[A-Za-z0-9-]{16,64}$/
 const SITE = 'https://useobsession.com'
 const FOLLOW_UP_MS = 10 * 60 * 1000
@@ -140,7 +149,7 @@ function doPost(e) {
 
   const email = clean(data.email, 200)
   if (!EMAIL.test(email)) return reply(form, { ok: false, error: 'bad_email' }, data)
-  if (blocked(email)) return reply(form, { ok: true, v: VERSION }, data)
+  if (!workEmail(email)) return reply(form, { ok: false, error: 'work_email' }, data)
 
   const sid = SID.test(String(data.sid || '')) ? String(data.sid) : ''
   const now = new Date()
@@ -499,9 +508,13 @@ function notifyNext(entry, url) {
   ])
 }
 
-function blocked(email) {
+function workEmail(email) {
   const host = String(email.split('@')[1] || '').toLowerCase().replace(/\.+$/, '')
-  return BLOCKED.some((d) => host === d || host.endsWith('.' + d))
+  if (BLOCKED.some((d) => host === d || host.endsWith('.' + d)) || PERSONAL_DOMAINS.indexOf(host) >= 0) return false
+  const p = host.split('.')
+  const tld = p[p.length - 1] || ''
+  const at = p.length >= 3 && tld.length === 2 && SECOND_LEVEL.indexOf(p[p.length - 2]) >= 0 ? p.length - 3 : p.length - 2
+  return !(at === 0 && PERSONAL_NAMES.indexOf(p[0]) >= 0)
 }
 
 function clean(value, max) {
@@ -530,6 +543,8 @@ function page(body, data) {
     ? ['You’re on the list.', 'We’ll email you to set up your first run.']
     : body.error === 'bad_email'
       ? ['That email didn’t look right.', 'Go back and check it for a typo.']
+      : body.error === 'work_email'
+        ? ['Use your work email.', 'We don’t accept personal addresses like Gmail, Yahoo or iCloud. Go back and use your work address.']
       : body.error === 'rate_limited'
         ? ['Too many tries from this email.', 'Go back and try again in an hour.']
         : ['That didn’t go through.', 'Go back and try again in a moment.']
