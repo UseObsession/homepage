@@ -65,7 +65,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For dark patterns, that means every screen of a checkout or [cancel flow](/glossary/cancel-flow) as a customer met it. Each is dated, so a fee added at the last step is on file as it looked that day.`,
+      text: `${ENTITY} For dark patterns, that means every screen of a checkout or [cancel flow](/glossary/cancel-flow) as a customer met it. Each is dated, so a fee added at the last step is on file as it looked that day. Compliance teams use the record for a [dark patterns audit](/use-cases/opt-out-and-cancel-checks-for-compliance-teams) of their own flows and competitors’.`,
     },
     {
       kind: 'faq',

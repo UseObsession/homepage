@@ -60,7 +60,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For SMS STOP, that means the reply sent, the confirmation with the time it arrived and any text that still came afterwards. Each is dated, for your own brand and for competitors’.`,
+      text: `${ENTITY} For SMS STOP, that means the reply sent, the confirmation with the time it arrived and any text that still came afterwards. Each is dated, for your own brand and for competitors’, which is the evidence behind [opt-out compliance](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).`,
     },
     {
       kind: 'faq',

@@ -73,7 +73,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Every email it keeps was sent to an account its own agents opened, so each series is [point-in-time](/glossary/point-in-time-data) data from its first day.`,
+      text: `${ENTITY} Every email it keeps was sent to an account its own agents opened, so each series is [point-in-time](/glossary/point-in-time-data) data from its first day. Funds and analysts read it as [consumer promotions data](/use-cases/consumer-promotions-data-for-funds).`,
     },
     {
       kind: 'faq',

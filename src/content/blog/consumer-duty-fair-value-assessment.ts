@@ -311,7 +311,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Search engines and comparison sites stop at the public rate page. Obsession collects what a firm shows past the login and the form, [the web behind the login](/blog/the-web-behind-the-login). For [banks and fintechs](${BANKS}), Obsession keeps each step of account opening, every email and text after it, signed-in rates beside public ones and offers shown after the form. It keeps what chat tells a customer too, at your own firm and every competitor you name, for as long as you follow them. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. The [sample data](/sample-output) shows everything collected from one real store.`,
+      text: `Search engines and comparison sites stop at the public rate page. Obsession collects what a firm shows past the login and the form, [the web behind the login](/blog/the-web-behind-the-login). For [banks and fintechs](${BANKS}), Obsession keeps each step of account opening, every email and text after it, signed-in rates beside public ones and offers shown after the form. It keeps what chat tells a customer too, at your own firm and every competitor you name, for as long as you follow them. The same record shows what a customer meets when they leave: each cancel step, and every email or text after an unsubscribe ([opt-out and cancel checks for compliance teams](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)). Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. The [sample data](/sample-output) shows everything collected from one real store.`,
     },
     {
       kind: 'cta',

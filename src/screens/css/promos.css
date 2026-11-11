@@ -1,0 +1,84 @@
+/* app-promos (12 Nov 2026): Insights, for a fund. Discount depth by week for Harrowgate, an invented listed apparel
+   retailer, and 2 competitors, from 7 Sep to 14 Nov, as known on 14 Nov. One card is the chart (a legend, 3 gridlines,
+   1 line per brand: the leader solid and bright, the competitors quieter and dashed), with Harrowgate's 2 Nov jump
+   marked. Under it, the newest facts as a feed, each with the time it was seen and its proof. The toast lands beside
+   the webhook line.
+   Story: the 3 lines draw left to right through the autumn, the 2 Nov point drops in with its callout, the feed rows
+   arrive newest first, and the toast confirms the day's facts reached Supabase.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, chart 50..202, feed 214..348, foot 360..400.
+   Rest state (no .play) = the finished scene. Monochrome, like every screen. */
+
+.app-promos .ax-main{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto auto minmax(0,1fr);align-content:stretch;gap:12px;padding:14px}
+
+/* ---------- header ---------- */
+.app-promos .pr-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-promos .pr-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-promos .pr-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-promos .pr-asof{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px 0 8px;border-radius:8px;white-space:nowrap;
+  font:400 10.5px/1 var(--mono);color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-promos .pr-asof svg{width:12px;height:12px}
+
+/* ---------- the chart ---------- */
+.app-promos .pr-chart{position:relative;display:grid;grid-template-rows:26px auto;padding:4px 12px 6px}
+.app-promos .pr-leg{display:flex;align-items:center;gap:14px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-promos .pr-leg .k{display:inline-flex;align-items:center;gap:6px}
+.app-promos .pr-leg .k i{display:block;width:14px;height:0;border-top:2px solid var(--fg)}
+.app-promos .pr-leg .k.a{color:var(--fg);font-weight:500}
+.app-promos .pr-leg .k.b i{border-top:1.5px dashed var(--fg-2)}
+.app-promos .pr-leg .k.c i{border-top:1.5px dotted var(--fg-3)}
+.app-promos .pr-pit{margin-left:auto;height:18px;padding:0 7px;border-radius:5px;display:inline-flex;align-items:center;font:500 10px/1 var(--mono);color:var(--fg-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-promos .pr-svg{display:block;width:504px;height:120px;overflow:visible}
+.app-promos .pr-grid line{stroke:var(--line);stroke-width:1}
+.app-promos .pr-ylab text{font:400 9.5px var(--mono);fill:var(--fg-3);text-anchor:end}
+.app-promos .pr-xlab text{font:400 9.5px var(--mono);fill:var(--fg-3);text-anchor:middle}
+.app-promos .pr-xlab text:last-child{text-anchor:end}
+.app-promos .pr-l{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.app-promos .pr-l.a{stroke:var(--fg);stroke-width:2}
+.app-promos .pr-l.b{stroke:var(--fg-2);stroke-width:1.5;stroke-dasharray:4 3}
+.app-promos .pr-l.c{stroke:var(--fg-3);stroke-width:1.5;stroke-dasharray:1.5 3}
+.app-promos .pr-mark circle{fill:var(--fg);stroke:var(--panel-2);stroke-width:2}
+.app-promos .pr-mark line{stroke:var(--line-3);stroke-width:1;stroke-dasharray:2 2}
+.app-promos .pr-call{position:absolute;top:30px;right:12px;height:20px;padding:0 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;
+  font:400 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap;background:var(--panel-3);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-promos .pr-call b{font:600 10.5px/1 var(--mono);color:var(--fg)}
+
+/* ---------- the feed ---------- */
+.app-promos .pr-feed{display:grid;overflow:hidden}
+.app-promos .pr-g{display:grid;grid-template-columns:92px 84px 88px minmax(0,1fr) 58px 12px;align-items:center;gap:0 10px;padding:0 12px}
+.app-promos .pr-g>*{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-promos .pr-fh{height:22px;font:500 10px/1 var(--sans);color:var(--fg-3);border-bottom:1px solid var(--line-2);background:rgb(var(--fg-rgb) / .02)}
+.app-promos .pr-row{height:28px;font-size:11px;color:var(--fg-2);border-bottom:1px solid var(--line)}
+.app-promos .pr-row:last-child{border-bottom:0}
+.app-promos .pr-seen{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-promos .pr-brand{font-weight:500;color:var(--fg)}
+.app-promos .pr-depth{font:500 11px/1 var(--mono);color:var(--fg);text-align:right}
+.app-promos .pr-row:first-of-type .pr-depth,.app-promos .pr-fh+.pr-row .pr-depth{font-weight:600}
+.app-promos .pr-pf{position:relative;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
+.app-promos .pr-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
+
+/* ---------- foot: the webhook line; the toast lands beside it ---------- */
+.app-promos .pr-meta2{align-self:center;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-promos .pr-meta2 svg{width:13px;height:13px}
+.app-promos .pr-toast{right:14px;bottom:14px;width:214px;gap:9px;padding:8px 8px 8px 11px}
+.app-promos .pr-toast .ax-btn{margin-left:auto}
+.app-promos .pr-toast p{display:flex;align-items:baseline;gap:7px;font-size:11.5px;white-space:nowrap}
+.app-promos .pr-toast b{font-weight:500;color:var(--fg)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes apppr-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes apppr-show{from{opacity:0}to{opacity:1}}
+@keyframes apppr-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes apppr-call{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes apppr-row{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes apppr-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. the lines draw through the autumn, week by week */
+.app-promos.play .pr-lines{animation:apppr-draw 1.7s cubic-bezier(.4,0,.2,1) .5s both}
+/* 2. the 2 Nov jump is marked, then called out */
+.app-promos.play .pr-mark circle{transform-box:fill-box;transform-origin:center;animation:apppr-pop .4s var(--snap) 1.85s both}
+.app-promos.play .pr-mark line{animation:apppr-show .3s var(--ease) 1.95s both}
+.app-promos.play .pr-call{animation:apppr-call .45s var(--ease) 2.05s both}
+/* 3. the newest facts arrive, newest first */
+.app-promos.play .pr-row{animation:apppr-row .4s var(--ease) var(--pr-t) both}
+/* 4. the day's facts land in the fund's own table */
+.app-promos.play .pr-toast{animation:apppr-toast .45s var(--ease) 3.5s both}

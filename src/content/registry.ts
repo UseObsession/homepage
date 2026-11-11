@@ -77,6 +77,8 @@ const STUDY_ORDER = [
   '/use-cases/member-prices-for-price-intelligence',
   '/use-cases/trial-checks-for-software-companies',
   '/use-cases/journey-checks-for-banks-and-fintechs',
+  '/use-cases/opt-out-and-cancel-checks-for-compliance-teams',
+  '/use-cases/consumer-promotions-data-for-funds',
 ]
 const studyRank = (path: string) => {
   const i = STUDY_ORDER.indexOf(path)

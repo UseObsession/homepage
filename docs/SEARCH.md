@@ -196,6 +196,8 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/recipes/partner-checks` | affiliate code and link checks |
 | `/use-cases/prospect-intelligence-with-clay` | Clay prospect research workflow |
 | `/use-cases/member-prices-for-price-intelligence` | member price intelligence |
+| `/use-cases/opt-out-and-cancel-checks-for-compliance-teams` | opt out compliance, email opt out compliance, sms opt out compliance, dark patterns audit, dark patterns self audit, subscription compliance, cancel flow compliance (one click unsubscribe requirements, law and compliance and email unsubscribe compliance stay with post #8; subscription trap law uk, eu withdrawal button and subscription cancellation law with post #7; sms opt out requirements with a future guide; the lane's words with the glossary). Added 12 Nov 2026; plan in the Obsession folder, `_research/seo/usecases-compliance-funds-12nov/` |
+| `/use-cases/consumer-promotions-data-for-funds` | alternative data for investors, alternative data for investment decisions, consumer promotions data, promotional email data, data for hedge funds (alternative data providers, alternative data for hedge funds and email receipt data stay with post #9; point in time data and alternative data with the glossary). Added 12 Nov 2026 |
 | `/sample-output` | mystery shopper report example, abandoned cart test report |
 | `/agents` | declared AI agent; an AI agent signed up to my website |
 | `/compare` | obsession vs, compare obsession, where else can I get competitor emails (the hub of the comparisons; each tool’s own comparison owns its pair). Added 11 Nov 2026 |

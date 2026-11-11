@@ -31,11 +31,13 @@ import { LeadsScreen } from './leads'
 import { ListingsScreen } from './listings'
 import { MemberfeedScreen } from './memberfeed'
 import { MembersScreen } from './members'
+import { OptoutScreen } from './optout'
 import { OutcheckScreen } from './outcheck'
 import { PackScreen } from './pack'
 import { PartnersScreen } from './partners'
 import { PilotScreen } from './pilot'
 import { PricesScreen } from './prices'
+import { PromosScreen } from './promos'
 import { ProofmailScreen } from './proofmail'
 import { QaScreen } from './qa'
 import { QuotesScreen } from './quotes'
@@ -88,11 +90,13 @@ export const SCREENS: Readonly<Record<string, ComponentType<ScreenProps>>> = {
   listings: ListingsScreen,
   memberfeed: MemberfeedScreen,
   members: MembersScreen,
+  optout: OptoutScreen,
   outcheck: OutcheckScreen,
   pack: PackScreen,
   partners: PartnersScreen,
   pilot: PilotScreen,
   prices: PricesScreen,
+  promos: PromosScreen,
   proofmail: ProofmailScreen,
   qa: QaScreen,
   quotes: QuotesScreen,
