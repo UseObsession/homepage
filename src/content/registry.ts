@@ -71,6 +71,7 @@ export const recipeById = Object.fromEntries(recipes.map((r) => [r.id, r])) as R
 /* The worked examples, in the order the Resources menu, the footer and the Use cases index list them. */
 const STUDY_ORDER = [
   '/use-cases/prospect-intelligence-with-clay',
+  '/use-cases/sales-intelligence-behind-the-login',
   '/use-cases/leak-checks-for-retention-agencies',
   '/use-cases/funnel-qa-for-cro-agencies',
   '/use-cases/leak-checks-for-ecommerce-stores',

@@ -421,7 +421,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same changes tell sales which prospects are changing platform, which the guide to [buying signals examples](/blog/buying-signals-examples) covers for sales development teams. Start with the 10 largest renewals in the next quarter, sign up to each this week, and read the headers before the next forecast call.',
+      text: 'The same changes tell sales which prospects are changing platform, which the guide to [buying signals examples](/blog/buying-signals-examples) covers for sales development teams. Start with the 10 largest renewals in the next quarter, sign up to each this week, and read the headers before the next forecast call. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

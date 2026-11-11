@@ -426,7 +426,7 @@ export const post: BlogPost = {
         '**Monitoring with win-loss interviews:** Klue. [Win loss analysis](/blog/win-loss-analysis) adds what the competitor sent the buyer during the trial.',
         '**News, funding and launches:** Google Alerts, free.',
         '**Research on any competitor in seconds, for a rep or an agent:** Exa.',
-        '**Positioning, launch by launch:** [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) reads each launch through the competitor’s own emails.',
+        '**Positioning, launch by launch:** [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) reads each launch through the competitor’s own emails. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
       ],
     },
     {
@@ -492,6 +492,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/sales-intelligence-behind-the-login',
     'battlecard-template',
     'win-loss-analysis',
     'competitive-intelligence-for-product-marketing',

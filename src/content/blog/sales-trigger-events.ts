@@ -433,7 +433,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Start with the 20 accounts most likely to buy this quarter, record a baseline this week, and pick the 3 triggers your product answers best.',
+      text: 'Start with the 20 accounts most likely to buy this quarter, record a baseline this week, and pick the 3 triggers your product answers best. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -499,6 +499,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/sales-intelligence-behind-the-login',
     'buying-signals-examples',
     'crm-data-enrichment-fields',
     'clay-custom-signals',

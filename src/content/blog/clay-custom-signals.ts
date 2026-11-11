@@ -427,7 +427,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'How GTM engineers start' },
     {
       kind: 'p',
-      text: 'Start with the accounts your reps care about most, map 3 or 4 of the fields, and route one change to one owner. Open [the sample data](/sample-output) to see one real store’s record in every format it comes in, including the columns a sheet or Clay receives. Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you. From there you can see it in conversion rates from the fields your reps use, in data quality and in the adoption of every column your team builds.',
+      text: 'Start with the accounts your reps care about most, map 3 or 4 of the fields, and route one change to one owner. Open [the sample data](/sample-output) to see one real store’s record in every format it comes in, including the columns a sheet or Clay receives. Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you. From there you can see it in conversion rates from the fields your reps use, in data quality and in the adoption of every column your team builds. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

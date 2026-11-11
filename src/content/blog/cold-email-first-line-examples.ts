@@ -436,7 +436,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'When the prospect replies, the [sales business case template](/blog/sales-business-case-template) opens the next call with the same screenshot. Teams that want each fact as a field in their own tools can follow [Clay custom signals](/blog/clay-custom-signals). Start with the 10 accounts your SDRs most want to meet this month, and write each first line from their own inbox.',
+      text: 'When the prospect replies, the [sales business case template](/blog/sales-business-case-template) opens the next call with the same screenshot. Teams that want each fact as a field in their own tools can follow [Clay custom signals](/blog/clay-custom-signals). Start with the 10 accounts your SDRs most want to meet this month, and write each first line from their own inbox. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

@@ -502,7 +502,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Once an account becomes a customer, the same outside view becomes an early warning. [Churn risk indicators](/blog/churn-risk-indicators) covers that for customer success teams, and [external account signals](/recipes/account-watch) puts each change on the account in your CRM. Start with one signal that matches the step your product runs, check it at 20 accounts this week, and write first to the ones with a dated gap.',
+      text: 'Once an account becomes a customer, the same outside view becomes an early warning. [Churn risk indicators](/blog/churn-risk-indicators) covers that for customer success teams, and [external account signals](/recipes/account-watch) puts each change on the account in your CRM. Start with one signal that matches the step your product runs, check it at 20 accounts this week, and write first to the ones with a dated gap. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
