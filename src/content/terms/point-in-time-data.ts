@@ -76,7 +76,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Each fact is filed with the date it arrived, so the history shows what a company showed on each day, for as long as anyone follows it.`,
+      text: `${ENTITY} Each fact is filed with the date it arrived, so the history shows what a company showed on each day, for as long as anyone follows it. Funds use it as [alternative data for investors](/use-cases/consumer-promotions-data-for-funds), with history from the day collection starts.`,
     },
     {
       kind: 'faq',

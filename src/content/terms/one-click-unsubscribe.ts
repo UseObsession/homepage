@@ -67,7 +67,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Because each email is kept raw with its sender checked, its unsubscribe headers and DKIM result sit beside the time it arrived, for your brand and for competitors’.`,
+      text: `${ENTITY} Because each email is kept raw with its sender checked, its unsubscribe headers and DKIM result sit beside the time it arrived, for your brand and for competitors’. Any email that still arrives after an unsubscribe is kept the same way, the evidence behind [opt-out compliance](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).`,
     },
     {
       kind: 'faq',

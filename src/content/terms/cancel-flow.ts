@@ -80,7 +80,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a cancel flow, that means each screen from the cancel button to the confirmation, the offer made on the way and every email after it. Each is dated, so a change to the flow shows up as a new version beside the old one.`,
+      text: `${ENTITY} For a cancel flow, that means each screen from the cancel button to the confirmation, the offer made on the way and every email after it. Each is dated, so a change to the flow shows up as a new version beside the old one. Compliance teams keep it as evidence ([opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)).`,
     },
     {
       kind: 'faq',

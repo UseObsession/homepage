@@ -1,0 +1,132 @@
+/* app-optout (12 Nov 2026): Records, for compliance. Fernhill, an invented gym membership app, beside 3 competitors.
+   One card is the table: a head row (company, cancel flow, unsubscribe, SMS STOP), then 1 row per company, each cell
+   backed by its screenshot or message (the proof marker; the flagged cell carries a flag instead). Below it, the
+   flagged email as evidence (who sent it, the subject, unsubscribed then arrived, DKIM, its hash) and Fernhill's 4
+   cancel screens; the toast lands under the screens.
+   Story: the cells land in the order the agents learned them (cancel flows first, then STOP, then the unsubscribes,
+   Fernhill's last), Fernhill's unsubscribe cell lands flagged, the evidence card fills, the 4 screens fill with the
+   offer on step 2, and the toast confirms the finding reached #compliance.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, card 50..248, bottom row 260..400.
+   Rest state (no .play) = the finished scene. Monochrome, like every screen. */
+
+.app-optout .ax-main{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto minmax(0,1fr);align-content:stretch;gap:12px;padding:14px}
+
+/* ---------- header ---------- */
+.app-optout .oo-h{display:flex;align-items:center;gap:10px;height:24px}
+.app-optout .oo-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-optout .oo-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-optout .oo-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-optout .oo-av{display:grid;place-items:center;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-optout .oo-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- the table ---------- */
+.app-optout .oo-card{position:relative;display:grid;overflow:hidden}
+.app-optout .oo-card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--line-2) inset;pointer-events:none}
+.app-optout .oo-g{display:grid;grid-template-columns:118px repeat(3,minmax(0,1fr))}
+.app-optout .oo-g>*{min-width:0}
+.app-optout .oo-g>:not(:first-child){box-shadow:1px 0 0 var(--line) inset}
+.app-optout .oo-ch{height:28px;border-bottom:1px solid var(--line-2);background:rgb(var(--fg-rgb) / .02)}
+.app-optout .oo-ch p{display:flex;align-items:center;padding:0 12px;font:500 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-optout .oo-r{height:36px;border-bottom:1px solid var(--line)}
+.app-optout .oo-l{display:flex;align-items:center;gap:7px;padding:0 12px}
+.app-optout .oo-l b{font:500 12px/14px var(--sans);color:var(--fg);white-space:nowrap}
+.app-optout .oo-you{height:15px;padding:0 5px;border-radius:4px;display:inline-grid;place-items:center;font:500 9.5px/1 var(--mono);color:var(--bg);background:var(--fg)}
+.app-optout .oo-c{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px}
+.app-optout .oo-c.hl{background:rgb(var(--fg-rgb) / .05)}
+.app-optout .oo-c.flag{background:rgb(var(--fg-rgb) / .09)}
+.app-optout .oo-v{display:grid;align-items:center;min-width:0}
+.app-optout .oo-v>*{grid-area:1/1}
+.app-optout .oo-val{display:grid;gap:2px}
+.app-optout .oo-val b{font:500 12px/14px var(--sans);color:var(--fg);white-space:nowrap}
+.app-optout .oo-val small{font:400 10.5px/12px var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-optout .oo-c.flag .oo-val b{font-weight:600}
+.app-optout .oo-c.flag .oo-val small{color:var(--fg-2)}
+.app-optout .oo-sk{display:block;width:44px;height:6px;border-radius:3px;background:rgb(var(--fg-rgb) / .08);opacity:0}
+.app-optout .oo-flag{flex:none;display:grid;place-items:center;width:14px;height:14px;border-radius:4px;font:700 10px/1 var(--mono);color:var(--bg);background:var(--fg)}
+
+/* the proof marker: a tiny capture */
+.app-optout .oo-pf{position:relative;flex:none;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
+.app-optout .oo-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
+
+/* foot: the legend, and the line every agent keeps */
+.app-optout .oo-f{display:flex;align-items:center;justify-content:space-between;gap:12px;height:26px;padding:0 12px;font-size:10.5px;color:var(--fg-3);background:rgb(var(--fg-rgb) / .02)}
+.app-optout .oo-f span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.ilwrap .app-optout .oo-note svg{width:12px;height:12px}
+
+/* ---------- bottom: the evidence, and the 4 cancel screens ---------- */
+.app-optout .oo-bot{display:grid;grid-template-columns:minmax(0,1fr) 212px;gap:12px;min-height:0}
+.app-optout .oo-ev{display:grid;grid-template-rows:30px auto auto auto;align-content:start;gap:6px;padding:0 12px 10px}
+.app-optout .oo-ev-h{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);margin:0 -12px;padding:0 12px}
+.ilwrap .app-optout .oo-ev-h svg{width:14px;height:14px;color:var(--fg-2)}
+.app-optout .oo-from{font-size:11px;color:var(--fg-3);white-space:nowrap}
+.app-optout .oo-from b{font-weight:500;color:var(--fg)}
+.app-optout .oo-late{margin-left:auto;height:18px;padding:0 7px;border-radius:5px;display:inline-flex;align-items:center;font:500 10.5px/1 var(--mono);color:var(--bg);background:var(--fg);white-space:nowrap}
+.app-optout .oo-subj{padding-top:3px;font:600 12.5px/16px var(--sans);color:var(--fg);white-space:nowrap}
+.app-optout .oo-tl{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;height:34px}
+.app-optout .oo-pt{display:grid;grid-template-columns:8px auto;column-gap:7px;align-items:center;font-size:10.5px;line-height:13px;color:var(--fg-3);white-space:nowrap}
+.app-optout .oo-pt i{grid-row:1/3;width:8px;height:8px;border-radius:50%;box-shadow:0 0 0 1.5px var(--fg-2) inset}
+.app-optout .oo-pt.late i{background:var(--fg);box-shadow:none}
+.app-optout .oo-pt b{grid-column:2;font:500 11px/13px var(--mono);color:var(--fg)}
+.app-optout .oo-line{height:1px;background:repeating-linear-gradient(90deg,var(--line-3) 0 4px,transparent 4px 7px);transform-origin:0 50%}
+.app-optout .oo-chips{display:flex;gap:6px;flex-wrap:nowrap}
+.ilwrap .app-optout .oo-chips .ax-tick{width:10px;height:10px}
+
+.app-optout .oo-side{display:grid;grid-template-rows:auto 1fr;gap:10px;min-height:0}
+.app-optout .oo-steps{display:grid;gap:7px;padding:8px 10px 9px}
+.app-optout .oo-steps-h{display:flex;align-items:baseline;justify-content:space-between;font-size:11px}
+.app-optout .oo-steps-h b{font-weight:500;color:var(--fg)}
+.app-optout .oo-steps-h span{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-optout .oo-shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.app-optout .oo-shot{display:grid;gap:4px;justify-items:start}
+.app-optout .oo-shot .ax-shot{width:100%;height:32px}
+.app-optout .oo-shot .ax-shot i{margin:4px 5px 5px}
+.app-optout .oo-shot small{font:400 9.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-optout .oo-shot.offer small{color:var(--fg);font-weight:500}
+.app-optout .oo-shot em{position:absolute;left:0;right:0;top:13px;width:max-content;margin:0 auto;padding:2px 4px;border-radius:3px;font:600 8.5px/1 var(--mono);font-style:normal;color:#F5F4F0;background:#1A1917;white-space:nowrap}
+
+/* toast: under the 4 screens, in the right column */
+.app-optout .oo-toast{right:14px;bottom:14px;width:212px;gap:9px;padding:7px 7px 7px 11px}
+.app-optout .oo-toast .ax-btn{margin-left:auto}
+.app-optout .oo-toast p{display:flex;align-items:baseline;gap:7px;font-size:11.5px;white-space:nowrap}
+.app-optout .oo-toast b{font-weight:500;color:var(--fg)}
+
+/* ---------- motion (only with .play) ---------- */
+@keyframes appoo-sk{0%,100%{opacity:1}}
+@keyframes appoo-out{from{opacity:1}to{opacity:0}}
+@keyframes appoo-show{from{opacity:0}to{opacity:1}}
+@keyframes appoo-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes appoo-clear{0%,100%{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes appoo-flash{from{background-color:rgb(var(--fg-rgb) / .1)}to{background-color:rgb(var(--fg-rgb) / 0)}}
+@keyframes appoo-flash-hl{from{background-color:rgb(var(--fg-rgb) / .12)}to{background-color:rgb(var(--fg-rgb) / .05)}}
+@keyframes appoo-flash-flag{0%{background-color:rgb(var(--fg-rgb) / .2)}100%{background-color:rgb(var(--fg-rgb) / .09)}}
+@keyframes appoo-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes appoo-line{from{transform:scaleX(0)}to{transform:none}}
+@keyframes appoo-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 1. each cell lands when its agent learns it: skeleton out, value up, then its proof */
+.app-optout.play .oo-c .oo-sk{animation:appoo-sk var(--oo-t) linear both,appoo-out .2s var(--ease) var(--oo-t) forwards}
+.app-optout.play .oo-c .oo-val{animation:appoo-land .45s var(--ease) var(--oo-t) both}
+.app-optout.play .oo-c .oo-pf{animation:appoo-show .3s var(--ease) calc(var(--oo-t) + .14s) both}
+.app-optout.play .oo-c{animation:appoo-clear var(--oo-t) linear both,appoo-flash .9s var(--ease) var(--oo-t) forwards}
+.app-optout.play .oo-c.hl{animation:appoo-clear var(--oo-t) linear both,appoo-flash-hl .9s var(--ease) var(--oo-t) forwards}
+.app-optout.play .oo-c.flag{animation:appoo-clear var(--oo-t) linear both,appoo-flash-flag 1.1s var(--ease) var(--oo-t) forwards}
+.app-optout.play .oo-flag{animation:appoo-pop .4s var(--snap) calc(var(--oo-t) + .18s) both}
+
+/* 2. the evidence fills: who, the subject, the 2 times with the gap drawn between them, then its checks */
+.app-optout.play .oo-from,.app-optout.play .oo-ev-h svg{animation:appoo-show .35s var(--ease) 3.05s both}
+.app-optout.play .oo-late{animation:appoo-pop .4s var(--snap) 3.55s both}
+.app-optout.play .oo-subj{animation:appoo-land .45s var(--ease) 3.12s both}
+.app-optout.play .oo-pt:first-child{animation:appoo-land .4s var(--ease) 3.2s both}
+.app-optout.play .oo-line{animation:appoo-line .5s var(--ease) 3.3s both}
+.app-optout.play .oo-pt.late{animation:appoo-land .4s var(--ease) 3.45s both}
+.app-optout.play .oo-k1{animation:appoo-land .35s var(--ease) 3.65s both}
+.app-optout.play .oo-k2{animation:appoo-land .35s var(--ease) 3.75s both}
+.app-optout.play .oo-k3{animation:appoo-land .35s var(--ease) 3.85s both}
+
+/* 3. Fernhill's 4 cancel screens, in order, the offer on step 2 */
+.app-optout.play .oo-shot{animation:appoo-land .4s var(--ease) var(--oo-t) both}
+.app-optout.play .oo-shot em{animation:appoo-pop .35s var(--snap) 3.7s both}
+
+/* 4. the finding reaches the compliance team */
+.app-optout.play .oo-toast{animation:appoo-toast .45s var(--ease) 4.2s both}

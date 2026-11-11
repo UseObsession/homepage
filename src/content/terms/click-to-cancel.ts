@@ -63,7 +63,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For click-to-cancel, that means each screen from the cancel button to the confirmation and every email after it, for your service and competitors’, each dated with its screenshot or the raw email.`,
+      text: `${ENTITY} For click-to-cancel, that means each screen from the cancel button to the confirmation and every email after it, for your service and competitors’, each dated with its screenshot or the raw email. Compliance teams use it to prove their own flow ([opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)).`,
     },
     {
       kind: 'faq',

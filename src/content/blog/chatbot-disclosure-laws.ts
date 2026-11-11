@@ -315,7 +315,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'Obsession’s agents say they’re AI too' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its visitor is an Obsession agent, a customer that says it’s an AI, the opposite of an [AI customer service agent](/blog/ai-customer-service-agent-vs-ai-customer), which answers customers for a company. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Compliance teams use it for dated proof that [cancel, unsubscribe and STOP](/use-cases/opt-out-and-cancel-checks-for-compliance-teams) work, at their own company and competitors’. Its visitor is an Obsession agent, a customer that says it’s an AI, the opposite of an [AI customer service agent](/blog/ai-customer-service-agent-vs-ai-customer), which answers customers for a company. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names.',
     },
     {
       kind: 'p',
