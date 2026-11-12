@@ -421,12 +421,28 @@ export type Developers = { heading: string; line: string; code: string; screen: 
 export type ExRow = { [key: string]: string | number | boolean | string[] | ExRow | ExRow[] }
 /* A read (obsession.read): its kind, how it reads in words, its value as stored, and the program that wrote it. */
 export type ExRead = { kind: string; text: string; value: ExRow; reader: string }
-/* An event's clean copy: its header lines, its body as text, and the proof lines under it. */
-export type ExEvidence = { head: [string, string][]; body: string[]; proof: string[] }
+/* How a captured thing looked as it arrived (components/v5/Capture), drawn from its clean copy: a screen, an email, a
+   text thread, an ad from a public library, a lock screen, a chat, a call, a document, a photo or a plain record. */
+export type ExLook =
+  | { t: 'screen'; url: string; brand: string; title: string; lines?: string[]; fields?: string[]; button?: string; popup?: { title: string; button: string }; img?: boolean }
+  | { t: 'email'; from: string; subject: string; lines: string[]; button?: string }
+  | { t: 'sms'; from: string; msgs: { ours?: boolean; text: string; at: string; day?: string }[] }
+  | { t: 'ad'; brand: string; headline: string; since: string; where: string; tone?: 1 | 2 | 3 }
+  | { t: 'push'; day: string; app: string; items: { time: string; title: string; body: string }[] }
+  | { t: 'chat'; who: string; msgs: { ours?: boolean; text: string }[] }
+  | { t: 'call'; length: string; lines: { who: string; text: string; quote?: string }[] }
+  | { t: 'doc'; title: string; sub: string; rows: [string, string][]; foot?: string }
+  | { t: 'photo'; caption: string; lines: string[]; dark?: boolean }
+  | { t: 'job'; board: string; title: string; lines: string[] }
+  | { t: 'record'; text: string }
+/* An event's clean copy: its header lines, its body as text, and the proof lines under it. `look` draws it as it
+   arrived; the body stays as its words for readers that can't see the drawing. */
+export type ExEvidence = { head: [string, string][]; body: string[]; proof: string[]; look?: ExLook }
 /* An event (obsession.event). `kind` is the event's kind in words; `row` is the rest of its row. An act has no facts
    or evidence here: it is the moment the firm's messages follow. */
 export type ExEvent = { at: string; dir: 'act' | 'shown'; kind: string; text: string; facts?: ExRead[]; evidence?: ExEvidence; row?: ExRow }
-/* 1 persona behind 1 wall: its events in time order. */
+/* 1 persona behind 1 wall: its events in time order. Persona '*' is public data nobody asked for (an ad library, a job
+   board, DNS, a register): it shows whichever persona is picked. */
 export type ExView = { persona: string; wall: string; events: ExEvent[] }
 export type ExCompany = {
   domain: string
@@ -616,11 +632,42 @@ export type SampleGap = {
   /* The follow up drafted from the evidence, never sent. `text` is the email in words, under the image. */
   draft: { show: string; hide: string; band: string; subject: string; image: ViewerImage; text: string; note: string }
 }
+/* /sample-output's kinds section (components/sections/EveryKind, 12 Nov, James): each kind of data a company shows only
+   to customers, drawn the way it arrived, and the same events as the rows an API returns. Every item carries the walls
+   it sits behind (`w`) and its kind's label (`k`), so the side's Wall and Kind chips can filter it. */
+export type SampleItem = { w: string[]; k: string }
+export type SampleKindView =
+  | { t: 'flow'; title: string; meta: string; screens: (SampleItem & { at: string; name: string; look: ExLook; fact: [string, string] })[]; acts: { w: string[]; at: string; text: string }[]; actsLabel: string }
+  | { t: 'inbox'; emails: (SampleItem & { at: string; responder: string; subject: string; flow: string; code: string; head: [string, string][]; look: ExLook })[] }
+  | { t: 'thread'; from: string; msgs: (SampleItem & { ours?: boolean; text: string; at: string; day?: string })[]; factsLabel: string; facts: (SampleItem & { at: string; flow: string; fields: string })[] }
+  | { t: 'device'; day: string; app: string; pushes: (SampleItem & { time: string; title: string; body: string })[]; inapp: SampleItem & { label: string; look: ExLook; facts: [string, string][] } }
+  | { t: 'prices'; title: string; cols: [string, string, string, string, string]; rows: (SampleItem & { at: string; where: string; wall: string; plan: string; price: string; pct: number })[] }
+  | { t: 'ads'; ads: (SampleItem & { look: ExLook })[]; besideLabel: string; beside: [string, string][] }
+  | { t: 'chat'; chat: SampleItem & { look: ExLook }; page: SampleItem & { label: string; look: ExLook; facts: [string, string][] } }
+  | { t: 'call'; title: string; meta: string; call: SampleItem & { look: ExLook } }
+  | { t: 'post'; cards: (SampleItem & { look: ExLook; caption: string })[] }
+export type SampleKindTab = {
+  id: string
+  label: string
+  company: string
+  personas: string[]
+  line: string
+  view: SampleKindView
+  rows: (SampleItem & { at: string; label: string; what: string; facts: string })[]
+  record: ExRow
+}
+export type SampleKinds = {
+  heading: string
+  line: string
+  ui: { tabs: string; seen: string; data: string; persona: string; hint: string; wall: string; kind: string; none: string; cols: [string, string, string, string]; one: string; example: string; arrives: string; more: string }
+  arrives: string[]
+  tabs: SampleKindTab[]
+}
 export type SamplePage = {
   meta: Meta
   /* `cta.to` points at the final capture's anchor (#get-one). */
   hero: { pill: string; headline: string; sub: string; figures: { value: string; label: string }[]; cta: Cta }
-  formats: { heading: string; line: string; start: ViewerFormatId }
+  kinds: SampleKinds
   report: {
     heading: string
     line: string

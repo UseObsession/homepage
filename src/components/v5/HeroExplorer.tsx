@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import type { ExCompany, ExEvent, ExRow, Explorer } from '../../content/types'
+import { Capture } from './Capture'
 import './HeroExplorer.css'
 
 /* Home's hero object since 9 Nov (James): the index as a console, after Exa's. Two modes.
@@ -16,7 +17,11 @@ import './HeroExplorer.css'
    watching is the reader's choice. Other questions sit under the window.
    The nav's Products menu links to /#search and /#insights: the window opens in that mode (Insights runs its first
    question if it hasn't yet). The window follows the page's theme. Under reduced motion nothing types and every run
-   shows its finished frame. */
+   shows its finished frame.
+   12 Nov (James): the examples cover the schema's kinds, not mostly emails and pages (screens, texts, ads, push,
+   in-app, chat, calls, post, receipts, statements, documents, displays, job posts, DNS, registers), and Evidence draws
+   each the way it arrived (Capture). A chip row shows at most `limit` chips (persona 2, wall 3, kind 4); the rest sit
+   behind "…", and a chip picked from there takes the last place in the row. */
 
 type Mode = 'search' | 'insights'
 type Tab = 'facts' | 'evidence' | 'record'
@@ -40,22 +45,59 @@ const Svg = ({ html, className }: { html: string; className?: string }) => (
   <span className={className} aria-hidden="true" dangerouslySetInnerHTML={{ __html: html }} />
 )
 
-function Chips({ items, on, pick, empty, hint }: { items: string[]; on: (v: string) => boolean; pick: (v: string) => void; empty?: (v: string) => boolean; hint?: string }) {
+export function Chips({
+  items,
+  on,
+  pick,
+  empty,
+  hint,
+  limit,
+  more = 'More',
+}: {
+  items: string[]
+  on: (v: string) => boolean
+  pick: (v: string) => void
+  empty?: (v: string) => boolean
+  hint?: string
+  limit?: number
+  more?: string
+}) {
+  const [open, setOpen] = useState(false)
+  let shown = items
+  if (limit && items.length > limit) {
+    const at = items.findIndex(on)
+    shown = at >= limit ? [...items.slice(0, limit - 1), items[at]] : items.slice(0, limit)
+  }
+  const rest = items.filter((v) => !shown.includes(v))
+  const chip = (v: string, className: string) => (
+    <button
+      type="button"
+      className={className}
+      key={v}
+      aria-pressed={on(v)}
+      data-empty={empty?.(v) ? '' : undefined}
+      data-hint={hint === v ? '' : undefined}
+      onClick={() => {
+        setOpen(false)
+        pick(v)
+      }}
+    >
+      {v}
+    </button>
+  )
   return (
     <div className="hx-chips">
-      {items.map((v) => (
-        <button
-          type="button"
-          className="hx-chip"
-          key={v}
-          aria-pressed={on(v)}
-          data-empty={empty?.(v) ? '' : undefined}
-          data-hint={hint === v ? '' : undefined}
-          onClick={() => pick(v)}
-        >
-          {v}
+      {shown.map((v) => chip(v, 'hx-chip'))}
+      {rest.length > 0 && (
+        <button type="button" className="hx-chip hx-chipmore" aria-expanded={open} aria-label={more} title={more} onClick={() => setOpen((o) => !o)}>
+          …
         </button>
-      ))}
+      )}
+      {open && rest.length > 0 && (
+        <div className="hx-chipmenu" role="group" aria-label={more}>
+          {rest.map((v) => chip(v, 'hx-chipopt'))}
+        </div>
+      )}
     </div>
   )
 }
@@ -228,7 +270,8 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
       })()
     })
 
-  const viewFor = (c: ExCompany, p: string, w: string) => c.views.find((v) => v.persona === p && v.wall === w)
+  const viewFor = (c: ExCompany, p: string, w: string) =>
+    c.views.find((v) => v.persona === p && v.wall === w) ?? c.views.find((v) => v.persona === '*' && v.wall === w)
   const pickCompany = (k: number) =>
     act(() => {
       const c = ex.companies[k]
@@ -281,7 +324,7 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   const fi = Math.max(0, items.findIndex((e) => keyOf(e) === sel))
   const cur = items[fi]
   const record: ExRow | undefined = cur && {
-    event: { firm: co.domain, persona, dir: cur.dir, ...cur.row },
+    event: { firm: co.domain, ...(view?.persona === '*' ? {} : { persona }), dir: cur.dir, ...cur.row },
     reads: (cur.facts ?? []).map(({ kind: k, value, reader }) => ({ kind: k, value, reader })),
   }
   const stepItem = (d: number) => act(() => setSel(keyOf(items[(fi + d + items.length) % items.length])))
@@ -311,6 +354,8 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
             : ex.notCovered
   const badgeState = asking ? (stage >= 3 ? 'in' : 'new') : indexing ? 'new' : co.covered || indexed ? 'in' : 'out'
   const btnLabel = asking ? ex.buttons.insights : ex.buttons.search
+  /* The "…" chip's name: chrome, not copy. */
+  const moreLabel = (group: string) => `More ${group.toLowerCase()}s`
 
   /* The timeline: an act is a quiet line; what the firm showed or sent carries its facts (its reads, each tagged with
      the read's kind) and a link to its evidence. */
@@ -442,18 +487,18 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                     {ex.groups.persona}
                     {hint && <span className="hx-hint">{ex.hint}</span>}
                   </p>
-                  <Chips items={co.personas} on={(v) => v === persona} pick={pickPersona} hint={hint ? co.personas[1] : undefined} />
+                  <Chips key={`${co.domain}-persona`} items={co.personas} on={(v) => v === persona} pick={pickPersona} hint={hint ? co.personas[1] : undefined} limit={2} more={moreLabel(ex.groups.persona)} />
                 </div>
                 {co.walls.length > 0 && (
                   <div className="hx-grp">
                     <p className="hx-gl">{ex.groups.wall}</p>
-                    <Chips items={co.walls} on={(v) => v === wall} pick={(v) => act(() => setWall(v))} empty={(v) => !viewFor(co, persona, v)} />
+                    <Chips key={`${co.domain}-wall`} items={co.walls} on={(v) => v === wall} pick={(v) => act(() => setWall(v))} empty={(v) => !viewFor(co, persona, v)} limit={3} more={moreLabel(ex.groups.wall)} />
                   </div>
                 )}
                 {co.kinds.length > 0 && (
                   <div className="hx-grp">
                     <p className="hx-gl">{ex.groups.kind}</p>
-                    <Chips items={co.kinds.map((d) => d.label)} on={(v) => co.kinds.find((d) => d.label === v)?.kind === kind} pick={toggleKind} />
+                    <Chips key={`${co.domain}-kind`} items={co.kinds.map((d) => d.label)} on={(v) => co.kinds.find((d) => d.label === v)?.kind === kind} pick={toggleKind} limit={4} more={moreLabel(ex.groups.kind)} />
                   </div>
                 )}
               </>
@@ -614,7 +659,12 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                           </Fragment>
                         ))}
                       </dl>
-                      <div className="hx-ev-body">
+                      {cur.evidence.look && (
+                        <div className="hx-ev-look">
+                          <Capture look={cur.evidence.look} />
+                        </div>
+                      )}
+                      <div className={cur.evidence.look ? 'sr-only' : 'hx-ev-body'}>
                         {cur.evidence.body.map((l) => (
                           <p key={l}>{l}</p>
                         ))}
@@ -673,7 +723,7 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
 }
 
 /* The record as the index stores it: keys in ink, values in green, nested rows indented. */
-function Json({ v, d = 0 }: { v: ExRow | ExRow[string]; d?: number }): ReactNode {
+export function Json({ v, d = 0 }: { v: ExRow | ExRow[string]; d?: number }): ReactNode {
   if (Array.isArray(v)) {
     if (v.every((x) => typeof x === 'string'))
       return (
