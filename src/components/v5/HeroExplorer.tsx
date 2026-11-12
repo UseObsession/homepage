@@ -566,15 +566,15 @@ export function HeroExplorer({
               <Svg html={ENTER} />
             </button>
           </div>
-          <div className="hx-row">
-            <div className="hx-seg" role="group" aria-label="Mode">
-              {(['search', 'insights'] as Mode[]).map((m) => (
-                <button type="button" key={m} aria-pressed={mode === m} onClick={() => pickMode(m)}>
-                  {ex.modes[m]}
-                </button>
-              ))}
-            </div>
-          </div>
+        </div>
+
+        {/* Search or Insights: folder tabs under the box, the picked one open into everything below it. */}
+        <div className="hx-ftabs hx-mtabs" role="group" aria-label="Mode">
+          {(['search', 'insights'] as Mode[]).map((m) => (
+            <button type="button" className="hx-ftab" key={m} aria-pressed={mode === m} onClick={() => pickMode(m)}>
+              {ex.modes[m]}
+            </button>
+          ))}
         </div>
 
         <div className="hx-main" data-ask={asking ? '' : undefined}>
@@ -644,16 +644,20 @@ export function HeroExplorer({
 
           {/* Middle: the output, or the report. */}
           <div className="hx-out">
-            <div className="hx-ohead">
-              <span className="hx-lab">{asking ? ex.output.insights : ex.output.search}</span>
-              {!asking && showTabs && (
-                <div className="hx-tabs" role="group" aria-label={ex.output.search}>
+            {/* Facts or Evidence: folder tabs on the output's top edge; one fixed tab names the report or an empty output. */}
+            <div className="hx-ftabs hx-ohead">
+              {!asking && showTabs ? (
+                <div className="hx-ftabset" role="group" aria-label={ex.output.search}>
                   {(['facts', 'evidence'] as Tab[]).map((x) => (
-                    <button type="button" key={x} aria-pressed={tab === x} onClick={() => act(() => setTab(x))}>
+                    <button type="button" className="hx-ftab" key={x} aria-pressed={tab === x} onClick={() => act(() => setTab(x))}>
                       {ex.tabs[x]}
                     </button>
                   ))}
                 </div>
+              ) : (
+                <span className="hx-ftab" data-on="">
+                  {asking ? ex.output.insights : ex.output.search}
+                </span>
               )}
               {badge && (
                 <span className="hx-badge" data-state={badgeState}>
