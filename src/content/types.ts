@@ -455,6 +455,9 @@ export type ExCompany = {
   /* Not in the index: what Watch it does, and the first events it collects. */
   index?: { heading: string; steps: string[]; first: ExEvent[]; done: string }
 }
+/* A tab over the console (/sample-output): it picks a company, who asks, a wall (null for every wall) and the kinds
+   (event kinds in words, as ExEvent.kind), and opens Evidence. The reader can change any of them after. */
+export type ExTab = { label: string; company: string; persona: string; wall: string | null; kinds: string[] }
 /* A source without cells is not in the index yet: the report offers Watch for it, and `watched` is its row once watched. */
 export type ExSource = { domain: string; cells?: [string, string]; evidence?: string }
 export type ExInsight = {
@@ -477,7 +480,7 @@ export type Explorer = {
   openRecord: string
   tryLabel: { search: string; insights: string }
   groups: { persona: string; wall: string; kind: string; asked: string; sources: string }
-  tabs: { facts: string; evidence: string; record: string }
+  tabs: { facts: string; evidence: string }
   output: { search: string; insights: string }
   hint: string
   none: string
@@ -632,36 +635,9 @@ export type SampleGap = {
   /* The follow up drafted from the evidence, never sent. `text` is the email in words, under the image. */
   draft: { show: string; hide: string; band: string; subject: string; image: ViewerImage; text: string; note: string }
 }
-/* /sample-output's kinds section (components/sections/EveryKind, 12 Nov, James): each kind of data a company shows only
-   to customers, drawn the way it arrived, and the same events as the rows an API returns. Every item carries the walls
-   it sits behind (`w`) and its kind's label (`k`), so the side's Wall and Kind chips can filter it. */
-export type SampleItem = { w: string[]; k: string }
-export type SampleKindView =
-  | { t: 'flow'; title: string; meta: string; screens: (SampleItem & { at: string; name: string; look: ExLook; fact: [string, string] })[]; acts: { w: string[]; at: string; text: string }[]; actsLabel: string }
-  | { t: 'inbox'; emails: (SampleItem & { at: string; responder: string; subject: string; flow: string; code: string; head: [string, string][]; look: ExLook })[] }
-  | { t: 'thread'; from: string; msgs: (SampleItem & { ours?: boolean; text: string; at: string; day?: string })[]; factsLabel: string; facts: (SampleItem & { at: string; flow: string; fields: string })[] }
-  | { t: 'device'; day: string; app: string; pushes: (SampleItem & { time: string; title: string; body: string })[]; inapp: SampleItem & { label: string; look: ExLook; facts: [string, string][] } }
-  | { t: 'prices'; title: string; cols: [string, string, string, string, string]; rows: (SampleItem & { at: string; where: string; wall: string; plan: string; price: string; pct: number })[] }
-  | { t: 'ads'; ads: (SampleItem & { look: ExLook })[]; besideLabel: string; beside: [string, string][] }
-  | { t: 'chat'; chat: SampleItem & { look: ExLook }; page: SampleItem & { label: string; look: ExLook; facts: [string, string][] } }
-  | { t: 'call'; title: string; meta: string; call: SampleItem & { look: ExLook } }
-  | { t: 'post'; cards: (SampleItem & { look: ExLook; caption: string })[] }
-export type SampleKindTab = {
-  id: string
-  label: string
-  company: string
-  personas: string[]
-  view: SampleKindView
-  rows: (SampleItem & { at: string; label: string; what: string; facts: string })[]
-  record: ExRow
-}
-export type SampleKinds = {
-  heading: string
-  line: string
-  ui: { tabs: string; seen: string; data: string; persona: string; hint: string; wall: string; kind: string; none: string; cols: [string, string, string, string]; one: string; arrives: string; more: string }
-  arrives: string[]
-  tabs: SampleKindTab[]
-}
+/* /sample-output's kinds section (components/sections/EveryKind): Home's console with tabs on top, each preselecting
+   a company and a kind, opening on Evidence; the same data as Home. */
+export type SampleKinds = { heading: string; line: string; tabsLabel: string; tabs: ExTab[]; arrivesLabel: string; arrives: string[] }
 export type SamplePage = {
   meta: Meta
   /* `cta.to` points at the final capture's anchor (#get-one). */

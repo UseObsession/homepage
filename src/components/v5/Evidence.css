@@ -1,0 +1,39 @@
+/* The console's Evidence (components/v5/Evidence): one kind at a time, drawn the way it arrived. Every colour is the
+   page's theme tokens; what a company showed is paper (Capture.css). A picked item is ringed; under the drawing sits
+   the picked event as it arrived. Under 900px the side-by-side kinds stack. */
+.v5-hx .ev { gap: 14px; }
+.v5-hx .ev-pick { display: grid; gap: 8px; align-content: start; justify-items: start; min-width: 0; padding: 0; border: 1px solid transparent; border-radius: 12px; background: transparent; text-align: left; transition: border-color 0.2s, background-color 0.2s; }
+.v5-hx .ev-pick > * { max-width: 100%; }
+.v5-hx .ev-pick:hover { border-color: var(--ob-line-strong); }
+.v5-hx .ev-pick[aria-pressed='true'] { border-color: var(--ob-text-2); }
+.v5-hx .ev-when { font: 500 11.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); }
+.v5-hx .ev-what { font: 500 13.5px / 1.35 var(--ob-font-sans); color: var(--ob-text); }
+.v5-hx .ev-cap { display: grid; gap: 6px; justify-items: start; padding: 0 4px 6px; }
+.v5-hx .ev-stack { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.v5-hx .ev-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 16px; align-items: start; }
+.v5-hx .ev-split--phone { grid-template-columns: minmax(0, 330px) minmax(0, 1fr); }
+.v5-hx .ev-narrow { display: block; width: 100%; max-width: 320px; }
+.v5-hx .ev-plain { padding: 12px 14px; border: 1px solid var(--ob-line-subtle); border-radius: 10px; background: var(--ob-surface); }
+
+/* Screens: a row of frames, each with its time, what it is and the facts read from it. */
+.v5-hx .ev-film { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.v5-hx .ev-frame { padding: 4px; }
+.v5-hx .ev-frame .cap { width: 100%; }
+
+/* Emails: the inbox beside the picked email. */
+.v5-hx .ev-inbox { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.v5-hx .ev-row { width: 100%; padding: 11px 13px; }
+.v5-hx .ev-row[aria-pressed='true'] { background: var(--ob-surface); border-color: var(--ob-line-strong); }
+
+/* Texts, push, chats and documents: cards to pick from. */
+.v5-hx .ev-card { width: 100%; padding: 11px 13px; border-color: var(--ob-line-subtle); background: var(--ob-surface); }
+.v5-hx .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; align-items: start; }
+.v5-hx .ev-tile { width: 100%; padding: 4px; }
+.v5-hx .ev-tile .cap { width: 100%; }
+
+/* The picked event as it arrived. */
+.v5-hx .ev-meta { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--ob-line-subtle); border-radius: 12px; background: var(--ob-surface); }
+
+@media (max-width: 900px) {
+  .v5-hx .ev-split, .v5-hx .ev-split--phone { grid-template-columns: minmax(0, 1fr); }
+}

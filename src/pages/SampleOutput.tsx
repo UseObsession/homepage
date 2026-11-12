@@ -5,6 +5,7 @@ import { Crumbs } from '../components/Crumbs'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { EveryKind } from '../components/sections/EveryKind'
+import { explorer } from '../content/explorer'
 import { outputFormats, sample } from '../content/sample'
 import type { SampleGap, SampleVerdict, ViewerImage } from '../content/types'
 import '../components/sections/Hero.css'
@@ -15,7 +16,7 @@ import './SampleOutput.css'
    way to the form > the report: the 4 journeys and their verdicts, the checkout capture, the set up and what arrived,
    and the report's own pages, each opening to full size > each gap: the inbox watched for 48 hours with nothing in it,
    what was left behind, the reminder drafted from the evidence > every kind of data, as it arrived and as data
-   (EveryKind, 12 Nov: it replaced the output viewer and its PDF) > questions > early access (#get-one). A verdict is the ring mark and its word, never a colour.
+   (EveryKind: Home's console with tabs on top, 12 Nov; it replaced the output viewer and its PDF) > questions > early access (#get-one). A verdict is the ring mark and its word, never a colour.
    Its grounds (styles/tones.css, F3): the report stands on the alternate ground, its set up and what arrived a product
    record (.ob-object); the kinds section takes the page's own theme. */
 
@@ -367,7 +368,7 @@ export function SampleOutput() {
       {sample.gaps.map((g) => (
         <Gap key={g.n} g={g} />
       ))}
-      <EveryKind id="kinds" kinds={sample.kinds} />
+      <EveryKind id="kinds" kinds={sample.kinds} ex={explorer} />
       <Faq faq={sample.faq} id="questions" />
       <FinalCta final={sample.final} id="get-one" />
     </>
