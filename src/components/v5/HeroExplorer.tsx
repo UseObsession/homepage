@@ -708,9 +708,6 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                   {eventRows(shown.slice(pg * PER, pg * PER + PER))}
                   {pages > 1 && (
                     <div className="hx-pager">
-                      <span>
-                        {pg * PER + 1} to {Math.min(shown.length, pg * PER + PER)} of {shown.length}
-                      </span>
                       <span className="hx-stepper">
                         <button type="button" aria-label="Earlier events" disabled={pg === 0} onClick={() => act(() => setPage(pg - 1))}>
                           ‹
