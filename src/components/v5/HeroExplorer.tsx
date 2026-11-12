@@ -21,7 +21,9 @@ import './HeroExplorer.css'
    12 Nov (James): the examples cover the schema's kinds, not mostly emails and pages (screens, texts, ads, push,
    in-app, chat, calls, post, receipts, statements, documents, displays, job posts, DNS, registers), and Evidence draws
    each the way it arrived (Capture). A chip row shows at most `limit` chips (persona 2, wall 3, kind 4); the rest sit
-   behind "…", and a chip picked from there takes the last place in the row. */
+   behind "…". Persona and wall are one at a time, and a chip picked from "…" takes the last place in the row; kinds
+   are many at once (none on is every kind), so one picked from "…" is added and the row stays. Facts shows 5 events a
+   page, with back and next. */
 
 type Mode = 'search' | 'insights'
 type Tab = 'facts' | 'evidence' | 'record'
@@ -53,6 +55,7 @@ export function Chips({
   hint,
   limit,
   more = 'More',
+  multi,
 }: {
   items: string[]
   on: (v: string) => boolean
@@ -61,12 +64,14 @@ export function Chips({
   hint?: string
   limit?: number
   more?: string
+  /* Many can be on at once: a chip picked from the menu is added, the row stays as it is and the menu stays open. */
+  multi?: boolean
 }) {
   const [open, setOpen] = useState(false)
   let shown = items
   if (limit && items.length > limit) {
     const at = items.findIndex(on)
-    shown = at >= limit ? [...items.slice(0, limit - 1), items[at]] : items.slice(0, limit)
+    shown = !multi && at >= limit ? [...items.slice(0, limit - 1), items[at]] : items.slice(0, limit)
   }
   const rest = items.filter((v) => !shown.includes(v))
   const chip = (v: string, className: string) => (
@@ -78,7 +83,7 @@ export function Chips({
       data-empty={empty?.(v) ? '' : undefined}
       data-hint={hint === v ? '' : undefined}
       onClick={() => {
-        setOpen(false)
+        if (!multi) setOpen(false)
         pick(v)
       }}
     >
@@ -89,7 +94,15 @@ export function Chips({
     <div className="hx-chips">
       {shown.map((v) => chip(v, 'hx-chip'))}
       {rest.length > 0 && (
-        <button type="button" className="hx-chip hx-chipmore" aria-expanded={open} aria-label={more} title={more} onClick={() => setOpen((o) => !o)}>
+        <button
+          type="button"
+          className="hx-chip hx-chipmore"
+          aria-expanded={open}
+          aria-label={more}
+          title={more}
+          data-on={rest.some(on) ? '' : undefined}
+          onClick={() => setOpen((o) => !o)}
+        >
           …
         </button>
       )}
@@ -132,7 +145,9 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   const [searched, setSearched] = useState(true)
   const [persona, setPersona] = useState(co.personas[0])
   const [wall, setWall] = useState(co.views[0]?.wall ?? '')
-  const [kind, setKind] = useState<string | null>(null)
+  const [kinds, setKinds] = useState<string[]>([])
+  /* The Facts list shows 5 events a page. */
+  const [page, setPage] = useState(0)
   const [tab, setTab] = useState<Tab>('facts')
   /* The event Evidence and Record show: picked from a row's link, or the first one the firm showed or sent. */
   const [sel, setSel] = useState<string | null>(null)
@@ -281,13 +296,15 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
       setSearched(true)
       setPersona(c.personas[0])
       setWall(c.views.find((v) => v.persona === c.personas[0])?.wall ?? c.walls[0] ?? '')
-      setKind(null)
+      setKinds([])
+      setPage(0)
       setTab('facts')
       setRun(IDLE)
     })
   const pickPersona = (p: string) =>
     act(() => {
       setPersona(p)
+      setPage(0)
       if (!viewFor(co, p, wall)) setWall(co.views.find((v) => v.persona === p)?.wall ?? wall)
     })
   const pickMode = (m: Mode) =>
@@ -303,12 +320,12 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
     if (hash === '#search' || hash === '#insights') fromNav.current(hash.slice(1) as Mode)
   }, [hash])
   const toggleKind = (v: string) =>
-    act(() =>
-      setKind((k) => {
-        const n = co.kinds.find((d) => d.label === v)?.kind ?? null
-        return k === n ? null : n
-      }),
-    )
+    act(() => {
+      const n = co.kinds.find((d) => d.label === v)?.kind
+      if (!n) return
+      setKinds((ks) => (ks.includes(n) ? ks.filter((k) => k !== n) : [...ks, n]))
+      setPage(0)
+    })
 
   const asking = mode === 'insights'
   /* Search's output: the view for this persona behind this wall, or, for a company just indexed, its first events.
@@ -317,7 +334,10 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
   const indexing = !co.covered && run.on && !run.done
   const view = co.covered ? viewFor(co, persona, wall) : undefined
   const all: ExEvent[] = indexed ? co.index!.first : (view?.events ?? [])
-  const shown: ExEvent[] = indexing ? (co.index?.first.slice(0, run.facts) ?? []) : all.filter((e) => e.dir === 'act' || !kind || e.kind === kind)
+  const shown: ExEvent[] = indexing ? (co.index?.first.slice(0, run.facts) ?? []) : all.filter((e) => e.dir === 'act' || !kinds.length || kinds.includes(e.kind))
+  const PER = 5
+  const pages = Math.max(1, Math.ceil(shown.length / PER))
+  const pg = Math.min(page, pages - 1)
   /* Drill-down: the events the firm showed or sent, each with its clean copy (Evidence) and its rows (Record). */
   const keyOf = (e: ExEvent) => e.at + e.text
   const items = all.filter((e) => e.evidence)
@@ -492,13 +512,13 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                 {co.walls.length > 0 && (
                   <div className="hx-grp">
                     <p className="hx-gl">{ex.groups.wall}</p>
-                    <Chips key={`${co.domain}-wall`} items={co.walls} on={(v) => v === wall} pick={(v) => act(() => setWall(v))} empty={(v) => !viewFor(co, persona, v)} limit={3} more={moreLabel(ex.groups.wall)} />
+                    <Chips key={`${co.domain}-wall`} items={co.walls} on={(v) => v === wall} pick={(v) => act(() => { setWall(v); setPage(0) })} empty={(v) => !viewFor(co, persona, v)} limit={3} more={moreLabel(ex.groups.wall)} />
                   </div>
                 )}
                 {co.kinds.length > 0 && (
                   <div className="hx-grp">
                     <p className="hx-gl">{ex.groups.kind}</p>
-                    <Chips key={`${co.domain}-kind`} items={co.kinds.map((d) => d.label)} on={(v) => co.kinds.find((d) => d.label === v)?.kind === kind} pick={toggleKind} limit={4} more={moreLabel(ex.groups.kind)} />
+                    <Chips key={`${co.domain}-kind`} items={co.kinds.map((d) => d.label)} on={(v) => kinds.includes(co.kinds.find((d) => d.label === v)?.kind ?? '')} pick={toggleKind} limit={4} more={moreLabel(ex.groups.kind)} multi />
                   </div>
                 )}
               </>
@@ -684,7 +704,24 @@ export function HeroExplorer({ ex }: { ex: Explorer }) {
                   )}
                 </div>
               ) : shown.length ? (
-                eventRows(shown)
+                <>
+                  {eventRows(shown.slice(pg * PER, pg * PER + PER))}
+                  {pages > 1 && (
+                    <div className="hx-pager">
+                      <span>
+                        {pg * PER + 1} to {Math.min(shown.length, pg * PER + PER)} of {shown.length}
+                      </span>
+                      <span className="hx-stepper">
+                        <button type="button" aria-label="Earlier events" disabled={pg === 0} onClick={() => act(() => setPage(pg - 1))}>
+                          ‹
+                        </button>
+                        <button type="button" aria-label="Later events" disabled={pg === pages - 1} onClick={() => act(() => setPage(pg + 1))}>
+                          ›
+                        </button>
+                      </span>
+                    </div>
+                  )}
+                </>
               ) : (
                 <p className="hx-none">{ex.none}</p>
               )}

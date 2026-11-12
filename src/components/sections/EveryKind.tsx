@@ -10,18 +10,20 @@ import './EveryKind.css'
    customers, at one example company, drawn the way it arrived (Capture) or switched to the rows an API returns. Pill
    tabs pick the kind; the window is Home's explorer window, with the same Persona, Wall and Kind chips (persona 2,
    wall 3, kind 4, the rest behind "…"). Persona picks who asks: the first holds the example, the others show Home's
-   line for nothing yet. Wall and Kind filter what shows, and a second click clears them. It follows the page's theme. */
+   line for nothing yet. Wall filters to one wall; Kind to any number of kinds (none on is every kind; one picked from
+   "…" is added and the row stays). A second click clears either. It follows the page's theme. */
 
 type View = 'seen' | 'data'
 /* Walls in the order a customer meets them. */
 const WALLS = ['Open', 'Sign-up', 'Login', 'Conversation', 'Form', 'Identity check', 'Device', 'Purchase', 'Cancel', 'Call', 'In person', 'Post']
 
-const keep = <T extends SampleItem>(list: T[], wall: string | null, kind: string | null) =>
-  list.filter((it) => (!wall || it.w.includes(wall)) && (!kind || it.k === kind))
+/* What passes Wall (one, or none for all) and Kind (many, or none for all). An act has no kind, so it stays. */
+const pass = (it: SampleItem, wall: string | null, kinds: string[]) => (!wall || it.w.includes(wall)) && (!kinds.length || !it.k || kinds.includes(it.k))
+const keep = <T extends SampleItem>(list: T[], wall: string | null, kinds: string[]) => list.filter((it) => pass(it, wall, kinds))
 
 /* Whether anything in a tab's drawing passes the Wall and Kind filters. */
-function anySeen(tab: SampleKindTab, wall: string | null, kind: string | null) {
-  const ok = (it: SampleItem) => (!wall || it.w.includes(wall)) && (!kind || it.k === kind)
+function anySeen(tab: SampleKindTab, wall: string | null, kinds: string[]) {
+  const ok = (it: SampleItem) => pass(it, wall, kinds)
   const v = tab.view
   switch (v.t) {
     case 'flow':
@@ -45,12 +47,12 @@ function anySeen(tab: SampleKindTab, wall: string | null, kind: string | null) {
   }
 }
 
-function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: string | null; kind: string | null; email: number; setEmail: (n: number) => void }) {
+function Seen({ tab, wall, kinds, email, setEmail }: { tab: SampleKindTab; wall: string | null; kinds: string[]; email: number; setEmail: (n: number) => void }) {
   const v = tab.view
-  const ok = (it: SampleItem) => (!wall || it.w.includes(wall)) && (!kind || it.k === kind)
+  const ok = (it: SampleItem) => pass(it, wall, kinds)
   switch (v.t) {
     case 'flow': {
-      const screens = keep(v.screens, wall, kind)
+      const screens = keep(v.screens, wall, kinds)
       const acts = v.acts.filter((a) => !wall || a.w.includes(wall))
       if (!screens.length) return null
       return (
@@ -90,7 +92,7 @@ function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: 
       )
     }
     case 'inbox': {
-      const emails = keep(v.emails, wall, kind)
+      const emails = keep(v.emails, wall, kinds)
       if (!emails.length) return null
       const cur = emails[Math.min(email, emails.length - 1)]
       return (
@@ -133,14 +135,14 @@ function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: 
       )
     }
     case 'thread': {
-      const msgs = keep(v.msgs, wall, kind)
+      const msgs = keep(v.msgs, wall, kinds)
       if (!msgs.length) return null
       return (
         <div className="s-ek-split s-ek-split--phone">
           <Capture look={{ t: 'sms', from: v.from, msgs }} />
           <div className="s-ek-stack">
             <span className="hx-lab">{v.factsLabel}</span>
-            {keep(v.facts, wall, kind).map((f) => (
+            {keep(v.facts, wall, kinds).map((f) => (
               <div className="s-ek-card" key={f.at}>
                 <span className="s-ek-meta">{f.at}</span>
                 <span className="hx-tag">
@@ -155,7 +157,7 @@ function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: 
       )
     }
     case 'device': {
-      const pushes = keep(v.pushes, wall, kind)
+      const pushes = keep(v.pushes, wall, kinds)
       const inapp = ok(v.inapp)
       if (!pushes.length && !inapp) return null
       return (
@@ -181,7 +183,7 @@ function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: 
       )
     }
     case 'prices': {
-      const rows = keep(v.rows, wall, kind)
+      const rows = keep(v.rows, wall, kinds)
       if (!rows.length) return null
       return (
         <div className="s-ek-stack">
@@ -221,7 +223,7 @@ function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: 
       )
     }
     case 'ads': {
-      const ads = keep(v.ads, wall, kind)
+      const ads = keep(v.ads, wall, kinds)
       if (!ads.length) return null
       return (
         <div className="s-ek-stack">
@@ -280,7 +282,7 @@ function Seen({ tab, wall, kind, email, setEmail }: { tab: SampleKindTab; wall: 
         </div>
       )
     case 'post': {
-      const cards = keep(v.cards, wall, kind)
+      const cards = keep(v.cards, wall, kinds)
       if (!cards.length) return null
       return (
         <div className="s-ek-grid">
@@ -305,7 +307,7 @@ export function EveryKind({ kinds, id }: { kinds: SampleKinds; id?: string }) {
   const [view, setView] = useState<View>('seen')
   const [persona, setPersona] = useState(0)
   const [wall, setWall] = useState<string | null>(null)
-  const [kind, setKind] = useState<string | null>(null)
+  const [onKinds, setOnKinds] = useState<string[]>([])
   const [email, setEmail] = useState(0)
   const tab = kinds.tabs[ti]
 
@@ -320,12 +322,12 @@ export function EveryKind({ kinds, id }: { kinds: SampleKinds; id?: string }) {
     setTi(n)
     setPersona(0)
     setWall(null)
-    setKind(null)
+    setOnKinds([])
     setEmail(0)
   }
   const own = persona === 0
-  const rows = own ? keep(tab.rows, wall, kind) : []
-  const empty = view === 'seen' ? !(own && anySeen(tab, wall, kind)) : rows.length === 0
+  const rows = own ? keep(tab.rows, wall, onKinds) : []
+  const empty = view === 'seen' ? !(own && anySeen(tab, wall, onKinds)) : rows.length === 0
 
   return (
     <section id={id} className="s-section s-ek" aria-labelledby={headingId}>
@@ -367,7 +369,7 @@ export function EveryKind({ kinds, id }: { kinds: SampleKinds; id?: string }) {
                 </div>
                 <div className="hx-grp">
                   <p className="hx-gl">{ui.kind}</p>
-                  <Chips key={`${tab.id}-kind`} items={kindList} on={(v) => v === kind} pick={(v) => setKind((k) => (k === v ? null : v))} limit={4} more={`${ui.more} ${ui.kind.toLowerCase()}s`} />
+                  <Chips key={`${tab.id}-kind`} items={kindList} on={(v) => onKinds.includes(v)} pick={(v) => setOnKinds((ks) => (ks.includes(v) ? ks.filter((k) => k !== v) : [...ks, v]))} limit={4} more={`${ui.more} ${ui.kind.toLowerCase()}s`} multi />
                 </div>
               </div>
               <div className="hx-out">
@@ -375,7 +377,7 @@ export function EveryKind({ kinds, id }: { kinds: SampleKinds; id?: string }) {
                   {empty ? (
                     <p className="hx-none">{ui.none}</p>
                   ) : view === 'seen' ? (
-                    <Seen tab={tab} wall={wall} kind={kind} email={email} setEmail={setEmail} />
+                    <Seen tab={tab} wall={wall} kinds={onKinds} email={email} setEmail={setEmail} />
                   ) : (
                     <div className="s-ek-split s-ek-split--data">
                       <div className="s-ek-tablewrap">
@@ -415,10 +417,6 @@ export function EveryKind({ kinds, id }: { kinds: SampleKinds; id?: string }) {
           </div>
         </div>
 
-        <div className="s-ek-foot">
-          <p>{tab.line}</p>
-          <span className="s-ek-lab">{ui.example}</span>
-        </div>
         <div className="s-ek-arrives">
           <span className="s-ek-lab">{ui.arrives}</span>
           {kinds.arrives.map((a) => (

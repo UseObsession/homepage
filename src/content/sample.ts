@@ -163,7 +163,7 @@ export const sample: SamplePage = {
      its PDF, since Obsession sells the data, not a report. Each tab is one kind of data at one example company, drawn
      the way it arrived, and the same events as the rows an API returns. The side has the homepage's Persona, Wall and
      Kind (labels as Home's explorer shows them); the first persona of each tab holds the example, others have nothing
-     yet. All companies are .example; every row is an example. */
+     yet. Every company is invented, on the reserved .example domain. */
   kinds: {
     heading: 'Everything a customer sees, kept as data.',
     line: 'Screens, emails, texts, prices, ads and answers from behind the login. See each one the way it arrived, then as the row your tools get.',
@@ -178,7 +178,6 @@ export const sample: SamplePage = {
       none: 'Nothing behind this wall for this persona yet. Pick another.',
       cols: ['At', 'Kind', 'What', 'Facts'],
       one: 'One row, as the API returns it',
-      example: 'Example data · .example companies',
       arrives: 'Arrives in',
       more: 'More',
     },
@@ -189,7 +188,6 @@ export const sample: SamplePage = {
         label: 'Screens',
         company: 'sportswear-brand.example',
         personas: ['New customer · UK', 'New customer · US', 'Member · UK', 'Returning customer · UK'],
-        line: 'Every page as it loaded, kept with its screenshot and HTML, in the order our customer moved through it.',
         view: {
           t: 'flow',
           title: 'Checkout, left at the payment step',
@@ -222,7 +220,6 @@ export const sample: SamplePage = {
         label: 'Emails',
         company: 'sportswear-brand.example',
         personas: ['New customer · UK', 'New customer · US', 'Member · UK'],
-        line: 'Every email as it arrived, its sender checked, with the flow it belongs to and the software that sent it.',
         view: {
           t: 'inbox',
           emails: [
@@ -245,7 +242,6 @@ export const sample: SamplePage = {
         label: 'Texts',
         company: 'sim-network.example',
         personas: ['Leaving customer · UK', 'New customer · UK', 'Leaving customer · IE'],
-        line: 'Texts to a real number, each timed against the act that started it.',
         view: {
           t: 'thread',
           from: 'SIMNET',
@@ -275,7 +271,6 @@ export const sample: SamplePage = {
         label: 'Push and in-app',
         company: 'reading-app.example',
         personas: ['Trial user · UK', 'Trial user · US', 'Lapsed reader · UK'],
-        line: 'Notifications and in-app offers on a real phone, kept the moment they show.',
         view: {
           t: 'device',
           day: 'Sunday 8 November',
@@ -304,7 +299,6 @@ export const sample: SamplePage = {
         label: 'Prices and offers',
         company: 'sim-network.example',
         personas: ['Customer · UK', 'New customer · UK', 'Leaving customer · UK'],
-        line: 'Every price and offer read off a page, a text or an email, with where and when it was seen.',
         view: {
           t: 'prices',
           title: 'Every price sim-network.example showed our customer, 6 to 9 Nov',
@@ -330,7 +324,6 @@ export const sample: SamplePage = {
         label: 'Ads',
         company: 'sportswear-brand.example',
         personas: ['Anyone · public ad library'],
-        line: 'Ads from public ad libraries, kept beside what the company actually sends its customers.',
         view: {
           t: 'ads',
           besideLabel: 'Beside it in the record',
@@ -353,7 +346,6 @@ export const sample: SamplePage = {
         label: 'Chat answers',
         company: 'online-bank.example',
         personas: ['New saver · UK', 'Joint applicants · UK', 'New saver · IE'],
-        line: 'What a company’s chat or assistant tells a customer, word for word, beside what its pages say.',
         view: {
           t: 'chat',
           chat: {
@@ -390,7 +382,6 @@ export const sample: SamplePage = {
         label: 'Calls',
         company: 'self-storage.example',
         personas: ['Renter · UK', 'Business renter · UK'],
-        line: 'Calls placed as a customer, kept as audio with the transcript and every price quoted.',
         view: {
           t: 'call',
           title: 'Call to self-storage.example, asking for a 50 sq ft unit',
@@ -422,7 +413,6 @@ export const sample: SamplePage = {
         label: 'Post and receipts',
         company: 'sportswear-brand.example',
         personas: ['Customer · UK', 'Customer · US'],
-        line: 'Receipts, how a charge shows on a statement, letters, and what arrives in the parcel.',
         view: {
           t: 'post',
           cards: [

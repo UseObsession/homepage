@@ -651,7 +651,6 @@ export type SampleKindTab = {
   label: string
   company: string
   personas: string[]
-  line: string
   view: SampleKindView
   rows: (SampleItem & { at: string; label: string; what: string; facts: string })[]
   record: ExRow
@@ -659,7 +658,7 @@ export type SampleKindTab = {
 export type SampleKinds = {
   heading: string
   line: string
-  ui: { tabs: string; seen: string; data: string; persona: string; hint: string; wall: string; kind: string; none: string; cols: [string, string, string, string]; one: string; example: string; arrives: string; more: string }
+  ui: { tabs: string; seen: string; data: string; persona: string; hint: string; wall: string; kind: string; none: string; cols: [string, string, string, string]; one: string; arrives: string; more: string }
   arrives: string[]
   tabs: SampleKindTab[]
 }

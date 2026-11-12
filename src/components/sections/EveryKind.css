@@ -53,9 +53,7 @@
 /* Ads and post: a grid of drawings. */
 .s-ek .s-ek-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; align-items: start; }
 
-/* Under the window: the tab's line, that it is an example, and where the data arrives. */
-.s-ek .s-ek-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px 24px; margin-top: 18px; }
-.s-ek .s-ek-foot p { margin: 0; max-width: 62ch; font: 400 15px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+/* Under the window: where the data arrives. */
 .s-ek .s-ek-lab { font: 500 11px / 1.2 var(--ob-font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ob-text-3); }
 .s-ek .s-ek-arrives { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ob-line); }
 .s-ek .s-ek-arrives .s-ek-lab { margin-right: 6px; }
