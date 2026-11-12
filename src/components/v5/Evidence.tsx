@@ -8,8 +8,9 @@ import './Evidence.css'
    back and next between kinds. Screens are a row of frames, emails an inbox beside the picked email, texts one phone
    thread, push and in-app a lock screen beside the in-app message, ads the cards public ad libraries show, chats and
    calls their transcripts, and receipts, statements, parcels, letters, quotes, displays, job posts, DNS and registers
-   cards side by side. Under the drawing sits the picked event as it arrived: its headers and its proof. A row's link in
-   Facts opens its kind here with that event picked. */
+   cards side by side. Under the drawing sits the picked event as it arrived: its headers and its proof. No heading names
+   the kind (the chips and tabs already do); back and next sit at the bottom, as in Facts. A row's link in Facts opens
+   its kind here with that event picked. */
 
 function Tags({ e }: { e: ExEvent }) {
   if (!e.facts?.length) return null
@@ -44,14 +45,12 @@ const lookOf = (e: ExEvent) => e.evidence?.look
 export function Evidence({
   groups,
   group,
-  label,
   sel,
   pick,
   step,
 }: {
   groups: EvGroup[]
   group: EvGroup
-  label: string
   sel: ExEvent
   pick: (e: ExEvent) => void
   step: (d: number) => void
@@ -203,21 +202,6 @@ export function Evidence({
   const ev = sel.evidence
   return (
     <div className="hx-drill ev">
-      <div className="hx-drillhead">
-        <p className="hx-drillfact">
-          <span className="hx-kind">{label}</span>
-        </p>
-        {groups.length > 1 && (
-          <span className="hx-stepper">
-            <button type="button" aria-label="Previous kind" onClick={() => step(-1)}>
-              ‹
-            </button>
-            <button type="button" aria-label="Next kind" onClick={() => step(1)}>
-              ›
-            </button>
-          </span>
-        )}
-      </div>
       {body}
       {ev && (
         <div className="ev-meta">
@@ -246,6 +230,18 @@ export function Evidence({
               <li key={l}>{l}</li>
             ))}
           </ul>
+        </div>
+      )}
+      {groups.length > 1 && (
+        <div className="hx-pager">
+          <span className="hx-stepper">
+            <button type="button" aria-label="Previous kind" onClick={() => step(-1)}>
+              ‹
+            </button>
+            <button type="button" aria-label="Next kind" onClick={() => step(1)}>
+              ›
+            </button>
+          </span>
         </div>
       )}
     </div>

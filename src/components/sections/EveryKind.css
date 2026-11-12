@@ -1,12 +1,15 @@
 /* EveryKind (/sample-output): Home's console at the section's full width, then where the data arrives. The console's
-   own styles are HeroExplorer.css and Evidence.css; this file only places it. */
+   own styles are HeroExplorer.css and Evidence.css; this file only places it, with the narrower side and roomier
+   output the sample page had before (#66) so each kind is drawn large. */
 .s-ek .s-ek-x { margin-top: clamp(24px, 3vw, 36px); }
 .s-ek .v5-hx { max-width: none; }
-.s-ek .hx-main { min-height: 560px; }
+.s-ek .hx-main { min-height: 560px; grid-template-columns: 240px minmax(0, 1fr); }
+.s-ek .hx-obody { padding: 18px 20px 22px; }
 .s-ek .s-ek-lab { font: 500 11px / 1.2 var(--ob-font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ob-text-3); }
 .s-ek .s-ek-arrives { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ob-line); }
 .s-ek .s-ek-arrives .s-ek-lab { margin-right: 6px; }
 .s-ek .s-ek-pill { padding: 7px 11px; border: 1px solid var(--ob-line); border-radius: 999px; background: var(--ob-surface); font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-2); }
 @media (max-width: 760px) {
-  .s-ek .hx-main { min-height: 0; }
+  .s-ek .hx-main { min-height: 0; grid-template-columns: minmax(0, 1fr); }
+  .s-ek .hx-obody { padding: 14px; }
 }

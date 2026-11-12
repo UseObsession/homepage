@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import type { ExCompany, ExEvent, ExRow, ExTab, Explorer } from '../../content/types'
 import { Evidence } from './Evidence'
-import { evKey, evidenceGroups, familyOf, groupLabel } from './evidenceGroups'
+import { evKey, evidenceGroups, familyOf } from './evidenceGroups'
 import './HeroExplorer.css'
 
 /* Home's hero object since 9 Nov (James): the index as a console, after Exa's. Two modes.
@@ -765,7 +765,7 @@ export function HeroExplorer({
                   )}
                 </div>
               ) : tab === 'evidence' && group && cur ? (
-                <Evidence groups={groups} group={group} label={groupLabel(group, co)} sel={cur} pick={(e) => act(() => setSel(evKey(e)))} step={stepGroup} />
+                <Evidence groups={groups} group={group} sel={cur} pick={(e) => act(() => setSel(evKey(e)))} step={stepGroup} />
               ) : shown.length ? (
                 <>
                   {eventRows(shown.slice(pg * PER, pg * PER + PER))}
