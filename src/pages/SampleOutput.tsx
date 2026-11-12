@@ -4,7 +4,7 @@ import { StillMark } from '../components/StillMark'
 import { Crumbs } from '../components/Crumbs'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
-import { Outputs } from '../components/sections/Outputs'
+import { EveryKind } from '../components/sections/EveryKind'
 import { outputFormats, sample } from '../content/sample'
 import type { SampleGap, SampleVerdict, ViewerImage } from '../content/types'
 import '../components/sections/Hero.css'
@@ -14,10 +14,10 @@ import './SampleOutput.css'
    content/sample.ts), stated exactly as the report records it. In order: the centred hero with its 3 figures and the
    way to the form > the report: the 4 journeys and their verdicts, the checkout capture, the set up and what arrived,
    and the report's own pages, each opening to full size > each gap: the inbox watched for 48 hours with nothing in it,
-   what was left behind, the reminder drafted from the evidence > the same record in every format (the output viewer)
-   > questions > early access (#get-one). A verdict is the ring mark and its word, never a colour.
+   what was left behind, the reminder drafted from the evidence > every kind of data, as it arrived and as data
+   (EveryKind, 12 Nov: it replaced the output viewer and its PDF) > questions > early access (#get-one). A verdict is the ring mark and its word, never a colour.
    Its grounds (styles/tones.css, F3): the report stands on the alternate ground, its set up and what arrived a product
-   record (.ob-object); the formats are the page's paper break on ink (stone on paper). */
+   record (.ob-object); the kinds section takes the page's own theme. */
 
 const r = sample.report
 
@@ -367,7 +367,7 @@ export function SampleOutput() {
       {sample.gaps.map((g) => (
         <Gap key={g.n} g={g} />
       ))}
-      <Outputs id="formats" heading={sample.formats.heading} line={sample.formats.line} initial={sample.formats.start} className="s-so-formats" />
+      <EveryKind id="kinds" kinds={sample.kinds} />
       <Faq faq={sample.faq} id="questions" />
       <FinalCta final={sample.final} id="get-one" />
     </>

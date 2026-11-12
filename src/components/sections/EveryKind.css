@@ -1,0 +1,68 @@
+/* EveryKind (/sample-output): pill tabs over Home's explorer window (.v5-hx, HeroExplorer.css), the window wider here
+   because a kind is drawn, not listed. Everything takes the page's theme tokens; what a company showed is paper
+   (Capture.css). Under 760px the side stacks above the output, and the drawings stack under each other. */
+.s-ek .s-ek-tabs { margin-top: clamp(24px, 3vw, 36px); }
+.s-ek .s-ek-x { max-width: none; margin-top: 18px; }
+.s-ek .s-ek-head { justify-content: flex-start; }
+.s-ek .s-ek-co { font: 500 13px / 1.3 var(--ob-font-mono); color: var(--ob-text); }
+.s-ek .s-ek-head .hx-tabs { margin-left: auto; }
+.s-ek .hx-main { min-height: 560px; grid-template-columns: 240px minmax(0, 1fr); }
+.s-ek .s-ek-body { padding: 18px 20px 22px; }
+
+.s-ek .s-ek-stack { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.s-ek .s-ek-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 18px; align-items: start; }
+.s-ek .s-ek-split--phone { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); }
+.s-ek .s-ek-split--data { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.s-ek .s-ek-titlerow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; }
+.s-ek .s-ek-title { margin: 0; font: 500 15px / 1.4 var(--ob-font-sans); color: var(--ob-text); }
+.s-ek .s-ek-meta { font: 500 11.5px / 1.45 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-ek .s-ek-dim { color: var(--ob-text-2); }
+.s-ek .s-ek-spread { display: flex; justify-content: space-between; gap: 8px; }
+.s-ek .s-ek-narrow { max-width: 340px; }
+
+/* Screens: a row of frames, each with its time, name and the fact read from it; then what our customer did. */
+.s-ek .s-ek-film { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+.s-ek .s-ek-frame { display: grid; gap: 9px; align-content: start; margin: 0; min-width: 0; }
+.s-ek .s-ek-frame figcaption { display: grid; gap: 6px; justify-items: start; font: 500 13px / 1.35 var(--ob-font-sans); color: var(--ob-text); }
+.s-ek .s-ek-acts { display: grid; gap: 8px; padding: 12px 14px; border: 1px dashed var(--ob-line-strong); border-radius: 12px; }
+.s-ek .s-ek-acts ol { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; list-style: none; font: 500 12px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-ek .s-ek-acts li span { color: var(--ob-text); }
+
+/* Emails: the inbox on the left, the picked email on the right. */
+.s-ek .s-ek-inbox { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.s-ek .s-ek-inbox button { display: grid; gap: 7px; width: 100%; padding: 12px 14px; border: 1px solid transparent; border-radius: 12px; background: transparent; text-align: left; }
+.s-ek .s-ek-inbox button:hover { background: var(--ob-surface); }
+.s-ek .s-ek-inbox button[aria-pressed='true'] { background: var(--ob-surface); border-color: var(--ob-line-strong); }
+.s-ek .s-ek-subject { font: 500 14px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+
+/* Facts beside a thread. */
+.s-ek .s-ek-card { display: grid; gap: 8px; justify-items: start; padding: 12px 14px; border: 1px solid var(--ob-line-subtle); border-radius: 12px; background: var(--ob-surface); }
+
+/* Tables: prices, and the rows an API returns. */
+.s-ek .s-ek-tablewrap { overflow-x: auto; border: 1px solid var(--ob-line-subtle); border-radius: 12px; background: var(--ob-surface); }
+.s-ek .s-ek-table { width: 100%; min-width: 520px; border-collapse: collapse; font: 500 13px / 1.4 var(--ob-font-sans); color: var(--ob-text); }
+.s-ek .s-ek-table th { padding: 10px 12px; border-bottom: 1px solid var(--ob-line-subtle); text-align: left; font: 500 10.5px / 1.2 var(--ob-font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ob-text-3); }
+.s-ek .s-ek-table td { padding: 11px 12px; border-bottom: 1px solid var(--ob-line-subtle); vertical-align: top; }
+.s-ek .s-ek-table tr:last-child td { border-bottom: 0; }
+.s-ek .s-ek-bar { display: flex; align-items: center; gap: 10px; min-width: 140px; }
+.s-ek .s-ek-track { flex: 1; height: 8px; border-radius: 4px; background: var(--ob-bg-sunken); overflow: hidden; }
+.s-ek .s-ek-track span { display: block; height: 8px; border-radius: 4px; background: var(--ob-text); }
+.s-ek .s-ek-price { min-width: 34px; text-align: right; font: 500 12.5px / 1 var(--ob-font-mono); }
+.s-ek .s-ek-rec { max-height: 470px; overflow: auto; white-space: pre; }
+
+/* Ads and post: a grid of drawings. */
+.s-ek .s-ek-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; align-items: start; }
+
+/* Under the window: where the data arrives. */
+.s-ek .s-ek-lab { font: 500 11px / 1.2 var(--ob-font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ob-text-3); }
+.s-ek .s-ek-arrives { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ob-line); }
+.s-ek .s-ek-arrives .s-ek-lab { margin-right: 6px; }
+.s-ek .s-ek-pill { padding: 7px 11px; border: 1px solid var(--ob-line); border-radius: 999px; background: var(--ob-surface); font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-2); }
+
+@media (max-width: 900px) {
+  .s-ek .s-ek-split, .s-ek .s-ek-split--phone, .s-ek .s-ek-split--data { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .s-ek .hx-main { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .s-ek .s-ek-body { padding: 14px; }
+}
