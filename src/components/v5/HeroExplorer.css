@@ -126,13 +126,21 @@
 }
 
 /* ---- The link on each fact ---- */
-.v5-hx .hx-fact { grid-template-columns: 6.4rem 5.2rem minmax(0, 1fr) 26px; }
+.v5-hx .hx-fact { grid-template-columns: minmax(0, 1fr) 26px; align-items: center; }
+/* A row's cells: a button that opens its record under it (an act's are plain). */
+.v5-hx .hx-rowhit { display: grid; grid-template-columns: 6.4rem 5.2rem minmax(0, 1fr); gap: 12px; align-items: baseline; min-width: 0; padding: 0; border: 0; background: transparent; text-align: left; }
+.v5-hx button.hx-rowhit:hover .hx-what { text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 3px; }
+.v5-hx .hx-fact[data-open] { border-color: var(--ob-line-strong); }
+.v5-hx .hx-rowrec { grid-column: 1 / -1; margin: 6px 0 0; max-height: 320px; overflow: auto; font-size: 12px; line-height: 1.55; animation: hx-in 0.25s var(--ob-ease) both; }
+/* Tabs over the window (the sample page). */
+.v5-hx .hx-ptabs { margin-bottom: 16px; }
 .v5-hx .hx-link { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--ob-text-3); align-self: center; }
 .v5-hx .hx-link:hover, .v5-hx .hx-link[aria-expanded='true'] { color: var(--ob-text); border-color: var(--ob-line-strong); }
 .v5-hx .hx-link svg { width: 15px; height: 15px; display: block; }
 @media (max-width: 760px) {
   .v5-hx .hx-fact { grid-template-columns: minmax(0, 1fr) 26px; }
-  .v5-hx .hx-fact .hx-link { grid-column: 2; grid-row: 1 / span 3; }
+  .v5-hx .hx-rowhit { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .v5-hx .hx-fact .hx-link { grid-column: 2; grid-row: 1; }
 }
 
 /* ---- A company not in the index yet: nothing from behind its walls, and Watch it ---- */
