@@ -42,6 +42,7 @@ export type Card = {
     latest?: CardEmail[]
   }
   captured: { from: string; to: string; mail_until: string }
+  built_at?: string
 }
 
 export type Answer<T> = { ok: true; data: T } | { ok: false; error: 'domain' | 'check' | 'limit' | 'server' | 'email' | 'view' | 'edit' | 'match' | 'link' }

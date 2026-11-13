@@ -50,14 +50,22 @@ export type Entry = {
   emails: Map<string, ExEvent>
 }
 
-export function entryOf(card: Card, view: string, words: LookupPage['console'], w: LookupPage['entry']): Entry {
+/* `fetchCopy` gives an email's clean copy: by default from the function, under the lookup's view token; the page's
+   sample reads its own static copies. */
+export function entryOf(
+  card: Card,
+  view: string,
+  words: LookupPage['console'],
+  w: LookupPage['entry'],
+  fetchCopy: (id: string) => Promise<string | null> = (id) => openEmail(id, card.domain, view).then((r) => (r.ok ? r.data.html : null)),
+): Entry {
   const copies = new Map<string, Promise<string | null>>()
   const load = (id: string) => () => {
     let got = copies.get(id)
     if (!got) {
-      got = openEmail(id, card.domain, view).then((r) => {
-        if (!r.ok) copies.delete(id)
-        return r.ok ? r.data.html : null
+      got = fetchCopy(id).then((html) => {
+        if (html === null) copies.delete(id)
+        return html
       })
       copies.set(id, got)
     }

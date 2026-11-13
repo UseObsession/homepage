@@ -47,3 +47,8 @@
 /410ab3f4aed7c67c838e45b3f8336e44.txt
   Content-Type: text/plain; charset=utf-8
   X-Robots-Tag: noindex
+
+# The lookup page's sample emails (public/lookup-sample, the clean copies of hollin.example's emails): shown inside the
+# page, never a search result.
+/lookup-sample/*
+  X-Robots-Tag: noindex

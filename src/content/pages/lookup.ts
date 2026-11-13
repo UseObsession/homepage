@@ -12,8 +12,19 @@ export type LookupJourney = 'welcome' | 'browse' | 'cart' | 'checkout'
 
 export type LookupPage = {
   meta: Meta
+  pill: string
   headline: string
   sub: string
+  /* Under the box: what the index holds today, counted from its entries (13 Nov 2026). */
+  figures: { value: string; label: string }[]
+  /* The hero's picture: the sample store's answers, as an entry shows them. */
+  preview: { title: string; tag: string }
+  /* The sample store's whole entry, in the same console a found site gets. */
+  sample: { heading: string; line: string }
+  steps: { heading: string; items: { title: string; line: string }[] }
+  indexing: { heading: string; line: string; items: { title: string; line: string }[] }
+  faq: { heading: string; items: { q: string; a: string }[] }
+  final: { heading: string; line: string; button: string }
   form: {
     label: string
     placeholder: string
@@ -85,8 +96,49 @@ export const lookupPage: LookupPage = {
       { name: 'Look up your site', path: '/lookup' },
     ],
   },
+  pill: 'Store lookup',
   headline: 'See what we’ve indexed of your site.',
-  sub: 'Search engines index the pages anyone can open. Obsession indexes what a site shows behind the login: the emails after a sign up, a basket or a checkout, when each arrived and what it said. Type your email at your site, and we’ll send you a link to its entry.',
+  sub: 'Every email your store sends after a sign-up, a basket and a checkout, each one timed. Type your email at your site and we’ll send you its entry.',
+  figures: [
+    { value: '258', label: 'online stores indexed' },
+    { value: '625', label: 'sign-ups, baskets and checkouts timed' },
+    { value: '1,170', label: 'emails kept as they arrived' },
+  ],
+  preview: { title: 'hollin.example', tag: 'Sample entry' },
+  sample: {
+    heading: 'What your entry holds',
+    line: 'This is the entry for hollin.example, our sample store. Insights answers 4 questions from its emails, each against every store in the index. Search lists each step our account took and each email that came back, with a clean copy you can open.',
+  },
+  steps: {
+    heading: 'How you get your entry',
+    items: [
+      { title: 'Type your email at your site', line: 'you@yourstore.com for yourstore.com. The entry only goes to someone at the site it describes.' },
+      { title: 'We look your site up', line: 'If it’s in the index, the link leaves at once. If it isn’t, leave your email and we’ll add it.' },
+      { title: 'Open the link', line: 'It opens your entry: the answers, every email in order, and each email as it arrived. It works for 7 days.' },
+    ],
+  },
+  indexing: {
+    heading: 'How a site gets into the index',
+    line: 'Our own accounts shop your store the way a new customer would, then keep what the store sends back.',
+    items: [
+      { title: '4 steps, each timed', line: 'Sign up for emails, look at a product, leave an item in the basket, start a checkout and leave.' },
+      { title: '48 hours after each step', line: 'We watch the inbox for 2 days after each step, then keep the campaign emails that follow for weeks.' },
+      { title: 'A clean copy of every email', line: 'Links, tracking images, and our account’s name and address are taken out. The rest is as it arrived.' },
+      { title: 'Only our own accounts', line: 'Every email in an entry was sent to one of our accounts. We never see your customers or their orders.' },
+    ],
+  },
+  faq: {
+    heading: 'Questions about your entry',
+    items: [
+      { q: 'Why does it need an email at my site?', a: 'So an entry only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
+      { q: 'How long does the link work?', a: '7 days. After that, look up your site again and we’ll send a new one.' },
+      { q: 'My site isn’t in the index. Can you add it?', a: 'Yes. Look it up, leave your work email, and we’ll add it. You can name your other sites in the same form.' },
+      { q: 'Where do the numbers under each answer come from?', a: 'From every store in the index that took the same step: how many sent an email in the 48 hours after it, and how long half of them took.' },
+      { q: 'Do you see my customers or their data?', a: 'No. Every email in an entry was sent to one of our own accounts. We never see your customers, their orders or their emails.' },
+      { q: 'Can I have my entry taken down?', a: 'Yes. Email james@useobsession.com from an address at your site and we’ll remove it from the index.' },
+    ],
+  },
+  final: { heading: 'See your site’s entry', line: 'Type your email at your site and the link comes to your inbox.', button: 'Look up your site' },
   form: {
     label: 'Your site’s domain',
     placeholder: 'yoursite.com',

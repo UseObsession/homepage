@@ -11,7 +11,11 @@ import { siteFromEmail, type JoinStore } from '../lib/join'
 import { askForVisit, askLookup, lookupJoin, openLink, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
 import { after, basketText, day, entryOf, list, type Entry } from '../lib/lookupEntry'
 import { isEmail, isWorkEmail } from '../lib/waitlist'
-import { NoticeHero } from './Notice'
+import { Crumbs } from '../components/Crumbs'
+import { Faq } from '../components/sections/Faq'
+import { SectionHead } from '../components/sections/DevSection'
+import { sampleCard, sampleTotals } from '../content/lookupSample'
+import '../components/v5/Hero5.css'
 import '../components/CaptureForm.css'
 import '../components/JoinCard.css'
 import './Lookup.css'
@@ -121,17 +125,40 @@ export function Lookup() {
   const take = () => check.current?.take() ?? Promise.resolve(null)
   const ids = { domain: `${uid}-domain`, local: `${uid}-local`, help: `${uid}-help`, error: `${uid}-error` }
   const domainRef = useRef<HTMLInputElement>(null)
+  const localRef = useRef<HTMLInputElement>(null)
+  /* The closing call takes the reader back to the box. */
+  const toForm = () => {
+    if (phase.at !== 'idle') again()
+    window.setTimeout(() => {
+      localRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      localRef.current?.focus({ preventScroll: true })
+    }, 0)
+  }
 
   return (
     <>
-      <NoticeHero headline={p.headline} sub={p.sub} end={false}>
+      <section className="v5-hero s-lookup-hero" data-reader="developers" aria-labelledby={`${uid}-h`}>
+        <div className="s-wrap v5-hero-wrap">
+          <Crumbs />
+          <div className="v5-hero-grid">
+            <div className="v5-hero-words ob-anim-hero">
+              <p className="v5-hero-tag">
+                <span className="v5-hero-tag-dot" aria-hidden="true" />
+                {p.pill}
+              </p>
+              <h1 className="v5-hero-h" id={`${uid}-h`}>
+                {p.headline}
+              </h1>
+              <p className="v5-hero-sub">{p.sub}</p>
+              <div className="s-lookup__act">
         {phase.at === 'idle' && (
-          <div className="s-notice-hero__join">
+          <div className="s-lookup__join-hero">
             <form className={`ob-pill-form s-lookup__form${problem ? ' is-error' : ''}`} noValidate onSubmit={submitLookup} aria-busy={busy || undefined}>
               <div className="ob-pill-field">
                 <label className="ob-pill-entry" htmlFor={ids.local}>
                   <span className="ob-sr">{p.form.emailLabel}</span>
                   <input
+                    ref={localRef}
                     className="ob-pill-input s-lookup__local"
                     id={ids.local}
                     name="email"
@@ -221,15 +248,60 @@ export function Lookup() {
             </form>
           </div>
         )}
-        <div className="s-lookup__check" ref={widget} />
-        <p className="ob-sr" role="status" aria-live="polite">
-          {live}
-        </p>
-      </NoticeHero>
+        {(phase.at === 'missing' || phase.at === 'sent') && (
+          <div className="s-lookup__answer" ref={result} tabIndex={-1}>
+            {phase.at === 'missing' && (
+              <div className="ob-card ob-card--raised s-lookup__missing">
+                <h2 className="ob-card-title">{p.missing.headline(phase.domain)}</h2>
+                <p className="ob-card-body">{p.missing.line}</p>
+                <AskForm key={`add:${phase.domain}`} domain={phase.domain} kind="add" button={p.missing.button} take={take} initial={phase.email} />
+              </div>
+            )}
+            {phase.at === 'sent' && (
+              <div className="ob-card ob-card--raised s-lookup__missing" role="status">
+                <h2 className="ob-card-title">{p.sent.headline}</h2>
+                <p className="ob-card-body">{p.sent.line(phase.email, phase.domain)}</p>
+                <p className="s-lookup__quiet">{p.sent.note}</p>
+              </div>
+            )}
+            <p className="s-lookup__again">
+              <button type="button" className="ob-btn ob-btn--link" onClick={again}>
+                <span className="ob-btn-label">{p.another}</span>
+              </button>
+            </p>
+          </div>
+        )}
+        {phase.at === 'found' && (
+          <p className="s-lookup__again">
+            <button type="button" className="ob-btn ob-btn--link" onClick={again}>
+              <span className="ob-btn-label">{p.another}</span>
+            </button>
+          </p>
+        )}
+                <div className="s-lookup__check" ref={widget} />
+                <p className="ob-sr" role="status" aria-live="polite">
+                  {live}
+                </p>
+              </div>
+              <ul className="s-lookup__figures">
+                {p.figures.map((f) => (
+                  <li key={f.label}>
+                    <span className="s-lookup__figure">{f.value}</span>
+                    <span className="s-lookup__figlabel">{f.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="v5-hero-visual ob-anim-hero-object">
+              <EntryPreview />
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {phase.at !== 'idle' && (
+      {phase.at === 'found' && (
         <section className="s-lookup">
-          <div className={`s-wrap s-lookup__wrap${phase.at === 'found' ? ' s-lookup__wrap--entry' : ''}`} ref={result} tabIndex={-1}>
+          <div className="s-wrap s-lookup__wrap s-lookup__wrap--entry" ref={result} tabIndex={-1}>
             {phase.at === 'found' && (
               <>
                 <StoreEntry card={phase.card} view={phase.view} index={phase.index} again={again} />
@@ -243,32 +315,65 @@ export function Lookup() {
               </>
             )}
 
-            {phase.at === 'missing' && (
-              <div className="ob-card ob-card--raised s-lookup__missing">
-                <h2 className="ob-card-title">{p.missing.headline(phase.domain)}</h2>
-                <p className="ob-card-body">{p.missing.line}</p>
-                <AskForm key={`add:${phase.domain}`} domain={phase.domain} kind="add" button={p.missing.button} take={take} initial={phase.email} />
-              </div>
-            )}
-
-            {phase.at === 'sent' && (
-              <div className="ob-card ob-card--raised s-lookup__missing" role="status">
-                <h2 className="ob-card-title">{p.sent.headline}</h2>
-                <p className="ob-card-body">{p.sent.line(phase.email, phase.domain)}</p>
-                <p className="s-lookup__quiet">{p.sent.note}</p>
-              </div>
-            )}
-
-            {(phase.at === 'missing' || phase.at === 'sent') && (
-              <p className="s-lookup__again">
-                <button type="button" className="ob-btn ob-btn--link" onClick={again}>
-                  <span className="ob-btn-label">{p.another}</span>
-                </button>
-              </p>
-            )}
           </div>
         </section>
       )}
+
+      {phase.at !== 'found' && (
+        <section className="s-section s-lookup-sample" data-tone="alt" aria-labelledby={`${uid}-sample`}>
+          <div className="s-wrap">
+            <SectionHead id={`${uid}-sample`} heading={p.sample.heading} line={p.sample.line} />
+            <div className="s-lookup-sample__console">
+              <EntryConsole card={sampleCard} view="" index={sampleTotals} fetchCopy={sampleCopy} />
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="s-section s-lookup-steps" aria-labelledby={`${uid}-steps`}>
+        <div className="s-wrap">
+          <SectionHead id={`${uid}-steps`} heading={p.steps.heading} />
+          <ol className="s-lookup-steps__list">
+            {p.steps.items.map((it, k) => (
+              <li key={it.title} className="s-lookup-steps__item">
+                <span className="s-lookup-steps__n" aria-hidden="true">
+                  {k + 1}
+                </span>
+                <h3 className="s-lookup-steps__t">{it.title}</h3>
+                <p className="s-lookup-steps__l">{it.line}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="s-section s-lookup-index" data-tone="alt" aria-labelledby={`${uid}-index`}>
+        <div className="s-wrap">
+          <SectionHead id={`${uid}-index`} heading={p.indexing.heading} line={p.indexing.line} />
+          <ul className="s-lookup-index__list">
+            {p.indexing.items.map((it) => (
+              <li key={it.title} className="s-lookup-index__item">
+                <h3 className="s-lookup-index__t">{it.title}</h3>
+                <p className="s-lookup-index__l">{it.line}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <Faq faq={p.faq} id="questions" />
+
+      <section className="s-section s-lookup-final" data-reader="developers" aria-labelledby={`${uid}-final`}>
+        <div className="s-wrap s-lookup-final__in">
+          <h2 className="ob-type-h2" id={`${uid}-final`}>
+            {p.final.heading}
+          </h2>
+          <p className="ob-type-body-lg s-lookup-final__line">{p.final.line}</p>
+          <button type="button" className="ob-btn ob-btn--lg" onClick={toForm}>
+            <span className="ob-btn-label">{p.final.button}</span>
+          </button>
+        </div>
+      </section>
 
       <p className="s-wrap s-lookup__takedown">
         {p.takedown}{' '}
@@ -283,9 +388,63 @@ export function Lookup() {
 }
 
 /* The entry: the site's name, when it was indexed, then the console on Insights. */
+/* The sample's clean copies are the page's own files (public/lookup-sample, from obsession-index/samples/hollin.py). */
+const sampleCopy = (id: string) =>
+  fetch(`/lookup-sample/${id}.html`)
+    .then((r) => (r.ok ? r.text() : null))
+    .catch(() => null)
+
+/* An entry in the console, opened on Insights: a looked-up site, or the sample under the hero. */
+function EntryConsole({ card, view, index, fetchCopy }: { card: Card; view: string; index?: IndexTotals; fetchCopy?: (id: string) => Promise<string | null> }) {
+  const entry = useMemo(() => entryOf(card, view, p.console, p.entry, fetchCopy), [card, view, fetchCopy])
+  return (
+    <HeroExplorer
+      ex={entry.console}
+      first="insights"
+      bar={false}
+      autoplay={false}
+      anchors={false}
+      insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} /> })}
+    />
+  )
+}
+
+/* The hero's picture: the sample store's 4 answers, as its entry gives them, each against the index. */
+function EntryPreview() {
+  const t = p.insights
+  return (
+    <div className="ob-window ob-object s-lookup-preview">
+      <div className="ob-window-bar">
+        <span className="ob-window-dots" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+        <p className="ob-window-title">{p.preview.title}</p>
+        <span className="ob-tag">{p.preview.tag}</span>
+      </div>
+      <ol className="s-lookup-preview__rows">
+        {sampleCard.journeys.map((j) => {
+          const tot = sampleTotals.journeys[j.journey]
+          return (
+            <li key={j.journey} className="s-lookup-preview__row" data-none={j.emails ? undefined : ''}>
+              <span className="s-lookup-preview__q">{t.questions[j.journey]}</span>
+              <span className="s-lookup-preview__a">{j.emails ? t.yes(after(j.first_after_minutes ?? 0)) : t.no(j.window_hours || 48)}</span>
+              {tot && (
+                <span className="s-lookup-preview__i">
+                  {t.index(Math.round((tot.answered / tot.runs) * 100), tot.runs, tot.median_minutes == null ? '' : tot.median_minutes < 1 ? 'within a minute' : `within ${after(tot.median_minutes)}`)}
+                </span>
+              )}
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
 function StoreEntry({ card, view, index, again }: { card: Card; view: string; index?: IndexTotals; again: () => void }) {
   const e = p.entry
-  const entry = useMemo(() => entryOf(card, view, p.console, e), [card, view, e])
   const indexed = e.indexed(day(card.captured.from), day(card.captured.to))
   return (
     <article className="s-lookup__entry">
@@ -298,14 +457,7 @@ function StoreEntry({ card, view, index, again }: { card: Card; view: string; in
           <span className="ob-btn-label">{p.another}</span>
         </button>
       </header>
-      <HeroExplorer
-        ex={entry.console}
-        first="insights"
-        bar={false}
-        autoplay={false}
-        anchors={false}
-        insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} /> })}
-      />
+      <EntryConsole card={card} view={view} index={index} />
       <p className="s-lookup__scope">{e.scope}</p>
     </article>
   )
