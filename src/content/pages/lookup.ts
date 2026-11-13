@@ -126,7 +126,7 @@ export const lookupPage: LookupPage = {
   preview: { title: 'hollin.example', tag: 'Sample entry' },
   sample: {
     heading: 'A whole entry, for our sample store',
-    line: 'This is the entry for hollin.example, our sample store. Insights puts what to change first on top, then whether an AI shopper can buy, the offers, and the emails after each step, each against the index. Search lists every step and every email, with a clean copy you can open.',
+    line: 'This is the entry for hollin.example, our sample store. It opens on what to change first. Below that sit the AI shopper check, the offers and the emails after each step, each against the index. Search lists every step and every email, with a copy you can open.',
   },
   steps: {
     heading: 'How you get your entry',
