@@ -1,8 +1,10 @@
-import type { ExConsole, Meta } from '../types'
+import type { ExConsole, Faq, Meta } from '../types'
 
 /* /lookup: a site's entry in the index, looked up by its own domain (pages/Lookup.tsx), told the way a search engine
    would tell it: what the index holds of the site behind the login, not who collected it. One exact domain in, at most
-   one entry out: no list, no browsing, no page per brand, and the page is noindex (scripts/prerender.mjs writes it like the 404 page, outside the sitemap and llms.txt).
+   one entry out: no list, no browsing, no page per brand. The page itself is indexed (Seun, 14 Nov: in the sitemap and llms.txt, with its
+   FAQ as FAQPage), and owns "klaviyo email audit" and "klaviyo flow audit" from the customer's side (docs/SEARCH.md §2); the
+   entries it sends never are: each opens only from a link in the site owner's inbox.
    The card comes from the Edge Function store-lookup in the obsession-index Supabase project (lib/lookup.ts), which
    records every lookup. A site we haven't indexed gets a plain line and a form for an email, saved by the same
    function, never the waitlist sheet. The example under the box, hollin.example, is the invented store the site already
@@ -28,7 +30,7 @@ export type LookupPage = {
      whole check, not only email gaps). */
   checks: { heading: string; line: string; every: string; request: string; items: { title: string; line: string; every: boolean }[] }
   indexing: { heading: string; line: string; items: { title: string; line: string }[] }
-  faq: { heading: string; items: { q: string; a: string }[] }
+  faq: Faq
   final: { heading: string; line: string; button: string }
   /* Above the closing call: the same data for any company, the other 2 uses, to early access. */
   others: { line: string; link: string; to: string }
@@ -108,11 +110,14 @@ export type LookupPage = {
 export const lookupPage: LookupPage = {
   meta: {
     path: '/lookup',
-    title: 'Look up your site · Obsession',
+    /* Seun, 14 Nov: owns "klaviyo email audit" (autocomplete US and UK, 14 Nov). Every audit on Google page 1 for it reads
+       the account from inside; this one shows what a new customer receives, with no login (plan in the Obsession folder,
+       _research/seo/lookup-14nov/PLAN.md). */
+    title: 'Klaviyo email audit: see what your store sends new customers',
     description:
-      'Look up your site in Obsession’s index of the web behind the login. See the emails it sends after a sign up, a basket or a checkout, and when each arrived.',
+      'Look up your store’s welcome, basket and checkout emails as a new customer gets them: which arrive, how fast and what’s broken, with no Klaviyo login.',
     answer:
-      'Obsession’s lookup shows a site its entry in Obsession’s index of the web behind the login. That means the emails the site sends after a sign up, a basket or a checkout, when each arrived and what it said.',
+      'The store lookup is a Klaviyo email audit from the customer’s side: it shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email platform sends it. It needs an email at your own site and no login, and the entry comes from Obsession’s index of what companies show only to signed-up customers, each email dated and checked against every store in the index.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Look up your site', path: '/lookup' },
@@ -166,6 +171,23 @@ export const lookupPage: LookupPage = {
   faq: {
     heading: 'Questions about your entry',
     items: [
+      {
+        q: 'What is the store lookup?',
+        a: 'The store lookup is a Klaviyo email audit from the customer’s side: it shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email platform sends it. Each email is dated and checked for how fast it came and what’s wrong in it, against every store in the index.',
+      },
+      {
+        q: 'How is it different from a Klaviyo flow audit?',
+        a: 'A Klaviyo flow audit reads your flows from inside the account: triggers, filters, delays and revenue. Your entry shows the other side, what a new customer actually receives. A flow that looks live but never sends shows up as a missing email, and a broken first name or a placeholder shows up in the email itself.',
+      },
+      {
+        q: 'Do you need my Klaviyo or Shopify login?',
+        a: 'No. Your entry comes from what your store sent our own accounts, so it works whichever email platform you use: Klaviyo, Shopify Email, Omnisend, Mailchimp or another.',
+      },
+      {
+        q: 'How do I test my abandoned cart email myself?',
+        a: 'Use a new email address, add an item to the basket, start a checkout and leave, then watch the inbox for the window your flow is set to. Repeat it for the sign-up and the product view, and after every change to your theme, apps or flows.',
+        link: { label: 'How to test your Shopify store as a customer', to: '/blog/how-to-test-your-shopify-store-as-a-customer' },
+      },
       { q: 'Why does it need an email at my site?', a: 'So an entry only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
       { q: 'How long does the link work?', a: '7 days. After that, look up your site again and we’ll send a new one.' },
       { q: 'My site isn’t in the index. Can you add it?', a: 'Yes. Look it up, leave your work email, and we’ll add it. You can name your other sites in the same form.' },

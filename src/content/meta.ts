@@ -227,6 +227,17 @@ export const entries: Entry[] = [
     faq: sample.faq,
     source: 'src/content/sample.ts',
   },
+  /* The store lookup (content/pages/lookup.ts), indexed since 14 Nov (Seun): in the sitemap and llms.txt, its own share
+     card, its questions as FAQPage. The entries it sends stay private: each opens only from a link in the owner's inbox. */
+  {
+    kind: 'lookup',
+    meta: ogFor(lookupPage.meta),
+    name: crumbName(lookupPage.meta, 'Look up your site'),
+    headline: lookupPage.headline,
+    line: lookupPage.pill,
+    faq: lookupPage.faq,
+    source: 'src/content/pages/lookup.ts',
+  },
   /* The blog index only while a post is live (content/blog/archive holds the rest). */
   ...(blogLive
     ? [
@@ -310,18 +321,10 @@ export const notFound: Entry = {
   source: 'src/content/site.ts',
 }
 
-/* dist/lookup.html, the store lookup: noindex like the 404 page, outside the sitemap and llms.txt (it is not in
-   `entries`), and it shares Home's image. One domain in, at most one store card out: there is nothing on it to index. */
-export const lookup: Entry = {
-  kind: 'lookup',
-  meta: { ...lookupPage.meta, ogImage: entries[0].meta.ogImage },
-  name: 'Look up your store',
-  headline: lookupPage.headline,
-  line: lookupPage.sub,
-  source: 'src/content/pages/lookup.ts',
-}
+/* The store lookup's entry, in `entries` since 14 Nov (indexed), named for the code that asks for it by itself. */
+export const lookup: Entry = entries.find((e) => e.kind === 'lookup')!
 
-const byPath = new Map([...entries, lookup].map((e) => [e.meta.path, e]))
+const byPath = new Map(entries.map((e) => [e.meta.path, e]))
 
 export function entryFor(path: string): Entry {
   return byPath.get(cleanPath(path)) ?? notFound
