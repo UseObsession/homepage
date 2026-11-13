@@ -247,3 +247,63 @@
 
 /* The header's "Look up your site" lands here, clear of the sticky bar. */
 .s-lookup__act { scroll-margin-top: 140px; }
+
+/* ==== 14 Nov (Seun and James): the lookup as a lead magnet ==== */
+/* The agency door under the box: a quiet second path, never a second button. */
+.s-lookup__agency { margin: var(--ob-space-8) 0 0; font: 500 14px / 1.45 var(--ob-font-sans); }
+
+/* The drop: each step of a new customer's first days, and the share of stores that sent nothing after it. The quiet
+   share is the one signal colour; what came is context. Bars grow once, on view. */
+.s-lookup-drop__rows { display: grid; gap: 4px; margin: clamp(28px, 3.5vw, 44px) 0 0; padding: 0; list-style: none; }
+.s-lookup-drop__row { display: grid; grid-template-columns: 34px minmax(170px, 0.9fr) minmax(0, 2fr) minmax(150px, auto); align-items: center; gap: 18px; padding: 18px 0; border-top: 1px solid var(--ob-line-subtle); }
+.s-lookup-drop__row:last-child { border-bottom: 1px solid var(--ob-line-subtle); }
+.s-lookup-drop__n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--ob-line-strong); font: 600 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-lookup-drop__step { font: 600 16.5px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-lookup-drop__bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--ob-bg-sunken); }
+.s-lookup-drop__got { background: color-mix(in srgb, var(--ob-text-3) 55%, transparent); transform-origin: left; }
+.s-lookup-drop__none { background: color-mix(in srgb, var(--ob-danger) 70%, transparent); transform-origin: left; }
+.s-lookup-drop__v { font: 500 14px / 1.35 var(--ob-font-sans); color: var(--ob-text-3); text-align: right; white-space: nowrap; }
+.s-lookup-drop__v b { font: 600 22px / 1 var(--ob-font-sans); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; color: var(--ob-text-2); margin-right: 4px; }
+.s-lookup-drop__row[data-quiet] .s-lookup-drop__v b { color: var(--ob-danger); }
+.s-lookup-drop__row[data-quiet] .s-lookup-drop__n { border-color: color-mix(in srgb, var(--ob-danger) 60%, transparent); color: var(--ob-danger); }
+.s-lookup-drop__rows:not([data-on]) .s-lookup-drop__got,
+.s-lookup-drop__rows:not([data-on]) .s-lookup-drop__none { transform: scaleX(0); }
+.s-lookup-drop__got, .s-lookup-drop__none { transition: transform 900ms var(--ob-ease-out, cubic-bezier(0.2, 0.8, 0.2, 1)); }
+.s-lookup-drop__row:nth-child(2) span { transition-delay: 90ms; }
+.s-lookup-drop__row:nth-child(3) span { transition-delay: 180ms; }
+.s-lookup-drop__row:nth-child(4) span { transition-delay: 270ms; }
+@media (prefers-reduced-motion: reduce) { .s-lookup-drop__got, .s-lookup-drop__none { transition: none; transform: none !important; } }
+.s-lookup-drop__asof { margin: 14px 0 0; font: 500 12.5px / 1.45 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-lookup-drop__close { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-top: clamp(28px, 3.5vw, 44px); padding: clamp(20px, 2.5vw, 28px); border: 1px solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-surface); }
+.s-lookup-drop__close p { margin: 0; max-width: 58ch; color: var(--ob-text); text-wrap: pretty; }
+@media (max-width: 760px) {
+  .s-lookup-drop__row { grid-template-columns: 30px minmax(0, 1fr) auto; grid-template-areas: 'n step v' 'bar bar bar'; gap: 10px 12px; }
+  .s-lookup-drop__n { grid-area: n; }
+  .s-lookup-drop__step { grid-area: step; font-size: 15.5px; }
+  .s-lookup-drop__v { grid-area: v; }
+  .s-lookup-drop__v b { font-size: 19px; }
+  .s-lookup-drop__bar { grid-area: bar; }
+  .s-lookup-drop__close .ob-btn { width: 100%; justify-content: center; }
+}
+
+/* A store we haven't indexed: the owner's own check, under the request to add it. */
+.s-lookup-self { display: grid; gap: 10px; margin-top: var(--ob-space-8); padding-top: var(--ob-space-20, 20px); border-top: 1px solid var(--ob-line-subtle); }
+.s-lookup-self__h { margin: 0; font: 600 17px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-lookup-self__line, .s-lookup-self__note { margin: 0; font: 500 14.5px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-lookup-self__steps { display: grid; gap: 10px; margin: 4px 0; padding: 0; list-style: none; }
+.s-lookup-self__steps li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 2px 12px; }
+.s-lookup-self__n { grid-row: span 2; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--ob-line-strong); font: 600 12px / 1 var(--ob-font-mono); color: var(--s-accent-developers); }
+.s-lookup-self__t { font: 600 15px / 1.4 var(--ob-font-sans); color: var(--ob-text); }
+.s-lookup-self__l { font: 500 14px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-lookup-self__note { color: var(--ob-text-3); }
+
+/* The agency door: words beside the early access form with the agency offer. */
+.s-lookup-agencies { scroll-margin-top: 96px; }
+.s-lookup-agencies__in { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: start; }
+.s-lookup-agencies__words .ob-type-h2 { margin: 0; text-wrap: balance; }
+.s-lookup-agencies__line { margin: 14px 0 0; color: var(--ob-text-2); text-wrap: pretty; }
+.s-lookup-agencies__points { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.s-lookup-agencies__points li { position: relative; padding-left: 22px; font: 500 15.5px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-lookup-agencies__points li::before { content: ''; position: absolute; left: 2px; top: 0.62em; width: 8px; height: 8px; border-radius: 2px; background: var(--s-accent-developers); }
+.s-lookup-agencies__form { padding: clamp(20px, 2.5vw, 28px); }
+@media (max-width: 860px) { .s-lookup-agencies__in { grid-template-columns: minmax(0, 1fr); } }

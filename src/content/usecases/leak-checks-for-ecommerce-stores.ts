@@ -276,6 +276,7 @@ export const study: UseCaseStudy = {
       {
         q: 'What does Obsession do for an ecommerce store?',
         a: 'Obsession keeps every email and text a store sends after a sign-up, a basket and a checkout, for your own store and your competitors, each with the time it arrived. A reminder that never came shows as missing, with the inbox that waited for it. Look up any store by API or MCP, in Clay or Google Sheets, or get each new fact at a webhook.',
+        link: { label: 'Look up your store’s emails', to: '/lookup' },
       },
       {
         q: 'What counts as a leak?',
