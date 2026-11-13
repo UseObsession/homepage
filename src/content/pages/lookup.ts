@@ -36,7 +36,6 @@ export type LookupPage = {
   }
   /* Insights: the entry's answers, worked out on the page from its events (pages/Lookup.tsx LookupInsights). */
   insights: {
-    heading: (n: number) => string
     every: string
     questions: Record<LookupJourney, string>
     yes: (wait: string) => string
@@ -136,7 +135,6 @@ export const lookupPage: LookupPage = {
     scope: 'This entry holds only what your site sent to our own accounts, with their names and addresses taken out.',
   },
   insights: {
-    heading: (n) => `${n} ${n === 1 ? 'question' : 'questions'}, answered from the events in Search`,
     every: 'Every wall',
     questions: {
       welcome: 'Does a sign-up get a welcome?',

@@ -157,10 +157,12 @@ export function Lookup() {
           <div className={`s-wrap s-lookup__wrap${phase.at === 'found' ? ' s-lookup__wrap--entry' : ''}`} ref={result} tabIndex={-1}>
             {phase.at === 'found' && (
               <>
-                <StoreEntry card={phase.card} view={phase.view} index={phase.index} />
-                <section className="s-lookup__block s-lookup__ask">
-                  <h3 className="s-lookup__h">{p.update.headline}</h3>
-                  <p className="s-lookup__quiet">{p.update.line(phase.card.domain)}</p>
+                <StoreEntry card={phase.card} view={phase.view} index={phase.index} again={again} />
+                <section className="ob-card ob-card--raised s-lookup__ask">
+                  <div className="s-lookup__askhead">
+                    <h3 className="ob-card-title">{p.update.headline}</h3>
+                    <p className="ob-card-body">{p.update.line(phase.card.domain)}</p>
+                  </div>
                   <AskForm key={`update:${phase.card.domain}`} domain={phase.card.domain} kind="update" button={p.update.button} take={take} />
                 </section>
               </>
@@ -174,11 +176,13 @@ export function Lookup() {
               </div>
             )}
 
-            <p className="s-lookup__again">
-              <button type="button" className="ob-btn ob-btn--link" onClick={again}>
-                <span className="ob-btn-label">{p.another}</span>
-              </button>
-            </p>
+            {phase.at === 'missing' && (
+              <p className="s-lookup__again">
+                <button type="button" className="ob-btn ob-btn--link" onClick={again}>
+                  <span className="ob-btn-label">{p.another}</span>
+                </button>
+              </p>
+            )}
           </div>
         </section>
       )}
@@ -196,17 +200,20 @@ export function Lookup() {
 }
 
 /* The entry: the site's name, when it was indexed, then the console on Insights. */
-function StoreEntry({ card, view, index }: { card: Card; view: string; index?: IndexTotals }) {
+function StoreEntry({ card, view, index, again }: { card: Card; view: string; index?: IndexTotals; again: () => void }) {
   const e = p.entry
   const entry = useMemo(() => entryOf(card, view, p.console, e), [card, view, e])
   const indexed = e.indexed(day(card.captured.from), day(card.captured.to))
   return (
     <article className="s-lookup__entry">
       <header className="s-lookup__head">
-        <h2 className="s-lookup__name">{card.name ?? card.domain}</h2>
-        <p className="s-lookup__domain">
-          {[card.domain, indexed, e.latest(day(card.captured.mail_until))].join(' · ')}
-        </p>
+        <div className="s-lookup__title">
+          <h2 className="s-lookup__name">{card.name ?? card.domain}</h2>
+          <p className="s-lookup__domain">{[card.domain, indexed, e.latest(day(card.captured.mail_until))].join(' · ')}</p>
+        </div>
+        <button type="button" className="ob-btn ob-btn--link s-lookup__another" onClick={again}>
+          <span className="ob-btn-label">{p.another}</span>
+        </button>
       </header>
       <HeroExplorer
         ex={entry.console}
@@ -230,13 +237,10 @@ function LookupInsights({ card, index, entry, go }: { card: Card; index?: IndexT
   const weeks = r ? Math.max(1, Math.round((Date.parse(r.to) - Date.parse(r.from)) / (7 * 864e5))) : 0
   return (
     <div className="lk-ins">
-      <div className="lk-ins__head">
-        <h3 className="lk-ins__h">{t.heading(card.journeys.length)}</h3>
-        <span className="lk-ins__chips">
-          <span className="lk-chip">{p.entry.persona}</span>
-          <span className="lk-chip">{t.every}</span>
-        </span>
-      </div>
+      <span className="lk-ins__chips">
+        <span className="lk-chip">{p.entry.persona}</span>
+        <span className="lk-chip">{t.every}</span>
+      </span>
       <div className="lk-qs">
         {card.journeys.map((j) => {
           const hours = j.window_hours || 48

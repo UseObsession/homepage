@@ -226,11 +226,11 @@ export const join = {
     },
   },
   recipes: {
-    title: 'Which recipes do you want first?',
+    title: 'What data do you want first?',
     suggested: 'Suggested for you',
     help: 'Pick any.',
     helpPicked: 'Pick any. We ticked the one you were reading.',
-    error: 'Pick at least 1 recipe.',
+    error: 'Pick at least 1.',
   },
   useCase: {
     label: 'What do you want to look up, and why?',
@@ -244,7 +244,7 @@ export const join = {
   },
   saved: { failed: 'Some answers didn’t save.', retry: 'Try again' },
   /* The thank you's list of what they told us. */
-  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Recipes' },
+  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Data' },
   /* Another form on a page where the sign up already happened. */
   joined: 'You’re on the early access list as {email}.',
 }

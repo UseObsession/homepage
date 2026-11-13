@@ -59,6 +59,11 @@ const dayTime = (at: string) => {
   return m ? { day: m[1], time: m[2] } : { day: at, time: '' }
 }
 const PUBLIC = ['Ad', 'Job post', 'DNS', 'Register']
+/* A card that opens has a down arrow; one with a clean copy also shows a small picture of a page. */
+const CHEVRON =
+  '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>'
+const PREVIEW =
+  '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="m2.8 11 3.2-3.2 2.5 2.5 1.7-1.7 3 3"/><circle cx="10.6" cy="5.6" r="1.1"/></svg>'
 const PER = 5
 
 export function Chips({
@@ -420,12 +425,11 @@ export function HeroExplorer({
   const gi = picked ? groups.findIndex((g) => g.id === familyOf(picked)) : Math.max(0, groups.findIndex((g) => g.id === fam))
   const group = groups[gi]
   const cur = picked && group && familyOf(picked) === group.id ? picked : group?.events[0]
-  const stepGroup = (d: number) =>
+  const pickGroup = (id: string) =>
     act(() => {
-      setFam(groups[(gi + d + groups.length) % groups.length].id)
+      setFam(id)
       setSel(null)
     })
-  const showTabs = searched && (co.covered || !!indexed)
   const badge = !searched ? '' : co.covered ? ex.fromIndex : indexed ? co.index!.done : indexing ? ex.newRun : ex.notCovered
   const badgeState = indexing ? 'new' : co.covered || indexed ? 'in' : 'out'
   /* The "…" chip's name: chrome, not copy. */
@@ -471,6 +475,17 @@ export function HeroExplorer({
                       {f.text}
                     </span>
                   ))}
+                </span>
+              )}
+              {can && (
+                <span className="hx-cardic">
+                  {e.evidence && (
+                    <span className="hx-hasev" title={ex.tabs.evidence}>
+                      <Svg html={PREVIEW} />
+                      <span className="sr-only">{ex.tabs.evidence}</span>
+                    </span>
+                  )}
+                  <Svg html={CHEVRON} className="hx-chevron" />
                 </span>
               )}
             </>
@@ -557,19 +572,13 @@ export function HeroExplorer({
         {/* Right: Facts or Evidence. */}
         <div className="hx-out">
           <div className="hx-utabs hx-ohead">
-            {showTabs ? (
-              <div className="hx-utabset" role="tablist" aria-label={ex.output.search}>
-                {(['facts', 'evidence'] as Tab[]).map((x) => (
-                  <button type="button" role="tab" className="hx-utab" key={x} aria-selected={tab === x} onClick={() => act(() => setTab(x))}>
-                    {ex.tabs[x]}
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <span className="hx-utab" data-on="">
-                {ex.output.search}
-              </span>
-            )}
+            <div className="hx-utabset" role="tablist" aria-label={ex.output.search}>
+              {(['facts', 'evidence'] as Tab[]).map((x) => (
+                <button type="button" role="tab" className="hx-utab" key={x} aria-selected={tab === x} onClick={() => act(() => setTab(x))}>
+                  {ex.tabs[x]}
+                </button>
+              ))}
+            </div>
             {badge && (
               <span className="hx-badge" data-state={badgeState}>
                 {badge}
@@ -595,7 +604,7 @@ export function HeroExplorer({
                 )}
               </div>
             ) : tab === 'evidence' ? (
-              group && cur ? <Evidence groups={groups} group={group} sel={cur} pick={(e) => act(() => setSel(evKey(e)))} step={stepGroup} /> : <p className="hx-none">{ex.none}</p>
+              group && cur ? <Evidence groups={groups} group={group} sel={cur} pick={(e) => act(() => setSel(evKey(e)))} kind={pickGroup} /> : <p className="hx-none">{ex.none}</p>
             ) : shown.length ? (
               <>
                 {timeline(shown.slice(pg * PER, pg * PER + PER))}
