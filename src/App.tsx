@@ -232,8 +232,9 @@ function ScrollManager() {
    page's own. */
 const STORY_CTAS = new Map(Object.entries(storyCtas))
 
-/* Pages without a form of their own send the nav's call to action to Home's waitlist. */
-const NO_FORM = new Set(['/privacy', '/agents', '/lookup'])
+/* Pages without a form of their own send the nav's call to action to Home's waitlist. (/lookup has its own box since
+   13 Nov, and its call to action goes there.) */
+const NO_FORM = new Set(['/privacy', '/agents'])
 function ctaAt(pathname: string) {
   const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
   const story = STORY_CTAS.get(clean)

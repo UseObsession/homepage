@@ -150,7 +150,7 @@ export function Lookup() {
                 {p.headline}
               </h1>
               <p className="v5-hero-sub">{p.sub}</p>
-              <div className="s-lookup__act">
+              <div className="s-lookup__act" id="lookup">
         {phase.at === 'idle' && (
           <div className="s-lookup__join-hero">
             <form className={`ob-pill-form s-lookup__form${problem ? ' is-error' : ''}`} noValidate onSubmit={submitLookup} aria-busy={busy || undefined}>

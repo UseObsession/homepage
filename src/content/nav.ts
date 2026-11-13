@@ -283,8 +283,10 @@ export function barCta(cta: Cta, kind?: Capture['kind']): Cta {
 /* Each page's call to action in the nav (docs/REBUILD.md, "Calls to action"). Each goes to the page's own form.
    Home, the audience pages and Developers take theirs from their own hero capture (App.tsx), so only the others are here. */
 export const pageCtas: Record<string, Cta> = {
-  /* Sample output's form sits at #get-one (content/sample.ts). An anchor a page lacks falls back to its #join. */
-  '/sample-output': barCta({ label: 'Request early access', to: '#get-one' }),
+  /* James, 13 Nov: the store lookup is the call to action here and on the sample data, in place of early access. On
+     /lookup it goes to the page's own box (#lookup); on /sample-output, to /lookup. */
+  '/lookup': { label: 'Look up your site', to: '#lookup' },
+  '/sample-output': { label: 'Look up your site', to: '/lookup' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
 }
