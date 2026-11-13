@@ -5,8 +5,9 @@ import { askForVisit, lookUp, openEmail, turnstile, type Card, type CardEmail } 
 import { NoticeHero } from './Notice'
 import './Lookup.css'
 
-/* /lookup: one exact domain in, at most one store card out (content/pages/lookup.ts). The card is drawn from the Edge
-   Function's answer; a store we haven't visited gets a plain line and a form for an email. Nothing here is prerendered
+/* /lookup: one exact domain in, at most one entry out (content/pages/lookup.ts). The entry is drawn from the Edge
+   Function's answer; a site we haven't indexed gets a plain line and a form for an email. The example under the box
+   runs the same lookup for the sample store. Nothing here is prerendered
    but the form: every answer arrives after a lookup. */
 
 type Phase =
@@ -68,11 +69,11 @@ export function Lookup() {
     setLive(text)
   }
 
-  async function submitLookup(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  async function submitLookup(e?: FormEvent<HTMLFormElement>, typed = domain) {
+    e?.preventDefault()
     if (busy) return
     setProblem(null)
-    if (!domain.trim()) return fail(p.errors.domain)
+    if (!typed.trim()) return fail(p.errors.domain)
     setBusy(true)
     setLive(p.form.busy)
     const token = await check.current?.take()
@@ -80,7 +81,7 @@ export function Lookup() {
       setBusy(false)
       return fail(p.errors.check)
     }
-    const res = await lookUp(domain.trim(), token)
+    const res = await lookUp(typed.trim(), token)
     setBusy(false)
     if (!res.ok) return fail(p.errors[res.error === 'view' ? 'server' : res.error])
     setLive('')
@@ -168,6 +169,19 @@ export function Lookup() {
                   {problem ?? ''}
                 </p>
               </div>
+              <p className="s-lookup__example">
+                {p.form.example}{' '}
+                <button
+                  type="button"
+                  className="ob-btn ob-btn--link ob-btn--inline"
+                  onClick={() => {
+                    setDomain(p.form.exampleDomain)
+                    void submitLookup(undefined, p.form.exampleDomain)
+                  }}
+                >
+                  <span className="ob-btn-label">{p.form.exampleDomain}</span>
+                </button>
+              </p>
             </form>
           </div>
         )}
@@ -250,7 +264,7 @@ export function Lookup() {
 
       <p className="s-wrap s-lookup__takedown">
         {p.takedown}{' '}
-        <a className="ob-btn ob-btn--link ob-btn--inline" href={`mailto:${p.takedownEmail}?subject=Take%20my%20store%27s%20results%20down`}>
+        <a className="ob-btn ob-btn--link ob-btn--inline" href={`mailto:${p.takedownEmail}?subject=Take%20my%20site%27s%20entry%20down`}>
           <span className="ob-btn-label">{p.takedownEmail}</span>
         </a>
         .

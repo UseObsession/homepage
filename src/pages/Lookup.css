@@ -14,6 +14,14 @@
 }
 .s-lookup__wrap:focus { outline: none; }
 
+/* The example under the box: a quiet line, centred like the help line above it. */
+.s-lookup__example {
+  margin: var(--ob-space-4) 0 0;
+  text-align: center;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+}
+
 /* ---- The store card ---- */
 .s-lookup__card { display: grid; gap: var(--ob-space-24); }
 .s-lookup__head { display: grid; gap: var(--ob-space-8); }
