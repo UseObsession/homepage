@@ -15,6 +15,16 @@
 .s-lookup__wrap:focus { outline: none; }
 .s-lookup__wrap--entry { max-width: 1072px; }
 
+/* The box is one email in 2 entries, [you] @ [yoursite.com], then the button; on a phone the button drops below. */
+.s-lookup__form { max-width: 640px; }
+.s-lookup__form .s-lookup__local { flex: 1 1 0; text-align: right; padding-right: 2px; }
+.s-lookup__form .s-lookup__domainin { flex: 1.6 1 0; padding-left: 2px; }
+.s-lookup__at { flex: none; font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans); color: var(--ob-text-3); user-select: none; -webkit-user-select: none; }
+@media (max-width: 640px) {
+  .s-lookup__form .ob-pill-field { border-radius: 22px; }
+  .s-lookup__form .ob-pill-action { flex-basis: 100%; }
+}
+
 /* The example under the box: a quiet line, centred like the help line above it. */
 .s-lookup__example {
   margin: var(--ob-space-4) 0 0;
@@ -47,7 +57,7 @@
 .lk-ins { display: grid; gap: 24px; padding: 26px 26px 24px; }
 .lk-ins__chips { display: inline-flex; flex-wrap: wrap; gap: 8px; }
 .lk-chip { padding: 4px 10px; border: 1px solid var(--ob-line); border-radius: 999px; font: 500 13px / 1.3 var(--ob-font-sans); color: var(--ob-text-2); }
-.lk-qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.lk-qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
 .lk-q, .lk-rhythm { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 20px; border: 1px solid var(--ob-line); border-radius: 12px; background: var(--hx-card, var(--ob-surface-raised)); }
 .lk-q__journey { margin: 0; font: 500 11.5px / 1.3 var(--ob-font-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ob-text-3); }
 .lk-q__question { margin: 0; font: 500 16px / 1.4 var(--ob-font-sans); color: var(--ob-text-2); }
@@ -126,3 +136,108 @@
 /* ---- The early access form under an entry or "not indexed yet": the website's form and card, at its 560px. ---- */
 .s-lookup__join { max-width: var(--ob-container-xs); }
 .s-lookup__missing .s-lookup__join { margin-top: var(--ob-space-4); }
+
+/* ==== 13 Nov (James): the page sells the entry, like /sample-output, in /developers' colour ====
+   The hero is /developers' (Hero5's classes, the cobalt glow from data-reader): the words, the box and what the index
+   holds on the left; the sample store's answers in a product window on the right. Then the sample's whole entry in the
+   console, how you get yours, how a site gets into the index, the questions, and a closing call back to the box. */
+.s-lookup__act { display: grid; gap: 14px; margin-top: 4px; }
+.s-lookup__join-hero .s-lookup__form { max-width: none; margin: 0; }
+.s-lookup__join-hero .ob-field-help, .s-lookup__join-hero .s-lookup__example { text-align: left; }
+.s-lookup__answer { display: grid; gap: 12px; }
+.s-lookup__answer:focus { outline: none; }
+.s-lookup__answer .s-lookup__missing { padding: var(--ob-space-20, 20px); }
+.s-lookup__figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 20px; margin: 8px 0 0; padding: 20px 0 0; list-style: none; border-top: 1px solid var(--ob-line-subtle); }
+.s-lookup__figures li { display: grid; gap: 4px; }
+.s-lookup__figure { font: 600 26px / 1.05 var(--ob-font-sans); letter-spacing: -0.02em; color: var(--ob-text); font-variant-numeric: tabular-nums; }
+.s-lookup__figlabel { font: 500 13px / 1.35 var(--ob-font-sans); color: var(--ob-text-3); }
+
+/* The hero's picture: the sample's 4 answers, each with the reader's cobalt mark; a step with no email in red. */
+.s-lookup-preview__rows { margin: 0; padding: 6px 0; list-style: none; }
+.s-lookup-preview__row { display: grid; gap: 5px; padding: 16px 22px; border-top: 1px solid var(--ob-line-subtle); }
+.s-lookup-preview__row:first-child { border-top: 0; }
+.s-lookup-preview__q { display: flex; align-items: center; gap: 10px; font: 500 14px / 1.35 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-lookup-preview__q::before { content: ''; flex: none; width: 7px; height: 7px; border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); }
+.s-lookup-preview__a { padding-left: 17px; font: 600 22px / 1.2 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.s-lookup-preview__row[data-none] .s-lookup-preview__a { color: var(--ob-danger); }
+.s-lookup-preview__i { padding-left: 17px; font: 500 12.5px / 1.45 var(--ob-font-mono); color: var(--ob-text-3); }
+
+/* The sample's whole entry. */
+.s-lookup-sample__console { margin-top: clamp(24px, 3vw, 40px); }
+.s-lookup-sample .v5-hx { max-width: none; }
+
+/* How you get your entry: 3 numbered cards. */
+.s-lookup-steps__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; margin: clamp(24px, 3vw, 40px) 0 0; padding: 0; list-style: none; }
+.s-lookup-steps__item { display: grid; align-content: start; gap: 8px; padding: 24px; border: 1px solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-surface); }
+.s-lookup-steps__n { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ob-line-strong); font: 600 14px / 1 var(--ob-font-mono); color: var(--s-accent-developers); }
+.s-lookup-steps__t { margin: 8px 0 0; font: 600 18px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-lookup-steps__l { margin: 0; font: 500 15px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+
+/* How a site gets into the index: 4 rules on hairlines, 2 by 2 from a tablet up. */
+.s-lookup-index__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; margin: clamp(24px, 3vw, 40px) 0 0; padding: 0; list-style: none; }
+.s-lookup-index__item { display: grid; gap: 6px; padding: 22px 0; border-top: 1px solid var(--ob-line); }
+.s-lookup-index__t { margin: 0; font: 600 17px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-lookup-index__l { margin: 0; font: 500 15px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+
+/* The closing call, under the same cobalt glow as the hero. */
+.s-lookup-final { position: relative; overflow: clip; text-align: center; }
+.s-lookup-final::before { content: ''; position: absolute; inset: 0 15%; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow) var(--s-accent-glow-hero), transparent), transparent); pointer-events: none; }
+.s-lookup-final__in { position: relative; display: grid; justify-items: center; gap: 16px; }
+.s-lookup-final__in .ob-type-h2 { margin: 0; }
+.s-lookup-final__line { margin: 0; color: var(--ob-text-2); }
+@media (max-width: 760px) {
+  .s-lookup-index__list { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ==== 13 Nov, later (James): an entry finds what to change, not only email gaps ==== */
+/* What an entry checks: 6 cards, each tagged in every entry or on request. */
+.s-lookup-checks__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: clamp(24px, 3vw, 40px) 0 0; padding: 0; list-style: none; }
+.s-lookup-checks__item { display: grid; align-content: start; gap: 8px; padding: 22px; border: 1px solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-surface); }
+.s-lookup-checks__tag { justify-self: start; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--ob-line-strong); font: 500 11.5px / 1.3 var(--ob-font-mono); color: var(--ob-text-3); }
+.s-lookup-checks__item[data-every] .s-lookup-checks__tag { border-color: transparent; background: color-mix(in srgb, var(--s-accent-developers) 16%, transparent); color: var(--s-accent-developers); }
+.s-lookup-checks__t { margin: 6px 0 0; font: 600 18px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-lookup-checks__l { margin: 0; font: 500 15px / 1.55 var(--ob-font-sans); color: var(--ob-text-2); }
+@media (max-width: 960px) { .s-lookup-checks__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .s-lookup-checks__list { grid-template-columns: minmax(0, 1fr); } }
+
+/* Insights' parts: a heading and a line over each. */
+.lk-sec { display: grid; gap: 14px; min-width: 0; }
+.lk-sec__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+.lk-sec__h { margin: 0; font: 600 18px / 1.3 var(--ob-font-sans); letter-spacing: -0.01em; color: var(--ob-text); }
+.lk-sec__line { margin: 0; font: 500 13.5px / 1.45 var(--ob-font-sans); color: var(--ob-text-3); }
+
+/* What to change first: numbered, the first one ringed. A stop is red, a missing email amber, a fix ink. */
+.lk-changes__list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.lk-change { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 14px 16px; border: 1px solid var(--ob-line); border-radius: 12px; background: var(--hx-card, var(--ob-surface-raised)); }
+.lk-change:first-child { border-color: var(--ob-line-strong); }
+.lk-change__n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--ob-line-strong); font: 600 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-2); }
+.lk-change[data-tone='stop'] .lk-change__n { border-color: var(--ob-danger); color: var(--ob-danger); }
+.lk-change[data-tone='gap'] .lk-change__n { border-color: var(--ob-warning); color: var(--ob-warning); }
+.lk-change__body { display: grid; gap: 3px; min-width: 0; }
+.lk-change__t { margin: 0; font: 600 16px / 1.35 var(--ob-font-sans); color: var(--ob-text); }
+.lk-change__l { margin: 0; font: 500 14px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); overflow-wrap: anywhere; }
+.lk-change__go { align-self: center; white-space: nowrap; }
+
+/* An AI shopper's 4 stages beside the offers. */
+.lk-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.lk-two > .lk-sec { align-content: start; padding: 20px; border: 1px solid var(--ob-line); border-radius: 12px; background: var(--hx-card, var(--ob-surface-raised)); }
+.lk-stages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.lk-stage { display: grid; gap: 4px; padding: 10px; border-radius: 10px; background: var(--ob-bg-sunken); border-top: 3px solid var(--ob-success); }
+.lk-stage[data-verdict='slow'] { border-top-color: var(--ob-warning); }
+.lk-stage[data-verdict='stalled'] { border-top-color: var(--ob-danger); }
+.lk-stage__name { font: 600 14px / 1.2 var(--ob-font-sans); color: var(--ob-text); }
+.lk-stage__v { font: 500 12px / 1.3 var(--ob-font-mono); color: var(--ob-text-3); }
+.lk-stage[data-verdict='stalled'] .lk-stage__v { color: var(--ob-danger); }
+.lk-ready__why { margin: 0; font: 500 14px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+.lk-missing { display: grid; justify-items: start; gap: 10px; margin: 0; font: 500 14px / 1.5 var(--ob-font-sans); color: var(--ob-text-3); }
+.lk-missing p { margin: 0; }
+.lk-offers__list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.lk-offers__list li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; align-items: baseline; }
+.lk-code { grid-row: span 2; padding: 3px 8px; border-radius: 6px; background: var(--ob-bg-sunken); font: 600 12px / 1.3 var(--ob-font-mono); letter-spacing: 0.03em; color: var(--ob-text); }
+.lk-offer__t { grid-column: 2; font: 600 14.5px / 1.4 var(--ob-font-sans); color: var(--ob-text); }
+.lk-offer__w { grid-column: 2; font: 500 12.5px / 1.4 var(--ob-font-sans); color: var(--ob-text-3); }
+@media (max-width: 760px) {
+  .lk-two { grid-template-columns: minmax(0, 1fr); }
+  .lk-change { grid-template-columns: 28px minmax(0, 1fr); }
+  .lk-change__go { grid-column: 2; justify-self: start; }
+}
