@@ -7,7 +7,6 @@ import { Nav } from './components/Nav'
 import { NavProgress } from './components/NavProgress'
 import { catalog } from './content/catalog'
 import { headFor } from './content/head'
-import { storyCtas } from './content/heads'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
 import { recipeWords, refWords, studyWords } from './content/words'
@@ -226,21 +225,11 @@ function ScrollManager() {
   return null
 }
 
-/* The story pages (Home, Agencies, Founders, Sales, Marketing, Developers, Check your AI agents) and every recipe take
-   the nav's call to action from their own capture: the hero form's button, landing on the page's final form (#join). The
-   bar says a long button in fewer words (content/nav barCta, applied in content/heads.ts); the phone sheet keeps the
-   page's own. */
-const STORY_CTAS = new Map(Object.entries(storyCtas))
-
-/* Pages without a form of their own send the nav's call to action to Home's waitlist. (/lookup has its own box since
-   13 Nov, and its call to action goes there.) */
-const NO_FORM = new Set(['/privacy', '/agents'])
+/* The header's call to action (James, 13 Nov): "Look up your site" on every page, in place of early access, going to
+   /lookup (on /lookup itself, to its box). /agents keeps its own: a company asking about an agent writes to us. The
+   story pages' hero forms and final forms are unchanged; only the header's button moved. */
 function ctaAt(pathname: string) {
-  const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
-  const story = STORY_CTAS.get(clean)
-  if (story) return story
-  const cta = ctaFor(pathname)
-  return NO_FORM.has(clean) && cta.to.startsWith('#') ? { ...cta, to: `/${cta.to}` } : cta
+  return ctaFor(pathname)
 }
 
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the

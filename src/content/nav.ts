@@ -3,7 +3,7 @@
    star). Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
-import type { Capture, Cta, ReaderId, RecipeGroup, RecipeId } from './types'
+import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
 import { ways } from './ways'
 
 export type NavPage = { label: string; to: string; line?: string }
@@ -256,8 +256,9 @@ export const nav = {
       : null,
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
-  /* The page's call to action. Pages without their own use this one. */
-  cta: { label: 'Request early access', to: '#join', bar: 'Early access' } satisfies Cta,
+  /* The header's call to action on every page (James, 13 Nov: the store lookup, in place of early access everywhere).
+     Each page's own early access form stays where it is. */
+  cta: { label: 'Look up your site', to: '/lookup' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
   github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,
@@ -265,28 +266,10 @@ export const nav = {
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
-/* The bar's button is never much wider than "Get early access" (141px), so the 5 readers keep their place in the bar
-   from 1012 up on every page and the button stays on a 384px phone (Nav.css, measured). A page whose own button says
-   more keeps its words in its hero, its final form and the phone sheet; the bar says the same offer in fewer words. */
-const BAR_WORDS: Record<string, string> = {
-  'Request early access': 'Early access',
-  'Get early access for my team': 'Get early access',
-}
-/* An AI agent page's form (kind 'verify') says early access in the bar too. */
-const VERIFY_BAR = 'Early access'
-
-export function barCta(cta: Cta, kind?: Capture['kind']): Cta {
-  const bar = BAR_WORDS[cta.label] ?? (kind === 'verify' ? VERIFY_BAR : undefined)
-  return bar && bar !== cta.label ? { ...cta, bar } : cta
-}
-
-/* Each page's call to action in the nav (docs/REBUILD.md, "Calls to action"). Each goes to the page's own form.
-   Home, the audience pages and Developers take theirs from their own hero capture (App.tsx), so only the others are here. */
+/* The few pages whose header button differs from nav.cta ("Look up your site", to /lookup, on every other page). */
 export const pageCtas: Record<string, Cta> = {
-  /* James, 13 Nov: the store lookup is the call to action here and on the sample data, in place of early access. On
-     /lookup it goes to the page's own box (#lookup); on /sample-output, to /lookup. */
+  /* On /lookup, the header's "Look up your site" goes to the page's own box. */
   '/lookup': { label: 'Look up your site', to: '#lookup' },
-  '/sample-output': { label: 'Look up your site', to: '/lookup' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
 }
