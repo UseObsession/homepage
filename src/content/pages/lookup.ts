@@ -16,7 +16,8 @@ export type LookupPage = {
   pill: string
   headline: string
   sub: string
-  /* Under the box: what the index holds today, counted from its entries (13 Nov 2026). */
+  /* Under the box (James, 13 Nov): the site's 1,500 line in its exact words; 84 of 170 abandoned checkouts in the
+     index's entries with no email in their 48 hours (49%); every email event in the index on 13 Nov (4,196). */
   figures: { value: string; label: string }[]
   /* The hero's picture: the sample store's answers, as an entry shows them. */
   preview: { title: string; tag: string }
@@ -119,9 +120,9 @@ export const lookupPage: LookupPage = {
   headline: 'See what we’ve indexed of your site.',
   sub: 'How your store treats a new customer and an AI shopper, and what to change first. Type your email at your site and we’ll send you the entry.',
   figures: [
-    { value: '258', label: 'online stores indexed' },
-    { value: '625', label: 'customer steps tested' },
-    { value: '1,170', label: 'emails kept as they arrived' },
+    { value: '1,500', label: 'sign-ups, baskets and checkouts at real companies' },
+    { value: '1 in 2', label: 'abandoned checkouts got no reminder within 48 hours' },
+    { value: '4,196', label: 'emails kept as they arrived' },
   ],
   preview: { title: 'hollin.example', tag: 'Sample entry' },
   sample: {
