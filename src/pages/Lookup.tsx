@@ -9,7 +9,7 @@ import { lookupPage as p } from '../content/pages/lookup'
 import { track } from '../lib/analytics'
 import { siteFromEmail, type JoinStore } from '../lib/join'
 import { askForVisit, askLookup, lookupJoin, openLink, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
-import { after, basketText, day, entryOf, list, type Entry } from '../lib/lookupEntry'
+import { after, basketText, changesOf, day, entryOf, halfWithin, list, offersOf, type Entry } from '../lib/lookupEntry'
 import { isEmail, isWorkEmail } from '../lib/waitlist'
 import { Crumbs } from '../components/Crumbs'
 import { Faq } from '../components/sections/Faq'
@@ -305,7 +305,7 @@ export function Lookup() {
             {phase.at === 'found' && (
               <>
                 <StoreEntry card={phase.card} view={phase.view} index={phase.index} again={again} />
-                <section className="ob-card ob-card--raised s-lookup__ask">
+                <section className="ob-card ob-card--raised s-lookup__ask" id="update">
                   <div className="s-lookup__askhead">
                     <h3 className="ob-card-title">{p.update.headline}</h3>
                     <p className="ob-card-body">{p.update.line(phase.card.domain)}</p>
@@ -318,6 +318,21 @@ export function Lookup() {
           </div>
         </section>
       )}
+
+      <section className="s-section s-lookup-checks" aria-labelledby={`${uid}-checks`}>
+        <div className="s-wrap">
+          <SectionHead id={`${uid}-checks`} heading={p.checks.heading} line={p.checks.line} />
+          <ul className="s-lookup-checks__list">
+            {p.checks.items.map((it) => (
+              <li key={it.title} className="s-lookup-checks__item" data-every={it.every ? '' : undefined}>
+                <span className="s-lookup-checks__tag">{it.every ? p.checks.every : p.checks.request}</span>
+                <h3 className="s-lookup-checks__t">{it.title}</h3>
+                <p className="s-lookup-checks__l">{it.line}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {phase.at !== 'found' && (
         <section className="s-section s-lookup-sample" data-tone="alt" aria-labelledby={`${uid}-sample`}>
@@ -395,7 +410,7 @@ const sampleCopy = (id: string) =>
     .catch(() => null)
 
 /* An entry in the console, opened on Insights: a looked-up site, or the sample under the hero. */
-function EntryConsole({ card, view, index, fetchCopy }: { card: Card; view: string; index?: IndexTotals; fetchCopy?: (id: string) => Promise<string | null> }) {
+function EntryConsole({ card, view, index, fetchCopy, ask }: { card: Card; view: string; index?: IndexTotals; fetchCopy?: (id: string) => Promise<string | null>; ask?: () => void }) {
   const entry = useMemo(() => entryOf(card, view, p.console, p.entry, fetchCopy), [card, view, fetchCopy])
   return (
     <HeroExplorer
@@ -404,14 +419,38 @@ function EntryConsole({ card, view, index, fetchCopy }: { card: Card; view: stri
       bar={false}
       autoplay={false}
       anchors={false}
-      insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} /> })}
+      insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} ask={ask} /> })}
     />
   )
 }
 
-/* The hero's picture: the sample store's 4 answers, as its entry gives them, each against the index. */
+/* The hero's picture: the sample store's entry at a glance, 1 row a part: can an AI shopper buy, the offers, the
+   emails after each step, the campaigns. */
 function EntryPreview() {
   const t = p.insights
+  const c = sampleCard
+  const stall = c.readiness?.find((r) => r.verdict === 'stalled')
+  const offers = offersOf(c, t)
+  const codes = offers.filter((o) => o.code)
+  const pcts = codes.map((o) => o.text.match(/\d+%/)?.[0]).filter((x): x is string => !!x)
+  const got = c.journeys.filter((j) => j.emails).length
+  const none = c.journeys.find((j) => !j.emails)
+  const tot = none && sampleTotals.journeys[none.journey]
+  const rows: { q: string; a: string; i: string; bad?: boolean }[] = [
+    {
+      q: t.readiness.heading,
+      a: stall ? t.readiness.stopsAt(t.readiness.stages[stall.stage]) : t.readiness.passes,
+      i: (c.readiness ?? []).map((r) => `${t.readiness.stages[r.stage]} ${t.readiness.verdicts[r.verdict].toLowerCase()}`).join(' · '),
+      bad: !!stall,
+    },
+    { q: t.offers.heading, a: t.offers.summary(codes.length, pcts.length ? `${list(pcts)} off` : ''), i: codes.map((o) => `${o.code} · ${o.where}`).join(', ') },
+    {
+      q: t.emails.heading,
+      a: t.emails.summary(got, c.journeys.length),
+      i: none && tot ? `${t.change.reminder[none.journey]}: ${t.change.reminderLine(Math.round((tot.answered / tot.runs) * 100), tot.runs, halfWithin(tot.median_minutes))}` : '',
+    },
+    { q: t.rhythmLabel, a: c.rhythm ? t.weekly(c.rhythm.per_week) : '', i: [c.rhythm?.weekday && t.weekday(c.rhythm.weekday), c.rhythm?.languages.length && t.languages(list(c.rhythm.languages))].filter(Boolean).join(' ') },
+  ]
   return (
     <div className="ob-window ob-object s-lookup-preview">
       <div className="ob-window-bar">
@@ -424,20 +463,13 @@ function EntryPreview() {
         <span className="ob-tag">{p.preview.tag}</span>
       </div>
       <ol className="s-lookup-preview__rows">
-        {sampleCard.journeys.map((j) => {
-          const tot = sampleTotals.journeys[j.journey]
-          return (
-            <li key={j.journey} className="s-lookup-preview__row" data-none={j.emails ? undefined : ''}>
-              <span className="s-lookup-preview__q">{t.questions[j.journey]}</span>
-              <span className="s-lookup-preview__a">{j.emails ? t.yes(after(j.first_after_minutes ?? 0)) : t.no(j.window_hours || 48)}</span>
-              {tot && (
-                <span className="s-lookup-preview__i">
-                  {t.index(Math.round((tot.answered / tot.runs) * 100), tot.runs, tot.median_minutes == null ? '' : tot.median_minutes < 1 ? 'within a minute' : `within ${after(tot.median_minutes)}`)}
-                </span>
-              )}
-            </li>
-          )
-        })}
+        {rows.map((r) => (
+          <li key={r.q} className="s-lookup-preview__row" data-none={r.bad ? '' : undefined}>
+            <span className="s-lookup-preview__q">{r.q}</span>
+            <span className="s-lookup-preview__a">{r.a}</span>
+            {r.i && <span className="s-lookup-preview__i">{r.i}</span>}
+          </li>
+        ))}
       </ol>
     </div>
   )
@@ -457,72 +489,159 @@ function StoreEntry({ card, view, index, again }: { card: Card; view: string; in
           <span className="ob-btn-label">{p.another}</span>
         </button>
       </header>
-      <EntryConsole card={card} view={view} index={index} />
+      <EntryConsole card={card} view={view} index={index} ask={() => document.getElementById('update')?.scrollIntoView({ behavior: 'smooth', block: 'center' })} />
       <p className="s-lookup__scope">{e.scope}</p>
     </article>
   )
 }
 
-/* Insights for an entry (design A): one card for each journey, answering its question from the events in Search,
-   read against the index's totals; then the campaign emails after the 48 hours. Worked out here, from the card: the
-   index keeps the events, never the answers. "From n events" opens Search at the journey's act. */
-function LookupInsights({ card, index, entry, go }: { card: Card; index?: IndexTotals; entry: Entry; go: ConsoleGo }) {
+/* Insights for an entry (design A; 13 Nov, James: what to change, not only email gaps). On top, what to change
+   first, ranked; then whether an AI shopper can buy (or, where that check hasn't been run, a way to ask for it) beside
+   the offers; then the emails after each step, each against the index; then the campaigns. Worked out here from the
+   card: the index keeps the events, never the answers. A change or an answer that comes from an event opens Search
+   there. */
+function LookupInsights({ card, index, entry, go, ask }: { card: Card; index?: IndexTotals; entry: Entry; go: ConsoleGo; ask?: () => void }) {
   const t = p.insights
   const r = card.rhythm
   const weeks = r ? Math.max(1, Math.round((Date.parse(r.to) - Date.parse(r.from)) / (7 * 864e5))) : 0
+  const changes = changesOf(card, index, entry, t)
+  const offers = offersOf(card, t)
+  const stall = card.readiness?.find((x) => x.verdict === 'stalled')
   return (
     <div className="lk-ins">
       <span className="lk-ins__chips">
         <span className="lk-chip">{p.entry.persona}</span>
         <span className="lk-chip">{t.every}</span>
       </span>
-      <div className="lk-qs">
-        {card.journeys.map((j) => {
-          const hours = j.window_hours || 48
-          const tot = index?.journeys[j.journey]
-          const items = basketText(j)
-          const flags = card.faults.filter((f) => f.journey === j.journey)
-          const act = entry.acts[j.journey]
-          return (
-            <article className="lk-q" key={j.journey} data-none={j.emails ? undefined : ''}>
-              <p className="lk-q__journey">{p.entry.journeys[j.journey]}</p>
-              <h4 className="lk-q__question">{t.questions[j.journey]}</h4>
-              <p className="lk-q__answer">{j.emails ? t.yes(after(j.first_after_minutes ?? 0)) : t.no(hours)}</p>
-              <p className="lk-q__detail">
-                {j.emails ? (
-                  <>
-                    {t.count(j.emails, hours)} {j.list[0] && t.first(j.list[0].subject || '(no subject)')}
-                  </>
-                ) : items.length ? (
-                  t.left(list(items))
-                ) : (
-                  t.nothing
-                )}
-              </p>
-              {flags.length > 0 && (
-                <ul className="lk-q__flags">
-                  {flags.map((f, i) => (
-                    <li key={i} data-kind={f.kind}>
-                      {f.kind === 'finding' ? f.text : p.entry.faults[f.kind]}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <div className="lk-q__foot">
-                <span>
-                  {tot && tot.runs > 0 &&
-                    t.index(Math.round((tot.answered / tot.runs) * 100), tot.runs, tot.median_minutes == null ? '' : tot.median_minutes < 1 ? 'within a minute' : `within ${after(tot.median_minutes)}`)}
-                </span>
-                {act && (
-                  <button type="button" className="lk-q__from" onClick={() => go.search(act.act)}>
-                    {t.from(act.events)}
+
+      {changes.length > 0 && (
+        <section className="lk-sec lk-changes">
+          <div className="lk-sec__head">
+            <h3 className="lk-sec__h">{t.changes.heading}</h3>
+            <p className="lk-sec__line">{t.changes.line}</p>
+          </div>
+          <ol className="lk-changes__list">
+            {changes.map((c, k) => (
+              <li key={c.title + k} className="lk-change" data-tone={c.tone}>
+                <span className="lk-change__n">{k + 1}</span>
+                <div className="lk-change__body">
+                  <p className="lk-change__t">{c.title}</p>
+                  {c.line && <p className="lk-change__l">{c.line}</p>}
+                </div>
+                {c.event && (
+                  <button type="button" className="lk-q__from lk-change__go" onClick={() => go.search(c.event)}>
+                    {t.from(1)}
                   </button>
                 )}
-              </div>
-            </article>
-          )
-        })}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      <div className="lk-two">
+        <section className="lk-sec lk-ready">
+          <div className="lk-sec__head">
+            <h3 className="lk-sec__h">{t.readiness.heading}</h3>
+            <p className="lk-sec__line">{t.readiness.line}</p>
+          </div>
+          {card.readiness ? (
+            <>
+              <ol className="lk-stages">
+                {card.readiness.map((x) => (
+                  <li key={x.stage} className="lk-stage" data-verdict={x.verdict}>
+                    <span className="lk-stage__name">{t.readiness.stages[x.stage]}</span>
+                    <span className="lk-stage__v">{t.readiness.verdicts[x.verdict]}</span>
+                  </li>
+                ))}
+              </ol>
+              {stall && <p className="lk-ready__why">{stall.line}</p>}
+            </>
+          ) : (
+            <div className="lk-missing">
+              <p>{t.readiness.missing(card.domain)}</p>
+              {ask && (
+                <button type="button" className="ob-btn ob-btn--secondary ob-btn--sm" onClick={ask}>
+                  <span className="ob-btn-label">{t.readiness.ask}</span>
+                </button>
+              )}
+            </div>
+          )}
+        </section>
+
+        <section className="lk-sec lk-offers">
+          <div className="lk-sec__head">
+            <h3 className="lk-sec__h">{t.offers.heading}</h3>
+          </div>
+          {offers.length ? (
+            <ul className="lk-offers__list">
+              {offers.map((o) => (
+                <li key={o.text + o.seen}>
+                  {o.code && <span className="lk-code">{o.code}</span>}
+                  <span className="lk-offer__t">{o.text}</span>
+                  <span className="lk-offer__w">
+                    {o.where} · {o.until ? t.offers.until(day(o.until)) : t.offers.since(day(o.seen))}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="lk-missing">{t.offers.missing}</p>
+          )}
+        </section>
       </div>
+
+      <section className="lk-sec">
+        <div className="lk-sec__head">
+          <h3 className="lk-sec__h">{t.emails.heading}</h3>
+          <p className="lk-sec__line">{t.emails.summary(card.journeys.filter((j) => j.emails).length, card.journeys.length)}</p>
+        </div>
+        <div className="lk-qs">
+          {card.journeys.map((j) => {
+            const hours = j.window_hours || 48
+            const tot = index?.journeys[j.journey]
+            const items = basketText(j)
+            const flags = card.faults.filter((f) => f.journey === j.journey && f.kind !== 'finding')
+            const act = entry.acts[j.journey]
+            return (
+              <article className="lk-q" key={j.journey} data-none={j.emails ? undefined : ''}>
+                <p className="lk-q__journey">{p.entry.journeys[j.journey]}</p>
+                <h4 className="lk-q__question">{t.questions[j.journey]}</h4>
+                <p className="lk-q__answer">{j.emails ? t.yes(after(j.first_after_minutes ?? 0)) : t.no}</p>
+                <p className="lk-q__detail">
+                  {j.emails ? (
+                    <>
+                      {t.count(j.emails)} {j.list[0] && t.first(j.list[0].subject || '(no subject)')}
+                    </>
+                  ) : (
+                    <>
+                      {items.length > 0 && t.left(list(items))} {t.nothing(hours)}
+                    </>
+                  )}
+                </p>
+                {flags.length > 0 && (
+                  <ul className="lk-q__flags">
+                    {flags.map((f, i) => (
+                      <li key={i} data-kind={f.kind}>
+                        {p.entry.faults[f.kind as 'blank_name' | 'placeholder']}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div className="lk-q__foot">
+                  <span>{tot && tot.runs > 0 && t.index(Math.round((tot.answered / tot.runs) * 100), tot.runs, halfWithin(tot.median_minutes))}</span>
+                  {act && (
+                    <button type="button" className="lk-q__from" onClick={() => go.search(act.act)}>
+                      {t.from(act.events)}
+                    </button>
+                  )}
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </section>
+
       {r && (
         <div className="lk-rhythm">
           <p className="lk-q__journey">{t.rhythmLabel}</p>

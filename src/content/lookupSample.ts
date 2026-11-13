@@ -172,7 +172,49 @@ export const sampleCard: Card = {
     "to": "2026-09-30",
     "mail_until": "2026-11-12"
   },
-  "built_at": "2026-11-13T09:00:00+00:00"
+  "built_at": "2026-11-13T09:00:00+00:00",
+  "readiness": [
+    {
+      "stage": "discover",
+      "verdict": "pass",
+      "line": "Every product is in the sitemap and in the page data agents read."
+    },
+    {
+      "stage": "evaluate",
+      "verdict": "slow",
+      "line": "Prices and stock read cleanly. Sizes need a hover, and the returns policy is a PDF."
+    },
+    {
+      "stage": "compare",
+      "verdict": "pass",
+      "line": "Delivery cost, reviews and the returns window are on each product page."
+    },
+    {
+      "stage": "buy",
+      "verdict": "stalled",
+      "line": "A sign-up pop-up covers the checkout button until it is closed."
+    }
+  ],
+  "offers": [
+    {
+      "code": "SOFTER10",
+      "text": "10% off a first order",
+      "where": "Welcome email",
+      "seen": "2026-09-29"
+    },
+    {
+      "code": "TABLE15",
+      "text": "15% off table linen",
+      "where": "Campaign email",
+      "seen": "2026-11-10",
+      "until": "2026-11-10"
+    },
+    {
+      "text": "Free UK delivery over £75",
+      "where": "Every email",
+      "seen": "2026-09-29"
+    }
+  ]
 }
 
 export const sampleTotals: IndexTotals = {

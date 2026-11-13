@@ -43,6 +43,11 @@ export type Card = {
   }
   captured: { from: string; to: string; mail_until: string }
   built_at?: string
+  /* Can an AI agent find, read, compare and buy (13 Nov, James: what Ottom checks belongs in an entry too). Only on
+     entries that have had the check; the rest say it hasn't been done. */
+  readiness?: { stage: 'discover' | 'evaluate' | 'compare' | 'buy'; verdict: 'pass' | 'slow' | 'stalled'; line: string }[]
+  /* Offers the store made our accounts: a code, what it gives, where it came, when, and when it ended. */
+  offers?: { code?: string; text: string; where: string; seen: string; until?: string }[]
 }
 
 export type Answer<T> = { ok: true; data: T } | { ok: false; error: 'domain' | 'check' | 'limit' | 'server' | 'email' | 'view' | 'edit' | 'match' | 'link' }
