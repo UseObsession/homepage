@@ -1,0 +1,226 @@
+/* The store lookup (pages/Lookup.tsx): the Notice hero with its form, then 1 store card, the "not visited yet" form, or
+   the confirmation. On the design system's tokens and cards; every class starts s-lookup. Spacing sits on the 4px grid. */
+
+/* The Turnstile widget shows itself only when Cloudflare wants the reader to act. */
+.s-lookup__check:empty { display: none; }
+.s-lookup__check { display: grid; justify-items: center; min-height: 0; }
+
+.s-lookup { padding-bottom: var(--ob-space-block); }
+.s-lookup__wrap {
+  display: grid;
+  gap: var(--ob-space-24);
+  max-width: var(--ob-container-sm);
+  margin-inline: auto;
+}
+.s-lookup__wrap:focus { outline: none; }
+
+/* ---- The store card ---- */
+.s-lookup__card { display: grid; gap: var(--ob-space-24); }
+.s-lookup__head { display: grid; gap: var(--ob-space-8); }
+.s-lookup__name {
+  margin: 0;
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  color: var(--ob-text);
+  overflow-wrap: anywhere;
+}
+.s-lookup__domain {
+  margin: 0;
+  font: var(--ob-type-mono-sm);
+  letter-spacing: var(--ob-type-mono-sm-tracking);
+  color: var(--ob-text-3);
+}
+.s-lookup__dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-8) var(--ob-space-32);
+  margin: var(--ob-space-8) 0 0;
+}
+.s-lookup__dates div { display: grid; gap: var(--ob-space-2); }
+.s-lookup__dates dt {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.s-lookup__dates dd {
+  margin: 0;
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 4 journeys, 2 by 2 from a tablet up, 1 column on a phone. */
+.s-lookup__journeys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--ob-space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-lookup__journey { gap: var(--ob-space-12); }
+.s-lookup__journey .ob-card-label { margin: 0; }
+.s-lookup__state {
+  display: grid;
+  gap: var(--ob-space-2);
+  margin: 0;
+  font: var(--ob-type-body);
+  color: var(--ob-text-2);
+}
+.s-lookup__state strong { color: var(--ob-text); font-weight: 600; }
+.s-lookup__state--none { color: var(--ob-text); font-weight: 600; }
+.s-lookup__count {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+
+.s-lookup__emails {
+  display: grid;
+  gap: var(--ob-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-lookup__emails li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ob-space-4) var(--ob-space-12);
+  padding-top: var(--ob-space-8);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-lookup__subject {
+  flex: 1 1 14ch;
+  min-width: 0;
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+  overflow-wrap: anywhere;
+}
+.s-lookup__when {
+  font: var(--ob-type-mono-sm);
+  color: var(--ob-text-3);
+  white-space: nowrap;
+}
+.s-lookup__notes { display: flex; flex-wrap: wrap; gap: var(--ob-space-6) var(--ob-space-12); }
+.s-lookup__notes:empty { display: none; }
+.s-lookup__note {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+
+/* ---- What we noticed, what came after ---- */
+.s-lookup__block {
+  display: grid;
+  gap: var(--ob-space-12);
+  padding-top: var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-lookup__h {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-lookup__faults {
+  display: grid;
+  gap: var(--ob-space-12);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--ob-type-body);
+  color: var(--ob-text);
+}
+.s-lookup__faults li { display: grid; gap: var(--ob-space-2); }
+.s-lookup__fault-where {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.s-lookup__quiet,
+.s-lookup__rhythm {
+  margin: 0;
+  font: var(--ob-type-body);
+  color: var(--ob-text-2);
+}
+.s-lookup__latest {
+  margin: var(--ob-space-4) 0 0;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  text-transform: uppercase;
+  color: var(--ob-text-3);
+}
+.s-lookup__scope {
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+
+/* ---- Not visited yet, and the confirmation ---- */
+.s-lookup__missing { gap: var(--ob-space-12); padding: var(--ob-space-24); }
+.s-lookup__missing .ob-card-title { margin: 0; overflow-wrap: anywhere; }
+.s-lookup__missing .ob-card-body { margin: 0 0 var(--ob-space-8); }
+.s-lookup__missing .ob-pill-input { min-height: var(--ob-control-lg); }
+.s-lookup__done { justify-self: start; }
+.s-lookup__again { margin: 0; }
+
+.s-lookup__takedown {
+  margin-block: 0 var(--ob-space-section);
+  text-align: center;
+  font: var(--ob-type-small);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+
+/* ---- The email, in a sandboxed frame: no scripts, no links, the store's own styles. ---- */
+.s-lookup__dialog {
+  width: min(100% - var(--ob-space-32), 720px);
+  max-height: min(90vh, 900px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  background: var(--ob-surface-raised);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-2);
+}
+.s-lookup__dialog[open] { display: grid; grid-template-rows: auto 1fr auto; }
+.s-lookup__dialog::backdrop { background: rgb(0 0 0 / .55); }
+.s-lookup__dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-lookup__dialog-subject {
+  margin: 0;
+  min-width: 0;
+  font: var(--ob-type-small);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.s-lookup__frame {
+  width: 100%;
+  height: min(70vh, 760px);
+  border: 0;
+  background: #fff; /* the email's own canvas: most are designed on white */
+}
+.s-lookup__dialog-wait {
+  margin: 0;
+  padding: var(--ob-space-48) var(--ob-space-16);
+  text-align: center;
+  color: var(--ob-text-2);
+}
+.s-lookup__dialog-note {
+  margin: 0;
+  padding: var(--ob-space-8) var(--ob-space-16) var(--ob-space-12);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}

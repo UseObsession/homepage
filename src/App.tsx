@@ -44,6 +44,7 @@ const Blog = page('Blog')
 const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
 const SampleOutput = page('SampleOutput')
 const Privacy = page('Privacy')
+const Lookup = page('Lookup')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
 const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
@@ -69,6 +70,7 @@ const PAGES: Record<string, LazyPage> = {
   '/use-cases': UseCases,
   '/sample-output': SampleOutput,
   '/privacy': Privacy,
+  '/lookup': Lookup,
   '/agents': Agents,
   '/alternatives': AlternativesHub,
   '/glossary': GlossaryHub,
@@ -231,7 +233,7 @@ function ScrollManager() {
 const STORY_CTAS = new Map(Object.entries(storyCtas))
 
 /* Pages without a form of their own send the nav's call to action to Home's waitlist. */
-const NO_FORM = new Set(['/privacy', '/agents'])
+const NO_FORM = new Set(['/privacy', '/agents', '/lookup'])
 function ctaAt(pathname: string) {
   const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
   const story = STORY_CTAS.get(clean)
@@ -402,6 +404,7 @@ export function AppRoutes() {
         {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
+        <Route path="lookup" element={<Lookup />} />
         <Route path="agents" element={<Agents />} />
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
         <Route path="templates" element={<Navigate to="/recipes" replace />} />
