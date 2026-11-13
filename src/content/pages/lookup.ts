@@ -30,6 +30,8 @@ export type LookupPage = {
   indexing: { heading: string; line: string; items: { title: string; line: string }[] }
   faq: { heading: string; items: { q: string; a: string }[] }
   final: { heading: string; line: string; button: string }
+  /* Above the closing call: the same data for any company, the other 2 uses, to early access. */
+  others: { line: string; link: string; to: string }
   form: {
     label: string
     placeholder: string
@@ -118,7 +120,7 @@ export const lookupPage: LookupPage = {
   },
   pill: 'Store lookup',
   headline: 'See what we’ve indexed of your site.',
-  sub: 'How your store treats a new customer and an AI shopper, and what to change first. Type your email at your site and we’ll send you the entry.',
+  sub: 'The screens, emails, prices and offers your store shows only to signed-up customers, step by step, each one dated. Type your email at your site and we’ll send you the entry.',
   figures: [
     { value: '1,500', label: 'sign-ups, baskets and checkouts at real companies' },
     { value: '1 in 2', label: 'abandoned checkouts got no reminder within 48 hours' },
@@ -127,7 +129,7 @@ export const lookupPage: LookupPage = {
   preview: { title: 'hollin.example', tag: 'Sample entry' },
   sample: {
     heading: 'A whole entry, for our sample store',
-    line: 'This is the entry for hollin.example, our sample store. It opens on what to change first. Below that sit the AI shopper check, the offers and the emails after each step, each against the index. Search lists every step and every email, with a copy you can open.',
+    line: 'This is the entry for hollin.example, our sample store. It opens on what to change first. Below that sit the emails after each step, the offers and the campaigns, each against the index. Search lists every step and every email, with a copy you can open.',
   },
   steps: {
     heading: 'How you get your entry',
@@ -139,26 +141,26 @@ export const lookupPage: LookupPage = {
   },
   checks: {
     heading: 'What an entry checks',
-    line: 'How your store treats a new customer and an AI shopper, step by step, with each finding next to the change to make.',
+    line: 'What your store shows a signed-up customer, step by step and dated, with each finding next to the change to make.',
     every: 'In every entry',
     request: 'On request',
     items: [
+      { title: 'What your store shows behind the login', line: 'Every screen, email and offer your store gave our account after a sign-up, a basket and a checkout, each one dated.', every: true },
       { title: 'What to change first', line: 'Every finding next to the change it asks for, ranked against how many stores in the index already do it.', every: true },
-      { title: 'Can an AI shopper buy from you', line: 'Whether an AI agent can find your products, read prices, sizes and policies, compare you, and get through checkout.', every: false },
-      { title: 'Your checkout', line: 'What it asks a new customer for, the pop-ups in the way, and the step where a shopper is stopped.', every: false },
-      { title: 'Your offers', line: 'Every code and discount your emails give a new customer, where it came and when it ended.', every: true },
       { title: 'Your emails after each step', line: 'The welcome, product view, basket and checkout emails: whether one comes, how fast, and what’s wrong in it.', every: true },
+      { title: 'Your offers', line: 'Every code and discount your emails give a new customer, where it came and when it ended.', every: true },
       { title: 'Your campaigns', line: 'How often your store emails after that, on which days and in which languages.', every: true },
+      { title: 'Can an AI shopper buy from you', line: 'An AI agent tries to find, read, compare and buy your products, and the entry shows where it stops.', every: false },
     ],
   },
   indexing: {
     heading: 'How we check a site',
-    line: 'Our accounts act as a new customer and as an AI shopper, then keep what your store shows and sends back.',
+    line: 'Our accounts sign up and shop your store the way a new customer would, then keep what your store shows and sends back.',
     items: [
-      { title: 'A new customer’s steps', line: 'Sign up, look at a product, leave a basket, start a checkout. Every email that follows is timed from its step.' },
-      { title: 'An AI shopper’s steps', line: 'Find the products, read the prices, sizes and policies, compare, reach checkout. Each stage passes or stops with a reason.' },
+      { title: 'A new customer’s steps', line: 'Sign up, look at a product, leave a basket, start a checkout. Every screen and email that follows is dated from its step.' },
       { title: 'Kept as it arrived', line: 'Every screen and email, with links, tracking images, and our account’s name and address taken out.' },
       { title: 'Never a real order', line: 'Our accounts stop before payment. Every email in an entry was sent to one of them, never to your customers.' },
+      { title: 'An AI shopper, on request', line: 'An AI agent tries to find, read, compare and buy your products, and the entry shows the stage where it stops.' },
     ],
   },
   faq: {
@@ -175,6 +177,7 @@ export const lookupPage: LookupPage = {
     ],
   },
   final: { heading: 'See your site’s entry', line: 'Type your email at your site and the link comes to your inbox.', button: 'Look up your site' },
+  others: { line: 'The same data for any company: watch your competitors, or open a pitch with a prospect’s own emails.', link: 'Request early access', to: '/#join' },
   form: {
     label: 'Your site’s domain',
     placeholder: 'yoursite.com',

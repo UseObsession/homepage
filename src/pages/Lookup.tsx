@@ -378,6 +378,13 @@ export function Lookup() {
 
       <Faq faq={p.faq} id="questions" />
 
+      <p className="s-wrap s-lookup-others">
+        {p.others.line}{' '}
+        <Link className="ob-btn ob-btn--link ob-btn--inline" to={p.others.to}>
+          <span className="ob-btn-label">{p.others.link}</span>
+        </Link>
+      </p>
+
       <section className="s-section s-lookup-final" data-reader="developers" aria-labelledby={`${uid}-final`}>
         <div className="s-wrap s-lookup-final__in">
           <h2 className="ob-type-h2" id={`${uid}-final`}>
@@ -424,8 +431,8 @@ function EntryConsole({ card, view, index, fetchCopy, ask }: { card: Card; view:
   )
 }
 
-/* The hero's picture: the sample store's entry at a glance, 1 row a part: can an AI shopper buy, the offers, the
-   emails after each step, the campaigns. */
+/* The hero's picture: the sample store's entry at a glance, 1 row a part: the emails after each step, the offers, the
+   campaigns, and last the AI shopper check (13 Nov, James: the data first, the AI shopper on request). */
 function EntryPreview() {
   const t = p.insights
   const c = sampleCard
@@ -438,18 +445,18 @@ function EntryPreview() {
   const tot = none && sampleTotals.journeys[none.journey]
   const rows: { q: string; a: string; i: string; bad?: boolean }[] = [
     {
+      q: t.emails.heading,
+      a: t.emails.summary(got, c.journeys.length),
+      i: none && tot ? `${t.change.reminder[none.journey]}: ${t.change.reminderLine(Math.round((tot.answered / tot.runs) * 100), tot.runs, halfWithin(tot.median_minutes))}` : '',
+    },
+    { q: t.offers.heading, a: t.offers.summary(codes.length, pcts.length ? `${list(pcts)} off` : ''), i: codes.map((o) => `${o.code} · ${o.where}`).join(', ') },
+    { q: t.rhythmLabel, a: c.rhythm ? t.weekly(c.rhythm.per_week) : '', i: [c.rhythm?.weekday && t.weekday(c.rhythm.weekday), c.rhythm?.languages.length && t.languages(list(c.rhythm.languages))].filter(Boolean).join(' ') },
+    {
       q: t.readiness.heading,
       a: stall ? t.readiness.stopsAt(t.readiness.stages[stall.stage]) : t.readiness.passes,
       i: (c.readiness ?? []).map((r) => `${t.readiness.stages[r.stage]} ${t.readiness.verdicts[r.verdict].toLowerCase()}`).join(' · '),
       bad: !!stall,
     },
-    { q: t.offers.heading, a: t.offers.summary(codes.length, pcts.length ? `${list(pcts)} off` : ''), i: codes.map((o) => `${o.code} · ${o.where}`).join(', ') },
-    {
-      q: t.emails.heading,
-      a: t.emails.summary(got, c.journeys.length),
-      i: none && tot ? `${t.change.reminder[none.journey]}: ${t.change.reminderLine(Math.round((tot.answered / tot.runs) * 100), tot.runs, halfWithin(tot.median_minutes))}` : '',
-    },
-    { q: t.rhythmLabel, a: c.rhythm ? t.weekly(c.rhythm.per_week) : '', i: [c.rhythm?.weekday && t.weekday(c.rhythm.weekday), c.rhythm?.languages.length && t.languages(list(c.rhythm.languages))].filter(Boolean).join(' ') },
   ]
   return (
     <div className="ob-window ob-object s-lookup-preview">

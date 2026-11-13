@@ -241,3 +241,6 @@
   .lk-change { grid-template-columns: 28px minmax(0, 1fr); }
   .lk-change__go { grid-column: 2; justify-self: start; }
 }
+
+/* Above the closing call: the same data for any company, to early access. */
+.s-lookup-others { margin: 0 auto; padding-top: clamp(32px, 4vw, 56px); text-align: center; font: var(--ob-type-body); color: var(--ob-text-2); text-wrap: balance; }
