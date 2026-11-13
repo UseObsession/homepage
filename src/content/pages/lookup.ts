@@ -1,4 +1,3 @@
-import { CONTACT_EMAIL } from '../site'
 import type { Meta } from '../types'
 
 /* /lookup: a site's entry in the index, looked up by its own domain (pages/Lookup.tsx), told the way a search engine
@@ -65,7 +64,7 @@ export const lookupPage: LookupPage = {
     placeholder: 'yoursite.com',
     button: 'Look up',
     busy: 'Looking up your site',
-    help: 'One domain, your own site. We keep a record of each lookup.',
+    help: 'One domain, your own site.',
     example: 'Example:',
     exampleDomain: 'hollin.example',
   },
@@ -126,5 +125,5 @@ export const lookupPage: LookupPage = {
   },
   another: 'Look up another site',
   takedown: 'Your site, and you want its entry taken down? Email',
-  takedownEmail: CONTACT_EMAIL,
+  takedownEmail: 'james@useobsession.com',
 }

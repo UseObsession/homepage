@@ -17,7 +17,8 @@ export const footer = {
     { label: products.label, links: names(products.items) },
     { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
     ...solutions.columns.map((c) => ({ label: c.label, links: names(c.items) })),
-    { label: resources.label, links: [...names(resources.items), resources.more.items[0]] },
+    /* Then the menu's first 2 More links: Look up your site, Every resource. */
+    { label: resources.label, links: [...names(resources.items), ...resources.more.items.slice(0, 2)] },
     {
       label: 'Company',
       links: [

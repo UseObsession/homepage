@@ -611,9 +611,6 @@ for (const { e, app } of rendered) {
 
 /* The privacy notice names its controller: the founders supply the registered name and address before it ships. Until
    then the notice gives only its contact line. A bracketed placeholder on any page fails the build. */
-/* The store lookup's Turnstile site key: Cloudflare's test key passes every check and works only with the test secret. */
-if (/\b1x00000000000000000000AA\b/.test(await readFile(join(root, 'src/lib/lookup.ts'), 'utf8')) && !process.env.VITE_TURNSTILE_SITE_KEY)
-  warn('/lookup: Turnstile test site key (src/lib/lookup.ts). Set VITE_TURNSTILE_SITE_KEY to the real key before the page goes live.')
 if (!CONTROLLER) warn('/privacy: no controller named yet (CONTROLLER in content/site.ts). The founders supply the registered name and address before the site ships.')
 for (const { e, app } of [...rendered, { e: notFound, app: await render('/404') }])
   if (/\[(registered|company name|address|placeholder|todo)[^\]]*\]/i.test(app)) fail(`${e.meta.path}: a bracketed placeholder is on the page.`)

@@ -166,7 +166,10 @@ const menus = {
     ] satisfies (NavPage & { line: string })[],
     more: {
       label: 'More',
+      /* The lookup first (James, 13 Nov): a site's own entry in the index (content/pages/lookup.ts). The footer's
+         Resources column ends with these first 2. */
       items: [
+        { label: 'Look up your site', to: '/lookup' },
         { label: 'Every resource', to: '/resources' },
         { label: 'Saw an Obsession agent?', to: '/agents' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },

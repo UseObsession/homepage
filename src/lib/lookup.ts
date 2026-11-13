@@ -2,13 +2,14 @@
    (obsession-index/supabase/functions/store-lookup), and the Cloudflare Turnstile check every lookup and request needs.
 
    LOOKUP_URL and TURNSTILE_SITE_KEY can be set at build time (VITE_LOOKUP_URL, VITE_TURNSTILE_SITE_KEY). The site key
-   below is Cloudflare's published test key, which passes every check: it works only with the test secret, so the
-   real site key replaces it before the page goes live, and the build warns while it is here (scripts/prerender.mjs). */
+   is public: Cloudflare's Turnstile widget "useobsession.com lookup" (hostnames useobsession.com and the previews'
+   jamesniranye.workers.dev). Its secret is in Supabase Vault (magnet_turnstile_secret), read by the function. On
+   localhost the widget refuses: build with VITE_TURNSTILE_SITE_KEY=1x00000000000000000000AA, Cloudflare's test key,
+   against a function using the test secret. */
 
 export const LOOKUP_URL: string =
   import.meta.env.VITE_LOOKUP_URL ?? 'https://vmlyznfsqzqlopzlouit.supabase.co/functions/v1/store-lookup'
-export const TEST_SITE_KEY = '1x00000000000000000000AA'
-export const TURNSTILE_SITE_KEY: string = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? TEST_SITE_KEY
+export const TURNSTILE_SITE_KEY: string = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? '0x4AAAAAAF_YnMXp5KZVi2PK'
 
 export type CardEmail = { id: string; subject: string; after_minutes?: number; at: string }
 export type CardJourney = {
