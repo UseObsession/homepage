@@ -230,6 +230,7 @@ const ICONS: Record<NavIcon, string> = {
   briefcase: '<rect x="2" y="5" width="12" height="8" rx="1.5"/><path d="M6 5V3.5h4V5M2 8.5h12"/>',
   users: '<circle cx="6" cy="5.5" r="2.2"/><path d="M2 13c.5-2.2 2-3.3 4-3.3s3.5 1.1 4 3.3M11 3.6a2 2 0 0 1 0 3.8M12 9.9c1 .4 1.7 1.4 2 3.1"/>',
   bank: '<path d="M2 6 8 2.5 14 6M3.5 6.5v5M6.5 6.5v5M9.5 6.5v5M12.5 6.5v5M2 13.5h12"/>',
+  software: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6h12"/><path d="m6.3 8-1.8 1.75 1.8 1.75M9.7 8l1.8 1.75-1.8 1.75"/>',
   cart: '<path d="M1.5 2.5h2l1.6 7.5h7l1.4-5.5H4.3"/><circle cx="6.5" cy="13" r=".9"/><circle cx="11.5" cy="13" r=".9"/>',
   shield: '<path d="M8 1.8 13 3.6v4c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6v-4Z"/><path d="m5.8 8 1.6 1.6 2.9-3"/>',
   chart: '<path d="M2.5 2.5v11h11"/><path d="m4.5 10.5 3-3.5 2 2 4-5"/>',

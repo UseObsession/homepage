@@ -98,6 +98,7 @@ export type NavIcon =
   | 'briefcase'
   | 'users'
   | 'bank'
+  | 'software'
   | 'cart'
   | 'shield'
   | 'chart'
@@ -148,6 +149,7 @@ const menus = {
           { label: 'Agencies', line: 'Pitch with a prospect’s own emails', to: '/agencies', icon: 'users' },
           { label: 'Banks and fintechs', line: 'Rates and answers behind the login', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
           { label: 'Online stores', line: 'The emails after every basket', to: '/use-cases/leak-checks-for-ecommerce-stores', icon: 'cart' },
+          { label: 'B2B software', line: 'Prospects, renewals and competitors', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
           { label: 'Compliance', line: 'Cancel, unsubscribe and STOP, proven', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams', icon: 'shield' },
           { label: 'Funds and analysts', line: 'Consumer offers as point-in-time data', to: '/use-cases/consumer-promotions-data-for-funds', icon: 'chart' },
         ],
