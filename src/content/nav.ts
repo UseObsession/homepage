@@ -258,7 +258,10 @@ export const nav = {
   },
   /* The header's call to action on every page (James, 13 Nov: the store lookup, in place of early access everywhere).
      Each page's own early access form stays where it is. */
-  cta: { label: 'Look up your site', to: '/lookup' } satisfies Cta,
+  /* `bar` is what the bar itself shows (14 Nov): "Look up your site" is 17 characters, and past 16 the button covers the
+     logo on a 375 to 390px phone (the gate's limit; "Request early access" did the same until PR #60). The sheet and every
+     other place keep the full label. */
+  cta: { label: 'Look up your site', to: '/lookup', bar: 'Store lookup' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
   github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,
@@ -269,7 +272,7 @@ export const nav = {
 /* The few pages whose header button differs from nav.cta ("Look up your site", to /lookup, on every other page). */
 export const pageCtas: Record<string, Cta> = {
   /* On /lookup, the header's "Look up your site" goes to the page's own box. */
-  '/lookup': { label: 'Look up your site', to: '#lookup' },
+  '/lookup': { label: 'Look up your site', to: '#lookup', bar: 'Store lookup' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
 }

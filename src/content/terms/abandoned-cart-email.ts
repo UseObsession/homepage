@@ -69,7 +69,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For abandoned cart emails, that means each reminder with the minute it arrived after the basket was left, and the code it carried. Whether that code worked at checkout is kept beside it, dated.`,
+      text: `${ENTITY} For abandoned cart emails, that means each reminder with the minute it arrived after the basket was left, and the code it carried. Whether that code worked at checkout is kept beside it, dated. For your own store, [look up your store’s emails](/lookup) to see which reminders a new customer gets, and how fast.`,
     },
     {
       kind: 'faq',

@@ -1,11 +1,13 @@
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
+import { CaptureForm } from '../components/CaptureForm'
 import { JoinCard } from '../components/JoinCard'
 import { StatusMark } from '../components/Logo'
 import { HeroExplorer, type ConsoleGo } from '../components/v5/HeroExplorer'
+import { useInView } from '../components/v5/useInView'
 import { capture } from '../content/capture'
 import { join, offers } from '../content/join'
-import { lookupPage as p } from '../content/pages/lookup'
+import { lookupPage as p, type LookupJourney } from '../content/pages/lookup'
 import { track } from '../lib/analytics'
 import { siteFromEmail, type JoinStore } from '../lib/join'
 import { askForVisit, askLookup, lookupJoin, openLink, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
@@ -245,6 +247,11 @@ export function Lookup() {
                   <span className="ob-btn-label">{p.form.exampleDomain}</span>
                 </button>
               </p>
+              <p className="s-lookup__agency">
+                <a className="ob-btn ob-btn--link ob-btn--inline" href="#agencies">
+                  <span className="ob-btn-label">{p.agencies.link}</span>
+                </a>
+              </p>
             </form>
           </div>
         )}
@@ -255,6 +262,7 @@ export function Lookup() {
                 <h2 className="ob-card-title">{p.missing.headline(phase.domain)}</h2>
                 <p className="ob-card-body">{p.missing.line}</p>
                 <AskForm key={`add:${phase.domain}`} domain={phase.domain} kind="add" button={p.missing.button} take={take} initial={phase.email} />
+                <SelfCheck />
               </div>
             )}
             {phase.at === 'sent' && (
@@ -319,6 +327,8 @@ export function Lookup() {
         </section>
       )}
 
+      <DropBand id={`${uid}-drop`} onLook={toForm} />
+
       <section className="s-section s-lookup-checks" aria-labelledby={`${uid}-checks`}>
         <div className="s-wrap">
           <SectionHead id={`${uid}-checks`} heading={p.checks.heading} line={p.checks.line} />
@@ -376,6 +386,25 @@ export function Lookup() {
         </div>
       </section>
 
+      <section className="s-section s-lookup-agencies" id="agencies" data-tone="alt" aria-labelledby={`${uid}-agencies`}>
+        <div className="s-wrap s-lookup-agencies__in">
+          <div className="s-lookup-agencies__words">
+            <h2 className="ob-type-h2" id={`${uid}-agencies`}>
+              {p.agencies.heading}
+            </h2>
+            <p className="ob-type-body-lg s-lookup-agencies__line">{p.agencies.line}</p>
+            <ul className="s-lookup-agencies__points">
+              {p.agencies.points.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="ob-card ob-card--raised s-lookup-agencies__form">
+            <CaptureForm capture={p.agencies.capture} />
+          </div>
+        </div>
+      </section>
+
       <Faq faq={p.faq} id="questions" />
 
       <p className="s-wrap s-lookup-others">
@@ -406,6 +435,73 @@ export function Lookup() {
       </p>
 
     </>
+  )
+}
+
+/* Under the hero, for every visitor (14 Nov): each step of a new customer's first days, and how many stores in the
+   index sent an email after it. The quiet share is the signal (the danger tint), the rest is context. Numbers are the
+   index's totals in content/lookupSample (rebuilt with the sample). Bars grow once, on view; at once under reduced motion. */
+const STEPS: LookupJourney[] = ['welcome', 'browse', 'cart', 'checkout']
+function DropBand({ id, onLook }: { id: string; onLook: () => void }) {
+  const [ref, on] = useInView<HTMLOListElement>(0.35)
+  const rows = STEPS.map((j) => {
+    const t = sampleTotals.journeys[j]
+    const got = t && t.runs ? Math.round((t.answered / t.runs) * 100) : 0
+    return { j, got, none: 100 - got }
+  })
+  return (
+    <section className="s-section s-lookup-drop" aria-labelledby={id}>
+      <div className="s-wrap">
+        <SectionHead id={id} heading={p.drop.heading} line={p.drop.line} />
+        <ol className="s-lookup-drop__rows" ref={ref} data-on={on ? '' : undefined}>
+          {rows.map((r, k) => (
+            <li key={r.j} className="s-lookup-drop__row" data-quiet={r.none >= 40 ? '' : undefined}>
+              <span className="s-lookup-drop__n" aria-hidden="true">
+                {k + 1}
+              </span>
+              <span className="s-lookup-drop__step">{p.entry.journeys[r.j]}</span>
+              <span className="s-lookup-drop__bar" role="img" aria-label={`${p.drop.got(r.got)}, ${p.drop.none(r.none)}`}>
+                <span className="s-lookup-drop__got" style={{ width: `${r.got}%` }} />
+                <span className="s-lookup-drop__none" style={{ width: `${r.none}%` }} />
+              </span>
+              <span className="s-lookup-drop__v">
+                <b>{r.none}%</b> sent nothing
+              </span>
+            </li>
+          ))}
+        </ol>
+        <p className="s-lookup-drop__asof">{p.drop.asOf}</p>
+        <div className="s-lookup-drop__close">
+          <p className="ob-type-body-lg">{p.drop.close}</p>
+          <button type="button" className="ob-btn ob-btn--lg" onClick={onLook}>
+            <span className="ob-btn-label">{p.drop.button}</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* A store we haven't indexed yet (14 Nov): what its owner can check tonight, under the request to add it. */
+function SelfCheck() {
+  const c = p.selfCheck
+  return (
+    <div className="s-lookup-self">
+      <h3 className="s-lookup-self__h">{c.heading}</h3>
+      <p className="s-lookup-self__line">{c.line}</p>
+      <ol className="s-lookup-self__steps">
+        {c.steps.map((st, k) => (
+          <li key={st.title}>
+            <span className="s-lookup-self__n" aria-hidden="true">
+              {k + 1}
+            </span>
+            <span className="s-lookup-self__t">{st.title}</span>
+            <span className="s-lookup-self__l">{st.line}</span>
+          </li>
+        ))}
+      </ol>
+      <p className="s-lookup-self__note">{c.note}</p>
+    </div>
   )
 }
 

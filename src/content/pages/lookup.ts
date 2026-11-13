@@ -1,8 +1,10 @@
-import type { ExConsole, Meta } from '../types'
+import type { Capture, ExConsole, Faq, Meta } from '../types'
 
 /* /lookup: a site's entry in the index, looked up by its own domain (pages/Lookup.tsx), told the way a search engine
    would tell it: what the index holds of the site behind the login, not who collected it. One exact domain in, at most
-   one entry out: no list, no browsing, no page per brand, and the page is noindex (scripts/prerender.mjs writes it like the 404 page, outside the sitemap and llms.txt).
+   one entry out: no list, no browsing, no page per brand. The page itself is indexed (Seun, 14 Nov: in the sitemap and llms.txt, with its
+   FAQ as FAQPage), and owns "klaviyo email audit" and "klaviyo flow audit" from the customer's side (docs/SEARCH.md §2); the
+   entries it sends never are: each opens only from a link in the site owner's inbox.
    The card comes from the Edge Function store-lookup in the obsession-index Supabase project (lib/lookup.ts), which
    records every lookup. A site we haven't indexed gets a plain line and a form for an email, saved by the same
    function, never the waitlist sheet. The example under the box, hollin.example, is the invented store the site already
@@ -21,6 +23,15 @@ export type LookupPage = {
   figures: { value: string; label: string }[]
   /* The hero's picture: the sample store's answers, as an entry shows them. */
   preview: { title: string; tag: string }
+  /* Under the hero, for every visitor before any email (Seun and James, 14 Nov): what a new customer got from the
+     stores in the index after each step, from the index's totals (content/lookupSample sampleTotals). It leads with the
+     drop, never the welcome: most stores send one, and half go quiet after a basket or a checkout. */
+  drop: { heading: string; line: string; asOf: string; got: (pct: number) => string; none: (pct: number) => string; close: string; button: string }
+  /* A store we haven't indexed (14 Nov): what the owner can check tonight, under the request to add it. */
+  selfCheck: { heading: string; line: string; steps: { title: string; line: string }[]; note: string }
+  /* An agency can't open a store's entry (it goes only to someone at the store), so it gets early access with the
+     agency offer (lib/join offerOf: a source with "agenc" gives 'clients'). James and Seun, 14 Nov. */
+  agencies: { link: string; heading: string; line: string; points: string[]; capture: Capture }
   /* The sample store's whole entry, in the same console a found site gets. */
   sample: { heading: string; line: string }
   steps: { heading: string; items: { title: string; line: string }[] }
@@ -28,7 +39,7 @@ export type LookupPage = {
      whole check, not only email gaps). */
   checks: { heading: string; line: string; every: string; request: string; items: { title: string; line: string; every: boolean }[] }
   indexing: { heading: string; line: string; items: { title: string; line: string }[] }
-  faq: { heading: string; items: { q: string; a: string }[] }
+  faq: Faq
   final: { heading: string; line: string; button: string }
   /* Above the closing call: the same data for any company, the other 2 uses, to early access. */
   others: { line: string; link: string; to: string }
@@ -108,25 +119,59 @@ export type LookupPage = {
 export const lookupPage: LookupPage = {
   meta: {
     path: '/lookup',
-    title: 'Look up your site · Obsession',
+    /* Seun, 14 Nov: owns "klaviyo email audit" (autocomplete US and UK, 14 Nov). Every audit on Google page 1 for it reads
+       the account from inside; this one shows what a new customer receives, with no login (plan in the Obsession folder,
+       _research/seo/lookup-14nov/PLAN.md). */
+    title: 'Klaviyo email audit: see what your store sends new customers',
     description:
-      'Look up your site in Obsession’s index of the web behind the login. See the emails it sends after a sign up, a basket or a checkout, and when each arrived.',
+      'Look up your store’s welcome, basket and checkout emails as a new customer gets them: which arrive, how fast and what’s broken, with no Klaviyo login.',
     answer:
-      'Obsession’s lookup shows a site its entry in Obsession’s index of the web behind the login. That means the emails the site sends after a sign up, a basket or a checkout, when each arrived and what it said.',
+      'The store lookup is a Klaviyo email audit from the customer’s side. It shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email tool sends it. It needs an email at your own site and no login, and each email in the entry is dated and checked against every store in Obsession’s index of what companies show only to signed-up customers.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Look up your site', path: '/lookup' },
     ],
   },
   pill: 'Store lookup',
-  headline: 'See what we’ve indexed of your site.',
-  sub: 'The screens, emails, prices and offers your store shows only to signed-up customers, step by step, each one dated. Type your email at your site and we’ll send you the entry.',
+  headline: 'See what your store sends a new customer.',
+  sub: 'The screens, emails, prices and offers your store shows only to signed-up customers, step by step and dated, set against every store in the index. Type your email at your site and we’ll send you the entry.',
   figures: [
     { value: '1,500', label: 'sign-ups, baskets and checkouts at real companies' },
     { value: '1 in 2', label: 'abandoned checkouts got no reminder within 48 hours' },
-    { value: '4,196', label: 'emails kept as they arrived' },
+    { value: '4,196', label: 'emails kept as they arrived, and counting' },
   ],
   preview: { title: 'hollin.example', tag: 'Sample entry' },
+  drop: {
+    heading: 'The welcome comes. After a basket or a checkout, nearly 1\u00a0in\u00a02 stores go quiet.',
+    line: 'What a new customer got from the stores in the index after each step. Where does your store sit?',
+    asOf: 'Every sign-up, product view, basket and checkout in the index, as of 13 Nov 2026.',
+    got: (pct) => `${pct}% sent an email`,
+    none: (pct) => `${pct}% sent nothing`,
+    close: 'Each checkout that gets no reminder is a shopper who typed their email and left. See whether yours get one.',
+    button: 'Look up your store',
+  },
+  selfCheck: {
+    heading: 'While you wait, check it yourself tonight',
+    line: 'Four steps and about 10 minutes, then the waiting. Use a new email address your store has never seen.',
+    steps: [
+      { title: 'Sign up', line: 'Through your own pop-up or footer form. Most stores send a welcome within a minute.' },
+      { title: 'Look at a product', line: 'Open the store from the welcome email’s link, so it knows who you are, then view a product. Give it a day.' },
+      { title: 'Leave a basket', line: 'Add the product and close the tab. Half the reminders that come arrive within about an hour. Give it 24 hours.' },
+      { title: 'Start a checkout and leave', line: 'Type the same email at checkout and leave before paying. Give it 48 hours.' },
+    ],
+    note: 'For each email, note when it came and whether your first name and any code work. Note too which never came.',
+  },
+  agencies: {
+    link: 'At an agency? Look up the stores you run or pitch',
+    heading: 'Looking up a client, or a store you’re pitching?',
+    line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK.',
+    points: [
+      'Every store already in the index, in a table you already use, like Clay or Google Sheets, or through our API and MCP for your own tools and AI agents.',
+      'Up to 5 stores added for you: your clients, or the brands you’re pitching.',
+      'Every email and screen dated, ready to open a pitch or a client review.',
+    ],
+    capture: { kind: 'waitlist', source: 'lookup-agencies', button: 'Request early access', interest: 'any' },
+  },
   sample: {
     heading: 'A whole entry, for our sample store',
     line: 'This is the entry for hollin.example, our sample store. It opens on what to change first. Below that sit the emails after each step, the offers and the campaigns, each against the index. Search lists every step and every email, with a copy you can open.',
@@ -136,7 +181,7 @@ export const lookupPage: LookupPage = {
     items: [
       { title: 'Type your email at your site', line: 'you@yourstore.com for yourstore.com. The entry only goes to someone at the site it describes.' },
       { title: 'We look your site up', line: 'If it’s in the index, the link leaves at once. If it isn’t, leave your email and we’ll add it.' },
-      { title: 'Open the link', line: 'It opens your entry: what to change first, every finding with its proof, and every email as it arrived. It works for 7 days.' },
+      { title: 'Open the link', line: 'It opens your entry, the page the index keeps for your store: what to change first, every finding with its proof, and every email as it arrived. It works for 7 days.' },
     ],
   },
   checks: {
@@ -166,6 +211,28 @@ export const lookupPage: LookupPage = {
   faq: {
     heading: 'Questions about your entry',
     items: [
+      {
+        q: 'What is the store lookup?',
+        a: 'The store lookup is a Klaviyo email audit from the customer’s side. It shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email tool sends it, Klaviyo or another. Each email is dated and checked for how fast it came and what’s wrong in it, against every store in the index.',
+      },
+      {
+        q: 'How is it different from a Klaviyo flow audit?',
+        a: 'A Klaviyo flow audit reads your flows from inside the account: triggers, filters, delays and revenue. Your entry shows the other side, what a new customer actually receives. A flow that looks live but never sends shows up as a missing email, and a broken first name or a placeholder shows up in the email itself.',
+      },
+      {
+        q: 'Do you need my Klaviyo or Shopify login?',
+        a: 'No. Your entry comes from what your store sent our own accounts, so it works whichever email platform you use: Klaviyo, Shopify Email, Omnisend, Mailchimp or another.',
+      },
+      {
+        q: 'How do I test my abandoned cart email myself?',
+        a: 'Use a new email address, add an item to the basket, start a checkout and leave, then watch the inbox for the window your flow is set to. Repeat it for the sign-up and the product view, and after every change to your theme, apps or flows.',
+        link: { label: 'How to test your Shopify store as a customer', to: '/blog/how-to-test-your-shopify-store-as-a-customer' },
+      },
+      {
+        q: 'I run an agency. Can I look up a client’s store?',
+        a: 'Not from this box, because an entry only goes to someone at the store itself. Early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK.',
+        link: { label: 'Obsession for agencies', to: '/agencies' },
+      },
       { q: 'Why does it need an email at my site?', a: 'So an entry only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
       { q: 'How long does the link work?', a: '7 days. After that, look up your site again and we’ll send a new one.' },
       { q: 'My site isn’t in the index. Can you add it?', a: 'Yes. Look it up, leave your work email, and we’ll add it. You can name your other sites in the same form.' },
@@ -248,7 +315,7 @@ export const lookupPage: LookupPage = {
     scope: 'This entry holds only what your site sent to our own accounts, with their names and addresses taken out.',
   },
   insights: {
-    every: 'Every wall',
+    every: 'Every step',
     changes: { heading: 'What to change first', line: 'Each finding next to the change it asks for, against the index.' },
     change: {
       reminder: {

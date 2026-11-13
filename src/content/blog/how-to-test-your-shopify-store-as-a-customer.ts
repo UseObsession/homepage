@@ -326,7 +326,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'All three test the email and its rules inside Klaviyo. The customer test checks that the live trigger fires. Sign up through the real pop up, leave a basket and start a checkout with new addresses, and watch each inbox for 48 hours. **A pass:** each email arrives within the flow’s delay, with the right item, price and code. When one never comes, [why a Klaviyo flow is not sending](/blog/welcome-basket-email-not-sending) works through the causes.',
+      text: 'All three test the email and its rules inside Klaviyo. The customer test checks that the live trigger fires. Sign up through the real pop up, leave a basket and start a checkout with new addresses, and watch each inbox for 48 hours. **A pass:** each email arrives within the flow’s delay, with the right item, price and code. When one never comes, [why a Klaviyo flow is not sending](/blog/welcome-basket-email-not-sending) works through the causes. To see what your flows already sent a new customer, [look up your store’s emails](/lookup): every email after each step, dated, against the stores in the index.',
     },
 
     { kind: 'h2', id: 'when', text: 'When to test your Shopify store' },
