@@ -1,20 +1,30 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
+import { JoinCard } from '../components/JoinCard'
 import { StatusMark } from '../components/Logo'
+import { capture } from '../content/capture'
+import { join, offers } from '../content/join'
 import { lookupPage as p, type LookupJourney } from '../content/pages/lookup'
-import { askForVisit, lookUp, openEmail, turnstile, type Card, type CardEmail } from '../lib/lookup'
+import { track } from '../lib/analytics'
+import { siteFromEmail, type JoinStore } from '../lib/join'
+import { askForVisit, lookUp, lookupJoin, openEmail, turnstile, type Card, type CardEmail, type Kind } from '../lib/lookup'
+import { isEmail, isWorkEmail } from '../lib/waitlist'
 import { NoticeHero } from './Notice'
+import '../components/CaptureForm.css'
+import '../components/JoinCard.css'
 import './Lookup.css'
 
 /* /lookup: one exact domain in, at most one entry out (content/pages/lookup.ts). The entry is drawn from the Edge
-   Function's answer; a site we haven't indexed gets a plain line and a form for an email. The example under the box
-   runs the same lookup for the sample store. Nothing here is prerendered
-   but the form: every answer arrives after a lookup. */
+   Function's answer. Under it, or under "not indexed yet", the same form as the website's early access: the work email
+   first (a request to update the entry, or to add the site), then the early access card in its place (who they are,
+   name, company and site, their other sites, the kinds of data they want). Unlike the website's, nothing is kept: a
+   company can run many stores, so each lookup asks afresh. The example under the box runs the lookup for the sample
+   store. Nothing here is prerendered but the form: every answer arrives after a lookup. */
 
 type Phase =
   | { at: 'idle' }
   | { at: 'found'; card: Card; view: string }
   | { at: 'missing'; domain: string }
-  | { at: 'requested'; domain: string }
 
 const DATE = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 const day = (iso: string) => DATE.format(new Date(iso.length === 10 ? `${iso}T12:00:00Z` : iso))
@@ -43,7 +53,6 @@ export function Lookup() {
   const uid = useId()
   const [phase, setPhase] = useState<Phase>({ at: 'idle' })
   const [domain, setDomain] = useState('')
-  const [email, setEmail] = useState('')
   const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<string | null>(null)
   const [live, setLive] = useState('')
@@ -83,29 +92,10 @@ export function Lookup() {
     }
     const res = await lookUp(typed.trim(), token)
     setBusy(false)
-    if (!res.ok) return fail(p.errors[res.error === 'view' ? 'server' : res.error])
+    if (!res.ok) return fail(p.errors[res.error === 'view' || res.error === 'edit' ? 'server' : res.error])
     setLive('')
     if (res.data.found) setPhase({ at: 'found', card: res.data.card, view: res.data.view })
     else setPhase({ at: 'missing', domain: res.data.domain })
-  }
-
-  async function submitRequest(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    if (busy || phase.at !== 'missing') return
-    setProblem(null)
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) return fail(p.errors.email)
-    setBusy(true)
-    setLive(p.missing.busy)
-    const token = await check.current?.take()
-    if (!token) {
-      setBusy(false)
-      return fail(p.errors.check)
-    }
-    const res = await askForVisit(phase.domain, email.trim(), token)
-    setBusy(false)
-    if (!res.ok) return fail(p.errors[res.error === 'view' ? 'server' : res.error])
-    setLive('')
-    setPhase({ at: 'requested', domain: res.data.domain })
   }
 
   async function view(item: CardEmail) {
@@ -119,11 +109,11 @@ export function Lookup() {
   function again() {
     setPhase({ at: 'idle' })
     setDomain('')
-    setEmail('')
     setProblem(null)
   }
 
-  const ids = { domain: `${uid}-domain`, email: `${uid}-email`, help: `${uid}-help`, error: `${uid}-error` }
+  const take = () => check.current?.take() ?? Promise.resolve(null)
+  const ids = { domain: `${uid}-domain`, help: `${uid}-help`, error: `${uid}-error` }
 
   return (
     <>
@@ -194,62 +184,22 @@ export function Lookup() {
       {phase.at !== 'idle' && (
         <section className="s-lookup">
           <div className="s-wrap s-lookup__wrap" ref={result} tabIndex={-1}>
-            {phase.at === 'found' && <StoreCard card={phase.card} onView={view} />}
+            {phase.at === 'found' && (
+              <>
+                <StoreCard card={phase.card} onView={view} />
+                <section className="s-lookup__block s-lookup__ask">
+                  <h3 className="s-lookup__h">{p.update.headline}</h3>
+                  <p className="s-lookup__quiet">{p.update.line(phase.card.domain)}</p>
+                  <AskForm key={`update:${phase.card.domain}`} domain={phase.card.domain} kind="update" button={p.update.button} take={take} />
+                </section>
+              </>
+            )}
 
             {phase.at === 'missing' && (
               <div className="ob-card ob-card--raised s-lookup__missing">
                 <h2 className="ob-card-title">{p.missing.headline(phase.domain)}</h2>
                 <p className="ob-card-body">{p.missing.line}</p>
-                <form className={`ob-pill-form${problem ? ' is-error' : ''}`} noValidate onSubmit={submitRequest} aria-busy={busy || undefined}>
-                  <div className="ob-pill-field">
-                    <label className="ob-pill-entry" htmlFor={ids.email}>
-                      <span className="ob-sr">{p.missing.label}</span>
-                      <input
-                        className="ob-pill-input"
-                        id={ids.email}
-                        name="email"
-                        type="email"
-                        inputMode="email"
-                        autoComplete="email"
-                        autoCapitalize="none"
-                        spellCheck={false}
-                        required
-                        placeholder={p.missing.placeholder}
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value)
-                          if (problem) setProblem(null)
-                        }}
-                        aria-invalid={problem ? true : undefined}
-                        aria-describedby={problem ? ids.error : undefined}
-                      />
-                    </label>
-                    <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
-                      <span className="ob-btn-busy" aria-hidden="true">
-                        <StatusMark state="working" size={18} />
-                      </span>
-                      <span className="ob-btn-label">{p.missing.button}</span>
-                    </button>
-                  </div>
-                  <div className="ob-pill-foot">
-                    <p className="ob-field-help">{p.missing.privacy}</p>
-                    <p className="ob-field-error ob-anim-message" id={ids.error} hidden={!problem}>
-                      {problem ?? ''}
-                    </p>
-                  </div>
-                </form>
-              </div>
-            )}
-
-            {phase.at === 'requested' && (
-              <div className="ob-confirm s-lookup__done">
-                <p className="ob-confirm-title">
-                  <span className="s-capture__mark" aria-hidden="true">
-                    <StatusMark state="landed" size={22} />
-                  </span>
-                  <span>{p.requested.title(phase.domain)}</span>
-                </p>
-                <p className="ob-confirm-line">{p.requested.line}</p>
+                <AskForm key={`add:${phase.domain}`} domain={phase.domain} kind="add" button={p.missing.button} take={take} />
               </div>
             )}
 
@@ -394,5 +344,130 @@ function StoreCard({ card, onView }: { card: Card; onView: (e: CardEmail) => voi
 
       <p className="s-lookup__scope">{f.scope}</p>
     </article>
+  )
+}
+
+/* The website's early access form, for 1 site: the work email (checked as the website checks it), sent as a request
+   with a Turnstile token, then the early access card in the same spot, on a store of its own (lib/lookup lookupJoin)
+   that saves each step to the function and is gone when the page moves on. */
+function AskForm({ domain, kind, button, take }: { domain: string; kind: Kind; button: string; take: () => Promise<string | null> }) {
+  const uid = useId()
+  const offer = kind === 'update' ? 'reindex' : 'index'
+  const [email, setEmail] = useState('')
+  const [problem, setProblem] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [live, setLive] = useState('')
+  const [store, setStore] = useState<JoinStore | null>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const id = { email: `${uid}-email`, help: `${uid}-help`, error: `${uid}-error` }
+
+  function flag(text: string) {
+    setProblem(text)
+    setLive(text)
+    emailRef.current?.focus()
+  }
+
+  async function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (busy) return
+    setProblem(null)
+    const address = email.trim()
+    if (!address) return flag(capture.errors.emailEmpty)
+    if (!isEmail(address)) return flag(capture.errors.emailBad)
+    if (!isWorkEmail(address)) return flag(capture.errors.emailPersonal)
+    setBusy(true)
+    setLive(capture.sending)
+    const token = await take()
+    if (!token) {
+      setBusy(false)
+      return flag(p.errors.check)
+    }
+    const res = await askForVisit(domain, address, kind, token)
+    setBusy(false)
+    if (!res.ok) return flag(res.error === 'email' ? capture.errors.emailBad : res.error === 'limit' ? p.errors.limit : capture.errors.server)
+    track('generate_lead', { form: offer, free: 'no' })
+    const next = lookupJoin(domain, kind, res.data.id, res.data.edit)
+    next.begin({
+      sid: res.data.id,
+      email: address,
+      t: Date.now(),
+      preview: false,
+      script: 3,
+      page: '/lookup',
+      source: 'lookup',
+      offer,
+      free: false,
+      site: siteFromEmail(address) || domain,
+      brands: [domain],
+    })
+    setLive(offers[offer].head ?? '')
+    setStore(next)
+  }
+
+  const status = (
+    <p className="ob-sr" role="status" aria-live="polite">
+      {live}
+    </p>
+  )
+
+  if (store)
+    return (
+      <div className="s-capture s-capture--done s-lookup__join">
+        <JoinCard owner store={store} />
+        {status}
+      </div>
+    )
+
+  return (
+    <div className="s-capture s-lookup__join">
+      <form className={`ob-pill-form${problem ? ' is-error' : ''}`} noValidate onSubmit={submit} aria-busy={busy || undefined}>
+        <div className="ob-pill-field">
+          <label className="ob-pill-entry" htmlFor={id.email}>
+            <span className="ob-sr">{capture.email.label}</span>
+            <input
+              ref={emailRef}
+              className="ob-pill-input"
+              id={id.email}
+              name="email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              autoCapitalize="none"
+              spellCheck={false}
+              required
+              placeholder={capture.email.placeholder}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (problem) setProblem(null)
+              }}
+              aria-invalid={problem ? true : undefined}
+              aria-describedby={[problem ? id.error : '', id.help].filter(Boolean).join(' ')}
+            />
+          </label>
+          <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
+            <span className="ob-btn-busy" aria-hidden="true">
+              <StatusMark state="working" size={18} />
+            </span>
+            <span className="ob-btn-label">{button}</span>
+          </button>
+        </div>
+        <div className="ob-pill-foot">
+          <p className="ob-field-help" id={id.help}>
+            {offers[offer].micro}
+          </p>
+          <p className="ob-field-error ob-anim-message" id={id.error} hidden={!problem}>
+            {problem ?? ''}
+          </p>
+        </div>
+      </form>
+      <p className="s-capture__privacy">
+        {join.privacy.text}{' '}
+        <Link className="s-capture__plink" to={join.privacy.to}>
+          {join.privacy.link}
+        </Link>
+      </p>
+      {status}
+    </div>
   )
 }

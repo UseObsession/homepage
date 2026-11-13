@@ -37,8 +37,8 @@ export type LookupPage = {
     scope: string
   }
   viewer: { close: string; note: string; loading: string; failed: string }
-  missing: { headline: (domain: string) => string; line: string; label: string; placeholder: string; button: string; busy: string; privacy: string }
-  requested: { title: (domain: string) => string; line: string }
+  missing: { headline: (domain: string) => string; line: string; button: string }
+  update: { headline: string; line: (domain: string) => string; button: string }
   another: string
   takedown: string
   takedownEmail: string
@@ -112,16 +112,13 @@ export const lookupPage: LookupPage = {
   },
   missing: {
     headline: (domain) => `We haven’t indexed ${domain} yet.`,
-    line: 'Leave your email and we’ll add your site to the index.',
-    label: 'Your work email',
-    placeholder: 'you@yoursite.com',
+    line: 'Leave your work email and we’ll add your site to the index.',
     button: 'Add my site',
-    busy: 'Adding your site',
-    privacy: 'We use your email only for this site.',
   },
-  requested: {
-    title: (domain) => `${domain} is on our list.`,
-    line: 'A person reads every request and adds the site to the index.',
+  update: {
+    headline: 'Keep this entry up to date',
+    line: (domain) => `Leave your work email and we’ll index ${domain} again, with any other sites your company runs.`,
+    button: 'Update my entry',
   },
   another: 'Look up another site',
   takedown: 'Your site, and you want its entry taken down? Email',

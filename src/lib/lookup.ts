@@ -1,3 +1,5 @@
+import { joinStore, snapshotOf, type JoinStore, type SaveState } from './join'
+
 /* The store lookup's calls (pages/Lookup.tsx) to the Edge Function store-lookup in the obsession-index Supabase project
    (obsession-index/supabase/functions/store-lookup), and the Cloudflare Turnstile check every lookup and request needs.
 
@@ -41,7 +43,7 @@ export type Card = {
   captured: { from: string; to: string; mail_until: string }
 }
 
-export type Answer<T> = { ok: true; data: T } | { ok: false; error: 'domain' | 'check' | 'limit' | 'server' | 'email' | 'view' }
+export type Answer<T> = { ok: true; data: T } | { ok: false; error: 'domain' | 'check' | 'limit' | 'server' | 'email' | 'view' | 'edit' }
 
 async function call<T>(route: string, body: Record<string, unknown>): Promise<Answer<T>> {
   try {
@@ -52,7 +54,7 @@ async function call<T>(route: string, body: Record<string, unknown>): Promise<An
     })
     const out = await res.json().catch(() => ({}))
     if (res.ok) return { ok: true, data: out as T }
-    const known = ['domain', 'check', 'limit', 'email', 'view'] as const
+    const known = ['domain', 'check', 'limit', 'email', 'view', 'edit'] as const
     const error = known.find((k) => k === out?.error) ?? 'server'
     return { ok: false, error }
   } catch {
@@ -62,8 +64,47 @@ async function call<T>(route: string, body: Record<string, unknown>): Promise<An
 
 export type Found = { found: true; domain: string; card: Card; view: string } | { found: false; domain: string }
 
+export type Kind = 'add' | 'update'
 export const lookUp = (domain: string, token: string) => call<Found>('lookup', { domain, token })
-export const askForVisit = (domain: string, email: string, token: string) => call<{ ok: true; domain: string }>('request', { domain, email, token })
+export const askForVisit = (domain: string, email: string, kind: Kind, token: string) =>
+  call<{ ok: true; domain: string; kind: Kind; id: string; edit: string }>('request', { domain, email, kind, token })
+
+/* The card after the email, for 1 site (components/JoinCard with a store of its own): each finished step sends the card
+   so far to the function, 1 at a time and in order, under the request's edit token. Nothing is kept in the browser. */
+export function lookupJoin(domain: string, kind: Kind, id: string, edit: string): JoinStore {
+  let status: SaveState = 'idle'
+  let latest: Record<string, string> | null = null
+  let chain: Promise<void> = Promise.resolve()
+  const listeners = new Set<() => void>()
+  const setStatus = (next: SaveState) => {
+    status = next
+    listeners.forEach((l) => l())
+  }
+  const post = () => {
+    chain = chain.then(async () => {
+      if (!latest) return
+      setStatus('saving')
+      const res = await call<{ ok: true }>('details', { id, edit, details: latest })
+      setStatus(res.ok ? 'idle' : 'failed')
+    })
+  }
+  return joinStore({
+    keep: false,
+    send: (s) => {
+      latest = { ...snapshotOf(s), domain, kind }
+      post()
+    },
+    save: {
+      get: () => status,
+      subscribe: (l) => {
+        listeners.add(l)
+        return () => listeners.delete(l)
+      },
+    },
+    retry: post,
+    method: 'lookup',
+  })
+}
 export const openEmail = (id: string, domain: string, view: string) =>
   call<{ id: string; subject: string; html: string }>('email', { id, domain, view })
 

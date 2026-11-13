@@ -232,3 +232,8 @@
   letter-spacing: var(--ob-type-caption-tracking);
   color: var(--ob-text-3);
 }
+
+/* ---- The early access form under an entry or "not indexed yet": the website's form and card, at its 560px. ---- */
+.s-lookup__join { max-width: var(--ob-container-xs); }
+.s-lookup__ask .s-lookup__quiet { margin-bottom: var(--ob-space-4); }
+.s-lookup__missing .s-lookup__join { margin-top: var(--ob-space-4); }
