@@ -1,21 +1,25 @@
-import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { JoinCard } from '../components/JoinCard'
 import { StatusMark } from '../components/Logo'
+import { HeroExplorer, type ConsoleGo } from '../components/v5/HeroExplorer'
 import { capture } from '../content/capture'
 import { join, offers } from '../content/join'
-import { lookupPage as p, type LookupJourney } from '../content/pages/lookup'
+import { lookupPage as p } from '../content/pages/lookup'
 import { track } from '../lib/analytics'
 import { siteFromEmail, type JoinStore } from '../lib/join'
-import { askForVisit, lookUp, lookupJoin, openEmail, turnstile, type Card, type CardEmail, type Kind } from '../lib/lookup'
+import { askForVisit, lookUp, lookupJoin, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
+import { after, basketText, day, entryOf, list, type Entry } from '../lib/lookupEntry'
 import { isEmail, isWorkEmail } from '../lib/waitlist'
 import { NoticeHero } from './Notice'
 import '../components/CaptureForm.css'
 import '../components/JoinCard.css'
 import './Lookup.css'
 
-/* /lookup: one exact domain in, at most one entry out (content/pages/lookup.ts). The entry is drawn from the Edge
-   Function's answer. Under it, or under "not indexed yet", the same form as the website's early access: the work email
+/* /lookup: one exact domain in, at most one entry out (content/pages/lookup.ts). The entry is the website's console
+   (components/v5/HeroExplorer, 13 Nov, James: one component for Home, /sample-output and here), opened on Insights:
+   the entry's answers, one for each journey, read against the index's totals. Search holds its events (lib/lookupEntry),
+   each email's clean copy fetched from the function when it is opened. Under it, or under "not indexed yet", the same form as the website's early access: the work email
    first (a request to update the entry, or to add the site), then the early access card in its place (who they are,
    name, company and site, their other sites, the kinds of data they want). Unlike the website's, nothing is kept: a
    company can run many stores, so each lookup asks afresh. The example under the box runs the lookup for the sample
@@ -23,31 +27,8 @@ import './Lookup.css'
 
 type Phase =
   | { at: 'idle' }
-  | { at: 'found'; card: Card; view: string }
+  | { at: 'found'; card: Card; view: string; index?: IndexTotals }
   | { at: 'missing'; domain: string }
-
-const DATE = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
-const day = (iso: string) => DATE.format(new Date(iso.length === 10 ? `${iso}T12:00:00Z` : iso))
-
-function after(minutes: number): string {
-  if (minutes < 1) return 'less than a minute'
-  if (minutes < 60) return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`
-  const hours = Math.round(minutes / 60)
-  if (hours < 48) return `${hours} ${hours === 1 ? 'hour' : 'hours'}`
-  const days = Math.round(hours / 24)
-  return `${days} days`
-}
-
-function price(item: { price?: number; currency?: string }): string {
-  if (item.price == null) return ''
-  try {
-    return new Intl.NumberFormat('en-GB', { style: 'currency', currency: item.currency || 'GBP' }).format(item.price)
-  } catch {
-    return String(item.price)
-  }
-}
-
-const list = (words: string[]) => (words.length < 2 ? words.join('') : `${words.slice(0, -1).join(', ')} and ${words[words.length - 1]}`)
 
 export function Lookup() {
   const uid = useId()
@@ -56,10 +37,8 @@ export function Lookup() {
   const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<string | null>(null)
   const [live, setLive] = useState('')
-  const [reading, setReading] = useState<{ email: CardEmail; html: string | null; failed: boolean } | null>(null)
   const widget = useRef<HTMLDivElement>(null)
   const check = useRef<ReturnType<typeof turnstile> | null>(null)
-  const dialog = useRef<HTMLDialogElement>(null)
   const result = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -94,16 +73,8 @@ export function Lookup() {
     setBusy(false)
     if (!res.ok) return fail(p.errors[res.error === 'view' || res.error === 'edit' ? 'server' : res.error])
     setLive('')
-    if (res.data.found) setPhase({ at: 'found', card: res.data.card, view: res.data.view })
+    if (res.data.found) setPhase({ at: 'found', card: res.data.card, view: res.data.view, index: res.data.index })
     else setPhase({ at: 'missing', domain: res.data.domain })
-  }
-
-  async function view(item: CardEmail) {
-    if (phase.at !== 'found') return
-    setReading({ email: item, html: null, failed: false })
-    dialog.current?.showModal()
-    const res = await openEmail(item.id, phase.card.domain, phase.view)
-    setReading({ email: item, html: res.ok ? res.data.html : null, failed: !res.ok })
   }
 
   function again() {
@@ -183,10 +154,10 @@ export function Lookup() {
 
       {phase.at !== 'idle' && (
         <section className="s-lookup">
-          <div className="s-wrap s-lookup__wrap" ref={result} tabIndex={-1}>
+          <div className={`s-wrap s-lookup__wrap${phase.at === 'found' ? ' s-lookup__wrap--entry' : ''}`} ref={result} tabIndex={-1}>
             {phase.at === 'found' && (
               <>
-                <StoreCard card={phase.card} onView={view} />
+                <StoreEntry card={phase.card} view={phase.view} index={phase.index} />
                 <section className="s-lookup__block s-lookup__ask">
                   <h3 className="s-lookup__h">{p.update.headline}</h3>
                   <p className="s-lookup__quiet">{p.update.line(phase.card.domain)}</p>
@@ -220,130 +191,128 @@ export function Lookup() {
         .
       </p>
 
-      <dialog className="s-lookup__dialog" ref={dialog} onClose={() => setReading(null)} aria-labelledby={`${uid}-subject`}>
-        <div className="s-lookup__dialog-head">
-          <p className="s-lookup__dialog-subject" id={`${uid}-subject`}>
-            {reading?.email.subject}
-          </p>
-          <button type="button" className="ob-btn ob-btn--secondary ob-btn--sm" onClick={() => dialog.current?.close()}>
-            <span className="ob-btn-label">{p.viewer.close}</span>
-          </button>
-        </div>
-        {reading?.html ? (
-          <iframe className="s-lookup__frame" title={reading.email.subject} sandbox="" referrerPolicy="no-referrer" srcDoc={reading.html} />
-        ) : (
-          <p className="s-lookup__dialog-wait">{reading?.failed ? p.viewer.failed : p.viewer.loading}</p>
-        )}
-        <p className="s-lookup__dialog-note">{p.viewer.note}</p>
-      </dialog>
     </>
   )
 }
 
-function StoreCard({ card, onView }: { card: Card; onView: (e: CardEmail) => void }) {
-  const f = p.found
+/* The entry: the site's name, when it was indexed, then the console on Insights. */
+function StoreEntry({ card, view, index }: { card: Card; view: string; index?: IndexTotals }) {
+  const e = p.entry
+  const entry = useMemo(() => entryOf(card, view, p.console, e), [card, view, e])
+  const indexed = e.indexed(day(card.captured.from), day(card.captured.to))
   return (
-    <article className="s-lookup__card">
+    <article className="s-lookup__entry">
       <header className="s-lookup__head">
         <h2 className="s-lookup__name">{card.name ?? card.domain}</h2>
-        {card.name && <p className="s-lookup__domain">{card.domain}</p>}
-        <dl className="s-lookup__dates">
-          <div>
-            <dt>{f.visited}</dt>
-            <dd>{card.captured.from === card.captured.to ? day(card.captured.from) : `${day(card.captured.from)} to ${day(card.captured.to)}`}</dd>
-          </div>
-          <div>
-            <dt>{f.mailUntil}</dt>
-            <dd>{day(card.captured.mail_until)}</dd>
-          </div>
-        </dl>
+        <p className="s-lookup__domain">
+          {[card.domain, indexed, e.latest(day(card.captured.mail_until))].join(' · ')}
+        </p>
       </header>
+      <HeroExplorer
+        ex={entry.console}
+        first="insights"
+        bar={false}
+        autoplay={false}
+        anchors={false}
+        insights={(go) => <LookupInsights card={card} index={index} entry={entry} go={go} />}
+      />
+      <p className="s-lookup__scope">{e.scope}</p>
+    </article>
+  )
+}
 
-      <ol className="s-lookup__journeys">
-        {card.journeys.map((j) => (
-          <li key={j.journey} className={`ob-card s-lookup__journey s-lookup__journey--${j.emails ? 'mail' : 'none'}`}>
-            <div className="ob-card-head">
-              <h3 className="ob-card-label">{f.journeys[j.journey as LookupJourney]}</h3>
-              <span className="ob-card-meta">{day(j.date)}</span>
-            </div>
-            {j.emails ? (
-              <p className="s-lookup__state">
-                {f.firstAfter} <strong>{after(j.first_after_minutes ?? 0)}</strong>
-                <span className="s-lookup__count">{f.emails(j.emails)}</span>
+/* Insights for an entry (design A): one card for each journey, answering its question from the events in Search,
+   read against the index's totals; then the campaign emails after the 48 hours. Worked out here, from the card: the
+   index keeps the events, never the answers. "From n events" opens Search at the journey's act. */
+function LookupInsights({ card, index, entry, go }: { card: Card; index?: IndexTotals; entry: Entry; go: ConsoleGo }) {
+  const t = p.insights
+  const r = card.rhythm
+  const weeks = r ? Math.max(1, Math.round((Date.parse(r.to) - Date.parse(r.from)) / (7 * 864e5))) : 0
+  return (
+    <div className="lk-ins">
+      <div className="lk-ins__head">
+        <h3 className="lk-ins__h">{t.heading(card.journeys.length)}</h3>
+        <span className="lk-ins__chips">
+          <span className="lk-chip">{p.entry.persona}</span>
+          <span className="lk-chip">{t.every}</span>
+        </span>
+      </div>
+      <div className="lk-qs">
+        {card.journeys.map((j) => {
+          const hours = j.window_hours || 48
+          const tot = index?.journeys[j.journey]
+          const items = basketText(j)
+          const flags = card.faults.filter((f) => f.journey === j.journey)
+          const act = entry.acts[j.journey]
+          return (
+            <article className="lk-q" key={j.journey} data-none={j.emails ? undefined : ''}>
+              <p className="lk-q__journey">{p.entry.journeys[j.journey]}</p>
+              <h4 className="lk-q__question">{t.questions[j.journey]}</h4>
+              <p className="lk-q__answer">{j.emails ? t.yes(after(j.first_after_minutes ?? 0)) : t.no(hours)}</p>
+              <p className="lk-q__detail">
+                {j.emails ? (
+                  <>
+                    {t.count(j.emails, hours)} {j.list[0] && t.first(j.list[0].subject || '(no subject)')}
+                  </>
+                ) : items.length ? (
+                  t.left(list(items))
+                ) : (
+                  t.nothing
+                )}
               </p>
-            ) : (
-              <p className="s-lookup__state s-lookup__state--none">{f.none(j.window_hours || 48)}</p>
-            )}
-            {j.list.length > 0 && (
-              <ul className="s-lookup__emails">
-                {j.list.map((m) => (
-                  <li key={m.id}>
-                    <span className="s-lookup__subject">{m.subject || '(no subject)'}</span>
-                    <button type="button" className="ob-btn ob-btn--link ob-btn--sm" onClick={() => onView(m)}>
-                      <span className="ob-btn-label">{f.view}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <div className="s-lookup__notes">
-              {j.uses_name && <span className="s-lookup__note">{f.usesName}</span>}
-              {j.basket.length > 0 && (
-                <span className="s-lookup__note">
-                  {f.left}: {j.basket.map((b) => [b.name, price(b)].filter(Boolean).join(', ')).join('; ')}
-                </span>
+              {flags.length > 0 && (
+                <ul className="lk-q__flags">
+                  {flags.map((f, i) => (
+                    <li key={i} data-kind={f.kind}>
+                      {f.kind === 'finding' ? f.text : p.entry.faults[f.kind]}
+                    </li>
+                  ))}
+                </ul>
               )}
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      <section className="s-lookup__block">
-        <h3 className="s-lookup__h">{f.faultsHeading}</h3>
-        {card.faults.length ? (
-          <ul className="s-lookup__faults">
-            {card.faults.map((x, i) => (
-              <li key={i}>
-                <span className="s-lookup__fault-where">{f.journeys[x.journey as LookupJourney] ?? x.journey}</span>
-                {x.kind === 'finding' ? x.text : f.faults[x.kind]}
-                {x.subject && x.kind !== 'finding' && <span className="s-lookup__subject"> “{x.subject}”</span>}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="s-lookup__quiet">{f.noFaults}</p>
-        )}
-      </section>
-
-      {card.rhythm && (
-        <section className="s-lookup__block">
-          <h3 className="s-lookup__h">{f.rhythmHeading}</h3>
-          <p className="s-lookup__rhythm">
-            {f.rhythm(card.rhythm.sends, day(card.rhythm.from), day(card.rhythm.to), card.rhythm.per_week)}{' '}
-            {card.rhythm.weekday && f.weekday(card.rhythm.weekday)}{' '}
-            {card.rhythm.languages.length > 0 && f.languages(list(card.rhythm.languages))}
+              <div className="lk-q__foot">
+                <span>
+                  {tot && tot.runs > 0 &&
+                    t.index(Math.round((tot.answered / tot.runs) * 100), tot.runs, tot.median_minutes == null ? '' : tot.median_minutes < 1 ? 'within a minute' : `within ${after(tot.median_minutes)}`)}
+                </span>
+                {act && (
+                  <button type="button" className="lk-q__from" onClick={() => go.search(act.act)}>
+                    {t.from(act.events)}
+                  </button>
+                )}
+              </div>
+            </article>
+          )
+        })}
+      </div>
+      {r && (
+        <div className="lk-rhythm">
+          <p className="lk-q__journey">{t.rhythmLabel}</p>
+          <p className="lk-rhythm__big">{t.rhythm(r.sends, weeks, r.per_week)}</p>
+          <p className="lk-rhythm__line">
+            {[r.weekday && t.weekday(r.weekday), r.languages.length > 0 && t.languages(list(r.languages))].filter(Boolean).join(' ')}
           </p>
-          {card.rhythm.latest && card.rhythm.latest.length > 0 && (
+          {r.latest && r.latest.length > 0 && (
             <>
-              <p className="s-lookup__latest">{f.latest}</p>
-              <ul className="s-lookup__emails">
-                {card.rhythm.latest.map((m) => (
-                  <li key={m.id}>
-                    <span className="s-lookup__subject">{m.subject || '(no subject)'}</span>
-                    <span className="s-lookup__when">{day(m.at)}</span>
-                    <button type="button" className="ob-btn ob-btn--link ob-btn--sm" onClick={() => onView(m)}>
-                      <span className="ob-btn-label">{f.view}</span>
-                    </button>
-                  </li>
-                ))}
+              <p className="lk-q__journey">{t.latestLabel}</p>
+              <ul className="lk-rhythm__list">
+                {r.latest.map((m) => {
+                  const ev = entry.emails.get(m.id)
+                  return (
+                    <li key={m.id}>
+                      <button type="button" className="lk-rhythm__email" onClick={() => go.search(ev)}>
+                        {m.subject || '(no subject)'}
+                      </button>
+                      <span className="lk-rhythm__when">{day(m.at)}</span>
+                    </li>
+                  )
+                })}
               </ul>
             </>
           )}
-        </section>
+        </div>
       )}
-
-      <p className="s-lookup__scope">{f.scope}</p>
-    </article>
+      <p className="lk-ins__note">{t.note}</p>
+    </div>
   )
 }
 

@@ -107,3 +107,7 @@
 
 /* A plain record: DNS, a register entry, a call log. */
 .cap-record { margin: 0; padding: 14px 16px; border: 1px solid var(--ob-line-subtle); border-radius: 10px; background: var(--ob-bg-sunken); color: var(--ob-text-2); font: 500 12px / 1.6 var(--ob-font-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* A clean copy kept as a page (the lookup's emails), in a frame that runs nothing. */
+.cap-frame { display: block; width: 100%; height: 520px; border: 1px solid var(--ob-line-subtle); border-radius: 10px; background: #fcfbf9; }
+.cap-wait { display: grid; place-items: center; height: 200px; margin: 0; font: 500 13px / 1.5 var(--ob-font-mono); color: var(--ob-text-3); background: var(--ob-bg-sunken); }

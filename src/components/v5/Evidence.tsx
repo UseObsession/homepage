@@ -26,7 +26,7 @@ function Tags({ e }: { e: ExEvent }) {
   )
 }
 
-function Look({ e, small }: { e: ExEvent; small?: boolean }) {
+export function Look({ e, small }: { e: ExEvent; small?: boolean }) {
   const ev = e.evidence
   if (!ev) return null
   return ev.look ? (

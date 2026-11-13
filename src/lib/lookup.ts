@@ -17,6 +17,7 @@ export type CardEmail = { id: string; subject: string; after_minutes?: number; a
 export type CardJourney = {
   journey: 'welcome' | 'browse' | 'cart' | 'checkout'
   date: string
+  seeded_at?: string
   window_hours: number
   emails: number
   first_after_minutes: number | null
@@ -62,7 +63,10 @@ async function call<T>(route: string, body: Record<string, unknown>): Promise<An
   }
 }
 
-export type Found = { found: true; domain: string; card: Card; view: string } | { found: false; domain: string }
+/* How the index as a whole answered each journey: stores that ran it, stores that sent an email in its window, and the
+   middle wait before the first. Totals only. */
+export type IndexTotals = { stores: number; journeys: Record<string, { runs: number; answered: number; median_minutes: number | null }> }
+export type Found = { found: true; domain: string; card: Card; view: string; index?: IndexTotals } | { found: false; domain: string }
 
 export type Kind = 'add' | 'update'
 export const lookUp = (domain: string, token: string) => call<Found>('lookup', { domain, token })

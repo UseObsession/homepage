@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import type { Explorer, SampleKinds } from '../../content/types'
 import { HeroExplorer } from '../v5/HeroExplorer'
+import { InsightRun } from '../v5/InsightRun'
 import { SectionHead } from './DevSection'
 import './EveryKind.css'
 
@@ -14,7 +15,7 @@ export function EveryKind({ kinds, ex, id }: { kinds: SampleKinds; ex: Explorer;
       <div className="s-wrap">
         <SectionHead id={headingId} heading={kinds.heading} line={kinds.line} />
         <div className="s-ek-x">
-          <HeroExplorer ex={ex} tabs={kinds.tabs} tabsLabel={kinds.tabsLabel} start="evidence" autoplay={false} anchors={false} />
+          <HeroExplorer ex={ex} insights={<InsightRun ex={ex} />} tabs={kinds.tabs} tabsLabel={kinds.tabsLabel} start="evidence" autoplay={false} anchors={false} />
         </div>
         <div className="s-ek-arrives">
           <span className="s-ek-lab">{kinds.arrivesLabel}</span>

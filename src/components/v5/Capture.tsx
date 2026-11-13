@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import type { ExLook } from '../../content/types'
 import './Capture.css'
 
@@ -203,5 +204,22 @@ export function Capture({ look, small }: { look: ExLook; small?: boolean }) {
       )
     case 'record':
       return <pre className="cap cap-record">{look.text}</pre>
+    case 'html':
+      return <HtmlCopy look={look} />
   }
+}
+
+/* A clean copy kept as a page: fetched once it is shown, then drawn in a frame that runs nothing and loads no links. */
+function HtmlCopy({ look }: { look: Extract<ExLook, { t: 'html' }> }) {
+  const [html, setHtml] = useState<string | null | undefined>(undefined)
+  useEffect(() => {
+    let on = true
+    setHtml(undefined)
+    void look.load().then((h) => on && setHtml(h))
+    return () => {
+      on = false
+    }
+  }, [look])
+  if (html) return <iframe className="cap cap-frame" title={look.title} sandbox="" referrerPolicy="no-referrer" srcDoc={html} />
+  return <p className="cap cap-frame cap-wait">{html === undefined ? 'Opening the clean copy…' : 'The clean copy didn’t open. Try again in a moment.'}</p>
 }

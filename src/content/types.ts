@@ -435,6 +435,8 @@ export type ExLook =
   | { t: 'photo'; caption: string; lines: string[]; dark?: boolean }
   | { t: 'job'; board: string; title: string; lines: string[] }
   | { t: 'record'; text: string }
+  /* A clean copy kept as a page (the lookup's emails): fetched when it is first shown, drawn in a sandboxed frame. */
+  | { t: 'html'; title: string; load: () => Promise<string | null> }
 /* An event's clean copy: its header lines, its body as text, and the proof lines under it. `look` draws it as it
    arrived; the body stays as its words for readers that can't see the drawing. */
 export type ExEvidence = { head: [string, string][]; body: string[]; proof: string[]; look?: ExLook }
@@ -473,6 +475,26 @@ export type ExInsight = {
   answer: string
   stats: { v: string; l: string }[]
 }
+/* What the console (components/v5/HeroExplorer) needs: Search's words and its companies. Explorer adds the question
+   run Home and /sample-output send to its Insights tab (components/v5/InsightRun); the lookup sends its own. */
+export type ExConsole = {
+  placeholder: { search: string }
+  modes: { search: string; insights: string }
+  buttons: { search: string }
+  tryLabel: { search: string }
+  groups: { persona: string; wall: string; kind: string }
+  tabs: { facts: string; evidence: string; record: string }
+  output: { search: string }
+  hint: string
+  none: string
+  fromIndex: string
+  newRun: string
+  notCovered: string
+  unindexed: { title: string; line: string; cta: string }
+  said: string
+  companies: ExCompany[]
+  ready: (persona: string) => string
+}
 export type Explorer = {
   placeholder: { search: string; insights: string }
   modes: { search: string; insights: string }
@@ -480,7 +502,7 @@ export type Explorer = {
   openRecord: string
   tryLabel: { search: string; insights: string }
   groups: { persona: string; wall: string; kind: string; asked: string; sources: string }
-  tabs: { facts: string; evidence: string }
+  tabs: { facts: string; evidence: string; record: string }
   output: { search: string; insights: string }
   hint: string
   none: string
