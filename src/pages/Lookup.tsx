@@ -214,7 +214,7 @@ function StoreEntry({ card, view, index }: { card: Card; view: string; index?: I
         bar={false}
         autoplay={false}
         anchors={false}
-        insights={(go) => <LookupInsights card={card} index={index} entry={entry} go={go} />}
+        insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} /> })}
       />
       <p className="s-lookup__scope">{e.scope}</p>
     </article>

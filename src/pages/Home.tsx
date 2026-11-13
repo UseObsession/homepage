@@ -4,8 +4,7 @@ import { AgentLife } from '../components/v5/AgentLife'
 import { CardGrid } from '../components/v5/CardGrid'
 import { Finding } from '../components/v5/Finding'
 import { Hero5 } from '../components/v5/Hero5'
-import { HeroExplorer } from '../components/v5/HeroExplorer'
-import { InsightRun } from '../components/v5/InsightRun'
+import { QuestionConsole } from '../components/v5/InsightRun'
 import { RunReports } from '../components/v5/RunReports'
 import { StopTrack } from '../components/v5/StopTrack'
 import { page } from '../content/pages/home'
@@ -19,7 +18,7 @@ import './StoryPage.css'
 export function Home() {
   return (
     <>
-      <Hero5 hero={page.hero} visual={page.explorer && <HeroExplorer ex={page.explorer} insights={<InsightRun ex={page.explorer} />} />} crumbs={false} center />
+      <Hero5 hero={page.hero} visual={page.explorer && <QuestionConsole ex={page.explorer} />} crumbs={false} center />
       {page.dataKinds && <CardGrid grid={page.dataKinds} id="data" />}
       {page.finding && <Finding finding={page.finding} id="found" />}
       {page.users && <CardGrid grid={page.users} id="for" />}

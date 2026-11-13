@@ -1,6 +1,7 @@
 /* The console (HeroExplorer.tsx), in the page's own theme, light or dark. Colour means state only: green in the index,
    the ink's grey while a company is being added.
-   13 Nov (James): Insights and Search are folder tabs on the window's top edge (design A): the picked one takes the
+   13 Nov (James): the box sits over the tabs and the other sources to try under the window, as before; Search and
+   Insights are folder tabs on the window's top edge (design A): the picked one takes the
    panel's colour and opens into it, the other sits behind, darker. Inside, Facts and Evidence (and an opened card's
    Evidence and Record) are underline tabs. Facts is a timeline of cards (design C). */
 
@@ -26,8 +27,8 @@
 .v5-hx .hx-utab[aria-selected='true'], .v5-hx .hx-utab[data-on] { border-bottom-color: var(--ob-text); color: var(--ob-text); }
 
 /* ---- The box ---- */
-.v5-hx .hx-top { display: grid; padding: 20px 24px 0; }
-.v5-hx .hx-bar { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 7px 8px 7px 16px; border: 1px solid var(--ob-line-strong); border-radius: 12px; background: var(--ob-bg-sunken); }
+.v5-hx .hx-top { display: grid; margin-bottom: 16px; }
+.v5-hx .hx-bar { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 7px 8px 7px 16px; border: 1px solid var(--ob-line-strong); border-radius: 12px; background: var(--hx-panel); }
 .v5-hx .hx-ic { flex: none; display: grid; width: 16px; height: 16px; color: var(--ob-text-3); }
 .v5-hx .hx-ic svg { width: 16px; height: 16px; }
 .v5-hx .hx-q { flex: 1; min-width: 0; margin: 0; font: 500 17px / 1.35 var(--ob-font-mono); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -37,7 +38,7 @@
 .v5-hx .hx-btn { flex: none; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 10px; background: var(--ob-text); color: var(--ob-text-inverse) !important; transition: transform 0.14s var(--ob-ease); }
 .v5-hx .hx-btn svg { width: 18px; height: 18px; display: block; }
 .v5-hx .hx-btn:active, .v5-hx .hx-go:active { transform: scale(0.95); }
-.v5-hx .hx-more { display: grid; justify-items: center; gap: 12px; padding: 0 24px 22px; }
+.v5-hx .hx-more { display: grid; justify-items: center; gap: 12px; margin-top: 16px; }
 .v5-hx .hx-morebtn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--ob-line-strong); background: transparent; padding: 9px 14px; border-radius: 999px; font: 500 14px / 1 var(--ob-font-sans) !important; color: var(--ob-text-2); }
 .v5-hx .hx-morebtn:hover { color: var(--ob-text); border-color: var(--ob-text-3); }
 .v5-hx .hx-chev { width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform 0.2s var(--ob-ease); }
@@ -63,7 +64,6 @@
 .v5-hx .hx-chipmore[data-on]:not([aria-expanded='true']) { border-color: var(--ob-text-2); color: var(--ob-text); }
 .v5-hx .hx-chipopt[aria-pressed='true'] { background: var(--ob-text); color: var(--ob-text-inverse); }
 .v5-hx .hx-pager { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 12px; }
-.v5-hx .hx-pagecount { margin-right: auto; font: 500 12.5px / 1 var(--ob-font-mono); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
 .v5-hx .hx-pager button:disabled { opacity: 0.35; cursor: default; }
 .v5-hx .hx-chipmenu { flex-basis: 100%; display: grid; gap: 2px; padding: 5px; border: 1px solid var(--ob-line-strong); border-radius: 10px; background: var(--hx-card); box-shadow: 0 14px 30px -18px rgb(0 0 0 / 0.5); animation: hx-in 0.2s var(--ob-ease) both; }
 .v5-hx .hx-chipopt { border: 0; background: transparent; padding: 8px 10px; border-radius: 7px; text-align: left; font: 500 12.5px / 1.1 var(--ob-font-sans) !important; color: var(--ob-text-2); }
@@ -139,8 +139,6 @@
 
 @media (max-width: 760px) {
   .v5-hx .hx-main { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 16px; }
-  .v5-hx .hx-top { padding: 16px 16px 0; }
-  .v5-hx .hx-more { padding: 0 16px 18px; }
   .v5-hx .hx-q { font-size: 15px; }
   .v5-hx .hx-ohead { flex-wrap: wrap; }
   .v5-hx .hx-badge { order: -1; flex-basis: 100%; margin: 0 0 10px; }
