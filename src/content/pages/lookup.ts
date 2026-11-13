@@ -164,7 +164,7 @@ export const lookupPage: LookupPage = {
   agencies: {
     link: 'At an agency? Look up the stores you run or pitch',
     heading: 'Looking up a client, or a store you’re pitching?',
-    line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK.',
+    line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK. We check each agency before we set up access.',
     points: [
       'Every store already in the index, in a table you already use, like Clay or Google Sheets, or through our API and MCP for your own tools and AI agents.',
       'Up to 5 stores added for you: your clients, or the brands you’re pitching.',
@@ -200,7 +200,7 @@ export const lookupPage: LookupPage = {
   },
   indexing: {
     heading: 'How we check a site',
-    line: 'Our accounts sign up and shop your store the way a new customer would, then keep what your store shows and sends back.',
+    line: 'Our accounts sign up and shop your store the way a new customer would, then keep what your store shows and sends back. The index is built for millions of companies, and a store already in it starts with its history on day one.',
     items: [
       { title: 'A new customer’s steps', line: 'Sign up, look at a product, leave a basket, start a checkout. Every screen and email that follows is dated from its step.' },
       { title: 'Kept as it arrived', line: 'Every screen and email, with links, tracking images, and our account’s name and address taken out.' },
@@ -230,13 +230,17 @@ export const lookupPage: LookupPage = {
       },
       {
         q: 'I run an agency. Can I look up a client’s store?',
-        a: 'Not from this box, because an entry only goes to someone at the store itself. Early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK.',
+        a: 'Not from this box, because an entry only goes to someone at the store itself. Early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK. We check each agency before we set up access.',
         link: { label: 'Obsession for agencies', to: '/agencies' },
       },
       { q: 'Why does it need an email at my site?', a: 'So an entry only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
       { q: 'How long does the link work?', a: '7 days. After that, look up your site again and we’ll send a new one.' },
       { q: 'My site isn’t in the index. Can you add it?', a: 'Yes. Look it up, leave your work email, and we’ll add it. You can name your other sites in the same form.' },
       { q: 'Can AI agents buy from my store?', a: 'Ask for the check in the form under your entry. Our agent tries to find, read, compare and buy your products, and your entry shows the stage where it stops and why.' },
+      {
+        q: 'When do you call an email missing?',
+        a: 'We read each step at 4, 8, 12, 24 and 48 hours, because every store runs its reminders on its own clock. We call an email missing once its window has closed, never before. The account stays subscribed after that, so your entry keeps filling with the store’s campaigns, codes and offers.',
+      },
       { q: 'Where do the numbers next to each finding come from?', a: 'From every store in the index that took the same step: how many of them do it, and how fast half of them are.' },
       { q: 'Will you place orders on my store?', a: 'No. Our accounts stop before payment and never place an order.' },
       { q: 'Do you see my customers or their data?', a: 'No. Every email in an entry was sent to one of our own accounts. We never see your customers, their orders or their emails.' },
