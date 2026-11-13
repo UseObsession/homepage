@@ -15,13 +15,13 @@
 .s-lookup__wrap:focus { outline: none; }
 .s-lookup__wrap--entry { max-width: 1072px; }
 
-/* The box takes 2 entries, the domain and an email at it, split by a hairline; on a phone they stack. */
-.s-lookup__form { max-width: 720px; }
-.s-lookup__divider { flex: none; width: 1px; height: 24px; background: var(--ob-line); }
+/* The box is one email in 2 entries, [you] @ [yoursite.com], then the button; on a phone the button drops below. */
+.s-lookup__form { max-width: 640px; }
+.s-lookup__form .s-lookup__local { flex: 1 1 0; text-align: right; padding-right: 2px; }
+.s-lookup__form .s-lookup__domainin { flex: 1.6 1 0; padding-left: 2px; }
+.s-lookup__at { flex: none; font: var(--ob-weight-regular) var(--ob-field-font-size)/var(--ob-field-leading) var(--ob-font-sans); color: var(--ob-text-3); user-select: none; -webkit-user-select: none; }
 @media (max-width: 640px) {
   .s-lookup__form .ob-pill-field { border-radius: 22px; }
-  .s-lookup__form .ob-pill-input { flex-basis: 100%; }
-  .s-lookup__form .s-lookup__divider { width: auto; height: 1px; flex-basis: 100%; margin-inline: var(--ob-space-12); }
   .s-lookup__form .ob-pill-action { flex-basis: 100%; }
 }
 

@@ -39,7 +39,8 @@ export function Lookup() {
   const uid = useId()
   const [phase, setPhase] = useState<Phase>({ at: 'idle' })
   const [domain, setDomain] = useState('')
-  const [email, setEmail] = useState('')
+  /* The email is built from 2 entries: the part before the @, and the domain looked up, so it is always at the site. */
+  const [local, setLocal] = useState('')
   const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<string | null>(null)
   const [live, setLive] = useState('')
@@ -80,14 +81,16 @@ export function Lookup() {
     setLive(text)
   }
 
-  async function submitLookup(e?: FormEvent<HTMLFormElement>, typed = domain, address = email) {
+  async function submitLookup(e?: FormEvent<HTMLFormElement>, typed = domain, name = local) {
     e?.preventDefault()
     if (busy) return
     setProblem(null)
     const site = typed.trim()
     const sample = site.toLowerCase() === p.form.exampleDomain
+    const address = `${name.trim()}@${site.replace(/^https?:\/\//i, '').replace(/^www\./i, '').split(/[/?#]/)[0]}`
+    if (!sample && !name.trim()) return fail(p.errors.email)
     if (!site) return fail(p.errors.domain)
-    if (!sample && !isEmail(address.trim())) return fail(p.errors.email)
+    if (!sample && !isEmail(address)) return fail(p.errors.email)
     setBusy(true)
     setLive(p.form.busy)
     const token = await check.current?.take()
@@ -95,7 +98,7 @@ export function Lookup() {
       setBusy(false)
       return fail(p.errors.check)
     }
-    const res = await askLookup(site, sample ? '' : address.trim(), token)
+    const res = await askLookup(site, sample ? '' : address, token)
     setBusy(false)
     if (!res.ok) {
       if (res.error === 'match') return fail(p.errors.match(site.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0]))
@@ -105,7 +108,7 @@ export function Lookup() {
     const d = res.data
     if ('sent' in d) setPhase({ at: 'sent', domain: d.domain, email: d.email })
     else if (d.found) setPhase({ at: 'found', card: d.card, view: d.view, index: d.index })
-    else setPhase({ at: 'missing', domain: d.domain, email: address.trim() })
+    else setPhase({ at: 'missing', domain: d.domain, email: address })
   }
 
   function again() {
@@ -116,7 +119,8 @@ export function Lookup() {
   }
 
   const take = () => check.current?.take() ?? Promise.resolve(null)
-  const ids = { domain: `${uid}-domain`, email: `${uid}-email`, help: `${uid}-help`, error: `${uid}-error` }
+  const ids = { domain: `${uid}-domain`, local: `${uid}-local`, help: `${uid}-help`, error: `${uid}-error` }
+  const domainRef = useRef<HTMLInputElement>(null)
 
   return (
     <>
@@ -125,44 +129,61 @@ export function Lookup() {
           <div className="s-notice-hero__join">
             <form className={`ob-pill-form s-lookup__form${problem ? ' is-error' : ''}`} noValidate onSubmit={submitLookup} aria-busy={busy || undefined}>
               <div className="ob-pill-field">
-                <label className="ob-pill-entry" htmlFor={ids.domain}>
-                  <span className="ob-sr">{p.form.label}</span>
+                <label className="ob-pill-entry" htmlFor={ids.local}>
+                  <span className="ob-sr">{p.form.emailLabel}</span>
                   <input
-                    className="ob-pill-input"
-                    id={ids.domain}
-                    name="domain"
+                    className="ob-pill-input s-lookup__local"
+                    id={ids.local}
+                    name="email"
                     type="text"
-                    inputMode="url"
-                    autoComplete="url"
+                    inputMode="email"
+                    autoComplete="email"
                     autoCapitalize="none"
                     spellCheck={false}
-                    required
-                    placeholder={p.form.placeholder}
-                    value={domain}
+                    placeholder={p.form.emailPlaceholder}
+                    value={local}
+                    onKeyDown={(e) => {
+                      /* The @ is already there: typing it moves on to the domain. */
+                      if (e.key === '@') {
+                        e.preventDefault()
+                        domainRef.current?.focus()
+                      }
+                    }}
                     onChange={(e) => {
-                      setDomain(e.target.value)
+                      /* A whole address, pasted or filled in by the browser, splits at its last @. */
+                      const v = e.target.value.replace(/\s+/g, '')
+                      const at = v.lastIndexOf('@')
+                      if (at >= 0) {
+                        setLocal(v.slice(0, at))
+                        if (v.slice(at + 1)) setDomain(v.slice(at + 1))
+                        domainRef.current?.focus()
+                      } else setLocal(v)
                       if (problem) setProblem(null)
                     }}
                     aria-invalid={problem ? true : undefined}
                     aria-describedby={[problem ? ids.error : '', ids.help].filter(Boolean).join(' ')}
                   />
                 </label>
-                <span className="s-lookup__divider" aria-hidden="true" />
-                <label className="ob-pill-entry" htmlFor={ids.email}>
-                  <span className="ob-sr">{p.form.emailLabel}</span>
+                <span className="s-lookup__at" aria-hidden="true">
+                  @
+                </span>
+                <label className="ob-pill-entry" htmlFor={ids.domain}>
+                  <span className="ob-sr">{p.form.label}</span>
                   <input
-                    className="ob-pill-input"
-                    id={ids.email}
-                    name="email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
+                    ref={domainRef}
+                    className="ob-pill-input s-lookup__domainin"
+                    id={ids.domain}
+                    name="domain"
+                    type="text"
+                    inputMode="url"
+                    autoComplete="off"
                     autoCapitalize="none"
                     spellCheck={false}
-                    placeholder={p.form.emailPlaceholder}
-                    value={email}
+                    required
+                    placeholder={p.form.placeholder}
+                    value={domain}
                     onChange={(e) => {
-                      setEmail(e.target.value)
+                      setDomain(e.target.value.replace(/\s+/g, '').replace(/^.*@/, ''))
                       if (problem) setProblem(null)
                     }}
                     aria-invalid={problem ? true : undefined}
