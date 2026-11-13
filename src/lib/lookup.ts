@@ -44,7 +44,7 @@ export type Card = {
   captured: { from: string; to: string; mail_until: string }
 }
 
-export type Answer<T> = { ok: true; data: T } | { ok: false; error: 'domain' | 'check' | 'limit' | 'server' | 'email' | 'view' | 'edit' }
+export type Answer<T> = { ok: true; data: T } | { ok: false; error: 'domain' | 'check' | 'limit' | 'server' | 'email' | 'view' | 'edit' | 'match' | 'link' }
 
 async function call<T>(route: string, body: Record<string, unknown>): Promise<Answer<T>> {
   try {
@@ -55,7 +55,7 @@ async function call<T>(route: string, body: Record<string, unknown>): Promise<An
     })
     const out = await res.json().catch(() => ({}))
     if (res.ok) return { ok: true, data: out as T }
-    const known = ['domain', 'check', 'limit', 'email', 'view', 'edit'] as const
+    const known = ['domain', 'check', 'limit', 'email', 'view', 'edit', 'match', 'link'] as const
     const error = known.find((k) => k === out?.error) ?? 'server'
     return { ok: false, error }
   } catch {
@@ -69,7 +69,12 @@ export type IndexTotals = { stores: number; journeys: Record<string, { runs: num
 export type Found = { found: true; domain: string; card: Card; view: string; index?: IndexTotals } | { found: false; domain: string }
 
 export type Kind = 'add' | 'update'
-export const lookUp = (domain: string, token: string) => call<Found>('lookup', { domain, token })
+/* The gated lookup (James, 13 Nov): a domain and an email at it. For an indexed store the function emails a link to the
+   entry and answers `sent`; the sample store answers its card at once. The link opens /lookup#t=<token>, and the page
+   trades the token for the card (`openLink`). */
+export type Asked = Found | { found: true; sent: true; domain: string; email: string }
+export const askLookup = (domain: string, email: string, token: string) => call<Asked>('ask', { domain, email, token })
+export const openLink = (link: string) => call<Found>('open', { link })
 export const askForVisit = (domain: string, email: string, kind: Kind, token: string) =>
   call<{ ok: true; domain: string; kind: Kind; id: string; edit: string }>('request', { domain, email, kind, token })
 

@@ -8,7 +8,7 @@ import { join, offers } from '../content/join'
 import { lookupPage as p } from '../content/pages/lookup'
 import { track } from '../lib/analytics'
 import { siteFromEmail, type JoinStore } from '../lib/join'
-import { askForVisit, lookUp, lookupJoin, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
+import { askForVisit, askLookup, lookupJoin, openLink, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
 import { after, basketText, day, entryOf, list, type Entry } from '../lib/lookupEntry'
 import { isEmail, isWorkEmail } from '../lib/waitlist'
 import { NoticeHero } from './Notice'
@@ -23,17 +23,23 @@ import './Lookup.css'
    first (a request to update the entry, or to add the site), then the early access card in its place (who they are,
    name, company and site, their other sites, the kinds of data they want). Unlike the website's, nothing is kept: a
    company can run many stores, so each lookup asks afresh. The example under the box runs the lookup for the sample
-   store. Nothing here is prerendered but the form: every answer arrives after a lookup. */
+   store. Nothing here is prerendered but the form: every answer arrives after a lookup.
+   13 Nov (James): the entry is not shown at once. The form takes the domain and an email at it; for an indexed site the
+   function emails a link, and the page says so. The link opens /lookup#t=<token>: the page trades the token for the
+   entry (lib/lookup openLink). The token sits in the fragment, so no server log or Referer header sees it. The sample
+   store needs no email. */
 
 type Phase =
   | { at: 'idle' }
   | { at: 'found'; card: Card; view: string; index?: IndexTotals }
-  | { at: 'missing'; domain: string }
+  | { at: 'missing'; domain: string; email?: string }
+  | { at: 'sent'; domain: string; email: string }
 
 export function Lookup() {
   const uid = useId()
   const [phase, setPhase] = useState<Phase>({ at: 'idle' })
   const [domain, setDomain] = useState('')
+  const [email, setEmail] = useState('')
   const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<string | null>(null)
   const [live, setLive] = useState('')
@@ -52,16 +58,36 @@ export function Lookup() {
     if (phase.at !== 'idle') result.current?.focus()
   }, [phase])
 
+  /* Arriving from the email: trade the link's token for the entry, once. */
+  const opened = useRef(false)
+  useEffect(() => {
+    const link = new URLSearchParams(window.location.hash.slice(1)).get('t')
+    if (!link || opened.current) return
+    opened.current = true
+    setBusy(true)
+    setLive(p.form.opening)
+    void openLink(link).then((res) => {
+      setBusy(false)
+      setLive('')
+      if (!res.ok) return fail(res.error === 'limit' ? p.errors.limit : res.error === 'server' ? p.errors.server : p.errors.link)
+      if (res.data.found) setPhase({ at: 'found', card: res.data.card, view: res.data.view, index: res.data.index })
+      else setPhase({ at: 'missing', domain: res.data.domain })
+    })
+  }, [])
+
   function fail(text: string) {
     setProblem(text)
     setLive(text)
   }
 
-  async function submitLookup(e?: FormEvent<HTMLFormElement>, typed = domain) {
+  async function submitLookup(e?: FormEvent<HTMLFormElement>, typed = domain, address = email) {
     e?.preventDefault()
     if (busy) return
     setProblem(null)
-    if (!typed.trim()) return fail(p.errors.domain)
+    const site = typed.trim()
+    const sample = site.toLowerCase() === p.form.exampleDomain
+    if (!site) return fail(p.errors.domain)
+    if (!sample && !isEmail(address.trim())) return fail(p.errors.email)
     setBusy(true)
     setLive(p.form.busy)
     const token = await check.current?.take()
@@ -69,22 +95,28 @@ export function Lookup() {
       setBusy(false)
       return fail(p.errors.check)
     }
-    const res = await lookUp(typed.trim(), token)
+    const res = await askLookup(site, sample ? '' : address.trim(), token)
     setBusy(false)
-    if (!res.ok) return fail(p.errors[res.error === 'view' || res.error === 'edit' ? 'server' : res.error])
+    if (!res.ok) {
+      if (res.error === 'match') return fail(p.errors.match(site.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0]))
+      return fail(res.error === 'domain' || res.error === 'check' || res.error === 'limit' || res.error === 'email' ? p.errors[res.error] : p.errors.server)
+    }
     setLive('')
-    if (res.data.found) setPhase({ at: 'found', card: res.data.card, view: res.data.view, index: res.data.index })
-    else setPhase({ at: 'missing', domain: res.data.domain })
+    const d = res.data
+    if ('sent' in d) setPhase({ at: 'sent', domain: d.domain, email: d.email })
+    else if (d.found) setPhase({ at: 'found', card: d.card, view: d.view, index: d.index })
+    else setPhase({ at: 'missing', domain: d.domain, email: address.trim() })
   }
 
   function again() {
     setPhase({ at: 'idle' })
     setDomain('')
     setProblem(null)
+    if (window.location.hash) window.history.replaceState(null, '', window.location.pathname)
   }
 
   const take = () => check.current?.take() ?? Promise.resolve(null)
-  const ids = { domain: `${uid}-domain`, help: `${uid}-help`, error: `${uid}-error` }
+  const ids = { domain: `${uid}-domain`, email: `${uid}-email`, help: `${uid}-help`, error: `${uid}-error` }
 
   return (
     <>
@@ -115,6 +147,28 @@ export function Lookup() {
                     aria-describedby={[problem ? ids.error : '', ids.help].filter(Boolean).join(' ')}
                   />
                 </label>
+                <span className="s-lookup__divider" aria-hidden="true" />
+                <label className="ob-pill-entry" htmlFor={ids.email}>
+                  <span className="ob-sr">{p.form.emailLabel}</span>
+                  <input
+                    className="ob-pill-input"
+                    id={ids.email}
+                    name="email"
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    autoCapitalize="none"
+                    spellCheck={false}
+                    placeholder={p.form.emailPlaceholder}
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      if (problem) setProblem(null)
+                    }}
+                    aria-invalid={problem ? true : undefined}
+                    aria-describedby={[problem ? ids.error : '', ids.help].filter(Boolean).join(' ')}
+                  />
+                </label>
                 <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
                   <span className="ob-btn-busy" aria-hidden="true">
                     <StatusMark state="working" size={18} />
@@ -137,7 +191,7 @@ export function Lookup() {
                   className="ob-btn ob-btn--link ob-btn--inline"
                   onClick={() => {
                     setDomain(p.form.exampleDomain)
-                    void submitLookup(undefined, p.form.exampleDomain)
+                    void submitLookup(undefined, p.form.exampleDomain, '')
                   }}
                 >
                   <span className="ob-btn-label">{p.form.exampleDomain}</span>
@@ -172,11 +226,19 @@ export function Lookup() {
               <div className="ob-card ob-card--raised s-lookup__missing">
                 <h2 className="ob-card-title">{p.missing.headline(phase.domain)}</h2>
                 <p className="ob-card-body">{p.missing.line}</p>
-                <AskForm key={`add:${phase.domain}`} domain={phase.domain} kind="add" button={p.missing.button} take={take} />
+                <AskForm key={`add:${phase.domain}`} domain={phase.domain} kind="add" button={p.missing.button} take={take} initial={phase.email} />
               </div>
             )}
 
-            {phase.at === 'missing' && (
+            {phase.at === 'sent' && (
+              <div className="ob-card ob-card--raised s-lookup__missing" role="status">
+                <h2 className="ob-card-title">{p.sent.headline}</h2>
+                <p className="ob-card-body">{p.sent.line(phase.email, phase.domain)}</p>
+                <p className="s-lookup__quiet">{p.sent.note}</p>
+              </div>
+            )}
+
+            {(phase.at === 'missing' || phase.at === 'sent') && (
               <p className="s-lookup__again">
                 <button type="button" className="ob-btn ob-btn--link" onClick={again}>
                   <span className="ob-btn-label">{p.another}</span>
@@ -323,10 +385,10 @@ function LookupInsights({ card, index, entry, go }: { card: Card; index?: IndexT
 /* The website's early access form, for 1 site: the work email (checked as the website checks it), sent as a request
    with a Turnstile token, then the early access card in the same spot, on a store of its own (lib/lookup lookupJoin)
    that saves each step to the function and is gone when the page moves on. */
-function AskForm({ domain, kind, button, take }: { domain: string; kind: Kind; button: string; take: () => Promise<string | null> }) {
+function AskForm({ domain, kind, button, take, initial = '' }: { domain: string; kind: Kind; button: string; take: () => Promise<string | null>; initial?: string }) {
   const uid = useId()
   const offer = kind === 'update' ? 'reindex' : 'index'
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(initial)
   const [problem, setProblem] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const [live, setLive] = useState('')

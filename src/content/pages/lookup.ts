@@ -14,8 +14,20 @@ export type LookupPage = {
   meta: Meta
   headline: string
   sub: string
-  form: { label: string; placeholder: string; button: string; busy: string; help: string; example: string; exampleDomain: string }
-  errors: { domain: string; check: string; limit: string; server: string; email: string }
+  form: {
+    label: string
+    placeholder: string
+    emailLabel: string
+    emailPlaceholder: string
+    button: string
+    busy: string
+    opening: string
+    help: string
+    example: string
+    exampleDomain: string
+  }
+  errors: { domain: string; check: string; limit: string; server: string; email: string; match: (domain: string) => string; link: string }
+  sent: { headline: string; line: (email: string, domain: string) => string; note: string }
   /* The console's words for an entry (components/v5/HeroExplorer): Search shows the entry's events. */
   console: Omit<ExConsole, 'companies'>
   entry: {
@@ -74,13 +86,16 @@ export const lookupPage: LookupPage = {
     ],
   },
   headline: 'See what we’ve indexed of your site.',
-  sub: 'Search engines index the pages anyone can open. Obsession indexes what a site shows behind the login: the emails after a sign up, a basket or a checkout, when each arrived and what it said. Type your domain to see your site’s entry.',
+  sub: 'Search engines index the pages anyone can open. Obsession indexes what a site shows behind the login: the emails after a sign up, a basket or a checkout, when each arrived and what it said. Type your domain and your email at it, and we’ll send you a link to your site’s entry.',
   form: {
     label: 'Your site’s domain',
     placeholder: 'yoursite.com',
-    button: 'Look up',
+    emailLabel: 'Your email at that site',
+    emailPlaceholder: 'you@yoursite.com',
+    button: 'Send me the link',
     busy: 'Looking up your site',
-    help: 'One domain, your own site.',
+    opening: 'Opening your site’s entry',
+    help: 'We send the link only to an email at the site you look up.',
     example: 'Example:',
     exampleDomain: 'hollin.example',
   },
@@ -89,7 +104,14 @@ export const lookupPage: LookupPage = {
     check: 'The browser check didn’t pass. Try again.',
     limit: 'That’s the most lookups we take in an hour. Try again later.',
     server: 'The lookup didn’t work. Try again in a minute.',
-    email: 'Type an email address, like you@yoursite.com.',
+    email: 'Type your email at the site, like you@yoursite.com.',
+    match: (domain) => `Use an email at ${domain}, so we know the site is yours.`,
+    link: 'This link has run out or isn’t complete. Look up your site again for a new one.',
+  },
+  sent: {
+    headline: 'Check your inbox',
+    line: (email, domain) => `We’ve sent a link to ${email}. It opens ${domain}’s entry in the index and works for 7 days.`,
+    note: 'Not there in a few minutes? Check your spam folder, or look up your site again.',
   },
   console: {
     placeholder: { search: 'yoursite.com' },

@@ -15,6 +15,16 @@
 .s-lookup__wrap:focus { outline: none; }
 .s-lookup__wrap--entry { max-width: 1072px; }
 
+/* The box takes 2 entries, the domain and an email at it, split by a hairline; on a phone they stack. */
+.s-lookup__form { max-width: 720px; }
+.s-lookup__divider { flex: none; width: 1px; height: 24px; background: var(--ob-line); }
+@media (max-width: 640px) {
+  .s-lookup__form .ob-pill-field { border-radius: 22px; }
+  .s-lookup__form .ob-pill-input { flex-basis: 100%; }
+  .s-lookup__form .s-lookup__divider { width: auto; height: 1px; flex-basis: 100%; margin-inline: var(--ob-space-12); }
+  .s-lookup__form .ob-pill-action { flex-basis: 100%; }
+}
+
 /* The example under the box: a quiet line, centred like the help line above it. */
 .s-lookup__example {
   margin: var(--ob-space-4) 0 0;
