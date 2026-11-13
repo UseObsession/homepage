@@ -15,7 +15,8 @@ import type { BlogPost } from './blog/types'
 import type { ReferenceKind, ReferencePage } from './reference'
 import type { Page, Recipe, RecipeId, UseCaseStudy } from './types'
 
-const pageFiles = import.meta.glob<Page>('./pages/*.ts', { eager: true, import: 'page' })
+/* pages/lookup.ts is the store lookup's words (its own LookupPage, not a Page): imported where it is used. */
+const pageFiles = import.meta.glob<Page>(['./pages/*.ts', '!./pages/lookup.ts'], { eager: true, import: 'page' })
 const recipeFiles = import.meta.glob<Recipe>('./recipes/*.ts', { eager: true, import: 'recipe' })
 const studyFiles = import.meta.glob<UseCaseStudy>('./usecases/*.ts', { eager: true, import: 'study' })
 const postFiles = import.meta.glob<BlogPost>(['./blog/*.ts', '!./blog/types.ts'], { eager: true, import: 'post' })

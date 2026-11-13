@@ -36,7 +36,9 @@ const pathOf = (f) => {
   const r = ('/' + relative(dist, f).replace(/\\/g, '/')).replace(/\.html$/, '').replace(/\/index$/, '')
   return r === '/index' || r === '' ? '/' : r
 }
-const pages = new Map(files.map((f) => [pathOf(f), readFileSync(f, 'utf8')]))
+/* A noindex page (the store lookup, /lookup) is no part of the picture a crawler reads, like 404.html: skipped. */
+const NOINDEX = /<meta name="robots" content="noindex"/
+const pages = new Map(files.map((f) => [pathOf(f), readFileSync(f, 'utf8')]).filter(([, html]) => !NOINDEX.test(html)))
 const kindOf = (p) =>
   p.startsWith('/blog/') ? 'post' : p.startsWith('/recipes/') ? 'recipe' : p.startsWith('/use-cases/') ? 'use case' : READERS.includes(p) ? 'reader' : 'page'
 const mainOf = (html) => {

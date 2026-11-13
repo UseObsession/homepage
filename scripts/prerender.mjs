@@ -58,7 +58,7 @@ await build({
   build: { ssr: 'src/entry-server.tsx', outDir: server, emptyOutDir: true },
 })
 
-const { render, routeFile, entries, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, posts, references, refFileOf, sourceProblems, blogUi, blogPage, isJamesPath } = await import(
+const { render, routeFile, entries, lookup, notFound, jsonLdScript, absolute, SITE, llms, CONTROLLER, AGENCY_SCREENS, screenFiles, postFileOf, posts, references, refFileOf, sourceProblems, blogUi, blogPage, isJamesPath } = await import(
   pathToFileURL(join(server, 'entry-server.js')).href
 )
 const postEntries = entries.filter((e) => e.kind === 'post')
@@ -239,6 +239,13 @@ for (const e of entries) {
   if (/<!--\$[?!]/.test(app)) fail(`${e.meta.path}: part of the page did not draw (a page's code or words did not load before it).`)
   await write(e.meta.path, page(e, app))
   rendered.push({ e, app })
+}
+
+/* The store lookup (content/pages/lookup.ts): noindex, outside the sitemap and llms.txt, like the 404 page. */
+{
+  const app = await render(lookup.meta.path)
+  if (/<!--\$[?!]/.test(app)) fail(`${lookup.meta.path}: part of the page did not draw.`)
+  await write(lookup.meta.path, page(lookup, app, { noindex: true }))
 }
 
 /* Hosts serve 404.html, with a 404 status, for any path without its own page. */

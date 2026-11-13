@@ -4,7 +4,7 @@ import { offers, roles, suggested, type OfferId, type RoleId } from '../content/
 import { keepArrivedFrom } from '../content/signupFlags'
 import type { Capture } from '../content/types'
 import { track } from './analytics'
-import { beaconSnapshot, hasUnsent, hostOf, isAddress, isAgent, queueSnapshot } from './waitlist'
+import { beaconSnapshot, hasUnsent, hostOf, isAddress, isAgent, queueSnapshot, retrySnapshot, saveStatus } from './waitlist'
 
 /* The waitlist sign up, after the email (components/CaptureForm sends the email; components/JoinCard asks the rest).
    1 sign up per visit, kept in this browser for 23 hours so a reload or another page opens it where they left it (the
@@ -76,7 +76,7 @@ export function roleOf(offer: OfferId, path: string): RoleId | '' {
   if (path.startsWith('/marketing')) return 'marketing'
   if (path.startsWith('/sales')) return 'sales'
   if (path.startsWith('/developers')) return 'developer'
-  if (offer === 'store' || offer === 'own') return 'brand'
+  if (offer === 'store' || offer === 'own' || offer === 'index' || offer === 'reindex') return 'brand'
   return ''
 }
 
@@ -84,7 +84,7 @@ export function roleOf(offer: OfferId, path: string): RoleId | '' {
    an AI agent page, else what fits who they are: client stores, their own store, the rivals marketing watches, the
    accounts sales works. */
 export function askOf(s: Pick<JoinState, 'offer' | 'free' | 'role'>): OfferId {
-  if (s.free || s.offer === 'agents') return s.offer
+  if (s.free || s.offer === 'agents' || s.offer === 'index' || s.offer === 'reindex') return s.offer
   if (s.role === 'agency') return 'clients'
   if (s.role === 'brand') return s.offer === 'store' ? 'store' : 'own'
   if (s.role === 'marketing') return 'companies'
@@ -97,7 +97,7 @@ export function askOf(s: Pick<JoinState, 'offer' | 'free' | 'role'>): OfferId {
    companies or their own store. A developer, or "something else" on a page that offers nothing to check, goes from
    their details to the recipes, where the use case says what they'd build. */
 export const asksBrands = (s: Pick<JoinState, 'offer' | 'free' | 'role'>) =>
-  s.free || s.offer === 'agents' || !(s.role === 'developer' || (s.role === 'other' && s.offer === 'any'))
+  s.free || s.offer === 'agents' || s.offer === 'index' || s.offer === 'reindex' || !(s.role === 'developer' || (s.role === 'other' && s.offer === 'any'))
 
 /* The steps this sign up takes, in order. */
 export const stepsOf = (s: Pick<JoinState, 'offer' | 'free' | 'role'>): JoinStep[] =>
@@ -119,94 +119,141 @@ export const recipeOf = (interest?: string) => (catalog.recipes.some((r) => r.id
 
 /* ---- The store ---- */
 
-let state: JoinState | null = null
-let loaded = false
-const listeners = new Set<() => void>()
+/* What the card reads and changes. The website's own is 1 sign up per visit, kept in this browser for 23 hours and sent
+   to the waitlist (homeJoin). The store lookup makes one of its own for each site it asks about, kept only as long as
+   the page: a company can run many stores, so every lookup asks afresh (pages/Lookup). */
+export type SaveState = 'idle' | 'saving' | 'failed'
+export type JoinStart = Omit<
+  JoinState,
+  'v' | 'step' | 'role' | 'agencyType' | 'agencyClients' | 'teamSize' | 'name' | 'company' | 'site' | 'brands' | 'recipes' | 'useCase'
+> & { site?: string; brands?: string[] }
+export type JoinPatch = Partial<Pick<JoinState, 'role' | 'agencyType' | 'agencyClients' | 'teamSize' | 'name' | 'company' | 'site' | 'brands' | 'recipes' | 'useCase'>>
+export type JoinStore = {
+  get: () => JoinState | null
+  subscribe: (l: () => void) => () => void
+  begin: (s: JoinStart) => void
+  patch: (p: JoinPatch) => void
+  go: (step: JoinStep) => void
+  save: { get: () => SaveState; subscribe: (l: () => void) => () => void }
+  retry: () => void
+}
 
-function load() {
-  if (loaded || typeof window === 'undefined') return
-  loaded = true
-  try {
-    const raw = localStorage.getItem(KEY)
-    if (!raw) return
-    const s = JSON.parse(raw) as JoinState
-    if (s?.v === 1 && Date.now() - s.t < KEEP_MS && s.email && s.sid) {
-      state = s
+export function joinStore(o: {
+  /* Kept in this browser (KEY) for KEEP_MS, so a reload or another page opens it where they left it. */
+  keep: boolean
+  /* A step finished: the whole card so far goes out. */
+  send: (s: JoinState) => void
+  save: JoinStore['save']
+  retry: () => void
+  /* The page closing with something unsent. */
+  flush?: (s: JoinState) => void
+  method: string
+}): JoinStore {
+  let state: JoinState | null = null
+  let loaded = !o.keep
+  let leaving = false
+  const listeners = new Set<() => void>()
+
+  const watchLeaving = () => {
+    if (leaving || !o.flush || typeof window === 'undefined') return
+    leaving = true
+    const flush = () => state && o.flush?.(state)
+    window.addEventListener('pagehide', flush)
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') flush()
+    })
+  }
+  const load = () => {
+    if (loaded || typeof window === 'undefined') return
+    loaded = true
+    try {
+      const raw = localStorage.getItem(KEY)
+      if (!raw) return
+      const s = JSON.parse(raw) as JoinState
+      if (s?.v === 1 && Date.now() - s.t < KEEP_MS && s.email && s.sid) {
+        state = s
+        watchLeaving()
+      } else localStorage.removeItem(KEY)
+    } catch {
+      /* Storage blocked or unreadable: a fresh sign up. */
+    }
+  }
+  const set = (next: JoinState | null) => {
+    state = next
+    if (o.keep) {
+      try {
+        if (state) localStorage.setItem(KEY, JSON.stringify(state))
+        else localStorage.removeItem(KEY)
+      } catch {
+        /* The sign up still works for this page. */
+      }
+    }
+    listeners.forEach((l) => l())
+  }
+
+  return {
+    get: () => {
+      load()
+      return state
+    },
+    subscribe: (l) => {
+      listeners.add(l)
+      return () => listeners.delete(l)
+    },
+    begin: ({ site, brands, ...s }) => {
+      set({
+        ...s,
+        v: 1,
+        step: 'role',
+        role: roleOf(s.offer, s.page),
+        agencyType: '',
+        agencyClients: '',
+        teamSize: '',
+        name: '',
+        company: companyFromEmail(s.email),
+        site: site ?? siteFromEmail(s.email),
+        brands: brands?.length ? brands : [''],
+        recipes: recipeOf(s.interest),
+        useCase: '',
+      })
       watchLeaving()
-    } else localStorage.removeItem(KEY)
-  } catch {
-    /* Storage blocked or unreadable: a fresh sign up. */
+    },
+    /* Typing: kept, sent with the next step. */
+    patch: (p) => {
+      if (state) set({ ...state, ...p })
+    },
+    /* A step finished (or Back): the whole card so far goes out. */
+    go: (step) => {
+      if (!state) return
+      const finishing = step === 'done' && state.step !== 'done'
+      set({ ...state, step })
+      o.send(state)
+      if (finishing) track('sign_up', { method: o.method, offer: state.offer })
+    },
+    save: o.save,
+    retry: o.retry,
   }
 }
 
-function persist() {
-  try {
-    if (state) localStorage.setItem(KEY, JSON.stringify(state))
-    else localStorage.removeItem(KEY)
-  } catch {
-    /* The sign up still works for this page. */
-  }
-}
+/* The website's sign up: every form on every page (components/CaptureForm). */
+export const homeJoin = joinStore({
+  keep: true,
+  send: (s) => {
+    if (!s.preview) queueSnapshot(snapshotOf(s))
+  },
+  save: saveStatus,
+  retry: retrySnapshot,
+  flush: (s) => {
+    if (!s.preview && hasUnsent()) beaconSnapshot(snapshotOf(s))
+  },
+  method: 'waitlist',
+})
 
-function set(next: JoinState | null) {
-  state = next
-  persist()
-  listeners.forEach((l) => l())
-}
-
-const subscribe = (l: () => void) => {
-  listeners.add(l)
-  return () => listeners.delete(l)
-}
-const get = () => {
-  load()
-  return state
-}
-
-export const useJoin = () => useSyncExternalStore(subscribe, get, () => null)
-
-/* ---- The changes ---- */
-
-export function begin(
-  s: Omit<JoinState, 'v' | 'step' | 'role' | 'agencyType' | 'agencyClients' | 'teamSize' | 'name' | 'company' | 'site' | 'brands' | 'recipes' | 'useCase'>,
-) {
-  set({
-    ...s,
-    v: 1,
-    step: 'role',
-    role: roleOf(s.offer, s.page),
-    agencyType: '',
-    agencyClients: '',
-    teamSize: '',
-    name: '',
-    company: companyFromEmail(s.email),
-    site: siteFromEmail(s.email),
-    brands: [''],
-    recipes: recipeOf(s.interest),
-    useCase: '',
-  })
-  watchLeaving()
-}
-
-/* Typing: kept in this browser, sent with the next step. */
-export function patch(
-  p: Partial<Pick<JoinState, 'role' | 'agencyType' | 'agencyClients' | 'teamSize' | 'name' | 'company' | 'site' | 'brands' | 'recipes' | 'useCase'>>,
-) {
-  if (state) set({ ...state, ...p })
-}
-
-/* A step finished (or Back): the whole sign up so far goes to the sheet. */
-export function go(step: JoinStep) {
-  if (!state) return
-  const finishing = step === 'done' && state.step !== 'done'
-  set({ ...state, step })
-  send()
-  if (finishing) track('sign_up', { method: 'waitlist', offer: state.offer })
-}
-
-function send() {
-  if (state && !state.preview) queueSnapshot(snapshotOf(state))
-}
+export const useJoinStore = (store: JoinStore) => useSyncExternalStore(store.subscribe, store.get, () => null)
+export const useJoin = () => useJoinStore(homeJoin)
+export const begin = homeJoin.begin
+export const patch = homeJoin.patch
+export const go = homeJoin.go
 
 /* ---- What the sheet gets ---- */
 
@@ -253,21 +300,6 @@ export function snapshotOf(s: JoinState): Record<string, string> {
 /* ---- Checks ---- */
 
 export const brandOk = (offer: OfferId, value: string) => !value.trim() || (offer === 'agents' ? isAgent(value) : isAddress(value))
-
-/* ---- The page closing ---- */
-
-let leaving = false
-function watchLeaving() {
-  if (leaving || typeof window === 'undefined') return
-  leaving = true
-  const flush = () => {
-    if (state && !state.preview && hasUnsent()) beaconSnapshot(snapshotOf(state))
-  }
-  window.addEventListener('pagehide', flush)
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') flush()
-  })
-}
 
 /* ---- Small helpers ---- */
 

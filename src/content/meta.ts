@@ -6,6 +6,7 @@ import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPa
 import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } from './reference'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
+import { lookupPage } from './pages/lookup'
 import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
 
@@ -33,6 +34,7 @@ export type PageKind =
   | 'glossary'
   | 'term'
   | 'not-found'
+  | 'lookup'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
 export type Article = {
@@ -308,7 +310,18 @@ export const notFound: Entry = {
   source: 'src/content/site.ts',
 }
 
-const byPath = new Map(entries.map((e) => [e.meta.path, e]))
+/* dist/lookup.html, the store lookup: noindex like the 404 page, outside the sitemap and llms.txt (it is not in
+   `entries`), and it shares Home's image. One domain in, at most one store card out: there is nothing on it to index. */
+export const lookup: Entry = {
+  kind: 'lookup',
+  meta: { ...lookupPage.meta, ogImage: entries[0].meta.ogImage },
+  name: 'Look up your store',
+  headline: lookupPage.headline,
+  line: lookupPage.sub,
+  source: 'src/content/pages/lookup.ts',
+}
+
+const byPath = new Map([...entries, lookup].map((e) => [e.meta.path, e]))
 
 export function entryFor(path: string): Entry {
   return byPath.get(cleanPath(path)) ?? notFound

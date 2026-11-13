@@ -13,13 +13,16 @@
    - accounts: never a page's; the brands question for a sales team.
    - api: the developers' page.
    - any: everywhere else.
+   - index, reindex: the store lookup (pages/Lookup), for a site we haven't indexed and one we have. Their card asks for
+     the company's other sites, starting with the one looked up, and has a heading of its own (`head`).
    {list}, {first}, {email} and {n} are filled in. */
 
-export type OfferId = 'clients' | 'store' | 'agents' | 'own' | 'companies' | 'accounts' | 'api' | 'any'
+export type OfferId = 'clients' | 'store' | 'agents' | 'own' | 'companies' | 'accounts' | 'api' | 'any' | 'index' | 'reindex'
 
 type Ask = { title: string; help: string; placeholder: string; add: string }
-/* `none`: the thank you when no brands were named (else the shared words, join.done.none). */
-type Offer = { ask: Ask; micro: string; done: string; none?: string; free?: { micro: string; help: string; done: string } }
+/* `none`: the thank you when no brands were named (else the shared words, join.done.none). `head`: the card's heading,
+   where it isn't the early access list's (join.head.title). */
+type Offer = { ask: Ask; micro: string; done: string; none?: string; head?: string; free?: { micro: string; help: string; done: string } }
 
 export const offers: Record<OfferId, Offer> = {
   clients: {
@@ -119,6 +122,28 @@ export const offers: Record<OfferId, Offer> = {
     micro: 'Onboarding a limited number of teams.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
+  index: {
+    head: 'Your site is on our list.',
+    ask: {
+      title: 'Which sites does your company run?',
+      help: 'Up to 5, starting with the one you looked up. We index each one as a new customer would meet it.',
+      placeholder: 'yourotherstore.com',
+      add: 'Add another site',
+    },
+    micro: 'We use your email only for this site and the others you name.',
+    done: 'We’ll email {email} as each one joins the index: {list}.',
+  },
+  reindex: {
+    head: 'We’ll index your site again.',
+    ask: {
+      title: 'Which sites should we index again?',
+      help: 'Up to 5, starting with the one you looked up. We sign up again as a new customer and keep what each one sends.',
+      placeholder: 'yourotherstore.com',
+      add: 'Add another site',
+    },
+    micro: 'We use your email only for this site and the others you name.',
+    done: 'We’ll email {email} as each one is indexed again: {list}.',
+  },
 }
 
 /* Who they are: the card's first question, a default from the page (lib/join roleOf). An agency says what kind. */
@@ -201,11 +226,11 @@ export const join = {
     },
   },
   recipes: {
-    title: 'Which recipes do you want first?',
+    title: 'What data do you want first?',
     suggested: 'Suggested for you',
     help: 'Pick any.',
     helpPicked: 'Pick any. We ticked the one you were reading.',
-    error: 'Pick at least 1 recipe.',
+    error: 'Pick at least 1.',
   },
   useCase: {
     label: 'What do you want to look up, and why?',
@@ -219,7 +244,7 @@ export const join = {
   },
   saved: { failed: 'Some answers didn’t save.', retry: 'Try again' },
   /* The thank you's list of what they told us. */
-  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Recipes' },
+  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Data' },
   /* Another form on a page where the sign up already happened. */
   joined: 'You’re on the early access list as {email}.',
 }

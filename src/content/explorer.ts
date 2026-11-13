@@ -31,7 +31,7 @@ export const explorer: Explorer = {
   openRecord: 'See the evidence',
   tryLabel: { search: 'Try other sources', insights: 'Try other questions' },
   groups: { persona: 'Persona', wall: 'Wall', kind: 'Kind', asked: 'Asked as', sources: 'Sources' },
-  tabs: { facts: 'Facts', evidence: 'Evidence' },
+  tabs: { facts: 'Facts', evidence: 'Evidence', record: 'Record' },
   output: { search: 'Output', insights: 'Report' },
   hint: 'Change who asks',
   none: 'Nothing behind this wall for this persona yet. Pick another.',

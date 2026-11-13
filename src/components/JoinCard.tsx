@@ -2,9 +2,8 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEven
 import { catalog } from '../content/catalog'
 import { agencyTypes, clientAsks, join as copy, offers, roles, sizes } from '../content/join'
 import { JOBS, jobLabel } from '../content/nav'
-import { MAX_BRANDS, askOf, brandOk, cleanBrands, go, listOf, patch, stepAfter, stepsOf, suggestionsOf, useJoin, type JoinState, type JoinStep } from '../lib/join'
+import { MAX_BRANDS, askOf, brandOk, cleanBrands, homeJoin, listOf, stepAfter, stepsOf, suggestionsOf, useJoinStore, type JoinState, type JoinStep, type JoinStore } from '../lib/join'
 import { hostOf, isAddress } from '../lib/waitlist'
-import { retrySnapshot, saveStatus } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 
 /* The waitlist card (lib/join.ts): it opens where the email was typed, once the email is saved, and asks the rest in
@@ -68,10 +67,13 @@ function fill(t: string, values: Record<string, string>): ReactNode[] {
   })
 }
 
-export function JoinCard({ owner }: { owner: boolean }) {
-  const s = useJoin()
+/* `store`: whose sign up it is. The website's own by default (lib/join homeJoin); the store lookup passes one of its own
+   for each site it asks about, so nothing carries over from one lookup to the next. */
+export function JoinCard({ owner, store = homeJoin }: { owner: boolean; store?: JoinStore }) {
+  const s = useJoinStore(store)
   const uid = useId()
-  const save = useSyncExternalStore(saveStatus.subscribe, saveStatus.get, () => 'idle' as const)
+  const save = useSyncExternalStore(store.save.subscribe, store.save.get, () => 'idle' as const)
+  const { patch, go } = store
   const [errors, setErrors] = useState<Record<string, string>>({})
   const title = useRef<HTMLElement | null>(null)
   const setTitle = (el: HTMLElement | null) => {
@@ -110,7 +112,7 @@ export function JoinCard({ owner }: { owner: boolean }) {
         <StatusMark state="landed" size={20} />
       </span>
       <div className="s-join__who">
-        <p className="s-join__title">{copy.head.title}</p>
+        <p className="s-join__title">{offers[s.offer].head ?? copy.head.title}</p>
         <p className="s-join__email">{s.email}</p>
       </div>
       {s.step !== 'done' && (
@@ -134,7 +136,7 @@ export function JoinCard({ owner }: { owner: boolean }) {
     save === 'failed' ? (
       <p className="s-join__save" role="alert">
         {copy.saved.failed}{' '}
-        <button type="button" className="s-join__link" onClick={retrySnapshot}>
+        <button type="button" className="s-join__link" onClick={store.retry}>
           {copy.saved.retry}
         </button>
       </p>

@@ -17,8 +17,8 @@
 .v5-hx .ev-plain { padding: 12px 14px; border: 1px solid var(--ob-line-subtle); border-radius: 10px; background: var(--ob-surface); }
 
 /* Screens: a row of frames, each with its time, what it is and the facts read from it. */
-.v5-hx .ev-film { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
-.v5-hx .ev-frame { padding: 4px; }
+.v5-hx .ev-film { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.v5-hx .ev-frame { width: 100%; max-width: 320px; padding: 4px; }
 .v5-hx .ev-frame .cap { width: 100%; }
 
 /* Emails: the inbox beside the picked email. */
@@ -41,3 +41,10 @@
 @media (max-width: 560px) {
   .v5-hx .ev-film { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* The kinds in view, as tabs: the one shown is named, with how many of it. */
+.v5-hx .ev-kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+.v5-hx .ev-kind { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--ob-line-strong); border-radius: 999px; background: transparent; font: 500 12.5px / 1.1 var(--ob-font-sans) !important; color: var(--ob-text-2); }
+.v5-hx .ev-kind:hover { color: var(--ob-text); }
+.v5-hx .ev-kind[aria-selected='true'] { border-color: transparent; background: var(--ob-text); color: var(--ob-text-inverse); }
+.v5-hx .ev-kindn { font: 500 11px / 1 var(--ob-font-mono); opacity: 0.7; }
