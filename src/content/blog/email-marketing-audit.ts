@@ -396,6 +396,14 @@ export const post: BlogPost = {
       label: 'Request early access',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'For an online store, layer 3 can start from a [Klaviyo email audit from the customer’s side](/lookup). Type an email at the store’s own address. If the store is in Obsession’s index, its entry arrives with every email a new customer got after a sign-up, a basket and a checkout, dated and set against every other store. Agencies look up client and prospect stores through [early access](/lookup#agencies), once we’ve checked the agency.',
+
+    },
+
     { kind: 'h2', id: 'audit-report', text: 'The report the client reads' },
     {
       kind: 'p',

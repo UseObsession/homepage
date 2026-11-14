@@ -219,6 +219,14 @@ export const post: BlogPost = {
       text: 'CRO and Shopify build agencies can run the same steps and record more than email. On the phone, note how the pop up opens and whether it closes, what the basket page shows, and what checkout asks before it lets you leave.',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'For brands already in Obsession’s index, the 48 hours have already run. Early access looks up every store in the index and adds up to 5 stores you run or pitch, with the brand’s OK ([how agencies get access](/lookup#agencies)).',
+
+    },
+
     { kind: 'h2', id: 'what-one-inbox-cant-prove', text: 'What an outside audit can’t show' },
     {
       kind: 'p',

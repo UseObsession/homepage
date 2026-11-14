@@ -483,6 +483,14 @@ export const post: BlogPost = {
       label: 'Request early access',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'The quickest first step is the [store lookup](/lookup). Type an email at your online store’s own address. If your store is in the index, its entry comes to that inbox, with every email after a sign-up, a basket and a checkout beside every other store.',
+
+    },
+
     { kind: 'h2', id: 'questions', text: 'Questions about AI agents for ecommerce' },
     {
       kind: 'faq',

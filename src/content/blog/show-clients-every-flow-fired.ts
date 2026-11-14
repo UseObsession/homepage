@@ -259,6 +259,14 @@ export const post: BlogPost = {
       text: 'With 5 clients or fewer, the same timings come to 1.5 hours a week. At that size the checks can run by hand, and a shared sheet with the table’s 5 columns is enough.',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'Across a whole client list, Obsession keeps the same log. A fresh sign-up runs every step again each week, for every client at once, so a flow that stops working shows up that week ([agency access](/lookup#agencies)).',
+
+    },
+
     { kind: 'h2', id: 'overclaiming', text: 'How to show clients email marketing value without overclaiming' },
     {
       kind: 'p',

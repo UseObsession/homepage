@@ -465,6 +465,14 @@ export const post: BlogPost = {
       label: 'Request early access',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'The [store lookup’s agency access](/lookup#agencies) covers those 5: every store already in the index, plus up to 5 client stores added, each read again every week.',
+
+    },
+
     { kind: 'h2', id: 'questions', text: 'Questions about agency client retention' },
     {
       kind: 'faq',
