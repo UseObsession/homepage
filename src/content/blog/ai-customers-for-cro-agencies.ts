@@ -84,7 +84,6 @@ export const post: BlogPost = {
     'cro tools for shopify',
     'cro agency',
     'paid social agency',
-    'ai customers',
   ],
   category: 'For agencies',
   published: '2026-10-24',

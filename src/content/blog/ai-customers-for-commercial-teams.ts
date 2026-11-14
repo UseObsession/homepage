@@ -49,8 +49,6 @@ export const post: BlogPost = {
     'ai agents for agencies',
     'ai for marketing teams',
     'ai for customer experience teams',
-    'ai agents for ecommerce',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

@@ -56,7 +56,6 @@ export const post: BlogPost = {
     'klaviyo report template',
     'klaviyo reporting',
     'marketing agency report template',
-    'agency client retention',
   ],
   category: 'For agencies',
   published: '2026-10-23',
@@ -348,6 +347,7 @@ export const post: BlogPost = {
         {
           q: 'Does a flow log improve agency client retention?',
           a: 'It hasn’t been measured against renewals, so it comes with no promise about them. It settles one question, whether the email went, and the rest of the retainer is judged as before.',
+          link: { label: 'Agency client retention', to: '/blog/ecommerce-agency-client-retention-with-ai-customers' },
         },
         {
           q: 'Can an AI assistant run these checks?',

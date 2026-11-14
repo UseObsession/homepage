@@ -88,7 +88,6 @@ export const post: BlogPost = {
     'magento to shopify plus migration',
     'shopify qa testing',
     'shopify plus agency',
-    'ai customers',
   ],
   category: 'For agencies',
   published: '2026-10-24',

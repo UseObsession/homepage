@@ -57,13 +57,11 @@ export const post: BlogPost = {
   primaryKeyword: 'machine customers',
   keywords: [
     'future of shopping ai',
-    'agentic commerce',
     'what are machine customers',
     'ai agents as customers',
     'future of ai in ecommerce',
     'ai shopping agents',
     'personal ai agents customer service',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

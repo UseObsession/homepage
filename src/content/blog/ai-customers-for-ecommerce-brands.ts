@@ -79,7 +79,6 @@ export const post: BlogPost = {
     'shopify store monitor',
     'shopify flow not working',
     'ai for ecommerce brands',
-    'ai customers',
   ],
   category: 'Check your own journeys',
   published: '2026-10-24',

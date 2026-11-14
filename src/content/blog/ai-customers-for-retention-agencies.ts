@@ -72,7 +72,6 @@ export const post: BlogPost = {
     'email marketing agency for ecommerce',
     'email marketing reporting template',
     'ai tools for email marketing',
-    'ai customers',
   ],
   category: 'For agencies',
   published: '2026-10-24',

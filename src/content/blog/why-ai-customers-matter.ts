@@ -38,9 +38,7 @@ export const post: BlogPost = {
   primaryKeyword: 'why ai customers matter',
   keywords: [
     'why every company needs ai customers',
-    'ai customers',
     'what customers actually receive',
-    'customer journey testing',
     'ai agents as customers',
     'test ai chatbot as a customer',
     'customer experience gap',
