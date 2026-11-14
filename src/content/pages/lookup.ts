@@ -166,9 +166,10 @@ export const lookupPage: LookupPage = {
     heading: 'Looking up a client, or a store you’re pitching?',
     line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the brand’s OK. We check each agency before we set up access.',
     points: [
+      'Win the pitch: open with what the brand’s own store sent a new customer, across a list of 300 brands or 3,000, sorted by what each one’s emails are missing.',
+      'Keep the client: the before picture on day one, then a fresh sign-up every week. A flow that stops working shows up in your report that week, with a screenshot of each step.',
+      'Grow the account: the gaps outside your current work, such as texts never set up or a checkout that sends nothing, each with the email or screenshot the client can open.',
       'Every store already in the index, in a table you already use, like Clay or Google Sheets, or through our API and MCP for your own tools and AI agents.',
-      'Up to 5 stores added for you: your clients, or the brands you’re pitching.',
-      'Every email and screen dated, ready to open a pitch or a client review.',
     ],
     capture: { kind: 'waitlist', source: 'lookup-agencies', button: 'Request early access', interest: 'any' },
   },
@@ -196,11 +197,14 @@ export const lookupPage: LookupPage = {
       { title: 'Your offers', line: 'Every code and discount your emails give a new customer, where it came and when it ended.', every: true },
       { title: 'Your campaigns', line: 'How often your store emails after that, on which days and in which languages.', every: true },
       { title: 'Can an AI shopper buy from you', line: 'An AI agent tries to find, read, compare and buy your products, and the entry shows where it stops.', every: false },
+      { title: 'A fresh sign-up every week', line: 'A new account runs every step again each week, so a flow that stops working shows up that week, beside the week it last worked.', every: false },
+      { title: 'Prices and stock every morning', line: 'Your prices, stock and delivery promises, and your competitors’, read every morning the way a new customer sees them.', every: false },
+      { title: 'Beside the leaders in your category', line: 'Your store next to the biggest names you compete with, the same steps read the same way, so you see what they send that you don’t.', every: false },
     ],
   },
   indexing: {
     heading: 'How we check a site',
-    line: 'Our accounts sign up and shop your store the way a new customer would, then keep what your store shows and sends back. The index is built for millions of companies, and a store already in it starts with its history on day one.',
+    line: 'Our accounts sign up and shop your store the way a new customer would, then stay subscribed and keep everything it shows and sends, day after day. Every store is read the same way, the index is built for millions of companies, and a store already in it starts with its history on day one.',
     items: [
       { title: 'A new customer’s steps', line: 'Sign up, look at a product, leave a basket, start a checkout. Every screen and email that follows is dated from its step.' },
       { title: 'Kept as it arrived', line: 'Every screen and email, with links, tracking images, and our account’s name and address taken out.' },
