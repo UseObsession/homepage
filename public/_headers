@@ -27,9 +27,8 @@
 /report/*
   Cache-Control: public, max-age=86400
 
-# The store lookup (content/pages/lookup.ts): one domain in, at most one card out. Never a search result.
-/lookup
-  X-Robots-Tag: noindex
+# The store lookup (content/pages/lookup.ts) is indexed since 14 Nov (#71): no X-Robots-Tag here. Its entries open only from a
+# link in the owner's inbox (a #t= fragment no crawler sees), and its sample emails below stay noindex.
 
 # Each app screen's HTML, fetched by a page reached client side (components/screens.ts): parts of pages, never pages.
 /screens/*
