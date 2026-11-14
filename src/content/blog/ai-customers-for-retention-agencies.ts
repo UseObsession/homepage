@@ -424,6 +424,14 @@ export const post: BlogPost = {
       label: 'Request early access',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'Retention agencies start through [early access on the store lookup](/lookup#agencies): every store already in the index, and up to 5 client or prospect stores added, with the brand’s OK.',
+
+    },
+
     { kind: 'h2', id: 'questions', text: 'Questions about AI for retention agencies' },
     {
       kind: 'faq',

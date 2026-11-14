@@ -432,6 +432,14 @@ export const post: BlogPost = {
       label: 'Request early access',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'To see what your checkout already sends, the [store lookup](/lookup) opens your Shopify store’s entry: every email after a checkout, dated, next to every other store in Obsession’s index.',
+
+    },
+
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify checkout not working' },
     {
       kind: 'faq',

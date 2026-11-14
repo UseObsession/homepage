@@ -167,6 +167,14 @@ export const post: BlogPost = {
         '), so it checks the template only. Testing the trigger takes a real sign up or basket.',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'If your online store is already in Obsession’s index, the [store lookup](/lookup) holds this test for you. Type an email at your store’s own address, and its entry comes to that inbox. It shows every email after a sign-up, a product view, a basket and a checkout. Each one is dated and read at 4, 8, 12, 24 and 48 hours.',
+
+    },
+
     { kind: 'h2', id: 'silent', text: 'Causes of a silent flow' },
     { kind: 'h3', id: 'trigger', text: '1. The list or the event never reaches the flow' },
     {

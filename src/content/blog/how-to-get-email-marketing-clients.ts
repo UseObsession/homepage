@@ -197,6 +197,14 @@ export const post: BlogPost = {
       label: 'Request early access',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'To check 300 brands rather than one, early access looks up every store already in Obsession’s index. It sorts the list by what each brand’s emails are missing ([agency access on the store lookup](/lookup#agencies)).',
+
+    },
+
     { kind: 'h2', id: 'where-to-find', text: 'Where to find email marketing clients', compare: true },
     {
       kind: 'p',

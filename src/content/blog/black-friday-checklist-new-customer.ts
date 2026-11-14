@@ -292,6 +292,14 @@ export const post: BlogPost = {
         ') say Gmail has been ramping up enforcement against senders who don’t meet them since November 2025.',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'Before you run all 12 by hand, try the [store lookup](/lookup). If your online store is in Obsession’s index, its entry already holds the welcome, basket and checkout tests, dated. The account stays subscribed through Black Friday, so the sale’s emails and codes land in the same entry.',
+
+    },
+
     { kind: 'h2', id: 'what-it-cant-tell-you', text: 'Limits of testing by hand' },
     {
       kind: 'p',
@@ -343,6 +351,14 @@ export const post: BlogPost = {
       text: 'What every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and what never came. Agencies start in early access.',
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Request early access',
+    },
+
+    {
+
+      kind: 'p',
+
+      text: 'Ecommerce agencies look up client and prospect stores through [early access](/lookup#agencies), once we’ve checked the agency. That covers every store already in the index, and up to 5 more you run or pitch, with the brand’s OK.',
+
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
