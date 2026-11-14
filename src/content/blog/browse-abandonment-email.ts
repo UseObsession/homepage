@@ -357,39 +357,28 @@ export const post: BlogPost = {
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you check browse emails for your store, the leaders and your clients?' },
-
     {
-
       kind: 'p',
-
       text: 'For your own online store, the [store lookup](/lookup) shows whether a browse abandonment email arrived after a product view, and what it said, beside every other store in the index. With Obsession, you can set your store beside the biggest stores in your category. You see which of them send one, how long they wait and what the email shows.',
-
     },
-
     {
-
       kind: 'list',
-
       items: [
-
         '**Win the pitch:** an agency opens with the product view that got no email at a prospect’s store.',
-
         '**Keep the client:** a fresh sign-up every week shows the browse email still sending after a new theme, when Klaviyo’s app embed has to be turned on again.',
-
         '**Grow the account:** a browse email the client doesn’t send yet, where the leaders in its category do, becomes the next flow to build.',
-
       ],
-
     },
-
     {
-
-      kind: 'p',
-
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
-
+      kind: 'screen',
+      screen: 'report',
+      workspace: 'agency',
+      caption: 'A monthly report for one client, in the agency’s brand: what the client sent beside 3 competitors, gathered through public sign-ups.',
     },
-
+    {
+      kind: 'p',
+      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+    },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
     {

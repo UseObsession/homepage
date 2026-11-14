@@ -216,7 +216,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession recipe behind it: a ready-made check with its steps, its schedule and what it reports.',
     },
-
     { kind: 'h3', id: 'retention', text: 'Retention and email agencies' },
     {
       kind: 'list',
@@ -231,7 +230,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'For an ecommerce retention agency, these sit on top of the flows and campaigns it already runs. The full case is in [why a retention marketing agency needs AI customers](/blog/ai-customers-for-retention-agencies).',
     },
-
     { kind: 'h3', id: 'cro', text: 'CRO agencies' },
     {
       kind: 'list',
@@ -242,7 +240,6 @@ export const post: BlogPost = {
         '**Competitor offers** ([Competitor tracking](/recipes/competitor-tracking)). Each competitor’s emails, offers, price changes and public ads on one timeline per competitor, for the next round of test ideas.',
       ],
     },
-
     { kind: 'h3', id: 'paid-ads', text: 'Paid ads and performance agencies' },
     {
       kind: 'list',
@@ -256,7 +253,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'The case for CRO and paid ads agencies in full is in [why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies).',
     },
-
     { kind: 'h3', id: 'shopify-plus', text: 'Shopify Plus and build agencies' },
     {
       kind: 'list',
@@ -266,7 +262,6 @@ export const post: BlogPost = {
         '**The store’s chat and AI agent** ([Support bot check](/recipes/support-bot-check), [Sales agent check](/recipes/sales-agent-check)). The chat is asked what customers ask about refunds, delivery, prices and stock, and each answer is checked against the policy and the price list. The client sees each wrong answer with the right one drafted. The questions to start with are in [how to test a chatbot on your store](/blog/test-store-chatbot-returns-policy).',
       ],
     },
-
     { kind: 'h3', id: 'every-agency', text: 'For every agency' },
     {
       kind: 'list',
@@ -464,13 +459,9 @@ export const post: BlogPost = {
       to: '/use-cases/funnel-qa-for-cro-agencies',
       label: 'Request early access',
     },
-
     {
-
       kind: 'p',
-
       text: 'The [store lookup’s agency access](/lookup#agencies) covers those 5: every store already in the index, plus up to 5 client stores added, each read again every week.',
-
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agency client retention' },

@@ -208,19 +208,16 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'New addresses add up: 3 flows across 20 clients is 60 a week. Tagged addresses such as tests+tarncheckout@yourdomain.example can all reach one inbox if your mail host supports them and the sign up form accepts the plus sign, so test both first. Use Gmail where you can, because the tab an email lands in is part of the log.',
     },
-
     { kind: 'h3', id: 'welcome', text: '1. Welcome: sign up through the pop up' },
     {
       kind: 'p',
       text: 'Sign up on a phone in a private window and write down the minute you submit. **A pass:** the welcome email arrives inside its deadline with the code the pop up promised, and the code works at checkout. A code that arrives but fails at checkout counts as a break. **If nothing arrives,** check which list the form feeds, whether double opt in is waiting for a confirmation click, and whether the address already existed.',
     },
-
     { kind: 'h3', id: 'basket', text: '2. Basket: leave one product behind' },
     {
       kind: 'p',
       text: 'Give the store your address the way a real customer does, for example by signing up, then add 1 product and close the window. **A pass:** a reminder inside the deadline with the product’s name, photo and price filled in. If the sign up also sent a welcome email, note it in the row, because Smart Sending can explain a missing reminder and real customers meet the same rule. **If nothing arrives,** check that the event that starts the flow is still being recorded, especially after a theme or app change, then check the flow’s filters.',
     },
-
     { kind: 'h3', id: 'checkout', text: '3. Checkout: start it and stop before paying' },
     {
       kind: 'p',
@@ -228,7 +225,6 @@ export const post: BlogPost = {
         SAMPLE +
         '), a £40 basket and a £21 checkout got no reminder in 48 hours.',
     },
-
     { kind: 'h3', id: 'post-purchase', text: '4. Post purchase: start it with an order' },
     {
       kind: 'p',
@@ -236,7 +232,6 @@ export const post: BlogPost = {
         SHOPIFY_TEST +
         '): a test payment gateway, Shopify Payments test mode, or a real order you cancel and refund, which may cost a processor fee. Its help page says test orders can confirm email notifications, and it doesn’t say whether they start a flow in a separate email platform. Confirm once, in that platform, that the test order registers. **A pass:** the post purchase email arrives on its delay with the right order in it. Until then the row reads Not due.',
     },
-
     { kind: 'h3', id: 'back-in-stock', text: '5. Back in stock: wait for the restock' },
     {
       kind: 'p',
@@ -258,13 +253,9 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'With 5 clients or fewer, the same timings come to 1.5 hours a week. At that size the checks can run by hand, and a shared sheet with the table’s 5 columns is enough.',
     },
-
     {
-
       kind: 'p',
-
       text: 'Across a whole client list, Obsession keeps the same log. A fresh sign-up runs every step again each week, for every client at once, so a flow that stops working shows up that week ([agency access](/lookup#agencies)).',
-
     },
 
     { kind: 'h2', id: 'overclaiming', text: 'How to show clients email marketing value without overclaiming' },

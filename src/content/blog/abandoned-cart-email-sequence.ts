@@ -331,39 +331,28 @@ export const post: BlogPost = {
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you check this for your store, the leaders in your category and your clients?' },
-
     {
-
       kind: 'p',
-
       text: 'For your own online store, the [store lookup](/lookup) shows when your first basket and checkout reminders arrived, what each one said and where nothing came, beside every other store in the index. With Obsession, you can put your store beside the biggest stores in your category, read the same way. You see how fast their first reminder goes out, how many they send and whether they add a code.',
-
     },
-
     {
-
       kind: 'list',
-
       items: [
-
         '**Win the pitch:** an agency opens with the brand’s own checkout reminder that never came, dated, before the first call.',
-
         '**Keep the client:** a fresh sign-up every week shows the reminder still arriving, and the week it stops after a theme or app change.',
-
         '**Grow the account:** a checkout reminder the brand doesn’t send yet, or a second basket email the leaders send, becomes the next piece of work, with the email or screenshot behind it.',
-
       ],
-
     },
-
     {
-
-      kind: 'p',
-
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
-
+      kind: 'screen',
+      screen: 'brandwatch',
+      workspace: 'agency',
+      caption: 'One brand from a list of 300, watched for 48 hours after a sign-up: the welcome landed in 38 seconds, and the text that never came was called as a gap.',
     },
-
+    {
+      kind: 'p',
+      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+    },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
     {

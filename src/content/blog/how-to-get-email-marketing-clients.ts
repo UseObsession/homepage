@@ -196,13 +196,9 @@ export const post: BlogPost = {
       to: USE_CASE,
       label: 'Request early access',
     },
-
     {
-
       kind: 'p',
-
       text: 'To check 300 brands rather than one, early access looks up every store already in Obsession’s index. It sorts the list by what each brand’s emails are missing ([agency access on the store lookup](/lookup#agencies)).',
-
     },
 
     { kind: 'h2', id: 'where-to-find', text: 'Where to find email marketing clients', compare: true },
@@ -296,19 +292,16 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'If your agency needs a dated finding at every brand on a pitch list, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. An agency that wins enough work through referrals and partner agencies needs none of the paid tools in the table.',
     },
-
     { kind: 'h3', id: 'referrals', text: 'Referrals from clients and partner agencies' },
     {
       kind: 'p',
       text: 'Ask a client for an introduction once a fix shows in their numbers, and name the kind of brand you want to meet. Agree referrals in both directions with CRO, Shopify build and paid media agencies that serve the same brands without running their email.',
     },
-
     { kind: 'h3', id: 'technology-partners', text: 'Technology partners' },
     {
       kind: 'p',
       text: 'SMS, review and other apps run their own partner programmes, with directories that reach brands already using the app. Postscript features Gold and Platinum partners in its directory, with Gold at $15,000 of referred MRR over a rolling 12 months, and pays commission monthly for a referred customer’s first 12 months. Okendo pays a 20% revenue share on referred deals and puts Gold and Platinum partners first for lead sharing.',
     },
-
     { kind: 'h3', id: 'klaviyo-partner-program', text: 'The Klaviyo agency partner program and directory' },
     {
       kind: 'p',
@@ -337,7 +330,6 @@ export const post: BlogPost = {
         KL_REFERRAL +
         ') on a referred account’s email and text MRR for 12 months, for leads that become customers within 90 days with no earlier sales relationship with Klaviyo.',
     },
-
     { kind: 'h3', id: 'shopify-partner-directory', text: 'The Shopify Partner Directory' },
     {
       kind: 'p',
@@ -349,7 +341,6 @@ export const post: BlogPost = {
         SH_JOIN +
         '), mainly for Plus, Premier and Platinum partners. The thresholds include $500k a year of revenue to Shopify from merchants a partner brought in over 5 years, plus at least 2 Plus or Enterprise shops or 40 Standard shops.',
     },
-
     { kind: 'h3', id: 'content-and-events', text: 'Content and events' },
     {
       kind: 'p',
@@ -357,7 +348,6 @@ export const post: BlogPost = {
         AMI +
         '), 61% of 400 clients said conference speaking shows true agency expertise, against 23% of agencies who saw it as a trust signal. Write articles that answer what store owners search when a flow breaks, such as [why a welcome or basket email isn’t sending](/blog/welcome-basket-email-not-sending).',
     },
-
     { kind: 'h3', id: 'cold-outreach', text: 'Store data, contact data and cold email' },
     {
       kind: 'p',

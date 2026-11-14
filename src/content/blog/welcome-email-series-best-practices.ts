@@ -278,39 +278,28 @@ export const post: BlogPost = {
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you check your welcome series against the leaders, and for your clients?' },
-
     {
-
       kind: 'p',
-
       text: 'For your own online store, the [store lookup](/lookup) shows every email your welcome series sent a new subscriber, with the code each one carried, beside every other store in the index. With Obsession, you can set your series beside the biggest stores in your category. You see how many emails they send in the first week, what each one says and which codes stack.',
-
     },
-
     {
-
       kind: 'list',
-
       items: [
-
         '**Win the pitch:** an agency opens with what a prospect’s series sent after day 3, or the day it went quiet.',
-
         '**Keep the client:** a fresh sign-up every week shows the series and its codes still working, and the week a code stops at checkout.',
-
         '**Grow the account:** the second and third emails a client doesn’t send yet, or a code that stacks with the basket code, become the next proposal, each with its email.',
-
       ],
-
     },
-
     {
-
-      kind: 'p',
-
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
-
+      kind: 'screen',
+      screen: 'upsells',
+      workspace: 'agency',
+      caption: 'An agency’s next service for each client, each with proof from its own checks: here, an SMS welcome series proposal, sent only after the agency’s OK.',
     },
-
+    {
+      kind: 'p',
+      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+    },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
     {

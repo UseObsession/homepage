@@ -166,13 +166,9 @@ export const post: BlogPost = {
         DYNAMIC +
         '), so it checks the template only. Testing the trigger takes a real sign up or basket.',
     },
-
     {
-
       kind: 'p',
-
       text: 'If your online store is already in Obsession’s index, the [store lookup](/lookup) holds this test for you. Type an email at your store’s own address, and its entry comes to that inbox. It shows every email after a sign-up, a product view, a basket and a checkout. Each one is dated and read at 4, 8, 12, 24 and 48 hours.',
-
     },
 
     { kind: 'h2', id: 'silent', text: 'Causes of a silent flow' },
@@ -197,7 +193,6 @@ export const post: BlogPost = {
         ONSITE +
         ').',
     },
-
     { kind: 'h3', id: 'opt-in', text: '2. Double opt in holds the shopper off the list' },
     {
       kind: 'p',
@@ -205,7 +200,6 @@ export const post: BlogPost = {
         DOUBLE_OPT +
         '). Submit your test and look for the address in the list. If it isn’t there, the shopper stopped at the confirmation step and the flow may be working.',
     },
-
     { kind: 'h3', id: 'entry', text: '3. The shopper is already in the flow, or isn’t allowed in' },
     {
       kind: 'p',
@@ -221,7 +215,6 @@ export const post: BlogPost = {
         SH_MIGRATE +
         ') to include all customers. Whether you may do that depends on your market’s consent rules, and none of this is legal advice.',
     },
-
     { kind: 'h3', id: 'filters', text: '4. A flow filter or a draft message drops the shopper' },
     {
       kind: 'p',
@@ -231,7 +224,6 @@ export const post: BlogPost = {
         METRIC_TROUBLE +
         ') shows which filters a profile passes.',
     },
-
     { kind: 'h3', id: 'smart-sending', text: '5. Smart Sending skips the message' },
     {
       kind: 'p',
@@ -241,7 +233,6 @@ export const post: BlogPost = {
         ANALYTICS +
         ') shows when Smart Sending was the cause.',
     },
-
     { kind: 'h3', id: 'coupon', text: '6. The code can’t be made, so the whole email is skipped' },
     {
       kind: 'p',
@@ -249,7 +240,6 @@ export const post: BlogPost = {
         SKIPPED +
         ') include Unable to Create Coupon (an error in the coupon, or too many coupons sent in a short time), No More Uploaded Coupons Remain, and Error Retrieving External Data for a Shopify code. To the shopper, it looks as if the welcome email never came.',
     },
-
     { kind: 'h3', id: 'shopify-email', text: '7. Shopify Email has its own reasons not to send' },
     {
       kind: 'p',
@@ -275,13 +265,9 @@ export const post: BlogPost = {
           '), so a sync delay that keeps growing can turn a late email into a missing one.',
       ],
     },
-
     {
-
       kind: 'p',
-
       text: 'When each reminder should arrive, and what stores in Obsession’s index actually send, is in the guide to [abandoned cart email timing](/blog/abandoned-cart-email-sequence).',
-
     },
 
     { kind: 'h2', id: 'broken', text: 'Causes of a broken email' },

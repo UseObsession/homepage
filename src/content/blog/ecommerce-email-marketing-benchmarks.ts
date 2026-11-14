@@ -122,19 +122,16 @@ export const post: BlogPost = {
       caption:
         'On 13 November 2026, 89% of the online stores in Obsession’s index sent a new subscriber a welcome email, while nearly 1 in 2 sent nothing after an abandoned basket or checkout.',
     },
-
     { kind: 'h3', id: 'welcome', text: 'How many stores send a welcome email?' },
     {
       kind: 'p',
       text: 'Of the stores in the index, 89% sent a welcome email after a sign-up through the store’s own form, and 11% sent nothing in 48 hours. Half the welcome emails arrived within a minute. What a store sends after that first email, and the code each email carries, is in the [welcome email series guide](/blog/welcome-email-series-best-practices).',
     },
-
     { kind: 'h3', id: 'browse', text: 'How many stores send a reminder after a product view?' },
     {
       kind: 'p',
       text: 'Of the stores in the index, 51% sent an email after a product view, and 49% sent nothing in 48 hours. This product view reminder, usually called a browse abandonment email, can only go to a visitor the store already knows, for example someone who opened the store from one of its emails. [Browse abandonment emails](/blog/browse-abandonment-email) covers what a good one says, and when leaving it out is a fair choice.',
     },
-
     { kind: 'h3', id: 'basket', text: 'How many stores send an abandoned cart email?' },
     {
       kind: 'p',
@@ -142,7 +139,6 @@ export const post: BlogPost = {
         CART_FLOW +
         '). Timing and the number of reminders are in the [abandoned cart email sequence](/blog/abandoned-cart-email-sequence) guide.',
     },
-
     { kind: 'h3', id: 'checkout', text: 'How many stores send an abandoned checkout email?' },
     {
       kind: 'p',
@@ -316,39 +312,27 @@ export const post: BlogPost = {
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you compare your store with the leaders in your category, and with your clients?' },
-
     {
-
       kind: 'p',
-
       text: 'These figures cover the whole index. For your own online store, the [store lookup](/lookup) shows each step’s result beside them. With Obsession, the same comparison narrows to the biggest stores in your category, read the same way as yours. You see their welcome speed, their first basket reminder and how often they email.',
-
     },
-
     {
-
       kind: 'list',
-
       items: [
-
         '**Win the pitch:** an agency shows a prospect where its store sits against these benchmarks, step by step.',
-
         '**Keep the client:** each month’s report sets the client’s steps beside the index, and a fresh sign-up every week shows any step that slips.',
-
         '**Grow the account:** the steps where a client falls below the leaders, such as a missing checkout reminder, become the next proposal, each with the email behind it.',
-
       ],
-
     },
-
     {
-
-      kind: 'p',
-
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
-
+      kind: 'screen',
+      screen: 'inbox',
+      caption: 'Three competitors’ emails and texts over 30 days, side by side: when one changes its offer, the new message opens beside the old one.',
     },
-
+    {
+      kind: 'p',
+      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+    },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
     {

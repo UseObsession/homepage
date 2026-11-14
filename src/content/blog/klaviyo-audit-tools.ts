@@ -182,7 +182,6 @@ export const post: BlogPost = {
         KL_COURSE +
         ') walks a team through an audit in order. It starts with the plan, then covers account settings and billing, deliverability, subscriber growth, flows and campaigns.',
     },
-
     { kind: 'h3', id: 'composer', text: 'Klaviyo Composer audits' },
     {
       kind: 'list',
@@ -197,7 +196,6 @@ export const post: BlogPost = {
         '**Best for:** a brand team that wants every flow reviewed from inside Klaviyo, on the credits it already has.',
       ],
     },
-
     { kind: 'h3', id: 'benchmarks-hub', text: 'Klaviyo benchmarks and the deliverability hub' },
     {
       kind: 'list',
@@ -220,7 +218,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'These 3 apps connect to Klaviyo with read-only access and return a score and a fix list. An in-house team or an agency can audit an account with them without booking a call.',
     },
-
     { kind: 'h3', id: 'aimerce', text: 'Aimerce' },
     {
       kind: 'list',
@@ -233,7 +230,6 @@ export const post: BlogPost = {
         '**Best for:** a free one-off read of flow trends and template errors.',
       ],
     },
-
     { kind: 'h3', id: 'fluxchek', text: 'Fluxchek' },
     {
       kind: 'list',
@@ -246,7 +242,6 @@ export const post: BlogPost = {
         '**Best for:** an agency that wants the same rubric on every client and a monthly re-scan to show a fix held.',
       ],
     },
-
     { kind: 'h3', id: 'spark-crm', text: 'SPARK CRM' },
     {
       kind: 'list',
@@ -267,7 +262,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A Klaviyo auditor is an agency or freelancer who reads the account with a Manager or Analyst login, the user roles Klaviyo gives a team member, and presents a fix list. These 3 agencies publish a scope and a price.',
     },
-
     { kind: 'h3', id: '303-london', text: '303 London' },
     {
       kind: 'list',
@@ -280,7 +274,6 @@ export const post: BlogPost = {
         '**Best for:** a UK brand that wants strategy and creative reviewed together.',
       ],
     },
-
     { kind: 'h3', id: 'flowium', text: 'Flowium' },
     {
       kind: 'list',
@@ -293,7 +286,6 @@ export const post: BlogPost = {
         '**Best for:** a brand without an agency that is willing to give Manager access for a free review.',
       ],
     },
-
     { kind: 'h3', id: 'netalico', text: 'Netalico' },
     {
       kind: 'list',
@@ -312,7 +304,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Deliverability is how likely an email is to reach the inbox instead of the spam folder. These 2 tools measure it at the mailbox providers themselves, outside Klaviyo.',
     },
-
     { kind: 'h3', id: 'postmaster-tools', text: 'Google Postmaster Tools' },
     {
       kind: 'list',
@@ -327,7 +318,6 @@ export const post: BlogPost = {
         '**Best for:** every brand that sends to Gmail addresses.',
       ],
     },
-
     { kind: 'h3', id: 'glockapps', text: 'GlockApps' },
     {
       kind: 'list',
@@ -348,7 +338,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'These 2 tools preview an email in many email apps and devices before it goes out, and check its links, images and accessibility.',
     },
-
     { kind: 'h3', id: 'litmus', text: 'Litmus' },
     {
       kind: 'list',
@@ -363,7 +352,6 @@ export const post: BlogPost = {
         '**Best for:** a team that sends many campaigns and wants every one previewed before it goes.',
       ],
     },
-
     { kind: 'h3', id: 'mailgun-inspect', text: 'Mailgun Inspect (formerly Email on Acid)' },
     {
       kind: 'list',
@@ -382,7 +370,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'These collect the emails other brands send their subscribers, so a team can see what a competitor or a whole category sent. [Obsession compared with each archive](/compare) sets out what each one keeps, and [competitor email tracking tools](/blog/competitor-email-tracking-tools) compares the wider field.',
     },
-
     { kind: 'h3', id: 'milled', text: 'Milled' },
     {
       kind: 'list',
@@ -395,7 +382,6 @@ export const post: BlogPost = {
         '**Best for:** what a category sent around a holiday, back to 2012.',
       ],
     },
-
     { kind: 'h3', id: 'panoramata', text: 'Panoramata' },
     {
       kind: 'list',
@@ -469,39 +455,28 @@ export const post: BlogPost = {
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you add the customer’s side for your store, the leaders and your clients?' },
-
     {
-
       kind: 'p',
-
       text: 'An audit inside Klaviyo shows what is set up. For your own online store, the [store lookup](/lookup) shows what a new customer received after a sign-up, a basket and a checkout. With Obsession, you can set your store beside the biggest stores in your category, read the same way. You see which flows the leaders run, so you know what to add next.',
-
     },
-
     {
-
       kind: 'list',
-
       items: [
-
         '**Win the pitch:** an agency opens with what the prospect’s store sent a new customer, before it has Klaviyo access.',
-
         '**Keep the client:** after the audit’s fixes, a fresh sign-up every week shows each flow still sending, beside what Klaviyo reports.',
-
         '**Grow the account:** the gaps only the customer’s side shows, such as a basket email that never arrives, become the next piece of work.',
-
       ],
-
     },
-
     {
-
-      kind: 'p',
-
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
-
+      kind: 'screen',
+      screen: 'pack',
+      workspace: 'agency',
+      caption: 'An agency’s watch over 12 prospects: each row lands with its gap, and one pitch fills with its findings and a link to the emails and screenshots behind them, which the brand can open.',
     },
-
+    {
+      kind: 'p',
+      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+    },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which Klaviyo audit tool to choose' },
     {

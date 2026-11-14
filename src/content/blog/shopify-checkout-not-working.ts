@@ -185,7 +185,6 @@ export const post: BlogPost = {
         THEME_TROUBLE +
         ') also suggests. Use a real address in the store’s main market, screenshot each step with the time showing, and stop at the payment page.',
     },
-
     { kind: 'h3', id: 'opens', text: '1. Checkout opens from the cart and from Buy it now' },
     {
       kind: 'p',
@@ -193,7 +192,6 @@ export const post: BlogPost = {
         ACCELERATED +
         ') skips the cart and goes straight to checkout. **A pass:** both open checkout within seconds, and nothing such as a chat button or a pop-up sits over either button. Branded buttons such as Shop Pay or PayPal depend on the payment methods switched on and on the shopper’s device, browser and payment history, so check a missing one on a second device before calling it a fault.',
     },
-
     { kind: 'h3', id: 'address', text: '2. Checkout stays on the store’s own web address' },
     {
       kind: 'p',
@@ -207,7 +205,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**A pass:** from the cart to the payment page, the address bar shows the store’s own domain or a checkout subdomain of it, or the page of a payment provider the shopper picked, such as PayPal’s. A block or a confirmation message from Shopify after tapping Checkout means something on the page is sending shoppers off the store. Stop there and go to what changed last. Most outside websites open with no message at all, so the address bar is the check to rely on.',
     },
-
     { kind: 'h3', id: 'codes', text: '3. Every code applies' },
     {
       kind: 'p',
@@ -215,7 +212,6 @@ export const post: BlogPost = {
         DISCOUNTS_FAQ +
         ') explains the messages a shopper meets. “Enter a valid discount code” means the code doesn’t exist or isn’t active. A message that the code isn’t valid for the items in the cart means it doesn’t cover those products. The same page notes that a third-party app that changes pricing or checkout can hide the code field.',
     },
-
     { kind: 'h3', id: 'shipping', text: '4. Shipping rates show for every market' },
     {
       kind: 'p',
@@ -223,7 +219,6 @@ export const post: BlogPost = {
         SHIPPING_TROUBLE +
         ') traces this to shipping zones, product profiles, weights, the physical product setting and locations. It also warns that an abandoned checkout keeps the rates from when it was created, so test with a new one.',
     },
-
     { kind: 'h3', id: 'payment', text: '5. Every payment method loads, on both phones' },
     {
       kind: 'p',
@@ -239,7 +234,6 @@ export const post: BlogPost = {
         PAYPAL_REF +
         '), Shopify hides PayPal unless PayPal has approved the store for repeat billing, which PayPal calls reference transactions.',
     },
-
     { kind: 'h3', id: 'email', text: '6. The order confirmation email still sends' },
     {
       kind: 'p',
@@ -431,13 +425,9 @@ export const post: BlogPost = {
       to: LEAKS,
       label: 'Request early access',
     },
-
     {
-
       kind: 'p',
-
       text: 'To see what your checkout already sends, the [store lookup](/lookup) opens your Shopify store’s entry: every email after a checkout, dated, next to every other store in Obsession’s index.',
-
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify checkout not working' },
