@@ -176,19 +176,16 @@ export const post: BlogPost = {
         foot: 'The 2 fails go to whoever owns them: the code’s terms to the promotions lead, the basket flow to the email platform’s owner.',
       },
     },
-
     { kind: 'h3', id: 'pop-up', text: '1. Sign up through the pop up, on your phone' },
     {
       kind: 'p',
       text: 'Wait for the pop up as a visitor would, enter the new address and submit the form. **A pass:** the form submits, the thank you message shows the offer the pop up promised and, if you use double opt in, the confirmation email arrives and its link works. **If it fails,** check that the form still feeds the right list, how the form displays on a small screen, and what has changed on the site since it last worked.',
     },
-
     { kind: 'h3', id: 'welcome-email', text: '2. The welcome email arrives with the promised code' },
     {
       kind: 'p',
       text: 'Record the minutes from submitting the form to the email arriving, and compare the code and its terms with what the pop up showed. Note the Gmail tab as well. Promotions is a tab inside the inbox, and spam is a separate folder. A new address shows how 1 inbox sorted the email, so record the tab as an observation about that inbox. **If nothing arrives,** check that the flow starts from the list the form feeds, whether double opt in is holding the new profile back, and whether the address already existed as a profile, which can keep it out of a welcome flow.',
     },
-
     { kind: 'h3', id: 'code-at-checkout', text: '3. The welcome code works at checkout on Black Friday prices' },
     {
       kind: 'p',
@@ -196,19 +193,16 @@ export const post: BlogPost = {
         SCRIPTS +
         ') and now need Shopify Functions or an app, so test every custom discount again.',
     },
-
     { kind: 'h3', id: 'texts', text: '4. The text opt in sends a confirmation, and STOP works' },
     {
       kind: 'p',
       text: 'Opt in with the new phone number. **A pass:** a confirmation text arrives and names your store, and replying STOP removes the number with no further texts. Note when each text arrives in the shopper’s time zone. Rules on consent and quiet hours differ by country and by US state, so check yours with your text platform or a lawyer. This checklist is not legal advice.',
     },
-
     { kind: 'h3', id: 'browse', text: '5. Browse and leave, if you run a browse email' },
     {
       kind: 'p',
       text: 'View 2 products and leave without adding either to the basket. **A pass:** the browse email arrives after the delay you set and names the products you viewed. Then check how the flows interact: a shopper who has left a basket should receive the basket reminder and no browse email.',
     },
-
     { kind: 'h3', id: 'basket', text: '6. Leave a basket' },
     {
       kind: 'p',
@@ -220,25 +214,21 @@ export const post: BlogPost = {
       cite: 'A store owner on the Klaviyo Community, March 2024',
       href: K_THEME,
     },
-
     { kind: 'h3', id: 'checkout', text: '7. Start checkout and stop before paying' },
     {
       kind: 'p',
       text: 'Enter the new address at checkout, tick the marketing box if you show one, and leave before payment. **A pass:** exactly 1 checkout reminder arrives. Check which tool sends it, Shopify’s own abandoned checkout email or your email platform’s flow, because if both are switched on the shopper receives 2. Then set how Smart Sending treats this email in Black Friday week: it can skip the afternoon reminder for a shopper who received your morning campaign, unless you switch it off on that email.',
     },
-
     {
       kind: 'note',
       title: 'Estimating the cost of a missing basket reminder',
       text: 'Multiply last year’s baskets left in Black Friday week by the share your basket reminder recovered (your flow report shows it) and by your average order value. Halve the recovery share first to keep the estimate conservative. The result is the revenue a missing basket reminder would lose in that week, before counting the ad spend that brought those shoppers in.',
     },
-
     { kind: 'h3', id: 'price-match', text: '8. The Black Friday price matches from the ad to checkout' },
     {
       kind: 'p',
       text: 'Follow your Black Friday ad to the landing page, the product page, the basket and checkout. **A pass:** the same price, offer and dates appear at every step on your phone, with the sale price shown against the old price wherever you intended. A banner that promises 30% off and a checkout that applies 20% is the kind of mismatch to look for.',
     },
-
     { kind: 'h3', id: 'ad-pages', text: '9. Every live ad lands on a working page' },
     {
       kind: 'p',
@@ -246,7 +236,6 @@ export const post: BlogPost = {
         FINAL_URL +
         ') and can send clicks to other pages on your site. [The landing pages report shows which pages Google chose](/blog/where-your-ads-land-morning-check), and URL exclusions limit them. An [ad landing check](/recipes/ad-landing-check) runs this test every morning.',
     },
-
     { kind: 'h3', id: 'test-order', text: '10. Place a test order' },
     {
       kind: 'p',
@@ -254,7 +243,6 @@ export const post: BlogPost = {
         TEST_ORDERS +
         '): its test payment gateway, Shopify Payments test mode, or a real order that you cancel and refund straight away, which also tests your live payment provider and may cost a fee. **A pass:** the order confirmation email arrives, the thank you page shows the right order, and the shipping email arrives when you mark the order fulfilled. Turn test mode off afterwards, because customers can’t place real orders while it is on.',
     },
-
     { kind: 'h3', id: 'chat', text: '11. Ask your chat what customers will ask this month' },
     {
       kind: 'p',
@@ -262,7 +250,6 @@ export const post: BlogPost = {
         AI_ACT_50 +
         ') have applied since 2 August 2026. A [support bot check](/recipes/support-bot-check) asks these questions every day.',
     },
-
     { kind: 'h3', id: 'account', text: '12. Create an account and reset the password' },
     {
       kind: 'p',
@@ -291,13 +278,9 @@ export const post: BlogPost = {
         GMAIL_SENDERS +
         ') say Gmail has been ramping up enforcement against senders who don’t meet them since November 2025.',
     },
-
     {
-
       kind: 'p',
-
       text: 'Before you run all 12 by hand, try the [store lookup](/lookup). If your online store is in Obsession’s index, its entry already holds the welcome, basket and checkout tests, dated. The account stays subscribed through Black Friday, so the sale’s emails and codes land in the same entry.',
-
     },
 
     { kind: 'h2', id: 'what-it-cant-tell-you', text: 'Limits of testing by hand' },
@@ -352,13 +335,9 @@ export const post: BlogPost = {
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Request early access',
     },
-
     {
-
       kind: 'p',
-
       text: 'Ecommerce agencies look up client and prospect stores through [early access](/lookup#agencies), once we’ve checked the agency. That covers every store already in the index, and up to 5 more you run or pitch, with the brand’s OK.',
-
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

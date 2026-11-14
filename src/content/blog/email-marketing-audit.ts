@@ -116,7 +116,6 @@ export const post: BlogPost = {
     },
   },
 
-
   blocks: [
     {
       kind: 'p',
@@ -201,7 +200,6 @@ export const post: BlogPost = {
         KL_COURSE +
         ') covers settings, account health and deliverability, sign ups, flows and campaigns.',
     },
-
     { kind: 'h3', id: 'forms', text: 'Sign up forms and list growth' },
     {
       kind: 'p',
@@ -209,7 +207,6 @@ export const post: BlogPost = {
         KL_ACQ +
         ') points to 3 reports, including the sign up forms report for each form’s submit rate and the growth report for where subscribers come from. **A pass:** every form submits, shows its offer and feeds the welcome flow’s list. **If it fails,** check the form’s list, its display rules on small screens and any recent site change.',
     },
-
     { kind: 'h3', id: 'flows', text: 'Flows, triggers and filters' },
     {
       kind: 'p',
@@ -217,7 +214,6 @@ export const post: BlogPost = {
         KL_CHECKLIST +
         ') names the core flows as welcome, abandoned cart, abandoned browse, post purchase, and win back or sunset. It asks for metric triggers where possible, and for the basket flow to exclude anyone who ordered or started checkout after entering it. **A pass:** each core flow exists once and every message is Live. **If it fails,** read each message’s Skipped reasons in Recipient activity, then the causes in [why a welcome or basket email never arrives](/blog/welcome-basket-email-not-sending).',
     },
-
     { kind: 'h3', id: 'smart-sending', text: 'Smart Sending and SMS rules' },
     {
       kind: 'p',
@@ -237,7 +233,6 @@ export const post: BlogPost = {
         POSTSCRIPT +
         ') holds messages until waking hours, 8am to 9pm by default and 8am to 8pm in 5 states, and its Texas hours have to be switched on in compliance settings. Rules differ by country and by US state, and this is not legal advice.',
     },
-
     { kind: 'h3', id: 'segments-campaigns', text: 'Segments, campaigns and benchmarks' },
     {
       kind: 'p',
@@ -249,7 +244,6 @@ export const post: BlogPost = {
         KL_HEALTH +
         ') warns that Apple Mail Privacy Protection may skew data.',
     },
-
     { kind: 'h3', id: 'attribution', text: 'Revenue attribution settings' },
     {
       kind: 'p',
@@ -259,7 +253,6 @@ export const post: BlogPost = {
     },
 
     { kind: 'h2', id: 'deliverability', text: 'Layer 2: the deliverability audit' },
-
     { kind: 'h3', id: 'authentication', text: 'SPF, DKIM, DMARC and the sending domain' },
     {
       kind: 'p',
@@ -267,7 +260,6 @@ export const post: BlogPost = {
         KL_SENDER +
         ') asks for the branded sending domain to show Active under Settings, Account, Domains, and for a default sender on the brand’s own domain, never @gmail.com or @yahoo.com.',
     },
-
     { kind: 'h3', id: 'sender-rules', text: 'Gmail, Yahoo and Microsoft sender rules' },
     {
       kind: 'list',
@@ -289,7 +281,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Klaviyo adds one click unsubscribe to marketing emails automatically, so check that each template still shows a visible unsubscribe link.',
     },
-
     { kind: 'h3', id: 'postmaster', text: 'Google Postmaster Tools' },
     {
       kind: 'p',
@@ -297,7 +288,6 @@ export const post: BlogPost = {
         POSTMASTER +
         ') and read Compliance status, Spam Rate, Domain Reputation and Delivery Errors. The data covers personal Gmail accounts only. **A pass:** every requirement is met and spam stays below 0.1%. At 0.3%, Google’s FAQ says a bulk sender can’t get mitigation until the rate stays below it for 7 days in a row, so mark it priority 1.',
     },
-
     { kind: 'h3', id: 'bounces-complaints', text: 'Bounces, complaints and the deliverability score' },
     {
       kind: 'p',
@@ -305,7 +295,6 @@ export const post: BlogPost = {
         KL_HUB +
         ') scores the account each day from 30 days of open, click, bounce, unsubscribe and spam complaint rates, once it has sent 1,000 emails in 30 days, and raises alerts for high bounce, complaint and unsubscribe rates. **A pass:** Good (75 to 89) or Excellent (90 to 100), with no open alerts. **If it fails,** check the inbox provider breakdown for one provider behind the drop.',
     },
-
     { kind: 'h3', id: 'inbox-placement-test', text: 'What an inbox placement test measures' },
     {
       kind: 'p',
@@ -315,7 +304,6 @@ export const post: BlogPost = {
         SUPED_SEEDS +
         ') calls the results directional and warns against treating them as a final deliverability score. **A pass:** inbox or a tab at every provider tested.',
     },
-
     { kind: 'h3', id: 'gmail-tabs', text: 'The Gmail tabs, as Google describes them' },
     {
       kind: 'p',
@@ -331,7 +319,6 @@ export const post: BlogPost = {
         JOYJOYA +
         ') found that 158 sent no welcome email and 20 sent an offer that didn’t match the pop up. Layer 3 runs the same test at the client for 14 days, beside 2 or 3 competitors. It is a form of [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
-
     { kind: 'h3', id: 'test-subscriber', text: 'Set up the test subscriber' },
     {
       kind: 'list',
@@ -342,13 +329,11 @@ export const post: BlogPost = {
         '**The client’s OK,** and the test addresses sent to whoever reports their numbers.',
       ],
     },
-
     { kind: 'h3', id: 'first-14-days', text: 'The first 14 days at the client' },
     {
       kind: 'p',
       text: 'On day 1, sign up through the pop up, opt in to texts and try the welcome code on a phone. Leave a basket and a checkout from separate addresses, as in the outside audit. Then record every email and text for 14 days. **A pass:** every Live message arrives on time with working codes and links, and none lands in spam. **If one is missing,** go back to its flow status, Skipped reasons and Smart Sending in layer 1.',
     },
-
     { kind: 'h3', id: 'email-competitor-analysis', text: 'Email competitor analysis: 2 or 3 competitors' },
     {
       kind: 'p',
@@ -395,13 +380,9 @@ export const post: BlogPost = {
       to: '/use-cases/leak-checks-for-retention-agencies',
       label: 'Request early access',
     },
-
     {
-
       kind: 'p',
-
       text: 'For an online store, layer 3 can start from a [Klaviyo email audit from the customer’s side](/lookup). Type an email at the store’s own address. If the store is in Obsession’s index, its entry arrives with every email a new customer got after a sign-up, a basket and a checkout, dated and set against every other store. Agencies look up client and prospect stores through [early access](/lookup#agencies), once we’ve checked the agency.',
-
     },
 
     { kind: 'h2', id: 'audit-report', text: 'The report the client reads' },
@@ -409,13 +390,11 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Keep the report to what the client can check and act on.',
     },
-
     { kind: 'h3', id: 'findings', text: 'Findings, each with its evidence' },
     {
       kind: 'p',
       text: 'Write each finding in 1 sentence with a time or a number in it, and put the evidence beside it: the email as it arrived, the setting or the dashboard. For example: opted in to texts at 09:01 on Monday, and no confirmation text arrived in 48 hours.',
     },
-
     { kind: 'h3', id: 'revenue-estimate', text: 'The revenue estimate, in their numbers' },
     {
       kind: 'p',
@@ -427,7 +406,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'With invented figures: 1,840 entries × 3.1% × £48 is £2,738, so the estimate is about £1,369 a month while the welcome email is missing. For a Smart Sending finding, use the skipped count in place of the entries.',
     },
-
     { kind: 'h3', id: 'fix-order', text: 'The fix order' },
     {
       kind: 'list',
@@ -439,7 +417,6 @@ export const post: BlogPost = {
         '**A retest for every fix:** run layer 3 again once the fix is live, and attach the new email to the finding.',
       ],
     },
-
     { kind: 'h3', id: 'retainer', text: 'How the audit sets up the retainer' },
     {
       kind: 'p',
@@ -527,6 +504,10 @@ export const post: BlogPost = {
     {
       kind: 'p',
       text: 'For layer 3 across many clients and their competitors every week, use Obsession, which keeps every email each brand sends a new subscriber, dated, for as long as you follow it. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
+    },
+    {
+      kind: 'p',
+      text: 'For the wider field, the tools and services that audit a Klaviyo account are compared by job, with their prices, in [the best Klaviyo audit tools](/blog/klaviyo-audit-tools).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },

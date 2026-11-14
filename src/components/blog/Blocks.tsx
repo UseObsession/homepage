@@ -215,7 +215,7 @@ function Block({ b }: { b: BlogBlock }) {
             <Art art={b.art} />
           </div>
           <figcaption className="s-art-cap">
-            <span className="s-art-cap__tag">Example</span>
+            <span className="s-art-cap__tag">{b.real ? 'Real data' : 'Example'}</span>
             <Inline text={b.caption} />
           </figcaption>
         </figure>

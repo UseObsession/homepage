@@ -20,6 +20,9 @@ const COMPETITOR_HOSTS = new Set([
   'badrep.email', 'bird.com', 'competiscan.com', 'competitorinbox.com', 'emaillove.com', 'inboxarchive.org',
   'mailcharts.com', 'milled.com', 'owletter.com', 'panoramata.co', 'reallygoodemails.com', 'sendsitive.com',
   'sendview.io',
+  // Klaviyo audit apps, agencies, deliverability and rendering tools (14 Nov 2026)
+  '303.london', 'aimerce.ai', 'emailonacid.com', 'flowium.com', 'fluxchek.com', 'glockapps.com', 'litmus.com', 'netalico.com',
+  'sparkcrm.cc', 'validity.com',
   // Competitor price tracking
   'competera.ai', 'lengow.com', 'minderest.com', 'omniaretail.com', 'particl.com', 'price2spy.com', 'pricefy.io',
   'pricemole.io', 'priceva.com', 'prisync.com', 'skuuudle.com', 'visualping.io', 'wiser.com',

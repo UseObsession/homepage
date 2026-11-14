@@ -45,7 +45,7 @@ export const ref: ReferencePage = {
       items: [
         '**[Welcome series](/glossary/welcome-series):** starts when someone subscribes.',
         '**[Abandoned cart email](/glossary/abandoned-cart-email):** starts when a shopper adds to a basket or starts checkout and doesn’t buy.',
-        '**Browse abandonment:** starts when a known visitor views a product and leaves.',
+        '**[Browse abandonment](/blog/browse-abandonment-email):** starts when a known visitor views a product and leaves.',
         '**Post-purchase:** starts when an order is placed, with delivery updates, review requests and cross-sells.',
         '**Win-back:** starts when a customer hasn’t ordered for a set time.',
       ],
@@ -102,6 +102,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    'ecommerce-email-marketing-benchmarks',
     '/glossary/welcome-series',
     '/glossary/abandoned-cart-email',
     '/glossary/dkim',

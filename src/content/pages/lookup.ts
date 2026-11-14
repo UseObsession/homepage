@@ -3,7 +3,7 @@ import type { Capture, ExConsole, Faq, Meta } from '../types'
 /* /lookup: a site's entry in the index, looked up by its own domain (pages/Lookup.tsx), told the way a search engine
    would tell it: what the index holds of the site behind the login, not who collected it. One exact domain in, at most
    one entry out: no list, no browsing, no page per brand. The page itself is indexed (Seun, 14 Nov: in the sitemap and llms.txt, with its
-   FAQ as FAQPage), and owns "klaviyo email audit" and "klaviyo flow audit" from the customer's side (docs/SEARCH.md §2); the
+   FAQ as FAQPage), and owns "klaviyo email audit" ("klaviyo flow audit" stays with /blog/audit-prospect-email-without-klaviyo-login) (docs/SEARCH.md §2); the
    entries it sends never are: each opens only from a link in the site owner's inbox.
    The card comes from the Edge Function store-lookup in the obsession-index Supabase project (lib/lookup.ts), which
    records every lookup. A site we haven't indexed gets a plain line and a form for an email, saved by the same
@@ -244,6 +244,7 @@ export const lookupPage: LookupPage = {
       {
         q: 'When do you call an email missing?',
         a: 'We read each step at 4, 8, 12, 24 and 48 hours, because every store runs its reminders on its own clock. We call an email missing once its window has closed, never before. The account stays subscribed after that, so your entry keeps filling with the store’s campaigns, codes and offers.',
+        link: { label: 'When to send abandoned cart emails', to: '/blog/abandoned-cart-email-sequence' },
       },
       { q: 'Where do the numbers next to each finding come from?', a: 'From every store in the index that took the same step: how many of them do it, and how fast half of them are.' },
       { q: 'Will you place orders on my store?', a: 'No. Our accounts stop before payment and never place an order.' },

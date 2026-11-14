@@ -101,6 +101,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    'welcome-email-series-best-practices',
     '/glossary/triggered-flow',
     '/glossary/abandoned-cart-email',
     '/glossary/dkim',

@@ -162,7 +162,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Use only the public paths any customer has: the pop up, the footer form, the text opt in, the basket and the checkout page. None of them needs a made up identity, a contact form or a call.',
     },
-
     { kind: 'h3', id: 'set-up', text: 'Set up 4 addresses, a phone number and a sheet' },
     {
       kind: 'list',
@@ -174,13 +173,11 @@ export const post: BlogPost = {
         '**A pass rule, written before you start,** such as a welcome email within 15 minutes carrying the code the pop up promised. Joy Joya’s checklist asks for 5 to 15 minutes, and Klaviyo’s checklist suggests a first basket reminder 30 to 45 minutes after the basket is left.',
       ],
     },
-
     { kind: 'h3', id: 'pop-up', text: 'The pop up, on a phone' },
     {
       kind: 'p',
       text: 'Wait for the pop up as a visitor would, then enter the first address and, if it asks, the phone number. Screenshot the offer with the time showing. **Record:** the offer, when the pop up appeared and whether the form submitted on a phone. Record a missing pop up too: 44 of Joy Joya’s 362 brands had no real way to sign up beyond a small footer form.',
     },
-
     { kind: 'h3', id: 'welcome-email', text: 'The welcome email and its code' },
     {
       kind: 'p',
@@ -188,43 +185,34 @@ export const post: BlogPost = {
         GMAIL_TABS +
         ') describes Promotions as the inbox tab for deals and offers, so record the tab without reporting Promotions as a gap.',
     },
-
     { kind: 'h3', id: 'text-opt-in', text: 'The text opt in' },
     {
       kind: 'p',
       text: 'Record whether a confirmation text arrives, what it promises, and each text after it with its time. 53 of Joy Joya’s 362 brands (14.6%) never sent the text they promised. Reply STOP when the 48 hours end and check that the texts stop. Rules on consent and quiet hours differ by country and by US state, and this isn’t legal advice.',
     },
-
     { kind: 'h3', id: 'basket', text: 'A basket left behind' },
     {
       kind: 'p',
       text: 'Using the basket address, add 1 product to the basket and leave. Record when a reminder arrives and whether it shows the product’s name, photo and price. Don’t buy, and never use payment details. The basket you leave appears in the store’s numbers as one more basket.',
     },
-
     { kind: 'h3', id: 'checkout', text: 'A checkout stopped before payment' },
     {
       kind: 'p',
       text: 'Using the checkout address, go to the checkout page, enter that email address and stop before payment. Record whether none, 1 or 2 reminders arrive. Keep this address separate from the basket address. Klaviyo’s checklist tells the basket flow to exclude anyone who started checkout, so one address doing both would make it unclear which flow sent which email.',
     },
-
     { kind: 'h3', id: 'control', text: 'Watch for 48 hours, with a control and the spam folder' },
     {
       kind: 'p',
       text: 'Watch the inboxes and the phone for 48 hours, and look in the spam folder each time. The control is the fourth address, signed up through the footer form in the same minute as the pop up. If the footer address gets a welcome email and the pop up address doesn’t, the gap is in the pop up. If neither gets one, the gap goes beyond the pop up, and from outside you can’t tell where. Count a gap only once the sign up is confirmed, the spam folder is checked and the full 48 hours have passed.',
     },
-
     { kind: 'h3', id: 'cro-audit-shopify', text: 'Extra checks for a CRO audit on Shopify' },
     {
       kind: 'p',
       text: 'CRO and Shopify build agencies can run the same steps and record more than email. On the phone, note how the pop up opens and whether it closes, what the basket page shows, and what checkout asks before it lets you leave.',
     },
-
     {
-
       kind: 'p',
-
       text: 'For brands already in Obsession’s index, the 48 hours have already run. Early access looks up every store in the index and adds up to 5 stores you run or pitch, with the brand’s OK ([how agencies get access](/lookup#agencies)).',
-
     },
 
     { kind: 'h2', id: 'what-one-inbox-cant-prove', text: 'What an outside audit can’t show' },
