@@ -109,7 +109,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'For every option in the same lane, see [Panoramata alternatives by job](/alternatives/panoramata) and [Obsession vs MailCharts](/compare/obsession-vs-mailcharts). One store’s whole record is in [the sample data](/sample-output).',
+      text: 'For every option in the same lane, see [Panoramata alternatives by job](/alternatives/panoramata) and [Obsession vs MailCharts](/compare/obsession-vs-mailcharts). For ad tools side by side, see [competitor ad tracking](/blog/competitor-ad-tracking-tools) tools compared by job. One store’s whole record is in [the sample data](/sample-output).',
     },
 
     {
@@ -152,6 +152,7 @@ export const ref: ReferencePage = {
     'competitor-email-tracking-tools',
     'ecommerce-competitive-intelligence',
     'how-to-see-competitor-ads',
+    'competitor-ad-tracking-tools',
     'recipe:email-sms-tracking',
     'recipe:ad-tracking',
     '/agencies',

@@ -65,7 +65,7 @@ export const post: BlogPost = {
   category: 'Watch other companies',
   order: 7,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-14',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -279,13 +279,13 @@ export const post: BlogPost = {
         LIGHTHOUSE +
         ') runs live rate shops across online travel agents, brand websites and metasearch for 80,000+ hoteliers, by its own count. Its page doesn’t describe rates shown after a guest signs in. [Prisync’s pricing page](' +
         PRISYNC +
-        ') lists plans from $99 a month, with up to 3 price updates a day, and doesn’t mention member or login prices.',
+        ') lists plans from $99 a month, with up to 3 price updates a day, and doesn’t mention member or login prices. Every [competitor price tracking tool](/blog/best-competitor-price-tracking-tools) is compared by job in its own guide.',
     },
 
     { kind: 'h2', id: 'how-to-track', text: 'How to track competitors’ member prices' },
     {
       kind: 'p',
-      text: 'Tracking member prices means reading the signed-in price beside the public one, by date, store and customer profile, with a screenshot of each. The method is the same for 3 competitors by hand or for 120 at scale.',
+      text: 'Tracking member prices means reading the signed-in price beside the public one, by date, store and customer profile, with a screenshot of each. The method is the same for 3 competitors by hand or for 120 at scale, and the columns to keep are set out in a [competitor price comparison template](/blog/competitor-price-comparison-template).',
     },
     {
       kind: 'list',
@@ -468,5 +468,7 @@ export const post: BlogPost = {
     'exa-alternatives',
     'recipe:price-watch',
     '/use-cases/member-prices-for-price-intelligence',
+    'competitor-price-comparison-template',
+    'best-competitor-price-tracking-tools',
   ],
 }

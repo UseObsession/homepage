@@ -48,13 +48,11 @@ export const post: BlogPost = {
     'see competitors google ads',
     'how to see competitor ads on linkedin',
     'how to see competitor ads on tiktok',
-    'competitor ad monitoring',
-    'competitor ad tracking',
   ],
   category: 'Watch other companies',
   order: 5,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-14',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -398,7 +396,7 @@ export const post: BlogPost = {
         FOREPLAY +
         ') fits a library of saved ads, and AdSpy fits searching Facebook and Instagram ads with their comments. PiPiADS fits TikTok product research, and [Motion](' +
         MOTION_HOME +
-        ') fits analysing your own creative with competitors beside it. For 1 to 5 competitors and an hour a week, the 4 free libraries and a sheet are enough. Your own ads have a morning check too: [where your ads land](/blog/where-your-ads-land-morning-check) covers it.',
+        ') fits analysing your own creative with competitors beside it. For 1 to 5 competitors and an hour a week, the 4 free libraries and a sheet are enough. Your own ads have a morning check too: [where your ads land](/blog/where-your-ads-land-morning-check) covers it. The paid tools for [competitor ad tracking](/blog/competitor-ad-tracking-tools) are compared by job in their own guide, with each price as listed.',
     },
     {
       kind: 'cta',
@@ -470,6 +468,7 @@ export const post: BlogPost = {
   related: [
     'recipe:ad-tracking',
     'recipe:ad-landing-check',
+    'competitor-ad-tracking-tools',
     '/marketing',
     'the-web-behind-the-login',
     'competitor-email-tracking-tools',

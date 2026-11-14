@@ -65,7 +65,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'how-its-tracked', text: 'How member prices are tracked' },
     {
       kind: 'p',
-      text: 'A price scraper reads the public page, so it records the non-member price. By hand, an analyst joins each scheme, logs in and notes both prices. That works for a basket of products at a few competitors, and it stops when the list grows or promotions change every week.',
+      text: 'A price scraper reads the public page, so it records the non-member price. By hand, an analyst joins each scheme, logs in and notes both prices, and a [competitor price comparison template](/blog/competitor-price-comparison-template) gives the member price its own column beside the public one. That works for a basket of products at a few competitors, and it stops when the list grows or promotions change every week.',
     },
     {
       kind: 'p',
@@ -107,5 +107,7 @@ export const ref: ReferencePage = {
     'member-only-pricing',
     'best-competitor-price-tracking-tools',
     'competitor-price-after-welcome-code',
+    'competitor-price-comparison-template',
+    'map-monitoring-software',
   ],
 }

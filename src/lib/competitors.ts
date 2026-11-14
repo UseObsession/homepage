@@ -42,6 +42,10 @@ const COMPETITOR_HOSTS = new Set([
   'mintel.com', 'comperemedia.com', 'corporateinsight.com', 'mylighthouse.com', 'rategain.com', 'otainsight.com',
   // Ad intelligence
   'adspy.com', 'pipiads.com', 'motionapp.com', 'segwise.ai', 'bigspy.com',
+  'tryatria.com', 'spyfu.com', 'semrush.com', 'similarweb.com', 'sensortower.com',
+  // MAP monitoring and enforcement (14 Nov 2026)
+  'trackstreet.com', 'brandalignment.com', 'growbydata.com', 'intelligencenode.com', 'pricebeeper.io', 'mapptrap.com',
+  'vorysecontrol.com', 'econtrol.vorys.com',
   'kompyte.com', 'contify.com', 'alpha-sense.com',
 ])
 

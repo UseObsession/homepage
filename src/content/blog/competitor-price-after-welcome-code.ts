@@ -60,7 +60,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-14',
   readingMinutes: 11,
   order: 5,
   authors: [
@@ -200,7 +200,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'the-sheet', text: 'What to record at each competitor' },
     {
       kind: 'p',
-      text: 'Record each item in the order a new customer meets it, with a screenshot and the time.',
+      text: 'Record each item in the order a new customer meets it, with a screenshot and the time. To compare whole price lists, with the welcome code price, the member price, delivery and stock in their own columns, use a [competitor price comparison template](/blog/competitor-price-comparison-template).',
     },
 
     { kind: 'h3', id: 'page-price', text: 'Page price and compare at price' },
@@ -401,5 +401,6 @@ export const post: BlogPost = {
     '/use-cases/leak-checks-for-ecommerce-stores',
     '/sample-output',
     'black-friday-checklist-new-customer',
+    'competitor-price-comparison-template',
   ],
 }
