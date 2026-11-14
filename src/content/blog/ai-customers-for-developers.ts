@@ -54,7 +54,6 @@ export const post: BlogPost = {
     'ai agent phone number',
     'durable objects hibernation',
     'dkim verification',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

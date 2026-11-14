@@ -48,7 +48,6 @@ export const post: BlogPost = {
     'hubspot customer agent',
     'personal ai agents',
     'test ai customer service agent',
-    'customer-side observability',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

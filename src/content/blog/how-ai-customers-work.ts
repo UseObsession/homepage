@@ -42,7 +42,6 @@ export const post: BlogPost = {
     'ai agent phone number',
     'ai agent inbox',
     'give your ai agent a phone number',
-    'email api for ai agents',
     'dkim verification',
     'double opt in',
   ],

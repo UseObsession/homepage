@@ -53,7 +53,6 @@ export const post: BlogPost = {
     'mcp server ideas',
     'mcp server project ideas',
     'ai agent examples',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

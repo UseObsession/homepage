@@ -75,7 +75,6 @@ export const post: BlogPost = {
     'inbound lead response time',
     'inbound lead follow up',
     'lead response time',
-    'ai customers',
   ],
   category: 'Check your own journeys',
   published: '2026-10-24',

@@ -88,7 +88,6 @@ export const post: BlogPost = {
     'ai agents in production',
     'ai agent memory',
     'pydantic ai durable agents',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

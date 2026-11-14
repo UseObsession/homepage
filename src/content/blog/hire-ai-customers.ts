@@ -46,7 +46,6 @@ export const post: BlogPost = {
     'mystery shopper alternative',
     'mystery shopping cost',
     'ai agent vs human',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

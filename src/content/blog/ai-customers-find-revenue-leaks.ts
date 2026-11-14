@@ -70,8 +70,6 @@ export const post: BlogPost = {
     'abandoned cart email not sending',
     'shopify abandoned cart email not sending',
     'customer experience testing',
-    'speed to lead',
-    'ai customers',
   ],
   category: 'Check your own journeys',
   published: '2026-10-24',
@@ -207,6 +205,10 @@ export const post: BlogPost = {
         ') requested a demo on 1,000 B2B websites in a study published in March 2024, and agents built in [Clay](' +
         CLAY +
         ') submitted 6,346 demo and contact forms across 100 countries in 2026, each company publishing its own results.',
+    },
+    {
+      kind: 'p',
+      text: 'For B2B sales teams, [speed to lead](/blog/ai-customers-for-b2b-sales-teams) sets out what a fast reply looks like and how to measure yours.',
     },
     {
       kind: 'p',

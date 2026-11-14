@@ -72,7 +72,6 @@ export const post: BlogPost = {
     'how to evaluate an ai chatbot',
     'ai agent monitoring',
     'chatbot quality assurance',
-    'ai customers',
   ],
   category: 'Check your AI agents',
   published: '2026-10-24',

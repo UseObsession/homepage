@@ -45,7 +45,6 @@ export const post: BlogPost = {
     'outside-in observability',
     'real user monitoring vs synthetic monitoring',
     'business observability',
-    'ai customers',
   ],
   category: 'Behind the login',
   published: '2026-10-24',

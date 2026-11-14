@@ -43,7 +43,6 @@ export const post: BlogPost = {
   keywords: [
     'what are ai customers',
     'ai customer',
-    'machine customers',
     'synthetic customers',
     'ai mystery shopper',
     'ai test customers',
@@ -194,7 +193,7 @@ export const post: BlogPost = {
           ') reports that digital twins built from past survey data replicated about 90% of key outcomes in its test. They answer questions about people. An AI customer records what a company did.',
         '**Machine customers** buy for someone. They are [nonhuman economic actors that obtain goods or services in exchange for payment](' +
           MACHINE +
-          '), in a definition CMSWire attributes to Gartner. An AI customer is there to observe, and buys only when its owner funds a real order.',
+          '), in a definition CMSWire attributes to Gartner. An AI customer is there to observe, and buys only when its owner funds a real order. Where buying for someone leads next is in [machine customers](/blog/future-of-ai-customers).',
         '**AI browser agents** such as [ChatGPT’s cloud browser](' +
           CLOUD_BROWSER +
           ') read pages, click buttons and fill in forms to complete a task for a user. The help page describes no inbox or phone number of their own.',
