@@ -133,7 +133,7 @@ export const lookupPage: LookupPage = {
     ],
   },
   pill: 'Store lookup',
-  headline: 'See what your store sends a new customer.',
+  headline: 'See what your online store sends a new customer.',
   sub: 'The screens, emails, prices and offers your store shows only to signed-up customers, step by step and dated, set against every store in the index. Type your email at your site and we’ll send you the entry.',
   figures: [
     { value: '1,500', label: 'sign-ups, baskets and checkouts at real companies' },
@@ -162,9 +162,9 @@ export const lookupPage: LookupPage = {
     note: 'For each email, note when it came and whether your first name and any code work. Note too which never came.',
   },
   agencies: {
-    link: 'At an agency? Look up the stores you run or pitch',
+    link: 'At an ecommerce agency? Look up the stores you run or pitch',
     heading: 'Looking up a client, or a store you’re pitching?',
-    line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK. We check each agency before we set up access.',
+    line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the brand’s OK. We check each agency before we set up access.',
     points: [
       'Every store already in the index, in a table you already use, like Clay or Google Sheets, or through our API and MCP for your own tools and AI agents.',
       'Up to 5 stores added for you: your clients, or the brands you’re pitching.',
@@ -229,8 +229,8 @@ export const lookupPage: LookupPage = {
         link: { label: 'How to test your Shopify store as a customer', to: '/blog/how-to-test-your-shopify-store-as-a-customer' },
       },
       {
-        q: 'I run an agency. Can I look up a client’s store?',
-        a: 'Not from this box, because an entry only goes to someone at the store itself. Early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the owner’s OK. We check each agency before we set up access.',
+        q: 'I run an ecommerce agency. Can I look up a client’s store?',
+        a: 'Not from this box, because an entry only goes to someone at the store itself. Early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the brand’s OK. We check each agency before we set up access.',
         link: { label: 'Obsession for agencies', to: '/agencies' },
       },
       { q: 'Why does it need an email at my site?', a: 'So an entry only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
