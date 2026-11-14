@@ -147,7 +147,7 @@ export const ref: ReferencePage = {
     { kind: 'h3', id: 'ads', text: 'For competitors’ ads' },
     {
       kind: 'p',
-      text: `[Foreplay](${FOREPLAY}) lists Basic at $59 a month to “Save and organize ad inspiration into shareable boards” and Workflow at $175 a month to “Analyze competitors and get creative analytics on your own ads”. Obsession’s [ad tracking recipe](/recipes/ad-tracking) follows a competitor’s ad past the click, to the landing page and the offer behind it.`,
+      text: `[Foreplay](${FOREPLAY}) lists Basic at $59 a month to “Save and organize ad inspiration into shareable boards” and Workflow at $175 a month to “Analyze competitors and get creative analytics on your own ads”. Obsession’s [ad tracking recipe](/recipes/ad-tracking) follows a competitor’s ad past the click, to the landing page and the offer behind it. Every paid tool for [competitor ad tracking](/blog/competitor-ad-tracking-tools) is compared by job in its own guide.`,
     },
     { kind: 'h3', id: 'emails', text: 'For every email from the competitors you name' },
     {
@@ -211,6 +211,7 @@ export const ref: ReferencePage = {
     '/glossary/save-offer',
     'competitor-email-tracking-tools',
     'how-to-see-competitor-ads',
+    'competitor-ad-tracking-tools',
     'ecommerce-competitive-intelligence',
     'recipe:ad-tracking',
     'recipe:email-sms-tracking',

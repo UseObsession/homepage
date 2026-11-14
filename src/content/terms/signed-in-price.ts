@@ -42,7 +42,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'Other signed-in prices are quieter. A trade supplier shows prices only to business accounts. A retailer shows a [member price](/glossary/member-price) once a loyalty scheme is linked to the account.',
+      text: 'Other signed-in prices are quieter. A trade supplier shows prices only to business accounts. A retailer shows a [member price](/glossary/member-price) once a loyalty scheme is linked to the account. A reseller may write “log in for price” over a product a brand sells under a minimum advertised price policy, which several brands’ policies ban and [MAP monitoring software](/blog/map-monitoring-software) checks for.',
     },
     { kind: 'h2', id: 'why-it-matters', text: 'Why signed-in prices matter to pricing and revenue teams' },
     {
@@ -98,5 +98,6 @@ export const ref: ReferencePage = {
     'recipe:price-watch',
     'can-ai-agents-log-in-to-websites',
     'scrape-data-behind-login',
+    'map-monitoring-software',
   ],
 }
