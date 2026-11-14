@@ -43,7 +43,7 @@ export type BlogBlock =
   /* The quiet link back to the product: a recipe or page that does what the post describes. */
   | { kind: 'cta'; text: string; to: string; label: string }
   /* An illustration (ArtSpec), on the article's wide measure, with its caption. */
-  | { kind: 'art'; art: ArtSpec; caption: string }
+  | { kind: 'art'; art: ArtSpec; caption: string; real?: boolean } // real: the figures are real (sourced or from the index), so the tag reads Real data, not Example
 
 export type BlogPost = {
   slug: string

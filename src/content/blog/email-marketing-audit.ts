@@ -529,6 +529,14 @@ export const post: BlogPost = {
       text: 'For layer 3 across many clients and their competitors every week, use Obsession, which keeps every email each brand sends a new subscriber, dated, for as long as you follow it. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'For the wider field, the tools and services that audit a Klaviyo account are compared by job, with their prices, in [the best Klaviyo audit tools](/blog/klaviyo-audit-tools).',
+
+    },
+
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
     {
       kind: 'list',

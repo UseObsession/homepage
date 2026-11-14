@@ -100,6 +100,8 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    'abandoned-cart-email-sequence',
+    'ecommerce-email-marketing-benchmarks',
     '/glossary/triggered-flow',
     '/glossary/welcome-series',
     '/glossary/dkim',

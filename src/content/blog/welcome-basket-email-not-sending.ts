@@ -276,6 +276,14 @@ export const post: BlogPost = {
       ],
     },
 
+    {
+
+      kind: 'p',
+
+      text: 'When each reminder should arrive, and what stores in Obsession’s index actually send, is in the guide to [abandoned cart email timing](/blog/abandoned-cart-email-sequence).',
+
+    },
+
     { kind: 'h2', id: 'broken', text: 'Causes of a broken email' },
     {
       kind: 'p',
