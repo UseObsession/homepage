@@ -64,7 +64,7 @@ export const post: BlogPost = {
   keywords: ['klaviyo auditor', 'klaviyo account audit', 'klaviyo audit template', 'klaviyo audit tools', 'best klaviyo audit tool'],
   category: 'Check your own journeys',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-16',
   readingMinutes: 19,
   order: 3,
   authors: [
@@ -443,7 +443,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In Obsession’s index on 13 November 2026, 9 in 10 stores sent a welcome email after a sign-up, most within a minute. About half sent an email after a product view. After a basket, nearly 1 in 2 stores sent nothing, and nearly 1 in 2 sent nothing after a checkout. Of the basket and checkout reminders that did come, half arrived within about an hour. The [ecommerce email marketing benchmarks](/blog/ecommerce-email-marketing-benchmarks) give each step’s figures.',
+      text: 'In Obsession’s index on 13 November 2026, 9 in 10 stores sent a welcome email after a sign-up, most within a minute. About a third sent a reminder after a product view. After a basket, nearly 1 in 2 stores sent no reminder, and 1 in 2 sent none after a checkout. Of the basket and checkout reminders that did come, half arrived within about an hour. The [ecommerce email marketing benchmarks](/blog/ecommerce-email-marketing-benchmarks) give each step’s figures.',
     },
     {
       kind: 'p',

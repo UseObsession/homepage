@@ -6,10 +6,10 @@ import type { BlogPost } from './types'
    their email, retention or conversion work. It is the page others cite, so every figure carries its date and source.
    Obsession's figures are the index's totals on 13 Nov 2026 as the live /lookup page shows them (content/lookupSample
    sampleTotals, rounded the way pages/Lookup.tsx rounds them): sent an email after a sign-up 89% (11% nothing), after a
-   product view 51% (49%), after a basket 55% (45%), after a checkout 51% (49%); half the welcome emails within a minute,
-   half the basket and checkout reminders within about an hour. Printed as percentages, never as tallies. The product view
-   step's median time is left out on purpose: its runs start from a signed-up account, so the first email after the view
-   may be part of the welcome series, and the brief prints only its share.
+   product view 33% (67%), after a basket 52% (48%), after a checkout 50% (50%); half the welcome emails within a minute,
+   half the basket and checkout reminders within about an hour. Printed as percentages, never as tallies. Recounted on
+   16 Nov 2026: after a product view, a basket or a checkout, the welcome series no longer counts (obsession-index
+   cards.py), so the product view went from 51% to 33%. The brief still prints only the product view's share.
    Outside figures, each read on its own page on 14 Nov 2026: Klaviyo's 2026 benchmarks page (183,000+ customers), Klaviyo's
    abandoned cart report of 2 Oct 2026 (110,000+ customers; it replaced the 2023 figures at the same address), the 2023
    cart figures as Enrich Labs reports them (labelled 2023), Omnisend's 2026 report (2025 sends), Baymard's cart
@@ -31,17 +31,17 @@ const SH_ABANDONED = 'https://help.shopify.com/en/manual/promoting-marketing/cre
 export const post: BlogPost = {
   slug: 'ecommerce-email-marketing-benchmarks',
   title: 'Ecommerce email marketing benchmarks: what stores send a new customer, and how fast',
-  dek: 'On 13 November 2026, 89% of the online stores in Obsession’s index emailed a new subscriber after a sign-up, and nearly 1 in 2 sent nothing after an abandoned basket or checkout. The table by step, with timings, sits beside Klaviyo’s and Omnisend’s 2026 benchmarks from inside email accounts.',
+  dek: 'On 13 November 2026, 89% of the online stores in Obsession’s index emailed a new subscriber after a sign-up, and about half sent no reminder after an abandoned basket or checkout. The table by step, with timings, sits beside Klaviyo’s and Omnisend’s 2026 benchmarks from inside email accounts.',
   metaTitle: 'Ecommerce email marketing benchmarks: what stores send, 2026',
   description:
     'Ecommerce email marketing benchmarks for online stores, 13 Nov 2026: who emails after a sign-up, a product view, a basket and a checkout, and how fast.',
   answer:
-    'Ecommerce email marketing benchmarks from the customer’s side, 13 November 2026: 89% of stores send a welcome email, but nearly 1 in 2 send nothing after an abandoned basket or checkout. Half the welcome emails arrive within a minute, and half the basket and checkout reminders that come arrive within about an hour. Obsession keeps what each store sends a new customer after each step, dated, and the store lookup shows your store’s entry beside every other store.',
+    'Ecommerce email marketing benchmarks from the customer’s side, 13 November 2026: 89% of stores send a welcome email, but about half send no reminder after an abandoned basket or checkout. Half the welcome emails arrive within a minute, and half the basket and checkout reminders that come arrive within about an hour. Obsession keeps what each store sends a new customer after each step, dated, and the store lookup shows your store’s entry beside every other store.',
   primaryKeyword: 'ecommerce email marketing benchmarks',
   keywords: ['ecommerce email marketing benchmarks'],
   category: 'Check your own journeys',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-16',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -55,9 +55,9 @@ export const post: BlogPost = {
       cols: ['Step', 'Brackenhall', 'Index'],
       rows: [
         { name: 'Sign-up', cells: ['Welcome, 1 min', '89% send'], tone: 'ok' },
-        { name: 'Product view', cells: ['Reminder, 2 h', '51% send'], tone: 'ok' },
-        { name: 'Basket left', cells: ['None in 48 h', '55% send'], tone: 'fail' },
-        { name: 'Checkout left', cells: ['None in 48 h', '51% send'], tone: 'fail' },
+        { name: 'Product view', cells: ['Reminder, 2 h', '33% send'], tone: 'ok' },
+        { name: 'Basket left', cells: ['None in 48 h', '52% send'], tone: 'fail' },
+        { name: 'Checkout left', cells: ['None in 48 h', '50% send'], tone: 'fail' },
       ],
       notes: [
         'Brackenhall goes quiet after a basket and a checkout, where about half the stores in the index send a reminder, half of those within about an hour.',
@@ -73,7 +73,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Of the stores in Obsession’s index, 89% sent a welcome email after a sign-up, and half of those arrived within a minute. After an abandoned basket, 45% sent nothing in 48 hours. After an abandoned checkout, 49% sent nothing. Of the basket and checkout reminders that came, half arrived within about an hour.',
+      text: 'Of the stores in Obsession’s index, 89% sent a welcome email after a sign-up, and half of those arrived within a minute. After an abandoned basket, 48% sent no reminder in 48 hours. After an abandoned checkout, 50% sent none. Of the basket and checkout reminders that came, half arrived within about an hour.',
     },
     {
       kind: 'stat',
@@ -84,8 +84,8 @@ export const post: BlogPost = {
     },
     {
       kind: 'stat',
-      value: '49%',
-      label: 'of online stores sent nothing within 48 hours of an abandoned checkout',
+      value: '50%',
+      label: 'of online stores sent no reminder within 48 hours of an abandoned checkout',
       source: 'Obsession’s index, 13 November 2026',
       href: '/lookup',
     },
@@ -97,7 +97,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'by-step', text: 'What do online stores send a new customer after each step?' },
     {
       kind: 'p',
-      text: 'Nearly every online store sends a welcome email, and about half send a reminder after a product view. Nearly half send nothing after an abandoned basket or checkout, in Obsession’s index on 13 November 2026. A step counts as sent when at least one email arrived within 48 hours of it.',
+      text: 'Nearly every online store sends a welcome email, and about a third send a reminder after a product view. About half send no reminder after an abandoned basket or checkout, in Obsession’s index on 13 November 2026. A step counts as sent when at least one email arrived within 48 hours of it. After a product view, a basket or a checkout, the welcome series doesn’t count.',
     },
     {
       kind: 'art',
@@ -109,18 +109,18 @@ export const post: BlogPost = {
         cols: ['Step', 'Email sent', 'No email'],
         rows: [
           { name: 'Sign-up', cells: ['89%', '11%'], tone: 'ok' },
-          { name: 'Product view', cells: ['51%', '49%'], tone: 'info' },
-          { name: 'Basket left', cells: ['55%', '45%'], tone: 'fail' },
-          { name: 'Checkout left', cells: ['51%', '49%'], tone: 'fail' },
+          { name: 'Product view', cells: ['33%', '67%'], tone: 'info' },
+          { name: 'Basket left', cells: ['52%', '48%'], tone: 'fail' },
+          { name: 'Checkout left', cells: ['50%', '50%'], tone: 'fail' },
         ],
         notes: [
           'Half the welcome emails arrive within a minute of the sign-up.',
           'Half the basket and checkout reminders that come arrive within about an hour.',
-          'A step with no email after 48 hours counts as sending nothing.',
+          'After a product view, a basket or a checkout, the welcome series doesn’t count as an email sent.',
         ],
       },
       caption:
-        'On 13 November 2026, 89% of the online stores in Obsession’s index sent a new subscriber a welcome email, while nearly 1 in 2 sent nothing after an abandoned basket or checkout.',
+        'On 13 November 2026, 89% of the online stores in Obsession’s index sent a new subscriber a welcome email, while about half sent no reminder after an abandoned basket or checkout.',
     },
     { kind: 'h3', id: 'welcome', text: 'How many stores send a welcome email?' },
     {
@@ -130,19 +130,19 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'browse', text: 'How many stores send a reminder after a product view?' },
     {
       kind: 'p',
-      text: 'Of the stores in the index, 51% sent an email after a product view, and 49% sent nothing in 48 hours. This product view reminder, usually called a browse abandonment email, can only go to a visitor the store already knows, for example someone who opened the store from one of its emails. [Browse abandonment emails](/blog/browse-abandonment-email) covers what a good one says, and when leaving it out is a fair choice.',
+      text: 'Of the stores in the index, 33% sent a reminder after a product view, and 67% sent none in 48 hours. This product view reminder, usually called a browse abandonment email, can only go to a visitor the store already knows, for example someone who opened the store from one of its emails. [Browse abandonment emails](/blog/browse-abandonment-email) covers what a good one says, and when leaving it out is a fair choice.',
     },
     { kind: 'h3', id: 'basket', text: 'How many stores send an abandoned cart email?' },
     {
       kind: 'p',
-      text: 'Of the stores in the index, 55% sent an email after an abandoned basket, where the shopper added an item and left without starting checkout, and 45% sent nothing in 48 hours. Klaviyo uses [abandoned cart email](/glossary/abandoned-cart-email) for both this basket reminder and the checkout reminder, and its help pages [recommend a separate flow for each](' +
+      text: 'Of the stores in the index, 52% sent a reminder after an abandoned basket, where the shopper added an item and left without starting checkout, and 48% sent none in 48 hours. Klaviyo uses [abandoned cart email](/glossary/abandoned-cart-email) for both this basket reminder and the checkout reminder, and its help pages [recommend a separate flow for each](' +
         CART_FLOW +
         '). Timing and the number of reminders are in the [abandoned cart email sequence](/blog/abandoned-cart-email-sequence) guide.',
     },
     { kind: 'h3', id: 'checkout', text: 'How many stores send an abandoned checkout email?' },
     {
       kind: 'p',
-      text: 'An abandoned checkout is a shopper who typed an email address at checkout and left before paying. Of the stores in the index, 51% sent an email after one, and 49% sent nothing in 48 hours. [Shopify counts a checkout as abandoned](' +
+      text: 'An abandoned checkout is a shopper who typed an email address at checkout and left before paying. Of the stores in the index, 50% sent a reminder after one, and 50% sent none in 48 hours. [Shopify counts a checkout as abandoned](' +
         SH_ABANDONED +
         ') once it stays incomplete for more than 10 minutes after the shopper gives an email. So a Shopify store holds the address for every abandoned checkout it counts.',
     },
@@ -180,7 +180,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On 13 November 2026 the index held 1,500 sign-ups, baskets and checkouts run at real companies, and counting. It held 4,196 emails kept as they arrived, and it is built for millions of companies. Each percentage here is the share of stores where the step was taken that sent at least one email within 48 hours.',
+      text: 'On 13 November 2026 the index held 1,500 sign-ups, baskets and checkouts run at real companies, and counting. It held 4,196 emails kept as they arrived, and it is built for millions of companies. Each percentage here is the share of stores where the step was taken that sent at least one email within 48 hours. After a product view, a basket or a checkout, an email from the welcome series doesn’t count.',
     },
 
     { kind: 'h2', id: 'inside-benchmarks', text: 'What do Klaviyo’s and Omnisend’s email benchmarks count?' },
@@ -199,7 +199,7 @@ export const post: BlogPost = {
         ['Omnisend ecommerce report', '150,000 brands, 27 billion emails', 'Automated emails: 2% of sends, 30% of revenue', '2025 sends'],
         ['Baymard cart abandonment', '50 studies, 2006 to 2025', '70.22% of carts abandoned', 'Updated 28 Oct 2026'],
         ['Joy Joya welcome test', 'One tester’s inbox, 362 brands', '43.6% sent no welcome email', 'Updated 27 Jul 2026'],
-        ['Obsession’s index', 'A new customer’s inbox, each step', '49% sent nothing after a checkout', '13 Nov 2026'],
+        ['Obsession’s index', 'A new customer’s inbox, each step', '50% sent no reminder after a checkout', '13 Nov 2026'],
       ],
     },
     {
@@ -340,11 +340,11 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What are the ecommerce email marketing benchmarks for 2026?',
-          a: 'From the customer’s side, 89% of online stores sent a welcome email in Obsession’s index on 13 November 2026. After a product view 51% sent an email, after an abandoned basket 55% and after an abandoned checkout 51%. From inside accounts, Klaviyo’s 2026 benchmarks put flows at 5.3% of email sends and nearly 41% of email revenue, with a 5.58% flow click rate.',
+          a: 'From the customer’s side, 89% of online stores sent a welcome email in Obsession’s index on 13 November 2026. After a product view 33% sent a reminder, after an abandoned basket 52% and after an abandoned checkout 50%. From inside accounts, Klaviyo’s 2026 benchmarks put flows at 5.3% of email sends and nearly 41% of email revenue, with a 5.58% flow click rate.',
         },
         {
           q: 'What share of online stores send an abandoned cart email?',
-          a: 'In Obsession’s index on 13 November 2026, 55% of online stores sent an email within 48 hours of an abandoned basket, and 51% after an abandoned checkout. The rest sent nothing in those 48 hours.',
+          a: 'In Obsession’s index on 13 November 2026, 52% of online stores sent a reminder within 48 hours of an abandoned basket, and 50% after an abandoned checkout. The rest sent none in those 48 hours.',
           link: { label: 'Abandoned cart email sequence', to: '/blog/abandoned-cart-email-sequence' },
         },
         {
@@ -374,7 +374,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How these benchmarks were counted',
-      text: 'Obsession’s figures are the index’s totals on 13 November 2026, as the store lookup shows them. Each is the share of stores where a step was taken that sent at least one email within 48 hours, or the time by which half the first emails arrived. Every other figure is its publisher’s own, with the date that publisher gives. Klaviyo and Omnisend report revenue the way their dashboards attribute it, which includes orders an email didn’t cause.',
+      text: 'Obsession’s figures are the index’s totals on 13 November 2026, as the store lookup shows them. Each is the share of stores where a step was taken that sent at least one email within 48 hours, or the time by which half the first emails arrived. Since 16 November 2026, an email from the welcome series doesn’t count after a product view, a basket or a checkout. Every other figure is its publisher’s own, with the date that publisher gives. Klaviyo and Omnisend report revenue the way their dashboards attribute it, which includes orders an email didn’t cause.',
     },
   ],
 
