@@ -11,7 +11,7 @@ import { lookupPage as p, type LookupJourney } from '../content/pages/lookup'
 import { track } from '../lib/analytics'
 import { siteFromEmail, type JoinStore } from '../lib/join'
 import { askForVisit, askLookup, lookupJoin, openLink, turnstile, type Card, type IndexTotals, type Kind } from '../lib/lookup'
-import { after, basketText, changesOf, day, entryOf, halfWithin, list, offersOf, type Entry } from '../lib/lookupEntry'
+import { changesOf, day, entryOf, halfWithin, list, offersOf, price, shortDay, wait, type Entry } from '../lib/lookupEntry'
 import { isEmail, isWorkEmail } from '../lib/waitlist'
 import { Crumbs } from '../components/Crumbs'
 import { Faq } from '../components/sections/Faq'
@@ -513,7 +513,7 @@ const sampleCopy = (id: string) =>
     .catch(() => null)
 
 /* An entry in the console, opened on Insights: a looked-up site, or the sample under the hero. */
-function EntryConsole({ card, view, index, fetchCopy, ask }: { card: Card; view: string; index?: IndexTotals; fetchCopy?: (id: string) => Promise<string | null>; ask?: () => void }) {
+function EntryConsole({ card, view, index, fetchCopy }: { card: Card; view: string; index?: IndexTotals; fetchCopy?: (id: string) => Promise<string | null> }) {
   const entry = useMemo(() => entryOf(card, view, p.console, p.entry, fetchCopy), [card, view, fetchCopy])
   return (
     <HeroExplorer
@@ -522,24 +522,23 @@ function EntryConsole({ card, view, index, fetchCopy, ask }: { card: Card; view:
       bar={false}
       autoplay={false}
       anchors={false}
-      insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} ask={ask} /> })}
+      insights={(go) => ({ panel: <LookupInsights card={card} index={index} entry={entry} go={go} /> })}
     />
   )
 }
 
-/* The hero's picture: the sample store's entry at a glance, 1 row a part: the emails after each step, the offers, the
-   campaigns, and last the AI shopper check (13 Nov, James: the data first, the AI shopper on request). */
+/* The hero's picture: the sample store's entry at a glance, 1 row a part: the emails after each step, the offers and
+   the campaigns (16 Nov, James: the AI shopper check left out for now). */
 function EntryPreview() {
   const t = p.insights
   const c = sampleCard
-  const stall = c.readiness?.find((r) => r.verdict === 'stalled')
   const offers = offersOf(c, t)
   const codes = offers.filter((o) => o.code)
   const pcts = codes.map((o) => o.text.match(/\d+%/)?.[0]).filter((x): x is string => !!x)
   const got = c.journeys.filter((j) => j.emails).length
   const none = c.journeys.find((j) => !j.emails)
   const tot = none && sampleTotals.journeys[none.journey]
-  const rows: { q: string; a: string; i: string; bad?: boolean }[] = [
+  const rows: { q: string; a: string; i: string }[] = [
     {
       q: t.emails.heading,
       a: t.emails.summary(got, c.journeys.length),
@@ -547,12 +546,6 @@ function EntryPreview() {
     },
     { q: t.offers.heading, a: t.offers.summary(codes.length, pcts.length ? `${list(pcts)} off` : ''), i: codes.map((o) => `${o.code} · ${o.where}`).join(', ') },
     { q: t.rhythmLabel, a: c.rhythm ? t.weekly(c.rhythm.per_week) : '', i: [c.rhythm?.weekday && t.weekday(c.rhythm.weekday), c.rhythm?.languages.length && t.languages(list(c.rhythm.languages))].filter(Boolean).join(' ') },
-    {
-      q: t.readiness.heading,
-      a: stall ? t.readiness.stopsAt(t.readiness.stages[stall.stage]) : t.readiness.passes,
-      i: (c.readiness ?? []).map((r) => `${t.readiness.stages[r.stage]} ${t.readiness.verdicts[r.verdict].toLowerCase()}`).join(' · '),
-      bad: !!stall,
-    },
   ]
   return (
     <div className="ob-window ob-object s-lookup-preview">
@@ -567,7 +560,7 @@ function EntryPreview() {
       </div>
       <ol className="s-lookup-preview__rows">
         {rows.map((r) => (
-          <li key={r.q} className="s-lookup-preview__row" data-none={r.bad ? '' : undefined}>
+          <li key={r.q} className="s-lookup-preview__row">
             <span className="s-lookup-preview__q">{r.q}</span>
             <span className="s-lookup-preview__a">{r.a}</span>
             {r.i && <span className="s-lookup-preview__i">{r.i}</span>}
@@ -592,187 +585,150 @@ function StoreEntry({ card, view, index, again }: { card: Card; view: string; in
           <span className="ob-btn-label">{p.another}</span>
         </button>
       </header>
-      <EntryConsole card={card} view={view} index={index} ask={() => document.getElementById('update')?.scrollIntoView({ behavior: 'smooth', block: 'center' })} />
+      <EntryConsole card={card} view={view} index={index} />
       <p className="s-lookup__scope">{e.scope}</p>
     </article>
   )
 }
 
-/* Insights for an entry (design A; 13 Nov, James: what to change, not only email gaps). On top, what to change
-   first, ranked; then whether an AI shopper can buy (or, where that check hasn't been run, a way to ask for it) beside
-   the offers; then the emails after each step, each against the index; then the campaigns. Worked out here from the
-   card: the index keeps the events, never the answers. A change or an answer that comes from an event opens Search
-   there. */
-function LookupInsights({ card, index, entry, go, ask }: { card: Card; index?: IndexTotals; entry: Entry; go: ConsoleGo; ask?: () => void }) {
+/* Insights for an entry (design D, 16 Nov, James): what the store sent, as an inbox. For each step the emails that
+   came, how long after it, with their faults and offer codes marked on them; a step with no email is a red row with
+   what was left in the bag. Each group says how many stores in the index send one. Then the latest campaigns. Beside
+   it, what to fix first, the offers and how often the campaigns come. Worked out here from the card: the index keeps
+   the events, never the answers. Every row opens Search at its event. */
+function LookupInsights({ card, index, entry, go }: { card: Card; index?: IndexTotals; entry: Entry; go: ConsoleGo }) {
   const t = p.insights
   const r = card.rhythm
-  const weeks = r ? Math.max(1, Math.round((Date.parse(r.to) - Date.parse(r.from)) / (7 * 864e5))) : 0
   const changes = changesOf(card, index, entry, t)
   const offers = offersOf(card, t)
-  const stall = card.readiness?.find((x) => x.verdict === 'stalled')
+  /* An offer's code on the email it came in: the same day, from the same kind of email. */
+  const code = (at: string, where: string) => offers.find((o) => o.code && o.seen === at.slice(0, 10) && o.where.toLowerCase() === where)
+  const chip = (o: ReturnType<typeof code>) => o && <span className="lk-code" data-ended={o.until ? '' : undefined}>{o.code}</span>
   return (
-    <div className="lk-ins">
-      <span className="lk-ins__chips">
-        <span className="lk-chip">{p.entry.persona}</span>
-        <span className="lk-chip">{t.every}</span>
-      </span>
+    <div className="lk-ins lk-inbox">
+      <div className="lk-inbox__main">
+        <div className="lk-sec__head">
+          <h3 className="lk-sec__h">{t.heading}</h3>
+          <p className="lk-sec__line">{t.scope(shortDay(card.captured.from), shortDay(card.captured.mail_until))}</p>
+        </div>
 
-      {changes.length > 0 && (
-        <section className="lk-sec lk-changes">
-          <div className="lk-sec__head">
-            <h3 className="lk-sec__h">{t.changes.heading}</h3>
-            <p className="lk-sec__line">{t.changes.line}</p>
-          </div>
-          <ol className="lk-changes__list">
-            {changes.map((c, k) => (
-              <li key={c.title + k} className="lk-change" data-tone={c.tone}>
-                <span className="lk-change__n">{k + 1}</span>
-                <div className="lk-change__body">
-                  <p className="lk-change__t">{c.title}</p>
-                  {c.line && <p className="lk-change__l">{c.line}</p>}
-                </div>
-                {c.event && (
-                  <button type="button" className="lk-q__from lk-change__go" onClick={() => go.search(c.event)}>
-                    {t.from(1)}
-                  </button>
+        {card.journeys.map((j) => {
+          const tot = index?.journeys[j.journey]
+          const act = entry.acts[j.journey]?.act
+          const findings = j.emails ? card.faults.filter((f) => f.journey === j.journey && f.kind === 'finding' && f.text) : []
+          const priced = j.basket.filter((b) => b.price != null)
+          const total = priced.length && priced.every((b) => b.currency === priced[0].currency) ? price({ price: priced.reduce((n, b) => n + b.price!, 0), currency: priced[0].currency }) : ''
+          return (
+            <section key={j.journey} className="lk-group" data-none={j.emails ? undefined : ''}>
+              <p className="lk-group__head">
+                <span>{t.steps[j.journey]}</span>
+                {tot && tot.runs > 0 && <span>{t.share(Math.round((tot.answered / tot.runs) * 100))}</span>}
+              </p>
+              <ul className="lk-mails">
+                {j.emails ? (
+                  j.list.map((m) => (
+                    <li key={m.id}>
+                      <button type="button" className="lk-mail" onClick={() => go.search(entry.emails.get(m.id))}>
+                        <span className="lk-mail__when">{m.after_minutes != null ? wait(m.after_minutes) : ''}</span>
+                        <span className="lk-mail__s">{m.subject || '(no subject)'}</span>
+                        {card.faults
+                          .filter((f) => f.email === m.id && f.kind !== 'finding')
+                          .map((f, i) => (
+                            <span key={i} className="lk-flag">
+                              {t.faults[f.kind as 'blank_name' | 'placeholder']}
+                            </span>
+                          ))}
+                        {chip(code(m.at, t.where[j.journey]))}
+                      </button>
+                    </li>
+                  ))
+                ) : (
+                  <li>
+                    <button type="button" className="lk-mail" data-none="" onClick={() => go.search(act)}>
+                      <span className="lk-mail__when" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M4.5 4.5l7 7M11.5 4.5l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </span>
+                      <span className="lk-mail__s">{t.none}</span>
+                      <span className="lk-mail__aside">{total ? t.inBag(total) : t.within(j.window_hours || 48)}</span>
+                    </button>
+                  </li>
                 )}
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
-      <div className="lk-two">
-        <section className="lk-sec lk-ready">
-          <div className="lk-sec__head">
-            <h3 className="lk-sec__h">{t.readiness.heading}</h3>
-            <p className="lk-sec__line">{t.readiness.line}</p>
-          </div>
-          {card.readiness ? (
-            <>
-              <ol className="lk-stages">
-                {card.readiness.map((x) => (
-                  <li key={x.stage} className="lk-stage" data-verdict={x.verdict}>
-                    <span className="lk-stage__name">{t.readiness.stages[x.stage]}</span>
-                    <span className="lk-stage__v">{t.readiness.verdicts[x.verdict]}</span>
+                {findings.map((f, i) => (
+                  <li key={i}>
+                    <button type="button" className="lk-mail" data-finding="" onClick={() => go.search(act)}>
+                      <span className="lk-mail__when" aria-hidden="true">!</span>
+                      <span className="lk-mail__s">{f.text}</span>
+                    </button>
                   </li>
                 ))}
-              </ol>
-              {stall && <p className="lk-ready__why">{stall.line}</p>}
-            </>
-          ) : (
-            <div className="lk-missing">
-              <p>{t.readiness.missing(card.domain)}</p>
-              {ask && (
-                <button type="button" className="ob-btn ob-btn--secondary ob-btn--sm" onClick={ask}>
-                  <span className="ob-btn-label">{t.readiness.ask}</span>
-                </button>
-              )}
-            </div>
-          )}
-        </section>
+              </ul>
+            </section>
+          )
+        })}
 
-        <section className="lk-sec lk-offers">
-          <div className="lk-sec__head">
-            <h3 className="lk-sec__h">{t.offers.heading}</h3>
-          </div>
+        {r?.latest && r.latest.length > 0 && (
+          <section className="lk-group">
+            <p className="lk-group__head">
+              <span>{t.campaigns}</span>
+              <span>{t.since(r.sends, shortDay(r.from))}</span>
+            </p>
+            <ul className="lk-mails">
+              {r.latest.map((m) => (
+                <li key={m.id}>
+                  <button type="button" className="lk-mail" onClick={() => go.search(entry.emails.get(m.id))}>
+                    <span className="lk-mail__when">{shortDay(m.at)}</span>
+                    <span className="lk-mail__s">{m.subject || '(no subject)'}</span>
+                    {chip(code(m.at, 'campaign email'))}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+
+      <aside className="lk-inbox__side">
+        {changes.length > 0 && (
+          <section className="lk-side">
+            <h3 className="lk-sec__h">{t.fixes}</h3>
+            <ol className="lk-fixes">
+              {changes.map((c, k) => (
+                <li key={c.title + k}>
+                  <button type="button" className="lk-fix" data-tone={c.tone} onClick={() => go.search(c.event)} disabled={!c.event}>
+                    <span className="lk-fix__n">{k + 1}</span>
+                    <span className="lk-fix__body">
+                      <span className="lk-fix__t">{c.title}</span>
+                      {c.line && <span className="lk-fix__l">{c.line}</span>}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+        <section className="lk-side">
+          <h3 className="lk-sec__h">{t.offers.heading}</h3>
           {offers.length ? (
-            <ul className="lk-offers__list">
+            <ul className="lk-offers">
               {offers.map((o) => (
-                <li key={o.text + o.seen}>
-                  {o.code && <span className="lk-code">{o.code}</span>}
-                  <span className="lk-offer__t">{o.text}</span>
-                  <span className="lk-offer__w">
-                    {o.where} · {o.until ? t.offers.until(day(o.until)) : t.offers.since(day(o.seen))}
-                  </span>
+                <li key={o.text + o.seen} data-ended={o.until ? '' : undefined}>
+                  {o.until ? `${o.text}, ${t.offers.ended(shortDay(o.until))}` : o.text}
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="lk-missing">{t.offers.missing}</p>
+            <p className="lk-side__line">{t.offers.missing}</p>
           )}
         </section>
-      </div>
-
-      <section className="lk-sec">
-        <div className="lk-sec__head">
-          <h3 className="lk-sec__h">{t.emails.heading}</h3>
-          <p className="lk-sec__line">{t.emails.summary(card.journeys.filter((j) => j.emails).length, card.journeys.length)}</p>
-        </div>
-        <div className="lk-qs">
-          {card.journeys.map((j) => {
-            const hours = j.window_hours || 48
-            const tot = index?.journeys[j.journey]
-            const items = basketText(j)
-            const flags = card.faults.filter((f) => f.journey === j.journey && f.kind !== 'finding')
-            const act = entry.acts[j.journey]
-            return (
-              <article className="lk-q" key={j.journey} data-none={j.emails ? undefined : ''}>
-                <p className="lk-q__journey">{p.entry.journeys[j.journey]}</p>
-                <h4 className="lk-q__question">{t.questions[j.journey]}</h4>
-                <p className="lk-q__answer">{j.emails ? t.yes(after(j.first_after_minutes ?? 0)) : t.no}</p>
-                <p className="lk-q__detail">
-                  {j.emails ? (
-                    <>
-                      {t.count(j.emails)} {j.list[0] && t.first(j.list[0].subject || '(no subject)')}
-                    </>
-                  ) : (
-                    <>
-                      {items.length > 0 && t.left(list(items))} {t.nothing(hours)}
-                    </>
-                  )}
-                </p>
-                {flags.length > 0 && (
-                  <ul className="lk-q__flags">
-                    {flags.map((f, i) => (
-                      <li key={i} data-kind={f.kind}>
-                        {p.entry.faults[f.kind as 'blank_name' | 'placeholder']}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div className="lk-q__foot">
-                  <span>{tot && tot.runs > 0 && t.index(Math.round((tot.answered / tot.runs) * 100), tot.runs, halfWithin(tot.median_minutes))}</span>
-                  {act && (
-                    <button type="button" className="lk-q__from" onClick={() => go.search(act.act)}>
-                      {t.from(act.events)}
-                    </button>
-                  )}
-                </div>
-              </article>
-            )
-          })}
-        </div>
-      </section>
-
-      {r && (
-        <div className="lk-rhythm">
-          <p className="lk-q__journey">{t.rhythmLabel}</p>
-          <p className="lk-rhythm__big">{t.rhythm(r.sends, weeks, r.per_week)}</p>
-          <p className="lk-rhythm__line">
-            {[r.weekday && t.weekday(r.weekday), r.languages.length > 0 && t.languages(list(r.languages))].filter(Boolean).join(' ')}
-          </p>
-          {r.latest && r.latest.length > 0 && (
-            <>
-              <p className="lk-q__journey">{t.latestLabel}</p>
-              <ul className="lk-rhythm__list">
-                {r.latest.map((m) => {
-                  const ev = entry.emails.get(m.id)
-                  return (
-                    <li key={m.id}>
-                      <button type="button" className="lk-rhythm__email" onClick={() => go.search(ev)}>
-                        {m.subject || '(no subject)'}
-                      </button>
-                      <span className="lk-rhythm__when">{day(m.at)}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
-      <p className="lk-ins__note">{t.note}</p>
+        {r && r.per_week > 0 && (
+          <section className="lk-side">
+            <h3 className="lk-sec__h">{t.campaigns}</h3>
+            <p className="lk-side__line">{t.often(r.per_week, r.weekday, list(r.languages))}</p>
+          </section>
+        )}
+      </aside>
     </div>
   )
 }

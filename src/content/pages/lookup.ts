@@ -11,7 +11,6 @@ import type { Capture, ExConsole, Faq, Meta } from '../types'
    uses (content/hollin.ts); its entry is a pinned sample in the function's database. This file is the page's words only; registry.ts keeps it out of the Page glob. */
 
 export type LookupJourney = 'welcome' | 'browse' | 'cart' | 'checkout'
-export type LookupStage = 'discover' | 'evaluate' | 'compare' | 'buy'
 
 export type LookupPage = {
   meta: Meta
@@ -75,39 +74,35 @@ export type LookupPage = {
     proof: string
     scope: string
   }
-  /* Insights: the entry's answers, worked out on the page from its events (pages/Lookup.tsx LookupInsights). */
+  /* Insights: the entry's answers, worked out on the page from its events (pages/Lookup.tsx LookupInsights). The hero's
+     picture (EntryPreview) uses `emails`, `offers.summary`, `rhythmLabel`, `weekly`, `weekday` and `languages`. */
   insights: {
-    every: string
-    changes: { heading: string; line: string }
+    heading: string
+    scope: (from: string, to: string) => string
+    steps: Record<LookupJourney, string>
+    share: (pct: number) => string
+    none: string
+    inBag: (total: string) => string
+    within: (hours: number) => string
+    faults: { blank_name: string; placeholder: string }
+    campaigns: string
+    since: (n: number, day: string) => string
+    fixes: string
     change: {
       reminder: Record<LookupJourney, string>
       reminderLine: (pct: number, runs: number, wait: string) => string
       blank: string
       placeholder: string
-      inEmail: (where: string, subject: string) => string
       fix: Record<LookupJourney, string>
-      stage: Record<LookupStage, string>
     }
     where: Record<LookupJourney, string>
-    readiness: { heading: string; line: string; stages: Record<LookupStage, string>; verdicts: Record<'pass' | 'slow' | 'stalled', string>; missing: (domain: string) => string; ask: string; stopsAt: (stage: string) => string; passes: string }
-    offers: { heading: string; missing: string; until: (day: string) => string; since: (day: string) => string; summary: (codes: number, list: string) => string; none: string }
+    offers: { heading: string; missing: string; ended: (day: string) => string; summary: (codes: number, list: string) => string }
+    often: (perWeek: number, weekday: string | null | undefined, languages: string) => string
     emails: { heading: string; summary: (got: number, all: number) => string }
-    questions: Record<LookupJourney, string>
-    yes: (wait: string) => string
-    no: string
-    count: (n: number) => string
-    first: (subject: string) => string
-    left: (items: string) => string
-    nothing: (hours: number) => string
-    index: (pct: number, runs: number, wait: string) => string
-    from: (n: number) => string
     rhythmLabel: string
-    rhythm: (sends: number, weeks: number, perWeek: number) => string
     weekly: (perWeek: number) => string
     weekday: (day: string) => string
     languages: (list: string) => string
-    latestLabel: string
-    note: string
   }
   missing: { headline: (domain: string) => string; line: string; button: string }
   update: { headline: string; line: (domain: string) => string; button: string }
@@ -324,8 +319,17 @@ export const lookupPage: LookupPage = {
     scope: 'This entry holds only what your site sent to our own accounts, with their names and addresses taken out.',
   },
   insights: {
-    every: 'Every step',
-    changes: { heading: 'What to change first', line: 'Each finding next to the change it asks for, against the index.' },
+    heading: 'What your store sent',
+    scope: (from, to) => `As a new customer, ${from} to ${to}`,
+    steps: { welcome: 'After the sign-up', browse: 'After a product view', cart: 'After a basket', checkout: 'After a checkout' },
+    share: (pct) => `${pct}% of stores send one`,
+    none: 'No email',
+    inBag: (total) => `${total} left in the bag`,
+    within: (hours) => `in ${hours} hours`,
+    faults: { blank_name: 'No first name', placeholder: 'Placeholder' },
+    campaigns: 'Campaigns',
+    since: (n, day) => `${n} since ${day}`,
+    fixes: 'Fix first',
     change: {
       reminder: {
         welcome: 'Send a welcome email',
@@ -334,63 +338,31 @@ export const lookupPage: LookupPage = {
         checkout: 'Send a checkout reminder',
       },
       reminderLine: (pct, runs, wait) => `${pct}% of ${runs} stores in the index send one${wait ? `, half of those ${wait}` : ''}.`,
-      blank: 'Fill in the first name',
-      placeholder: 'Fix a placeholder in an email',
-      inEmail: (where, subject) => `In the ${where}: “${subject}”`,
+      blank: 'Add the first name',
+      placeholder: 'Fill in the placeholder',
       fix: {
         welcome: 'Fix the welcome email',
         browse: 'Fix the product view reminder',
         cart: 'Fix the basket reminder',
         checkout: 'Fix the checkout reminder',
       },
-      stage: {
-        discover: 'Let AI shoppers find your products',
-        evaluate: 'Make sizes and policies readable',
-        compare: 'Give AI shoppers what they compare on',
-        buy: 'Let an AI shopper reach checkout',
-      },
     },
     where: { welcome: 'welcome email', browse: 'product view reminder', cart: 'basket reminder', checkout: 'checkout reminder' },
-    readiness: {
-      heading: 'Can an AI shopper buy from you?',
-      line: 'An AI agent tries to find, read, compare and buy, the way a shopper’s assistant would.',
-      stages: { discover: 'Find', evaluate: 'Read', compare: 'Compare', buy: 'Buy' },
-      verdicts: { pass: 'Passes', slow: 'Slow', stalled: 'Stops here' },
-      missing: (domain) => `Not checked for ${domain} yet. Ask for it and your next entry shows where an AI shopper stops.`,
-      ask: 'Ask for the check',
-      stopsAt: (stage) => `Stops at ${stage.toLowerCase()}`,
-      passes: 'Gets through',
-    },
     offers: {
-      heading: 'Offers it made',
+      heading: 'Offers',
       missing: 'No code or discount in the emails we hold.',
-      until: (day) => `ended ${day}`,
-      since: (day) => `from ${day}`,
+      ended: (day) => `ended ${day}`,
       summary: (codes, list) => (codes ? `${codes} ${codes === 1 ? 'code' : 'codes'}, ${list}` : list),
-      none: 'No codes yet',
     },
+    often: (perWeek, weekday, languages) =>
+      [perWeek >= 1 ? `About ${Math.round(perWeek)} a week` : `About 1 every ${Math.round(1 / perWeek)} weeks`, weekday && `mostly ${weekday}`, languages && `in ${languages}`]
+        .filter(Boolean)
+        .join(', '),
     emails: { heading: 'Emails after each step', summary: (got, all) => `${got} of ${all} steps get one` },
-    questions: {
-      welcome: 'Does a sign-up get a welcome?',
-      browse: 'Does a product view get a reminder?',
-      cart: 'Does a basket get a reminder?',
-      checkout: 'Does a checkout get a reminder?',
-    },
-    yes: (wait) => `Yes, after ${wait}`,
-    no: 'No reminder',
-    count: (n) => `${n} ${n === 1 ? 'email' : 'emails'} in all.`,
-    first: (subject) => `The first: “${subject}”`,
-    left: (items) => `Left in the bag: ${items}.`,
-    nothing: (hours) => `Nothing came in the ${hours} hours we watched.`,
-    index: (pct, runs, wait) => `Index: ${pct}% of ${runs} stores send one${wait ? `, half of those ${wait}` : ''}`,
-    from: (n) => (n === 1 ? 'From 1 event' : `From ${n} events`),
     rhythmLabel: 'Campaign emails',
-    rhythm: (sends, weeks, perWeek) => `${sends} ${sends === 1 ? 'email' : 'emails'} in ${weeks} ${weeks === 1 ? 'week' : 'weeks'}, about ${perWeek} a week`,
     weekly: (perWeek) => `About ${perWeek} emails a week`,
     weekday: (day) => `Most often on a ${day}.`,
     languages: (list) => `Written in ${list}.`,
-    latestLabel: 'Latest subjects',
-    note: 'Each answer is worked out when you look, from the events in Search. The index keeps the events, never the answers.',
   },
   missing: {
     headline: (domain) => `We haven’t indexed ${domain} yet.`,

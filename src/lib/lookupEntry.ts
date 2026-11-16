@@ -1,4 +1,4 @@
-import type { LookupJourney, LookupPage, LookupStage } from '../content/pages/lookup'
+import type { LookupJourney, LookupPage } from '../content/pages/lookup'
 import type { ExConsole, ExEvent, ExRead } from '../content/types'
 import { openEmail, type Card, type CardEmail, type CardJourney, type IndexTotals } from './lookup'
 
@@ -29,6 +29,19 @@ export function after(minutes: number): string {
   const hours = Math.round(minutes / 60)
   if (hours < 48) return `${hours} ${hours === 1 ? 'hour' : 'hours'}`
   return `${Math.round(hours / 24)} days`
+}
+
+/* "2 min", "27 h", "3 days": how long after its step an email came, short enough for the inbox's left column. */
+export function wait(minutes: number): string {
+  if (minutes < 1) return '<1 min'
+  if (minutes < 60) return `${minutes} min`
+  const hours = Math.round(minutes / 60)
+  return hours < 100 ? `${hours} h` : `${Math.round(hours / 24)} days`
+}
+/* "29 Sep", in UTC: the month spelt here, as `when` does. */
+export const shortDay = (iso: string) => {
+  const d = new Date(iso.length === 10 ? `${iso}T12:00:00Z` : iso)
+  return `${d.getUTCDate()} ${MONTH[d.getUTCMonth()]}`
 }
 
 export function price(item: { price?: number; currency?: string }): string {
@@ -158,39 +171,27 @@ export function entryOf(
 /* "within a minute", "within 1 hour": how fast half the index's stores are, for a step. */
 export const halfWithin = (minutes: number | null | undefined) => (minutes == null ? '' : minutes < 1 ? 'within a minute' : `within ${after(minutes)}`)
 
-/* What to change first (13 Nov, James: an entry finds what to improve, not only email gaps). Ranked: an AI shopper
-   stopped before it can buy, then a step with no email (against how many stores in the index send one), then faults in
-   the emails, then a slow readiness stage. Each points at the event in Search it comes from, where there is one. */
-export type Change = { title: string; line: string; tone: 'stop' | 'gap' | 'fix'; event?: ExEvent }
+/* What to change first (13 Nov, James: an entry finds what to improve, not only email gaps; 16 Nov: the AI shopper
+   check left out for now). Ranked: a step with no email, with how many stores in the index send one, then the faults
+   in the emails. Each points at the event in Search it comes from. */
+export type Change = { title: string; line: string; tone: 'gap' | 'fix'; event?: ExEvent }
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 export function changesOf(card: Card, index: IndexTotals | undefined, entry: Entry, t: LookupPage['insights']): Change[] {
   const out: Change[] = []
-  const stall = card.readiness?.find((r) => r.verdict === 'stalled')
-  if (stall) out.push({ title: t.change.stage[stall.stage], line: stall.line, tone: 'stop' })
   for (const j of card.journeys) {
     if (j.emails) continue
     const tot = index?.journeys[j.journey]
-    out.push({
-      title: t.change.reminder[j.journey],
-      line: tot && tot.runs ? t.change.reminderLine(Math.round((tot.answered / tot.runs) * 100), tot.runs, halfWithin(tot.median_minutes)) : '',
-      tone: 'gap',
-      event: entry.acts[j.journey]?.act,
-    })
+    out.push({ title: t.change.reminder[j.journey], line: tot && tot.runs ? t.share(Math.round((tot.answered / tot.runs) * 100)) : '', tone: 'gap', event: entry.acts[j.journey]?.act })
   }
   for (const f of card.faults) {
     const journey = f.journey as LookupJourney
     if (f.kind === 'finding') {
       if (!f.text || !card.journeys.find((j) => j.journey === journey)?.emails) continue
-      out.push({ title: t.change.fix[journey] ?? f.text, line: f.text, tone: 'fix', event: entry.acts[journey]?.act })
+      out.push({ title: t.change.fix[journey] ?? f.text, line: '', tone: 'fix', event: entry.acts[journey]?.act })
     } else {
-      out.push({
-        title: f.kind === 'blank_name' ? t.change.blank : t.change.placeholder,
-        line: t.change.inEmail(t.where[journey] ?? journey, f.subject ?? ''),
-        tone: 'fix',
-        event: f.email ? entry.emails.get(f.email) : undefined,
-      })
+      out.push({ title: f.kind === 'blank_name' ? t.change.blank : t.change.placeholder, line: cap(t.where[journey] ?? journey), tone: 'fix', event: f.email ? entry.emails.get(f.email) : undefined })
     }
   }
-  for (const r of card.readiness ?? []) if (r.verdict === 'slow') out.push({ title: t.change.stage[r.stage as LookupStage], line: r.line, tone: 'fix' })
   return out
 }
 
@@ -205,5 +206,5 @@ export function offersOf(card: Card, t: LookupPage['insights']): Offer[] {
   ]
   return mails
     .filter(({ m }) => /\d{1,2}\s?% off|free (uk |us )?(delivery|shipping)/i.test(m.subject) && !seen.has(m.subject) && (seen.add(m.subject), true))
-    .map(({ m, where }) => ({ text: m.subject, where: where.charAt(0).toUpperCase() + where.slice(1), seen: m.at.slice(0, 10) }))
+    .map(({ m, where }) => ({ text: m.subject, where: cap(where), seen: m.at.slice(0, 10) }))
 }
