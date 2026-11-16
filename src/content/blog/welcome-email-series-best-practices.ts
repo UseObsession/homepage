@@ -43,7 +43,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-16',
   readingMinutes: 11,
   order: 5,
   authors: [
@@ -89,7 +89,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-stores-send', text: 'What do online stores send a new subscriber?' },
     {
       kind: 'p',
-      text: 'Most online stores send the first email fast, and far fewer send anything after a basket or a checkout. In Obsession’s index of what stores send new customers, 9 in 10 stores sent a welcome email after a sign-up as of 13 November 2026, most within a minute. After a basket or a checkout, nearly 1 in 2 stores sent nothing in the 48 hours after.',
+      text: 'Most online stores send the first email fast, and far fewer send anything after a basket or a checkout. In Obsession’s index of what stores send new customers, 9 in 10 stores sent a welcome email after a sign-up as of 13 November 2026, most within a minute. After a basket or a checkout, about 1 in 2 stores sent no reminder in the 48 hours after.',
     },
     {
       kind: 'p',

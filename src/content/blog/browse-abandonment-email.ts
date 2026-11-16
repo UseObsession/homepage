@@ -5,13 +5,14 @@ import type { BlogPost } from './types'
    retention lead) and the agencies that do email, retention or conversion work for them. Owns "browse abandonment email"
    and its 6 secondaries from Google autocomplete (autocomplete_14nov.json); "klaviyo flow not sending" stays with
    welcome-basket-email-not-sending and "abandoned cart email" with the glossary.
-   The point a reader leaves with: the email reaches only an identified visitor, and about half the stores in the index
-   send one. Every platform rule was read at its source on 14 Nov 2026: Klaviyo Help (browse abandonment flow, updated
+   The point a reader leaves with: the email reaches only an identified visitor, and about a third of the stores in the
+   index send one. Every platform rule was read at its source on 14 Nov 2026: Klaviyo Help (browse abandonment flow, updated
    24 Oct 2026; onsite tracking, 28 Oct; cookies, 26 Oct; onsite tracking for Shopify, 30 Oct), Klaviyo's 2026 benchmark
    blog (2 Oct 2026, 110,000+ customers), Shopify Help (Messaging automations, the Create page, requirements, the Flow
    trigger "Customer left online store without making a purchase"; none shows a date) and shopify.dev (the Abandonment
-   object). Index figures are the lookup's totals of 13 Nov 2026 (content/lookupSample.ts sampleTotals: product view 51%
-   send, sign-up 89%, basket 55%, checkout 51%), printed as percentages, never tallies. The plan's "most of those within
+   object). Index figures are the lookup's totals of 13 Nov 2026 (content/lookupSample.ts sampleTotals: product view 33%
+   send, sign-up 89%, basket 52%, checkout 50%; recounted on 16 Nov without the welcome series, which had put the
+   product view at 51%), printed as percentages, never tallies. The plan's "most of those within
    minutes" is left out: the brief's list of printable figures doesn't carry it. Subject lines and the template are
    invented patterns on brackenmoor.example; no real brand's email is copied. Not used: a Shopify Community reply on
    identification (its author isn't marked as Shopify staff), third-party benchmark round-ups. British English, no dashes. */
@@ -30,7 +31,7 @@ const SH_ABANDON = 'https://shopify.dev/docs/api/admin-graphql/latest/objects/Ab
 export const post: BlogPost = {
   slug: 'browse-abandonment-email',
   title: 'Browse abandonment emails: what stores send after a product view, and what to fix',
-  dek: 'About half the stores in Obsession’s index send an email after a shopper looks at a product and leaves (13 November 2026). Who that email can reach, what a good one says, when to skip it and how to test yours with a new address.',
+  dek: 'About a third of the stores in Obsession’s index send an email after a shopper looks at a product and leaves (13 November 2026). Who that email can reach, what a good one says, when to skip it and how to test yours with a new address.',
   metaTitle: 'Browse abandonment email: what stores send and what to fix',
   description:
     'Browse abandonment email for online stores: who it can reach, how many stores send one after a product view, what a good one says and how to test yours.',
@@ -48,7 +49,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-16',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -64,7 +65,7 @@ export const post: BlogPost = {
         { label: 'Wait', detail: 'The flow holds the email for 2 hours', tone: 'info' },
         { label: 'Email arrives', detail: '22:41: the throw, £68 and a link back', tone: 'ok' },
       ],
-      foot: 'About half the stores in Obsession’s index send an email after a product view (13 November 2026).',
+      foot: 'About a third of the stores in Obsession’s index send an email after a product view (13 November 2026).',
     },
   },
 
@@ -75,7 +76,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The email reaches only an identified visitor, a shopper whose browser the store has already matched to an email address. In Obsession’s index of what stores send new customers, 51% of stores sent an email after a product view and 49% sent nothing, as of 13 November 2026.',
+      text: 'The email reaches only an identified visitor, a shopper whose browser the store has already matched to an email address. In Obsession’s index of what stores send new customers, 33% of stores sent an email after a product view and 67% sent none, as of 13 November 2026. The welcome series doesn’t count.',
     },
 
     { kind: 'h2', id: 'what-it-is', text: 'What is a browse abandonment email?' },
@@ -161,22 +162,22 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'how-many-send', text: 'How many stores send a browse abandonment email?' },
     {
       kind: 'p',
-      text: 'About half. The index reads every store the same way. A new account takes each step, and its inbox is read at 4, 8, 12, 24 and 48 hours after it. A slow email still counts as sent.',
+      text: 'About a third. The index reads every store the same way. A new account takes each step, and its inbox is read at 4, 8, 12, 24 and 48 hours after it. A slow email still counts as sent, but the welcome series from the sign-up doesn’t count after a later step.',
     },
     {
       kind: 'table',
       caption: 'Share of stores that sent an email after each step, Obsession’s index, 13 November 2026',
-      cols: ['Step', 'Sent an email', 'Sent nothing'],
+      cols: ['Step', 'Sent an email', 'Sent none'],
       rows: [
         ['Sign-up', '89%', '11%'],
-        ['Product view', '51%', '49%'],
-        ['Basket', '55%', '45%'],
-        ['Checkout', '51%', '49%'],
+        ['Product view', '33%', '67%'],
+        ['Basket', '52%', '48%'],
+        ['Checkout', '50%', '50%'],
       ],
     },
     {
       kind: 'p',
-      text: 'The checkout row is the surprise. A shopper who typed their email at checkout got an email from the same share of stores, 51%, as a shopper who only looked at a product. Check your basket and checkout reminders before you build a browse abandonment email, because those shoppers were closer to buying. [Ecommerce email marketing benchmarks](/blog/ecommerce-email-marketing-benchmarks) sets each step’s figures beside the ones counted inside email accounts.',
+      text: 'The checkout row is the surprise. A shopper who typed their email at checkout heard back from half the stores, no more than a shopper who left a basket. Check your basket and checkout reminders before you build a browse abandonment email, because those shoppers were closer to buying. [Ecommerce email marketing benchmarks](/blog/ecommerce-email-marketing-benchmarks) sets each step’s figures beside the ones counted inside email accounts.',
     },
     {
       kind: 'p',
@@ -418,7 +419,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'The Klaviyo help pages cited were updated between 24 and 30 October 2026. Shopify’s help pages show no date, and the wording cited is as it stood on 14 November 2026. The store figures cover every product view, sign-up, basket and checkout in Obsession’s index as of 13 November 2026. The subject lines and the template are invented examples on a made-up store, and copy no real brand’s email. Help pages change, so check the page before you act.',
+      text: 'The Klaviyo help pages cited were updated between 24 and 30 October 2026. Shopify’s help pages show no date, and the wording cited is as it stood on 14 November 2026. The store figures cover every product view, sign-up, basket and checkout in Obsession’s index as of 13 November 2026. Since 16 November 2026 the welcome series doesn’t count as an email after a product view, a basket or a checkout. The subject lines and the template are invented examples on a made-up store, and copy no real brand’s email. Help pages change, so check the page before you act.',
     },
   ],
 
