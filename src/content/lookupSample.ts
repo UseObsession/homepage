@@ -227,17 +227,17 @@ export const sampleTotals: IndexTotals = {
     },
     "browse": {
       "runs": 137,
-      "answered": 70,
-      "median_minutes": 0
+      "answered": 45,
+      "median_minutes": 115
     },
     "cart": {
       "runs": 229,
-      "answered": 127,
-      "median_minutes": 61
+      "answered": 120,
+      "median_minutes": 65
     },
     "checkout": {
       "runs": 170,
-      "answered": 86,
+      "answered": 85,
       "median_minutes": 61
     }
   }
