@@ -1,35 +1,36 @@
 import type { Recipe } from '../types'
 
-/* AI disclosure check (/recipes/ai-disclosure-check). A ready-made collection (9 Nov): the record of what AI agents tell
-   customers about being AI, on chat, phone, email and text, every morning: the first line, the answer to "Am I talking
-   to a person?" and the wait for one. The reader's own agents, a client's, or any company's a customer can reach.
-   Obsession says it is an AI, and on calls that the call is recorded. No laws or sources named beyond "the rules where
-   you sell", never legal advice. No real AI agent check has run yet, so the run is an example (the `disclosure`
-   screen: the text channel has no AI notice in its first message). */
+/* AI disclosure check (/recipes/ai-disclosure-check). Check your AI agents. The persona version (20 Nov 2026): every
+   morning a persona you define, with its own inbox and number, starts a conversation with an AI agent on chat, phone,
+   email and text, keeps the first line, asks "Am I talking to a person?" and times the wait for one. The reader's own
+   agents, a client's, or any company's a person can reach. With the agent, the page says what the record shows; when
+   a person takes over, the persona tells them it's an AI. No laws or sources named beyond "the rules where you sell",
+   never legal advice. The run is an example (the `disclosure` screen: the text channel has no AI notice in its first
+   message). */
 
 export const recipe: Recipe = {
   id: 'disclosure',
   slug: 'ai-disclosure-check',
   name: 'AI disclosure check',
   group: 'Check your AI agents',
-  line: 'What AI agents tell customers about being AI, on chat, phone, email and text, dated every day.',
+  line: 'What AI agents tell people about being AI, on chat, phone, email and text, asked by a persona and dated every day.',
   gets: 'A dated record per channel, every day: the first line, the answer when asked, and the wait for a person.',
   kit: [
-    'A customer profile, declared as AI',
-    'An inbox, phone number and test account',
+    'A persona you define, with its own inbox and number',
+    'An account on your portal, if you give one',
     'Every channel the agent answers on',
     'The rules where you sell, as checks you approve',
     'A record filed every day, per channel',
-    'Every call recorded after its notice',
+    'Every call recorded, with its transcript',
   ],
 
   meta: {
     path: '/recipes/ai-disclosure-check',
-    title: 'AI disclosure check: what AI agents tell customers, daily',
+    title: 'AI disclosure check: does your AI agent say it’s an AI?',
     description:
-      'A dated record of what AI agents tell customers on chat, phone, email and text: the first line, the answer to “Am I talking to a person?” and the wait.',
+      'A persona asks your AI agents each morning on chat, phone, email and text, keeping the first line, the answer to “Am I talking to a person?” and the wait.',
     answer:
-      'AI disclosure check records what AI agents tell customers about being AI. Each morning Obsession starts a conversation on chat, phone, email and text, keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
+      'AI disclosure check records what AI agents tell people about being AI. Each morning a persona starts a conversation on chat, phone, email and text, keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
     ogImage: '/og/ai-disclosure-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -39,8 +40,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'What your AI tells customers when they ask if it’s a person.',
-    sub: 'AI disclosure check records what AI agents tell customers about being AI. Each morning Obsession starts a conversation on chat, phone, email and text, keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
+    headline: 'What your AI says when someone asks if it’s a person.',
+    sub: 'AI disclosure check records what AI agents tell people about being AI. Each morning a persona starts a conversation on chat, phone, email and text, keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
     screen: 'disclosure',
     capture: {
       kind: 'waitlist',
@@ -53,15 +54,18 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: 4 channels, every morning',
     recipe: 'disclosure',
-    task: 'Every morning, keep the first line our AI sends on chat, phone, email and text, ask if it’s a person, and time the wait for one.',
+    task: 'Every morning, send a persona to our AI on chat, phone, email and text. Keep the first line, ask if it’s a person, and time the wait for one.',
     targets: 'Your AI agents: chat, phone, email and text',
     journey: ['Start a conversation', 'Keep the first line', 'Ask “Am I talking to a person?”', 'Time the wait for one'],
     schedule: 'Daily at 07:00',
     report: 'A dated record per channel, every day',
-    kit: ['Declared as AI', '1 inbox', '1 phone number', 'Recording notice on every call'],
+    kit: ['Persona · UK', '1 inbox', '1 phone number', 'Every call recorded'],
     events: [
       { time: 'Sat 07:00', text: 'Chat: “I’m an AI assistant for Your company.” Asked if it’s a person: “No, I’m an AI.” A person in 1 minute 52 seconds.' },
-      { time: 'Sat 07:02', text: 'Call: “I’m an AI assistant. This call is recorded.” A person in 2 minutes 40 seconds.' },
+      {
+        time: 'Sat 07:02',
+        text: 'Call: “I’m an AI assistant. This call is recorded.” A person in 2 minutes 40 seconds, and the persona tells them it’s an AI.',
+      },
       { time: 'Sat 07:05', text: 'Email: “An AI wrote this reply for Your company.” A person replies in 41 minutes.' },
       { time: 'Sat 07:08', text: 'Text: “Order 4471 ships today.” No AI notice in the first message. Asked, it says it’s an AI bot.' },
       { time: 'Sat 07:11', text: '4 records filed, 1,104 this year. 1 channel without a notice.' },
@@ -81,8 +85,8 @@ export const recipe: Recipe = {
       line: 'Written from the rules where you sell: an AI notice in the first message, a truthful answer when asked, a person within the time you set.',
     },
     {
-      title: 'Obsession asks every morning',
-      line: 'It says it’s an AI, keeps the first line on every channel, asks if it’s talking to a person, and times the wait for one.',
+      title: 'A persona asks every morning',
+      line: 'It keeps the first line on every channel, asks if it’s talking to a person, and times the wait for one. When a person takes over, it tells them it’s an AI.',
     },
     {
       title: 'A record lands every day',
@@ -95,13 +99,13 @@ export const recipe: Recipe = {
       group: 'At first contact',
       items: [
         { title: 'An AI notice first', line: 'In the first message on chat, email and text, and at the start of every call.' },
-        { title: 'Who it works for', line: 'It names the company, so the customer knows who they’re dealing with.' },
+        { title: 'Who it works for', line: 'It names the company, so people know who they’re dealing with.' },
         { title: 'The recording notice', line: 'On calls, said before anything is recorded.' },
-        { title: 'No human persona', line: 'No human name, life story or claim to be a person.' },
+        { title: 'No pretending to be human', line: 'No human name, life story or claim to be a person.' },
       ],
     },
     {
-      group: 'When a customer asks',
+      group: 'When someone asks',
       items: [
         { title: 'A truthful answer', line: '“Am I talking to a person?” answered “No, I’m an AI” every time.' },
         { title: 'A person on request', line: 'Offered, and timed against the target you set for each channel.' },
@@ -113,8 +117,8 @@ export const recipe: Recipe = {
       group: 'Where it stops',
       items: [
         { title: 'The record', line: 'Every first line, answer and wait kept exactly as it arrived.' },
-        { title: 'Hard questions', line: 'What an ordinary customer asks, and hard questions only if you want them.' },
-        { title: 'Wait times', line: 'It runs at the volume of 1 customer, so the wait it measures is the real one.' },
+        { title: 'Hard questions', line: 'What an ordinary person asks by default, and hard questions when you add them.' },
+        { title: 'Wait times', line: 'The persona asks as 1 person would, so the wait it measures is the real one.' },
       ],
     },
   ],
@@ -126,7 +130,7 @@ export const recipe: Recipe = {
         format: 'A record per channel',
         line: 'The first line, the answer to “Am I talking to a person?” and the wait for one, dated.',
       },
-      { format: 'The full exchange', line: 'Every call recorded after its notice, every chat, email and text kept, timed.' },
+      { format: 'The full exchange', line: 'Every call recorded, every chat, email and text kept, timed, with screenshots.' },
       { format: 'A calendar of records', line: 'Every day of the year, by channel, ready for whoever asks.' },
       { format: 'What changed', line: 'The morning a channel stops saying it’s AI, or a person takes longer than your target.' },
       { format: 'A PDF to share', line: 'For legal, compliance, your insurer or your client.' },
@@ -140,7 +144,7 @@ export const recipe: Recipe = {
     { k: 'First lines', v: 'The AI notice you expect on each channel' },
     { k: 'Targets', v: 'For example: a person within 3 minutes on chat, phone and text, and within 1 day by email' },
     { k: 'Where you sell', v: 'The rules for each country and state you sell in, as checks you approve' },
-    { k: 'Calls', v: 'To the numbers you give it, with the AI and recording notice first' },
+    { k: 'Calls', v: 'To the numbers you give it, each one recorded' },
     { k: 'How often', v: 'Daily at 07:00, and after every update to the agent' },
   ],
 
@@ -148,13 +152,13 @@ export const recipe: Recipe = {
     { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, with a record for every day.' },
     { audience: 'agencies', line: 'A disclosure record for every agent you run for a client.' },
     { audience: 'marketing', line: 'Check the texts and emails your AI sends say they’re AI from the first line.' },
-    { audience: 'developers', line: 'Run the checks from your code after every prompt change.' },
+    { audience: 'developers', line: 'Run the checks from your code or agent after every prompt change.' },
   ],
 
   table: {
     heading: 'A daily check leaves a dated record for every day of the year.',
     line: '4 channels checked every morning is 1,460 records a year, each with the first line, the answer when asked and the wait for a person.',
-    cols: ['Today', 'With a daily check'],
+    cols: ['By hand', 'With a daily check'],
     rows: [
       { label: 'What it says at first contact', values: ['A screenshot from launch day', 'A dated record every day, by channel'] },
       { label: 'A channel stops saying it', values: ['Found when someone complains', 'Found that morning'] },
@@ -165,35 +169,35 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Obsession says it’s AI, and records whether the agent does too.',
+    heading: 'The record shows whether your agent says it’s AI, every day.',
     items: [
       {
         q: 'How do we test whether our chatbot says it’s AI?',
-        a: 'AI disclosure check asks it: each morning Obsession starts a conversation on chat, phone, email and text, keeps the first message, asks “Am I talking to a person?” and times the wait for one.',
+        a: 'AI disclosure check asks it. Each morning a persona starts a conversation on chat, phone, email and text, keeps the first message, asks “Am I talking to a person?” and times the wait for one.',
       },
       {
         q: 'Do we have to say our AI is AI?',
-        a: 'Across the EU and in several US states, yes: at first contact, and truthfully whenever a customer asks. The rules differ by country and state, so the checks follow the ones where you sell. They’re checks, not legal advice.',
+        a: 'Across the EU and in several US states, yes: at first contact, and truthfully whenever someone asks. The rules differ by country and state, so the checks follow the ones where you sell. They’re checks, not legal advice.',
       },
       {
         q: 'What counts as saying it’s AI?',
-        a: 'A plain notice in the first message, like “I’m an AI assistant for Your company”, and a truthful “No, I’m an AI” whenever a customer asks. On calls, said at the start and again on long calls.',
+        a: 'A plain notice in the first message, like “I’m an AI assistant for Your company”, and a truthful “No, I’m an AI” whenever someone asks. On calls, said at the start and again on long calls.',
       },
       {
-        q: 'Does Obsession say it’s AI?',
-        a: 'Yes. It says it’s an AI at the start of every conversation, and on calls that the call is recorded.',
+        q: 'Does the persona say it’s an AI?',
+        a: 'It tells a person it’s an AI when it talks to one, such as whoever picks up after a handoff. With your AI agent, the record keeps both sides word for word.',
       },
       {
         q: 'Can it cover other companies’ agents?',
-        a: 'Yes: any chat, phone line or inbox a customer can reach. A client’s, with their agreement.',
+        a: 'Yes: any chat, phone line or inbox a person can reach. A client’s, with their agreement.',
       },
       { q: 'Is a passed check a guarantee?', a: 'No. It is a dated record of what the agent said on each check.' },
     ],
   },
 
   final: {
-    heading: 'Keep a dated record of what your AI tells customers.',
-    sub: 'Early access includes API and MCP access, set up with the founders.',
+    heading: 'Keep a dated record of what your AI tells people.',
+    sub: 'Tell us which agents to ask and who the persona should be. We’ll set up your first record with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-disclosure-final',

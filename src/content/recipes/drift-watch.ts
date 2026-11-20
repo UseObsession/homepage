@@ -1,9 +1,11 @@
 import type { Recipe } from '../types'
 
-/* Drift watch (/recipes/drift-watch). A ready-made collection (9 Nov): the record of what an AI agent answers on the
-   reader's hardest cases, every morning and within the hour of any vendor release, model update or prompt edit, with
-   every changed answer shown before and after. Obsession says it is an AI; every replay is tagged, agreed with the
-   vendor, so none is billed. No vendor or product names: Vendor A. No real AI agent check has run yet, so the run is
+/* Drift watch (/recipes/drift-watch). Check your AI agents. The persona version (20 Nov 2026): the same persona you
+   define asks the reader's AI agent their hardest cases every morning and within the hour of any vendor release, model
+   update or prompt edit; it lives as long as they hold it, so every replay comes from the same person and answers
+   compare like for like. Every answer comes back word for word, and every one that changed is shown before and after.
+   Every replay is tagged, agreed with the vendor, so none is billed. With the agent, the page says what the record
+   shows; when a person takes over, the persona tells them it's an AI. No vendor or product names: Vendor A. The run is
    an example (the `drift` screen: 37 of 40 before Vendor A's update at 23:20, 28 of 40 at 00:10, 9 newly failing). */
 
 export const recipe: Recipe = {
@@ -11,24 +13,24 @@ export const recipe: Recipe = {
   slug: 'drift-watch',
   name: 'Drift watch',
   group: 'Check your AI agents',
-  line: 'What your AI agent answers on your hardest cases, every morning and after every update, with every changed answer.',
+  line: 'The same persona asks your AI agent your hardest cases every morning and after every update, and shows every changed answer.',
   gets: 'Every answer that changed, found the day it changed, with its before and after.',
   kit: [
-    'A customer profile, declared as AI',
-    'An inbox and test account',
+    'A persona you define, the same one every replay',
+    'Its own inbox, and an account on your portal',
     'Your hardest cases, each with its rule',
     'Your vendor’s updates, watched',
     'Every replay tagged, agreed with your vendor',
-    'Every answer kept with its time',
+    'Every answer dated, with screenshots',
   ],
 
   meta: {
     path: '/recipes/drift-watch',
     title: 'Drift watch: catch the answers an update breaks · Obsession',
     description:
-      'Your hardest cases asked of your AI agent every morning and within the hour of any update. Every answer kept, and every change shown before and after.',
+      'A persona asks your AI agent your hardest cases every morning and within the hour of any update. Every answer is kept, every change shown before and after.',
     answer:
-      'Drift watch records what your AI agent answers on your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
+      'Drift watch sends the same persona to ask your AI agent your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -39,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'What each update changed in your AI agent’s answers.',
-    sub: 'Drift watch records what your AI agent answers on your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
+    sub: 'Drift watch sends the same persona to ask your AI agent your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
     screen: 'drift',
     capture: {
       kind: 'waitlist',
@@ -52,16 +54,16 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: the night of a vendor update',
     recipe: 'drift',
-    task: 'Replay our 40 hardest support cases every morning, and again within the hour of any update. Tell me which answers changed.',
+    task: 'Every morning, have the same persona replay our 40 hardest support cases, and again within the hour of any update. Tell me which answers changed.',
     targets: 'Your support bot, run by Vendor A',
     journey: ['Replay your 40 cases', 'Compare with the baseline', 'Run again after any update', 'Flag every new failure'],
     schedule: 'Daily at 07:00, and within the hour of any update',
     report: 'Slack, and every answer in a table',
-    kit: ['Declared as AI', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
+    kit: ['Persona · UK, the same each replay', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
     events: [
       { time: '2 Oct 07:00', text: 'The morning replay: 37 of 40 cases pass, 92.5%, inside your baseline of 90 to 100%.' },
       { time: '2 Oct 23:20', text: 'Vendor A ships an update to your bot.' },
-      { time: '3 Oct 00:10', text: 'The replay runs again, 50 minutes later. 28 of 40 pass: 70%.' },
+      { time: '3 Oct 00:10', text: 'The persona replays every case, 50 minutes later. 28 of 40 pass: 70%.' },
       { time: '3 Oct 00:12', text: '9 cases that passed that morning now fail. Asked about refunds: “Yes, up to 30 days.” Your rule is 14.' },
       { time: '3 Oct 00:14', text: 'Delivery “is free” where you charge £4.95, the warranty is “1 year” where yours is 2, and “Anything else?” comes 3 times after “No”.' },
     ],
@@ -80,8 +82,8 @@ export const recipe: Recipe = {
       line: 'The first replays set the pass rate your bot normally holds, case by case. You approve it, and change any rule.',
     },
     {
-      title: 'Obsession asks every morning, and after any update',
-      line: 'Every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
+      title: 'Asked every morning, and after any update',
+      line: 'The same persona asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
     },
     {
       title: 'Every changed answer lands',
@@ -95,7 +97,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Pass rate against the baseline', line: 'Case by case, against the rate your bot normally holds.' },
         { title: 'New failures', line: 'Every case that passed before and fails now, with the rule it broke.' },
-        { title: 'Changed answers', line: 'The same question with a different answer, even when both pass.' },
+        { title: 'Changed answers', line: 'The same question from the same persona with a different answer, even when both pass.' },
         { title: 'Time to answer', line: 'How long each answer takes, against last week.' },
       ],
     },
@@ -104,14 +106,14 @@ export const recipe: Recipe = {
       items: [
         { title: 'Vendor releases', line: 'Picked up from your vendor’s release notes or a webhook, and replayed within the hour.' },
         { title: 'Model updates', line: 'A new model under your bot, replayed the same way.' },
-        { title: 'Your own edits', line: 'Prompt and knowledge base changes from your team, replayed before customers meet them.' },
+        { title: 'Your own edits', line: 'Prompt and knowledge base changes from your team, replayed before they go live.' },
         { title: 'Handoffs', line: 'How often it gets a person when asked, before and after.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
-        { title: 'Hard questions', line: 'What an ordinary customer asks, and hard cases only if you add them.' },
+        { title: 'Hard questions', line: 'What an ordinary person asks by default, and hard cases when you add them.' },
         { title: 'The record', line: 'Every answer kept exactly as it arrived, before and after.' },
         { title: 'Your bill', line: 'Every replay is tagged, and agreed with your vendor, so none is billed as a resolution.' },
       ],
@@ -131,25 +133,25 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Agent', v: 'Yours, or one you run for a client' },
+    { k: 'Persona', v: 'The same one every replay, so answers compare like for like' },
     { k: 'Cases', v: 'For example: your 40 hardest, each with the rule that decides it' },
     { k: 'Baseline', v: 'For example: 90 to 100% of cases passing' },
     { k: 'Channels', v: 'Chat, email, phone or your portal' },
     { k: 'Changes watched', v: 'Vendor releases, model updates, and prompt and knowledge base edits' },
-    { k: 'Tagging', v: 'Every replay tagged, agreed with your vendor first' },
     { k: 'How often', v: 'Daily at 07:00, and within the hour of any change' },
   ],
 
   forWho: [
-    { audience: 'founders', line: 'Hear the night a vendor update changes what your bot tells customers.' },
+    { audience: 'founders', line: 'Hear the night a vendor update changes what your bot says.' },
     { audience: 'agencies', line: 'Every agent you run for clients, replayed after each vendor update.' },
     { audience: 'marketing', line: 'Catch the morning your bot starts handing out a code that has expired.' },
-    { audience: 'developers', line: 'Replay the cases from your code before every prompt change ships.' },
+    { audience: 'developers', line: 'Replay the cases from your code or agent before every prompt change ships.' },
   ],
 
   table: {
     heading: 'Find the drop the night it happens.',
     line: 'Example: Vendor A’s update, replayed 50 minutes later.',
-    cols: ['Today', 'With Drift watch'],
+    cols: ['By hand', 'With Drift watch'],
     rows: [
       { label: 'A vendor update', values: ['You read the release notes, if there are any', 'Your cases replayed within the hour'] },
       { label: 'A drop in quality', values: ['Noticed days later, from complaints', 'Flagged the night it happens'] },
@@ -161,7 +163,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every answer kept, before and after. Every replay agreed with your vendor.',
+    heading: 'The same persona, the same cases, every answer kept.',
     items: [
       {
         q: 'What is drift in an AI agent?',
@@ -181,16 +183,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will our vendor bill us for the replays?',
-        a: 'Every replay is tagged as a test, and we agree that with your vendor before the first one runs.',
+        a: 'No. Every replay is tagged as a test, and we agree that with your vendor before the first one runs.',
       },
-      { q: 'Does Obsession say it’s AI?', a: 'Yes, to anyone it talks to.' },
+      {
+        q: 'Does the persona say it’s an AI?',
+        a: 'It tells a person it’s an AI when it talks to one. With your AI agent, the record keeps both sides word for word, before and after.',
+      },
       { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated record of what your agent said on each case that day.' },
     ],
   },
 
   final: {
     heading: 'Know which answers an update changed within the hour.',
-    sub: 'Early access includes API and MCP access, set up with the founders.',
+    sub: 'Tell us which agent to watch and your hardest cases. We’ll set up the persona and the first replay with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-drift-final',

@@ -12,8 +12,9 @@ export const footer = {
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
   /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
-  tagline: 'The web behind the login, as data.',
+  tagline: 'A persona on the web for every agent you run.',
   columns: [
+    /* Products is the bar's Products menu (content/nav.ts): Personas, Fleets, Recipes, API and MCP, Pricing (20 Nov). */
     { label: products.label, links: names(products.items) },
     { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
     ...solutions.columns.map((c) => ({ label: c.label, links: names(c.items) })),

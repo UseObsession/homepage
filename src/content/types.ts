@@ -538,6 +538,78 @@ export type CardGrid = {
   more?: { text: string; label: string; to: string }
 }
 
+/* ---- Home's persona sections (20 Nov 2026, components/persona) -------------------------------------------------------
+   The persona direction: Obsession gives AI agents a persona (an identity that acts as someone you define) and keeps
+   fleets of them running. Every block is optional on a Page; only Home draws them. */
+
+/* The hero's first path and its copyable line of code (components/persona/PersonaHero). The rest of the hero is the
+   page's `hero`: its headline, sub, `note` (the small line under the buttons), `secondary` and `proof` (the 3 facts). */
+export type PersonaStart = {
+  primary: Cta
+  chip: { label: string; code: string; copy: string; copied: string }
+}
+/* What is in a persona, as a stacked slab diagram (PersonaAnatomy): each part a slab, its name, 1 line and an example
+   value in mono. `note` labels the example persona. */
+export type PersonaAnatomy = {
+  heading: string
+  line?: string
+  note: string
+  parts: { name: string; line: string; eg: string }[]
+}
+/* The illustration card beside an "X, not Y" claim. Every card is labelled by `tag` ("Example"). */
+export type PersonaArt =
+  | { kind: 'versus'; tag: string; keys: string[]; cols: { label: string; cells: string[]; ours?: boolean }[] }
+  | { kind: 'parts'; tag: string; parts: { label: string; items: string[]; note: string }; whole: { label: string; items: string[]; note: string } }
+  | { kind: 'timeline'; tag: string; title: string; rows: { at: string; text: string; state: 'act' | 'sleep' | 'wake' | 'done' }[] }
+  | {
+      kind: 'meter'
+      tag: string
+      title: string
+      /* The span on the bar, and where each active stretch sits on it, as a share of the span (0 to 1). */
+      span: { start: string; end: string }
+      marks: number[]
+      rows: { label: string; value: string }[]
+      total: { label: string; value: string }
+    }
+/* 1 claim, its lines, 1 big true number (`value`, its `unit` beside it, `label` under) and its card. */
+export type PersonaContrast = { heading: string; line: string; value: string; unit: string; label: string; art: PersonaArt }
+/* How a persona works (PersonaHow): 4 steps, then the 1 real run (Brand G, content/sample.ts) beside its receipt:
+   `facts` are its rows, `stamp` the word stamped on it. */
+export type PersonaHow = {
+  heading: string
+  line?: string
+  steps: { title: string; line: string; eg: string }[]
+  run: { label: string; heading: string; line: string; cta: Cta; stamp: string; facts: { k: string; v: string }[] }
+}
+/* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
+   `status` says who the recipe fits. */
+export type PersonaRecipes = {
+  heading: string
+  line?: string
+  items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
+}
+export type PersonaIcon =
+  | 'sleep' | 'wake' | 'home' | 'person' | 'retry' | 'cap' | 'spend' | 'stop' | 'webhook' | 'table' | 'record' | 'fleet'
+  | 'clock' | 'code'
+/* Everything else a fleet needs (PersonaFleet): a ruled grid of short items, each with its icon. */
+export type PersonaFleet = { heading: string; line?: string; items: { icon: PersonaIcon; title: string; line: string }[] }
+/* For developers (PersonaBuild): the claim, an example of the code, and where the record goes. */
+export type PersonaBuild = {
+  heading: string
+  line: string
+  cta: Cta
+  codeLabel: string
+  code: string
+  outputs: { title: string; line: string }[]
+}
+/* The pricing teaser (PersonaPrice): the rate as the claim, and a worked example a reader can redo. */
+export type PersonaPrice = {
+  heading: string
+  line: string
+  cta: Cta
+  example: { tag: string; title: string; cols: [string, string, string]; rows: [string, string, string][] }
+}
+
 export type Page = {
   meta: Meta
   hero: Hero
@@ -588,6 +660,15 @@ export type Page = {
   openSource?: OpenSource
   parity?: Parity
   scale?: Scale
+  /* Home only, since 20 Nov: the persona sections (components/persona), in the order pages/Home.tsx draws them. */
+  personaStart?: PersonaStart
+  personaAnatomy?: PersonaAnatomy
+  personaContrasts?: PersonaContrast[]
+  personaHow?: PersonaHow
+  personaRecipes?: PersonaRecipes
+  personaFleet?: PersonaFleet
+  personaBuild?: PersonaBuild
+  personaPrice?: PersonaPrice
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.

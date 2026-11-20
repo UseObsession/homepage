@@ -1,9 +1,11 @@
 import type { Recipe } from '../types'
 
-/* Price watch (/recipes/price-watch). Watch other companies. Screen: prices.
-   The 9 Nov story: a ready-made collection of what competitors charge a signed-up customer: public and member prices,
-   offers, delivery and the codes sent only to subscribers, read each morning from an account and a subscriber inbox at
-   each competitor, in the reader's country. Changes land in Slack, a sheet, Clay, a webhook or the API.
+/* Price watch (/recipes/price-watch). Watch other companies. Screen: prices. Home's tile calls it "Price watch".
+   The persona version (20 Nov 2026): a persona the reader defines, connecting from their country, opens an account at
+   each competitor and joins its email list. Each morning it reads what that competitor charges: public and member
+   prices, offers, delivery and the codes sent only to subscribers, and dates every change with before and after
+   screenshots. Changes land in Slack, a sheet, Clay, a webhook or the API. It stops before payment by default.
+   Sold as designed: no index, no country list, no caps.
    The run and the table tell the screen's story (Competitor B's soy candle, 4 days before Black Friday). Example. */
 
 export const recipe: Recipe = {
@@ -11,12 +13,12 @@ export const recipe: Recipe = {
   slug: 'price-watch',
   name: 'Price watch',
   group: 'Watch other companies',
-  line: 'Competitors’ public and member prices, delivery and subscriber codes, collected each morning as a customer in your country.',
+  line: 'A persona signs in at each competitor and reads public and member prices, delivery and subscriber codes each morning.',
   gets: 'Every price change and subscriber code, dated, with the screenshot before and after.',
   kit: [
-    'An account at each competitor, in your country',
-    'An inbox on each competitor’s email list',
-    'Public and signed-in prices, read each morning',
+    'A persona at each competitor, in your country',
+    'Its inbox on each competitor’s email list',
+    'Public and member prices, read each morning',
     'Every email kept with the time it arrived',
     'A screenshot of every price, before and after',
     'Changes in Slack, a sheet or the API',
@@ -26,9 +28,9 @@ export const recipe: Recipe = {
     path: '/recipes/price-watch',
     title: 'Price watch: competitor prices, member prices and codes',
     description:
-      'Price watch collects every competitor’s public and member prices, delivery and the codes sent only to subscribers, each morning, every change dated.',
+      'Price watch signs in at each competitor as a persona and reads public and member prices, delivery and subscriber codes each morning, every change dated.',
     answer:
-      'Price watch collects what competitors charge a signed-up customer: public and member prices, offers, delivery and the codes sent only to subscribers. It reads each competitor every morning from an account and a subscriber inbox in your country, and dates every change with its screenshot.',
+      'Price watch signs in at each competitor as a persona you define, in your country, and joins its email list. Each morning it reads public and member prices, offers, delivery and the codes sent only to subscribers, and dates every change with its screenshot.',
     ogImage: '/og/price-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -38,8 +40,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'Every competitor’s prices, as a signed-up customer sees them.',
-    sub: 'Price watch collects what competitors charge a signed-up customer: public and member prices, offers, delivery and the codes sent only to subscribers. It reads each competitor every morning from an account and a subscriber inbox in your country, and dates every change with its screenshot.',
+    headline: 'Every competitor’s prices, including the ones only members see.',
+    sub: 'Price watch signs in at each competitor as a persona you define, in your country, and joins its email list. Each morning it reads public and member prices, offers, delivery and the codes sent only to subscribers, and dates every change with its screenshot.',
     screen: 'prices',
     capture: {
       kind: 'waitlist',
@@ -52,14 +54,14 @@ export const recipe: Recipe = {
   run: {
     tab: 'Example: Black Friday week',
     recipe: 'prices',
-    task: 'Every morning, collect our 3 competitors’ prices, member prices, delivery and subscriber codes as a UK customer. Tell #pricing when one undercuts us.',
+    task: 'Every morning, read our 3 competitors’ prices, member prices, delivery and subscriber codes as a UK member. Tell #pricing when one undercuts us.',
     targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
     journey: ['Read each product, signed in and out', 'Read price, offer and delivery', 'Read the codes sent to subscribers', 'Compare with yesterday and with you'],
     schedule: 'Every morning at 06:00',
     report: 'Slack in #pricing, a sheet and the API',
-    kit: ['3 accounts · UK', '3 subscriber inboxes', 'Before and after screenshots', 'Your own prices'],
+    kit: ['3 personas · UK', '3 subscriber inboxes', 'Before and after screenshots', 'Your own prices'],
     events: [
-      { time: 'Mon 06:00', text: 'Morning read: 6 products at 3 competitors, as a UK customer.' },
+      { time: 'Mon 06:00', text: 'Morning read: 6 products at 3 competitors, as a UK member.' },
       { time: 'Mon 06:04', text: 'Competitor B: soy candle now £19 and ships free. On Sunday it was £24 plus £3.95 delivery.' },
       { time: 'Mon 06:05', text: 'Competitor B also cut its reed diffuser to £28 and its wax melts to £9. Competitors A and C unchanged.' },
       { time: 'Mon 06:06', text: 'In #pricing, with the before and after screenshots.' },
@@ -67,16 +69,16 @@ export const recipe: Recipe = {
     ],
     finding: 'Competitor B now sells its soy candle £5 under yours and ships it free, 4 days before Black Friday.',
     fix: 'In #pricing at 06:06 and on your pricing sheet, beside your own £24.',
-    ledger: 'Example run. Every price read from a public page, a signed-in page or the subscriber inbox, with screenshots before and after.',
+    ledger: 'Example run. Every price read from a public page, a member page or the subscriber inbox, with screenshots before and after.',
   },
 
   steps: [
-    { title: 'Name the competitors', line: 'Single products or whole collections, from a list, a CSV, Clay or the API.' },
+    { title: 'Name the competitors', line: 'Single products or whole categories, from a list, a CSV, Clay or the API.' },
     {
-      title: 'Pick the customer',
-      line: 'The country, the currency and the profile: a new visitor, a subscriber or a member. Obsession opens the account and joins each email list.',
+      title: 'Define the persona',
+      line: 'Who it is and where it shops from: a new visitor, a subscriber or a member, in the country and currency you choose. It opens the account and joins each email list.',
     },
-    { title: 'Read every morning', line: 'Each price, offer, stock level and delivery cost, against yesterday’s and against yours.' },
+    { title: 'It reads every morning', line: 'Each price, offer, stock level and delivery cost, against yesterday’s and against yours.' },
     { title: 'Changes land where you work', line: 'Slack, a sheet, Clay, a webhook or the API, each with its screenshot.' },
   ],
 
@@ -84,8 +86,8 @@ export const recipe: Recipe = {
     {
       group: 'On each product page',
       items: [
-        { title: 'Price and sale price', line: 'For the products or collections you pick, in your currency.' },
-        { title: 'Member price', line: 'The price a signed-in customer sees, beside the public one.' },
+        { title: 'Price and sale price', line: 'For the products or categories you pick, in your currency.' },
+        { title: 'Member price', line: 'The price a signed in member sees, beside the public one.' },
         { title: 'Bundles and multibuys', line: 'And what each works out at per item.' },
         { title: 'Stock and delivery', line: 'In stock or sold out, the delivery cost and where free delivery starts.' },
       ],
@@ -100,7 +102,7 @@ export const recipe: Recipe = {
     {
       group: 'In the subscriber inbox',
       items: [
-        { title: 'Subscriber codes', line: 'The codes a competitor sends only its list, so you see the price a new customer is offered.' },
+        { title: 'Subscriber codes', line: 'The codes a competitor sends only its list, so you see the price a new subscriber is offered.' },
         { title: 'Sales told to the list first', line: 'The sale a competitor emails its subscribers before its site shows it.' },
       ],
     },
@@ -117,16 +119,16 @@ export const recipe: Recipe = {
   },
 
   settings: [
-    { k: 'Competitors', v: 'Single products or whole collections' },
-    { k: 'Customer profile', v: 'New visitor, subscriber or member' },
-    { k: 'Country', v: 'Sets the prices, currency and delivery Obsession sees' },
+    { k: 'Competitors', v: 'Single products or whole categories' },
+    { k: 'Persona', v: 'New visitor, subscriber or member' },
+    { k: 'Country', v: 'Any you choose: it sets the prices, currency and delivery the persona sees' },
     { k: 'How often', v: 'Every morning, or every hour in a sale week' },
     { k: 'Alerts', v: 'Only changes above an amount you set' },
     { k: 'Where it lands', v: 'Slack, a sheet, Clay, a webhook or the API' },
   ],
 
   forWho: [
-    { audience: 'marketing', line: 'Know a competitor’s sale has started before your customers do.' },
+    { audience: 'marketing', line: 'Know a competitor’s sale has started before your shoppers do.' },
     { audience: 'founders', line: 'Price with every competitor in view, without opening their sites each morning.' },
     { audience: 'agencies', line: 'A price report for each client’s market.' },
     { audience: 'developers', line: 'Every competitor price as JSON, straight into your own pricing.' },
@@ -134,7 +136,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Competitor B cut 3 prices overnight. Its soy candle is now £5 under yours.',
-    line: 'Example: Monday, 4 days before Black Friday, as a UK customer.',
+    line: 'Example: Monday, 4 days before Black Friday, as a UK member.',
     cols: ['You', 'Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Soy candle 200g', values: ['£24', '£26', '£19, was £24', '£25'] },
@@ -146,38 +148,38 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'What a customer sees, with a screenshot for every change.',
+    heading: 'What a member sees, with a screenshot for every change.',
     items: [
       {
         q: 'How do I track competitor prices without checking every day by hand?',
-        a: 'Price watch reads every competitor’s prices, offers, stock and delivery each morning as a customer in your country, and sends each change with a before and after screenshot beside your own price.',
+        a: 'Price watch sends a persona in your country to read every competitor’s prices, offers, stock and delivery each morning. Each change comes with a before and after screenshot, beside your own price.',
       },
       {
         q: 'How is Price watch different from a price tracker?',
-        a: 'A price tracker reads the public page. Price watch also signs in and joins each competitor’s email list, so it sees the member price and the code a new subscriber is sent.',
+        a: 'A price tracker reads the public page. Price watch’s persona also signs in and joins each competitor’s email list, so it sees the member price and the code a new subscriber is sent.',
       },
       {
         q: 'Can Price watch see the price at checkout?',
-        a: 'Yes, if you choose. Price watch fills a basket to see the total with delivery and codes applied, and stops before payment.',
+        a: 'Yes, if you choose. Price watch fills a basket to see the total with delivery and codes applied, and stops before payment unless you give it your own payment card.',
       },
       {
         q: 'Which countries can Price watch read prices in?',
-        a: 'Price watch reads the ones you sell in. Each account is set to that country, so it sees the prices, currency and delivery your customers see.',
+        a: 'Any country you choose. Price watch’s persona connects from a home connection there, so it sees the prices, currency and delivery a local shopper sees.',
       },
       {
         q: 'Do competitors know who asked?',
-        a: 'No. Signing up and reading prices needs no conversation, and who asked is never shown. When Price watch talks to a person, it says it’s an AI.',
+        a: 'No. Signing in and reading prices needs no conversation, and who asked is never shown. When Price watch’s persona talks to a person, it says it’s an AI.',
       },
       {
         q: 'How many competitors can Price watch cover?',
-        a: 'Price watch covers as many as you add. A competitor already in the index returns its price history at once.',
+        a: 'Price watch covers as many as you add, every morning. Run one, or a fleet of thousands.',
       },
     ],
   },
 
   final: {
     heading: 'Know by morning when a competitor undercuts you.',
-    sub: 'Early access includes Price watch on up to 5 competitors added for you, and every company already covered.',
+    sub: 'Tell us which competitors to watch. We’ll set up the first personas with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-price-watch-final',

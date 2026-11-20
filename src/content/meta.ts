@@ -7,6 +7,7 @@ import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } f
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
+import { pricingPage } from './pricing'
 import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
 
@@ -35,6 +36,7 @@ export type PageKind =
   | 'term'
   | 'not-found'
   | 'lookup'
+  | 'pricing'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
 export type Article = {
@@ -148,6 +150,17 @@ export const entries: Entry[] = [
     line: dev.gapPair?.heading ?? (dev.hero.proof[0] ? `${dev.hero.proof[0].value} ${dev.hero.proof[0].label}` : dev.hero.pill),
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  /* What a persona costs (content/pricing.ts): its own words, not a Page, like the lookup. Its share card's line is the
+     plans' first sentence, and its questions are FAQPage. */
+  {
+    kind: 'pricing',
+    meta: ogFor(pricingPage.meta),
+    name: crumbName(pricingPage.meta, 'Pricing'),
+    headline: pricingPage.headline,
+    line: firstSentence(pricingPage.plans.line),
+    faq: pricingPage.faq,
+    source: 'src/content/pricing.ts',
   },
   {
     kind: 'compare',

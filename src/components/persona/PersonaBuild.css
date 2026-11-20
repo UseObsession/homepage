@@ -1,0 +1,17 @@
+/* For developers (PersonaBuild.tsx): the code in 7 of 12 columns, where the record goes in 5; stacked under 1080px. */
+
+.s-pb-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-32);
+}
+@media (min-width: 1080px) {
+  .s-pb-body { grid-template-columns: var(--s-split-flip); column-gap: var(--s-split-gap); align-items: start; }
+}
+.s-pb-code { display: grid; gap: var(--ob-space-8); min-width: 0; }
+.s-pb-tag { justify-self: center; }
+
+.s-pb-outs { list-style: none; margin: 0; padding: 0; display: grid; border-top: var(--ob-border-hair) solid var(--s-rule, var(--ob-line)); }
+.s-pb-out { display: grid; gap: var(--ob-space-6); padding: var(--ob-space-20) 0; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.s-pb-out-title { margin: 0; font: 500 13px / 1.3 var(--ob-font-mono); color: var(--ob-text); }
+.s-pb-out-line { margin: 0; font: 400 15.5px / 1.5 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }

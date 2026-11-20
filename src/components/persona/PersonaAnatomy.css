@@ -1,0 +1,103 @@
+/* What is in a persona (PersonaAnatomy.tsx). The words take 5 of 12 columns and stay in view; the stack takes 7. Under
+   1080px it stacks: the words, then the diagram.
+
+   The geometry: a slab is drawn on a 220 x 120 grid, --s-pa-w wide, so its right corner sits 52/220 of the width
+   (0.2364) down from its top. Each slab is lifted so that corner lands level with its part's name (12px into the row),
+   and the leader runs from there to the words. */
+
+.s-pa-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--ob-space-block);
+}
+.s-pa-words { display: grid; gap: var(--ob-space-16); align-content: start; }
+.s-pa-words > .s-bp-h { max-width: 16ch; }
+@media (min-width: 1080px) {
+  .s-pa-grid { grid-template-columns: var(--s-split); column-gap: var(--s-split-gap); align-items: start; }
+  .s-pa-words { position: sticky; top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32)); }
+}
+
+.s-pa-fig {
+  --s-pa-w: 240px;
+  --s-pa-gap: var(--ob-space-32);
+  margin: 0;
+  min-width: 0;
+}
+.s-pa-stack {
+  list-style: none;
+  margin: 0;
+  padding: calc(var(--s-pa-w) * 0.2364 - 12px) 0 var(--ob-space-24);
+  display: grid;
+  gap: var(--ob-space-20);
+}
+.s-pa-part {
+  position: relative;
+  z-index: calc(20 - var(--i, 0));
+  display: grid;
+  grid-template-columns: var(--s-pa-w) minmax(0, 1fr);
+  column-gap: var(--s-pa-gap);
+}
+.s-pa-art { position: relative; display: block; }
+.s-pa-slab {
+  position: absolute;
+  left: 0;
+  top: calc(12px - var(--s-pa-w) * 0.2364);
+  display: block;
+  width: var(--s-pa-w);
+  height: auto;
+  overflow: visible;
+  transition: translate var(--ob-dur-moderate, 0.24s) var(--ob-ease-out);
+}
+.s-pa-slab path { stroke: var(--ob-line-strong); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.s-pa-top { fill: color-mix(in oklab, var(--ob-surface-raised), var(--ob-text) 5%); }
+.s-pa-side-l { fill: color-mix(in oklab, var(--ob-bg-sunken), var(--ob-line) 70%); }
+.s-pa-side-r { fill: color-mix(in oklab, var(--ob-bg-sunken), var(--ob-line) 35%); }
+/* Who it is: the part you write, drawn solid in the page's own ink. */
+.s-pa-part.is-you .s-pa-top { fill: var(--ob-solid); stroke: var(--ob-solid); }
+.s-pa-part.is-you .s-pa-side-l { fill: color-mix(in oklab, var(--ob-solid), var(--ob-bg) 45%); stroke: var(--ob-solid); }
+.s-pa-part.is-you .s-pa-side-r { fill: color-mix(in oklab, var(--ob-solid), var(--ob-bg) 25%); stroke: var(--ob-solid); }
+/* The slab beside the words a reader points at rises a little: which slab is which. */
+.s-pa-part:hover .s-pa-slab { translate: 0 -4px; }
+
+/* The callout: a dashed leader from the slab's right corner to the part's name, a dot where it leaves the slab. */
+.s-pa-text { position: relative; display: grid; gap: var(--ob-space-4); min-width: 0; }
+.s-pa-text::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  right: calc(100% + 8px);
+  width: calc(var(--s-pa-gap) + var(--s-pa-w) * 0.0455 - 8px);
+  border-top: var(--ob-border-hair) dashed var(--ob-line-strong);
+}
+.s-pa-text::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: calc(-1 * (var(--s-pa-gap) + var(--s-pa-w) * 0.0455) - 2px);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ob-text-2);
+}
+.s-pa-name { margin: 0; font: 600 17px / 22px var(--ob-font-sans); letter-spacing: -0.015em; color: var(--ob-text); }
+.s-pa-line { margin: 0; font: 400 15px / 1.5 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+.s-pa-eg {
+  margin: var(--ob-space-4) 0 0;
+  font: 400 12.5px / 1.45 var(--ob-font-mono);
+  color: var(--ob-text-3);
+  overflow-wrap: anywhere;
+}
+.s-pa-note { margin-top: var(--ob-space-8); }
+
+@media (max-width: 760px) {
+  .s-pa-fig { --s-pa-w: 132px; --s-pa-gap: var(--ob-space-20); }
+}
+@media (max-width: 420px) {
+  .s-pa-fig { --s-pa-w: 104px; --s-pa-gap: var(--ob-space-16); }
+  .s-pa-line { font-size: 14.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-pa-slab { transition: none; }
+  .s-pa-part:hover .s-pa-slab { translate: none; }
+}

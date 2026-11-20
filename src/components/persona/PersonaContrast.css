@@ -1,0 +1,207 @@
+/* The "X, not Y" sections (PersonaContrast.tsx): words in 5 of 12 columns, the card in 7, flipped every other section.
+   Under 1080px they stack: the words, then the card. */
+
+.s-pc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--ob-space-40);
+  align-items: center;
+}
+@media (min-width: 1080px) {
+  .s-pc-grid { grid-template-columns: var(--s-split); column-gap: var(--s-split-gap); }
+  .s-pc.is-flip .s-pc-grid { grid-template-columns: var(--s-split-flip); }
+  .s-pc.is-flip .s-pc-words { order: 2; }
+}
+
+.s-pc-words { display: grid; gap: var(--ob-space-16); align-content: center; min-width: 0; }
+.s-pc-h { max-width: 14ch; }
+
+/* The 1 big number: the figure, its unit beside it, what it counts under them. */
+.s-pc-num {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: var(--ob-space-12);
+  margin: var(--ob-space-16) 0 0;
+  padding-top: var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-pc-num-v {
+  font: 600 clamp(80px, 10vw, 136px) / 0.86 var(--ob-font-sans);
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.s-pc-num-u { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); }
+.s-pc-num-l { grid-column: 1 / -1; margin-top: var(--ob-space-12); font: 400 15.5px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); }
+
+/* The card: a product object, under its Example tag. */
+.s-pc-fig { margin: 0; min-width: 0; display: grid; gap: var(--ob-space-8); }
+.s-pc-card { min-width: 0; border-radius: var(--ob-radius-lg); padding: clamp(20px, 3vw, 32px); }
+.s-pc-tag { justify-self: center; }
+.s-pc-card-label {
+  margin: 0 0 var(--ob-space-16);
+  font: 500 12.5px / 1.4 var(--ob-font-mono);
+  color: var(--ob-text-2);
+}
+
+/* ---- versus: 2 columns, the persona's in full ink on a faint fill. */
+.s-pc-vs { width: 100%; border-collapse: collapse; table-layout: fixed; font: 400 14.5px / 1.45 var(--ob-font-sans); }
+.s-pc-vs th,
+.s-pc-vs td { padding: var(--ob-space-12); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.s-pc-vs thead td { width: 22%; }
+/* The persona's column is the widest: its cells hold the longest words. */
+.s-pc-vs thead th:not(.is-ours) { width: 32%; }
+.s-pc-vs thead th { padding-top: var(--ob-space-8); font: 500 12.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-2); }
+.s-pc-vs thead th.is-ours { color: var(--ob-text); border-radius: var(--ob-radius-xs) var(--ob-radius-xs) 0 0; }
+.s-pc-vs tbody th { font: 500 12.5px / 1.6 var(--ob-font-mono); color: var(--ob-text-3); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-pc-vs tbody td { color: var(--ob-text-2); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-pc-vs tbody td.is-ours { color: var(--ob-text); font-weight: 500; }
+.s-pc-vs .is-ours { background: var(--ob-fill); }
+.s-pc-vs tbody tr:last-child td.is-ours { border-radius: 0 0 var(--ob-radius-xs) var(--ob-radius-xs); }
+/* A key is 1 word: it never breaks inside itself. */
+.s-pc-vs tbody th { overflow-wrap: normal; }
+@media (max-width: 560px) {
+  .s-pc-vs { font-size: 14px; }
+  .s-pc-vs th,
+  .s-pc-vs td { padding: var(--ob-space-8); }
+  .s-pc-vs thead td { width: 26%; }
+  .s-pc-vs thead th:not(.is-ours) { width: 27%; }
+  .s-pc-vs tbody th { font-size: 11.5px; }
+}
+
+/* ---- parts: loose parts in dashed outline beside the finished persona, drawn solid. */
+.s-pc-parts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--ob-space-16); }
+.s-pc-parts-loose,
+.s-pc-parts-whole { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-20); border-radius: var(--ob-radius-md); min-width: 0; }
+.s-pc-parts-loose { box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.s-pc-parts-whole { background: var(--ob-solid); color: var(--ob-text-inverse); }
+.s-pc-parts-loose > .s-pc-card-label,
+.s-pc-parts-whole > .s-pc-card-label { margin: 0; }
+.s-pc-parts-whole > .s-pc-card-label { color: inherit; opacity: 0.72; }
+.s-pc-parts-list,
+.s-pc-whole-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ob-space-8); }
+.s-pc-parts-list > li {
+  justify-self: start;
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border: var(--ob-border-hair) dashed var(--ob-line-strong);
+  border-radius: var(--ob-radius-xs);
+  font: 500 14px / 1.3 var(--ob-font-sans);
+  color: var(--ob-text-2);
+}
+/* Loose: each part sits a little off the line of the one before. */
+.s-pc-parts-list > li:nth-child(2) { margin-left: var(--ob-space-16); }
+.s-pc-parts-list > li:nth-child(3) { margin-left: var(--ob-space-6); }
+.s-pc-whole-list > li { display: flex; align-items: baseline; gap: var(--ob-space-8); font: 500 14.5px / 1.35 var(--ob-font-sans); }
+.s-pc-whole-list > li::before {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 5px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-3px) rotate(-45deg);
+}
+.s-pc-parts-note { margin: var(--ob-space-4) 0 0; font: 400 13.5px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-pc-parts-whole > .s-pc-parts-note { color: inherit; opacity: 0.8; }
+@media (max-width: 560px) {
+  .s-pc-parts { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---- timeline: 1 persona's 48 hours. Solid where it works, dashed where it sleeps; the wakes ringed. */
+.s-pc-tl-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.s-pc-tl-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 12px 12ch minmax(0, 1fr);
+  column-gap: var(--ob-space-12);
+  align-items: baseline;
+  padding: var(--ob-space-12) 0;
+}
+.s-pc-tl-row + .s-pc-tl-row { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* The thread from this row's dot to the next. */
+.s-pc-tl-row:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 5.5px;
+  top: calc(var(--ob-space-12) + 10px);
+  height: 100%;
+  border-left: 1px solid var(--ob-line-strong);
+}
+.s-pc-tl-row:is([data-state="sleep"], [data-state="wake"]):not(:last-child)::after { border-left-style: dashed; }
+.s-pc-tl-dot {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--ob-text);
+}
+.s-pc-tl-row[data-state="sleep"] .s-pc-tl-dot { background: var(--ob-surface); box-shadow: inset 0 0 0 1.5px var(--ob-text-3); }
+.s-pc-tl-row[data-state="wake"] .s-pc-tl-dot { box-shadow: 0 0 0 4px var(--ob-fill), 0 0 0 5px var(--ob-line-strong); }
+.s-pc-tl-row[data-state="done"] .s-pc-tl-dot { border-radius: 3px; }
+.s-pc-tl-at { font: 500 12.5px / 1.5 var(--ob-font-mono); color: var(--ob-text-3); white-space: nowrap; }
+.s-pc-tl-text { font: 400 14.5px / 1.5 var(--ob-font-sans); color: var(--ob-text); text-wrap: pretty; }
+.s-pc-tl-row[data-state="sleep"] .s-pc-tl-text { color: var(--ob-text-2); }
+@media (max-width: 480px) {
+  .s-pc-tl-row { grid-template-columns: 12px minmax(0, 1fr); row-gap: 2px; }
+  .s-pc-tl-text { grid-column: 2; }
+}
+
+/* ---- meter: the 48 hours as 1 bar, hatched where it waits (free), the 3 active stretches marked. */
+.s-pc-bar {
+  position: relative;
+  height: 44px;
+  border-radius: var(--ob-radius-xs);
+  background: repeating-linear-gradient(135deg, var(--ob-line) 0 1px, transparent 1px 8px);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.s-pc-bar-mark {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: calc(6px + (100% - 17px) * var(--m, 0));
+  width: 5px;
+  border-radius: 2px;
+  background: var(--ob-text);
+  transform-origin: 50% 100%;
+}
+.s-pc-bar-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  margin: var(--ob-space-8) 0 var(--ob-space-20);
+  font: 500 12px / 1.4 var(--ob-font-mono);
+  color: var(--ob-text-3);
+}
+.s-pc-ledger { margin: 0; display: grid; }
+.s-pc-ledger-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-12) 0;
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: 400 14.5px / 1.4 var(--ob-font-sans);
+}
+.s-pc-ledger-row > dt { color: var(--ob-text-2); }
+.s-pc-ledger-row > dd { margin: 0; flex: none; font: 500 13.5px / 1.4 var(--ob-font-mono); font-variant-numeric: tabular-nums; color: var(--ob-text); }
+.s-pc-ledger-row.is-total { border-top: var(--ob-border-hair) solid var(--ob-line-strong); }
+.s-pc-ledger-row.is-total > dt { color: var(--ob-text); font-weight: 600; }
+.s-pc-ledger-row.is-total > dd { font-size: 15px; }
+
+/* ---- The cards play once in view (the boot script and useInView set data-on): the timeline's rows land in turn, the
+   meter's marks rise. Only with script (.v5-js), so a page without it shows every card whole. */
+@media (prefers-reduced-motion: no-preference) {
+  .s-pc-tl-row,
+  .s-pc-bar-mark {
+    transition:
+      opacity var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 140ms),
+      translate var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 140ms),
+      scale var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 180ms + 120ms);
+  }
+  .v5-js .s-pc-card:not([data-on]) .s-pc-tl-row { opacity: 0.18; translate: 0 6px; }
+  .v5-js .s-pc-card:not([data-on]) .s-pc-bar-mark { scale: 1 0; }
+}

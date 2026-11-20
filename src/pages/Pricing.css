@@ -1,0 +1,292 @@
+/* /pricing (pages/Pricing.tsx), on the design system's tokens and type scale, in both themes. Every class starts s-pr.
+   The hero is the plain pages' centred hero (Notice.css), the closing call is the final block (FinalCta.css), the
+   estimator's parts are the system's calculator and slider (surfaces.css .ob-calc, .ob-range) and segmented control
+   (forms.css .ob-segmented). Spacing sits on the 4px grid. */
+
+/* ---- The hero's 3 numbers: 1 ruled row, a crosshair at each end of the top rule; stacked on a phone. ---- */
+.s-pr-facts {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: var(--ob-container-md);
+  margin: var(--ob-space-16) 0 0;
+  padding: 0;
+  list-style: none;
+  border-block: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-pr-facts::before,
+.s-pr-facts::after {
+  content: "+";
+  position: absolute;
+  top: 0;
+  translate: -50% -52%;
+  font: var(--ob-type-label-mono);
+  line-height: 1;
+  color: var(--ob-text-3);
+  pointer-events: none;
+}
+.s-pr-facts::before { left: 0; }
+.s-pr-facts::after { left: 100%; }
+.s-pr-facts__item {
+  display: grid;
+  justify-items: center;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-20) var(--ob-space-16);
+  text-align: center;
+}
+.s-pr-facts__item + .s-pr-facts__item { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-pr-facts__value {
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  color: var(--ob-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.s-pr-facts__label {
+  max-width: 28ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: balance;
+}
+@media (min-width: 640px) {
+  .s-pr-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .s-pr-facts__item { padding-block: var(--ob-space-24); }
+  .s-pr-facts__item + .s-pr-facts__item { border-top: 0; border-left: var(--ob-border-hair) solid var(--ob-line-subtle); }
+}
+
+/* ---- A section's claim and its line: each measured in its own type, so the claim keeps to 2 lines. ---- */
+.s-pr-head.s-head { max-width: none; }
+.s-pr-head > h2 { max-width: 20ch; margin: 0; }
+.s-pr-head > p { max-width: 58ch; margin: 0; }
+
+/* ---- The plans. The hero above already closes with its block space, so the plans take no more. ---- */
+.s-pr-plans.s-section { padding-top: 0; }
+.s-pr-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-pr-plan.ob-card {
+  gap: 0;
+  padding: var(--ob-space-24) var(--ob-space-20);
+  border-radius: var(--ob-radius-lg);
+}
+/* Team: the raised face and a control-weight edge, with the row's 1 primary button. */
+.s-pr-plan--featured.ob-card--raised {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+.s-pr-plan__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-pr-plan__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-8);
+  margin: var(--ob-space-16) 0 0;
+  color: var(--ob-text);
+}
+.s-pr-plan__amount {
+  font: var(--ob-type-stat);
+  letter-spacing: var(--ob-type-stat-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.s-pr-plan__from,
+.s-pr-plan__per {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+.s-pr-plan__line {
+  margin: var(--ob-space-12) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+.s-pr-plan__cta { align-self: start; margin-top: var(--ob-space-20); }
+.s-pr-plan__rows { display: grid; margin: var(--ob-space-24) 0 0; }
+.s-pr-plan__row {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-2);
+  padding-block: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-pr-plan__row:last-child { padding-bottom: 0; }
+.s-pr-plan__row dt {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+.s-pr-plan__row dd {
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
+}
+/* Under 1080px each card stands alone, so a row reads across: what it is on the left, the plan's value on the right. */
+@media (max-width: 1079.98px) {
+  .s-pr-plan__row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--ob-space-16);
+  }
+  .s-pr-plan__row dd { text-align: right; }
+}
+@media (min-width: 640px) {
+  .s-pr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* From 1080px the 4 cards sit in 1 row and share their rows (subgrid): the prices, the lines, the buttons and every row
+   of the list line up across the cards, so the row reads as 1 table. Each card spans 10 rows: its name, price, line and
+   button, then its 6 list rows. */
+@media (min-width: 1080px) {
+  .s-pr-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(10, auto);
+    row-gap: 0;
+  }
+  .s-pr-plan.ob-card { grid-row: span 10; grid-template-rows: subgrid; }
+  .s-pr-plan__rows { grid-row: span 6; grid-template-rows: subgrid; }
+}
+
+/* ---- The rules: the claim on the left (it stays in view while the rules pass), the rules on the right in 2
+   columns; stacked under 1080px, 1 column on a phone. Each rule opens with a rule, never a bullet. ---- */
+.s-pr-rules__grid { display: grid; gap: var(--ob-space-block); }
+.s-pr-rules__h { margin: 0; max-width: 18ch; }
+.s-pr-rules__line {
+  margin: var(--ob-space-16) 0 0;
+  max-width: 44ch;
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+.s-pr-rules__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 var(--ob-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s-pr-rule {
+  padding-block: var(--ob-space-20) var(--ob-space-24);
+  border-top: var(--ob-border-hair) solid var(--s-rule, var(--ob-line));
+}
+.s-pr-rule__title {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-pr-rule__line {
+  margin: var(--ob-space-8) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+@media (min-width: 640px) {
+  .s-pr-rules__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1080px) {
+  .s-pr-rules__grid {
+    grid-template-columns: var(--s-split);
+    column-gap: var(--s-split-gap);
+    align-items: start;
+  }
+  .s-pr-rules__head {
+    position: sticky;
+    top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32));
+  }
+}
+
+/* ---- The estimator: the inputs on the left, the month on the right (the calculator, a product object); stacked
+   under 960px. ---- */
+.s-pr-est__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-40);
+  align-items: start;
+}
+@media (min-width: 960px) {
+  .s-pr-est__grid {
+    grid-template-columns: var(--s-split-flip);
+    column-gap: var(--s-split-gap);
+  }
+}
+.s-pr-est__inputs {
+  /* The thumb's ring is the ground it sits on (the alternate ground), not a card's face. */
+  --ob-range-ring: var(--s-ground-alt, var(--ob-bg));
+  display: grid;
+  gap: var(--ob-space-40);
+  min-width: 0;
+}
+.s-pr-input { min-width: 0; }
+.s-pr-input__label {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+.s-pr-seg { margin-top: var(--ob-space-4); }
+.s-pr-input__hint {
+  margin: var(--ob-space-4) 0 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-pr-est__card { min-width: 0; }
+.s-pr-est__title {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-pr-est__sub {
+  display: block;
+  margin-top: var(--ob-space-2);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  font-weight: var(--ob-weight-regular);
+}
+.s-pr-est__card .ob-calc-outs dd { text-align: right; }
+/* Scale's month is words ("By contract"), set a size down from the figure. */
+.s-pr-est__words.ob-calc-total dd {
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+}
+.s-pr-est__note {
+  margin: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+
+/* ---- The closing call (FinalCta.css): the claim, its line, the button to early access and a quiet second path. ---- */
+.s-pr-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ob-space-16) var(--ob-space-24);
+  margin-top: var(--ob-space-40);
+}
+@media (max-width: 860px) {
+  .s-pr-final__actions { margin-top: var(--ob-space-32); }
+}

@@ -1,0 +1,181 @@
+/* The persona hero (PersonaHero.tsx): 1 centred column, then the 3 facts on a ruled row at the container's width. */
+
+.s-ph {
+  position: relative;
+  padding-block: clamp(48px, 7vw, 104px) clamp(56px, 7vw, 96px);
+  overflow-x: clip;
+}
+/* 1 soft light behind the headline on ink; paper has none (--s-spot is transparent there, styles/tones.css). */
+.s-ph::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(100%, 1200px);
+  height: 70%;
+  translate: -50% 0;
+  background: radial-gradient(closest-side, var(--s-spot, transparent), transparent);
+  pointer-events: none;
+}
+.s-ph { isolation: isolate; }
+/* The hero's own bottom space is the gap to the first section. */
+.s-ph + .s-section { padding-top: 0; }
+
+/* 1 track the wrap's width, never wider: the chip's code would otherwise widen it to the code's length on a phone. */
+.s-ph-words {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: var(--ob-space-24);
+  text-align: center;
+}
+
+/* The tag over the headline: 1 pill, ink only, a filled dot before the word. */
+.s-ph-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  padding: 6px 12px 6px 10px;
+  border-radius: var(--ob-radius-pill);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  font: 500 13px / 1 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  transition: color var(--ob-dur-fast, 0.15s) var(--ob-ease-out), border-color var(--ob-dur-fast, 0.15s) var(--ob-ease-out);
+}
+.s-ph-tag:hover { color: var(--ob-text); border-color: var(--ob-line-strong); }
+.s-ph-tag:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.s-ph-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ob-text); }
+
+/* The headline: each sentence on its own line. The first (what the others do) is quieter; the second is ours. */
+.s-ph-h {
+  margin: 0;
+  max-width: 21ch;
+  font: 600 clamp(36px, 5.4vw, 70px) / 1.04 var(--ob-font-sans);
+  letter-spacing: -0.045em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-ph-h-them,
+.s-ph-h-us { display: block; text-wrap: balance; }
+.s-ph-h-them { color: var(--ob-text-3); }
+
+.s-ph-sub {
+  margin: 0;
+  max-width: 60ch;
+  font: 400 clamp(16.5px, 1.4vw, 19px) / 1.55 var(--ob-font-sans);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+
+/* The buttons, then the chip beside them where the row has room; under them on a narrow screen. */
+.s-ph-act {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ob-space-12) var(--ob-space-16);
+  max-width: 100%;
+  margin-top: var(--ob-space-4);
+}
+.s-ph-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-12); }
+
+.s-ph-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  max-width: 100%;
+  height: var(--ob-btn-height-lg, 48px);
+  padding: 0 var(--ob-space-6) 0 var(--ob-space-16);
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+}
+.s-ph-chip-tag {
+  flex: none;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+.s-ph-chip-code {
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  font: 400 13.5px / 1 var(--ob-font-mono);
+  color: var(--ob-text);
+}
+.s-ph-chip-code::-webkit-scrollbar { display: none; }
+.s-ph-chip-copy {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ob-text-2);
+  cursor: pointer;
+  transition: background-color var(--ob-dur-fast, 0.15s) var(--ob-ease-out), color var(--ob-dur-fast, 0.15s) var(--ob-ease-out);
+}
+.s-ph-chip-copy:hover { background: var(--ob-state-hover); color: var(--ob-text); }
+.s-ph-chip-copy:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.s-ph-chip-copy.is-copied { color: var(--ob-text); }
+.s-ph-chip-copy svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.s-ph-note {
+  margin: 0;
+  font: 500 14.5px / 1.4 var(--ob-font-sans);
+  color: var(--ob-text-2);
+}
+
+/* The 3 facts: a ruled row at the container's width, the facts split by hairlines. */
+.s-ph-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: clamp(48px, 6vw, 80px) 0 0;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-ph-fact {
+  display: grid;
+  gap: var(--ob-space-6);
+  align-content: start;
+  padding: var(--ob-space-24) var(--ob-space-24) var(--ob-space-24);
+  text-align: center;
+}
+.s-ph-fact + .s-ph-fact { border-left: var(--ob-border-hair) solid var(--ob-line); }
+.s-ph-fact-v {
+  font: var(--ob-type-stat);
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: var(--ob-type-stat-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.s-ph-fact-l { margin: 0; font: 400 15px / 1.4 var(--ob-font-sans); color: var(--ob-text-2); }
+
+@media (max-width: 640px) {
+  .s-ph-h { max-width: none; }
+  .s-ph-act { flex-direction: column; align-items: stretch; width: 100%; }
+  .s-ph-buttons > .ob-btn { flex: 1 1 0; }
+  .s-ph-chip { justify-content: flex-start; }
+  .s-ph-chip-code { flex: 1 1 auto; font-size: 12.5px; }
+  .s-ph-facts { grid-template-columns: minmax(0, 1fr); }
+  .s-ph-fact {
+    grid-template-columns: minmax(0, 9ch) minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--ob-space-16);
+    padding: var(--ob-space-16) 0;
+    text-align: left;
+  }
+  .s-ph-fact + .s-ph-fact { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
+  .s-ph-fact-v { font-size: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-ph-tag,
+  .s-ph-chip-copy { transition: none; }
+}

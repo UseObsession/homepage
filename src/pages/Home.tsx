@@ -1,31 +1,33 @@
+import { PersonaAnatomy } from '../components/persona/PersonaAnatomy'
+import { PersonaBuild } from '../components/persona/PersonaBuild'
+import { PersonaContrasts } from '../components/persona/PersonaContrast'
+import { PersonaFleet } from '../components/persona/PersonaFleet'
+import { PersonaHero } from '../components/persona/PersonaHero'
+import { PersonaHow } from '../components/persona/PersonaHow'
+import { PersonaPrice } from '../components/persona/PersonaPrice'
+import { PersonaRecipes } from '../components/persona/PersonaRecipes'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
-import { AgentLife } from '../components/v5/AgentLife'
-import { CardGrid } from '../components/v5/CardGrid'
-import { Finding } from '../components/v5/Finding'
-import { Hero5 } from '../components/v5/Hero5'
-import { QuestionConsole } from '../components/v5/InsightRun'
-import { RunReports } from '../components/v5/RunReports'
-import { StopTrack } from '../components/v5/StopTrack'
 import { page } from '../content/pages/home'
-import './StoryPage.css'
 
-/* Home (/), composed from content/pages/home.ts in the order its comment gives (9 Nov, the data company rewrite): what
-   it is, with the explorer as the hero's object; what is behind the login; whether it is real (our count and the 1 real
-   record); who uses it; where else the data lives; how a company not covered yet is added; how to use it; questions;
-   the early access form. The wall (Look), the uses band, the film and the open source section left Home on 9 Nov;
-   their components stay for the other pages. */
+/* Home (/), composed from content/pages/home.ts in the order its comment gives (20 Nov, the persona rewrite): the hero;
+   what is in a persona (#persona); 4 claims in the form "X, not Y"; how a persona works, with the real run (#how);
+   recipes (#recipes); everything else a fleet needs (#fleet); for developers (#build); the pricing teaser; questions;
+   the early access form (#join). The nav links to #persona, #how, #recipes, #fleet, #build and #join, so those ids
+   stay. The data company Home's components (v5/Hero5, CardGrid, Finding, StopTrack, AgentLife, RunReports) stay for
+   the other pages. */
 export function Home() {
   return (
     <>
-      <Hero5 hero={page.hero} visual={page.explorer && <QuestionConsole ex={page.explorer} />} crumbs={false} center />
-      {page.dataKinds && <CardGrid grid={page.dataKinds} id="data" />}
-      {page.finding && <Finding finding={page.finding} id="found" />}
-      {page.users && <CardGrid grid={page.users} id="for" />}
-      {page.stopTrack && <StopTrack track={page.stopTrack} id="compare" />}
-      {page.life && <AgentLife life={page.life} id="how" />}
-      {page.runReports && <RunReports runs={page.runReports} id="formats" />}
-      <Faq faq={page.faq} id="questions" />
+      {page.personaStart && <PersonaHero hero={page.hero} start={page.personaStart} />}
+      {page.personaAnatomy && <PersonaAnatomy anatomy={page.personaAnatomy} id="persona" />}
+      {page.personaContrasts && <PersonaContrasts items={page.personaContrasts} />}
+      {page.personaHow && <PersonaHow how={page.personaHow} id="how" />}
+      {page.personaRecipes && <PersonaRecipes recipes={page.personaRecipes} id="recipes" />}
+      {page.personaFleet && <PersonaFleet fleet={page.personaFleet} id="fleet" />}
+      {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" />}
+      {page.personaPrice && <PersonaPrice price={page.personaPrice} id="price" />}
+      <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={page.final} id="join" />
     </>
   )

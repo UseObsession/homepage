@@ -67,7 +67,7 @@ const organization: Node = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
   alternateName: 'useobsession',
   description: llms.summary,
-  slogan: 'The web behind the login, as data.',
+  slogan: 'A persona on the web for every agent you run.',
   knowsAbout: ['Competitor emails and texts', 'Member and signed-in prices', 'Trial plans and limits', 'Quotes behind forms'],
   email: CONTACT_EMAIL,
   founder: FOUNDERS.map(person),

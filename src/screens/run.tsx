@@ -41,7 +41,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
               <div className="rn-hd"><b>Run log</b><span>Day 1 to 4 · signed</span></div>
               <ol>
                 <li className="rn-r r1 ax-in" style={{ '--d': '.3s' }}><time>21:02</time><i className="nd" /><div className="tx"><p>4 personas sign up</p></div></li>
-                <li className="rn-r r2 ax-in" style={{ '--d': '.5s' }}><time>21:09</time><i className="nd" /><div className="tx"><p>Customer 2 browses, leaves</p></div></li>
+                <li className="rn-r r2 ax-in" style={{ '--d': '.5s' }}><time>21:09</time><i className="nd" /><div className="tx"><p>Persona 2 browses, leaves</p></div></li>
                 <li className="rn-r r3 ax-in" style={{ '--d': '.7s' }}><time>21:14</time><i className="nd" /><div className="tx">
                   <p>Gift box £36 in basket</p>
                   <span className="ax-shot rn-cap cap-bag" aria-hidden="true"><span className="cb"><span className="pg"><i className="im" /><i className="t1" /><i className="t2" /></span><span className="dr"><i className="th" /><i className="ln" /><i className="ln s" /><i className="bt" /></span></span></span>

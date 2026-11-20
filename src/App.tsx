@@ -44,6 +44,7 @@ const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
 const SampleOutput = page('SampleOutput')
 const Privacy = page('Privacy')
 const Lookup = page('Lookup')
+const Pricing = page('Pricing')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
 const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
@@ -70,6 +71,7 @@ const PAGES: Record<string, LazyPage> = {
   '/sample-output': SampleOutput,
   '/privacy': Privacy,
   '/lookup': Lookup,
+  '/pricing': Pricing,
   '/agents': Agents,
   '/alternatives': AlternativesHub,
   '/glossary': GlossaryHub,
@@ -234,7 +236,7 @@ function ctaAt(pathname: string) {
 
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
    view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
-const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
+const NO_HERO_FORM = new Set(['/privacy', '/agents', '/pricing', '/recipes', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
 /* A comparison, an alternatives page or a glossary term opens on the article's header, with no form (pages/Reference). */
 const REFERENCE_PREFIXES = ['/blog/', '/compare/', '/alternatives/', '/glossary/']
 const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !REFERENCE_PREFIXES.some((p) => clean.startsWith(p))
@@ -395,6 +397,7 @@ export function AppRoutes() {
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="lookup" element={<Lookup />} />
+        <Route path="pricing" element={<Pricing />} />
         <Route path="agents" element={<Agents />} />
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
         <Route path="templates" element={<Navigate to="/recipes" replace />} />

@@ -1,6 +1,5 @@
-/* The navigation's words and structure (components/Nav). Since 9 Nov it says what Home says: the web behind the login,
-   as data, with sample data as the second button and early access as the call to action (no free reports, no GitHub
-   star). Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
+/* The navigation's words and structure (components/Nav). Since 20 Nov it says what Home says: a persona on the web for
+   every agent you run, with sample data as the second button and "Spawn a persona" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
@@ -50,9 +49,9 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
    other jobs lead to their section of /recipes. */
 const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
   'Watch other companies': { line: 'Their emails, prices, trials and offers, after sign-up.', examples: ['competitor', 'prospect'] },
-  'Check your own journeys': { line: 'Your own sign-up and emails, as a new customer gets them.', examples: ['adcheck', 'speed'] },
+  'Check your own journeys': { line: 'Your own sign up, lead forms and emails, as a new user gets them.', examples: ['adcheck', 'speed'] },
   'Check your AI agents': {
-    line: 'What support chats, voice lines and sales agents tell a customer, word for word.',
+    line: 'What support chats, voice lines and sales agents tell a persona, word for word.',
     examples: ['support-bot', 'voice-agent'],
     to: ways.verify.to,
   },
@@ -109,20 +108,22 @@ const menus = {
   products: {
     label: 'Products',
     button: 'Products menu',
+    /* Since 20 Nov (James: the product is the persona): the persona and the fleet on Home, the recipes, the API, and
+       what it costs. The footer's Products column is this list. */
     items: [
-      { label: 'Search', line: 'One company’s emails, prices and offers', to: '/#search', icon: 'search' },
-      { label: 'Insights', line: 'One question, answered across many companies', to: '/#insights', icon: 'insights' },
-      { label: 'Watch', line: 'Add any company not covered yet', to: '/#how', icon: 'watch' },
-      { label: 'API and MCP', line: '5 verbs for your agents and your code', to: '/developers', icon: 'api' },
-      { label: 'Recipes', line: 'Ready-made collections to start from', to: '/recipes', icon: 'recipes' },
+      { label: 'Personas', line: 'An agent with its own name, inbox and number', to: '/#persona', icon: 'users' },
+      { label: 'Fleets', line: 'Run one, or a fleet of thousands', to: '/#fleet', icon: 'clock' },
+      { label: 'Recipes', line: 'Jobs ready to run, like mystery shopping', to: '/recipes', icon: 'recipes' },
+      { label: 'API and MCP', line: 'Spawn and run personas from your code', to: '/developers', icon: 'api' },
+      { label: 'Pricing', line: '$0.10 an active minute, and waiting is free', to: '/pricing', icon: 'tag' },
     ] satisfies NavTool[],
     integrations: {
       label: 'Integrations',
       items: [
-        { label: 'Clay', line: 'Facts on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
-        { label: 'Baserow', line: 'A new row in, its facts out', to: '/developers#baserow', icon: 'table' },
-        { label: 'Supabase', line: 'Every fact in your own table', to: '/developers#supabase', icon: 'database' },
-        { label: 'Webhooks', line: 'Each new fact at your endpoint', to: '/developers#webhooks', icon: 'webhook' },
+        { label: 'Clay', line: 'Each record on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
+        { label: 'Baserow', line: 'A new row sends a persona', to: '/developers#baserow', icon: 'table' },
+        { label: 'Supabase', line: 'Every record in your own table', to: '/developers#supabase', icon: 'database' },
+        { label: 'Webhooks', line: 'Each email, text and page as it lands', to: '/developers#webhooks', icon: 'webhook' },
       ] satisfies NavTool[],
       all: { label: 'All integrations', to: '/developers#integrations' } satisfies NavPage,
     },
@@ -134,24 +135,26 @@ const menus = {
       {
         label: 'Use cases',
         items: [
-          { label: 'Competitor tracking', line: 'Their emails, offers and prices, dated', to: '/recipes/competitor-tracking', icon: 'target' },
-          { label: 'Prospect research', line: 'Open every pitch with their own emails', to: '/recipes/prospect-intelligence', icon: 'mail' },
-          { label: 'Pricing intelligence', line: 'Member prices beside public ones', to: '/use-cases/member-prices-for-price-intelligence', icon: 'tag' },
-          { label: 'Trial teardowns', line: 'Competitors’ trials, sign-up to cancel', to: '/use-cases/trial-checks-for-software-companies', icon: 'clock' },
-          { label: 'AI agent answers', line: 'What AI agents tell customers', to: '/verify', icon: 'chat' },
+          { label: 'Mystery shopping', line: 'Personas shop a store, and keep what follows', to: '/recipes/mystery-shopper', icon: 'cart' },
+          { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/recipes/website-audit', icon: 'software' },
+          { label: 'Competitor trials', line: 'Every email a rival’s trial sends', to: '/recipes/trial-teardown', icon: 'clock' },
+          { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/recipes/lead-leaks', icon: 'mail' },
+          { label: 'Prospect audits', line: 'Shop a prospect’s store before the pitch', to: '/recipes/prospect-intelligence', icon: 'target' },
+          { label: 'Price watch', line: 'Member prices, every week', to: '/recipes/price-watch', icon: 'tag' },
+          { label: 'AI agent checks', line: 'What support bots and voice lines say', to: '/verify', icon: 'chat' },
         ],
       },
       {
         label: 'Teams and industries',
         items: [
-          { label: 'Marketing', line: 'Every competitor’s emails and offers', to: '/marketing', icon: 'megaphone' },
-          { label: 'Sales', line: 'What each account sends its customers', to: '/sales', icon: 'briefcase' },
+          { label: 'Marketing', line: 'A persona on every competitor’s list', to: '/marketing', icon: 'megaphone' },
+          { label: 'Sales', line: 'What each account sends a new sign up', to: '/sales', icon: 'briefcase' },
           { label: 'Agencies', line: 'Pitch with a prospect’s own emails', to: '/agencies', icon: 'users' },
-          { label: 'Banks and fintechs', line: 'Rates and answers behind the login', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
+          { label: 'Banks and fintechs', line: 'Apply as a persona, keep every step', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
           { label: 'Online stores', line: 'The emails after every basket', to: '/use-cases/leak-checks-for-ecommerce-stores', icon: 'cart' },
-          { label: 'B2B software', line: 'Prospects, renewals and competitors', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
-          { label: 'Compliance', line: 'Cancel, unsubscribe and STOP, proven', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams', icon: 'shield' },
-          { label: 'Funds and analysts', line: 'Consumer offers as point-in-time data', to: '/use-cases/consumer-promotions-data-for-funds', icon: 'chart' },
+          { label: 'B2B software', line: 'Trials, demos and onboarding, as a new user', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
+          { label: 'Compliance', line: 'Cancel, unsubscribe and STOP, recorded', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams', icon: 'shield' },
+          { label: 'Funds and analysts', line: 'Offers and prices, dated, every week', to: '/use-cases/consumer-promotions-data-for-funds', icon: 'chart' },
         ],
       },
     ] satisfies NavColumn[],
@@ -164,7 +167,7 @@ const menus = {
       { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
       ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
       { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
-      { label: 'Glossary', line: 'The words for what customers are shown', to: '/glossary' },
+      { label: 'Glossary', line: 'Plain definitions of the words we use', to: '/glossary' },
     ] satisfies (NavPage & { line: string })[],
     more: {
       label: 'More',
@@ -189,10 +192,10 @@ export const nav = {
   menus,
   /* The readers, as plain links: who it is for comes first (COPY.md, "One taxonomy": 4 readers, by role). */
   readers: [
-    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Competitors’ emails, offers and prices, after sign-up.' },
-    { id: 'sales', label: 'Sales', to: '/sales', line: 'What each account shows its own customers.' },
-    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Pitch with a prospect’s own emails.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'The web behind the login, as an API.' },
+    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'A persona on every competitor’s list, keeping what they send.' },
+    { id: 'sales', label: 'Sales', to: '/sales', line: 'What each account sends a new sign up.' },
+    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Shop a prospect’s store before the pitch.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'Spawn personas from your code or your own agent.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
@@ -256,12 +259,10 @@ export const nav = {
       : null,
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
-  /* The header's call to action on every page (James, 13 Nov: the store lookup, in place of early access everywhere).
-     Each page's own early access form stays where it is. */
-  /* `bar` is what the bar itself shows (14 Nov): "Look up your site" is 17 characters, and past 16 the button covers the
-     logo on a 375 to 390px phone (the gate's limit; "Request early access" did the same until PR #60). James, 15 Nov:
-     "Lookup your site", 16 characters. The sheet and every other place keep the full label. */
-  cta: { label: 'Look up your site', to: '/lookup', bar: 'Lookup your site' } satisfies Cta,
+  /* The header's call to action on every page. Since 20 Nov (the persona rewrite) it is Home's: "Spawn a persona", to
+     Home's early access form; each page's own form stays where it is. `bar` is what the bar itself shows: past 16
+     characters the button covers the logo on a 375 to 390px phone, and "Spawn a persona" is 15. */
+  cta: { label: 'Spawn a persona', to: '/#join', bar: 'Spawn a persona' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
   github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,
@@ -269,12 +270,14 @@ export const nav = {
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
-/* The few pages whose header button differs from nav.cta ("Look up your site", to /lookup, on every other page). */
+/* The few pages whose header button differs from nav.cta ("Spawn a persona", to Home's form, on every other page). */
 export const pageCtas: Record<string, Cta> = {
   /* On /lookup, the header's "Look up your site" goes to the page's own box. */
   '/lookup': { label: 'Look up your site', to: '#lookup', bar: 'Lookup your site' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
+  /* Home (the persona rewrite, 20 Nov): the bar's button matches the hero's, to the page's own early access form. */
+  '/': { label: 'Spawn a persona', to: '#join', bar: 'Spawn a persona' },
 }
 
 export function ctaFor(path: string): Cta {
