@@ -5,9 +5,9 @@ import type { Recipe } from '../types'
    policy says 14; the portal's promised email never arrives).
    The persona version (20 Nov 2026): a persona you define (a new buyer, a buyer with an order, someone about to cancel)
    asks support bots on chat, email and portals what the reader's support team hears most, and every answer comes back
-   word for word in the record, dated, beside the reader's policy page as it read that minute. It waits in its own
+   word for word in the event log, dated, beside the reader's policy page as it read that minute. It waits in its own
    inbox for the email the bot promised. The reader's own bot every morning, and competitors' bots on the questions
-   anyone can ask. With a bot, the page says what the record shows; when a person joins, the persona tells them it's an
+   anyone can ask. With a bot, the page says what the event log shows; when a person joins, the persona tells them it's an
    AI. Tests on the reader's own bot are tagged, so the vendor doesn't bill them. The run is an example. No vendor or
    product names. */
 
@@ -151,14 +151,14 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'A daily record of every bot you build or run for a client, every answer word for word.' },
+    { audience: 'agencies', line: 'A daily event log for every bot you build or run for a client, every answer word for word.' },
     { audience: 'founders', line: 'Know what your bot said overnight, and hear the morning it gets a policy wrong.' },
     { audience: 'marketing', line: 'What competitors’ bots say about refunds, prices and switching, beside yours.' },
     { audience: 'developers', line: 'Spawn the persona from your code or agent, and read every answer after each prompt or knowledge base change.' },
   ],
 
   table: {
-    heading: 'A daily record, in place of transcripts read by hand.',
+    heading: 'A daily event log, in place of transcripts read by hand.',
     cols: ['By hand', 'With Support bot check'],
     rows: [
       { label: 'A wrong answer', values: ['Found from a complaint, days later', 'Found the same morning, with the transcript'] },
@@ -171,7 +171,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'You define the persona. The record keeps every word.',
+    heading: 'You define the persona. The event log keeps every word.',
     items: [
       {
         q: 'How do we find out our chatbot is giving customers wrong answers?',
@@ -187,7 +187,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'When a person joins the chat or replies by email, the persona tells them it’s an AI. With the bot itself, the record keeps both sides word for word.',
+        a: 'When a person joins the chat or replies by email, the persona tells them it’s an AI. With the bot itself, the event log keeps both sides word for word.',
       },
       {
         q: 'Will our bot’s vendor bill us for the tests?',
@@ -199,7 +199,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Support bot check cover a client’s bot?',
-        a: 'Yes, with the client’s agreement. The Support bot check record carries your agency’s name, and the client can open every transcript.',
+        a: 'Yes, with the client’s agreement. The Support bot check event log carries your agency’s name, and the client can open every transcript.',
       },
     ],
   },

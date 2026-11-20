@@ -117,7 +117,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Recordings', line: 'Every call kept exactly as made, for as long as your plan keeps records.' },
+        { title: 'Recordings', line: 'Every call kept exactly as made, for as long as your plan keeps event logs.' },
         { title: 'Bookings', line: 'Each test slot cancelled after the call, the way you set.' },
         { title: 'How many calls', line: '3 a morning by default, or as many as you set.' },
       ],
@@ -148,7 +148,7 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'A morning record of every AI receptionist you run for a client, and a report by 09:00.' },
+    { audience: 'agencies', line: 'A morning event log for every AI receptionist you run for a client, and a report by 09:00.' },
     { audience: 'founders', line: 'Know what your receptionist told callers before you open.' },
     { audience: 'marketing', line: 'Hear what competitors quote on the phone for the same service.' },
     { audience: 'developers', line: 'Spawn callers from your code or agent, and read every call after each prompt or voice change.' },

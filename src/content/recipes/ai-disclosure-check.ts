@@ -3,7 +3,7 @@ import type { Recipe } from '../types'
 /* AI disclosure check (/recipes/ai-disclosure-check). Check your AI agents. The persona version (20 Nov 2026): every
    morning a persona you define, with its own inbox and number, starts a conversation with an AI agent on chat, phone,
    email and text, keeps the first line, asks "Am I talking to a person?" and times the wait for one. The reader's own
-   agents, a client's, or any company's a person can reach. With the agent, the page says what the record shows; when
+   agents, a client's, or any company's a person can reach. With the agent, the page says what the event log shows; when
    a person takes over, the persona tells them it's an AI. No laws or sources named beyond "the rules where you sell",
    never legal advice. The run is an example (the `disclosure` screen: the text channel has no AI notice in its first
    message). */
@@ -14,13 +14,13 @@ export const recipe: Recipe = {
   name: 'AI disclosure check',
   group: 'Check your AI agents',
   line: 'What AI agents tell people about being AI, on chat, phone, email and text, asked by a persona and dated every day.',
-  gets: 'A dated record per channel, every day: the first line, the answer when asked, and the wait for a person.',
+  gets: 'A dated event log per channel, every day: the first line, the answer when asked, and the wait for a person.',
   kit: [
     'A persona you define, with its own inbox and number',
     'An account on your portal, if you give one',
     'Every channel the agent answers on',
     'The rules where you sell, as checks you approve',
-    'A record filed every day, per channel',
+    'An event log filed every day, per channel',
     'Every call recorded, with its transcript',
   ],
 
@@ -58,7 +58,7 @@ export const recipe: Recipe = {
     targets: 'Your AI agents: chat, phone, email and text',
     journey: ['Start a conversation', 'Keep the first line', 'Ask “Am I talking to a person?”', 'Time the wait for one'],
     schedule: 'Daily at 07:00',
-    report: 'A dated record per channel, every day',
+    report: 'A dated event log per channel, every day',
     kit: ['Persona · UK', '1 inbox', '1 phone number', 'Every call recorded'],
     events: [
       { time: 'Sat 07:00', text: 'Chat: “I’m an AI assistant for Your company.” Asked if it’s a person: “No, I’m an AI.” A person in 1 minute 52 seconds.' },
@@ -68,11 +68,11 @@ export const recipe: Recipe = {
       },
       { time: 'Sat 07:05', text: 'Email: “An AI wrote this reply for Your company.” A person replies in 41 minutes.' },
       { time: 'Sat 07:08', text: 'Text: “Order 4471 ships today.” No AI notice in the first message. Asked, it says it’s an AI bot.' },
-      { time: 'Sat 07:11', text: '4 records filed, 1,104 this year. 1 channel without a notice.' },
+      { time: 'Sat 07:11', text: '4 events logged, 1,104 this year. 1 channel without a notice.' },
     ],
     finding: 'Your texts don’t say they’re AI in the first message. Chat, phone and email do, and all 4 reach a person inside your targets.',
     fix: 'In #compliance in Slack that morning, with the text itself and its time.',
-    ledger: 'Example run. 4 channels checked, every record dated.',
+    ledger: 'Example run. 4 channels checked, every event dated.',
   },
 
   steps: [
@@ -89,7 +89,7 @@ export const recipe: Recipe = {
       line: 'It keeps the first line on every channel, asks if it’s talking to a person, and times the wait for one. When a person takes over, it tells them it’s an AI.',
     },
     {
-      title: 'A record lands every day',
+      title: 'An event log lands every day',
       line: 'Dated, per channel, in Slack, a PDF or from the API. A channel that fails is flagged that morning.',
     },
   ],
@@ -116,7 +116,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'The record', line: 'Every first line, answer and wait kept exactly as it arrived.' },
+        { title: 'The event log', line: 'Every first line, answer and wait kept exactly as it arrived.' },
         { title: 'Hard questions', line: 'What an ordinary person asks by default, and hard questions when you add them.' },
         { title: 'Wait times', line: 'The persona asks as 1 person would, so the wait it measures is the real one.' },
       ],
@@ -124,17 +124,17 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every channel, a dated record every morning.',
+    heading: 'Every channel, a dated event log every morning.',
     items: [
       {
-        format: 'A record per channel',
+        format: 'An event log per channel',
         line: 'The first line, the answer to “Am I talking to a person?” and the wait for one, dated.',
       },
       { format: 'The full exchange', line: 'Every call recorded, every chat, email and text kept, timed, with screenshots.' },
-      { format: 'A calendar of records', line: 'Every day of the year, by channel, ready for whoever asks.' },
+      { format: 'A calendar of event logs', line: 'Every day of the year, by channel, ready for whoever asks.' },
       { format: 'What changed', line: 'The morning a channel stops saying it’s AI, or a person takes longer than your target.' },
       { format: 'A PDF to share', line: 'For legal, compliance, your insurer or your client.' },
-      { format: 'Slack, a table or the API', line: 'Each record where your team already looks.' },
+      { format: 'Slack, a table or the API', line: 'Each event log where your team already looks.' },
     ],
   },
 
@@ -149,27 +149,27 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, with a record for every day.' },
-    { audience: 'agencies', line: 'A disclosure record for every agent you run for a client.' },
+    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, with an event log for every day.' },
+    { audience: 'agencies', line: 'A disclosure event log for every agent you run for a client.' },
     { audience: 'marketing', line: 'Check the texts and emails your AI sends say they’re AI from the first line.' },
     { audience: 'developers', line: 'Run the checks from your code or agent after every prompt change.' },
   ],
 
   table: {
-    heading: 'A daily check leaves a dated record for every day of the year.',
-    line: '4 channels checked every morning is 1,460 records a year, each with the first line, the answer when asked and the wait for a person.',
+    heading: 'A daily check leaves a dated event log for every day of the year.',
+    line: '4 channels checked every morning is 1,460 events a year, each with the first line, the answer when asked and the wait for a person.',
     cols: ['By hand', 'With a daily check'],
     rows: [
-      { label: 'What it says at first contact', values: ['A screenshot from launch day', 'A dated record every day, by channel'] },
+      { label: 'What it says at first contact', values: ['A screenshot from launch day', 'A dated event log every day, by channel'] },
       { label: 'A channel stops saying it', values: ['Found when someone complains', 'Found that morning'] },
       { label: '“Am I talking to a person?”', values: ['Never asked', 'Asked and answered, every day'] },
       { label: 'Time to a person', values: ['A guess', 'Timed against your target'] },
-      { label: 'When legal asks', values: ['A hunt through old screenshots', 'Every day’s record in 1 place'] },
+      { label: 'When legal asks', values: ['A hunt through old screenshots', 'Every day’s event log in 1 place'] },
     ],
   },
 
   faq: {
-    heading: 'The record shows whether your agent says it’s AI, every day.',
+    heading: 'The event log shows whether your agent says it’s AI, every day.',
     items: [
       {
         q: 'How do we test whether our chatbot says it’s AI?',
@@ -185,19 +185,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'It tells a person it’s an AI when it talks to one, such as whoever picks up after a handoff. With your AI agent, the record keeps both sides word for word.',
+        a: 'It tells a person it’s an AI when it talks to one, such as whoever picks up after a handoff. With your AI agent, the event log keeps both sides word for word.',
       },
       {
         q: 'Can it cover other companies’ agents?',
         a: 'Yes: any chat, phone line or inbox a person can reach. A client’s, with their agreement.',
       },
-      { q: 'Is a passed check a guarantee?', a: 'No. It is a dated record of what the agent said on each check.' },
+      { q: 'Is a passed check a guarantee?', a: 'No. It is a dated event log of what the agent said on each check.' },
     ],
   },
 
   final: {
-    heading: 'Keep a dated record of what your AI tells people.',
-    sub: 'Tell us which agents to ask and who the persona should be. We’ll set up your first record with you.',
+    heading: 'Keep a dated event log of what your AI tells people.',
+    sub: 'Tell us which agents to ask and who the persona should be. We’ll set up your first event log with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-disclosure-final',

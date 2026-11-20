@@ -2,21 +2,23 @@ import type { Page } from '../types'
 
 /* Home (/), the persona rewrite (20 Nov 2026, James): the product is the persona, an AI agent identity that acts as
    someone you define, and the platform that keeps fleets of them running. Recipes sit on top; the live one is agentic
-   mystery shopping. Two readers: developers (the API, 1 persona or a fleet) and buyers who never write code (recipes);
-   only the developer parts and the pricing teaser talk in minutes. The page reads, in order (pages/Home.tsx):
-   1 the hero: the contrast with Muse and Grok Bot, the 2 buttons, the example line of code and 3 facts >
+   mystery shopping. Two readers: developers (the API, 1 persona or a fleet) and buyers who never write code (recipes).
+   Pricing lives on /pricing, linked from the nav and the footer, never as a button or a section here (James, 20 Nov).
+   Everything a persona brings back is its event log (James, 20 Nov: "the record is terrible"). The page reads, in order
+   (pages/Home.tsx):
+   1 the hero: the contrast with Muse and Grok Bot, the button, the example line of code and 3 facts >
    2 #persona: what is in a persona, as a stacked slab diagram >
-   3 4 claims in the form "X, not Y", each with 1 big true number and its card, flipping sides >
-   4 #how: spawn, act, wait, record, then the 1 real run (Brand G, content/sample.ts) >
+   3 2 claims in the form "X, not Y", each with 1 big true number and its card, flipping sides >
+   4 #how: from a sign up in minutes to months of replies, the old Home's timeline (components/v5/AgentLife) >
    5 #recipes: mystery shopping as the big tile, 6 more recipes and your own task > 6 #fleet: everything else a fleet
-   needs > 7 #build: the code, and where the record goes > 8 the pricing teaser > 9 questions > 10 #join: the form.
+   needs > 7 #build: the code, and where the event log goes > 8 questions > 9 #join: the form.
    Sell the whole vision (James, 20 Nov: "we need to sell the whole vision"): the page describes Obsession as designed,
    never as it runs today. No "on request", no country lists, no build-state caveats. What stays: numbers are the
-   founders' (pricing) or the 1 real run's, never invented customers, counts or logos; every persona and company on the
-   cards is invented and labelled Example (.example addresses, the phone number in Ofcom's drama range), except Brand G.
+   founders' (pricing) or true by design, never invented customers, counts, logos or timings; every persona and company
+   on the cards is invented and labelled Example (.example addresses, the phone number in Ofcom's drama range).
    Never name Inkbox, AgentMail or AgentPhone; never "AI customers". */
 
-/* The developer section's code: spawn, run, wait, record. Labelled as an example on the page. */
+/* The developer section's code: spawn, run, wait, read the event log. Labelled as an example on the page. */
 const BUILD_CODE = `import { Obsession } from "obsession"
 
 const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
@@ -37,8 +39,8 @@ const run = await persona.run({
 // Wait: each new email, text and page reaches your webhook
 await run.notify("https://your-app.example/hooks/obsession")
 
-// Record: everything that came back, dated, with screenshots
-const record = await run.record()`
+// Events: everything that came back, dated, with screenshots
+const events = await run.events()`
 
 /* Every form on Home is the early access form. Its line ("Onboarding a limited number of teams.") is content/join.ts. */
 const access = {
@@ -52,10 +54,10 @@ export const page: Page = {
     path: '/',
     title: 'Obsession: a persona on the web for every agent you run',
     description:
-      'Give AI agents a persona: its own name, inbox, phone number and home connection in any country. It signs up, waits days for replies and returns a record.',
+      'Give AI agents a persona: its own name, inbox, phone number and home connection in any country. It signs up, waits days for replies and logs every event.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     answer:
-      'Obsession gives your AI agents a persona: an identity with its own name, inbox, phone number and home connection, acting as someone you define. It signs up, gets verified, receives mail and texts, waits days for replies, and comes back with a record.',
+      'Obsession gives your AI agents a persona: an identity with its own name, inbox, phone number and home connection, acting as someone you define. It signs up, gets verified, receives mail and texts, waits days for replies, and comes back with an event log of everything that followed.',
     ogLine: 'Run one, or a fleet of thousands.',
     ogImage: '/og/home.png',
   },
@@ -64,14 +66,14 @@ export const page: Page = {
     pill: 'Early access',
     pillTo: '#join',
     headline: 'Muse and Grok Bot act as you, on your accounts. A persona acts as someone you define.',
-    sub: 'A first-time buyer in Manchester. A lapsed subscriber. A job applicant in Toronto. We give your agents that persona, with its own name, inbox, phone number and home connection, and keep them running. It signs up, gets verified, receives mail and texts, waits days, and comes back with a record.',
+    sub: 'A first-time buyer in Manchester. A lapsed subscriber. A job applicant in Toronto. We give your agents that persona, with its own name, inbox, phone number and home connection, and keep them running. It signs up, gets verified, receives mail and texts, waits days, and comes back with an event log of everything that followed.',
     /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
     capture: { ...access, source: 'home-hero' },
-    secondary: { label: 'See pricing', to: '/pricing' },
     /* The small line under the buttons. */
     note: 'Run one, or a fleet of thousands.',
+    /* 3 facts true by design. No timing figure until one is measured. */
     proof: [
-      { value: '$0.10', label: 'an active minute' },
+      { value: '1 call', label: 'spawns a persona with every part' },
       { value: 'Free', label: 'while it waits for mail and texts' },
       { value: 'Any country', label: 'for its home connection and number' },
     ],
@@ -83,7 +85,7 @@ export const page: Page = {
     chip: { label: 'Example', code: 'obsession.personas.create({ country: "UK" })', copy: 'Copy the example', copied: 'Copied' },
   },
 
-  /* The share image's card (scripts/og.mjs): 1 example persona's 48 hours, from the waiting card below. */
+  /* The share image's card (scripts/og.mjs): 1 example persona's first 2 days, Ruth Hallam of the anatomy diagram. */
   shareFindings: {
     title: 'Ruth Hallam, Manchester',
     aside: 'Example',
@@ -98,36 +100,19 @@ export const page: Page = {
   personaAnatomy: {
     heading: 'We give your agents a persona on the web, and keep them running.',
     line: 'Each persona arrives with every part an agent needs on the web, assembled and running. You say who it is.',
-    note: 'Example persona',
     parts: [
       { name: 'Who it is', line: 'The person you define: a name, a country and a role, such as a buyer, a job applicant or a new user.', eg: 'Ruth Hallam, first-time buyer, Manchester' },
       { name: 'An inbox', line: 'Every persona includes its inbox, for welcome emails, codes and reminders.', eg: 'ruth.hallam@inbox.example' },
       { name: 'A phone number', line: 'A local number for verification codes, and the texts and calls that follow a visit.', eg: '+44 7700 900142' },
       { name: 'A home connection', line: 'It connects from a home in the country you choose, so a site sees someone local.', eg: 'Home connection, UK' },
       { name: 'Its own browser', line: 'It signs up, starts trials, fills baskets and fills in forms, the way a person does.', eg: 'Sign up · trial · basket · form' },
-      { name: 'The record', line: 'Every page, email, text and call that came back, each dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts' },
+      { name: 'Its event log', line: 'Every page, email, text and call that came back, each an event, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts' },
     ],
   },
 
-  /* "X, not Y" (rivet.dev's pattern): 1 claim each, 1 big true number, a card on the other side. The timeline and the
-     meter are the same example persona: 8 active minutes on day 0 and 2 wakes on day 1 make 10 minutes, $1.00. */
+  /* "X, not Y" (rivet.dev's pattern): 1 claim each, 1 big true number, a card on the other side. The meter is 1
+     example persona: 8 active minutes on day 0 and 2 wakes on day 1 make 10 minutes, $1.00. */
   personaContrasts: [
-    {
-      heading: 'Someone you define, not you.',
-      line: 'Muse and Grok Bot act as you, on your accounts. A persona is someone new you define, with an identity of its own, so nothing it does touches yours.',
-      value: '0',
-      unit: 'accounts',
-      label: 'of yours used. Each persona has its own.',
-      art: {
-        kind: 'versus',
-        tag: 'Example',
-        keys: ['Who', 'Inbox', 'Accounts'],
-        cols: [
-          { label: 'Acts as you', cells: ['You', 'Your inbox', 'Yours'] },
-          { label: 'A persona', cells: ['Ruth Hallam, first-time buyer', 'ruth.hallam@inbox.example', 'Its own, opened as someone new'], ours: true },
-        ],
-      },
-    },
     {
       heading: 'The finished agent, not the parts.',
       line: 'Inbox APIs, phone number APIs and sandboxes give you parts: an inbox, a number, a computer. A persona arrives assembled, and we run it.',
@@ -137,31 +122,12 @@ export const page: Page = {
       art: {
         kind: 'parts',
         tag: 'Example',
-        parts: { label: 'Parts', items: ['An inbox', 'A phone number', 'A computer'], note: 'You still build the agent, the waiting and the record.' },
+        parts: { label: 'Parts', items: ['An inbox', 'A phone number', 'A computer'], note: 'You still build the agent, the waiting and the event log.' },
         whole: {
           label: 'A persona',
-          items: ['Who it is', 'Its inbox', 'Its phone number', 'A home connection', 'Its own browser', 'The record'],
+          items: ['Who it is', 'Its inbox', 'Its phone number', 'A home connection', 'Its own browser', 'Its event log'],
           note: 'Assembled, and kept running by us.',
         },
-      },
-    },
-    {
-      heading: 'Days, not minutes.',
-      line: 'A sandbox is gone in minutes. A persona keeps its name, inbox and number for as long as you hold it. After each visit it waits for the emails and texts that follow, and wakes on each one.',
-      value: '48',
-      unit: 'hours',
-      label: 'of waiting after each visit by default, or as long as you set.',
-      art: {
-        kind: 'timeline',
-        tag: 'Example',
-        title: 'Ruth Hallam at larkfield.example',
-        rows: [
-          { at: 'Day 0, 09:12', text: 'Signs up, verified by a text code', state: 'act' },
-          { at: 'Day 0, 09:20', text: 'Stops before payment, then sleeps', state: 'sleep' },
-          { at: 'Day 1, 10:02', text: 'Wakes on an email: “Still thinking it over?”', state: 'wake' },
-          { at: 'Day 1, 18:40', text: 'Wakes on a text: 10% off, today only', state: 'wake' },
-          { at: 'Day 2, 09:20', text: '48 hours up. The record is ready.', state: 'done' },
-        ],
       },
     },
     {
@@ -173,7 +139,7 @@ export const page: Page = {
       art: {
         kind: 'meter',
         tag: 'Example',
-        title: 'The same 2 days, billed',
+        title: '2 days of 1 persona, billed',
         span: { start: 'Day 0, 09:12', end: 'Day 2, 09:20' },
         /* 09:12 on day 0, 10:02 and 18:40 on day 1, as shares of the span (2,888 minutes). */
         marks: [0, 0.516, 0.695],
@@ -187,35 +153,65 @@ export const page: Page = {
     },
   ],
 
-  personaHow: {
-    heading: 'You spawn it. It comes back with a record.',
-    line: 'The same 4 steps for 1 persona or a fleet of thousands.',
-    steps: [
-      { title: 'Spawn', line: 'Say who it is, where it connects from and where it goes.', eg: 'UK · first-time buyer' },
-      { title: 'Act', line: 'It signs up, gets verified by email or text, then does the job: a basket, a trial, a demo request or a form.', eg: 'Sign up · verify · act' },
-      { title: 'Wait', line: 'It sleeps for 48 hours by default, or as long as you set, and wakes to read each new email or text.', eg: 'Sleeps · wakes on each reply' },
-      { title: 'Record', line: 'Every page, email, text and call comes back dated, at your webhook, in Clay, by API or through MCP.', eg: 'Pages · emails · texts · calls' },
-    ],
-    run: {
-      label: 'The real run',
-      heading: 'A £40 basket left at 02:57. 48 hours later, still no reminder.',
-      line: 'Brand G, a UK skincare store, September 2026: 4 personas, 1 inbox each, every inbox watched for 48 hours.',
-      cta: { label: 'See the whole record', to: '/sample-output' },
-      stamp: 'Real run',
-      facts: [
-        { k: 'Store', v: 'Brand G, UK skincare' },
-        { k: 'Basket', v: '£40, left 22 Sep, 02:57' },
-        { k: 'Watched', v: 'To 24 Sep, 02:57' },
-        { k: 'Reminders', v: '0' },
+  /* How it works, as the 2 ends of 1 range (the old Home's "From an instant lookup to months of watching, at any
+     company", 9 Nov, brought back for personas on 20 Nov by James): a fleet fans out at once, each persona acts in
+     minutes, then sleeps and wakes on what follows, for months. The 3 lanes are example personas, each wake a real kind
+     of message; the faded lane is the rest of the fleet (components/v5/AgentLife). */
+  life: {
+    heading: 'From a sign up in minutes to months of replies, for every persona.',
+    line: 'Spawn 1 persona or a fleet. Each one acts in minutes, then sleeps, and wakes on every email, text and call that follows, for as long as you hold it.',
+    list: 'fleet.csv · 10,000 personas',
+    axis: {
+      start: 'Monday 09:00',
+      ticks: [
+        { day: 1, label: 'Day 1' },
+        { day: 7, label: 'Day 7' },
+        { day: 30, label: 'Day 30' },
       ],
+      end: 'Day 90: every email, text and call to all 10,000, in their event logs',
     },
+    lanes: [
+      {
+        name: 'A first-time buyer',
+        wakes: [
+          { day: 0.006, label: '09:09 · text code' },
+          { day: 3, label: 'Day 3 · basket reminder' },
+          { day: 21, label: 'Day 21 · £24 to £19' },
+        ],
+      },
+      {
+        name: 'A job applicant',
+        wakes: [
+          { day: 0.01, label: '09:14 · application received' },
+          { day: 9, label: 'Day 9 · interview call' },
+        ],
+      },
+      {
+        name: 'A new lead',
+        wakes: [
+          { day: 0.02, label: '09:29 · sales call' },
+          { day: 3, label: 'Day 3 · follow up email' },
+          { day: 30, label: 'Day 30 · new offer' },
+        ],
+      },
+    ],
+    more: {
+      name: '+ 9,997 more',
+      days: [0.004, 0.005, 0.007, 0.008, 0.01, 0.012, 0.3, 0.5, 0.8, 1, 1.2, 2, 2.5, 3, 4, 5, 6, 7, 9, 11, 13, 14, 16, 19, 22, 24, 27, 29, 31, 34, 38, 41, 44, 49, 53, 58, 61, 66, 70, 75, 79, 84, 88],
+    },
+    phases: [
+      { title: 'Spawn them', lead: 'Any input:', line: '1 API call, a list, a row in Clay or your CRM, or a tool call from your own agent.' },
+      { title: 'Each one acts', line: 'It signs up, gets verified by email, text or call, and does the job: a basket, a trial, an application or a form.' },
+      { title: 'It sleeps and wakes', line: 'It waits 48 hours by default, or as long as you set, and wakes on each new email, text or call.' },
+      { title: 'Every event logged', line: 'Each page, email, text and call, dated, with its screenshot, at your webhook, in Clay, by API or through MCP.' },
+    ],
   },
 
   /* Buyers never see minutes here: a recipe is a job. Mystery shopping is the big tile; every tile links to its recipe
      page (content/recipes). `status` says who it fits, and each tile's hue is that reader (styles/accents.css). */
   personaRecipes: {
     heading: 'Bring a task, or start from a recipe.',
-    line: 'A recipe is a job personas already know how to do. Pick one, say where it goes, and get the record, with no code.',
+    line: 'A recipe is a job personas already know how to do. Pick one, say where it goes, and get the event log, with no code.',
     items: [
       {
         name: 'Agentic mystery shopping',
@@ -262,7 +258,7 @@ export const page: Page = {
       },
       {
         name: 'Price watch',
-        line: 'Sign in as a member and record the prices and offers only members see, every week.',
+        line: 'Sign in as a member and log the prices and offers only members see, every week.',
         status: 'For pricing teams',
         reader: 'marketing',
         link: { label: 'See the recipe', to: '/recipes/price-watch' },
@@ -287,41 +283,25 @@ export const page: Page = {
       { icon: 'person', title: 'A person at ID checks', line: 'When a site asks for ID, the persona hands the step to a person.' },
       { icon: 'stop', title: 'Pays only if you say so', line: 'It stops before payment by default. Give it your own payment card and it completes the order.' },
       { icon: 'cap', title: 'Caps on tokens and spend', line: 'A token cap on every run and a monthly limit, so no run eats your plan.' },
-      { icon: 'record', title: 'Every record dated', line: 'Each page, email, text and call, with its time and a screenshot.' },
+      { icon: 'record', title: 'Every event dated', line: 'Each page, email, text and call in its event log, with its time and a screenshot.' },
       { icon: 'webhook', title: 'Webhooks', line: 'Each new email, text and page at your endpoint as it lands.' },
-      { icon: 'table', title: 'Clay, Zapier and HubSpot', line: 'What came back lands on the rows and records you already use.' },
-      { icon: 'code', title: 'API and MCP', line: 'Your code, or your own agent, spawns personas and reads records as tools.' },
+      { icon: 'table', title: 'Clay, Zapier and HubSpot', line: 'What came back lands on the rows and contacts you already use.' },
+      { icon: 'code', title: 'API and MCP', line: 'Your code, or your own agent, spawns personas and reads event logs as tools.' },
       { icon: 'fleet', title: 'One or thousands', line: 'Run one, or a fleet of thousands.' },
     ],
   },
 
   personaBuild: {
-    heading: 'One call spawns a persona. Your code gets the record.',
+    heading: 'One call spawns a persona. Your code gets its event log.',
     line: 'Spawn, run and read from your own code or agent. Each new email, text and page reaches your webhook as it lands.',
     cta: { label: 'For developers', to: '/developers' },
     codeLabel: 'Example code',
     code: BUILD_CODE,
     outputs: [
-      { title: 'API and MCP', line: 'Spawn personas, start runs and read records from your code, or as tools in your own agent.' },
+      { title: 'API and MCP', line: 'Spawn personas, start runs and read event logs from your code, or as tools in your own agent.' },
       { title: 'Webhooks', line: 'Each new email, text and page at your endpoint, the moment it lands.' },
-      { title: 'Clay, Zapier and HubSpot', line: 'What arrived, when, and its screenshot, on the rows and records you already have.' },
+      { title: 'Clay, Zapier and HubSpot', line: 'What arrived, when, and its screenshot, on the rows and contacts you already have.' },
     ],
-  },
-
-  personaPrice: {
-    heading: '$1 for 10 active minutes.',
-    line: 'Tokens and browser time included, on a monthly allowance that resets. Waiting is free, and the free plan comes with 30 minutes.',
-    cta: { label: 'See pricing', to: '/pricing' },
-    example: {
-      tag: 'Example',
-      title: 'A sign up and checkout mystery shop',
-      cols: ['What it does', 'Active time', 'Cost'],
-      rows: [
-        ['Signs up, fills a basket, goes to checkout', 'About 20 minutes', '$2.00'],
-        ['Waits 48 hours for replies', '0 minutes', '$0.00'],
-        ['Wakes to read each reply', '1 minute', '$0.10'],
-      ],
-    },
   },
 
   faq: {
@@ -329,7 +309,7 @@ export const page: Page = {
     items: [
       {
         q: 'What is a persona?',
-        a: 'Obsession gives your AI agents a persona: an identity with its own name, inbox, phone number and home connection, acting as someone you define. It signs up, gets verified, receives mail and texts, waits days for replies, and comes back with a record.',
+        a: 'Obsession gives your AI agents a persona: an identity with its own name, inbox, phone number and home connection, acting as someone you define. It signs up, gets verified, receives mail and texts, waits days for replies, and comes back with an event log of everything that followed.',
       },
       {
         q: 'What can a persona do?',
@@ -349,11 +329,11 @@ export const page: Page = {
       },
       {
         q: 'How long does a persona live?',
-        a: 'For as long as you hold it. After each visit it waits 48 hours for replies by default, or as long as you set, and its record is kept for as long as your plan stores records.',
+        a: 'For as long as you hold it. After each visit it waits 48 hours for replies by default, or as long as you set, and its event log is kept for as long as your plan keeps event logs.',
       },
       {
         q: 'Do I need my own AI agent?',
-        a: 'No. Every persona comes with our agent, and we keep it running. If you have an agent of your own, it can spawn personas and read their records through the API. Buyers who don’t write code start from a recipe.',
+        a: 'No. Every persona comes with our agent, and we keep it running. If you have an agent of your own, it can spawn personas and read their event logs through the API. Buyers who don’t write code start from a recipe.',
       },
       {
         q: 'Is it allowed to sign up as a persona?',

@@ -3,7 +3,7 @@ import type { Recipe } from '../types'
 /* Email and SMS tracking (/recipes/email-sms-tracking). Watch other companies. Screen: inbox.
    The persona version (20 Nov 2026): a persona the reader defines subscribes to every brand on their list, with its
    own inbox and texting number, and keeps every email and text each brand sends, with its offer, code and arrival
-   time, side by side on 1 timeline. Where Competitor tracking is the whole record of 1 competitor, this is the inbox
+   time, side by side on 1 timeline. Where Competitor tracking is the whole event log of 1 competitor, this is the inbox
    across every brand. When the watch ends the persona texts STOP and checks the texts stop. Sold as designed: no
    index, no "already covered", no caps. The run and the table tell the same story as the `inbox` screen (Competitor B
    swaps 20% off for a free gift). Example. */
@@ -125,7 +125,7 @@ export const recipe: Recipe = {
       { format: 'Timeline', line: 'Every email and text from every brand, in date order, each with its screenshot.' },
       { format: 'Weekly summary', line: 'What changed since last week, in a few lines. A quiet week stays quiet.' },
       { format: 'PDF teardown', line: 'A competitor’s welcome series and offers, mapped, in your name.' },
-      { format: 'A table, webhook or API', line: 'Each message as a row in Clay, JSON at your endpoint, or a record from the API.' },
+      { format: 'A table, webhook or API', line: 'Each message as a row in Clay, JSON at your endpoint, or an event from the API.' },
     ],
   },
 
@@ -173,7 +173,7 @@ export const recipe: Recipe = {
         a: 'Only if you set it to. When the persona talks to a person, it says it’s an AI. When the watch ends, it texts STOP.',
       },
       {
-        q: 'When does the record start?',
+        q: 'When does the event log start?',
         a: 'The day the persona subscribes. From then on every message is kept in order, with the welcome series mapped from the first email.',
       },
       { q: 'Can it follow our own emails too?', a: 'Yes. Name your own brand, and your messages sit next to every competitor’s.' },

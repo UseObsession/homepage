@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    the reader's own AI SDR's lists (added by the reader) and wake on every email, text and call it sends, for as long as
    the sequence runs. They reply the way prospects do, every message is kept as it arrived, and each one that breaks the
    reader's rules is flagged; a demo request at a competitor shows what its AI SDR sends. With the AI SDR, the page says
-   what the record shows; when a rep joins, the persona tells them it's an AI. The run is an example. */
+   what the event log shows; when a rep joins, the persona tells them it's an AI. The run is an example. */
 
 export const recipe: Recipe = {
   id: 'outbound-agent',
@@ -141,7 +141,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'sales', line: 'Know every claim and discount your AI SDR makes before a prospect quotes it back to you.' },
-    { audience: 'agencies', line: 'A record of the outbound you run for each client, every message kept.' },
+    { audience: 'agencies', line: 'An event log of the outbound you run for each client, every message kept.' },
     { audience: 'founders', line: 'Let an AI SDR write for you without reading every email it sends.' },
     { audience: 'developers', line: 'Spawn prospect personas from your code, and read every message after each prompt or sequence change.' },
   ],
@@ -175,7 +175,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'Whenever it talks to a person, such as a rep who joins the thread or picks up a call. With your AI SDR, the record keeps both sides word for word.',
+        a: 'Whenever it talks to a person, such as a rep who joins the thread or picks up a call. With your AI SDR, the event log keeps both sides word for word.',
       },
       {
         q: 'Will the personas skew our numbers?',

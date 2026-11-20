@@ -4,7 +4,7 @@ import type { Recipe } from '../types'
    define asks the reader's AI agent their hardest cases every morning and within the hour of any vendor release, model
    update or prompt edit; it lives as long as they hold it, so every replay comes from the same person and answers
    compare like for like. Every answer comes back word for word, and every one that changed is shown before and after.
-   Every replay is tagged, agreed with the vendor, so none is billed. With the agent, the page says what the record
+   Every replay is tagged, agreed with the vendor, so none is billed. With the agent, the page says what the event log
    shows; when a person takes over, the persona tells them it's an AI. No vendor or product names: Vendor A. The run is
    an example (the `drift` screen: 37 of 40 before Vendor A's update at 23:20, 28 of 40 at 00:10, 9 newly failing). */
 
@@ -114,7 +114,7 @@ export const recipe: Recipe = {
       group: 'Where it stops',
       items: [
         { title: 'Hard questions', line: 'What an ordinary person asks by default, and hard cases when you add them.' },
-        { title: 'The record', line: 'Every answer kept exactly as it arrived, before and after.' },
+        { title: 'The event log', line: 'Every answer kept exactly as it arrived, before and after.' },
         { title: 'Your bill', line: 'Every replay is tagged, and agreed with your vendor, so none is billed as a resolution.' },
       ],
     },
@@ -127,7 +127,7 @@ export const recipe: Recipe = {
       { format: 'Before and after', line: 'Every changed answer side by side, with the rule it broke.' },
       { format: 'The pass rate over time', line: 'Every morning’s replay on 1 line, with each update marked.' },
       { format: 'Slack, email or a webhook', line: 'The moment a replay drops below your baseline.' },
-      { format: 'A dated record', line: 'Every replay as a page and a PDF for your vendor, your client or your insurer.' },
+      { format: 'A dated event log', line: 'Every replay as a page and a PDF for your vendor, your client or your insurer.' },
     ],
   },
 
@@ -187,9 +187,9 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'It tells a person it’s an AI when it talks to one. With your AI agent, the record keeps both sides word for word, before and after.',
+        a: 'It tells a person it’s an AI when it talks to one. With your AI agent, the event log keeps both sides word for word, before and after.',
       },
-      { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated record of what your agent said on each case that day.' },
+      { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated event log of what your agent said on each case that day.' },
     ],
   },
 

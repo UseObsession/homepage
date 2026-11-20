@@ -118,7 +118,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Each release ends in a dated record, step by step.',
+    heading: 'Each release ends in a dated event log, step by step.',
     items: [
       { format: 'Slack alert', line: 'Minutes after a release, with the step, the screenshot and the time.' },
       { format: 'Ticket', line: 'Drafted for your tracker, with the steps to repeat the break.' },

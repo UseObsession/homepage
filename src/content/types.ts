@@ -549,11 +549,10 @@ export type PersonaStart = {
   chip: { label: string; code: string; copy: string; copied: string }
 }
 /* What is in a persona, as a stacked slab diagram (PersonaAnatomy): each part a slab, its name, 1 line and an example
-   value in mono. `note` labels the example persona. */
+   value in mono. */
 export type PersonaAnatomy = {
   heading: string
   line?: string
-  note: string
   parts: { name: string; line: string; eg: string }[]
 }
 /* The illustration card beside an "X, not Y" claim. Every card is labelled by `tag` ("Example"). */
@@ -573,14 +572,6 @@ export type PersonaArt =
     }
 /* 1 claim, its lines, 1 big true number (`value`, its `unit` beside it, `label` under) and its card. */
 export type PersonaContrast = { heading: string; line: string; value: string; unit: string; label: string; art: PersonaArt }
-/* How a persona works (PersonaHow): 4 steps, then the 1 real run (Brand G, content/sample.ts) beside its receipt:
-   `facts` are its rows, `stamp` the word stamped on it. */
-export type PersonaHow = {
-  heading: string
-  line?: string
-  steps: { title: string; line: string; eg: string }[]
-  run: { label: string; heading: string; line: string; cta: Cta; stamp: string; facts: { k: string; v: string }[] }
-}
 /* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
    `status` says who the recipe fits. */
 export type PersonaRecipes = {
@@ -593,7 +584,7 @@ export type PersonaIcon =
   | 'clock' | 'code'
 /* Everything else a fleet needs (PersonaFleet): a ruled grid of short items, each with its icon. */
 export type PersonaFleet = { heading: string; line?: string; items: { icon: PersonaIcon; title: string; line: string }[] }
-/* For developers (PersonaBuild): the claim, an example of the code, and where the record goes. */
+/* For developers (PersonaBuild): the claim, an example of the code, and where the event log goes. */
 export type PersonaBuild = {
   heading: string
   line: string
@@ -601,13 +592,6 @@ export type PersonaBuild = {
   codeLabel: string
   code: string
   outputs: { title: string; line: string }[]
-}
-/* The pricing teaser (PersonaPrice): the rate as the claim, and a worked example a reader can redo. */
-export type PersonaPrice = {
-  heading: string
-  line: string
-  cta: Cta
-  example: { tag: string; title: string; cols: [string, string, string]; rows: [string, string, string][] }
 }
 
 export type Page = {
@@ -664,11 +648,9 @@ export type Page = {
   personaStart?: PersonaStart
   personaAnatomy?: PersonaAnatomy
   personaContrasts?: PersonaContrast[]
-  personaHow?: PersonaHow
   personaRecipes?: PersonaRecipes
   personaFleet?: PersonaFleet
   personaBuild?: PersonaBuild
-  personaPrice?: PersonaPrice
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.

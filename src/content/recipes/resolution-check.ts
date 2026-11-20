@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    helpdesk they connect, and a persona you define places test orders on the reader's store with their own payment
    card, inside a budget they set, then makes the same asks on their live channels and records what follows; a
    competitor's bot is read for promises anyone can test. Tests are tagged, agreed with the vendor, so none is billed.
-   "Challenge", not "recover": a credit is up to the contract. With the bot, the page says what the record shows. The
+   "Challenge", not "recover": a credit is up to the contract. With the bot, the page says what the event log shows. The
    run is an example. No vendor or product names: Vendor A. */
 
 export const recipe: Recipe = {
@@ -91,7 +91,7 @@ export const recipe: Recipe = {
       line: 'A persona places test orders inside a budget you set, asks for refunds, cancellations and order changes on your live channels, and waits to see what follows.',
     },
     {
-      title: 'Challenge with the record',
+      title: 'Challenge with the event log',
       line: 'Every resolution that wasn’t real goes into a dispute pack under your vendor’s own terms. You decide when it goes.',
     },
   ],
@@ -124,7 +124,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every resolution that wasn’t real comes back with the record to challenge it.',
+    heading: 'Every resolution that wasn’t real comes back with its event log to challenge it.',
     items: [
       { format: 'A line per resolution', line: 'Real or not, beside the payment, the ticket or the order.' },
       { format: 'The bot’s own words', line: 'What it promised, word for word and timed, beside what happened.' },
@@ -185,7 +185,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will our vendor credit what we challenge?',
-        a: 'Resolution check gives you the record and a dispute pack under your vendor’s own terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
+        a: 'Resolution check gives you the event log and a dispute pack under your vendor’s own terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
       },
       {
         q: 'Can Resolution check read a competitor’s bot?',

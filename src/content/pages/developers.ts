@@ -2,10 +2,10 @@ import type { OpenSource, Page, Ways } from '../types'
 
 /* Developers (/developers, "API and MCP" in the nav), the persona rewrite (20 Nov 2026, James): the persona API. A
    developer spawns a persona (who it is, the country it connects from), runs it (where it goes and the task), waits (it
-   sleeps for free, and each new email, text, call or page reaches their webhook) and reads the record. The same over
-   the API, MCP (their own agent, in any MCP client, spawns personas and reads records as tools) and the SDKs. The code
+   sleeps for free, and each new email, text, call or page reaches their webhook) and reads the event log. The same over
+   the API, MCP (their own agent, in any MCP client, spawns personas and reads event logs as tools) and the SDKs. The code
    matches Home's (pages/home.ts, BUILD_CODE): personas.create({ country, kind }), persona.run({ site, task, wait }),
-   run.notify(url), run.record(). The calls Home doesn't show (a fleet, a schedule, a persona held for months) are
+   run.notify(url), run.events(). The calls Home doesn't show (a fleet, a schedule, a persona held for months) are
    examples, labelled Example. Unlike the buyer pages, this page talks in minutes: $0.10 an active minute, waiting is
    free, linked to /pricing. The story (pages/Developers.tsx): the hero, the persona at work > what you'd build yourself
    > the 4 ways in and the 4 calls > the integrations (the nav links #integrations, #baserow, #supabase, #webhooks) > the
@@ -42,8 +42,8 @@ const run = await persona.run({
 // Wait: it sleeps for free. Each new email, text, call or page reaches your webhook
 await run.notify("https://your-app.example/hooks/obsession")
 
-// Record: everything that came back, dated, with screenshots
-const record = await run.record()
+// Event log: everything that came back, dated, with screenshots
+const events = await run.events()
 
 // Example: POST https://your-app.example/hooks/obsession
 {
@@ -55,33 +55,33 @@ const record = await run.record()
   "screenshot": "/v1/runs/run_8f2c/screens/7"
 }`
 
-/* The ways in: the same persona and the same record from your own agent over MCP, our website, a workflow file or code.
+/* The ways in: the same persona and the same event log from your own agent over MCP, our website, a workflow file or code.
    Each way shows 1 real object. */
 const ways: Ways = {
   heading: 'Spawn personas from your agent, a file or your code.',
-  line: 'The same persona and the same record every way in. Connect once over MCP, or call the API.',
+  line: 'The same persona and the same event log every way in. Connect once over MCP, or call the API.',
   ways: [
     {
       kind: 'chat',
       tab: 'In your agent',
       title: 'Your own agent spawns personas as tools',
-      line: 'Connect Obsession once over MCP to Claude, ChatGPT, Codex, Cursor or any MCP client. Your agent decides who to send and where, then spawns the personas and reads their records as tools.',
+      line: 'Connect Obsession once over MCP to Claude, ChatGPT, Codex, Cursor or any MCP client. Your agent decides who to send and where, then spawns the personas and reads their event logs as tools.',
       who: 'For anyone who already works with an AI agent.',
       setup: 'claude mcp add obsession',
       you: 'Sign up to our app as a new user in Brazil, Germany and Japan. Where does onboarding break?',
-      calls: ['obsession.personas.create(3 personas: BR, DE, JP)', 'persona.run(site: "app.your-company.example", wait: "48h")', 'run.record(3 runs)'],
+      calls: ['obsession.personas.create(3 personas: BR, DE, JP)', 'persona.run(site: "app.your-company.example", wait: "48h")', 'run.events(3 runs)'],
       reply: [
         'Brazil: the text code never arrived, so sign up stopped at step 2.',
         'Germany: verified in 40 seconds, but the welcome email links to an English page.',
         'Japan: onboarding finished in 6 minutes, and the day 1 email arrived on time.',
       ],
-      proof: 'Example record: 3 personas, 21 pages, 4 emails and 3 texts, each with a screenshot',
+      proof: 'Example event log: 3 personas, 21 pages, 4 emails and 3 texts, each with a screenshot',
     },
     {
       kind: 'platform',
       tab: 'On our website',
       title: 'Pick a recipe, with no code',
-      line: 'A recipe is a job personas already know how to do. Pick one, say where it goes, and the same record comes back.',
+      line: 'A recipe is a job personas already know how to do. Pick one, say where it goes, and the same event log comes back.',
       who: 'For teammates who don’t write code.',
       ask: 'Shop 5 skincare stores as first-time buyers in the UK, and watch 48 hours for reminders.',
       recipes: ['Agentic mystery shopping', 'Your own task'],
@@ -107,7 +107,7 @@ const ways: Ways = {
 2. For each competitor:
    persona.run({ site, task: "Sign in. Note plan limits and new offers." })
 
-3. Compare each run.record() with last week’s.
+3. Compare each run.events() with last week’s.
 
 4. Update battlecard.md with what changed. Link every
    line to its screenshot.
@@ -150,7 +150,7 @@ fleet.notify("https://your-app.example/hooks/obsession")`,
       { name: 'personas.create', line: 'Spawn a persona: who it is, and the country it connects from.' },
       { name: 'persona.run', line: 'Send it to a site with a task, and say how long it waits.' },
       { name: 'run.notify', line: 'It sleeps for free. Each new email, text, call or page reaches your webhook.' },
-      { name: 'run.record', line: 'Every page, email, text and call that came back, dated, with screenshots.' },
+      { name: 'run.events', line: 'The event log: every page, email, text and call that came back, dated, with screenshots.' },
     ],
   },
 }
@@ -183,7 +183,7 @@ export const page: Page = {
     description:
       'Spawn a persona from code or MCP, with its own inbox, phone number and home connection. It sleeps free while it waits and sends each reply to your webhook.',
     answer:
-      'Obsession’s API spawns personas for your agents, each with its own inbox, phone number and home connection in any country. Run one, or a fleet of thousands. Each persona signs up, sleeps for free while it waits and wakes on every email, text or call. It comes back with a dated record, over the API, MCP or SDKs.',
+      'Obsession’s API spawns personas for your agents, each with its own inbox, phone number and home connection in any country. Run one, or a fleet of thousands. Each persona signs up, sleeps for free while it waits and wakes on every email, text or call. It comes back with a dated event log, over the API, MCP or SDKs.',
     ogImage: '/og/developers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -204,7 +204,7 @@ export const page: Page = {
     /* Not drawn on this page (Hero5 has no console); the Hero contract asks for one. */
     consoleHeading: [],
     /* The hero's screen: 3 personas at 3 businesses over 3 days, a trial, a first order and a booking enquiry. */
-    screens: [{ tab: 'Personas', screen: 'shop', link: { label: 'See a real record', to: '/sample-output' }, line: '' }],
+    screens: [{ tab: 'Personas', screen: 'shop', link: { label: 'See a real event log', to: '/sample-output' }, line: '' }],
   },
 
   gapPair: {
@@ -226,7 +226,7 @@ export const page: Page = {
         'A persona with its own name, inbox, phone number and home connection, in any country',
         'Its own browser, verified by email, text or call',
         'Free sleep, and a wake on each new email, text or call',
-        'A record: every page, email, text and call, dated, with screenshots',
+        'An event log: every page, email, text and call, dated, with screenshots',
         'One persona or a fleet of thousands, held for months',
       ],
     },
@@ -234,17 +234,17 @@ export const page: Page = {
 
   ways,
 
-  /* Where personas start and where their records go: the nav's Integrations menu links to each card by its id. */
+  /* Where personas start and where their event logs go: the nav's Integrations menu links to each card by its id. */
   integrations: {
     kicker: 'Integrations',
-    heading: 'Every record lands in the tools you already use.',
+    heading: 'Every event log lands in the tools you already use.',
     line: 'Send personas out from a row or a Zap, and each new email, text and page comes back the moment it lands.',
     items: [
       { id: 'clay', title: 'Clay', line: 'Each row sends a persona. What came back fills the next columns: what arrived, when, and its screenshot.', eg: 'Row → Persona · What arrived · Screenshot', link: { label: 'Prospect research with Clay', to: '/use-cases/prospect-intelligence-with-clay' } },
       { id: 'zapier', title: 'Zapier', line: 'Spawn a persona from any Zap, and pass each new email, text or page to the next step.', eg: 'New email → Slack, Sheets or your CRM' },
       { id: 'hubspot', title: 'HubSpot', line: 'What each persona got lands on the record you already have, dated, with its screenshot.', eg: 'Company → Timeline · Email received' },
-      { id: 'baserow', title: 'Baserow', line: 'A new row sends a persona. Its record fills the next columns as each email, text and page arrives.', eg: 'Row added → Persona sent → 3 columns filled' },
-      { id: 'supabase', title: 'Supabase', line: 'Every email, text, call and page lands as a row in your own table, with its screenshot, ready to query.', eg: 'records (persona, kind, site, received_at, screenshot)' },
+      { id: 'baserow', title: 'Baserow', line: 'A new row sends a persona. Its event log fills the next columns as each email, text and page arrives.', eg: 'Row added → Persona sent → 3 columns filled' },
+      { id: 'supabase', title: 'Supabase', line: 'Every email, text, call and page lands as a row in your own table, with its screenshot, ready to query.', eg: 'events (persona, kind, site, received_at, screenshot)' },
       { id: 'webhooks', title: 'Webhooks', line: 'Each new email, text, call and page posted to your endpoint as JSON, the moment it lands.', eg: 'POST · run.email · run.text · run.page' },
     ],
   },
@@ -308,7 +308,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does the Obsession API do?',
-        a: 'Obsession’s API spawns personas for your agents, each with its own inbox, phone number and home connection in any country. You spawn a persona and run it on a site with a task. It sleeps while it waits, and you read its record over the API, MCP or the SDKs.',
+        a: 'Obsession’s API spawns personas for your agents, each with its own inbox, phone number and home connection in any country. You spawn a persona and run it on a site with a task. It sleeps while it waits, and you read its event log over the API, MCP or the SDKs.',
       },
       {
         q: 'What is a persona?',
@@ -316,7 +316,7 @@ export const page: Page = {
       },
       {
         q: 'How do I connect it to Claude or Cursor?',
-        a: 'Add the MCP server once, with claude mcp add obsession in Claude Code or in your client’s settings. Your agent can then spawn personas, start runs and read records as tools. Early access includes API and MCP keys.',
+        a: 'Add the MCP server once, with claude mcp add obsession in Claude Code or in your client’s settings. Your agent can then spawn personas, start runs and read event logs as tools. Early access includes API and MCP keys.',
       },
       {
         q: 'What counts as an active minute?',

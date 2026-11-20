@@ -87,7 +87,6 @@
   color: var(--ob-text-3);
   overflow-wrap: anywhere;
 }
-.s-pa-note { margin-top: var(--ob-space-8); }
 
 @media (max-width: 760px) {
   .s-pa-fig { --s-pa-w: 132px; --s-pa-gap: var(--ob-space-20); }

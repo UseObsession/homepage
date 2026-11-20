@@ -86,7 +86,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
   ],
   /* Needs you. The finding: the 10% code promised at sign up, and the inbox still empty 48 hours on. The proof, held:
      the fix live on AM's OK (Approve is pressed at 1.8 s, too soon to frame it, so no pointer), checked again on
-     Thursday, the signed approval in Records; the note sits in the queue's empty foot. */
+     Thursday, the signed approval in Event logs; the note sits in the queue's empty foot. */
   approve: [
     { at: 0 },
     {
@@ -121,7 +121,7 @@ export const SHOTS_C: Record<string, Shot[]> = {
       note: { text: 'Sent to Candles, signed, in your brand', side: 'left', cover: '.apr-note', cue: 5, still: true, dock: 'top' },
     },
   ],
-  /* Store check record. The finding: the run log, every step dated, down to 0 basket emails in 48 hours; the note
+  /* Store check event log. The finding: the run log, every step dated, down to 0 basket emails in 48 hours; the note
      covers the page's title. The proof, held: receipt 4 of 9 verified, signature valid and chain intact as the camera
      arrives (the row and Verify are clicked at 2.55 and 3.88 s, too close together for 2 notes and a pointer); the note
      sits right of the lock line. */

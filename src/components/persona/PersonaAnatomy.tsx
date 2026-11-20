@@ -46,7 +46,6 @@ export function PersonaAnatomy({ anatomy, id }: { anatomy: Anatomy; id?: string 
               </li>
             ))}
           </ol>
-          <figcaption className="s-bp-tag s-pa-note">{anatomy.note}</figcaption>
         </figure>
       </div>
     </section>

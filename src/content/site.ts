@@ -5,7 +5,7 @@ import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } fr
    (/agents), the 404 page and the llms.txt intro. Since 20 Nov every one says what Home says: Obsession gives AI agents
    a persona on the web and keeps them running, from a recipe, the API or MCP; early access, never a waitlist. The agents
    appear only where a page says where the data comes from (/agents). The lines every agent keeps (obsession/system.md):
-   the record is never changed, who asked stays private unless they choose to be named, and the law (an agent says it's
+   the event log is never changed, who asked stays private unless they choose to be named, and the law (an agent says it's
    AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never
    clicks paid ads at volume). */
 
@@ -22,24 +22,24 @@ export const CONTROLLER: string | null = null
    the Organization JSON-LD, Home's hero, its "What is Obsession?" and /agents). The footer carries its core in 1 short
    line (content/footer.ts). */
 const SENTENCE =
-  'Obsession gives AI agents a persona: an identity on the web with its own name, inbox, phone number and home connection in the country you choose, acting as someone you define. It signs up, gets verified, receives mail, texts and calls, waits days, and comes back with a dated record.'
+  'Obsession gives AI agents a persona: an identity on the web with its own name, inbox, phone number and home connection in the country you choose, acting as someone you define. It signs up, gets verified, receives mail, texts and calls, waits days, and comes back with an event log of everything that followed.'
 
 /* What Obsession is, as an entity: the line every engine and profile repeats (llms.txt's summary, the Organization and
    WebSite JSON-LD, docs/SEARCH.md 2). Since 9 Nov a data company for the web behind the login, never AI customers. */
 export const ENTITY =
-  'Obsession gives AI agents a persona: an identity on the web with its own name, inbox, phone number and home connection in the country you choose, acting as someone you define. It signs up, gets verified, receives mail, texts and calls, waits days, and comes back with a dated record. Run one, or a fleet of thousands, from a recipe, the API or MCP.'
+  'Obsession gives AI agents a persona: an identity on the web with its own name, inbox, phone number and home connection in the country you choose, acting as someone you define. It signs up, gets verified, receives mail, texts and calls, waits days, and comes back with an event log of everything that followed. Run one, or a fleet of thousands, from a recipe, the API or MCP.'
 
 /* /recipes. Since 20 Nov (the persona rewrite) each recipe is a job personas already know how to do: who the persona
-   is, where it goes, what it brings back and where the record lands. Grouped by job as in the nav; the groups render the
+   is, where it goes, what it brings back and where the event log lands. Grouped by job as in the nav; the groups render the
    recipes whose `group` matches, in this order. */
 export const recipesPage: RecipesIndexPage = {
   meta: {
     path: '/recipes',
     title: 'Obsession recipes: jobs your personas already know how to do',
     description:
-      'Each Obsession recipe is a job personas already know how to do: who the persona is, where it goes, what it brings back, and where the record lands.',
+      'Each Obsession recipe is a job personas already know how to do: who the persona is, where it goes, what it brings back, and where the event log lands.',
     answer:
-      'Obsession recipes are jobs personas already know how to do, picked without code. Each says who the persona is, where it goes, what it brings back and where the record lands.',
+      'Obsession recipes are jobs personas already know how to do, picked without code. Each says who the persona is, where it goes, what it brings back and where the event log lands.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -49,7 +49,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'Pick a recipe. Say where your personas go.',
-    sub: 'Obsession recipes are jobs personas already know how to do, picked without code. Each says who the persona is, where it goes, what it brings back and where the record lands.',
+    sub: 'Obsession recipes are jobs personas already know how to do, picked without code. Each says who the persona is, where it goes, what it brings back and where the event log lands.',
   },
 
   groups: [
@@ -69,7 +69,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hub: {
     heading: 'From your list to the tools you already use.',
-    line: 'Send personas from a list, a CSV, Clay or the API. Each record lands dated, with its screenshots.',
+    line: 'Send personas from a list, a CSV, Clay or the API. Each event lands dated, with its screenshots.',
     inputs: ['Paste a list', 'Upload a CSV', 'Clay', 'Google Sheets', 'The API or MCP'],
     outputs: ['Your AI agent', 'Clay', 'Google Sheets', 'Slack', 'Your CRM', 'A webhook', 'A PDF report'],
     guide: { label: 'Every use case', to: '/use-cases' },
@@ -314,7 +314,7 @@ export const agentsPage: AgentsPage = {
     {
       id: 'never',
       heading: 'What no Obsession agent does, whoever asked for it.',
-      lines: ['Every agent keeps to the law and to its record. It never:'],
+      lines: ['Every agent keeps to the law, and its event log is never changed. It never:'],
       list: [
         'Pretends to be a person when it talks to one',
         'Uses fake payment details',
@@ -407,9 +407,9 @@ export const notFoundPage: NotFoundPage = {
 export const llms: Llms = {
   summary: ENTITY,
   intro: [
-    'Obsession gives AI agents a persona: an identity on the web with its own name, inbox, phone number, a home connection in the country you choose and its own browser, acting as someone you define. A persona can be a first-time buyer, a lapsed subscriber, a lead, a job applicant or a new user of your own product. It signs up, gets verified by email, text or call, starts trials, fills baskets, books demos, fills in forms and talks to support bots and voice lines, then waits days for what follows and comes back with a record: every page, email, text and call, each dated, with screenshots.',
+    'Obsession gives AI agents a persona: an identity on the web with its own name, inbox, phone number, a home connection in the country you choose and its own browser, acting as someone you define. A persona can be a first-time buyer, a lapsed subscriber, a lead, a job applicant or a new user of your own product. It signs up, gets verified by email, text or call, starts trials, fills baskets, books demos, fills in forms and talks to support bots and voice lines, then waits days for what follows and comes back with an event log: every page, email, text and call, each dated, with screenshots.',
     'Obsession keeps personas running, one or a fleet of thousands. A persona lives as long as you hold it, waits 48 hours after each visit by default or as long as you set, wakes on each new email, text or call, runs on a schedule, hands an ID check to a person, and stops before payment unless you give it your own payment card. Muse and Grok Bot act as you, on your accounts; a persona acts as someone you define, with an identity of its own.',
-    'Developers spawn personas and read records through the API, SDKs and MCP, so their own agents use personas as tools. Records reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Pricing is $0.10 an active minute, tokens and browser included, and waiting is free: Free with 30 minutes a month, Builder at $49, Team at $299 and Scale from $2,000 by contract (useobsession.com/pricing).',
+    'Developers spawn personas and read event logs through the API, SDKs and MCP, so their own agents use personas as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Pricing is $0.10 an active minute, tokens and browser included, and waiting is free: Free with 30 minutes a month, Builder at $49, Team at $299 and Scale from $2,000 by contract (useobsession.com/pricing).',
     'Recipes are jobs personas already know how to do, picked without code. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (agentic mystery shopping, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
     `Every persona says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume. Any company can write to ${CONTACT_EMAIL} to keep personas off its site.`,
     'The sample data at useobsession.com/sample-output is a real run from September 2026: a UK skincare store, 4 personas with 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 on 22 September and a checkout left at 03:11 got no reminder.',

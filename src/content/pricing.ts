@@ -101,15 +101,15 @@ export const pricingPage: PricingPage = {
 
   plans: {
     heading: 'Every plan runs on the same minute.',
-    line: '$1 buys 10 active minutes on every plan, tokens and browser time included. A bigger plan holds more personas, keeps records longer and connects to more tools.',
-    rows: ['Active minutes a month', 'Runs of 10 minutes', 'Personas at once', 'Phone numbers', 'Records kept', 'Connects through'],
+    line: '$1 buys 10 active minutes on every plan, tokens and browser time included. A bigger plan holds more personas, keeps event logs longer and connects to more tools.',
+    rows: ['Active minutes a month', 'Runs of 10 minutes', 'Personas at once', 'Phone numbers', 'Event logs kept', 'Connects through'],
     items: [
       {
         id: 'free',
         name: 'Free',
         price: '$0',
         per: 'a month',
-        line: 'One persona and its inbox, to see a record come back.',
+        line: 'One persona and its inbox, to see an event log come back.',
         dollars: 0,
         minutes: 30,
         personas: 1,
@@ -240,7 +240,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'What does Free include?',
-        a: '30 active minutes a month, about 3 runs of 10 minutes. 1 persona at a time with its own inbox, records kept for 7 days, and the API and MCP. Phone numbers start on Builder.',
+        a: '30 active minutes a month, about 3 runs of 10 minutes. 1 persona at a time with its own inbox, event logs kept for 7 days, and the API and MCP. Phone numbers start on Builder.',
       },
       {
         q: 'How are phone numbers billed?',
@@ -265,7 +265,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'Do you discount volume?',
-        a: 'No. The minute costs $0.10 on every plan. A bigger plan holds more personas, keeps records longer and connects to more tools. Scale is by contract, from $2,000 a month, with committed volume.',
+        a: 'No. The minute costs $0.10 on every plan. A bigger plan holds more personas, keeps event logs longer and connects to more tools. Scale is by contract, from $2,000 a month, with committed volume.',
       },
     ],
   },

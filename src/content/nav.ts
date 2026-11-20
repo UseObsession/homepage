@@ -25,7 +25,7 @@ export const JOBS: RecipeGroup[] = ['Watch other companies', 'Check your own jou
 export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
 
 /* The name a job shows in the Recipes menu and on /recipes. The group value stays (recipes, anchors and the join card
-   read it); since 9 Nov the AI agents job is the record of what AI agents tell customers, as /verify says. */
+   read it); since 9 Nov the AI agents job is the event log of what AI agents tell people, as /verify says. */
 export const jobLabel = (g: RecipeGroup) => (g === 'Check your AI agents' ? 'What AI agents say' : g)
 
 /* A job with a page of its own links to it after its recipes. */
@@ -120,9 +120,9 @@ const menus = {
     integrations: {
       label: 'Integrations',
       items: [
-        { label: 'Clay', line: 'Each record on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
+        { label: 'Clay', line: 'Each event on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
         { label: 'Baserow', line: 'A new row sends a persona', to: '/developers#baserow', icon: 'table' },
-        { label: 'Supabase', line: 'Every record in your own table', to: '/developers#supabase', icon: 'database' },
+        { label: 'Supabase', line: 'Every event in your own table', to: '/developers#supabase', icon: 'database' },
         { label: 'Webhooks', line: 'Each email, text and page as it lands', to: '/developers#webhooks', icon: 'webhook' },
       ] satisfies NavTool[],
       all: { label: 'All integrations', to: '/developers#integrations' } satisfies NavPage,
@@ -163,7 +163,7 @@ const menus = {
     label: 'Resources',
     button: 'Resources menu',
     items: [
-      { label: 'Sample data', line: 'One real store’s record, end to end', to: '/sample-output' },
+      { label: 'Sample data', line: 'One real store’s event log, end to end', to: '/sample-output' },
       { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
       ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
       { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
@@ -205,9 +205,9 @@ export const nav = {
     to: '/recipes',
     button: 'Recipes menu',
     all: { label: 'Browse all recipes', to: '/recipes' } satisfies NavPage,
-    /* The featured card: the 1 real record, the sample data. */
+    /* The featured card: the 1 real event log, the sample data. */
     feature: {
-      label: 'See one real record',
+      label: 'See one real event log',
       line: 'A real store’s 4 sign-ups and baskets, and what it sent in the 48 hours after.',
       action: 'See sample data',
       to: '/sample-output',
@@ -223,7 +223,7 @@ export const nav = {
     button: 'Resources menu',
     run: {
       kicker: 'Sample data',
-      label: 'One real store’s record',
+      label: 'One real store’s event log',
       to: '/sample-output',
       line: 'We joined a real store 4 times. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x

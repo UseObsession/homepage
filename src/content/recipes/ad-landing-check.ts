@@ -149,7 +149,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'marketing', line: 'Every ad sending clicks to a broken, wrong or sold out page, the same morning.' },
-    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with a record of every page that failed.' },
+    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with an event log of every page that failed.' },
     { audience: 'founders', line: 'Running your own ads? Know each one lands on a page that can sell.' },
     { audience: 'developers', line: 'Run it through the API after every site release, and get each failing ad by webhook.' },
   ],
@@ -163,7 +163,7 @@ export const recipe: Recipe = {
       { label: 'How', values: ['Clicking the ad, which can cost a click', 'Opening its page directly, so no click is paid for'] },
       { label: 'Where', values: ['A desktop at the office', 'A phone and a desktop, in the ad’s country'] },
       { label: 'A sold out page', values: ['Found when sales drop', 'Found at 07:04, with the screenshot'] },
-      { label: 'The record', values: ['A message in a chat', 'Every check kept with its screenshot'] },
+      { label: 'The event log', values: ['A message in a chat', 'Every check kept with its screenshot'] },
     ],
   },
 

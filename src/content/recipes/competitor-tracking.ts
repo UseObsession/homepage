@@ -4,7 +4,7 @@ import type { Recipe } from '../types'
    The persona version (20 Nov 2026): a persona the reader defines signs up at each competitor they name and keeps the
    account open for as long as they hold it. Everything it is sent, every email, text, offer, member price and public
    ad, comes back on 1 dated timeline with screenshots, by API, MCP, a table or Slack. Kept from James's page: the
-   headline, the record dated from a known sign up, the welcome series mapped, the week 1 timeline. Sold as designed:
+   headline, the event log dated from a known sign up, the welcome series mapped, the week 1 timeline. Sold as designed:
    no index, no "already covered", no caps. The run is an example on an invented skincare store and says so. */
 
 export const recipe: Recipe = {
@@ -128,7 +128,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'What changed this week, with the record behind every line.',
+    heading: 'What changed this week, with the event log behind every line.',
     items: [
       { format: 'A timeline per competitor', line: 'Every email, text, offer and change in date order, each with its screenshot.' },
       { format: 'The welcome series, mapped', line: 'Each step, the delay before it and the offer it carries.' },
@@ -184,7 +184,7 @@ export const recipe: Recipe = {
         a: 'From a real account at each competitor. The persona signs up the way anyone can, from the country you choose, and keeps the account open for months as the same person.',
       },
       {
-        q: 'When does the record start?',
+        q: 'When does the event log start?',
         a: 'The day the persona signs up. From then on every message is dated from that sign up, so you see the sequence in order for as long as you hold it.',
       },
       {

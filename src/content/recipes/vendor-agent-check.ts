@@ -8,7 +8,7 @@ import type { Recipe } from '../types'
    times every handoff; every answer comes back side by side, word for word, and the same questions go to each agent
    where it already runs at other companies. Each vendor agrees to the test and sets its agent up on the reader's
    policies; every test is tagged. Cases are asked as the persona's own, so no real person's details reach a vendor.
-   With an agent, the page says what the record shows; when a person takes a handoff, the persona tells them it's an
+   With an agent, the page says what the event log shows; when a person takes a handoff, the persona tells them it's an
    AI. The run is an example. No vendor or product names: Vendor A, B and C. */
 
 export const recipe: Recipe = {
@@ -149,7 +149,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'founders', line: 'Choose your support AI agent on your own cases, not a demo.' },
-    { audience: 'agencies', line: 'Pick the chat or voice platform you build client agents on, with the record to show each client why.' },
+    { audience: 'agencies', line: 'Pick the chat or voice platform you build client agents on, with the event log to show each client why.' },
     { audience: 'sales', line: 'Run your real buyer questions on every AI agent you’re weighing for inbound.' },
     { audience: 'developers', line: 'Run the same cases on your own build and every vendor’s, from your code or agent.' },
   ],

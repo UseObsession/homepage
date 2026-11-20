@@ -2,8 +2,8 @@ import type { Cta } from './types'
 
 /* The words every recipe page shares (pages/RecipePage), around each recipe's own content (src/content/recipes).
    Since 20 Nov (the persona rewrite) a recipe is a job personas already know how to do: who the persona is, where it
-   goes, how often, and where the record lands. These are the headings a recipe file gives no heading for, and they hold for
-   every recipe. The 1 real record is Brand G's (Store sign-up and checkout, /sample-output); every other run is an
+   goes, how often, and where the event log lands. These are the headings a recipe file gives no heading for, and they hold for
+   every recipe. The 1 real event log is Brand G's (Store sign-up and checkout, /sample-output); every other run is an
    example. Never "AI customer", never a recipe count, never a claim that a run was signed. */
 
 export const recipePage = {
@@ -25,13 +25,13 @@ export const recipePage = {
     tag: { real: 'Real run' },
   },
 
-  steps: { heading: 'You say who the persona is and where it goes. The record keeps growing.' },
+  steps: { heading: 'You say who the persona is and where it goes. The event log keeps growing.' },
   checks: { heading: 'What the personas do, and what they bring back.' },
-  /* Every recipe page links to the 1 real record, Brand G's, by what it is. The label matches Home's. */
+  /* Every recipe page links to the 1 real event log, Brand G's, by what it is. The label matches Home's. */
   outputs: { cta: { label: 'See the sample data', to: '/sample-output' } satisfies Cta },
   settings: { heading: 'Start from the recipe. Change anything.' },
   forWho: { heading: 'The same recipe, different teams.' },
 }
 
-/* Whether a run is the real September record rather than an example (content/recipes/mystery-shopper.ts). */
+/* Whether a run is the real September event log rather than an example (content/recipes/mystery-shopper.ts). */
 export const isRealRun = (tab: string) => /^real run\b/i.test(tab)

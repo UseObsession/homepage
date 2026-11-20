@@ -115,7 +115,7 @@ export const recipe: Recipe = {
       { format: 'Slack or email', line: 'Each morning a competitor has a new offer, with the ad and the page side by side.' },
       { format: 'Ad timeline', line: 'Every ad each competitor starts and stops, and how long it ran.' },
       { format: 'Weekly PDF', line: 'What every competitor is pushing, and the ads they keep running.' },
-      { format: 'A table, webhook or API', line: 'Each ad, page and offer as a row in Clay, JSON at your endpoint, or a record from the API.' },
+      { format: 'A table, webhook or API', line: 'Each ad, page and offer as a row in Clay, JSON at your endpoint, or an event from the API.' },
     ],
   },
 

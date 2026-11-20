@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    number, asks AI sales agents for prices, stock and delivery every morning and follows each answer to checkout. It
    stops before payment by default, or pays with the reader's own payment card if they say so. Every quote comes back
    dated, beside the reader's price list, stock feed and delivery page, and competitors' shopping assistants get the
-   same questions. With the agent, the page says what the record shows. The run is an example. No vendor or product
+   same questions. With the agent, the page says what the event log shows. The run is an example. No vendor or product
    names. */
 
 export const recipe: Recipe = {
@@ -148,7 +148,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'marketing', line: 'Your agent quotes this week’s offer, not last month’s, and you see what competitors’ agents offer.' },
-    { audience: 'agencies', line: 'A daily record of every client’s sales agent, every answer with its chat.' },
+    { audience: 'agencies', line: 'A daily event log for every client’s sales agent, every answer with its chat.' },
     { audience: 'founders', line: 'Know what your sales agent charged overnight, and hear the morning it gets a price wrong.' },
     { audience: 'developers', line: 'Spawn shopper personas from your code, and read every answer after each catalogue or prompt change.' },
   ],
