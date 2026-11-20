@@ -55,7 +55,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 2 vendors, your 20 cases',
+    tab: '2 vendors, your 20 cases',
     recipe: 'vendor-agent',
     task: 'Send a persona with 20 cases from our tickets to Vendor B’s and Vendor C’s agents, set up on our policies, and keep every answer side by side.',
     targets: 'Vendor B and Vendor C',
@@ -75,7 +75,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Vendor B passed 17 of your 20 cases and Vendor C 12. Asked for a person, Vendor C kept the persona waiting 6 minutes where your policy says 3.',
     fix: 'A side by side report for procurement, with both transcripts on every case. The choice stays yours.',
-    ledger: 'Example run. 20 cases on 2 vendors, 40 runs in 2 weeks, every answer dated.',
+    ledger: '20 cases on 2 vendors, 40 runs in 2 weeks, every answer dated.',
   },
 
   steps: [

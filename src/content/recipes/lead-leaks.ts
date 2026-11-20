@@ -54,7 +54,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 1 day, 3 new leads',
+    tab: '1 day, 3 new leads',
     recipe: 'speed',
     task: 'Every day at 09:00, 13:00 and 17:00, send a new lead to our demo form, site chat and sales line. Time each first reply against 5 minutes, and read who owns the lead in HubSpot.',
     targets: 'Your demo form, site chat and sales line',
@@ -75,7 +75,7 @@ export const recipe: Recipe = {
     ],
     finding: 'The demo form left a new lead waiting 4 hours 12 minutes, unassigned. The sales line rang out.',
     fix: '1 routing rule, approved at 13:20, closed both. At 17:00 the form got a call back in 3 minutes 40 seconds.',
-    ledger: 'Example run. Every lead timed, every reply kept: emails, chats and calls.',
+    ledger: 'Every lead timed, every reply kept: emails, chats and calls.',
   },
 
   steps: [
@@ -157,7 +157,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'The chat answered in 38 seconds. The demo form took 4 hours.',
-    line: 'Example: 1 day, a new lead at 09:00, 13:00 and 17:00, against a 5 minute target.',
+    line: '1 day, a new lead at 09:00, 13:00 and 17:00, against a 5 minute target.',
     cols: ['Demo form', 'Site chat', 'Sales line'],
     rows: [
       { label: '09:00', values: ['Email after 4 hours 12 minutes, unassigned', '38 seconds', 'Rang out, no voicemail'] },

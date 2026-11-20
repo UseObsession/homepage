@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 6 partners, every Monday',
+    tab: '6 partners, every Monday',
     recipe: 'partners',
     task: 'Every Monday, send a persona to each partner page as a visitor, follow our link to the store and try their code in the basket. Flag any link, code or banner that’s out of date.',
     targets: 'Your 6 affiliates and partners, from a hiking blog to a newsletter',
@@ -73,7 +73,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Deals site still sends shoppers to SUMMER20, a code that ended on 31 Aug, under last season’s banner.',
     fix: 'In Slack at 07:16 with the screenshot, and the note with DEALS15 sent from your partnerships lead’s thread at 09:14.',
-    ledger: 'Example run. Every visit and basket kept with its screenshot.',
+    ledger: 'Every visit and basket kept with its screenshot.',
   },
 
   steps: [
@@ -150,7 +150,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'The link, the code and the offer at every partner.',
-    line: 'Example run: 5 partners current, 1 showing a code that ended on 31 Aug. Read every Monday, a dead code is found within 7 days, or within a day when you read daily in a sale.',
+    line: '5 partners current, 1 showing a code that ended on 31 Aug. Read every Monday, a dead code is found within 7 days, or within a day when you read daily in a sale.',
     cols: ['Link', 'Code', 'Offer'],
     rows: [
       { label: 'Hiking blog', values: ['Lands', 'HIKE15 works', '15% off'] },

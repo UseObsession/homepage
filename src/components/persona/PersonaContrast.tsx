@@ -6,7 +6,7 @@ import './PersonaContrast.css'
 
 /* The "X, not Y" sections (after rivet.dev's "Start in milliseconds, not seconds."): each 1 screen, its claim, 2 or 3
    lines and 1 big true number on one side, its card on the other, the sides flipping from section to section. Each
-   opens on the ruled line. The cards are product objects (.ob-object), each under its Example tag. */
+   opens on the ruled line. The cards are product objects (.ob-object). */
 
 /* A numeral stays on the line of the word it counts. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
@@ -135,7 +135,6 @@ function ContrastSection({ c, flip }: { c: Contrast; flip: boolean }) {
           <div className="s-pc-card ob-object" ref={ref} data-v5-play="" data-on={on ? '' : undefined}>
             <Card art={c.art} />
           </div>
-          <figcaption className="s-bp-tag s-pc-tag">{c.art.tag}</figcaption>
         </figure>
       </div>
     </section>

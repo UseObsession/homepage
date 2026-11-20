@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: release 4.2',
+    tab: 'Release 4.2',
     recipe: 'delivery',
     task: 'After release 4.2, sign up 3 new personas in the UK and US. Live our first 14 days and flag anything that never arrives.',
     targets: 'Your app, UK and US',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Login codes stopped reaching UK numbers on day 6. US numbers still get them in 6 seconds.',
     fix: 'In #releases in Slack with the text log, and a ticket drafted for your OK. A new UK persona tries again after the fix.',
-    ledger: 'Example run. Every email, text and code timed, with its screenshot.',
+    ledger: 'Every email, text and code timed, with its screenshot.',
   },
 
   steps: [
@@ -136,7 +136,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Day 1 passed. On day 6, UK login codes stopped arriving.',
-    line: 'Example: release 4.2, 3 new personas.',
+    line: 'Release 4.2, 3 new personas.',
     cols: ['UK, iPhone', 'US, Android', 'UK, Android'],
     rows: [
       { label: 'Day 1, welcome email', values: ['2 min', '2 min', '3 min'] },

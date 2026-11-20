@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 3 competitors, 30 days',
+    tab: '3 competitors, 30 days',
     recipe: 'email-sms',
     task: 'Subscribe to our 3 competitors’ emails and texts as a new subscriber in the UK. Log every message and flag every new offer.',
     targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Competitor B swapped 20% off for a free gift over £40 the morning after its sale ended.',
     fix: 'Posted to #competitors in Slack, and added to your table with the text itself.',
-    ledger: 'Example run. Every message kept as it arrived, and dated.',
+    ledger: 'Every message kept as it arrived, and dated.',
   },
 
   steps: [
@@ -146,7 +146,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'In 30 days, Competitor B sent 18 messages. Competitor C sent 7.',
-    line: 'Example: 3 competitors, counted from the day of sign up.',
+    line: '3 competitors, counted from the day of sign up.',
     cols: ['Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Emails', values: ['9', '14', '6'] },

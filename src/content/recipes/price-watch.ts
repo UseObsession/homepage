@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: Black Friday week',
+    tab: 'Black Friday week',
     recipe: 'prices',
     task: 'Every morning, read our 3 competitors’ prices, member prices, delivery and subscriber codes as a UK member. Tell #pricing when one undercuts us.',
     targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Competitor B now sells its soy candle £5 under yours and ships it free, 4 days before Black Friday.',
     fix: 'In #pricing at 06:06 and on your pricing sheet, beside your own £24.',
-    ledger: 'Example run. Every price read from a public page, a member page or the subscriber inbox, with screenshots before and after.',
+    ledger: 'Every price read from a public page, a member page or the subscriber inbox, with screenshots before and after.',
   },
 
   steps: [
@@ -136,7 +136,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Competitor B cut 3 prices overnight. Its soy candle is now £5 under yours.',
-    line: 'Example: Monday, 4 days before Black Friday, as a UK member.',
+    line: 'Monday, 4 days before Black Friday, as a UK member.',
     cols: ['You', 'Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Soy candle 200g', values: ['£24', '£26', '£19, was £24', '£25'] },

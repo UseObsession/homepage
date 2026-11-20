@@ -38,7 +38,6 @@ export const ref: ReferencePage = {
     kind: 'log',
     title: 'fernway.example · basket left',
     who: 'Shopper who entered an email at checkout, left Mon 22:40',
-    status: { tone: 'info', text: 'Example' },
     rows: [
       { time: 'Mon 23:41', text: 'Still thinking it over?', detail: 'The basket, with a link back to checkout', tone: 'ok' },
       { time: 'Tue 22:40', text: 'Your basket is waiting', detail: 'Same items, no code', tone: 'ok' },

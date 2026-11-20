@@ -546,7 +546,7 @@ export type CardGrid = {
    page's `hero`: its headline, sub, `note` (the small line under the buttons), `secondary` and `proof` (the 3 facts). */
 export type PersonaStart = {
   primary: Cta
-  chip: { label: string; code: string; copy: string; copied: string }
+  chip: { code: string; copy: string; copied: string }
 }
 /* What is in a persona, as a stacked slab diagram (PersonaAnatomy): each part a slab, its name, 1 line and an example
    value in mono. */
@@ -555,14 +555,13 @@ export type PersonaAnatomy = {
   line?: string
   parts: { name: string; line: string; eg: string }[]
 }
-/* The illustration card beside an "X, not Y" claim. Every card is labelled by `tag` ("Example"). */
+/* The illustration card beside an "X, not Y" claim. No "Example" tag (James, 20 Nov). */
 export type PersonaArt =
-  | { kind: 'versus'; tag: string; keys: string[]; cols: { label: string; cells: string[]; ours?: boolean }[] }
-  | { kind: 'parts'; tag: string; parts: { label: string; items: string[]; note: string }; whole: { label: string; items: string[]; note: string } }
-  | { kind: 'timeline'; tag: string; title: string; rows: { at: string; text: string; state: 'act' | 'sleep' | 'wake' | 'done' }[] }
+  | { kind: 'versus'; keys: string[]; cols: { label: string; cells: string[]; ours?: boolean }[] }
+  | { kind: 'parts'; parts: { label: string; items: string[]; note: string }; whole: { label: string; items: string[]; note: string } }
+  | { kind: 'timeline'; title: string; rows: { at: string; text: string; state: 'act' | 'sleep' | 'wake' | 'done' }[] }
   | {
       kind: 'meter'
-      tag: string
       title: string
       /* The span on the bar, and where each active stretch sits on it, as a share of the span (0 to 1). */
       span: { start: string; end: string }

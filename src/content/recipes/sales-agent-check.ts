@@ -54,7 +54,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: your sales agent, daily',
+    tab: 'Your sales agent, daily',
     recipe: 'sales-agent',
     task: 'Every morning, send a shopper persona to our sales agent on WhatsApp and site chat. Ask what our bundles cost, whether they’re in stock and when they arrive, set each answer beside our store, and stop before payment.',
     targets: 'Your sales agent: WhatsApp and site chat',
@@ -71,7 +71,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Your sales agent quotes the Duo bundle at €89. Your price list says €189, and 27 chats asked about the bundle last week.',
     fix: 'In #pricing at 07:02, with the chat, the checkout and your price list side by side.',
-    ledger: 'Example run. 4 answers, 3 match your store, every chat dated.',
+    ledger: '4 answers, 3 match your store, every chat dated.',
   },
 
   steps: [

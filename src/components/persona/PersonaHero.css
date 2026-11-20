@@ -93,12 +93,6 @@
   background: var(--ob-bg-sunken);
   box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
 }
-.s-ph-chip-tag {
-  flex: none;
-  font: var(--ob-type-caption);
-  letter-spacing: var(--ob-type-caption-tracking);
-  color: var(--ob-text-2);
-}
 .s-ph-chip-code {
   min-width: 0;
   overflow-x: auto;

@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: release v2.15',
+    tab: 'Release v2.15',
     recipe: 'audit',
     task: 'After every release, send a new persona from the UK on a phone: sign up, enter the code, open every email and try our launch code. Stop before payment.',
     targets: 'your-store.example, on phone and desktop',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: 'The code your 08:00 launch email promises is turned away at checkout.',
     fix: 'In Slack at 06:10 with the screenshot. You held the 08:00 send at 06:11.',
-    ledger: 'Example run. Every step dated and screenshotted. Stopped before payment, as asked.',
+    ledger: 'Every step dated and screenshotted. Stopped before payment, as asked.',
   },
 
   steps: [

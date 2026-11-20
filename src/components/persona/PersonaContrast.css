@@ -35,10 +35,9 @@
 .s-pc-num-u { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); }
 .s-pc-num-l { grid-column: 1 / -1; margin-top: var(--ob-space-12); font: 400 15.5px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); }
 
-/* The card: a product object, under its Example tag. */
+/* The card: a product object. */
 .s-pc-fig { margin: 0; min-width: 0; display: grid; gap: var(--ob-space-8); }
 .s-pc-card { min-width: 0; border-radius: var(--ob-radius-lg); padding: clamp(20px, 3vw, 32px); }
-.s-pc-tag { justify-self: center; }
 .s-pc-card-label {
   margin: 0 0 var(--ob-space-16);
   font: 500 12.5px / 1.4 var(--ob-font-mono);

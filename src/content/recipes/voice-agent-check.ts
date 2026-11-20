@@ -54,7 +54,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: a client’s AI receptionist, daily',
+    tab: 'A client’s AI receptionist, daily',
     recipe: 'voice-agent',
     task: 'Every morning, ring Dental group’s AI receptionist as 3 new patients. Book a slot, ask a price and ask for a person, and set every answer beside their price list.',
     targets: 'Dental group’s AI receptionist, on their own number',
@@ -74,7 +74,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Dental group’s receptionist tells new patients the aligner consult is free. Their price list says £50.',
     fix: 'In Dental group’s 09:00 report, with the recording at 00:41 beside their price list.',
-    ledger: 'Example run. 3 calls, 11 of 12 answers right, every call recorded and dated.',
+    ledger: '3 calls, 11 of 12 answers right, every call recorded and dated.',
   },
 
   steps: [

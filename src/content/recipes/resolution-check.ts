@@ -54,7 +54,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: September’s bill, before you pay',
+    tab: 'September’s bill, before you pay',
     recipe: 'resolution',
     task: 'Before we pay Vendor A for September, match every resolution it billed against what actually happened, and send a persona to make the same asks as a test.',
     targets: 'Vendor A’s September bill',
@@ -74,7 +74,7 @@ export const recipe: Recipe = {
     ],
     finding: '19 of the 100 resolutions Vendor A billed in September weren’t real: $18.81 of $99, where its own terms bill only what’s solved.',
     fix: 'A dispute pack for all 19 under Vendor A’s terms 4.2, every case with its receipt. Sent to Vendor A after your OK.',
-    ledger: 'Example run. 100 billed resolutions read, every case dated.',
+    ledger: '100 billed resolutions read, every case dated.',
   },
 
   steps: [

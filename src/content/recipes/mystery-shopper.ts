@@ -156,7 +156,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Competitor A welcomes a new shopper 5 minutes sooner, with a bigger offer.',
-    line: 'Example: the same journeys at each store, by the same persona.',
+    line: 'The same journeys at each store, by the same persona.',
     cols: ['You', 'Competitor A', 'Competitor B'],
     rows: [
       { label: 'Time to welcome email', values: ['6 min', '1 min', 'None in 24 h'] },

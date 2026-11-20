@@ -10,7 +10,7 @@ import { AgentLife } from '../components/v5/AgentLife'
 import { page } from '../content/pages/home'
 
 /* Home (/), composed from content/pages/home.ts in the order its comment gives (20 Nov, the persona rewrite): the hero;
-   what is in a persona (#persona); 2 claims in the form "X, not Y"; from a sign up in minutes to months of replies
+   what is in a persona (#persona); 3 claims in the form "X, not Y"; from a sign up in minutes to months of replies
    (#how, the old Home's timeline, v5/AgentLife); recipes (#recipes); everything else a fleet needs (#fleet); for
    developers (#build); questions; the early access form (#join). No pricing section: pricing is linked from the nav
    and the footer. The nav links to #persona, #how, #recipes, #fleet, #build and #join, so those ids stay. */

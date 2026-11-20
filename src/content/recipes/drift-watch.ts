@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: the night of a vendor update',
+    tab: 'The night of a vendor update',
     recipe: 'drift',
     task: 'Every morning, have the same persona replay our 40 hardest support cases, and again within the hour of any update. Tell me which answers changed.',
     targets: 'Your support bot, run by Vendor A',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Since Vendor A’s update, 9 of your 40 cases fail. Your bot now offers 30 day refunds, free delivery and price matches you don’t give.',
     fix: 'In Slack at 00:14, with every answer before and after, ready to send to Vendor A.',
-    ledger: 'Example run. 80 replays, every answer dated.',
+    ledger: '80 replays, every answer dated.',
   },
 
   steps: [
@@ -150,7 +150,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Find the drop the night it happens.',
-    line: 'Example: Vendor A’s update, replayed 50 minutes later.',
+    line: 'Vendor A’s update, replayed 50 minutes later.',
     cols: ['By hand', 'With Drift watch'],
     rows: [
       { label: 'A vendor update', values: ['You read the release notes, if there are any', 'Your cases replayed within the hour'] },

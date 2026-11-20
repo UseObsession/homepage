@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: Competitor A’s 14 day trial',
+    tab: 'Competitor A’s 14 day trial',
     recipe: 'trial',
     task: 'Start Competitor A’s free trial as a new US user, with no card. Keep every email, prompt, limit and offer until it ends.',
     targets: 'competitor-a.example, reporting software',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: '11 emails, 4 prompts in the app and 1 offer in 14 days. Competitor A saves its 20% off for day 13.',
     fix: 'On Competitor A’s battlecard in your CRM, with every email linked.',
-    ledger: 'Example run. No rep got in touch, so the persona stayed to the last day.',
+    ledger: 'No rep got in touch, so the persona stayed to the last day.',
   },
 
   steps: [
@@ -141,7 +141,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Competitor A offers 20% off on day 13. Competitor C offers 30% off once the trial ends.',
-    line: 'Example, set to close a trial when a rep writes. Competitor B’s closed on day 6.',
+    line: 'Set to close a trial when a rep writes. Competitor B’s closed on day 6.',
     cols: ['Competitor A', 'Competitor B', 'Competitor C'],
     rows: [
       { label: 'Trial length', values: ['14 days', '14 days', '14 days'] },

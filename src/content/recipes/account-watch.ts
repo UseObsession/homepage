@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: renewals this quarter',
+    tab: 'Renewals this quarter',
     recipe: 'account-watch',
     task: 'Every morning, check what the 38 accounts renewing this quarter send a new subscriber, and their news. Put each change on the account in our CRM.',
     targets: '38 accounts, from your CRM',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Snack brand’s emails stopped and its site went down twice. Payroll SaaS is hiring 12 sales roles.',
     fix: 'Both on the account records in your CRM, each with its screenshots, and in #accounts in Slack.',
-    ledger: 'Example run. Every change dated, with screenshots.',
+    ledger: 'Every change dated, with screenshots.',
   },
 
   steps: [

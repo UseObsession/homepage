@@ -40,7 +40,6 @@ function CodeChip({ chip }: { chip: PersonaStart['chip'] }) {
   }
   return (
     <div className="s-ph-chip">
-      <span className="s-ph-chip-tag">{chip.label}</span>
       <code className="s-ph-chip-code">{chip.code}</code>
       <button type="button" className={'s-ph-chip-copy' + (copied ? ' is-copied' : '')} aria-label={chip.copy} title={chip.copy} onClick={copy}>
         <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">

@@ -39,7 +39,6 @@ export const ref: ReferencePage = {
     kind: 'log',
     title: 'northwind.example · DKIM check',
     who: 'A new subscriber’s inbox',
-    status: { tone: 'info', text: 'Example' },
     rows: [
       { time: '09:01:05', text: 'Email arrives: “Welcome to Northwind, here’s 20% off”', detail: 'From: hello@northwind.example', tone: 'info' },
       { time: '09:01:05', text: 'DKIM-Signature header read', detail: 'd=northwind.example · s=mail2026', tone: 'info' },

@@ -55,7 +55,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: your support bot, daily',
+    tab: 'Your support bot, daily',
     recipe: 'support-bot',
     task: 'Every morning, send a persona with an order to our support bot on chat, email and our portal. Ask what our support team hears most, and set each answer beside our policy pages.',
     targets: 'Your support bot: chat, email and your portal',
@@ -72,7 +72,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Chat gives a 30 day refund window where your policy says 14, and the email the portal promised never came.',
     fix: 'In #support at 07:03, the transcript beside your returns page, and the missing email flagged at 13:04.',
-    ledger: 'Example run. 20 answers, 18 match your policy, every answer and wait dated.',
+    ledger: '20 answers, 18 match your policy, every answer and wait dated.',
   },
 
   steps: [

@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 6 live ads, each morning',
+    tab: '6 live ads, each morning',
     recipe: 'adcheck',
     task: 'Every morning, open the landing page of each live ad, straight from the ad’s link, as a shopper in the ad’s country. Check it loads, the offer and price match the ad, and the product is in stock.',
     targets: 'A homeware store’s 6 live search and social ads, $1,069 a day between them',
@@ -77,7 +77,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Ad 4 spends $410 a day sending clicks to a table lamp that’s sold out.',
     fix: 'Ad 4 paused by your ads lead at 07:40. The morning the lamp is back in stock, it’s in Slack.',
-    ledger: 'Example run. Every check kept with its screenshot.',
+    ledger: 'Every check kept with its screenshot.',
   },
 
   steps: [

@@ -126,7 +126,7 @@ export const outputFormats: ViewerFormat[] = [
         { k: 'Then', v: 'Add the gap to the Clay row', branch: true },
         { k: 'Then', v: 'Your own step: open a ticket, draft the fix, brief the team', branch: true, custom: true },
       ],
-      note: 'Example workflow on the real verdict.',
+      note: 'A workflow on the real verdict.',
     },
   },
 ]

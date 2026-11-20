@@ -51,7 +51,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: a skincare competitor, week 1',
+    tab: 'A skincare competitor, week 1',
     recipe: 'competitor',
     task: 'Sign up to this competitor’s emails and texts as a new subscriber in the UK. Log every offer, price and public ad, and post what changed each Monday.',
     targets: 'skincare-competitor.example, a skincare store',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     ],
     finding: 'The competitor is leading with a free gift over £40, by text and in 9 of its 14 new ads, and cut free delivery to £35.',
     fix: 'In your Clay table and #competitors in Slack, each with its screenshot.',
-    ledger: 'Example run. Week 1: 5 emails, 2 texts, 1 price change, 14 new ads, each kept as it arrived and dated.',
+    ledger: 'Week 1: 5 emails, 2 texts, 1 price change, 14 new ads, each kept as it arrived and dated.',
   },
 
   steps: [
@@ -158,7 +158,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'A new subscriber to this competitor gets 5 emails and 2 texts in its first 7 days.',
-    line: 'Example. Every message placed by the time since sign up, so you see the sequence and its rhythm.',
+    line: 'Every message placed by the time since sign up, so you see the sequence and its rhythm.',
     cols: ['Channel', 'What arrived'],
     rows: [
       { label: '0 min', values: ['Pop up', 'Signed up'] },

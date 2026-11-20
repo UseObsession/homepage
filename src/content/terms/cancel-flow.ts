@@ -38,7 +38,6 @@ export const ref: ReferencePage = {
   art: {
     kind: 'flow',
     title: 'streamline.example · cancel',
-    status: { tone: 'info', text: 'Example' },
     steps: [
       { label: 'Manage plan', detail: 'Account settings, then a Cancel link at the foot of the page.', tone: 'info' },
       { label: 'Why are you leaving?', detail: 'A survey with 6 reasons and a free-text box.', tone: 'info' },

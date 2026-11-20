@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: your AI SDR, continuously',
+    tab: 'Your AI SDR, continuously',
     recipe: 'outbound-agent',
     task: 'Add 2 prospect personas to our AI SDR’s lists. Keep every email, text and call it sends them, reply as prospects do, and flag what breaks our rules.',
     targets: 'Your AI SDR: email, text and calls',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: '3 of 40 messages broke your rules: 30% off where your limit is 15%, a text at 03:12 and a customer you don’t have.',
     fix: 'Each flag in #sales-ops the minute it landed, and your AI SDR paused by the rule you set.',
-    ledger: 'Example run. 40 messages kept, 37 within your rules, each dated.',
+    ledger: '40 messages kept, 37 within your rules, each dated.',
   },
 
   steps: [

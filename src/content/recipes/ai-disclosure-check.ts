@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 4 channels, every morning',
+    tab: '4 channels, every morning',
     recipe: 'disclosure',
     task: 'Every morning, send a persona to our AI on chat, phone, email and text. Keep the first line, ask if it’s a person, and time the wait for one.',
     targets: 'Your AI agents: chat, phone, email and text',
@@ -72,7 +72,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Your texts don’t say they’re AI in the first message. Chat, phone and email do, and all 4 reach a person inside your targets.',
     fix: 'In #compliance in Slack that morning, with the text itself and its time.',
-    ledger: 'Example run. 4 channels checked, every event dated.',
+    ledger: '4 channels checked, every event dated.',
   },
 
   steps: [

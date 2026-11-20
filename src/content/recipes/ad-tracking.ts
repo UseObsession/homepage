@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: Friday’s new ads',
+    tab: 'Friday’s new ads',
     recipe: 'ads',
     task: 'Every morning, read the ads our 3 competitors run in public. Follow each to its page and flag any offer that undercuts us.',
     targets: 'competitor-a.example, competitor-b.example, competitor-c.example',
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Competitor A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
     fix: 'Posted to #pricing in Slack, with the ad and its page side by side.',
-    ledger: 'Example run. Every ad and page screenshotted on phone and desktop. Each page opened directly, so nobody paid for a click.',
+    ledger: 'Every ad and page screenshotted on phone and desktop. Each page opened directly, so nobody paid for a click.',
   },
 
   steps: [
@@ -135,7 +135,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Competitor A started 9 ads overnight. Competitor C’s free delivery ad has run 41 days.',
-    line: 'Example: the ads 3 competitors were running in public on Friday at 07:00.',
+    line: 'The ads 3 competitors were running in public on Friday at 07:00.',
     cols: ['Competitor', 'Running', 'Lands on', 'Offer on the page'],
     rows: [
       { label: 'Free gift over £40', values: ['Competitor A', '1 day', 'Offers page', 'GIFT40, gift set at £56'] },

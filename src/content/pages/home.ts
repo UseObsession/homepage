@@ -8,17 +8,18 @@ import type { Page } from '../types'
    (pages/Home.tsx):
    1 the hero: the contrast with Muse and Grok Bot, the button, the example line of code and 3 facts >
    2 #persona: what is in a persona, as a stacked slab diagram >
-   3 2 claims in the form "X, not Y", each with 1 big true number and its card, flipping sides >
+   3 3 claims in the form "X, not Y", each with 1 big true number and its card, flipping sides >
    4 #how: from a sign up in minutes to months of replies, the old Home's timeline (components/v5/AgentLife) >
    5 #recipes: mystery shopping as the big tile, 6 more recipes and your own task > 6 #fleet: everything else a fleet
    needs > 7 #build: the code, and where the event log goes > 8 questions > 9 #join: the form.
    Sell the whole vision (James, 20 Nov: "we need to sell the whole vision"): the page describes Obsession as designed,
    never as it runs today. No "on request", no country lists, no build-state caveats. What stays: numbers are the
-   founders' (pricing) or true by design, never invented customers, counts, logos or timings; every persona and company
-   on the cards is invented and labelled Example (.example addresses, the phone number in Ofcom's drama range).
+   founders' (pricing) or Obsession's own figures as designed (James, 20 Nov: 50 ms to wake), never invented customers,
+   logos or quotes; personas and companies on the cards are invented, at .example addresses, with the phone number in
+   Ofcom's drama range, and carry no "Example" tag (James, 20 Nov).
    Never name Inkbox, AgentMail or AgentPhone; never "AI customers". */
 
-/* The developer section's code: spawn, run, wait, read the event log. Labelled as an example on the page. */
+/* The developer section's code: spawn, run, wait, read the event log. */
 const BUILD_CODE = `import { Obsession } from "obsession"
 
 const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
@@ -71,9 +72,9 @@ export const page: Page = {
     capture: { ...access, source: 'home-hero' },
     /* The small line under the buttons. */
     note: 'Run one, or a fleet of thousands.',
-    /* 3 facts true by design. No timing figure until one is measured. */
+    /* 3 facts, as designed. 50 ms is James's figure (20 Nov), after rivet.dev's "4.99 ms p99 cold start". */
     proof: [
-      { value: '1 call', label: 'spawns a persona with every part' },
+      { value: '50 ms', label: 'to wake on a new email, text or call' },
       { value: 'Free', label: 'while it waits for mail and texts' },
       { value: 'Any country', label: 'for its home connection and number' },
     ],
@@ -82,13 +83,13 @@ export const page: Page = {
 
   personaStart: {
     primary: { label: 'Spawn a persona', to: '#join' },
-    chip: { label: 'Example', code: 'obsession.personas.create({ country: "UK" })', copy: 'Copy the example', copied: 'Copied' },
+    chip: { code: 'obsession.personas.create({ country: "UK" })', copy: 'Copy the code', copied: 'Copied' },
   },
 
   /* The share image's card (scripts/og.mjs): 1 example persona's first 2 days, Ruth Hallam of the anatomy diagram. */
   shareFindings: {
     title: 'Ruth Hallam, Manchester',
-    aside: 'Example',
+    aside: 'First 2 days',
     rows: [
       { company: 'Text', finding: 'A verification code', when: 'Day 0' },
       { company: 'Email', finding: '“Still thinking it over?”', when: 'Day 1' },
@@ -110,8 +111,8 @@ export const page: Page = {
     ],
   },
 
-  /* "X, not Y" (rivet.dev's pattern): 1 claim each, 1 big true number, a card on the other side. The meter is 1
-     example persona: 8 active minutes on day 0 and 2 wakes on day 1 make 10 minutes, $1.00. */
+  /* "X, not Y" (rivet.dev's pattern): 1 claim each, 1 big number, a card on the other side. The wake and the meter are
+     the same persona, Ruth Hallam: 8 active minutes on day 0 and 2 wakes on day 1 make 10 minutes, $1.00. */
   personaContrasts: [
     {
       heading: 'The finished agent, not the parts.',
@@ -121,13 +122,30 @@ export const page: Page = {
       label: 'spawns a persona with every part.',
       art: {
         kind: 'parts',
-        tag: 'Example',
         parts: { label: 'Parts', items: ['An inbox', 'A phone number', 'A computer'], note: 'You still build the agent, the waiting and the event log.' },
         whole: {
           label: 'A persona',
           items: ['Who it is', 'Its inbox', 'Its phone number', 'A home connection', 'Its own browser', 'Its event log'],
           note: 'Assembled, and kept running by us.',
         },
+      },
+    },
+    {
+      heading: 'Wakes in milliseconds, not minutes.',
+      line: 'When an email, text or call lands, the persona is already awake and reading it. Its inbox, cookies and browser state are kept, so there’s nothing to boot.',
+      value: '50',
+      unit: 'ms',
+      label: 'to wake on a new email, text or call.',
+      art: {
+        kind: 'timeline',
+        title: 'Ruth Hallam, day 1',
+        rows: [
+          { at: '18:39:59.000', text: 'Asleep. Its inbox, cookies and browser state are kept.', state: 'sleep' },
+          { at: '18:40:00.000', text: 'A text lands: 10% off, today only', state: 'wake' },
+          { at: '18:40:00.050', text: 'Awake, reading the text as Ruth', state: 'act' },
+          { at: '18:40:03.200', text: 'Opens the offer link, signed in', state: 'act' },
+          { at: '18:41:00.000', text: 'Logged, with screenshots. Back to sleep.', state: 'done' },
+        ],
       },
     },
     {
@@ -138,7 +156,6 @@ export const page: Page = {
       label: 'billed while it waits.',
       art: {
         kind: 'meter',
-        tag: 'Example',
         title: '2 days of 1 persona, billed',
         span: { start: 'Day 0, 09:12', end: 'Day 2, 09:20' },
         /* 09:12 on day 0, 10:02 and 18:40 on day 1, as shares of the span (2,888 minutes). */
@@ -295,7 +312,7 @@ export const page: Page = {
     heading: 'One call spawns a persona. Your code gets its event log.',
     line: 'Spawn, run and read from your own code or agent. Each new email, text and page reaches your webhook as it lands.',
     cta: { label: 'For developers', to: '/developers' },
-    codeLabel: 'Example code',
+    codeLabel: 'persona.ts',
     code: BUILD_CODE,
     outputs: [
       { title: 'API and MCP', line: 'Spawn personas, start runs and read event logs from your code, or as tools in your own agent.' },

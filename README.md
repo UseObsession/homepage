@@ -68,4 +68,4 @@ Cloudflare Workers static assets on the free plan, configured by `wrangler.jsonc
 
 ## Copy rules
 
-`docs/REBUILD.md`, "Copy": numerals, British spelling, contractions, no em or en dashes, no hyphenated compounds where a plain word works, headings that make a claim, no money promises, no guarantees, no sources on the page. Every example that isn't from a real run says "Example". Run `node ~/.claude/skills/no-meta-callouts/scan.mjs dist/llms-full.txt` on the words a reader sees.
+`docs/REBUILD.md`, "Copy": numerals, British spelling, contractions, no em or en dashes, no hyphenated compounds where a plain word works, headings that make a claim, no money promises, no guarantees, no sources on the page. Invented companies and people use `.example` addresses; illustrations, runs and code carry no "Example" tag, and the product is described as designed, its own figures included (James, 20 Nov 2026). Run `node ~/.claude/skills/no-meta-callouts/scan.mjs dist/llms-full.txt` on the words a reader sees.

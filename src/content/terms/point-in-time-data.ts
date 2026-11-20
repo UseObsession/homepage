@@ -40,7 +40,6 @@ export const ref: ReferencePage = {
     kind: 'log',
     title: 'northwind.example · price by day',
     who: 'A member account, checked daily',
-    status: { tone: 'info', text: 'Example' },
     rows: [
       { time: '3 Mar', text: 'Signed-in price £24', detail: 'Public page shows £29', tone: 'info' },
       { time: '10 Mar', text: 'Email: “Members’ week, 30% off”', detail: 'Signed-in price £16.80 until 13 Mar', tone: 'ok' },

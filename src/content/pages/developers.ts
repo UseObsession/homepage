@@ -6,12 +6,12 @@ import type { OpenSource, Page, Ways } from '../types'
    the API, MCP (their own agent, in any MCP client, spawns personas and reads event logs as tools) and the SDKs. The code
    matches Home's (pages/home.ts, BUILD_CODE): personas.create({ country, kind }), persona.run({ site, task, wait }),
    run.notify(url), run.events(). The calls Home doesn't show (a fleet, a schedule, a persona held for months) are
-   examples, labelled Example. Unlike the buyer pages, this page talks in minutes: $0.10 an active minute, waiting is
+   written as designed. Unlike the buyer pages, this page talks in minutes: $0.10 an active minute, waiting is
    free, linked to /pricing. The story (pages/Developers.tsx): the hero, the persona at work > what you'd build yourself
    > the 4 ways in and the 4 calls > the integrations (the nav links #integrations, #baserow, #supabase, #webhooks) > the
    code and the webhook > what developers build on personas > open source, short > questions > API access. A persona is
-   whoever the job needs (a new user, a caller, a lead, a trial user), never defined as a customer. Every example says
-   Example and every address ends in .example. The ways in and open source are written here, not in shared5.ts: only
+   whoever the job needs (a new user, a caller, a lead, a trial user), never defined as a customer. Every invented address ends
+   in .example, with no "Example" tag (James, 20 Nov). The ways in and open source are written here, not in shared5.ts: only
    this page shows them. */
 
 const access = {
@@ -21,8 +21,7 @@ const access = {
 } as const
 
 /* The code section: Home's 4 calls, then the webhook's JSON for the email Home's example persona wakes on (day 1, 10:02). */
-const CODE = `// Example
-import { Obsession } from "obsession"
+const CODE = `import { Obsession } from "obsession"
 
 const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
@@ -45,7 +44,7 @@ await run.notify("https://your-app.example/hooks/obsession")
 // Event log: everything that came back, dated, with screenshots
 const events = await run.events()
 
-// Example: POST https://your-app.example/hooks/obsession
+// POST https://your-app.example/hooks/obsession
 {
   "event": "run.email",
   "persona": "Ruth Hallam, first-time buyer, UK",
@@ -75,7 +74,7 @@ const ways: Ways = {
         'Germany: verified in 40 seconds, but the welcome email links to an English page.',
         'Japan: onboarding finished in 6 minutes, and the day 1 email arrived on time.',
       ],
-      proof: 'Example event log: 3 personas, 21 pages, 4 emails and 3 texts, each with a screenshot',
+      proof: 'An event log: 3 personas, 21 pages, 4 emails and 3 texts, each with a screenshot',
     },
     {
       kind: 'platform',
@@ -98,7 +97,7 @@ const ways: Ways = {
       line: 'A plain file your agent or scheduler runs on a schedule. The persona keeps its name, inbox and number, so each site sees the same trial user, week after week.',
       who: 'For RevOps, GTM engineers and QA teams.',
       file: 'playbooks/competitor-trials.md',
-      code: `# Example: competitor trials
+      code: `# Competitor trials
 # Runs every Monday at 08:00, with the same persona
 
 1. persona = obsession.personas.get("trial-user-us")
@@ -121,7 +120,7 @@ const ways: Ways = {
       line: 'TypeScript and Python SDKs on a plain HTTP API, with webhooks. Every run has a token cap, and every key a monthly spend limit you set.',
       who: 'For developers and agent builders.',
       file: 'fleet.py',
-      code: `# Example: 200 new users, every Monday
+      code: `# 200 new users, every Monday
 import os
 from obsession import Obsession
 

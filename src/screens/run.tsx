@@ -32,7 +32,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
         <div className="ax-main">
           <header className="ax-h rn-h ax-fade">
             <h2>Store sign-up and checkout</h2>
-            <span className="ax-meta">Candles · Example</span>
+            <span className="ax-meta">Candles</span>
             <span className="rn-idp"><span className="rn-ag"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession agent for {ws.org}</span>
             <span className="ax-btn ghost rn-sh" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 9.5v-7M5.25 5.25 8 2.5l2.75 2.75M3.5 8.5v4.75h9V8.5" /></svg></span>
           </header>

@@ -53,7 +53,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 142 brands, from Clay',
+    tab: '142 brands, from Clay',
     recipe: 'prospect',
     task: 'Opt in to texts at the 142 brands in our Clay table as a UK subscriber. Tell me which never send one.',
     targets: '142 consumer brands, from a Clay table',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: '54 of 142 brands took a text opt in and never sent a text in 14 days.',
     fix: '54 event log links and a finding column written back to Clay. Your team writes each first line.',
-    ledger: 'Example run. Each brand’s event log is dated, and anyone with the link can open it.',
+    ledger: 'Each brand’s event log is dated, and anyone with the link can open it.',
   },
 
   steps: [

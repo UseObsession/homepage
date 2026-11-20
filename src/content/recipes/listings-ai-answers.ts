@@ -52,7 +52,7 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: Leeds, 3 Mondays',
+    tab: 'Leeds, 3 Mondays',
     recipe: 'listings',
     task: 'Every Monday, send a persona in each of our 3 towns to ask 4 AI assistants what buyers ask, and check every listing. Trace each wrong fact to its source, and ask again until the answer changes.',
     targets: '3 locations, their listings and 4 AI assistants',
@@ -70,7 +70,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Assistant C gave Leeds the wrong hours because Directory B did. 4 of 6 Leeds listings were wrong or missing.',
     fix: 'Each wrong fact in your Monday email with the page it came from, closed the week the answer changed.',
-    ledger: 'Example run. Every answer kept with the page it cites.',
+    ledger: 'Every answer kept with the page it cites.',
   },
 
   steps: [
@@ -151,7 +151,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Every wrong fact traced to its source, and asked again until the answer changes.',
-    line: 'Example: the Leeds location.',
+    line: 'The Leeds location.',
     cols: ['First Monday', '3 Mondays on'],
     rows: [
       { label: 'Maps', values: ['Wrong hours', 'Correct'] },
