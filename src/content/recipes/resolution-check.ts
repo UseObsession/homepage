@@ -124,7 +124,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every resolution that wasn’t real comes back with its event log to challenge it.',
+    heading: 'Every resolution that wasn’t real comes back with its events in your event log to challenge it.',
     items: [
       { format: 'A line per resolution', line: 'Real or not, beside the payment, the ticket or the order.' },
       { format: 'The bot’s own words', line: 'What it promised, word for word and timed, beside what happened.' },
@@ -185,7 +185,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will our vendor credit what we challenge?',
-        a: 'Resolution check gives you the event log and a dispute pack under your vendor’s own terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
+        a: 'Resolution check gives you the events in your event log and a dispute pack under your vendor’s own terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
       },
       {
         q: 'Can Resolution check read a competitor’s bot?',

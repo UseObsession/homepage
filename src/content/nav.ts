@@ -1,5 +1,5 @@
 /* The navigation's words and structure (components/Nav). Since 21 Nov it says what Home says: inboxes, phone numbers,
-   browsers and sandboxes for AI agents through one API, plus recipes for teams who don't write code, with sample data as
+   browsers and sandboxes for AI agents through one API, plus recipes, ours or your own, with sample data as
    the second button and "Start building" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
@@ -120,8 +120,8 @@ const menus = {
       { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
       { label: 'Browser', line: 'A cloud browser that keeps its logins', to: '/browser', icon: 'browser' },
       { label: 'Sandbox', line: 'A computer to run code when a task needs one', to: '/sandbox', icon: 'sandbox' },
-      { label: 'Personas', line: 'Every piece under one identity, with an event log', to: '/personas', icon: 'users' },
-      { label: 'Recipes', line: 'Jobs we run for you, with no code', to: '/recipes', icon: 'recipes' },
+      { label: 'Personas', line: 'Every piece under one identity', to: '/personas', icon: 'users' },
+      { label: 'Recipes', line: 'Jobs ready to run, or your own, beside the pieces', to: '/recipes', icon: 'recipes' },
       { label: 'API and MCP', line: 'One API for every piece, and MCP for your agent', to: '/developers', icon: 'api' },
       { label: 'Pricing', line: 'Each piece priced on its own', to: '/pricing', icon: 'tag' },
     ] satisfies NavTool[],
@@ -131,7 +131,7 @@ const menus = {
         { label: 'Clay', line: 'Each event on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
         { label: 'Baserow', line: 'A new row creates an inbox and a number', to: '/developers#baserow', icon: 'table' },
         { label: 'Supabase', line: 'Every event in your own table', to: '/developers#supabase', icon: 'database' },
-        { label: 'Webhooks', line: 'Each email, text and page as it lands', to: '/developers#webhooks', icon: 'webhook' },
+        { label: 'Webhooks and MCP', line: 'Every event from your event log, as it lands', to: '/developers#webhooks', icon: 'webhook' },
       ] satisfies NavTool[],
       all: { label: 'All integrations', to: '/developers#integrations' } satisfies NavPage,
     },
@@ -172,7 +172,7 @@ const menus = {
     label: 'Resources',
     button: 'Resources menu',
     items: [
-      { label: 'Sample data', line: 'One real store’s event log, end to end', to: '/sample-output' },
+      { label: 'Sample data', line: 'One real store run, every event end to end', to: '/sample-output' },
       { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
       ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
       { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
@@ -214,9 +214,9 @@ export const nav = {
     to: '/recipes',
     button: 'Recipes menu',
     all: { label: 'Browse all recipes', to: '/recipes' } satisfies NavPage,
-    /* The featured card: the 1 real event log, the sample data. */
+    /* The featured card: the 1 real run, the sample data. */
     feature: {
-      label: 'See one real event log',
+      label: 'See one real run',
       line: 'A real store’s 4 sign-ups and baskets, and what it sent in the 48 hours after.',
       action: 'See sample data',
       to: '/sample-output',
@@ -232,7 +232,7 @@ export const nav = {
     button: 'Resources menu',
     run: {
       kicker: 'Sample data',
-      label: 'One real store’s event log',
+      label: 'One real store run',
       to: '/sample-output',
       line: 'We joined a real store 4 times. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x

@@ -1,4 +1,4 @@
-/* The event log (PieceLog.tsx): an ink chapter, the claim beside the card from 1080px (5 columns to 7). The card is a
+/* The event log card (PieceLog.tsx): an ink chapter, the claim beside the card from 1080px (5 columns to 7). The card is a
    product object (styles/tones.css .ob-object): its head names the persona, then 1 row per event on a 4 column grid
    (when, kind, what happened, the screenshot mark). On a phone each row puts its time and kind over the text. */
 

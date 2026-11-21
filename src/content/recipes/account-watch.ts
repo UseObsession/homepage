@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   name: 'Account watch',
   group: 'Watch other companies',
   line: 'A persona signs up at each company you sell to and dates what changes, on the account’s record in your CRM.',
-  gets: 'Every morning: the accounts whose emails stopped, links broke or offers changed, each with its event log.',
+  gets: 'Every morning: the accounts whose emails stopped, links broke or offers changed, each with its events in your event log.',
   kit: [
     'A persona signed up at each company you sell to',
     'Its own inbox and number at each',
@@ -117,7 +117,7 @@ export const recipe: Recipe = {
       { format: 'Your CRM', line: 'Each change on the account’s record, with its screenshots.' },
       { format: 'Slack', line: 'A 07:00 post: the accounts where something changed.' },
       { format: 'A table', line: 'Every account and every change, day by day.' },
-      { format: 'Webhook', line: 'Each change as it lands, with its event log.' },
+      { format: 'Webhook', line: 'Each change as it lands, from your event log.' },
       { format: 'API and MCP', line: 'Ask your AI agent what changed at an account before a call.' },
     ],
   },
@@ -134,7 +134,7 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'sales', line: 'Account managers see what changed at each account before the renewal call.' },
     { audience: 'founders', line: 'Know which accounts are changing while there’s time to call.' },
-    { audience: 'developers', line: 'Each account’s changes, with their event logs, in your own CRM or app through the API.' },
+    { audience: 'developers', line: 'Each account’s changes, from your event log, in your own CRM or app through the API.' },
   ],
 
   table: {

@@ -141,7 +141,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'sales', line: 'Know every claim and discount your AI SDR makes before a prospect quotes it back to you.' },
-    { audience: 'agencies', line: 'An event log of the outbound you run for each client, every message kept.' },
+    { audience: 'agencies', line: 'The outbound you run for each client, every message kept in your event log.' },
     { audience: 'founders', line: 'Let an AI SDR write for you without reading every email it sends.' },
     { audience: 'developers', line: 'Spawn prospect personas from your code, and read every message after each prompt or sequence change.' },
   ],
@@ -175,7 +175,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'Whenever it talks to a person, such as a rep who joins the thread or picks up a call. With your AI SDR, the event log keeps both sides word for word.',
+        a: 'Whenever it talks to a person, such as a rep who joins the thread or picks up a call. With your AI SDR, your event log keeps both sides word for word.',
       },
       {
         q: 'Will the personas skew our numbers?',

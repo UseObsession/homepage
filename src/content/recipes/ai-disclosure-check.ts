@@ -14,13 +14,13 @@ export const recipe: Recipe = {
   name: 'AI disclosure check',
   group: 'Check your AI agents',
   line: 'What AI agents tell people about being AI, on chat, phone, email and text, asked by a persona and dated every day.',
-  gets: 'A dated event log per channel, every day: the first line, the answer when asked, and the wait for a person.',
+  gets: 'Every channel’s events in your event log, every day: the first line, the answer when asked, and the wait for a person.',
   kit: [
     'A persona you define, with its own inbox and number',
     'An account on your portal, if you give one',
     'Every channel the agent answers on',
     'The rules where you sell, as checks you approve',
-    'An event log filed every day, per channel',
+    'Every channel’s events in your event log, daily',
     'Every call recorded, with its transcript',
   ],
 
@@ -58,7 +58,7 @@ export const recipe: Recipe = {
     targets: 'Your AI agents: chat, phone, email and text',
     journey: ['Start a conversation', 'Keep the first line', 'Ask “Am I talking to a person?”', 'Time the wait for one'],
     schedule: 'Daily at 07:00',
-    report: 'A dated event log per channel, every day',
+    report: 'Dated events per channel in your event log, every day',
     kit: ['Persona · UK', '1 inbox', '1 phone number', 'Every call recorded'],
     events: [
       { time: 'Sat 07:00', text: 'Chat: “I’m an AI assistant for Your company.” Asked if it’s a person: “No, I’m an AI.” A person in 1 minute 52 seconds.' },
@@ -89,7 +89,7 @@ export const recipe: Recipe = {
       line: 'It keeps the first line on every channel, asks if it’s talking to a person, and times the wait for one. When a person takes over, it tells them it’s an AI.',
     },
     {
-      title: 'An event log lands every day',
+      title: 'Events land in your event log every day',
       line: 'Dated, per channel, in Slack, a PDF or from the API. A channel that fails is flagged that morning.',
     },
   ],
@@ -124,17 +124,17 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every channel, a dated event log every morning.',
+    heading: 'Every channel, dated in your event log every morning.',
     items: [
       {
-        format: 'An event log per channel',
+        format: 'Events per channel',
         line: 'The first line, the answer to “Am I talking to a person?” and the wait for one, dated.',
       },
       { format: 'The full exchange', line: 'Every call recorded, every chat, email and text kept, timed, with screenshots.' },
-      { format: 'A calendar of event logs', line: 'Every day of the year, by channel, ready for whoever asks.' },
+      { format: 'A calendar from your event log', line: 'Every day of the year, by channel, ready for whoever asks.' },
       { format: 'What changed', line: 'The morning a channel stops saying it’s AI, or a person takes longer than your target.' },
       { format: 'A PDF to share', line: 'For legal, compliance, your insurer or your client.' },
-      { format: 'Slack, a table or the API', line: 'Each event log where your team already looks.' },
+      { format: 'Slack, a table or the API', line: 'Each day’s events where your team already looks.' },
     ],
   },
 
@@ -149,27 +149,27 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, with an event log for every day.' },
-    { audience: 'agencies', line: 'A disclosure event log for every agent you run for a client.' },
+    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, with every day in your event log.' },
+    { audience: 'agencies', line: 'A daily disclosure check in your event log for every agent you run for a client.' },
     { audience: 'marketing', line: 'Check the texts and emails your AI sends say they’re AI from the first line.' },
     { audience: 'developers', line: 'Run the checks from your code or agent after every prompt change.' },
   ],
 
   table: {
-    heading: 'A daily check leaves a dated event log for every day of the year.',
+    heading: 'A daily check leaves dated events in your event log for every day of the year.',
     line: '4 channels checked every morning is 1,460 events a year, each with the first line, the answer when asked and the wait for a person.',
     cols: ['By hand', 'With a daily check'],
     rows: [
-      { label: 'What it says at first contact', values: ['A screenshot from launch day', 'A dated event log every day, by channel'] },
+      { label: 'What it says at first contact', values: ['A screenshot from launch day', 'Dated events every day, by channel'] },
       { label: 'A channel stops saying it', values: ['Found when someone complains', 'Found that morning'] },
       { label: '“Am I talking to a person?”', values: ['Never asked', 'Asked and answered, every day'] },
       { label: 'Time to a person', values: ['A guess', 'Timed against your target'] },
-      { label: 'When legal asks', values: ['A hunt through old screenshots', 'Every day’s event log in 1 place'] },
+      { label: 'When legal asks', values: ['A hunt through old screenshots', 'Every day’s events in 1 event log'] },
     ],
   },
 
   faq: {
-    heading: 'The event log shows whether your agent says it’s AI, every day.',
+    heading: 'Your event log shows whether your agent says it’s AI, every day.',
     items: [
       {
         q: 'How do we test whether our chatbot says it’s AI?',
@@ -185,19 +185,19 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'It tells a person it’s an AI when it talks to one, such as whoever picks up after a handoff. With your AI agent, the event log keeps both sides word for word.',
+        a: 'It tells a person it’s an AI when it talks to one, such as whoever picks up after a handoff. With your AI agent, your event log keeps both sides word for word.',
       },
       {
         q: 'Can it cover other companies’ agents?',
         a: 'Yes: any chat, phone line or inbox a person can reach. A client’s, with their agreement.',
       },
-      { q: 'Is a passed check a guarantee?', a: 'No. It is a dated event log of what the agent said on each check.' },
+      { q: 'Is a passed check a guarantee?', a: 'No. It is a dated event in your event log, showing what the agent said on each check.' },
     ],
   },
 
   final: {
-    heading: 'Keep a dated event log of what your AI tells people.',
-    sub: 'Tell us which agents to ask and who the persona should be. We’ll set up your first event log with you.',
+    heading: 'Keep every word your AI tells people, dated, in your event log.',
+    sub: 'Tell us which agents to ask and who the persona should be. We’ll set up your first check with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-disclosure-final',

@@ -57,6 +57,8 @@ export const sandbox: PiecePage = {
     ],
   },
 
+  events: ['sandbox.finished'],
+
   price: {
     heading: 'A sandbox is billed only while it works.',
     line: 'Pay for the processor time and memory it uses, on the same bill as every other piece.',
@@ -70,7 +72,7 @@ export const sandbox: PiecePage = {
       { piece: 'phone', line: 'Turn call transcripts into summaries or tickets.' },
       { piece: 'messaging', line: 'Reply on WhatsApp or Slack with a chart your code made.' },
       { piece: 'browser', line: 'Clean and check the files the browser downloads.' },
-      { piece: 'personas', line: 'A persona starts a sandbox only for a task that runs code, and the run lands in its event log.' },
+      { piece: 'personas', line: 'A persona starts a sandbox only for a task that runs code, and the run lands in your event log.' },
     ],
   },
 

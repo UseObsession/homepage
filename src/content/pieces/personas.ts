@@ -5,13 +5,13 @@ import type { PiecePage } from './types'
 /* Personas (/personas), 21 Nov 2026: the bundle, never the headline of the site. A persona puts the other pieces under one
    identity (an inbox, a number, messaging channels, a browser profile, and a sandbox only when a task needs one) and lives
    on our actor runtime: it is free while it waits, a new email, text or call wakes it in 50 ms without starting a machine
-   (James's figure, as designed), and it keeps an event log of every page, email, text and call, dated, with screenshots.
-   "Event log" is the name for what comes back, never "record". A persona is an identity an agent acts under, never
+   (James's figure, as designed), and every page, email, text and call it handles lands in the account's event log, dated,
+   with screenshots. "The event log" is where every event lands (1 per account, never "record"). A persona is an identity an agent acts under, never
    defined as a customer. The persona on the card, its site and its numbers are invented (.example addresses, the 555 01XX
    range kept for fiction). Prices are read from prices.ts, never retyped. */
 
 const sub =
-  'A persona from Obsession puts the pieces an AI agent needs under one identity: its own inbox, phone number, messaging channels and browser profile, with a sandbox when a task needs one. It’s free while it waits, wakes in 50 ms when a message arrives, and keeps an event log of everything that happens.'
+  'A persona from Obsession puts the pieces an AI agent needs under one identity: its own inbox, phone number, messaging channels and browser profile, with a sandbox when a task needs one. It’s free while it waits, wakes in 50 ms when a message arrives, and every event lands in your event log.'
 
 const code = `import { Obsession } from "obsession"
 
@@ -30,8 +30,8 @@ persona.on("email.received", async (email) => {
   // with no machine to start
 })
 
-// The event log: every page, email, text and call, dated, with screenshots
-const events = await persona.events()`
+// Every page, email, text and call, dated, with screenshots
+const { events } = await obsession.events.list({ persona: persona.id })`
 
 export const personas: PiecePage = {
   id: 'personas',
@@ -67,9 +67,11 @@ export const personas: PiecePage = {
     ],
   },
 
+  events: ['email.received', 'sms.received', 'call.received', 'message.received', 'page.visited', 'sandbox.finished'],
+
   log: {
-    heading: 'Every event comes back dated, with screenshots.',
-    line: 'The event log holds every page the persona visited and every email, text and call it got, in order. Read it through the API, or have each event posted to your webhook as it happens.',
+    heading: 'Every event lands in your event log, dated, with screenshots.',
+    line: 'Your event log holds every page the persona visited and every email, text and call it got, in order. Read its events through the API, or subscribe once and get each one at your webhook as it happens.',
     who: { name: 'Dana Whitfield', lines: ['dana.whitfield@inbox.example', '+1 202 555 0143', 'US home connection'] },
     rows: [
       { at: 'Mon 09:14', kind: 'Page', text: 'Signed up at larkfield.example', shot: true },
@@ -105,15 +107,15 @@ export const personas: PiecePage = {
     items: [
       {
         q: 'What is a persona for AI agents?',
-        a: 'An identity your agent acts under, with its own inbox, phone number, messaging channels and browser profile, made in one call. It waits for free, wakes in 50 ms when something arrives, and keeps an event log of everything it did and got.',
+        a: 'An identity your agent acts under, with its own inbox, phone number, messaging channels and browser profile, made in one call. It waits for free, wakes in 50 ms when something arrives, and everything it does and gets lands in your event log.',
       },
       {
         q: 'How can a persona be free while it waits?',
         a: 'Our runtime keeps each persona as an actor: its state is stored, and no machine runs while nothing happens, so there is nothing to bill. When an email, text or call arrives, the runtime wakes it in 50 ms and your handler runs.',
       },
       {
-        q: 'What is in the event log?',
-        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages. Read it with persona.events(), or have each event posted to your webhook. The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
+        q: 'What lands in the event log?',
+        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages. Your event log holds the events from every other piece and recipe too, in order, and nothing in it is changed or deleted. Read them with obsession.events.list(), or subscribe once with obsession.events.subscribe() and get each one at your webhook. The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
       },
       {
         q: 'Do I need a persona to use the other pieces?',

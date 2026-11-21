@@ -88,7 +88,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'Asked again until it changes',
-      line: 'Every Monday, so the event log shows the day each answer turns right, with the before and after.',
+      line: 'Every Monday, so your event log shows the day each answer turns right, with the before and after.',
     },
   ],
 

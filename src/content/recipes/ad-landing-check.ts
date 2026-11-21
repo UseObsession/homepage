@@ -149,7 +149,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'marketing', line: 'Every ad sending clicks to a broken, wrong or sold out page, the same morning.' },
-    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with an event log of every page that failed.' },
+    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with every page that failed in your event log.' },
     { audience: 'founders', line: 'Running your own ads? Know each one lands on a page that can sell.' },
     { audience: 'developers', line: 'Run it through the API after every site release, and get each failing ad by webhook.' },
   ],

@@ -25,7 +25,7 @@ await number.sms({
 })
 
 // Texts and calls that come in reach your webhook
-await obsession.webhooks.create({
+await obsession.events.subscribe({
   url: "https://your-app.example/hooks/phone",
   events: ["sms.received", "call.received"],
 })`
@@ -64,6 +64,8 @@ export const phone: PiecePage = {
     ],
   },
 
+  events: ['sms.received', 'call.received', 'call.ended'],
+
   price: {
     heading: 'A number, its texts and its minutes, each priced on its own.',
     line: 'Hold a number for as long as the job runs, and pay for its texts and its minutes on the same bill as every other piece.',
@@ -77,7 +79,7 @@ export const phone: PiecePage = {
       { piece: 'messaging', line: 'Move the conversation to iMessage or WhatsApp when the person would rather chat there.' },
       { piece: 'browser', line: 'Sign up in the browser and finish the text check on the agent’s own number.' },
       { piece: 'sandbox', line: 'Turn call transcripts into summaries or tickets with code that runs only when needed.' },
-      { piece: 'personas', line: 'Give the number a name, an inbox and a browser, with every text and call in one event log.' },
+      { piece: 'personas', line: 'Give the number a name, an inbox and a browser, with every text and call in your event log.' },
     ],
   },
 

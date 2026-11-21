@@ -4,7 +4,7 @@ import type { Recipe } from '../types'
    20 Nov 2026 to match Home's tile). The persona version (20 Nov, James): personas you define shop your store, or a
    client's with their OK, as first-time shoppers. They sign up, browse, fill a basket and leave at checkout before
    payment (or pay with your own card if you say so), wait 48 hours by default, wake on every email and text, and bring
-   back the event log. It carries the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body
+   back every event to your event log. It carries the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body
    Care Gift Set left at 02:57 and a £21 deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0
    reminders, browse 3 messages, welcome 2 (too few to call), 15 screenshots and 5 messages kept. No signature claimed.
    The comparison table is an example. */
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
     targets: 'Brand G, a skincare store, name hidden',
     journey: ['Sign up for emails', 'Browse and leave', 'Leave a basket', 'Leave at checkout, before payment'],
     schedule: 'Once, 22 to 24 September 2026',
-    report: 'The event log: every screenshot and message, timed',
+    report: 'Every screenshot and message in your event log, timed',
     kit: ['4 journeys, 1 persona each', '4 inboxes, 1 per journey', 'From the UK', '48 hour watch'],
     events: [
       { time: '22 Sep, 02:57', text: 'A £40 Body Care Gift Set left in the basket.' },
@@ -69,7 +69,7 @@ export const recipe: Recipe = {
       { time: '24 Sep, 03:11', text: '48 hours on. No reminder for the £21 checkout.' },
     ],
     finding: 'A £40 basket and a £21 checkout, both left on 22 Sep. No reminder reached either in 48 hours.',
-    fix: 'Both silences in the event log, each with its inbox, the hours it was watched and the screenshots.',
+    fix: 'Both silences in your event log, each with its inbox, the hours it was watched and the screenshots.',
     ledger: 'Real run, September 2026. Store name hidden. 15 screenshots and 5 messages kept.',
   },
 
@@ -88,7 +88,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'It waits, and wakes on every email',
-      line: 'It sleeps 48 hours by default, or as long as you set, so a reminder that never comes is in the event log too.',
+      line: 'It sleeps 48 hours by default, or as long as you set, so a reminder that never comes is in your event log too.',
     },
   ],
 
@@ -117,7 +117,7 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Before payment',
-          line: 'By default. Give it your own payment card and it completes the order, so the confirmation joins the event log.',
+          line: 'By default. Give it your own payment card and it completes the order, so the confirmation joins your event log.',
         },
         { title: 'At an ID check', line: 'It hands the step to a person, then carries on.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
@@ -126,12 +126,12 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every journey’s event log, where you already work.',
+    heading: 'Every journey lands in your event log and the tools you already use.',
     items: [
       { format: 'The timeline', line: 'Every step and message with its time, from the sign up to the last email.' },
       { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
       { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
-      { format: 'API and MCP', line: 'Your code, or your own agent, spawns shoppers and reads each event log as tools.' },
+      { format: 'API and MCP', line: 'Your code, or your own agent, spawns shoppers and reads your event log as a tool.' },
       { format: 'A table', line: 'A row per journey in Clay, Baserow or Supabase.' },
       { format: 'A webhook', line: 'Each new email and text the moment it lands.' },
     ],
@@ -150,7 +150,7 @@ export const recipe: Recipe = {
     { audience: 'agencies', line: 'Shop every client’s store with their OK, and show them the reminder that never came.' },
     { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, beside your rivals’.' },
     { audience: 'founders', line: 'See what your store sends a new shopper, and what it never sends.' },
-    { audience: 'sales', line: 'Shop an account’s store with their OK, and bring the event log to your next review.' },
+    { audience: 'sales', line: 'Shop an account’s store with their OK, and bring every dated event from your event log to your next review.' },
     { audience: 'developers', line: 'Spawn mystery shoppers from your code, and read every email and text as it lands.' },
   ],
 
@@ -183,20 +183,20 @@ export const recipe: Recipe = {
         a: 'Whoever you define: a first-time shopper in Manchester, a returning one in Texas. Each has its own name, inbox, phone number and home connection, shops the way anyone can, and says it’s an AI when it talks to a person.',
       },
       {
-        q: 'Is the September event log real?',
-        a: 'Yes. In September 2026 personas took 4 journeys at Brand G, a skincare store, name hidden, and every inbox was watched for 48 hours. Its whole event log is the sample output.',
+        q: 'Is the September run real?',
+        a: 'Yes. In September 2026 personas took 4 journeys at Brand G, a skincare store, name hidden, and every inbox was watched for 48 hours. Every event from it is in the sample output.',
       },
       {
         q: 'Does it place real orders?',
-        a: 'Only if you say so. By default every journey stops before payment. Give a persona your own payment card and it completes the order, so the confirmation and every email after it join the event log.',
+        a: 'Only if you say so. By default every journey stops before payment. Give a persona your own payment card and it completes the order, so the confirmation and every email after it join your event log.',
       },
       {
         q: 'Can I compare my store with others?',
-        a: 'Yes. Send the same persona to the stores you compete with, and the event logs sit side by side.',
+        a: 'Yes. Send the same persona to the stores you compete with, and their events sit side by side in your event log.',
       },
       {
         q: 'Can a persona watch for longer than 48 hours?',
-        a: 'Yes. It lives as long as you hold it, so it can come back months later as the same shopper, and every new email joins the event log the day it arrives.',
+        a: 'Yes. It lives as long as you hold it, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
       },
     ],
   },

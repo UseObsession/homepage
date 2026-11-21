@@ -1,19 +1,23 @@
+import { channels, downLine } from '../delivery'
 import { pieceOrder, piecePaths } from '../piecePaths'
 import type { PieceId } from '../prices'
 import type { HomePieces, Page, PersonaIcon } from '../types'
 
 /* Home (/), the pieces rewrite (21 Nov 2026, James): Obsession sells the pieces an AI agent needs (email, phone,
    messaging, browser, sandbox) through one API and one bill, and the persona that puts them under one identity. Two
-   readers: developers who take one piece or many (nothing stops a company using only the email), and teams who never
-   write code, who pick a recipe and we run the job. The persona is the bundle, not the headline; what it brings back is
-   its event log. The page reads, in order (pages/Home.tsx):
-   1 the hero: what we sell, "One API, one bill.", the 2 buttons, the copyable call and 3 facts >
+   readers: developers who take one piece or many (nothing stops a company using only the email), and teams who pick a
+   recipe and we run it. A recipe is a job that runs on Obsession beside the pieces, one of ours or a developer's own,
+   and writes its results to the event log: 1 per account, where every event from every piece, persona and recipe lands
+   (James, 21 Nov). The persona is the bundle, not the headline. The page reads, in order
+   (pages/Home.tsx): 1 the hero: what we sell, "One API, one bill.", the 2 buttons, the copyable call and 3 facts >
    2 #pieces: the 6 pieces as 1 sheet, each linking to its page (content/piecePaths.ts) with the call that starts it >
    3 #personas: the pieces under one identity, as a stacked slab diagram >
    4 2 claims in the form "X, not Y": 1 API, not 5 vendors; wakes in milliseconds, not minutes >
    5 #how: from the first call to months of messages, for a fleet (components/v5/AgentLife) >
-   6 #recipes: for teams who don't write code > 7 #fleet: what's built in > 8 #build: the code, and where events go >
-   9 the web behind the login, 1 card to its use case page > 10 questions > 11 #join: the early access form.
+   6 #recipes: ours or your own job, beside the pieces > 7 #fleet: what's built in > 8 #build: the code >
+   9 #delivery: how events reach you, as 3 steps (it happens, it's saved in your event log, it reaches you), the 6
+   channels in their order (content/delivery.ts) and the line on a server that's down >
+   10 the web behind the login, 1 card to its use case page > 11 questions > 12 #join: the early access form.
    Home shows no prices and no pricing link (James, 20 Nov): prices live in content/prices.ts, on /pricing and the piece
    pages. Nothing here bills by the minute. The product is described as designed (50 ms, free while a persona waits),
    never with build-state caveats; country is a feature, never the pitch. People and companies are invented, at .example
@@ -36,14 +40,14 @@ persona.on("email.received", async (email) => {
   // runs on our runtime, about 50 ms after it lands
 })
 
-// Or send every event to your own endpoint
-await obsession.webhooks.create({
+// Every event lands in your event log. Subscribe once to get all of it
+await obsession.events.subscribe({
   url: "https://api.larkfield.example/hooks/obsession",
-  events: ["email.received", "sms.received", "call.received"],
+  events: ["*"],
 })
 
-// The event log: every page, email, text and call, dated
-const events = await persona.events()`
+// Or read a persona's events: every page, email, text and call, dated
+const { events } = await obsession.events.list({ persona: persona.id })`
 
 /* The 6 pieces, in the nav's order (pieceOrder); each cell links to its page (piecePaths). */
 const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; call: string }> = {
@@ -80,14 +84,14 @@ const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; c
   personas: {
     icon: 'persona',
     name: 'Personas',
-    line: 'Every piece under one identity, free while it waits, with an event log of all it saw.',
+    line: 'Every piece under one identity, free while it waits, with all it saw in your event log.',
     call: 'obsession.personas.create({ inbox: true, phone: "US" })',
   },
 }
 
 const pieces: HomePieces = {
   heading: 'Every piece an agent needs is 1 call away.',
-  line: 'Use one on its own, like email, or several together. They share one key, one bill and one set of webhooks.',
+  line: 'Use one on its own, like email, or several together. They share one key, one bill and one event log.',
   items: pieceOrder.map((id) => ({ ...PIECES[id], to: piecePaths[id], whole: id === 'personas' })),
 }
 
@@ -106,7 +110,7 @@ export const page: Page = {
       'Inboxes, phone numbers, messaging, browsers and sandboxes for AI agents, through one API and one bill. Use one piece, or put them together as a persona.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     answer:
-      'Obsession gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes through one API and one bill. Use one piece, like email, or put them together as a persona. Teams who don’t write code pick a recipe and Obsession runs the job.',
+      'Obsession gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes through one API and one bill. Use one piece, like email, or put them together as a persona. Run one of our recipes or your own job beside them, and every result lands in your event log.',
     ogLine: 'Use one piece, or put them together as a persona.',
     ogImage: '/og/home.png',
   },
@@ -115,7 +119,7 @@ export const page: Page = {
     pill: 'Early access',
     pillTo: '#join',
     headline: 'Inboxes, phone numbers, browsers and sandboxes for AI agents. One API, one bill.',
-    sub: 'Use one piece, like email, or put them together as a persona. Don’t write code? Pick a recipe and we’ll run the job.',
+    sub: 'Use one piece, like email, or put them together as a persona. Run one of our recipes or your own job beside them, and every result lands in your event log.',
     /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
     capture: { ...access, source: 'home-hero' },
     secondary: { label: 'Browse recipes', to: '/recipes' },
@@ -133,7 +137,7 @@ export const page: Page = {
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
   },
 
-  /* The share image's card (scripts/og.mjs): 1 persona's event log, Juno of the slab diagram, through 3 pieces. */
+  /* The share image's card (scripts/og.mjs): 1 persona's events in the event log, Juno of the slab diagram, through 3 pieces. */
   shareFindings: {
     title: 'Juno, Larkfield bookings',
     aside: 'Event log',
@@ -157,7 +161,7 @@ export const page: Page = {
       { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
       { name: 'A browser on a home connection', line: 'Its own browser profile, connecting from a home, that keeps its logins.', eg: 'Home connection, US · signed in' },
       { name: 'A sandbox', line: 'A computer to run code in, started only when a task needs it.', eg: 'python report.py' },
-      { name: 'Its event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
+      { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
     ],
   },
 
@@ -217,7 +221,7 @@ export const page: Page = {
         { day: 7, label: 'Day 7' },
         { day: 30, label: 'Day 30' },
       ],
-      end: 'Day 90: every email, text and call to all 10,000, in their event logs',
+      end: 'Day 90: every email, text and call to all 10,000, in your event log',
     },
     lanes: [
       {
@@ -252,16 +256,17 @@ export const page: Page = {
       { title: 'Create them', lead: 'Any input:', line: '1 API call, a list, or a tool call from your own agent through MCP.' },
       { title: 'Each one acts', line: 'It signs up, gets verified by email, text or call, and does its first job.' },
       { title: 'It waits and wakes', line: 'It waits 48 hours by default, or as long as you set, and wakes on each new email, text or call.' },
-      { title: 'Every event logged', line: 'Each page, email, text and call, dated, with screenshots, at your webhook, by API or through MCP.' },
+      { title: 'Every event in your event log', line: 'Each page, email, text and call, dated, with screenshots, at your webhook, by API or through MCP.' },
     ],
   },
 
-  /* For teams who don't write code: a recipe is a job, an app on the same API. Mystery shopping is the big tile; every
-     tile links to its recipe page (content/recipes). `status` says who it fits, and each tile's hue is that reader
+  /* A recipe is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours, ready
+     to run, or your own. Mystery shopping is the big tile; every tile links to its recipe page (content/recipes).
+     `status` says who it fits, and each tile's hue is that reader
      (styles/accents.css). */
   personaRecipes: {
-    heading: 'Teams who don’t write code pick a recipe, and we run the job.',
-    line: 'A recipe is a job already built on the same API. Say where it goes, and get the event log back.',
+    heading: 'Run one of our recipes, or bring your own job.',
+    line: 'A recipe is a job that runs on Obsession beside the pieces and writes its results to your event log. Pick one of ours and say where it goes, or write your own.',
     items: [
       {
         name: 'Agentic mystery shopping',
@@ -315,7 +320,7 @@ export const page: Page = {
       },
       {
         name: 'Your own job',
-        line: 'Write the job in a sentence: who does it, where it goes and what it brings back.',
+        line: 'A task or a computation of your own, run on our runtime beside the inbox, browser and sandbox, with nothing to host.',
         status: 'For any job',
         reader: 'founders',
         link: { label: 'Browse every recipe', to: '/recipes' },
@@ -326,28 +331,52 @@ export const page: Page = {
   personaFleet: {
     heading: 'Everything a fleet of agents needs, already built.',
     items: [
-      { icon: 'webhook', title: 'Webhooks', line: 'Every email, text, call and page at your endpoint as it lands.' },
+      { icon: 'domain', title: 'Your own domain', line: 'Add your domain once, and every inbox sends from it, signed so mail reaches the inbox.' },
       { icon: 'code', title: 'MCP', line: 'Run claude mcp add obsession, and your own agent uses every piece as a tool.' },
       { icon: 'cap', title: 'Spend caps', line: 'A cap on every key and a monthly limit, so no agent runs up a bill.' },
       { icon: 'users', title: 'Accounts for your users', line: 'Give each of your users their own inboxes, numbers and limits, all on your bill.' },
       { icon: 'clock', title: 'Schedules', line: 'A job every day, week or month, with no one there to start it.' },
       { icon: 'person', title: 'A person at ID checks', line: 'When a site asks for ID, the agent hands that step to a person.' },
       { icon: 'stop', title: 'Pays only if you say so', line: 'Agents stop before payment. Give one your own payment card and it completes the order.' },
-      { icon: 'record', title: 'The event log', line: 'Every page, email, text and call, dated, with screenshots.' },
+      { icon: 'record', title: 'One event log', line: 'Every event from every piece, persona and recipe, in order, dated, with its proof.' },
     ],
   },
 
   personaBuild: {
-    heading: 'One key for every piece. Events reach your code as they land.',
-    line: 'Create an inbox, a number or a whole persona from your code or your own agent. Every email, text and call reaches your handler or your webhook.',
+    heading: 'One key, from the first inbox to a fleet of personas.',
+    line: 'Create an inbox, a number or a whole persona from your code, or let your own agent do it through MCP. Then subscribe once to hear back from all of them.',
     cta: { label: 'For developers', to: '/developers' },
     codeLabel: 'agent.ts',
     code: BUILD_CODE,
-    outputs: [
-      { title: 'Handlers on our runtime', line: 'Your handler runs about 50 ms after an email, text or call lands, with no server of your own.' },
-      { title: 'Webhooks', line: 'Every email, text and call at your endpoint, the moment it lands.' },
-      { title: 'API and MCP', line: 'Read event logs from your code, or give your own agent every piece as a tool.' },
+  },
+
+  /* How events reach you (James, 21 Nov: the site must say how traffic reaches the developer, from the pieces and from
+     recipes). The 3 steps are the path every event takes; the plates' rows are the event names a developer subscribes
+     to (content/delivery.ts), dated in the event log. The channels and the line on a server that's down are
+     content/delivery.ts, the same words as the piece, recipe and developer pages. */
+  homeDelivery: {
+    heading: 'Every event is saved in your event log, then reaches you.',
+    line: 'Every piece and every recipe sends its events the same way, so one subscription hears all of them.',
+    steps: [
+      {
+        title: 'It happens',
+        line: 'An email lands, a text or a call comes in, a page is visited, a sandbox finishes or a recipe brings back a result.',
+        rows: ['email.received', 'call.ended', 'page.visited', 'recipe.result'],
+      },
+      {
+        title: 'It’s saved in your event log',
+        line: 'In order and dated, with its proof: the email as it arrived, the page as a screenshot. Nothing in it is changed or deleted.',
+        rows: ['09:04:12 email.received', '09:04:13 page.visited', '09:05:40 call.ended', '09:07:02 recipe.result'],
+      },
+      {
+        title: 'It reaches you',
+        line: 'At your webhook, in your code, in your own agent, in a handler on our runtime, or in Zapier, Make and n8n.',
+        rows: ['Webhook', 'API', 'MCP', 'Handler', 'CLI', 'No code'],
+      },
     ],
+    channels: channels.map(({ name, line, eg }) => ({ name, line, eg })),
+    down: downLine,
+    link: { label: 'See the code for each channel', to: '/developers#delivery' },
   },
 
   homeUseCase: {
@@ -364,7 +393,7 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'Obsession gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes through one API and one bill. Use one piece, like email, or put them together as a persona. Teams who don’t write code pick a recipe, and we run the job.',
+        a: 'Obsession gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes through one API and one bill. Use one piece, like email, or put them together as a persona. Run one of our recipes or your own job beside them, and every result lands in your event log.',
       },
       {
         q: 'Can I use just one piece, like email?',
@@ -372,11 +401,19 @@ export const page: Page = {
       },
       {
         q: 'What is a persona?',
-        a: 'Every piece under one identity: an inbox, a number, its messaging channels, a browser profile and a sandbox when a task needs one. It lives on our runtime, free while it waits, and your code runs 50 ms after a message lands. It keeps an event log of every page, email, text and call, dated, with screenshots.',
+        a: 'Every piece under one identity: an inbox, a number, its messaging channels, a browser profile and a sandbox when a task needs one. It lives on our runtime, free while it waits, and your code runs 50 ms after a message lands. Every page, email, text and call it handles lands in your event log, dated, with screenshots.',
+      },
+      {
+        q: 'What is the event log?',
+        a: 'One place per account where every event lands, from every piece, persona and recipe: in order, each dated, with its proof, such as the email as it arrived or a screenshot of the page. Nothing in it is changed or deleted. Subscribe once, and your endpoint gets all of it.',
+      },
+      {
+        q: 'How do events reach my app?',
+        a: 'Each event is saved in your event log, then sent to one signed webhook that you subscribe once, for every piece and recipe. If your server is down, each event is retried for 27 hours and can be replayed. You can also read the event log by cursor, or let your own agent subscribe over MCP. Or run a handler on our runtime, stream events to your laptop, or use Zapier, Make and n8n.',
       },
       {
         q: 'Do I need to write code?',
-        a: 'No. Pick a recipe, such as agentic mystery shopping, say where it goes, and we run the job. A recipe runs on the same API, so your developers can take it further in code.',
+        a: 'No. Run one of our recipes, such as agentic mystery shopping: say where it goes, and its results land in your event log. Developers can also write their own job, which runs on our runtime beside the pieces.',
       },
       {
         q: 'Which messaging channels can an agent use?',

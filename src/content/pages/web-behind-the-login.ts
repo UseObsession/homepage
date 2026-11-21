@@ -6,7 +6,7 @@ import type { CardGrid, Explorer, Finding, Life, Page, RunReports, ViewerFormat 
 /* /use-cases/web-behind-the-login (21 Nov 2026): the old Home (9 Nov, "the web behind the login") turned into a use case.
    It is what you can build on Obsession's pieces: data from what companies show people only after they sign up. A
    persona signs up at each company you name, in its own browser, with its own inbox and number, and keeps every page,
-   email, text and call in its event log. It is a use case built from the pieces, not what Obsession is. The page reads,
+   email, text and call back to the account's event log. It is a use case built from the pieces, not what Obsession is. The page reads,
    in order (pages/WebBehindTheLogin.tsx):
    1 the hero, with the explorer as its object > 2 #data: the 6 kinds of data behind the login >
    3 #found: the 1 real run (Brand G, stated exactly as content/sample.ts states it) > 4 #how: a sign up in minutes,
@@ -14,7 +14,7 @@ import type { CardGrid, Explorer, Finding, Life, Page, RunReports, ViewerFormat 
    6 #formats: where the data goes (your AI agent, your code, Clay, a webhook) > 7 questions > 8 #join: the form.
    `page` holds what the registry and meta.ts read (meta, hero, questions, the form); the sections are `sections`, typed
    by their own components, so the page needs nothing Home owns on the Page contract.
-   Words: "event log", never "record"; "a persona you define", never a customer profile; never AI customers; no
+   Words: "the event log" (1 per account; events are its entries), never "record"; "a persona you define", never a customer profile; never AI customers; no
    "Example" tags. Every invented company is at a .example address. The only real numbers are Brand G's. No prices. */
 
 /* The explorer (content/explorer.ts), with this page's words where the shared ones say "record" or "an example", and
@@ -23,10 +23,10 @@ const explorer: Explorer = {
   ...base,
   tabs: { ...base.tabs, record: 'Event log' },
   insights: [1, 3, 0, 2, 4].map((i) => base.insights[i]),
-  said: 'A console built on Obsession’s pieces. Search a company and choose the persona, the wall and the kind. Each row is an event in the company’s timeline, what the persona did or what the company showed or sent, with the facts read from it. Open a row to see it as the event log stores it, and Evidence to see each kind as it arrived. A company not in the index has Watch it, which sends a persona to sign up. Insights asks one question across a group of companies and writes a report with a row for each company.',
+  said: 'A console built on Obsession’s pieces. Search a company and choose the persona, the wall and the kind. Each row is an event in the company’s timeline, what the persona did or what the company showed or sent, with the facts read from it. Open a row to see it as your event log stores it, and Evidence to see each kind as it arrived. A company not in the index has Watch it, which sends a persona to sign up. Insights asks one question across a group of companies and writes a report with a row for each company.',
 }
 
-/* The code tile: a persona, the emails it wakes on, its event log. Only the API names in the shared brief. */
+/* The code tile: a persona, the emails it wakes on, its events read back from the event log. Only the API names in the shared brief. */
 const CODE = `import { Obsession } from "obsession"
 
 const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
@@ -40,7 +40,7 @@ persona.on("email.received", async (email) => {
 })
 
 // Every page, email, text and call so far, dated, with screenshots
-const events = await persona.events()`
+const events = await obsession.events.list({ persona: persona.id })`
 
 /* 2 format tiles: Clay and a webhook. The Clay table keeps Brand G, the real run, as its first row; the other rows are
    invented companies at .example addresses. */
@@ -95,7 +95,7 @@ export const page: Page = {
       'Personas sign up at the companies you name and log every email, text, member price, trial limit and cancel offer that follows, dated, with screenshots.',
     /* The sentence AI assistants quote. Its first sentence opens the hero's sub (scripts/prerender.mjs checks). */
     answer:
-      'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Obsession turns it into data: personas sign up at the companies you name, each with its own browser, inbox and phone number. Every page, email, text and call they get lands in an event log, dated, with a screenshot.',
+      'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Obsession turns it into data: personas sign up at the companies you name, each with its own browser, inbox and phone number. Every page, email, text and call they get lands in your event log, dated, with a screenshot.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Use cases', path: '/use-cases' },
@@ -107,9 +107,9 @@ export const page: Page = {
     pill: 'Built with personas',
     pillTo: piecePaths.personas,
     headline: 'Search engines stop at the login. Your personas don’t.',
-    sub: 'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Personas sign up at the companies you name and keep each one in an event log, dated, with a screenshot.',
+    sub: 'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Personas sign up at the companies you name, and each one lands in your event log, dated, with a screenshot.',
     capture: { ...access, source: 'web-behind-the-login-hero' },
-    secondary: { label: 'See a real event log', to: '/sample-output' },
+    secondary: { label: 'See a real run', to: '/sample-output' },
     proof: [],
     consoleHeading: [],
   },
@@ -124,12 +124,12 @@ export const page: Page = {
       },
       {
         q: 'What is it built from?',
-        a: 'Personas, each with its own browser, inbox and phone number, on one API and one bill. A persona signs up at each company you name, keeps the account open and logs every page, email, text and call in its event log. Add WhatsApp from Messaging, and a sandbox to run your own code on each event.',
+        a: 'Personas, each with its own browser, inbox and phone number, on one API and one bill. A persona signs up at each company you name, keeps the account open, and every page, email, text and call lands in your event log. Add WhatsApp from Messaging, and a sandbox to run your own code on each event.',
         link: { label: 'See personas', to: piecePaths.personas },
       },
       {
         q: 'Do I have to write code?',
-        a: 'No. Teams who don’t write code pick a recipe, a job we’ve already built, such as competitor tracking or price watch, and we run it on the same pieces at the same prices. Developers call the API, or connect it to their own agent with MCP.',
+        a: 'No. Pick one of our recipes, such as competitor tracking or price watch, and we run it on the same pieces at the same prices. Developers call the API, connect their own agent with MCP, or write their own job to run beside the pieces. Every result lands in your event log.',
         link: { label: 'Browse recipes', to: '/recipes' },
       },
       {
@@ -142,11 +142,11 @@ export const page: Page = {
       },
       {
         q: 'Who can see what my personas collect?',
-        a: 'Only you. Each persona’s event log belongs to your account, and nobody else can read it.',
+        a: 'Only you. Every event your personas bring back lands in your account’s event log, and nobody else can read it.',
       },
       {
         q: 'How long does a persona keep watching?',
-        a: 'For as long as you keep it. It waits for free and wakes on each new email, text or call, so a renewal notice or an offer to stay months later still lands in its event log.',
+        a: 'For as long as you keep it. It waits for free and wakes on each new email, text or call, so a renewal notice or an offer to stay months later still lands in your event log.',
       },
     ],
   },
@@ -192,10 +192,10 @@ export const sections: {
     also: [
       { value: '02:57', text: 'a Body Care Gift Set (£40) left in the basket at Brand G, a UK skincare store, on Tuesday 22 September 2026.' },
       { value: '48 h', text: 'each inbox was watched. 5 messages came, all on welcome and browse.' },
-      { value: '15', text: 'screenshots kept with the event log.' },
+      { value: '15', text: 'screenshots kept, each beside its event.' },
     ],
     source: 'Source: our own run, September 2026: 4 test customers, 1 inbox each. The store’s name is hidden.',
-    cta: { label: 'See the whole event log', to: '/sample-output' },
+    cta: { label: 'See the whole run', to: '/sample-output' },
   },
 
   /* How it works: a list fans out to every company at once, each persona signs up in minutes, then sleeps and wakes on
@@ -212,7 +212,7 @@ export const sections: {
         { day: 7, label: 'Day 7' },
         { day: 30, label: 'Day 30' },
       ],
-      end: 'Day 90: every email, text and offer from all 1,000, in their event logs',
+      end: 'Day 90: every email, text and offer from all 1,000, in your event log',
     },
     lanes: [
       { name: 'An app', wakes: [{ day: 0.006, label: '09:09 · welcome email' }, { day: 12, label: 'Day 12 · 40% off, trial only' }] },
@@ -227,7 +227,7 @@ export const sections: {
       { title: 'Name the companies', lead: 'Any input:', line: 'a list, a row in Clay, an API call or a tool call from your own agent.' },
       { title: 'A persona signs up', line: 'It signs up, starts the trial or asks for the quote in its own browser, from the country you pick.' },
       { title: 'It stays open', line: 'Its inbox and number stay live, so new emails, texts, prices and offers keep arriving for months.' },
-      { title: 'Into the event log', line: 'Each one dated, with its screenshot, ready to search by API, MCP or a table.' },
+      { title: 'Into your event log', line: 'Each one dated, with its screenshot, ready to search by API, MCP or a table.' },
     ],
   },
 
@@ -239,7 +239,7 @@ export const sections: {
     items: [
       {
         title: 'Personas',
-        line: 'Who signs up: one identity with its own inbox, number and browser, free while it waits, with an event log of every page, email, text and call.',
+        line: 'Who signs up: one identity with its own inbox, number and browser, free while it waits, with every page, email, text and call in your event log.',
         eg: 'obsession.personas.create()',
         link: { label: 'See personas', to: piecePaths.personas },
       },
@@ -280,7 +280,7 @@ export const sections: {
   formats: {
     kicker: 'How do I use it?',
     heading: 'Use it where you already work.',
-    node: { title: 'Your event logs', line: 'Every company your personas watch' },
+    node: { title: 'Your event log', line: 'Every company your personas watch' },
     label: 'Ways to use it',
     agent: {
       label: 'Asked in your AI agent',
@@ -303,7 +303,7 @@ export const sections: {
     },
     code: {
       label: 'Use from your code',
-      line: 'Create a persona, wake on each email it gets, and read its event log.',
+      line: 'Create a persona, wake on each email it gets, and read its events from your event log.',
       file: 'watch.ts',
       code: CODE,
     },

@@ -49,10 +49,10 @@ const ROWS: { name: string; you?: boolean; cells: [Cell, Cell, Cell] }[] = [
 
 export function OptoutScreen() {
   return (
-    <div className="il appx-il app-optout"><div className="appx-fit"><div className="appx" role="img" aria-label="The Event logs page for cancel and opt-outs at Fernhill, an invented gym membership app, and 3 competitors since 1 October. For each company, a row shows its cancel flow, what happened after an unsubscribe and what happened after a STOP text, each cell backed by its screenshot or message. Brackenridge takes 6 screens with 2 save offers, Calder Club cancels only by phone, Dunmore Fit takes 2 screens. Fernhill's own cancel flow takes 4 screens with a save offer on step 2, and its STOP is confirmed with nothing after, but a promotional email arrived 9 days after its unsubscribe: unsubscribed 1 Nov at 09:14, Last chance: 30% off annual arrived 10 Nov at 08:02, DKIM pass, against the 2 days Fernhill holds itself to. The finding is sent to the compliance team's webhook.">
+    <div className="il appx-il app-optout"><div className="appx-fit"><div className="appx" role="img" aria-label="The Event log page for cancel and opt-outs at Fernhill, an invented gym membership app, and 3 competitors since 1 October. For each company, a row shows its cancel flow, what happened after an unsubscribe and what happened after a STOP text, each cell backed by its screenshot or message. Brackenridge takes 6 screens with 2 save offers, Calder Club cancels only by phone, Dunmore Fit takes 2 screens. Fernhill's own cancel flow takes 4 screens with a save offer on step 2, and its STOP is confirmed with nothing after, but a promotional email arrived 9 days after its unsubscribe: unsubscribed 1 Nov at 09:14, Last chance: 30% off annual arrived 10 Nov at 08:02, DKIM pass, against the 2 days Fernhill holds itself to. The finding is sent to the compliance team's webhook.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
-        <span className="ax-crumb"><b>Your company</b><span>/</span>Event logs<span>/</span>Cancel and opt-outs</span>
+        <span className="ax-crumb"><b>Your company</b><span>/</span>Event log<span>/</span>Cancel and opt-outs</span>
         <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
         <span className="ax-team" aria-hidden="true"><span>LC</span><span>RT</span></span>
       </div>
@@ -65,7 +65,7 @@ export function OptoutScreen() {
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M8 1.8 9.4 6.6 14.2 8 9.4 9.4 8 14.2 6.6 9.4 1.8 8 6.6 6.6Z" /></svg>Insights</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>4</em></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.5 9.5h3l1 2h3l1-2h3M2.5 9.5 4 3.5h8l1.5 6v3.25h-11Z" /></svg>Needs you<span className="ax-badge">1</span></a>
-            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Event logs</a>
+            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Event log</a>
           </nav>
           <div className="ax-clients">
             <p className="ax-side-h">Checks</p>

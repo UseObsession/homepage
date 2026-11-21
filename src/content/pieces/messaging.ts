@@ -22,7 +22,7 @@ await obsession.messaging.connect({ channel: "slack" })
 await obsession.messaging.connect({ channel: "telegram" })
 
 // Every message, from every app, reaches one webhook
-await obsession.webhooks.create({
+await obsession.events.subscribe({
   url: "https://your-app.example/hooks/messages",
   events: ["message.received"],
 })`
@@ -61,6 +61,8 @@ export const messaging: PiecePage = {
     ],
   },
 
+  events: ['message.received'],
+
   price: {
     heading: 'Each app is priced the way it charges, on one bill.',
     line: 'Connect the apps your users are on. An iMessage line is billed by the month, WhatsApp by the message, and Slack and Telegram come with every plan.',
@@ -74,7 +76,7 @@ export const messaging: PiecePage = {
       { piece: 'phone', line: 'A phone number for plain texts, for people on neither iMessage nor WhatsApp.' },
       { piece: 'browser', line: 'Look up an order or a booking in the browser while the person waits in the chat.' },
       { piece: 'sandbox', line: 'Run code on a file someone sends, such as a spreadsheet, and reply with the result.' },
-      { piece: 'personas', line: 'One name across iMessage, WhatsApp, email and phone, with every message in one event log.' },
+      { piece: 'personas', line: 'One name across iMessage, WhatsApp, email and phone, with every message in your event log.' },
     ],
   },
 

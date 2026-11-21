@@ -187,7 +187,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can an agency run it for clients?',
-        a: 'Yes, with each client’s OK. Every client gets its own leads, its own hours and its own event log.',
+        a: 'Yes, with each client’s OK. Every client gets its own leads, its own hours and its own events, kept apart in your event log.',
       },
     ],
   },

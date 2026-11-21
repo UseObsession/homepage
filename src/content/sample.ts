@@ -1,7 +1,7 @@
 import type { SamplePage, ViewerFormat } from './types'
 
 /* The Sample output page (/sample-output) and the output viewer. Since 9 Nov it is the sample data Home points to:
-   Brand G's whole event log from the web behind the login, the 1 real run (a UK skincare store, September 2026, name
+   every event from Brand G's run on the web behind the login, the 1 real run (a UK skincare store, September 2026, name
    hidden). The 4 shoppers are "test customers", never AI customers; the close is early access, not a free shop.
    State only what happened, from the report itself (public/report, Website/sample-report.html):
    - 4 labelled test customers, 1 inbox each (welcome, browse, basket, checkout); no phone number was used.
@@ -134,9 +134,9 @@ export const outputFormats: ViewerFormat[] = [
 export const sample: SamplePage = {
   meta: {
     path: '/sample-output',
-    title: 'Sample data: a real store’s event log, 0 basket reminders',
+    title: 'Sample data: a real store’s whole run, 0 basket reminders',
     description:
-      'A real UK store’s event log, September 2026: 1 basket and 1 checkout left, 0 reminders in 48 hours. Then every kind of data, as it arrived and as rows.',
+      'A real UK store’s whole run, September 2026: 1 basket and 1 checkout left, 0 reminders in 48 hours. Then every kind of data, as it arrived and as rows.',
     answer:
       'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 and a checkout left at 03:11 got no reminder. Below it, every kind of data Obsession keeps (screens, emails, texts, push, prices, ads, chat, calls and receipts) is shown as it arrived and as the rows an API returns.',
     ogImage: '/og/sample-output.png',
@@ -148,13 +148,13 @@ export const sample: SamplePage = {
   },
 
   hero: {
-    pill: 'Real event log · September 2026 · name hidden',
+    pill: 'Real run · September 2026 · name hidden',
     headline: 'A £40 basket left at 02:57. 48 hours later, still no reminder.',
-    sub: 'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. Below is Brand G’s whole event log, then every other kind of data we keep.',
+    sub: 'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. Below is every event from Brand G’s run, then every other kind of data we keep.',
     figures: [
       { value: '4', label: 'test customers, 1 inbox each' },
       { value: '5', label: 'messages, all on welcome and browse' },
-      { value: '15', label: 'screenshots kept with the event log' },
+      { value: '15', label: 'screenshots kept with the events' },
     ],
     cta: { label: 'Request early access', to: '#get-one' },
   },
@@ -330,8 +330,8 @@ export const sample: SamplePage = {
         a: 'No. This run stopped before payment, so the checkout customer left at the last step.',
       },
       {
-        q: 'How do I get an event log like this for another company?',
-        a: 'Look it up. A company already covered returns its history at once. For one that isn’t, click Watch: Obsession signs up as the customer profile and country you pick, keeps the account open, and each email, price and offer joins the event log the day it arrives.',
+        q: 'How do I get a run like this for another company?',
+        a: 'Look it up. A company already covered returns its history at once. For one that isn’t, click Watch: Obsession signs up as the customer profile and country you pick, keeps the account open, and each email, price and offer joins your event log the day it arrives.',
       },
       {
         q: 'Who sees what I look up?',
@@ -341,7 +341,7 @@ export const sample: SamplePage = {
   },
 
   final: {
-    heading: 'Get this event log for any company you name.',
+    heading: 'Get a run like this for any company you name.',
     capture: {
       kind: 'waitlist',
       source: 'sample-output-final',

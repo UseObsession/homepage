@@ -1,3 +1,4 @@
+import { HomeDelivery } from '../components/persona/HomeDelivery'
 import { HomePieces } from '../components/persona/HomePieces'
 import { HomeUseCase } from '../components/persona/HomeUseCase'
 import { PersonaAnatomy } from '../components/persona/PersonaAnatomy'
@@ -13,9 +14,10 @@ import { page } from '../content/pages/home'
 
 /* Home (/), composed from content/pages/home.ts in the order its comment gives (21 Nov, the pieces rewrite): the hero;
    the 6 pieces, each linking to its page (#pieces); the pieces under one identity, the persona (#personas); 2 claims in
-   the form "X, not Y"; from the first call to months of messages (#how, v5/AgentLife); recipes for teams who don't
-   write code (#recipes); what's built in (#fleet); for developers (#build); the web behind the login, 1 card to its use
-   case page (#behind-the-login); questions (#questions); the early access form (#join). No pricing section and no
+   the form "X, not Y"; from the first call to months of messages (#how, v5/AgentLife); recipes, ours or your own job,
+   with every result in the event log (#recipes); what's built in (#fleet); for developers, the code (#build); how events
+   reach you: it happens, it's saved in your event log, it reaches you, through 6 channels (#delivery); the web behind
+   the login, 1 card to its use case page (#behind-the-login); questions (#questions); the early access form (#join). No pricing section and no
    pricing link: prices live on /pricing and the piece pages. The nav links to these ids, so they stay. */
 export function Home() {
   return (
@@ -28,6 +30,7 @@ export function Home() {
       {page.personaRecipes && <PersonaRecipes recipes={page.personaRecipes} id="recipes" />}
       {page.personaFleet && <PersonaFleet fleet={page.personaFleet} id="fleet" />}
       {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" />}
+      {page.homeDelivery && <HomeDelivery delivery={page.homeDelivery} id="delivery" />}
       {page.homeUseCase && <HomeUseCase useCase={page.homeUseCase} id="behind-the-login" />}
       <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={page.final} id="join" />

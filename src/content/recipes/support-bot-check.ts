@@ -151,14 +151,14 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'A daily event log for every bot you build or run for a client, every answer word for word.' },
+    { audience: 'agencies', line: 'Every bot you build or run for a client checked daily, every answer word for word in your event log.' },
     { audience: 'founders', line: 'Know what your bot said overnight, and hear the morning it gets a policy wrong.' },
     { audience: 'marketing', line: 'What competitors’ bots say about refunds, prices and switching, beside yours.' },
     { audience: 'developers', line: 'Spawn the persona from your code or agent, and read every answer after each prompt or knowledge base change.' },
   ],
 
   table: {
-    heading: 'A daily event log, in place of transcripts read by hand.',
+    heading: 'A daily check in your event log, in place of transcripts read by hand.',
     cols: ['By hand', 'With Support bot check'],
     rows: [
       { label: 'A wrong answer', values: ['Found from a complaint, days later', 'Found the same morning, with the transcript'] },
@@ -171,7 +171,7 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'You define the persona. The event log keeps every word.',
+    heading: 'You define the persona. Your event log keeps every word.',
     items: [
       {
         q: 'How do we find out our chatbot is giving customers wrong answers?',
@@ -187,7 +187,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'When a person joins the chat or replies by email, the persona tells them it’s an AI. With the bot itself, the event log keeps both sides word for word.',
+        a: 'When a person joins the chat or replies by email, the persona tells them it’s an AI. With the bot itself, your event log keeps both sides word for word.',
       },
       {
         q: 'Will our bot’s vendor bill us for the tests?',
@@ -199,7 +199,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Support bot check cover a client’s bot?',
-        a: 'Yes, with the client’s agreement. The Support bot check event log carries your agency’s name, and the client can open every transcript.',
+        a: 'Yes, with the client’s agreement. Each Support bot check carries your agency’s name, and the client can open every transcript.',
       },
     ],
   },

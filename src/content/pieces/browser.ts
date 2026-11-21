@@ -59,6 +59,8 @@ export const browser: PiecePage = {
     ],
   },
 
+  events: ['page.visited'],
+
   price: {
     heading: 'Pay by the browser hour, with the home connection included.',
     line: 'A browser costs only while a session is open, and it arrives on the same bill as every other piece.',

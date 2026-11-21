@@ -3,8 +3,8 @@ import type { Recipe } from '../types'
 /* Trial teardown (/recipes/trial-teardown). Watch other companies. Screen: battlecard. Home's tile calls it
    "Competitor trials".
    The persona version (20 Nov 2026): a persona you define starts each competitor's free trial as a new user, signs in
-   like one, and comes back with the event log of the trial, day by day: what sign up asks, the free plan's limits, and
-   every onboarding email, prompt and offer, each dated with screenshots. The event log lands in a CRM, Slack, a table or
+   like one, and brings every event of the trial back to the event log, day by day: what sign up asks, the free plan's limits, and
+   every onboarding email, prompt and offer, each dated with screenshots. Its events land in a CRM, Slack, a table or
    the API. Sold as designed: no index, no "already covered", no caps.
    The run and the comparison are examples and match the screen (Competitor A 20% off on day 13, Competitor B closed on
    day 6 when a rep wrote, Competitor C 30% off). Every FAQ answer names the recipe, for AI search. */
@@ -22,7 +22,7 @@ export const recipe: Recipe = {
     'Signs in daily, like a new user',
     'Plan limits and upgrade prompts, screenshotted',
     'Kept to the last trial day',
-    'The event log in your CRM, Slack or the API',
+    'Every event in your CRM, Slack or the API',
   ],
 
   meta: {
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'Trial teardown starts a competitor’s free trial as a persona you define and keeps every email, prompt, plan limit and offer, by trial day, to the end.',
     answer:
-      'Trial teardown starts a competitor’s free trial as a persona you define: a new user who signs in like one. It comes back with the event log of the trial: what sign up asks, the plan’s limits, and every email, prompt and offer, each dated by trial day.',
+      'Trial teardown starts a competitor’s free trial as a persona you define: a new user who signs in like one. Every event of the trial lands in your event log: what sign up asks, the plan’s limits, and every email, prompt and offer, each dated by trial day.',
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email, prompt and offer in a competitor’s free trial.',
-    sub: 'Trial teardown starts a competitor’s free trial as a persona you define: a new user who signs in like one. It comes back with the event log of the trial: what sign up asks, the plan’s limits, and every email, prompt and offer, each dated by trial day.',
+    sub: 'Trial teardown starts a competitor’s free trial as a persona you define: a new user who signs in like one. Every event of the trial lands in your event log: what sign up asks, the plan’s limits, and every email, prompt and offer, each dated by trial day.',
     screen: 'battlecard',
     capture: {
       kind: 'waitlist',
@@ -81,7 +81,7 @@ export const recipe: Recipe = {
     },
     { title: 'It signs in like a new user', line: 'Every email, prompt, limit and offer, kept by trial day, and any message from a rep.' },
     {
-      title: 'The event log lands where you work',
+      title: 'Every event lands where you work',
       line: 'Day by day in your CRM, Slack, a table or the API, and a fresh run when a competitor changes its trial.',
     },
   ],
@@ -177,7 +177,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How long does Trial teardown take?',
-        a: 'Trial teardown takes as long as the trial. The first emails land in minutes, and the event log is ready the day the trial ends.',
+        a: 'Trial teardown takes as long as the trial. The first emails land in minutes, and the whole trial is in your event log the day it ends.',
       },
     ],
   },

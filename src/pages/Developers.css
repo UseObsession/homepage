@@ -25,7 +25,7 @@
   }
 }
 
-/* ---- #pieces: 1 row per piece, its name and line beside its code ------------------------------------------------- */
+/* ---- #pieces and #delivery: 1 row per piece or channel, its name and line beside its code ------------------------- */
 .s-api-pieces { list-style: none; margin: 0; padding: 0; display: grid; }
 .s-api-piece {
   display: grid;
@@ -61,7 +61,7 @@
   .s-api-piece__words { padding-top: 6px; }
 }
 
-/* ---- #personas: 3 facts, each a short term over its line ---------------------------------------------------------- */
+/* ---- #personas and #recipes: 3 facts, each a short term over its line ---------------------------------------------------------- */
 .s-api-facts { margin: 0; display: grid; border-top: 1px solid var(--ob-line-subtle); }
 .s-api-fact { display: grid; gap: 4px; padding-block: 16px; border-bottom: 1px solid var(--ob-line-subtle); }
 .s-api-fact dt {
@@ -71,7 +71,12 @@
 }
 .s-api-fact dd { margin: 0; font: 400 15px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
 
-/* ---- #webhooks and #mcp: a call or event name in mono, its line beside it ----------------------------------------- */
+/* ---- #delivery (the channels' order, every event name under the webhook, a server that's down) --------------------- */
+.s-api-channel__n { margin: 0; font: 500 12.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.s-api-channel__events { display: grid; gap: 8px; width: 100%; margin-top: 10px; }
+.s-api-down { margin: 28px 0 0; max-width: 64ch; font: 500 16px / 1.5 var(--ob-font-sans); color: var(--ob-text); text-wrap: pretty; }
+
+/* ---- #delivery's event names and #mcp: a call or event name in mono, its line beside it ---------------------------- */
 .s-api-calls { margin: 0; display: grid; border-top: 1px solid var(--ob-line-subtle); }
 .s-api-call {
   display: grid;

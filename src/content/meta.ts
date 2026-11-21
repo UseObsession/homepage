@@ -8,7 +8,7 @@ import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
 import { pieces } from './pieces'
-import { pricingPage } from './pricing'
+import { pricingPage, ratesPage } from './pricing'
 import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
 
@@ -176,6 +176,17 @@ export const entries: Entry[] = [
     line: pricingPage.line,
     faq: pricingPage.faq,
     source: 'src/content/pricing.ts',
+  },
+  /* Every per-piece rate, on its own page since 21 Nov so /pricing holds only the plans and the calculator. */
+  {
+    kind: 'pricing',
+    meta: ogFor(ratesPage.meta),
+    name: crumbName(ratesPage.meta, 'Every rate'),
+    headline: ratesPage.headline,
+    line: ratesPage.line,
+    faq: ratesPage.faq,
+    source: 'src/content/pricing.ts',
+    place: 'Pricing',
   },
   {
     kind: 'compare',

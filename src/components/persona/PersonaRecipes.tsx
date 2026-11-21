@@ -4,7 +4,7 @@ import type { PersonaRecipes as Recipes } from '../../content/types'
 import './blueprint.css'
 import './PersonaRecipes.css'
 
-/* Recipes, for teams who don't write code (#recipes): mystery shopping as the tall tile, the other recipes beside and
+/* Recipes, ours or your own job, beside the pieces (#recipes): mystery shopping as the tall tile, the other recipes beside and
    under it. Each tile takes the hue of the reader it fits (styles/accents.css, data-reader) as its mark and its 1 soft
    glow; its status line says who it fits. */
 export function PersonaRecipes({ recipes, id }: { recipes: Recipes; id?: string }) {

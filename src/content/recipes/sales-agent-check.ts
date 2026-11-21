@@ -148,7 +148,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'marketing', line: 'Your agent quotes this week’s offer, not last month’s, and you see what competitors’ agents offer.' },
-    { audience: 'agencies', line: 'A daily event log for every client’s sales agent, every answer with its chat.' },
+    { audience: 'agencies', line: 'Every client’s sales agent checked daily, every answer in your event log with its chat.' },
     { audience: 'founders', line: 'Know what your sales agent charged overnight, and hear the morning it gets a price wrong.' },
     { audience: 'developers', line: 'Spawn shopper personas from your code, and read every answer after each catalogue or prompt change.' },
   ],

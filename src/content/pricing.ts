@@ -1,37 +1,209 @@
-import { catalog } from './catalog'
 import { pieceOrder, piecePaths } from './piecePaths'
-import { prices, type PieceId, type PriceKey } from './prices'
+import { plans, prices, type PieceId, type PlanId, type PriceKey } from './prices'
 import type { Cta, Faq, Meta } from './types'
 
-/* /pricing (pages/Pricing.tsx): each piece an agent needs, priced on its own, on one bill (James, 21 Nov 2026). The
-   hero with 3 of the prices; the full price list, grouped by piece in the nav's order, each group linking to its
-   piece's page; the 3 ways to pay (Free, Pay as you go, Scale by contract); the estimator (a quantity per piece in, the
-   month's total out, from each price's `value`); the questions; the closing call to early access on Home. Every price
-   is read from prices.ts and never typed here. The free allowance below is ours, a proposal for the founders (21 Nov);
-   its inboxes, like the event log's days, are read from the price's own note. This file is the page's words only,
-   outside the Page glob. */
+/* The words of /pricing (pages/Pricing.tsx) and /pricing/rates (pages/PricingRates.tsx), outside the Page glob
+   (James, 21 Nov 2026: plans first, each piece's rate only as extra usage, the long rate list on its own page).
 
-export type PlanId = 'free' | 'payg' | 'scale'
+   /pricing: the hero, the 4 plans as cards read from `plans` in prices.ts (each card's monthly price and included
+   amounts come from there; who it's for, its gated features and its button are written here), the line that sends
+   extra usage to the rates page, the calculator (a card per piece with an on/off switch, steppers and sliders; the
+   summary picks the plan whose price plus extra usage costs least), the questions, the closing call.
+   /pricing/rates: every rate grouped by piece, each group linking to its piece's page, then its own questions.
 
-export type Plan = {
+   Every price and included amount is read from prices.ts and never typed here: the founders may still change them.
+   The stored history is "the event log" (James, 21 Nov); every word for it is in EVENT_LOG below, so a rename is 1 edit. */
+
+const EVENT_LOG = {
+  name: 'Event log',
+  lower: 'event log',
+  line: 'Every event from every piece, persona and recipe, dated, with the message or screenshot behind it.',
+  events: 'events in your event log',
+  event: 'event in your event log',
+}
+
+/* ---- Shared helpers ---- */
+
+/* 1,000 with its comma, the same on the server and in every browser. */
+export const figure = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+/* A count as a reader says it: 10,000,000 is "10 million". */
+export const quantity = (n: number) => (n >= 1e6 && n % 1e6 === 0 ? `${figure(n / 1e6)} million` : figure(n))
+/* Whole dollars, for a plan's price: "$20". */
+const dollars = (n: number) => `$${figure(n)}`
+/* "a, b and c". */
+const andList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`)
+
+/* What each counted price is a count of, as a reader names it. A price with no count here is a yes or no (the US
+   texting registration): a plan includes it or doesn't. */
+export const counts: Partial<Record<PriceKey, { one: string; many: string }>> = {
+  inbox: { one: 'inbox', many: 'inboxes' },
+  email: { one: 'email', many: 'emails' },
+  number: { one: 'phone number', many: 'phone numbers' },
+  sms: { one: 'text', many: 'texts' },
+  voice: { one: 'call minute', many: 'call minutes' },
+  imessage: { one: 'iMessage line', many: 'iMessage lines' },
+  browser: { one: 'browser hour', many: 'browser hours' },
+  stealth: { one: 'stealth browser hour', many: 'stealth browser hours' },
+  sandbox: { one: 'sandbox vCPU hour', many: 'sandbox vCPU hours' },
+  memory: { one: 'GiB hour of sandbox memory', many: 'GiB hours of sandbox memory' },
+  log: { one: EVENT_LOG.event, many: EVENT_LOG.events },
+}
+/* "1 phone number", "10 million events in your event log". */
+const amountOf = (key: PriceKey, n: number) => `${quantity(n)} ${n === 1 ? counts[key]?.one : counts[key]?.many}`
+
+const keys = Object.keys(prices) as PriceKey[]
+const planOf = (id: PlanId) => plans.find((pl) => pl.id === id)
+const named = (id: PlanId) => planOf(id)?.name ?? id
+/* A plan's included amounts, in prices.ts order; a yes or no price by its name. */
+const includedOf = (id: PlanId) => {
+  const included = planOf(id)?.included ?? {}
+  return keys.flatMap((k) => {
+    const n = included[k]
+    if (!n) return []
+    return [counts[k] ? amountOf(k, n) : prices[k].name]
+  })
+}
+const priceWords = (id: PlanId) => {
+  const monthly = planOf(id)?.monthly
+  return monthly == null ? 'priced by contract' : `${dollars(monthly)} a month`
+}
+/* How long the event log keeps events at no charge, from its price's note ("30 days"). */
+const keptFor = /\d+ days/.exec(prices.log.note)?.[0] ?? ''
+
+const JOIN = '/#join'
+const RATES = '/pricing/rates'
+
+/* ---- /pricing: the plans ---- */
+
+export type PlanCard = {
   id: PlanId
   name: string
-  /* The card's big words and the line beside them: never a figure, since every figure is a piece's price. */
+  /* The big words and the line beside them: "$20" and "a month", or "Custom" and "by contract". */
   price: string
   per: string
-  line: string
+  /* Who it's for, in 1 line. */
+  for: string
+  /* Each piece's included amount, from prices.ts; Enterprise has words instead. */
   includes: string[]
+  /* What the plan opens up beyond the amounts. */
+  features: string[]
   cta: Cta
-  /* The plan the page lifts (Pay as you go): the raised card and the row's 1 primary button. */
+  /* The plan the page lifts (Startup): the raised card, its tag and the row's 1 primary button. */
   featured?: boolean
 }
 
-/* A piece's group in the price list: its name, 1 line, the link to its own page, and its prices in prices.ts order. */
-export type PriceGroup = { piece: PieceId; name: string; line: string; link: Cta; keys: PriceKey[] }
+type PlanWords = Pick<PlanCard, 'for' | 'features' | 'cta' | 'featured'> & { includes?: string[] }
 
-/* A field in the estimator: the price it multiplies, its label and the quantity the server draws. `adds` is a monthly
-   price that comes with any use of it (texting in the US needs the carriers' registration). */
-export type EstimateInput = { key: PriceKey; label: string; start: number; adds?: PriceKey }
+const planWords: Record<PlanId, PlanWords> = {
+  free: {
+    for: 'For building and testing your first agent.',
+    features: ['No credit card', 'The API, SDKs and MCP', `Events kept for ${keptFor} in your ${EVENT_LOG.lower}`],
+    cta: { label: 'Start free', to: JOIN },
+  },
+  developer: {
+    for: 'For your first agent in production.',
+    features: [`Everything in ${named('free')}`, 'Use past the plan at each piece’s rate', 'A monthly spend cap you set'],
+    cta: { label: 'Get early access', to: JOIN },
+  },
+  startup: {
+    for: 'For a product whose agents work every day.',
+    features: [`Everything in ${named('developer')}`, 'Seats for your whole team', 'Priority support'],
+    cta: { label: 'Get early access', to: JOIN },
+    featured: true,
+  },
+  enterprise: {
+    for: 'For committed volume, and for products that give agents to their own users.',
+    includes: ['Every piece, at the volume you commit to', 'Lower rates, set by contract'],
+    features: ['An account for each of your users, under your brand', `Events kept longer in your ${EVENT_LOG.lower}`, 'SSO and a support channel of your own'],
+    cta: { label: 'Talk to us', to: JOIN },
+  },
+}
+
+const planCards: PlanCard[] = plans.map((pl) => {
+  const w = planWords[pl.id]
+  return {
+    id: pl.id,
+    name: pl.name,
+    price: pl.monthly == null ? 'Custom' : dollars(pl.monthly),
+    per: pl.monthly == null ? 'by contract' : 'a month',
+    for: w.for,
+    includes: w.includes ?? includedOf(pl.id),
+    features: w.features,
+    cta: w.cta,
+    featured: w.featured,
+  }
+})
+
+/* ---- /pricing: the calculator ---- */
+
+/* A quantity on a piece's card: the price it counts, its label, where it starts, the stepper's step, and, where the
+   range is large, the slider's stops (the plans' own included amounts are added to them, so the slider lands on
+   each plan's edge). `adds` is a monthly price that comes with any use of it (texting in the US needs the carriers'
+   registration). */
+export type CalcQuantity = { key: PriceKey; label: string; start: number; step: number; stops?: number[]; adds?: PriceKey }
+/* A piece's card: its switch (name and line), whether it starts on, its quantities and a note under them. */
+export type CalcPiece = { id: string; name: string; line: string; on: boolean; quantities: CalcQuantity[]; note?: string }
+
+const { whatsapp, chat, register, email, inbox, sms, voice, number, browser, sandbox, log, tokens, persona } = prices
+
+const calcPieces: CalcPiece[] = [
+  {
+    id: 'email',
+    name: 'Email',
+    line: 'Inboxes your agents send and receive from.',
+    on: true,
+    quantities: [
+      { key: 'inbox', label: 'Inboxes', start: 10, step: 1 },
+      { key: 'email', label: 'Emails a month', start: 20000, step: 1000, stops: [1000, 25000, 50000, 250000, 500000, 1000000] },
+    ],
+  },
+  {
+    id: 'phone',
+    name: 'Phone',
+    line: 'Numbers your agents text and call from.',
+    on: true,
+    quantities: [
+      { key: 'number', label: 'Phone numbers', start: 2, step: 1 },
+      { key: 'sms', label: 'Texts a month', start: 1000, step: 100, adds: 'register' },
+      { key: 'voice', label: 'Call minutes a month', start: 200, step: 100 },
+    ],
+  },
+  {
+    id: 'messaging',
+    name: 'Messaging',
+    line: 'iMessage lines, WhatsApp, Slack and Telegram.',
+    on: false,
+    quantities: [{ key: 'imessage', label: 'iMessage lines', start: 1, step: 1 }],
+    note: `${whatsapp.name}: ${whatsapp.amount} ${whatsapp.unit}. ${chat.name}: ${chat.amount.toLowerCase()} ${chat.unit}.`,
+  },
+  {
+    id: 'browser',
+    name: 'Browser',
+    line: 'A cloud browser with a home connection.',
+    on: true,
+    quantities: [
+      { key: 'browser', label: 'Browser hours a month', start: 100, step: 10, stops: [25, 100, 250, 1000, 2000] },
+      { key: 'stealth', label: 'Stealth browser hours', start: 0, step: 10 },
+    ],
+  },
+  {
+    id: 'sandbox',
+    name: 'Sandbox',
+    line: 'A computer to run code in, started only when a task needs it.',
+    on: false,
+    quantities: [
+      { key: 'sandbox', label: 'vCPU hours a month', start: 40, step: 10 },
+      { key: 'memory', label: 'GiB hours of memory a month', start: 80, step: 10 },
+    ],
+  },
+  {
+    id: 'event log',
+    name: EVENT_LOG.name,
+    line: EVENT_LOG.line,
+    on: false,
+    quantities: [{ key: 'log', label: 'Events a month', start: 1000000, step: 100000, stops: [500000, 5000000, 25000000, 50000000] }],
+  },
+]
 
 export type PricingPage = {
   meta: Meta
@@ -40,63 +212,161 @@ export type PricingPage = {
   pill: string
   headline: string
   sub: string
-  /* Under the hero: 3 of the prices, each its amount and unit. */
-  facts: { value: string; label: string }[]
-  list: { heading: string; line: string; groups: PriceGroup[] }
-  plans: { heading: string; line: string; items: Plan[] }
-  estimator: {
+  plans: {
+    /* The section has no visible heading: the hero above is its claim. */
+    label: string
+    items: PlanCard[]
+    /* The tag on the featured card, and the name of each card's 2 lists, read aloud. */
+    tag: string
+    includes: string
+    features: string
+    /* The line under the cards: extra usage, and the link to every rate. */
+    extra: { line: string; link: Cta }
+  }
+  calc: {
     heading: string
     line: string
-    inputs: EstimateInput[]
-    card: {
-      title: string
-      /* Under a line the free allowance covers part of. */
-      free: (count: string) => string
-      total: string
+    pieces: CalcPiece[]
+    /* The stepper buttons' names, from what the quantity counts. */
+    less: (many: string) => string
+    more: (many: string) => string
+    summary: {
+      best: string
+      month: string
+      plan: (name: string) => string
+      included: (n: string) => string
+      split: (included: string, extra: string) => string
+      extra: (n: string) => string
+      free: string
+      /* Under a yes or no line the plan includes (the US texting registration). */
+      inPlan: string
+      rows: string
       rest: string
       cta: Cta
       secondary: Cta
       /* Read aloud once the inputs settle. */
-      announce: (total: string) => string
+      announce: (plan: string, total: string) => string
     }
   }
   faq: Faq
   final: { heading: string; line: string; cta: Cta; secondary: Cta }
 }
 
-const JOIN = '/#join'
-const TALK: Cta = { label: 'Talk to us', to: `mailto:${catalog.contact}` }
-/* 1,000 with its comma, the same on the server and in every browser. */
-export const figure = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-/* "a, b and c". */
-const andList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`)
-/* A price's words inside a sentence: "The first 3 inboxes are free." becomes "the first 3 inboxes are free". */
-const clause = (s = '') => s.charAt(0).toLowerCase() + s.slice(1).replace(/\.$/, '')
+const openLine = `Obsession sells email, phone, messaging, a cloud browser and a code sandbox for AI agents on ${plans.length} plans, with one bill.`
 
-/* The free allowance every account gets each month, before any price applies (a proposal for the founders, 21 Nov).
-   The inboxes are the inbox price's own note, so a change in prices.ts reaches the page. */
-const freeInboxes = Number(/\d+/.exec(prices.inbox.note)?.[0] ?? 0)
-export const allowance: { key: PriceKey; count: number; words: string }[] = [
-  { key: 'inbox', count: freeInboxes, words: 'inboxes' },
-  { key: 'email', count: 3000, words: 'emails' },
-  { key: 'browser', count: 10, words: 'browser hours' },
-  { key: 'sandbox', count: 10, words: 'sandbox vCPU hours' },
-  { key: 'log', count: 100000, words: 'logged events' },
-]
-const freeWords = andList(allowance.map((a) => `${figure(a.count)} ${a.words}`))
-/* How long the event log is kept at no charge, from its price's note ("30 days"). */
-const logDays = /\d+ days/.exec(prices.log.note)?.[0] ?? ''
+export const pricingPage: PricingPage = {
+  meta: {
+    path: '/pricing',
+    title: 'Obsession pricing: plans for agent email, phone and browser',
+    description: `${andList(plans.map((pl) => pl.name))} plans for AI agent email, phone numbers, messaging, a cloud browser and a code sandbox, all on one bill.`,
+    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(includedOf('free'))}. ${named('developer')} is ${priceWords('developer')}, ${named('startup')} is ${priceWords('startup')} and ${named('enterprise')} is ${priceWords('enterprise')}. Use past a plan is billed at each piece’s rate, such as ${email.amount} ${email.unit}.`,
+    breadcrumb: [
+      { name: 'Home', path: '/' },
+      { name: 'Pricing', path: '/pricing' },
+    ],
+  },
+  line: 'Every piece an AI agent needs, on one plan and one bill.',
 
-/* Each piece's group in the price list, in the nav's order; its prices are every line of prices.ts for that piece. */
+  pill: 'Early access pricing',
+  headline: 'Start free. One plan covers every piece your agents use.',
+  sub: `${openLine} Each plan includes an amount of every piece, and you pay a piece’s own rate only past it.`,
+
+  plans: {
+    label: 'Plans',
+    items: planCards,
+    tag: 'Recommended',
+    includes: 'Each month',
+    features: 'Also',
+    extra: {
+      line: 'Past what a paid plan includes, each piece is billed at its own rate, on the same bill.',
+      link: { label: 'See every rate', to: RATES },
+    },
+  },
+
+  calc: {
+    heading: 'See which plan fits before you write a line of code.',
+    line: 'Turn on the pieces your agents use and set how much. The summary picks the plan that costs you least.',
+    pieces: calcPieces,
+    less: (many) => `Fewer ${many}`,
+    more: (many) => `More ${many}`,
+    summary: {
+      best: 'Your best plan',
+      month: 'a month',
+      plan: (name) => `${name} plan`,
+      included: (n) => `${n} included`,
+      split: (included, extra) => `${included} included, ${extra} extra`,
+      extra: (n) => `${n} extra`,
+      free: 'Included',
+      inPlan: 'Part of the plan',
+      rows: 'Your month, line by line',
+      rest: 'WhatsApp messages and model tokens add to this at their own rates.',
+      cta: { label: 'Get early access', to: JOIN },
+      secondary: { label: `Talk to us about ${named('enterprise')}`, to: JOIN },
+      announce: (plan, total) => `${plan}, ${total} a month.`,
+    },
+  },
+
+  faq: {
+    heading: 'Questions about plans and bills.',
+    items: [
+      {
+        q: 'Can I use just one piece?',
+        a: 'Yes. Each piece works on its own with the same API key. Use only email, then add a phone number or a browser when your agent needs one, on the same plan and the same bill.',
+      },
+      {
+        q: 'What happens when I use more than my plan includes?',
+        a: 'Each piece past its amount is billed at its own rate, on the same bill. Nothing stops, and a monthly spend cap you set keeps the bill where you want it.',
+        link: { label: 'See every rate', to: RATES },
+      },
+      {
+        q: `What happens when ${named('free')} runs out?`,
+        a: `That piece pauses until the next month, or until you pick a paid plan. ${named('free')} needs no credit card, so it never bills you.`,
+      },
+      {
+        q: 'Can I change plans?',
+        a: 'Yes, at any time from your account. The new plan’s amounts apply from the day you change.',
+      },
+      {
+        q: 'What does a recipe cost?',
+        a: 'A recipe is a job that runs on Obsession, one of ours or one you write. It’s billed on the pieces it uses, under your plan. A mystery shop uses a browser, an inbox and a phone number, so it counts browser hours, emails and texts.',
+        link: { label: 'See the mystery shopper recipe', to: '/recipes/mystery-shopper' },
+      },
+      {
+        q: 'Does a persona cost anything while it waits?',
+        a: `No. A persona is ${persona.amount.toLowerCase()} ${persona.unit}. ${persona.note} It answers a new message in about 50 ms without starting a machine, so days of waiting for a reply add nothing.`,
+      },
+      {
+        q: `What’s in ${named('enterprise')}?`,
+        a: `Lower rates at committed volume, an account for each of your users under your brand, events kept longer in your ${EVENT_LOG.lower}, SSO and a support channel of your own. Talk to us and we’ll price it on your volume.`,
+      },
+      {
+        q: 'Can I cap what I spend?',
+        a: 'Yes. Set a monthly spend cap on your account. When the month’s bill reaches it, billable work stops until you raise the cap or the next month starts.',
+      },
+    ],
+  },
+
+  final: {
+    heading: 'Your agent’s first inbox is free.',
+    line: `Request early access and start on ${named('free')}, with no credit card. Pick a plan when your agents need more.`,
+    cta: { label: 'Get early access', to: JOIN },
+    secondary: { label: 'See every rate', to: RATES },
+  },
+}
+
+/* ---- /pricing/rates: every rate, grouped by piece ---- */
+
+/* A piece's group: its name, 1 line, the link to its own page, and its prices in prices.ts order. */
+export type PriceGroup = { piece: PieceId; name: string; line: string; link: Cta; keys: PriceKey[] }
+
 const groupWords: Record<PieceId, { name: string; line: string; link: string }> = {
   email: { name: 'Email', line: 'Inboxes your agents send and receive from, with threads, attachments and webhooks.', link: 'How Email works' },
   phone: { name: 'Phone', line: 'Phone numbers your agents text and call from.', link: 'How Phone works' },
   messaging: { name: 'Messaging', line: 'iMessage lines, WhatsApp, Slack and Telegram, on the same API.', link: 'How Messaging works' },
   browser: { name: 'Browser', line: 'A cloud browser with a home connection, whose sessions keep their logins.', link: 'How Browser works' },
   sandbox: { name: 'Sandbox', line: 'A computer to run code in, started only when a task needs it.', link: 'How Sandbox works' },
-  personas: { name: 'Personas and event log', line: 'The pieces under one identity, with a dated log of every page, email, text and call.', link: 'How Personas work' },
+  personas: { name: `Personas and the ${EVENT_LOG.lower}`, line: `The pieces under one identity. ${EVENT_LOG.line}`, link: 'How Personas work' },
 }
-const keys = Object.keys(prices) as PriceKey[]
 const groups: PriceGroup[] = pieceOrder.map((piece) => ({
   piece,
   name: groupWords[piece].name,
@@ -105,158 +375,80 @@ const groups: PriceGroup[] = pieceOrder.map((piece) => ({
   keys: keys.filter((k) => prices[k].piece === piece),
 }))
 
-const { inbox, email, number, sms, whatsapp, browser, sandbox, persona, log, tokens } = prices
+export type RatesPage = {
+  meta: Meta
+  /* 1 sentence for the share card. */
+  line: string
+  pill: string
+  headline: string
+  sub: string
+  /* The list has no visible heading of its own: the hero above is its claim. */
+  list: { label: string; groups: PriceGroup[] }
+  faq: Faq
+  final: { heading: string; line: string; cta: Cta; secondary: Cta }
+}
 
-export const pricingPage: PricingPage = {
+const ratesOpen = 'These are the rates Obsession bills for each piece an AI agent uses past what its plan includes.'
+
+export const ratesPage: RatesPage = {
   meta: {
-    path: '/pricing',
-    title: 'Obsession pricing: agent email, phone, browser and sandbox',
+    path: RATES,
+    title: 'Obsession rates: agent email, phone, browser, sandbox prices',
     description:
-      'Email, phone numbers, messaging, a cloud browser and a code sandbox for AI agents, each priced on its own, on one bill. Start free, then pay as you go.',
-    answer: `Obsession prices each piece an AI agent needs on its own, on one bill. An inbox is ${inbox.amount} ${inbox.unit} (${clause(inbox.note)}), email is ${email.amount} ${email.unit}, a phone number is ${number.amount} ${number.unit}, texts are ${sms.amount} ${sms.unit}, a cloud browser is ${browser.amount} ${browser.unit} and a code sandbox is ${sandbox.amount} ${sandbox.unit}. Every account gets ${freeWords} free each month, pay as you go has no minimum, and Scale adds lower rates by contract.`,
+      'Every Obsession rate, piece by piece: inboxes, emails, phone numbers, texts, calls, iMessage, WhatsApp, browser hours, sandbox time and event log events.',
+    answer: `${ratesOpen} ${[inbox, email, number, sms, voice, browser, sandbox, log].map((x) => `${x.name}: ${x.amount} ${x.unit}.`).join(' ')}`,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Pricing', path: '/pricing' },
+      { name: 'Every rate', path: RATES },
     ],
   },
-  line: 'Every piece an AI agent needs, each priced on its own, on one bill.',
+  line: 'Every rate Obsession bills, piece by piece, in US dollars.',
 
   pill: 'Early access pricing',
-  headline: 'Each piece has its own price. Pay for what your agents use.',
-  sub: 'Obsession prices each piece an AI agent needs on its own, on one bill: email, phone, messaging, a browser and a sandbox. There’s no plan to pick and no minimum: start free, then pay the list price as you go.',
-  facts: [
-    { value: inbox.amount, label: inbox.unit },
-    { value: sms.amount, label: sms.unit },
-    { value: browser.amount, label: browser.unit },
-  ],
+  headline: 'Past your plan, each piece has one rate.',
+  sub: `${ratesOpen} Prices are in US dollars, and every piece is on the same bill.`,
 
-  list: {
-    heading: 'Every line on your bill is a piece your agents used.',
-    line: 'Prices are in US dollars. Use one piece or all of them, at the same rates.',
-    groups,
-  },
-
-  plans: {
-    heading: 'Every account starts free, with no credit card and no minimum.',
-    line: 'Each month the free allowance comes off first. Past it, you pay the list prices with a spend cap you set, or sign for lower rates on Scale.',
-    items: [
-      {
-        id: 'free',
-        name: 'Free',
-        price: 'No card',
-        per: 'needed',
-        line: 'For building and testing your first agent.',
-        includes: [
-          `${figure(freeInboxes)} inboxes`,
-          ...allowance.filter((a) => a.key !== 'inbox').map((a) => `${figure(a.count)} ${a.words} a month`),
-          `Event log kept for ${logDays}`,
-          'The API, SDKs and MCP',
-        ],
-        cta: { label: 'Get early access', to: JOIN },
-      },
-      {
-        id: 'payg',
-        name: 'Pay as you go',
-        price: 'List prices',
-        per: 'past the free allowance',
-        line: 'For agents in production, at any size.',
-        includes: [
-          'Every price in the list above',
-          'The free allowance, every month',
-          'A monthly spend cap you set',
-          'No minimum and nothing to commit',
-          `Event log at ${log.amount} ${log.unit}, kept for ${logDays}`,
-          'Webhooks, the API, SDKs and MCP',
-        ],
-        cta: { label: 'Get early access', to: JOIN },
-        featured: true,
-      },
-      {
-        id: 'scale',
-        name: 'Scale',
-        price: 'Lower rates',
-        per: 'by contract',
-        line: 'For committed volume, and for products that give agents to their own users.',
-        includes: [
-          'Lower rates at committed volume',
-          'An account for each of your users',
-          'White label under your own brand',
-          'A longer event log',
-          'SSO',
-          'Priority support',
-        ],
-        cta: TALK,
-      },
-    ],
-  },
-
-  estimator: {
-    heading: 'See your monthly bill before you write a line of code.',
-    line: 'Type what your agents will use in a month. The free allowance comes off first.',
-    inputs: [
-      { key: 'inbox', label: 'Inboxes', start: 10 },
-      { key: 'email', label: 'Emails', start: 20000 },
-      { key: 'number', label: 'Phone numbers', start: 2 },
-      { key: 'sms', label: 'Texts', start: 1000, adds: 'register' },
-      { key: 'voice', label: 'Call minutes', start: 500 },
-      { key: 'browser', label: 'Browser hours', start: 50 },
-      { key: 'sandbox', label: 'Sandbox vCPU hours', start: 40 },
-      { key: 'log', label: 'Logged events', start: 200000 },
-    ],
-    card: {
-      title: 'Your month',
-      free: (count) => `First ${count} free`,
-      total: 'A month',
-      rest: 'Sandbox memory, stealth browser hours, iMessage lines, WhatsApp and model tokens add to this at the prices in the list.',
-      cta: { label: 'Get early access', to: JOIN },
-      secondary: { label: 'Talk to us about Scale', to: `mailto:${catalog.contact}` },
-      announce: (total) => `${total} a month.`,
-    },
-  },
+  list: { label: 'Every rate, by piece', groups },
 
   faq: {
-    heading: 'Questions about prices and bills.',
+    heading: 'Questions about rates.',
     items: [
       {
-        q: 'Can I use just one piece?',
-        a: 'Yes. Each piece works on its own with the same API key. Use only email, then add a phone number or a browser when your agent needs one, on the same bill.',
-      },
-      {
-        q: 'What’s in the free allowance?',
-        a: `Every account gets ${freeWords} free each month. Past that, each piece is billed at its list price, and the event log is kept for ${logDays} at no extra charge.`,
+        q: 'Do the rates change with my plan?',
+        a: `No. ${named('developer')} and ${named('startup')} bill the same rates past what they include. ${named('enterprise')} sets lower rates by contract.`,
       },
       {
         q: 'How is WhatsApp priced?',
         a: `At ${whatsapp.amount} ${whatsapp.unit}. ${whatsapp.note} WhatsApp is for support, sales, bookings and notifications.`,
       },
       {
-        q: 'What does a recipe cost?',
-        a: 'A recipe is a whole job we run for you, such as a mystery shop. It’s billed on the pieces it uses, at these prices. A mystery shop uses a browser, an inbox and a phone number, so its bill shows the browser hours, emails and texts it used.',
-        link: { label: 'See the mystery shopper recipe', to: '/recipes/mystery-shopper' },
+        q: 'Why does texting in the US cost a monthly fee?',
+        a: `${register.note} It’s ${register.amount} ${register.unit}.`,
       },
       {
-        q: 'Does a persona cost anything while it waits?',
-        a: `No. A persona is ${clause(persona.amount)} ${persona.unit}: ${clause(persona.note)}. It answers a new message in about 50 ms without starting a machine, so days of waiting for a reply add nothing beyond its inbox and number.`,
+        q: 'What does a phone number outside the US or UK cost?',
+        a: number.note,
+      },
+      {
+        q: 'What does a sandbox cost while it waits?',
+        a: `Almost nothing. ${sandbox.note}`,
+      },
+      {
+        q: `How long do events stay in the ${EVENT_LOG.lower}?`,
+        a: `Every event stays in your ${EVENT_LOG.lower} for ${keptFor} at no extra charge, and longer on ${named('enterprise')}. Storing them is ${log.amount} ${log.unit}.`,
       },
       {
         q: 'How are model tokens billed?',
-        a: `At ${clause(tokens.amount)}, ${tokens.unit}. With your own key, your model provider bills you and the tokens never reach your Obsession bill.`,
-      },
-      {
-        q: 'Can I cap what I spend?',
-        a: 'Yes. Set a monthly spend cap on your account. When the month’s bill reaches it, billable work stops until you raise the cap or the next month starts.',
-      },
-      {
-        q: 'Do you discount volume?',
-        a: 'Yes, on Scale. Commit to a monthly volume and each piece gets a lower rate. Scale also gives each of your users an account of their own, under your brand. Pay as you go is the list price at any size.',
+        a: `At ${tokens.amount.toLowerCase()}, ${tokens.unit}. With your own key, your model provider bills you and the tokens never reach your Obsession bill.`,
       },
     ],
   },
 
   final: {
-    heading: 'Your agent’s first inbox is free.',
-    line: 'Request early access and start on the free allowance. Add a credit card when your agents need more.',
-    cta: { label: 'Get early access', to: JOIN },
-    secondary: { label: 'Talk to us about Scale', to: `mailto:${catalog.contact}` },
+    heading: 'A plan includes an amount of every piece.',
+    line: 'Pick the plan that fits your agents, and these rates apply only past it.',
+    cta: { label: 'See the plans', to: '/pricing#plans' },
+    secondary: { label: 'Get early access', to: JOIN },
   },
 }

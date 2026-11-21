@@ -82,6 +82,13 @@ const PATHS: Record<PersonaIcon, ReactNode> = {
     </>
   ),
   code: <path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5M9 3l-2 10" />,
+  retry: <path d="M13 8a5 5 0 1 1-1.6-3.7M13.2 2.6v2.8h-2.8" />,
+  domain: (
+    <>
+      <circle cx="8" cy="8" r="2.4" />
+      <path d="M10.4 8v1.1a1.7 1.7 0 0 0 3.4 0V8a5.8 5.8 0 1 0-2.3 4.6" />
+    </>
+  ),
 }
 
 export function PersonaGlyph({ name }: { name: PersonaIcon }) {

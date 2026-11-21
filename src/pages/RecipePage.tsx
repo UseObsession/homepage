@@ -10,6 +10,7 @@ import { Console } from '../components/sections/Console'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { RecipeKit } from '../components/sections/RecipeKit'
+import { DeliveryLists } from '../components/piece/PieceDelivery'
 import { drawnFor, type Workspace } from '../components/workspace'
 import { nav } from '../content/nav'
 import { isRealRun, recipePage as ui } from '../content/recipe-page'
@@ -20,8 +21,9 @@ import './RecipePage.css'
 /* A recipe's own page (/recipes/SLUG), James's structure on the design system, every word from the recipe's content
    file (src/content/recipes) and the shared claims in content/recipe-page.ts. In order:
    the centred hero with the recipe's screen and capture > what choosing it sets up, landing 1 by 1 > the run in the
-   console > the steps > what it checks > what you get > what you can change > who it's for > the optional table >
-   questions > the final call. Motion lives in the product only: the screen plays its story, the kit lands, the run
+   console > the steps > what it checks > what you get > how each result reaches you, as a recipe.result event through
+   the same channels as every piece (#delivery) > what you can change > who it's for > the optional table > questions >
+   the final call. Motion lives in the product only: the screen plays its story, the kit lands, the run
    plays. Sections never fade in. */
 
 /* A numeral never ends a line apart from its word ("48 hours", "4 test customers"). */
@@ -286,6 +288,10 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         }
       >
         <Outputs items={r.outputs.items} />
+      </Section>
+
+      <Section id="delivery" heading={ui.delivery.heading} line={ui.delivery.line} className="s-rp-delivery">
+        <DeliveryLists ui={ui.delivery} />
       </Section>
 
       {r.settings && r.settings.length > 0 && (

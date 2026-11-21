@@ -3,7 +3,7 @@ import type { PiecePage } from '../../content/pieces/types'
 import '../persona/blueprint.css'
 import './PieceLog.css'
 
-/* The event log (#event-log, Personas): an ink chapter, the claim and its line beside a card of 1 persona's dated rows
+/* The event log card (#event-log, Personas): an ink chapter, the claim and its line beside a card of 1 persona's dated rows
    from 1080px, stacked below. The card's head is who the persona is (its name, inbox, number); each row is when, what
    kind and what happened, a small note where it woke or acted, and a frame mark where the row was kept with a
    screenshot. The waiting row is quieter, on a dashed rule. */

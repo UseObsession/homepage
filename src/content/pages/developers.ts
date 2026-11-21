@@ -1,3 +1,4 @@
+import { channels, downLine, eventLines, type Channel, type EventName } from '../delivery'
 import { piecePaths, pieceOrder } from '../piecePaths'
 import { prices, type PieceId, type Price } from '../prices'
 import type { Cta, OpenSource, Page } from '../types'
@@ -7,13 +8,18 @@ import type { Cta, OpenSource, Page } from '../types'
    API for agents) or many, and can put them under one persona. The story (pages/Developers.tsx): the hero with the
    quickstart beside it > #pieces: 1 short code block per piece (email, phone, messaging, browser, sandbox), each linking
    to its own page > #personas: the pieces under one identity, its handler running on our runtime about 50 ms after a
-   message lands, free while it waits, persona.events() for the event log > #webhooks: 1 endpoint and the event names >
-   #mcp: claude mcp add obsession, the same calls as tools > #integrations (the nav links #integrations, #baserow,
-   #supabase and #webhooks; #webhooks is the webhook section, the rest are cards) > #prices: every price rendered from
-   content/prices.ts, linked to /pricing > #open-source > questions > #join: API access. The code uses only the API names
-   in the rebuild brief. Invented companies use .example addresses, with no "Example" tag. No competitor names, no
-   "coming soon". The sections Page has no type for (pieces, personas, webhooks, mcp, prices) are `api` below, typed
-   here because only this page draws them. */
+   message lands, free while it waits, its events read from the event log > #recipes: run one of ours, or create your
+   own job on our runtime, its results landing in the event log > #delivery: how events reach you (James, 21 Nov):
+   every event from every piece, persona and recipe is saved in the event log (1 per account), then delivered through 6
+   channels in this order, each with its code: 1 signed webhook (#webhooks, the nav's Webhooks link, with every event
+   name), the event log read by cursor, MCP, a handler on our runtime, a live stream for local work, and Zapier, Make
+   and n8n; then the line on a server that's down. Names, lines and that line are content/delivery.ts, shared with Home,
+   the piece pages and the recipe pages > #mcp: claude mcp add obsession, the same calls as tools > #integrations (the
+   nav links #integrations, #baserow, #supabase and #webhooks; the rest are cards) > #prices: every price rendered from
+   content/prices.ts, linked to /pricing > #open-source > questions > #join: API access. The code uses only the API
+   names the founders gave (obsession.events.subscribe, obsession.events.list). Invented companies use .example
+   addresses, with no "Example" tag. No competitor names, no "coming soon". The sections Page has no type for (pieces,
+   personas, recipes, delivery, mcp, prices) are `api` below, typed here because only this page draws them. */
 
 const access = {
   kind: 'waitlist',
@@ -35,12 +41,18 @@ export type ApiPiece = { id: PieceId; name: string; line: string; code: string; 
 export type ApiFact = { term: string; line: string }
 export type ApiCall = { name: string; line: string }
 export type ApiPriceGroup = { id: PieceId; name: string; to: string; rows: Price[] }
+/* A section of short facts beside its code (#personas, #recipes). */
+export type ApiFacts = { heading: string; line: string; code: string; facts: ApiFact[]; link: Cta }
+/* 1 way events reach you (#delivery), its name and line from content/delivery.ts, its code here. `anchor` is the id a
+   link lands on (#webhooks); `events` lists every event name under the webhook. */
+export type ApiChannel = { id: Channel['id']; name: string; line: string; code: string; anchor?: string; events?: ApiCall[] }
 export type ApiSections = {
   /* The hero's object: the quickstart, in the code window beside the words. */
   quickstart: { label: string; code: string }
   pieces: { heading: string; line: string; items: ApiPiece[] }
-  personas: { heading: string; line: string; code: string; facts: ApiFact[]; link: Cta }
-  webhooks: { heading: string; line: string; code: string; events: ApiCall[]; foot: string }
+  personas: ApiFacts
+  recipes: ApiFacts
+  delivery: { heading: string; line: string; channels: ApiChannel[]; eventsLabel: string; down: string }
   mcp: { heading: string; line: string; setup: string; note: string; tools: ApiCall[] }
   prices: { heading: string; line: string; groups: ApiPriceGroup[]; cta: Cta }
 }
@@ -121,23 +133,79 @@ persona.on("email.received", async (email) => {
   // Runs on our runtime, about 50 ms after it lands
 })
 
-// The event log: every page, email, text and call, dated, with screenshots
-const events = await persona.events()`
+// Its events in your event log: every page, email, text and call, dated, with screenshots
+const { events } = await obsession.events.list({ persona: persona.id })`
 
-const WEBHOOK = `await obsession.webhooks.create({
-  url: "https://your-app.example/hooks/obsession",
-  events: ["email.received", "sms.received", "call.received"],
+const RECIPES = `// One of ours, ready to run
+await obsession.recipes.run("mystery-shopper", { site: "https://larkfield.example" })
+
+// Or your own job, on our runtime beside the pieces
+await obsession.recipes.create({
+  name: "price-check",
+  run: async ({ browser, events }) => {
+    // Your task or computation. Nothing to host
+  },
 })
 
-// POST https://your-app.example/hooks/obsession
+// Either way, each result lands in your event log as recipe.result`
+
+/* The code for each way events reach you (#delivery), in the order content/delivery.ts gives. */
+const CHANNEL_CODE: Record<Channel['id'], string> = {
+  webhook: `// Every event from every piece and recipe, at 1 URL
+await obsession.events.subscribe({
+  url: "https://your-app.example/hooks",
+  events: ["*"],
+})
+
+// POST https://your-app.example/hooks, signed
 {
-  "event": "email.received",
-  "inbox": "inb_4k9w2",
-  "from": "bookings@larkfield.example",
-  "subject": "Re: A table for 2 on Friday",
-  "thread": "thr_81fa",
-  "received_at": "2026-11-21T10:02:00Z"
-}`
+  "id": "evt_7Hq2k9",
+  "type": "email.received",
+  "created_at": "2026-11-21T10:02:00Z",
+  "data": {
+    "inbox": "inb_4k9w2",
+    "from": "bookings@larkfield.example",
+    "subject": "Re: A table for 2 on Friday",
+    "thread": "thr_81fa"
+  }
+}`,
+  cursor: `// Everything after the last event you handled, in order
+const { events, cursor } = await obsession.events.list({ after: lastCursor })
+
+for (const event of events) {
+  await handle(event)
+}
+
+// Keep the cursor, and start from it next time
+lastCursor = cursor`,
+  mcp: `claude mcp add obsession`,
+  handler: `const persona = await obsession.personas.create({ inbox: true, phone: "US" })
+
+persona.on("email.received", async (email) => {
+  // Runs on our runtime about 50 ms after the email lands
+})
+
+persona.on("sms.received", async (sms) => {
+  // The same for texts, calls and messages
+})`,
+  listen: `npx obsession listen --forward "http://localhost:3000/hooks"`,
+  nocode: `Trigger: New Obsession event
+Event: recipe.result
+Action: Slack, post a message`,
+}
+
+/* The event names listed under the webhook, from content/delivery.ts. */
+const EVENTS: EventName[] = [
+  'email.received',
+  'email.sent',
+  'sms.received',
+  'call.received',
+  'call.ended',
+  'message.received',
+  'page.visited',
+  'sandbox.finished',
+  'recipe.result',
+]
 
 /* Every price, grouped by piece in the nav's order, straight from content/prices.ts. */
 const priceGroups: ApiPriceGroup[] = pieceOrder.map((id) => ({
@@ -163,26 +231,40 @@ export const api: ApiSections = {
     facts: [
       { term: 'About 50 ms', line: 'From an email, text or call landing to your handler running. No machine starts.' },
       { term: `${prices.persona.amount} ${prices.persona.unit}`, line: prices.persona.note },
-      { term: 'An event log', line: `Every page, email, text and call, dated, with screenshots. ${prices.log.amount} ${prices.log.unit}.` },
+      { term: 'Its events in your event log', line: `Every page, email, text and call, dated, with screenshots. ${prices.log.amount} ${prices.log.unit}.` },
     ],
     link: { label: 'How personas work', to: piecePaths.personas },
   },
 
-  webhooks: {
-    heading: 'Every email, text and call reaches your webhook as it lands.',
-    line: '1 endpoint for every piece. Each event arrives as JSON, with the inbox, number or persona it belongs to.',
-    code: WEBHOOK,
-    events: [
-      { name: 'email.received', line: 'An email lands in one of your inboxes.' },
-      { name: 'sms.received', line: 'A text reaches one of your numbers.' },
-      { name: 'call.received', line: 'Someone calls one of your numbers.' },
+  recipes: {
+    heading: 'Run a recipe beside the pieces, ours or your own, with nothing to host.',
+    line: 'A recipe is a job that runs on Obsession beside the pieces and writes its results to your event log. Run one of ours, such as agentic mystery shopping, or create your own.',
+    code: RECIPES,
+    facts: [
+      { term: 'Ours, ready to run', line: 'Mystery shopping, competitor trials, price watch and more. Name the site, and we run the job.' },
+      { term: 'Your own job', line: 'A task or a computation that runs on our runtime next to the inbox, browser and sandbox.' },
+      { term: 'One event log', line: 'Each result lands as a recipe.result event, beside the events from your pieces and personas, and reaches you the same way.' },
     ],
-    foot: 'Messages on iMessage, WhatsApp, Slack and Telegram reach the same endpoint.',
+    link: { label: 'Browse recipes', to: '/recipes' },
+  },
+
+  delivery: {
+    heading: 'Every event is saved in your event log, then reaches you where you listen.',
+    line: 'Emails, texts, calls, pages, sandbox runs and recipe results all arrive the same way, in the same shape. Start with the webhook, and add a channel when you need one.',
+    channels: channels.map((c) => ({
+      id: c.id,
+      name: c.name,
+      line: c.line,
+      code: CHANNEL_CODE[c.id],
+      ...(c.id === 'webhook' ? { anchor: 'webhooks', events: EVENTS.map((name) => ({ name, line: eventLines[name] })) } : {}),
+    })),
+    eventsLabel: 'Every event name',
+    down: downLine,
   },
 
   mcp: {
     heading: 'Your agent creates inboxes, numbers and browsers as tools.',
-    line: 'Add the MCP server once to Claude Code, Cursor, Codex or any MCP client. Your agent gets the same calls as the API, and reads event logs as tools.',
+    line: 'Add the MCP server once to Claude Code, Cursor, Codex or any MCP client. Your agent gets the same calls as the API, and reads and subscribes to your event log as a tool.',
     setup: 'claude mcp add obsession',
     note: 'Claude Code takes 1 line. In Cursor, Codex or any other MCP client, add the same server in its settings.',
     tools: [
@@ -193,7 +275,9 @@ export const api: ApiSections = {
       { name: 'messaging.connect', line: 'Connect iMessage, WhatsApp, Slack or Telegram.' },
       { name: 'browsers.create', line: 'Open a cloud browser that keeps its logins.' },
       { name: 'sandbox.run', line: 'Run code in a sandbox started for the task.' },
-      { name: 'persona.events', line: 'Read a persona’s event log.' },
+      { name: 'recipes.run', line: 'Run a recipe, one of ours or your own.' },
+      { name: 'events.list', line: 'Read the events in your event log, for 1 persona or all of them.' },
+      { name: 'events.subscribe', line: 'Hear about new events as they land, such as email.received.' },
     ],
   },
 
@@ -215,7 +299,7 @@ const openSource: OpenSource = {
     items: [
       { name: 'Personas that wait for free' },
       { name: 'Handlers that run when an email, text or call lands' },
-      { name: 'Every page, email, text and call logged, with screenshots' },
+      { name: 'An event log of every page, email, text and call, with screenshots' },
       { name: 'The same calls over MCP and the API' },
     ],
   },
@@ -233,7 +317,7 @@ export const page: Page = {
     description:
       'One API for AI agents: email inboxes, phone numbers and texts, iMessage and WhatsApp, cloud browsers and code sandboxes, with one key and one bill.',
     answer:
-      'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece, such as the email, or put them all under one persona with an event log. Call it from code, or from your agent over MCP.',
+      'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece, such as the email, or put them all under one persona, with every event in your event log. Call it from code, or from your agent over MCP.',
     ogImage: '/og/developers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -256,7 +340,7 @@ export const page: Page = {
   },
 
   /* Where tasks start and where events go: the nav's Integrations menu links to #baserow and #supabase by id (#webhooks
-     is the webhook section, pages/Developers.tsx). */
+     is the webhook in the delivery section, pages/Developers.tsx). */
   integrations: {
     kicker: 'Integrations',
     heading: 'Every event lands in the tools you already use.',
@@ -284,7 +368,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does the Obsession API do?',
-        a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece on its own, or put them all under one persona that waits for free and keeps an event log. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
+        a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece on its own, or put them all under one persona that waits for free. Run our recipes or your own jobs beside them, and every event lands in your event log. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
       },
       {
         q: 'Can I use only the email?',
@@ -293,12 +377,21 @@ export const page: Page = {
       },
       {
         q: 'How do I connect it to Claude or Cursor?',
-        a: 'Add the MCP server once, with claude mcp add obsession in Claude Code or in your client’s settings. Your agent can then create inboxes, numbers, browsers and sandboxes and read event logs as tools. Early access includes API and MCP keys.',
+        a: 'Add the MCP server once, with claude mcp add obsession in Claude Code or in your client’s settings. Your agent can then create inboxes, numbers, browsers and sandboxes, and read and subscribe to your event log as a tool. Early access includes API and MCP keys.',
       },
       {
         q: 'What is a persona?',
-        a: 'The pieces under one identity: an inbox, a phone number, its messaging channels, a browser profile and a sandbox when a task needs one. It lives on our runtime and waits for free. Your handler runs about 50 ms after a message lands, and its event log keeps every page, email, text and call.',
+        a: 'The pieces under one identity: an inbox, a phone number, its messaging channels, a browser profile and a sandbox when a task needs one. It lives on our runtime and waits for free. Your handler runs about 50 ms after a message lands, and every page, email, text and call it handles lands in your event log.',
         link: { label: 'How personas work', to: piecePaths.personas },
+      },
+      {
+        q: 'Can I run my own job on Obsession?',
+        a: 'Yes. Create it as a recipe with obsession.recipes.create, and it runs on our runtime beside the inbox, browser and sandbox, so there is nothing to host. Its results land in your event log as recipe.result events, and reach you like every other event.',
+        link: { label: 'Browse recipes', to: '/recipes' },
+      },
+      {
+        q: 'How do events reach my app, and what if my server is down?',
+        a: `Every event is saved in your event log, then sent to one signed webhook you subscribe once, for every piece and recipe. ${downLine} You can also read the event log by cursor with obsession.events.list, or let your agent subscribe over MCP. Or run a handler on our runtime, and forward events to your laptop with npx obsession listen while you build.`,
       },
       {
         q: 'How is each piece priced?',

@@ -540,7 +540,8 @@ export type CardGrid = {
 
 /* ---- Home's sections (21 Nov 2026, components/persona) ---------------------------------------------------------------
    One API for the pieces an AI agent needs (email, phone, messaging, browser, sandbox), the persona that puts them under
-   one identity, and recipes for teams who don't write code. Every block is optional on a Page; only Home draws them. */
+   one identity, and recipes: jobs that run beside the pieces, ours or your own, with every result in your event log. Every
+   block is optional on a Page; only Home draws them. */
 
 /* The hero's first path and its copyable line of code (components/persona/PersonaHero). The rest of the hero is the
    page's `hero`: its headline, sub, `note` (the small line under the buttons), `secondary` and `proof` (the 3 facts). */
@@ -551,7 +552,7 @@ export type PersonaStart = {
 /* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
 export type PersonaIcon =
   | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
-  | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code'
+  | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
 /* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
    (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
 export type HomePieces = {
@@ -581,14 +582,24 @@ export type PersonaRecipes = {
 }
 /* What's built in (PersonaFleet): a ruled grid of short items, each with its icon. */
 export type PersonaFleet = { heading: string; line?: string; items: { icon: PersonaIcon; title: string; line: string }[] }
-/* For developers (PersonaBuild): the claim, the code, and where events go. */
+/* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeDelivery. */
 export type PersonaBuild = {
   heading: string
   line: string
   cta: Cta
   codeLabel: string
   code: string
-  outputs: { title: string; line: string }[]
+}
+/* How events reach you (HomeDelivery): the 3 step picture (it happens, it's saved in your event log, it reaches you),
+   each step its title, 1 line and the mono rows its drawing shows; then the channels as short cards (content/delivery.ts),
+   the line on a server that's down, and the link to every channel's code. */
+export type HomeDelivery = {
+  heading: string
+  line?: string
+  steps: { title: string; line: string; rows: string[] }[]
+  channels: { name: string; line: string; eg: string }[]
+  down: string
+  link: Cta
 }
 /* 1 wide card to a use case page (HomeUseCase): the claim, its line and link, beside what sits behind a sign up: the
    page anyone sees (`before`), the wall (`wall`), then what only people who signed up see (`after`). */
@@ -659,6 +670,7 @@ export type Page = {
   personaRecipes?: PersonaRecipes
   personaFleet?: PersonaFleet
   personaBuild?: PersonaBuild
+  homeDelivery?: HomeDelivery
   homeUseCase?: HomeUseCase
 }
 
@@ -927,7 +939,7 @@ export type BlogIndexPage = {
    Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
    --------------------------------------------------------------------------------------------------------------------- */
 
-/* Home's share image (scripts/og.mjs): the card drawn beside the headline. Since 21 Nov, 1 persona's event log: each
+/* Home's share image (scripts/og.mjs): the card drawn beside the headline. Since 21 Nov, 1 persona's events in the event log: each
    row the piece it came through (`company`), what came (`finding`) and when. Invented people and companies only. */
 export type ShareFindings = {
   title: string

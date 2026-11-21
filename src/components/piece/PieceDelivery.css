@@ -1,0 +1,57 @@
+/* How events reach you (PieceDelivery.tsx), on the piece and recipe pages: the events beside the channels from 960px
+   (5 columns to 7), stacked below. Each list opens on its quiet label and runs on hairlines; the channels sit 2 to a row
+   (3 when a recipe passes no events), 1 on a phone. Tokens only, so both themes hold. */
+
+.s-dl { display: grid; gap: var(--ob-space-32); min-width: 0; }
+.s-dl-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-40); }
+@media (min-width: 960px) {
+  .s-dl:not(.is-wide) .s-dl-body { grid-template-columns: var(--s-split); column-gap: var(--s-split-gap); align-items: start; }
+}
+.s-dl-block { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; }
+.s-dl-label { margin: 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); }
+
+/* The events: the name in mono over its line. */
+.s-dl-events { margin: 0; display: grid; border-top: var(--ob-border-hair) solid var(--ob-line-strong); }
+.s-dl-event { display: grid; gap: var(--ob-space-4); padding-block: var(--ob-space-12); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-dl-event dt { min-width: 0; }
+.s-dl-event code { font: 500 13.5px / 1.5 var(--ob-font-mono); color: var(--ob-text); overflow-wrap: anywhere; }
+.s-dl-event dd { margin: 0; font: 400 15px / 1.5 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+
+/* The channels, in their order. */
+.s-dl-channels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--ob-space-32);
+  border-top: var(--ob-border-hair) solid var(--ob-line-strong);
+}
+.s-dl-channel {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr);
+  column-gap: var(--ob-space-12);
+  row-gap: var(--ob-space-4);
+  align-content: start;
+  padding-block: var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-dl-n { grid-row: 1 / 3; font: 500 12.5px / 1.6 var(--ob-font-mono); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.s-dl-name { margin: 0; font: 600 16px / 1.35 var(--ob-font-sans); letter-spacing: -0.012em; color: var(--ob-text); }
+.s-dl-line { margin: 0; font: 400 14.5px / 1.5 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+@media (min-width: 640px) {
+  .s-dl-channels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1080px) {
+  .s-dl.is-wide .s-dl-channels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* A server that's down, and the link to every channel's code. */
+.s-dl-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-16) var(--ob-space-32);
+}
+.s-dl-down { margin: 0; max-width: 64ch; font: 500 15.5px / 1.5 var(--ob-font-sans); color: var(--ob-text); text-wrap: pretty; }

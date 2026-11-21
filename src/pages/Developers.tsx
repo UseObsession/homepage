@@ -8,13 +8,15 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { CardGrid } from '../components/v5/CardGrid'
 import { Hero5 } from '../components/v5/Hero5'
 import { OpenSource } from '../components/v5/OpenSource'
-import { api, page, type ApiCall, type ApiSections } from '../content/pages/developers'
+import { api, page, type ApiCall, type ApiFacts, type ApiSections } from '../content/pages/developers'
 import type { Cta } from '../content/types'
 import './StoryPage.css'
 import './Developers.css'
 
 /* /developers, composed from content/pages/developers.ts in the order its comment gives: the hero with the quickstart
-   beside it > #pieces (1 code block per piece) > #personas > #webhooks (the nav's Webhooks link) > #mcp >
+   beside it > #pieces (1 code block per piece) > #personas > #recipes (ours or your own job) > #delivery (how events
+   reach you: the 6 channels in their order, each beside its code; the first is the webhook, #webhooks, the nav's
+   Webhooks link, with every event name under it; then the line on a server that's down) > #mcp >
    #integrations (the nav links its #baserow and #supabase cards) > #prices (from content/prices.ts) > #open-source >
    the guides > questions > "Get API access" (#join). The sections only this page draws live here, on the shared v5 head
    (.v5-section, .v5-head, .v5-h2, .v5-line) so they read as the rest of the site; their own classes start s-api-. */
@@ -82,41 +84,58 @@ function Pieces({ pieces }: { pieces: ApiSections['pieces'] }) {
   )
 }
 
-function Personas({ personas }: { personas: ApiSections['personas'] }) {
+/* Short facts beside the code, with a link under them (#personas, #recipes). */
+function Facts({ id, section }: { id: string; section: ApiFacts }) {
   return (
-    <ApiSection id="personas" heading={personas.heading} line={personas.line}>
+    <ApiSection id={id} heading={section.heading} line={section.line}>
       <div className="s-api-split">
         <div className="s-api-split__words">
           <dl className="s-api-facts">
-            {personas.facts.map((f) => (
+            {section.facts.map((f) => (
               <div className="s-api-fact" key={f.term}>
                 <dt>{f.term}</dt>
                 <dd>{f.line}</dd>
               </div>
             ))}
           </dl>
-          <More cta={personas.link} />
+          <More cta={section.link} />
         </div>
         <div className="s-api-split__code">
-          <CodeWindow code={personas.code} />
+          <CodeWindow code={section.code} />
         </div>
       </div>
     </ApiSection>
   )
 }
 
-function Webhooks({ webhooks }: { webhooks: ApiSections['webhooks'] }) {
+/* How events reach you: 1 row per channel, numbered in its order, its name and line beside its code (the #pieces row);
+   the webhook's row lists every event name. The line on a server that's down closes the section. */
+function Delivery({ delivery }: { delivery: ApiSections['delivery'] }) {
   return (
-    <ApiSection id="webhooks" heading={webhooks.heading} line={webhooks.line}>
-      <div className="s-api-split">
-        <div className="s-api-split__words">
-          <Calls items={webhooks.events} />
-          <p className="s-api-foot">{webhooks.foot}</p>
-        </div>
-        <div className="s-api-split__code">
-          <CodeWindow code={webhooks.code} />
-        </div>
-      </div>
+    <ApiSection id="delivery" heading={delivery.heading} line={delivery.line}>
+      <ol className="s-api-pieces">
+        {delivery.channels.map((c, i) => (
+          <li className="s-api-piece" key={c.id} id={c.anchor}>
+            <div className="s-api-piece__words">
+              <p className="s-api-channel__n" aria-hidden="true">
+                {i + 1}
+              </p>
+              <h3 className="s-api-piece__name">{c.name}</h3>
+              <p className="s-api-piece__line">{c.line}</p>
+              {c.events && (
+                <div className="s-api-channel__events">
+                  <p className="s-api-foot">{delivery.eventsLabel}</p>
+                  <Calls items={c.events} />
+                </div>
+              )}
+            </div>
+            <div className="s-api-piece__code">
+              <CodeWindow code={c.code} label={c.name} />
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p className="s-api-down">{delivery.down}</p>
     </ApiSection>
   )
 }
@@ -172,8 +191,9 @@ export function Developers() {
     <>
       <Hero5 hero={page.hero} reader="developers" visual={<CodeWindow code={api.quickstart.code} label={api.quickstart.label} />} />
       <Pieces pieces={api.pieces} />
-      <Personas personas={api.personas} />
-      <Webhooks webhooks={api.webhooks} />
+      <Facts id="personas" section={api.personas} />
+      <Facts id="recipes" section={api.recipes} />
+      <Delivery delivery={api.delivery} />
       <Mcp mcp={api.mcp} />
       {page.integrations && <CardGrid grid={page.integrations} id="integrations" />}
       <Prices prices={api.prices} />

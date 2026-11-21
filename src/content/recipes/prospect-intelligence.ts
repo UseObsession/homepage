@@ -4,7 +4,7 @@ import type { Recipe } from '../types'
    companies. Screen: pack. Home's tile calls it "Agency prospect audits".
    The persona version (20 Nov 2026): a persona the reader defines signs up, opts in to texts and asks the chat at every
    company on their list, waits, and brings back what each prospect sent, or never sent, to open a pitch with. It works
-   from a list (Clay, Google Sheets, a CSV, the API) and writes each finding, its date and a link to its event log back to
+   from a list (Clay, Google Sheets, a CSV, the API) and writes each finding, its date and a link to its events in your event log back to
    the same rows. Not contact data: no people, no tracking. Kept from James: the "54 of 142" totals, "your team writes
    the first line" and "stop writing when the gap closes". Sold as designed: no index, no "already covered", no caps.
    The run is an example. */
@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   name: 'Prospect intelligence',
   group: 'Watch other companies',
   line: 'A persona signs up at each prospect on your list and brings back what it’s sent, to open each pitch with.',
-  gets: 'A finding and a link to its event log on every row, back in Clay, your CRM or a sheet.',
+  gets: 'A finding and a link to its events in your event log on every row, back in Clay, your CRM or a sheet.',
   kit: [
     'A persona at each prospect, with its own inbox',
     'Its own phone number for texts',
@@ -27,11 +27,11 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/recipes/prospect-intelligence',
-    title: 'Prospect intelligence: open pitches with a dated event log',
+    title: 'Prospect intelligence: open every pitch with a dated finding',
     description:
       'A persona signs up at each company on your list and keeps the emails, texts and chat answers it gets, as dated columns in Clay or Sheets, to pitch with.',
     answer:
-      'Prospect intelligence sends a persona you define to sign up, opt in to texts and ask the chat at every company on your list. What each prospect sends back, or never sends, lands on your rows in Clay or Sheets, with a link to its event log.',
+      'Prospect intelligence sends a persona you define to sign up, opt in to texts and ask the chat at every company on your list. What each prospect sends back, or never sends, lands on your rows in Clay or Sheets, with a link to its events in your event log.',
     ogImage: '/og/prospect-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Open every pitch with the prospect’s own emails, and the ones that never came.',
-    sub: 'Prospect intelligence sends a persona you define to sign up, opt in to texts and ask the chat at every company on your list. What each prospect sends back, or never sends, lands on your rows in Clay or Sheets, with a link to its event log.',
+    sub: 'Prospect intelligence sends a persona you define to sign up, opt in to texts and ask the chat at every company on your list. What each prospect sends back, or never sends, lands on your rows in Clay or Sheets, with a link to its events in your event log.',
     screen: 'pack',
     capture: {
       kind: 'waitlist',
@@ -66,11 +66,11 @@ export const recipe: Recipe = {
       { time: 'Day 1, 10:00', text: '131 welcome emails arrive within the hour.' },
       { time: 'Day 1, 11:00', text: 'Asks each site’s chat 1 question. 9 hand over to a person, and the persona says it’s an AI.' },
       { time: 'Day 7', text: '88 brands have sent a text. 54 are still silent.' },
-      { time: 'Day 14', text: 'Still silent at day 14: 54 brands, each with its event log.' },
+      { time: 'Day 14', text: 'Still silent at day 14: 54 brands, each with its events in your event log.' },
     ],
     finding: '54 of 142 brands took a text opt in and never sent a text in 14 days.',
     fix: '54 event log links and a finding column written back to Clay. Your team writes each first line.',
-    ledger: 'Each brand’s event log is dated, and anyone with the link can open it.',
+    ledger: 'Each brand’s events are dated in your event log, and anyone with the link can open them.',
   },
 
   steps: [
@@ -82,7 +82,7 @@ export const recipe: Recipe = {
     { title: 'It waits, and keeps everything', line: 'Every email, text and answer, timed from the sign up, for as long as you set.' },
     {
       title: 'Findings land on your rows',
-      line: 'A finding, the date it was seen and a link to its event log on every row. Your team writes the first line.',
+      line: 'A finding, the date it was seen and a link to its events in your event log on every row. Your team writes the first line.',
     },
   ],
 
@@ -110,7 +110,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'A finding about every prospect, with an event log they can open.',
+    heading: 'A finding about every prospect, with an event log link they can open.',
     items: [
       { format: 'A finding per company', line: 'The gap or the offer, against the rule you set.' },
       { format: 'A timeline', line: 'Every step with its time, from sign up to the end of the window.' },
@@ -149,11 +149,11 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'What is prospect intelligence?',
-        a: 'Prospect intelligence is what a prospect sends the people who sign up with it, brought back by a persona you define that signs up too. It isn’t contact data: the persona keeps the event log, and your own tools find the people.',
+        a: 'Prospect intelligence is what a prospect sends the people who sign up with it, brought back by a persona you define that signs up too. It isn’t contact data: every event the persona gets lands in your event log, and your own tools find the people.',
       },
       {
         q: 'How do I find a reason to reach out that 50 other reps don’t have?',
-        a: 'Use something only a subscriber of theirs can see. Prospect intelligence signs up at every company on your list and keeps what arrives, so each first line opens on a dated finding with a link to its event log.',
+        a: 'Use something only a subscriber of theirs can see. Prospect intelligence signs up at every company on your list and keeps what arrives, so each first line opens on a dated finding with a link to its events in your event log.',
       },
       {
         q: 'Does Prospect intelligence work with Clay and Google Sheets?',

@@ -29,19 +29,19 @@ const SENTENCE =
    WebSite JSON-LD, docs/SEARCH.md 2). Since 21 Nov the pieces an agent needs through one API, plus recipes; never AI
    customers. */
 export const ENTITY =
-  'Obsession gives AI agents the pieces they need on the web through one API and one bill: email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits, with an event log of every page, email, text and call. Teams who don’t write code pick a recipe, and Obsession runs the job.'
+  'Obsession gives AI agents the pieces they need on the web through one API and one bill: email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Recipes run our jobs, or your own, beside the pieces, and every event and result lands in one event log developers subscribe to.'
 
 /* /recipes. Since 20 Nov (the persona rewrite) each recipe is a job personas already know how to do: who the persona
-   is, where it goes, what it brings back and where the event log lands. Grouped by job as in the nav; the groups render the
+   is, where it goes, what it brings back and how it reaches your event log. Grouped by job as in the nav; the groups render the
    recipes whose `group` matches, in this order. */
 export const recipesPage: RecipesIndexPage = {
   meta: {
     path: '/recipes',
     title: 'Obsession recipes: jobs your personas already know how to do',
     description:
-      'Each Obsession recipe is a job personas already know how to do: who the persona is, where it goes, what it brings back, and where the event log lands.',
+      'Each Obsession recipe is a job that runs beside the pieces: who the persona is, where it goes, what it brings back, and how each result reaches your event log.',
     answer:
-      'Obsession recipes are jobs personas already know how to do, picked without code. Each says who the persona is, where it goes, what it brings back and where the event log lands.',
+      'Obsession recipes are jobs that run beside the pieces: pick one of ours or bring your own. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -51,7 +51,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'Pick a recipe. Say where your personas go.',
-    sub: 'Obsession recipes are jobs personas already know how to do, picked without code. Each says who the persona is, where it goes, what it brings back and where the event log lands.',
+    sub: 'Obsession recipes are jobs that run beside the pieces: pick one of ours or bring your own. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
   },
 
   groups: [
@@ -82,23 +82,23 @@ export const recipesPage: RecipesIndexPage = {
     items: [
       {
         q: 'What’s an Obsession recipe?',
-        a: 'A ready-made collection. It names the data (emails, prices, trials, quotes or offers), the companies, the customer profile and country, and where each fact lands. You add the companies.',
+        a: 'A job that runs on Obsession beside the pieces: who the persona is, where it goes, what it does and what it brings back. Every result lands in your event log, where your code or your team picks it up.',
       },
       {
-        q: 'What if my question isn’t here?',
-        a: 'Ask it in plain words in Insights, or from your own AI agent, like “Which of our prospects never send a welcome email?”. Obsession answers from the companies already in the index and offers Watch for the rest.',
+        q: 'Can I bring my own job?',
+        a: 'Yes. Write the task or computation once and it runs on our runtime next to the inbox, browser and sandbox, so there’s nothing to host. Its results arrive in your event log like every other event.',
       },
       {
         q: 'Can I change a recipe?',
-        a: 'Yes: its companies, customer profiles, countries, how long each account stays open and where the data lands.',
+        a: 'Yes: who the persona is, where it goes, how often it runs, how long it waits for replies and where its results go.',
       },
       {
-        q: 'How many companies can 1 recipe cover?',
-        a: 'As many as you add. A company already covered returns its history at once. One that isn’t starts when you click Watch.',
+        q: 'What does a recipe cost?',
+        a: 'A recipe is billed on the pieces it uses, at the same prices as the API, so there’s no separate fee for running one.',
       },
       {
         q: 'Can I run a recipe from my own code?',
-        a: 'Yes. Every recipe uses the same 5 verbs as the API and MCP: lookup, facts, evidence, index and notify.',
+        a: 'Yes. Start one with obsession.recipes.run, or from your own agent over MCP, and subscribe to its results in your event log.',
       },
     ],
   },
@@ -316,7 +316,7 @@ export const agentsPage: AgentsPage = {
     {
       id: 'never',
       heading: 'What no Obsession agent does, whoever asked for it.',
-      lines: ['Every agent keeps to the law, and its event log is never changed. It never:'],
+      lines: ['Every agent keeps to the law, and nothing in the event log is ever changed. It never:'],
       list: [
         'Pretends to be a person when it talks to one',
         'Uses fake payment details',
@@ -410,9 +410,9 @@ export const llms: Llms = {
   summary: ENTITY,
   intro: [
     'Obsession gives AI agents the pieces they need on the web, through one API and one bill. Email: inboxes agents send and receive from. Phone: numbers, texts and calls. Messaging: iMessage lines, WhatsApp for support, sales, bookings and notifications, Slack and Telegram. Browser: a cloud browser whose sessions keep their logins, with a home connection. Sandbox: a computer to run code, started only when a task needs one. A company can take one piece, such as email, or all of them.',
-    'A persona puts the pieces under one identity: an inbox, a number, its channels, a browser profile and a sandbox when needed. It lives on an actor runtime, so it costs nothing while it waits, answers a new message in about 50 ms without starting a machine, runs on a schedule, hands an ID check to a person, stops before payment unless you give it your own payment card, and keeps an event log of every page, email, text and call, each dated, with screenshots. It says it’s an AI when it talks to a person.',
+    'A persona puts the pieces under one identity: an inbox, a number, its channels, a browser profile and a sandbox when needed. It lives on an actor runtime, so it costs nothing while it waits, answers a new message in about 50 ms without starting a machine, runs on a schedule, hands an ID check to a person, stops before payment unless you give it your own payment card, and every page, email, text and call it sees lands in your event log, each dated, with screenshots. It says it’s an AI when it talks to a person.',
     `Developers use the pieces through the API, SDKs and MCP, so their own agents call them as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Each piece is priced on its own (useobsession.com/pricing): an inbox costs ${prices.inbox.amount} a month and the first 3 are free, a US number ${prices.number.amount} a month, a browser ${prices.browser.amount} an hour and a sandbox ${prices.sandbox.amount} a vCPU hour, and an idle persona costs nothing.`,
-    'Recipes are jobs Obsession runs for teams who don’t write code, on the same pieces at the same prices. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (agentic mystery shopping, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
+    'Recipes are jobs that run on Obsession beside the pieces, at the same prices: ours, ready to run for teams who don’t write code, or your own task or computation, with nothing to host. Every result lands in the same event log developers subscribe to. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (agentic mystery shopping, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
     `Every persona says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume. Any company can write to ${CONTACT_EMAIL} to keep personas off its site.`,
     'The sample data at useobsession.com/sample-output is a real run from September 2026: a UK skincare store, 4 personas with 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 on 22 September and a checkout left at 03:11 got no reminder.',
     'Obsession is in early access, onboarding a limited number of teams.',

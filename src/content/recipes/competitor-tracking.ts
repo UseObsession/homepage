@@ -128,7 +128,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'What changed this week, with the event log behind every line.',
+    heading: 'What changed this week, with your event log behind every line.',
     items: [
       { format: 'A timeline per competitor', line: 'Every email, text, offer and change in date order, each with its screenshot.' },
       { format: 'The welcome series, mapped', line: 'Each step, the delay before it and the offer it carries.' },
@@ -184,7 +184,7 @@ export const recipe: Recipe = {
         a: 'From a real account at each competitor. The persona signs up the way anyone can, from the country you choose, and keeps the account open for months as the same person.',
       },
       {
-        q: 'When does the event log start?',
+        q: 'When do events start landing in my event log?',
         a: 'The day the persona signs up. From then on every message is dated from that sign up, so you see the sequence in order for as long as you hold it.',
       },
       {

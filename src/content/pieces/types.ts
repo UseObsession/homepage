@@ -1,10 +1,13 @@
+import type { EventName } from '../delivery'
 import type { PieceId } from '../prices'
 import type { Faq, Final, Meta } from '../types'
 
 /* The words of a piece's own page (21 Nov 2026: /email, /phone, /messaging, /browser, /sandbox, /personas), drawn by
    pages/Piece.tsx in this order: the hero (the claim, its 2 sentences and the code) > what an agent can do with the piece
-   (#features) > for Personas, the event log (#event-log) > its prices (#pricing, read from content/prices.ts by `id`, never
-   written here) > how it works with the other pieces (#pieces) > questions (#questions) > the early access form (#join).
+   (#features) > for Personas, its events in the event log (#event-log) > how its events reach you (#delivery: its
+   `events`, in the words every piece page shares, pieces/index.ts and content/delivery.ts) > its prices (#pricing, read
+   from content/prices.ts by `id`, never written here) > how it works with the other pieces (#pieces) > questions
+   (#questions) > the early access form (#join).
    `meta.path` is piecePaths[id]; `meta.answer` opens with the hero's sub, word for word. */
 
 /* 1 thing the piece lets an agent do: a short claim and 1 line. */
@@ -26,10 +29,12 @@ export type PiecePage = {
      every page shares (the rebuild brief), with no "Example" tag. */
   hero: { headline: string; sub: string; code: string }
   can: { heading: string; line?: string; items: PieceItem[] }
+  /* The events this piece sends, in the order the #delivery block lists them. */
+  events: EventName[]
   /* The claim and line beside the price rows. The rows themselves are prices.ts filtered by `id`. */
   price: { heading: string; line: string }
   together: { heading: string; line?: string; items: PieceLink[] }
-  /* Personas only: an event log, as a card of dated rows beside its claim. */
+  /* Personas only: 1 persona's events in the event log, as a card of dated rows beside its claim. */
   log?: { heading: string; line: string; who: { name: string; lines: string[] }; rows: PieceLogRow[] }
   faq: Faq
   final: Final

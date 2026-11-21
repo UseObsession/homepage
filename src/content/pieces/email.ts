@@ -25,7 +25,7 @@ await inbox.send({
 })
 
 // Each reply reaches your webhook, in its thread
-await obsession.webhooks.create({
+await obsession.events.subscribe({
   url: "https://your-app.example/hooks/email",
   events: ["email.received"],
 })`
@@ -64,6 +64,8 @@ export const email: PiecePage = {
     ],
   },
 
+  events: ['email.received', 'email.sent'],
+
   price: {
     heading: 'Pay for the inboxes your agents keep and the mail they move.',
     line: 'Inboxes are billed by the month and email by the thousand, on the same bill as every other piece.',
@@ -77,7 +79,7 @@ export const email: PiecePage = {
       { piece: 'messaging', line: 'Carry on the same conversation on WhatsApp or iMessage when the person moves there.' },
       { piece: 'browser', line: 'Sign up on a site in the browser, then confirm it from the inbox.' },
       { piece: 'sandbox', line: 'Run code on the files that arrive, such as a spreadsheet or a PDF invoice.' },
-      { piece: 'personas', line: 'Put the inbox, a number and a browser under one name, with one event log.' },
+      { piece: 'personas', line: 'Put the inbox, a number and a browser under one name, with every event in your event log.' },
     ],
   },
 
@@ -94,7 +96,7 @@ export const email: PiecePage = {
       },
       {
         q: 'How does my agent receive email?',
-        a: 'Create a webhook for email.received and each new message is posted to your URL as it lands, with its thread and its attachments. Any inbox can also be read through the API.',
+        a: 'Subscribe your URL to email.received with obsession.events.subscribe, and each new message is posted to it as it lands, with its thread and its attachments. Any inbox can also be read through the API.',
       },
       {
         q: 'Can my agents send from our own domain?',

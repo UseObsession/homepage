@@ -127,7 +127,7 @@ export const recipe: Recipe = {
       { format: 'Before and after', line: 'Every changed answer side by side, with the rule it broke.' },
       { format: 'The pass rate over time', line: 'Every morning’s replay on 1 line, with each update marked.' },
       { format: 'Slack, email or a webhook', line: 'The moment a replay drops below your baseline.' },
-      { format: 'A dated event log', line: 'Every replay as a page and a PDF for your vendor, your client or your insurer.' },
+      { format: 'Dated events', line: 'Every replay as a page and a PDF for your vendor, your client or your insurer.' },
     ],
   },
 
@@ -187,9 +187,9 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'It tells a person it’s an AI when it talks to one. With your AI agent, the event log keeps both sides word for word, before and after.',
+        a: 'It tells a person it’s an AI when it talks to one. With your AI agent, your event log keeps both sides word for word, before and after.',
       },
-      { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated event log of what your agent said on each case that day.' },
+      { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated event in your event log, showing what your agent said on each case that day.' },
     ],
   },
 
